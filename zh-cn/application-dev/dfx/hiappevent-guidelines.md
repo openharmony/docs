@@ -72,3 +72,9 @@
    ```
 
 2. 运行项目，点击应用界面上的运行按钮。
+
+## 相关实例
+
+针对应用事件开发，有以下相关实例可供参考：
+
+- [`JsDotTest`：测试打点（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)

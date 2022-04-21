@@ -48,7 +48,7 @@ DatePicker(options?: DatePickerOptions)
   | 名称 | 参数类型 | 描述 | 
   | -------- | -------- | -------- |
   | year | number | 选中日期的年。 | 
-  | month | number | 选中日期的月。 | 
+  | month | number | 选中日期的月(0~11)，0表示1月，11表示12月。 | 
   | day | number | 选中日期的日。 | 
 
 

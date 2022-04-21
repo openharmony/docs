@@ -65,7 +65,7 @@ You are welcome to contribute documents to the release. For details, see [Writin
 
 You are welcome to share your experience and expertise with other developers to help them get started. For example, you can contribute tutorials and FAQs by using the following templates:
 
--   [Tutorial Template](template/tutorial-template.md.md). You can contribute tutorials in the `contribute/tutorial` folder.
--   [FAQ Template](template/faq-template.md.md). You can contribute FAQs in the `contribute/faqs` folder.
+-   [Tutorial Template](template/tutorial-template.md). You can contribute tutorials in the `contribute/tutorial` folder.
+-   [FAQ Template](template/faq-template.md). You can contribute FAQs in the `contribute/faqs` folder.
 
 More writing templates are available in the **contribute** folder in the **Docs** repository.

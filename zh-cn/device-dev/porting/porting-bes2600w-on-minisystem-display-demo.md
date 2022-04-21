@@ -72,11 +72,11 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下图片表示配置正确。
 
    执行`hb set`输入项目根目录，并且回车，`hb`命令会遍历所有`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项，`config.json`的`product_name`用于显示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，并且匹配`<any_dir_name>/config.gni`文件，如果能够匹配多个文件，表示该单板适配了多个内核，那么可以根据`config.json`的`kernel_type`和`kernel_version`来唯一匹配`config.gni`的`kernel_type`和`kernel_version`，即可确定了需要编译适配了哪个内核的单板。
-![hb set](figure/bes2600_hb_set.png)
+![hb set](figures/bes2600_hb_set.png)
 
-​		通过`hb env`可以查看选择出来的预编译环境变量。
+			通过`hb env`可以查看选择出来的预编译环境变量。
 
-![hb env](figure/bes2600_hb_env.png)
+![hb env](figures/bes2600_hb_env.png)
 
 在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参[内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D)。
 
@@ -262,7 +262,7 @@ update_config menuconfig:
 
 配置完成后，在 `kernel/liteos_m` 目录下执行 `make menuconfig`能够对`SoC Series`/`SoC`/`Board`进行选择，如下：
 
-![board make menuconfig](figure/bes2600_board_make_menuconfig.png)
+![board make menuconfig](figures/bes2600_board_make_menuconfig.png)
 
 结果将自动保存在`$(PRODUCT_PATH)/kernel_configs/debug.config`，下次执行`make menuconfig`时会导出保存的结果。
 
@@ -431,7 +431,7 @@ static int32_t FsDriverInit(struct HdfDeviceObject *object)
 
 在轻量系统中，C库适配比较复杂，设计思路请参考[LiteOS-M内核支持musl与newlib平滑切换方案](https://gitee.com/arvinzzz/ohos_kernel_design_specification/blob/master/liteos_m/%E6%94%AF%E6%8C%81newlib/%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8Dnewlib%E6%96%B9%E6%A1%88%E6%80%9D%E8%B7%AF.md)，由于我们的工具链采用 [gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.arm.com%2F-%2Fmedia%2FFiles%2Fdownloads%2Fgnu-rm%2F10.3-2021.10%2Fgcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2) 自带`newlib`的C库，那么系统移植整体采用`newlib`的C库。那么在内核的`make menuconfig`中选择`newlib`，如下图：
 
-![image-20211212191013553](figure/bes2600_newlib_make_menuconfig.png)
+![image-20211212191013553](figures/bes2600_newlib_make_menuconfig.png)
 
 #### malloc适配
 
@@ -1394,7 +1394,7 @@ APP_FEATURE_INIT(AppEntry);
 `aafwk_lite`相关的应用样例见`vendor/bestechnic/display_demo/tests/ability`目录，包含`launcher`和`js app`这两类应用，应用的函数调用流程描述如下：
 
 1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.example.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
-   
+  
 2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`,
    `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
 
@@ -1413,7 +1413,7 @@ APP_FEATURE_INIT(AppEntry);
     },
 ```
 
-## 兼容性测评
+## 兼容性认证
 
 ### 产品兼容性规范
 
@@ -1456,7 +1456,7 @@ APP_FEATURE_INIT(AppEntry);
 
 ### 报告提交
 
-将上图`XTS`用例的情况保存为测试报告，上传到`OpenHarmony`兼容性测试网站进行测评，作为`sig`仓库转正到`master`仓库的必要条件。详细步骤如下：
+将上图`XTS`用例的情况保存为测试报告，上传到`OpenHarmony`兼容性测试网站进行认证，作为`sig`仓库转正到`master`仓库的必要条件。详细步骤如下：
 
 步骤1：将`XTS`测试报告压缩成`zip`文件。
 

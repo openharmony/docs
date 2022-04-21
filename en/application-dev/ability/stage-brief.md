@@ -35,7 +35,7 @@ The following figure shows the basic concepts in the stage model.
 -  **Application**: runtime class of a bundle, which is invisible to developers in the runtime.
 -  **Context**: provides various capabilities that can be invoked by developers during the runtime. The **Ability** and **ExtensionAbility** classes have their own context classes, which inherit the base class **Context**. The base class provides information such as the bundle name, module name, and path.
 -  **Ability**: provides lifecycle callback, holds the **AbilityContext** class, and supports component continuation and collaboration.
--  **ExtensionAbility**: general name of scenario-based service extension abilities. The system defines multiple scenario-based **ExtensionAbility** classes, each of which has its own **ExtensionAbilityContext**.
+-  **ExtensionAbility**: general name of scenario-based service extension abilities. The system defines multiple scenario-based **ExtensionAbility** classes, each of which has its own **ExtensionContext**.
 -  **WindowStage**: local window manager.
 -  **Window**: basic unit managed by the window manager. It has an ArkUI engine instance.
 - **ArkUI Page**: displays declarative ArkUI.
@@ -48,6 +48,23 @@ The ability and ability stage lifecycles are the most important concepts in the 
 ![stageabilitylifecyclecallback](figures/stageabilitylifecyclecallback.png)
 
 To implement multi-device-form tailoring and multi-window scalability, OpenHarmony decouples the component manager from the window manager. The ability lifecycle defined in the stage model includes only the creation, destruction, foreground, and background states. The gain focus and lose focus states that are closely related to UI content are defined in the window stage. This implements weak coupling between the abilities and windows. On the service side, the window manager notifies the component manager of the foreground and background changes, so the component manager only senses the foreground and background changes but not the focus changes.
+
+
+### Ability Instances and Missions
+
+Abilities can be started in any of the following modes:
+
++ **Singleton**: For each type of ability, only one instance exists in the application process. **Ability1** in the figure below is started in singleton mode.
+
++ **Standard**: Each time **startAbility** is called, an instance of the specified ability type is created in the application process. **Ability2** in the figure below is started in standard mode.
+
++ **Specified**: Before creating an **AbilityRecord**, you can create a key for the instance. Each time **startAbility** is called, the system asks the application which ability instance (corresponding to a key) will be used. **Ability3** in the figure below is started in specified mode.
+
+Each ability instance corresponds to a mission in **Launcher Recent**.
+
+The mission corresponding to each ability instance has a snapshot of the ability instance. After the ability instance is destroyed, the ability class information and snapshot are retained in the mission until the user deletes the information or the storage space exceeds the upper limit.
+
+ ![AbilityComponentInstanceMission](figures/AbilityComponentInstanceMission.png)
 
 ### ExtensionAbility Mechanism
 

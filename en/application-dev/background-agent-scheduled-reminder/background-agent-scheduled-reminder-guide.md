@@ -350,7 +350,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ReminderRequestCalendar**  extends  **ReminderRequest**  and defines a reminder for a calendar event.
 
-For the application to run properly, if both **repeatMonths** and **repeatDays** are not specified, the earliest reminder time must be later than the current time.  
+For the application to run properly, if both **repeatMonths** and **repeatDays** are not specified, the earliest reminder time must be later than the current time.
 
 **Table  8**  ReminderRequestCalendar instance
 
@@ -542,7 +542,7 @@ For the application to run properly, if both **repeatMonths** and **repeatDays**
 
 ## How to Develop<a name="section4207112818418"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE:**
 >To publish a reminder, your application needs to apply for the  **ohos.permission.PUBLISH\_AGENT\_REMINDER**  permission.
 
 Publish a 10-second countdown reminder.
@@ -553,7 +553,10 @@ Publish a 10-second countdown reminder.
     import reminderAgent from '@ohos.reminderAgent';
     import notification from '@ohos.notification';
     export default {
-        timer: {
+        // In JS Project:
+        // timer: {
+        // In eTS Project:
+        let timer : reminderAgent.ReminderRequestTimer = {
             reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
             triggerTimeInSeconds: 10,
             actionButton: [
@@ -563,12 +566,12 @@ Publish a 10-second countdown reminder.
                 }
             ],
             wantAgent: {
-                pkgName: "com.example.phone",
-                abilityName: "com.example.phone.MainAbility"
+                pkgName: "com.example.device",
+                abilityName: "com.example.device.MainAbility"
             },
             maxScreenWantAgent: {
-                pkgName: "com.example.phone",
-                abilityName: "com.example.phone.MainAbility"
+                pkgName: "com.example.device",
+                abilityName: "com.example.device.MainAbility"
             },
             title: "this is title",
             content: "this is content",
@@ -602,7 +605,10 @@ Publish a 10-second countdown reminder.
 Sample code for defining a calendar reminder instance:
 
 ```
-calendar: {
+// In JS Project:
+// calendar: {
+// In eTS Project:
+let calendar : reminderAgent.ReminderRequestCalendar = {
     reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
     dateTime: {
         year: 2050,
@@ -625,12 +631,12 @@ calendar: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
@@ -647,7 +653,10 @@ calendar: {
 Sample code for defining an alarm reminder instance:
 
 ```
-alarm: {
+// In JS Project:
+// alarm: {
+// In eTS Project:
+let alarm : reminderAgent.ReminderRequestAlarm = {
     reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
     hour: 11,
     minute: 14,
@@ -663,12 +672,12 @@ alarm: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,

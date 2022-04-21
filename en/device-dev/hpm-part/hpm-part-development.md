@@ -22,19 +22,19 @@ The hpm-cli tool is developed based on Node.js. Therefore, you must install Node
    You are advised to install the latest LTS version (not earlier than 12.x) of [Node.js](https://nodejs.org/).
 
 2. Install the hpm-cli tool using **npm** delivered with **Node.js**. Run the following command:
-     
+   
    ```
    npm install -g @ohos/hpm-cli
    ```
 
 3. Run the following command to check whether the installation is successful. If a hpm version is displayed, the installation is successful.
-     
+   
    ```
    hpm -V or hpm --version
    ```
 
 4. (Optional) Run the following command to update the hpm version if needed:
-     
+   
    ```
    npm update -g @ohos/hpm-cli
    ```
@@ -44,13 +44,13 @@ The hpm-cli tool is developed based on Node.js. Therefore, you must install Node
 
 After hpm-cli is installed, run the following command to view the hpm configuration:
 
-  
+
 ```
 hpm config
 ```
 
   The default hpm configuration is displayed upon successful command execution. You can modify the default configuration as required. The following lists the common hpm configuration:
-  
+
 ```
 registry = https://hpm.harmonyos.com
 ### login Settings
@@ -82,7 +82,7 @@ You can create an HPM Part by using a template or define an existing project as 
 ### Creating an HPM Part Using a Template
 
 1. Run the following command to create a directory:
-     
+   
    ```
    hpm init -t default  mybundle
    ```
@@ -91,7 +91,7 @@ You can create an HPM Part by using a template or define an existing project as 
    > -In the preceding command, **default** indicates that the **default** template is used. You can use another template such as **simple** or **dist**.
 
      The generated directory structure is as follows:
-     
+   
    ```
    /
    ├── headers            # Header file (example)
@@ -106,7 +106,7 @@ You can create an HPM Part by using a template or define an existing project as 
    ```
 
 2. Write the code and build script of the HPM Part.
-     
+   
    ```
    hpm init -t {templatename} -d {dir} {name}
    ```
@@ -120,14 +120,14 @@ You can create an HPM Part by using a template or define an existing project as 
 
 The hpm-cli tool provides a few default templates. More templates are available on [DevEco Marketplace](https://repo.harmonyos.com). You can run the **hpm search -t template** command to search for a template stored on [DevEco Marketplace](https://repo.harmonyos.com).
 
-![zh-cn_image_0000001217486680](figures/zh-cn_image_0000001217486680.png)
+![en-us_image_0000001217486680](figures/en-us_image_0000001217486680.png)
 
 
 ### Defining an Existing Project as an HPM Part
 
 If you have a code project and need to distribute it on the HPM platform, run the following command in the project directory, for example, **mybundle2**:
 
-  
+
 ```
 hpm init
 ```
@@ -137,7 +137,7 @@ hpm init
 2. Enter the version and description. A **bundle.json** file will be generated in the current directory.
 
 3. Open the **bundle.json** file.
-     
+   
    ```
    $ hpm init
    Your bundle will be created in directory ~\demo\mybundle2
@@ -148,7 +148,7 @@ hpm init
    ```
 
 4. Modify other information (such as the author, code repository, code directories, scripts, and dependencies) in **bundle.json**. An example is shown below:
-     
+   
    ```
    {
    "name": "mybundle2",
@@ -177,7 +177,7 @@ In the distribution metadata file, define the dependent HPM Parts and how to bui
 
 The following uses the **bundle.json** file as an example. In this example, the **dist** command uses the **hb** framework.
 
-  
+
 ```
 {
 "name": "@your/dist_name",
@@ -225,7 +225,7 @@ The hpm-cli tool supports command integration so that you can select any build t
 
 This section describes how to build an executable file named **helloworld** in the **app** directory.
 
-  
+
 ```
 app
 ├── BUILD.gn
@@ -237,7 +237,7 @@ app
 
 Create a **BUILD.gn** file in the same directory as **helloworld.c**.
 
-  
+
 ```
 touch BUILD.gn
 vim BUILD.gn
@@ -245,7 +245,7 @@ vim BUILD.gn
 
 The following is an example of **BUILD.gn**:
 
-  
+
 ```
 executable("hello_world") {
     sources = [
@@ -268,28 +268,28 @@ executable("hello_world") {
 
 Run the following command to start the build:
 
-  
+
 ```
 hpm build
 ```
 
 After all build operations are complete, the message "build succeed" is displayed. You need to check the build result.
 
-![zh-cn_image_0000001262166533](figures/zh-cn_image_0000001262166533.png)
+![en-us_image_0000001262166533](figures/en-us_image_0000001262166533.png)
 
 
 ### Building an Image
 
 Run the following command in the root directory of the current distribution:
 
-  
+
 ```
 hpm dist
 ```
 
 The hpm-cli tool automatically starts the build. After the build is complete, an image file will be generated, as shown below:
 
-  
+
 ```
 out
 |-xxdist.img
@@ -303,7 +303,7 @@ To publish an HPM Part, you must obtain an account and create an organization (o
 
 After that, generate a public key on the local PC based on your invitation code (which can be obtained on the **My profile** page on [DevEco Marketplace](https://repo.harmonyos.com)), and configure the public key on the **My profile** page.
 
-  
+
 ```
 hpm config set loginUser {your-invitation-code}
 hpm gen-keys
@@ -315,7 +315,7 @@ Now you have the permission to publish HPM Parts in your organization.
 
 In the directory where the HPM Part is located, run the following command to pack and publish the HPM Part:
 
-  
+
 ```
 hpm publish
 ```
@@ -346,13 +346,13 @@ Visit [DevEco Marketplace](https://repo.harmonyos.com), search for HPM Parts tha
 4. Run the **hpm build** command to perform build and output the build result.
 
   Run the following command in your project. Make sure that the project directory contains the **bundle.json** file.
-  
+
 ```
 $ hpm install @scope/the_bundle
 ```
 
   The referenced HPM Part will be installed under **ohos_bundle** in the directory where your project is located. The directory structure is as follows:
-  
+
 ```
 project
 ├── ohos_bundle            
@@ -368,7 +368,7 @@ project
 
 Open the **bundle.json** file. You will see that the HPM Part has been introduced to the dependencies of your project.
 
-  
+
 ```
 {
 "dependencies": {
@@ -379,7 +379,7 @@ Open the **bundle.json** file. You will see that the HPM Part has been introduce
 
 You can edit the dependencies of multiple HPM Parts in this file.
 
-  
+
 ```
 {
 "dependencies": {
@@ -399,13 +399,13 @@ Run the **hpm install** command again to download and install all HPM Parts that
 If the referenced HPM Part is shared by multiple projects, for example, the compiler toolchain, you can install it globally.
 
   Run the following command in your project. Make sure that the project directory contains the **bundle.json** file.
-  
+
 ```
 $ hpm install -g @scope/the_tool
 ```
 
   The referenced HPM Part will be installed in the directory specified by the **globalRepo** parameter of the **hpm config** command.
-  
+
 ```
 ~\.hpm\global\ohos_bundles            
 │   └── scope
@@ -415,7 +415,7 @@ $ hpm install -g @scope/the_tool
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - For an HPM Part installed in a project, you can reference it using the environment variable **DEP_SCOPE_bundle_name** when running the hpm build command.
 >     For example, after you run **hpm i \@opensource/gn** to install an HPM Part, edit the build script in the **bundle.json** file as follows:
->     
+>    
 >   ```
 >   "scripts": {
 >       "build": "${DEP_OPENSOURCE_gn}/gn  --version"
@@ -425,14 +425,14 @@ $ hpm install -g @scope/the_tool
 >   Then, you can run the **hpm build** command to call gn functions.
 > 
 > - For a globally installed HPM Part, you can directly call the HPM Part using an environment variable or reference the HPM Part using the **${key}/tool_name** parameter in the **hpm config set key value** command. Example:
->     
+>    
 >   ```
 >   hpm i -g @ohos/opensource/gn
 >   hpm config BUILD_SYS_GN ~/.hpm/global/ohos_bundles/opensource/gn
 >   ```
 > 
 >     You can edit the build script in the **bundle.json** file as follows:
->     
+>    
 >   ```
 >   "scripts": {
 >       "build": "${BUILD_SYS_GN}/gn  --version"

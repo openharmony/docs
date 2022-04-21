@@ -23,7 +23,11 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 | 类Web开发范式 | JS语言 | 数据驱动更新 | 界面较为简单的程序应用和卡片 | Web前端开发人员 |
 | 声明式开发范式 | 扩展的TS语言（eTS） | 数据驱动更新 | 复杂度较大、团队合作度较高的程序 | 移动系统应用开发人员、系统应用开发人员 |
 
-对于DevEco Studio V2.2 Beta1及更高版本，在使用JS语言开发时，除传统代码方式外，还支持使用低代码方式。OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循[JS开发规范](../reference/apis)，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+对于DevEco Studio V2.2 Beta1及更高版本，在使用JS语言开发时，除传统代码方式外，还支持使用低代码方式。
+
+对于eTS语言开发，除传统代码方式外，低代码方式则在DevEco Studio V3.0 Beta3及更高版本中支持。
+
+OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循JS开发规范，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
 
 
 ### Ability
@@ -43,4 +47,5 @@ Ability可以分为[FA（Feature Ability）](../../glossary.md#f)和[PA（Partic
 
 2. 请参考[配置OpenHarmony SDK](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443)，完成**DevEco Studio**的安装和开发环境配置。
 
-完成上述操作及基本概念的理解后，可参照[使用eTS语言开发](start-with-ets.md)、[使用JS语言开发（传统代码方式）](start-with-js.md)、[使用JS语言开发（低代码方式）](start-with-js-low-code.md)中的任一章节进行下一步体验和学习。
+完成上述操作及基本概念的理解后，可参照[使用eTS语言开发（传统代码方式）](start-with-ets.md)、[使用eTS语言开发（低代码方式）](start-with-ets-low-code.md)、[使用JS语言开发（传统代码方式）](start-with-js.md)、[使用JS语言开发（低代码方式）](start-with-js-low-code.md)中的任一章节进行下一步体验和学习。
+

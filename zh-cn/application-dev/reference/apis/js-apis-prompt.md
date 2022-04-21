@@ -21,9 +21,9 @@ showToast(options: ShowToastOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowToastOptions](#showtoastoptions) | 是 | 文本弹窗选项。 |
+| 参数名     | 类型                                    | 必填   | 说明      |
+| ------- | ------------------------------------- | ---- | ------- |
+| options | [ShowToastOptions](#showtoastoptions) | 是    | 文本弹窗选项。 |
 
 **示例：**
   ```
@@ -42,11 +42,11 @@ showToast(options: ShowToastOptions): void
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| message | string | 是 | 显示的文本信息。 |
-| duration | number | 否 | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
-| bottom  | &lt;length&gt; | 否 | 设置弹窗边框距离屏幕底部的位置，仅手机和平板设备支持。 |
+| 名称       | 类型             | 必填   | 说明                                       |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| message  | string         | 是    | 显示的文本信息。                                 |
+| duration | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
+| bottom   | &lt;length&gt; | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
 ## prompt.showDialog
 
@@ -57,15 +57,15 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#showdialogoptions) | 是 | 对话框选项。|
+| 参数名     | 类型                                      | 必填   | 说明     |
+| ------- | --------------------------------------- | ---- | ------ |
+| options | [ShowDialogOptions](#showdialogoptions) | 是    | 对话框选项。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; |  对话框响应结果。|
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
+| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
 
 **示例：**
 
@@ -106,10 +106,10 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#showdialogoptions) | 是 | 页面显示对话框信息描述。|
-  | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是 | 对话框响应结果回调。 |
+| 参数名      | 类型                                       | 必填   | 说明           |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| options  | [ShowDialogOptions](#showdialogoptions)  | 是    | 页面显示对话框信息描述。 |
+| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
 
 **示例：**
   ```
@@ -146,11 +146,11 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| title | string | 否 | 标题文本。 |
-| message | string | 否 | 内容文本。 |
-| buttons | Array | 否 | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
+| 名称      | 类型     | 必填   | 说明                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| title   | string | 否    | 标题文本。                                    |
+| message | string | 否    | 内容文本。                                    |
+| buttons | Array  | 否    | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
 
 ## ShowDialogSuccessResponse 
 
@@ -158,8 +158,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
+| 名称    | 类型     | 说明                  |
+| ----- | ------ | ------------------- |
 | index | number | 选中按钮在buttons数组中的索引。 |
 
 
@@ -172,10 +172,10 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#actionmenuoptions) | 是 | 操作菜单选项。 |
-  | callback |  AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)>  | 是 | 菜单响应结果回调。 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [ActionMenuOptions](#actionmenuoptions)  | 是    | 操作菜单选项。   |
+| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | 是    | 菜单响应结果回调。 |
 
 
 **示例：**
@@ -215,14 +215,14 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#actionmenuoptions) | 是 | 操作菜单选项。 |
+| 参数名     | 类型                                      | 必填   | 说明      |
+| ------- | --------------------------------------- | ---- | ------- |
+| options | [ActionMenuOptions](#actionmenuoptions) | 是    | 操作菜单选项。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; |  菜单响应结果。|
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
 
 **示例：**
   ```
@@ -256,10 +256,10 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| title | string | 否 | 标题文本。 |
-| buttons | Array | 是 | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| 名称      | 类型     | 必填   | 说明                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| title   | string | 否    | 标题文本。                                    |
+| buttons | Array  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
 
@@ -267,7 +267,7 @@ showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 否 | 选中按钮在buttons数组中的索引，从0开始。 |
+| 名称    | 类型     | 必填   | 说明                       |
+| ----- | ------ | ---- | ------------------------ |
+| index | number | 否    | 选中按钮在buttons数组中的索引，从0开始。 |
 

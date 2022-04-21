@@ -16,11 +16,11 @@ OpenHarmony设备安全等级管理（DSLM）模块，负责管理各种不同�
 
   OpenHarmony系统安全架构如下图所示：
 
-  ![OpenHarmony系统安全架构](figure/ohos_system_security_architecture.png)
+  ![OpenHarmony系统安全架构](figures/ohos_system_security_architecture.png)
 
   上图为典型的OpenHarmony单设备系统安全架构，在不同种类OpenHarmony设备上的实现可以存在差异，取决于设备的威胁分析（风险高低）和设备的软硬件资源。OpenHarmony在参考业界权威的安全分级模型基础上，结合OpenHarmony实际的业务场景和设备分类，将OpenHarmony设备的安全能力划分为 5 个安全等级：SL1 ~ SL5。OpenHarmony操作系统生态体系中，要求高一级的设备安全能力默认包含低一级的设备安全能力。分级概要可参考下图：
 
-  ![OpenHarmony设备安全等级](figure/ohos_device_security_level.png)
+  ![OpenHarmony设备安全等级](figures/ohos_device_security_level.png)
 
   - SL1为OpenHarmony设备中最低的安全等级。这类设备通常搭载轻量级系统和使用低端微处理器，业务形态较为单一，不涉及敏感数据的处理。本安全等级要求消除常见的错误，支持软件的完整性保护。若无法满足本等级的要求，则只能作为配件受OpenHarmony设备操控，无法反向操控OpenHarmony设备并进行更复杂的业务协同。
 

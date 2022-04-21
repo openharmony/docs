@@ -27,7 +27,7 @@ The LiteOS Cortex-A initialization process consists of seven steps:
 The figure below shows the overall initialization process.
 
 **Figure  1**  Overall initialization process<a name="fig68283211926"></a>  
-![](figure/overall-initialization-process.png "overall-initialization-process")
+![](figures/overall-initialization-process.png "overall-initialization-process")
 
 As can be seen from preceding figure, kernel basic adaptation involves the following parts:
 
@@ -108,7 +108,7 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
 -   Implementing the  **SystemInit**  function to initialize services in the user space. Figure 2 shows a typical initialization scenario.
 
     **Figure  2**  Service startup process<a name="fig1919217914418"></a>  
-    ![](figure/service-startup-process.png "service-startup-process")
+    ![](figures/service-startup-process.png "service-startup-process")
 
 -   Implementing the  **main**  function for basic kernel initialization and initialization of services in the board kernel space.  [Figure 3](#fig32611728133919)  shows the initialization process, where the kernel startup framework takes the lead in the initialization process. The light blue part in the figure indicates the phase in which external modules can be registered and started in the startup framework.
 
@@ -116,7 +116,7 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
     >Modules at the same layer cannot depend on each other.
 
     **Figure  3**  Kernel startup framework<a name="fig32611728133919"></a>  
-    ![](figure/kernel-startup-framework.jpg "kernel-startup-framework")
+    ![](figures/kernel-startup-framework.jpg "kernel-startup-framework")
 
     **Table  2**  Startup framework layers
 

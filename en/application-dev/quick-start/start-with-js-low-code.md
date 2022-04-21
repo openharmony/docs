@@ -6,7 +6,7 @@
 > For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
-On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features complying with [JS Development Specifications](../reference/apis).
+On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features.
 
 
 You can develop applications or services in the low-code approach using either of the following methods:
@@ -104,12 +104,12 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    - In the **index.js** file:
      
      ```
-     import router from '@system.router';  
+     import router from '@ohos.router';  
      
      export default {     
          onclick() {         
              router.push({             
-                 uri:'pages/second/second', // Specify the page to be redirected to.
+                 url:'pages/second/second', // Specify the page to be redirected to.
              })     
          } 
      }
@@ -127,7 +127,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    - In the **second.js** file:
      
       ```
-      import router from '@system.router';  
+      import router from '@ohos.router';  
       
       export default {     
           back() {         

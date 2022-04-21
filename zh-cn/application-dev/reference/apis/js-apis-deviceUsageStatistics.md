@@ -59,7 +59,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.isIdleState("com.ohos.camera").then( res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -83,7 +83,7 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup((err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
@@ -109,7 +109,7 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup().then( res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -137,7 +137,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
@@ -178,7 +178,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
@@ -213,7 +213,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
@@ -253,7 +253,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -285,7 +285,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
@@ -324,7 +324,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -354,7 +354,7 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
@@ -391,7 +391,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **示例**：
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -402,6 +402,133 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
   ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+
+据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，FA使用记录由近及远排序，maxNum最大为1000。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
+
+**示例**：
+
+  ```js
+    bundleState.getRecentlyUsedModules(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
+    // 无maxNum参数调用方式
+    bundleState.getRecentlyUsedModules().then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+  ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+
+查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
+
+**示例**：
+
+  ```js
+    bundleState.getRecentlyUsedModules(this.maxNum,(err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+        }
+    });
+
+    // 无maNum参数调用方式
+    stats.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+  ```
+
+## BundleActiveModuleInfo<sup>9+</sup>
+FA的使用信息的属性集合。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | FA所属deviceId。|
+| bundleName | string | 是 | FA所属应用包名。|
+| moduleName | string | 是 | FA所属module名。|
+| abilityName | string | 是 | FA的MainAbility名。|
+| appLabelId | number | 是 | FA的应用labelId。|
+| labelId | number | 是 | FA所属module的labelId。|
+| descriptionId | number | 是 | FA所属的应用descriptionId。|
+| abilityLableId | number | 是 | FA的MainAbility labelId。|
+| abilityDescriptionId | number | 是 | FA的MainAbility descriptionId。|
+| abilityIconId | number | 是 | FA的MainAbility iconId。|
+| launchedCount | number | 是 | FA的启动次数。|
+| lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
+| formRecords | Array<BundleActiveFormInfo> | 是 | FA中卡片的使用记录。|
+
+## BundleActiveFormInfo<sup>9+</sup>
+FA卡片的使用信息的属性集合。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| formName | number | 是 | 卡片名称。|
+| formDimension | number | 是 | 卡片尺寸。|
+| formId | number | 是 | 卡片Id。|
+| formLastUsedTime | number | 是 | 卡片的上一次点击时间。|
+| count | number | 是 | 卡片的点击次数。|
 
 ## BundleStateInfo
 提供应用使用时长的具体信息。

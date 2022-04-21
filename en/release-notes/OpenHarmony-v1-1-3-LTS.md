@@ -119,7 +119,7 @@ repo forall -c 'git lfs pull'
 
 ## What's New<a name="section175225345334"></a>
 
-This version inherits all the features of OpenHarmony v1.1.2 and adds the support for version compilation for mini-system devices in the Windows environment. For details, see  [Setting Up Windows Development Environment](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup-windows.md).
+This version inherits all the features of OpenHarmony v1.1.2 and adds the support for version compilation for mini-system devices in the Windows environment. For details, see  [Setting Up the Windows Build Environment](https://device.harmonyos.com/en/docs/documentation/guide/ide-install-windows-0000001050164976).
 
 **Table  3**  Feature updates
 
@@ -181,11 +181,6 @@ The following table lists the known issues with OpenHarmony 1.1.2 that have been
 <tr id="row73421521112712"><td class="cellrowborder" valign="top" width="13.59%"><p id="p819116112288"><a name="p819116112288"></a><a name="p819116112288"></a><a href="https://gitee.com/openharmony/kernel_liteos_a/issues/I43WLG?from=project-issue" target="_blank" rel="noopener noreferrer">I43WLG</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="86.41%"><p id="p10661920202920"><a name="p10661920202920"></a><a name="p10661920202920"></a>Starting OsMountRootfs fails.</p>
-</td>
-</tr>
-<tr id="row234311215276"><td class="cellrowborder" valign="top" width="13.59%"><p id="p15191121102819"><a name="p15191121102819"></a><a name="p15191121102819"></a><a href="https://gitee.com/openharmony/third_party_curl/issues/I44ZXW?from=project-issue" target="_blank" rel="noopener noreferrer">I44ZXW</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="86.41%"><p id="p196616205294"><a name="p196616205294"></a><a name="p196616205294"></a>The curl component in the openharmony_1.0.1_release branch is of the version 7.69.1. An upgrade to 7.78.0 is required.</p>
 </td>
 </tr>
 <tr id="row334482119275"><td class="cellrowborder" valign="top" width="13.59%"><p id="p319271112813"><a name="p319271112813"></a><a name="p319271112813"></a><a href="https://gitee.com/openharmony/kernel_liteos_m/issues/I48FKQ?from=project-issue" target="_blank" rel="noopener noreferrer">I48FKQ</a></p>

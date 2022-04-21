@@ -39,11 +39,11 @@ ability支持单实例、多实例和指定实例3种启动模式。
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| stand       | 多实例   | 每次startAbility都会启动一个新的实例 |
+| standard    | 多实例   | 每次startAbility都会启动一个新的实例 |
 | singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
 | specified   | 指定实例 | 运行时由ability内部业务决定是否创建多实例 |
 
-缺省情况下是stand模式。
+缺省情况下是standard模式。
 
 
 ## 开发指导
@@ -260,9 +260,6 @@ export default {
   },
 }
 ```
-### 开发实例
-针对pageAbility开发，有以下示例工程可供参考：
-
-[DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-在本示例中完整展示了启动本地Ability、启动远程Ability的使用方法。
+## 相关实例
+针对PageAbility开发，有以下相关实例可供参考：
+- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)

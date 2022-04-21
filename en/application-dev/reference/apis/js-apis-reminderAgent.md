@@ -29,19 +29,14 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
   | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
 
 **Example**
-  ```
-  export default {
-      data: {
-          timer: {
-              reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-              triggerTimeInSeconds: 3
-          }
-      },
-      startTimer() {
-          reminderAgent.publishReminder(timer, (err, reminderId) => {    console.log("reminderId = " + reminderId);
-          });
-      }
+  ```js
+  let timer = {
+      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+      triggerTimeInSeconds: 10
   }
+  reminderAgent.publishReminder(timer, (err, reminderId) => {
+      console.log("reminderId = " + reminderId);
+  });
   ```
 
 
@@ -64,20 +59,14 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
   | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
 **Example**
-  ```
-  export default {
-      data:
-          {timer: {
-              reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-              triggerTimeInSeconds: 3
-          }
-      },
-      startTimer() {
-          reminderAgent.publishReminder(this.timer).then((reminderId) => {
-              console.log("reminderId = " + reminderId);
-          });
-      }
+  ```js
+  let timer = {
+      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+      triggerTimeInSeconds: 10
   }
+  reminderAgent.publishReminder(timer).then((reminderId) => {
+      console.log("reminderId = " + reminderId);
+  });
   ```
 
 
@@ -98,14 +87,10 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 
 **Example**
 
-```
-export default {
-    cancel() {
-        reminderAgent.cancelReminder(1, (err, data) => {
-            console.log("do next");
-        });
-    }
-}
+```js
+reminderAgent.cancelReminder(1, (err, data) => {
+    console.log("cancelReminder callback");
+});
 ```
 
 
@@ -131,14 +116,10 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 **Example**
 
-```
-export default {
-    cancel() {
-        reminderAgent.cancelReminder(1).then(() => {
-            console.log("do next");
-        });
-    }
-}
+```js
+reminderAgent.cancelReminder(1).then(() => {
+    console.log("cancelReminder promise");
+});
 ```
 
 
@@ -158,8 +139,9 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Example**
 
-```
+```js
 reminderAgent.getValidReminders((err, reminders) => {
+    console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -201,8 +183,9 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Example**
 
-```
+```js
 reminderAgent.getValidReminders().then((reminders) => {
+    console.log("getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -244,9 +227,10 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 **Example**
 
-```
+```js
 reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("do next")})
+    console.log("cancelAllReminders callback")
+})
 ```
 
 
@@ -266,9 +250,10 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 **Example**
 
-```
+```js
 reminderAgent.cancelAllReminders().then(() => {
-    console.log("do next")})
+    console.log("cancelAllReminders promise")
+})
 ```
 
 
@@ -284,22 +269,20 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot to add, only support set its type attribute.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
 
-```
-export default {    data: {        mySlot: {
-            type: 3,
-            sound: "/sdcard/music2.mp3"
-        }    },
-    addSlot() {
-        reminderAgent.addNotificationSlot(this.mySlot, (err, data) => {
-            console.log("do next");
-        });
-    }
+```js
+import notification from '@ohos.notification'
+
+let mySlot = {
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
+reminderAgent.addNotificationSlot(mySlot, (err, data) => {
+    console.log("addNotificationSlot callback");
+});
 ```
 
 
@@ -315,7 +298,7 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Reminder notification slot to add.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| notification slot to add, only support set its type attribute.|
 
 **Return value**
 
@@ -325,17 +308,15 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 **Example**
 
-```
-export default {    data: {        mySlot: {
-            type: 3,
-            sound: "/sdcard/music2.mp3"
-        }    },
-    addSlot() {
-        reminderAgent.addNotificationSlot(this.mySlot).then(() => {
-   console.log("do next");
-        });
-    }
+```js
+import notification from '@ohos.notification'
+
+let mySlot = {
+    type: notification.SlotType.SOCIAL_COMMUNICATION
 }
+reminderAgent.addNotificationSlot(mySlot).then(() => {
+   console.log("addNotificationSlot promise");
+});
 ```
 
 
@@ -356,13 +337,12 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 **Example**
 
-```
-export default {
-    removeSlot() {reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-            console.log("do next");
+```js
+import notification from '@ohos.notification'
+
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
+    console.log("removeNotificationSlot callback");
 });
-    }
-}
 ```
 
 
@@ -388,13 +368,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Example**
 
-```
-export default {
-    removeSlot() {        reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-            console.log("do next");
-        });
-    }
-}
+```js
+import notification from '@ohos.notification'
+
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+    console.log("removeNotificationSlot promise");
+});
 ```
 
 

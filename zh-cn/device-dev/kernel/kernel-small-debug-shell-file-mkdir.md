@@ -1,11 +1,5 @@
 # mkdir
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ mkdir [_-vp_] [_-m mode_] [_dirname..._]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -51,6 +45,7 @@ mkdir [_-vp_] [_-m mode_] [_dirname..._]
 
 ## 输出说明
 
+  
 ```
 OHOS:/tmp$ mkdir testpath
 OHOS:/tmp$ ll
@@ -60,6 +55,7 @@ drwxrwxrwx 1 0 0 2048 1979-12-31 00:00 testpath/
 
 示例 2 创建指定mode的目录
 
+  
 ```
 OHOS:/tmp$ mkdir -m 777 testpath
 OHOS:/tmp$ ll
@@ -69,6 +65,7 @@ drwxrwxrwx 1 0 0 2048 1979-12-31 00:00 testpath/
 
 示例 3 逐级创建目录
 
+  
 ```
 OHOS:/tmp$ mkdir -pv testpath01/testpath02/testpath03
 mkdir: created directory 'testpath01'

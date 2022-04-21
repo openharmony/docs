@@ -1,15 +1,5 @@
 # 事件
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-  - [事件控制块](#事件控制块)
-  - [事件运作原理](#事件运作原理)
-- [接口说明](#接口说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -28,6 +18,7 @@
 
 
 ### 事件控制块
+
 
 ```
 /**
@@ -60,20 +51,20 @@ typedef struct tagEvent {
 
 **事件销毁**：销毁指定的事件控制块。
 
-**图1** 轻量系统事件运作原理图
-![zh-cn_image_0000001200771972](figures/zh-cn_image_0000001200771972.png)
+  **图1** 轻量系统事件运作原理图
+  ![zh-cn_image_0000001200771972](figures/zh-cn_image_0000001200771972.png)
 
 
 ## 接口说明
 
-| 功能分类 | 接口名 | 描述 | 
+| 功能分类 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| 事件检测 | LOS_EventPoll | 根据eventID，eventMask（事件掩码），mode（事件读取模式），检查用户期待的事件是否发生。<br/>>&nbsp;![icon-notice.gif](public_sys-resources/icon-notice.gif)&nbsp;**须知：**<br/>>&nbsp;当mode含LOS_WAITMODE_CLR，且用户期待的事件发生时，此时eventID中满足要求的事件会被清零，这种情况下eventID既是入参也是出参。其他情况eventID只作为入参。 | 
-| 初始化 | LOS_EventInit | 事件控制块初始化。 | 
-| 事件读 | LOS_EventRead | 读事件（等待事件），任务会根据timeOut（单位：tick）进行阻塞等待；<br/>未读取到事件时，返回值为0；<br/>正常读取到事件时，返回正值（事件发生的集合）；<br/>其他情况返回特定错误码。 | 
-| 事件写 | LOS_EventWrite | 写一个特定的事件到事件控制块。 | 
-| 事件清除 | LOS_EventClear | 根据events掩码，清除事件控制块中的事件。 | 
-| 事件销毁 | LOS_EventDestroy | 事件控制块销毁。 | 
+| 事件检测 | LOS_EventPoll | 根据eventID，eventMask（事件掩码），mode（事件读取模式），检查用户期待的事件是否发生。<br/>&nbsp;![icon-notice.gif](public_sys-resources/icon-notice.gif)&nbsp;**须知：**<br/>&nbsp;当mode含LOS_WAITMODE_CLR，且用户期待的事件发生时，此时eventID中满足要求的事件会被清零，这种情况下eventID既是入参也是出参。其他情况eventID只作为入参。 |
+| 初始化 | LOS_EventInit | 事件控制块初始化。 |
+| 事件读 | LOS_EventRead | 读事件（等待事件），任务会根据timeOut（单位：tick）进行阻塞等待；<br/>未读取到事件时，返回值为0；<br/>正常读取到事件时，返回正值（事件发生的集合）；<br/>其他情况返回特定错误码。 |
+| 事件写 | LOS_EventWrite | 写一个特定的事件到事件控制块。 |
+| 事件清除 | LOS_EventClear | 根据events掩码，清除事件控制块中的事件。 |
+| 事件销毁 | LOS_EventDestroy | 事件控制块销毁。 |
 
 
 ## 开发流程
@@ -120,6 +111,7 @@ typedef struct tagEvent {
 ### 示例代码
 
 示例代码如下：
+
 
 ```
 #include "los_event.h"
@@ -205,6 +197,7 @@ UINT32 Example_TaskEntry(VOID)
 ### 结果验证
 
 编译运行得到的结果为：
+
 
 
 ```

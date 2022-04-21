@@ -61,21 +61,77 @@ Video(value: VideoOptions)
 | onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. |
 
 
-### VideoController
+## VideoController
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> A **VideoController** object can control one or more videos.
+A **VideoController** object can control one or more videos.
 
-| Name | Description |
-| -------- | -------- |
-| start() : void | Starts playback. |
-| pause() : void | Pauses playback. |
-| stop() : void | Stops playback. |
-| setCurrentTime(value: number) | Sets the video playback position. |
-| setCurrentTime(value: number, seekMode: SeekMode)<sup>8+</sup> | Sets the video playback position with the specified seek mode. |
+
+### Objects to Import
+
+```
+controller: VideoController = new VideoController();
+```
+
+### start
+
+start(): void
+
+Starts playback.
+
+### pause
+
+pause(): void
+
+Pauses playback.
+
+### stop
+
+stop(): void
+
+Stops playback.
+
+### setCurrentTime
+
+setCurrentTime(value: number)
+
+Sets the video playback position.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Video playback position. |
+
+### requestFullscreen
+
+requestFullscreen(value: boolean)
+
+Requests full-screen mode.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | false | Whether the playback is in full-screen mode. |
+
+### exitFullscreen
+
+exitFullscreen()
+
+Exits full-screen mode.
+
+### setCurrentTime<sup>8+</sup>
+
+setCurrentTime(value: number, seekMode: SeekMode)
+
+Sets the video playback position with the specified seek mode.
+
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Video playback position. |
+  | seekMode | SeekMode | Yes | - | Seek mode. |
 
 - SeekMode<sup>8+</sup>
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | PreviousKeyframe | Seeks to the nearest previous keyframe. |
   | NextKeyframe | Seeks to the nearest next keyframe. |

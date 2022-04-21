@@ -2,15 +2,15 @@
 
 ## When to Use
 
-Openharmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations. HUKS also provides APIs for applications to import or generate keys.
+ Openharmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations. HUKS also provides APIs for applications to import or generate keys.
 
 
 ## Available APIs
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | Generates a key or key pair. This method uses an asynchronous callback to return the result. |
-| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Generates a key or key pair. This method uses a promise to return the result. |
+| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | Generates a private key. This method uses an asynchronous callback to return the result.        |
+| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Generates a private key. This method uses a promise to return the result.        |
 | function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Exports the public key. This method uses an asynchronous callback to return the result.        |
 | function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Exports the public key. This method uses a promise to return the result.        |
 | function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void; | Check whether a key exists. This method uses an asynchronous callback to return the result.|
@@ -26,9 +26,9 @@ Openharmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for ap
    import huks from '@ohos.security.huks'
    ```
 
-2. Call **generateKey()** to generate a key pair.
+2. Call **generateKey()** to generate a private key.
 
-   **keyAlias** indicates the alias of the key generated. **options** indicates the parameters used for generating the key. Set **options** based on actual situation.
+   **keyAlias** indicates the alias of the key generated. **options** indicates the parameters used for generating the key. Set **options** based on the actual situation.
 
    The value returned indicates whether the key is successfully generated.
 

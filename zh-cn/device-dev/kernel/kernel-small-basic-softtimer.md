@@ -1,11 +1,5 @@
 # 软件定时器
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -63,15 +57,13 @@ OpenHarmony系统的软件定时器提供三类定时器机制：
 
 OpenHarmony LiteOS-A内核的软件定时器模块提供下面几种功能，接口详细信息可以查看API参考。
 
-**表1** 软件定时器接口说明
+  **表1** 软件定时器接口说明
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 创建、删除定时器 | LOS_SwtmrCreate | 创建软件定时器 |
-|  | LOS_SwtmrDelete |删除软件定时器|
-| 启动、停止定时器 | LOS_SwtmrStart | 启动软件定时器 |
-|  | LOS_SwtmrStop |停止软件定时器|
-| 获得软件定时剩余Tick数 | LOS_SwtmrTimeGet | 获得软件定时器剩余Tick数 |
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 创建、删除定时器 | LOS_SwtmrCreate：创建软件定时器<br/>LOS_SwtmrDelete：删除软件定时器 | 
+| 启动、停止定时器 | LOS_SwtmrStart：启动软件定时器<br/>LOS_SwtmrStop：停止软件定时器 | 
+| 获得软件定时剩余Tick数 | LOS_SwtmrTimeGet：获得软件定时器剩余Tick数 | 
 
 
 ### 开发流程
@@ -117,7 +109,8 @@ OpenHarmony LiteOS-A内核的软件定时器模块提供下面几种功能，接
 
 - 配置好OS_SWTMR_HANDLE_QUEUE_SIZE软件定时器队列最大长度。
 
-**编程示例**
+  **编程示例**
+  
 ```
 #include "los_swtmr.h"
 
@@ -183,6 +176,7 @@ void Timer_example(void)
 
 **运行结果**
 
+  
 ```
 create Timer1 success
 start Timer1 success

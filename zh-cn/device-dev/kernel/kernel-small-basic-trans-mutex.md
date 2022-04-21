@@ -1,11 +1,5 @@
 # 互斥锁
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
-  - [接口说明](#接口说明)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基本概念
 
@@ -40,8 +34,8 @@
 
 用互斥锁处理非共享资源的同步访问时，如果有任务访问该资源，则互斥锁为加锁状态。此时其他任务如果想访问这个公共资源则会被阻塞，直到互斥锁被持有该锁的任务释放后，其他任务才能重新访问该公共资源，此时互斥锁再次上锁，如此确保同一时刻只有一个任务正在访问这个公共资源，保证了公共资源操作的完整性。
 
-**图1** 小型系统互斥锁运作示意图
-![zh-cn_image_0000001177654887](figures/zh-cn_image_0000001177654887.png)
+  **图1** 小型系统互斥锁运作示意图
+  ![zh-cn_image_0000001177654887](figures/zh-cn_image_0000001177654887.png)
 
 
 ## 开发指导
@@ -49,26 +43,14 @@
 
 ### 接口说明
 
-**表1** 互斥锁模块接口
+  **表1** 互斥锁模块接口
 
-| 功能分类 | 接口**名称** | 描述 |
-| -------- | -------- | -------- |
-| 初始化和销毁互斥锁 | LOS_MuxInit | 互斥锁初始化 |
-|  | LOS_MuxDestroy |销毁指定的互斥锁|
-| 互斥锁的申请和释放 | LOS_MuxLock | 申请指定的互斥锁 |
-|  | LOS_MuxTrylock |尝试申请指定的互斥锁，不阻塞|
-|  | LOS_MuxUnlock |释放指定的互斥锁|
-| 校验互斥锁 | LOS_MuxIsValid | 判断互斥锁释放有效 |
-| 初始化和销毁互斥锁属性 | LOS_MuxAttrInit | 互斥锁属性初始化 |
-|  | LOS_MuxAttrDestroy |销毁指定的互斥锁属性|
-| 设置和获取互斥锁属性 | LOS_MuxAttrGetType | 获取指定互斥锁属性的类型属性 |
-|  | LOS_MuxAttrSetType |设置指定互斥锁属性的类型属性|
-|  | LOS_MuxAttrGetProtocol |获取指定互斥锁属性的协议属性|
-|  | LOS_MuxAttrSetProtocol |设置指定互斥锁属性的协议属性|
-|  | LOS_MuxAttrGetPrioceiling |获取指定互斥锁属性的优先级上限属性|
-|  | LOS_MuxAttrSetPrioceiling |设置指定互斥锁属性的优先级上限属性|
-|  | LOS_MuxGetPrioceiling |获取互斥锁优先级上限属性|
-|  | LOS_MuxSetPrioceiling |设置互斥锁优先级上限属性|
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 初始化和销毁互斥锁 | -&nbsp;LOS_MuxInit：互斥锁初始化<br/>-&nbsp;LOS_MuxDestroy：销毁指定的互斥锁 | 
+| 互斥锁的申请和释放 | -&nbsp;LOS_MuxLock：申请指定的互斥锁<br/>-&nbsp;LOS_MuxTrylock：尝试申请指定的互斥锁，不阻塞<br/>-&nbsp;LOS_MuxUnlock：释放指定的互斥锁 | 
+| 校验互斥锁 | -&nbsp;LOS_MuxIsValid：判断互斥锁释放有效<br/>-&nbsp;LOS_MuxAttrDestroy：销毁指定的互斥锁属性 | 
+| 设置和获取互斥锁属性 | -&nbsp;LOS_MuxAttrGetType：获取指定互斥锁属性的类型属性<br/>-&nbsp;LOS_MuxAttrSetType：设置指定互斥锁属性的类型属性<br/>-&nbsp;LOS_MuxAttrGetProtocol：获取指定互斥锁属性的协议属性<br/>-&nbsp;LOS_MuxAttrSetProtocol：设置指定互斥锁属性的协议属性<br/>-&nbsp;LOS_MuxAttrGetPrioceiling：获取指定互斥锁属性的优先级上限属性<br/>-&nbsp;LOS_MuxAttrSetPrioceiling：设置指定互斥锁属性的优先级上限属性<br/>-&nbsp;LOS_MuxGetPrioceiling：获取互斥锁优先级上限属性<br/>-&nbsp;LOS_MuxSetPrioceiling：设置互斥锁优先级上限属性 | 
 
 
 ### 开发流程
@@ -121,6 +103,7 @@
 
 示例代码如下：
 
+  
 ```
 #include <string.h>
 #include "los_mux.h"
@@ -226,6 +209,7 @@ UINT32 Example_MutexEntry(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
 task1 try to get mutex, wait 10 ticks.
 task2 try to get mutex, wait forever.

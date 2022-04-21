@@ -7,7 +7,7 @@ RTC(real-time clock)为操作系统中的实时时钟设备，在HDF框架中，
 
   **图1** RTC独立服务模式结构图
 
-  ![zh-cn_image_0000001177082386](figures/zh-cn_image_0000001177082386.png)
+  ![image](figures/独立服务模式结构图.png "RTC独立服务模式结构图")
 
 
 ## 接口说明

@@ -14,7 +14,8 @@ Code must meet the requirements for **readability**, **maintainability**, **secu
 
 ## <a name="c0-3"></a>Conventions
 
-**Rule**: Conventions that must be followed during programming.  
+**Rule**: Conventions that must be followed during programming.
+
 **Rec**: Conventions that must be considered during programming.
 
 It is necessary to understand the reason for these conventions and try to comply with them, no matter if they are rules or recommendations.
@@ -63,7 +64,7 @@ The same naming style must be used for the same function, struct, or union.
 
 ### <a name="a1-1"></a>Rec 1.1 Use more accurate names for identifiers with a large scope.
 
-Different from C++, C does not have namespace or class.Therefore, the names of identifiers in the global scope must not conflict with each other.   
+Different from C++, C does not have namespace or class. Therefore, the names of identifiers in the global scope must not conflict with each other.   
 Names of global functions, global variables, macros, types, and enums must be accurately described and unique in the global scope.
 
 Example:
@@ -204,7 +205,8 @@ int Mul(int a, int b)
 
 ## <a name="c1-5"></a>Type Naming
 
-Types are named in the UpperCamelCase style.   
+Types are named in the UpperCamelCase style.
+
 The type can be a struct, a union, or an enum.
 
 Example:
@@ -862,12 +864,14 @@ int Foo(void)
 
 # <a name="c3"></a>3 Comments
 
-Generally, clear architecture and good symbol naming are recommended to improve code readability, and comments are provided only when necessary.   
+Generally, clear architecture and good symbol naming are recommended to improve code readability, and comments are provided only when necessary.
+
 Comments help readers quickly understand code. Therefore, **comments should be provided when necessary** for the sake of readers.
 
 The comments must be concise, clear, and unambiguous, ensuring that the information is complete and not redundant.
 
-**Comments are as important as code.**   
+**Comments are as important as code.**
+
 When writing a comment, you need to step into the reader's shoes and use comments to express what the reader really needs. Comments are used to express the code functionality and intention, rather than repeating code.
 When modifying the code, ensure that the comments are consistent. It is impolite to only modify code and not update the comments. This destroys the consistency between code and comments, and may cause confusion or even misleading.
 
@@ -881,7 +885,8 @@ Comments must be added in the following scenarios (including but not limited to 
 
 ## <a name="c3-1"></a>Comment Style
 
-In C code, both `/*` `*/` and `//` can be used.   
+In C code, both `/*` `*/` and `//` can be used. 
+
 Comments can be classified into different types depending on the purpose and position, such as file header comments, function header comments, and general comments.
 Comments of the same type must keep a consistent style.
 
@@ -897,9 +902,9 @@ Note: The sample code used in this article sees extensive use of the '//' post-c
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
-* ​
+* 
 * http://www.apache.org/licenses/LICENSE-2.0
-* ​
+* 
 * Unless required by applicable law or agreed to in writing, software
 * distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -910,11 +915,14 @@ Note: The sample code used in this article sees extensive use of the '//' post-c
 
 ### <a name="r3-2"></a>Rule 3.2 Do not use empty function header comments with no content.
 
-Not all functions need function header comments.  
+Not all functions need function header comments.
+
 Function header comments must be added for any information that cannot be expressed just with function prototype.
 
-Function header comments are placed above the function declaration or definition.   
-Select and use one of the following styles:   
+Function header comments are placed above the function declaration or definition. 
+
+Select and use one of the following styles: 
+
 **Use '//' to start the function header.**
 
 ```c
@@ -979,8 +987,10 @@ Problems in the preceding example are as follows:
 
 ### <a name="r3-4"></a>Rule 3.4 Add a space between the comment character and the comment content, and one space between the comment and code if the comment is placed to the right of the code.
 
-Comments placed above code should be indented to the same level as the code.   
+Comments placed above code should be indented to the same level as the code. 
+
 Select and use one of the following styles:   
+
 **Use '//' to start the comment.**
 
 ```c
@@ -1005,7 +1015,9 @@ DoSomething();
 DoSomething();
 ```
 
-Leave at least one space between the code and the comment on the right. No more than four spaces is recommended.   
+Leave at least one space between the code and the comment on the right. No more than four spaces is recommended.
+
+
 You can use the extended Tab key to indent 1-4 spaces.
 
 Select and use one of the following styles:
@@ -1015,8 +1027,11 @@ int foo = 100;  // Comment on the right
 int bar = 200;  /* Comment on the right */
 ```
 
-It is more appealing sometimes when the comment is placed to the right of code and the comments and code are aligned vertically.   
-After the alignment, ensure that the comment is 1–4 spaces separated from the closest code line on the left.   
+It is more appealing sometimes when the comment is placed to the right of code and the comments and code are aligned vertically. 
+
+After the alignment, ensure that the comment is 1–4 spaces separated from the closest code line on the left.
+
+
 Example:
 
 ```c
@@ -1035,7 +1050,8 @@ Here, commenting out refers to the removal of code from compilation without actu
 
 ### <a name="a3-1"></a>Rec 3.1 Provide comments if `break` or `return` is not added to the end of the `case` statement block (fall-through).
 
-Sometimes, the same thing is needed for multiple `case` tags. When a `case` statement ends without `break` or `return`, the statement in the next `case` tag will be executed.This is called "fall-through".   
+Sometimes, the same thing is needed for multiple `case` tags. When a `case` statement ends without `break` or `return`, the statement in the next `case` tag will be executed. This is called "fall-through". 
+
 In this case, add comments for the "fall-through" to clearly express your intention, or at least explicitly specify the "fall-through".
 
 For example, to explicitly specify the "fall-through":
@@ -1078,8 +1094,10 @@ The following programming specifications aim to help you properly plan header fi
 
 ## <a name="c4-1"></a>Header File Responsibility
 
-A header file is an external interface of a module or file.   
-The interface declaration for most functions (except inline functions) is suitable in the header file. Interface implementations are not allowed in the header file.   
+A header file is an external interface of a module or file. 
+
+The interface declaration for most functions (except inline functions) is suitable in the header file. Interface implementations are not allowed in the header file. 
+
 Header responsibility should be simple. A complex header file will make dependencies complex and cause a long compilation time.
 
 ### <a name="a4-1"></a>Rec 4.1 For each .c file, provide a corresponding .h file, which is used to declare the interfaces that need to be provided externally.
@@ -1119,17 +1137,19 @@ static void Bar(void)
 
 Internally used functions declarations, macros, enums, structs, and others should not be placed in header ﬁles.
 
-In some products, one .c file corresponds to two .h files. One is used to store external public interfaces, and the other is used to store definitions and declarations among others for internal use to limit the number of code lines in the .c file.   
+In some products, one .c file corresponds to two .h files. One is used to store external public interfaces, and the other is used to store definitions and declarations among others for internal use to limit the number of code lines in the .c file. 
+
 This style is not recommended. It is used only because the .c file is too large. You should consider splitting the .c file first.
 In addition, if private definitions and declarations are placed in independent header files, they technically cannot avoid inclusion.
 
 This rule, in turn, is not necessarily correct. Example:
-Some simple header files, such as the command ID definition header file, do not need to have the corresponding .c file.   
+Some simple header files, such as the command ID definition header file, do not need to have the corresponding .c file. 
+
 If a set of interface protocols has multiple instances and the interface is fixed, one .h file can have multiple .c files.
 
 ### <a name="a4-2"></a>Rec 4.2 Use .h as the extension of the header file, rather than other unconventional extensions, for example, .inc.
 
-Some products use .inc as the header file name extension, which does not comply with the C programming language.A header ﬁle using .inc as the ﬁle name extension usually indicates a private header ﬁle. However, in practice, this recommendation is not followed properly. An .inc ﬁle is generally contained in multiple .c ﬁles. It is not recommended that private definitions be stored in header files. For details, see [Rec 4.1](#a4-1).
+Some products use .inc as the header file name extension, which does not comply with the C programming language. A header ﬁle using .inc as the ﬁle name extension usually indicates a private header ﬁle. However, in practice, this recommendation is not followed properly. An .inc ﬁle is generally contained in multiple .c ﬁles. It is not recommended that private definitions be stored in header files. For details, see [Rec 4.1](#a4-1).
 
 ## <a name="c4-2"></a>Header File Dependency
 
@@ -1274,7 +1294,7 @@ One function completes only one thing.
 
 ## <a name="c5-1"></a>Function Design
 
-The essence of function design is to write clean functions and organize code effectively.The code should be simple and not conceal the designer's intention, using clean abstractions and straightforward control statements to organize the function naturally.
+The essence of function design is to write clean functions and organize code effectively. The code should be simple and not conceal the designer's intention, using clean abstractions and straightforward control statements to organize the function naturally.
 
 ### <a name="r5-1"></a>Rule 5.1 Avoid long functions and ensure that functions contain no more than 50 lines (excluding blank lines and comments).
 
@@ -1483,19 +1503,23 @@ The number of parameters in a function must not exceed 5. If the number of param
 
 ## <a name="c5-3"></a>Inline Functions
 
-An inline function is a function optimization method introduced by C99. Function inlining can eliminate the overhead of function calls; thanks to inlining, combination with the called code is implemented, so that the compiler can achieve further code optimization from a larger perspective. The inline function is similar to a function-like macro. For details, see [Rec 6.1](#a6-1).
+An inline function is a function optimization method introduced by C99. Function inlining can eliminate the overhead of function calls; thanks to inlining, combination with the called code is implemented, so that the compiler can achieve further code optimization from a larger perspective. The inline function is similar to a function-like macro. For details, see [Rec 6.1](#rec-61-use-functions-instead-of-function-like-macros).
 
 ### <a name="a5-7"></a>Rec 5.7 Include no more than 10 lines in an inline function (excluding blank lines and comments).
 
-Defining a function as an inline function generally aims to improve performance, though it may fail to do so.If the function body is short, function inlining can effectively reduce the size of the target code and improve the function execution efficiency.   
-Vice versa, if the function body is large, inlining will cause expansion of the target code, especially when there are many call points.   
+Defining a function as an inline function generally aims to improve performance, though it may fail to do so.If the function body is short, function inlining can effectively reduce the size of the target code and improve the function execution efficiency. 
+
+Vice versa, if the function body is large, inlining will cause expansion of the target code, especially when there are many call points.
+
+
 It is recommended that inline functions be controlled to within **10** lines.
 
 Do not abuse inline functions to improve performance. Avoid premature optimization. In general, a function can be defined as an inline function only when actual test data proves that the inlining achieves higher performance. Functions such as setter and getter functions, which are short and called frequently, can be defined as inline functions.
 
 ### <a name="r5-3"></a>Rule 5.3 Define inline functions that will be called by multiple source files in the header file.
 
-Inline functions are unfolded in compilation. Therefore, the inline function definition must be visible in each source file that calls this function.   
+Inline functions are unfolded in compilation. Therefore, the inline function definition must be visible in each source file that calls this function. 
+
 As shown in the following code, **inline.h** contains the declaration of the `SomeInlineFunc` function but not the definition. The **other.c** file includes **inline.h**. As a result, inlining fails when `SomeInlineFunc` is called.
 
 inline.h
@@ -1544,12 +1568,13 @@ A function-like macro is a macro (as shown in the following example) similar to 
 
 ### <a name="a6-1"></a>Rec 6.1 Use functions instead of function-like macros.
 
-Before defining a function-like macro, consider whether it can be replaced with a function. If yes, you are advised to use a function for replacement.   
+Before defining a function-like macro, consider whether it can be replaced with a function. If yes, you are advised to use a function for replacement.
+
 The disadvantages of the function-like macro are as follows:
 
 - Function-like macros haves no type check, which is not as strict as the function call check. For the example code, see [Below](#macro_lack_of_type_check__example).
-- If macro parameters are not calculated during macro expansion, unexpected results may be generated. For details, see [Rule 6.1](#r6-1) and [Rule 6.3](#r6-3).
-- A macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#r6-2) may be generated.
+- If macro parameters are not calculated during macro expansion, unexpected results may be generated. For details, see [Rule 6.1](#rule-61-use-complete-parentheses-for-macro-parameters-when-defining-a-macro) and [Rule 6.3](#rule-63-do-not-pass-expressions-with-side-effects-to-a-function-like-macro).
+- A macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#rule-62-place-implementation-statements-of-function-like-macros-that-contain-multiple-statements-in-a-do-while0) may be generated.
 - There are high skill requirements on the proper use of macros (for example, the usage of `#` and wide use of parentheses), which reduces readability.
 - Extensions of some macros can only be implemented by specific compilers in specific scenarios, such as `statement expression` of `gcc`, reducing the portability.
 - After the macro is expanded during precompilation, it is invisible during subsequent compilation, linking, and debugging. Besides, macros that contain multiple lines are expanded into a line.

@@ -1904,7 +1904,7 @@ server端订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
 
 **返回值：**
 

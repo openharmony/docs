@@ -1,10 +1,5 @@
 # 内存信息统计
 
-- [基础概念](#基础概念)
-- [功能配置](#功能配置)
-- [开发指导](#开发指导)
-  - [开发流程](#开发流程)
-  - [编程实例](#编程实例)
 
 ## 基础概念
 
@@ -29,6 +24,7 @@ LOSCFG_MEM_WATERLINE：开关宏，默认关闭；若需要打开这个功能，
 
 关键结构体介绍：
 
+  
 ```
 typedef struct {
     UINT32 totalUsedSize;       // 内存池的内存使用量
@@ -61,7 +57,8 @@ typedef struct {
 **示例代码**
 
 
-代码实现如下：
+  代码实现如下：
+  
 ```
 #include <stdio.h>
 #include <string.h>
@@ -109,6 +106,7 @@ int MemTest(void)
 编译运行输出的结果如下：
 
 
+  
 ```
 usage = 22, fragment = 3, maxFreeSize = 49056, totalFreeSize = 50132, waterLine = 1414
 ```

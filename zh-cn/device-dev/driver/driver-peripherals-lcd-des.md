@@ -7,11 +7,10 @@ LCD（Liquid Crystal Display）液晶显示驱动，对LCD进行上电，并通�
 
   **图1** 基于HDF驱动框架的Display驱动模型
 
-  ![zh-cn_image_0000001170262223](figures/zh-cn_image_0000001170262223.png)
+  ![image](figures/基于HDF驱动框架的Display驱动模型.png "基于HDF驱动框架的Display驱动模型")
 
 
-
-Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共HAL层，支撑HDI（Hardware Display Interface）接口的实现，通过Display-HDI对图形服务提供各类驱动能力接口。
+Display驱动模型主要由平台驱动层、芯片平台适配层、LCD器件驱动层三部分组成。驱动模型基于HDF驱动框架开发，通过Platform层和OSAL层提供的接口，屏蔽内核形态的差异，使得器件驱动可以便利的迁移到不同OS及芯片平台。模型向上对接Display公共HAL层，支撑HDI（Hardware Device Interface）接口的实现，通过Display-HDI对图形服务提供各类驱动能力接口。
 
 - Display平台驱动层：通过HDF提供的IOService数据通道，与公共HAL层对接，集中接收并处理各类上层调用指令。
 
@@ -30,7 +29,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
 
     **图2** MIPI DSI接口
 
-    ![zh-cn_image_0000001147040198](figures/zh-cn_image_0000001147040198.png)
+    ![image](figures/MIPI-DSI接口.png "MIPI-DSI接口")
 
   MIPI DSI接口是MIPI（Mobile Industry Processor Interface）联盟定义的显示接口，主要用于移动终端显示屏接口，接口数据传输遵循MIPI协议，MIPI DSI接口为数据接口，传输图像数据，通常情况下MIPI DSI接口的控制信息以MIPI包形式通过MIPI DSI接口发送到对端IC，不需要额外的外设接口。
 
@@ -38,7 +37,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
 
     **图3** TTL接口
 
-    ![zh-cn_image_0000001192960023](figures/zh-cn_image_0000001192960023.png)
+    ![image](figures/TTL接口.png "TTL接口")
 
   TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
 

@@ -11,12 +11,12 @@ USB Device部分，支持USB功能设备的开发，提供USB设备相关功能�
 
   **图1** USB Host驱动模型图
 
-  ![zh-cn_image_0000001183058868](figures/zh-cn_image_0000001183058868.png)
+  ![image](figures/USB-Host驱动模型图.png "USB-Host驱动模型图")
 
   
   **图2** USB Device驱动模型图
 
-  ![zh-cn_image_0000001183218992](figures/zh-cn_image_0000001183218992.png)
+  ![image](figures/USB-Device驱动模型图.png "USB-Device驱动模型图")
 
 USB驱动模型对外开放的API接口能力如下：
 

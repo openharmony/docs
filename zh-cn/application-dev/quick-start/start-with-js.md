@@ -7,7 +7,7 @@
 
 ## 创建JS工程
 
-1. 打开**DevEco Studio**，点击**File** &gt; **New &gt; Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 打开**DevEco Studio**，点击**File** &gt; **New** &gt; **Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
    ![zh-cn_image_0000001223558814](figures/zh-cn_image_0000001223558814.png)
 
 2. 进入配置工程界面，**UI Syntax**选择“**JS**”，其他参数保持默认设置即可。
@@ -168,12 +168,12 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        onclick: function () {
            router.push({
-               uri: "pages/second/second"
+               url: "pages/second/second"
            })
        }
    }
@@ -184,7 +184,7 @@
 
    
    ```
-   import router from '@system.router';
+   import router from '@ohos.router';
    
    export default {
        back: function () {
@@ -202,7 +202,7 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File &gt; Project Structure** &gt; **Project &gt; Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File** &gt; **Project Structure** &gt; **Project** &gt; **Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
    ![zh-cn_image_0000001223557290](figures/zh-cn_image_0000001223557290.png)
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001217047316](figures/zh-cn_image_0000001217047316.png)按钮运行。效果如下图所示：
@@ -210,3 +210,6 @@
    ![zh-cn_image_0000001217527892](figures/zh-cn_image_0000001217527892.png)
 
 恭喜您已经使用JS语言开发（传统代码方式）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+## 相关实例
+针对使用JS语言（传统代码方式）开发快速入门，有以下相关实例可供参考：
+- [`JsHelloWorld`：你好世界（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/JsHelloWorld)

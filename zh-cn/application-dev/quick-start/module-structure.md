@@ -46,7 +46,6 @@ module.json示例：
         "process": "string", 
         "mainElement": "MainAbility",
         "deviceTypes": [
-            "phone",
             "tablet", 
             "tv", 
             "wearable", 
@@ -55,7 +54,6 @@ module.json示例：
             "vr", 
             "car", 
             "earphones", 
-            "pc", 
             "speaker", 
             "smartVision", 
             "linkIoT", 
@@ -220,7 +218,6 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 
 | 中文         | 英文         | 枚举值       | 设备类型                                                 |
 | ------------ | ------------ | ------------ | -------------------------------------------------------- |
-| 智能手机     | smartphone   | phone        | 手机                                                     |
 | 平板         | tablet       | tablet       | 平板，带屏音箱                                           |
 | 智慧屏       | smart TV     | tv           |                                                          |
 | 智能手表     | smart watch  | wearable     | 智能手表，儿童手表，特指资源较丰富的的手表，具备电话功能 |
@@ -229,7 +226,6 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | 虚拟现实     | VR           | vr           |                                                          |
 | 车机         | head unit    | car          |                                                          |
 | 耳机         | earphones    | earphones    |                                                          |
-| 个人计算机   | PC           | pc           |                                                          |
 | 音箱         | speaker      | speaker      | 无屏音箱，有屏音箱，通过硬件profile                      |
 | 智慧视觉设备 | Smart Vision | smartVision  | 带摄像头的设备，通过硬件profile分开是否                  |
 | 联接类模组   | linkiot      | linkIoT      | Wi-Fi模组，蓝牙模组                                      |
@@ -243,7 +239,7 @@ deviceTypes示例：
 		"name": "myHapName",
         "type": "har",
         "deviceTypes" : [
-            "phone"
+            "wearable"
         ]
 	}
 }
@@ -257,7 +253,7 @@ pages示例：
        "name": "myHapName",
         "type": "har",
         "deviceTypes" : [
-            "phone"
+            "wearable"
         ],
         "pages": "$profile:pages_config"
     }

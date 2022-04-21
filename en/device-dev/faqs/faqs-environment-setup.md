@@ -1,227 +1,205 @@
-# Environment Setup<a name="EN-US_TOPIC_0000001215650793"></a>
+# Environment Setup
 
 
-## Mini and Small Systems<a name="section1742119306399"></a>
+## Mini and Small Systems
 
-### What should I do if garbled characters and segmentation faults occur during hb installation?<a name="section36351051193919"></a>
 
--   **Symptom**
+### What should I do if garbled characters and segmentation faults occur during hb installation?
 
-    Garbled characters and segmentation faults occur during the execution of the  **python3 -m pip install --user ohos-build**  command.
+- **Symptom**
+  Garbled characters and segmentation faults occur during the execution of the **python3 -m pip install --user ohos-build** command.
 
+- **Possible Causes**
+  pip is of an early version.
 
--   **Possible Causes**
+- **Solution**
+  Upgrade pip.
 
-    pip is of an early version.
+    
+  ```
+  python3 -m pip install -U pip
+  ```
 
--   **Solutions**
 
-    Upgrade pip.
+### What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?
 
-    ```
-    python3 -m pip install -U pip
-    ```
+- **Symptom**
+  The message "cannot import 'sysconfig' from 'distutils'" is displayed during the execution of the **python3 -m pip install --user ohos-build** command.
 
+- **Possible Causes**
+  The **distutils** module is unavailable.
 
-### What should I do if the message "cannot import 'sysconfig' from 'distutils'" is displayed during hb installation?<a name="section48221013144011"></a>
+- **Solution**
+  Install **distutils**.
 
--   **Symptom**
+    
+  ```
+  sudo apt-get install python3.8-distutils
+  ```
 
-    The message "cannot import 'sysconfig' from 'distutils'" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
 
+### What should I do if the message "module 'platform' has no attribute 'linux_distribution'" is displayed during hb installation?
 
--   **Possible Causes**
+- **Symptom**
+  The message "module 'platform' has no attribute 'linux_distribution'" is displayed during the execution of the **python3 -m pip install --user ohos-build** command.
 
-    The  **distutils**  module is unavailable.
+- **Possible Causes**
+  There is a compatibility issue of python3-pip.
 
--   **Solutions**
+- **Solution**
+  Reinstall pip.
 
-    Install  **distutils**.
+    
+  ```
+  sudo apt remove python3-pip
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  python get-pip.py
+  ```
 
-    ```
-    sudo apt-get install python3.8-distutils
-    ```
 
+### What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?
 
-### What should I do if the message "module 'platform' has no attribute 'linux\_distribution'" is displayed during hb installation?<a name="section10307193044111"></a>
+- **Symptom**
+  The message "Could not find a version that satisfies the requirement ohos-build" is displayed during the execution of the **python3 -m pip install --user ohos-build** command.
 
--   **Symptom**
+- **Possible Causes**
+  The installation fails due to poor network connectivity.
 
-    The message "module 'platform' has no attribute 'linux\_distribution'" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
+- **Solution**
+  1. Ensure that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
+  2. If the network is functional, run the following commands to install hb by specifying a temporary PyPI source:
+        
+      ```
+      python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ohos-build
+      ```
 
 
--   **Possible Causes**
+### What should I do if the message "configure: error: no acceptable C compiler found in $PATH" is displayed during Python 3 installation?
 
-    There is a compatibility issue of python3-pip.
+- **Symptom**
+  The following error occurs during Python 3 installation:
 
--   **Solutions**
+    
+  ```
+  configure: error: no acceptable C compiler found in $PATH. See 'config.log' for more details
+  ```
 
-    Reinstall pip.
+- **Possible Causes**
+  **gcc** is not installed.
 
-    ```
-    sudo apt remove python3-pip
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
-    ```
+- **Solution**
+  1. Run the **apt-get install gcc** command to install **gcc** online.
+  2. After the installation, reinstall Python 3.
 
 
-### What should I do if the message "Could not find a version that satisfies the requirement ohos-build" is displayed during hb installation?<a name="section8692735427"></a>
+### What should I do if the message "-bash: make: command not found is displayed" during Python 3 installation?
 
--   **Symptom**
+- **Symptom**
+  The following error occurs during Python 3 installation:
 
-    The message "Could not find a version that satisfies the requirement ohos-build" is displayed during the execution of the  **python3 -m pip install --user ohos-build**  command.
+    
+  ```
+  -bash: make: command not found
+  ```
 
+- **Possible Causes**
+  **Make** is not installed.
 
--   **Possible Causes**
+- **Solution**
+  1. Run the **apt-get install make** command to install Make online.
+  2. After the installation, reinstall Python 3.
 
-    The installation fails due to poor network connectivity.
 
--   **Solutions**
-    1.  Ensure that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
-    2.  If the network is functional, run the following commands to install hb by specifying a temporary PyPI source:
+### What should I do if the message **zlib not available** is displayed during Python 3 installation?
 
-        ```
-        python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ohos-build
-        ```
+- **Symptom**
+  The following error occurs during Python 3 installation:
 
+    
+  ```
+  zipimport.ZipImportError: can't decompress data; zlib not available
+  ```
 
+- **Possible Causes**
+  **zlib** is not installed.
 
-### What should I do when the message  **configure: error: no acceptable C compiler found in $PATH**  is displayed during Python 3 installation?<a name="section870082884217"></a>
+- **Solution**
+  Solution 1: Run the **apt-get install zlib** command to install **zlib** online.
 
--   **Symptom**
+  Solution 2: If the software source does not contain **zlib**, download the source code from <xref href="http://www.zlib.net/" scope="external" class="- topic/xref " id="xref17252104445818">http://www.zlib.net/</xref>.
 
-    The following error occurs during Python 3 installation:
+  ![en-us_image_0000001198001086](figures/en-us_image_0000001198001086.png)
 
-    ```
-    configure: error: no acceptable C compiler found in $PATH. See 'config.log' for more details
-    ```
+  Then run the following commands to install **zlib** offline:
 
--   **Possible Causes**
+    
+  ```
+  # tar xvf zlib-1.2.11.tar.gz
+  # cd zlib-1.2.11
+  # ./configure
+  # make && make install
+  ```
 
-    **GCC**  is not installed.
+  After the installation, reinstall Python 3.
 
--   **Solutions**
 
-    1. Run the  **apt-get install gcc**  command to install  **GCC**  online.
+### What should I do if the message "No module named 'Crypto'" is displayed during the build process?
 
-    2. After the installation, reinstall Python 3.
+- **Symptom**
+  The following error occurs during compilation and building:
 
+    
+  ```
+  ModuleNotFoundError: No module named 'Crypto'
+  ```
 
-### What should I do when the message  **-bash: make: command not found**  is displayed during Python 3 installation?<a name="section198707170455"></a>
+- **Possible Causes**
+  **Crypto** is not installed.
 
--   **Symptom**
+- **Solution**
+  Solution 1: Run the **pip3 install Crypto** command to install **Crypto** online.
 
-    The following error occurs during Python 3 installation:
+  Method 2: Offline installation
 
-    ```
-    -bash: make: command not found
-    ```
+  Download the source code from [PyPI](https://pypi.org/project/pycrypto/#files).
 
--   **Possible Causes**
+  ![en-us_image_0000001251196005](figures/en-us_image_0000001251196005.png)
 
-    **Make**  is not installed.
+  Save the source package to the Linux server, decompress the package, and run the **python3 setup.py install** command to install Crypto.
 
--   **Solutions**
+  After the preceding installation is complete, rebuild an environment.
 
-    1. Run the  **apt-get install make**  command to install  **Make**  online.
 
-    2. After the installation, reinstall Python 3.
+### What should I do when an error with **lsb_release** occurs during **kconfiglib** installation?
 
+- **Symptom**
+  The following error occurs during **kconfiglib** installation:
 
-### What should I do when the message  **zlib not available**  is displayed during Python 3 installation?<a name="section85401445204518"></a>
+    
+  ```
+  subprocess.CalledProcessError: Command '('lsb_release', '-a')' returned non-zero exit status 1.
+  ```
 
--   **Symptom**
+- **Possible Causes**
+  The Python version matched with the **lsb_release** module is different from the current Python version.
 
-    The following error occurs during Python 3 installation:
+- **Solution**
+  Run the **find / -name lsb_release** command, for example, **sudo rm -rf /usr/bin/lsb_release** to locate and delete **lsb_release**.
 
-    ```
-    zipimport.ZipImportError: can't decompress data; zlib not available
-    ```
 
--   **Possible Causes**
+### What should I do if the message "ImportError: No module named apt_pkg" is displayed during the execution of an unidentifiable command?
 
-    **zlib**  is not installed.
+- **Symptom**
+  The message "ImportError: No module named apt_pkg" is displayed when an unidentifiable command is executed on the Linux server.
 
--   **Solutions**
+- **Possible Causes**
+  There is a compatibility issue of python3-apt.
 
-    Solution 1: Run the  **apt-get install zlib**  command to install  **zlib**  online.
+- **Solution**
+  Reinstall python3-apt.
 
-    Solution 2: If the software source does not contain  **zlib**, download the source code from  https://www.zlib.net/.
-
-    ![](figures/download-zlib.png)
-
-    Then run the following commands to install  **zlib**  offline:
-
-    ```
-    # tar xvf zlib-1.2.11.tar.gz
-    # cd zlib-1.2.11
-    # ./configure
-    # make && make install
-    ```
-
-    After the installation, reinstall Python 3.
-
-
-### What should I do when the message  **No module named '\_ctypes'**  is displayed during Python 3 installation?<a name="section12202694460"></a>
-
--   **Symptom**
-
-    The following error occurs during Python 3 installation:
-
-    ```
-    ModuleNotFoundError: No module named '_ctypes'
-    ```
-
-
--   **Possible Causes**
-
-    **libffi**  and  **libffi-devel**  are not installed.
-
-
--   **Solutions**
-
-    1. Run the  **apt-get install libffi\* -y**  command to install  **libffi**  and  **libffi-devel**  online.
-
-    2. After the installation, reinstall Python 3.
-
-
-### What should I do when an error with  **lsb\_release**  occurs during  **kconfiglib**  installation?<a name="section5803174135115"></a>
-
--   **Symptom**
-
-    The following error occurs during  **kconfiglib**  installation:
-
-    ```
-    subprocess.CalledProcessError: Command '('lsb_release', '-a')' returned non-zero exit status 1.
-    ```
-
--   **Possible Causes**
-
-    The Python version matched with the  **lsb\_release**  module is different from the current Python version.
-
--   **Solutions**
-
-    Run the  **find / -name lsb\_release**  command, for example,  **sudo rm -rf /usr/bin/lsb\_release**  to locate and delete  **lsb\_release**.
-
-
-### What should I do if the message "ImportError: No module named apt\_pkg" is displayed during the execution of an unidentifiable command?<a name="section510820516515"></a>
-
--   **Symptom**
-
-    The message "ImportError: No module named apt\_pkg" is displayed when an unidentifiable command is executed on the Linux server.
-
-
--   **Possible Causes**
-
-    There is a compatibility issue of python3-apt.
-
--   **Solutions**
-
-    Reinstall python3-apt.
-
-    ```
-    sudo apt-get remove  python3-apt
-    sudo apt-get install python3-apt
-    ```
-
-
+    
+  ```
+  sudo apt-get remove  python3-apt
+  sudo apt-get install python3-apt
+  ```

@@ -6,11 +6,11 @@ The documents are carefully organized as follows:
 
 ### Getting Started
 
-[Here](quick-start/start-overview.md) you can learn how to better prepare yourself for application development.
+[Here](quick-start/start-overview.md) you'll learn how to quickly get started with OpenHarmony application development.
 
-Browse the documents on how to use DevEco Studio and how to quickly build your first application.
+Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
 
-Don't forget to check out the package structure of OpenHarmony applications and resource file categories.
+Check out the development fundamentals, which comprise descriptions of the package structure configuration file for OpenHarmony applications and the instructions for use of resource files.
 
 ### Development
 
@@ -18,7 +18,7 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/ability-brief.md)
+- Application framework: [Ability Development](ability/fa-brief.md)
 - UI framework: [UI Development](ui/arkui-overview.md)
 
 All applications should be developed on top of these frameworks.
@@ -35,6 +35,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Device](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
+- [Internationalization](internationalization/international-overview.md)
 
 ### Tools
 
@@ -50,6 +51,6 @@ To make you better understand how functions work together and jumpstart your app
 API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
 
 They are organized as follows:
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attribute.md)
+-   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
 -   [API Reference](reference/apis/js-apis-DataUriUtils.md)

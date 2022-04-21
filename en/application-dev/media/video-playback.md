@@ -16,7 +16,7 @@ You can use video playback APIs to convert video data into visible signals, play
 
 Note: Video playback requires hardware capabilities such as display, audio, and codec.
 
-1. A third-party application obtains a surface ID from the Xcomponent.
+1. A third-party application obtains a surface ID from the XComponent.
 2. The third-party application transfers the surface ID to the VideoPlayer JS.
 3. The media service flushes the frame data to the surface buffer.
 
@@ -43,16 +43,18 @@ The full video playback process includes creating an instance, setting the URL, 
 
 For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an Xcomponent, see [Xcomponent Creation](#Xcomponent).
+For details about how to create an XComponent, see [XComponent Creation](#xcomponent-creation).
+
+*Note: **SetSurface** must be called after the URL is set but before **Prepare** is called.
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -93,7 +95,8 @@ await media.createVideoPlayer().then((video) => {
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -184,9 +187,9 @@ import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -235,7 +238,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -270,9 +274,9 @@ import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -321,7 +325,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -356,7 +361,8 @@ await videoPlayer.reset().then(() => {
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdNextPath = 'fd://'
-let nextPath = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" command.
+let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
 await fileIO.open(nextPath).then(fdNumber) => {
    fdNextPath = fdNextPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdNextPath);
@@ -391,9 +397,9 @@ import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
 let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the Xcomponent interface.
+let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
 
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the Xcomponent is loaded.
+// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
 LoadXcomponent() {
 	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
     console.info('LoadXcomponent surfaceID is' + surfaceID);
@@ -442,7 +448,8 @@ SetCallBack(videoPlayer);
 
 // Set the FD (local playback) of the video file selected by the user.
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
+// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
 await fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
@@ -473,15 +480,15 @@ await videoPlayer.play().then(() => {
 }, failureCallback).catch(catchCallback);
 ```
 
-### Xcomponent Creation
+### XComponent Creation
 
-The Xcomponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
+The XComponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
 
 ```js
 <xcomponent id = 'Xcomponent'
-      if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the Xcomponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
+      if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the XComponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
       type = 'surface'
-      onload = 'LoadXcomponent' // Default interface for loading the Xcomponent.
+      onload = 'LoadXcomponent' // Default interface for loading the XComponent.
       style = "width:720px;height:480px;border-color:red;border-width:5px;"> // Set the window width, height, and other attributes.
-</xcomponent>
+
 ```

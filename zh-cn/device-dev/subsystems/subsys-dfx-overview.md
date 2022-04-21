@@ -1,18 +1,22 @@
-# DFX概述<a name="ZH-CN_TOPIC_0000001185974398"></a>
+# DFX概述
 
--   [基本概念](#section5635178134811)
 
-在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性的软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
+## 简介
+
+在OpenHarmony中，DFX([Design for X](https://en.wikipedia.org/wiki/Design_for_X))是为了提升质量属性的软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
 
 提供以下功能：
 
--   HiLog流水日志，轻量系统类设备（参考内存≥128KB）、小型系统类设备（参考内存≥1MB）、标准系统类设备（参考内存≥128MB）适用。
+- HiLog流水日志，轻量系统类设备（参考内存≥128KiB）、小型系统类设备（参考内存≥1MiB）、标准系统类设备（参考内存≥128MB）适用。
 
--   HiTrace分布式跟踪，标准系统类设备（参考内存≥128MB）适用。
--   HiCollie卡死故障检测，标准系统类设备（参考内存≥128MB）适用。
--   HiSysEvent系统事件埋点，标准系统类设备（参考内存≥128MB）适用。
+- HiTrace分布式跟踪，标准系统类设备（参考内存≥128MiB）适用。
 
-## 基本概念<a name="section5635178134811"></a>
+- HiCollie卡死故障检测，标准系统类设备（参考内存≥128MiB）适用。
+
+- HiSysEvent系统事件埋点，标准系统类设备（参考内存≥128MiB）适用。
+
+
+## 基本概念
 
 **流水日志：**
 
@@ -33,4 +37,3 @@
 **系统事件：**
 
 是OpenHarmony系统某种状态产生的一种标识，通过定义各种事件用于分析系统的状态变化情况。
-

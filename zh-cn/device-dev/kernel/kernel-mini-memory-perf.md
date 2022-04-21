@@ -1,19 +1,5 @@
 # Perf调测
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [接口说明](#接口说明)
-  - [内核态](#内核态)
-  - [用户态](#用户态)
-- [开发指导](#开发指导)
-  - [内核态开发流程](#内核态开发流程)
-- [内核态编程实例](#内核态编程实例)
-- [内核态示例代码](#内核态示例代码)
-  - [内核态结果验证](#内核态结果验证)
-  - [用户态开发流程](#用户态开发流程)
-  - [用户态编程实例](#用户态编程实例)
-  - [用户态示例代码](#用户态示例代码)
-  - [用户态结果验证](#用户态结果验证)
 
 ## 基本概念
 
@@ -36,16 +22,14 @@ Perf提供2种工作模式，计数模式和采样模式。
 
 OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细信息可以查看[API](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_perf.h)参考。
 
-**表1** Perf模块接口说明
+  **表1** Perf模块接口说明
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| 开启/停止Perf采样 | LOS_PerfStart | 开启采样 | 
-| | LOS_PerfStop | 停止采样 | 
-| 配置Perf采样事件 | LOS_PerfConfig | 配置采样事件的类型、周期等 | 
-| 读取采样数据 | LOS_PerfDataRead | 读取采样数据到指定地址 | 
-| 注册采样数据缓冲区的钩子函数 | LOS_PerfNotifyHookReg | 注册缓冲区水线到达的处理钩子 | 
-| | LOS_PerfFlushHookReg | 注册缓冲区刷cache的钩子 | 
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| 开启/停止Perf采样 | LOS_PerfStart：开启采样<br/>LOS_PerfStop：停止采样 | 
+| 配置Perf采样事件 | LOS_PerfConfig：配置采样事件的类型、周期等 | 
+| 读取采样数据 | LOS_PerfDataRead：读取采样数据到指定地址 | 
+| 注册采样数据缓冲区的钩子函数 | LOS_PerfNotifyHookReg：注册缓冲区水线到达的处理钩子<br/>LOS_PerfFlushHookReg：注册缓冲区刷cache的钩子 | 
 
 
 1. Perf采样事件的结构体为PerfConfigAttr，详细字段含义及取值详见kernel\include\los_perf.h。
@@ -53,6 +37,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 2. 采样数据缓冲区为环形buffer，buffer中读过的区域可以覆盖写，未被读过的区域不能被覆盖写。
 
 3. 缓冲区有限，用户可通过注册水线到达的钩子进行buffer溢出提醒或buffer读操作。默认水线值为buffer总大小的1/2。 示例如下：
+     
    ```
    VOID Example_PerfNotifyHook(VOID)
    {
@@ -66,6 +51,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
    ```
 
 4. 若perf采样的buffer涉及到cpu 跨cache，则用户可通过注册刷cache的钩子，进行cache同步。 示例如下：
+     
    ```
    VOID Example_PerfFlushHook(VOID *addr, UINT32 size)
    {
@@ -88,6 +74,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 - write: 用户态采样事件配置
 
 - ioctl: 用户态Perf控制操作，包括
+    
   ```
   #define PERF_IOC_MAGIC     'T'
   #define PERF_START         _IO(PERF_IOC_MAGIC, 1)
@@ -110,7 +97,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 1. 配置Perf模块相关宏。
    配置Perf控制宏LOSCFG_KERNEL_PERF，默认关，在kernel/liteos_a目录下执行 make update_config命令配置"Kernel-&gt;Enable Perf Feature"中打开：
 
-   | 配置项 | menuconfig选项 | 含义 | 设置值 | 
+     | 配置项 | menuconfig选项 | 含义 | 设置值 | 
    | -------- | -------- | -------- | -------- |
    | LOSCFG_KERNEL_PERF | Enable&nbsp;Perf&nbsp;Feature | Perf模块的裁剪开关 | YES/NO | 
    | LOSCFG_PERF_CALC_TIME_BY_TICK | Time-consuming&nbsp;Calc&nbsp;Methods-&gt;By&nbsp;Tick | Perf计时单位为tick | YES/NO | 
@@ -155,7 +142,8 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
 
 前提条件：在menuconfig菜单中完成perf模块的配置。
 
-实例代码如下：
+  实例代码如下：
+  
 ```
 #include "los_perf.h"
 STATIC VOID OsPrintBuff(const CHAR *buf, UINT32 num)
@@ -240,7 +228,8 @@ LOS_MODULE_INIT(perfTestHwEvent, LOS_INIT_LEVEL_KMOD_EXTENDED);
 
 ### 内核态结果验证
 
-输出结果如下：
+  输出结果如下：
+  
 ```
 --------count mode----------
 [EMG] [cycles] eventType: 0xff: 5466989440
@@ -290,6 +279,7 @@ hex:  00 ef ef ef 00 00 00 00 14 00 00 00 60 00 00 00 00 00 00 00 70 88 36 40 08
 
 ./perf list 查看可使用的事件列表， 输出如下：
 
+  
 ```
 cycles                                 [Hardware event]
 instruction                            [Hardware event]
@@ -308,6 +298,7 @@ mux-pend                               [Software event]
 
 ./perf stat -e cycles os_dump， 输出如下：
 
+  
 ```
 type: 0
 events[0]: 255, 0xffff
@@ -325,6 +316,7 @@ time used: 0.058000(s)
 
 ./perf record -e cycles os_dump, 输出如下：
 
+  
 ```
 type: 0
 events[0]: 255, 0xffff
@@ -361,7 +353,8 @@ save perf data success at /storage/data/perf.data
 
 ### 用户态示例代码
 
-实例代码如下：
+  实例代码如下：
+  
 ```
 #include "fcntl.h"
 #include "user_copy.h"
@@ -431,7 +424,8 @@ int main(int argc, char **argv)
 
 ### 用户态结果验证
 
-输输出结果如下：出结果如下：
+  输出结果如下
+  
 ```
 [EMG] dump section data, addr: 0x8000000 length: 0x800000
 num:  00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 ...

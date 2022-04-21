@@ -1,8 +1,10 @@
 # OTA升级
 
+
 ## 概述
 
 OTA（Over the Air）提供对设备远程升级的能力，可以让您的设备（如IP摄像头等），轻松支持远程升级能力。目前轻量和小型系统仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
+
 
 ## 约束与限制
 
@@ -15,7 +17,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
 ## 生成公私钥对
 
-1. 准备工作：在Windows PC 上，下载安装[OpenSSL工具](http://slproweb.com/products/Win32OpenSSL.html)，并配置环境变量。
+1. 准备工作：在Windows上，下载安装[OpenSSL工具](http://slproweb.com/products/Win32OpenSSL.html)，并配置环境变量。
 
 2. 使用OpenSSL工具生成公私钥对。
 
@@ -25,6 +27,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 4. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
 
+     
    ```
    static unsigned char g_pub_key[PUBKEY_LEN] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
@@ -39,6 +42,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 ### 轻量与小型系统升级包制作
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
+     
    ```
     target_package
     ├── OTA.tag
@@ -56,6 +60,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 3. 填写“update_config”文件夹中的“updater_specified_config.xml”组件配置文件。
    组件配置文件“updater_specified_config.xml”，格式如下：
 
+     
    ```
    <?xml version="1.0"?>
    <package>
@@ -70,21 +75,32 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    </package>
    ```
 
-   **表1** 组件配置文件节点说明
-
-   | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 |
+     **表1** 组件配置文件节点说明
+   
+   | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
    | -------- | -------- | -------- | -------- | -------- |
-   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info。 |
-   | | | fileVersion | 必填 | 保留字段，内容不影响升级包生成。 |
-   | | | prdID | 必填 | 保留字段，内容不影响升级包生成。 |
-   | | | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级。 |
-   | | | date | 必填 | 升级包制作日期，保留字段，不影响升级包生成。 |
-   | | | time | 必填 | 升级包制作时间，保留字段，不影响升级包生成。 |
-   | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径。 |
-   | | | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 |
-   | | | compId | 必填 | 组件Id，不同组件Id不重复。 |
-   | | | resType | 必填 | 保留字段，不影响升级包生成。 |
-   | | | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 |
+   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
+   | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
+   | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
+   | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
+   | date | 必填 | 升级包制作日期，保留字段，不影响升级包生成 | 
+   | time | 必填 | 升级包制作时间，保留字段，不影响升级包生成 | 
+
+     **表2** 组件配置文件节点说明
+   
+   | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
+   | -------- | -------- | -------- | -------- | -------- |
+   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
+   | 头信息（head节点） | info节点 | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
+   | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 | 
+   | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径 | 
+   | 组件信息（group节点） | component节点 | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 | 
+   | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复 | 
+   | 组件信息（group节点） | component节点 | resType | 必填 | 保留字段，不影响升级包生成 | 
+   | 组件信息（group节点） | component节点 | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 | 
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为‘1’，必须全部配置为‘0’。
@@ -92,6 +108,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    > 对轻量系统/小型系统，不支持变分区升级包的制作。
 
 4. 创建“OTA.tag文件”，内容为OTA升级包的魔数，固定如下：
+     
    ```
    package_type:ota1234567890qwertw
    ```
@@ -99,12 +116,14 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 5. 创建“config文件”，内容为设置bootargs以及bootcmd的信息。
    例如配置如下：
 
+     
    ```
    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M
    (u-boot.bin),9M(kernel.bin),50M(rootfs_ext4.img),50M(userfs.img)' setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800;bootm 0x82000000'
    ```
 
 6. 执行升级包制作命令。
+     
    ```
    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2x
    ```
@@ -120,6 +139,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
+     
    ```
    target_package
    ├── {component_1}
@@ -140,6 +160,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    例如配置如下：
 
+     
    ```
    HI3516
    HI3518
@@ -153,6 +174,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    例如配置如下：
 
+     
    ```
    Hi3516DV300-eng 10 QP1A.190711.001
    Hi3516DV300-eng 10 QP1A.190711.020
@@ -165,6 +187,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    分区表会随镜像一起生成，格式如下：
 
+     
    ```
    <?xml version="1.0" encoding="GB2312" ?>
    <Partition_Info>
@@ -175,15 +198,15 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    **表2** 分区表Part标签说明
 
-   | 标签名称 | 标签说明 |
+     | 标签名称 | 标签说明 | 
    | -------- | -------- |
-   | Sel | 该分区是否生效，1表明生效，0表明不生效。 |
-   | PartitionName | 分区名称，例如：fastboot、boot等。 |
-   | FlashType | flash磁盘类型，例如emmc、ufs等。 |
-   | FileSystem | 文件系统类型，例如ext3/4、f2fs等，也可能为none。 |
-   | Start | 分区起始位置，所有分区最起始为0，单位为兆（M）。 |
-   | Length | 分区占用长度，单位为兆（M）。 |
-   | SelectFile | 实际镜像或文件所在路径。 |
+   | Sel | 该分区是否生效，1表明生效，0表明不生效。 | 
+   | PartitionName | 分区名称，例如：fastboot、boot等。 | 
+   | FlashType | flash磁盘类型，例如emmc、ufs等。 | 
+   | FileSystem | 文件系统类型，例如ext3/4、f2fs等，也可能为none。 | 
+   | Start | 分区起始位置，所有分区最起始为0，单位为兆（M）。 | 
+   | Length | 分区占用长度，单位为兆（M）。 | 
+   | SelectFile | 实际镜像或文件所在路径。 | 
 
 8. 执行升级包制作命令。
 
@@ -191,6 +214,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    命令如下：
 
+     
    ```
    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem
    ```
@@ -203,6 +227,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    命令如下：
 
+     
    ```
    python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key3072.pem
    ```
@@ -216,6 +241,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
    命令如下：
 
+     
    ```
    python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key3072.pem  -pf ./partition_file.xml
    ```
@@ -266,7 +292,8 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
 ### 示例代码
 
-使用OpenHarmony的“升级包格式和校验方法“进行升级。
+  使用OpenHarmony的“升级包格式和校验方法“进行升级。
+  
 ```
 int main(int argc, char **argv)
 {
@@ -340,7 +367,8 @@ int main(int argc, char **argv)
 
 ### 示例代码
 
-使用非OpenHarmony的“升级包格式和校验方法“进行升级。
+  使用非OpenHarmony的“升级包格式和校验方法“进行升级。
+  
 ```
 int main(int argc, char **argv)
 {
@@ -415,7 +443,8 @@ int main(int argc, char **argv)
 
 对于使用Hi3518EV300/Hi3516DV300开源套件的轻量和小型系统，在需要实现防回滚功能的版本中，需要增加LOCAL_VERSION的值，如"ohos default 1.0"-&gt;"ohos default 1.1"，LOCAL_VERSION在device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\ota_update\ota_local_info.c中。
 
-示例，增加版本号。
+  示例，增加版本号。
+  
 ```
 const char *get_local_version(void)
 {

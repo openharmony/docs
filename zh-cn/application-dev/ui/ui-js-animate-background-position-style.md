@@ -17,6 +17,7 @@
 ```
 /* xxx.css */
 .container {
+  height: 100%;
   background-color:#F1F3F5;
   display: flex;
   flex-direction: column;
@@ -79,8 +80,14 @@
 ```
 
 
-![zh-cn_image_0000001217008255](figures/zh-cn_image_0000001217008255.gif)
-
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
+
+![zh-cn_image_background_img.gif](figures/zh-cn_image_background_img.gif)
+
+
+## 相关实例
+
+针对background-position样式动画开发，有以下相关实例可供参考：
+
+- [`JsImage`：基本动画（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsImage)

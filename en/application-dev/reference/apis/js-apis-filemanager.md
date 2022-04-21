@@ -2,7 +2,7 @@
 >![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 >
 >- The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- This is a system API and cannot be called by third-party applications. Currently, it can be called only by **filepicker**.
+>- The APIs of this module are system APIs and cannot be called by third-party applications. Currently, these APIs can be called only by **filepicker**.
 ## Modules to Import
 
 ```js
@@ -141,7 +141,7 @@ Obtains information about the files in the second-level directory in asynchronou
   |Not a directory            | 20     | The object specified by the URI is not a directory.|
 
 ```js
-// Call listFile() and getRoot() to obtain the file UIRs.
+// Call listFile() and getRoot() to obtain the file URIs.
 let media_path = file.uri
 filemanager.listFile(media_path, "file", (err, fileInfo) => {
     if(Array.isArray(fileInfo)) {

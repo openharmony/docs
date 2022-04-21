@@ -42,7 +42,7 @@ When you create a system component, the default style is used. You can change th
 
    The attribute method must follow the component and be connected by the operator ".". You can also configure multiple attributes of the component in method chaining mode.
 
-   
+
    ```
    @Entry
    @Component
@@ -62,7 +62,7 @@ When you create a system component, the default style is used. You can change th
    ![en-us_image_0000001267767845](figures/en-us_image_0000001267767845.png)
 
 2. Change the display content of the <Text> component from Hello World to Tomato by modifying the constructor parameters of the <Text> component.
-  
+
    ```
    @Entry
    @Component

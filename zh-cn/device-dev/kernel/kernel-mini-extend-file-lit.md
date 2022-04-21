@@ -1,9 +1,5 @@
 # LittleFS
 
-- [基本概念](#基本概念)
-- [开发指导](#开发指导)
-- [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -16,6 +12,7 @@ LittleFS是一个小型的Flash文件系统，它结合日志结构（log-struct
 
 移植LittleFS到新硬件设备上，需要申明lfs_config：
 
+  
 ```
 const struct lfs_config cfg = {
     // block device operations
@@ -48,7 +45,8 @@ block_count 可以被擦除的块数量，这取决于块设备的容量及擦�
 
 ## 示例代码
 
-代码实现如下：
+  代码实现如下：
+  
 ```
 #include "lfs.h"
 #include "stdio.h"
@@ -100,6 +98,7 @@ int main(void) {
 
 首次编译运行得到的结果为：
 
+  
 ```
 Say hello 1 times.
 ```

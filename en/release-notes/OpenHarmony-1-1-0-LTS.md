@@ -167,7 +167,7 @@ This version inherits all features of OpenHarmony 1.0, and adds and optimizes fe
 </tr>
 <tr id="row119944512385"><td class="cellrowborder" valign="top" width="13.38%" headers="mcps1.2.5.1.1 "><p id="p20115719395"><a name="p20115719395"></a><a name="p20115719395"></a>Driver</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54%" headers="mcps1.2.5.1.2 "><a name="ul100191223919"></a><a name="ul100191223919"></a><ul id="ul100191223919"><li>The sensor, input, and display driver models have been added.</li><li>The MIPI DSI and pulse width modulation (PWM) have been added.</li><li>Hardware Driver Interfaces (HDIs) and Wi-Fi flow control have been added.</li><li>The I/O service grouping feature has been added for the Hardware Driver Foundation (HDF).</li></ul>
+<td class="cellrowborder" valign="top" width="38.54%" headers="mcps1.2.5.1.2 "><a name="ul100191223919"></a><a name="ul100191223919"></a><ul id="ul100191223919"><li>The sensor, input, and display driver models have been added.</li><li>The MIPI DSI and pulse width modulation (PWM) have been added.</li><li>Hardware Device Interfaces (HDIs) and Wi-Fi flow control have been added.</li><li>The I/O service grouping feature has been added for the Hardware Driver Foundation (HDF).</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.2.5.1.3 "><p id="p460532073911"><a name="p460532073911"></a><a name="p460532073911"></a>Driver loading has been optimized. It can now be accomplished in segmented parts.</p>
 </td>
@@ -1144,12 +1144,7 @@ The following table lists the issues known in OpenHarmony 1.0, which have been r
 <td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p1132775483917"><a name="p1132775483917"></a><a name="p1132775483917"></a>[Multimedia] During execution of the cameraActs case, the camera configuration file cannot be found, and the initialization fails.</p>
 </td>
 </tr>
-<tr id="row0342133417396"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p153278540395"><a name="p153278540395"></a><a name="p153278540395"></a><a href="https://gitee.com/openharmony/drivers_adapter_khdf_liteos/issues/I3D71U" target="_blank" rel="noopener noreferrer">I3D71U</a></p>
-</td>
-<td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p93271254153915"><a name="p93271254153915"></a><a name="p93271254153915"></a>[Driver] When the system is reset repeatedly before it is started successfully by hmac_main_init, there is a high possibility that it would be suspended after the startup.</p>
-</td>
-</tr>
-<tr id="row8342934173920"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p7328145410392"><a name="p7328145410392"></a><a name="p7328145410392"></a><a href="https://gitee.com/openharmony/community/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
+<tr id="row8342934173920"><td class="cellrowborder" valign="top" width="22.650000000000002%" headers="mcps1.2.3.1.1 "><p id="p7328145410392"><a name="p7328145410392"></a><a name="p7328145410392"></a><a href="https://gitee.com/openharmony/release-management/issues/I3EGUX" target="_blank" rel="noopener noreferrer">I3EGUX</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="77.35%" headers="mcps1.2.3.1.2 "><p id="p9328654193918"><a name="p9328654193918"></a><a name="p9328654193918"></a>[Reliability] When the system is reset repeatedly, and the KIdle process crashes once, the system is suspended and cannot be started.</p>
 </td>

@@ -280,7 +280,7 @@ enableAlertBeforeBackPage(options: EnableAlertBeforeBackPageOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明                                     |
 | ------- | ---------------------------------------- | ---- | -------------------------------------- |
-| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | 是    | 详细请参见EnableAlertBeforeBackPageOptions。 |
+| options | [EnableAlertBeforeBackPageOptions](#enablealertbeforebackpageoptions6) | 是    | 详细请参见EnableAlertBeforeBackPageOptions。 |
 
 **示例：**
 

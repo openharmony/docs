@@ -38,7 +38,7 @@ config.json示例：
     "package": "com.example.myapplication.entrymodule",
     "name": ".MyApplication",
     "deviceType": [
-      "phone"
+      "default"
     ],
     "distro": {
       "moduleName": "entry",
@@ -129,29 +129,28 @@ app实例：
 
 ### deviceConfig对象的内部结构
 
-deviceConfig包含设备上的应用配置信息，可以包含default，phone，tv，car，wearable，liteWearable等属性。default标签内的配置是适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。内部结构说明参见表5。
+deviceConfig包含设备上的应用配置信息，可以包含default，tv，car，wearable，liteWearable等属性。default标签内的配置是适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。内部结构说明参见表5。
 
 表5 deviceConfig对象的内部结构说明
 
 | 属性名称     | 含义                                            | 数据类型 | 是否可缺省         |
 | ------------ | ----------------------------------------------- | -------- | ------------------ |
 | default      | 表示所有设备通用的应用配置信息。参考表6。       | 对象     | 否                 |
-| phone        | 表示手机类设备的应用信息配置。参考表6。         | 对象     | 可缺省，缺省值为空 |
 | tablet       | 表示平板的应用配置信息。参考表6。               | 对象     | 可缺省，缺省值为空 |
 | tv           | 表示智慧屏特有的应用配置信息。参考表6。         | 对象     | 可缺省，缺省值为空 |
 | car          | 表示车机特有的应用配置信息。参考表6。           | 对象     | 可缺省，缺省值为空 |
 | wearable     | 表示智能穿戴特有的应用配置信息。参考表6。       | 对象     | 可缺省，缺省值为空 |
 | liteWearable | 表示轻量级智能穿戴特有的应用配置信息。参考表6。 | 对象     | 可缺省，缺省值为空 |
 
-default、phone、tablet、tv、car、wearable、liteWearble等对象的内部结构说明，可参见表6。
+default、tablet、tv、car、wearable、liteWearble等对象的内部结构说明，可参见表6。
 
 表6 不同设备的内部结构说明
 
 | 属性名称           | 含义                                                         | 数据类型 | 是否可缺省              |
 | ------------------ | ------------------------------------------------------------ | -------- | ----------------------- |
-| process            | 表示应用或者Ability的进程名。如果在deviceConfig标签下配置了process标签，则该应用的所有Ability都运行在这个进程中。如果在abilities标签下也为某个Ability配置了process标签，则该Ability就运行在这个进程中。该标签仅适用于手机、平板、智慧屏、车机、智慧穿戴。该标签最大长度为31。 | 字符串   | 是                      |
-| supportBackup      | 表示应用是否支持备份和恢复。如果配置为"false"，则不支持为该应用执行备份或恢复操作。<br /> 该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 布尔值   | 可缺省，缺省值为"false" |
-| compressNativeLibs | 表示libs库是否以压缩存储的方式打包到HAP包。如果配置为"false"，则libs库以不压缩的方式存储，HAP包在安装时无需解压libs，运行时会直接从HAP内加载libs库。<br /> 该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 布尔值   | 可缺省，缺省值为"true"  |
+| process            | 表示应用或者Ability的进程名。如果在deviceConfig标签下配置了process标签，则该应用的所有Ability都运行在这个进程中。如果在abilities标签下也为某个Ability配置了process标签，则该Ability就运行在这个进程中。该标签仅适用于默认设备、平板、智慧屏、车机、智慧穿戴。该标签最大长度为31。 | 字符串   | 是                      |
+| supportBackup      | 表示应用是否支持备份和恢复。如果配置为"false"，则不支持为该应用执行备份或恢复操作。<br /> 该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 布尔值   | 可缺省，缺省值为"false" |
+| compressNativeLibs | 表示libs库是否以压缩存储的方式打包到HAP包。如果配置为"false"，则libs库以不压缩的方式存储，HAP包在安装时无需解压libs，运行时会直接从HAP内加载libs库。<br /> 该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 布尔值   | 可缺省，缺省值为"true"  |
 | directLaunch       | 指定设备被锁定时是否可以启动应用程序。如果要在不解锁设备的情况下启动应用程序，请将此设备设置为"true"。运行OHOS的设备不支持此属性。 | 布尔值   | 可缺省，缺省值为"false" |
 | ark                | 标识maple配置信息。参考表7。                                 | 对象     | 是缺省为空              |
 | network            | 表示网络安全性配置。该标签允许应用通过配置文件的安全声明来自定义其网络安全，无需修改应用代码。参考表9。 | 对象     | 可缺省，缺省值为空      |
@@ -219,18 +218,18 @@ module对象包含HAP包的配置信息，内部结构说明参见表11。
 | 属性名称        | 含义                                                         | 数据类型   | 是否可缺省                                                   |
 | --------------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | mainAbility     | 服务中心图标露出的ability，常驻进程拉起时会启动mainAbility。 | 字符串     | 如果存在page类型的ability，则该字段不可缺省。                |
-| package         | 表示HAP的包结构名称，在应用内保证唯一性。采用反向域名格式（建议与HAP的工程目录保持一致）。字符串长度不超过127字节。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 否                                                           |
-| name            | 表示HAP的类名。采用反向域名 方式表示，前缀要与同级的package标签指定的包名一致，也可采用"."开头的命名方式。字符串长度不超过255字节。<br /> 该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 否                                                           |
-| description     | 表示HAP的描述信息。字符串长度不超过255字节。如果字符串超出长度或者需要支持多语言，可以采用资源索引的方式添加描述内容。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为空                                           |
+| package         | 表示HAP的包结构名称，在应用内保证唯一性。采用反向域名格式（建议与HAP的工程目录保持一致）。字符串长度不超过127字节。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 否                                                           |
+| name            | 表示HAP的类名。采用反向域名 方式表示，前缀要与同级的package标签指定的包名一致，也可采用"."开头的命名方式。字符串长度不超过255字节。<br /> 该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 否                                                           |
+| description     | 表示HAP的描述信息。字符串长度不超过255字节。如果字符串超出长度或者需要支持多语言，可以采用资源索引的方式添加描述内容。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为空                                           |
 | supportedModes  | 表示应用支持的运行模式，当前只定义了驾驶模式（drive）。该标签只适用于车机。 | 字符串数组 | 可缺省，缺省值为空                                           |
-| deviceType      | 表示允许Ability运行的设备类型。系统预定义的设备类型包括：phone(手机)、tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)、liteWearable(轻量级智能穿戴)等。 | 字符串数组 | 否                                                           |
-| distro          | 表示HAP发布的具体描述。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。参考表12。 | 对象       | 否                                                           |
+| deviceType      | 表示允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)、liteWearable(轻量级智能穿戴)等。 | 字符串数组 | 否                                                           |
+| distro          | 表示HAP发布的具体描述。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。参考表12。 | 对象       | 否                                                           |
 | metaData        | 表示HAP的元信息。参考表13。                                  | 对象       | 可缺省，缺省值为空                                           |
 | abilities       | 表示当前模块内的所有Ability。采用对象数据格式。其中的每个元素表示一个快捷方式对象。参考表17。 | 对象数组   | 可缺省，缺省值为空                                           |
 | js              | 表示基于ArkUI框架开发的JS模块集合，其中的每个元素代表一个JS模块的信息。参考表22。 | 对象数组   | 可缺省，缺省值为空                                           |
 | shortcuts       | 表示应用的快捷方式信息。采用对象数组格式，其中的每个元素表示一个快捷方式对象。参考表25。 | 对象数组   | 可缺省，缺省值为空                                           |
 | reqPermissions  | 表示应用运行时向系统申请的权限。参考表21。                   | 对象数组   | 可缺省，缺省值为空                                           |
-| colorMode       | 表示应用自身的颜色模式。<br /> dark：表示按照深色模式选取资源。<br /> light：表示按照浅色模式选取资源。<br /> auto：表示跟随系统的颜色模式值选取资源。<br /> 该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为"auto"                                       |
+| colorMode       | 表示应用自身的颜色模式。<br /> dark：表示按照深色模式选取资源。<br /> light：表示按照浅色模式选取资源。<br /> auto：表示跟随系统的颜色模式值选取资源。<br /> 该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为"auto"                                       |
 | distroFilter    | 表示应用的分发规则。<br /> 该标签用于定义HAP包对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Verion、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。参考表29。 | 对象       | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
 | reqCapabilities | 表示运行应用程序所需的设备能力                               | 字符串数组 | 可缺省，缺省为空                                             |
 | commonEvents    | 静态广播，参考表35。                                         | 对象数组   | 可缺省，缺省为空                                             |
@@ -348,12 +347,12 @@ metaData示例：
 | 属性名称         | 含义                                                         | 数据类型   | 是否可缺省                                               |
 | ---------------- | ------------------------------------------------------------ | ---------- | -------------------------------------------------------- |
 | process          | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。运行OHOS的设备不支持此属性。 | 字符串     | 可缺省，缺省值为空。                                     |
-| name             | 表示Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如“com.example.myapplication.MainAbility”；也可采用“.”开头的类名方式表示，如“.MainAbility”。<br /> Ability的名称，需在一个应用的范围内保证唯一。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。<br /> 说明：在使用DevEco Studio新建项目时，默认生成首个Ability的配置，包括生成“MainAbility.java”文件，及“config.json”中“MainAbility”的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127。 | 字符串     | 否                                                       |
+| name             | 表示Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如“com.example.myapplication.MainAbility”；也可采用“.”开头的类名方式表示，如“.MainAbility”。<br /> Ability的名称，需在一个应用的范围内保证唯一。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。<br /> 说明：在使用DevEco Studio新建项目时，默认生成首个Ability的配置，包括生成“MainAbility.java”文件，及“config.json”中“MainAbility”的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127。 | 字符串     | 否                                                       |
 | description      | 表示对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | icon             | 表示Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br /> 说明：应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。 | 字符串     | 可缺省，缺省值为空。                                     |
 | label            | 表示Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br /> 说明： 应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | uri              | 表示Ability的统一资源标识符。该标签最大长度为255。           | 字符串     | 可缺省，对于data类型的Ability不可缺省。                  |
-| launchType       | 表示Ability的启动模式，支持“standard”、“singleMission”和“singleton”三种模式：<br />standard：表示该Ability可以有多实例。<br />“standard”模式适用于大多数应用场景。<br />singleMission：表示此Ability在每个任务栈中只能有一个实例。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“standard”。                             |
+| launchType       | 表示Ability的启动模式，支持“standard”、“singleMission”和“singleton”三种模式：<br />standard：表示该Ability可以有多实例。<br />“standard”模式适用于大多数应用场景。<br />singleMission：表示此Ability在每个任务栈中只能有一个实例。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“standard”。                             |
 | visible          | 表示Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | permissions      | 表示其他应用的Ability调用此Ability时需要申请的权限。通常采用反向域名格式，取值可以是系统预定义的权限，也可以是开发者自定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | skills           | 表示Ability能够接收的want的特征。                            | 对象数组   | 可缺省，缺省值为空。                                     |
@@ -363,13 +362,13 @@ metaData示例：
 | orientation      | 表示该Ability的显示模式。该标签仅适用于page类型的Ability。取值范围如下：<br />unspecified：由系统自动判断显示方向。<br />landscape：横屏模式。<br />portrait：竖屏模式。<br />followRecent：跟随栈中最近的应用。 | 字符串     | 可缺省，缺省值为“unspecified”。                          |
 | backgroundModes  | 表示后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br />dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br />audioPlayback：音频输出业务。<br />audioRecording：音频输入业务。<br />pictureInPicture：画中画、小窗口播放视频业务。<br />voip：音视频电话、VOIP业务。<br />location：定位、导航业务。<br />bluetoothInteraction：蓝牙扫描、连接、传输业务。<br />wifiInteraction：WLAN扫描、连接、传输业务。<br />screenFetch：录屏、截屏业务。<br />multiDeviceConnection：多设备互联业务 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | grantPermission  | 指定是否可以向Ability内任何数据授予权限。                    | 布尔值     | 可缺省，缺省值为空。                                     |
-| readPermission   | 表示读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为空。                                       |
-| writePermission  | 表示向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为空。                                       |
+| readPermission   | 表示读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为空。                                       |
+| writePermission  | 表示向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为空。                                       |
 | configChanges    | 表示Ability关注的系统配置集合。当已关注的配置发生变更后，Ability会收到onConfigurationUpdated回调。取值范围：<br />mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br />mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br />locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br />layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br />fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br />orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br />density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br />size：显示窗口大小发生变更。<br />smallestSize：显示窗口较短边的边长发生变更。<br />colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。                                       |
-| mission          | 表示Ability指定的任务栈。该标签仅适用于page类型的Ability。默认情况下应用中所有Ability同属一个任务栈。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为应用的包名。                               |
-| targetAbility    | 表示当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其它属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
-| multiUserShared  | 表示Ability是否支持多用户状态进行共享，该标签仅适用于data类型的Ability。配置为“true”时，表示在多用户下只有一份存储数据。需要注意的是，该属性会使visible属性失效。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
-| supportPipMode   | 表示Ability是否支持用户进入PIP模式（用于在页面最上层悬浮小窗口，俗称“画中画”，常见于视频播放等场景）。该标签仅适用于page类型的Ability。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
+| mission          | 表示Ability指定的任务栈。该标签仅适用于page类型的Ability。默认情况下应用中所有Ability同属一个任务栈。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省为应用的包名。                               |
+| targetAbility    | 表示当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其它属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
+| multiUserShared  | 表示Ability是否支持多用户状态进行共享，该标签仅适用于data类型的Ability。配置为“true”时，表示在多用户下只有一份存储数据。需要注意的是，该属性会使visible属性失效。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
+| supportPipMode   | 表示Ability是否支持用户进入PIP模式（用于在页面最上层悬浮小窗口，俗称“画中画”，常见于视频播放等场景）。该标签仅适用于page类型的Ability。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | formsEnabled     | 表示Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br />true：支持卡片能力。<br />false：不支持卡片能力。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | forms            | 表示服务卡片的属性。该标签仅当formsEnabled为“true”时，才能生效。参考表27。 | 对象数组   | 可缺省，缺省值为空。                                     |
 | srcLanguage      | Ability开发语言的类型。                                      | 字符串     | 取值为java、js或ets                                      |
@@ -506,7 +505,7 @@ skills示例：
 | -------- | ------------------------------------------------------------ | -------- | ------------------------ |
 | name     | 表示JS Component的名字。该标签不可缺省，默认值为default。    | 字符串   | 否                       |
 | pages    | 表示JS Component的页面用于列举JS Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS FA首页。 | 数组     | 否                       |
-| window   | 用于定义与显示窗口相关的配置。该标签仅适用于手机、平板、智慧屏、车机、智能穿戴。参考表23。 | 对象     | 可缺省                   |
+| window   | 用于定义与显示窗口相关的配置。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。参考表23。 | 对象     | 可缺省                   |
 | type     | 表示JS应用的类型。取值范围如下：<br />normal：标识该JS Component为应用实例。<br />form：标识该JS Component为卡片实例。 | 字符串   | 可缺省，缺省值为“normal” |
 | mode     | 定义JS组件的开发模式。参考表24。                             | 对象     | 可缺省，缺省值为空       |
 

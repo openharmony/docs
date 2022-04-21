@@ -25,7 +25,7 @@ OpenHarmony关系型数据库对外提供通用的操作接口（即Rdb Store接
 
 **图1** 关系型数据库运作机制
 
-![](figure/zh-cn_image_0000001115980740.png)
+![](figures/zh-cn_image_0000001115980740.png)
 
 ## 默认配置
 - 如果不指定数据库的日志模式，那么系统默认日志方式是WAL（Write Ahead Log）模式。

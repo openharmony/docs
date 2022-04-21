@@ -339,10 +339,7 @@ Form需要在应用配置文件module.json中进行配置。
 
 ![fa-form-example](figures/fa-form-example.png)
 
-## 开发实例
+## 相关实例
 
-针对Stage模型卡片提供方的开发，有以下示例工程可供参考：
-
-[eTSFormExtAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSFormExtAbility)
-
-本示例eTSFormExtAbility提供了一张卡片。用户可以通过桌面或者自己开发的卡片使用方，进行卡片的创建、更新和删除等操作。并且本示例通过轻量级数据存储实现了卡片信息的持久化。
+针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
+- [`FormExtAbility`：Stage模型卡片（eTS JS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)

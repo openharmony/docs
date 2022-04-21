@@ -31,7 +31,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-index.md), the following attributes are supported.
+In addition to universal attributes, the following attributes are supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |

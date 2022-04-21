@@ -5,7 +5,7 @@
 
 ## Modules to Import
 ```
-import mediaLibrary from '@ohos.multimedia.medialibrary';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
 ## mediaLibrary.getMediaLibrary<sup>8+</sup>
@@ -458,9 +458,9 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   ```
 let option = {
-    src : "file:///data/data/ohos.xxx.yyy/files/image.png",
-    mimeType : "image/jpeg",
-    relativePath : "imageDir/image2/"
+    src : "/data/storage/el2/base/haps/entry/image.png",
+    mimeType : "image/*",
+    relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
     if (err) {
@@ -499,9 +499,9 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   ```
 let option = {
-    src : "file:///data/data/ohos.xxx.yyy/files/image.jpg",
-    mimeType : "image/jpeg",
-    relativePath : "imageDir/image2/"
+    src : "/data/storage/el2/base/haps/entry/image.png",
+    mimeType : "image/*",
+    relativePath : "Pictures/"
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
     console.log("Media asset stored.");
@@ -534,8 +534,8 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* Online image usage mode
 let images = [
@@ -575,8 +575,8 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* Online image usage mode
 let images = [
@@ -621,8 +621,8 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   ```
 let images = [
-    "dataability:///media/external/images/media/50",
-    "dataability:///media/external/images/media/55"
+    "dataability:///media/xxxx/2",
+    "dataability:///media/xxxx/3"
 ];
 /* Online image usage mode
 let images = [
@@ -720,29 +720,29 @@ Provides APIs for encapsulating file asset attributes.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name                     | Type                    | Readable| Writable| Description                                                  |
+| Name                      | Type                     | Readable | Writable | Description                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| id                        | number                   | Yes  | No  | File asset ID.                                          |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, dataability:///media/image/2.        |
-| mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
-| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
-| displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
-| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
-| relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
-| parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
-| size                      | number                   | Yes  | No  | File size, in bytes.                                |
-| dateAdded                 | number                   | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateModified              | number                   | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
-| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
-| artist<sup>8+</sup>       | string                   | Yes  | No  | Artist of the file.                                                  |
-| audioAlbum<sup>8+</sup>   | string                   | Yes  | No  | Audio album.                                                  |
-| width                     | number                   | Yes  | No  | Image width, in pixels.                                |
-| height                    | number                   | Yes  | No  | Image height, in pixels.                                |
-| orientation               | number                   | Yes  | Yes  | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).|
-| duration<sup>8+</sup>     | number                   | Yes  | No  | Duration, in seconds.                                  |
-| albumId                   | number                   | Yes  | No  | ID of the album to which the file belongs.                                  |
-| albumUri<sup>8+</sup>     | string                   | Yes  | No  | URI of the album to which the file belongs.                                     |
-| albumName                 | string                   | Yes  | No  | Name of the album to which the file belongs.                                    |
+| id                        | number                   | Yes   | No   | File asset ID.                                           |
+| uri                       | string                   | Yes   | No   | File asset URI, for example, dataability:///media/image/2.         |
+| mimeType                  | string                   | Yes   | No   | Extended file attributes.                                           |
+| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes   | No   | Media type.                                               |
+| displayName               | string                   | Yes   | Yes   | Display file name, including the file name extension.                                 |
+| title                     | string                   | Yes   | Yes   | Title in the file.                                               |
+| relativePath<sup>8+</sup> | string                   | Yes   | Yes   | Relative public directory of the file.                                       |
+| parent<sup>8+</sup>       | number                   | Yes   | No   | Parent directory ID.                                               |
+| size                      | number                   | Yes   | No   | File size, in bytes.                                 |
+| dateAdded                 | number                   | Yes   | No   | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)         |
+| dateModified              | number                   | Yes   | No   | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)         |
+| dateTaken                 | number                   | Yes   | No   | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)         |
+| artist<sup>8+</sup>       | string                   | Yes   | No   | Artist of the file.                                                   |
+| audioAlbum<sup>8+</sup>   | string                   | Yes   | No   | Audio album.                                                   |
+| width                     | number                   | Yes   | No   | Image width, in pixels.                                 |
+| height                    | number                   | Yes   | No   | Image height, in pixels.                                 |
+| orientation               | number                   | Yes   | Yes   | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees). |
+| duration<sup>8+</sup>     | number                   | Yes   | No   | Duration, in seconds.                                   |
+| albumId                   | number                   | Yes   | No   | ID of the album to which the file belongs.                                   |
+| albumUri<sup>8+</sup>     | string                   | Yes   | No   | URI of the album to which the file belongs.                                      |
+| albumName                 | string                   | Yes   | No   | Name of the album to which the file belongs.                                     |
 
 
 ### isDirectory<sup>8+</sup>
@@ -757,9 +757,9 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name     | Type                          | Mandatory  | Description                 |
+| Parameter       | Type                           | Mandatory   | Description                  |
 | -------- | ---------------------------- | ---- | ------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the file asset is a directory.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes    | Callback used to return whether the file asset is a directory. |
 
 **Example**
 
@@ -2229,9 +2229,9 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 | Name          | Type    | Mandatory  | Description                                      |
 | ------------ | ------ | ---- | ---------------------------------------- |
-| src          | string | Yes   | URI of the media library.                              |
-| mimeType     | string | Yes   | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>Example: 'image/\*' and 'video/\*'.|
-| relativePath | string | No   | Custom path for storing media assets. If this parameter is unspecified, media assets are stored in the default path. For example, if you set this parameter to **imageDir/image2/**, the media assets will be stored in **default/imageDir/image2/**, where **default** represents the default path.|
+| src          | string | Yes   | Absolute path of the local file of the application.                              |
+| mimeType     | string | Yes   | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
+| relativePath | string | No   | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
 
 ## MediaSelectOption
 
@@ -2243,5 +2243,5 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 | Name   | Type    | Mandatory  | Description                  |
 | ----- | ------ | ---- | -------------------- |
-| type  | string | Yes   | Media type, which can be **image** and **video**.|
-| count | number | Yes   | Maximum number of media assets that can be selected.           |
+| type  | string | Yes   | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
+| count | number | Yes   | Number of media assets selected. If **count** is set to **1**, one media asset can be selected. If **count** is greater than **1**, multiple media assets can be selected.           |

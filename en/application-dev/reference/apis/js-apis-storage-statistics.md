@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This is a system API and cannot be called by third-party applications.
+> - The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -126,7 +126,7 @@ Asynchronously obtains the available space of the specified volume. This method 
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
@@ -157,7 +157,7 @@ Obtains the bundle status. This method uses a promise to return the result.
   });
   ```
 
-## storagestatistics.getBundleStats
+## storagestatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 

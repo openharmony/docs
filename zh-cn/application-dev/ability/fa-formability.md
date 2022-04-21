@@ -326,10 +326,8 @@ Form需要在应用配置文件config.json中进行配置。
 
 ![fa-form-example](figures/fa-form-example.png)
 
-## 开发实例
+## 相关实例
 
-针对FA模型卡片提供方的开发，有以下示例工程可供参考：
-
-[eTSFormAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSFormAbility)
-
-本示例eTSFormAbility提供了一张卡片。用户可以通过桌面或者自己开发的卡片使用方，进行卡片的创建、更新和删除等操作。并且本示例通过轻量级数据存储实现了卡片信息的持久化。
+针对FA模型卡片提供方的开发，有以下相关实例可供参考：
+- [`FormAbility`：FA模型卡片（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormAbility)
+- [`FormLauncher`：卡片使用方（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormLauncher)

@@ -1,7 +1,5 @@
 # 魔法键使用方法
 
-- [使用场景](#使用场景)
-- [使用方法](#使用方法)
 
 ## 使用场景
 
@@ -16,7 +14,7 @@
 
 魔法键依赖于宏LOSCFG_ENABLE_MAGICKEY，使用时通过menuconfig在配置项中开启“Enable  MAGIC KEY”：
 
-Debug ---&gt; Enable MAGIC KEY；若关闭该选项，则魔法键失效。
+  Debug ---&gt; Enable MAGIC KEY；若关闭该选项，则魔法键失效。
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 1. 可以在menuconfig中，将光标移动到LOSCFG_ENABLE_MAGICKEY上，输入“？”，查看帮助信息。
 

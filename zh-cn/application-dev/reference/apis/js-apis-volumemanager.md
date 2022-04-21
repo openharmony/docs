@@ -33,7 +33,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
   });
   ```
 
-## volumemanager.getAllVolumes<sup>9+</sup>
+## volumemanager.getAllVolumes
 
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
@@ -171,9 +171,9 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 | 名称        | 类型    | 说明                 |
 | ----------- | ------- | -------------------- |
-| id<sup>9+</sup>          | number  | 卷id                 |
-| uuid<sup>9+</sup>        | string  | 卷uuid               |
-| description<sup>9+</sup> | string  | 卷相关描述           |
-| removable<sup>9+</sup> | boolean | 是否为可移动存储设备 |
-| state<sup>9+</sup>       | int     | 当前卷状态           |
-| path<sup>9+</sup>        | string  | 卷的挂载地址         |
+| id          | number  | 卷id                 |
+| uuid        | string  | 卷uuid               |
+| description | string  | 卷相关描述           |
+| removable | boolean | 是否为可移动存储设备 |
+| state       | int     | 当前卷状态           |
+| path        | string  | 卷的挂载地址         |

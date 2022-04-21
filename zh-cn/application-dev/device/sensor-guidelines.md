@@ -111,3 +111,20 @@
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
    
    ![zh-cn_image_0000001241733907](figures/zh-cn_image_0000001241733907.png)
+
+   若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
+
+    ```
+    try {
+      sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
+          console.info("Data obtained successfully. data=" + data);//获取数据成功，打印对应传感器的数据
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    ```
+## 相关实例
+
+针对传感器开发，有以下相关实例可供参考：
+
+- [`Sensor`：传感器（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)

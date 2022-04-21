@@ -88,21 +88,16 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 ```js
 let videoPlayer
 
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-
-await media.createVideoPlayer.then((video) => {
-    if (typeof(video) != 'undefined') {
+media.createVideoPlayer().then((video) => {
+   if (typeof(video) != 'undefined') {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
        console.info('video createVideoPlayer fail');
    }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ## media.createAudioRecorder
@@ -173,21 +168,16 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 ```js
 let videoRecorder
 
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-
-await media.createVideoRecorder.then((video) => {
+media.createVideoRecorder().then((video) => {
     if (typeof(video) != 'undefined') {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
        console.info('video createVideoRecorder fail');
    }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 
@@ -482,20 +472,17 @@ function printfDescription(obj) {
         console.info('audio value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
 
-await audioPlayer.getTrackDescription.then((arrlist) => {
+audioPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`audio catchCallback, error:${error.message}`);
+});
+
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -585,13 +572,14 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
-}),catch((err) => {
+}).catch((err) => {
    console.info('open fd failed err is' + err);
 });
 audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
@@ -735,15 +723,11 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setDisplaySurface(surfaceId).then(() => {
+videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### prepare<sup>8+</sup>
@@ -789,15 +773,11 @@ prepare(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.prepare().then(() => {
+videoPlayer.prepare().then(() => {
     console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### play<sup>8+</sup>
@@ -843,15 +823,11 @@ play(): Promise\<void>;
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.play().then(() => {
+videoPlayer.play().then(() => {
     console.info('play success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### pause<sup>8+</sup>
@@ -897,15 +873,11 @@ pause(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.pause().then(() => {
+videoPlayer.pause().then(() => {
     console.info('pause success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### stop<sup>8+</sup>
@@ -951,15 +923,11 @@ stop(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.stop().then(() => {
+videoPlayer.stop().then(() => {
     console.info('stop success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### reset<sup>8+</sup>
@@ -1005,15 +973,11 @@ reset(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.reset().then(() => {
+videoPlayer.reset().then(() => {
     console.info('reset success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### seek<sup>8+</sup>
@@ -1095,19 +1059,17 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
+videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 
-await videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### setVolume<sup>8+</sup>
@@ -1160,15 +1122,11 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setVolume(vol).then() => {
+videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### release<sup>8+</sup>
@@ -1214,15 +1172,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.release().then() => {
+videoPlayer.release().then() => {
     console.info('release success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### getTrackDescription<sup>8+</sup>
@@ -1285,21 +1239,17 @@ function printfDescription(obj) {
         console.info('video value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
 
 let arrayDescription;
-await videoPlayer.getTrackDescription().then((arrlist) => {
+videoPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -1355,15 +1305,11 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setSpeed(speed).then() => {
+videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### on('playbackCompleted')<sup>8+</sup>
@@ -1801,7 +1747,7 @@ audioRecorder.prepare();                                                  // pre
 | audioEncodeBitRate    | number                                  | 否   | 音频编码比特率，默认值为48000。                              |
 | audioSampleRate       | number                                  | 否   | 音频采集采样率，默认值为48000。                              |
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
-| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音量输出封装格式，默认设置为MPEG_4。                         |
+| format                | [AudioOutputFormat](#audiooutputformat) | 否   | 音频输出封装格式，默认设置为MPEG_4。                         |
 | location              | [Location](#location)                   | 否   | 音频采集的地理位置。                                         |
 | uri                   | string                                  | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
@@ -1818,11 +1764,11 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称    | 默认值 | 说明                                                         |
 | ------- | ------ | ------------------------------------------------------------ |
-| DEFAULT | 0      | Default audio encoding format is AMR_NB。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| DEFAULT | 0      | 默认编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_NB  | 1      | AMR-NB(Adaptive Multi Rate-Narrow Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_WB  | 2      | AMR-WB(Adaptive Multi Rate-Wide Band Speech Codec) 编码格式。<br/>仅做接口定义，暂不支持使用。 |
 | AAC_LC  | 3      | AAC-LC（Advanced&nbsp;Audio&nbsp;Coding&nbsp;Low&nbsp;Complexity）编码格式。 |
-| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| HE_AAC  | 4      | HE_AAC（High-Efficiency Advanced&nbsp;Audio&nbsp;Coding）编码格式。<br/>仅做接口定义，暂不支持使用。 |
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
@@ -1836,10 +1782,10 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| DEFAULT  | 0      | 默认封装格式。<br/>仅做接口定义，暂不支持使用。 |
 | MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
-| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| AMR_NB   | 3      | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。 |
+| AMR_WB   | 4      | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。 |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
 
 ## VideoRecorder<sup>9+</sup>
@@ -1973,23 +1919,19 @@ let videoConfig = {
 
 // promise
 let videoRecorder = null;
-await media.createVideoRecorder().then((recorder) => {
+media.createVideoRecorder().then((recorder) => {
     if (typeof (recorder) != 'undefined') {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
     } else {
         console.info('createVideoRecorder failed');
     }
-}, (err) => {
-    console.info('error hanppend message is ' + err.message);
 }).catch((err) => {
     console.info('catch err error message is ' + err.message);
 });
 
-await videoRecorder.prepare(videoConfig).then(() => {
+videoRecorder.prepare(videoConfig).then(() => {
     console.info('prepare success');
-}, (err) => {
-    console.info('prepare failed and error is ' + err.message);
 }).catch((err) => {
     console.info('prepare failed and catch error is ' + err.message);
 });
@@ -2051,11 +1993,9 @@ getInputSurface(): Promise\<string>;
 ```js
 // promise
 let surfaceID = null;                                               // 传递给外界的surfaceID
-await videoRecorder.getInputSurface().then((surfaceId) => {
+videoRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
-}, (err) => {
-    console.info('getInputSurface failed and error is ' + err.message);
 }).catch((err) => {
     console.info('getInputSurface failed and catch error is ' + err.message);
 });
@@ -2110,10 +2050,8 @@ start(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.start().then(() => {
+videoRecorder.start().then(() => {
     console.info('start videorecorder success');
-}, (err) => {
-    console.info('start videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('start videorecorder failed and catch error is ' + err.message);
 });
@@ -2168,10 +2106,8 @@ pause(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.pause().then(() => {
+videoRecorder.pause().then(() => {
     console.info('pause videorecorder success');
-}, (err) => {
-    console.info('pause videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('pause videorecorder failed and catch error is ' + err.message);
 });
@@ -2222,10 +2158,8 @@ resume(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.resume().then(() => {
+videoRecorder.resume().then(() => {
     console.info('resume videorecorder success');
-}, (err) => {
-    console.info('resume videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('resume videorecorder failed and catch error is ' + err.message);
 });
@@ -2280,10 +2214,8 @@ stop(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.stop().then(() => {
+videoRecorder.stop().then(() => {
     console.info('stop videorecorder success');
-}, (err) => {
-    console.info('stop videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('stop videorecorder failed and catch error is ' + err.message);
 });
@@ -2334,10 +2266,8 @@ release(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.release().then(() => {
+videoRecorder.release().then(() => {
     console.info('release videorecorder success');
-}, (err) => {
-    console.info('release videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('release videorecorder failed and catch error is ' + err.message);
 });
@@ -2392,10 +2322,8 @@ reset(): Promise\<void>;
 
 ```js
 // promise
-await videoRecorder.reset().then(() => {
+videoRecorder.reset().then(() => {
     console.info('reset videorecorder success');
-}, (err) => {
-    console.info('reset videorecorder failed and error is ' + err.message);
 }).catch((err) => {
     console.info('reset videorecorder failed and catch error is ' + err.message);
 });

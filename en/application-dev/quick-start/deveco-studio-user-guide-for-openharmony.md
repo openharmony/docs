@@ -4,7 +4,7 @@
 
 DevEco Studio is a one-stop, distributed platform developed based on the IntelliJ IDEA Community (Open Source) Edition. It helps you develop versatile all-device, all-scenario applications, offering distributed multi-device development, debugging, and simulation, as well as comprehensive quality and security safeguards.
 
-DevEco Studio 3.0 Beta3 (released on March 30, 2022) stands out in the following aspects:
+[DevEco Studio 3.0 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) stands out in the following aspects:
 
 - One-stop information acquisition platform
 - A wide range of device project templates

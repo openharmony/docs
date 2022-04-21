@@ -9,7 +9,8 @@
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
 
   - 开发基础知识
-    - [应用开发包结构说明](quick-start/package-structure.md)
+    - [应用包结构说明(FA模型)](quick-start/package-structure.md)
+    - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
 - 开发
@@ -86,7 +87,7 @@
           - [CanvasRenderingContext2D对象](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D对象](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas对象](ui/ui-js-components-offscreencanvas.md)
-        - [栅格布局](ui/ui-js-components-calendar.md)
+        - [栅格布局](ui/ui-js-components-grid.md)
         - Svg开发指导
           - [基础知识](ui/ui-js-components-svg-overview.md)
           - [绘制图形](ui/ui-js-components-svg-graphics.md)
@@ -180,7 +181,7 @@
       - 窗口
         - [窗口开发概述](windowmanager/window-overview.md)
         - [窗口开发指导](windowmanager/window-guidelines.md)
-      - 显示设备
+      - 屏幕属性
         - [屏幕属性开发概述](windowmanager/display-overview.md)
         - [屏幕属性开发指导](windowmanager/display-guidelines.md)
       - 屏幕截图

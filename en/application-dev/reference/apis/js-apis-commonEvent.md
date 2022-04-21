@@ -341,12 +341,12 @@ Creates a subscriber. This API uses a callback to return the result.
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
-// Subscriber information
+// Subscriber information.
 var subscribeInfo = {
 	events: ["event"]
 };
 
-// Callback for subscriber creation
+// Callback for subscriber creation.
 function CreateSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
@@ -386,7 +386,7 @@ Creates a subscriber. This API uses a promise to return the result.
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
-// Subscriber information
+// Subscriber information.
 var subscribeInfo = {
 	events: ["event"]
 };
@@ -422,12 +422,12 @@ Subscribes to common events. This API uses a callback to return the result.
 ```js
 var subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
-// Subscriber information
+// Subscriber information.
 var subscribeInfo = {
     events: ["event"]
 };
 
-// Callback for common event subscription
+// Callback for common event subscription.
 function SubscribeCallBack(err, data) {
     if (err.code) {
         console.error("subscribe failed " + JSON.stringify(err));
@@ -436,7 +436,7 @@ function SubscribeCallBack(err, data) {
     }
 }
 
-// Callback for subscriber creation
+// Callback for subscriber creation.
 function CreateSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.error("createSubscriber failed " + JSON.stringify(err));
@@ -474,12 +474,12 @@ Unsubscribes from common events. This API uses a callback to return the result.
 ```js
 var subscriber;	// Used to save the created subscriber object for subsequent subscription and unsubscription.
 
-// Subscriber information
+// Subscriber information.
 var subscribeInfo = {
 	events: ["event"]
 };
 
-// Callback for common event subscription
+// Callback for common event subscription.
 function SubscribeCallBack(err, data) {
     if (err.code) {
         console.info("subscribe failed " + JSON.stringify(err));
@@ -488,7 +488,7 @@ function SubscribeCallBack(err, data) {
     }
 }
 
-// Callback for subscriber creation
+// Callback for subscriber creation.
 function CreateSubscriberCallBack(err, commonEventSubscriber) {
     if (err.code) {
         console.info("createSubscriber failed " + JSON.stringify(err));
@@ -500,7 +500,7 @@ function CreateSubscriberCallBack(err, commonEventSubscriber) {
     }
 }
 
-// Callback for common event unsubscription
+// Callback for common event unsubscription.
 function UnsubscribeCallBack(err) {
 	if (err.code) {
         console.info("unsubscribe failed " + JSON.stringify(err));
@@ -537,7 +537,7 @@ Obtains the result code of this common event. This API uses a callback to return
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for result code obtaining of an ordered common event.
 function getCodeCallback(err, Code) {
     if (err.code) {
         console.error("getCode failed " + JSON.stringify(err));
@@ -594,7 +594,7 @@ Sets the result code for this common event. This API uses a callback to return t
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for result code setting of an ordered common event.
 function setCodeCallback(err) {
     if (err.code) {
         console.error("setCode failed " + JSON.stringify(err));
@@ -656,7 +656,7 @@ Obtains the result data of this common event. This API uses a callback to return
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for result data obtaining of an ordered common event.
 function getDataCallback(err, Data) {
     if (err.code) {
         console.error("getData failed " + JSON.stringify(err));
@@ -742,7 +742,7 @@ Sets the result data for this common event. This API uses a promise to return th
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
+| Promise\<void>   | Promise used to return the result data.|
 
 **Example**
 
@@ -777,7 +777,7 @@ Sets the result code and result data for this common event. This API uses a call
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for result code and result data setting of an ordered common event.
 function setCodeDataCallback(err) {
     if (err.code) {
         console.error("setCodeAndData failed " + JSON.stringify(err));
@@ -840,7 +840,7 @@ Checks whether this common event is an ordered one. This API uses a callback to 
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for checking whether the current common event is an ordered one.
 function isOrderedCallback(err, isOrdered) {
     if (err.code) {
         console.error("isOrderedCommonEvent failed " + JSON.stringify(err));
@@ -896,7 +896,7 @@ Checks whether this common event is a sticky one. This API uses a callback to re
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for checking whether the current common event is a sticky one.
 function isStickyCallback(err, isSticky) {
     if (err.code) {
         console.error("isStickyCommonEvent failed " + JSON.stringify(err));
@@ -952,7 +952,7 @@ Aborts this common event. After the abort, the common event is not sent to the n
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for common event aborting.
 function abortCallback(err) {
     if (err.code) {
         console.error("abortCommonEvent failed " + JSON.stringify(err));
@@ -1008,7 +1008,7 @@ Clears the aborted state of this common event. This API takes effect only for or
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for clearing the aborted state of the current common event.
 function clearAbortCallback(err) {
     if (err.code) {
         console.error("clearAbortCommonEvent failed " + JSON.stringify(err));
@@ -1064,7 +1064,7 @@ Checks whether this common event is in the aborted state. This API takes effect 
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for checking whether the current common event is in the aborted state.
 function getAbortCallback(err, AbortCommonEvent) {
     if (err.code) {
         console.error("getAbortCommonEvent failed " + JSON.stringify(err));
@@ -1120,7 +1120,7 @@ Obtains the subscriber information. This API uses a callback to return the resul
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-// Callback for result data setting of an ordered common event
+// Callback for subscriber information obtaining.
 function getSubscribeInfoCallback(err, SubscribeInfo) {
     if (err.code) {
         console.error("getSubscribeInfo failed " + JSON.stringify(err));
@@ -1157,11 +1157,11 @@ subscriber.getSubscribeInfo().then((SubscribeInfo) => {
 });
 ```
 
-### finishCommonEvent
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(callback: AsyncCallback\<void\>): void
 
-Ends the sorted common events. This API uses a callback to return the result.
+Finishes this ordered common event. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -1169,25 +1169,29 @@ Ends the sorted common events. This API uses a callback to return the result.
 
 | Name  | Type                 | Mandatory| Description                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback returned after the ordered common event is finished.|
 
 **Example**
 
 ```js
 var subscriber; // Subscriber object successfully created.
 
+// Callback for ordered common event finishing.
 function finishCommonEventCallback() {
-  console.log("--------- finishCommonEventCallback ----------");
+  if (err.code) {
+        console.error("finishCommonEvent failed " + JSON.stringify(err));
+    } else {
+        console.info("FinishCommonEvent");
+    }
 }
-
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
-### finishCommonEvent
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(): Promise\<void\>
 
-Ends the sorted common events. This API uses a promise to return the result.
+Finishes this ordered common event. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -1202,10 +1206,11 @@ Ends the sorted common events. This API uses a promise to return the result.
 ```js
 var subscriber;	// Subscriber object successfully created.
 
-subscriber.finishCommonEvent()
-  .then(() => {
-    console.info("--------- finishCommonEventCallback ----------");
-  })
+subscriber.finishCommonEvent().then(() => {
+    console.info("FinishCommonEvent");
+}).catch((err) => {
+    console.error("finishCommonEvent failed " + JSON.stringify(err));
+});
 ```
 
 ## CommonEventData

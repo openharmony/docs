@@ -1,11 +1,5 @@
 # mv
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ mv [_-fivn_] _SOURCE... DEST_
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -56,6 +50,7 @@ mv [_-fivn_] _SOURCE... DEST_
 
 **示例 1** 显示结果如下
 
+  
 ```
 OHOS:/$ touch test.txt
 OHOS:/$ mkdir testpath
@@ -78,6 +73,7 @@ dev  lib  sdcard  system   testpath  usr
 
 **示例 2** 通配符使用
 
+  
 ```
 OHOS:/$ ls
 bin  etc  proc    storage  test.txt   testA.txt  testpath  usr

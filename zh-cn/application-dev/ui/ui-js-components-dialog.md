@@ -9,7 +9,8 @@ Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId"><div class="content" dragable="ture">
+  <dialog class="dialogClass" id="dialogId" dragable="true">
+    <div class="content">
       <text>this is a dialog</text>
     </div>
   </dialog>
@@ -71,7 +72,7 @@ export default {
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId">
+  <dialog class="dialogClass" id="dialogId" oncancel="canceldialog">
     <div class="dialogDiv">
       <text>dialog</text>
       <button value="confirm" onclick="confirmClick"></button>
@@ -120,13 +121,21 @@ button{
 /* xxx.js */
 import prompt from '@system.prompt';
 export default {
+  canceldialog(e){
+    prompt.showToast({
+      message: 'dialogCancel'
+    })
+  },
   openDialog(){
     this.$element('dialogId').show()
+     prompt.showToast({
+      message: 'dialogShow'
+    })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
     prompt.showToast({
-      message: 'Confirmed.'
+      message: 'dialogClose'
     })
   },
 }
@@ -310,3 +319,12 @@ export default {
 
 
 ![zh-cn_image_0000001234329527](figures/zh-cn_image_0000001234329527.gif)
+
+
+## 相关实例
+
+针对Dialog开发，有以下相关实例可供参考：
+
+- [`JsDialog`：页面弹窗（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
+
+- [dialog（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

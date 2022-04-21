@@ -77,7 +77,7 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 启动本地设备Service的代码示例如下：
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let promise = await featureAbility.startAbility(
     {
         want:
@@ -97,7 +97,7 @@ let promise = await featureAbility.startAbility(
 
 ### 停止Service
 
-  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service或在其他Ability调用stopAbility()来停止Service。
+  Service一旦创建就会一直保持在后台运行，除非必须回收内存资源，否则系统不会停止或销毁Service。开发者可以在Service中通过terminateSelf()停止本Service。
 
   
 
@@ -126,12 +126,17 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
+
 }
 
 function onDisconnectCallback(element){
@@ -146,7 +151,7 @@ function onFailedCallback(code){
 连接本地Service的代码示例如下：
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         bundleName: "com.jstest.serviceability",
@@ -234,11 +239,15 @@ function onConnectCallback(element, remote){
     let reply = new rpc.MessageParcel();
     data.writeInt(1);
     data.writeInt(99);
-    await mRemote.sendRequest(1, data, reply, option);
-    let msg = reply.readInt();
-    prompt.showToast({
-      message: "onConnectLocalService connect result: " + msg,
-      duration: 3000
+    mRemote.sendRequest(1, data, reply, option).then((result) => {
+        console.log('sendRequest success');
+        let msg = reply.readInt();
+        prompt.showToast({
+            message: "onConnectLocalService connect result: " + msg,
+            duration: 3000
+        });
+    }).catch((e) => {
+        console.log('sendRequest error:' + e);
     });
 }
 
@@ -274,7 +283,7 @@ function getRemoteDeviceId() {
 连接远程Service的代码示例如下：
 
 ```ts
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
@@ -386,25 +395,8 @@ export default {
 };
 ```
 
-## 开发实例
+## 相关实例
 
-### 针对serviceAbility开发，有以下示例工程可供参考：
-
-- [eTSServiceAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSServiceAbility)
-
-本示例eTSServiceAbility中：
-
-在ServiceAbility目录中的service.ts文件创建一个本地Service。
-
-在MainAbility目录中封装了启动、连接本地Services的流程。
-
-
-### 针对跨设备serviceAbility开发，有以下示例工程可供参考：
-
-- [DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-本示例DMS中：
-
-在ServiceAbility目录中的service.ts文件创建一个远程Service。
-
-在RemoteAbility目录中封装了连接远程Services的流程。
+针对ServiceAbility开发，有以下相关实例可供参考：
+- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
+- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)

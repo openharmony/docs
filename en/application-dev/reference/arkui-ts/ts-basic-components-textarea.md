@@ -31,7 +31,7 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-index.md), the following attributes are supported.
+In addition to universal attributes, the following attributes are supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
@@ -49,15 +49,6 @@ In addition to [universal attributes](ts-universal-attributes-index.md), the fol
   | End | Align the tail horizontally. |
 
 
-### TextAreaController<sup>8+</sup>
-
-Defines the controller for controlling the **&lt;TextArea&gt;** component.
-
-| Name | Description |
-| -------- | -------- |
-| caretPosition(value: number): void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
-
-
 ## Events
 
 | Name | Description |
@@ -66,6 +57,28 @@ Defines the controller for controlling the **&lt;TextArea&gt;** component.
 | onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
 | onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
 | onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
+
+## TextAreaController<sup>8+</sup>
+
+Defines the controller for controlling the **&lt;TextArea&gt;** component.
+
+### Objects to Import
+
+```
+controller: TextAreaController = new TextAreaController()
+
+```
+
+### caretPosition<sup>8+</sup>
+
+caretPosition(value: number): void
+
+Sets the position of the caret.
+
+- Parameters
+  | Name   | Type | Mandatory | Default Value | Description     |
+  | ----- | ------ | ---- | ---- | ------------------- |
+  | value | number | Yes  | -    | Length from the start of the string to the position where the input cursor is located. |
 
 
 ## Example

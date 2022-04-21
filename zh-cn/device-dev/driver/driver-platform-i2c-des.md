@@ -17,7 +17,7 @@
 
     **图1** I2C物理连线示意图
 
-    ![zh-cn_image_0000001160653004](figures/zh-cn_image_0000001160653004.png)
+    ![image](figures/I2C物理连线示意图.png "I2C物理连线示意图")
 
 
 ## 接口说明
@@ -42,7 +42,7 @@
 
   **图2** I2C设备使用流程图
 
-  ![zh-cn_image_0000001206291495](figures/zh-cn_image_0000001206291495.png)
+  ![image](figures/I2C设备使用流程图.png "I2C设备使用流程图")
 
 
 ### 打开I2C控制器

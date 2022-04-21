@@ -170,11 +170,10 @@ if (this.subscriber != null) {
 }
 ```
 
-## 开发实例
+## 相关实例
 
-针对公共事件开发，有以下示例工程可供参考：
+针对公共事件开发，有以下相关实例可供参考：
 
-- [EtsCommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/EtsCommonEvent)
+- [`CommonEvent`：订阅公共事件（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/CommonEvent)
 
-本示例展示了在eTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。
 

@@ -1,11 +1,5 @@
 # kill
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -43,6 +37,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
 ## 使用实例
 
 - 查看当前进程列表，查看需要杀死的进程PID（42）。
+    
   ```
   OHOS:/$ ps
     allCpu(%):    4.67 sys,  195.33 idle
@@ -55,6 +50,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
       6     1    6         0 Pending   0x688000 0x137000    0x11bca0      0.0   media_server
       7     1    7         0 Pending   0x9d2000 0x103000     0xa1cdf      0.88  wms_server
       8     1    8         2 Pending   0x1f5000  0x48000     0x47dc2      0.2   mksh
+     10     5    5       101 Pending  0x11ec000 0x2f9000    0x206047      0.93  com.example.launcher
      12     1   12         0 Pending   0x4d4000 0x112000     0xe0882      0.0   deviceauth_service
      13     1   13         0 Pending   0x34f000  0xbd000     0x51799      0.0   sensor_service
      14     1   14         2 Pending   0x34e000  0xb3000     0x52184      0.0   ai_server
@@ -64,6 +60,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
   ```
 
 - 发送信号9（SIGKILL默认行为为立即终止进程）给42号进程test_demo（用户态进程）：kill -s 9 42（kill -9 42效果相同），并查看当前进程列表，42号进程已终止。
+    
   ```
   OHOS:/$ kill -s 9 42
   OHOS:/$
@@ -79,6 +76,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
       6     1    6         0 Pending   0x688000 0x137000    0x11c1ba      0.0   media_server
       7     1    7         0 Pending   0x9d2000 0x103000     0xa21f9      0.89  wms_server
       8     1    8         2 Pending   0x1f5000  0x48000     0x482dc      0.2   mksh
+     10     5    5       101 Pending  0x11ec000 0x2f9000    0x206561      0.93  com.example.launcher
      12     1   12         0 Pending   0x4d4000 0x112000     0xe0d9c      0.0   deviceauth_service
      13     1   13         0 Pending   0x34f000  0xbd000     0x51cb3      0.0   sensor_service
      14     1   14         2 Pending   0x34e000  0xb3000     0x5269e      0.0   ai_server
@@ -95,6 +93,7 @@ kill [-l [_signo_] | _-s signo_ | _-signo_] _pid..._
 
 **示例 1** 发送信号给指定进程
 
+  
 ```
 OHOS:/$ kill -s 9 42
 OHOS:/$
@@ -105,6 +104,7 @@ OHOS:/$
 
 **示例 2** 信号发送失败
 
+  
 ```
 OHOS:/$ kill -100 31
 kill: Unknown signal '(null)'

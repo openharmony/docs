@@ -1,36 +1,47 @@
-#  Getting Started
-
-- [Mini and Small Systems](quickstart-lite.md)
-  - [Overview](quickstart-lite-overview.md)
-  - [Introduction](quickstart-lite-introduction.md)
-    - [Hi3861 Development Board](quickstart-lite-introduction-hi3861.md)
-    - [Hi3516 Development Board](quickstart-lite-introduction-hi3516.md)
-    - [Hi3518 Development Board](quickstart-lite-introduction-hi3518.md)
-  - [Environment Setup](quickstart-lite-env-setup.md)
-    - [Overview](quickstart-lite-env-setup-overview.md)
-    - [Setting Up Windows Development Environment](quickstart-lite-env-setup-windows.md)
-    - [Setting Up Ubuntu Development Environment](quickstart-lite-env-setup-linux.md)
-    - [FAQs](quickstart-lite-env-setup-faqs.md)
-  - [How to Develop](quickstart-lite-steps.md)
-    - [Hi3861](quickstart-lite-steps-hi3861.md)
-      - [Setting Up the Environment](quickstart-lite-steps-hi3861-setting.md)
-      - [Setting Up WLAN Connection](quickstart-lite-steps-hi3861-connection.md)
-      - [Running a Hello World Program](quickstart-lite-steps-hi3861-running.md)
-      - [FAQs](quickstart-lite-steps-hi3861-faqs.md)
-    - [Hi3516](quickstart-lite-steps-hi3516.md)
-      - [Setting Up the Environment](quickstart-lite-steps-hi3516-setting.md)
-      - [Running a Hello OHOS Program](quickstart-lite-steps-hi3516-running.md)
-      - [Developing a Driver](quickstart-lite-steps-hi3516-program.md)
-      - [FAQs](quickstart-lite-steps-hi3516-faqs.md)
-    - [Hi3518](quickstart-lite-steps-hi3518.md)
-      - [Setting Up the Environment](quickstart-lite-steps-hi3518-setting.md)
-      - [Running a Hello OHOS Program](quickstart-lite-steps-hi3518-running.md)
-      - [FAQs](quickstart-lite-steps-hi3518-faqs.md)
-- [Standard System](quickstart-standard.md)
-  - [Introduction](quickstart-standard-overview.md)
-  - [Setting Up Windows Development Environment](quickstart-standard-windows-environment.md)
-  - [Setting Up Ubuntu Development Environment in Docker Mode](quickstart-standard-docker-environment.md)
-  - [Setting Up Ubuntu Development Environment with Installation Package](quickstart-standard-package-environment.md)
-  - [Burning Images](quickstart-standard-burn.md)
-  - [Running an Image](quickstart-standard-running.md)
-  - [FAQs](quickstart-standard-faqs.md)
+# Getting Started
+- Getting Started for Mini and Small Systems
+    - [Mini and Small System Overview](quickstart-ide-lite-overview.md)
+    - Environment Preparation
+        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
+        - [Obtaining Source Code](quickstart-ide-lite-sourcecode-acquire.md)
+    - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
+    - Running a Hello World Program
+        - Hi3861 Development Board
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [Building](quickstart-ide-lite-steps-hi3861-building.md)
+            - [Burning](quickstart-ide-lite-steps-hi3861-burn.md)
+            - [Networking](quickstart-ide-lite-steps-hi3861-netconfig.md)
+            - [Debugging and Verification](quickstart-ide-lite-steps-hi3861-debug.md)
+            - [Running](quickstart-ide-lite-steps-hi3861-running.md)
+        - Hi3516 Development Board
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [Building](quickstart-ide-lite-steps-hi3516-building.md)
+            - [Burning](quickstart-ide-lite-steps-hi3516-burn.md)
+            - [Running](quickstart-ide-lite-steps-hi3516-running.md)
+    - Appendix
+        - Introduction to Development Boards
+            - [Introduction to the Hi3861 Development Board](quickstart-ide-lite-introduction-hi3861.md)
+            - [Introduction to the Hi3516 Development Board](quickstart-ide-lite-introduction-hi3516.md)
+        - [Getting Started with Mini and Small Systems (Installation Package Mode)](quickstart-lite-package-directory.md)
+- Getting Started for Standard System
+    - [Standard System Overview](quickstart-ide-standard-overview.md)
+    - Environment Preparation
+        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
+        - [Obtaining Source Code](quickstart-ide-standard-sourcecode-acquire.md)
+    - [Creating a Source Code Project](quickstart-ide-standard-create-project.md)
+    - Running a Hello World Program
+        - Hi3516 Development Board
+            - [Writing a Hello World Program](quickstart-ide-standard-running-hi3516-create.md)
+            - [Building](quickstart-ide-standard-running-hi3516-build.md)
+            - [Burning](quickstart-ide-standard-running-hi3516-burning.md)
+            - [Running](quickstart-ide-standard-running-hi3516-running.md)
+        - RK3568 Development Board
+            - [Writing a Hello World Program](quickstart-ide-standard-running-rk3568-create.md)
+            - [Building](quickstart-ide-standard-running-rk3568-build.md)
+            - [Burning](quickstart-ide-standard-running-rk3568-burning.md)
+            - [Running](quickstart-ide-standard-running-rk3568-running.md)
+    - Appendix
+        - Introduction to Development Boards
+            - [Introduction to the Hi3516 Development Board](quickstart-ide-standard-board-introduction-hi3516.md)
+            - [Introduction to the RK3568 Development Board](quickstart-ide-standard-board-introduction-rk3568.md)
+        - [Getting Started for Standard System (Installation Package Mode)](quickstart-standard-package-directory.md)

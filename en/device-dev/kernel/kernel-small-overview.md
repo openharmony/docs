@@ -84,7 +84,7 @@ The LiteOS-A integrates the HDF framework. The HDF framework provides a more pre
 -   Configurable component-based driver model
 -   Message-based driver interface model
 -   Object-based driver and device management
--   Unified hardware driver interface \(HDI\)
+-   Unified hardware device interface \(HDI\)
 -   Power management and plug and play \(PnP\)
 
 **Extended Components**

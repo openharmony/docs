@@ -131,7 +131,19 @@ var subscriber = {
 
 ### 通知发送
 
-通知发布前，先要确认通知发送使能是否开启，新安装的应用使能默认是关闭状态，需要到通知设置里开启。
+##### 开启通知使能
+
+应用发布通知的使能开关默认是关闭的，所以应用发布通知前需要用户允许后才能发送。应用可以通过Notification.requestEnableNotification弹窗提醒用户允许发送通知。
+
+```js
+Notification.requestEnableNotification() .then((data) => {
+	console.info('===>requestEnableNotification success');
+}).catch((err) => {
+	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
+});
+```
+
+
 
 ##### 通知发布
 
@@ -246,39 +258,10 @@ Notification.cancel(1, "label", cancelCallback)
 ```
 
 
+## 相关实例
 
-## 开发实例
+针对通知开发，有以下相关可供参考：
 
-针对通知开发，有以下示例工程可供参考：
+- [`Notification`：通知-订阅、发送通知（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
 
-- [Notification](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
-
-本示例展示了在eTS中如何使用Notification的接口完成通知订阅、取消订阅、发布通知、取消通知功能。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- [`Notification`：通知（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)

@@ -1,12 +1,5 @@
-# 双向链表
+# 基本数据结构
 
-- [基本概念](#基本概念)
-- [功能说明](#功能说明)
-- [开发流程](#开发流程)
-- [编程实例](#编程实例)
-  - [实例描述](#实例描述)
-  - [示例代码](#示例代码)
-  - [结果验证](#结果验证)
 
 ## 基本概念
 
@@ -19,22 +12,16 @@
 
 双向链表模块为用户提供下面几种功能，接口详细信息可以查看API参考。
 
-
-| **功能分类** | **接口名** | **描述** |
-| -------- | -------- | -------- |
-| 初始化链表 | LOS_ListInit | 将指定双向链表节点初始化为双向链表 |
-| | LOS_DL_LIST_HEAD | 定义一个双向链表节点并以该节点初始化为双向链表 |
-| 增加节点 | LOS_ListAdd | 将指定节点插入到双向链表头端 |
-| | LOS_ListTailInsert | 将指定节点插入到双向链表尾端 |
-| 删除节点 | LOS_ListDelete | 将指定节点从链表中删除 |
-| | LOS_ListDelInit | 将指定节点从链表中删除，并使用该节点初始化链表 |
-| 判断双向链表是否为空 | LOS_ListEmpty | 判断链表是否为空 |
-| 获取结构体信息 | LOS_DL_LIST_ENTRY | 获取包含链表的结构体地址，接口的第一个入参表示的是链表中的某个节点，第二个入参是要获取的结构体名称，第三个入参是链表在该结构体中的名称 |
-| | LOS_OFF_SET_OF | 获取指定结构体内的成员相对于结构体起始地址的偏移量 |
-| 遍历双向链表 | LOS_DL_LIST_FOR_EACH | 遍历双向链表 |
-| | LOS_DL_LIST_FOR_EACH_SAFE | 遍历双向链表，并存储当前节点的后继节点用于安全校验 |
-| 遍历包含双向链表的结构体 | LOS_DL_LIST_FOR_EACH_ENTRY | 遍历指定双向链表，获取包含该链表节点的结构体地址 |
-| | LOS_DL_LIST_FOR_EACH_ENTRY_SAFE | 遍历指定双向链表，获取包含该链表节点的结构体地址，并存储包含当前节点的后继节点的结构体地址 |
+  | | |
+| -------- | -------- |
+| **功能分类** | **接口描述** | 
+| 初始化链表 | -&nbsp;LOS_ListInit：将指定双向链表节点初始化为双向链表<br/>-&nbsp;LOS_DL_LIST_HEAD：定义一个双向链表节点并以该节点初始化为双向链表 | 
+| 增加节点 | -&nbsp;LOS_ListAdd：将指定节点插入到双向链表头端<br/>-&nbsp;LOS_ListTailInsert：将指定节点插入到双向链表尾端 | 
+| 删除节点 | -&nbsp;LOS_ListDelete：将指定节点从链表中删除<br/>-&nbsp;LOS_ListDelInit：将指定节点从链表中删除，并使用该节点初始化链表 | 
+| 判断双向链表是否为空 | LOS_ListEmpty：判断链表是否为空 | 
+| 获取结构体信息 | -&nbsp;LOS_DL_LIST_ENTRY：获取包含链表的结构体地址，接口的第一个入参表示的是链表中的某个节点，第二个入参是要获取的结构体名称，第三个入参是链表在该结构体中的名称<br/>-&nbsp;LOS_OFF_SET_OF：获取指定结构体内的成员相对于结构体起始地址的偏移量 | 
+| 遍历双向链表 | -&nbsp;LOS_DL_LIST_FOR_EACH：遍历双向链表<br/>-&nbsp;LOS_DL_LIST_FOR_EACH_SAFE：遍历双向链表，并存储当前节点的后继节点用于安全校验 | 
+| 遍历包含双向链表的结构体 | -&nbsp;LOS_DL_LIST_FOR_EACH_ENTRY：遍历指定双向链表，获取包含该链表节点的结构体地址<br/>-&nbsp;LOS_DL_LIST_FOR_EACH_ENTRY_SAFE：遍历指定双向链表，获取包含该链表节点的结构体地址，并存储包含当前节点的后继节点的结构体地址 | 
 
 
 ## 开发流程
@@ -82,6 +69,7 @@
 
 示例代码如下:
 
+  
 ```
 #include "stdio.h"
 #include "los_list.h"
@@ -125,8 +113,10 @@ static UINT32 ListSample(VOID)
 
 编译运行得到的结果为：
 
+  
 ```
-Initial head Add listNode1 success 
+Initial head 
+Add listNode1 success 
 Tail insert listNode2 success
 Delete success 
 ```

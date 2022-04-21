@@ -43,7 +43,7 @@ var subscribeInfo = {
 3. Create a subscriber object and save the returned object for subsequent operations such as subscription and unsubscription.
 
 ```javascript
-// Callback for subscriber creation
+// Callback for subscriber creation.
 commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
     if (err.code) {
         console.error("[CommonEvent]CreateSubscriberCallBack err=" + JSON.stringify(err))
@@ -58,7 +58,7 @@ commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
 4. Create a subscription callback, which is triggered when an event is received. The data returned by the subscription callback contains information such as the common event name and data carried by the publisher. For details about the data types and parameters of the common event data, see [CommonEventData](../reference/apis/js-apis-commonEvent.md#commoneventdata).
 
 ```javascript
-// Callback for common event subscription
+// Callback for common event subscription.
 if (this.subscriber != null) {
     commonEvent.subscribe(this.subscriber, (err, data) => {
         if (err.code) {
@@ -174,6 +174,6 @@ if (this.subscriber != null) {
 
 The following sample is provided to help you better understand how to use the common event functionality:
 
-- [EtsCommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/EtsCommonEvent)
+- [CommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/CommonEvent)
 
 This sample shows how to use **CommonEvent** APIs in Extended TypeScript (eTS) to create subscribers and subscribe to, publish, and unsubscribe from common events.

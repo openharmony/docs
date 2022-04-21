@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The Bluetooth module provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+>  The Bluetooth module provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 
 ## Modules to Import
@@ -216,9 +216,9 @@ Obtains the connection status of a profile.
 
 **Return value**
 
-| Type                                      | Description           |
-| ---------------------------------------- | ------------- |
-| [ProfileConnectionState](#ProfileConnectionState) | Profile connection state obtained.|
+| Type                                             | Description               |
+| ------------------------------------------------- | ------------------- |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
 **Example**
 
@@ -1235,15 +1235,15 @@ Obtains the connection status of the profile.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device.|
+| device | string | Yes   | Address of the target device.|
 |
 
 **Return value**
 
-|                                          |                 |
-| ---------------------------------------- | --------------- |
-| Type | Description |
-| [ProfileConnectionState](#profileconnectionState) | Profile connection state obtained. |
+|                                                   |                         |
+| ------------------------------------------------- | ----------------------- |
+| Type                                              | Description                    |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
 
 
 ## A2dpSourceProfile
@@ -1904,7 +1904,7 @@ Subscribes to the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
+| callback | Callback&lt;[CharacteristicWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
 
 **Return value**
 
@@ -1984,7 +1984,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request from the GATT client.       |
 
 **Return value**
 
@@ -3116,10 +3116,10 @@ Defines the parameters of **BLEConnectChangedState**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type                                    | Readable  | Writable  | Description                              |
-| -------- | ---------------------------------------- | ---- | ---- | -------------------------------- |
-| deviceId | string                                   | Yes   | No   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| state    | [ProfileConnectionState](#profileconnectionState) | Yes   | Yes   | BLE connection state.                   |
+| Name    | Type                                         | Readable| Writable| Description                                         |
+| -------- | ------------------------------------------------- | ---- | ---- | --------------------------------------------- |
+| deviceId | string                                            | Yes  | No  | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| state    | [ProfileConnectionState](#profileconnectionstate) | Yes  | Yes  | BLE connection state.                      |
 
 
 ## ProfileConnectionState
@@ -3285,10 +3285,10 @@ Defines the profile state change parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type                                    | Readable  | Writable  | Description                 |
-| -------- | ---------------------------------------- | ---- | ---- | ------------------- |
-| deviceId | string                                   | Yes   | No   | Address of a Bluetooth device.          |
-| state    | [ProfileConnectionState](#ProfileConnectionState) | Yes   | No   | Profile connection state of the device.|
+| Name    | Type                                         | Readable| Writable| Description                           |
+| -------- | ------------------------------------------------- | ---- | ---- | ------------------------------- |
+| deviceId | string                                            | Yes  | No  | Address of a Bluetooth device.             |
+| state    | [ProfileConnectionState](#profileconnectionstate) | Yes  | No  | Profile connection state of the device.|
 
 
 ## DeviceClass<sup>8+</sup><a name="DeviceClass"></a>

@@ -225,8 +225,8 @@ Date selector \(**type**  is  **date**\)
 </td>
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p1181663281714"><a name="p1181663281714"></a><a name="p1181663281714"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p781663212178"><a name="p781663212178"></a><a name="p781663212178"></a>Whether to display the lunar calendar switch in the date selector. When this switch is displayed, you can switch between the lunar calendar and Gregorian calendar. Turn on the switch to display the lunar calendar, and turn off the switch to hide the lunar calendar. This attribute is available for smartphones.</p>
-<div class="note" id="note1688512355211"><a name="note1688512355211"></a><a name="note1688512355211"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p488582345212"><a name="p488582345212"></a><a name="p488582345212"></a>This attribute is only supported on phones and tablets.</p>
+<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p781663212178"><a name="p781663212178"></a><a name="p781663212178"></a>Whether to display the lunar calendar switch in the date selector. When this switch is displayed, you can switch between the lunar calendar and Gregorian calendar. Turn on the switch to display the lunar calendar, and turn off the switch to hide the lunar calendar. </p>
+<div class="note" id="note1688512355211"><a name="note1688512355211"></a><a name="note1688512355211"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p488582345212"><a name="p488582345212"></a><a name="p488582345212"></a></p>
 </div></div>
 </td>
 </tr>
@@ -293,8 +293,8 @@ Date and time selector \(**type**  is  **datetime**\)
 </td>
 <td class="cellrowborder" valign="top" width="7.15%" headers="mcps1.1.6.1.4 "><p id="p16203115101819"><a name="p16203115101819"></a><a name="p16203115101819"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p12203111510184"><a name="p12203111510184"></a><a name="p12203111510184"></a>Whether to display the lunar calendar switch in the date and time selector. When this switch is displayed, you can switch between the lunar calendar and Gregorian calendar. Turn on the switch to display the lunar calendar, and turn off the switch to hide the lunar calendar. This attribute is available for smartphones.</p>
-<div class="note" id="note11541837195218"><a name="note11541837195218"></a><a name="note11541837195218"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p454119371529"><a name="p454119371529"></a><a name="p454119371529"></a>This attribute is only supported on phones and tablets.</p>
+<td class="cellrowborder" valign="top" width="49.410000000000004%" headers="mcps1.1.6.1.5 "><p id="p12203111510184"><a name="p12203111510184"></a><a name="p12203111510184"></a>Whether to display the lunar calendar switch in the date and time selector. When this switch is displayed, you can switch between the lunar calendar and Gregorian calendar. Turn on the switch to display the lunar calendar, and turn off the switch to hide the lunar calendar. </p>
+<div class="note" id="note11541837195218"><a name="note11541837195218"></a><a name="note11541837195218"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p454119371529"><a name="p454119371529"></a><a name="p454119371529"></a>
 </div></div>
 </td>
 </tr>
@@ -424,7 +424,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="5.909409059094091%" headers="mcps1.1.6.1.4 "><p id="p10494123164013"><a name="p10494123164013"></a><a name="p10494123164013"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p20494323144012"><a name="p20494323144012"></a><a name="p20494323144012"></a>Font color of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.</p>
-<div class="note" id="note682125718522"><a name="note682125718522"></a><a name="note682125718522"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p17821185711521"><a name="p17821185711521"></a><a name="p17821185711521"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note682125718522"><a name="note682125718522"></a><a name="note682125718522"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p17821185711521"><a name="p17821185711521"></a><a name="p17821185711521"></a></p>
 </div></div>
 </td>
 </tr>
@@ -437,7 +437,7 @@ In addition to the styles in  [Universal Styles](js-components-common-styles.md)
 <td class="cellrowborder" valign="top" width="5.909409059094091%" headers="mcps1.1.6.1.4 "><p id="p1949522364020"><a name="p1949522364020"></a><a name="p1949522364020"></a>No</p>
 </td>
 <td class="cellrowborder" valign="top" width="40.01599840015999%" headers="mcps1.1.6.1.5 "><p id="p1549532364020"><a name="p1549532364020"></a><a name="p1549532364020"></a>Font size of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.</p>
-<div class="note" id="note17211975317"><a name="note17211975317"></a><a name="note17211975317"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1821895535"><a name="p1821895535"></a><a name="p1821895535"></a>This attribute is only supported on phones and tablets.</p>
+<div class="note" id="note17211975317"><a name="note17211975317"></a><a name="note17211975317"></a><span class="notetitle"> NOTE: </span><div class="notebody"><p id="p1821895535"><a name="p1821895535"></a><a name="p1821895535"></a></p>
 </div></div>
 </td>
 </tr>

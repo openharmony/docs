@@ -2,7 +2,7 @@
 
 ## Overview
 ### Concepts
-The Page ability implements the ArkUI and provides the capability of interacting with users. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js/app.ets**.
+The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js/app.ets**.
 
 ### Page Ability Lifecycle
 
@@ -39,11 +39,11 @@ The **launchType** item in the **config.json** file is used to specify the launc
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
-| stand       | Multi-instance  | A new instance is started each time an ability starts.|
+| standard    | Multi-instance  | A new instance is started each time an ability starts.|
 | singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, **stand** is used.
+By default, **standard** is used.
 
 
 ## Development Guidelines

@@ -12,7 +12,7 @@ For easy description, we divide the OpenHarmony architecture into two parts:
 
 OpenHarmony = Kernel mode layer + User mode layer
 
-![](figure/technical-architecture.png)
+![](figures/technical-architecture.png)
 
 The kernel mode layer is the OpenHarmony kernel layer \(purple part in the figure\). It consists of the kernel, such as Linux Kernel and LiteOS, and features, such as Hardware Driver Foundation \(HDF\), running in the kernel mode.
 
@@ -35,7 +35,7 @@ Therefore, the OpenHarmony kernel mode layer includes the following:
 -   OpenHarmony basic kernel-mode code
 -   OpenHarmony kernel-mode features, such as HDF
 
-![](figure/openharmony_kernel.png)
+![](figures/openharmony_kernel.png)
 
 The standard LTS Linux kernel and third-party SoC chip platform code constitute the basis of a third-party Linux kernel. The OpenHarmony kernel mode layer can be composed of either of the following:
 
@@ -175,7 +175,7 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
 
     The configuration \(in  **Device Drivers**  \>  **HDF driver framework support**\) is as follows:
 
-    ![](figure/menuconfig.png)
+    ![](figures/menuconfig.png)
 
 
 ### Building the Image<a name="section1681965561911"></a>
@@ -198,7 +198,7 @@ The HDF test cases are used to verify basic functions of the HDF framework and p
 
 **Test Case Build and Test Method**
 
-Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md)  tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
+Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
 
 1.  Build the HDF test cases.
 2.  Use the  **hdc\_std**  tool to push the test case execution file to the device.
@@ -218,7 +218,7 @@ The procedure is as follows:
 
 2.  Copy the test files to the target device \(Raspberry Pi in this example\).
 
-    Method 1: Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/oem_subsys_toolchain_hdc_guide.md)  tool.
+    Method 1: Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool.
 
     1.  Create the  **data/test**  directory in Raspberry Pi.
 

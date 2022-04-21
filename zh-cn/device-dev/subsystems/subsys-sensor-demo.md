@@ -1,7 +1,8 @@
-# Sensor服务子系使用实例<a name="ZH-CN_TOPIC_0000001092792985"></a>
+# Sensor服务使用实例
 
-使用实例以sensorTypeId为0的传感器为例，其他类型的传感器使用方式类似。
 
+  使用实例以sensorTypeId为0的传感器为例，其他类型的传感器使用方式类似。
+  
 ```
 #include "sensor_agent.h"
 #include "sensor_agent_type.h"
@@ -58,4 +59,3 @@ static int32_t TestSensorService(void)
     }
 }
 ```
-

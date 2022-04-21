@@ -28,7 +28,7 @@ TabContent()
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string,<br/>text?:&nbsp;string<br/>}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder类型8+)<sup>8+</sup> | - | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
+| tabBar | string&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string,<br/>text?:&nbsp;string<br/>}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
@@ -75,31 +75,31 @@ struct TabContentExample  {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab1').fontSize(32)
           }
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab2').fontSize(32)
           }
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Add').fontSize(32)
           }
         }.tabBar(this.AddBuilder())
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab3').fontSize(32)
           }
         }.tabBar(this.TabBuilder(3))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab4').fontSize(32)
           }
         }.tabBar(this.TabBuilder(4))

@@ -1,8 +1,5 @@
 # NFS
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [开发指导](#开发指导)
 
 ## 基本概念
 
@@ -24,12 +21,14 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
 
 设置好Ubuntu系统的下载源，保证网络连接好的情况下执行：
 
+
 ```
 sudo apt-get install nfs-kernel-server
 ```
 
 - 创建用于挂载的目录并设置完全权限
 
+  
 ```
 mkdir -p /home/sqbin/nfs
 sudo chmod 777 /home/sqbin/nfs
@@ -39,6 +38,7 @@ sudo chmod 777 /home/sqbin/nfs
 
 修改NFS配置文件/etc/exports，添加如下一行：
 
+
 ```
 /home/sqbin/nfs *(rw,no_root_squash,async)
 ```
@@ -47,17 +47,19 @@ sudo chmod 777 /home/sqbin/nfs
 
 执行以下命令启动NFS server：
 
+
 ```
 sudo /etc/init.d/nfs-kernel-server start
 ```
 
 执行以下命令重启NFS server：
 
+
 ```
 sudo /etc/init.d/nfs-kernel-server restart
 ```
 
-1. 设置单板为NFS客户端
+2. 设置单板为NFS客户端
 
 本指导中的NFS客户端指运行OpenHarmony内核的设备。
 
@@ -71,6 +73,7 @@ OpenHarmony内核设备上的IP信息可通过ifconfig命令查看。
 
 启动以太网或者其他类型网络，使用ping命令检查到服务器的网络是否通畅。
 
+
 ```
 OHOS # ping 10.67.212.178
 [0]Reply from 10.67.212.178: time=1ms TTL=63
@@ -83,12 +86,14 @@ OHOS # ping 10.67.212.178
 
 客户端NFS初始化，运行命令：
 
+
 ```
 OHOS # mkdir /nfs
 OHOS # mount 10.67.212.178:/home/sqbin/nfs /nfs nfs 1011 1000
 ```
 
 将从串口得到如下回应信息，表明初始化NFS客户端成功。
+
 
 ```
 OHOS # mount 10.67.212.178:/home/sqbin/nfs /nfs nfs 1011 1000
@@ -103,6 +108,7 @@ Mount nfs finished.
 > 
 > mount命令的格式为：
 > 
+> 
 > ```
 > mount <SERVER_IP:SERVER_PATH> <CLIENT_PATH> nfs
 > ```
@@ -111,21 +117,24 @@ Mount nfs finished.
 > 
 > 如果不想有NFS访问权限限制，可以在Linux命令行将NFS根目录权限设置成777：
 > 
+> 
 > ```
 > chmod -R 777 /home/sqbin/nfs
 > ```
 > 
 > 至此，NFS客户端设置完毕。NFS文件系统已成功挂载。
 
-1. 利用NFS共享文件
+3. 利用NFS共享文件
 
 在NFS服务器下新建目录dir，并保存。在OpenHarmony内核下运行ls命令：
+
 
 ```
 OHOS # ls /nfs
 ```
 
 则可从串口得到如下回应：
+
 
 ```
 OHOS # ls /nfs 

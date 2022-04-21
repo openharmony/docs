@@ -1,13 +1,13 @@
 # Drivers
 
-- [HDF](driver-hdf.md)
+- HDF
   - [HDF Overview](driver-hdf-overview.md)
   - [Driver Development](driver-hdf-development.md)
   - [Driver Service Management](driver-hdf-servicemanage.md)
   - [Driver Message Mechanism Management](driver-hdf-message-management.md)
   - [Driver Configuration Management](driver-hdf-manage.md)
   - [HDF Development Example](driver-hdf-sample.md)
-- [Platform Driver Development](driver-develop.md)
+- Platform Driver Development
   - [ADC](driver-platform-adc-develop.md)
   - [DAC](driver-platform-dac-develop.md)
   - [GPIO](driver-platform-gpio-develop.md)
@@ -25,7 +25,7 @@
   - [SPI](driver-platform-spi-develop.md)
   - [UART](driver-platform-uart-develop.md)
   - [Watchdog](driver-platform-watchdog-develop.md)
-- [Platform Driver Usage](driver-platform.md)
+- Platform Driver Usage
   - [ADC](driver-platform-adc-des.md)
   - [DAC](driver-platform-dac-des.md)
   - [GPIO](driver-platform-gpio-des.md)
@@ -34,14 +34,15 @@
   - [I3C](driver-platform-i3c-des.md)
   - [MIPI CSI](driver-platform-mipicsi-des.md)
   - [MIPI DSI](driver-platform-mipidsi-des.md)
+  - [Pin](driver-platform-pin-des.md)
   - [PWM](driver-platform-pwm-des.md)
   - [Regulator](driver-platform-regulator-des.md)
   - [RTC](driver-platform-rtc-des.md)
   - [SDIO](driver-platform-sdio-des.md)
   - [SPI](driver-platform-spi-des.md)
   - [UART](driver-platform-uart-des.md)
-  - [Watchdog](driver-platform-watchdog-des.md) 
-- [Peripheral Driver Usage](driver-peripherals.md)
+  - [Watchdog](driver-platform-watchdog-des.md)
+- Peripheral Driver Usage
   - [LCD](driver-peripherals-lcd-des.md)
   - [Touchscreen](driver-peripherals-touch-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
@@ -49,3 +50,5 @@
   - [Audio](driver-peripherals-audio-des.md)
   - [USB](driver-peripherals-usb-des.md)
   - [Camera](driver-peripherals-camera-des.md)
+  - [Vibrator](driver-peripherals-vibrator-des.md)
+  - [Light](driver-peripherals-light-des.md)

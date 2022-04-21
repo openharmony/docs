@@ -1,11 +1,5 @@
 # cat
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -19,7 +13,7 @@ cat [_pathname_]
 
 ## 参数说明
 
-**表1** 参数说明
+  **表1** 参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -33,13 +27,14 @@ cat用于显示文本文件的内容。
 
 ## 使用实例
 
-举例：cat hello-harmony.txt
+举例：cat hello-openharmony.txt
 
 
 ## 输出说明
 
-**示例**：查看 hello-harmony.txt 文件的信息
+  **示例**：查看 hello-openharmony.txt 文件的信息
+  
 ```
-OHOS # cat hello-harmony.txt
-OHOS # Hello Harmony ;)
+OHOS # cat hello-openharmony.txt
+OHOS # Hello openharmony ;)
 ```

@@ -15,11 +15,11 @@
 
        **图1** 2线UART设备连接示意图
 
-       ![zh-cn_image_0000001160812804](figures/zh-cn_image_0000001160812804.png)
+       ![image](figures/2线UART设备连接示意图.png "2线UART设备连接示意图")
 
        **图2** 4线UART设备连接示意图
 
-       ![zh-cn_image_0000001206372789](figures/zh-cn_image_0000001206372789.png)
+       ![image](figures/4线UART设备连接示意图.png "4线UART设备连接示意图")
 
 - UART通信之前，收发双方需要约定好一些参数：波特率、数据格式（起始位、数据位、校验位、停止位）等。通信过程中，UART通过TX发送给对端数据，通过RX接收对端发送的数据。当UART接收缓存达到预定的门限值时，RTS变为不可发送数据，对端的CTS检测到不可发送数据，则停止发送数据。
 
@@ -51,7 +51,7 @@
 
   **图3** UART使用流程图
 
-  ![zh-cn_image_0000001206092753](figures/zh-cn_image_0000001206092753.png)
+  ![image](figures/UART使用流程图.png "UART使用流程图")
 
 
 ### 获取UART设备句柄

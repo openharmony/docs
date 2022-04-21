@@ -33,7 +33,7 @@
 **表3** 分布式数据对象sessionId设置接口
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>&nbsp;sessionId：如果指定sessionId，则退出指定分布式组网；如果不指定，则全部退出。|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId <br>&nbsp;sessionId：分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。|
 
 ### 订阅数据变更
 
@@ -72,6 +72,7 @@
    ```js
    var local_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
+   var sessionId = distributedObject.genSessionId();
    ```
 
 
@@ -147,18 +148,18 @@
 8. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
    以下为访问对象的代码示例：
    ```js
-    function statusCallback(sessionId, networkid, status) {
+    function statusCallback(sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
     }
    
-    local_object.on("status", this.changeCallback);
+    local_object.on("status", this.statusCallback);
    ```
 9. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
    
     以下为取消监听数据变更的代码示例：
    ```js
-   //删除上下线回调changeCallback
-   local_object.off("status", changeCallback);
+   //删除上下线回调statusCallback
+   local_object.off("status", statusCallback);
    //删除所有的上下线回调
    local_object.off("status");
    ```

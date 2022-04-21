@@ -23,7 +23,11 @@ ArkUI comes with two development paradigms: JavaScript-based web-like developmen
 | Web-like&nbsp;development&nbsp;paradigm | JavaScript | Data-driven | Applications&nbsp;and&nbsp;service&nbsp;widgets&nbsp;with&nbsp;simple&nbsp;UIs | Frontend&nbsp;web&nbsp;developers |
 | Declarative&nbsp;development&nbsp;paradigm | Extended&nbsp;TypeScript&nbsp;(eTS) | Data-driven | Applications&nbsp;involving&nbsp;technological&nbsp;sophistication&nbsp;and&nbsp;teamwork | Mobile&nbsp;application&nbsp;and&nbsp;system&nbsp;application&nbsp;developers |
 
-For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mode and the low-code mode are supported when the JS language is used for development. On the OpenHarmony low-code development pages, you can design your app UI in an efficient, intuitive manner, with a wide array of UI editing features complying with [JS Development Specifications](../reference/apis).
+For DevEco Studio V2.2 Beta1 and later versions, both the traditional coding mode and the low-code mode are supported when the JS language is used for development.
+
+For eTS language development, DevEco Studio V3.0 Beta3 and later versions support low-code development in addition to the traditional code development mode.
+
+On the OpenHarmony low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
 
 
 ### Ability
@@ -43,4 +47,4 @@ This document provides a Page ability instance with two pages. For more informat
 
 2. Install DevEco Studio and configure the development environment. For details, see [Configuring the OpenHarmony SDK](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
 
-When you are done, follow the instructions in [Getting Started with eTS](start-with-ets.md),[Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md), and [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md).
+When you are done, follow the instructions in [Getting Started with eTS in the Traditional Coding Approach](start-with-ets.md),[Getting Started with eTS in the Low-Code Approach](start-with-ets-low-code.md), [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md), and [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md).

@@ -1,11 +1,5 @@
 # ls
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -22,7 +16,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 
 ## 参数说明
 
-**表1** 展示功能参数说明
+  **表1** 展示功能参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -42,7 +36,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 | -Z | 安全上下文。 | N/A | 
 | path | path为空时，显示当前目录的内容。<br/>path为无效文件名时，显示失败，提示：<br/>ls&nbsp;error:&nbsp;No&nbsp;such&nbsp;directory。<br/>path为有效目录路径时，会显示对应目录下的内容。 | 1.为空。<br/>2.有效的目录路径 | 
 
-**表2** 输出格式参数说明
+  **表2** 输出格式参数说明
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -58,7 +52,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 | -ll | 文件的时间属性显示纳秒。 | N/A | 
 | --color | 彩色打印。 | 默认配置为：device=yellow&nbsp;symlink=turquoise/red&nbsp;dir=blue&nbsp;socket=purple&nbsp;files:&nbsp;exe=green&nbsp;suid=red&nbsp;suidfile=redback&nbsp;stickydir=greenback=auto&nbsp;means&nbsp;detect&nbsp;if&nbsp;output&nbsp;is&nbsp;a&nbsp;tty. | 
 
-**表3** 排序参数说明（默认为按首字母排序）
+  **表3** 排序参数说明（默认为按首字母排序）
 
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
@@ -70,7 +64,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 
 ## 使用指南
 
-无
+  无
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
 > fatfs的文件节点信息继承其父节点，父节点号为0。故在hi3516dv300开发板上ls -i显示的文件节点号全为0。
 
@@ -88,6 +82,7 @@ ls [_-ACHLSZacdfhiklmnopqrstux1_] [_--color_[_=auto_]] [_directory..._]
 
 **示例1:**ls命令查看当前路径下的内容
 
+  
 ```
 OHOS:/$ ls
 bin  etc  nfs   sdcard   system    usr
@@ -96,6 +91,7 @@ dev  lib  proc  storage  userdata  vendor
 
 **示例2:**ll命令查看当前路径下的内容
 
+  
 ```
 OHOS:/$ ll
 total 20

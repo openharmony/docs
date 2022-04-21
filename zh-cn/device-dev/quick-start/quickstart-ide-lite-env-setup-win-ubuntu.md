@@ -30,6 +30,7 @@
        ```
 
        ![zh-cn_image_0000001226764302](figures/zh-cn_image_0000001226764302.png)
+
    2. 打开终端工具，执行如下命令，输入密码，然后选择**No**，将Ubuntu shell由dash修改为bash。
          
        ```
@@ -41,11 +42,13 @@
 2. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Linux版本。
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
+
    1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.0.0.400.zip为软件包名称，请根据实际进行修改。
          
        ```
        unzip devicetool-linux-tool-3.0.0.400.zip
        ```
+
    2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.0.0.400.sh请根据实际进行修改。
          
        ```
@@ -53,12 +56,13 @@
        ```
 
 4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.0.0.400.sh请根据实际进行修改。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 安装过程中，会自动检查Python是否安装，且要求Python为3.8~3.9版本。如果不满足，则安装过程中会自动安装，提示“Do you want to continue?”，请输入“Y”后继续安装。
 
      
    ```
-   sudo ./devicetool-linux-tool-3.0.0.300.sh
+   sudo ./devicetool-linux-tool-3.0.0.400.sh
    ```
 
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
@@ -75,6 +79,7 @@
 2. 解压DevEco Device Tool压缩包，双击安装包程序，点击Next进行安装。
 
 3. 设置DevEco Device Tool的安装路径，建议安装到非系统盘符，点击**Next**。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果您已安装DevEco Device Tool 3.0 Beta2及以前的版本，则在安装新版本时，会先卸载旧版本，卸载过程中出现如下错误提示时，请点击“Ignore”继续安装，该错误不影响新版本的安装。
    > 
@@ -83,12 +88,16 @@
    ![zh-cn_image_0000001270076961](figures/zh-cn_image_0000001270076961.png)
 
 4. 根据安装向导提示，勾选要自动安装的软件。
+
    1. 在弹出VSCode installation confirm页面，勾选“Install VScode 1.62.2automatically”，点击**Next**。
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果检测到Visual Studio Code已安装，且版本为1.62及以上，则会跳过该步骤。
 
        ![zh-cn_image_0000001237801283](figures/zh-cn_image_0000001237801283.png)
+
    2. 在弹出的Python select page选择“Download from Huawei mirror”，点击**Next**。
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
        > 如果系统已安装可兼容的Python版本（Python 3.8~3.9版本），可选择“Use one of compatible on your PC”。
 
@@ -113,6 +122,7 @@
 ### 安装SSH服务并获取远程访问的IP地址
 
 1. 在Ubuntu系统中，打开终端工具，执行如下命令安装SSH服务。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果执行该命令失败，提示openssh-server和openssh-client依赖版本不同，请根据CLI界面提示信息，安装openssh-client相应版本后（例如：sudo apt-get install openssh-client=1:8.2p1-4），再重新执行该命令安装openssh-server。
 
@@ -139,9 +149,11 @@
 ### 安装Remote SSH
 
 1. 打开Windows系统下的Visual Studio Code，点击![zh-cn_image_0000001239080359](figures/zh-cn_image_0000001239080359.png)，在插件市场的搜索输入框中输入“remote-ssh”。
+
    ![zh-cn_image_0000001193920448](figures/zh-cn_image_0000001193920448.png)
 
 2. 点击Remote-SSH的**Install**按钮，安装Remote-SSH。安装成功后，在**INSTALLED**下可以看到已安装Remote-SSH。
+
    ![zh-cn_image_0000001238880335](figures/zh-cn_image_0000001238880335.png)
 
 
@@ -184,7 +196,9 @@
    ![zh-cn_image_0000001271532317](figures/zh-cn_image_0000001271532317.png)
 
 2. 在Visual Studio Code中，点击远程连接的设置按钮，并选择打开config文件。
+
    ![zh-cn_image_0000001226034634](figures/zh-cn_image_0000001226034634.png)
 
 3. 在config配置文件中添加SSK Key文件信息，如下图所示，然后保存即可。
+
    ![zh-cn_image_0000001270356233](figures/zh-cn_image_0000001270356233.png)

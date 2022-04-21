@@ -147,11 +147,11 @@ Enumerates the WLAN security types.
 
 | **Name**| **Default Value**| **Description**|
 | -------- | -------- | -------- |
-| WIFI_SEC_TYPE_INVALID | 0 | Invalid security type |
-| WIFI_SEC_TYPE_OPEN | 1 | Open security type |
-| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP) |
-| WIFI_SEC_TYPE_PSK | 3 | Pre-shared key (PSK) |
-| WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE) |
+| WIFI_SEC_TYPE_INVALID | 0 | Invalid security type|
+| WIFI_SEC_TYPE_OPEN | 1 | Open security type|
+| WIFI_SEC_TYPE_WEP | 2 | Wired Equivalent Privacy (WEP)|
+| WIFI_SEC_TYPE_PSK | 3 | Pre-shared key (PSK)|
+| WIFI_SEC_TYPE_SAE | 4 | Simultaneous Authentication of Equals (SAE)|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -182,11 +182,11 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| Hotspot SSID, in UTF-8 format.|
+| ssid | string | Read only| Hotspot service set identifier (SSID), in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | preSharedKey | string | Read only| Private key of the hotspot.|
 | isHiddenSsid | boolean | Read only| Whether to hide the network.|
-| securityType | [WifiSecurityType](#WifiSecurityType) | Read only| Security type. |
+| securityType | [WifiSecurityType](#WifiSecurityType) | Read only| Security type|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -335,7 +335,7 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable/Writable| Description|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
+| ssid | string | Read only| Hotspot SSID, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | rssi | number | Read only| Signal strength of the hotspot, in dBm.|
 | band | number | Read only| Frequency band of the WLAN AP.|
@@ -443,13 +443,13 @@ Represents IP information.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ipAddress | number | Read only| IP address. |
-| gateway | number | Read only| Gateway. |
-| netmask | number | Read only| Subnet mask. |
-| primaryDns | number | Read only| IP address of the preferred DNS server. |
-| secondDns | number | Read only| IP address of the alternate DNS server. |
-| serverIp | number | Read only| IP address of the DHCP server. |
-| leaseDuration | number | Read only| Lease duration of the IP address. |
+| ipAddress | number | Read only| IP address|
+| gateway | number | Read only| Gateway|
+| netmask | number | Read only| Subnet mask|
+| primaryDns | number | Read only| IP address of the preferred DNS server|
+| secondDns | number | Read only| IP address of the alternate DNS server|
+| serverIp | number | Read only| IP address of the DHCP server|
+| leaseDuration | number | Read only| Lease duration of the IP address|
 
 
 ## wifi.getCountryCode<sup>7+</sup>
@@ -589,7 +589,7 @@ Represents the P2P device information.
 | deviceAddress | string | Read only| MAC address of the device.|
 | primaryDeviceType | string | Read only| Type of the primary device.|
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | Read only| Device status.|
-| groupCapabilitys | number | Read only| Group capabilities.|
+| groupCapabilities | number | Read only| Group capabilities.|
 
 ## P2pDeviceStatus<sup>8+</sup>
 
@@ -1046,7 +1046,7 @@ Registers the hotspot state change events.
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.AP
+  SystemCapability.Communication.WiFi.AP.Core
 
 - Parameters
   | **Name**| **Type**| **Mandatory**| **Description**|
@@ -1073,7 +1073,7 @@ Unregisters the hotspot state change events.
   ohos.permission.GET_WIFI_INFO
 
 - System capability:
-  SystemCapability.Communication.WiFi.AP
+  SystemCapability.Communication.WiFi.AP.Core
 
 - Parameters
   | **Name**| **Type**| **Mandatory**| **Description**|
@@ -1239,7 +1239,7 @@ Unregisters the P2P peer device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | No| Callback used to return the P2P peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>

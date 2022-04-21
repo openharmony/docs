@@ -41,7 +41,7 @@
 - Porting
   - Mini System SoC Porting Guide
     - Porting Preparations
-      - [Before You Start](porting/oem_transplant_chip_prepare_knows.md)
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
     - Kernel Porting
       - [Overview](porting/porting-chip-kernel-overview.md)
@@ -249,6 +249,11 @@
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
       - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
+      - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)  
+        - [Enhanced SWAP](kernel-standard-mm-eswap.md)
+        - [Task Scheduling](kernel-standard-sched.md)
+          - [Related Thread Group](kernel-standard-sched-rtg.md)
+          - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
   - Driver
     - HDF
       - [HDF Overview](driver/driver-hdf-overview.md)
@@ -305,7 +310,7 @@
     - [Development Guidelines on Common Components](subsystems/subsys-graphics-common-guide.md)
     - [Development Guidelines on Animators](subsystems/subsys-graphics-animation-guide.md)
   - Multimedia
-    - Camera
+    - [Camera](subsystems/subsys-multimedia-camera.md)
       - [Overview](subsystems/subsys-multimedia-camera-overview.md)
       - [Development Guidelines on Photographing](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [Development Guidelines on Video Recording](subsystems/subsys-multimedia-camera-record-guide.md)
@@ -353,10 +358,10 @@
     - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
     - [Development Guidelines](subsystems/subsys-application-framework-guide.md)
     - [Development Example](subsystems/subsys-application-framework-demo.md)
-  - [OTA Upgrade](subsystems/subsys-ota-guide.md)
-  - Telephony Service
-    - [Telephony Service](subsystems/telephony-service.md)
-    - [Development Guidelines](subsystems/development-guidelines.md)
+  - [OTA Update](subsystems/subsys-ota-guide.md)
+  - Telephony
+    - [Telephony Overview](subsystems/subsys-tel-overview.md)
+    - [Telephony Development](subsystems/subsys-tel-guide.md)
   - Security
     - [Overview](subsystems/subsys-security-overview.md)
     - [Development Guidelines on Application Signature Verification](subsystems/subsys-security-sigverify.md)
@@ -423,7 +428,7 @@
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
   - [Test Subsystem](subsystems/subsys-testguide-test.md)
-  - [R&D Tools](subsystems/subsys-toolchain.md)
+  - Debugging Tools
     - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
 - XTS Certification

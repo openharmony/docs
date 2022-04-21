@@ -1,11 +1,13 @@
-# HiSysEvent开发指导<a name="ZH-CN_TOPIC_0000001195021448"></a>
+# HiSysEvent开发指导
 
--   **[HiSysEvent打点配置指导](subsys-dfx-hisysevent-logging-config.md)**
 
--   **[HiSysEvent打点指导](subsys-dfx-hisysevent-logging.md)**
 
--   **[HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)**
+- **[HiSysEvent打点配置](subsys-dfx-hisysevent-logging-config.md)**
 
--   **[HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)**
+- **[HiSysEvent打点](subsys-dfx-hisysevent-logging.md)**
 
--   **[HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)**
+- **[HiSysEvent订阅](subsys-dfx-hisysevent-listening.md)**
+
+- **[HiSysEvent查询](subsys-dfx-hisysevent-query.md)**
+
+- **[HiSysEvent工具](subsys-dfx-hisysevent-tool.md)**

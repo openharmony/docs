@@ -279,7 +279,7 @@ Removes the entry at the specified position from this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the entry.|
 
 **Return value**
 

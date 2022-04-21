@@ -1,6 +1,5 @@
 # Shell命令开发指导
 
-- [开发指导](#开发指导)
 
 ## 开发指导
 
@@ -8,6 +7,7 @@
 
 1. 包含如下头文件：
 
+     
    ```
    #include "shell.h"
    #include "shcmd.h"
@@ -20,11 +20,12 @@
        1. 通过宏的方式注册。
            这个宏的原型为：
 
+             
            ```
            SHELLCMD_ENTRY(l, cmdType, cmdKey, paraNum, cmdHook)
            ```
 
-           **表1** SHELLCMD_ENTRY参数详解
+             **表1** SHELLCMD_ENTRY参数详解
            
            | 参数 | 描述 | 
            | -------- | -------- |
@@ -36,6 +37,7 @@
 
            如：
 
+             
            ```
            SHELLCMD_ENTRY(ls_shellcmd,  CMD_TYPE_EX, "ls", XARGS,  (CMD_CBK_FUNC)osShellCmdLs)
            ```
@@ -45,11 +47,12 @@
 
        注册函数原型：
 
+         
        ```
        UINT32 osCmdReg(CmdT ype cmdType, CHAR *cmdKey, UINT32 paraNum, CmdCallBackFunc cmdProc)
        ```
 
-       **表2** UINT32 osCmdReg参数详解
+         **表2** UINT32 osCmdReg参数详解
        
        | 参数 | 描述 | 
        | -------- | -------- |
@@ -60,6 +63,7 @@
 
        如：
 
+         
        ```
        osCmdReg(CMD_TYPE_EX, "ls", XARGS,  (CMD_CBK_FUNC)osShellCmdLs)
        ```
@@ -71,11 +75,12 @@
 
 3. 添加内置命令函数原型。
 
+     
    ```
    UINT32 osShellCmdLs(UINT32 argc,  CHAR **argv)
    ```
 
-   **表3** osShellCmdLs参数说明
+     **表3** osShellCmdLs参数说明
    
    | 参数 | 参数描述 | 
    | -------- | -------- |

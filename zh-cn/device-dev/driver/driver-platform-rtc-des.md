@@ -39,7 +39,8 @@ RTC(real-time clock)为操作系统中的实时时钟设备，为操作系统提
 使用RTC设备的一般流程如下图所示。
 
   **图1** RTC设备使用流程图
-  ![zh-cn_image_0000001160971552](figures/zh-cn_image_0000001160971552.png)
+
+  ![image](figures/RTC设备使用流程图.png "RTC设备使用流程图")
 
 
 ### 创建RTC设备句柄

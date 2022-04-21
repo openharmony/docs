@@ -12,8 +12,10 @@
         - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
         - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
     - 开发基础知识
-        - [应用开发包结构说明](quick-start/package-structure.md)
+        - [应用包结构说明(FA模型)](quick-start/package-structure.md)
+        - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
         - [资源文件的分类](quick-start/basic-resource-file-categories.md)
+        - [SysCap说明](quick-start/syscap.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)
@@ -38,6 +40,12 @@
 - API参考
     - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
-    - [接口参考](reference/apis/Readme-CN.md)
+    - 接口
+      -   [JS（含eTS） API参考](reference/apis/Readme-CN.md)
+      -   Native API
+          -   [OpenHarmony Native API](reference/native-apis/Readme-CN.md)
+          -   [标准库](reference/native-lib/third_party_libc/musl.md)
+          -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - 贡献
     - [参与贡献](../contribute/贡献文档.md)
+

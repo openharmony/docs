@@ -101,9 +101,8 @@ export default {
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 智能穿戴仅支Input类型设置为button、radio、checkbox。
-> 
-> - 仅当Input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
+>
+> 仅当Input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
 
 
 ## 事件绑定
@@ -313,3 +312,10 @@ export default {
 
 
 ![zh-cn_image_0000001188771358](figures/zh-cn_image_0000001188771358.gif)
+
+
+## 相关实例
+
+针对Input开发，有以下相关实例可供参考：
+
+- [input、label（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)

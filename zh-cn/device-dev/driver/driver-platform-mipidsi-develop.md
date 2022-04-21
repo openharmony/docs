@@ -7,7 +7,7 @@ DSI（Display Serial Interface）是由移动行业处理器接口联盟（Mobil
 
   **图1** DSI无服务模式结构图
 
-  ![zh-cn_image_0000001176603960](figures/zh-cn_image_0000001176603960.png)
+  ![image](figures/无服务模式结构图.png "DSI无服务模式结构图")
 
 
 ## 接口说明

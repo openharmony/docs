@@ -21,9 +21,9 @@ Shows the toast.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowToastOptions](#showtoastoptions) | Yes| Toast options.|
+| Name    | Type                                   | Mandatory  | Description     |
+| ------- | ------------------------------------- | ---- | ------- |
+| options | [ShowToastOptions](#showtoastoptions) | Yes   | Toast options.|
 
 **Example**
   ```
@@ -42,11 +42,11 @@ Describes the options for showing the toast.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| message | string | Yes| Text to display.|
-| duration | number | No| Duration that the toast will remain on the screen. The default value is 1500 ms. The recommended value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used.|
-| bottom  | &lt;length&gt; | No| Distance between the toast frame and the bottom of the screen. This parameter is available only on phones and tablets.|
+| Name      | Type            | Mandatory  | Description                                      |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| message  | string         | Yes   | Text to display.                                |
+| duration | number         | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The recommended value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used.|
+| bottom   | &lt;length&gt; | No   | Distance between the toast border and the bottom of the screen.                        |
 
 ## prompt.showDialog
 
@@ -57,15 +57,15 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#showdialogoptions) | Yes| Dialog box options.|
+| Name    | Type                                     | Mandatory  | Description    |
+| ------- | --------------------------------------- | ---- | ------ |
+| options | [ShowDialogOptions](#showdialogoptions) | Yes   | Dialog box options.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; |  Promise used to return the dialog box response result.|
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
+| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
 **Example**
 
@@ -106,10 +106,10 @@ Shows a dialog box. This API uses a callback to return the result asynchronously
 
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [ShowDialogOptions](#showdialogoptions) | Yes| Dialog box options.|
-  | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes| Callback used to return the dialog box response result.|
+| Name     | Type                                      | Mandatory  | Description          |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| options  | [ShowDialogOptions](#showdialogoptions)  | Yes   | Dialog box options.|
+| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
 **Example**
   ```
@@ -146,11 +146,11 @@ Describes the options for showing the dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| title | string | No| Title of the text to display.|
-| message | string | No| Text body.|
-| buttons | Array | No| Array of buttons in the dialog box. The array structure is **{text:'button',&nbsp;color:&nbsp;'\#666666'}**. One to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
+| Name     | Type    | Mandatory  | Description                                      |
+| ------- | ------ | ---- | ---------------------------------------- |
+| title   | string | No   | Title of the text to display.                                   |
+| message | string | No   | Text body.                                   |
+| buttons | Array  | No   | Array of buttons in the dialog box. The array structure is **{text:'button',&nbsp;color:&nbsp;'\#666666'}**. One to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
 
@@ -158,8 +158,8 @@ Describes the dialog box response result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
+| Name   | Type    | Description                 |
+| ----- | ------ | ------------------- |
 | index | number | Index of the selected button in the array.|
 
 
@@ -172,10 +172,10 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#actionmenuoptions) | Yes| Action menu options.|
-  | callback |  AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)>  | Yes| Callback used to return the action menu response result.|
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [ActionMenuOptions](#actionmenuoptions)  | Yes   | Action menu options.  |
+| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | Yes   | Callback used to return the action menu response result.|
 
 
 **Example**
@@ -215,14 +215,14 @@ Shows an action menu. This API uses a promise to return the result synchronously
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options  | [ActionMenuOptions](#actionmenuoptions) | Yes| Action menu options.|
+| Name    | Type                                     | Mandatory  | Description     |
+| ------- | --------------------------------------- | ---- | ------- |
+| options | [ActionMenuOptions](#actionmenuoptions) | Yes   | Action menu options.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; |  Promise used to return the action menu response result.|
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Example**
   ```
@@ -256,10 +256,10 @@ Describes the options for showing the action menu.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| title | string | No| Title of the text to display.|
-| buttons | Array | Yes| Array of menu items. The array structure is **{text:'button',&nbsp;color:&nbsp;'\#666666'}**. One to six items are supported. If there are more than six items, extra items will not be displayed.|
+| Name     | Type    | Mandatory  | Description                                      |
+| ------- | ------ | ---- | ---------------------------------------- |
+| title   | string | No   | Title of the text to display.                                   |
+| buttons | Array  | Yes   | Array of menu items. The array structure is **{text:'button',&nbsp;color:&nbsp;'\#666666'}**. One to six items are supported. If there are more than six items, extra items will not be displayed.|
 
 ## ActionMenuSuccessResponse
 
@@ -267,6 +267,6 @@ Describes the action menu response result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | No| Index of the selected button in the array, starting from **0**.|
+| Name   | Type    | Mandatory  | Description                      |
+| ----- | ------ | ---- | ------------------------ |
+| index | number | No   | Index of the selected button in the array, starting from **0**.|

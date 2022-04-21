@@ -1,34 +1,56 @@
-# System Apps<a name="EN-US_TOPIC_0000001103601750"></a>
+# System Applications<a name="ZH-CN_TOPIC_0000001103601750"></a>
 
 ## Introduction<a name="section663544819225"></a>
 
-This module provides some system apps that are applicable to the OpenHarmony standard system, such as Launcher, SystemUI, and Settings. It also provides specific examples for you to build standard-system apps, which can be installed on all devices running the standard system.
+This module provides some system applications that are applicable to the OpenHarmony standard system, such as Launcher, SystemUI, and Settings. It also provides specific examples for you to build applications that can be run on all standard-system devices.
 
-Currently, OpenHarmony supports the following system apps:
+Currently, OpenHarmony supports the following system applications:
 
-1.  Launcher: acts as a main entry for all apps and provides UIs for display and human-machine interactions of installed apps.
+1.  Launcher: acts as a main entry for all applications and provides UIs for display and human-machine interactions of installed applications.
 2.  SystemUI: consists of the navigation bar and system status bar. The navigation bar provides page navigation, and the status bar displays the system status, such as the time and charging status.
-3.  Settings: provides functions such as device management, app management, and brightness setting.
+3.  Settings: provides features such as device management, application management, and brightness setting.
+4.  Contacts: provides features such as the dialer, call record query/deletion, contacts list, contact details query, and contact management.
+5.  Messaging: provides features such as SMS message management (send, receive, view, and delete) and SMS delivery report.
+6.  Phone: allows users to answer and end voice calls and enable or disable mobile data.
+7.  Camera: provides features such as preview, photo taking, thumbnail display, and image browsing.
+8.  Gallery: allows users to manage, browse, view, and edit photos, videos, and albums.
+
+Note:
+In the OpenHarmony 3.1 Release version, only the code for the Gallery application can be built with the released IDE and SDK. The code of other system applications is still being adapted and optimized, which is expected to be completed by April 30, 2022. The actual supported applications are subject to the final release.
 
 ## Directory Structure<a name="section161941989596"></a>
 
 ```
-/applications/standard/
-├── launcher         # Launcher app code
-├── systemui         # SystemUI app code
-├── settings         # Settings app code
-├── hap              # Binary code for system apps
+/applications/
+├── launcher         # Launcher application code
+├── systemui         # SystemUI application code
+├── settings         # Settings application code
+├── hap              # Binary code for system applications
+├── contacts         # Contacts application code
+├── mms              # Messaging application code
+├── call             # Phone application code
+├── camera           # Camera application code
+├── photos           # Gallery application code
 ```
 
 ## Repositories Involved<a name="section1371113476307"></a>
 
-**System apps**
+**System applications**
 
-applications\_standard\_settings
+applications\_settings
 
-applications\_standard\_launcher
+applications\_launcher
 
-applications\_standard\_systemui
+applications\_systemui
 
-applications\_standard\_hap
+applications\_hap
 
+applications\_contacts
+
+applications\_mms
+
+applications\_call
+
+applications\_camera
+
+applications\_photos

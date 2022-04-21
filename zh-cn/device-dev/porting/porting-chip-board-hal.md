@@ -1,12 +1,10 @@
-# HAL层实现<a name="ZH-CN_TOPIC_0000001062862633"></a>
+# HAL层实现
 
--   [UTILS](#section1394788286)
--   [IOT外设子系统](#section958113200811)
--   [WLAN服务](#section1331917210911)
 
 HAL层主要功能是实现轻OpenHarmony与芯片的解耦，以下模块描述的是轻OpenHarmony系统对芯片接口的依赖情况。
 
-## UTILS<a name="section1394788286"></a>
+
+## UTILS
 
 **基本介绍：**
 
@@ -16,7 +14,8 @@ HAL层主要功能是实现轻OpenHarmony与芯片的解耦，以下模块描述
 
 需要芯片适配相关接口的实现，对芯片文件系统接口依赖请参考[utils的HAL头文件](https://gitee.com/openharmony/utils_native_lite/tree/master/hals/file)。
 
-## IOT外设子系统<a name="section958113200811"></a>
+
+## IOT外设子系统
 
 **基本介绍**
 
@@ -26,16 +25,16 @@ HAL层主要功能是实现轻OpenHarmony与芯片的解耦，以下模块描述
 
 需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[IOT外设子系统的HAL头文件](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/kits)。
 
-## WLAN服务<a name="section1331917210911"></a>
+
+## WLAN服务
 
 **基本介绍：**
 
 WLAN服务适用于设备接入WLAN无线局域网场景，包括：
 
--   使用STA模式，作为接入方接入其他设备、路由器开启的WLAN无线局域网接入点；
+- 使用STA模式，作为接入方接入其他设备、路由器开启的WLAN无线局域网接入点；
 
--   使用AP模式，开启无线局域网接入点，允许其他设备连接。
-
+- 使用AP模式，开启无线局域网接入点，允许其他设备连接。
 
 借助WLAN服务，开发者可以实现对系统中WLAN的控制，包括开启关闭、扫描发现、连接断开等功能。
 
@@ -45,6 +44,7 @@ WLAN服务适用于设备接入WLAN无线局域网场景，包括：
 
 代码路径及接口定义如下：
 
+  
 ```
 foundation/communication/interfaces/kits/wifi_lite/wifiservice/
 ├── station_info.h
@@ -58,8 +58,9 @@ foundation/communication/interfaces/kits/wifi_lite/wifiservice/
 └── wifi_scan_info.h
 ```
 
-具体的实现需要各厂家按照定义的接口在vendor/\*\*\*/\*\*\*/\*\*\*\_adapter中实现，例如hi3861中具体实现在
+具体的实现需要各厂家按照定义的接口在vendor/\*\*\*/\*\*\*/\*\*\*_adapter中实现，例如hi3861中具体实现在
 
+  
 ```
 vendor/hisi/hi3861/hi3861_adapter/hals/communication/wifi_lite/wifiservice/
 ├── BUILD.gn
@@ -71,4 +72,3 @@ vendor/hisi/hi3861/hi3861_adapter/hals/communication/wifi_lite/wifiservice/
 ```
 
 需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[WLAN服务的头文件](https://gitee.com/openharmony/communication_wifi_lite/tree/master/interfaces/wifiservice)。
-

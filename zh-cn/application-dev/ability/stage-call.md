@@ -242,9 +242,6 @@ try {
 }
 ```
 
-## 开发实例
-针对Stage模型本地Call功能开发，有以下示例工程可供参考：
-
-[eTSStageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/eTSStageCallAbility)
-
-本示例eTSStageCallAbility中，在Application目录的AbilityStage.ts中实现AbilityStage的接口，在MainAbility目录实现Ability的接口并设置"pages/index"为Ability的页面，在CalleeAbility目录实现Ability的接口、Callee被调用端，设置"pages/second"为Ability的页面。MainAbility作为调用端，CalleeAbility作为被调用端。MainAbility拉起CalleeAbility，获取Caller通信接口后，支持用户输入字符串，做序列化处理后传递给CalleeAbility处理，CalleeAbility根据收到的数据做页面刷新并返回结果给MainAbility。
+## 相关实例
+针对Stage模型本地Call功能开发，有以下相关实例可供参考：
+- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

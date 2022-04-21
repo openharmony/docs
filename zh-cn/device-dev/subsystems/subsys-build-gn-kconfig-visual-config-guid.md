@@ -40,13 +40,13 @@
    menuconfig kconfig
    ```
 
-   ![界面示例](./figure/kconfig界面.PNG)
+   ![界面示例](figures/kconfig界面.PNG)
 
 4. 参数填写
 
    参数配置项可以参考：[productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json)
 
-   ![参数填写](./figure/kconfig参数输入.gif)
+   ![参数填写](figures/kconfig参数输入.gif)
 
 5. 选择部件并配置
 
@@ -56,13 +56,13 @@
 
    3. 输入`feature`时，注意用英语逗号隔开多项输入。
 
-      ![部件选择](./figure/kconfig部件选择.gif)
+      ![部件选择](figures/kconfig部件选择.gif)
 
 6. 保存所选配置
 
    按S键保存文件，可自定义输出文件名，默认为当前目录下`.config`文件。
 
-   ![保存配置](./figure/kconfig保存.PNG)
+   ![保存配置](figures/kconfig保存.PNG)
 
 7. 生成OpenHarmony Style配置文件
 

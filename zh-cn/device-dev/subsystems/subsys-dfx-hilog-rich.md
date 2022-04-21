@@ -1,19 +1,20 @@
 # HiLog开发指导
 
+
 ## 概述
 
 HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用打印日志，记录用户操作、系统运行状态等。
 
-本章节内容对标准系统类设备（参考内存≥128MB）适用。
+本章节内容对标准系统类设备（参考内存≥128MiB）适用。
 
 
 ## 接口说明
 
-**表1** C++、C的函数接口
+  **表1** C++、C的函数接口
 
-| **C++** |  | **C** | 
+| C++ |  | C | 
 | -------- | -------- | -------- |
-| **类** | **方法** | **方法/宏** | 
+| 类 | 方法 | 方法/宏 | 
 | HiLog | int&nbsp;Debug(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | HILOG_DEBUG(type,&nbsp;...) | 
 |  | int&nbsp;Info(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | HILOG_INFO(type,&nbsp;...) | 
 |  | int&nbsp;Warn(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | HILOG_WARN(type,&nbsp;...) | 
@@ -21,11 +22,11 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 |  | int&nbsp;Fatal(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | HILOG_FATAL(type,&nbsp;...) | 
 |  | NA | int&nbsp;HiLogPrint(LogType&nbsp;type,&nbsp;LogLevel&nbsp;level,&nbsp;unsigned&nbsp;int&nbsp;domain,&nbsp;const&nbsp;char&nbsp;\*tag,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | 
 |  | boolean&nbsp;IsLoggable(unsigned&nbsp;int&nbsp;domain,&nbsp;const&nbsp;char&nbsp;\*tag,&nbsp;LogLevel&nbsp;level) | bool&nbsp;HiLogIsLoggable(unsigned&nbsp;int&nbsp;domain,&nbsp;const&nbsp;char&nbsp;\*tag,&nbsp;LogLevel&nbsp;level) | 
-| HiLogLabel | struct&nbsp;HiLogLabel | LOG_DOMAIN<br/>LOG_TAG |
+| HiLogLabel | struct&nbsp;HiLogLabel | LOG_DOMAIN<br/>LOG_TAG | 
 
-**表3** C++接口说明函数参数和功能
+  **表2** C++接口说明函数参数和功能
 
-| **类** | **方法** | **描述** | 
+| 类 | 方法 | 描述 | 
 | -------- | -------- | -------- |
 | HiLog | int&nbsp;Debug(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | 功能：输出&nbsp;debug&nbsp;级别日志。<br/>输入参数：<br/>-&nbsp;label：用于标识输出日志的类型、业务领域、TAG。<br/>-&nbsp;format：常量格式字符串，包含参数类型、隐私标识。未加隐私标识的缺省为隐私参数。<br/>-&nbsp;fmt：格式化变参描述字符串。<br/>输出参数：无<br/>返回值：大于等于0，成功；小于0，失败。 | 
 |  | int&nbsp;Info(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | 功能：输出&nbsp;info&nbsp;级别日志。<br/>参数说明同&nbsp;Debug&nbsp;接口。 | 
@@ -42,12 +43,13 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 ### C使用示例
 
 1. 在.c源文件中，包含hilog头文件：
+     
    ```
    #include "hilog/log.h"
    ```
 
-   定义domain、tag：
-
+     定义domain、tag：
+     
    ```
    #undef LOG_DOMAIN
    #undef LOG_TAG
@@ -55,13 +57,14 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
    #define LOG_TAG "MY_TAG"
    ```
 
-   打印日志：
-
+     打印日志：
+     
    ```
    HILOG_INFO(LOG_CORE, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
    ```
 
 2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
+     
    ```
    external_deps = [ "hilog_native:libhilog" ]
    ```
@@ -70,12 +73,13 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 ### C++使用示例
 
 1. 在.h类定义头文件中，包含hilog头文件：
+     
    ```
    #include "hilog/log.h"
    ```
 
-   如果类头文件中需要日志打印，在头文件中类定义起始处 定义 LABEL：
-
+     如果类头文件中需要日志打印，在头文件中类定义起始处 定义 LABEL：
+     
    ```
    class MyClass {
    static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
@@ -83,20 +87,21 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
    }
    ```
 
-   如果类头文件中没有日志打印，在类实现文件中 定义 LABEL：
-
+     如果类头文件中没有日志打印，在类实现文件中 定义 LABEL：
+     
    ```
    using namespace OHOS::HiviewDFX;
    static constexpr HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
    ```
 
-   打印日志：
-
+     打印日志：
+     
    ```
    HiLog::Info(LABEL, "Failed to visit %{private}s, reason:%{public}d.", url, errno);
    ```
 
 2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
+     
    ```
    external_deps = [ "hiviewdfx:libhilog" ]
    ```

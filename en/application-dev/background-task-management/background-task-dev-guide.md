@@ -120,7 +120,7 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
 | MULTI_DEVICE_CONNECTION | 6 | Multi-device connection.| multiDeviceConnection |
 | WIFI_INTERACTION        | 7 | WLAN-related task (reserved).| wifiInteraction |
 | VOIP                    | 8 | Voice and video call (reserved).| voip |
-| TASK_KEEPING            | 9 | Computing task (for PC only).| taskKeeping |
+| TASK_KEEPING            | 9 | Computing task (for specific devices only).| taskKeeping |
 
 
 ## How to Develop

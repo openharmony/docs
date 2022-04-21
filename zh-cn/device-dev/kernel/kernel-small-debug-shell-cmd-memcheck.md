@@ -1,11 +1,5 @@
 # memcheck
 
-- [命令功能](#命令功能)
-- [命令格式](#命令格式)
-- [参数说明](#参数说明)
-- [使用指南](#使用指南)
-- [使用实例](#使用实例)
-- [输出说明](#输出说明)
 
 ## 命令功能
 
@@ -40,13 +34,15 @@ memcheck
 
 ## 输出说明
 
-**示例1：**当前没有内存越界
+  **示例1**：当前没有内存越界
+  
 ```
 OHOS # memcheck
 system memcheck over, all passed!
 ```
 
-**示例2：**出现内存越界
+  **示例2**：出现内存越界
+  
 ```
 [L0S DLnkCheckMenl 349, memory check
 stFreeNodeInfo.pstPrev:0x7e0d31f3 is out of legal mem range[0x80ba5f40, 0х83d00000]

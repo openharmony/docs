@@ -1,11 +1,9 @@
 # 内核概述
 
-- [简介](#简介)
-- [内核架构](#内核架构)
 
 ## 简介
 
-OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawei LiteOS内核演进发展的新一代内核，包含LiteOS-M和LiteOS-A两类内核。LiteOS-M内核主要应用于轻量系统，面向的MCU一般是百K级内存，可支持MPU隔离，业界类似的内核有FreeRTOS或ThreadX等；LiteOS-A内核主要应用于小型系统，面向设备一般是M级内存，可支持MMU隔离，业界类似的内核有Zircon或Darwin等。
+OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawei LiteOS内核演进发展的新一代内核，包含LiteOS-M和LiteOS-A两类内核。LiteOS-M内核主要应用于轻量系统，面向的MCU（Micro Processor Unit）一般是百K级内存，可支持MPU（Memory Protection Unit）隔离，业界类似的内核有FreeRTOS或ThreadX等；LiteOS-A内核主要应用于小型系统，面向设备一般是M级内存，可支持MMU（Memory Management Unit）隔离，业界类似的内核有Zircon或Darwin等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > OpenHarmony针对不同量级的系统，分别使用了不同形态的内核，小型系统支持LiteOS和Linux，本开发指南适用于LiteOS-A内核，linux内核的相关操作请参考[Linux内核概述](../kernel/kernel-standard-overview.md)。
@@ -29,8 +27,8 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 轻量级内核主要由基础内核、扩展组件、HDF框架、POSIX接口组成。轻量级内核的文件系统、网络协议等扩展功能（没有像微内核那样运行在用户态）运行在内核地址空间，主要考虑组件之间直接函数调用比进程间通信或远程过程调用要快得多。
 
-**图1** OpenHarmony LiteOS-A内核架构图
-![zh-cn_image_0000001160018656](figures/zh-cn_image_0000001160018656.png)
+  **图1** OpenHarmony LiteOS-A内核架构图
+  ![zh-cn_image_0000001160018656](figures/zh-cn_image_0000001160018656.png)
 
 - 基础内核主要包括内核的基础机制，如调度、内存管理、中断异常等
 
@@ -102,7 +100,7 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 - 基于对象的驱动、设备管理
 
-- HDI（Hardware Driver Interface）统一硬件接口
+- HDI（Hardware Device Interface）统一硬件接口
 
 - 支持电源管理、PnP
 

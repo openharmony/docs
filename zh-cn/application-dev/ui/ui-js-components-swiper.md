@@ -159,7 +159,11 @@ text{
 swiper{
   width:  500px;
   height: 500px;
-  border-radius: 250px;indicator-color: white;  indicator-selected-color: blue;  indicator-size: 40px;  indicator-top: 100px;
+  border-radius: 250px;
+  indicator-color: white;
+  indicator-selected-color: blue;
+  indicator-size: 40px;
+  indicator-top: 100px;
   overflow: hidden ;
 }
 .item{
@@ -330,7 +334,8 @@ swiper{
   transform: scale(0.5);
 }
 .actived{
-  transform: scale(1);border: 1px solid #b20937ea;
+  transform: scale(1);
+  border: 1px solid #b20937ea;
 }
 ```
 
@@ -358,3 +363,10 @@ export default {
 ```
 
 ![zh-cn_image_0000001263359599](figures/zh-cn_image_0000001263359599.gif)
+
+
+## 相关实例
+
+针对Swiper开发，有以下相关实例可供参考：
+
+- [`Swiper`：内容滑动容器（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)

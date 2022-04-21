@@ -1,19 +1,5 @@
 # LMS调测
 
-- [基本概念](#基本概念)
-- [运行机制](#运行机制)
-- [接口说明](#接口说明)
-  - [内核态](#内核态)
-  - [用户态](#用户态)
-- [开发指导](#开发指导)
-  - [内核态开发流程](#内核态开发流程)
-- [内核态编程实例](#内核态编程实例)
-- [内核态示例代码](#内核态示例代码)
-  - [内核态结果验证](#内核态结果验证)
-  - [用户态开发流程](#用户态开发流程)
-  - [用户态编程实例](#用户态编程实例)
-  - [用户态示例代码](#用户态示例代码)
-  - [用户态结果验证](#用户态结果验证)
 
 ## 基本概念
 
@@ -50,7 +36,7 @@ LMS使用影子内存映射标记系统内存的状态，一共可标记为三�
 
 OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信息可以查看[API](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_lms.h)参考。
 
-**表1** LMS模块接口说明
+  **表1** LMS模块接口说明
 
 | 功能分类 | 接口名 | 描述 | 
 | -------- | -------- | -------- |
@@ -75,7 +61,7 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 1. 配置LMS模块相关宏。
    配置LMS控制宏LOSCFG_KERNEL_LMS，默认关，在kernel/liteos_a目录下执行 make update_config命令配置"Kernel-&gt;Enable Lite Memory Sanitizer"中打开YES：
 
-   | 宏 | menuconfig选项 | 含义 | 取值 | 
+     | 宏 | menuconfig选项 | 含义 | 取值 | 
    | -------- | -------- | -------- | -------- |
    | LOSCFG_KERNEL_LMS | Enable&nbsp;Lms&nbsp;Feature | Lms模块的裁剪开关 | YES/NO | 
    | LOSCFG_LMS_MAX_RECORD_POOL_NUM | Lms&nbsp;check&nbsp;pool&nbsp;max&nbsp;num | LMS支持的检测内存池最大个数 | INT | 
@@ -86,7 +72,8 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 2. 在被检测模块的编译脚本中，修改编译选项。
    增加LMS检测编译选项-fsanitize=kernel-address。为避免编译器优化，增加-O0编译选项。
 
-   gcc与clang编译选项存在差异，参照如下示例：
+     gcc与clang编译选项存在差异，参照如下示例：
+     
    ```
    if ("$ohos_build_compiler_specified" == "gcc") {
        cflags_c = [
@@ -123,7 +110,8 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 
 ## 内核态示例代码
 
-实例代码如下：
+  实例代码如下：
+  
 ```
 #define PAGE_SIZE       (0x1000U)
 #define INDEX_MAX       20
@@ -183,7 +171,8 @@ LOS_MODULE_INIT(Example_Lms_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 
 ### 内核态结果验证
 
-输出结果如下：
+  输出结果如下：
+  
 ```
 ######LmsTestOsmallocOverflow start ######
 [ERR][KProcess:LmsTestCaseTask]*  Kernel Address Sanitizer Error Detected Start *
@@ -270,6 +259,7 @@ str[ 0]=0x 0
 
 在待检测的app编译脚本中，添加如下参数即可， 完整示例可参见/kernel/liteos_a/apps/lms/BUILD.gn。
 
+  
 ```
 if ("$ohos_build_compiler_specified" == "gcc") {
         cflags_c = [
@@ -323,7 +313,8 @@ if ("$ohos_build_compiler_specified" == "gcc") {
 
 ### 用户态示例代码
 
-实例代码如下：
+  实例代码如下：
+  
 ```
 static void BufWriteTest(void *buf, int start, int end)
 {
@@ -368,7 +359,8 @@ int main(int argc, char * const * argv)
 
 ### 用户态结果验证
 
-输出结果如下：
+  输出结果如下：
+  
 ```
 *  Lite Memory Sanitizer Error Detected  *
 Heap buffer overflow error detected!

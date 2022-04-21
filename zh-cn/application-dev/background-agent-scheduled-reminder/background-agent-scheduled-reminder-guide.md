@@ -139,8 +139,12 @@ interface LocalDateTime：时间信息实例
 1. 定义一个倒计时实例
    ```
    import reminderAgent from '@ohos.reminderAgent';
-   import notification from '@ohos.notification';export default {
-       timer: {
+   import notification from '@ohos.notification';
+   export default {
+       // JS工程写法：
+       // timer: {
+       // eTS工程写法：
+       let timer : reminderAgent.ReminderRequestTimer = {
            reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
            triggerTimeInSeconds: 10,
            actionButton: [
@@ -150,12 +154,12 @@ interface LocalDateTime：时间信息实例
                }
            ],
            wantAgent: {
-               pkgName: "com.example.phone",
-               abilityName: "com.example.phone.MainAbility"
+               pkgName: "com.example.device",
+               abilityName: "com.example.device.MainAbility"
            },
            maxScreenWantAgent: {
-               pkgName: "com.example.phone",
-               abilityName: "com.example.phone.MainAbility"
+               pkgName: "com.example.device",
+               abilityName: "com.example.device.MainAbility"
            },
            title: "this is title",
            content: "this is content",
@@ -186,7 +190,10 @@ interface LocalDateTime：时间信息实例
 日历实例定义：
 
 ```
-calendar: {
+// JS工程写法：
+// calendar: {
+// eTS工程写法：
+let calendar : reminderAgent.ReminderRequestCalendar = {
     reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
     dateTime: {
         year: 2050,
@@ -209,12 +216,12 @@ calendar: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
@@ -231,7 +238,10 @@ calendar: {
 闹钟实例定义：
 
 ```
-alarm: {
+// JS工程写法：
+// alarm: {
+// eTS工程写法：
+let alarm : reminderAgent.ReminderRequestAlarm = {
     reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
     hour: 11,
     minute: 14,
@@ -247,12 +257,12 @@ alarm: {
         },
     ],
     wantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     maxScreenWantAgent: {
-        pkgName: "com.example.phone",
-        abilityName: "com.example.phone.MainAbility"
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
     },
     ringDuration: 5,
     snoozeTimes: 2,
@@ -265,3 +275,11 @@ alarm: {
     slotType: notification.SlotType.SOCIAL_COMMUNICATION
 }
 ```
+
+
+## 相关实例
+
+基于后台代理提醒开发，有以下相关实例可供参考：
+
+- [`AlarmClock`：后台代理提醒（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
+

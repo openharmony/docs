@@ -280,7 +280,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 | Name    | Type                                      | Mandatory  | Description                                    |
 | ------- | ---------------------------------------- | ---- | -------------------------------------- |
-| options | [EnableAlertBeforeBackPageOptions](#enableAlertbeforebackpageoptions6) | Yes   | For details, see **EnableAlertBeforeBackPageOptions**.|
+| options | [EnableAlertBeforeBackPageOptions](#enablealertbeforebackpageoptions6) | Yes   | For details, see **EnableAlertBeforeBackPageOptions**.|
 
 **Example**
 
