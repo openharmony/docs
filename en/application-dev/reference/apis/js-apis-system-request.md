@@ -53,13 +53,15 @@ Uploads files.
 | name | string | Yes | Name&nbsp;of&nbsp;the&nbsp;form&nbsp;element |
 | value | string | Yes | Value&nbsp;of&nbsp;the&nbsp;form&nbsp;element |
 
-The following values will be returned when the files are successfully uploaded.
+When the files are successfully uploaded, the following values will be returned.
 
 | Name | Type | Description |
 | -------- | -------- | -------- |
 | code | number | HTTP&nbsp;status&nbsp;code&nbsp;returned&nbsp;by&nbsp;the&nbsp;server. |
 | data | string | Content&nbsp;returned&nbsp;by&nbsp;the&nbsp;server.&nbsp;The&nbsp;value&nbsp;type&nbsp;is&nbsp;determined&nbsp;by&nbsp;the&nbsp;type&nbsp;in&nbsp;the&nbsp;returned&nbsp;headers. |
 | headers | Object | Headers&nbsp;returned&nbsp;by&nbsp;the&nbsp;server. |
+
+When the files fail to be uploaded, an HTTP status code is returned in **code** of **data**.
 
 **Example**
 
