@@ -8,7 +8,7 @@
 
 - 搜包服务器：即支持搜包服务的通过TCP连接并支持SSL协议的服务器，本概述提及的升级服务示例服务器即是符合要求的搜包服务器之一。
 
-- 下载服务器：普通的HTTP服务器即可满足下载服务器的要求，可以参考Nginx和Tomcat搭建，并将升级包放在对应路径下。
+- 下载服务器：普通的HTTP服务器即可满足下载服务器的要求。
 
 - update.serverip.search：系统参数，指升级服务(UpdateService)侧配置的搜包服务器IP地址，默认值：127.0.0.1。
 
@@ -27,10 +27,10 @@
         "size": 1234567,
         "packageType": 1,
         "url": "http://serverAddressSample/packageNameSample.fileTypeSample",
-        "descriptPackageId": "packageNameSample.fileTypeSample"
+        "descriptPackageId": "abcdefg1234567ABCDEFG"
     }],
     "descriptInfo": [{
-        "descriptPackageId": "packageNameSample.fileTypeSample",
+        "descriptPackageId": "abcdefg1234567ABCDEFG",
         "content": "This package is used for update."
     }]
 }
