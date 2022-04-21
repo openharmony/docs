@@ -1,6 +1,6 @@
 # Data Request
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>![](public_sys-resources/icon-note.gif) **NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -224,7 +224,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 Registers an observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>![](public_sys-resources/icon-note.gif) **NOTE**
 > This API has been deprecated. You are advised to use [on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8) instead.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -255,7 +255,7 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 
 Unregisters the observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>![](public_sys-resources/icon-note.gif) **NOTE**
 >
 >1. This API has been deprecated. You are advised to use [off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8) instead.
 >
@@ -306,7 +306,7 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 
 Unregisters the observer for HTTP Response Header events.
 
->![](public_sys-resources/icon-note.gif) **NOTE:**
+>![](public_sys-resources/icon-note.gif) **NOTE**
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
