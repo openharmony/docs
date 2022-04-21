@@ -25,12 +25,11 @@
 ```js
 import media from '@ohos.multimedia.media'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
-let testFdNumber;
-
-// pathName是传入的录制文件名，例如：01.mp4，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp4
-// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
-async function getFd(pathName) {
+export class VideoRecorderDemo {
+  private testFdNumber; // 用于保存fd地址
+  // pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Video/01.mp4
+  // 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+  async getFd(pathName) {
     let displayName = pathName;
     const mediaTest = mediaLibrary.getMediaLibrary();
     let fileKeyObj = mediaLibrary.FileKey;
@@ -38,111 +37,116 @@ async function getFd(pathName) {
     let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
     let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
     if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
-        let fdNumber = await fileAsset[0].open('Rw');
-        fdNumber = "fd://" + fdNumber.toString();
-        testFdNumber = fdNumber;
+      let args = dataUri.id.toString();
+      let fetchOp = {
+        selections : fileKeyObj.ID + "=?",
+        selectionArgs : [args],
+      }
+      let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+      let fileAsset = await fetchFileResult.getAllObject();
+      let fdNumber = await fileAsset[0].open('Rw');
+      this.testFdNumber = "fd://" + fdNumber.toString();
     }
-}
+  }
 
-await getFd('01.mp4');
+  // 当发生错误上上报的错误回调接口
+  failureCallback(error) {
+      console.info('error happened, error name is ' + error.name);
+      console.info('error happened, error code is ' + error.code);
+      console.info('error happened, error message is ' + error.message);
+  }
 
-let videoProfile = {
-    audioBitrate : 48000,
-    audioChannels : 2,
-    audioCodec : 'audio/mp4a-latm',
-    audioSampleRate : 48000,
-    fileFormat : 'mp4',
-    videoBitrate : 48000,
-    videoCodec : 'video/mp4v-es',
-    videoFrameWidth : 640,
-    videoFrameHeight : 480,
-    videoFrameRate : 30
-}
+  // 当发生异常时，系统调用的错误回调接口
+  catchCallback(error) {
+      console.info('catch error happened, error name is ' + error.name);
+      console.info('catch error happened, error code is ' + error.code);
+      console.info('catch error happened, error message is ' + error.message);
+  }
 
-let videoConfig = {
-    audioSourceType : 1,
-    videoSourceType : 0,
-    profile : videoProfile,
-    url : testFdNumber, // testFdNumber由getFd生成
-    orientationHint : 0,
-    location : { latitude : 30, longitude : 130 },
-}
-	
-// 当发生错误上上报的错误回调接口
-function failureCallback(error) {
-    console.info('error happened, error name is ' + error.name);
-    console.info('error happened, error code is ' + error.code);
-    console.info('error happened, error message is ' + error.message);
-}
-	
-// 当发生异常时，系统调用的错误回调接口
-function catchCallback(error) {
-    console.info('catch error happened, error name is ' + error.name);
-    console.info('catch error happened, error code is ' + error.code);
-    console.info('catch error happened, error message is ' + error.message);
-}
-	
-let videoRecorder = null; // videoRecorder空对象在createVideoRecorder成功后赋值
-let surfaceID = null; // 用于保存getInputSurface返回的surfaceID
+  async videoRecorderDemo() {
+    let videoRecorder = null; // videoRecorder空对象在createVideoRecorder成功后赋值
+    let surfaceID = null; // 用于保存getInputSurface返回的surfaceID
+    // 获取需要录制的视频的fd地址
+    await this.getFd('01.mp4');
+    // 录制相关参数配置
+    let videoProfile = {
+      audioBitrate : 48000,
+      audioChannels : 2,
+      audioCodec : 'audio/mp4a-latm',
+      audioSampleRate : 48000,
+      fileFormat : 'mp4',
+      videoBitrate : 48000,
+      videoCodec : 'video/mp4v-es',
+      videoFrameWidth : 640,
+      videoFrameHeight : 480,
+      videoFrameRate : 30
+    }
 
-// 创建videoRecorder对象
-await media.createVideoRecorder().then((recorder) => {
-    console.info('case createVideoRecorder called');
-    if (typeof (recorder) != 'undefined') {
+    let videoConfig = {
+      audioSourceType : 1,
+      videoSourceType : 0,
+      profile : videoProfile,
+      url : this.testFdNumber, // testFdNumber由getFd生成
+      orientationHint : 0,
+      location : { latitude : 30, longitude : 130 },
+    }
+    // 创建videoRecorder对象
+    await media.createVideoRecorder().then((recorder) => {
+      console.info('case createVideoRecorder called');
+      if (typeof (recorder) != 'undefined') {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
-    } else {
+      } else {
         console.info('createVideoRecorder failed');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 获取surfaceID并保存下来传递给camera相关接口
-await videoRecorder.getInputSurface().then((surface) => {
-    console.info('getInputSurface success');
-    surfaceID = surface;
-}, failureCallback).catch(catchCallback);
-	
-// 视频录制依赖相机相关接口，以下需要先调用相机起流接口后才能继续执行
+    // 调用prepare完成视频录制前的准备工作
+    await videoRecorder.prepare(videoConfig).then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 视频录制启动接口
-await videoRecorder.start().then(() => {
-    console.info('start success');
-}, failureCallback).catch(catchCallback);
+    // 获取surfaceID并保存下来传递给camera相关接口
+    await videoRecorder.getInputSurface().then((surface) => {
+      console.info('getInputSurface success');
+      surfaceID = surface;
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用pause接口时需要暂停camera出流
-await videoRecorder.pause().then(() => {
-    console.info('pause success');
-}, failureCallback).catch(catchCallback);
+    // 视频录制依赖相机相关接口，以下需要先调用相机起流接口后才能继续执行，具体的相机接口调用请参考sample用例
+    // 视频录制启动接口
+    await videoRecorder.start().then(() => {
+      console.info('start success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用resume接口时需要恢复camera出流
-await videoRecorder.resume().then(() => {
-    console.info('resume success');
-}, failureCallback).catch(catchCallback);
+    // 调用pause接口时需要暂停camera出流
+    await videoRecorder.pause().then(() => {
+      console.info('pause success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 停止camera出流后，停止视频录制
-await videoRecorder.stop().then(() => {
-    console.info('stop success');
-}, failureCallback).catch(catchCallback);
+    // 调用resume接口时需要恢复camera出流
+    await videoRecorder.resume().then(() => {
+      console.info('resume success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 重置录制相关配置
-await videoRecorder.reset().then(() => {
-    console.info('reset success');
-}, failureCallback).catch(catchCallback);
+    // 停止camera出流后，停止视频录制
+    await videoRecorder.stop().then(() => {
+      console.info('stop success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 释放视频录制相关资源并释放camera对象相关资源
-await videoRecorder.release().then(() => {
-    console.info('release success');
-}, failureCallback).catch(catchCallback);
+    // 重置录制相关配置
+    await videoRecorder.reset().then(() => {
+      console.info('reset success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 相关对象置null
-videoRecorder = null;
-surfaceID = null;
+    // 释放视频录制相关资源并释放camera对象相关资源
+    await videoRecorder.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 相关对象置null
+    videoRecorder = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
 

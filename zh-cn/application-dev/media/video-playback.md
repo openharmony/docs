@@ -43,141 +43,135 @@
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
-Xcomponent创建方法可参考：[Xcomponent创建方法](#xcomponent创建方法)
+Xcomponent创建方法可参考：[Xcomponent创建方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md)
 
 *注意：SetSurface需要在设置url和Prepare之间
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
-let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
-
-// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// 函数调用发生错误时用于上报错误信息
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // 函数调用发生错误时用于上报错误信息
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// 当函数调用发生异常时用于上报错误信息
-function catchCallback(error) {
+  // 当函数调用发生异常时用于上报错误信息
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// 用于打印视频轨道信息
-function printfDescription(obj) {
+  // 用于打印视频轨道信息
+  printfDescription(obj) {
     for (let item in obj) {
-        let property = obj[item];
-        console.info('key is ' + item);
-        console.info('value is ' + property);
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
     }
-}
+  }
 
-// 调用createVideoPlayer接口返回videoPlayer实例对象
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    // 调用createVideoPlayer接口返回videoPlayer实例对象
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // 设置播放源
+    videoPlayer.url = fdPath;
 
-// 用户选择视频设置fd(本地播放)
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // 设置surfaceID用于显示视频画面
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // 调用prepare完成播放前准备工作
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 设置surfaceID用于显示视频画面
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // 调用play接口正式开始播放
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用prepare完成播放前准备工作
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // 暂停播放
+    await videoPlayer.pause().then(() => {
+      console.info('pause success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用play接口正式开始播放
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
-
-// 暂停播放
-await videoPlayer.pause().then(() => {
-    console.info('pause success');
-}, failureCallback).catch(catchCallback);
-
-// 通过promise回调方式获取视频轨道信息
-let arrayDescription;
-await videoPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    // 通过promise回调方式获取视频轨道信息
+    let arrayDescription;
+    await videoPlayer.getTrackDescription().then((arrlist) => {
+      if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
-    } else {
+      } else {
         console.log('video getTrackDescription fail');
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+
+    for (let i = 0; i < arrayDescription.length; i++) {
+      this.printfDescription(arrayDescription[i]);
     }
-}, failureCallback).catch(catchCallback);
 
-for (let i = 0; i < arrayDescription.length; i++) {
-    printfDescription(arrayDescription[i]);
+    // 跳转播放时间到50s位置，具体入参意义请参考接口文档
+    let seekTime = 50000;
+    await videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+      console.info('seek success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 音量设置接口，具体入参意义请参考接口文档
+    let volume = 0.5;
+    await videoPlayer.setVolume(volume).then(() => {
+      console.info('setVolume success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 倍速设置接口，具体入参意义请参考接口文档
+    let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+    await videoPlayer.setSpeed(speed).then(() => {
+      console.info('setSpeed success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 结束播放
+    await videoPlayer.stop().then(() => {
+      console.info('stop success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 重置播放配置
+    await videoPlayer.reset().then(() => {
+      console.info('reset success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 释放播放资源
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // 相关对象置undefined
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
 }
-
-// 跳转播放时间到50s位置，具体入参意义请参考接口文档
-let seekTime = 50000;
-await videoPlayer.seek(seekTime, media.SeekMode._NEXT_SYNC).then((seekDoneTime) => {
-    console.info('seek success');
-}, failureCallback).catch(catchCallback);
-
-// 音量设置接口，具体入参意义请参考接口文档
-let volume = 0.5;
-await videoPlayer.setVolume(volume).then(() => {
-    console.info('setVolume success');
-}, failureCallback).catch(catchCallback);
-
-// 倍速设置接口，具体入参意义请参考接口文档
-let speed = media.PlaybackRateMode.SPEED_FORWARD_2_00_X;
-await videoPlayer.setSpeed(speed).then(() => {
-    console.info('setSpeed success');
-}, failureCallback).catch(catchCallback);
-
-// 结束播放
-await videoPlayer.stop().then(() => {
-    console.info('stop success');
-}, failureCallback).catch(catchCallback);
-
-// 重置播放配置
-await videoPlayer.reset().then(() => {
-    console.info('reset success');
-}, failureCallback).catch(catchCallback);
-
-// 释放播放资源
-await videoPlayer.release().then(() => {
-    console.info('release success');
-}, failureCallback).catch(catchCallback);
-
-// 相关对象置undefined
-videoPlayer = undefined;
-surfaceID = undefined;
 ```
 
 ### 正常播放场景
@@ -185,86 +179,86 @@ surfaceID = undefined;
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
-let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
-
-// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// 函数调用发生错误时用于上报错误信息
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // 函数调用发生错误时用于上报错误信息
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// 当函数调用发生异常时用于上报错误信息
-function catchCallback(error) {
+  // 当函数调用发生异常时用于上报错误信息
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// 设置'playbackCompleted'事件回调，播放完成触发
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // 用于打印视频轨道信息
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接：
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// 调用createVideoPlayer接口返回videoPlayer实例对象
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // 调用createVideoPlayer接口返回videoPlayer实例对象
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // 设置播放源
+    videoPlayer.url = fdPath;
 
-// 设置事件回调
-SetCallBack(videoPlayer);
+    // 设置surfaceID用于显示视频画面
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 用户选择视频设置fd(本地播放)
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // 调用prepare完成播放前准备工作
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // 调用play接口正式开始播放
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 设置surfaceID用于显示视频画面
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // 结束播放
+    await videoPlayer.stop().then(() => {
+      console.info('stop success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用prepare完成播放前准备工作
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // 释放播放资源
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用play接口正式开始播放
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // 相关对象置undefined
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
 
 ### 切视频场景
@@ -272,122 +266,110 @@ await videoPlayer.play().then(() => {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
-let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
-
-// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// 函数调用发生错误时用于上报错误信息
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // 函数调用发生错误时用于上报错误信息
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// 当函数调用发生异常时用于上报错误信息
-function catchCallback(error) {
+  // 当函数调用发生异常时用于上报错误信息
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// 设置'playbackCompleted'事件回调，播放完成触发
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // 用于打印视频轨道信息
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接：
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// 调用createVideoPlayer接口返回videoPlayer实例对象
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // 调用createVideoPlayer接口返回videoPlayer实例对象
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // 设置播放源
+    videoPlayer.url = fdPath;
 
-// 设置事件回调
-SetCallBack(videoPlayer);
+    // 设置surfaceID用于显示视频画面
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 用户选择视频设置fd(本地播放)
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // 调用prepare完成播放前准备工作
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // 调用play接口正式开始播放
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 设置surfaceID用于显示视频画面
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // 重置播放配置
+    await videoPlayer.reset().then(() => {
+      console.info('reset success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 调用prepare完成播放前准备工作
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // 获取下一个视频fd地址
+    fdPath = 'fd://'
+    await fileIO.open(nextPath).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    // 设置第二个视频播放源
+    videoPlayer.url = fdPath;
 
-// 调用play接口正式开始播放
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // 调用prepare完成播放前准备工作
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 播放一段时间后，下发切视频指令
-// 重置播放配置
-await videoPlayer.reset().then(() => {
-    console.info('reset success');
-}, failureCallback).catch(catchCallback);
+    // 调用play接口正式开始播放
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 用户选择视频设置fd(本地播放)
-let fdNextPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
-await fileIO.open(nextPath).then(fdNumber) => {
-   fdNextPath = fdNextPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdNextPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // 释放播放资源
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdNextPath;
-
-// 设置surfaceID用于显示视频画面
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
-
-// 调用prepare完成播放前准备工作
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
-
-// 调用play接口正式开始播放
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // 相关对象置undefined
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
 
 ### 单个视频循环场景
@@ -395,100 +377,88 @@ await videoPlayer.play().then(() => {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // 用于保存createVideoPlayer创建的对象
-let surfaceID = undefined; // 用于保存Xcomponent接口返回的surfaceID
-
-// 调用Xcomponent的接口用于获取surfaceID，并保存在surfaceID变量中，该接口由XComponent组件默认加载，非主动调用
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// 函数调用发生错误时用于上报错误信息
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // 函数调用发生错误时用于上报错误信息
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// 当函数调用发生异常时用于上报错误信息
-function catchCallback(error) {
+  // 当函数调用发生异常时用于上报错误信息
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// 设置'playbackCompleted'事件回调，播放完成触发
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // 用于打印视频轨道信息
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  sleep(time) {
+    for(let t = Date.now(); Date.now() - t <= time;);
+  }
+
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接：
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// 调用createVideoPlayer接口返回videoPlayer实例对象
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // 调用createVideoPlayer接口返回videoPlayer实例对象
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // 设置播放源
+    videoPlayer.url = fdPath;
 
-// 设置事件回调
-SetCallBack(videoPlayer);
+    // 设置surfaceID用于显示视频画面
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// 用户选择视频设置fd(本地播放)
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // 调用prepare完成播放前准备工作
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
+    // 设置循环播放属性
+    videoPlayer.loop = true;
+    // 调用play接口正式开始播放
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
+    // 进度条执行到末尾后，在播放放3秒钟，因为设置了循环播放，所以当进度条执行到末尾后会从头开始播放
+    await videoPlayer.seek(videoPlayer.duration, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+      console.info('seek duration success');
+    }, this.failureCallback).catch(this.catchCallback);
+    this.sleep(3000);
+    // 释放播放资源
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
-
-// 设置surfaceID用于显示视频画面
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
-
-// 调用prepare完成播放前准备工作
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
-
-// 设置循环播放属性
-videoPlayer.loop = true;
-
-// 调用play接口正式开始播放
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
-```
-
-### Xcomponent创建方法
-
-播放视频中获取surfaceID依赖了Xcomponent，需要创建一个和xxx.js同名的xxx.hml文件，xxx.hml里面需要添加如下代码：
-
-```js
-<xcomponent id = 'Xcomponent'
-      if = "{{isFlush}}" // 刷新surfaceID，isFlush赋值false再赋值true为一次刷新，会主动再次加载LoadXcomponent获取新的surfaceID
-      type = 'surface'
-      onload = 'LoadXcomponent' // 默认加载接口
-      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // 设置窗口宽高等属性
-</xcomponent>
+    // 相关对象置undefined
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```

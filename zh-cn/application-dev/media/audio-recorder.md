@@ -25,46 +25,49 @@
 ```js
 import media from '@ohos.multimedia.media'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+export class AudioRecorderDemo {
+  private testFdNumber; // 用于保存fd地址
 
-let testFdNumber;
+  // 设置音频录制相关回调函数
+  setCallBack(audioRecorder) {
+    audioRecorder.on('prepare', () => {              					       	// 设置'prepare'事件回调
+      console.log('prepare success');
+      audioRecorder.start();                                         			// 调用start方法开始录制，并触发start回调
+    });
+    audioRecorder.on('start', () => {    		     						   	// 设置'start'事件回调
+      console.log('audio recorder start success');
+      audioRecorder.pause();                                         			// 调用pause方法暂停录制，并触发pause回调
+    });
+    audioRecorder.on('pause', () => {    		     							// 设置'pause'事件回调
+      console.log('audio recorder pause success');
+      audioRecorder.resume();                                        			// 调用resume方法恢复录制，并触发resume回调
+    });
+    audioRecorder.on('resume', () => {    		     							// 设置'resume'事件回调
+      console.log('audio recorder resume success');
+      audioRecorder.stop();                                          			// 调用stop方法停止录制，并触发stop回调
+    });
+    audioRecorder.on('stop', () => {    		     							// 设置'stop'事件回调
+      console.log('audio recorder stop success');
+      audioRecorder.reset();                                         			// 调用reset方法重置录制，并触发reset回调
+    });
+    audioRecorder.on('reset', () => {    		     							// 设置'reset'事件回调
+      console.log('audio recorder reset success');
+      audioRecorder.release();                                       			// 调用release方法，释放资源，并触发release回调
+    });
+    audioRecorder.on('release', () => {    		     							// 设置'release'事件回调
+      console.log('audio recorder release success');
+      audioRecorder = undefined;
+    });
+    audioRecorder.on('error', (error) => {             							// 设置'error'事件回调
+      console.info(`audio error called, errName is ${error.name}`);
+      console.info(`audio error called, errCode is ${error.code}`);
+      console.info(`audio error called, errMessage is ${error.message}`);
+    });
+  }
 
-function SetCallBack(audioRecorder) {
-    audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
-        console.log('prepare success');    
-        // 录制界面可切换至已准备好，可点击录制按钮进行录制
-    });
-    audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
-    	console.log('audio recorder start success');
-        // 将录制按钮切换至可暂停状态
-    });
-    audioRecorder.on('pause', () => {    		     								// 设置'pause'事件回调
-        console.log('audio recorder pause success');
-        // 将录制按钮切换至可录制状态
-    });
-    audioRecorder.on('resume', () => {    		     								// 设置'resume'事件回调
-        console.log('audio recorder resume success');
-        // 将录制按钮切换至可暂停状态
-    });
-    audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
-        console.log('audio recorder stop success');
-    });
-    audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
-        console.log('audio recorder release success');
-    });
-    audioRecorder.on('reset', () => {    		     								// 设置'reset'事件回调
-        console.log('audio recorder reset success');
-        // 需要重新设置录制参数才能再次录制
-    });
-    audioRecorder.on('error', (error) => {             								// 设置'error'事件回调
-        console.info(`audio error called, errName is ${error.name}`);
-        console.info(`audio error called, errCode is ${error.code}`);
-        console.info(`audio error called, errMessage is ${error.message}`);
-    });
-}
-
-// pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp3
-// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
-async function getFd(pathName) {
+  // pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Video/01.mp3
+  // 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+  async getFd(pathName) {
     let displayName = pathName;
     const mediaTest = mediaLibrary.getMediaLibrary();
     let fileKeyObj = mediaLibrary.FileKey;
@@ -72,49 +75,37 @@ async function getFd(pathName) {
     let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
     let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
     if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
-        let fdNumber = await fileAsset[0].open('Rw');
-        fdNumber = "fd://" + fdNumber.toString();
-        testFdNumber = fdNumber;
+      let args = dataUri.id.toString();
+      let fetchOp = {
+        selections : fileKeyObj.ID + "=?",
+        selectionArgs : [args],
+      }
+      let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+      let fileAsset = await fetchFileResult.getAllObject();
+      let fdNumber = await fileAsset[0].open('Rw');
+      this.testFdNumber = "fd://" + fdNumber.toString();
     }
+  }
+
+  async audioRecorderDemo() {
+    // 1.创建实例
+    let audioRecorder = media.createAudioRecorder();
+    // 2.设置回调
+    this.setCallBack(audioRecorder);
+    await this.getFd('01.mp3'); 							// 调用getFd方法获取需要录制文件的fd地址
+    // 3.设置录制参数
+    let audioRecorderConfig = {
+      audioEncodeBitRate : 22050,
+      audioSampleRate : 22050,
+      numberOfChannels : 2,
+      uri : this.testFdNumber,                             	// testFdNumber由getFd生成
+      location : { latitude : 30, longitude : 130},
+      audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
+      fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
+    }
+    audioRecorder.prepare(audioRecorderConfig); 			// 调用prepare方法，触发prepare回调函数
+  }
 }
-
-await getFd('01.mp3');
-
-// 1.创建实例
-let audioRecorder = media.createAudioRecorder();    
-// 2.设置回调
-SetCallBack(audioRecorder);    
-// 3.设置录制参数
-let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC ,
-    audioEncodeBitRate : 22050,
-    audioSampleRate : 22050,
-    numberOfChannels : 2,
-    format : media.AudioOutputFormat.AAC_ADTS,
-    uri : testFdNumber,                             // testFdNumber由getFd生成
-    location : { latitude : 30, longitude : 130},
-}																					
-audioRecorder.prepare(audioRecorderConfig);
-// 4.开始录制
-audioRecorder.start();                            	// 需等待'prepare'事件回调完成后，才可调用start进行录制，触发'start'事件回调
-// 5.暂停录制
-audioRecorder.pause();                             	// 需等待'start'事件回调完成后，才可调用pause进行暂停，触发'pause'事件回调
-// 6.恢复录制
-audioRecorder.resume();                             // 需等待'pause'事件回调完成后，才可调用resume进行录制，触发'resume'事件回调
-// 7.停止录制
-audioRecorder.stop();                             	// 需等待'start'或'resume'事件回调完成后，才可调用stop进行暂停，触发'stop'事件回调
-// 8.重置录制
-audioRecorder.reset();                              // 触发'reset'事件回调后，重新进行prepare，才可重新录制
-// 9.释放资源
-audioRecorder.release();                           	// audioRecorder资源被销毁
-audioRecorder = undefined;
 ```
 
 ### 正常录制场景
@@ -124,29 +115,37 @@ audioRecorder = undefined;
 ```js
 import media from '@ohos.multimedia.media'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+export class AudioRecorderDemo {
+  private testFdNumber; // 用于保存fd地址
 
-let testFdNumber;
-
-function SetCallBack(audioRecorder) {
-    audioRecorder.on('prepare', () => {              								// 设置'prepare'事件回调
-        console.log('prepare success');    
-        // 录制界面可切换至已准备好，可点击录制按钮进行录制
+  // 设置音频录制相关回调函数
+  setCallBack(audioRecorder) {
+    audioRecorder.on('prepare', () => {              					       // 设置'prepare'事件回调
+      console.log('prepare success');
+      audioRecorder.start();                                         			// 调用start方法开始录制，并触发start回调
     });
-    audioRecorder.on('start', () => {    		     								// 设置'start'事件回调
-    	console.log('audio recorder start success');
-        // 将录制按钮切换至可暂停状态
-    });  
-    audioRecorder.on('stop', () => {    		     								// 设置'stop'事件回调
-        console.log('audio recorder stop success');
-    });    
-    audioRecorder.on('release', () => {    		     								// 设置'release'事件回调
-        console.log('audio recorder release success');
-    });    
-}
+    audioRecorder.on('start', () => {    		     							// 设置'start'事件回调
+      console.log('audio recorder start success');
+      audioRecorder.stop();                                          			// 调用stop方法停止录制，并触发stop回调
+    });
+    audioRecorder.on('stop', () => {    		     							// 设置'stop'事件回调
+      console.log('audio recorder stop success');
+      audioRecorder.release();                                       			// 调用release方法，释放资源，并触发release回调
+    });
+    audioRecorder.on('release', () => {    		     							// 设置'release'事件回调
+      console.log('audio recorder release success');
+      audioRecorder = undefined;
+    });
+    audioRecorder.on('error', (error) => {             							// 设置'error'事件回调
+      console.info(`audio error called, errName is ${error.name}`);
+      console.info(`audio error called, errCode is ${error.code}`);
+      console.info(`audio error called, errMessage is ${error.message}`);
+    });
+  }
 
-// pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Movies/01.mp3
-// 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
-async function getFd(pathName) {
+  // pathName是传入的录制文件名，例如：01.mp3，生成后的文件地址：/storage/media/100/local/files/Video/01.mp3
+  // 使用mediaLibrary需要添加以下权限, ohos.permission.MEDIA_LOCATION、ohos.permission.WRITE_MEDIA、ohos.permission.READ_MEDIA
+  async getFd(pathName) {
     let displayName = pathName;
     const mediaTest = mediaLibrary.getMediaLibrary();
     let fileKeyObj = mediaLibrary.FileKey;
@@ -154,43 +153,37 @@ async function getFd(pathName) {
     let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
     let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
     if (dataUri != undefined) {
-        let args = dataUri.id.toString();
-        let fetchOp = {
-            selections : fileKeyObj.ID + "=?",
-            selectionArgs : [args],
-        }
-        let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
-        let fdNumber = await fileAsset[0].open('Rw');
-        fdNumber = "fd://" + fdNumber.toString();
-        testFdNumber = fdNumber;
+      let args = dataUri.id.toString();
+      let fetchOp = {
+        selections : fileKeyObj.ID + "=?",
+        selectionArgs : [args],
+      }
+      let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
+      let fileAsset = await fetchFileResult.getAllObject();
+      let fdNumber = await fileAsset[0].open('Rw');
+      this.testFdNumber = "fd://" + fdNumber.toString();
     }
-}
+  }
 
-await getFd('01.mp3');
-
-// 1.创建实例
-let audioRecorder = media.createAudioRecorder();   
-// 2.设置回调
-SetCallBack(audioRecorder);       
-// 3.设置录制参数
-let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC ,
-    audioEncodeBitRate : 22050,
-    audioSampleRate : 22050,
-    numberOfChannels : 2,
-    format : media.AudioOutputFormat.AAC_ADTS,
-    uri : testFdNumber,                             // testFdNumber由getFd生成
-    location : { latitude : 30, longitude : 130},
+  async audioRecorderDemo() {
+    // 1.创建实例
+    let audioRecorder = media.createAudioRecorder();
+    // 2.设置回调
+    this.setCallBack(audioRecorder);
+    await this.getFd('01.mp3'); 							// 调用getFd方法获取需要录制文件的fd地址
+    // 3.设置录制参数
+    let audioRecorderConfig = {
+      audioEncodeBitRate : 22050,
+      audioSampleRate : 22050,
+      numberOfChannels : 2,
+      uri : this.testFdNumber,                             	// testFdNumber由getFd生成
+      location : { latitude : 30, longitude : 130},
+      audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
+      fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
+    }
+    audioRecorder.prepare(audioRecorderConfig); 			// 调用prepare方法，触发prepare回调函数
+  }
 }
-audioRecorder.prepare(audioRecorderConfig)
-// 4.开始录制
-audioRecorder.start();                            	// 需等待'prepare'事件回调完成后，才可调用start进行录制，触发'start'事件回调
-// 5.停止录制
-audioRecorder.stop();                             	// 需等待'start'或'resume'事件回调完成后，才可调用stop进行暂停，触发'stop'事件回调
-// 6.释放资源
-audioRecorder.release();                           	// audioRecorder资源被销毁
-audioRecorder = undefined;
 ```
 
 ## 相关实例
@@ -198,5 +191,5 @@ audioRecorder = undefined;
 针对音频录制开发，有以下相关实例可供参考：
 
 - [`Recorder`：录音机（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
-
+- [`eTsAudioPlayer`: 音频播放器（eTS）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

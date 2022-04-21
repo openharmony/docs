@@ -28,49 +28,7 @@ AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../ref
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
 
-function SetCallBack(audioPlayer) {
-    audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
-        console.info('audio set source success');
-        //播放界面可切换至已准备好，可点击播放按钮进行播放状态
-    });
-    audioPlayer.on('play', () => {                  //设置'play'事件回调
-        console.info('audio play success');
-        //将播放按钮切换至可暂停状态
-    });
-    audioPlayer.on('pause', () => {                 //设置'pause'事件回调
-        console.info('audio pause success');
-        //将播放按钮切换至可播放状态
-    });
-    audioPlayer.on('stop', () => {                  //设置'stop'事件回调
-        console.info('audio stop success');
-        //播放停止，播放进度条归零，播放按钮切换至可播放状态
-    });
-    audioPlayer.on('reset', () => {                 //设置'reset'事件回调
-        console.info('audio reset success');
-        //需重新设置src属性后，可继续播放其他音频
-    });
-    audioPlayer.on('timeUpdate', (seekDoneTime) => {//设置'timeUpdate'事件回调
-        if (typeof(seekDoneTime) == 'undefined') {
-            console.info('audio seek fail');
-            return;
-        }
-        console.info('audio seek success, and seek time is ' + seekDoneTime);
-        //播放进度条更新到seek对应的位置
-    });
-    audioPlayer.on('volumeChange', () => {          //设置'volumeChange'事件回调
-        console.info('audio volumeChange success');
-        //更新音量显示
-    });
-    audioPlayer.on('finish', () => {                //设置'finish'事件回调，播放完成触发
-        console.info('audio play finish');
-    });
-    audioPlayer.on('error', (error) => {            //设置'error'事件回调
-        console.info(`audio error called, errName is ${error.name}`);
-        console.info(`audio error called, errCode is ${error.code}`);
-        console.info(`audio error called, errMessage is ${error.message}`);
-    });
-}
-
+//打印码流轨道信息
 function printfDescription(obj) {
     for (let item in obj) {
         let property = obj[item];
@@ -79,48 +37,78 @@ function printfDescription(obj) {
     }
 }
 
-//1. 创建实例
-let audioPlayer = media.createAudioPlayer();
-SetCallBack(audioPlayer);                          //设置事件回调
-//2. 用户选择音频，设置uri
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
-
-audioPlayer.src = fdPath;                         //设置src属性，并触发'dataLoad'事件回调
-//3. 播放音频
-audioPlayer.play();                               //需等待'dataLoad'事件回调完成后，才可调用play进行播放，触发'play'事件回调
-//4. 跳转播放位置
-audioPlayer.seek(30000);                          //触发'timeUpdate'事件回调，seek到30000ms处播放
-//5. 设置音量
-audioPlayer.setVolume(0.5);                       //触发'volumeChange'事件回调
-//6. 暂停播放
-audioPlayer.pause();                              //触发'pause'事件回调，暂停播放
-//7. 获取轨道信息
-audioPlayer.getTrackDescription((error, arrlist) => {  //通过回调方式获取音频轨道信息
-    if (typeof (arrlist) != 'undefined') {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+//设置播放器回调函数
+function setCallBack(audioPlayer) {
+    audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
+        console.info('audio set source success');
+        audioPlayer.play();                         //需等待'dataLoad'事件回调完成后，才可调用play进行播放，触发'play'事件回调
+    });
+    audioPlayer.on('play', () => {                  //设置'play'事件回调
+        console.info('audio play success');
+        audioPlayer.pause();                        //触发'pause'事件回调，暂停播放
+    });
+    audioPlayer.on('pause', () => {                 //设置'pause'事件回调
+        console.info('audio pause success');
+        audioPlayer.seek(5000);                     //触发'timeUpdate'事件回调，seek到5000ms处播放
+    });
+    audioPlayer.on('stop', () => {                  //设置'stop'事件回调
+        console.info('audio stop success');
+        audioPlayer.reset();                        //触发'reset'事件回调后，重新设置src属性，可完成切歌
+    });
+    audioPlayer.on('reset', () => {                 //设置'reset'事件回调
+        console.info('audio reset success');
+        audioPlayer.release();                      //audioPlayer资源被销毁
+        audioPlayer = undefined;
+    });
+    audioPlayer.on('timeUpdate', (seekDoneTime) => {//设置'timeUpdate'事件回调
+        if (typeof(seekDoneTime) == 'undefined') {
+            console.info('audio seek fail');
+            return;
         }
-    } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
-    }
-});
-//8. 停止播放
-audioPlayer.stop();                              //触发'stop'事件回调
-//9. 重置播放资源
-audioPlayer.reset();                             //触发'reset'事件回调后，重新设置src属性，可完成切歌
-//10. 释放资源
-audioPlayer.release();                           //audioPlayer资源被销毁
-audioPlayer = undefined;
+        console.info('audio seek success, and seek time is ' + seekDoneTime);
+        audioPlayer.setVolume(0.5);                 //触发'volumeChange'事件回调
+    });
+    audioPlayer.on('volumeChange', () => {          //设置'volumeChange'事件回调
+        console.info('audio volumeChange success');
+        audioPlayer.getTrackDescription((error, arrlist) => {  //通过回调方式获取音频轨道信息
+            if (typeof (arrlist) != 'undefined') {
+                for (let i = 0; i < arrlist.length; i++) {
+                    printfDescription(arrlist[i]);
+                }
+            } else {
+                console.log(`audio getTrackDescription fail, error:${error.message}`);
+            }
+            audioPlayer.stop();                      //触发'stop'事件回调，停止播放
+        });
+    });
+    audioPlayer.on('finish', () => {                 //设置'finish'事件回调，播放完成触发
+        console.info('audio play finish');
+    });
+    audioPlayer.on('error', (error) => {             //设置'error'事件回调
+        console.info(`audio error called, errName is ${error.name}`);
+        console.info(`audio error called, errCode is ${error.code}`);
+        console.info(`audio error called, errMessage is ${error.message}`);
+    });
+}
+
+async function audioPlayerDemo() {
+    // 1. 创建实例
+    let audioPlayer = media.createAudioPlayer();
+    setCallBack(audioPlayer);                          //设置事件回调
+    //2. 用户选择音频，设置uri
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    await fileIO.open(path).then((fdNumber) => {
+        fdPath = fdPath + '' + fdNumber;
+        console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+        console.info('open fd failed err is' + err);
+    }).catch((err) => {
+        console.info('open fd failed err is' + err);
+    });
+    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+}
 ```
 
 ### 正常播放场景
@@ -128,38 +116,40 @@ audioPlayer = undefined;
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-function SetCallBack(audioPlayer) {
+export class AudioDemo {
+  // 设置播放器回调函数
+  setCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
-        console.info('audio set source success');
-        audioPlayer.play();                         //调用play方法开始播放，触发'play'事件回调
+      console.info('audio set source success');
+      audioPlayer.play();                           //调用play方法开始播放，触发'play'事件回调
     });
     audioPlayer.on('play', () => {                  //设置'play'事件回调
-        console.info('audio play success');
+      console.info('audio play success');
     });
     audioPlayer.on('finish', () => {                //设置'finish'事件回调，播放完成触发
-        console.info('audio play finish');
-        audioPlayer.release();                      //audioPlayer资源被销毁
-		audioPlayer = undefined;
+      console.info('audio play finish');
+      audioPlayer.release();                        //audioPlayer资源被销毁
+      audioPlayer = undefined;
     });
+  }
+
+  async audioPlayerDemo() {
+    let audioPlayer = media.createAudioPlayer();     //创建一个音频播放实例
+    this.setCallBack(audioPlayer);                   //设置事件回调
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+  }
 }
-
-let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
-SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择音频设置fd(本地播放) */
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
-
-audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### 切歌场景
@@ -167,54 +157,62 @@ audioPlayer.src = fdPath;                           //设置src属性，并触�
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-function SetCallBack(audioPlayer) {
+export class AudioDemo {
+// 设置播放器回调函数
+  private isNextMusic = false;
+  setCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
-        console.info('audio set source success');
-        audioPlayer.play();                         //调用play方法开始播放，触发'play'事件回调
+      console.info('audio set source success');
+      audioPlayer.play();                           //调用play方法开始播放，触发'play'事件回调
     });
     audioPlayer.on('play', () => {                  //设置'play'事件回调
-        console.info('audio play success');
+      console.info('audio play success');
+      audioPlayer.reset();                          //调用reset方法，出发'reset'事件回调
     });
-    audioPlayer.on('finish', () => {                //设置'finish'事件回调，播放完成触发
-        console.info('audio play finish');
+    audioPlayer.on('reset', () => {                 //设置'reset'事件回调
+      console.info('audio play success');
+      if (!this.isNextMusic) {                      //当isNextMusic 为false时，实现切歌功能
+        this.nextMusic(audioPlayer);                //实现切歌功能
+      } else {
         audioPlayer.release();                      //audioPlayer资源被销毁
-		audioPlayer = undefined;
+        audioPlayer = undefined;
+      }
     });
+  }
+
+  async nextMusic(audioPlayer) {
+    this.isNextMusic = true;
+    let nextFdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let nextpath = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/02.mp3';
+    await fileIO.open(nextpath).then((fdNumber) => {
+      nextFdPath = nextFdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + nextFdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    audioPlayer.src = nextFdPath; //设置src属性，并重新触发触发'dataLoad'事件回调
+  }
+
+  async audioPlayerDemo() {
+    let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
+    this.setCallBack(audioPlayer);                     //设置事件回调
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+  }
 }
-
-let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
-SetCallBack(audioPlayer);                          //设置事件回调
-/* 用户选择音频设置fd(本地播放) */
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
-
-audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
-/* 播放一段时间后，下发切歌指令 */
-audioPlayer.reset();
-
-/* 用户选择音频设置fd(本地播放) */
-let fdNextPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp3';
-await fileIO.open(nextPath).then(fdNumber) => {
-   fdNextPath = fdNextPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdNextPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
-audioPlayer.src = fdNextPath;
 ```
 
 ### 单曲循环场景
@@ -222,40 +220,36 @@ audioPlayer.src = fdNextPath;
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-function SetCallBack(audioPlayer) {
+export class AudioDemo {
+  // 设置播放器回调函数
+  setCallBack(audioPlayer) {
     audioPlayer.on('dataLoad', () => {              //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
-        console.info('audio set source success');
-        audioPlayer.play();                         //调用play方法开始播放，触发'play'事件回调
+      console.info('audio set source success');
+      audioPlayer.loop = true;                      //设置循环播放属性
+      audioPlayer.play();                           //调用play方法开始播放，触发'play'事件回调
     });
-    audioPlayer.on('play', () => {                  //设置'play'事件回调
-        console.info('audio play success');
+    audioPlayer.on('play', () => {                  //设置'play'事件回调,开始循环播放
+      console.info('audio play success');
     });
-    audioPlayer.on('finish', () => {                //设置'finish'事件回调，播放完成触发
-        console.info('audio play finish');
-        audioPlayer.release();                      //audioPlayer资源被销毁
-		audioPlayer = undefined;
+  }
+
+  async audioPlayerDemo() {
+    let audioPlayer = media.createAudioPlayer();      //创建一个音频播放实例
+    this.setCallBack(audioPlayer);                    //设置事件回调
+    let fdPath = 'fd://'
+    // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
+    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+  }
 }
-
-let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
-SetCallBack(audioPlayer);                          //设置事件回调
-
-/* 用户选择音频设置fd(本地播放) */
-let fdPath = 'fd://'
-// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
-
-audioPlayer.src = fdPath;                           //设置src属性，并触发'dataLoad'事件回调
-audioPlayer.loop = true;                            //设置循环播放属性
 ```
 
 ## 相关实例
@@ -263,7 +257,6 @@ audioPlayer.loop = true;                            //设置循环播放属性
 针对音频播放开发，有以下相关实例可供参考：
 
 - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
-
 - [`JsAudioPlayer`：音频播放和管理（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
-
+- [`eTsAudioPlayer`: 音频播放器（eTS）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
