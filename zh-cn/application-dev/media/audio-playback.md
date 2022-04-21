@@ -18,10 +18,6 @@
 
 详细API含义可参考：[媒体服务API文档AudioPlayer](../reference/apis/js-apis-media.md)
 
-### 开发者示例
-
-端到端开发者示例请参考：https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets
-
 ### 全流程场景
 
 包含流程：创建实例，设置uri，播放音频，跳转播放位置，设置音量，暂停播放，获取轨道信息，停止播放，重置，释放资源等流程。
@@ -153,6 +149,7 @@ export class AudioDemo {
     });
     audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
   }
+}
 ```
 
 ### 切歌场景
@@ -260,7 +257,6 @@ export class AudioDemo {
 针对音频播放开发，有以下相关实例可供参考：
 
 - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
-
 - [`JsAudioPlayer`：音频播放和管理（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
-
+- [`eTsAudioPlayer`: 音频播放器（eTS）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
