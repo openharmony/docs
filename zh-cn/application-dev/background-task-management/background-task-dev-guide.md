@@ -12,9 +12,9 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[**DelaySuspendInfo**](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
-| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。(requestId从requestSuspendDelay的返回值获取)<br/>其任务执行结果以Promise形式返回给应用。 |
-| cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。(requestId从requestSuspendDelay的返回值获取) |
+| requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量时默认值为60000。 |
+| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>其任务执行结果以Promise形式返回给应用。 |
+| cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。 |
 
 
 ### 开发步骤
@@ -93,8 +93,8 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行 |
-| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行 |
+| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行。 |
+| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行。 |
 
 
 其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
