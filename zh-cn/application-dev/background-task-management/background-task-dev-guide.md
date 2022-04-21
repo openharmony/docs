@@ -133,10 +133,11 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
       "package": "com.example.myapplication",
       "abilities": [
         {
+            // 后台模式类型
           "backgroundModes": [
             "dataTransfer",
             "location"
-          ], // 后台模式类型
+          ],
           "type": "service"  // ability类型为service
         }
       ],
