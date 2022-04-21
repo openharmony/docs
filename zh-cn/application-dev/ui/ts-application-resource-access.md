@@ -13,12 +13,12 @@
 - 二级目录为资源目录
   - 用于存放字符串、颜色、浮点数等基础元素，以及媒体等资源文件。
   - 当前支持的文件和资源类型如下：
-       | 文件名 | 资源类型 | 
+       | 文件名 | 资源类型 |
      | -------- | -------- |
-     | color.json | 颜色资源。 | 
-     | float.json | 间距、圆角、字体等资源。 | 
-     | string.json | 字符串资源。 | 
-     | plural.json | 字符串资源。 | 
+     | color.json | 颜色资源。 |
+     | float.json | 间距、圆角、字体等资源。 |
+     | string.json | 字符串资源。 |
+     | plural.json | 字符串资源。 |
      | media目录 | 图片资源。 |
 
 
@@ -29,7 +29,7 @@
 引用rawfile下资源时使用```"$rawfile('filename')"```的形式，当前$rawfile仅支持Image控件引用图片资源，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 资源描述符不能拼接使用。
+> 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 
 
 ## 示例
