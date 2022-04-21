@@ -77,31 +77,31 @@ struct TabContentExample  {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab1').fontSize(32)
           }
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab2').fontSize(32)
           }
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Add').fontSize(32)
           }
         }.tabBar(this.AddBuilder())
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab3').fontSize(32)
           }
         }.tabBar(this.TabBuilder(3))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab4').fontSize(32)
           }
         }.tabBar(this.TabBuilder(4))
