@@ -2,9 +2,16 @@
 
 # 继承样式 <sup>9+</sup>
 
-自定义组件可以通过设置inhert-class属性来继承父组件的样式。目前只支持class选择器，多个class之间用空格分隔。
+> ![icon-note.gif](D:/git/doc/docs/zh-cn/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **说明：**
+> 从api version 9开始支持。
 
-代码示例如下：
+自定义组件具有inhert-class属性，定义如下：
+
+| 名称                      | 类型   | 默认值 | 必填 | 描述                                                   |
+| ------------------------- | ------ | ------ | ---- | ------------------------------------------------------ |
+| inhert-class<sup>9+</sup> | string | -      | 否   | 从父组件继承的class样式，多个class样式之间用空格分隔。 |
+
+可以通过设置inhert-calss属性来继承父组件的样式，代码示例如下：
 
 自定义组件的hml文件，其中fatherclass1和fatherclass2是从父组件继承的样式。
 
