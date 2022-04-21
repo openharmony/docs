@@ -35,7 +35,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
       triggerTimeInSeconds: 10
   }
   reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("reminderId = " + reminderId);
+      console.log("callback, reminderId = " + reminderId);
   });
 ```
 
@@ -65,7 +65,7 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
       triggerTimeInSeconds: 10
   }
   reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("reminderId = " + reminderId);
+      console.log("promise, reminderId = " + reminderId);
   });
 ```
 
@@ -141,7 +141,7 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 
 ```js
 reminderAgent.getValidReminders((err, reminders) => {
-    console.log("getValidReminders length = " + reminders.length);
+    console.log("callback, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -185,7 +185,7 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 ```js
 reminderAgent.getValidReminders().then((reminders) => {
-    console.log("getValidReminders length = " + reminders.length);
+    console.log("promise, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);

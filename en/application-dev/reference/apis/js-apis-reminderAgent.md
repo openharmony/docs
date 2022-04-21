@@ -35,7 +35,7 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
       triggerTimeInSeconds: 10
   }
   reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("reminderId = " + reminderId);
+      console.log("callback, reminderId = " + reminderId);
   });
   ```
 
@@ -65,7 +65,7 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
       triggerTimeInSeconds: 10
   }
   reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("reminderId = " + reminderId);
+      console.log("promise, reminderId = " + reminderId);
   });
   ```
 
@@ -141,7 +141,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 ```js
 reminderAgent.getValidReminders((err, reminders) => {
-    console.log("getValidReminders length = " + reminders.length);
+    console.log("callback, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
@@ -185,7 +185,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 ```js
 reminderAgent.getValidReminders().then((reminders) => {
-    console.log("getValidReminders length = " + reminders.length);
+    console.log("promise, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
         console.log("getValidReminders = " + reminders[i]);
         console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
