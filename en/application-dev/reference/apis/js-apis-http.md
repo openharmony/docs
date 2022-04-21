@@ -11,45 +11,44 @@
 import http from '@ohos.net.http';
 ```
 
-## Complete Example
+## Example
 
 ```
 import http from '@ohos.net.http';
 
-// Each httpRequest corresponds to an HttpRequestTask object and cannot be reused.
+// Each HttpRequest corresponds to an HttpRequestTask object and cannot be reused.
 let httpRequest = http.createHttp();
-// This API is used to subscribe to the HTTP response header, which is returned earlier than httpRequest. It is up to you whether to listen for HTTP Response Header events.
+// Subscribe to the HTTP response header, which is returned earlier than HttpRequest. You can subscribe to HTTP Response Header events based on service requirements.
 // on('headerReceive', AsyncCallback) will be replaced by on('headersReceive', Callback) in API version 8. 8+
-httpRequest.on('headersReceive', (data) => {
-    console.info('header: ' + data.header);
+httpRequest.on('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL on your own. It is up to you whether to add parameters to the URL. You can set the parameters of the GET request in extraData.
+    // Set the URL of the HTTP request. You need to define the URL. Set the parameters of the request in extraData.
     "EXAMPLE_URL",
     {
-        method: 'POST', // Optional. The default value is GET. 
-        // Add the header field based on your service requirements.
+        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+        // You can add the header field based on service requirements.
         header: {
             'Content-Type': 'application/json'
         },
-        // This field is used to transfer content when the POST request is used. You can set request parameters in extraData as needed.
- 
+        // This field is used to transfer data when the POST request is used.
         extraData: {
             "data": "data to send",
         },
         connectTimeout: 60000, // Optional. The default value is 60000, in ms.
         readTimeout: 60000, // Optional. The default value is 60000, in ms.
-    },(err, data) => {
+    }, (err, data) => {
         if (!err) {
-            // data.result contains the HTTP response. It is up to you whether to parse the content.
+            // data.result contains the HTTP response. Parse the response based on service requirements.
             console.info('Result:' + data.result);
             console.info('code:' + data.responseCode);
-            // data.header contains the HTTP response header. It is up to you whether to parse the content.
-            console.info('header:' + data.header);
+            // data.header contains the HTTP response header. Parse the content based on service requirements.
+            console.info('header:' + JSON.stringify(data.header));
             console.info('cookies:' + data.cookies); // 8+
         } else {
-            console.info('error:' + err);
-            // Call the destroy function to destroy the request after use.
+            console.info('error:' + JSON.stringify(err));
+            // Call the destroy() method to release resources after the call is complete.
             httpRequest.destroy();
         }
     }
@@ -64,7 +63,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 **System capability**: SystemCapability.Communication.NetStack
 
-**Return Value**
+**Return value**
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
@@ -103,14 +102,14 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 ```
 httpRequest.request("EXAMPLE_URL", (err, data) => {
-  if (!err) {
-    console.info('Result:' + data.result);
-    console.info('code:' + data.responseCode);
-    console.info('header:' + data.header);
-    console.info('cookies:' + data.cookies); // 8+
-  } else {
-    console.info('error:' + err.data);
-  }
+    if (!err) {
+        console.info('Result:' + data.result);
+        console.info('code:' + data.responseCode);
+        console.info('header:' + JSON.stringify(data.header));
+        console.info('cookies:' + data.cookies); // 8+
+    } else {
+        console.info('error:' + JSON.stringify(err));
+    }
 });
 ```
 
@@ -137,7 +136,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 ```
 httpRequest.request("EXAMPLE_URL",
 {
-    method: 'GET',
+    method: http.RequestMethod.GET,
     header: {
         'Content-Type': 'application/json'
     },
@@ -147,14 +146,12 @@ httpRequest.request("EXAMPLE_URL",
     if (!err) {
         console.info('Result:' + data.result);
         console.info('code:' + data.responseCode);
-        console.info('header:' + data.header);
+        console.info('header:' + JSON.stringify(data.header));
         console.info('cookies:' + data.cookies); // 8+
         console.info('header.Content-Type:' + data.header['Content-Type']);
         console.info('header.Status-Line:' + data.header['Status-Line']);
-        console.info('header.Date:' + data.header.Date);
-        console.info('header.Server:' + data.header.Server);
     } else {
-        console.info('error:' + err.data);
+        console.info('error:' + JSON.stringify(err));
     }
 });
 ```
@@ -177,7 +174,7 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 | url     | string             | Yes  | URL for initiating an HTTP request.                           |
 | options | HttpRequestOptions | Yes  | Request options. For details, see [HttpRequestOptions](#httprequestoptions).|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                             |
 | :-------------------- | :-------------------------------- |
@@ -188,24 +185,22 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 
 ```
 let promise = httpRequest.request("EXAMPLE_URL", {
-    method: "GET",
+    method: http.RequestMethod.GET,
     connectTimeout: 60000,
     readTimeout: 60000,
     header: {
         'Content-Type': 'application/json'
     }
 });
-promise.then((value) => {
-    console.info('Result:' + value.result);
-    console.info('code:' + value.responseCode);
-    console.info('header:' + value.header);
-    console.info('cookies:' + value.cookies); // 8+
-    console.info('header.Content-Type:' + value.header['Content-Type']);
-    console.info('header.Status-Line:' + value.header['Status-Line']);
-    console.info('header.Date:' + value.header.Date);
-    console.info('header.Server:' + value.header.Server);
+promise.then((data) => {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 8+
+    console.info('header.Content-Type:' + data.header['Content-Type']);
+    console.info('header.Status-Line:' + data.header['Status-Line']);
 }).catch((err) => {
-    console.error(`errCode:${err.code}, errMessage:${err.data}`);
+    console.info('error:' + JSON.stringify(err));
 });
 ```
 
@@ -245,11 +240,11 @@ Registers an observer for HTTP Response Header events.
 
 ```
 httpRequest.on('headerReceive', (err, data) => {
-  if (!err) {
-    console.info('header: ' + data.header);
-  } else {
-    console.info('error:' + err.data);
-  }
+    if (!err) {
+        console.info('header: ' + JSON.stringify(data));
+    } else {
+        console.info('error:' + JSON.stringify(err));
+    }
 });
 ```
 
@@ -278,13 +273,6 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```
-httpRequest.on('headerReceive', (err, data) => {
-  if (!err) {
-    console.info('header: ' + data.header);
-  } else {
-    console.info('error:' + err.data);
-  }
-});
 httpRequest.off('headerReceive');
 ```
 
@@ -306,8 +294,8 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```
-httpRequest.on('headersReceive', (data) => {
-  console.info('header: ' + data.header);
+httpRequest.on('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 ```
 
@@ -354,8 +342,8 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 **Example**
 
 ```
-httpRequest.once('headersReceive', (data) => {
-  console.info('header: ' + data.header);
+httpRequest.once('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 ```
 
