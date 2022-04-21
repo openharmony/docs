@@ -1221,7 +1221,7 @@ ftruncateSync(fd: number, len?: number): void
 
 - 示例：
   ```js
-  fileio.ftruncate(fd, len);
+  fileio.ftruncateSync(fd, len);
   ```
 
 
@@ -1293,7 +1293,7 @@ truncateSync(path: string, len?: number): void
 
 - 示例：
   ```js
-  fileio.ftruncate(path, len);
+  fileio.truncateSync(path, len);
   ```
 
 
