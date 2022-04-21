@@ -126,37 +126,28 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ## 开发步骤
 
-1. 在config.json文件中配置长时任务权限和后台模式类型，其中ability类型为service。
+1. 在config.json文件中配置长时任务权限、后台模式类型，其中ability类型为service。
 
     ```json
     "module": {
       "package": "com.example.myapplication",
-      
       "abilities": [
-      
         {
           "backgroundModes": [
             "dataTransfer",
-            "location",
-            
-          ],
-          
-          "type": "service"
-        }
-      ],
-      "defPermissions": [
-        {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+            "location"
+          ], // 后台模式类型
+          "type": "service"  // ability类型为service
         }
       ],
       "reqPermissions": [
         {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
       ]
     }
     ```
-
+    
 2. 申请长时任务
 
     ```js
