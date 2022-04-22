@@ -10,7 +10,7 @@
 
 	生成serverKey.pem和serverCert.cer两个文件，用于示例服务器的SSL协议通信。
 
-	```bash
+	```
 	openssl req -newkey rsa:2048 -nodes -keyout serverKey.pem -x509 -days 365 -out serverCert.cer -subj "/C=CN/ST=GD/L=GZ/O=abc/OU=defg/CN=hijk/emailAddress=test.com"
 	```
 
@@ -31,7 +31,7 @@
 
 	进入到update_updateservice目录下，执行以下命令，建立代码目录。
 
-	```bash
+	```
 	mkdir server_sample                            // 建立示例服务器server_sample目录
 	touch server_sample/BUILD.gn                 // 创建BUILD.gn编译文件
 	mkdir server_sample/include                     // 建立示例服务器头文件include目录
@@ -187,13 +187,13 @@
 
 8. 升级包制作
 
-	参考OpenHarmony的[update_packaging_tools仓](https://gitee.com/openharmony/update_packaging_tools)制作升级包。
+	参考[update_packaging_tools仓](https://gitee.com/openharmony/update_packaging_tools)制作升级包。
 
 9. 启动搜包服务器
 
 	建议在开发板上新建一个纯英文路径，然后将testserver、libserver_process.z.so、serverCert.cer和serverKey.pem放到同一个目录下，进入该目录，执行以下启动命令即可启动搜包服务器。
 
-	```bash
+	```
 	./testserver ./libserver_process.z.so &
 	```
 
