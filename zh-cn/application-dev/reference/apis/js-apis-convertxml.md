@@ -40,13 +40,14 @@ convert(xml: string, options?: ConvertOptions) : Object
 - 示例：
 
   ```
-  var xml =
+  let xml =
       '<?xml version="1.0" encoding="utf-8"?>' +
       '<note importance="high" logged="true">' +
       '    <title>Happy</title>' +
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
+  let conv = new convertxml.ConvertXML();
   let options = {trim : false, declarationKey:"_declaration",
                  instructionKey : "_instruction", attributesKey : "_attributes",
                  textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
