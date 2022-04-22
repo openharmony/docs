@@ -14,9 +14,9 @@ None
 
 ## APIs
 
-Select(options: Array<SelectOption>)
+Select(options: Array\<SelectOption>\)
 
-- `SelectOption` parameters
+- SelectOption parameters
 
   | Name| Type| Mandatory| Default Value| Description|
   | ------ | ----------------------------------------------- | ---- | ------ | -------------- |
@@ -49,7 +49,7 @@ Select(options: Array<SelectOption>)
 ```
 @Entry
 @Component
-struct SliderExample {
+struct SelectExample {
   build() {
     Column() {
       Select([{value:'aaa',icon: "/common/1.png"},
