@@ -91,7 +91,7 @@
 | timestamp    | number       | 时间戳。                         |
 | dataTransfer | DataTransfer | DataTransfer对象<sup>9+</sup>。               |
 
-## **target对象**
+## target对象
 
 当组件触发事件后，事件回调函数默认会收到一个事件对象，通过该事件对象可以获取相应的信息。
 
@@ -131,24 +131,24 @@ clearData(key?: string): boolean
 
 删除与给定类型关联的数据。如果类型为空或未指定，则删除所有数据。如果指定类型的数据不存在，或者data transfer中不包含任何数据，则该方法不会产生任何效果。
 
-**参数：**
+- 参数：
 
-| 参数名 | 参数类型 | 必填 | 描述                                       |
-| ------ | -------- | ---- | ------------------------------------------ |
-| key    | string   | 否   | 数据类型。key值存在时删除该类型关联的数据，key为空时删除所有数据。 |
+	| 参数名 | 参数类型 | 必填 | 描述                                       |
+	| ------ | -------- | ---- | ------------------------------------------ |
+	| key    | string   | 否   | 数据类型。key值存在时删除该类型关联的数据，key为空时删除所有数据。 |
 
-**返回值：**
-| 类型 | 说明 |
-| ------ | -------- | 
-| bool  | 执行结果  |
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| bool  | 执行结果  |
 
-**示例：**
+- 示例：
 
-  ```js
-  dragEnd(e){
-      var isSuccess = e.dataTransfer.clearData('name');
-  }
-  ```
+	  ```js
+	  dragEnd(e){
+		  var isSuccess = e.dataTransfer.clearData('name');
+	  }
+	  ```
 
 ### getData
 
@@ -156,30 +156,30 @@ clearData(key?: string): boolean
 
 获取给定类型关联的数据，如果该类型的数据不存在或data transfer不包含数据，则返回空字符串。
 
-**参数：**
+- 参数：
 
-| 参数名 | 参数类型 | 必填 | 描述                       |
-| ------ | -------- | ---- | -------------------------- |
-| key    | string   | 是   | 数据类型 |
+	| 参数名 | 参数类型 | 必填 | 描述                       |
+	| ------ | -------- | ---- | -------------------------- |
+	| key    | string   | 是   | 数据类型 |
 
-**返回值：**
-| 类型 | 说明 |
-| ------ | -------- | 
-| object | 获取的数据  |
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| object | 获取的数据  |
 
-**示例：**
+- 示例：
 
-  ```js
-  dragStart(e){
-      var person = new Object();
-      person.name = "list";
-      person.age = 21;
-      e.dataTransfer.setData('person', person);
-  },
-  dragEnd(e){
-      var result = e.dataTransfer.getData('person');
-  },
-  ```
+	  ```js
+	  dragStart(e){
+		  var person = new Object();
+		  person.name = "list";
+		  person.age = 21;
+		  e.dataTransfer.setData('person', person);
+	  },
+	  dragEnd(e){
+		  var result = e.dataTransfer.getData('person');
+	  },
+	  ```
 
 ### setData
 
@@ -187,33 +187,33 @@ setData(key: string, value: object): boolean
 
 设置给定类型关联的数据。如果该类型的数据不存在，则将其添加到末尾。如果该类型的数据已经存在，则在相同位置替换现有数据。
 
-**参数：**
+- 参数：
 
-| 参数名 | 参数类型 | 必填 | 描述                    |
-| ------ | -------- | ---- | ----------------------- |
-| key    | string   | 是   | 数据类型   |
-| value  | object   | 是   | 要存储的数据 |
+	| 参数名 | 参数类型 | 必填 | 描述                    |
+	| ------ | -------- | ---- | ----------------------- |
+	| key    | string   | 是   | 数据类型   |
+	| value  | object   | 是   | 要存储的数据 |
 
-**返回值：**
-| 类型 | 说明 |
-| ------ | -------- | 
-| bool  | 执行结果  |
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| bool  | 执行结果  |
 
-**示例：**
+- 示例：
 
-  ```
-  //setData 可以是基本数据类型，也可以是对象类型
-  dragStart(e){
-      var isSetOk = e.dataTransfer.setData('name', 1);
-  }
-  或
-  dragStart(e){
-      var person = new Object();
-      person.name = "list";
-      person.age = 21;
-       var isSetOk = e.dataTransfer.setData('person', person);
-  }
-  ```
+	  ```
+	  //setData 可以是基本数据类型，也可以是对象类型
+	  dragStart(e){
+		  var isSetOk = e.dataTransfer.setData('name', 1);
+	  }
+	  或
+	  dragStart(e){
+		  var person = new Object();
+		  person.name = "list";
+		  person.age = 21;
+		   var isSetOk = e.dataTransfer.setData('person', person);
+	  }
+	  ```
 
 ### setDragImage
 
@@ -221,43 +221,43 @@ setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 
 用于设置自定义的拖动图像。
 
-**参数：**
+- 参数：
 
-| pixelmap | 参数类型 | 必填 | 描述                                                         |
-| -------- | -------- | ---- | ------------------------------------------------------------ |
-| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md)。 |
-| offsetX  | number   | 是   | 相对于图片的横向偏移量                                       |
-| offsetY  | number   | 是   | 相对于图片的纵向偏移量                                       |
+	| pixelmap | 参数类型 | 必填 | 描述                                                         |
+	| -------- | -------- | ---- | ------------------------------------------------------------ |
+	| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md)。 |
+	| offsetX  | number   | 是   | 相对于图片的横向偏移量                                       |
+	| offsetY  | number   | 是   | 相对于图片的纵向偏移量                                       |
 
-**返回值：**
-| 类型 | 说明 |
-| ------ | -------- | 
-| bool  | 执行结果  |
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| bool  | 执行结果  |
 
-**示例：**
+- 示例：
 
-  ```js
-  CreatePixelMap(){
-      let color=new ArrayBuffer(4*96*96);
-      var buffer=new Uint8Array(color);
-      for(var i=0;i<buffer.length;i++){
-          buffer[i]=(i+1)%255;
-      }
-      let opts={
-          alphaType:0,
-          editable:true,
-          pixelFormat:4,
-          scaleMode:1,
-          size:{height:96,width:96}
-      }
-      const promise=image.createPixelMap(color,opts);
-      promise.then((data)=>{
-          console.error('-----create pixmap has info message:'+JSON.stringify(data));
-          this.pixelMap=data;
-          this.pixelMapReader=data;
-      })
-  },
-  dragStart(e){
-      e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
-  },
-  ```
+	  ```js
+	  CreatePixelMap(){
+		  let color=new ArrayBuffer(4*96*96);
+		  var buffer=new Uint8Array(color);
+		  for(var i=0;i<buffer.length;i++){
+			  buffer[i]=(i+1)%255;
+		  }
+		  let opts={
+			  alphaType:0,
+			  editable:true,
+			  pixelFormat:4,
+			  scaleMode:1,
+			  size:{height:96,width:96}
+		  }
+		  const promise=image.createPixelMap(color,opts);
+		  promise.then((data)=>{
+			  console.error('-----create pixmap has info message:'+JSON.stringify(data));
+			  this.pixelMap=data;
+			  this.pixelMapReader=data;
+		  })
+	  },
+	  dragStart(e){
+		  e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
+	  },
+	  ```
