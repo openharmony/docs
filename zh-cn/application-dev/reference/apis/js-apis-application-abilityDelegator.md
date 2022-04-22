@@ -411,7 +411,7 @@ abilityDelegator.getCurrentTopAbility().then((data : any) => {
 
 
 
-### startAbility
+### startAbility<sup>9+</sup>
 
 startAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -443,7 +443,7 @@ abilityDelegator.startAbility(want, (err : any, data : any) => {
 
 
 
-### startAbility
+### startAbility<sup>9+</sup>
 
 startAbility(want: Want): Promise\<void>
 
@@ -781,7 +781,7 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
 
 
 
-### finishTest
+### finishTest<sup>9+</sup>
 
 finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
@@ -811,7 +811,7 @@ abilityDelegator.finishTest(msg, 0, (err : any) => {
 
 
 
-### finishTest
+### finishTest<sup>9+</sup>
 
 finishTest(msg: string, code: number): Promise\<void>
 
