@@ -9,7 +9,7 @@
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HksResult>) : void; | Generates a private key. This method uses an asynchronous callback to return the result.        |
+| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Generates a private key. This method uses an asynchronous callback to return the result.        |
 | function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Generates a private key. This method uses a promise to return the result.        |
 | function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Exports the public key. This method uses an asynchronous callback to return the result.        |
 | function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Exports the public key. This method uses a promise to return the result.        |
@@ -68,15 +68,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
@@ -100,15 +100,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
@@ -126,15 +126,15 @@
    var properties = new Array();
    properties[0] = {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-     value: huks.HksKeyAlg.HKS_ALG_DH
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
    };
    properties[1] = {
-     tag: huks.HksTag.HKS_TAG_PURPOSE,
-     value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
    };
    properties[2] = {
-     tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-     value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
    };
    var options = {
      properties: properties
