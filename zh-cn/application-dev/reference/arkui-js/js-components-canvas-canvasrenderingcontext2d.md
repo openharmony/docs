@@ -1978,7 +1978,3 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
   ```
 
   ![zh-cn_image_0000001168984882](figures/zh-cn_image_0000001168984882.png)
-
-  ```
-  
-  ```
