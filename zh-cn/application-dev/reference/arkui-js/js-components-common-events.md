@@ -123,9 +123,9 @@ export default {
 
 ## DataTransfer对象<sup>9+</sup>
 
-在拖曳操作的过程中，可以通过dataTransfer对象来传输数据，以便在拖曳操作结束的时候对数据进行其他操作。
+在拖拽操作的过程中，可以通过dataTransfer对象来传输数据，以便在拖拽操作结束的时候对数据进行其他操作。
 
-### clearData
+### clearData<sup>9+</sup>
 
 clearData(key?: string): boolean
 
@@ -145,12 +145,12 @@ clearData(key?: string): boolean
 - 示例：
 
 	```js
-	  dragEnd(e){
+	dragEnd(e){
 		  var isSuccess = e.dataTransfer.clearData('name');
 	  }
 	```
 
-### getData
+### getData<sup>9+</sup>
 
  getData(key: string): object
 
@@ -170,7 +170,7 @@ clearData(key?: string): boolean
 - 示例：
 
 	```js
-	  dragStart(e){
+	dragStart(e){
 		  var person = new Object();
 		  person.name = "list";
 		  person.age = 21;
@@ -181,7 +181,7 @@ clearData(key?: string): boolean
 	  },
 	```
 
-### setData
+### setData<sup>9+</sup>
 
 setData(key: string, value: object): boolean
 
@@ -201,8 +201,8 @@ setData(key: string, value: object): boolean
 
 - 示例：
 
-	```
-	  //setData 可以是基本数据类型，也可以是对象类型
+	```js
+	//setData 可以是基本数据类型，也可以是对象类型
 	  dragStart(e){
 		  var isSetOk = e.dataTransfer.setData('name', 1);
 	  }
@@ -215,9 +215,10 @@ setData(key: string, value: object): boolean
 	  }
 	```
 
-### setDragImage
 
-setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
+### setDragImage<sup>9+</sup>
+
+setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 用于设置自定义的拖动图像。
 
@@ -225,7 +226,7 @@ setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 
 	| pixelmap | 参数类型 | 必填 | 描述                                                         |
 	| -------- | -------- | ---- | ------------------------------------------------------------ |
-	| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md)。 |
+	| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
 	| offsetX  | number   | 是   | 相对于图片的横向偏移量                                       |
 	| offsetY  | number   | 是   | 相对于图片的纵向偏移量                                       |
 
@@ -237,7 +238,7 @@ setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 - 示例：
 
 	```js
-	  CreatePixelMap(){
+	CreatePixelMap(){
 		  let color=new ArrayBuffer(4*96*96);
 		  var buffer=new Uint8Array(color);
 		  for(var i=0;i<buffer.length;i++){
