@@ -113,13 +113,12 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | VOIP                    | 8 | 音视频通话（系统保留） | voip |
 | TASK_KEEPING            | 9 | 计算任务（仅供特定设备使用） | taskKeeping |
 
-具体的api信息详见[接口使用指南](../reference/apis/js-apis-backgroundTaskManager.md)
 
 ### 开发步骤
 
-1. 新建api8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为"service"。
+1. 新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
 
-    ```json
+    ```
     "module": {
       "package": "com.example.myapplication",
       "abilities": [
@@ -186,9 +185,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 ### 开发实例
 基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
-当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动服务ability。并在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
+当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动Service Ability。并在Service Ability的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
 
-当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接服务ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
+当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -265,7 +264,6 @@ export default {
         mMyStub = new MyStub("ServiceAbility-test");
         startBackgroundRunning();
         // 此处执行后台具体的长时任务。
-        // 任务处理完取消长时任务。
         stopBackgroundRunning()
     },
     onStop() {
