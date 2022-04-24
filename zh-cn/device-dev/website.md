@@ -141,7 +141,7 @@
     - [标准系统移植指南](porting/standard-system-porting-guide.md)
     - [一种快速移植OpenHarmony Linux内核的方法](porting/porting-linux-kernel.md)
 
-  - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
+  - 轻量和小型系统三方库移植指导
     - [概述](porting/porting-thirdparty-overview.md)
     - [CMake方式组织编译的库移植](porting/porting-thirdparty-cmake.md)
     - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
