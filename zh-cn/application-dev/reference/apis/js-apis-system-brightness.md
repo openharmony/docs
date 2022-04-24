@@ -9,7 +9,7 @@
 ## 导入模块
 
 
-```
+```js
 import brightness from '@system.brightness';
 ```
 
@@ -37,7 +37,7 @@ success返回值：
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     getValue() {        
       brightness.getValue({            
@@ -71,7 +71,7 @@ setValue(Object): void
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     setValue() {        
       brightness.setValue({            
@@ -111,7 +111,7 @@ getMode(Object): void
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     getMode() {        
       brightness.getMode({            
@@ -145,7 +145,7 @@ setMode(Object): void
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     setMode() {        
       brightness.setMode({            
@@ -180,7 +180,7 @@ setKeepScreenOn(Object): void
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     setKeepScreenOn() {        
       brightness.setKeepScreenOn({            
