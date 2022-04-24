@@ -503,9 +503,7 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 - 示例：
   ```js
   fileio.mkdir(path, function(err) {
-      if (!err) {
-          // do something
-      }
+    console.info("mkdir successfully");
   });
   ```
 
@@ -639,7 +637,8 @@ read(fd: number, buffer: ArrayBuffer, options?: {
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readout){
-      console.info("read file data successfully:"+ JSON.stringify(readout));
+      console.info("read file data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(error){
       console.info("read file data failed with error:"+ error);
   });
@@ -671,8 +670,9 @@ read(fd: number, buffer: ArrayBuffer, options: {
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
-      if (!err) {
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      if (readOut) {
+          console.info("read file data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -756,6 +756,7 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
   ```js
   fileio.rmdir(path, function(err){
       // do something
+      console.info("rmdir successfully");
   });
   ```
 
@@ -824,9 +825,7 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 - 示例：
   ```js
   fileio.unlink(path, function(err) {
-      if (!err) {
-          // do something
-      }
+      console.info("remove file successfully");
   });
   ```
 
@@ -879,7 +878,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
   ```js
   let fd = fileio.openSync(fpath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file successfully:"+ number);
+       console.info("write data to file successfully and size is:"+ number);
   }).catch(function(err){
       console.info("write data to file failed with error:"+ err);
   });
@@ -911,8 +910,8 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
-      if (!err) {
-         console.log(bytesWritten)
+      if (bytesWritten) {
+         console.info("write data to file successfully and size is:"+ bytesWritten);
       }
   });
   ```
@@ -997,8 +996,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 - 示例：
   ```js
   fileio.hash(fpath, "sha256", function(err, hashStr) {
-      if (!err) {
-          console.log(hashStr)
+      if (hashStr) {
+          console.info("calculate file hash successfully:"+ hashStr);
       }
   });
   ```
@@ -1486,7 +1485,8 @@ read(buffer: ArrayBuffer, options?: {
 - 示例：
   ```js
   fileio.read(new ArrayBuffer(4096)).then(function(readout){
-      console.info("read file data successfully:"+ String.fromCharCode.apply(null, new Uint8Array(readout.buffer)));
+      console.info("read file data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("read file data failed with error:"+ err);
   });
@@ -1516,8 +1516,9 @@ read(buffer: ArrayBuffer, options: {
   ```js
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
-      if (!err) {
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      if (readOut) {
+          console.info("read file data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -2731,7 +2732,7 @@ write(buffer: ArrayBuffer | string, options?: {
   ```js
   let ss= fileio.createStreamSync(fpath, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write successfully:"+ number);
+      console.info("write successfully and size is:"+ number);
   }).catch(function(err){
       console.info("write failed with error:"+ err);
   });
@@ -2762,9 +2763,9 @@ write(buffer: ArrayBuffer | string, options: {
   ```js
   let ss= fileio.createStreamSync(fpath, "r+");
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (!err) {
+      if (bytesWritten) {
          // do something
-         console.log(bytesWritten);
+         console.info("write successfully and size is:"+ bytesWritten);
       }
   });
   ```
@@ -2829,6 +2830,7 @@ read(buffer: ArrayBuffer, options?: {
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
       console.info("read data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("read data failed with error:"+ err);
   });
@@ -2858,8 +2860,9 @@ read(buffer: ArrayBuffer, options: {
   ```js
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (!err) {
-          // do something
+      if (readOut) {
+          console.info("read data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -2917,7 +2920,7 @@ read(): Promise&lt;Dirent&gt;
   ```js
   let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
-      console.info("read successfully:"+ dirent.name);
+      console.log("read successfully:"+JSON.stringify(dirent));
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -2941,9 +2944,9 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   ```js
   let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
-      if (!err) {
+      if (dirent) {
           // do something
-          console.log(dirent.name)
+          console.log("read successfully:"+JSON.stringify(dirent));
       }
   });
   ```
