@@ -1,4 +1,4 @@
-# Getting Started for Mini and Small Systems (IDE Mode)
+# Getting Started with Mini and Small Systems (IDE Mode)
 
 
 
