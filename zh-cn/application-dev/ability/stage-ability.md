@@ -20,7 +20,7 @@ ability支持单实例、多实例和指定实例3种启动模式。
 | singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
 | specified   | 指定实例 | 运行时由ability内部业务决定是否创建多实例 |
 
-缺省情况下是standard模式。
+缺省情况下是singleton模式。
 
 ## 接口说明
 AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-application-abilitystage.md)）：
