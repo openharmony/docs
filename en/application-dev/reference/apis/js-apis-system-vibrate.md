@@ -3,7 +3,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The initial APIs of this module are supported since API version 4. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are no longer maintained since API version 8. You are advised to use [Vibrator](js-apis-vibrator.md) instead.
+> - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.vibrator`](js-apis-vibrator.md) instead.
 > - This module requires hardware support and can only be debugged on real devices.
 
 
@@ -36,13 +36,13 @@ Triggers device vibration.
 ```
 vibrator.vibrate({
   mode: 'short',
-  success: function(ret) {
+  success: function() {
     console.log('vibrate is successful');
   },
-  fail: function(ret) {
-    console.log('vibrate is failed');
+  fail: function(data, code) {
+    console.log("vibrate is failed, data: " + data + ", code: " + code);
   },
-  complete: function(ret) {
+  complete: function() {
     console.log('vibrate is completed');
   }
 });
