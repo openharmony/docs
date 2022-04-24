@@ -1532,7 +1532,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 - 参数
   | 参数 | 类型 | 描述 |
   | -------- | -------- | -------- |
-  | image | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap)。 |
+  | image | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
   | sx | number | 裁切源图像时距离源图像左上角的x坐标值。 |
   | sy | number | 裁切源图像时距离源图像左上角的y坐标值。 |
   | sWidth | number | 裁切源图像时需要裁切的宽度。 |
@@ -1840,16 +1840,16 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建PixelMap对象。
+获取用当前canvas指定区域内的像素创建的PixelMap对象。
 
 - 参数
 
   | 参数 | 类型   | 描述                        |
   | ---- | ------ | --------------------------- |
-  | sx   | number | 需要输出区域的左上角x坐标。 |
-  | sy   | number | 需要输出区域的左上角y坐标。 |
-  | sw   | number | 需要输出区域的宽度。        |
-  | sh   | number | 需要输出区域的高度。        |
+  | sx   | number | 指定区域的左上角x坐标。 |
+  | sy   | number | 指定区域的左上角y坐标。 |
+  | sw   | number | 指定区域的宽度。        |
+  | sh   | number | 指定区域的高度。        |
 
 - 返回值
 
@@ -1862,7 +1862,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   ```
   <!-- xxx.hml -->
   <div>
-    <canvas id="canvasId"; style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="canvasId"; style="width: 200px; height: 150px; background-color: #ffff00"></canvas>
   </div>
   ```
 
