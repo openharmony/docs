@@ -14,33 +14,7 @@
 
 包含流程：创建实例、参数设置、会话管理、拍照、录像、释放资源等。
 
-Xcomponent创建方法可参考：[XComponent创建方法]
-
-#### XComponent创建方法
-预览画面显示需要获取SurfaceId
-
-```js
-mXComponentController: XComponentController = new XComponentController                   //创建XComponentController
-
-build() {
-    Flex() {
-        XComponent({                                                                     //创建XComponent
-            id: '',
-            type: 'surface',
-            libraryname: '',
-            controller: this.mXComponentController
-        })
-        .onload(() => {                                                                  //设置onload回调
-            //设置Surface宽高（1920*1080）
-            this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080})
-            //获取Surface ID
-            globalThis.surfaceId = mXComponentController.getXComponentSurfaceId()
-        })
-        .width('1920px')                                                                 //设置XComponent宽度
-        .height('1080px')                                                                //设置XComponent高度
-    }
-}
-```
+Xcomponent创建方法可参考：[XComponent创建方法](#xcomponent创建方法)
 
 #### 创建实例
 
@@ -117,11 +91,7 @@ camera.createPhotoOutput((photoSurfaceId), (err, output) => {
     console.log('Callback returned with the PhotoOutput instance.');
     photoOutput = output
 });
-//保存照片
-```
-照片保存方法可参考：[照片保存方法示例]
 
-```js
 //创建视频录制的参数
 let videoProfile = {
     audioBitrate : 48000,
@@ -439,4 +409,30 @@ await captureSession.release((err) => {
     }
     console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
 });
+```
+
+#### XComponent创建方法
+预览画面显示需要获取SurfaceId
+
+```js
+mXComponentController: XComponentController = new XComponentController                   //创建XComponentController
+
+build() {
+    Flex() {
+        XComponent({                                                                     //创建XComponent
+            id: '',
+            type: 'surface',
+            libraryname: '',
+            controller: this.mXComponentController
+        })
+        .onload(() => {                                                                  //设置onload回调
+            //设置Surface宽高（1920*1080）
+            this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080})
+            //获取Surface ID
+            globalThis.surfaceId = mXComponentController.getXComponentSurfaceId()
+        })
+        .width('1920px')                                                                 //设置XComponent宽度
+        .height('1080px')                                                                //设置XComponent高度
+    }
+}
 ```
