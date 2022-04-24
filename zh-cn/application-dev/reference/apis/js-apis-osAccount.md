@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
@@ -24,7 +24,7 @@ getAccountManager(): AccountManager
 | [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
 
 **示例：**
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   ```
 
@@ -64,7 +64,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
 
 **示例：**激活ID为100的系统帐号
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.activateOsAccount(localId, (err)=>{
@@ -97,7 +97,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**激活ID为100的系统帐号
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.activateOsAccount(localId).then(() => {
@@ -123,7 +123,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
     console.log("isMultiOsAccountEnable err: " + JSON.stringify(err));
@@ -147,7 +147,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable, isEnabled: ' + isEnabled);
@@ -175,7 +175,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 **示例：**判断ID为100的系统帐号是否处于激活状态
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId, (err, isActive)=>{
@@ -208,7 +208,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 **示例：**判断ID为100的系统帐号是否处于激活状态
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId).then((isActive) => {
@@ -238,7 +238,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 **示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi", (err, isConstraintEnabled)=>{
@@ -272,7 +272,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 **示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi").then((isConstraintEnabled) => {
@@ -298,7 +298,7 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTest) => {
     console.log("isTestOsAccount err: " + JSON.stringify(err));
@@ -322,7 +322,7 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTest) => {
     console.log('isTestOsAccount, isTest: ' + isTest);
@@ -347,7 +347,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     console.log("isOsAccountVerified err: " + JSON.stringify(err));
@@ -374,7 +374,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     console.log("isOsAccountVerified err: " + JSON.stringify(err));
@@ -406,7 +406,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified) => {
     console.log('isOsAccountVerified, isVerified: ' + isVerified);
@@ -436,7 +436,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
@@ -473,7 +473,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
@@ -510,7 +510,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 **示例：**给ID为100的系统帐号设置禁止使用wifi的约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.setOsAccountConstraints(localId, ["constraint.wifi"], true, (err)=>{
@@ -546,7 +546,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 **示例：**删除ID为100的系统帐号的禁止使用wifi的约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.setOsAccountConstraints(localId, ["constraint.location.set"], false).then(() => {
@@ -578,7 +578,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 **示例：**将ID为100的系统帐号的帐号名设置成demoName
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var newName = "demoName";
@@ -614,7 +614,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 **示例：**将ID为100的系统帐号的帐号名设置成demoName
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var nameLimit = "demoName";
@@ -643,7 +643,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, accountCnt)=>{
     console.log("obtains the number of all os accounts created err:" + JSON.stringify(err));
@@ -669,7 +669,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((accountCnt) => {
     console.log('getCreatedOsAccountsCount, accountCnt: ' + accountCnt);
@@ -694,7 +694,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, accountID) => {
     console.log("getOsAccountLocalIdFromProcess err: " + JSON.stringify(err));
@@ -718,7 +718,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((accountID) => {
     console.log('getOsAccountLocalIdFromProcess, accountID: ' + accountID);
@@ -744,7 +744,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 **示例：**查询值为12345678的uid所属的系统帐号的帐号ID
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, accountID) => {
@@ -775,7 +775,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 **示例：**查询值为12345678的uid所属的系统帐号的帐号ID
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((accountID) => {
@@ -804,7 +804,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 **示例：**
 
-  ```
+  ```js
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, accountID) => {
@@ -837,7 +837,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((accountID) => {
@@ -865,7 +865,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber((err, maxCnt)=>{
     console.log("queryMaxOsAccountNumber err:" + JSON.stringify(err));
@@ -891,7 +891,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
     console.log('queryMaxOsAccountNumber, maxCnt: ' + maxCnt);
@@ -919,7 +919,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 **示例：**获取ID为100的系统帐号的全部约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
@@ -952,7 +952,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**获取ID为100的系统帐号的全部约束
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
@@ -980,7 +980,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts((err, accountArr)=>{
     console.log("queryAllCreatedOsAccounts err:" + JSON.stringify(err));
@@ -1006,7 +1006,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
     console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
@@ -1031,7 +1031,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err, idArray)=>{
     console.log("queryActivatedOsAccountIds err:" + JSON.stringify(err));
@@ -1058,7 +1058,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
@@ -1089,7 +1089,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.createOsAccount("testName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     console.log("createOsAccount err:" + JSON.stringify(err));
@@ -1124,7 +1124,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL).then((accountInfo) => {
     console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
@@ -1155,7 +1155,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
@@ -1191,7 +1191,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
@@ -1219,7 +1219,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err, curAccountInfo)=>{
     console.log("queryCurrentOsAccount err:" + JSON.stringify(err));
@@ -1245,7 +1245,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
     console.log("queryCurrentOsAccount, accountInfo: " + JSON.stringify(accountInfo));
@@ -1275,7 +1275,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 **示例：**查询ID为100的系统帐号信息
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.queryOsAccountById(localId, (err, accountInfo)=>{
@@ -1310,7 +1310,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 **示例：**查询ID为100的系统帐号信息
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.queryOsAccountById(localId).then((accountInfo) => {
@@ -1336,7 +1336,7 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err, accountType) => {
     console.log("getOsAccountTypeFromProcess err: " + JSON.stringify(err));
@@ -1360,7 +1360,7 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
@@ -1387,7 +1387,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err, virtualID) => {
     console.log("getDistributedVirtualDeviceId err: " + JSON.stringify(err));
@@ -1413,7 +1413,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
@@ -1443,7 +1443,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 **示例：**获取ID为100的系统帐号的头像
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountProfilePhoto(localId, (err, photo)=>{
@@ -1478,7 +1478,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 **示例：**获取ID为100的系统帐号的头像
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
@@ -1510,7 +1510,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 **示例：**给ID为100的系统帐号设置头像
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
@@ -1549,7 +1549,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 **示例：**给ID为100的系统帐号设置头像
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
@@ -1580,7 +1580,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 **示例：**查询与SN码12345关联的系统帐号的ID
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
@@ -1611,7 +1611,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 **示例：**查询与SN码12345关联的系统帐号的ID
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
@@ -1638,7 +1638,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 **示例：**获取ID为100的系统帐号关联的SN码
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
@@ -1669,7 +1669,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 **示例：**获取ID为100的系统帐号关联的SN码
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
@@ -1701,7 +1701,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId){
     console.log("receive localId:" + receiveLocalId);
@@ -1731,7 +1731,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 **示例：**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   function offCallback(){
     console.log("off enter")

@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
@@ -24,7 +24,7 @@ Obtains an **AccountManager** instance.
 | [AccountManager](#accountmanager) | Obtains an **AccountManager** instance.|
 
 **Example**
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   ```
 
@@ -64,7 +64,7 @@ This is a system API and cannot be called by third-party applications.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Example**: Activate OS account 100.
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.activateOsAccount(localId, (err)=>{
@@ -97,7 +97,7 @@ This is a system API and cannot be called by third-party applications.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**: Activate OS account 100.
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.activateOsAccount(localId).then(() => {
@@ -123,7 +123,7 @@ Checks whether multiple OS accounts are supported. This method uses an asynchron
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
     console.log("isMultiOsAccountEnable err: " + JSON.stringify(err));
@@ -147,7 +147,7 @@ Checks whether multiple OS accounts are supported. This method uses a promise to
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable, isEnabled: ' + isEnabled);
@@ -175,7 +175,7 @@ Checks whether an OS account is activated. This method uses an asynchronous call
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId, (err, isActive)=>{
@@ -208,7 +208,7 @@ Checks whether an OS account is activated. This method uses a promise to return 
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId).then((isActive) => {
@@ -236,9 +236,9 @@ Checks whether the specified constraint is enabled for an OS account. This metho
 | constraint | string                       | Yes  | [Constraint](#constraints) specified.            |
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
 
-** Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi", (err, isConstraintEnabled)=>{
@@ -270,9 +270,9 @@ Checks whether the specified constraint is enabled for an OS account. This metho
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. If the constraint is enabled for the OS account, **true** will be returned. Otherwise, **false** will be returned.|
 
-** Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
+**Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi").then((isConstraintEnabled) => {
@@ -298,7 +298,7 @@ Checks whether this OS account is a test account. This method uses an asynchrono
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTest) => {
     console.log("isTestOsAccount err: " + JSON.stringify(err));
@@ -322,7 +322,7 @@ Checks whether this OS account is a test account. This method uses a promise to 
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTest) => {
     console.log('isTestOsAccount, isTest: ' + isTest);
@@ -347,7 +347,7 @@ Checks whether this OS account has been verified. This method uses an asynchrono
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     console.log("isOsAccountVerified err: " + JSON.stringify(err));
@@ -374,7 +374,7 @@ Checks whether an OS account has been verified. This method uses an asynchronous
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     console.log("isOsAccountVerified err: " + JSON.stringify(err));
@@ -406,7 +406,7 @@ Checks whether an OS account has been verified. This method uses a promise to re
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified) => {
     console.log('isOsAccountVerified, isVerified: ' + isVerified);
@@ -436,7 +436,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
@@ -473,7 +473,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var createIocalId;
   osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
@@ -508,9 +508,9 @@ This is a system API and cannot be called by third-party applications.
 | enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                      |
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                  |
 
-** Example**: Disable Wi-Fi for OS account 100.
+**Example**: Disable Wi-Fi for OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.setOsAccountConstraints(localId, ["constraint.wifi"], true, (err)=>{
@@ -546,7 +546,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Remote the constraint on the use of Wi-Fi for OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.setOsAccountConstraints(localId, ["constraint.location.set"], false).then(() => {
@@ -578,7 +578,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Set the name of OS account 100 to **demoName**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var newName = "demoName";
@@ -614,7 +614,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Set the name of OS account 100 to **demoName**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var nameLimit = "demoName";
@@ -643,7 +643,7 @@ Obtains the number of OS accounts created. This method uses an asynchronous call
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, accountCnt)=>{
     console.log("obtains the number of all os accounts created err:" + JSON.stringify(err));
@@ -669,7 +669,7 @@ Obtains the number of OS accounts created. This method uses a promise to return 
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((accountCnt) => {
     console.log('getCreatedOsAccountsCount, accountCnt: ' + accountCnt);
@@ -694,7 +694,7 @@ Obtains the ID of the OS account to which the current process belongs. This meth
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, accountID) => {
     console.log("getOsAccountLocalIdFromProcess err: " + JSON.stringify(err));
@@ -718,7 +718,7 @@ Obtains the ID of the OS account to which the current process belongs. This meth
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((accountID) => {
     console.log('getOsAccountLocalIdFromProcess, accountID: ' + accountID);
@@ -744,7 +744,7 @@ Obtains the OS account ID based on the process UID. This method uses an asynchro
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, accountID) => {
@@ -775,7 +775,7 @@ Obtains the OS account ID based on the process UID. This method uses a promise t
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((accountID) => {
@@ -804,7 +804,7 @@ Obtains the OS account ID based on domain account information. This method uses 
 
 **Example**
 
-  ```
+  ```js
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, accountID) => {
@@ -837,7 +837,7 @@ Obtains the OS account ID based on domain account information. This method uses 
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((accountID) => {
@@ -865,7 +865,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber((err, maxCnt)=>{
     console.log("queryMaxOsAccountNumber err:" + JSON.stringify(err));
@@ -891,7 +891,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
     console.log('queryMaxOsAccountNumber, maxCnt: ' + maxCnt);
@@ -917,9 +917,9 @@ Obtains all constraints enabled for an OS account. This method uses an asynchron
 | localId  | number                                   | Yes  | ID of the target OS account.                                                |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback used to return all [constraints](#constraints) obtained.|
 
-** Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
@@ -950,9 +950,9 @@ Obtains all constraints enabled for an OS account. This method uses a promise to
 | :--------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the [constraints](#constraints) obtained.|
 
-** Example**: Obtain all constraints of OS account 100.
+**Example**: Obtain all constraints of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
@@ -980,7 +980,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts((err, accountArr)=>{
     console.log("queryAllCreatedOsAccounts err:" + JSON.stringify(err));
@@ -1006,7 +1006,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
     console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
@@ -1031,7 +1031,7 @@ Obtains information about all activated OS accounts. This method uses an asynchr
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err, idArray)=>{
     console.log("queryActivatedOsAccountIds err:" + JSON.stringify(err));
@@ -1058,7 +1058,7 @@ Obtains information about all activated OS accounts. This method uses a promise 
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
@@ -1089,7 +1089,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.createOsAccount("testName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     console.log("createOsAccount err:" + JSON.stringify(err));
@@ -1124,7 +1124,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL).then((accountInfo) => {
     console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
@@ -1155,7 +1155,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
@@ -1191,7 +1191,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
   accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
@@ -1219,7 +1219,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err, curAccountInfo)=>{
     console.log("queryCurrentOsAccount err:" + JSON.stringify(err));
@@ -1245,7 +1245,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
     console.log("queryCurrentOsAccount, accountInfo: " + JSON.stringify(accountInfo));
@@ -1275,7 +1275,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Query information about OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.queryOsAccountById(localId, (err, accountInfo)=>{
@@ -1310,7 +1310,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Query information about OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.queryOsAccountById(localId).then((accountInfo) => {
@@ -1336,7 +1336,7 @@ Obtains the type of the OS account to which the current process belongs. This me
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err, accountType) => {
     console.log("getOsAccountTypeFromProcess err: " + JSON.stringify(err));
@@ -1360,7 +1360,7 @@ Obtains the type of the OS account to which the current process belongs. This me
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
@@ -1387,7 +1387,7 @@ Obtains the ID of this distributed virtual device. This method uses an asynchron
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err, virtualID) => {
     console.log("getDistributedVirtualDeviceId err: " + JSON.stringify(err));
@@ -1413,7 +1413,7 @@ Obtains the ID of this distributed virtual device. This method uses a promise to
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
@@ -1443,7 +1443,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Obtain the profile photo of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountProfilePhoto(localId, (err, photo)=>{
@@ -1478,7 +1478,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Obtain the profile photo of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
@@ -1510,7 +1510,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Set a profile photo for OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
@@ -1549,7 +1549,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Set a profile photo for OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
@@ -1580,7 +1580,7 @@ Obtains the OS account ID based on the SN. This method uses an asynchronous call
 
 **Example**: Obtain the ID of the OS account whose SN is **12345**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
@@ -1611,7 +1611,7 @@ Obtains the OS account ID based on the SN. This method uses a promise to return 
 
 **Example**: Obtain the ID of the OS account whose SN is **12345**.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
@@ -1638,7 +1638,7 @@ Obtains the SN of an OS account based on the account ID. This method uses an asy
 
 **Example**: Obtain the SN of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
@@ -1669,7 +1669,7 @@ Obtains the SN of an OS account based on the account ID. This method uses a prom
 
 **Example**: Obtain the SN of OS account 100.
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   var localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
@@ -1701,7 +1701,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId){
     console.log("receive localId:" + receiveLocalId);
@@ -1731,7 +1731,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-  ```
+  ```js
   const accountManager = account_osAccount.getAccountManager();
   function offCallback(){
     console.log("off enter")
