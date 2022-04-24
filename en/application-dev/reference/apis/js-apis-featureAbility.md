@@ -917,8 +917,8 @@ Enumerates operation types of the Data ability.
 | Name                            | Readable/Writable| Type                | Mandatory| Description                                                        |
 | -------------------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | deviceId                         | Read-only    | string               | No  | ID of the device that runs the ability.                               |
-| bundleName                       | Read-only    | string               | No  | Bundle name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.|
-| abilityName                      | Read-only    | string               | No  | Name of the ability to start. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can directly match the specified ability.|
+| bundleName                       | Read-only    | string               | No  | Bundle name of the ability to start.|
+| abilityName                      | Read-only    | string               | No  | Name of the ability to start. If both **package** and **AbilityName** are specified in this field in a **Want** object, the **Want** object can directly match the specified ability.|
 | uri                              | Read-only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
 | type                             | Read-only    | string               | No  | MIME type, for example, text/plain or image/*.  |
 | flags                            | Read-only    | number               | No  | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags).|
