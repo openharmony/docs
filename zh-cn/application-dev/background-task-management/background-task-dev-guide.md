@@ -117,7 +117,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ### 开发步骤
 
-1. 在DevEco Studio IDE中，新建api8的工程后，工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建service ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中ability类型为service
+1. 新建api8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为"service"。
 
     ```json
     "module": {
@@ -147,18 +147,14 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     import wantAgent from '@ohos.wantAgent';
 
     let wantAgentInfo = {
-        // 点击通知后，将要执行的动作列表
         wants: [
             {
                 bundleName: "com.example.myapplication",
                 abilityName: "com.example.myapplication.MainAbility"
             }
         ],
-        // 点击通知后，动作类型
         operationType: wantAgent.OperationType.START_ABILITY,
-        // 使用者自定义的一个私有值
         requestCode: 0,
-        // 点击通知后，动作执行属性
         wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -188,7 +184,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     ```
 
 ### 开发实例
-基于FA的service ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
+基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
 当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动服务ability。并在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
 
@@ -202,14 +198,18 @@ import rpc from "@ohos.rpc";
 
 function startBackgroundRunning() {
     let wantAgentInfo = {
+        // 点击通知后，将要执行的动作列表
         wants: [
             {
                 bundleName: "com.example.myapplication",
                 abilityName: "com.example.myapplication.MainAbility"
             }
         ],
+        // 点击通知后，动作类型
         operationType: wantAgent.OperationType.START_ABILITY,
+        // 使用者自定义的一个私有值
         requestCode: 0,
+        // 点击通知后，动作执行属性
         wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
