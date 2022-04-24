@@ -170,7 +170,7 @@ You can reference the content of a node to modify the content of another node. T
  node :& source_node
 ```
 
-  In this statement, the content of **node** is referenced to modify the content of **source_node**. 
+In this statement, the content of **node** is referenced to modify the content of **source_node**. 
 
 Example:
 
