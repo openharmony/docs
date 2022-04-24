@@ -264,7 +264,7 @@ export default {
         mMyStub = new MyStub("ServiceAbility-test");
         startBackgroundRunning();
         // 此处执行后台具体的长时任务。
-        stopBackgroundRunning()
+        stopBackgroundRunning();
     },
     onStop() {
         console.info('ServiceAbility onStop');
