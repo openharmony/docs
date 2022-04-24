@@ -1221,7 +1221,7 @@ Synchronously truncates a file based on the file descriptor.
 
 - Example
   ```js
-  fileio.ftruncate(fd, len);
+  fileio.ftruncateSync(fd, len);
   ```
 
 
@@ -1293,7 +1293,7 @@ Synchronously truncates a file based on the file path.
 
 - Example
   ```js
-  fileio.ftruncate(path, len);
+  fileio.truncateSync(path, len);
   ```
 
 
