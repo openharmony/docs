@@ -1532,7 +1532,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 - 参数
   | 参数 | 类型 | 描述 |
   | -------- | -------- | -------- |
-  | image | Image \| PixelMap | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md)。 |
+  | image | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap)。 |
   | sx | number | 裁切源图像时距离源图像左上角的x坐标值。 |
   | sy | number | 裁切源图像时距离源图像左上角的y坐标值。 |
   | sWidth | number | 裁切源图像时需要裁切的宽度。 |
@@ -1836,7 +1836,7 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
   ![zh-cn_image_0000001214463283](figures/zh-cn_image_0000001214463283.png)
 
-### getPixelMap
+### getPixelMap<sup>9+</sup>
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
