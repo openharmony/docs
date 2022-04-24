@@ -60,21 +60,23 @@
 
 资源引用类型，用于设置组件属性的值。
 
-可以通过$r或者$rawfile创建Resource类型对象，详见[资源访问](ts-application-resource-access.md)。
+可以通过`$r`或者`$rawfile`创建Resource类型对象，详见[资源访问](ts-application-resource-access.md)。
 
-- $r('belonging.type.name')
+- `$r('belonging.type.name')`
+
   belonging：系统资源或者应用资源，相应的取值为'sys'和'app'；
 
   type：资源类型，支持'color'、'float'、'string'、'media'等；
 
   name：资源名称，在资源定义时确定。
 
-- $rawfile('filename')
+- `$rawfile('filename')`
+
   filename：工程中resources/rawfile目录下的文件名称。
 
 | 名称 | 类型定义 | 描述 | 
 | -------- | -------- | -------- |
-| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | id：资源id值<br/>type：资源类型（枚举值）<br/>params：可选参数<br/>通过$r或者$rawfile创建Resource类型对象并使用即可，不可以修改Resource中的各属性的值。 | 
+| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | - id：资源id值。<br/>- type：资源类型（枚举值）。<br/>- params：可选参数。<br/>通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。 | 
 
 
 ## ResourceStr类型<sup>8+</sup>

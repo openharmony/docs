@@ -138,7 +138,7 @@ setImageRawDataCacheSize(value: number): void
   
   export default {
       onCreate() {
-          app.setImageRawDataCacheSize(104,857,600) // 设置解码前图片数据内存缓存上限为100MB
+          app.setImageRawDataCacheSize(100) // 设置解码前图片数据内存缓存上限为100MB
           console.info('Application onCreate')
       },
       onDestroy() {
@@ -168,7 +168,7 @@ setImageFileCacheSize(value: number): void
   
   export default {  
       onCreate() {    
-          app.setImageFileCacheSize(209,715,200) // 设置图片文件数据缓存上限为200MB   
+          app.setImageFileCacheSize(200) // 设置图片文件数据缓存上限为200MB   
           console.info('Application onCreate')
       },  
       onDestroy() {

@@ -11,7 +11,7 @@
 
 - 双向通信：子组件对@Link变量的更改将同步修改父组件的@State变量；
 
-- 创建自定义组件时需要将变量的引用传递给@Link变量：在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过'$'操作符创建引用。
+- 创建自定义组件时需要将变量的引用传递给@Link变量，在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过`'$'`操作符创建引用。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) 说明：
@@ -48,7 +48,7 @@ struct PlayButton {
 }
 ```
 
-@Link语义是从'$'操作符引出，即$isPlaying是this.isPlaying内部状态的双向数据绑定。当您单击PlayButton时，PlayButton 的Image组件和Text组件将同时进行刷新。
+@Link语义是从`'$'`操作符引出，即`$isPlaying`是`this.isPlaying`内部状态的双向数据绑定。当单击PlayButton时，PlayButton的Image组件和Text组件将同时进行刷新。
 
 
 ## 复杂类型示例
