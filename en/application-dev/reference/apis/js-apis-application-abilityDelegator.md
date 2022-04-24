@@ -34,7 +34,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -44,7 +44,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err) => {
+abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
     console.info("addAbilityMonitor callback");
 });
 ```
@@ -76,7 +76,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -113,7 +113,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -123,7 +123,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err) => {
+abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
     console.info("removeAbilityMonitor callback");
 });
 ```
@@ -155,7 +155,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -192,7 +192,7 @@ Waits for the ability that matches the **AbilityMonitor** instance to reach the 
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -202,7 +202,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err, data) => {
+abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -231,7 +231,7 @@ Waits a period of time for the ability that matches the **AbilityMonitor** insta
 var abilityDelegator;
 var timeout = 100;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -241,7 +241,7 @@ var monitor = {
 }
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err, data) => {
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
     console.info("waitAbilityMonitor callback");
 });
 ```
@@ -274,7 +274,7 @@ Waits a period of time for the ability that matches the **AbilityMonitor** insta
 ```js
 var abilityDelegator;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -343,7 +343,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
     var state = abilityDelegator.getAbilityState(ability);
@@ -374,7 +374,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
 });
@@ -411,7 +411,7 @@ abilityDelegator.getCurrentTopAbility().then((data : any) => {
 
 
 
-### startAbility
+### startAbility<sup>9+</sup>
 
 startAbility(want: Want, callback: AsyncCallback\<void>): void
 
@@ -436,14 +436,14 @@ var want = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err, data) => {
+abilityDelegator.startAbility(want, (err : any, data : any) => {
     console.info("startAbility callback");
 });
 ```
 
 
 
-### startAbility
+### startAbility<sup>9+</sup>
 
 startAbility(want: Want): Promise\<void>
 
@@ -502,10 +502,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err, data) => {
+    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
         console.info("doAbilityForeground callback");
     });
 });
@@ -540,7 +540,7 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
     abilityDelegator.doAbilityForeground(ability).then((data : any) => {
@@ -573,10 +573,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err, data) => {
+    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
         console.info("doAbilityBackground callback");
     });
 });
@@ -611,10 +611,10 @@ var abilityDelegator;
 var ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err, data) => {
+abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
     console.info("getCurrentTopAbility callback");
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data) => {
+    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
         console.info("doAbilityBackground promise");
     });
 });
@@ -644,7 +644,7 @@ var abilityDelegator;
 var msg = "msg";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err) => {
+abilityDelegator.print(msg, (err : any) => {
     console.info("print callback");
 });
 ```
@@ -698,7 +698,7 @@ Executes a shell command. This API uses an asynchronous callback to return the r
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | Yes  | Shell command string.   |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | Yes  | Callback used to return a [ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult) object.|
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -707,7 +707,7 @@ var abilityDelegator;
 var cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err, data) => {
+abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
@@ -728,7 +728,7 @@ Executes a shell command with the timeout period specified. This API uses an asy
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | Yes  | Shell command string.              |
 | timeoutSecs | number                                                       | Yes  | Command timeout period, in seconds.|
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | Yes  | Callback used to return a [ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult) object.           |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-application-shellCmdResult.md#ShellCmdResult)> | Yes  | Callback used to return the result.           |
 
 **Example**
 
@@ -738,7 +738,7 @@ var cmd = "cmd";
 var timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err, data) => {
+abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
     console.info("executeShellCommand callback");
 });
 ```
@@ -776,5 +776,70 @@ var timeout = 100;
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
     console.info("executeShellCommand promise");
+});
+```
+
+
+
+### finishTest<sup>9+</sup>
+
+finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
+
+Finishes the test and prints log information to the unit test console. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description              |
+| -------- | -------------------- | ---- | ------------------ |
+| msg      | string               | Yes  | Log string.        |
+| code     | number               | Yes  | Log code.            |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.finishTest(msg, 0, (err : any) => {
+    console.info("finishTest callback");
+});
+```
+
+
+
+### finishTest<sup>9+</sup>
+
+finishTest(msg: string, code: number): Promise\<void>
+
+Finishes the test and prints log information to the unit test console. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| msg    | string | Yes  | Log string.|
+| code   | number | Yes  | Log code.    |
+
+**Return value**
+
+| Type          | Description               |
+| -------------- | ------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.finishTest(msg, 0).then(() => {
+    console.info("finishTest promise");
 });
 ```
