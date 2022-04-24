@@ -144,11 +144,11 @@ clearData(key?: string): boolean
 
 - 示例：
 
-	  ```js
+	```js
 	  dragEnd(e){
 		  var isSuccess = e.dataTransfer.clearData('name');
 	  }
-	  ```
+	```
 
 ### getData
 
@@ -169,7 +169,7 @@ clearData(key?: string): boolean
 
 - 示例：
 
-	  ```js
+	```js
 	  dragStart(e){
 		  var person = new Object();
 		  person.name = "list";
@@ -179,7 +179,7 @@ clearData(key?: string): boolean
 	  dragEnd(e){
 		  var result = e.dataTransfer.getData('person');
 	  },
-	  ```
+	```
 
 ### setData
 
@@ -201,7 +201,7 @@ setData(key: string, value: object): boolean
 
 - 示例：
 
-	  ```
+	```
 	  //setData 可以是基本数据类型，也可以是对象类型
 	  dragStart(e){
 		  var isSetOk = e.dataTransfer.setData('name', 1);
@@ -213,7 +213,7 @@ setData(key: string, value: object): boolean
 		  person.age = 21;
 		   var isSetOk = e.dataTransfer.setData('person', person);
 	  }
-	  ```
+	```
 
 ### setDragImage
 
@@ -236,7 +236,7 @@ setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 
 - 示例：
 
-	  ```js
+	```js
 	  CreatePixelMap(){
 		  let color=new ArrayBuffer(4*96*96);
 		  var buffer=new Uint8Array(color);
@@ -260,4 +260,4 @@ setDragImage(pixelmap: Pixelmap, offsetX: number,offsetY: number): boolean
 	  dragStart(e){
 		  e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
 	  },
-	  ```
+	```
