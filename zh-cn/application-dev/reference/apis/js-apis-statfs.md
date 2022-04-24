@@ -15,7 +15,7 @@ import statfs from '@ohos.statfs';
 
 “文件/目录绝对路径”=“应用目录路径”+“文件/目录名”
 
-通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在绝对路径为：
+通过上述接口获取到应用目录路径dir，以文件名“xxx.txt”为例，文件所在绝对路径为：
 
 ```js
 let path = dir + "xxx.txt";
@@ -44,9 +44,9 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 - 示例：
 
   ```js
-  let path = "/data";
+  let path = "/dev";
   statfs.getFreeBytes(path).then(function (number){
-      console.info("getFreeBytes successfully:"+ number);
+      console.info("getFreeBytes promise successfully:"+ number);
   }).catch(function(err){
       console.info("getFreeBytes failed with error:"+ err);
   });
@@ -71,7 +71,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   ```js
   statfs.getFreeBytes(path, function(err, number){
-      //do something
+      console.info("getFreeBytes callback successfully:"+ number);
   });
   ```
 
@@ -98,9 +98,9 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 - 示例：
 
   ```js
-  let path = "/data";
+  let path = "/dev";
   statfs.getTotalBytes(path).then(function (number){
-      console.info("getTotalBytes successfully:"+ number);
+      console.info("getTotalBytes promise successfully:"+ number);
   }).catch(function(err){
       console.info("getTotalBytes failed with error:"+ err);
   });
@@ -125,7 +125,7 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   ```js
   statfs.getTotalBytes(path, function(err, number){
-      //do something
+      console.info("getTotalBytes callback successfully:"+ number);
   });
   ```
 
