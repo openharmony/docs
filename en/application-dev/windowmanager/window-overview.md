@@ -1,6 +1,6 @@
 # Window Overview
 
-The Window Manager subsystem provides basic capabilities of window and display management. It is the basis for UI display.
+The Window Manager subsystem provides basic capabilities of window management. It is the basis for UI display.
 The Window Manager subsystem enables multiple applications to use the same physical screen for display and interaction. For each application, you need to design the interaction interface in the fixed window area. A window acts as a display container of the application interface, and the Window Manager subsystem organizes the interaction interfaces into a form visible to end users.
 
 ## Basic Concepts
