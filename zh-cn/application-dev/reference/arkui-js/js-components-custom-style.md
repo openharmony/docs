@@ -1,43 +1,43 @@
 # 继承样式 
 > **说明：**
-> 从api version 9开始支持。
+> 从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-自定义组件具有inhert-class属性，定义如下：
+自定义组件具有inherit-class属性，定义如下：
 
 | 名称         | 类型   | 默认值 | 必填 | 描述                                                   |
 | ------------ | ------ | ------ | ---- | ------------------------------------------------------ |
-| inhert-class | string | -      | 否   | 从父组件继承的class样式，多个class样式之间用空格分隔。 |
+| inherit-class | string | -      | 否   | 从父组件继承的class样式，多个class样式之间用空格分隔。 |
 
-可以通过设置inhert-calss属性来继承父组件的样式。
+可以通过设置inherit-calss属性来继承父组件的样式。
 
-自定义组件的hml文件，其中fatherclass1和fatherclass2是从父组件继承的样式。
-```html
-<!--comp.hml-->
-<div class="item">
-    <text class="fatherclass1">继承父组件的样式1</text>
-    <text class="fatherclass2">继承父组件的样式2</text>
-</div>
-```
-
-父页面的hml文件，其中comp自定组件通过inhert-class属性，继承了父组件的fatherclass1和fatherclass2样式。
+父页面的hml文件，其中comp自定组件通过inherit-class属性，继承了父组件的parent-class1和parent-class2样式。
 ```html
 <!-- xxx.hml -->
 <element name='comp' src='../../common/component/comp.hml'></element>
 
 <div class="container">
-    <comp inhert-class="fatherclass1 fatherclass2" ></comp>
+    <comp inherit-class="parent-class1 parent-class2" ></comp>
 </div>
 ```
 
 父页面的css文件
 ```html
 // xxx.css
-.fatherclass1 {
+.parent-class1 {
     background-color:red;
     border:2px;
 }
-.fatherclass2 {
+.parent-class2 {
     background-color:green;
     border:2px;
 }
+```
+
+自定义组件的hml文件，其中parent-class1和parent-class2是从父组件继承的样式。
+```html
+<!--comp.hml-->
+<div class="item">
+    <text class="parent-class1">继承父组件的样式1</text>
+    <text class="parent-class2">继承父组件的样式2</text>
+</div>
 ```
