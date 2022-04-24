@@ -113,10 +113,11 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | VOIP                    | 8 | 音视频通话（系统保留） | voip |
 | TASK_KEEPING            | 9 | 计算任务（仅供特定设备使用） | taskKeeping |
 
+具体的api信息详见[接口使用指南](../reference/apis/js-apis-backgroundTaskManager.md)
 
 ### 开发步骤
 
-1. 在config.json文件中配置长时任务权限、后台模式类型，其中ability类型为service。
+1. 在DevEco Studio IDE中，新建api8的工程后，工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建service ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中ability类型为service
 
     ```json
     "module": {
@@ -146,14 +147,18 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     import wantAgent from '@ohos.wantAgent';
 
     let wantAgentInfo = {
+        // 点击通知后，将要执行的动作列表
         wants: [
             {
                 bundleName: "com.example.myapplication",
                 abilityName: "com.example.myapplication.MainAbility"
             }
         ],
+        // 点击通知后，动作类型
         operationType: wantAgent.OperationType.START_ABILITY,
+        // 使用者自定义的一个私有值
         requestCode: 0,
+        // 点击通知后，动作执行属性
         wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -183,14 +188,17 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     ```
 
 ### 开发实例
+基于FA的service ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
-当服务启动后，在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。在onStop回调方法里，调用长时任务取消接口，声明取消长时任务。
-在service.js文件中:
+当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动服务ability。并在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
+
+当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接服务ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
+import rpc from "@ohos.rpc";
 
 function startBackgroundRunning() {
     let wantAgentInfo = {
@@ -224,18 +232,48 @@ function stopBackgroundRunning() {
     });
 }
 
+let mMyStub;
+
+class MyStub extends rpc.RemoteObject {
+    constructor(des) {
+        if (typeof des === 'string') {
+            super(des);
+        } else {
+            return null;
+        }
+    }
+    onRemoteRequest(code, data, reply, option) {
+        console.log('ServiceAbility onRemoteRequest called');
+        // code 的具体含义用户自定义
+        if (code === 1) {
+            // 接收到申请长时任务的请求码
+            startContinuousTask();
+            // 此处执行具体长时任务
+        } else if (code === 2) {
+            // 接收到取消长时任务的请求码
+            stopContinuousTask();
+        } else {
+            console.log('ServiceAbility unknown request code');
+        }
+        return true;
+    }
+}
+
 export default {
     onStart(want) {
         console.info('ServiceAbility onStart');
+        mMyStub = new MyStub("ServiceAbility-test");
         startBackgroundRunning();
+        // 此处执行后台具体的长时任务。
+        // 任务处理完取消长时任务。
+        stopBackgroundRunning()
     },
     onStop() {
         console.info('ServiceAbility onStop');
-        stopBackgroundRunning();
     },
     onConnect(want) {
         console.info('ServiceAbility onConnect');
-        return {};
+        return mMyStub;
     },
     onReconnect(want) {
         console.info('ServiceAbility onReconnect');
