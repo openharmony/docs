@@ -5,7 +5,7 @@
 
 ## Modules to Import
 
-```
+```javascript
 import hiTraceChain from '@ohos.hiTraceChain';
 ```
 
@@ -90,7 +90,7 @@ Starts call chain tracing. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 ```
 
@@ -110,7 +110,7 @@ Stops call chain tracing. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let asyncTraceId = hiTraceChain.begin("business");
 // End the call chain tracing after the service logic is executed for several times.
 hiTraceChain.end(asyncTraceId);
@@ -132,7 +132,7 @@ Obtains the trace ID. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let traceId = hiTraceChain.begin("business");
 // Obtain the current trace ID after the service logic is executed for several times.
 let curTraceId = hiTraceChain.getId();
@@ -154,7 +154,7 @@ Sets a trace ID. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let traceId = hiTraceChain.begin("business");
 // Set the current trace ID after the service logic is executed for several times.
 hiTraceChain.setId(asyncTraceId);
@@ -170,7 +170,7 @@ Clears the trace ID. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let traceId = hiTraceChain.begin("business");
 // Clear the current trace ID after the service logic is executed for several times.
 hiTraceChain.clearId();
@@ -192,7 +192,7 @@ Creates a trace span. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let traceId = hiTraceChain.begin("business");
 // Create a trace span after the service logic is executed for several times.
 let spanTraceId = hiTraceChain.createSpan();
@@ -217,7 +217,7 @@ Triggers a trace point. This API works in synchronous manner.
 
 **Example**
 
-```
+```javascript
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // Trigger the trace point after the service logic is executed for several times.
 hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
@@ -245,7 +245,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 
 **Example**
 
-```
+```javascript
 let traceId = hiTraceChain.begin("business");
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
 ```
@@ -273,7 +273,7 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 
 **Example**
 
-```
+```javascript
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
 // The value of enabledDoNotCreateSpanFlag is true.
 let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
@@ -295,7 +295,7 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 
 **Example**
 
-```
+```javascript
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
 hiTraceChain.enable(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // The value of enabledDoNotCreateSpanFlag is true.
