@@ -2412,8 +2412,8 @@ isBlockDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                       |
-  | ------- | -------------------------- |
+  | 类型      | 说明               |
+  | ------- | ---------------- |
   | boolean | 表示文件是否是块特殊设备。 |
 
 - 示例：
@@ -2431,8 +2431,8 @@ isCharacterDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                         |
-  | ------- | ---------------------------- |
+  | 类型      | 说明                |
+  | ------- | ----------------- |
   | boolean | 表示文件是否是字符特殊设备。 |
 
 - 示例：
@@ -2450,8 +2450,8 @@ isDirectory(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                 |
-  | ------- | -------------------- |
+  | 类型      | 说明            |
+  | ------- | ------------- |
   | boolean | 表示文件是否是目录。 |
 
 - 示例：
@@ -2469,8 +2469,8 @@ isFIFO(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                       |
-  | ------- | -------------------------- |
+  | 类型      | 说明                    |
+  | ------- | --------------------- |
   | boolean | 表示文件是否是&nbsp;FIFO。 |
 
 - 示例：
@@ -2488,8 +2488,8 @@ isFile(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                     |
-  | ------- | ------------------------ |
+  | 类型      | 说明              |
+  | ------- | --------------- |
   | boolean | 表示文件是否是普通文件。 |
 
 - 示例：
@@ -2507,8 +2507,8 @@ isSocket(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                   |
-  | ------- | ---------------------- |
+  | 类型      | 说明             |
+  | ------- | -------------- |
   | boolean | 表示文件是否是套接字。 |
 
 - 示例：
@@ -2526,8 +2526,8 @@ isSymbolicLink(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
-  | 类型    | 说明                     |
-  | ------- | ------------------------ |
+  | 类型      | 说明              |
+  | ------- | --------------- |
   | boolean | 表示文件是否是符号链接。 |
 
 - 示例：
