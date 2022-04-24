@@ -131,7 +131,19 @@ var subscriber = {
 
 ### Publishing Notifications
 
-Before publishing a notification, make sure the notification feature is enabled for your application. This feature is disabled by default and can be enabled in the notification settings.
+##### Enabling Notification
+
+Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application can use **Notification.requestEnableNotification** to prompt the user to enable the feature.
+
+```js
+Notification.requestEnableNotification() .then((data) => {
+	console.info('===>requestEnableNotification success');
+}).catch((err) => {
+	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
+});
+```
+
+
 
 ##### Publishing Notifications
 
@@ -202,7 +214,7 @@ function getWantAgentCallback(err, data) {
 wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 ```
 
-- Publish the notification.
+- Publishes a notification.
 
 ```js
 // Create a NotificationRequest object.
@@ -246,3 +258,8 @@ Notification.cancel(1, "label", cancelCallback)
 ```
 
 
+## Samples
+
+The following sample is provided to help you better understand how to develop notification functions:
+
+[`Notification`: EtsNotification (API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
