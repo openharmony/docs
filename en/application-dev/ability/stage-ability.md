@@ -20,7 +20,7 @@ The **launchType** item in the **module.json** file is used to specify the launc
 | singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, **standard** is used.
+By default, **singleton** is used.
 
 ## Available APIs
 The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
@@ -271,9 +271,6 @@ export default class MainAbility extends Ability { {
 }
 ```
 
-## Development Example
+## Samples
 The following sample is provided to help you better understand how to develop an ability on the stage model:
-
-[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
-
-In this sample, the **AbilityStage** APIs are implemented in the **AbilityStage.ts** file in the **Application** directory, the **Ability** APIs are implemented in the **MainAbility** directory, and **pages/index** is the pages of the ability. Another ability is implemented in the **CalleeAbility** directory, and its pages are the content configured in **pages/second**. The callee ability can be started from the main ability.
+- [`StageCallAbility`: Stage Ability Creation and Usage (eTS) (API9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
