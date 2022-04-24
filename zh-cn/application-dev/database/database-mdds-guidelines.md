@@ -159,18 +159,17 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    deviceManager.createDeviceManager("bundleName", (err, value) => {
        if (!err) {
            devManager = value;
+           // get deviceIds
+           let deviceIds = [];
+           if (devManager != null) {
+               var deviceList = devManager.getTrustedDeviceListSync();
+               for (var i = 0; i < deviceList.length; i++) {
+                   deviceIds[i] = deviceList[i].deviceId;
+               }
+           }
+           kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
        }
    });
-   
-   // get deviceIds
-   let deviceIds = [];
-   if (devManager != null) {
-       var deviceList = devManager.getTrustedDeviceListSync();
-       for (var i = 0; i < deviceList.length; i++) {
-           deviceIds[i] = deviceList[i].deviceId;
-       }
-   }
-   kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
    ```
 ## 相关实例
 针对分布式数据开发，有以下相关实例可供参考：
