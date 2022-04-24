@@ -88,8 +88,8 @@
   - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.data.storage](js-apis-data-storage.md)
   - [@ohos.settings](js-apis-settings.md)
+  - [@ohos.data.storage](js-apis-data-storage.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 
 - File Management
@@ -202,6 +202,7 @@
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@system.app](js-apis-system-app.md)
   - [@system.battery](js-apis-system-battery.md)
+  - [@system.bluetooth](js-apis-system-bluetooth.md)
   - [@system.brightness](js-apis-system-brightness.md)
   - [@system.configuration](js-apis-system-configuration.md)
   - [@system.device](js-apis-system-device.md)
@@ -210,6 +211,7 @@
   - [@system.geolocation](js-apis-system-location.md)
   - [@system.mediaquery](js-apis-system-mediaquery.md)
   - [@system.network](js-apis-system-network.md)
+  - [@system.notification](js-apis-system-notification.md)
   - [@system.package](js-apis-system-package.md)
   - [@system.prompt](js-apis-system-prompt.md)
   - [@system.request](js-apis-system-request.md)
