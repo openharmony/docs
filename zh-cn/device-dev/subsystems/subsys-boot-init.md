@@ -195,40 +195,40 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
   2.  配置services数组，service集合（数组形式），包含了init进程需要启动的所有系统服务。
 
-```
-    "services" : [{
-        "name" : "service1",
-        "path" : ["/bin/process1", "param1", "param2"],
-        "uid" : 1,
-        "gid" : 1,
-        "once" : 0,
-        "importance" : 1,
-        "caps" : [0, 1, 2, 5],
-        "start-mode" : "condition",
-        "cpucore" : [0],
-        "critical" : [0, 5, 10],
-        "apl" : "normal",
-        "d-caps" : ["OHOS_DMS"],
-        "jobs" : {
-            "on-boot" : "boot",
-            "on-start" : "services:service1_start",
-            "on-stop" : "services:service1_stop",
-            "on-restart" : "services:service1_restart"
-       }
-    }, {
-        "name" : "service2",
-        "path" : "/bin/process2",
-        "uid" : 2,
-        "gid" : 2,
-        "once" : 1,
-        "importance" : 0,
-        "caps" : [ ]，
-        "cpucore" : 0,
-        "critical" : [ ],
-        "apl" : "normal",
-        "d-caps" : [ ]
-    }]
-```
+  ```
+  "services" : [{
+      "name" : "service1",
+      "path" : ["/bin/process1", "param1", "param2"],
+      "uid" : 1,
+      "gid" : 1,
+      "once" : 0,
+      "importance" : 1,
+      "caps" : [0, 1, 2, 5],
+      "start-mode" : "condition",
+      "cpucore" : [0],
+      "critical" : [0, 5, 10],
+      "apl" : "normal",
+      "d-caps" : ["OHOS_DMS"],
+      "jobs" : {
+          "on-boot" : "boot",
+          "on-start" : "services:service1_start",
+          "on-stop" : "services:service1_stop",
+          "on-restart" : "services:service1_restart"
+     }
+  }, {
+      "name" : "service2",
+      "path" : "/bin/process2",
+      "uid" : 2,
+      "gid" : 2,
+      "once" : 1,
+      "importance" : 0,
+      "caps" : [ ]，
+      "cpucore" : 0,
+      "critical" : [ ],
+      "apl" : "normal",
+      "d-caps" : [ ]
+  }]
+  ```
 
 **表3**  service字段说明<a name="table14737791471"></a>
   | 字段名 | 字段说明 | 备注 |
@@ -248,14 +248,14 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
   | jobs         | 当前服务在不同阶段可以执行的job（仅标准系统以上提供）。 | 具体说明参考：[init服务并行控制](#section56901555919) |
   | ondemand     | 按需启动服务的标志（仅标准系统以上提供）。 | 类型：bool，如"ondemand" : true，具体说明参考：[init服务按需启动](#section56901555920)|
 
-  3. 服务中socket配置和按需启动。
+3. 服务中socket配置和按需启动。
 
-   服务中支持配置 "socket" 属性，该属性以一个JSON对象的格式配置。配置有 "socket" 属性的服务，init将会为其创建socket，以是否为按需启动服务来区分其创建的时机。
-   - 按需启动的服务，init会在解析到该服务时，根据解析到的socket配置进行创建。
-   - 正常启动的服务，init会在拉起该服务时，执行服务可执行文件之前创建其配置的socket。
+     服务中支持配置 "socket" 属性，该属性以一个JSON对象的格式配置。配置有 "socket" 属性的服务，init将会为其创建socket，以是否为按需启动服务来区分其创建的时机。
+     - 按需启动的服务，init会在解析到该服务时，根据解析到的socket配置进行创建。
+     - 正常启动的服务，init会在拉起该服务时，执行服务可执行文件之前创建其配置的socket。
 
-   无论服务是否按需启动，其真正被拉起后，都需要通过特定接口获取init为其创建的socket句柄，进而接手该socket的管理，成为服务自有的socket。
-   除以上socket的配置和创建流程，对于按需启动的服务，init还有不同行为。当init在创建根据服务的socket配置创建完socket后，将会判断服务的ondemand属性是否为true（按需启动服务），若是则会调用接口对socket进行轮询监听，直到socket有消息上报，此时将停止监听并拉起对应服务，由服务接管该socket并处理消息。
+     无论服务是否按需启动，其真正被拉起后，都需要通过特定接口获取init为其创建的socket句柄，进而接手该socket的管理，成为服务自有的socket。
+     除以上socket的配置和创建流程，对于按需启动的服务，init还有不同行为。当init在创建根据服务的socket配置创建完socket后，将会判断服务的ondemand属性是否为true（按需启动服务），若是则会调用接口对socket进行轮询监听，直到socket有消息上报，此时将停止监听并拉起对应服务，由服务接管该socket并处理消息。
 
    下面以ueventd服务为例介绍服务中socket和按需启动的配置以及各字段的含义。
 
