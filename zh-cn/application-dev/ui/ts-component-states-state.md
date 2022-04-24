@@ -56,7 +56,8 @@ class Model {
 struct EntryComponent {
     build() {
         Column() {
-            MyComponent({count: 1, increaseBy: 2})  // MyComponent1 in this document            MyComponent({title: {value: 'Hello, World 2'}, count: 7})   //MyComponent2 in this document
+            MyComponent({count: 1, increaseBy: 2})  // MyComponent1 in this document            
+            MyComponent({title: {value: 'Hello, World 2'}, count: 7})   //MyComponent2 in this document
         }
     }
 }

@@ -52,7 +52,7 @@ destroy(name: string): void
 
 - 示例
   ```
-  import lottie from 'lottie-web'
+  import lottie from '@ohos/lottieETS'
 
   @Entry
   @Component
