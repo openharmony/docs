@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import thermal from '@ohos.thermal';
 ```
 
@@ -46,7 +46,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 **示例：**
 
-```
+```js
 var lev = 0;
 thermal.subscribeThermalLevel((lev) => {
     console.info("Thermal level is: " + lev);
@@ -69,7 +69,7 @@ unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
 
 **示例：**
 
-```
+```js
 thermal.unsubscribeThermalLevel(() => {
     console.info("Unsubscribe completed.");
 });
@@ -91,7 +91,7 @@ getThermalLevel(): ThermalLevel
 
 **示例：**
 
-```
+```js
 var lev = thermal.getThermalLevel();
 console.info("Thermal level is: " + lev);
 ```
