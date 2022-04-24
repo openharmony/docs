@@ -63,7 +63,7 @@
 | border-image-outset<sup>7+</sup>          | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;               | 0            | 指定边框图像可超出边框的大小。<br/>指定一个值时，边框图像在四个方向超出边框的距离。<br/>指定两个值时，第一个值指定上下两边的边框图像超出边框的距离，第二个指定左右两边的&nbsp;。<br/>指定三个值时，第一个指定上边的边框图像超出边框的距离&nbsp;，第二个指定左右两边的边框图像超出边框的距离&nbsp;，第三个指定下边的边框图像超出边框的距离&nbsp;。<br/>指定四个值时分别为上、右、下、左边的边框图像超出边框的距离&nbsp;（顺时针顺序）。 |
 | border-image-repeat<sup>7+</sup>          | string                                                       | stretch      | 定义图片如何填充边框。<br/>stretch:&nbsp;拉伸图片以填充边框。<br/>repeat：平铺图片以填充边框。<br/>round：平铺图像。当不能整数次平铺时，根据情况放大或缩小图像。<br/> |
 | border-image<sup>7+</sup>                 | string                                                       | -            | 简写属性，可以选择以下两种设置方式：<br/>-&nbsp;设置图片边框的每个属性。包含图像的边界向内偏移，图像边界的宽度，边框图像可超出边框盒的大小，图片如何填充边框，顺序设置为&nbsp;border-image-source&nbsp;,border-image-slice,border-image-width,border-image-outset,border-image-repeat，不设置的值为默认值。<br/>-&nbsp;渐变色边框<br/>&nbsp;&nbsp;示例:<br/>&nbsp;&nbsp;border-image:&nbsp;linear-gradient(red,&nbsp;yellow)&nbsp;10px |
-| box-sizing<sup>8+</sup>                   | string                                                       | border-box   | -border-box：你想要设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px，那么这100px会包含它的border和padding，内容区的实际宽度是width减去(border + padding)的值。大多数情况下，这使得我们更容易地设定一个元素的宽高。<br />-content-box：宽度和高度分别应用到元素的内容框。在宽度和高度之外绘制元素的内边距和边框。<br />示例：<br />box-sizing: border-box\|content-box<br /> |
+| box-sizing<sup>9+</sup>                   | string                                                       | border-box   | 设置组件的边框类型。<br/>content-box：标准盒子模型。设置的width和height只包含内容的宽和高，不包含边框（border）和内边距（padding）。<br/>border-box：设置的width和height包含内容，边框（border）和内边距（padding），即：组件内容区的实际宽度 = width - (border + padding) 。|
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -71,7 +71,7 @@
 
 ## 示例
 
-- box-sizing 
+### box-sizing 
 
 	```html
 	<div class="container" onswipe="touchMove">
@@ -84,6 +84,5 @@
 	</div>
 	```
 
--  运行效果：
 
 ![zh-cn_image_0000001214837129](figures/zh-cn_image_0000001214837129.png)
