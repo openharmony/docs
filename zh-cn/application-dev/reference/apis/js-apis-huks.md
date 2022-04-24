@@ -766,7 +766,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为从生成key时传入的别名。中导出的生成密钥时所需参数。 |
+| Promise\<[HuksResult](#huksoptions)> | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
 
 **示例：**
 
@@ -969,132 +969,206 @@ abort操作密钥接口，使用Callback回调异步返回结果 。
  * 以下以RSA1024密钥的callback操作使用为例
  */
 import router from '@system.router';
-import huks from "@ohos.security.huks";
-import display from '@ohos.display';
+import huks from '@ohos.security.huks';
 
-export default {
-    data: {
-        title: "hmac",
-        genHuksOptions: {},
-        HuksOptions: {
-            "properties": "",
-            "inData": new Uint8Array()
-        },
-        keyAlias: 'HuksDemoHMAC',
-        inData: 'huksHmacTest',
-        handle: {},
-    },
-
-    onInit() {
-        this.title = this.$t('strings.world');
-    },
-
-    onCreate() {
-        console.info("Application onCreate");
-    },
-
-    onDestroy() {
-        console.info("Application onDestroy");
-    },
-
-    stringToUint8Array: function (str) {
-        var arr = [];
-        for (var i = 0, j = str.length; i < j; ++i) {
-            arr.push(str.charCodeAt(i));
-        }
-        var tmpUint8Array = new Uint8Array(arr);
-        return tmpUint8Array;
-    },
-
-    huksGenerateKey: function () {
-        var alias = this.keyAlias;
-        var properties = new Array();
-        properties[0] = {
-            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-            value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        };
-        properties[1] = {
-            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
-        };
-        properties[2] = {
-            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-        };
-        properties[3] = {
-            tag: huks.HuksTag.HUKS_TAG_PADDING,
-            value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
-        };
-        properties[4] = {
-            tag: huks.HuksTag.HUKS_TAG_DIGEST,
-            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-        };
-        var options = {
-            properties: properties
-        };
-        this.HuksOptions.properties = properties;
-        this.genHuksOptions = options;
-        huks.generateKey(alias, options, function (err, data) { });
-    },
-
-    async huksInit() {
-        var alias = this.keyAlias;
-        var that = this;
-        return new Promise((resolve, reject) => {
-            huks.init(alias, this.genHuksOptions, async function (err, data) {
-                console.log(`the init err is :${JSON.stringify(err)}`);
-                console.log(`the init data is :${JSON.stringify(data)}`);
-                if (data.errorCode === 0) {
-                    that.resultMessage = "init 执行成功！"
-                    that.handle = {
-                        "handle1": data.handle1,
-                        "handle2": data.handle2
-                    }
-                } else {
-                    that.resultMessage = "init 执行失败  errorCode: " + data.errorCode
-                }
-            });
-        });
-    },
-
-    async huksUpdate() {
-        let count = 2;
-        for (let i = 0; i < count; i++) {
-            this.HuksOptions.inData = this.stringToUint8Array(this.inData);
-            console.log(`Huks_Demo hmac before update HuksOptions  ${JSON.stringify(this.HuksOptions)}`);
-            new Promise((resolve, reject) => {
-                huks.update(this.handle, this.HuksOptions, function (err, data) {
-                    if (data.errorCode === 0) {
-                        this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行成功！        "
-                    } else {
-                        this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败   errorCode: " + data.errorCode + "          "
-                    }
-                });
-            });
-        }
-    },
-
-    huksFinish: function () {
-        this.HuksOptions.inData = this.stringToUint8Array("0");
-        new Promise((resolve, reject) => {
-            huks.finish(this.handle, this.HuksOptions, function (err, data) {
-                if (data.errorCode === 0) {
-                    that.resultMessage = "finish 执行成功！";
-                } else {
-                    that.resultMessage = "finish 执行失败  errorCode: " + data.errorCode;
-                }
-            });
-        });
-    },
-
-    huksAbort: function () {
-        new Promise((resolve, reject) => {
-            huks.abort(this.handle, this.genHuksOptions, function (err, data) {
-                console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-                console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
-            });
-        });
+async function routePage() {
+  let options = {
+    uri: 'pages/second'
+  }
+  try {
+    await router.push(options)
+  } catch (err) {
+    console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
+  }
+}
+var alias = "HuksDemoRSA";
+var properties = new Array();
+var options = {
+  properties: properties,
+  inData: new Uint8Array(0)
+};
+var handle = {};
+var resultMessage = "";
+async function generateKey() {
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  huks.generateKey(alias, options);
+}
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+async function huksInit() {
+  await huks.init(alias, options).then((data) => {
+    console.log(`test init data: ${JSON.stringify(data)}`);
+    handle = {
+      "handle1": data.handle1,
+      "handle2": data.handle2
+    };
+  }).catch((err) => {
+    console.log("test init err information: " + JSON.stringify(err))
+  })
+}
+async function huksUpdate() {
+  let count = 2;
+  for (let i = 0; i < count; i++) {
+    options.inData = stringToUint8Array("huksHmacTest");
+    await huks.update(handle, options).then((data) => {
+      if (data.errorCode === 0) {
+        resultMessage += "update success!";
+      } else {
+        resultMessage += "update fail!";
+      }
+    }).catch((err) => {
+      resultMessage += "update times: " + count + (i + 1) + " fail catch errorMessage:" + JSON.stringify(err) + "        "
+    });
+    console.log(resultMessage);
+  }
+}
+function huksFinish() {
+  options.inData = stringToUint8Array("HuksDemoHMAC");
+  huks.finish(handle, options).then((data) => {
+    if (data.errorCode === 0) {
+      resultMessage = "finish success!";
+    } else {
+      resultMessage = "finish fail errorCode: " + data.errorCode;
     }
+  }).catch((err) => {
+    resultMessage = "finish fail， catch errorMessage:" + JSON.stringify(err)
+  });
+  console.log(resultMessage);
+}
+async function huksAbort() {
+  huks.abort(handle, options).then((data) => {
+    if (data.errorCode === 0) {
+      resultMessage = "abort success!";
+    } else {
+      resultMessage = "abort fail errorCode: " + data.errorCode;
+    }
+  }).catch((err) => {
+    resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+  });
+  console.log(resultMessage);
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+      Button() {
+        Text('Tocallback')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        routePage()
+      })
+      Button() {
+        Text('generateKey')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        generateKey()
+      })
+      Button() {
+        Text('huksInit')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksInit()
+      })
+      Button() {
+        Text('huksUpdate')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksUpdate()
+      })
+      Button() {
+        Text('huksFinish')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksFinish()
+      })
+      Button() {
+        Text('huksAbort')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksAbort()
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -1123,129 +1197,209 @@ abort操作密钥接口，使用Promise方式异步返回结果。
  * 以下以RSA1024密钥的promise操作使用为例
  */
 import router from '@system.router';
-import huks from "@ohos.security.huks";
-import display from '@ohos.display';
+import huks from '@ohos.security.huks';
 
-export default {
-    data: {
-        title: "hmac",
-        genHuksOptions: {},
-        HuksOptions: {
-            "properties": "",
-            "inData": new Uint8Array()
-        },
-        keyAlias: 'HuksDemoHMAC',
-        inData: 'huksHmacTest',
-        handle: {},
-    },
+async function routePage() {
+  let options = {
+    uri: 'pages/second'
+  }
+  try {
+    await router.push(options)
+  } catch (err) {
+    console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
+  }
+}
 
-    onInit() {
-        this.title = this.$t('strings.world');
-    },
+var alias = "HuksDemoRSA";
+var properties = new Array();
+var options = {
+  properties: properties,
+  inData: new Uint8Array(0)
+};
+var handle = {};
+var resultMessage = "";
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
 
-    onCreate() {
-        console.info("Application onCreate");
-    },
-    onDestroy() {
-        console.info("Application onDestroy");
-    },
-
-    stringToUint8Array: function (str) {
-        var arr = [];
-        for (var i = 0, j = str.length; i < j; ++i) {
-            arr.push(str.charCodeAt(i));
+async function generateKey() {
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  huks.generateKey(alias, options, function (err, data) { });
+}
+async function huksInit() {
+  return new Promise((resolve, reject) => {
+    huks.init(alias, options, async function (err, data) {
+      if (data.errorCode === 0) {
+        resultMessage = "init success！"
+        handle = {
+          "handle1": data.handle1,
+          "handle2": data.handle2
         }
-        var tmpUint8Array = new Uint8Array(arr);
-        return tmpUint8Array;
-    },
+      } else {
+        resultMessage = "init fail errorCode: " + data.errorCode
+      }
+    });
+  });
+}
 
-    huksGenerateKey: function () {
-        console.log("huksGenerate2 is start!!!");
-        var alias = this.keyAlias;
-        var properties = new Array();
-        properties[0] = {
-            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-            value: huks.HuksKeyAlg.HUKS_ALG_RSA
-        };
-        properties[1] = {
-            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
-        };
-        properties[2] = {
-            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-        };
-        properties[3] = {
-            tag: huks.HuksTag.HUKS_TAG_PADDING,
-            value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
-        };
-        properties[4] = {
-            tag: huks.HuksTag.HUKS_TAG_DIGEST,
-            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-        };
-        var options = {
-            properties: properties
-        };
-        this.HuksOptions.properties = properties;
-        this.genHuksOptions = options;
-        var result = huks.generateKey(alias, this.genHuksOptions);
-        console.log("huksgenerate2 is ok!!!")
-    },
-
-    async huksInit() {
-        var alias = this.keyAlias;
-        var that = this;
-        await huks.init(alias, this.genHuksOptions).then((data) => {
-            console.log(`test init data: ${JSON.stringify(data)}`);
-            that.handle = {
-                "handle1": data.handle1,
-                "handle2": data.handle2
-            };
-        }).catch((err) => {
-            console.log("test init err information: " + JSON.stringify(err))
-        })
-    },
-
-    async huksUpdate() {
-        let count = 2;
-        for (let i = 0; i < count; i++) {
-            this.HuksOptions.inData = this.stringToUint8Array(this.inData);
-            await huks.update(this.handle, this.HuksOptions).then(async (data) => {
-                if (data.errorCode === 0) {
-                    this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行成功！        "
-                } else {
-                    this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败   errorCode: " + data.errorCode + "          "
-                }
-            }).catch((err) => {
-                this.resultMessage += "update 共执行 " + count + " 次 " + "第 " + (i + 1) + " 次执行失败 catch 错误信息:" + JSON.stringify(err) + "        "
-            });
+async function huksUpdate() {
+  let count = 2;
+  for (let i = 0; i < count; i++) {
+    options.inData = stringToUint8Array("huksHmacTest");
+    new Promise((resolve, reject) => {
+      huks.update(handle, options, function (err, data) {
+        if (data.errorCode === 0) {
+          resultMessage += "update success!";
+        } else {
+          resultMessage += "update fail!";
         }
-    },
+      });
+    });
+    console.log(resultMessage);
+  }
+}
 
-    huksFinish: function () {
-        this.HuksOptions.inData = this.stringToUint8Array("HuksDemoHMAC");
-        huks.finish(this.handle, this.HuksOptions).then((data) => {
-            if (data.errorCode === 0) {
-                this.resultMessage = "finish 执行成功！";
-            } else {
-                this.resultMessage = "finish 执行失败  errorCode: " + data.errorCode;
-            }
-        }).catch((err) => {
-            this.resultMessage = "finish 执行失败， catch 错误信息:" + JSON.stringify(err)
-        });
-    },
+async function huksFinish() {
+  options.inData = stringToUint8Array("0");
+  new Promise((resolve, reject) => {
+    huks.finish(handle, options, function (err, data) {
+      if (data.errorCode === 0) {
+        resultMessage = "finish success!";
+      } else {
+        resultMessage =  "finish fail errorCode: " + data.errorCode;
+      }
+    });
+  });
+}
 
-    huksAbort: function () {
-        huks.abort(this.handle, this.HuksOptions).then((data) => {
-            if (data.errorCode === 0) {
-                this.resultMessage = "abort 执行成功！";
-            } else {
-                this.resultMessage = "abort 执行失败  errorCode: " + data.errorCode;
-            }
-        }).catch((err) => {
-            this.resultMessage = "abort 执行失败， catch 错误信息:" + JSON.stringify(err)
-        });
+function huksAbort() {
+  new Promise((resolve, reject) => {
+    huks.abort(handle, options, function (err, data) {
+      console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+      console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+    });
+  });
+}
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+      Button() {
+        Text('to Promise')
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        router.back()
+      })
+      Button() {
+        Text('generateKey')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        generateKey()
+      })
+      Button() {
+        Text('huksInit')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksInit()
+      })
+      Button() {
+        Text('huksUpdate')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksUpdate()
+      })
+      Button() {
+        Text('huksFinish')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksFinish()
+      })
+      Button() {
+        Text('huksAbort')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksAbort()
+      })
     }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
