@@ -3001,14 +3001,14 @@ closeSync(): void
 
 isBlockDevice(): boolean
 
-用于判断文件是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
+用于判断当前目录项是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明               |
   | ------- | ---------------- |
-  | boolean | 表示文件是否是块特殊设备。 |
+  | boolean | 表示当前目录项是否是块特殊设备。 |
 
 - 示例：
   ```js
@@ -3021,14 +3021,14 @@ isBlockDevice(): boolean
 
 isCharacterDevice(): boolean
 
-用于判断文件是否是字符特殊设备。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
+用于判断当前目录项是否是字符特殊设备。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明                |
   | ------- | ----------------- |
-  | boolean | 表示文件是否是字符特殊设备。 |
+  | boolean | 表示当前目录项是否是字符特殊设备。 |
 
 - 示例：
   ```js
@@ -3041,14 +3041,14 @@ isCharacterDevice(): boolean
 
 isDirectory(): boolean
 
-用于判断文件是否是目录。
+用于判断当前目录项是否是目录。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明            |
   | ------- | ------------- |
-  | boolean | 表示文件是否是目录。 |
+  | boolean | 表示当前目录项是否是目录。 |
 
 - 示例：
   ```js
@@ -3061,14 +3061,14 @@ isDirectory(): boolean
 
 isFIFO(): boolean
 
-用于判断文件是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
+用于判断当前目录项是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是FIFO。 |
+  | boolean | 表示当前目录项是否是FIFO。 |
 
 - 示例：
   ```js
@@ -3081,14 +3081,14 @@ isFIFO(): boolean
 
 isFile(): boolean
 
-用于判断文件是否是普通文件。
+用于判断当前目录项是否是普通文件。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是普通文件。 |
+  | boolean | 表示当前目录项是否是普通文件。 |
 
 - 示例：
   ```js
@@ -3101,14 +3101,14 @@ isFile(): boolean
 
 isSocket(): boolean
 
-用于判断文件是否是套接字。
+用于判断当前目录项是否是套接字。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明             |
   | ------- | -------------- |
-  | boolean | 表示文件是否是套接字。 |
+  | boolean | 表示当前目录项是否是套接字。 |
 
 - 示例：
   ```js
@@ -3121,14 +3121,14 @@ isSocket(): boolean
 
 isSymbolicLink(): boolean
 
-用于判断文件是否是符号链接。
+用于判断当前目录项是否是符号链接。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 - 返回值：
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是符号链接。 |
+  | boolean | 表示当前目录项是否是符号链接。 |
 
 - 示例：
   ```js
