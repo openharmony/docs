@@ -135,6 +135,9 @@
     - [Overview](porting/porting-thirdparty-overview.md)
     - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
     - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+  - [Mini System SoC Porting Cases](porting-minichip-cases.md)
+    - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
 - Subsystem Development
   - Kernel
     - Kernel for Mini Systems
@@ -170,8 +173,7 @@
         - [LMS](kernel/kernel-mini-memory-lms.md)
       - Appendix
         - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
-        - Basic Data Structure
-          - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
+        - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
         - Standard Libraries
           - [CMSIS Support](kernel/kernel-mini-appx-lib-cmsis.md)
           - [POSIX Support](kernel/kernel-mini-appx-lib-posix.md)
@@ -283,8 +285,7 @@
         - [Trace](kernel/kernel-small-debug-trace.md)
         - [perf](kernel/kernel-mini-memory-perf)
         - [LMS](kernel/kernel-small-memory-lms)
-        - Process Commissioning
-          - [CPUP](kernel/kernel-small-debug-process-cpu.md)
+        - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
           - [Memory Leak Check](kernel/kernel-small-debug-memory-leak.md)
@@ -455,26 +456,26 @@
     - [HPM Part Development](hpm-part/hpm-part-development.md)
     - [HPM Part Reference](hpm-part/hpm-part-reference.md)
 - Device Development Examples
-  - [Mini- and Small-System Devices](guide/device-lite.md)
-    - [WLAN-connected Products](guide/device-wlan.md)
+  - Mini- and Small-System Devices
+    - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
       - [Third-Party SDK Integration](guide/device-wlan-sdk.md)
-    - [Cameras Without a Screen](guide/device-iotcamera.md)
-      - [Camera Control](guide/device-iotcamera-control.md)
+    - Cameras Without a Screen
+      - Camera Control
         - [Overview](guide/device-iotcamera-control-overview.md)
-        - [Development Guidelines](guide/device-iotcamera-control-demo.md)
+        - Development Guidelines
           - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
           - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
         - [Use Case](guide/device-iotcamera-control-example.md)
-    - [Cameras with a Screen](guide/device-camera.md)
-      - [Screen and Camera Control](guide/device-camera-control.md)
+    - Cameras with a Screen)
+      - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
-        - [Development Guidelines](guide/device-camera-control-demo.md)
+        - Development Guidelines
           - [Photographing](guide/device-camera-control-demo-photoguide.md)
           - [Video Recording](guide/device-camera-control-demo-videoguide.md)
           - [Previewing](guide/device-camera-control-demo-previewguide.md)
         - [Use Case](guide/device-camera-control-example.md)
-      - [Visual Application Development](guide/device-camera-visual.md)
+      - Visual Application Development
         - [Overview](guide/device-camera-visual-overview.md)
         - [Preparations](guide/device-camera-visual-prepare.md)
         - [Adding Pages](guide/device-camera-visual-addpage.md)
@@ -483,7 +484,7 @@
         - [Debugging and Packaging](guide/device-camera-visual-debug.md)
         - [Running on the Device](guide/device-camera-visual-run.md)
         - [FAQs](guide/device-camera-visual-faqs.md)
-  - [Standard-System Devices](guide/device-standard.md)
+  - Standard-System Devices
     - [Development Guidelines on Clock Apps](guide/device-clock-guide.md)
     - [Development Example for Platform Drivers](guide/device-driver-demo.md)
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
@@ -492,8 +493,7 @@
   - Debugging Tools
     - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
-- XTS Certification
-  - [XTS](subsystems/subsys-xts-guide.md)
+- [XTS Certification](subsystems/subsys-xts-guide.md)
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
@@ -501,12 +501,11 @@
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
-  - FAQs
-    - [Overview of FAQs](faqs/faqs-overview.md)
-    - [Environment Setup](faqs/faqs-environment-setup.md)
-    - [Compilation and Building Subsystem](faqs/faqs-building.md)
-    - [Burning](faqs/faqs-burning.md)
-    - [Kernel](faqs/faqs-kernel.md)
-    - [Porting](faqs/faqs-porting.md)
-    - [Startup](faqs/faqs-startup.md)
-    - [System Applications](faqs/faqs-system-applications.md)
+  - [Overview of FAQs](faqs/faqs-overview.md)
+  - [Environment Setup](faqs/faqs-environment-setup.md)
+  - [Compilation and Building Subsystem](faqs/faqs-building.md)
+  - [Burning](faqs/faqs-burning.md)
+  - [Kernel](faqs/faqs-kernel.md)
+  - [Porting](faqs/faqs-porting.md)
+  - [Startup](faqs/faqs-startup.md)
+  - [System Applications](faqs/faqs-system-applications.md)

@@ -146,7 +146,11 @@
     - [CMake方式组织编译的库移植](porting/porting-thirdparty-cmake.md)
     - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
 
-  - [轻量系统芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
+  - 轻量系统芯片移植案例
+    - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
+    - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo解决方案之ASR芯片移植案例](porting/porting-asr582x-combo-demo.md)
+    - [轻量系统STM32F407芯片移植案例](porting/porting-stm32f407-on-minisystem-eth.md)
 
 - 子系统开发
 
@@ -184,8 +188,7 @@
         - [LMS调测](kernel/kernel-mini-memory-lms.md)
       - 附录
         - [内核编码规范](kernel/kernel-mini-appx-code.md)
-        - 基本数据结构
-          - [双向链表](kernel/kernel-mini-appx-data-list.md)
+        - [双向链表](kernel/kernel-mini-appx-data-list.md)
         - 标准库支持
           - [CMSIS支持](kernel/kernel-mini-appx-lib-cmsis.md)
           - [POSIX支持](kernel/kernel-mini-appx-lib-posix.md)
@@ -301,8 +304,7 @@
         - [Trace](kernel/kernel-small-debug-trace.md)
         - [Perf调测](kernel/kernel-mini-memory-perf.md)
         - [LMS调测](kernel/kernel-small-memory-lms.md)
-        - 进程调测
-          - [CPU占用率](kernel/kernel-small-debug-process-cpu.md)
+        - [CPU占用率](kernel/kernel-small-debug-process-cpu.md)
         - 内核态内存调测
           - [内存信息统计](kernel/kernel-small-debug-memory-info.md)
           - [内存泄漏检测](kernel/kernel-small-debug-memory-leak.md)
@@ -410,15 +412,15 @@
   - AI框架
     - [AI引擎框架开发指南](subsystems/subsys-aiframework-guide.md)
     - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
-    - [技术规范](subsystems/subsys-aiframework-tech.md)
+    - 技术规范
       - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
       - [命名规范](subsystems/subsys-aiframework-tech-name.md)
       - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
-    - [开发指导](subsystems/subsys-aiframework-devguide.md)
+    - 开发指导
       - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
       - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
       - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
-    - [开发示例](subsystems/subsys-aiframework-demo.md)
+    - 开发示例
       - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
@@ -467,7 +469,7 @@
     - [HiLog\_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
     - [HiTrace开发指导](subsystems/subsys-dfx-hitrace.md)
     - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
-    - [HiSysEvent开发指导](subsystems/subsys-dfx-hisysevent.md)
+    - HiSysEvent开发指导
       - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
       - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
       - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -526,9 +528,7 @@
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 
-- XTS认证
-
-  - [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](subsystems/subsys-xts-guide.md)
 
 - 工具
 
@@ -536,13 +536,11 @@
   - [IDE集成开发环境](get-code/gettools-ide.md)
 
 - 参考
-
-  - 常见问题-设备开发
-    - [常见问题概述](faqs/faqs-overview.md)
-    - [环境搭建常见问题](faqs/faqs-environment-setup.md)
-    - [编译构建子系统常见问题](faqs/faqs-building.md)
-    - [烧录常见问题](faqs/faqs-burning.md)
-    - [内核常见问题](faqs/faqs-kernel.md)
-    - [移植常见问题](faqs/faqs-porting.md)
-    - [启动恢复常见问题](faqs/faqs-startup.md)
-    - [系统应用常见问题](faqs/faqs-system-applications.md)
+  - [常见问题概述](faqs/faqs-overview.md)
+  - [环境搭建常见问题](faqs/faqs-environment-setup.md)
+  - [编译构建子系统常见问题](faqs/faqs-building.md)
+  - [烧录常见问题](faqs/faqs-burning.md)
+  - [内核常见问题](faqs/faqs-kernel.md)
+  - [移植常见问题](faqs/faqs-porting.md)
+  - [启动恢复常见问题](faqs/faqs-startup.md)
+  - [系统应用常见问题](faqs/faqs-system-applications.md)
