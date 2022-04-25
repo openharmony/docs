@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
@@ -30,7 +30,7 @@ Writes event information to the event file of the current day. This API supports
 
 **Example**
 
-```
+```js
 hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
     if (err) {
         // Event writing exception: Write the event to the event file after the invalid parameters in the event are ignored, or stop writing the event if the event verification fails.
@@ -68,7 +68,7 @@ Writes event information to the event file of the current day. This API supports
 
 **Example**
 
-```
+```js
 hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
     .then((value) => {
         // Event writing succeeded.
@@ -101,7 +101,7 @@ Configures the application event logging function, such as setting the event log
 | boolean | Returns **true** if the configuration is successful; returns **false** otherwise.|
 
 **Example**
-```
+```js
 // Set the application event logging switch.
 hiAppEvent.configure({
     disable: true

@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import hilog from '@ohos.hilog';
 ```
 
@@ -30,7 +30,7 @@ Prints logs of the DEBUG level.
 
 **Example**
 
-```
+```js
 hilog.debug(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -59,7 +59,7 @@ Prints logs of the INFO level.
 
 **Example**
 
-```
+```js
 hilog.info(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -88,7 +88,7 @@ Prints logs of the WARN level.
 
 **Example**
 
-```
+```js
 hilog.warn(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -117,7 +117,7 @@ Prints logs of the ERROR level.
 
 **Example**
 
-```
+```js
 hilog.error(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -146,7 +146,7 @@ Prints logs of the FATAL level.
 
 **Example**
 
-```
+```js
 hilog.fatal(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -174,7 +174,7 @@ Checks whether printing is enabled for a domain, tag, or log level.
 
 **Example**
 
-```
+```js
 hilog.isLoggable(0xFF00, "testTag", hilog.DEBUG);
 ```
 

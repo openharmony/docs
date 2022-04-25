@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import hilog from '@ohos.hilog';
 ```
 
@@ -30,7 +30,7 @@ debug日志输出，打印debug级别日志。
 
 **示例：**
 
-```
+```js
 hilog.debug(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -59,7 +59,7 @@ info日志输出，打印info级别日志。
 
 **示例：**
 
-```
+```js
 hilog.info(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -88,7 +88,7 @@ warn日志输出，打印warn级别日志。
 
 **示例：**
 
-```
+```js
 hilog.warn(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -117,7 +117,7 @@ error日志输出，打印error级别日志。
 
 **示例：**
 
-```
+```js
 hilog.error(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -146,7 +146,7 @@ fatal日志输出，打印fatal级别日志。
 
 **示例：**
 
-```
+```js
 hilog.fatal(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
 ```
 
@@ -174,7 +174,7 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 **示例：**
 
-```
+```js
 hilog.isLoggable(0xFF00, "testTag", hilog.DEBUG);
 ```
 
