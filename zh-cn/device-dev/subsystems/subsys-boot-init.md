@@ -193,42 +193,42 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
    | start | start&nbsp;serviceName<br/>如：start&nbsp;foundation<br/>start&nbsp;shell | 启动服务命令，start后面跟着service名称，该service名称必须能够在services数组中找到。 |
    | loadcfg | loadcfg&nbsp;filePath<br/>如：loadcfg&nbsp;/patch/fstab.cfg | 加载其他cfg文件命令。后面跟着的目标文件大小不得超过50KB，且目前仅支持加载/patch/fstab.cfg，其他文件路径和文件名均不支持。/patch/fstab.cfg文件的每一行都是一条命令，命令类型和格式必须符合本表格描述，命令条数不得超过20条。 |
 
-  2.  配置services数组，service集合（数组形式），包含了init进程需要启动的所有系统服务。
+2. 配置services数组，service集合（数组形式），包含了init进程需要启动的所有系统服务。
 
-  ```
-  "services" : [{
-      "name" : "service1",
-      "path" : ["/bin/process1", "param1", "param2"],
-      "uid" : 1,
-      "gid" : 1,
-      "once" : 0,
-      "importance" : 1,
-      "caps" : [0, 1, 2, 5],
-      "start-mode" : "condition",
-      "cpucore" : [0],
-      "critical" : [0, 5, 10],
-      "apl" : "normal",
-      "d-caps" : ["OHOS_DMS"],
-      "jobs" : {
-          "on-boot" : "boot",
-          "on-start" : "services:service1_start",
-          "on-stop" : "services:service1_stop",
-          "on-restart" : "services:service1_restart"
-     }
-  }, {
-      "name" : "service2",
-      "path" : "/bin/process2",
-      "uid" : 2,
-      "gid" : 2,
-      "once" : 1,
-      "importance" : 0,
-      "caps" : [ ]，
-      "cpucore" : 0,
-      "critical" : [ ],
-      "apl" : "normal",
-      "d-caps" : [ ]
-  }]
-  ```
+    ```
+    "services" : [{
+        "name" : "service1",
+        "path" : ["/bin/process1", "param1", "param2"],
+        "uid" : 1,
+        "gid" : 1,
+        "once" : 0,
+        "importance" : 1,
+        "caps" : [0, 1, 2, 5],
+        "start-mode" : "condition",
+        "cpucore" : [0],
+        "critical" : [0, 5, 10],
+        "apl" : "normal",
+        "d-caps" : ["OHOS_DMS"],
+        "jobs" : {
+            "on-boot" : "boot",
+            "on-start" : "services:service1_start",
+            "on-stop" : "services:service1_stop",
+            "on-restart" : "services:service1_restart"
+       }
+    }, {
+        "name" : "service2",
+        "path" : "/bin/process2",
+        "uid" : 2,
+        "gid" : 2,
+        "once" : 1,
+        "importance" : 0,
+        "caps" : [ ]，
+        "cpucore" : 0,
+        "critical" : [ ],
+        "apl" : "normal",
+        "d-caps" : [ ]
+    }]
+    ```
 
 **表3**  service字段说明<a name="table14737791471"></a>
   | 字段名 | 字段说明 | 备注 |
