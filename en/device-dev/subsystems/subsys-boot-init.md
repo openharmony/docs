@@ -69,10 +69,10 @@ The init module starts key service processes during system startup. If you would
 - Enhanced init process startup and recycling
   The CPU core binding, priority, MAC address, and AccessToken information of the service process can be configured in the configuration file during process startup.
 
-  - Support of CPU core binding for service processes (through modification of the \*.cfg file)
-  - Support of priority setting for service processes (through modification of the \*.cfg file)
-  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the \*.cfg file)
-  - Support of the suppression mechanism for service processes (through modification of the \*.cfg file)
+  - Support of CPU core binding for service processes (through modification of the **\*.cfg** file)
+  - Support of priority setting for service processes (through modification of the **\*.cfg** file)
+  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the **\*.cfg** file)
+  - Support of the suppression mechanism for service processes (through modification of the **\*.cfg** file)
 
 - init fd proxy (for standard system or higher)
   fd proxy is an extended mechanism for on-demand startup. It can ensure that the fd state handle is not lost before the service process exits. Specifically, a service process sends the fd to the init process before it exits, and then reclaims the fd from the init process when it is started again.
@@ -188,7 +188,7 @@ The init module starts key service processes during system startup. If you would
    | caps | Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission. Currently, a maximum of 100 values can be configured. |
    | critical | Whether to enable system restarting when a critical service fails to be restarted for a specified number of times. If this field is enabled, the critical service will be started in M seconds. If the restarting fails for N times, the system will be restarted. The default value of N is <strong>4</strong> and that of M is <strong>20</strong>. (Only for standard system or higher. Configuration: [0, 2, 10], in int array.) <br/><strong>0</strong>: disable<br/><strong>1</strong>: enable |
    | cpucore | Number of CPU cores bound to the service. The value is an int array. |
-   | d-caps | Distributed capabilities (Only for standard system or higher) |
+   | d-caps | Distributed capabilities. (Only for standard system or higher) |
    | apl | Ability privilege level, which can be **system_core**, **normal**, or **system_basic**. The default value is **system_core**. (Only for the standard system or higher) |
    | start-mode | Service startup mode. For details, see init Service Startup Control. (Only for standard system or higher) |
    | jobs | Jobs that can be executed by the current service in different phases. For details, see init Service Parallel Service Control. (Only for standard system or higher) |
