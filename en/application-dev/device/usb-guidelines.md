@@ -93,7 +93,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 1.  Obtain the USB device list.
 
-    ```
+    ```js
     // Import the USB API package.
     import usb from '@ohos.usb';
     // Obtain the USB device list.
@@ -153,7 +153,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 2.  Obtain the device operation permissions.
 
-    ```
+    ```js
     var deviceName = deviceList[0].name;
     // Request the permissions to operate a specified device.
     usb.requestRight(deviceName).then(hasRight => {
@@ -165,7 +165,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 3.  Open the device.
 
-    ```
+    ```js
     // Open the device, and obtain the USB device pipe for data transfer.
     var pipe = usb.connectDevice(deviceList[0]);
     /*
@@ -177,7 +177,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 4.  Perform data transfer.
 
-    ```
+    ```js
     /*
     Read data. Select the corresponding RX endpoint from deviceList for data transfer.
     (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
@@ -208,7 +208,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
 5.  Release the USB interface, and close the USB device.
 
-    ```
+    ```js
     usb.releaseInterface(pipe, interface);
     usb.closePipe(pipe);
     ```
