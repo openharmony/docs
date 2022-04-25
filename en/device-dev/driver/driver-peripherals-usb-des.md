@@ -1,397 +1,176 @@
-# USB<a name="EN-US_TOPIC_0000001228574475"></a>
+# USB
 
 
-## Overview<a name="section127mcpsimp"></a>
+## Overview
 
 USB host development aims to provide host-related functions, including protocol encapsulation, device management, and driver installation and uninstall.
 
 USB device development aims to provide device-related functions, including device management, configuration management, and I/O management. These functions implement creation, configuration, and data communication of USB devices.
 
-The following figures show the UBS host and device driver models.
+  The following figures show the USB host and device driver models.
 
-**Figure 1** USB host driver model<a name="fig1649563542917"></a>
-![](figures/USB_host_driver_model.png "USB host driver model")
+  **Figure 1** USB host driver model
 
-**Figure 2** USB device driver model<a name="fig8847615103013"></a>
-![](figures/USB_device_driver_model.png "USB device driver model")
+  ![](figures/USB_host_driver_model.png "USB host driver model")
+
+  
+  **Figure 2** USB device driver model
+
+  ![](figures/USB_device_driver_model.png "USB device driver model")
 
 The USB driver model offers the following APIs:
 
--   The USB host Driver Development Kit (DDK) provides driver capability APIs that can be directly called in user mode. The APIs can be classified into the DDK initialization class, interface operation class, and request operation class by function. These APIs can be used to perform DDK initialization, bind/release and open/close an interface, allocate/release a request, and implement synchronous or asynchronous transfer.
--   The USB device DDK provides device management, I/O management, and configuration management APIs, which can be used to create and delete a device, obtain/open an interface, and perform synchronous or asynchronous transfer.
+- The USB host Driver Development Kit (DDK) provides driver capability APIs that can be directly called in user mode. The APIs can be classified into the DDK initialization class, interface operation class, and request operation class by function. These APIs can be used to perform DDK initialization, bind/release and open/close an interface, allocate/release a request, and implement synchronous or asynchronous transfer.
 
-### Available APIs(<a name="section141mcpsimp"></a>)
+- The USB device DDK provides device management, I/O management, and configuration management APIs, which can be used to create or delete a device, obtain or open an interface, and perform synchronous or asynchronous transfer.
 
-[Figure 1](#fig1649563542917) describes the APIs provided by the USB host driver model.
 
-**Table 1** APIs provided by the USB host driver model
+### Available APIs
 
-<a name="table11474102882612"></a>
-<table><thead align="left"><tr id="row1147413289268"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p1966391682713"><a name="p1966391682713"></a><a name="p1966391682713"></a>Header File</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p166313167274"><a name="p166313167274"></a><a name="p166313167274"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p1066341602710"><a name="p1066341602710"></a><a name="p1066341602710"></a> Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1275799122710"><td class="cellrowborder" rowspan="16" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p4725109162716"><a name="p4725109162716"></a><a name="p4725109162716"></a>usb_ddk_interface.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p17725698274"><a name="p17725698274"></a><a name="p17725698274"></a>int32_t UsbInitHostSdk(struct UsbSession **session);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p27252992712"><a name="p27252992712"></a><a name="p27252992712"></a>Initializes the USB host driver DDK.</p>
-</td>
-</tr>
-<tr id="row775779172719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p14725149172712"><a name="p14725149172712"></a><a name="p14725149172712"></a>int32_t UsbExitHostSdk(const struct UsbSession *session);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p172549192711"><a name="p172549192711"></a><a name="p172549192711"></a>Exits the USB host driver DDK.</p>
-</td>
-</tr>
-<tr id="row975769172712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p167251791278"><a name="p167251791278"></a><a name="p167251791278"></a>const struct UsbInterface *UsbClaimInterface(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr, uint8_t interfaceIndex);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p187255962716"><a name="p187255962716"></a><a name="p187255962716"></a>Obtains a USB interface.</p>
-</td>
-</tr>
-<tr id="row97577920273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16725497276"><a name="p16725497276"></a><a name="p16725497276"></a>int UsbReleaseInterface(const struct UsbInterface *interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117251894270"><a name="p117251894270"></a><a name="p117251894270"></a>Releases a USB interface.</p>
-</td>
-</tr>
-<tr id="row67574982718"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p872514915277"><a name="p872514915277"></a><a name="p872514915277"></a>int UsbAddOrRemoveInterface(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr, uint8_t interfaceIndex, UsbInterfaceStatus status);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p157251914278"><a name="p157251914278"></a><a name="p157251914278"></a>Adds or removes a USB interface.</p>
-</td>
-</tr>
-<tr id="row47576942720"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p572517916275"><a name="p572517916275"></a><a name="p572517916275"></a>UsbInterfaceHandle *UsbOpenInterface(const struct UsbInterface *interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p67254915272"><a name="p67254915272"></a><a name="p67254915272"></a>Opens a USB interface.</p>
-</td>
-</tr>
-<tr id="row197579952713"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p472514912712"><a name="p472514912712"></a><a name="p472514912712"></a>int32_t UsbCloseInterface(const UsbInterfaceHandle *interfaceHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p67251095276"><a name="p67251095276"></a><a name="p67251095276"></a>Closes a USB interface.</p>
-</td>
-</tr>
-<tr id="row15757894278"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p5725169192717"><a name="p5725169192717"></a><a name="p5725169192717"></a>int32_t UsbSelectInterfaceSetting(const UsbInterfaceHandle *interfaceHandle, uint8_t settingIndex, struct UsbInterface **interfaceObj);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p6725109112720"><a name="p6725109112720"></a><a name="p6725109112720"></a>Sets a USB interface.</p>
-</td>
-</tr>
-<tr id="row107579932715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11725199182715"><a name="p11725199182715"></a><a name="p11725199182715"></a>int32_t UsbGetPipeInfo(const UsbInterfaceHandle *interfaceHandle, uint8_t settingIndex, uint8_t pipeId, struct UsbPipeInfo *pipeInfo);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107261298272"><a name="p107261298272"></a><a name="p107261298272"></a>Obtains USB pipe information.</p>
-</td>
-</tr>
-<tr id="row27577992716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8726890275"><a name="p8726890275"></a><a name="p8726890275"></a>int32_t UsbClearInterfaceHalt(const UsbInterfaceHandle *interfaceHandle, uint8_t pipeAddress);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177261797274"><a name="p177261797274"></a><a name="p177261797274"></a>Clears the state of the pipe with the specified index.</p>
-</td>
-</tr>
-<tr id="row1757189172714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1726998273"><a name="p1726998273"></a><a name="p1726998273"></a>struct UsbRequest *UsbAllocRequest(const UsbInterfaceHandle *interfaceHandle, int isoPackets, int length);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1272617982713"><a name="p1272617982713"></a><a name="p1272617982713"></a>Allocates a request object.</p>
-</td>
-</tr>
-<tr id="row07579911279"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p187261911279"><a name="p187261911279"></a><a name="p187261911279"></a>int UsbFreeRequest(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177271592271"><a name="p177271592271"></a><a name="p177271592271"></a>Releases a request object.</p>
-</td>
-</tr>
-<tr id="row075759142715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3727896271"><a name="p3727896271"></a><a name="p3727896271"></a>int UsbSubmitRequestAsync(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p372714942718"><a name="p372714942718"></a><a name="p372714942718"></a>Sends an asynchronous request.</p>
-</td>
-</tr>
-<tr id="row1475718919272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1727698272"><a name="p1727698272"></a><a name="p1727698272"></a>int32_t UsbFillRequest(const struct UsbRequest *request, const UsbInterfaceHandle *interfaceHandle, const struct UsbRequestParams *params);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872713910270"><a name="p872713910270"></a><a name="p872713910270"></a>Fills in a request.</p>
-</td>
-</tr>
-<tr id="row117576932710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p9727291278"><a name="p9727291278"></a><a name="p9727291278"></a>sint UsbCancelRequest(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p37271897276"><a name="p37271897276"></a><a name="p37271897276"></a>Cancels an asynchronous request.</p>
-</td>
-</tr>
-<tr id="row1475714912715"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2727698275"><a name="p2727698275"></a><a name="p2727698275"></a>int UsbSubmitRequestSync(const struct UsbRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p87279914277"><a name="p87279914277"></a><a name="p87279914277"></a>Sends a synchronous request.</p>
-</td>
-</tr>
-<tr id="row11756097274"><td class="cellrowborder" rowspan="27" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p12727179132710"><a name="p12727179132710"></a><a name="p12727179132710"></a>usb_raw_api.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p11727391272"><a name="p11727391272"></a><a name="p11727391272"></a>int UsbRawInit(struct UsbSession **session);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1572711919272"><a name="p1572711919272"></a><a name="p1572711919272"></a>Initializes the USB raw APIs.</p>
-</td>
-</tr>
-<tr id="row1575629182713"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p372711918279"><a name="p372711918279"></a><a name="p372711918279"></a>int UsbRawExit(const struct UsbSession *session);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p372710942717"><a name="p372710942717"></a><a name="p372710942717"></a>Exits the USB raw APIs.</p>
-</td>
-</tr>
-<tr id="row5756999270"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p8727291277"><a name="p8727291277"></a><a name="p8727291277"></a>UsbRawHandle *UsbRawOpenDevice(const struct UsbSession *session, uint8_t busNum, uint8_t usbAddr);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1772719972717"><a name="p1772719972717"></a><a name="p1772719972717"></a>Opens a USB device.</p>
-</td>
-</tr>
-<tr id="row117561292270"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p772709122715"><a name="p772709122715"></a><a name="p772709122715"></a>int UsbRawCloseDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1372715902711"><a name="p1372715902711"></a><a name="p1372715902711"></a>Closes a USB device.</p>
-</td>
-</tr>
-<tr id="row775689182714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p197272918272"><a name="p197272918272"></a><a name="p197272918272"></a>int UsbRawSendControlRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbControlRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p272715932717"><a name="p272715932717"></a><a name="p272715932717"></a>Performs a control transfer synchronously.</p>
-</td>
-</tr>
-<tr id="row3756179132714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1727296276"><a name="p1727296276"></a><a name="p1727296276"></a>int UsbRawSendBulkRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872789162713"><a name="p872789162713"></a><a name="p872789162713"></a>Performs a bulk transfer synchronously.</p>
-</td>
-</tr>
-<tr id="row27568916276"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1072719992711"><a name="p1072719992711"></a><a name="p1072719992711"></a>int UsbRawSendInterruptRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117271895271"><a name="p117271895271"></a><a name="p117271895271"></a>Performs an interrupt transfer synchronously.</p>
-</td>
-</tr>
-<tr id="row14756149112710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p772711917274"><a name="p772711917274"></a><a name="p772711917274"></a>int UsbRawGetConfigDescriptor(const UsbRawDevice *rawDev, uint8_t configIndex, struct UsbRawConfigDescriptor **config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p472714912710"><a name="p472714912710"></a><a name="p472714912710"></a>Obtains the configuration descriptor of a device.</p>
-</td>
-</tr>
-<tr id="row1775614902711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p37277942718"><a name="p37277942718"></a><a name="p37277942718"></a>void UsbRawFreeConfigDescriptor(const struct UsbRawConfigDescriptor *config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p772759162711"><a name="p772759162711"></a><a name="p772759162711"></a>Releases the memory space of a configuration descriptor.</p>
-</td>
-</tr>
-<tr id="row9756119182711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3727699274"><a name="p3727699274"></a><a name="p3727699274"></a>int UsbRawGetConfiguration(const UsbRawHandle *devHandle, int *config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p13728109192717"><a name="p13728109192717"></a><a name="p13728109192717"></a>Obtains the configuration in use.</p>
-</td>
-</tr>
-<tr id="row37567922714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1872849162718"><a name="p1872849162718"></a><a name="p1872849162718"></a>int UsbRawSetConfiguration(const UsbRawHandle *devHandle, int config);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p87280914277"><a name="p87280914277"></a><a name="p87280914277"></a>Sets the configuration in use.</p>
-</td>
-</tr>
-<tr id="row1775612982711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p127283902712"><a name="p127283902712"></a><a name="p127283902712"></a>int UsbRawGetDescriptor(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawDescriptorParam *param, const unsigned char *data);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p17728209122710"><a name="p17728209122710"></a><a name="p17728209122710"></a>Obtains descriptor information.</p>
-</td>
-</tr>
-<tr id="row97564992719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1672849122712"><a name="p1672849122712"></a><a name="p1672849122712"></a>UsbRawDevice *UsbRawGetDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p472879202719"><a name="p472879202719"></a><a name="p472879202719"></a>Obtains the device pointer based on the device handle.</p>
-</td>
-</tr>
-<tr id="row1075612922718"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p172814982715"><a name="p172814982715"></a><a name="p172814982715"></a>int UsbRawGetDeviceDescriptor(const UsbRawDevice *rawDev, struct UsbDeviceDescriptor *desc);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8728139172715"><a name="p8728139172715"></a><a name="p8728139172715"></a>Obtains the device descriptor of the specified USB device.</p>
-</td>
-</tr>
-<tr id="row117561919273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p072820912714"><a name="p072820912714"></a><a name="p072820912714"></a>int UsbRawClaimInterface(const UsbRawHandle *devHandle, int interfaceNumber);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p972817914279"><a name="p972817914279"></a><a name="p972817914279"></a>Declares the interface on the specified device handle.</p>
-</td>
-</tr>
-<tr id="row87561920275"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2728191276"><a name="p2728191276"></a><a name="p2728191276"></a>int UsbRawReleaseInterface(const UsbRawHandle *devHandle, int interfaceNumber);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8728159102710"><a name="p8728159102710"></a><a name="p8728159102710"></a>Releases the previously declared interface.</p>
-</td>
-</tr>
-<tr id="row375679152710"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p137281192274"><a name="p137281192274"></a><a name="p137281192274"></a>int UsbRawResetDevice(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107281992272"><a name="p107281992272"></a><a name="p107281992272"></a>Resets a device.</p>
-</td>
-</tr>
-<tr id="row14756109152719"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p137288914273"><a name="p137288914273"></a><a name="p137288914273"></a>struct UsbRawRequest *UsbRawAllocRequest(const UsbRawHandle *devHandle, int isoPackets, int length);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p27281797274"><a name="p27281797274"></a><a name="p27281797274"></a>Allocates a transfer request with the specified number of sync packet descriptors.</p>
-</td>
-</tr>
-<tr id="row07560932714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2072810912713"><a name="p2072810912713"></a><a name="p2072810912713"></a>int UsbRawFreeRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p17281917278"><a name="p17281917278"></a><a name="p17281917278"></a>Releases the previously allocated transfer request.</p>
-</td>
-</tr>
-<tr id="row1775615952717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1872810915274"><a name="p1872810915274"></a><a name="p1872810915274"></a>int UsbRawFillBulkRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p117281090271"><a name="p117281090271"></a><a name="p117281090271"></a>Fills in a bulk transfer request.</p>
-</td>
-</tr>
-<tr id="row675659172716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1272820962719"><a name="p1272820962719"></a><a name="p1272820962719"></a>int UsbRawFillControlSetup(const unsigned char *setup, const struct UsbControlRequestData *requestData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p177281299278"><a name="p177281299278"></a><a name="p177281299278"></a>Fills in a control setup packet.</p>
-</td>
-</tr>
-<tr id="row97563912271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1372817914277"><a name="p1372817914277"></a><a name="p1372817914277"></a>int UsbRawFillControlRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1372815952715"><a name="p1372815952715"></a><a name="p1372815952715"></a>Fills in a control transfer request.</p>
-</td>
-</tr>
-<tr id="row117561932712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p172899112714"><a name="p172899112714"></a><a name="p172899112714"></a>int UsbRawFillInterruptRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19728092271"><a name="p19728092271"></a><a name="p19728092271"></a>Fills in an interrupt transfer request.</p>
-</td>
-</tr>
-<tr id="row075617917271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p072829132714"><a name="p072829132714"></a><a name="p072829132714"></a>int UsbRawFillIsoRequest(const struct UsbRawRequest *request, const UsbRawHandle *devHandle, const struct UsbRawFillRequestData *fillData);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p107281913275"><a name="p107281913275"></a><a name="p107281913275"></a>Fills in an isochronous transfer request.</p>
-</td>
-</tr>
-<tr id="row87564917271"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p16728129152712"><a name="p16728129152712"></a><a name="p16728129152712"></a>int UsbRawSubmitRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p187299922718"><a name="p187299922718"></a><a name="p187299922718"></a>Submits a transfer request.</p>
-</td>
-</tr>
-<tr id="row975659192711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p15729099278"><a name="p15729099278"></a><a name="p15729099278"></a>int UsbRawCancelRequest(const struct UsbRawRequest *request);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p872912911274"><a name="p872912911274"></a><a name="p872912911274"></a>Cancels a transfer request.</p>
-</td>
-</tr>
-<tr id="row1675519932712"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1472929182710"><a name="p1472929182710"></a><a name="p1472929182710"></a>int UsbRawHandleRequests(const UsbRawHandle *devHandle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p572929102710"><a name="p572929102710"></a><a name="p572929102710"></a>Handles a transfer request event.</p>
-</td>
-</tr>
-</tbody>
-</table>
+The tables below describe the APIs provided by the USB host driver model.
 
-[Figure 2](#fig8847615103013) describes the APIs provided by the USB device driver model.
+  **Table 1** usb_ddk_interface.h
 
-**Table 2** APIs provided by the USB device driver model
+| API| Description| 
+| -------- | -------- |
+| int32_t&nbsp;UsbInitHostSdk(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB host driver DDK.| 
+| int32_t&nbsp;UsbExitHostSdk(const&nbsp;struct&nbsp;UsbSession<br>\*session); | Exits the USB host driver DDK.| 
+| const&nbsp;struct&nbsp;UsbInterface&nbsp;\*UsbClaimInterface(const<br>struct&nbsp;UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr,&nbsp;uint8_t&nbsp;interfaceIndex); | Obtains a USB interface.| 
+| int&nbsp;UsbReleaseInterface(const&nbsp;struct&nbsp;UsbInterface<br>\*interfaceObj); | Releases a USB interface.| 
+| int&nbsp;UsbAddOrRemoveInterface(const&nbsp;struct&nbsp;UsbSession<br>\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t&nbsp;usbAddr,&nbsp;uint8_t<br>interfaceIndex,&nbsp;UsbInterfaceStatus&nbsp;status); | Adds or removes a USB interface.| 
+| UsbInterfaceHandle&nbsp;\*UsbOpenInterface(const&nbsp;struct<br>UsbInterface&nbsp;\*interfaceObj); | Opens a USB interface.| 
+| int32_t&nbsp;UsbCloseInterface(const&nbsp;UsbInterfaceHandle<br>\*interfaceHandle); | Closes a USB interface.| 
+| int32_t&nbsp;UsbSelectInterfaceSetting(const<br>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br>settingIndex,&nbsp;struct&nbsp;UsbInterface&nbsp;\*\*interfaceObj); | Sets a USB interface.| 
+| int32_t&nbsp;UsbGetPipeInfo(const&nbsp;UsbInterfaceHandle<br>\*interfaceHandle,&nbsp;uint8_t&nbsp;settingIndex,&nbsp;uint8_t&nbsp;pipeId,<br>struct&nbsp;UsbPipeInfo&nbsp;\*pipeInfo); | Obtains USB pipe information.| 
+| int32_t&nbsp;UsbClearInterfaceHalt(const<br>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br>pipeAddress); | Clears the state of the pipe with the specified index.| 
+| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int&nbsp;isoPackets<br>,&nbsp;int&nbsp;length); | Allocates a request object.| 
+| int&nbsp;UsbFreeRequest(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Releases a request object.| 
+| int&nbsp;UsbSubmitRequestAsync(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Sends an asynchronous request.| 
+| int32_t&nbsp;UsbFillRequest(const&nbsp;struct&nbsp;UsbRequest<br>\*request,&nbsp;const&nbsp;UsbInterfaceHandle&nbsp;\*interfaceHandle,<br>const&nbsp;struct&nbsp;UsbRequestParams&nbsp;\*params); | Fills in a request.| 
+| sint&nbsp;UsbCancelRequest(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Cancels an asynchronous request.| 
+| int&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br>\*request); | Sends a synchronous request.| 
 
-<a name="table1172315391272"></a>
-<table><thead align="left"><tr id="row207231239162719"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p1472363915270"><a name="p1472363915270"></a><a name="p1472363915270"></a>Header File</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p672313910271"><a name="p672313910271"></a><a name="p672313910271"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p524922814284"><a name="p524922814284"></a><a name="p524922814284"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1526165392716"><td class="cellrowborder" rowspan="3" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p143125320275"><a name="p143125320275"></a><a name="p143125320275"></a>usbfn_device.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p1644533274"><a name="p1644533274"></a><a name="p1644533274"></a>const struct UsbFnDevice *UsbFnCreateDevice(const char *udcName, const struct UsbFnDescriptorData *descriptor);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p241853152716"><a name="p241853152716"></a><a name="p241853152716"></a>Creates a USB device.</p>
-</td>
-</tr>
-<tr id="row11261453112717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p741553102715"><a name="p741553102715"></a><a name="p741553102715"></a>int UsbFnRemoveDevice(struct UsbFnDevice *fnDevice);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p5435318271"><a name="p5435318271"></a><a name="p5435318271"></a>Deletes a USB device.</p>
-</td>
-</tr>
-<tr id="row126205320278"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p9425362716"><a name="p9425362716"></a><a name="p9425362716"></a>const struct UsbFnDevice *UsbFnGetDevice(const char *udcName);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p54135392719"><a name="p54135392719"></a><a name="p54135392719"></a>Obtains a USB device.</p>
-</td>
-</tr>
-<tr id="row326125314279"><td class="cellrowborder" rowspan="6" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p144653142719"><a name="p144653142719"></a><a name="p144653142719"></a>usbfn_interface.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p941453112713"><a name="p941453112713"></a><a name="p941453112713"></a>int UsbFnStartRecvInterfaceEvent(struct UsbFnInterface *interface, uint32_t eventMask, UsbFnEventCallback callback, void *context);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1341530277"><a name="p1341530277"></a><a name="p1341530277"></a>Starts receiving events.</p>
-</td>
-</tr>
-<tr id="row172613534273"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p124153152713"><a name="p124153152713"></a><a name="p124153152713"></a>int UsbFnStopRecvInterfaceEvent(struct UsbFnInterface *interface);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1441532271"><a name="p1441532271"></a><a name="p1441532271"></a>Stops receiving events.</p>
-</td>
-</tr>
-<tr id="row1026653142717"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p24185317276"><a name="p24185317276"></a><a name="p24185317276"></a>UsbFnInterfaceHandle UsbFnOpenInterface(struct UsbFnInterface *interface);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p142537274"><a name="p142537274"></a><a name="p142537274"></a>Opens an interface.</p>
-</td>
-</tr>
-<tr id="row226195362720"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p114175382715"><a name="p114175382715"></a><a name="p114175382715"></a>int UsbFnCloseInterface(UsbFnInterfaceHandle handle);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p124453132715"><a name="p124453132715"></a><a name="p124453132715"></a>Closes an interface.</p>
-</td>
-</tr>
-<tr id="row12605311277"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p3565313278"><a name="p3565313278"></a><a name="p3565313278"></a>int UsbFnGetInterfacePipeInfo(struct UsbFnInterface *interface, uint8_t pipeId, struct UsbFnPipeInfo *info);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p054536274"><a name="p054536274"></a><a name="p054536274"></a>Obtains pipe information.</p>
-</td>
-</tr>
-<tr id="row19261153132716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1958532275"><a name="p1958532275"></a><a name="p1958532275"></a>int UsbFnSetInterfaceProp(const struct UsbFnInterface *interface, const char *name, const char *value);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p9516538277"><a name="p9516538277"></a><a name="p9516538277"></a>Sets custom properties.</p>
-</td>
-</tr>
-<tr id="row3261853202716"><td class="cellrowborder" rowspan="8" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p65453192711"><a name="p65453192711"></a><a name="p65453192711"></a>usbfn_request.h</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p3520539276"><a name="p3520539276"></a><a name="p3520539276"></a>struct UsbFnRequest *UsbFnAllocCtrlRequest(UsbFnInterfaceHandle handle, uint32_t len);</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p5514538278"><a name="p5514538278"></a><a name="p5514538278"></a>Applies for a control transfer request.</p>
-</td>
-</tr>
-<tr id="row18261253112716"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p85115312277"><a name="p85115312277"></a><a name="p85115312277"></a>struct UsbFnRequest *UsbFnAllocRequest(UsbFnInterfaceHandle handle, uint8_t pipe, uint32_t len);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p105105342716"><a name="p105105342716"></a><a name="p105105342716"></a>Applies for a data request.</p>
-</td>
-</tr>
-<tr id="row82665320272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1461538279"><a name="p1461538279"></a><a name="p1461538279"></a>int UsbFnFreeRequest(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p26165372718"><a name="p26165372718"></a><a name="p26165372718"></a>Releases a request.</p>
-</td>
-</tr>
-<tr id="row162610537275"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p261653192714"><a name="p261653192714"></a><a name="p261653192714"></a>int UsbFnSubmitRequestAsync(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p361253112718"><a name="p361253112718"></a><a name="p361253112718"></a>Sends an asynchronous request.</p>
-</td>
-</tr>
-<tr id="row1326253122711"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p4611536275"><a name="p4611536275"></a><a name="p4611536275"></a>int UsbFnSubmitRequestSync(struct UsbFnRequest *req, uint32_t timeout);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p06853112710"><a name="p06853112710"></a><a name="p06853112710"></a>Sends a synchronous request.</p>
-</td>
-</tr>
-<tr id="row15265539272"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p177453102712"><a name="p177453102712"></a><a name="p177453102712"></a>int UsbFnCancelRequest(struct UsbFnRequest *req);</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p13725312275"><a name="p13725312275"></a><a name="p13725312275"></a>Cancels a request.</p>
-</td>
-</tr>
-</tbody>
-</table>
+  **Table 2** usb_raw_api.h
 
-## Development Guidelines<a name="section581mcpsimp"></a>
+| API| Description| 
+| -------- | -------- |
+| int&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | Initializes the USB raw APIs.| 
+| int&nbsp;UsbRawExit(const&nbsp;struct&nbsp;UsbSession&nbsp;\*session); | Exits the USB raw APIs.| 
+| UsbRawHandle&nbsp;\*UsbRawOpenDevice(const&nbsp;struct<br>UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br>usbAddr); | Opens a USB device.| 
+| int&nbsp;UsbRawCloseDevice(const&nbsp;UsbRawHandle<br>\*devHandle); | Closes a USB device.| 
+| int&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br>\*requestData); | Performs a control transfer synchronously.| 
+| int&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs a bulk transfer synchronously.| 
+| int&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br>\*requestData); | Performs an interrupt transfer synchronously.| 
+| int&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br>UsbRawConfigDescriptor&nbsp;\*\*config); | Obtains the configuration descriptor of a device.| 
+| void&nbsp;UsbRawFreeConfigDescriptor(const&nbsp;struct<br>UsbRawConfigDescriptor&nbsp;\*config); | Releases the memory space of a configuration descriptor.| 
+| int&nbsp;UsbRawGetConfiguration(const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;int&nbsp;\*config); | Obtains the configuration in use.| 
+| int&nbsp;UsbRawSetConfiguration(const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;int&nbsp;config); | Sets the configuration in use.| 
+| int&nbsp;UsbRawGetDescriptor(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawDescriptorParam&nbsp;\*param,&nbsp;const&nbsp;unsigned&nbsp;char<br>\*data); | Obtains descriptor information.| 
+| UsbRawDevice&nbsp;\*UsbRawGetDevice(const&nbsp;UsbRawHandle<br>\*devHandle); | Obtains the device pointer based on the device handle.| 
+| int&nbsp;UsbRawGetDeviceDescriptor(const&nbsp;UsbRawDevice<br>\*rawDev,&nbsp;struct<br>UsbDeviceDescriptor&nbsp;\*desc); | Obtains the device descriptor of the specified USB device.| 
+| int&nbsp;UsbRawClaimInterface(const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;int<br>interfaceNumber); | Declares the interface on the specified device handle.| 
+| int&nbsp;UsbRawReleaseInterface(const&nbsp;UsbRawHandle<br>\*devHandle,&nbsp;in<br>t&nbsp;interfaceNumber); | Releases the previously declared interface.| 
+| int&nbsp;UsbRawResetDevice(const&nbsp;UsbRawHandle<br>\*devHandle); | Resets a device.| 
+| struct&nbsp;UsbRawRequest&nbsp;\*UsbRawAllocRequest(const<br>UsbRawHandle<br>\*devHandle,&nbsp;int&nbsp;isoPackets,&nbsp;int&nbsp;length); | Allocates a transfer request with the specified number of sync packet descriptors.| 
+| int&nbsp;UsbRawFreeRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Releases the previously allocated transfer request.| 
+| int&nbsp;UsbRawFillBulkRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in a bulk transfer request.| 
+| int&nbsp;UsbRawFillControlSetup(const&nbsp;unsigned&nbsp;char&nbsp;\*setup,<br>const&nbsp;struct&nbsp;UsbControlRequestData&nbsp;\*requestData); | Fills in a control setup packet.| 
+| int&nbsp;UsbRawFillControlRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in a control transfer request.| 
+| int&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an interrupt transfer request.| 
+| int&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br>UsbRawFillRequestData&nbsp;\*fillData); | Fills in an isochronous transfer request.| 
+| int&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Submits a transfer request.| 
+| int&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br>\*request); | Cancels a transfer request.| 
+| int&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br>\*devHandle); | Handles a transfer request event.| 
+
+The tables below describe the APIs provided by the USB device driver model.
+
+  **Table 3** usbfn_device.h
+
+| API| Description| 
+| -------- | -------- |
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br>\*descriptor); | Creates a USB device.| 
+| int&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br>\*fnDevice); | Deletes a USB device.| 
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br>\*udcName); | Obtains a USB device.| 
+
+  **Table 4** usbfn_interface.h
+
+| API| Description| 
+| -------- | -------- |
+| int&nbsp;UsbFnStartRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | Starts receiving events.| 
+| int&nbsp;UsbFnStopRecvInterfaceEvent(struct<br>UsbFnInterface&nbsp;\*interface); | Stops receiving events.| 
+| UsbFnInterfaceHandle&nbsp;UsbFnOpenInterface(struct&nbsp;UsbFnInterface&nbsp;\*interface); | Opens an interface.| 
+| int&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | Closes an interface.| 
+| int&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | Obtains pipe information.| 
+| int&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | Sets custom properties.| 
+
+  **Table 5** usbfn_request.h
+
+| API| Description| 
+| -------- | -------- |
+| struct&nbsp;UsbFnRequest<br>\*UsbFnAllocCtrlRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint32_t&nbsp;len); | Allocates a control transfer request.| 
+| struct&nbsp;UsbFnRequest&nbsp;\*UsbFnAllocRequest(UsbFnInterfaceHandle&nbsp;handle,<br>uint8_t&nbsp;pipe,&nbsp;uint32_t&nbsp;len); | Allocates a data request.| 
+| int&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Releases a request.| 
+| int&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br>\*req); | Sends an asynchronous request.| 
+| int&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br>\*req,&nbsp;uint32_t&nbsp;timeout); | Sends a synchronous request.| 
+| int&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | Cancels a request.| 
+
+
+## How to Develop
 
 The USB driver is developed based on the Hardware Driver Foundation (HDF), platform, and Operating System Abstraction Layer (OSAL) APIs. A unified driver model is provided for USB devices, irrespective of the operating system and chip architecture. This document uses a serial port as an example to describe how to develop drivers for the USB host and USB device.
 
-### How to Develop<a name="section583mcpsimp"></a>
 
-### Developing Driver Using Host DDK APIs<a name="section584mcpsimp"></a>
+### Developing Driver Using Host DDK APIs
 
-1.  Configure the driver mapping table.
-2.  Initialize the USB host DDK.
-3.  Obtain a **UsbInterface** object.
-4.  Open the **UsbInterface** object to obtain the **UsbInterfaceHandle** object.
-5.  Obtain pipe information of the specified **pipeIndex** based on the **UsbInterfaceHandle** object.
-6.  Allocate an I/O request for the **UsbInterfaceHandle** object.
-7.  Fill in the I/O request based on the input parameters.
-8.  Submit the I/O request in synchronous or asynchronous mode.
+1. Configure the driver mapping table.
 
-### Developing Driver Using Host Raw APIs<a name="section594mcpsimp"></a>
+2. Initialize the USB host DDK.
 
-1.  Configure the driver mapping table.
-2.  Initialize the host raw data, open the USB device, obtain the descriptor, and then obtain interface and endpoint information based on the descriptor.
-3.  Allocate a request and fill in the request based on the transfer type.
-4.  Submit the I/O request in synchronous or asynchronous mode.
+3. Obtain a **UsbInterface** object.
 
-### Developing Driver Using Device DDK APIs<a name="section600mcpsimp"></a>
+4. Open the **UsbInterface** object to obtain the **UsbInterfaceHandle** object.
 
-1.  Construct a descriptor.
-2.  Instantiate a USB device using the descriptor constructed.
-3.  Call **UsbFnDeviceGetInterface** to obtain an interface, call **UsbFnInterfaceGetPipeInfo** to obtain pipe information based on the interface, call **UsbFnInterfaceOpen** to open the interface to obtain the handle, and call **UsbFnRequestAlloc** to obtain the request based on the handle and pipe ID.
-4.  Call **UsbFnInterfaceStartRecvEvent** to receive events such as Enable and Setup, and respond to the events in **UsbFnEventCallback**.
-5.  Send and receive data in synchronous or asynchronous mode.
+5. Obtain pipe information of the specified **pipeIndex** based on the **UsbInterfaceHandle** object.
 
-## Development Examples<a name="section607mcpsimp"></a>
+6. Allocate an I/O request for the **UsbInterfaceHandle** object.
+
+7. Fill in the I/O request based on the input parameters.
+
+8. Submit the I/O request in synchronous or asynchronous mode.
+
+
+### Developing Driver Using Host Raw APIs
+
+1. Configure the driver mapping table.
+
+2. Initialize the host raw data, open the USB device, obtain the descriptor, and then obtain interface and endpoint information based on the descriptor.
+
+3. Allocate a request and fill in the request based on the transfer type.
+
+4. Submit the I/O request in synchronous or asynchronous mode.
+
+
+### Developing Driver Using Device DDK APIs
+
+1. Construct a descriptor.
+
+2. Instantiate a USB device using the descriptor constructed.
+
+3. Call **UsbFnDeviceGetInterface** to obtain an interface, call **UsbFnInterfaceGetPipeInfo** to obtain pipe information based on the interface, call **UsbFnInterfaceOpen** to open the interface to obtain the handle, and call **UsbFnRequestAlloc** to obtain the request based on the handle and pipe ID.
+
+4. Call **UsbFnInterfaceStartRecvEvent** to receive events such as Enable and Setup, and respond to the events in **UsbFnEventCallback**.
+
+5. Send and receive data in synchronous or asynchronous mode.
+
+
+## Development Example
 
 The following examples help you better understand the development of the USB serial port driver.
 
-### Developing Driver Using Host DDK APIs<a name="section609mcpsimp"></a>
 
+### Developing Driver Using Host DDK APIs
+
+  
 ```
 root {
     module = "usb_pnp_device";
@@ -431,7 +210,7 @@ root {
                 interfaceClass = [0];
                 // Interface subtype. You can enter multiple subtypes as needed.
                 interfaceSubClass = [2, 0];
-                // Protocol that the interface complies with. You can enter multiple protocols as needed.
+                // Protocol that the interface complies with. You can enter multiple protocols as needed.   
                 interfaceProtocol = [1, 2];
                 // Interface number. You can enter multiple interface numbers as needed.
                 interfaceNumber = [2, 3];
@@ -479,7 +258,7 @@ static int SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
     controlParams.request = request;
     controlParams.target = USB_REQUEST_TARGET_INTERFACE;
     controlParams.reqType = USB_REQUEST_TYPE_CLASS;
-    controlParams.directon = USB_REQUEST_DIR_TO_DEVICE;
+    controlParams.direction = USB_REQUEST_DIR_TO_DEVICE;
     controlParams.value = value;
     controlParams.index = index;
     controlParams.data = buf;
@@ -647,7 +426,7 @@ static int AcmAllocReadRequests(struct AcmDevice *acm)
         readParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
         readParams.timeout = USB_CTRL_SET_TIMEOUT;
         readParams.dataReq.numIsoPackets = 0;
-        readParams.dataReq.directon = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
+        readParams.dataReq.direction = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
         readParams.dataReq.length = acm->readSize;
         ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParams);    // Fills in the readReq object to be sent.
         if (HDF_SUCCESS != ret) {
@@ -679,7 +458,7 @@ static int AcmAllocNotifyRequest(struct AcmDevice *acm)
     intParams.requestType = USB_REQUEST_PARAMS_DATA_TYPE;
     intParams.timeout = USB_CTRL_SET_TIMEOUT;
     intParams.dataReq.numIsoPackets = 0;
-    intParams.dataReq.directon = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
+    intParams.dataReq.direction = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
     intParams.dataReq.length = acm->intSize;
     ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParams);    // Fill in the interrupt I/O request.
     if (HDF_SUCCESS != ret) {
@@ -1006,8 +785,10 @@ struct HdfDriverEntry g_usbSerialDriverEntry = {
 HDF_INIT(g_usbSerialDriverEntry);
 ```
 
-### Developing Driver Using Host Raw APIs<a name="section612mcpsimp"></a>
 
+### Developing Driver Using Host Raw APIs
+
+  
 ```
 root {
     module = "usb_pnp_device";
@@ -1440,10 +1221,12 @@ struct HdfDriverEntry g_usbSerialRawDriverEntry = {
 HDF_INIT(g_usbSerialRawDriverEntry);
 ```
 
-### Developing Driver Using Device DDK APIs<a name="section615mcpsimp"></a>
 
-The core code of the USB Abstract Control Model (ACM) device is available in **drivers/peripheral/usb/gadget/function/acm/cdcacm.c**. The following is an example:
+### Developing Driver Using Device DDK APIs
 
+The core code of the USB Abstract Control Model (ACM) device is available in **drivers\peripheral\usb\gadget\function\acm\cdcacm.c**. The following is an example.
+
+  
 ```
 1. Create a device.
 static int32_t AcmCreateFuncDevice(struct UsbAcmDevice *acm,

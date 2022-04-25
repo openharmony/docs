@@ -345,7 +345,7 @@ node2 {
 
 The template is used to generate nodes with consistent syntax, thereby facilitating the traverse and management of nodes of the same type.
 
-If a node is defined using the keyword **template**, its child nodes inherit from the node configuration through the double colon operator (::). The child nodes can modify but cannot add or delete attributes in **template**. The attributes not defined in the child nodes will use the attributes defined in **template** as the default values. 
+If a node is defined using the keyword **template**, its child nodes inherit from the node configuration through the double colon operator (::). The child nodes can modify or add but cannot delete attributes in **template**. The attributes not defined in the child nodes will use the attributes defined in **template** as the default values.
 
 Example:
 
