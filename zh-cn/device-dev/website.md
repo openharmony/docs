@@ -146,7 +146,11 @@
     - [CMake方式组织编译的库移植](porting/porting-thirdparty-cmake.md)
     - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
 
-  - [轻量系统芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
+  - 轻量系统芯片移植案例
+    - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
+    - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo解决方案之ASR芯片移植案例](porting/porting-asr582x-combo-demo.md)
+    - [轻量系统STM32F407芯片移植案例](porting/porting-stm32f407-on-minisystem-eth.md)
 
 - 子系统开发
 
@@ -301,8 +305,7 @@
         - [Trace](kernel/kernel-small-debug-trace.md)
         - [Perf调测](kernel/kernel-mini-memory-perf.md)
         - [LMS调测](kernel/kernel-small-memory-lms.md)
-        - 进程调测
-          - [CPU占用率](kernel/kernel-small-debug-process-cpu.md)
+        - [CPU占用率](kernel/kernel-small-debug-process-cpu.md)
         - 内核态内存调测
           - [内存信息统计](kernel/kernel-small-debug-memory-info.md)
           - [内存泄漏检测](kernel/kernel-small-debug-memory-leak.md)
