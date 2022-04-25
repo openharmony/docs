@@ -7,9 +7,11 @@
 ## Creating a JavaScript Project
 
 1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+
    ![en-us_image_0000001223558814](figures/en-us_image_0000001223558814.png)
 
 2. On the project configuration page, set **UI Syntax** to **JS** and retain the default values for other parameters.
+
    ![en-us_image_0000001223877162](figures/en-us_image_0000001223877162.png)
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
@@ -189,6 +191,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    ```
 
 3. Open any file in the **index** folder and click ![en-us_image_0000001262339067](figures/en-us_image_0000001262339067.png) in the Previewer to refresh the file. The figure below shows the effect.
+
    ![en-us_image_0000001216269940](figures/en-us_image_0000001216269940.png)
 
 
@@ -197,9 +200,11 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
 2. Choose **File** &gt; **Project Structure** &gt; **Project** &gt; **Signing Configs**, select **Automatically generate signing**, wait until the automatic signing is complete, and click **OK**, as shown below.
+
    ![en-us_image_0000001223557290](figures/en-us_image_0000001223557290.png)
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001217047316](figures/en-us_image_0000001217047316.png). The display effect is shown in the figure below.
+
    ![en-us_image_0000001217527892](figures/en-us_image_0000001217527892.png)
 
 Congratulations! You have finished developing your OpenHarmony application in JavaScript in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)

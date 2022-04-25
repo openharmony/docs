@@ -23,10 +23,11 @@ You can develop applications or services in the low-code approach using either o
 > This feature is available in DevEco Studio 3.0 Beta2 and later versions and works with compileSdkVersion 7 or later.
 
 1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+
    ![en-us_image_0000001268198893](figures/en-us_image_0000001268198893.png)
 2. Go to the project configuration page, select **Enable Super Visual**, set **UI Syntax** to **JS**, and retain the default values for other parameters.
 
-  ![en-us_image_0000001223717294](figures/en-us_image_0000001223717294.png)
+    ![en-us_image_0000001223717294](figures/en-us_image_0000001223717294.png)
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
@@ -70,6 +71,7 @@ Add **Div**, **Text**, and **Button** components to the first page.
    ![en-us_image_0000001260928361](figures/en-us_image_0000001260928361.gif)
 
 5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. Below is how the first page looks on the Previewer.
+
    ![en-us_image_0000001216288558](figures/en-us_image_0000001216288558.png)
 
 
@@ -137,9 +139,10 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
       ```
    - In the second.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001215388262](figures/en-us_image_0000001215388262.png)**Events** and set **Click** to **back**.
 
-   ![en-us_image_0000001268082945](figures/en-us_image_0000001268082945.png)
+     ![en-us_image_0000001268082945](figures/en-us_image_0000001268082945.png)
 
 3. Open the **index.visual** or **index.js** file and click ![en-us_image_0000001261979271](figures/en-us_image_0000001261979271.png) in the Previewer to refresh the file. The figure below shows the effect.
+
    ![en-us_image_0000001261142799](figures/en-us_image_0000001261142799.png)
 
 
@@ -148,9 +151,11 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
 2. Choose **File** &gt; **Project Structure** &gt; **Project** &gt; **Signing Configs**, select **Automatically generate signing**, wait until the automatic signing is complete, and click **OK**, as shown below.
+
    ![en-us_image_0000001268283201](figures/en-us_image_0000001268283201.png)
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001262207811](figures/en-us_image_0000001262207811.png). The display effect is shown in the figure below.
+
    ![en-us_image_0000001262127855](figures/en-us_image_0000001262127855.png)
 
 Congratulations! You have finished developing your OpenHarmony app in JavaScript in the low-code approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)

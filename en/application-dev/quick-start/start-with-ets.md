@@ -9,9 +9,11 @@
 ## Creating an eTS Project
 
 1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+
    ![en-us_image_0000001223556342](figures/en-us_image_0000001223556342.png)
 
 2. On the project configuration page, set **UI Syntax** to **eTS** and retain the default values for other parameters.
+
    ![en-us_image_0000001223716826](figures/en-us_image_0000001223716826.png)
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
@@ -234,6 +236,7 @@ You can implement page redirection through the page router, which finds the targ
    ```
 
 3. Open the **index.ets** file and click ![en-us_image_0000001262219043](figures/en-us_image_0000001262219043.png) in the Previewer to refresh the file. The figure below shows the effect.
+
    ![en-us_image_0000001260684127](figures/en-us_image_0000001260684127.png)
 
 
@@ -242,9 +245,11 @@ You can implement page redirection through the page router, which finds the targ
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
 2. Choose **File** &gt; **Project Structure** &gt; **Project** &gt; **Signing Configs**, select **Automatically generate signing**, wait until the automatic signing is complete, and click **OK**, as shown below.
+
    ![en-us_image_0000001268077317](figures/en-us_image_0000001268077317.png)
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001262206247](figures/en-us_image_0000001262206247.png). The display effect is shown in the figure below.
+
    ![en-us_image_0000001217526428](figures/en-us_image_0000001217526428.png)
 
 Congratulations! You have finished developing your OpenHarmony application in eTS in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)
