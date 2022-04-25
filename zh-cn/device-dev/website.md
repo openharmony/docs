@@ -410,15 +410,15 @@
   - AI框架
     - [AI引擎框架开发指南](subsystems/subsys-aiframework-guide.md)
     - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
-    - [技术规范](subsystems/subsys-aiframework-tech.md)
+    - 技术规范
       - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
       - [命名规范](subsystems/subsys-aiframework-tech-name.md)
       - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
-    - [开发指导](subsystems/subsys-aiframework-devguide.md)
+    - 开发指导
       - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
       - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
       - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
-    - [开发示例](subsystems/subsys-aiframework-demo.md)
+    - 开发示例
       - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
