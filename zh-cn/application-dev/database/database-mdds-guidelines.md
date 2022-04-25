@@ -75,7 +75,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
            backup : false,
            autoSync : false,
            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-           securityLevel : distributedData.SecurityLevel.S2,
+           securityLevel : distributedData.SecurityLevel.S0,
        };
        kvManager.getKVStore('storeId', options, function (err, store) {
            if (err) {
