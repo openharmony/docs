@@ -394,12 +394,12 @@
     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
     - [动画开发指导](subsystems/subsys-graphics-animation-guide.md)
   - 媒体
-    - [相机](subsystems/subsys-multimedia-camera.md)
+    - 相机
       - [相机开发概述](subsystems/subsys-multimedia-camera-overview.md)
       - [拍照开发指导](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [录像开发指导](subsystems/subsys-multimedia-camera-record-guide.md)
       - [预览开发指导](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - [音视频](subsystems/subsys-multimedia-video.md)
+    - 音视频
       - [音视频开发概述](subsystems/subsys-multimedia-video-overview.md)
       - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
       - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
@@ -423,10 +423,10 @@
       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
   - 数据管理
-    - [关系型数据库](subsystems/subsys-data-relational-database.md)
+    - 关系型数据库
       - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
       - [关系型数据库开发指导](subsystems/subsys-data-relational-database-guide.md)
-    - [轻量级数据存储](subsystems/subsys-data-storage.md)
+    - 轻量级数据存储
       - [轻量级数据存储概述](subsystems/subsys-data-storage-overview.md)
       - [轻量级数据存储开发指导](subsystems/subsys-data-storage-guide.md)
   - Sensor服务
