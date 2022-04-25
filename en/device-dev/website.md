@@ -282,8 +282,7 @@
         - [Trace](kernel/kernel-small-debug-trace.md)
         - [perf](kernel/kernel-mini-memory-perf.md)
         - [LMS](kernel/kernel-small-memory-lms.md)
-        - Process Commissioning
-          - [CPUP](kernel/kernel-small-debug-process-cpu.md)
+        - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
           - [Memory Leak Check](kernel/kernel-small-debug-memory-leak.md)
@@ -449,26 +448,26 @@
     - [HPM Part Development](hpm-part/hpm-part-development.md)
     - [HPM Part Reference](hpm-part/hpm-part-reference.md)
 - Device Development Examples
-  - [Mini- and Small-System Devices](guide/device-lite.md)
-    - [WLAN-connected Products](guide/device-wlan.md)
+  - Mini- and Small-System Devices
+    - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
       - [Third-Party SDK Integration](guide/device-wlan-sdk.md)
-    - [Cameras Without a Screen](guide/device-iotcamera.md)
-      - [Camera Control](guide/device-iotcamera-control.md)
+    - Cameras Without a Screen
+      - Camera Control
         - [Overview](guide/device-iotcamera-control-overview.md)
-        - [Development Guidelines](guide/device-iotcamera-control-demo.md)
+        - Development Guidelines
           - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
           - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
         - [Use Case](guide/device-iotcamera-control-example.md)
-    - [Cameras with a Screen](guide/device-camera.md)
-      - [Screen and Camera Control](guide/device-camera-control.md)
+    - Cameras with a Screen
+      - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
-        - [Development Guidelines](guide/device-camera-control-demo.md)
+        - Development Guidelines
           - [Photographing](guide/device-camera-control-demo-photoguide.md)
           - [Video Recording](guide/device-camera-control-demo-videoguide.md)
           - [Previewing](guide/device-camera-control-demo-previewguide.md)
         - [Use Case](guide/device-camera-control-example.md)
-      - [Visual Application Development](guide/device-camera-visual.md)
+      - Visual Application Development
         - [Overview](guide/device-camera-visual-overview.md)
         - [Preparations](guide/device-camera-visual-prepare.md)
         - [Adding Pages](guide/device-camera-visual-addpage.md)
@@ -477,7 +476,7 @@
         - [Debugging and Packaging](guide/device-camera-visual-debug.md)
         - [Running on the Device](guide/device-camera-visual-run.md)
         - [FAQs](guide/device-camera-visual-faqs.md)
-  - [Standard-System Devices](guide/device-standard.md)
+  - Standard-System Devices
     - [Development Guidelines on Clock Apps](guide/device-clock-guide.md)
     - [Development Example for Platform Drivers](guide/device-driver-demo.md)
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
@@ -486,8 +485,7 @@
   - [R&D Tools](subsystems/subsys-toolchain.md)
     - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
-- XTS Certification
-  - [XTS](subsystems/subsys-xts-guide.md)
+- [XTS](subsystems/subsys-xts-guide.md)
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
