@@ -162,9 +162,9 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
            // get deviceIds
            let deviceIds = [];
            if (devManager != null) {
-               var deviceList = devManager.getTrustedDeviceListSync();
-               for (var i = 0; i < deviceList.length; i++) {
-                   deviceIds[i] = deviceList[i].deviceId;
+               var devices = devManager.getTrustedDeviceListSync();
+               for (var i = 0; i < devices.length; i++) {
+                   deviceIds[i] = devices[i].deviceId;
                }
            }
            try{
