@@ -1084,7 +1084,7 @@ release(): Promise\<void>
 
 | 名称              | 默认值            | 说明                 |
 | ----------------- | ----------------- | -------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素字节数。     |
+| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素比特数。     |
 | ORIENTATION       | "Orientation"     | 图片方向。           |
 | IMAGE_LENGTH      | "ImageLength"     | 图片长度。           |
 | IMAGE_WIDTH       | "ImageWidth"      | 图片宽度。           |
