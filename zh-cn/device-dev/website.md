@@ -398,12 +398,12 @@
     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
     - [动画开发指导](subsystems/subsys-graphics-animation-guide.md)
   - 媒体
-    - [相机](subsystems/subsys-multimedia-camera.md)
+    - 相机
       - [相机开发概述](subsystems/subsys-multimedia-camera-overview.md)
       - [拍照开发指导](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [录像开发指导](subsystems/subsys-multimedia-camera-record-guide.md)
       - [预览开发指导](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - [音视频](subsystems/subsys-multimedia-video.md)
+    - 音视频
       - [音视频开发概述](subsystems/subsys-multimedia-video-overview.md)
       - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
       - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
@@ -414,23 +414,23 @@
   - AI框架
     - [AI引擎框架开发指南](subsystems/subsys-aiframework-guide.md)
     - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
-    - [技术规范](subsystems/subsys-aiframework-tech.md)
+    - 技术规范
       - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
       - [命名规范](subsystems/subsys-aiframework-tech-name.md)
       - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
-    - [开发指导](subsystems/subsys-aiframework-devguide.md)
+    - 开发指导
       - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
       - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
       - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
-    - [开发示例](subsystems/subsys-aiframework-demo.md)
+    - 开发示例
       - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
   - 数据管理
-    - [关系型数据库](subsystems/subsys-data-relational-database.md)
+    - 关系型数据库
       - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
       - [关系型数据库开发指导](subsystems/subsys-data-relational-database-guide.md)
-    - [轻量级数据存储](subsystems/subsys-data-storage.md)
+    - 轻量级数据存储
       - [轻量级数据存储概述](subsystems/subsys-data-storage-overview.md)
       - [轻量级数据存储开发指导](subsystems/subsys-data-storage-guide.md)
   - Sensor服务
@@ -471,7 +471,7 @@
     - [HiLog\_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
     - [HiTrace开发指导](subsystems/subsys-dfx-hitrace.md)
     - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
-    - [HiSysEvent开发指导](subsystems/subsys-dfx-hisysevent.md)
+    - HiSysEvent开发指导
       - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
       - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
       - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -530,9 +530,7 @@
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 
-- XTS认证
-
-  - [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](subsystems/subsys-xts-guide.md)
 
 - 工具
 
