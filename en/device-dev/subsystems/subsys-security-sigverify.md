@@ -62,7 +62,7 @@ The following table lists the innerkits APIs provided by the signature verificat
 </tbody>
 </table>
 
-**Table  2**  APIs provided by the signature verification component for standard systems
+**Table  2**  API provided by the signature verification component for standard systems
 
 <a name="table10383348161613"></a>
 <table><thead align="left"><tr id="row9384114813161"><th class="cellrowborder" valign="top" width="37.66%" id="mcps1.2.3.1.1"><p id="p038411483162"><a name="p038411483162"></a><a name="p038411483162"></a>API</p>
@@ -83,5 +83,5 @@ The following table lists the innerkits APIs provided by the signature verificat
 
 ### OpenHarmony Self-signed Application<a name="section167151429133312"></a>
 
-To develop an OpenHarmony self-signed application, follow instructions provided in the guide of  [_Configuring the OpenHarmony App Signature_](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/configuring-openharmony-app-signature.md) : 
+For details about how to develop an OpenHarmony self-signed application, see [_Having Your App Automatically Signed_](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465). 
 
