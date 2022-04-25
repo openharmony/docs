@@ -167,7 +167,7 @@ export class AudioDemo {
     });
     audioPlayer.on('play', () => {                  //设置'play'事件回调
       console.info('audio play success');
-      audioPlayer.reset();                          //调用reset方法，出发'reset'事件回调
+      audioPlayer.reset();                          //调用reset方法，触发'reset'事件回调
     });
     audioPlayer.on('reset', () => {                 //设置'reset'事件回调
       console.info('audio play success');
