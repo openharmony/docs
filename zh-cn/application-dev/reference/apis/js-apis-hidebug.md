@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```
+```javascript
 import hidebug from '@ohos.hidebug';
 ```
 
@@ -28,7 +28,7 @@ getNativeHeapSize(): bigint
 
 
 **示例：**
-  ```
+  ```javascript
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
 
@@ -49,7 +49,7 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```
+  ```javascript
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
 
@@ -70,7 +70,7 @@ getNativeHeapFreeSize(): bigint
 
 
 **示例：**
-  ```
+  ```javascript
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
 
@@ -91,7 +91,7 @@ getPss(): bigint
 
 
 **示例：**
-  ```
+  ```javascript
   let pss = hidebug.getPss();
   ```
 
@@ -112,7 +112,7 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```
+  ```javascript
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
@@ -133,7 +133,7 @@ startProfiling(filename : string) : void
 
 **示例：**
 
-```js
+```javascript
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -153,7 +153,7 @@ stopProfiling() : void
 
 **示例：**
 
-```js
+```javascript
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -177,6 +177,6 @@ dumpHeapData(filename : string) : void
 
 **示例：**
 
-```js
+```javascript
 hidebug.dumpHeapData("heap-20220216");
 ```
