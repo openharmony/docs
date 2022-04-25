@@ -147,7 +147,6 @@
     - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
 
   - 轻量系统芯片移植案例
-    - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
     - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
     - [Combo解决方案之ASR芯片移植案例](porting/porting-asr582x-combo-demo.md)
     - [轻量系统STM32F407芯片移植案例](porting/porting-stm32f407-on-minisystem-eth.md)
