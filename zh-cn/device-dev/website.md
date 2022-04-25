@@ -538,13 +538,11 @@
   - [IDE集成开发环境](get-code/gettools-ide.md)
 
 - 参考
-
-  - 常见问题-设备开发
-    - [常见问题概述](faqs/faqs-overview.md)
-    - [环境搭建常见问题](faqs/faqs-environment-setup.md)
-    - [编译构建子系统常见问题](faqs/faqs-building.md)
-    - [烧录常见问题](faqs/faqs-burning.md)
-    - [内核常见问题](faqs/faqs-kernel.md)
-    - [移植常见问题](faqs/faqs-porting.md)
-    - [启动恢复常见问题](faqs/faqs-startup.md)
-    - [系统应用常见问题](faqs/faqs-system-applications.md)
+  - [常见问题概述](faqs/faqs-overview.md)
+  - [环境搭建常见问题](faqs/faqs-environment-setup.md)
+  - [编译构建子系统常见问题](faqs/faqs-building.md)
+  - [烧录常见问题](faqs/faqs-burning.md)
+  - [内核常见问题](faqs/faqs-kernel.md)
+  - [移植常见问题](faqs/faqs-porting.md)
+  - [启动恢复常见问题](faqs/faqs-startup.md)
+  - [系统应用常见问题](faqs/faqs-system-applications.md)
