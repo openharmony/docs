@@ -29,7 +29,7 @@ Touch target configuration is not supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\|[CustomBuilder](../../ui/ts-types.md) | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\| [CustomBuilder](../../ui/ts-types.md#custombuilder-type8)<sup>8+</sup> | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The **&lt;TabContent&gt;** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **&lt;Tabs&gt;** component.
@@ -77,31 +77,31 @@ struct TabContentExample  {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab1').fontSize(32)
           }
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab2').fontSize(32)
           }
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Add').fontSize(32)
           }
         }.tabBar(this.AddBuilder())
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab3').fontSize(32)
           }
         }.tabBar(this.TabBuilder(3))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center})) {
+          Flex({justifyContent: FlexAlign.Center}) {
             Text('Tab4').fontSize(32)
           }
         }.tabBar(this.TabBuilder(4))
