@@ -401,7 +401,39 @@ await captureSession.stop((err) => {
     }
     console.log('Callback invoked to indicate the session stop success.');
 });
-//释放会话（自动释放输入流与输出流）
+//释放相机输入流
+await cameraInput.release((err) => {
+    if (err) {
+        console.error('Failed to release the CameraInput instance ${err.message}');
+        return;
+    }
+    console.log('Callback invoked to indicate that the CameraInput instance is released successfully.');
+});
+//释放预览输出流
+await previewOutput.release((err) => {
+    if (err) {
+        console.error('Failed to release the PreviewOutput instance ${err.message}');
+        return;
+    }
+    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
+});
+//释放拍照输出流
+await photoOutput.release((err) => {
+    if (err) {
+        console.error('Failed to release the PhotoOutput instance ${err.message}');
+        return;
+    }
+    console.log('Callback invoked to indicate that the PhotoOutput instance is released successfully.');
+});
+//释放录像输出流
+await videoOutput.release((err) => {
+    if (err) {
+        console.error('Failed to release the VideoOutput instance ${err.message}');
+        return;
+    }
+    console.log('Callback invoked to indicate that the VideoOutput instance is released successfully.');
+});
+//释放会话
 await captureSession.release((err) => {
     if (err) {
         console.error('Failed to release the CaptureSession instance ${err.message}');
