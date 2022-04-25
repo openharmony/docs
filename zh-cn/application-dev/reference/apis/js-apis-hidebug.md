@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```
+```js
 import hidebug from '@ohos.hidebug';
 ```
 
@@ -28,7 +28,7 @@ getNativeHeapSize(): bigint
 
 
 **示例：**
-  ```
+  ```js
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
 
@@ -49,7 +49,7 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```
+  ```js
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
 
@@ -70,7 +70,7 @@ getNativeHeapFreeSize(): bigint
 
 
 **示例：**
-  ```
+  ```js
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
 
@@ -91,7 +91,7 @@ getPss(): bigint
 
 
 **示例：**
-  ```
+  ```js
   let pss = hidebug.getPss();
   ```
 
@@ -112,7 +112,7 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```
+  ```js
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
