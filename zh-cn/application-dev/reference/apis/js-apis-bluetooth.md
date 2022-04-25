@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import bluetooth from '@ohos.bluetooth';
 ```
 
