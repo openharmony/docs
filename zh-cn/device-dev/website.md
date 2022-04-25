@@ -528,9 +528,7 @@
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 
-- XTS认证
-
-  - [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](subsystems/subsys-xts-guide.md)
 
 - 工具
 
