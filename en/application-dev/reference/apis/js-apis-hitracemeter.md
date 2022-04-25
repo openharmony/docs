@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```javascript
 import hiTraceMeter from '@ohos.hiTraceMeter';
 ```
 
@@ -32,7 +32,7 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 **Example**
 
-```
+```javascript
 hiTraceMeter.startTrace("myTestFunc", 1);
 hiTraceMeter.startTrace("myTestFunc", 1, 5); // The expected duration of the trace task is 5 ms.
 ```
@@ -57,11 +57,11 @@ To stop a trace task, the values of name and task ID in **finishTrace** must be 
 
 **Example**
 
-```
+```javascript
 hiTraceMeter.finishTrace("myTestFunc", 1);
 ```
 
-```
+```javascript
 // Start track tasks with the same name concurrently.
 hiTraceMeter.startTrace("myTestFunc", 1);
 // Service flow
@@ -72,7 +72,7 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 hiTraceMeter.finishTrace("myTestFunc", 2);
 ```
 
-```
+```javascript
 // Start track tasks with the same name at different times.
 hiTraceMeter.startTrace("myTestFunc", 1);
 // Service flow
@@ -100,7 +100,7 @@ Traces the value changes of a variable.
 | count | number | Yes| Value of the variable.|
 
 **Example**
-```
+```javascript
 let traceCount = 3;
 hiTraceMeter.traceByValue("myTestCount", traceCount);
 traceCount = 4;
