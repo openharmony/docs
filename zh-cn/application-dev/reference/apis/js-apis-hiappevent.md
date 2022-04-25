@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
@@ -30,7 +30,7 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 
 **示例：**
 
-```
+```js
 hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
     if (err) {
         // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
@@ -68,7 +68,7 @@ write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;vo
 
 **示例：**
 
-```
+```js
 hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
     .then((value) => {
         // 事件写入正常
@@ -101,7 +101,7 @@ configure(config: ConfigOption): boolean
 | boolean | 配置结果，true&nbsp;表示配置成功，false&nbsp;表示配置失败。 |
 
 **示例：**
-```
+```js
 // 配置应用事件打点功能开关
 hiAppEvent.configure({
     disable: true
