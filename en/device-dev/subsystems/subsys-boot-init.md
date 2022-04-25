@@ -69,10 +69,10 @@ The init module starts key service processes during system startup. If you would
 - Enhanced init process startup and recycling
   The CPU core binding, priority, MAC address, and AccessToken information of the service process can be configured in the configuration file during process startup.
 
-  - Support of CPU core binding for service processes (through modification of the **\*.cfg** file)
-  - Support of priority setting for service processes (through modification of the **\*.cfg** file)
-  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the **\*.cfg** file)
-  - Support of the suppression mechanism for service processes (through modification of the **\*.cfg** file)
+  - Support of CPU core binding for service processes (through modification of the **.cfg** file)
+  - Support of priority setting for service processes (through modification of the **.cfg** file)
+  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the **.cfg** file)
+  - Support of the suppression mechanism for service processes (through modification of the **.cfg** file)
 
 - init fd proxy (for standard system or higher)
   fd proxy is an extended mechanism for on-demand startup. It can ensure that the fd state handle is not lost before the service process exits. Specifically, a service process sends the fd to the init process before it exits, and then reclaims the fd from the init process when it is started again.
