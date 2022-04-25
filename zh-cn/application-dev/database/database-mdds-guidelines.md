@@ -167,7 +167,11 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
                    deviceIds[i] = deviceList[i].deviceId;
                }
            }
-           kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
+           try{
+               kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
+           }catch(e){
+                console.log("An unexpected error occurred. Error:" + e);
+            }
        }
    });
    ```
