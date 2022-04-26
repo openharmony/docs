@@ -423,7 +423,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
+  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
 
@@ -465,7 +465,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivestate)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
 
@@ -503,19 +503,19 @@ FA的使用信息的属性集合。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | FA所属deviceId。|
+| deviceId | string | 否 | FA所属deviceId。|
 | bundleName | string | 是 | FA所属应用包名。|
 | moduleName | string | 是 | FA所属module名。|
-| abilityName | string | 是 | FA的MainAbility名。|
-| appLabelId | number | 是 | FA的应用labelId。|
-| labelId | number | 是 | FA所属module的labelId。|
-| descriptionId | number | 是 | FA所属的应用descriptionId。|
-| abilityLableId | number | 是 | FA的MainAbility labelId。|
-| abilityDescriptionId | number | 是 | FA的MainAbility descriptionId。|
-| abilityIconId | number | 是 | FA的MainAbility iconId。|
+| abilityName | string | 否 | FA的MainAbility名。|
+| appLabelId | number | 否 | FA的应用labelId。|
+| labelId | number | 否 | FA所属module的labelId。|
+| descriptionId | number | 否 | FA所属的应用descriptionId。|
+| abilityLableId | number | 否 | FA的MainAbility labelId。|
+| abilityDescriptionId | number | 否 | FA的MainAbility descriptionId。|
+| abilityIconId | number | 否 | FA的MainAbility iconId。|
 | launchedCount | number | 是 | FA的启动次数。|
 | lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
-| formRecords | Array<BundleActiveFormInfo> | 是 | FA中卡片的使用记录。|
+| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo9)&gt; | 是 | FA中卡片的使用记录。|
 
 ## BundleActiveFormInfo<sup>9+</sup>
 FA卡片的使用信息的属性集合。

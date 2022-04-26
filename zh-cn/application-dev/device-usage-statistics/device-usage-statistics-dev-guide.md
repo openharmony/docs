@@ -213,7 +213,7 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.getRecentlyUsedModules(this.maxNum).then( res => {
+    stats.getRecentlyUsedModules(1000).then( res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
@@ -235,7 +235,7 @@ import stats from '@ohos.bundleState';
     });
 
     // 异步方法callback方式
-    stats.getRecentlyUsedModules(this.maxNum,(err, res) => {
+    stats.getRecentlyUsedModules(1000,(err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
