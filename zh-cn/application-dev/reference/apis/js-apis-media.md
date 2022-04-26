@@ -2,6 +2,8 @@
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> API Version 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
 媒体子系统为开发者提供一套简单且易于理解的接口，使得开发者能够方便接入系统并使用系统的媒体资源。
 
@@ -10,6 +12,7 @@
 - 音频播放（[AudioPlayer](#audioplayer)）
 - 视频播放（[VideoPlayer](#videoplayer8)）
 - 音频录制（[AudioRecorder](#audiorecorder)）
+- 视频录制（[VideoRecorder](#videorecorder9)）
 
 后续将提供以下功能：DataSource音视频播放、音视频编解码、容器封装解封装、媒体能力查询等功能。
 
@@ -87,21 +90,16 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 ```js
 let videoPlayer
 
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-
-await media.createVideoPlayer.then((video) => {
-    if (typeof(video) != 'undefined') {
+media.createVideoPlayer().then((video) => {
+   if (typeof(video) != 'undefined') {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
        console.info('video createVideoPlayer fail');
    }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ## media.createAudioRecorder
@@ -123,6 +121,68 @@ createAudioRecorder(): AudioRecorder
 ```js
 let audiorecorder = media.createAudioRecorder();
 ```
+
+## media.createVideoRecorder<sup>9+</sup>
+
+createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>): void
+
+异步方式创建视频录制实例。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 异步创建视频录制实例回调方法。 |
+
+**示例：**
+
+```js
+let videoRecorder
+
+media.createVideoRecorder((error, video) => {
+   if (typeof(video) != 'undefined') {
+       videoRecorder = video;
+       console.info('video createVideoRecorder success');
+   } else {
+       console.info(`video createVideoRecorder fail, error:${error.message}`);
+   }
+});
+```
+
+## media.createVideoRecorder<sup>9+</sup>
+
+createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
+
+异步方式创建视频录制实例。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型                                      | 说明                                |
+| ----------------------------------------- | ----------------------------------- |
+| Promise<[VideoRecorder](#videorecorder9)> | 异步创建视频录制实例Promise返回值。 |
+
+**示例：**
+
+```js
+let videoRecorder
+
+media.createVideoRecorder().then((video) => {
+    if (typeof(video) != 'undefined') {
+       videoRecorder = video;
+       console.info('video createVideoRecorder success');
+   } else {
+       console.info('video createVideoRecorder fail');
+   }
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
+```
+
+
 
 ## MediaErrorCode<sup>8+</sup>
 
@@ -225,7 +285,7 @@ Codec MIME类型枚举。
 
 play(): void
 
-开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用play方法。
+开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -358,7 +418,7 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
-通过回调方式获取音频轨道信息。
+通过回调方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -394,7 +454,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 getTrackDescription(): Promise<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息。
+通过Promise方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -414,20 +474,17 @@ function printfDescription(obj) {
         console.info('audio value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`audio failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`audio catchCallback, error:${error.message}`);
-}
 
-await audioPlayer.getTrackDescription.then((arrlist) => {
+audioPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`audio catchCallback, error:${error.message}`);
+});
+
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -517,13 +574,14 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
 
 // 用户选择视频设置fd(本地播放)
 let fdPath = 'fd://'
-let path = 'data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-await fileIO.open(path).then(fdNumber) => {
+// path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
+let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
+fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
    console.info('open fd sucess fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
-}),catch((err) => {
+}).catch((err) => {
    console.info('open fd failed err is' + err);
 });
 audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
@@ -667,15 +725,11 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setDisplaySurface(surfaceId).then(() => {
+videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### prepare<sup>8+</sup>
@@ -721,15 +775,11 @@ prepare(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.prepare().then(() => {
+videoPlayer.prepare().then(() => {
     console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### play<sup>8+</sup>
@@ -775,15 +825,11 @@ play(): Promise\<void>;
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.play().then(() => {
+videoPlayer.play().then(() => {
     console.info('play success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### pause<sup>8+</sup>
@@ -829,15 +875,11 @@ pause(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.pause().then(() => {
+videoPlayer.pause().then(() => {
     console.info('pause success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### stop<sup>8+</sup>
@@ -883,15 +925,11 @@ stop(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.stop().then(() => {
+videoPlayer.stop().then(() => {
     console.info('stop success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### reset<sup>8+</sup>
@@ -937,15 +975,11 @@ reset(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.reset().then(() => {
+videoPlayer.reset().then(() => {
     console.info('reset success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### seek<sup>8+</sup>
@@ -1027,19 +1061,17 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
+videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 
-await videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
     console.info('seek success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### setVolume<sup>8+</sup>
@@ -1092,15 +1124,11 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setVolume(vol).then() => {
+videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### release<sup>8+</sup>
@@ -1146,15 +1174,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.release().then() => {
+videoPlayer.release().then() => {
     console.info('release success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### getTrackDescription<sup>8+</sup>
@@ -1217,21 +1241,17 @@ function printfDescription(obj) {
         console.info('video value is ' + property);
     }
 }
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
 
 let arrayDescription;
-await videoPlayer.getTrackDescription().then((arrlist) => {
+videoPlayer.getTrackDescription().then((arrlist) => {
     if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
     }
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
 }
@@ -1287,15 +1307,11 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```js
-function failureCallback(error) {
-    console.info(`video failureCallback, error:${error.message}`);
-}
-function catchCallback(error) {
-    console.info(`video catchCallback, error:${error.message}`);
-}
-await videoPlayer.setSpeed(speed).then() => {
+videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
-}, failureCallback).catch(catchCallback);
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
 ```
 
 ### on('playbackCompleted')<sup>8+</sup>
@@ -1768,11 +1784,649 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
-| DEFAULT  | 0      | 默认封装格式为MPEG-4。<br/>仅做接口定义，暂不支持使用。 |
+| DEFAULT  | 0      | 默认封装格式。<br/>仅做接口定义，暂不支持使用。 |
 | MPEG_4   | 2      | 封装为MPEG-4格式。                                           |
 | AMR_NB   | 3      | 封装为AMR_NB格式。<br/>仅做接口定义，暂不支持使用。 |
 | AMR_WB   | 4      | 封装为AMR_WB格式。<br/>仅做接口定义，暂不支持使用。 |
 | AAC_ADTS | 6      | 封装为ADTS（Audio&nbsp;Data&nbsp;Transport&nbsp;Stream）格式，是AAC音频的传输流格式。 |
+
+## VideoRecorder<sup>9+</sup>
+
+视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
+
+视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
+
+### 属性
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| state<sup>8+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
+
+### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
+
+prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
+
+异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                |
+| -------- | -------------------------------------------- | ---- | ----------------------------------- |
+| config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
+| callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// asyncallback
+let videoRecorder = null;
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('prepare', () => {
+    videoRecorder.prepare(videoConfig, (err) => {
+        if (typeof (err) == 'undefined') {
+            console.info('prepare success');
+        } else {
+            console.info('prepare failed and error is ' + err.message);
+        }
+    });
+});
+
+media.createVideoRecorder((err, recorder) => {
+    if (typeof (err) == 'undefined' && typeof (recorder) != 'undefined') {
+        videoRecorder = recorder;
+        console.info('createVideoRecorder success');
+        eventEmitter.emit('prepare');                                        // prepare事件触发
+    } else {
+        console.info('createVideoRecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
+
+prepare(config: VideoRecorderConfig): Promise\<void>;
+
+异步方式进行视频录制的参数设置。通过Promise获取返回值。
+
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAMERA
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名 | 类型                                         | 必填 | 说明                     |
+| ------ | -------------------------------------------- | ---- | ------------------------ |
+| config | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。 |
+
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
+
+**示例：**
+
+```js
+let videoProfile = {
+    audioBitrate : 48000,
+    audioChannels : 2,
+    audioCodec : 'audio/mp4a-latm',
+    audioSampleRate : 48000,
+    fileFormat : 'mp4',
+    videoBitrate : 48000,
+    videoCodec : 'video/mp4v-es',
+    videoFrameWidth : 640,
+    videoFrameHeight : 480,
+    videoFrameRate : 30
+}
+
+let videoConfig = {
+    audioSourceType : 1,
+    videoSourceType : 0,
+    profile : videoProfile,
+    url : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限
+    orientationHint : 0,
+    location : { latitude : 30, longitude : 130 },
+}
+
+// promise
+let videoRecorder = null;
+media.createVideoRecorder().then((recorder) => {
+    if (typeof (recorder) != 'undefined') {
+        videoRecorder = recorder;
+        console.info('createVideoRecorder success');
+    } else {
+        console.info('createVideoRecorder failed');
+    }
+}).catch((err) => {
+    console.info('catch err error message is ' + err.message);
+});
+
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
+}).catch((err) => {
+    console.info('prepare failed and catch error is ' + err.message);
+});
+```
+
+### getInputSurface<sup>9+</sup>
+
+getInputSurface(callback: AsyncCallback\<string>): void;
+
+异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+let surfaceID = null;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface((err, surfaceId) => {
+    if (typeof (err) == 'undefined') {
+        console.info('getInputSurface success');
+        surfaceID = surfaceId;
+    } else {
+        console.info('getInputSurface failed and error is ' + err.message);
+    }
+});
+```
+
+### getInputSurface<sup>9+</sup>
+
+getInputSurface(): Promise\<string>;
+
+ 异步方式获得录制需要的surface。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+
+应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
+
+只能在[prepare()](#videorecorder_prepare1)接口调用后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<string> | 异步获得surface的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+let surfaceID = null;                                               // 传递给外界的surfaceID
+videoRecorder.getInputSurface().then((surfaceId) => {
+    console.info('getInputSurface success');
+    surfaceID = surfaceId;
+}).catch((err) => {
+    console.info('getInputSurface failed and catch error is ' + err.message);
+});
+```
+
+### start<sup>9+</sup><a name=videorecorder_start1></a>
+
+start(callback: AsyncCallback\<void>): void;
+
+异步方式开始视频录制。通过注册回调函数获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.start((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('start videorecorder success');
+    } else {
+        console.info('start videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### start<sup>9+</sup><a name=videorecorder_start2></a>
+
+start(): Promise\<void>;
+
+异步方式开始视频录制。通过Promise获取返回值。
+
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.start().then(() => {
+    console.info('start videorecorder success');
+}).catch((err) => {
+    console.info('start videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### pause<sup>9+</sup><a name=videorecorder_pause1></a>
+
+pause(callback: AsyncCallback\<void>): void;
+
+异步方式暂停视频录制。通过注册回调函数获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.pause((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('pause videorecorder success');
+    } else {
+        console.info('pause videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### pause<sup>9+</sup><a name=videorecorder_pause2></a>
+
+pause(): Promise\<void>;
+
+异步方式暂停视频录制。通过Promise获取返回值。
+
+在[start()](#videorecorder_start1)后调用。可以通过调用[resume()](#videorecorder_resume1)接口来恢复录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.pause().then(() => {
+    console.info('pause videorecorder success');
+}).catch((err) => {
+    console.info('pause videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### resume<sup>9+</sup><a name=videorecorder_resume1></a>
+
+resume(callback: AsyncCallback\<void>): void;
+
+异步方式恢复视频录制。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.resume((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('resume videorecorder success');
+    } else {
+        console.info('resume videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### resume<sup>9+</sup><a name=videorecorder_resume2></a>
+
+resume(): Promise\<void>;
+
+异步方式恢复视频录制。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.resume().then(() => {
+    console.info('resume videorecorder success');
+}).catch((err) => {
+    console.info('resume videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### stop<sup>9+</sup><a name=videorecorder_stop1></a>
+
+stop(callback: AsyncCallback\<void>): void;
+
+异步方式停止视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.stop((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('stop videorecorder success');
+    } else {
+        console.info('stop videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### stop<sup>9+</sup><a name=videorecorder_stop2></a>
+
+stop(): Promise\<void>;
+
+异步方式停止视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.stop().then(() => {
+    console.info('stop videorecorder success');
+}).catch((err) => {
+    console.info('stop videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### release<sup>9+</sup><a name=videorecorder_release1></a>
+
+release(callback: AsyncCallback\<void>): void;
+
+异步方式释放视频录制资源。通过注册回调函数获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                             |
+| -------- | -------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.release((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('release videorecorder success');
+    } else {
+        console.info('release videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### release<sup>9+</sup><a name=videorecorder_release2></a>
+
+release(): Promise\<void>;
+
+异步方式释放视频录制资源。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                      |
+| -------------- | ----------------------------------------- |
+| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.release().then(() => {
+    console.info('release videorecorder success');
+}).catch((err) => {
+    console.info('release videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### reset<sup>9+</sup><a name=videorecorder_reset1></a>
+
+reset(callback: AsyncCallback\<void>): void;
+
+异步方式重置视频录制。通过注册回调函数获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
+
+**示例：**
+
+```js
+// asyncallback
+videoRecorder.reset((err) => {
+    if (typeof (err) == 'undefined') {
+        console.info('reset videorecorder success');
+    } else {
+        console.info('reset videorecorder failed and error is ' + err.message);
+    }
+});
+```
+
+### reset<sup>9+</sup><a name=videorecorder_reset2></a>
+
+reset(): Promise\<void>;
+
+异步方式重置视频录制。通过Promise获取返回值。
+
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
+
+**示例：**
+
+```js
+// promise
+videoRecorder.reset().then(() => {
+    console.info('reset videorecorder success');
+}).catch((err) => {
+    console.info('reset videorecorder failed and catch error is ' + err.message);
+});
+```
+
+### on('error')<sup>9+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+开始订阅视频录制错误事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
+| callback | ErrorCallback | 是   | 录制错误事件回调方法。                                       |
+
+**示例：**
+
+```js
+videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
+    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
+    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
+    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+});
+// 当获取videoRecordState接口出错时通过此订阅事件上报
+```
+
+## VideoRecordState<sup>9+</sup>
+
+视频录制的状态机。可通过state属性获取当前状态。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称     | 类型   | 描述                   |
+| -------- | ------ | ---------------------- |
+| idle     | string | 视频录制空闲。         |
+| prepared | string | 视频录制参数设置完成。 |
+| playing  | string | 视频正在录制。         |
+| paused   | string | 视频暂停录制。         |
+| stopped  | string | 视频录制停止。         |
+| error    | string | 错误状态。             |
+
+## VideoRecorderConfig<sup>9+</sup>
+
+表示视频录制的参数设置。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称            | 参数类型                                       | 必填 | 说明                                                         |
+| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
+| videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
+| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
+| location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+
+## AudioSourceType<sup>9+</sup>
+
+表示视频录制中音频源类型的枚举。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称                      | 值   | 说明                   |
+| ------------------------- | ---- | ---------------------- |
+| AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
+| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。  |
+
+## VideoSourceType<sup>9+</sup>
+
+表示视频录制中视频源类型的枚举。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| VIDEO_SOURCE_TYPE_SURFACE_YUV | 0    | 输入surface中携带的是raw data。 |
+| VIDEO_SOURCE_TYPE_SURFACE_ES  | 1    | 输入surface中携带的是ES data。  |
+
+## VideoRecorderProfile<sup>9+</sup>
+
+视频录制的配置文件。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+
+| 名称             | 参数类型                                     | 必填 | 说明             |
+| ---------------- | -------------------------------------------- | ---- | ---------------- |
+| audioBitrate     | number                                       | 是   | 音频编码比特率。 |
+| audioChannels    | number                                       | 是   | 音频采集声道数。 |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 音频编码格式。   |
+| audioSampleRate  | number                                       | 是   | 音频采样率。     |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式。 |
+| videoBitrate     | number                                       | 是   | 视频编码比特率。 |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 是   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
+| videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
 ## ContainerFormatType<sup>8+</sup>
 
