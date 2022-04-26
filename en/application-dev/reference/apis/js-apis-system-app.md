@@ -138,7 +138,7 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
   
   export default {
       onCreate() {
-          app.setImageRawDataCacheSize(104,857,600) // Set the upper limit of the memory for caching image data before decoding to 100 MB.
+          app.setImageRawDataCacheSize(100) // Set the upper limit of the memory for caching image data before decoding to 100 MB.
           console.info('Application onCreate')
       },
       onDestroy() {
@@ -168,7 +168,7 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
   
   export default {  
       onCreate() {    
-          app.setImageFileCacheSize(209,715,200) // Set the upper limit of the image file cache to 200 MB.  
+          app.setImageFileCacheSize(200) // Set the upper limit of the image file cache to 200 MB.  
           console.info('Application onCreate')
       },  
       onDestroy() {
