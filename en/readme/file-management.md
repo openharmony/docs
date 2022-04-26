@@ -4,11 +4,11 @@
 
 The file management subsystem provides a complete file management solution for OpenHarmony. It provides secure and easy-to-use file access and comprehensive file management capabilities, including:
 
-1. A sandbox to ensure the least privilege as well as application data security.
-2. Unified management of user files and streamlined user data access and storage to ensure user data security and purity.
-3. Access framework to allow applications to access distributed file system files and cloud files as they access local files.
-4. Sharing of user data and system files across applications and devices.
-5. System storage management capabilities and basic file system capabilities.
+- A sandbox to ensure the least privilege as well as application data security.
+- Unified management of user files and streamlined user data access and storage to ensure user data security and purity.
+- Access framework to allow applications to access distributed file system files and cloud files as they access local files.
+- Sharing of user data and system files across applications and devices.
+- System storage management capabilities and basic file system capabilities.
 
 **Figure 1** Architecture of the file management subsystem
 ![](figures/file_management_architecture.png "file management subsystem architecture")
