@@ -5,7 +5,7 @@
 
 ## Modules to Import
 
-```
+```js
 import screenshot from '@ohos.screenshot';
 ```
 
@@ -67,7 +67,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 - Example
 
-  ```
+  ```js
   var ScreenshotOptions = {
   	"screenRect": {
   		"left": 200,
@@ -112,7 +112,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 - Example
 
-  ```
+  ```js
   var ScreenshotOptions = {
   	"screenRect": {
   		"left": 200,
