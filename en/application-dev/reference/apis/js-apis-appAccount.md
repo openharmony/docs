@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import account_appAccount from '@ohos.account.appAccount';
 ```
 
@@ -25,7 +25,7 @@ Creates an **AppAccountManager** instance.
 | AppAccountManager | **AppAccountManager** instance created.|
 
 **Example**
-  ```
+  ```js
   var appAccountManager = account.createAppAccountManager();
   ```
 
@@ -50,7 +50,7 @@ Adds an app account to the account management service. This method uses an async
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("WangWu", (err) => { 
       console.log("addAccount err: " + JSON.stringify(err));
@@ -75,7 +75,7 @@ Adds an app account and its additional information to the account management ser
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101", (err) => { 
       console.log("addAccount err: " + JSON.stringify(err));
@@ -107,7 +107,7 @@ Adds an app account and its additional information to the account management ser
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101").then(()=> { 
       console.log('addAccount Success');
@@ -135,7 +135,7 @@ Implicitly adds an app account based on the specified account owner, authenticat
 
 **Example**
 
-  ```
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   function onResultCallback(code, result) {
@@ -174,7 +174,7 @@ Deletes an app account from the account management service. This method uses an 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu", (err) => { 
       console.log("deleteAccount err: " + JSON.stringify(err));
@@ -203,7 +203,7 @@ Deletes an app account from the account management service. This method uses a p
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu").then(() => { 
         console.log('deleteAccount Success');
@@ -230,7 +230,7 @@ Disables an app account from accessing an application with the given bundle name
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("disableAppAccess err: " + JSON.stringify(err));
@@ -260,7 +260,7 @@ Disables an app account from accessing an application with the given bundle name
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
       console.log('disableAppAccess Success');
@@ -287,7 +287,7 @@ Enables an app account to access an application with the given bundle name. This
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("enableAppAccess: " + JSON.stringify(err));
@@ -317,7 +317,7 @@ Enables an app account to access an application with the given bundle name. This
 
 **Example**
 
-  ```
+  ```js
   app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
@@ -344,7 +344,7 @@ Checks whether an app account allows application data synchronization. This meth
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan", (err, result) => { 
       console.log("checkAppAccountSyncEnable err: " + JSON.stringify(err));
@@ -376,7 +376,7 @@ Checks whether an app account allows application data synchronization. This meth
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan").then((data) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
@@ -404,7 +404,7 @@ Sets a credential for an app account. This method uses an asynchronous callback 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001", (err) => { 
       console.log("setAccountCredential err: " + JSON.stringify(err));
@@ -435,7 +435,7 @@ Sets a credential for an app account. This method uses a promise to return the r
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001").then(() => { 
       console.log('setAccountCredential Success');
@@ -462,7 +462,7 @@ Sets additional information for an app account. This method uses an asynchronous
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002", (err) => { 
       console.log("setAccountExtraInfo err: " + JSON.stringify(err));
@@ -492,7 +492,7 @@ Sets additional information for an app account. This method uses a promise to re
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002").then(() => { 
       console.log('setAccountExtraInfo Success');
@@ -521,7 +521,7 @@ Sets whether to enable application data synchronization for an app account. This
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAppAccountSyncEnable("ZhangSan", true, (err) => { 
       console.log("setAppAccountSyncEnable err: " + JSON.stringify(err));
@@ -553,7 +553,7 @@ Sets whether to enable application data synchronization for an app account. This
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager .setAppAccountSyncEnable("ZhangSan", true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
@@ -581,7 +581,7 @@ Sets data to be associated with an app account. This method uses an asynchronous
 
 **Example**
 
-  ```
+  ```js
   app_account_instance.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
       console.log("setAssociatedData err: " + JSON.stringify(err));
   });
@@ -611,7 +611,7 @@ Sets data to be associated with an app account. This method uses a promise to re
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAssociatedData("ZhangSan", "k001", "v001").then(() => { 
       console.log('setAssociatedData Success');
@@ -638,7 +638,7 @@ Obtains the credential of an app account. This method uses an asynchronous callb
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001", (err, result) => { 
       console.log("getAccountCredential err: " + JSON.stringify(err));
@@ -669,7 +669,7 @@ Obtains the credential of an app account. This method uses a promise to return t
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001").then((data) => { 
       console.log('getAccountCredential, result: ' + data);
@@ -695,7 +695,7 @@ Obtains additional information of an app account. This method uses an asynchrono
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan", (err, result) => { 
       console.log("getAccountExtraInfo err: " + JSON.stringify(err));
@@ -725,7 +725,7 @@ Obtains additional information of an app account. This method uses a promise to 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan").then((data) => { 
       console.log('getAccountExtraInfo, result: ' + data);
@@ -752,7 +752,7 @@ Obtains data associated with an app account. This method uses an asynchronous ca
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001", (err, result) => { 
       console.log("getAssociatedData err: " + JSON.stringify(err));
@@ -783,7 +783,7 @@ Obtains data associated with an app account. This method uses a promise to retur
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001").then((data) => { 
        console.log('getAssociatedData: ' + data);
@@ -810,7 +810,7 @@ Obtains information about all accessible app accounts. This method uses an async
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts((err, data)=>{
   	console.debug("getAllAccessibleAccounts err:" + JSON.stringify(err));
@@ -836,7 +836,7 @@ Obtains information about all accessible app accounts. This method uses an async
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts().then((data) => { 
        console.log('getAllAccessibleAccounts: ' + data);
@@ -864,7 +864,7 @@ Obtains information about all app accounts of the specified app. This method use
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
@@ -897,7 +897,7 @@ Obtains information about all app accounts of the specified app. This method use
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle).then((data) => { 
@@ -925,7 +925,7 @@ Subscribes to the account change event of the specified account owners. This met
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
@@ -955,7 +955,7 @@ Unsubscribes from the account change event. This method uses an asynchronous cal
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
@@ -991,7 +991,7 @@ Authenticates an app account to obtain the Open Authorization (OAuth) access tok
 
 **Example**
 
-  ```
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   function onResultCallback(code, result) {
@@ -1032,7 +1032,7 @@ Obtains the OAuth access token of an app account based on the specified authenti
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
@@ -1064,7 +1064,7 @@ Obtains the OAuth access token of an app account based on the specified authenti
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge").then((data) => {
        console.log('getOAuthToken token: ' + data);
@@ -1092,7 +1092,7 @@ Sets an OAuth access token for an app account. This method uses an asynchronous 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx", (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -1123,7 +1123,7 @@ Sets an OAuth access token for an app account. This method uses a promise to ret
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx").then(() => {
       console.log('setOAuthToken successfully');
@@ -1152,7 +1152,7 @@ Deletes the specified OAuth access token for an app account. This method uses an
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx", (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
@@ -1184,7 +1184,7 @@ Deletes the specified OAuth access token for an app account. This method uses a 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx").then(() => {
        console.log('deleteOAuthToken successfully');
@@ -1213,7 +1213,7 @@ Sets the visibility of an OAuth access token to the specified app. This method u
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1245,7 +1245,7 @@ Sets the visibility of an OAuth access token to the specified app. This method u
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
@@ -1273,7 +1273,7 @@ Checks whether an OAuth token is visible to the specified app. This method uses 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1305,7 +1305,7 @@ Checks whether an OAuth token is visible to the specified app. This method uses 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
@@ -1332,7 +1332,7 @@ Obtains information about all OAuth access tokens of an app account visible to t
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo", (err, data) => {
       console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
@@ -1363,7 +1363,7 @@ Obtains information about all OAuth access tokens of an app account visible to t
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo").then((data) => {
        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
@@ -1390,7 +1390,7 @@ Obtains the authorization list of OAuth access tokens of an app account. This me
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge", (err, data) => {
        console.log('getOAuthList err: ' + JSON.stringify(err));
@@ -1421,7 +1421,7 @@ Obtains the authorization list of OAuth access tokens of an app account. This me
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge").then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
@@ -1447,7 +1447,7 @@ Obtains the authenticator callback for a session. This method uses an asynchrono
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
     var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
@@ -1487,7 +1487,7 @@ Obtains the authenticator callback for a session. This method uses a promise to 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
@@ -1522,7 +1522,7 @@ Obtains authenticator information of an app account. This method uses an asynchr
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo", (err, data) => {
       console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
@@ -1552,7 +1552,7 @@ Obtains authenticator information of an app account. This method uses a promise 
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo").then((data) => { 
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
@@ -1663,7 +1663,7 @@ Called back to send the authentication result.
 
 **Example**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
@@ -1692,7 +1692,7 @@ Called back to redirect an authentication request.
 
 **Example**
 
-  ```
+  ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({
@@ -1749,7 +1749,7 @@ Authenticates an app account to obtain the OAuth access token. This method uses 
 
 **Example**
 
-  ```
+  ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({

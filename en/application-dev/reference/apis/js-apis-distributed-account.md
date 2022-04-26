@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
@@ -28,7 +28,7 @@ Obtains a **DistributedAccountAbility** instance.
   | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides methods for querying and updating the login state of a distributed account.|
 
 - Example
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -50,7 +50,7 @@ Obtains distributed account information. This method uses an asynchronous callba
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the distributed account information obtained.|
 
 - Example
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => { 
       console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
@@ -73,7 +73,7 @@ Obtains distributed account information. This method uses a promise to return th
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 - Example
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => { 
       console.log('Query account info name: ' + data.name);
@@ -98,7 +98,7 @@ Updates distributed account information. This method uses an asynchronous callba
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked when the distributed account information is updated.|
 
 - Example
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err) => { 
@@ -125,7 +125,7 @@ Updates distributed account information. This method uses a promise to return th
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 - Example
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
