@@ -46,7 +46,7 @@ createPlainTextData(text:string): PasteData
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("content");
   ```
 
@@ -71,7 +71,7 @@ createHtmlData(htmlText:string): PasteData
 
 **示例**
 
-  ```
+  ```js
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var pasteData = pasteboard.createHtmlData(html);
   ```
@@ -97,7 +97,7 @@ createWantData(want:Want): PasteData
 
 **示例**
 
-  ```
+  ```js
   var object = {
       bundleName: "com.example.aafwk.test",
       abilityName: "com.example.aafwk.test.TwoAbility"
@@ -126,7 +126,7 @@ createUriData(uri:string): PasteData
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   ```
 
@@ -151,7 +151,7 @@ createPlainTextRecord(text:string): PasteDataRecord
 
 **示例**
 
-  ```
+  ```js
   var record = pasteboard.createPlainTextRecord("hello");
   ```
 
@@ -176,7 +176,7 @@ createHtmlTextRecord(htmlText:string): PasteDataRecord
 
 **示例**
 
-  ```
+  ```js
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var record = pasteboard.createHtmlTextRecord(html);
   ```
@@ -202,7 +202,7 @@ createWantRecord(want:Want): PasteDataRecord
 
 **示例**
 
-  ```
+  ```js
   var object = {
       bundleName: "com.example.aafwk.test",
       abilityName: "com.example.aafwk.test.TwoAbility"
@@ -231,7 +231,7 @@ createUriRecord(uri:string): PasteDataRecord
 
 **示例**
 
-  ```
+  ```js
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   ```
 
@@ -284,7 +284,7 @@ convertToText(): Promise&lt;string&gt;
 
 **示例**
 
-  ```
+  ```js
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
@@ -309,7 +309,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 **示例**
 
-  ```
+  ```js
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   record.convertToText((err, data) => {    
       if (err) {        
@@ -346,7 +346,7 @@ getPrimaryText(): string
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var plainText = pasteData.getPrimaryText();
   ```
@@ -367,7 +367,7 @@ getPrimaryHtml(): string
 
 **示例**
 
-  ```
+  ```js
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var pasteData = pasteboard.createHtmlData(html);
   var htmlText = pasteData.getPrimaryHtml();
@@ -389,7 +389,7 @@ getPrimaryWant(): Want
 
 **示例**
 
-  ```
+  ```js
   var object = { 
       bundleName: "com.example.aafwk.test",    
       abilityName: "com.example.aafwk.test.TwoAbility"
@@ -414,7 +414,7 @@ getPrimaryUri(): string
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   var uri = pasteData.getPrimaryUri();
   ```
@@ -437,7 +437,7 @@ addTextRecord(text: string): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   pasteData.addTextRecord("good");
   ```
@@ -460,7 +460,7 @@ addHtmlRecord(htmlText: string): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   pasteData.addHtmlRecord(html);
@@ -484,7 +484,7 @@ addWantRecord(want: Want): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var object = { 
       bundleName: "com.example.aafwk.test",    
@@ -511,7 +511,7 @@ addUriRecord(uri: string): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
   ```
@@ -534,7 +534,7 @@ addRecord(record: PasteDataRecord): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
   var textRecord = pasteboard.createPlainTextRecord("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
@@ -559,7 +559,7 @@ getMimeTypes(): Array&lt;string&gt;
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var types = pasteData.getMimeTypes();
   ```
@@ -580,7 +580,7 @@ getPrimaryMimeType(): string
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var type = pasteData.getPrimaryMimeType();
   ```
@@ -601,7 +601,7 @@ getProperty(): PasteDataProperty
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var property = pasteData.getProperty();
   ```
@@ -627,7 +627,7 @@ getRecordAt(index: number): PasteDataRecord
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var record = pasteData.getRecordAt(0);
   ```
@@ -648,7 +648,7 @@ getRecordCount(): number
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var count = pasteData.getRecordCount();
   ```
@@ -669,7 +669,7 @@ getTag(): string
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var tag = pasteData.getTag();
   ```
@@ -695,7 +695,7 @@ hasMimeType(mimeType: string): boolean
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
   ```
@@ -721,7 +721,7 @@ removeRecordAt(index: number): boolean
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var isRemove = pasteData.removeRecordAt(0);
   ```
@@ -748,7 +748,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   var isReplace = pasteData.replaceRecordAt(0, record);
@@ -770,7 +770,7 @@ getSystemPasteboard(): SystemPasteboard
 
 **示例**
 
-  ```
+  ```js
   var systemPasteboard = pasteboard.getSystemPasteboard();
   ```
 
@@ -800,7 +800,7 @@ setPasteData(data:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("content");
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.setPasteData(pasteData, (error, data) => { 
@@ -833,7 +833,7 @@ setPasteData(data:PasteData): Promise&lt;void&gt;
 
 **示例**
 
-  ```
+  ```js
   var pasteData = pasteboard.createPlainTextData("content");
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.setPasteData(pasteData).then((data) => {
@@ -859,7 +859,7 @@ getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
 
 **示例**
 
-  ```
+  ```js
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.getPasteData((error, pasteData) => {  
       if (error) {
@@ -886,7 +886,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 
 **示例**
 
-  ```
+  ```js
   var systemPasteboard = pasteboard.getSystemPasteboard();
   systemPasteboard.getPasteData().then((pasteData) => { 
       var text = pasteData.getPrimaryText();
@@ -912,7 +912,7 @@ on(type:  'update', callback: () =&gt;void ): void
 
 **示例**
 
-  ```
+  ```js
   var systemPasteboard = pasteboard.getSystemPasteboard();
   var listener = ()=>{
       console.info('The system pasteboard has changed');
@@ -937,7 +937,7 @@ off(type:  'update', callback?: () =&gt;void ): void
 
 **示例**
 
-  ```
+  ```js
   systemPasteboard.off('update', listener);
   ```
 
@@ -957,7 +957,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 **示例**
 
-  ```
+  ```js
   systemPasteboard.hasPasteData((err, data) => {
       if (err) {
           console.error('failed to hasPasteData because ' + JSON.stringify(err));
@@ -983,7 +983,7 @@ hasPasteData():  Promise&lt;boolean&gt;
 
 **示例**
 
-  ```
+  ```js
   systemPasteboard.hasPasteData().then((data) => { 
       console.info('success hasPasteData : ' + JSON.stringify(data));
   }).catch((error) => {
@@ -1007,7 +1007,7 @@ clear(callback:  AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-  ```
+  ```js
   systemPasteboard.clear((err, data) => { 
       if (err) {        
           console.error('failed to clear because ' + JSON.stringify(err));        
@@ -1034,7 +1034,7 @@ clear():  Promise&lt;void&gt;
 
 **示例**
 
-  ```
+  ```js
   systemPasteboard.clear().then((data) => { 
       console.info('success clear');
   }).catch((error) => {    
