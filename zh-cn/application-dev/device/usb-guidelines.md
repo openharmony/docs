@@ -38,7 +38,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 
 1. 获取设备列表。
-   ```
+   ```js
    // 导入usb接口api包。
    import usb from '@ohos.usb';
    // 获取设备列表。
@@ -97,7 +97,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 2. 获取设备操作权限。
-   ```
+   ```js
    var deviceName = deviceList[0].name;
    // 申请操作指定的device的操作权限。
    usb.requestRight(deviceName).then(hasRight => {
@@ -108,7 +108,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 3. 打开Device设备。
-   ```
+   ```js
    // 打开设备，获取数据传输通道。
    var pipe = usb.connectDevice(deviceList[0]);
    /*
@@ -119,7 +119,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 4. 数据传输。
-   ```
+   ```js
    /*
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
@@ -149,7 +149,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 5. 释放接口，关闭设备。
-   ```
+   ```js
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
