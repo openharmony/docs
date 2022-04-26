@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import display from '@ohos.display';
 ```
 
@@ -64,7 +64,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
   | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调返回当前默认的display对象。 |
 
 - 示例
-  ```
+  ```js
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
       if (err.code) {
@@ -92,7 +92,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = display.getDefaultDisplay();
   promise.then(() => {
       console.log('getDefaultDisplay success');
@@ -117,7 +117,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 - 示例
 
-  ```
+  ```js
   display.getAllDisplay((err, data) => {
       if (err.code) {
           console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -143,7 +143,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = display.getAllDisplay();
   promise.then(() => {
       console.log('getAllDisplay success');
@@ -167,7 +167,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 是 | 回调返回监听到的显示设备的id。 |
 
 - 示例
-  ```
+  ```js
   var type = "add";
   var callback = (data) => {
       console.info('Listening enabled. Data: ' + JSON.stringify(data))
@@ -191,7 +191,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 回调返回监听到的显示设备的id。 |
 
 - 示例
-  ```
+  ```js
   var type = "remove";
   display.off(type);
   ```

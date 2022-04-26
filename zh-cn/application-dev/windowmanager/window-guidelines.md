@@ -25,7 +25,7 @@
 ### 创建子窗口
 当前可以通过`create`接口创建子窗口。具体示例代码如下：
 
-```
+```js
  import window from '@ohos.window';
  var windowClass = null;
  let promise = window.create("subWindow", window.WindowType.TYPE_APP);
@@ -41,7 +41,7 @@
 
 - 应用内可以通过`getTopWindow`来获取当前应用内最后显示的窗口。具体示例代码如下：
 
-```
+```js
  var windowClass = null;
  let promise = window.getTopWindow();
  promise.then((data)=> {
@@ -54,7 +54,7 @@
 
 - 应用内也可以通过`Find`来获取已经创建的子窗口。具体示例代码如下：
 
-```
+```js
  var windowClass = null;
  let promise = window.find("subWindow");
  promise.then((data)=> {
@@ -69,7 +69,7 @@
 
 在已经获取到窗口对象的前提下，可以调用`hide`、`destroy`来隐藏和销毁已经创建的窗口对象。具体示例代码如下：
 
-```
+```js
  let promise = windowClass.hide();
  promise.then((data)=> {
     console.info('window hidden. Data: ' + JSON.stringify(data))
@@ -91,7 +91,7 @@
 
 示例代码如下：
 
-```
+```js
 import window from '@ohos.window';
 try {
   const win = await window.getTopWindow()
