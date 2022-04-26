@@ -1,7 +1,7 @@
 # USB服务子系使用实例<a name="ZH-CN_TOPIC_0000001092792986"></a>
 
 
-```
+```cpp
 #include <cstdio>
 #include <iostream>
 #include <map>
