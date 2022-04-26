@@ -568,6 +568,85 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
 ```
+## bundle.getAbilityInfo<sup>9+</sup>
+
+getAbilityInfo(bundleName: string, moduleName: string, abilityName: string): Promise\<AbilityInfo>
+
+通过包名称、moduleName和abilityName获取Ability信息，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述               |
+| ----------- | ------ | ---- | ---------------- |
+| bundleName  | string | 是    | 应用程序包名。     |
+| moduleName  | string | 是    | Module名称。     |
+| abilityName | string | 是    | Ability名称。 |
+
+**返回值：**
+
+| 类型                    | 说明                    |
+| --------------------- | --------------------- |
+| Promise\<AbilityInfo> | Promise形式返回Ability信息。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, moduleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityInfo<sup>9+</sup>
+
+getAbilityInfo(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;
+
+通过包名称、moduleName和abilityName获取Ability信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称         | 类型     | 必填   | 描述            |
+| ----------- | ------------ | ---- | ---------------- |
+| bundleName  | string | 是    | 应用程序包名。     |
+| moduleName  | string | 是    | Module名称。     |
+| abilityName | string | 是    | Ability名称。 |
+| callback    | AsyncCallback\<AbilityInfo> | 是    | 程序启动作为入参的回调函数，返回Ability信息。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityInfo(bundleName, moduleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
 
 ## bundle.getAbilityLabel<sup>8+</sup>
 
@@ -637,6 +716,85 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let abilityName = "com.example.myapplication.MainAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+## bundle.getAbilityLabel<sup>9+</sup>
+
+getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
+
+通过包名称、moduleName和abilityName获取应用名称，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述               |
+| ----------- | ------ | ---- | ---------------- |
+| bundleName  | string | 是    | 应用程序包名。     |
+| moduleName  | string | 是    | Module名称。     |
+| abilityName | string | 是    | Ability名称。 |
+
+**返回值：**
+
+| 类型               | 说明                 |
+| ---------------- | ------------------ |
+| Promise\<string> | Promise形式返回应用名称信息。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, moduleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityLabel<sup>9+</sup>
+
+getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback : AsyncCallback\<string>): void
+
+通过包名称、moduleName和abilityName获取应用名称，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型                     | 必填   | 描述               |
+| ----------- | ---------------------- | ---- | ---------------- |
+| bundleName  | string                 | 是    | 应用程序包名。     |
+| moduleName  | string | 是    | Module名称。     |
+| abilityName | string                 | 是    | Ability名称。 |
+| callback    | AsyncCallback\<string> | 是    | 程序启动作为入参的回调函数，返回应用名称信息。        |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityLabel(bundleName, moduleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1081,8 +1239,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName = com.example.myapplication;
-let abilityName = com.example.myapplication.MainAbility;
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1116,8 +1274,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName = com.example.myapplication;
-let abilityName = com.example.myapplication.MainAbility;
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1127,6 +1285,84 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 })
 ```
 
+## bundle.getAbilityIcon<sup>9+</sup>
+
+getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Promise\<image.PixelMap>;
+
+以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型                                       | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| bundleName  | string                                   | 是    | 要查询的bundleName。                          |
+| moduleName  | string                                   | 是    | moduleName。                          |
+| abilityName | string                                   | 是    | 要查询的abilityName。                         |
+
+**返回值：**
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityIcon(bundleName, moduleName, abilityName)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getAbilityIcon<sup>9+</sup>
+
+getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
+
+以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型                                       | 必填   | 描述                                       |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| bundleName  | string                                   | 是    | 要查询的bundleName。                          |
+| moduleName  | string                                   | 是    | moduleName。                          |
+| abilityName | string                                   | 是    | 要查询的abilityName。                         |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let moduleName = "entry";
+let abilityName = "com.example.myapplication.MainAbility";
+bundle.getAbilityIcon(bundleName, moduleName, abilityName, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
 
 ## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
 
@@ -1451,6 +1687,7 @@ Hap模块信息
 | --------- | --------- | ---- | ---- | ---------- |
 | name      | string    | 是    | 是    | 需要使用的权限名称  |
 | reason    | string    | 是    | 是    | 描述申请权限的原因  |
+| reasonId<sup>9+</sup>  | number    | 是    | 是    | 描述申请权限的原因ID  |
 | usedScene | UsedScene | 是    | 是    | 权限使用的场景和时机 |
 
 ## UsedScene
@@ -1568,7 +1805,8 @@ ExtensionAbility的类型
 | FILE_SHARE<sup>9+</sup>        | 6    | ExtensionAbility的类型包括文件共享 |
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | ExtensionAbility的类型包括订阅者  |
 | WALLPAPER<sup>9+</sup>         | 8    | ExtensionAbility的类型包括墙纸   |
-| UNSPECIFIED<sup>9+</sup>       | 9    | ExtensionAbility未指定类型     |
+| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复   |
+| UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
 
