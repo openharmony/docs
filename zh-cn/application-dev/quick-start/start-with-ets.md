@@ -9,9 +9,11 @@
 ## 创建eTS工程
 
 1. 打开**DevEco Studio**，点击**File** &gt; **New** &gt; **Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+
    ![zh-cn_image_0000001223556342](figures/zh-cn_image_0000001223556342.png)
 
 2. 进入配置工程界面，**UI Syntax**选择“**eTS**”，其他参数保持默认设置即可。
+
    ![zh-cn_image_0000001223716826](figures/zh-cn_image_0000001223716826.png)
 
 3. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
@@ -245,6 +247,7 @@
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
 2. 点击**File** &gt; **Project Structure** &gt; **Project** &gt; **SigningConfigs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+
    ![zh-cn_image_0000001268077317](figures/zh-cn_image_0000001268077317.png)
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001262206247](figures/zh-cn_image_0000001262206247.png)按钮运行。效果如下图所示：

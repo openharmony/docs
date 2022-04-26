@@ -22,9 +22,11 @@ You can develop applications or services in the low-code approach using either o
 ## Creating a Project That Supports Low-Code Development
 
 1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+
    ![en-us_image_0000001233528152](figures/en-us_image_0000001233528152.png)
 
 2. Go to the project configuration page, select **Enable Super Visual**, set **UI Syntax** to **eTS**, and retain the default values for other parameters.
+
    ![en-us_image_0000001277728569](figures/en-us_image_0000001277728569.png)
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
@@ -68,6 +70,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
    ![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
 
 5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. Below is how the first page looks in the Previewer.
+
    ![en-us_image_0000001235892798](figures/en-us_image_0000001235892798.png)
 
 
@@ -101,6 +104,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
       }
       ```
    - Drag the **Text** component to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277488985](figures/en-us_image_0000001277488985.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hi there**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
+
       ![en-us_image_0000001280255513](figures/en-us_image_0000001280255513.gif)
 
 5. Add a **Button** component.
@@ -141,6 +145,7 @@ You can implement page redirection through the page router, which finds the targ
      ```
    
    - In the index.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233209020](figures/en-us_image_0000001233209020.png)**Events** and set **OnClick** to **this.onclick**.
+
      ![en-us_image_0000001235745716](figures/en-us_image_0000001235745716.png)
 
 2. Implement redirection from the second page to the first page.
@@ -170,9 +175,11 @@ You can implement page redirection through the page router, which finds the targ
       }
       ```
    - In the second.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233368900](figures/en-us_image_0000001233368900.png)**Events** and set **OnClick** to **this.back**.
+
       ![en-us_image_0000001280385809](figures/en-us_image_0000001280385809.png)
 
 3. Open the **index.visual** or **index.ets** file and click ![en-us_image_0000001277608849](figures/en-us_image_0000001277608849.png) in the Previewer to refresh the file. The figure below shows the effect.
+
    ![en-us_image_0000001233528192](figures/en-us_image_0000001233528192.png)
 
 
@@ -181,9 +188,11 @@ You can implement page redirection through the page router, which finds the targ
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
 2. Choose **File** &gt; **Project Structure** &gt; **Project** &gt; **Signing Configs**, select **Automatically generate signing**, wait until the automatic signing is complete, and click **OK**, as shown below.
+
    ![en-us_image_0000001277728613](figures/en-us_image_0000001277728613.png)
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001277809373](figures/en-us_image_0000001277809373.png). The display effect is shown in the figure below.
+
    ![en-us_image_0000001233209024](figures/en-us_image_0000001233209024.png)
 
 Congratulations! You have finished developing your OpenHarmony application in eTS in the low-code approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md).
