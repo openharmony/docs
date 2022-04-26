@@ -47,7 +47,7 @@ getInputMethodController(): InputMethodController
     | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
 
 - 示例
-  ```
+  ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
 ## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
@@ -66,7 +66,7 @@ getInputMethodSetting(): InputMethodSetting
 
 
 - 示例
-  ```
+  ```js
   var InputMethodSetting = inputMethod.getInputMethodSetting();
   ```
 
@@ -90,7 +90,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
 
-```
+```js
  InputMethodController.stopInput((error)=>{
      console.info('stopInput');
  });
@@ -113,7 +113,7 @@ stopInput(): Promise&lt;boolean&gt;
 - 示例
 
 
-```
+```js
  var isSuccess = InputMethodController.stopInput();
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
@@ -136,7 +136,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
   | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
 - 示例
-  ```
+  ```js
    InputMethodSetting.listInputMethod((properties)=>{
      for (var i = 0;i < properties.length; i++) {
        var property = properties[i];
@@ -159,7 +159,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
   | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
 - 示例
-  ```
+  ```js
    var properties = InputMethodSetting.listInputMethod();
    for (var i = 0;i < properties.length; i++) {
      var property = properties[i];
@@ -182,7 +182,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例
-  ```
+  ```js
    InputMethodSetting.displayOptionalInputMethod(()=>{
      console.info('displayOptionalInputMethod is called');
    });
@@ -203,6 +203,6 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 | Promise&lt;void&gt; | 回调函数。 |
 
   - 示例
-    ```
+    ```js
      InputMethodSetting.displayOptionalInputMethod();
     ```
