@@ -515,7 +515,7 @@ FA的使用信息的属性集合。
 | abilityIconId | number | 否 | FA的MainAbility iconId。|
 | launchedCount | number | 是 | FA的启动次数。|
 | lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
-| formRecords | Array&lt;Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo)&gt;&gt; | 是 | FA中卡片的使用记录。|
+| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo)&gt; | 是 | FA中卡片的使用记录。|
 
 ## BundleActiveFormInfo<sup>9+</sup>
 FA卡片的使用信息的属性集合。
