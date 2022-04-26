@@ -283,7 +283,7 @@ Codec MIME类型枚举。
 
 play(): void
 
-开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用play方法。
+开始播放音频资源，需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -416,7 +416,7 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
-通过回调方式获取音频轨道信息。
+通过回调方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -452,7 +452,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 getTrackDescription(): Promise<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息。
+通过Promise方式获取音频轨道信息。需在[dataLoad](#audioplayer_on)事件成功触发后，才能调用
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
