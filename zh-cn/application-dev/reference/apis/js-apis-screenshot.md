@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import screenshot from '@ohos.screenshot';
 ```
 
@@ -67,7 +67,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 - 示例
 
-  ```
+  ```js
   var ScreenshotOptions = {
   	"screenRect": {
   		"left": 200,
@@ -112,7 +112,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 - 示例
 
-  ```
+  ```js
   var ScreenshotOptions = {
   	"screenRect": {
   		"left": 200,
