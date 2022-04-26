@@ -60,7 +60,7 @@ getInputMethodEngine(): InputMethodEngine
 
 - 示例
 
-  ```
+  ```js
   var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
   ```
 
@@ -80,7 +80,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 - 示例
 
-  ```
+  ```js
   var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
   ```
 
@@ -105,7 +105,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 - 示例：
 
-  ```
+  ```js
   InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
       KeyboardController = kbController;
       TextInputClient = textInputClient;
@@ -131,7 +131,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 - 示例：
 
-  ```
+  ```js
   InputMethodEngine.off('inputStart');
   ```
 
@@ -152,7 +152,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 - 示例：
 
-  ```
+  ```js
   InputMethodEngine.on('keyboardShow', (err) => {
       console.info('keyboardShow');
   });
@@ -175,7 +175,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 - 示例：
 
-  ```
+  ```js
   InputMethodEngine.off('keyboardShow');
   ```
   
@@ -203,7 +203,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 - 示例：
 
-  ```
+  ```js
   KeyboardDelegate.on('keyDown', (event) => {
       console.info('keyDown');
   });
@@ -226,7 +226,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 - 示例：
 
-  ```
+  ```js
   KeyboardDelegate.off('keyDown');
   ```
 
@@ -249,7 +249,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
   - 示例：
   
-    ```
+    ```js
     KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
         console.info('cursorContextChange');
     });
@@ -273,7 +273,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
   - 示例：
 
-    ```
+    ```js
     KeyboardDelegate.off('cursorContextChange');
     ```
 ### on('selectionChange')
@@ -293,7 +293,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
   - 示例：
   
-    ```
+    ```js
     KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
         console.info('selectionChange');
     });
@@ -316,7 +316,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
   - 示例：
 
-    ```
+    ```js
     KeyboardDelegate.off('selectionChange');
     ```
 
@@ -338,7 +338,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
   - 示例：
 
-    ```
+    ```js
     KeyboardDelegate.on('textChange', (text) => {
         console.info('textChange');
     });
@@ -361,7 +361,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
   - 示例：
 
-    ```
+    ```js
     KeyboardDelegate.off('textChange');
     ```
 
@@ -386,7 +386,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 - 示例
 
 
-```
+```js
  KeyboardController.hideKeyboard(()=>{
  });
 ```
@@ -408,7 +408,7 @@ hideKeyboard(): Promise&lt;void&gt;
 - 示例
 
 
-```
+```js
  KeyboardController.hideKeyboard();
 ```
 
@@ -432,7 +432,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
   | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
 - 示例
-  ```
+  ```js
    TextInputClient.getForward(5,(text) =>{
      console.info("text = " + text);
    });
@@ -458,7 +458,7 @@ getForward(length:number): Promise&lt;string&gt;
   | Promise&lt;string&gt; |  返回文本。                |
 
 - 示例
-  ```
+  ```js
    var text = TextInputClient.getForward(5);
    console.info("text = " + text);
   ```
@@ -479,7 +479,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
   | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
 - 示例
-  ```
+  ```js
    TextInputClient.getBackward(5,(text)=>{
      console.info("text = " + text);
   });
@@ -505,7 +505,7 @@ getBackward(length:number): Promise&lt;string&gt;
   | Promise&lt;string&gt; |  返回文本。                |
 
 - 示例
-  ```
+  ```js
    var text = TextInputClient.getBackward(5);
    console.info("text = " + text);
   ```
@@ -526,7 +526,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
 - 示例
-  ```
+  ```js
   TextInputClient.deleteForward(5,(isSuccess)=>{
     console.info("isSuccess = " + isSuccess);
   });
@@ -551,7 +551,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
      | Promise&lt;boolean&gt; |  操作成功与否。                |
 
   - 示例
-    ```
+    ```js
      var isSuccess = TextInputClient.deleteForward(5);
      console.info("isSuccess = " + isSuccess);
     ```
@@ -572,7 +572,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
   - 示例
-    ```
+    ```js
      TextInputClient.deleteBackward(5, (isSuccess)=>{
      console.info("isSuccess = " + isSuccess);
     });
@@ -598,7 +598,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 - 示例
 
-     ```
+     ```js
      var isSuccess = TextInputClient.deleteBackward(5);
      console.info("isSuccess = " + isSuccess);
      ```
@@ -618,7 +618,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
   - 示例
-    ```
+    ```js
      TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
     });
@@ -644,7 +644,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 - 示例
 
-  ```
+  ```js
   var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
   console.info("isSuccess = " + isSuccess);
   ```
@@ -665,7 +665,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
 - 示例
-    ```
+    ```js
     TextInputClient.insertText("test", (isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
     });
@@ -691,7 +691,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 - 示例
 
-  ```
+  ```js
   var isSuccess = TextInputClient.insertText("test");
   console.info("isSuccess = " + isSuccess);
   ```
@@ -710,7 +710,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
    | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
 
 - 示例
-  ```
+  ```js
     TextInputClient.getEditorAttribute((EditorAttribute)=>{
     });
   ```
@@ -729,7 +729,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
   | Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
 
 - 示例
-   ```
+   ```js
    var EditorAttribute = TextInputClient.getEditorAttribute();
    ```
 
