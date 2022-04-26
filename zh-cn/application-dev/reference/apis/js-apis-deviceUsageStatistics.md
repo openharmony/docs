@@ -423,7 +423,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
+  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
 
@@ -465,7 +465,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
 
 **示例**：
 
@@ -515,7 +515,7 @@ FA的使用信息的属性集合。
 | abilityIconId | number | 否 | FA的MainAbility iconId。|
 | launchedCount | number | 是 | FA的启动次数。|
 | lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
-| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo)&gt; | 是 | FA中卡片的使用记录。|
+| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo9)&gt; | 是 | FA中卡片的使用记录。|
 
 ## BundleActiveFormInfo<sup>9+</sup>
 FA卡片的使用信息的属性集合。
