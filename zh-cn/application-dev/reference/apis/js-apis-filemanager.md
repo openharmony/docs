@@ -35,7 +35,7 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
   filemanager.getRoot().then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   }).catch((err) => {
@@ -64,7 +64,7 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
   filemanager.getRoot((err, fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   });
@@ -108,7 +108,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   }).catch((err) => {
@@ -148,7 +148,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   filemanager.listFile(media_path, "file", (err, fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   });
@@ -189,12 +189,11 @@ filemanager.createFile(path : string, filename : string, options? : {dev? : DevI
   // 创建文件，返回文件uri
   let media_path = file.uri // 通过listFile、getRoot获取的文件uri
   let name = "xxx.jpg" // 待保存文件的后缀
-  filemanager.createFile(media_path, name)
-  .then((uri) => {
-  // 返回uri给应用
-  })
-  .catch((err) => {
-      console.log(err)
+  filemanager.createFile(media_path, name).then((uri) => {
+      // 返回uri给应用
+      console.log("file uri:"+uri);
+  }).catch((err) => {
+      console.log(err);
   });
   ```
 
@@ -233,7 +232,8 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   // 待保存文件的后缀
   let name = "xxx.jpg"
   filemanager.createFile(media_path, name, (err, uri) => {
-  // 返回uri给应用
+      // 返回uri给应用
+      console.log("file uri:"+uri);
   });
   ```
 
