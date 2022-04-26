@@ -65,7 +65,7 @@ GPIO接口定义了操作GPIO管脚的标准方法集合，包括：
 <td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p99693712113"><a name="p99693712113"></a><a name="p99693712113"></a>设置管脚对应的中断服务函数</p>
 </td>
 </tr>
-<tr id="row4969117172110"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p119692079215"><a name="p119692079215"></a><a name="p119692079215"></a>GpioUnSetIrq</p>
+<tr id="row4969117172110"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p119692079215"><a name="p119692079215"></a><a name="p119692079215"></a>GpioUnsetIrq</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1996916792114"><a name="p1996916792114"></a><a name="p1996916792114"></a>取消管脚对应的中断服务函数</p>
 </td>
@@ -245,7 +245,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
 
     示例代码：
 
-    ```
+    ```c
     int32_t ret;
     uint16_t val;
     /* 将3号GPIO管脚配置为输出 */
@@ -326,76 +326,38 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
     >![](../public_sys-resources/icon-caution.gif) **注意：** 
     >同一时间，只能为某个GPIO管脚设置一个中断服务函数，如果重复调用GpioSetIrq函数，则之前设置的中断服务函数会被取代。
 
-    当不再需要响应中断服务函数时，使用如下函数取消中断设置：
+-   当不再需要响应中断服务函数时，使用如下函数取消中断设置：
 
-    int32\_t GpioUnSetIrq\(uint16\_t gpio\);
+    int32\_t GpioUnsetIrq\(uint16\_t gpio, void *arg\);
 
-    **表 6**  GpioUnSetIrq参数和返回值描述
+    **表 6**  GpioUnsetIrq参数和返回值描述
 
     <a name="table1157224664316"></a>
-    <table><tbody><tr id="row175721546174317"><td class="cellrowborder" valign="top" width="48.54%"><p id="p16572144694311"><a name="p16572144694311"></a><a name="p16572144694311"></a><strong id="b55727462431"><a name="b55727462431"></a><a name="b55727462431"></a>参数</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p185721461435"><a name="p185721461435"></a><a name="p185721461435"></a><strong id="b057213467438"><a name="b057213467438"></a><a name="b057213467438"></a>参数描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row1257284664318"><td class="cellrowborder" valign="top" width="48.54%"><p id="p95721946144317"><a name="p95721946144317"></a><a name="p95721946144317"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p1557313464439"><a name="p1557313464439"></a><a name="p1557313464439"></a>GPIO管脚号</p>
-    </td>
-    </tr>
-    <tr id="row1857324618435"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1257344624314"><a name="p1257344624314"></a><a name="p1257344624314"></a><strong id="b145738464432"><a name="b145738464432"></a><a name="b145738464432"></a>返回值</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p457384611439"><a name="p457384611439"></a><a name="p457384611439"></a><strong id="b17573104618432"><a name="b17573104618432"></a><a name="b17573104618432"></a>返回值描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row357318466439"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1573164616438"><a name="p1573164616438"></a><a name="p1573164616438"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p857384614319"><a name="p857384614319"></a><a name="p857384614319"></a>取消成功</p>
-    </td>
-    </tr>
-    <tr id="row18573124610433"><td class="cellrowborder" valign="top" width="48.54%"><p id="p165731146134311"><a name="p165731146134311"></a><a name="p165731146134311"></a>负数</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p6573164613437"><a name="p6573164613437"></a><a name="p6573164613437"></a>取消失败</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+    
+    | **参数**   | **参数描述**   |
+    | ---------- | -------------- |
+    | gpio       | GPIO管脚号     |
+    | arg        | GPIO中断数据   |
+    | **返回值** | **返回值描述** |
+    | 0          | 取消成功       |
+    | 负数       | 取消失败       |
 
-    在中断服务程序设置完成后，还需要先通过如下函数使能GPIO管脚的中断：
+-   在中断服务程序设置完成后，还需要先通过如下函数使能GPIO管脚的中断：
 
     int32\_t GpioEnableIrq\(uint16\_t gpio\);
-
+    
     **表 7**  GpioEnableIrq参数和返回值描述
-
+    
     <a name="table26659291568"></a>
-    <table><tbody><tr id="row866632919566"><td class="cellrowborder" valign="top" width="50%"><p id="p066642985615"><a name="p066642985615"></a><a name="p066642985615"></a><strong id="b050110291902"><a name="b050110291902"></a><a name="b050110291902"></a>参数</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p566613293568"><a name="p566613293568"></a><a name="p566613293568"></a><strong id="b95144291405"><a name="b95144291405"></a><a name="b95144291405"></a>参数描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row19666029165620"><td class="cellrowborder" valign="top" width="50%"><p id="p16660295566"><a name="p16660295566"></a><a name="p16660295566"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1566632916566"><a name="p1566632916566"></a><a name="p1566632916566"></a>GPIO管脚号</p>
-    </td>
-    </tr>
-    <tr id="row84182176010"><td class="cellrowborder" valign="top" width="50%"><p id="p1566652915566"><a name="p1566652915566"></a><a name="p1566652915566"></a><strong id="b16177133216016"><a name="b16177133216016"></a><a name="b16177133216016"></a>返回值</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p966642917562"><a name="p966642917562"></a><a name="p966642917562"></a><strong id="b101898323018"><a name="b101898323018"></a><a name="b101898323018"></a>返回值描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row154188171403"><td class="cellrowborder" valign="top" width="50%"><p id="p1866610292563"><a name="p1866610292563"></a><a name="p1866610292563"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p13666182975613"><a name="p13666182975613"></a><a name="p13666182975613"></a>使能成功</p>
-    </td>
-    </tr>
-    <tr id="row1041891720012"><td class="cellrowborder" valign="top" width="50%"><p id="p766642911562"><a name="p766642911562"></a><a name="p766642911562"></a>负数</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1566652995613"><a name="p1566652995613"></a><a name="p1566652995613"></a>使能失败</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
+    | **参数**   | **参数描述**   |
+    | ---------- | -------------- |
+    | gpio       | GPIO管脚号     |
+    | **返回值** | **返回值描述** |
+    | 0          | 使能成功       |
+    | 负数       | 使能失败       |
+    
+    
+    
     >![](../public_sys-resources/icon-caution.gif) **注意：** 
     >必须通过此函数使能管脚中断，之前设置的中断服务函数才能被正确响应。
 
@@ -406,37 +368,16 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
     **表 8**  GpioDisableIrq参数和返回值描述
 
     <a name="table186682041918"></a>
-    <table><tbody><tr id="row186684413116"><td class="cellrowborder" valign="top" width="50%"><p id="p866844916"><a name="p866844916"></a><a name="p866844916"></a><strong id="b196681541715"><a name="b196681541715"></a><a name="b196681541715"></a>参数</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p46681413119"><a name="p46681413119"></a><a name="p46681413119"></a><strong id="b1966817414115"><a name="b1966817414115"></a><a name="b1966817414115"></a>参数描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row4668243113"><td class="cellrowborder" valign="top" width="50%"><p id="p46681141919"><a name="p46681141919"></a><a name="p46681141919"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p136681241311"><a name="p136681241311"></a><a name="p136681241311"></a>GPIO管脚号</p>
-    </td>
-    </tr>
-    <tr id="row066884412"><td class="cellrowborder" valign="top" width="50%"><p id="p566824015"><a name="p566824015"></a><a name="p566824015"></a><strong id="b9668144120"><a name="b9668144120"></a><a name="b9668144120"></a>返回值</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1766974515"><a name="p1766974515"></a><a name="p1766974515"></a><strong id="b466919418114"><a name="b466919418114"></a><a name="b466919418114"></a>返回值描述</strong></p>
-    </td>
-    </tr>
-    <tr id="row156694410112"><td class="cellrowborder" valign="top" width="50%"><p id="p14669141214"><a name="p14669141214"></a><a name="p14669141214"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1266934818"><a name="p1266934818"></a><a name="p1266934818"></a>禁止成功</p>
-    </td>
-    </tr>
-    <tr id="row176691543117"><td class="cellrowborder" valign="top" width="50%"><p id="p7669941716"><a name="p7669941716"></a><a name="p7669941716"></a>负数</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p4669164219"><a name="p4669164219"></a><a name="p4669164219"></a>禁止失败</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
+    | **参数**   | **参数描述**   |
+    | ---------- | -------------- |
+    | gpio       | GPIO管脚号     |
+    | **返回值** | **返回值描述** |
+    | 0          | 禁止成功       |
+    | 负数       | 禁止失败       |
+    
     示例代码：
-
-    ```
+    
+```c
     /* 中断服务函数
     */
     int32_t MyCallBackFunc(uint16_t gpio, void *data)
@@ -459,21 +400,21 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
         HDF_LOGE("GpioEnableIrq: failed, ret %d\n", ret);
         return;
     }
-    
+
     /* 禁止3号GPIO管脚中断 */
     ret = GpioDisableIrq(3);
     if (ret != 0) {
         HDF_LOGE("GpioDisableIrq: failed, ret %d\n", ret);
         return;
     }
-    
+
     /* 取消3号GPIO管脚中断服务程序 */
-    ret = GpioUnSetIrq(3);
+    ret = GpioUnsetIrq(3, NULL);
     if (ret != 0) {
         HDF_LOGE("GpioUnSetIrq: failed, ret %d\n", ret);
         return;
     }
-    ```
+```
 
 
 ## 使用实例<a name="section25941262111"></a>
@@ -484,7 +425,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
 
 读者可以根据自己使用的开发板，参考其原理图，选择一个空闲的GPIO管脚即可。
 
-```
+```c
 #include "gpio_if.h"
 #include "hdf_log.h"
 #include "osal_irq.h"
@@ -550,7 +491,7 @@ static int32_t TestCaseGpioIrqEdge(void)
         OsalMDelay(200); /* wait for irq trigger */
         timeout += 200;
     }
-    (void)GpioUnSetIrq(gpio);
+    (void)GpioUnsetIrq(gpio, NULL);
     return (g_irqCnt > 0) ? HDF_SUCCESS : HDF_FAILURE;
 }
 ```
