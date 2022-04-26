@@ -35,12 +35,13 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
     ```
     以下是这段代码中的宏定义：
 
+    ```
     #define INIT_CONFIGURATION_FILE "/etc/init.cfg"
 
     #define OTHER_CHARGE_PATH "/system/etc/charge"
 
     #define OTHER_CFG_PATH "/system/etc/init"
-
+    ```
     对于充电模式和升级模式下cfg的扫描此处不作详细说明，我们关注正常系统启动时init扫描cfg文件的规则。
     1. 对于/etc/init.cfg文件，是应当最先解析，因此直接调用解析接口解析该文件。
     2. 对于/etc/init目录（note：/etc是指向/system/etc的一个符号链接，可以把它们看作是等价的），init进程会遍历该目录下的文件，匹配文件的后缀名，匹配到cfg文件时就会调用解析接口对该文件进行解析。
@@ -156,7 +157,6 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
         "d-caps" : ["OHOS_DMS"],    // 系统服务进程设置其分布式Capability能力
         "secon" : "u:r:distributedsche:s0" / 服务的SELinux标签， "u:r:distributedsche:s0"为要设置的SELinux标签信息
     },
-
     ```
 - init FD代持(仅标准系统以上提供)
 
@@ -177,34 +177,33 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
    bootchart是一个用于linux启动过程性能分析的开源工具软件，在系统中自动收集CPU占用率、磁盘吞吐率、进程等信息，并以图形方式显示分析结果，可用作指导优化系统启动过程。begetctl命令参考：[begetctl命令说明](#table14737791480)
 
-   如下所示：
-    ```
+    如下所示：
+
     预制条件：
-    1. 准备bootchart测试环境：linux操作系统下安装python及pycairo
+      1. 准备bootchart测试环境：linux操作系统下安装python及pycairo
        pip install pycairo
-    2. 在linux解压：bootchart-master.tar
+      2. 在linux解压：bootchart-master.tar
       tar -zxvf  bootchart-master.tar
 
     执行步骤：
-    1，启动系统
-    2，执行命令行：begetctl bootchart enable
-    3，重启系统
-    4，执行命令行：begetctl bootchart stop
-    5，执行命令行：begetctl bootchart disable
-    6，在/data/bootchart目录下导出如下文件：
-       header
-       proc_diskstats.log
-       proc_ps.log
-       proc_stat.log
+      1. 启动系统
+      2. 执行命令行：begetctl bootchart enable
+      3. 重启系统
+      4. 执行命令行：begetctl bootchart stop
+      5. 执行命令行：begetctl bootchart disable
+      6. 在/data/bootchart目录下导出如下文件：<br>
+        header<br>
+        proc_diskstats.log<br>
+        proc_ps.log<br>
+        proc_stat.log<br>
        并存放在bootchart文件夹
-    7，使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
-    8，运行：
-       在bootchart-master目录下运行
-       python3 pybootchartgui.py -f pdf bootchart.tgz
+      7. 使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
+      8. 运行：<br>
+        在bootchart-master目录下运行<br>
+        python3 pybootchartgui.py -f pdf bootchart.tgz<br>
 
-    预期结果：
-    在bootchart-master目录下生成bootchart.pdf
-    ```
+      预期结果：<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在bootchart-master目录下生成bootchart.pdf
 
 ## 开发指导
 
