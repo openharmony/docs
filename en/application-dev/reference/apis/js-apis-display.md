@@ -5,7 +5,7 @@
 
 ## Modules to Import
 
-```
+```js
 import display from '@ohos.display';
 ```
 
@@ -64,7 +64,8 @@ Obtains the default display object.
   | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 - Example
-  ```
+
+  ```js
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
       if (err.code) {
@@ -92,7 +93,7 @@ Obtains the default display object.
 
 - Example
 
-  ```
+  ```js
   let promise = display.getDefaultDisplay();
   promise.then(() => {
       console.log('getDefaultDisplay success');
@@ -117,7 +118,7 @@ Obtains all the display objects.
 
 - Example
 
-  ```
+  ```js
   display.getAllDisplay((err, data) => {
       if (err.code) {
           console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -143,7 +144,7 @@ Obtains all the display objects.
 
 - Example
 
-  ```
+  ```js
   let promise = display.getAllDisplay();
   promise.then(() => {
       console.log('getAllDisplay success');
@@ -167,7 +168,8 @@ Enables listening.
   | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 - Example
-  ```
+
+  ```js
   var type = "add";
   var callback = (data) => {
       console.info('Listening enabled. Data: ' + JSON.stringify(data))
@@ -191,7 +193,8 @@ Disables listening.
   | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 - Example
-  ```
+
+  ```js
   var type = "remove";
   display.off(type);
   ```
