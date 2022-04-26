@@ -1,7 +1,7 @@
 # 延迟任务调度
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
 
 ## 导入模块
@@ -276,20 +276,21 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
-| 参数名             | 类型                                | 必填   | 说明               |
-| --------------- | --------------------------------- | ---- | ---------------- |
-| workId          | number                            | 是    | 当前工作的ID          |
-| bundleName      | string                            | 是    | 延迟任务包名           |
-| abilityName     | string                            | 是    | 延迟任务回调通知的组件名（必填） |
-| networkType     | [NetworkType](#networktype)       | 否    | 网络类型             |
-| isCharging      | boolean                           | 否    | 是否充电             |
-| chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型             |
-| batteryLevel    | number                            | 否    | 电量               |
-| batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态             |
-| storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态             |
-| isRepeat        | boolean                           | 否    | 是否循环任务           |
-| repeatCycleTime | number                            | 否    | 循环间隔             |
-| repeatCount     | number                            | 否    | 循环次数             |
+| 参数名          | 类型                              | 必填 | 说明                             |
+| --------------- | --------------------------------- | ---- | -------------------------------- |
+| workId          | number                            | 是   | 当前工作的ID                     |
+| bundleName      | string                            | 是   | 延迟任务包名                     |
+| abilityName     | string                            | 是   | 延迟任务回调通知的组件名（必填） |
+| networkType     | [NetworkType](#networktype)       | 否   | 网络类型                         |
+| isCharging      | boolean                           | 否   | 是否充电                         |
+| chargerType     | [ChargingType](#chargingtype)     | 否   | 充电类型                         |
+| batteryLevel    | number                            | 否   | 电量                             |
+| batteryStatus   | [BatteryStatus](#batterystatus)   | 否   | 电池状态                         |
+| storageRequest  | [StorageRequest](#storagerequest) | 否   | 存储状态                         |
+| isRepeat        | boolean                           | 否   | 是否循环任务                     |
+| repeatCycleTime | number                            | 否   | 循环间隔                         |
+| repeatCount     | number                            | 否   | 循环次数                         |
+| isPersisted     | boolean                           | 否   | 是否持久化保存工作               |
 
 ## NetworkType
 触发工作的网络类型。
