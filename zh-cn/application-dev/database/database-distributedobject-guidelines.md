@@ -107,7 +107,9 @@
         });
         }
     } 
-    local_object.on("change", this.changeCallback);
+
+    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
+    local_object.on("change", this.changeCallback.bind(this));
    ```
    
 5. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
@@ -169,14 +171,12 @@
        ```js
        local_object.setSessionId("");
        ```
-## 使用分布式数据对象创建备忘录应用
+## 开发实例
 
-Sample样例主要展示了如何使用分布式对象创建备忘录应用。用户在完成设备组网设置后，针对用户对备忘录应用操作的数据结果，可实现多设备的数据同步。在应用软件中，用户对已创建的备忘录事件标题和内容可进行编辑修改，同时也可执行备忘录数据的新增以及事件清空操作。而用户在某一端设备上执行完成操作后，产生的数据结果将通过分布式数据对象同步显现到可信组网内其他设备中。实现可信列表设备的数据更新同步。
+针对分布式数据对象，有以下开发实例可供参考： 
 
-项目链接：https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples
-   
-
-   
+- [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
 
-
+在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
+ 
