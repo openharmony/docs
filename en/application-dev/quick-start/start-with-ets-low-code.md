@@ -88,7 +88,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 4. Add a **Text** component.
    - In the **second.ets** file, set the message text content to **Hi there**. The sample code is as follows:
      
-      ```
+      ```ts
       @Entry
       @Component
       struct Second {
@@ -121,7 +121,7 @@ You can implement page redirection through the page router, which finds the targ
      In the files of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. This operation needs to be completed in both .ets and .visual files.
    - In the **index.ets** file:
      
-     ```
+     ```ts
      import router from '@ohos.router';
      
      @Entry
@@ -153,7 +153,7 @@ You can implement page redirection through the page router, which finds the targ
 
    - In the **second.ets** file:
      
-      ```
+      ```ts
       import router from '@ohos.router';
       
       @Entry
