@@ -90,11 +90,11 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
    > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (**kvStore** in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
 
-4.  Subscribe to changes in the distributed data.
-   The following is the sample code for subscribing to the data changes of a single KV store:
+4.  Subscribe to changes in the distributed data.<br/>
+    The following is the sample code for subscribing to the data changes of a single KV store:
    ```
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
        console.log("dataChange callback call data: " + JSON.stringify(data));
@@ -147,7 +147,7 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-7. Synchronize data to other devices.
+7. Synchronize data to other devices.<br/>
    Select the devices in the same network and the synchronization mode to synchronize data.
 
    The following is the sample code for data synchronization in a single KV store. **deviceIds** can be obtained by deviceManager by calling **getTrustedDeviceListSync()**, and **1000** indicates that the maximum delay time is 1000 ms.
