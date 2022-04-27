@@ -8,7 +8,7 @@
 
 ## Modules to Import
 
-```
+```js
 import bluetooth from '@ohos.bluetooth';
 ```
 
