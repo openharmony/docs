@@ -81,7 +81,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 - 示例：
   
-  ```
+  ```js
   request.upload({ url: 'https://patch' }).then((data) => {
       uploadTask = data;
   }).catch((err) => {
@@ -108,7 +108,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 - 示例：
   
-  ```
+  ```js
   request.upload({ url: 'https://patch' }, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
@@ -142,14 +142,14 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 |
-  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
 - 示例：
   
-  ```
+  ```js
   uploadTask.on('progress', function callback(uploadedSize, totalSize) {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   }
@@ -175,13 +175,13 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
 - 示例：
   
-  ```
+  ```js
   uploadTask.on('headerReceive', function callback(headers){   
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -207,14 +207,14 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 |
-  | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
 - 示例：
   
-  ```
+  ```js
   uploadTask.off('progress', function callback(uploadedSize, totalSize) {
       console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
   }
@@ -240,13 +240,13 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
 - 示例：
   
-  ```
+  ```js
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
@@ -271,7 +271,7 @@ remove(): Promise&lt;boolean&gt;
 
 - 示例
   
-  ```
+  ```js
   uploadTask.remove().then((result) => {
       if (result) {
           console.info('Upload task removed successfully. ');
@@ -301,7 +301,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
   
-  ```
+  ```js
   uploadTask.remove((err, result) => {
       if (err) {
           console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
@@ -373,7 +373,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 - 示例
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
       downloadTask = data;
   }).catch((err) => {
@@ -400,7 +400,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 - 示例
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
       if (err) {
@@ -435,14 +435,14 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | receivedSize | number | 是 | 当前下载的进度，单位为KB。 |
-  | totalSize | number | 是 | 下载文件的总大小，单位为KB。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| receivedSize | number | 是 | 当前下载的进度，单位为KB。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为KB。 |
 
 - 示例：
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -475,14 +475,14 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | receivedSize | number | 是 | 当前下载的进度。 |
-  | totalSize | number | 是 | 下载文件的总大小。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| receivedSize | number | 是 | 当前下载的进度。 |
+| totalSize | number | 是 | 下载文件的总大小。 |
 
 - 示例：
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -515,7 +515,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 - 示例：
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -548,7 +548,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 - 示例：
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + JSON.stringify(err));
@@ -581,13 +581,13 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   回调函数的参数：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | err | number | 是 | 下载失败的错误码，错误原因见[ERROR.*](#常量)。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| err | number | 是 | 下载失败的错误码，错误原因见[ERROR.*](#常量)。 |
 
 - 示例
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -620,13 +620,13 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   回调函数的参数
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | err | number | 是 | 下载失败的错误码。错误原因见[ERROR_*](#常量)。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| err | number | 是 | 下载失败的错误码。错误原因见[ERROR_*](#常量)。 |
 
 - 示例
   
-  ```
+  ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -658,7 +658,7 @@ remove(): Promise&lt;boolean&gt;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.remove().then((result) => {
       if (result) {
           console.info('Download task removed.');
@@ -688,7 +688,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
   
-  ```
+  ```js
   downloadTask.remove((err, result)=>{
       if(err) {
           console.error('Failed to remove the download task.');
@@ -720,7 +720,7 @@ query(): Promise&lt;DownloadInfo&gt;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.query().then((downloadInfo) => {    
       console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
   }) .catch((err) => {
@@ -746,7 +746,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 - 示例：
   
-  ```
+  ```js
   downloadTask.query((err, downloadInfo)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -774,7 +774,7 @@ queryMimeType(): Promise&lt;string&gt;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.queryMimeType().then((data) => {    
       console.info('Download task queried. Data:' + JSON.stringify(data));
   }).catch((err) => {
@@ -800,7 +800,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.queryMimeType((err, data)=>{
       if(err) {
           console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
@@ -828,7 +828,7 @@ pause(): Promise&lt;void&gt;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.pause().then((result) => {    
       if (result) {
            console.info('Download task paused. ');
@@ -858,7 +858,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
   
-  ```
+  ```js
   downloadTask.pause((err, result)=>{
       if(err) {
           console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
@@ -890,7 +890,7 @@ resume(): Promise&lt;void&gt;
 
 - 示例
   
-  ```
+  ```js
   downloadTask.resume().then((result) => {
       if (result) {
           console.info('Download task resumed.')
@@ -921,7 +921,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
   
-  ```
+  ```js
   downloadTask.resume((err, result)=>{
       if (err) {
           console.error('Failed to resume the download task. Cause:' + err);

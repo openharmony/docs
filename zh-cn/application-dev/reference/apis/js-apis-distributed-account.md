@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
@@ -28,7 +28,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
   | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式帐号登录状态方法。 |
 
 - 示例：
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
 
@@ -50,7 +50,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 获取分布式帐号信息的回调。 |
 
 - 示例：
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => { 
       console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
@@ -73,7 +73,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
 - 示例：
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => { 
       console.log('Query account info name: ' + data.name);
@@ -98,7 +98,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   | callback | AsyncCallback&lt;void&gt; | 是 | 更新分布式帐号信息的回调。 |
 
 - 示例：
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err) => { 
@@ -125,7 +125,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 - 示例：
-  ```
+  ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {

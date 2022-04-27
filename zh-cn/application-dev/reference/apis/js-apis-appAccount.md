@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import account_appAccount from '@ohos.account.appAccount';
 ```
 
@@ -25,7 +25,7 @@ createAppAccountManager(): AppAccountManager
 | AppAccountManager | 获取应用帐号模块的实例。 |
 
 **示例：**
-  ```
+  ```js
   var appAccountManager = account.createAppAccountManager();
   ```
 
@@ -50,7 +50,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("WangWu", (err) => { 
       console.log("addAccount err: " + JSON.stringify(err));
@@ -75,7 +75,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101", (err) => { 
       console.log("addAccount err: " + JSON.stringify(err));
@@ -107,7 +107,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101").then(()=> { 
       console.log('addAccount Success');
@@ -135,7 +135,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 **示例：**
 
-  ```
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   function onResultCallback(code, result) {
@@ -174,7 +174,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu", (err) => { 
       console.log("deleteAccount err: " + JSON.stringify(err));
@@ -203,7 +203,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu").then(() => { 
         console.log('deleteAccount Success');
@@ -230,7 +230,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("disableAppAccess err: " + JSON.stringify(err));
@@ -260,7 +260,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
       console.log('disableAppAccess Success');
@@ -287,7 +287,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo", (err) => { 
       console.log("enableAppAccess: " + JSON.stringify(err));
@@ -317,7 +317,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
@@ -344,7 +344,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan", (err, result) => { 
       console.log("checkAppAccountSyncEnable err: " + JSON.stringify(err));
@@ -376,7 +376,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan").then((data) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
@@ -404,7 +404,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001", (err) => { 
       console.log("setAccountCredential err: " + JSON.stringify(err));
@@ -435,7 +435,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001").then(() => { 
       console.log('setAccountCredential Success');
@@ -462,7 +462,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002", (err) => { 
       console.log("setAccountExtraInfo err: " + JSON.stringify(err));
@@ -492,7 +492,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002").then(() => { 
       console.log('setAccountExtraInfo Success');
@@ -521,7 +521,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAppAccountSyncEnable("ZhangSan", true, (err) => { 
       console.log("setAppAccountSyncEnable err: " + JSON.stringify(err));
@@ -553,7 +553,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager .setAppAccountSyncEnable("ZhangSan", true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
@@ -581,7 +581,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 **示例：**
 
-  ```
+  ```js
   app_account_instance.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
       console.log("setAssociatedData err: " + JSON.stringify(err));
   });
@@ -611,7 +611,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAssociatedData("ZhangSan", "k001", "v001").then(() => { 
       console.log('setAssociatedData Success');
@@ -638,7 +638,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001", (err, result) => { 
       console.log("getAccountCredential err: " + JSON.stringify(err));
@@ -669,7 +669,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001").then((data) => { 
       console.log('getAccountCredential, result: ' + data);
@@ -695,7 +695,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan", (err, result) => { 
       console.log("getAccountExtraInfo err: " + JSON.stringify(err));
@@ -725,7 +725,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan").then((data) => { 
       console.log('getAccountExtraInfo, result: ' + data);
@@ -752,7 +752,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001", (err, result) => { 
       console.log("getAssociatedData err: " + JSON.stringify(err));
@@ -783,7 +783,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001").then((data) => { 
        console.log('getAssociatedData: ' + data);
@@ -810,7 +810,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts((err, data)=>{
   	console.debug("getAllAccessibleAccounts err:" + JSON.stringify(err));
@@ -836,7 +836,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts().then((data) => { 
        console.log('getAllAccessibleAccounts: ' + data);
@@ -864,7 +864,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
@@ -897,7 +897,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle).then((data) => { 
@@ -925,7 +925,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
@@ -955,7 +955,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
@@ -991,7 +991,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
 **示例：**
 
-  ```
+  ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
   function onResultCallback(code, result) {
@@ -1032,7 +1032,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
@@ -1064,7 +1064,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge").then((data) => {
        console.log('getOAuthToken token: ' + data);
@@ -1092,7 +1092,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx", (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -1123,7 +1123,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx").then(() => {
       console.log('setOAuthToken successfully');
@@ -1152,7 +1152,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx", (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
@@ -1184,7 +1184,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx").then(() => {
        console.log('deleteOAuthToken successfully');
@@ -1213,7 +1213,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1245,7 +1245,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
@@ -1273,7 +1273,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1305,7 +1305,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
@@ -1332,7 +1332,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo", (err, data) => {
       console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
@@ -1363,7 +1363,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo").then((data) => {
        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
@@ -1390,7 +1390,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge", (err, data) => {
        console.log('getOAuthList err: ' + JSON.stringify(err));
@@ -1421,7 +1421,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge").then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
@@ -1447,7 +1447,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
     var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
@@ -1487,7 +1487,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
@@ -1522,7 +1522,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo", (err, data) => {
       console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
@@ -1552,7 +1552,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.ohos.accountjsdemo").then((data) => { 
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
@@ -1663,7 +1663,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
 **示例：**
 
-  ```
+  ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
@@ -1692,7 +1692,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 **示例：**
 
-  ```
+  ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({
@@ -1749,7 +1749,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 **示例：**
 
-  ```
+  ```js
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({
