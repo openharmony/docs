@@ -29,10 +29,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -72,7 +72,7 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.deleteForm(formId).catch((error) => {
-      console.log('formProvider deleteForm, error:' + JSON.stringify(error));
+      console.log('formHost deleteForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -88,10 +88,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -116,11 +116,11 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名         | 类型     | 必填 | 说明        |
-  | -------------- | ------  | ---- | ----------- |
-  | formId         | string  | 是   | 卡片标识     |
-  | isReleaseCache | boolean | 是   | 是否释放缓存 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名         | 类型     | 必填 | 说明        |
+| -------------- | ------  | ---- | ----------- |
+| formId         | string  | 是   | 卡片标识     |
+| isReleaseCache | boolean | 是   | 是否释放缓存 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -161,7 +161,7 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.releaseForm(formId, true).catch((error) => {
-      console.log('formProvider releaseForm, error:' + JSON.stringify(error));
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -177,10 +177,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -220,7 +220,7 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.requestForm(formId).catch((error) => {
-      console.log('formProvider requestForm, error:' + JSON.stringify(error));
+      console.log('formHost requestForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -236,10 +236,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -279,13 +279,13 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.castTempForm(formId).catch((error) => {
-      console.log('formProvider castTempForm, error:' + JSON.stringify(error));
+      console.log('formHost castTempForm, error:' + JSON.stringify(error));
   });
   ```
 
 ## notifyVisibleForms
 
-notifyVisibleForms(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
@@ -295,10 +295,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表         |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -313,7 +313,7 @@ SystemCapability.Ability.Form
 
 ## notifyVisibleForms
 
-notifyVisibleForms(formId: string): Promise&lt;void&gt;;
+notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
@@ -323,9 +323,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
 
 **返回值：**
 
@@ -338,13 +338,13 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.notifyVisibleForms(formId).catch((error) => {
-      console.log('formProvider notifyVisibleForms, error:' + JSON.stringify(error));
+      console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
   });
   ```
 
 ## notifyInvisibleForms
 
-notifyInvisibleForms(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
@@ -354,10 +354,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表         |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -372,7 +372,7 @@ SystemCapability.Ability.Form
 
 ## notifyInvisibleForms
 
-notifyInvisibleForms(formId: string): Promise&lt;void&gt;;
+notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
@@ -382,9 +382,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
 
 **返回值：**
 
@@ -397,13 +397,13 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.notifyInvisibleForms(formId).catch((error) => {
-      console.log('formProvider notifyInvisibleForms, error:' + JSON.stringify(error));
+      console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
   });
   ```
 
 ## enableFormsUpdate
 
-enableFormsUpdate(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。
 
@@ -413,10 +413,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表         |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -431,7 +431,7 @@ SystemCapability.Ability.Form
 
 ## enableFormsUpdate
 
-enableFormsUpdate(formId: string): Promise&lt;void&gt;;
+enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。
 
@@ -441,9 +441,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
 
 **返回值：**
 
@@ -456,13 +456,13 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.enableFormsUpdate(formId).catch((error) => {
-      console.log('formProvider enableFormsUpdate, error:' + JSON.stringify(error));
+      console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
 
 ## disableFormsUpdate
 
-disableFormsUpdate(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。
 
@@ -472,10 +472,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | 是   | 卡片标识列表         |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -490,7 +490,7 @@ SystemCapability.Ability.Form
 
 ## disableFormsUpdate
 
-disableFormsUpdate(formId: string): Promise&lt;void&gt;;
+disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。
 
@@ -500,9 +500,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | 是   | 卡片标识 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
 
 **返回值：**
 
@@ -515,7 +515,7 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.disableFormsUpdate(formId).catch((error) => {
-      console.log('formProvider disableFormsUpdate, error:' + JSON.stringify(error));
+      console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
 
@@ -531,9 +531,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -567,7 +567,7 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.isSystemReady().catch((error) => {
-      console.log('formProvider isSystemReady, error:' + JSON.stringify(error));
+      console.log('formHost isSystemReady, error:' + JSON.stringify(error));
   });
   ```
 
@@ -617,7 +617,7 @@ SystemCapability.Ability.Form
 
   ```js
   formHost.getAllFormsInfo().catch((error) => {
-      console.log('formProvider getAllFormsInfo, error:' + JSON.stringify(error));
+      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
   });
   ```
 
@@ -641,7 +641,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  formHost.getFormsInfo("com.example.ohos.accountjsdemo", (error, data) => {
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
       if (error) {
           console.log('formHost getFormsInfo, error:' + error.code);
       }
@@ -669,7 +669,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  formHost.getFormsInfo("com.example.ohos.accountjsdemo", (error, data) => {
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
       if (error) {
           console.log('formHost getFormsInfo, error:' + error.code);
       }
@@ -702,8 +702,8 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  formHost.getAllFormsInfo().catch((error) => {
-      console.log('formProvider getAllFormsInfo, error:' + JSON.stringify(error));
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").catch((error) => {
+      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   });
   ```
 
@@ -719,10 +719,10 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回删除的卡片个数 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 有效卡片标识列表 |
+| callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回删除的卡片个数 |
 
 **示例：**
 
@@ -737,7 +737,7 @@ SystemCapability.Ability.Form
 
 ## deleteInvalidForms
 
-function deleteInvalidForms(formIds: Array&ltstring&gt): Promise&lt;number&gt;;
+function deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 根据列表删除应用程序的无效卡片。
 
@@ -747,9 +747,9 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 有效卡片标识列表 |
 
 **返回值：**
 
@@ -762,7 +762,7 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds).catch((error) => {
-      console.log('formProvider deleteInvalidForms, error:' + JSON.stringify(error));
+      console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
   });
   ```
 
@@ -806,9 +806,9 @@ function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| want   | [Want](js-apis-featureAbility.md#want) | 是   | 查询卡片状态时携带的want信息 |
 
 **返回值：**
 
@@ -829,7 +829,7 @@ SystemCapability.Ability.Form
   	"abilityName": "com.extreme.test.MainAbility"
   };
   formHost.acquireFormState(want).catch((error) => {
-      console.log('formProvider acquireFormState, error:' + JSON.stringify(error));
+      console.log('formHost acquireFormState, error:' + JSON.stringify(error));
   });
   ```
 
@@ -845,24 +845,23 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | type | string | 是   | 填写"formUninstall"，表示卡片卸载事件 |
-  | callback | Callback&lt;string&gt; | 是 | 接口本身调用的回调方法 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件 |
+| callback | Callback&lt;string&gt; | 是 | 需要注册的事件回调方法 |
 
 **示例：**
 
   ```js
-  formHost.on("formUninstall", (error, data) => {
-      if (error) {
-          console.log('formHost on formUninstall, error:' + error.code);
-      }
-  });
+  let callback = function(formId) {
+      console.log('formHost on formUninstall, formId:' + formId);
+  }
+  formHost.on("formUninstall", callback);
   ```
 
 ## off("formUninstall")
 
-off(type: "formUninstall", callback: Callback&lt;string&gt;): void;
+off(type: "formUninstall", callback?: Callback&lt;string&gt;): void;
 
 取消订阅卡片卸载事件。
 
@@ -872,19 +871,18 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | type | string | 是   | 填写"formUninstall"，表示卡片卸载事件 |
-  | callback | Callback&lt;string&gt; | 是 | 接口本身调用的回调方法 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写"formUninstall"，表示卡片卸载事件 |
+| callback | Callback&lt;string&gt; | 否 | 需要注销的事件回调方法。缺省时，表示注销所有已注册事件回调 |
 
 **示例：**
 
   ```js
-  formHost.off("formUninstall", (error, data) => {
-      if (error) {
-          console.log('formHost off formUninstall, error:' + error.code);
-      }
-  });
+  let callback = function(formId) {
+      console.log('formHost on formUninstall, formId:' + formId);
+  }
+  formHost.off("formUninstall", callback);
   ```
 
 ## notifyFormsVisible
@@ -899,11 +897,11 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
-  | isVisible | boolean | 是   | 是否可见 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
+| isVisible | boolean | 是   | 是否可见 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -944,7 +942,7 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsVisible(formIds, true).catch((error) => {
-      console.log('formProvider notifyFormsVisible, error:' + JSON.stringify(error));
+      console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
   });
   ```
 
@@ -960,11 +958,11 @@ SystemCapability.Ability.Form
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明    |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
-  | isEnableUpdate | boolean | 是   | 是否使能更新 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果 |
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | 是   | 卡片标识列表 |
+| isEnableUpdate | boolean | 是   | 是否使能更新 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
 
 **示例：**
 
@@ -1005,6 +1003,6 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsEnableUpdate(formIds, true).catch((error) => {
-      console.log('formProvider notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+      console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
   ```
