@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import hichecker from '@ohos.hichecker';
 ```
 
@@ -42,7 +42,7 @@ addRule(rule: BigInt): void
 
 **示例：**
 
-```
+```js
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -67,7 +67,7 @@ removeRule(rule: BigInt): void
 
 **示例：**
 
-```
+```js
 // 删除一条规则
 hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -92,7 +92,7 @@ getRule(): BigInt
 
 **示例：**
 
-```
+```js
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
@@ -122,7 +122,7 @@ contains(rule: BigInt): boolean
 
 **示例：**
 
-```
+```js
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
