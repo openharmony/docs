@@ -25,7 +25,7 @@ Currently, the main window is automatically created when the application is star
 ###Creating a Subwindow
 You can call **create** to create a subwindow. The sample code is as follows:
 
-```
+```js
  import window from '@ohos.window';
  var windowClass = null;
  let promise = window.create("subWindow", window.WindowType.TYPE_APP);
@@ -41,7 +41,7 @@ You can call **create** to create a subwindow. The sample code is as follows:
 
 - Call **getTopWindow** to obtain the top window of the application. The sample code is as follows:
 
-```
+```js
  var windowClass = null;
  let promise = window.getTopWindow();
  promise.then((data)=> {
@@ -54,7 +54,7 @@ You can call **create** to create a subwindow. The sample code is as follows:
 
 - You can also call **find** to obtain created subwindows in the application. The sample code is as follows:
 
-```
+```js
  var windowClass = null;
  let promise = window.find("subWindow");
  promise.then((data)=> {
@@ -69,7 +69,7 @@ You can call **create** to create a subwindow. The sample code is as follows:
 
 After a window object is obtained, you can call **hide** and **destroy** to hide and destroy the window object, respectively. The sample code is as follows:
 
-```
+```js
  let promise = windowClass.hide();
  promise.then((data)=> {
     console.info('window hidden. Data: ' + JSON.stringify(data))
@@ -93,7 +93,7 @@ After a window object is obtained,
 
 The sample code is as follows:
 
-```
+```js
 import window from '@ohos.window';
 .onClick(async () => {
     try {
