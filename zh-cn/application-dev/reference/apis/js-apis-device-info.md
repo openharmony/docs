@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```ts
 import deviceInfo from '@ohos.deviceInfo'
 ```
 
