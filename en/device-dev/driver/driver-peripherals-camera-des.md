@@ -96,7 +96,7 @@ The camera module encapsulates camera operations in camera preview, photographin
 
   | API                                                    | Description                        |
   | ------------------------------------------------------------ | -------------------------------- |
-  | CamRetCode IsStreamsSupported(<br>    OperationMode mode,<br>    const std::shared_ptr\<CameraStandard::CameraMetadata\> &modeSetting,<br>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br>    StreamSupportType &type) | Checks whether a stream can be added.    |
+  | CamRetCode IsStreamsSupported(<br>    OperationMode mode,<br>    const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br>    StreamSupportType &type) | Checks whether a stream can be added.    |
   | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) | Creates streams.                          |
   | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) | Releases streams.                          |
   | CamRetCode CommitStreams(OperationMode mode,<br>    const std::shared_ptr<CameraMetadata> &modeSetting) | Configure streams.                          |
@@ -363,7 +363,7 @@ To camera driver development procedure is as follows:
    Use the **CommitStreams()** interface to configure the stream, including PipelineCore initialization and creation. It must be called after the stream is created.
 
    ```
-   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<CameraStandard::CameraMetadata>& modeSetting)
+   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<Camera::CameraMetadata>& modeSetting)
    {
        auto cameraDevice = cameraDevice_.lock();
        if (cameraDevice == nullptr) {
@@ -404,7 +404,7 @@ To camera driver development procedure is as follows:
    ```
    using CaptureInfo = struct _CaptureInfo {
          std::vector<int> streamIds_; // IDs of streams to be captured
-         std::shared_ptr<CameraStandard::CameraMetadata> captureSetting_; // Camera ability can be obtained through the GetCameraAbility() interface of CameraHost.
+         std::shared_ptr<Camera::CameraMetadata> captureSetting_; // Camera ability can be obtained through the GetCameraAbility() interface of CameraHost.
         bool enableShutterCallback_;
    };
    ```
