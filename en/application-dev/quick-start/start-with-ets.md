@@ -40,7 +40,7 @@
    After the project synchronization is complete, choose **entry** &gt; **src** &gt; **main** &gt; **ets** &gt; **MainAbility** &gt; **pages** in the **Project** window and open the **index.ets** file. You can see that the file contains a **&lt;Text&gt;** component. The sample code in the **index.ets** file is shown below:
 
    
-   ```ts
+   ```
    @Entry
    @Component
    struct Index {
@@ -64,7 +64,7 @@
    On the default page, add a **&lt;Button&gt;** component to accept user clicks and implement redirection to another page. The sample code in the **index.ets** file is shown below:
 
    
-   ```ts
+   ```
    @Entry
    @Component
    struct Index {
@@ -113,7 +113,7 @@
    Add **&lt;Text&gt;** and **&lt;Button&gt;** components and set their styles, as you do for the first page. The sample code in the **second.ets** file is shown below:
 
    
-   ```ts
+   ```
    @Entry
    @Component
    struct Second {
@@ -154,7 +154,7 @@ You can implement page redirection through the page router, which finds the targ
    In the **index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **index.ets** file is shown below:
 
    
-   ```ts
+   ```
    import router from '@ohos.router';
    
    @Entry
@@ -197,7 +197,7 @@ You can implement page redirection through the page router, which finds the targ
    In the **second.ets** file of the second page, bind the **onClick** event to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.ets** file is shown below:
 
    
-   ```ts
+   ```
    import router from '@ohos.router';
    
    @Entry
