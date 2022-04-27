@@ -196,7 +196,7 @@
 
    示例代码如下：
 
-   ```
+   ```js
    import data_rdb from '@ohos.data.rdb'
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
@@ -213,7 +213,7 @@
 
    示例代码如下：
 
-   ```
+   ```js
    var u8 = new Uint8Array([1, 2, 3])
    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8,}
    let insertPromise = rdbStore.insert("test", valueBucket)
@@ -226,7 +226,7 @@
 
    示例代码如下：
 
-   ```
+   ```js
    let predicates = new data_rdb.RdbPredicates("test");
    predicates.equalTo("name", "Tom")
    let promisequery = rdbStore.query(predicates)
@@ -247,7 +247,7 @@
 
    示例代码如下：
 
-   ```
+   ```js
    let promise = rdbStore.setDistributedTables(["test"])
    promise.then(() => {
        console.info("setDistributedTables success.")
@@ -263,7 +263,7 @@
 
     示例代码如下：
 
-    ```
+    ```js
     let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
     let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
@@ -283,7 +283,7 @@
 
     示例代码如下：
 
-    ```
+    ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
             console.log('device=' + device[i] + ' data changed')
@@ -302,7 +302,7 @@
 
     示例代码如下：
 
-    ```
+    ```js
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
