@@ -107,7 +107,9 @@
         });
         }
     } 
-    local_object.on("change", this.changeCallback);
+
+    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
+    local_object.on("change", this.changeCallback.bind(this));
    ```
    
 5. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
@@ -169,10 +171,12 @@
        ```js
        local_object.setSessionId("");
        ```
+## 开发实例
 
-   
+针对分布式数据对象，有以下开发实例可供参考： 
 
-   
+- [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
 
-
+在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
+ 
