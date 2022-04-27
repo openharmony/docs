@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import Queue from '@ohos.util.Queue'  
 ```
 
@@ -33,7 +33,7 @@ Queue的构造函数。
 
 **示例：**
 
-```
+```ts
 let queue = new Queue();
 ```
 
@@ -58,7 +58,7 @@ add(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
@@ -83,7 +83,7 @@ pop(): T
 
 **示例：**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -107,7 +107,7 @@ getFirst(): T
 
 **示例：**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -140,7 +140,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -166,7 +166,7 @@ queue.forEach((value, index) => {
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **示例：**
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);

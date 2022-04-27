@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import List from '@ohos.util.List'  
 ```
 
@@ -34,7 +34,7 @@ List的构造函数。
 
 **示例：**
 
-```
+```ts
 let list = new List();
 ```
 
@@ -59,7 +59,7 @@ add(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let list = new List();
 let result = list.add("a");
 let result1 = list.add(1);
@@ -84,7 +84,7 @@ insert(element: T, index: number): void
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.insert("A", 0);
 list.insert(0, 1);
@@ -111,7 +111,7 @@ has(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let list = new List();
 let result = list.has("Ahfbrgrbgnutfodgorrogorg");
 list.add("Ahfbrgrbgnutfodgorrogorg");
@@ -138,7 +138,7 @@ get(index: number): T
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -170,7 +170,7 @@ getLastIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -202,7 +202,7 @@ getIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -235,7 +235,7 @@ equal(obj: Object): boolean
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -270,7 +270,7 @@ removeByIndex(index: number): T
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -300,7 +300,7 @@ remove(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -333,7 +333,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -371,7 +371,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -404,7 +404,7 @@ comparator的参数说明：
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -435,7 +435,7 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -454,7 +454,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -484,7 +484,7 @@ set(index: number, element: T): T
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -508,7 +508,7 @@ convertToArray(): Array&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -531,7 +531,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -554,7 +554,7 @@ getFirst(): T
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -577,7 +577,7 @@ getLast(): T
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -601,7 +601,7 @@ let result = list.getLast();
 
 **示例：**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);

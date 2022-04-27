@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import LightWeightMap from '@ohos.util.LightWeightMap'  
 ```
 
@@ -32,7 +32,7 @@ LightWeightMap的构造函数。
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 ```
 
@@ -51,7 +51,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.isEmpty();
 ```
@@ -77,7 +77,7 @@ hasAll(map: LightWeightMap<K, V>): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -107,7 +107,7 @@ hasKey(key: K): boolean;
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasKey;
 lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -136,7 +136,7 @@ hasValue(value: V): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -158,7 +158,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
 ```
@@ -184,7 +184,7 @@ get(key: K): V
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -212,7 +212,7 @@ getIndexOfKey(key: K): number
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -240,7 +240,7 @@ getIndexOfValue(value: V): number
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -268,7 +268,7 @@ getKeyAt(index: number): K
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -290,7 +290,7 @@ setAll(map: LightWeightMap<K, V>): void
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -319,7 +319,7 @@ set(key: K, value: V): Object
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -345,7 +345,7 @@ remove(key: K): V
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -373,7 +373,7 @@ removeAt(index: number): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -402,7 +402,7 @@ setValueAt(index: number, newValue: V): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -430,7 +430,7 @@ getValueAt(index: number): V
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -446,7 +446,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -468,7 +468,7 @@ keys(): IterableIterator&lt;K&gt;
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -495,7 +495,7 @@ values(): IterableIterator&lt;V&gt;
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -530,7 +530,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sdfs", 123);
 lightWeightMap.set("dfsghsf", 357);
@@ -554,7 +554,7 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -581,7 +581,7 @@ toString(): String
 
 **示例：**
 
-  ```
+  ```ts
   let lightWeightMap = new LightWeightMap();
   lightWeightMap.set("A", 123);
   lightWeightMap.set("sdfs", 356);
@@ -602,7 +602,7 @@ toString(): String
 
 **示例：**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);

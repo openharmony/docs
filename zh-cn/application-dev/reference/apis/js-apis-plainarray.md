@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import PlainArray from '@ohos.util.PlainArray'  
 ```
 
@@ -32,7 +32,7 @@ PlainArray的构造函数。
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 ```
 
@@ -51,7 +51,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
 ```
@@ -77,7 +77,7 @@ has(key: number): boolean
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "sddfhf");
@@ -105,7 +105,7 @@ get(key: number): T
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -133,7 +133,7 @@ getIndexOfKey(key: number): number
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -161,7 +161,7 @@ getIndexOfValue(value: T): number
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -189,7 +189,7 @@ getKeyAt(index: number): number
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -216,7 +216,7 @@ getValueAt(index: number): T
 
 **示例：**
 
-  ```
+  ```ts
   let plainArray = new PlainArray();
   plainArray.add(1, "sddfhf");
   plainArray.add(2, "sffdfhf");
@@ -237,7 +237,7 @@ clone(): PlainArray&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -260,7 +260,7 @@ add(key: number, value: T): void
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 ```
@@ -286,7 +286,7 @@ remove(key: number): T
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -315,7 +315,7 @@ removeAt(index: number): T
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -345,7 +345,7 @@ removeRangeFrom(index: number, size: number): number
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -368,7 +368,7 @@ setValueAt(index: number, value: T): void
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -390,7 +390,7 @@ toString(): String
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -406,7 +406,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -436,7 +436,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -460,7 +460,7 @@ plainArray.forEach((value, key) => {
 
 **示例：**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");

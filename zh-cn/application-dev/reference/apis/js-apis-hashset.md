@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import HashSet from '@ohos.util.HashSet';
 ```
 
@@ -32,7 +32,7 @@ HashSet的构造函数。
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 ```
 
@@ -51,9 +51,9 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const hashSet = new HashSet();
-hashSet.isEmpty();
+let result = hashSet.isEmpty();
 ```
 
 
@@ -77,7 +77,7 @@ has(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -105,7 +105,7 @@ add(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -131,7 +131,7 @@ remove(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -147,7 +147,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -169,7 +169,7 @@ values(): IterableIterator&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -204,7 +204,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("sdfs");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -227,7 +227,7 @@ entries(): IterableIterator<[T, T]>
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -255,7 +255,7 @@ while(temp != undefined) {
 
 **示例：**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
