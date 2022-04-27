@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import TreeSet from '@ohos.util.TreeSet'  
 ```
 
@@ -38,7 +38,7 @@ TreeSet的构造函数。
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 ```
 
@@ -57,7 +57,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const treeSet = new TreeSet();
 let result = treeSet.isEmpty();
 ```
@@ -83,7 +83,7 @@ has(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
@@ -105,7 +105,7 @@ getFirstValue(): T
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -127,7 +127,7 @@ getLastValue(): T
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -155,7 +155,7 @@ add(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -181,7 +181,7 @@ remove(value: T): boolean
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -209,7 +209,7 @@ getLowerValue(key: T): T
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -238,7 +238,7 @@ getHigherValue(key: T): T
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -261,7 +261,7 @@ popFirst(): T
 
 **返回值：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -283,7 +283,7 @@ popLast(): T
 
 **返回值：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -299,7 +299,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -321,7 +321,7 @@ values(): IterableIterator&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -356,7 +356,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
@@ -380,7 +380,7 @@ entries(): IterableIterator<[T, T]>
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -409,7 +409,7 @@ while(temp != undefined) {
 
 **示例：**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");

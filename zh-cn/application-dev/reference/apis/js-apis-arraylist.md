@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```ts
 import ArrayList from '@ohos.util.ArrayList'
 ```
 
@@ -30,7 +30,7 @@ ArrayList的构造函数。
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 ```
 
@@ -55,7 +55,7 @@ add(element: T): boolean
 
 **示例：**
 
-  ```
+  ```ts
   let arrayList = new ArrayList();
   let result = arrayList.add("a");
   let result1 = arrayList.add(1);
@@ -80,7 +80,7 @@ insert(element: T, index: number): void
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
@@ -107,7 +107,7 @@ has(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -134,7 +134,7 @@ getIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -166,7 +166,7 @@ getLastIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -198,7 +198,7 @@ removeByIndex(index: number): T
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -228,7 +228,7 @@ remove(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -252,7 +252,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -287,7 +287,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -325,7 +325,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -357,7 +357,7 @@ comparator的参数说明：
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -389,7 +389,7 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -408,7 +408,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -432,7 +432,7 @@ clone(): ArrayList&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -455,7 +455,7 @@ getCapacity(): number
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -478,7 +478,7 @@ convertToArray(): Array&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -501,7 +501,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -524,7 +524,7 @@ increaseCapacityTo(newCapacity: number): void
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -542,7 +542,7 @@ trimToCurrentLength(): void
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -565,7 +565,7 @@ arrayList.trimToCurrentLength();
 
 **示例：**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
