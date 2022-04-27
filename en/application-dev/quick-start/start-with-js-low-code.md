@@ -105,7 +105,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
      In the files of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. This operation needs to be completed in both .js and .visual files.
    - In the **index.js** file:
      
-     ```
+     ```js
      import router from '@ohos.router';  
      
      export default {     
@@ -128,7 +128,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 
    - In the **second.js** file:
      
-      ```
+      ```js
       import router from '@ohos.router';  
       
       export default {     
