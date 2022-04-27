@@ -96,7 +96,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br/>    OperationMode mode,<br/>    const std::shared_ptr\<CameraStandard::CameraMetadata\> &modeSetting,<br/>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br/>    StreamSupportType &type) |
+  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br/>    OperationMode mode,<br/>    const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br/>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br/>    StreamSupportType &type) |
   | 创建流                           | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) |
   | 释放流                           | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) |
   | 配置流                           | CamRetCode CommitStreams(OperationMode mode,<br/>    const std::shared_ptr<CameraMetadata> &modeSetting) |
@@ -363,7 +363,7 @@ Camera驱动的开发过程主要包含以下步骤：
    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
 
    ```
-   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<CameraStandard::CameraMetadata>& modeSetting)
+   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<Camera::CameraMetadata>& modeSetting)
    {
        auto cameraDevice = cameraDevice_.lock();
        if (cameraDevice == nullptr) {
@@ -404,7 +404,7 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
    using CaptureInfo = struct _CaptureInfo {
          std::vector<int> streamIds_; //需要Capture的streamIds
-         std::shared_ptr<CameraStandard::CameraMetadata> captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
+         std::shared_ptr<Camera::CameraMetadata> captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
         bool enableShutterCallback_;
    };
    ```
