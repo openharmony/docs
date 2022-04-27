@@ -961,7 +961,7 @@ Asynchronously calculates the hash value of a file. This method uses a promise t
   | Name      | Type    | Mandatory  | Description                                      |
   | --------- | ------ | ---- | ---------------------------------------- |
   | path      | string | Yes   | Absolute path of the target file.                          |
-  | algorithm | string | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
+  | algorithm | string | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.<br/>**sha256** is recommended for security purposes.|
 
 - Return value
   | Type                   | Description                        |
@@ -990,7 +990,7 @@ Asynchronously calculates the hash value of a file. This method uses a callback 
   | Name      | Type                         | Mandatory  | Description                                      |
   | --------- | --------------------------- | ---- | ---------------------------------------- |
   | path      | string                      | Yes   | Absolute path of the target file.                          |
-  | algorithm | string                      | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
+  | algorithm | string                      | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.<br/>**sha256** is recommended for security purposes.|
   | callback  | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 - Example
