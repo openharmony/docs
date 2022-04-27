@@ -90,6 +90,7 @@
   - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
+  - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
 - 电话服务
 
   - [@ohos.contact (联系人)](js-apis-contact.md)
