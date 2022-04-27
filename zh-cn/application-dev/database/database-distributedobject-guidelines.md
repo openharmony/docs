@@ -13,9 +13,9 @@
 
 
 **表1** 分布式数据对象实例创建接口
-| 包名 | 接口名 | 描述 | 
+| 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 <br>-&nbsp;source：设置distributedObject的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式对象。| 
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作 <br>-&nbsp;source：设置distributedObject的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式对象。|
 
 ### 创建分布式数据对象sessionId
 
@@ -40,9 +40,9 @@
 订阅数据变更需要指定Callback作为回调方法，订阅的数据对象发生数据变更后，Callback被回调。
 
 **表4** 分布式数据对象数据变更订阅接口
-| 类名 | 接口名 | 描述 | 
+| 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 订阅数据变更。 | 
+| DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 订阅数据变更。 |
 | DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | 注销订阅。需要删除的变更回调，若不设置则删除该对象所有的变更回调。 |
 
 ### 订阅数据对象上下线
@@ -77,7 +77,7 @@
 
 
 3. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
-   
+  
    以下为加入同步组网的代码示例:
 
    ```js
@@ -113,7 +113,7 @@
    ```
    
 5. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
-   
+  
    以下为修改分布式数据对象属性的代码示例：
    ```js
    local_object.name = "jack";
@@ -133,7 +133,7 @@
    ```
 
 6. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
-   
+  
    以下为访问对象的代码示例：
    ```js
    console.info("name " + local_object["name"]); 
@@ -157,7 +157,7 @@
     local_object.on("status", this.statusCallback);
    ```
 9. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
-   
+  
     以下为取消监听数据变更的代码示例：
    ```js
    //删除上下线回调statusCallback
@@ -175,8 +175,9 @@
 
 针对分布式数据对象，有以下开发实例可供参考： 
 
-[备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
+- [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
-分布式数据对象在备忘录应用中，通过分布式数据对象框架，当用户在某一端设备上新增备忘录事件，修改编辑事件标题和内容以及清空事件列表时，产生的数据变更结果均可以同步刷新显现在可信组网内其他设备上。
+
+在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
 
 
