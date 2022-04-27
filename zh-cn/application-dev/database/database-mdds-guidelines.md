@@ -29,7 +29,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
 以单版本分布式数据库为例，说明开发步骤。
 
 1. 导入模块。
-   ```
+   ```js
    import distributedData from '@ohos.data.distributedData';
    ```
 
@@ -38,7 +38,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    2. 创建分布式数据库管理器实例。
 
    以下为创建分布式数据库管理器的代码示例：
-   ```
+   ```js
    let kvManager;
    try {
        const kvManagerConfig = {
@@ -66,7 +66,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    2. 创建分布式数据库，建议关闭自动同步功能(autoSync:false)，需要同步时主动调用sync接口。
 
    以下为创建分布式数据库的代码示例：
-   ```
+   ```js
    let kvStore;
    try {
        const options = {
@@ -95,7 +95,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
 
 4. 订阅分布式数据变化。
    以下为订阅单版本分布式数据库数据变化通知的代码示例:
-   ```
+   ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
        console.log("dataChange callback call data: " + JSON.stringify(data));
    });
@@ -107,7 +107,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
 
    以下为将字符串类型键值数据写入分布式数据库的代码示例：
 
-   ```
+   ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
@@ -128,7 +128,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    2. 从单版本分布式数据库中获取数据。
 
    以下为从分布式数据库中查询字符串类型数据的代码示例：
-   ```
+   ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
@@ -151,7 +151,7 @@ OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种
    1.选择同一组网环境下的设备以及同步模式，进行数据同步。
 
    以下为单版本分布式数据库进行数据同步的代码示例，其中deviceIds可由deviceManager调用getTrustedDeviceListSync()方法得到，1000表示最大延迟时间为1000ms：
-   ```
+   ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
    let devManager;
