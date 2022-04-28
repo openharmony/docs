@@ -23,20 +23,20 @@ HiChecker提供的主要接口及功能如下：
 | **类** | **方法（包括返回值、方法名、参数列表）** | **描述** | 
 | -------- | -------- | -------- |
 | HiChecker | uint_64_t&nbsp;RULE_CAUTION_PRINT_LOG<br/>=&nbsp;1&lt;&lt;63; | 告警规则，当有告警时记录日志。 | 
-| uint_64_t&nbsp;RULE_CAUTION_TRIGGER_CRASH&nbsp;=&nbsp;1&lt;&lt;62; | 告警规则，当有告警时让应用退出。 | 
-| uint_64_t&nbsp;RULE_THREAD_CHECK_SLOW_PROCESS&nbsp;=&nbsp;1; | 检测规则，检测是否有耗时函数被调用。 | 
-| uint_64_t&nbsp;RULE_CHECK_SLOW_EVENT&nbsp;=&nbsp;1&lt;&lt;32; | 检测规则，检测有事件分发或处理超过规定的时间阈值。 | 
-| uint_64_t&nbsp;RULE_CHECK_ABILITY_CONNECTION_LEAK&nbsp;=&nbsp;1&lt;&lt;33; | 检测规则，检测ability泄露。 | 
-| AddRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | 添加一条或者多条规则到系统，系统根据添加的规则进行检测或反馈。 | 
-| RemoveRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | 删除一组规则，删除的规则后续将不再生效。 | 
-| GetRule()&nbsp;:&nbsp;uint_64_t | 获取当前线程规则、进程规则、告警规则的合集。 | 
-| Contains(uint_64_t&nbsp;rule)&nbsp;:&nbsp;bool | 当前已添加的规则集中是否包含了某一个特定的规则,&nbsp;如果传入的rule是线程级别的rule，仅查询当前线程中是否包含。 | 
-| NotifySlowProcess(std::string&nbsp;tag)&nbsp;:&nbsp;void | 通知有慢处理，通知系统当前代码调用了耗时较长的慢处理流程，以告知应用重要线程中尽量避开直接调用。 | 
-| NotifySlowEvent(std::string&nbsp;tag)&nbsp;:&nbsp;void | 通知发生事件分发超时或执行超时。 | 
-| NotifyAbilityConnectionLeak(Caution&nbsp;caution)&nbsp;:&nbsp;void | 通知发生AbilityConnection泄露。 | 
+|| uint_64_t&nbsp;RULE_CAUTION_TRIGGER_CRASH&nbsp;=&nbsp;1&lt;&lt;62; | 告警规则，当有告警时让应用退出。 | 
+|| uint_64_t&nbsp;RULE_THREAD_CHECK_SLOW_PROCESS&nbsp;=&nbsp;1; | 检测规则，检测是否有耗时函数被调用。 | 
+|| uint_64_t&nbsp;RULE_CHECK_SLOW_EVENT&nbsp;=&nbsp;1&lt;&lt;32; | 检测规则，检测有事件分发或处理超过规定的时间阈值。 | 
+|| uint_64_t&nbsp;RULE_CHECK_ABILITY_CONNECTION_LEAK&nbsp;=&nbsp;1&lt;&lt;33; | 检测规则，检测ability泄露。 | 
+|| AddRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | 添加一条或者多条规则到系统，系统根据添加的规则进行检测或反馈。 | 
+|| RemoveRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | 删除一组规则，删除的规则后续将不再生效。 | 
+|| GetRule()&nbsp;:&nbsp;uint_64_t | 获取当前线程规则、进程规则、告警规则的合集。 | 
+|| Contains(uint_64_t&nbsp;rule)&nbsp;:&nbsp;bool | 当前已添加的规则集中是否包含了某一个特定的规则,&nbsp;如果传入的rule是线程级别的rule，仅查询当前线程中是否包含。 | 
+|| NotifySlowProcess(std::string&nbsp;tag)&nbsp;:&nbsp;void | 通知有慢处理，通知系统当前代码调用了耗时较长的慢处理流程，以告知应用重要线程中尽量避开直接调用。 | 
+|| NotifySlowEvent(std::string&nbsp;tag)&nbsp;:&nbsp;void | 通知发生事件分发超时或执行超时。 | 
+|| NotifyAbilityConnectionLeak(Caution&nbsp;caution)&nbsp;:&nbsp;void | 通知发生AbilityConnection泄露。 | 
 | Caution | GetTriggerRule()&nbsp;:&nbsp;uint_64_t | 获取触发当前告警的检测规则。 | 
-| GetCautionMsg()&nbsp;:&nbsp;std::string | 获取更多辅助信息。 | 
-| GetStackTrace()&nbsp;:&nbsp;std::string | 获取告警触发时的堆栈信息。 | 
+|| GetCautionMsg()&nbsp;:&nbsp;std::string | 获取更多辅助信息。 | 
+|| GetStackTrace()&nbsp;:&nbsp;std::string | 获取告警触发时的堆栈信息。 | 
 
 
 ### 开发实例
