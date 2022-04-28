@@ -125,15 +125,13 @@
 1. 获取引导文件U-boot。
 
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-   > 单板的U-boot文件请在开源包中获取：
    > 
-   > Hi3516DV300：device\hisilicon\hispark_taurus\sdk_liteos\uboot\out\boot\u-boot-hi3516dv300.bin
-   > 
-   > Hi3518EV300：device\hisilicon\hispark_aries\sdk_liteos\uboot\out\boot\u-boot-hi3518ev300.bin
+   > 单板的U-boot文件请在开源包中获取：device\hisilicon\hispark_taurus\sdk_liteos\uboot\out\boot\u-boot-hi3516dv300.bin
+
 
 2. 根据USB烧写步骤烧写U-boot文件。
 
-   按照[Hi3516系列USB烧写步骤](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681)/[Hi3518系列USB烧写步骤](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3518-upload-0000001057313128#section93591711580)中描述的烧写方法，选择对应单板的U-boot文件进行烧写。
+   按照[Hi3516系列USB烧写步骤](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681)中描述的烧写方法，选择对应单板的U-boot文件进行烧写。
 
 3. 烧写完成后，登录串口如下图所示。
 

@@ -21,7 +21,7 @@ build
 └── subsystem_config.json
 productdefine/common
 └── products
-    └── Hi3568DV300.json
+    └── Hi3516DV300.json
 ```
 
 
