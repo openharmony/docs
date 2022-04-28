@@ -23,9 +23,9 @@ None
 Canvas(context: CanvasRenderingContext2D)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | Yes | - | For details, see CanvasRenderingContext2D. |
+    | Name    | Type                                     | Mandatory | Default Value | Description                              |
+    | ------- | ---------------------------------------- | --------- | ------------- | ---------------------------------------- |
+    | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | Yes       | -             | For details, see CanvasRenderingContext2D. |
 
 
 ## Attributes
@@ -37,9 +37,9 @@ Universal attributes are supported.
 
 In addition to universal events, the following events are supported.
 
-| Name | Parameter | Description |
-| -------- | -------- | -------- |
-| onReady(callback: () =&gt; void) | None | Triggered when . |
+| Name                             | Parameter | Description      |
+| -------------------------------- | --------- | ---------------- |
+| onReady(callback: () =&gt; void) | None      | Triggered when . |
 
 
 ## Example

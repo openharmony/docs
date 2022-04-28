@@ -23,50 +23,50 @@ None
 Slider(value:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | No | 0 | Current progress. |
-  | min | number | No | 0 | Minimum value. |
-  | max | number | No | 100 | Maximum value. |
-  | step | number | No | 1 | Step of the slider. When the corresponding step is set, the slider slides intermittently. |
-  | style | SliderStyle | No | SliderStyle.OutSet | Style of the slider. |
-  | direction<sup>8+</sup> | [Axis](../reference/arkui-ts/ts-appendix-enums.md#axis-enums) | No | Axis.Horizontal | Whether the slider moves horizontally or vertically. |
-  | reverse<sup>8+</sup> | boolean | No | false | Whether the slider values are reversed. |
+    | Name                   | Type                                    | Mandatory | Default Value      | Description                              |
+    | ---------------------- | --------------------------------------- | --------- | ------------------ | ---------------------------------------- |
+    | value                  | number                                  | No        | 0                  | Current progress.                        |
+    | min                    | number                                  | No        | 0                  | Minimum value.                           |
+    | max                    | number                                  | No        | 100                | Maximum value.                           |
+    | step                   | number                                  | No        | 1                  | Step of the slider. When the corresponding step is set, the slider slides intermittently. |
+    | style                  | SliderStyle                             | No        | SliderStyle.OutSet | Style of the slider.                     |
+    | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis-enums) | No        | Axis.Horizontal    | Whether the slider moves horizontally or vertically. |
+    | reverse<sup>8+</sup>   | boolean                                 | No        | false              | Whether the slider values are reversed.  |
 
 - SliderStyle enums
-    | Name | Description | 
-  | -------- | -------- |
-  | OutSet | The slider is on the slider rail. | 
-  | InSet | The slider is in the slider rail. | 
+    | Name   | Description                       |
+    | ------ | --------------------------------- |
+    | OutSet | The slider is on the slider rail. |
+    | InSet  | The slider is in the slider rail. |
 
 
 ## Attributes
 
 Touch target configuration is not supported.
 
-  | Name | Type | Default Value | Description | 
-| -------- | -------- | -------- | -------- |
-| blockColor | Color | - | Color of the slider. | 
-| trackColor | Color | - | Background color of the slider. | 
-| selectedColor | Color | - | Color of the slider rail that has been slid. | 
-| showSteps | boolean | false | Whether to display the current step. | 
-| showTips | boolean | false | Whether to display a bubble to indicate the percentage when sliding. | 
+| Name          | Type    | Default Value | Description                              |
+| ------------- | ------- | ------------- | ---------------------------------------- |
+| blockColor    | Color   | -             | Color of the slider.                     |
+| trackColor    | Color   | -             | Background color of the slider.          |
+| selectedColor | Color   | -             | Color of the slider rail that has been slid. |
+| showSteps     | boolean | false         | Whether to display the current step.     |
+| showTips      | boolean | false         | Whether to display a bubble to indicate the percentage when sliding. |
 
 
 ## Events
 
 Among all the universal events, only **OnAppear** and **OnDisAppear** are supported.
 
-| Name | Description |
-| -------- | -------- |
+| Name                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
 | onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Callback invoked when the slider slides.<br/>**value**: current progress.<br/>**mode**: dragging state. |
 
 - SliderChangeMode enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Begin | The user starts to drag the slider. | 
-  | Moving | The user is dragging the slider. | 
-  | End | The user stops dragging the slider. | 
+    | Name   | Description                         |
+    | ------ | ----------------------------------- |
+    | Begin  | The user starts to drag the slider. |
+    | Moving | The user is dragging the slider.    |
+    | End    | The user stops dragging the slider. |
 
 
 ## Example
