@@ -8,7 +8,7 @@ This module provides thermal level-related callback and query APIs to obtain the
 
 ## Modules to Import
 
-```
+```js
 import thermal from '@ohos.thermal';
 ```
 
@@ -46,7 +46,7 @@ Subscribes to thermal level changes.
 
 **Example**
 
-```
+```js
 var lev = 0;
 thermal.subscribeThermalLevel((lev) => {
     console.info("Thermal level is: " + lev);
@@ -69,7 +69,7 @@ Unsubscribes from thermal level changes.
 
 **Example**
 
-```
+```js
 thermal.unsubscribeThermalLevel(() => {
     console.info("Unsubscribe completed.");
 });
@@ -91,7 +91,7 @@ Obtains the current thermal level.
 
 **Example**
 
-```
+```js
 var lev = thermal.getThermalLevel();
 console.info("Thermal level is: " + lev);
 ```

@@ -8,7 +8,7 @@
 ## Modules to Import
 
 
-```
+```js
 import screenlock from '@ohos.screenLock';
 ```
 
@@ -28,7 +28,7 @@ Checks whether the screen is locked. This method uses an asynchronous callback t
 
 - Example
   
-  ```
+  ```js
   screenlock.isScreenLocked((err, data)=>{      
      if (err) {
           console.error('isScreenLocked callback error -> ${JSON.stringify(err)}');
@@ -54,7 +54,7 @@ Checks whether the screen is locked. This method uses a promise to return the re
 
 - Example
   
-  ```
+  ```js
   screenlock.isScreenLocked().then((data) => {
       console.log('isScreenLocked success: data -> ${JSON.stringify(data)}');
   }).catch((err) => {
@@ -81,7 +81,7 @@ Checks whether a device is in secure mode. This method uses an asynchronous call
 
 - Example
   
-  ```
+  ```js
   screenlock.isSecureMode((err, data)=>{      
      if (err) {
           console.error('isSecureMode callback error -> ${JSON.stringify(err)}');
@@ -107,7 +107,7 @@ Checks whether a device is in secure mode. This method uses a promise to return 
 
 - Example
   
-  ```
+  ```js
   screenlock.isSecureMode().then((data) => {
       console.log('isSecureMode success: data->${JSON.stringify(data)}');
   }).catch((err) => {
@@ -134,7 +134,7 @@ Unlocks the screen. This method uses an asynchronous callback to return the resu
 
 - Example
   
-  ```
+  ```js
   screenlock.unlockScreen((err)=>{      
      if (err) {
           console.error('unlockScreen callback error -> ${JSON.stringify(err)}');
@@ -160,7 +160,7 @@ Unlocks the screen. This method uses a promise to return the result.
 
 - Example
   
-  ```
+  ```js
   screenlock.unlockScreen().then(() => {
       console.log('unlockScreen success');
   }).catch((err) => {
