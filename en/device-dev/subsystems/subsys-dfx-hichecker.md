@@ -34,7 +34,7 @@ HiChecker provides the APIs listed in the following table.
 | NotifySlowProcess(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application of a slow process so that your application avoids calling it directly in key threads.| 
 | NotifySlowEvent(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application that event distribution or execution has timed out.| 
 | NotifyAbilityConnectionLeak(Caution&nbsp;caution)&nbsp;:&nbsp;void | Notifies your application that AbilityConnection leakage has occurred.| 
-| Caution | GetTriggerRule()&nbsp;:&nbsp;uint_64_t | Obtains the rule that triggers the current alarm.| 
+| GetTriggerRule()&nbsp;:&nbsp;uint_64_t | Obtains the rule that triggers the current alarm.| 
 | GetCautionMsg()&nbsp;:&nbsp;std::string | Obtains the alarm message.| 
 | GetStackTrace()&nbsp;:&nbsp;std::string | Obtains the stack when an alarm is triggered.| 
 
