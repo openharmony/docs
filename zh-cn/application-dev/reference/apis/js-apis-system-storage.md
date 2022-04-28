@@ -131,7 +131,7 @@ export default {
 
 delete(Object): void
 
-删除缓存中对应的键值对。
+删除缓存中索引对应的键值对。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
