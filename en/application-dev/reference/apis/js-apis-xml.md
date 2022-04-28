@@ -32,7 +32,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
@@ -54,7 +54,7 @@ Sets an attribute.
 
 **Example**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -74,8 +74,8 @@ Adds an empty element.
 
 **Example**
 
-```
- var thatSer = new xml.XmlSerializer(bufView);
+```js
+var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
 
@@ -88,7 +88,7 @@ Sets a declaration.
 
 **Example**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -108,7 +108,7 @@ Writes the start tag based on the given element name.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("notel");
@@ -124,7 +124,7 @@ Writes the end tag of the element.
 
 **Example**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
@@ -149,7 +149,7 @@ Sets the namespace for an element tag.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
@@ -172,7 +172,7 @@ Sets the comment.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
@@ -195,7 +195,7 @@ Sets CDATA attributes.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1028);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
@@ -216,7 +216,7 @@ Sets **Text**.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
@@ -240,7 +240,7 @@ Sets **DocType**.
 
 **Example**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
@@ -265,7 +265,7 @@ Creates and returns an **XmlPullParser** object. The **XmlPullParser** object pa
 
 **Example**
 
-```
+```js
 var strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -297,7 +297,7 @@ Parses XML information.
 
 **Example**
 
-```
+```js
 var strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +

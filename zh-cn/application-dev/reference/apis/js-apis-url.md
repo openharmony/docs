@@ -31,7 +31,7 @@ URLSearchParams的构造函数。
 
 **示例：**
 
-```
+```js
 var objectParams = new URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
 var objectParams1 = new URLSearchParams({"fod" : 1 , "bard" : 2});
 var objectParams2 = new URLSearchParams('?fod=1&bard=2');
@@ -55,7 +55,7 @@ append(name: string, value: string): void
 
 **示例：**
 
-```
+```js
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new URLSearchParams(urlObject.search.slice(1));
 paramsObject.append('fod', 3);
@@ -76,7 +76,7 @@ delete(name: string): void
 
 **示例：**
 
-```
+```js
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsobject = new URLSearchParams(urlObject.search.slice(1));
 paramsobject.delete('fod');
@@ -103,7 +103,7 @@ getAll(name: string): string[]
 
 **示例：**
 
-```
+```js
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.append('fod', 3); // Add a second value for the fod parameter.
@@ -125,7 +125,7 @@ entries(): IterableIterator<[string, string]>
 
 **示例：**
 
-```
+```js
 var searchParamsObject = new URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
 for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
@@ -156,7 +156,7 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 
 **示例：**
 
-```
+```js
 const myURLObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 myURLObject.searchParams.forEach((value, name, searchParams) => {  
     console.log(name, value, myURLObject.searchParams === searchParams);
@@ -185,7 +185,7 @@ get(name: string): string | null
 
 **示例：**
 
-```
+```js
 var paramsOject = new URLSearchParams(document.location.search.substring(1)); 
 var name = paramsOject.get("name"); // is the string "Jonathan" 
 var age = parseInt(paramsOject.get("age"), 10); // is the number 18
@@ -213,7 +213,7 @@ has(name: string): boolean
 
 **示例：**
 
-```
+```js
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.has('bard') === true;
@@ -235,7 +235,7 @@ set(name: string, value: string): void
 
 **示例：**
 
-```
+```js
 let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new URLSearchParams(urlObject.search.slice(1));
 paramsObject.set('baz', 3); // Add a third parameter.
@@ -251,7 +251,7 @@ sort(): void
 
 **示例：**
 
-```
+```js
 var searchParamsObject = new URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
 console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=2&c=3&d=4
@@ -273,7 +273,7 @@ keys(): IterableIterator&lt;string&gt;
 
 **示例：**
 
-```
+```js
 var searchParamsObject = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var key of searchParamsObject .keys()) { // Output key-value pairs
     console.log(key);
@@ -295,7 +295,7 @@ values(): IterableIterator&lt;string&gt;
 
 **示例：**
 
-```
+```js
 var searchParams = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var value of searchParams.values()) { 
     console.log(value);
@@ -318,7 +318,7 @@ for (var value of searchParams.values()) {
 
 **示例：**
 
-```
+```js
 const paramsObject = new URLSearchParams('fod=bay&edg=bap');
 for (const [name, value] of paramsObject) { 
     console.log(name, value); 
@@ -341,7 +341,7 @@ toString(): string
 
 **示例：**
 
-```
+```js
 let url = new URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new URLSearchParams(url.search.slice(1)); 
 params.append('fod', 3);
@@ -386,7 +386,7 @@ URL的构造函数。
 
 **示例：**
 
-```
+```js
 var mm = 'http://username:password@host:8080';
 var a = new URL("/", mm); // Output 'http://username:password@host:8080/';
 var b = new URL(mm); // Output 'http://username:password@host:8080/';
@@ -416,7 +416,7 @@ toString(): string
 
 **示例：**
 
-```
+```js
 const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString()
 ```
@@ -436,7 +436,7 @@ toJSON(): string
 | string | 用于返回网址的字符串序列化。 |
 
 **示例：**
-```
+```js
 const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON()
 ```

@@ -39,7 +39,7 @@ convert(xml: string, options?: ConvertOptions) : Object
 
 - 示例：
 
-  ```
+  ```js
   let xml =
       '<?xml version="1.0" encoding="utf-8"?>' +
       '<note importance="high" logged="true">' +
