@@ -2,6 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> API 9当前为Canary版本，仅供使用，不保证接口可稳定调用。
 
 ## 权限列表
 
@@ -147,6 +149,11 @@
 | COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_VOLUME_REMOVED                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>                     | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>                   | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup>                     | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup>                 | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
+| COMMON_EVENT_VOLUME_EJECT<sup>9+</sup>                       | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_VOLUME_UNMOUNTED                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_VOLUME_MOUNTED                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
 | COMMON_EVENT_VOLUME_BAD_REMOVAL                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE |
@@ -1163,6 +1170,58 @@ subscriber.getSubscribeInfo().then((SubscribeInfo) => {
 }).catch((err) => {
     console.error("getSubscribeInfo failed " + JSON.stringify(err));
 });
+```
+
+### finishCommonEvent<sup>9+</sup>
+
+finishCommonEvent(callback: AsyncCallback\<void>): void
+
+结束当前有序事件（callback形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 描述                   |
+| -------- | -------------------- | ---- | ---------------------- |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+
+**示例：**
+
+```js
+var subscriber;	//创建成功的订阅者对象
+
+function finishCommonEventCallback() {
+    console.log('finishCommonEvent');
+}
+
+subscriber.finishCommonEvent(finishCommonEventCallback);
+```
+
+### finishCommonEvent<sup>9+</sup>
+
+finishCommonEvent(): Promise\<void>
+
+结束当前有序事件（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**返回值：**
+
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| Promise\<void>   | 返回一个Promise的结果。 |
+
+**示例：**
+
+```js
+var subscriber;	//创建成功的订阅者对象
+
+subscriber.finishCommonEvent().then(() => {
+    console.log('finishCommonEvent');
+}).catch(() => {
+    console.log('finishCommonEvent failed');
+})
 ```
 
 ## CommonEventData

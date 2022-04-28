@@ -2,6 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> API 9当前为Canary版本，仅供使用，不保证接口可稳定调用。
 
 Want是系统的基本通信组件。
 
@@ -28,3 +30,5 @@ import Want from '@ohos.application.Want';
 | action      | 只读     | string               | 否   | 表示action选项描述。                           |
 | parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |                              |
+| extensionAbilityType<sup>9+</sup> |  只读   | bundle.ExtensionAbilityType | 否  | ExtensionAbility类型                |
+| extensionAbilityName<sup>9+<sup> | 只读     | string               | 否   | Want中扩展能力名称的描述。                                   |
