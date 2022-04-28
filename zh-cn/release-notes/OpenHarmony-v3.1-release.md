@@ -211,7 +211,7 @@ _[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md
 | 电话服务 | [短信服务](https://gitee.com/openharmony/app_samples/tree/master/Telephony/Message) | 本示例展示了电话服务中发送短信的功能。 | eTS |
 | 电话服务 | [网络搜索](https://gitee.com/openharmony/app_samples/tree/master/Telephony/RadioTech) | 本示例通过eTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。 | eTS |
 | 设备管理 | [系统电源管理](https://gitee.com/he-jianhua/app_samples/tree/master/common/PowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | eTS |
-| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/SenSor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
+| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
 | 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/DeviceManager) | 本示例展示了在eTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | eTS |
 | 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/AppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | eTS |
 | ArkUI | [web](https://gitee.com/he-jianhua/app_samples/tree/master/ETSUI/Web) | 本示例主要展示了web的功能页面。 | eTS |
