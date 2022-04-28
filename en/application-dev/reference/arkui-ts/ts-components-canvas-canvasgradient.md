@@ -15,20 +15,20 @@ addColorStop(offset: number, color: string): void
 Adds a color stop for the **CanvasGradient** object based on the specified offset and gradient color.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | offset | number | Yes | 0 | Proportion of the distance between the color stop and the start point to the total length. The value ranges from 0 to 1. | 
-  | color | string | Yes | 'ffffff' | Gradient color to set. | 
+    | Name   | Type   | Mandatory | Default Value | Description                              |
+    | ------ | ------ | --------- | ------------- | ---------------------------------------- |
+    | offset | number | Yes       | 0             | Proportion of the distance between the color stop and the start point to the total length. The value ranges from 0 to 1. |
+    | color  | string | Yes       | 'ffffff'      | Gradient color to set.                   |
 
 - Example
-    
+
   ```
   @Entry
   @Component
   struct Page45 {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)

@@ -23,50 +23,50 @@ None
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
+    | Name                    | Type                                     | Mandatory | Default Value | Description                            |
+    | ----------------------- | ---------------------------------------- | --------- | ------------- | -------------------------------------- |
+    | placeholder             | string                                   | No        | -             | Text displayed when there is no input. |
+    | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No        | -             | Text input controller.                 |
 
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-index.md), the following attributes are supported.
+In addition to universal attributes, the following attributes are supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| type | InputType | InputType.Normal | Input box type. |
-| placeholderColor | Color | - | Placeholder color. |
-| placeholderFont | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
-| enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
-| caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
-| maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| Name                     | Type                                     | Default Value     | Description                              |
+| ------------------------ | ---------------------------------------- | ----------------- | ---------------------------------------- |
+| type                     | InputType                                | InputType.Normal  | Input box type.                          |
+| placeholderColor         | Color                                    | -                 | Placeholder color.                       |
+| placeholderFont          | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
+| enterKeyType             | EnterKeyType                             | EnterKeyType.Done | How the Enter key is labeled.            |
+| caretColor               | Color                                    | -                 | Color of the caret (also known as the text insertion cursor). |
+| maxLength<sup>8+</sup>   | number                                   | -                 | Maximum number of characters in the text input. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | -                 | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
 
 - EnterKeyType enums
-    | Name | Description |
-  | -------- | -------- |
-  | EnterKeyType.Go | The Enter key is labeled "Go." |
-  | EnterKeyType.Search | The Enter key is labeled "Search." |
-  | EnterKeyType.Send | The Enter key is labeled "Send." |
-  | EnterKeyType.Next | The Enter key is labeled "Next." |
-  | EnterKeyType.Done | The Enter key is labeled "Done." |
+    | Name                | Description                        |
+    | ------------------- | ---------------------------------- |
+    | EnterKeyType.Go     | The Enter key is labeled "Go."     |
+    | EnterKeyType.Search | The Enter key is labeled "Search." |
+    | EnterKeyType.Send   | The Enter key is labeled "Send."   |
+    | EnterKeyType.Next   | The Enter key is labeled "Next."   |
+    | EnterKeyType.Done   | The Enter key is labeled "Done."   |
 
 - InputType enums
-    | Name | Description |
-  | -------- | -------- |
-  | InputType.Normal | Normal input mode. |
-  | InputType.Password | Password input mode. |
-  | InputType.Email | Email address input mode. |
-  | InputType.Number | Digit input mode. |
+    | Name               | Description               |
+    | ------------------ | ------------------------- |
+    | InputType.Normal   | Normal input mode.        |
+    | InputType.Password | Password input mode.      |
+    | InputType.Email    | Email address input mode. |
+    | InputType.Number   | Digit input mode.         |
 
 
 ### TextInputController<sup>8+</sup>
 
 Implements the controller of the **&lt;TextInput&gt;** component.
 
-| Name | Description |
-| -------- | -------- |
+| Name                              | Description                              |
+| --------------------------------- | ---------------------------------------- |
 | caretPosition(value: number):void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
 
 
@@ -85,16 +85,16 @@ caretPosition(value: number): void
 Sets the cursor in a specified position.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
+    | Name  | Type   | Mandatory | Default Value | Description                              |
+    | ----- | ------ | --------- | ------------- | ---------------------------------------- |
+    | value | number | Yes       | -             | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
 
 
 ## Events
 
-| Name | Description |
-| -------- | -------- |
-| onChange(value: string) =&gt; void | Triggered when the input changes. |
+| Name                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(value: string) =&gt; void       | Triggered when the input changes.        |
 | onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | Triggered when the input status changes. |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | Triggered when the input status changes. |

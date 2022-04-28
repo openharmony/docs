@@ -23,37 +23,37 @@ None
 TextArea(value?:{placeholder?: string controller?: TextAreaController})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. |
-  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No | - | Text area controller. |
+    | Name                    | Type                                     | Mandatory | Default Value | Description                            |
+    | ----------------------- | ---------------------------------------- | --------- | ------------- | -------------------------------------- |
+    | placeholder             | string                                   | No        | -             | Text displayed when there is no input. |
+    | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No        | -             | Text area controller.                  |
 
 
 ## Attributes
 
-In addition to [universal attributes](ts-universal-attributes-index.md), the following attributes are supported.
+In addition to universal attributes, the following attributes are supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| placeholderColor | Color | - | Placeholder text color. |
-| placeholderFont | {<br/>size?: number,<br/>weight?:number \| [FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
-| textAlign | TextAlign | Start | Sets the text horizontal alignment mode. |
-| caretColor | Color | - | Sets the color of the cursor in the text box. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md),<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| Name                     | Type                                     | Default Value | Description                              |
+| ------------------------ | ---------------------------------------- | ------------- | ---------------------------------------- |
+| placeholderColor         | Color                                    | -             | Placeholder text color.                  |
+| placeholderFont          | {<br/>size?: number,<br/>weight?:number \| [FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | -             | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
+| textAlign                | TextAlign                                | Start         | Sets the text horizontal alignment mode. |
+| caretColor               | Color                                    | -             | Sets the color of the cursor in the text box. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md),<br/>error?: (value: string)<br/>} | -             | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
 
 - TextAlign enums
-    | Name | Description |
-  | -------- | -------- |
-  | Start | Aligns the header horizontally. |
-  | Center | Horizontal center alignment. |
-  | End | Align the tail horizontally. |
+    | Name   | Description                     |
+    | ------ | ------------------------------- |
+    | Start  | Aligns the header horizontally. |
+    | Center | Horizontal center alignment.    |
+    | End    | Align the tail horizontally.    |
 
 
 ## Events
 
-| Name | Description |
-| -------- | -------- |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes. |
+| Name                                     | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.        |
 | onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
 | onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
 | onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
@@ -76,9 +76,9 @@ caretPosition(value: number): void
 Sets the position of the caret.
 
 - Parameters
-  | Name   | Type | Mandatory | Default Value | Description     |
-  | ----- | ------ | ---- | ---- | ------------------- |
-  | value | number | Yes  | -    | Length from the start of the string to the position where the input cursor is located. |
+  | Name  | Type   | Mandatory | Default Value | Description                              |
+  | ----- | ------ | --------- | ------------- | ---------------------------------------- |
+  | value | number | Yes       | -             | Length from the start of the string to the position where the input cursor is located. |
 
 
 ## Example
