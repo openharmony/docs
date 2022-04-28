@@ -57,7 +57,7 @@ Common compilation modes of user-mode programs include:
     clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
     ```
 
-    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-package-environment.md#section711117144296).
+    Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-steps-hi3861-setting.md).
 
     **--target=arm-liteos**: specifies the compilation platform, which is arm-liteos.
 
