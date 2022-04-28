@@ -119,6 +119,7 @@
 
 - File Management
 
+  - [@ohos.document](js-apis-document.md)
   - [@ohos.environment](js-apis-environment.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.fileManager](js-apis-filemanager.md)
