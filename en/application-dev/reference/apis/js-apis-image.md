@@ -996,10 +996,8 @@ Enumerates pixel map formats.
 
 | Name       | Type                              | Readable| Writable| Description          |
 | ----------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
 | editable    | boolean                            | Yes  | Yes  | Whether the image is editable.  |
 | pixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
 | size        | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
