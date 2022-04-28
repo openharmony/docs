@@ -88,7 +88,7 @@ caretPosition(value: number): void
 ```
 @Entry
 @Component
-struct TextAreaExample2 {
+struct TextAreaExample1 {
   @State text: string = ''
   build() {
     Column() {
@@ -123,7 +123,7 @@ struct TextAreaExample2 {
 ```
 @Entry
 @Component
-struct TextAreaTest {
+struct TextAreaExample2 {
     controller: TextAreaController = new TextAreaController()
     build() {
         Column() {

@@ -490,7 +490,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -516,7 +516,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -934,7 +934,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name  | Type                                        | Mandatory| Description                                                        |
   | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area.**TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. |
   | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                                  |
 
 - Example
@@ -962,7 +962,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name| Type                           | Mandatory| Description                                                        |
   | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area.**TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. |
 
 - Return value
 
@@ -1251,7 +1251,7 @@ Loads content to this window. This API uses an asynchronous callback to return t
 
   | Name  | Type                     | Mandatory| Description                |
   | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | Yes  | Path of the page to which the content will be loaded.|
+  | path     | string                    | Yes  | Path of the page from which the content will be loaded. |
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
   
 - Example
@@ -1278,7 +1278,7 @@ Loads content to this window. This API uses a promise to return the result.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | path   | string | Yes  | Path of the page to which the content will be loaded.|
+  | path   | string | Yes  | Path of the page from which the content will be loaded. |
   
 - Return value
 
@@ -1361,7 +1361,7 @@ Enables listening for window size changes.
   | Name  | Type                         | Mandatory| Description                                                        |
   | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1385,7 +1385,7 @@ Disables listening for window size changes.
   | Name  | Type                         | Mandatory| Description                                                        |
   | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange<sup>7+</sup>**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1407,7 +1407,7 @@ Enables listening for changes to the area where the window cannot be displayed.
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1431,7 +1431,7 @@ Disables listening for changes to the area where the window cannot be displayed.
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1455,7 +1455,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1481,7 +1481,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   | Name  | Type                  | Mandatory| Description                                                        |
   | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                 | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;number&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;number&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 

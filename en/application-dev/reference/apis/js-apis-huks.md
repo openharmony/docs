@@ -362,16 +362,17 @@ Generates a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If any other result is returned, see **HuksResult**.|
 
 **Example**
 
 ```js
-var alias = 'alias';
+/* Generate an RSA key of 512 bits. */
+var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huksHuksKeyAlg.HUKS_ALG_RSA
+  value: huks.HuksKeyAlg.HUKS_ALG_RSA
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
@@ -379,24 +380,22 @@ properties[1] = {
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-properties[5] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
 var options = {
   properties: properties
 };
-huks.generateKey(alias, options, function (err, data){}); 
+huks.generateKey(keyAlias, options, function (err, data){}); 
 ```
 
 ## huks.generateKey
@@ -418,41 +417,36 @@ Generates a key. This method uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
 **Example**
 
 ```js
-var alias = 'alias';
+/* Generate an ECC key of 256 bits. */
+var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huksHuksKeyAlg.HUKS_ALG_RSA
+  value: huks.HuksKeyAlg.HUKS_ALG_ECC
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512
+  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
 };
 properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-};
-properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-properties[5] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
 var options = {
   properties: properties
 };
-var result = huks.generateKey(alias, options);
+var result = huks.generateKey(keyAlias, options);
 ```
 
 ## huks.deleteKey
@@ -474,11 +468,12 @@ Deletes a key. This method uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-var alias = 'alias';
+/* Set options to emptyOptions. */
+var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
-huks.deleteKey(alias, emptyOptions, function (err, data) {});
+huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
 ```
 
 ## huks.deleteKey
@@ -494,22 +489,23 @@ Deletes a key. This method uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                                                 |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
 | keyAlias | string      | Yes  | Key alias passed in when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| options | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
 
 **Return value**
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
 **Example**
 
 ```js
-var alias = 'alias';
+/* Set options to emptyOptions. */
+var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
-var result = huks.deleteKey(alias, emptyOptions);
+var result = huks.deleteKey(keyAlias, emptyOptions);
 ```
 
 ## huks.getSdkVersion
@@ -535,6 +531,7 @@ Obtains the SDK version of the current system.
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var emptyOptions = {
   properties: []
 };
@@ -560,31 +557,41 @@ Imports a key. This method uses an asynchronous callback to return the result.
 **Example**
 
 ```js
+/* Import an AES key of 256 bits. */
+var plainTextSize32 = makeRandomArr(32);
+function makeRandomArr(size) {
+    var arr = new Uint8Array(size);
+    for (var i = 0; i < size; i++) {
+        arr[i] = Math.floor(Math.random() * 10);
+    }
+    return arr;
+};
 var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_DSA
+  value: huks.HuksKeyAlg.HUKS_ALG_AES
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: 1024
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  value:
+huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: HUKS_DIGEST_SHA1
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
 var options = {
   properties: properties,
-  inData: importText
+  inData: plainTextSize32
 };
 huks.importKey(keyAlias, options, function (err, data){});
 ```
@@ -608,38 +615,50 @@ Imports a key. This method uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
 **Example**
 
 ```js
+/* Import an AES key of 128 bits. */
+var plainTextSize32 = makeRandomArr(32);
+
+function makeRandomArr(size) {
+    var arr = new Uint8Array(size);
+    for (var i = 0; i < size; i++) {
+        arr[i] = Math.floor(Math.random() * 10);
+    }
+    return arr;
+};
+
+/* Step 1 Generate a key. */
 var keyAlias = 'keyAlias';
 var properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_DSA
+  value: huks.HuksKeyAlg.HUKS_ALG_AES
 };
 properties[1] = {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: 1024
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
 };
 properties[2] = {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
 };
 properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
 };
 properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: HUKS_DIGEST_SHA1
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var options = {
+var huksoptions = {
   properties: properties,
-  inData: importText
+  inData: plainTextSize32
 };
-var result = huks.importKey(keyAlias, options);
+var result = huks.importKey(keyAlias, huksoptions);
 ```
 
 ## huks.exportKey
@@ -656,11 +675,12 @@ Exports a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.<br/>**outData** contains the public key exported.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported.|
 
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -692,6 +712,7 @@ Exports a key. This method uses a promise to return the result.
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -713,11 +734,12 @@ Obtains key properties. This method uses an asynchronous callback to return the 
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. For details about the error codes, see **HuksResult**.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise.|
 
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -744,11 +766,12 @@ Obtains key properties. This method uses a promise to return the result.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In **errorCode**, **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. For details about the error codes, see **HuksResult**.|
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In the return result, **HUKS_SUCCESS** will be returned for **errorCode** if the operation is successful; an error code will be returned otherwise. **properties** returns the parameters required for generating the key.|
 
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -775,6 +798,7 @@ Checks whether a key exists. This method uses an asynchronous callback to return
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
@@ -806,12 +830,14 @@ Checks whether a key exists. This method uses a promise to return the result.
 **Example**
 
 ```js
+/* Set options to emptyOptions. */
 var keyAlias = 'keyAlias';
 var emptyOptions = {
   properties: []
 };
 var result = huks.isKeyExist(keyAlias, emptyOptions);
 ```
+
 
 
 ## huks.init
@@ -830,34 +856,6 @@ Initializes a key. This method uses an asynchronous callback to return the resul
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Init** operation.|
 | callback | AsyncCallback\<[HuksHandle](#hukshandle)> | Yes  | Callback used to return the handle of the **Init** operation.|
 
-**Example**
-
-```js
-var alias = 'test001'
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.init(alias, options, function(err, data) {
-    if (err.code !== 0) {
-        console.log("test init err information: " + JSON.stringify(err));
-    } else {
-        console.log(`test init data: ${JSON.stringify(data)}`);
-    }
-})
-```
 
 ## huks.init
 
@@ -874,39 +872,6 @@ Initializes a key. This method uses a promise to return the result.
 | keyAlias | string                 | Yes  | Alias of the target key.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Init** operation.|
 | promise | Promise\<[HuksHandle](#hukshandle)> | Yes  | Promise used to return the handle of the **Init** operation.|
-
-**Example**
-
-```js
-var alias = 'test001'
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.init(alias, options).then((data) => {
-    console.log(`test init data: ${JSON.stringify(data)}`);
-    handle1 = data.handle1;
-    handle2 = data.handle2;
-    handle = {
-        "handle1": handle1,
-        "handle2": handle2
-    };
-}).catch((err) => {
-    console.log("test init err information: " + JSON.stringify(err))
-}) 
-```
 
 
 ## huks.update
@@ -926,27 +891,6 @@ Updates a key. This method uses an asynchronous callback to return the result.
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Update** operation.|
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
-**Example**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.update(handle, options, function (err, data){}); 
-```
 
 ## huks.update
 
@@ -965,27 +909,6 @@ Updates a key. This method uses a promise to return the result.
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Update** operation.|
 | promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
 
-**Example**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-var result = huks.update(handle, options)
-```
 
 ## huks.finish
 
@@ -1003,27 +926,6 @@ Completes the key operation and releases resources. This method uses an asynchro
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Finish** operation.|
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
-**Example**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-huks.finish(handle, options, function (err, data){}); 
-```
 
 ## huks.finish
 
@@ -1040,28 +942,6 @@ Completes the key operation and releases resources. This method uses a promise t
 | handle | number           | Yes  | Handle of the **Finish** operation.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Finish** operation.|
 | promise | Promise\<[HuksResult](#HuksResult)> | Yes| Promise used to return the operation result.|
-
-**Example**
-
-```js
-var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
-var options = {
-  properties: properties
-};
-var result = huks.finish(handle, options)
-```
 
 
 ## huks.abort
@@ -1083,23 +963,213 @@ Aborts the use of the key. This method uses an asynchronous callback to return t
 **Example**
 
 ```js
+/* huks.init, huks.update, and huks.finish must be used together.
+ * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
+ *
+ * The following uses the callback of an RSA 1024-bit key as an example.
+ */
+import router from '@system.router';
+import huks from '@ohos.security.huks';
+
+async function routePage() {
+  let options = {
+    uri: 'pages/second'
+  }
+  try {
+    await router.push(options)
+  } catch (err) {
+    console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
+  }
+}
+var alias = "HuksDemoRSA";
 var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
 var options = {
-  properties: properties
+  properties: properties,
+  inData: new Uint8Array(0)
 };
-huks.abort(handle, options, function (err, data){}); 
+var handle = {};
+var resultMessage = "";
+async function generateKey() {
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  huks.generateKey(alias, options);
+}
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+async function huksInit() {
+  await huks.init(alias, options).then((data) => {
+    console.log(`test init data: ${JSON.stringify(data)}`);
+    handle = {
+      "handle1": data.handle1,
+      "handle2": data.handle2
+    };
+  }).catch((err) => {
+    console.log("test init err information: " + JSON.stringify(err))
+  })
+}
+async function huksUpdate() {
+  let count = 2;
+  for (let i = 0; i < count; i++) {
+    options.inData = stringToUint8Array("huksHmacTest");
+    await huks.update(handle, options).then((data) => {
+      if (data.errorCode === 0) {
+        resultMessage += "update success!";
+      } else {
+        resultMessage += "update fail!";
+      }
+    }).catch((err) => {
+      resultMessage += "update times: " + count + (i + 1) + " fail catch errorMessage:" + JSON.stringify(err) + "        "
+    });
+    console.log(resultMessage);
+  }
+}
+function huksFinish() {
+  options.inData = stringToUint8Array("HuksDemoHMAC");
+  huks.finish(handle, options).then((data) => {
+    if (data.errorCode === 0) {
+      resultMessage = "finish success!";
+    } else {
+      resultMessage = "finish fail errorCode: " + data.errorCode;
+    }
+  }).catch((err) => {
+    resultMessage = "Failed to complete the key operation. catch errorMessage:" + JSON.stringify(err)
+  });
+  console.log(resultMessage);
+}
+async function huksAbort() {
+  huks.abort(handle, options).then((data) => {
+    if (data.errorCode === 0) {
+      resultMessage = "abort success!";
+    } else {
+      resultMessage = "abort fail errorCode: " + data.errorCode;
+    }
+  }).catch((err) => {
+    resultMessage = "Failed to abort  the use of the key. catch errorMessage:" + JSON.stringify(err)
+  });
+  console.log(resultMessage);
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+      Button() {
+        Text('Tocallback')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        routePage()
+      })
+      Button() {
+        Text('generateKey')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        generateKey()
+      })
+      Button() {
+        Text('huksInit')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksInit()
+      })
+      Button() {
+        Text('huksUpdate')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksUpdate()
+      })
+      Button() {
+        Text('huksFinish')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksFinish()
+      })
+      Button() {
+        Text('huksAbort')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksAbort()
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## huks.abort
@@ -1121,23 +1191,216 @@ Aborts the use of the key. This method uses a promise to return the result.
 **Example**
 
 ```js
+/* huks.init, huks.update, and huks.finish must be used together.
+ * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
+ *
+ * The following uses the promise of an RSA 1024-bit key as an example.
+ */
+import router from '@system.router';
+import huks from '@ohos.security.huks';
+
+async function routePage() {
+  let options = {
+    uri: 'pages/second'
+  }
+  try {
+    await router.push(options)
+  } catch (err) {
+    console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
+  }
+}
+
+var alias = "HuksDemoRSA";
 var properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HksKeyAlg.HKS_ALG_DH
-};
-properties[1] = {
-  tag: huks.HksTag.HKS_TAG_PURPOSE,
-  value: huks.HksKeyPurpose.HKS_KEY_PURPOSE_AGREE
-};
-properties[2] = {
-  tag: huks.HksTag.HKS_TAG_KEY_SIZE,
-  value: huks.HksKeySize.HKS_DH_KEY_SIZE_4096
-};
 var options = {
-  properties: properties
+  properties: properties,
+  inData: new Uint8Array(0)
 };
-var result = huks.abort(handle, options);
+var handle = {};
+var resultMessage = "";
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+async function generateKey() {
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  huks.generateKey(alias, options, function (err, data) { });
+}
+async function huksInit() {
+  return new Promise((resolve, reject) => {
+    huks.init(alias, options, async function (err, data) {
+      if (data.errorCode === 0) {
+        resultMessage = "Initialization successful!"
+        handle = {
+          "handle1": data.handle1,
+          "handle2": data.handle2
+        }
+      } else {
+        resultMessage = "init fail errorCode: " + data.errorCode
+      }
+    });
+  });
+}
+
+async function huksUpdate() {
+  let count = 2;
+  for (let i = 0; i < count; i++) {
+    options.inData = stringToUint8Array("huksHmacTest");
+    new Promise((resolve, reject) => {
+      huks.update(handle, options, function (err, data) {
+        if (data.errorCode === 0) {
+          resultMessage += "update success!";
+        } else {
+          resultMessage += "update fail!";
+        }
+      });
+    });
+    console.log(resultMessage);
+  }
+}
+
+async function huksFinish() {
+  options.inData = stringToUint8Array("0");
+  new Promise((resolve, reject) => {
+    huks.finish(handle, options, function (err, data) {
+      if (data.errorCode === 0) {
+        resultMessage = "finish success!";
+      } else {
+        resultMessage =  "finish fail errorCode: " + data.errorCode;
+      }
+    });
+  });
+}
+
+function huksAbort() {
+  new Promise((resolve, reject) => {
+    huks.abort(handle, options, function (err, data) {
+      console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+      console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+    });
+  });
+}
+@Entry
+@Component
+struct Index {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+      Button() {
+        Text('to Promise')
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        router.back()
+      })
+      Button() {
+        Text('generateKey')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        generateKey()
+      })
+      Button() {
+        Text('huksInit')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksInit()
+      })
+      Button() {
+        Text('huksUpdate')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksUpdate()
+      })
+      Button() {
+        Text('huksFinish')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksFinish()
+      })
+      Button() {
+        Text('huksAbort')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .width('50%')
+      .height('10%')
+      .backgroundColor('#0D9FFB')
+      .onClick(() => {
+        huksAbort()
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## HuksParam

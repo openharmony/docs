@@ -64,6 +64,8 @@
 - 资源调度
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
+  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
+  - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
@@ -90,6 +92,7 @@
   - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
+  - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
 - 电话服务
 
   - [@ohos.contact (联系人)](js-apis-contact.md)
