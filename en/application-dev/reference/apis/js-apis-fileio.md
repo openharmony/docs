@@ -503,9 +503,7 @@ Asynchronously creates a directory. This method uses a callback to return the re
 - Example
   ```js
   fileio.mkdir(path, function(err) {
-      if (!err) {
-          // Do something.
-      }
+    console.info("mkdir successfully");
   });
   ```
 
@@ -639,7 +637,8 @@ Asynchronously reads data from a file. This method uses a promise to return the 
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readout){
-      console.info("read file data successfully:"+ JSON.stringify(readout));
+      console.info("read file data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(error){
       console.info("read file data failed with error:"+ error);
   });
@@ -671,8 +670,9 @@ Asynchronously reads data from a file. This method uses a callback to return the
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
-      if (!err) {
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      if (readOut) {
+          console.info("read file data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -756,6 +756,7 @@ Asynchronously deletes a directory. This method uses a callback to return the re
   ```js
   fileio.rmdir(path, function(err){
       // Do something.
+      console.info("rmdir successfully");
   });
   ```
 
@@ -824,9 +825,7 @@ Asynchronously deletes a file. This method uses a callback to return the result.
 - Example
   ```js
   fileio.unlink(path, function(err) {
-      if (!err) {
-          // Do something.
-      }
+      console.info("remove file successfully");
   });
   ```
 
@@ -879,7 +878,7 @@ Asynchronously writes data into a file. This method uses a promise to return the
   ```js
   let fd = fileio.openSync(fpath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file successfully:"+ number);
+       console.info("write data to file successfully and size is:"+ number);
   }).catch(function(err){
       console.info("write data to file failed with error:"+ err);
   });
@@ -911,8 +910,8 @@ Asynchronously writes data into a file. This method uses a callback to return th
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
-      if (!err) {
-         console.log(bytesWritten)
+      if (bytesWritten) {
+         console.info("write data to file successfully and size is:"+ bytesWritten);
       }
   });
   ```
@@ -962,7 +961,7 @@ Asynchronously calculates the hash value of a file. This method uses a promise t
   | Name      | Type    | Mandatory  | Description                                      |
   | --------- | ------ | ---- | ---------------------------------------- |
   | path      | string | Yes   | Absolute path of the target file.                          |
-  | algorithm | string | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.**sha256** is recommended for security purposes.|
+  | algorithm | string | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.<br/>**sha256** is recommended for security purposes.|
 
 - Return value
   | Type                   | Description                        |
@@ -991,14 +990,14 @@ Asynchronously calculates the hash value of a file. This method uses a callback 
   | Name      | Type                         | Mandatory  | Description                                      |
   | --------- | --------------------------- | ---- | ---------------------------------------- |
   | path      | string                      | Yes   | Absolute path of the target file.                          |
-  | algorithm | string                      | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.**sha256** is recommended for security purposes.|
+  | algorithm | string                      | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**.<br/>**sha256** is recommended for security purposes.|
   | callback  | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 - Example
   ```js
   fileio.hash(fpath, "sha256", function(err, hashStr) {
-      if (!err) {
-          console.log(hashStr)
+      if (hashStr) {
+          console.info("calculate file hash successfully:"+ hashStr);
       }
   });
   ```
@@ -1091,7 +1090,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 
 - Return value
   | Type                          | Description        |
-  | -------- | -------- |
+  | ---------------------------- | ---------- |
   | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file status information obtained.|
 
 - Example
@@ -1486,7 +1485,8 @@ Asynchronously reads data from a file. This method uses a promise to return the 
 - Example
   ```js
   fileio.read(new ArrayBuffer(4096)).then(function(readout){
-      console.info("File data read successfully:"+ String.fromCharCode.apply(null, new Uint8Array(readout.buffer)));
+      console.info("read file data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("Failed to read file data. Error:"+ err);
   });
@@ -1516,8 +1516,9 @@ Asynchronously reads data from a file. This method uses a callback to return the
   ```js
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
-      if (!err) {
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)))
+      if (readOut) {
+          console.info("read file data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -2407,14 +2408,14 @@ Provides detailed file information. Before calling a method of the **Stat** clas
 
 isBlockDevice(): boolean
 
-Checks whether the current directory entry is a block special file. A block special file supports access by block only, and it is cached when accessed.
+Checks whether this file is a block special file. A block special file supports access by block only, and it is cached when accessed.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description              |
   | ------- | ---------------- |
-  | boolean | Whether the directory entry is a block special file.|
+  | boolean | Whether the file is a block special file.|
 
 - Example
   ```js
@@ -2426,14 +2427,14 @@ Checks whether the current directory entry is a block special file. A block spec
 
 isCharacterDevice(): boolean
 
-Checks whether the current directory entry is a character special file. A character special file supports random access, and it is not cached when accessed.
+Checks whether this file is a character special file. A character special file supports random access, and it is not cached when accessed.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description               |
   | ------- | ----------------- |
-  | boolean | Whether the directory entry is a character special file.|
+  | boolean | Whether the file is a character special file.|
 
 - Example
   ```js
@@ -2445,14 +2446,14 @@ Checks whether the current directory entry is a character special file. A charac
 
 isDirectory(): boolean
 
-Checks whether a directory entry is a directory.
+Checks whether this file is a directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description           |
   | ------- | ------------- |
-  | boolean | Whether the directory entry is a directory.|
+  | boolean | Whether the file is a directory.|
 
 - Example
   ```js
@@ -2464,14 +2465,14 @@ Checks whether a directory entry is a directory.
 
 isFIFO(): boolean
 
-Checks whether the current directory entry is a named pipe (or FIFO). Named pipes are used for inter-process communication.
+Checks whether this file is a named pipe (or FIFO). Named pipes are used for inter-process communication.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the directory entry is a FIFO.|
+  | boolean | Whether the file is an FIFO.|
 
 - Example
   ```js
@@ -2483,14 +2484,14 @@ Checks whether the current directory entry is a named pipe (or FIFO). Named pipe
 
 isFile(): boolean
 
-Checks whether a directory entry is a regular file.
+Checks whether this file is a regular file.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the directory entry is a regular file.|
+  | boolean | Whether the file is a regular file.|
 
 - Example
   ```js
@@ -2502,14 +2503,14 @@ Checks whether a directory entry is a regular file.
 
 isSocket(): boolean
 
-Checks whether a directory entry is a socket.
+Checks whether this file is a socket.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description            |
   | ------- | -------------- |
-  | boolean | Whether the directory entry is a socket.|
+  | boolean | Whether the file is a socket.|
 
 - Example
   ```js
@@ -2521,14 +2522,14 @@ Checks whether a directory entry is a socket.
 
 isSymbolicLink(): boolean
 
-Checks whether a directory entry is a symbolic link.
+Checks whether this file is a symbolic link.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 - Return value
   | Type     | Description             |
   | ------- | --------------- |
-  | boolean | Whether the directory entry is a symbolic link.|
+  | boolean | Whether the file is a symbolic link.|
 
 - Example
   ```js
@@ -2731,7 +2732,7 @@ Asynchronously writes data into the stream. This method uses a promise to return
   ```js
   let ss= fileio.createStreamSync(fpath, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write successfully:"+ number);
+      console.info("write successfully and size is:"+ number);
   }).catch(function(err){
       console.info("write failed with error:"+ err);
   });
@@ -2762,9 +2763,9 @@ Asynchronously writes data into the stream. This method uses a callback to retur
   ```js
   let ss= fileio.createStreamSync(fpath, "r+");
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (!err) {
+      if (bytesWritten) {
          // do something
-         console.log(bytesWritten);
+         console.info("write successfully and size is:"+ bytesWritten);
       }
   });
   ```
@@ -2829,6 +2830,7 @@ Asynchronously reads data from the stream. This method uses a promise to return 
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
       console.info("read data successfully");
+      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("read data failed with error:"+ err);
   });
@@ -2858,8 +2860,9 @@ Asynchronously reads data from the stream. This method uses a callback to return
   ```js
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (!err) {
-          // do something
+      if (readOut) {
+          console.info("read data successfully");
+          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
   ```
@@ -2917,7 +2920,7 @@ Asynchronously reads the next directory entry. This method uses a promise to ret
   ```js
   let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
-      console.info("read successfully:"+ dirent.name);
+      console.log("read successfully:"+JSON.stringify(dirent));
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -2941,9 +2944,9 @@ Asynchronously reads the next directory entry. This method uses a callback to re
   ```js
   let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
-      if (!err) {
+      if (dirent) {
           // do something
-          console.log(dirent.name)
+          console.log("read successfully:"+JSON.stringify(dirent));
       }
   });
   ```
