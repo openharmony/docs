@@ -57,6 +57,7 @@
 - 应用程序包管理
 
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
 
 - UI界面
@@ -92,7 +93,6 @@
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
-  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
 
 - 定制管理
 
