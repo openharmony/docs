@@ -74,7 +74,7 @@
 
 1. 准备工作，导入@ohos.data.storage以及相关的模块到开发环境。
 
-   ```
+   ```js
    import dataStorage from '@ohos.data.storage'
    import featureAbility from '@ohos.ability.featureAbility'  // 用于获取文件存储路径
    ```
@@ -82,7 +82,7 @@
 2. 获取Storage实例。
 
    读取指定文件，将数据加载到Storage实例，用于数据操作。
-   ```
+   ```js
    var context = featureAbility.getContext()
    context.getFilesDir().then(() => {
     console.info("======================>getFilesDirPromsie====================>");
@@ -95,7 +95,7 @@
 
    使用Storage put方法保存数据到缓存的实例中。
 
-   ```
+   ```js
    promise.then((storage) => {
        let getPromise = storage.put('startup', 'auto') // 保存数据到缓存的storage示例中。
        getPromise.then(() => {
@@ -112,7 +112,7 @@
 
    使用Storage get方法读取数据。
 
-   ```
+   ```js
    promise.then((storage) => {
        let getPromise = storage.get('startup', 'default')
        getPromise.then((value) => {
@@ -128,7 +128,7 @@
 
    应用存入数据到Storage实例后，可以通过flush或者flushSync方法将Storage实例回写到文件中。
 
-   ```
+   ```js
    storage.flush();
    ```
 
@@ -136,7 +136,7 @@
 
    应用订阅数据变化需要指定StorageObserver作为回调方法。订阅的key的值发生变更后，当执行flush方法时，StorageObserver被触发回调。不再需要StorageObserver时请注销。
 
-   ```
+   ```js
    promise.then((storage) => {
        var observer = function (key) {
            console.info("The key of " + key + " changed.")
@@ -155,7 +155,7 @@
 
    使用deleteStorage方法从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。删除后，数据及文件将不可恢复。
 
-   ```
+   ```js
    let promise = dataStorage.deleteStorage(path + '/mystore')
    promise.then(() => {
        console.info("Deleted successfully.")

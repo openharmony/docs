@@ -29,7 +29,7 @@ The table below describes the APIs provided by the OpenHarmony DDS module.
 The following uses a single KV store as an example to describe the development procedure.
 
 1. Import the distributed data module.
-   ```
+   ```js
    import distributedData from '@ohos.data.distributedData';
    ```
 
@@ -38,7 +38,7 @@ The following uses a single KV store as an example to describe the development p
    2. Create a **KvManager** instance.
 
    The sample code is as follows:
-   ```
+   ```js
    let kvManager;
    try {
        const kvManagerConfig = {
@@ -66,7 +66,7 @@ The following uses a single KV store as an example to describe the development p
    2. Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** if a synchronization is required.
 
    The sample code is as follows:
-   ```
+   ```js
    let kvStore;
    try {
        const options = {
@@ -95,7 +95,7 @@ The following uses a single KV store as an example to describe the development p
 
 4.  Subscribe to changes in the distributed data.<br/>
    The following is the sample code for subscribing to the data changes of a single KV store:
-   ```
+   ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
        console.log("dataChange callback call data: " + JSON.stringify(data));
    });
@@ -107,7 +107,7 @@ The following uses a single KV store as an example to describe the development p
 
    The following is the sample code for writing key-value pairs of the string type into the single KV store:
 
-   ```
+   ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
@@ -128,7 +128,7 @@ The following uses a single KV store as an example to describe the development p
    2. Query data from the single KV store.
 
    The following is the sample code for querying data of the string type from the single KV store:
-   ```
+   ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
@@ -151,7 +151,7 @@ The following uses a single KV store as an example to describe the development p
    Select the devices in the same network and the synchronization mode to synchronize data.
 
    The following is the sample code for data synchronization in a single KV store. **deviceIds** can be obtained by deviceManager by calling **getTrustedDeviceListSync()**, and **1000** indicates that the maximum delay time is 1000 ms.
-   ```
+   ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
    let devManager;

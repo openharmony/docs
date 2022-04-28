@@ -176,7 +176,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
 1.  Import  **@ohos.data.storage**  and related modules to the development environment.
 
-    ```
+    ```js
     import dataStorage from '@ohos.data.storage'
     import featureAbility from '@ohos.ability.featureAbility'  // Used to obtain the file storage path.
     ```
@@ -185,7 +185,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Read the specified file and load its data to the  **Storage**  instance for data operations.
 
-    ```
+    ```js
     var context = featureAbility.getContext()
     var path = await context.getFilesDir()
     let promise = dataStorage.getStorage(path + '/mystore')
@@ -196,7 +196,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Use the  **put\(\)**  method of the  **Storage**  class to write data to the cached  **Storage**  instance.
 
-    ```
+    ```js
     promise.then((storage) => {
         let getPromise = storage.put('startup', 'auto') // Save data to the Storage instance.
         getPromise.then(() => {
@@ -214,7 +214,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Use the  **get\(\)**  method of the  **Storage**  class to read data.
 
-    ```
+    ```js
     promise.then((storage) => {
         let getPromise = storage.get('startup', 'default')
         getPromise.then((value) => {
@@ -232,7 +232,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Use the  **flush**  or  **flushSync**  method to flush data in the  **Storage**  instance to its file.
 
-    ```
+    ```js
     storage.flush();
     ```
 
@@ -240,7 +240,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Specify  **StorageObserver**  as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and the  **flush\(\)**  method is executed,  **StorageObserver**  will be invoked. Unregister the  **StorageObserver**  when it is no longer required.
 
-    ```
+    ```js
     promise.then((storage) => {
         var observer = function (key) {
             console.info("The key of " + key + " changed.")
@@ -260,7 +260,7 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Use the  **deleteStorage**  method to delete the  **Storage**  singleton of the specified file from the memory, and delete the specified file, its backup file, and damaged files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will occur. The deleted data and files cannot be restored.
 
-    ```
+    ```js
     let promise = dataStorage.deleteStorage(path + '/mystore')
     promise.then(() => {
         console.info("Deleted successfully.")
