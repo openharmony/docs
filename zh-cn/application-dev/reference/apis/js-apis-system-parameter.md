@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import parameter from '@ohos.systemParameter'
 ```
 
@@ -34,7 +34,7 @@ getSync(key: string, def?: string): string
 
 **示例：**
 
-```
+```ts
 try {
     var info = parameter.getSync("test.parameter.key");
     console.log(JSON.stringify(info));
@@ -61,7 +61,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```
+```ts
 try {
     parameter.get("test.parameter.key", function (err, data) {
     if (err == undefined) {
@@ -93,7 +93,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```
+```ts
 try {
     parameter.get("test.parameter.key", "default", function (err, data) {
         if (err == undefined) {
@@ -131,7 +131,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 **示例：**
 
-```
+```ts
 try {
     var p = parameter.get("test.parameter.key");
     p.then(function (value) {
@@ -162,7 +162,7 @@ setSync(key: string, value: string): void
 
 **示例：**
 
-```
+```ts
 try {
     parameter.setSync("test.parameter.key", "default");
 }catch(e){
@@ -189,7 +189,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```
+```ts
 try {
     parameter.set("test.parameter.key", "testValue", function (err, data) {
     if (err == undefined) {
@@ -226,7 +226,7 @@ set(key: string, def?: string): Promise&lt;string&gt;
 
 **示例：**
 
-```
+```ts
 try {
     var p = para.set("test.parameter.key", "testValue");
     p.then(function (value) {
