@@ -4,3 +4,7 @@
 
 - [JS API差异报告](js-apidiff-v3.1-release.md)
 - [Native API差异报告](native-apidiff-v3.1-release.md)
+
+此外，本次还发布了OpenHarmony 3.2 Canary （API Version 9 Canary）版本：
+[JS API差异报告（API Version 9 Canary）](js-apidiff-v3.2-canary.md)
+
