@@ -25,7 +25,7 @@ The setup procedure varies, depending on whether you need a GUI. If you need a G
 1. Make sure the Ubuntu shell environment is **bash**.
 
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
-         
+      
        ```
        ls -l /bin/sh
        ```
@@ -33,7 +33,7 @@ The setup procedure varies, depending on whether you need a GUI. If you need a G
        ![en-us_image_0000001226764302](figures/en-us_image_0000001226764302.png)
 
    2. Start the command-line tool, run the following command, enter your password, and select **No** to set **Ubuntu shell** to **bash**.
-         
+      
        ```
        sudo dpkg-reconfigure dash
        ```
@@ -45,12 +45,12 @@ The setup procedure varies, depending on whether you need a GUI. If you need a G
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
 
    1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.400.zip** to the actual software package name.
-         
+      
        ```
        unzip devicetool-linux-tool-3.0.0.400.zip
        ```
    2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.400.sh** to the actual installation file name.
-         
+      
        ```
        chmod u+x devicetool-linux-tool-3.0.0.400.sh
        ```
@@ -60,7 +60,7 @@ The setup procedure varies, depending on whether you need a GUI. If you need a G
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
 
-     
+   
    ```
    sudo ./devicetool-linux-tool-3.0.0.400.sh
    ```
@@ -126,19 +126,19 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
 
-     
+   
    ```
    sudo apt-get install openssh-server
    ```
 
 2. Run the following command to start the SSH service:
-     
+   
    ```
    sudo systemctl start ssh
    ```
 
 3. Run the following command to obtain the IP address of the current user for remote access to the Ubuntu environment from Windows:
-     
+   
    ```
    ifconfig
    ```
@@ -148,7 +148,7 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
 ### Installing Remote SSH
 
-1. Open Visual Studio Code in Windows, click ![en-us_image_0000001239080359](figures/en-us-cn_image_0000001239080359.png), and search for **remote-ssh** in the Extension Marketplace.
+1. Open Visual Studio Code in Windows, click ![en-us_image_0000001239080359](figures/en-us_image_0000001239080359.png), and search for **remote-ssh** in the Extension Marketplace.
 
    ![en-us_image_0000001193920448](figures/en-us_image_0000001193920448.png)
 
@@ -187,7 +187,7 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 After the preceding operations are complete, you can remotely connect to the Ubuntu environment through Windows for development. However, you need to frequently enter the remote connection password. To eliminate this need, you can use the SSH public key.
 
 1. Open the Git bash CLI and run the following command to generate an SSH public key. During command execution, perform operations as prompted. Set **username** and **ip** to the user name and IP address you use for connecting to the Ubuntu system.
-     
+   
    ```
    ssh-keygen -t rsa
    ssh-copy-id -i ~/.ssh/id_rsa.pub username@ip
