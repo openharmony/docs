@@ -69,7 +69,7 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 isRamConstrainedDevice(): Promise\<boolean>;
 
-Checks whether this application is running in a RAM constrained device. This API uses a promise to return the result.
+Checks whether this application is running on a RAM constrained device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -77,7 +77,7 @@ Checks whether this application is running in a RAM constrained device. This API
 
   | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running in a RAM constrained device. If the application is running in a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -93,7 +93,7 @@ Checks whether this application is running in a RAM constrained device. This API
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
-Checks whether this application is running in a RAM constrained device. This API uses an asynchronous callback to return the result.
+Checks whether this application is running on a RAM constrained device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -101,7 +101,7 @@ Checks whether this application is running in a RAM constrained device. This API
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running in a RAM constrained device. If the application is running in a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
 
 **Example**
     
@@ -214,4 +214,4 @@ Obtains information about the running processes. This API uses an asynchronous c
 | pid<sup>8+</sup>     | Read only    | number               | No  | Process ID.                               |
 | uid<sup>8+</sup>   | Read only    | number               | No  | User ID.|
 | processName<sup>8+</sup>  | Read only    | string               | No  | Process name.|
-| bundleNames<sup>8+</sup>          | Read only    | Array\<string>              | No  | **bundleName** array in the running process.|
+| bundleNames<sup>8+</sup>          | Read only    | Array\<string>              | No  | **bundleName** array in the running processes.|
