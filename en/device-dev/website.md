@@ -433,6 +433,7 @@
     - [Development Guidelines on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development Guidelines on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development Guidelines on IPC Authentication](subsystems/subsys-security-communicationverify.md)
+    - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - [init Module](subsystems/subsys-boot-init.md)
