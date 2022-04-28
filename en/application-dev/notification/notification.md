@@ -149,7 +149,7 @@ Notification.requestEnableNotification() .then((data) => {
 
 To publish a notification, create a **NotificationRequest** object and set attributes such as the notification type, title, and content. In the following examples, a normal text notification and a notification containing a **WantAgent** are being published.
 
-Normal Text Notification
+Normal text notification:
 
 ```js
 // Create a NotificationRequest object.
@@ -175,7 +175,7 @@ Notification.publish(notificationRequest) .then((data) => {
 
 
 
-Notification Containing WantAgent.
+Notification containing **WantAgent**:
 
 For details about how to use **WantAgent**, see [WantAgent Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/wantagent.md).
 
@@ -214,7 +214,7 @@ function getWantAgentCallback(err, data) {
 wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 ```
 
-- Publishes a notification.
+- Publish the notification.
 
 ```js
 // Create a NotificationRequest object.
