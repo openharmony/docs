@@ -1,4 +1,4 @@
-# Grid
+# 栅格布局
 
 
 栅格布局容器根节点，使用grid-row与grid-col进行栅格布局。具体请参考[Grid-container](../reference/arkui-js/js-components-grid-container.md)。

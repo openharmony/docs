@@ -12,25 +12,25 @@
 
 ## 栅格系统
 
-栅格系统有Columns、Margins、Gutters三个概念。
+栅格系统有Column、Margin、Gutter三个概念。
 
 
 ![zh-cn_image_0000001217236574](figures/zh-cn_image_0000001217236574.png)
 
 
-1. Gutters：
+1. Gutter：
    用来控制元素与元素之间距离关系。可以根据设备的不同尺寸，定义不同的gutter值，作为栅格布局的统一规范。为了保证较好的视觉效果，通常gutter的取值不会大于margin的取值。
-2. Margins：
+2. Margin：
    离栅格容器边缘的距离。可以根据设备的不同尺寸，定义不同的margin值，作为栅格布局的统一规范。
-3. Columns:
+3. Column:
    栅格布局的主要定位工具。根据设备的不同尺寸，把栅格容器分割成不同的列数，在保证margin和gutter符合规范的情况下，根据总Column的个数计算每个Column列的宽度。
 
 
 ### 系统栅格断点
 
-系统根据不同水平宽度设备对应Columns的数量关系，形成了一套断点规则定义。
+系统根据不同水平宽度设备对应Column的数量关系，形成了一套断点规则定义。
 
-系统以设备的水平宽度的屏幕密度像素值作为断点依据，根据当前设备水平宽度所在的断点范围，定义了设备的宽度类型。系统的栅格断点范围、设备宽度类型及其描述，以及对应的默认总列数(columns)，边距（gutter)，间隔(gutter)定义如下：
+系统以设备的水平宽度的屏幕密度像素值作为断点依据，根据当前设备水平宽度所在的断点范围，定义了设备的宽度类型。系统的栅格断点范围、设备宽度类型及其描述，以及对应的默认总列数(column)，边距（margin)，间隔(gutter)定义如下：
 
 
 | 设备水平宽度断点范围              | 设备宽度类型 | 描述        | columns | gutter | margin |
@@ -48,7 +48,7 @@
 
 通过接口`GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})`创建栅格容器，栅格容器内的所有子组件可以使用栅格布局。
 
-- 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列于列间隔为10vp, 两侧边距为20vp：
+- 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
 
   ```
   GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
@@ -60,7 +60,7 @@
   GridContainer() {}
   ```
 
-  上述例子中，默认在在小宽度类型设备(SizeType.SM)上，栅格容器被分为4列，列于列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType.MD)上，栅格容器被分为8列，列于列的间隔为24vp，两侧边距是32vp。
+  上述例子中，默认在小宽度类型设备(SizeType.SM)上，栅格容器被分为4列，列与列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType.MD)上，栅格容器被分为8列，列与列的间隔为24vp，两侧边距是32vp。
 
 - 也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
 
