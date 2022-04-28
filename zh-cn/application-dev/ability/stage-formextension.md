@@ -1,11 +1,13 @@
-# FA卡片开发指导
+# Stage卡片开发指导
 
 ## 卡片概述
+
 卡片是一种界面展示形式，可以将应用的重要信息或操作前置到卡片，以达到服务直达，减少体验层级的目的。
 
 卡片常用于嵌入到其他应用（当前只支持系统应用）中作为其界面的一部分显示，并支持拉起页面，发送消息等基础的交互功能。卡片使用方负责显示卡片。
 
 卡片的基本概念：
+
 - 卡片提供方
   提供卡片显示内容原子化服务，控制卡片的显示内容、控件布局以及控件点击事件。
 - 卡片使用方
@@ -22,18 +24,18 @@
 
 ## 场景介绍
 
-FA卡片开发，即基于[FA模型](fa-brief.md)的卡片提供方开发，主要涉及如下功能逻辑：
+Stage卡片开发，即基于[Stage模型](stage-brief.md)的卡片提供方开发，主要涉及如下功能逻辑：
 
-- 开发卡片生命周期回调函数LifecycleForm。
+- 卡片生命周期回调函数FormExtension开发。
 - 创建卡片数据FormBindingData对象。
 - 通过FormProvider更新卡片。
-- 开发卡片页面。
+- 卡片页面开发。
 
 ## 接口说明
 
-卡片生命周期回调函数LifecycleForm的接口如下：
+FormExtension功能如下：FormExtension类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-formextension.md)。
 
-**表1** LifecycleForm API接口功能介绍
+**表1** FormExtension API接口功能介绍
 
 | 接口名                                                       | 描述                                         |
 | :----------------------------------------------------------- | :------------------------------------------- |
@@ -43,11 +45,20 @@ FA卡片开发，即基于[FA模型](fa-brief.md)的卡片提供方开发，主�
 | onVisibilityChange(newStatus: { [key: string]: number }): void | 卡片提供方接收修改可见性的通知接口。         |
 | onEvent(formId: string, message: string): void               | 卡片提供方接收处理卡片事件的通知接口。       |
 | onDestroy(formId: string): void                              | 卡片提供方接收销毁卡片的通知接口。           |
-| onAcquireFormState?(want: Want): formInfo.FormState          | 卡片提供方接收查询卡片状态的通知接口。       |
+| onConfigurationUpdated(config: Configuration): void;         | 当系统配置更新时调用。                       |
+
+FormExtension类拥有context属性，context属性为FormExtensionContext类，具体的API详见[接口文档](../reference/apis/js-apis-formextensioncontext.md)。
+
+**表2** FormExtensionContext API接口功能介绍
+
+| 接口名                                                       | 描述                      |
+| :----------------------------------------------------------- | :------------------------ |
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | 回调形式主动更新卡片。    |
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Promise形式主动更新卡片。 |
 
 FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formprovider.md)。
 
-**表2** FormProvider API接口功能介绍
+**表3** FormProvider API接口功能介绍
 
 | 接口名                                                       | 描述                                              |
 | :----------------------------------------------------------- | :------------------------------------------------ |
@@ -58,22 +69,23 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
 
 ## 开发步骤
 
-### 创建LifecycleForm
+### 创建卡片FormExtension
 
-创建FA模型的卡片，需实现LifecycleForm的生命周期接口。具体示例代码如下：
+创建Stage模型的卡片，需实现FormExtension生命周期接口。具体示例代码如下：
 
 1. 导入相关模块
 
    ```javascript
+   import FormExtension from '@ohos.application.FormExtension'
    import formBindingData from '@ohos.application.formBindingData'
    import formInfo from '@ohos.application.formInfo'
    import formProvider from '@ohos.application.formProvider'
    ```
-   
-2. 实现LifecycleForm生命周期接口
+
+2. 实现FormExtension生命周期接口
 
    ```javascript
-   export default {
+   export default class FormAbility extends FormExtension {
        onCreate(want) {
            console.log('FormAbility onCreate');
            // 由开发人员自行实现，将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
@@ -83,11 +95,11 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
            };
            let formData = formBindingData.createFormBindingData(obj);
            return formData;
-       },
+       }
        onCastToNormal(formId) {
            // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
            console.log('FormAbility onCastToNormal');
-       },
+       }
        onUpdate(formId) {
            // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要覆写该方法以支持数据更新
            console.log('FormAbility onUpdate');
@@ -99,62 +111,71 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
            formProvider.updateForm(formId, formData).catch((error) => {
                console.log('FormAbility updateForm, error:' + JSON.stringify(error));
            });
-       },
+       }
        onVisibilityChange(newStatus) {
            // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理
            console.log('FormAbility onVisibilityChange');
-       },
+       }
        onEvent(formId, message) {
            // 若卡片支持触发事件，则需要覆写该方法并实现对事件的触发
            console.log('FormAbility onEvent');
-       },
+       }
        onDestroy(formId) {
            // 删除卡片实例数据
            console.log('FormAbility onDestroy');
-       },
-       onAcquireFormState(want) {
-           console.log('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
-       },
+       }
+       onConfigurationUpdated(config) {
+           console.log('FormAbility onConfigurationUpdated, config:' + JSON.stringify(config));
+       }
    }
    ```
 
 ### 配置卡片配置文件
 
-Form需要在应用配置文件config.json中进行配置。
+Form需要在应用配置文件module.json中进行配置。
 
-- js模块，用于对应卡片的js相关资源，内部字段结构说明：
+- extensionAbility模块，内部字段结构说明：
 
-  | 属性名称 | 含义                                                         | 数据类型 | 是否可缺省               |
-  | -------- | ------------------------------------------------------------ | -------- | ------------------------ |
-  | name     | 表示JS Component的名字。该标签不可缺省，默认值为default。    | 字符串   | 否                       |
-  | pages    | 表示JS Component的页面用于列举JS Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS FA首页。 | 数组     | 否                       |
-  | window   | 用于定义与显示窗口相关的配置。                               | 对象     | 可缺省                   |
-  | type     | 表示JS应用的类型。取值范围如下：<br />normal：标识该JS Component为应用实例。<br />form：标识该JS Component为卡片实例。 | 字符串   | 可缺省，缺省值为“normal” |
-  | mode     | 定义JS组件的开发模式。                                       | 对象     | 可缺省，缺省值为空       |
+  | 属性名称    | 含义                                                         | 数据类型   | 是否可缺省           |
+  | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
+  | name        | 表示extensionAbility的名字。该标签不可缺省。                 | 字符串     | 否                   |
+  | srcEntrance | 表示extensionAbility所对应的JS的代码路径。该标签不可缺省。   | 字符串     | 否                   |
+  | description | 表示extensionAbility的描述。可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。 | 字符串     | 可缺省，缺省值为空。 |
+  | icon        | 表示extensionAbility的图标资源文件的索引。                   | 字符串     | 可缺省，缺省值为空。 |
+  | label       | 表示extensionAbility的标签信息，即extensionAbility对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。 | 字符串     | 可缺省，缺省值为空。 |
+  | type        | 表示extensionAbility的类型。取值form、service等              | 字符串     | 否                   |
+  | permissions | 表示其他应用的Ability调用此Ability时需要申请的权限。         | 字符串数组 | 可缺省，缺省值为空。 |
+  | metadata    | 表示extensionAbility的元信息。用于描述extensionAbility的配置信息。 | 对象       | 可缺省，缺省值为空   |
+
+  对于FormExtensionAbility来说，type需要配置为form，并且需要填写metadata元信息，用于配置卡片的具体信息。
 
   配置示例如下：
 
-  ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
-  ```
+     ```json
+  "extensionAbilities": [{
+      "name": "FormAbility",
+      "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+      "label": "$string:form_FormAbility_label",
+      "description": "$string:form_FormAbility_desc",
+      "type": "form",
+      "metadata": [{
+          "name": "ohos.extension.form",
+          "resource": "$profile:form_config"
+      }]
+  }]
+     ```
 
-- abilities模块，用于对应卡片的LifecycleForm，内部字段结构说明：
+- 卡片profile模块。在 FormExtensionAbility 的元信息中，需要使用 ohos.extension.form 指定的资源文件的路径，如使用  $profile:form_config 指定开发视图的 resources/base/profile/ 目录下的 form_config.json 作为卡片profile配置文件。
 
+  内部字段结构说明：
+  
   | 属性名称            | 含义                                                         | 数据类型   | 是否可缺省               |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
   | name                | 表示卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                       |
   | description         | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。       |
+  | src                 | 表示卡片对应的UI代码的完整路径。                             | 字符串     | 否                       |
+  | window              | 用于定义与显示窗口相关的配置。                               | 对象       | 可缺省                   |
   | isDefault           | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br />true：默认卡片。<br />false：非默认卡片。 | 布尔值     | 否                       |
-  | type                | 表示卡片的类型。取值范围如下：<br />JS：JS卡片。             | 字符串     | 否                       |
   | colorMode           | 表示卡片的主题样式，取值范围如下：<br />auto：自适应。<br />dark：深色主题。<br />light：浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。 |
   | supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 否                       |
   | defaultDimension    | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                       |
@@ -162,40 +183,32 @@ Form需要在应用配置文件config.json中进行配置。
   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
   | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
   | formConfigAbility   | 表示卡片的配置跳转链接，采用URI格式。                        | 字符串     | 可缺省，缺省值为空。     |
-  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知。                         | 字符串     | 可缺省，缺省值为空。     |
-  | jsComponentName     | 表示JS卡片的Component名称。字符串最大长度为127字节。         | 字符串     | 否                       |
+  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知                           | 字符串     | 可缺省，缺省值为空。     |
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
-  | customizeData       | 表示自定义的卡片信息。                                       | 对象数组   | 可缺省，缺省值为空。     |
-  
-  配置示例如下：
 
-  ```json
-     "abilities": [{
-         "name": "FormAbility",
-         "description": "This is a FormAbility",
-         "formsEnabled": true,
-         "icon": "$media:icon",
-         "label": "$string:form_FormAbility_label",
-         "srcPath": "FormAbility",
-         "type": "service",
-         "srcLanguage": "ets",
-         "formsEnabled": true,
-         "forms": [{
-             "colorMode": "auto",
-             "defaultDimension": "2*2",
-             "description": "This is a service widget.",
-             "formVisibleNotify": true,
-             "isDefault": true,
-             "jsComponentName": "widget",
-             "name": "widget",
-             "scheduledUpdateTime": "10:30",
-             "supportDimensions": ["2*2"],
-             "type": "JS",
-             "updateDuration": 1,
-             "updateEnabled": true
-          }]
-     }]
-  ```
+     配置示例如下：
+  
+     ```json
+  {
+      "forms": [{
+          "name": "widget",
+          "description": "This is a service widget.",
+          "src": "./js/widget/pages/index/index",
+          "window": {
+              "autoDesignWidth": true,
+              "designWidth": 720
+          },
+          "isDefault": true,
+          "colorMode": "auto",
+          "supportDimensions": ["2*2"],
+          "defaultDimension": "2*2",
+          "updateEnabled": true,
+          "scheduledUpdateTime": "10:30",
+          "updateDuration": 1,
+          "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility"
+      }]
+  }
+     ```
 
 
 ### 卡片信息的持久化
@@ -328,6 +341,5 @@ Form需要在应用配置文件config.json中进行配置。
 
 ## 相关实例
 
-针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormAbility`：FA模型卡片（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormAbility)
-- [`FormLauncher`：卡片使用方（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormLauncher)
+针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
+- [`FormExtAbility`：Stage模型卡片（eTS JS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)

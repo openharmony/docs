@@ -44,6 +44,7 @@ ability支持单实例和多实例两种启动模式。
 
 缺省情况下是singleton模式。
 
+
 ## 开发指导
 ### featureAbility接口说明
 
@@ -80,7 +81,7 @@ ability支持单实例和多实例两种启动模式。
       authReadUriPermission: true,
       // Grant the permission to perform write operations on the URI.
       authWriteUriPermission: true,
-      // support forwarding the intent result to the ability.
+      // support forwarding the Want result to the ability.
       abilityForwardResult: true,
       // Enable abiligy continuation.
       abilityContinuation: true,
