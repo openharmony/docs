@@ -2,10 +2,12 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
 ## 导入模块
 
-```
+```js
 import window from '@ohos.window';
 ```
 
@@ -180,7 +182,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    window.create("first", window.WindowType.TYPE_APP, (err, data) => {
       if (err.code) {
@@ -218,7 +220,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.create("first", window.WindowType.TYPE_APP);
    promise.then((data)=> {
@@ -233,22 +235,22 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用callback方式作为异步方法。
+当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名   | 类型                                            | 必填 | 说明                   |
-  | -------- | ----------------------------------------------- | ---- | ---------------------- |
-  | ctx      | [Context](js-apis-service-extension-context.md) | 是   | 当前应用上下文信息。   |
-  | id       | string                                          | 是   | 窗口id。               |
-  | type     | [WindowType](#windowtype)                       | 是   | 窗口类型。             |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;          | 是   | 回调返回当前窗口对象。 |
+  | 参数名   | 类型                                           | 必填 | 说明                   |
+  | -------- | ---------------------------------------------- | ---- | ---------------------- |
+  | ctx      | [Context](js-apis-serviceExtAbilityContext.md) | 是   | 当前应用上下文信息。   |
+  | id       | string                                         | 是   | 窗口id。               |
+  | type     | [WindowType](#windowtype)                      | 是   | 窗口类型。             |
+  | callback | AsyncCallback&lt;[Window](#window)&gt;         | 是   | 回调返回当前窗口对象。 |
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
       if (err.code) {
@@ -265,17 +267,17 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
+当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名 | 类型                                            | 必填 | 说明                 |
-  | ------ | ----------------------------------------------- | ---- | -------------------- |
-  | ctx    | [Context](js-apis-service-extension-context.md) | 是   | 当前应用上下文信息。 |
-  | id     | string                                          | 是   | 窗口id。             |
-  | type   | [WindowType](#windowtype)                       | 是   | 窗口类型。           |
+  | 参数名 | 类型                                           | 必填 | 说明                 |
+  | ------ | ---------------------------------------------- | ---- | -------------------- |
+  | ctx    | [Context](js-apis-serviceExtAbilityContext.md) | 是   | 当前应用上下文信息。 |
+  | id     | string                                         | 是   | 窗口id。             |
+  | type   | [WindowType](#windowtype)                      | 是   | 窗口类型。           |
 
 - 返回值
 
@@ -285,7 +287,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
    promise.then((data)=> {
@@ -313,7 +315,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    window.find("alertWindow", (err, data) => {
      if (err.code) {
@@ -347,7 +349,7 @@ find(id: string): Promise&lt;Window&gt;
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.find("alertWindow");
    promise.then((data)=> {
@@ -374,7 +376,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var windowClass = null;
   window.getTopWindow((err, data) => {
       if (err.code) {
@@ -402,7 +404,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.getTopWindow();
    promise.then((data)=> {
@@ -425,12 +427,12 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
   | 参数名   | 类型                                   | 必填 | 说明                                                         |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | Context                                | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。 |
+  | ctx      | Context                                | 是   | 当前应用上下文信息。API 8的Context定义见[Context](js-apis-Context.md)。API 9的Context定义见[Context](js-apis-ability-context.md)。 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。                       |
 
 - 示例
 
-  ```
+  ```js
   var windowClass = null;
   window.getTopWindow(this.context, (err, data) => {
       if (err.code) {
@@ -454,7 +456,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
   | 参数名 | 类型    | 必填 | 说明                                                         |
   | ------ | ------- | ---- | ------------------------------------------------------------ |
-  | ctx    | Context | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。 |
+  | ctx    | Context | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。API 9的Context定义见[Context](js-apis-ability-context.md)。 |
 
 - 返回值
 
@@ -464,7 +466,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 - 示例
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.getTopWindow(this.context);
    promise.then((data)=> {
@@ -494,7 +496,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 - 示例
 
-  ```
+  ```js
   var type = 'systemBarTintChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
@@ -520,7 +522,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 - 示例
 
-  ```
+  ```js
   var type = 'systemBarTintChange';
   windowClass.off(type);
   ```
@@ -547,7 +549,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.hide((err, data) => {
       if (err.code) {
           console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
@@ -575,7 +577,7 @@ hide(): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.hide();
    promise.then((data)=> {
       console.info('window hidden. Data: ' + JSON.stringify(data))
@@ -600,7 +602,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.show((err, data) => {
       if (err.code) {
           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -626,7 +628,7 @@ show(): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.show();
    promise.then((data)=> {
       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
@@ -651,7 +653,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.destroy((err, data) => {
       if (err.code) {
           console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
@@ -677,7 +679,7 @@ destroy(): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.destroy();
    promise.then((data)=> {
       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data))
@@ -704,7 +706,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.moveTo(300, 300, (err, data)=>{
       if (err.code) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
@@ -738,7 +740,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.moveTo(300, 300);
    promise.then((data)=> {
       console.info('Window moved. Data: ' + JSON.stringify(data))
@@ -765,7 +767,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 - 示例
 
-  ```
+  ```js
   windowClass.resetSize(500, 1000, (err, data) => {
       if (err.code) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
@@ -798,7 +800,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.resetSize(500, 1000);
    promise.then((data)=> {
       console.info('Window size changed. Data: ' + JSON.stringify(data))
@@ -826,7 +828,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var type = window.TYPE_APP;
   windowClass.setWindowType(type, (err, data) => {
     if (err.code) {
@@ -861,7 +863,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
    var type = window.TYPE_APP;
    let promise = windowClass.setWindowType(type);
    promise.then((data)=> {
@@ -887,7 +889,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.getProperties((err, data) => {
       if (err.code) {
           console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
@@ -913,7 +915,7 @@ getProperties(): Promise&lt;WindowProperties&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.getProperties();
    promise.then((data)=> {
       console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data))
@@ -939,7 +941,7 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 
 - 示例
 
-  ```
+  ```js
   var type = window.AvoidAreaType.TYPE_SYSTEM;
   windowClass.getAvoidArea(type, (err, data) => {
       if (err.code) {
@@ -972,7 +974,7 @@ getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
 
 - 示例
 
-  ```
+  ```js
    let promise = windowClass.getAvoidArea();
    promise.then((data)=> {
       console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data))
@@ -998,7 +1000,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var isFullScreen = true;
   windowClass.setFullScreen(isFullScreen, (err, data) => {
       if (err.code) {
@@ -1031,7 +1033,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isFullScreen = true;
   let promise = windowClass.setFullScreen(isFullScreen);
   promise.then((data)=> {
@@ -1058,7 +1060,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 - 示例
 
-  ```
+  ```js
   var isLayoutFullScreen= true;
   windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
       if (err.code) {
@@ -1091,7 +1093,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isLayoutFullScreen = true;
   let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
   promise.then((data)=> {
@@ -1118,7 +1120,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 - 示例
 
-  ```
+  ```js
   var names = ["status", "navigation"];
   windowClass.setSystemBarEnable(names, (err, data) => {
       if (err.code) {
@@ -1151,7 +1153,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var names = ["status", "navigation"];
   let promise = windowClass.setSystemBarEnable(names);
   promise.then((data)=> {
@@ -1178,7 +1180,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 - 示例
 
-  ```
+  ```js
   var SystemBarProperties={
       statusBarColor: '#ff00ff',
       navigationBarColor: '#00ff00',
@@ -1220,7 +1222,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 - 示例
 
-  ```
+  ```js
   var SystemBarProperties={
       statusBarColor: '#ff00ff',
       navigationBarColor: '#00ff00',
@@ -1256,7 +1258,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
   
 - 示例
 
-  ```
+  ```js
   windowClass.loadContent("pages/page2/page2", (err, data) => {
      if (err.code) {
            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
@@ -1288,7 +1290,7 @@ loadContent(path: string): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.loadContent("pages/page2/page2");
   promise.then((data)=> {
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
@@ -1313,7 +1315,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.isShowing((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
@@ -1339,7 +1341,7 @@ isShowing(): Promise&lt;boolean&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.isShowing();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data))
@@ -1365,7 +1367,7 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var type = 'windowSizeChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
@@ -1411,7 +1413,7 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var type = 'systemAvoidAreaChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
@@ -1452,14 +1454,14 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 - 参数
 
-  | 参数名   | 类型                                    | 必填 | 说明                                                         |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回监听到的信息。                                       |
+  | 参数名   | 类型               | 必填 | 说明                                                         |
+  | -------- | ------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string             | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
+  | callback | Callbacknumber&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
 
-  ```
+  ```js
   var type = 'keyboardHeightChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
@@ -1506,7 +1508,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.isSupportWideGamut((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
@@ -1558,7 +1560,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
       if (err.code) {
           console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
@@ -1590,7 +1592,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
   promise.then((data)=> {
       console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
@@ -1615,7 +1617,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.getColorSpace((err, data) => {
       if (err.code) {
           console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
@@ -1641,7 +1643,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.getColorSpace();
   promise.then((data)=> {
       console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
@@ -1669,7 +1671,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var color = '#00ff33';
   windowClass.setBackgroundColor(color, (err, data) => {
       if (err.code) {
@@ -1704,7 +1706,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var color = '#00ff33';
   let promise = windowClass.setBackgroundColor(color);
   promise.then((data)=> {
@@ -1733,7 +1735,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var brightness = 1;
   windowClass.setBrightness(brightness, (err, data) => {
       if (err.code) {
@@ -1768,7 +1770,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var brightness = 1;
   let promise = windowClass.setBrightness(brightness);
   promise.then((data)=> {
@@ -1797,7 +1799,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   windowClass.setDimBehind(0.5, (err, data) => {
       if (err.code) {
           console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
@@ -1831,7 +1833,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.setDimBehind(0.5);
   promise.then((data)=> {
       console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
@@ -1859,7 +1861,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var isFocusable= true;
   windowClass.setFocusable(isFocusable, (err, data) => {
       if (err.code) {
@@ -1894,7 +1896,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isFocusable= true;
   let promise = windowClass.setFocusable(isFocusable);
   promise.then((data)=> {
@@ -1923,7 +1925,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 - 示例
 
-  ```
+  ```js
   var isKeepScreenOn = true;
   windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
       if (err.code) {
@@ -1958,7 +1960,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isKeepScreenOn= true;
   let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
   promise.then((data)=> {
@@ -1987,7 +1989,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 - 示例
 
-  ```
+  ```js
   windowClass.setOutsideTouchable(true, (err, data) => {
       if (err.code) {
           console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
@@ -2021,7 +2023,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.setOutsideTouchable(true);
   promise.then((data)=> {
       console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
@@ -2049,7 +2051,7 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 - 示例
 
-  ```
+  ```js
   var isPrivacyMode = true;
   windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
       if (err.code) {
@@ -2085,7 +2087,7 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isPrivacyMode = true;
   let promise = windowClass.setPrivacyMode(isPrivacyMode);
   promise.then((data)=> {
@@ -2114,7 +2116,7 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例
 
-  ```
+  ```js
   var isTouchable = true;
   windowClass.setTouchable(isTouchable, (err, data) => {
       if (err.code) {
@@ -2150,7 +2152,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 - 示例
 
-  ```
+  ```js
   var isTouchable = true;
   let promise = windowClass.setTouchable(isTouchable);
   promise.then((data)=> {
@@ -2160,4 +2162,301 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
   });
   ```
 
-### 
+## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+
+WindowStage生命周期。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 默认值 | 说明     |
+| ---------- | ------ | -------- |
+| FOREGROUND | 1      | 切到前台 |
+| ACTIVE     | 2      | 获焦状态 |
+| INACTIVE   | 3      | 失焦状态 |
+| BACKGROUND | 4      | 切到后台 |
+
+## WindowStage<sup>9+</sup>
+
+下列API示例中都需在[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(): Promise&lt;Window&gt;
+
+获取该WindowStage实例下的主窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 返回值
+
+  | 类型                             | 说明                                                       |
+  | -------------------------------- | ---------------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前WindowStage下的主窗口对象。 |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getMainWindow();
+          promise.then((data)=> {
+          windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          });
+      }
+  }
+  ```
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
+
+获取该WindowStage实例下的主窗口，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                   | 必填 | 说明                                    |
+  | -------- | -------------------------------------- | ---- | --------------------------------------- |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前WindowStage下的主窗口对象。 |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getMainWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string): Promise&lt;Window&gt;
+
+创建该WindowStage实例下的子窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+- 参数
+
+  | 参数名 | 类型   | 必填 | 说明           |
+  | ------ | ------ | ---- | -------------- |
+  | name   | String | 是   | 子窗口的名字。 |
+- 返回值
+
+  | 类型                             | 说明                                              |
+  | -------------------------------- | ------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的子窗口对象。 |
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.createSubWindow("mySubWindow");
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
+
+创建该WindowStage实例下的子窗口，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+- 参数
+
+  | 参数名   | 类型                                   | 必填 | 说明                           |
+  | -------- | -------------------------------------- | ---- | ------------------------------ |
+  | name     | String                                 | 是   | 子窗口的名字。                 |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前创建的子窗口对象。 |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.createSubWindow("mySubWindow", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+              windowClass.resetSize(500, 1000);
+          });
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
+
+获取该WindowStage实例下的所有子窗口，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+- 返回值
+
+  | 类型                                          | 说明                                                         |
+  | --------------------------------------------- | ------------------------------------------------------------ |
+  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | 以Promise形式返回结果，返回当前WindowStage下的所有子窗口对象。 |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getSubWindow();
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
+
+获取该WindowStage实例下的所有子窗口，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+- 参数
+
+  | 参数名   | 类型                                                | 必填 | 说明                                        |
+  | -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | 是   | 回调返回当前WindowStage下的所有子窗口对象。 |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getSubWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### loadContent<sup>9+</sup>
+
+loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+为当前WindowStage的主窗口加载具体页面内容，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Coretype为'windowSizeChange'
+
+- 参数
+
+  | 参数名   | 类型                      | 必填 | 说明                 |
+  | -------- | ------------------------- | ---- | -------------------- |
+  | path     | string                    | 是   | 设置加载页面的路径。 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+  
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          windowStage.loadContent("pages/page2", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                  return;
+              }
+              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+          });
+      }
+  }
+  ```
+### on('windowStageEvent')<sup>9+</sup>
+
+on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
+
+开启WindowStage生命周期变化的监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+- 参数
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowStageEvent'时表示监听类型为WindowStage生命周期变化监听。 |
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 是   | 回调返回监听到的信息。                                       |
+
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.on(type, (data) => {
+              console.info('Succeeded in enabling the listener for window stage event changes. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### off('windowStageEvent')<sup>9+</sup>
+
+off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
+
+关闭WindowStage生命周期变化的监听。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+- 参数
+
+  | 参数名   | 类型                                                         | 必填 | 说明                                                         |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowStageEvent'时表示监听类型为WindowStage生命周期变化监听。 |
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调返回监听到的信息。                                       |
+- 示例
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.off(type);
+      }
+  }
+  ```
