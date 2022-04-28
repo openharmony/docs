@@ -53,4 +53,4 @@ Hi3861 V100 supports burning through the serial port. To burn source code throug
 
 10. Wait until the burning is complete. When the following message is displayed, the burning is successful.
 
-   ![en-us_image_0000001216761476](figures/en-us_image_0000001216761476.png)
+    ![en-us_image_0000001216761476](figures/en-us_image_0000001216761476.png)
