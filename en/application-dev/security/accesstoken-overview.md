@@ -158,7 +158,7 @@ The procedure is as follows:
 
 - Check the app's permission each time before the operation requiring the permission is performed.
 
-- To check whether a user has granted specific permissions to your app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md) method. This method returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Access Control Development](#accesstoken-guidelines.md).
+- To check whether a user has granted specific permissions to your app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md) method. This method returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Access Control Development](accesstoken-guidelines.md).
 - Users must be able to understand and control the authorization of user_grant permissions. During the running process, the app requiring user authorization must proactively call the API to dynamically request the authorization. Then, the system displays a dialog box asking the user to grant the requested permission. The user will determine whether to grant the permission based on the running context of the app.
 - The permission authorized is not permanent, because the user may revoke the authorization at any time. Therefore, even if the user has granted the requested permission to the app, the app must check for the permission before calling the API controlled by this permission.
 
