@@ -190,10 +190,7 @@ repo forall -c 'git lfs pull'
 API变更请参考：
 
 
-_[JS API 差异报告](api-change/v3.1-Release/js-apidiff-v3.1-release.md)_
-
-
-_[Native API差异报告](api-change/v3.1-Release/native-apidiff-v3.1-release.md)_
+_[API差异报告](api-change/v3.1-Release/readme.md)_
 
 
 ### 芯片及开发板适配
