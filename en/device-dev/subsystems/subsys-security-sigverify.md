@@ -83,5 +83,5 @@ The following table lists the innerkits APIs provided by the signature verificat
 
 ### OpenHarmony Self-signed Application<a name="section167151429133312"></a>
 
-To develop an OpenHarmony self-signed application, follow instructions provided in the guide of  [_Configuring the OpenHarmony App Signature_](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/configuring-openharmony-app-signature.md) : 
+For details about how to develop an OpenHarmony self-signed application, see [Having Your App Automatically Signed](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465). 
 
