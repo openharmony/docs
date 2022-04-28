@@ -149,4 +149,4 @@ The procedure is as follows:
 
 ```
 > ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
-> For details about how to use **requestPermissionsFromUser**, see [API Reference] (../reference/apis/js-apis-ability-context.md).
+> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).
