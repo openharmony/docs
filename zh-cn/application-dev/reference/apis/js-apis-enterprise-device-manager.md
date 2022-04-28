@@ -27,7 +27,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| admin    | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用               |
+| admin    | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用               |
 | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | 是   | 设备管理员应用的企业信息 |
 | type | [AdminType](#AdminType) | 是 | 激活的设备管理员类型 |
 | callback | AsyncCallback\<boolean> | 是 | callback方式返回是否激活成功 |
@@ -68,7 +68,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名         | 类型                                           | 必填 | 说明                     |
 | -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用           |
+| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用           |
 | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息 |
 | type           | [AdminType](#AdminType)                        | 是   | 激活的设备管理员类型     |
 
@@ -113,7 +113,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名   | 类型                                           | 必填 | 说明                           |
 | -------- | ---------------------------------------------- | ---- | ------------------------------ |
-| admin    | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 普通设备管理员应用             |
+| admin    | [Want](js-apis-application-Want.md) | 是   | 普通设备管理员应用             |
 | callback | AsyncCallback\<boolean>                        | 是   | callback方式返回是否去激活成功 |
 
 **示例**：
@@ -150,7 +150,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名 | 类型                                           | 必填 | 说明               |
 | ------ | ---------------------------------------------- | ---- | ------------------ |
-| admin  | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 普通设备管理员应用 |
+| admin  | [Want](js-apis-application-Want.md) | 是   | 普通设备管理员应用 |
 
 **返回值：**
 
@@ -246,7 +246,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名   | 类型                                           | 必填 | 说明                             |
 | -------- | ---------------------------------------------- | ---- | -------------------------------- |
-| admin    | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用                   |
+| admin    | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用                   |
 | callback | AsyncCallback\<boolean>                        | 是   | callback方式返回是否处于激活状态 |
 
 **示例**：
@@ -280,7 +280,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名 | 类型                                           | 必填 | 说明           |
 | ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用 |
+| admin  | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用 |
 
 **返回值：**
 
@@ -449,7 +449,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名         | 类型                                           | 必填 | 说明                                 |
 | -------------- | ---------------------------------------------- | ---- | ------------------------------------ |
-| admin          | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用                       |
+| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用                       |
 | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息             |
 | callback       | AsyncCallback\<boolean&gt;                     | 是   | callback方式返回是否设置企业信息成功 |
 
@@ -486,7 +486,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名         | 类型                                           | 必填 | 说明                     |
 | -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用           |
+| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用           |
 | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息 |
 
 **返回值：**
@@ -527,7 +527,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名   | 类型                                                   | 必填 | 说明                                     |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| admin    | [Want](js-apis-featureAbility.md#Want类型说明)         | 是   | 设备管理员应用                           |
+| admin    | [Want](js-apis-application-Want.md)         | 是   | 设备管理员应用                           |
 | callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | 是   | callback方式返回设备管理员应用的企业信息 |
 
 **示例：**
@@ -561,7 +561,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 | 参数名 | 类型                                           | 必填 | 说明           |
 | ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-featureAbility.md#Want类型说明) | 是   | 设备管理员应用 |
+| admin  | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用 |
 
 **返回值：**
 

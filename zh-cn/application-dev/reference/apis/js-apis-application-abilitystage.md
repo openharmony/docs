@@ -47,7 +47,7 @@ onAcceptWant(want: Want): string;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
+  | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
 
 **返回值：**
 
