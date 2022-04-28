@@ -475,6 +475,7 @@
       - [@ohos.application.appManager](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration](reference/apis/js-apis-configuration.md)
       - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
+      - [@ohos.application.abilityMonitor](reference/apis/js-apis-application-abilityMonitor.md)
       - [@ohos.ability.featureAbility](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
       - [@ohos.application.FormExtension](reference/apis/js-apis-formextension.md)

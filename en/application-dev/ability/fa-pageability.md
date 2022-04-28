@@ -34,16 +34,15 @@ Description of ability lifecycle states:
 You can override the lifecycle callbacks provided by the Page ability in the **app.js/app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
 
 ### Launch Type
-The ability supports three launch types: singleton, multi-instance, and instance-specific.
+The ability supports two launch types: singleton and multi-instance.
 The **launchType** item in the **config.json** file is used to specify the launch type.
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
 | standard    | Multi-instance  | A new instance is started each time an ability starts.|
 | singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
-| specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, **standard** is used.
+By default, **singleton** is used.
 
 
 ## Development Guidelines
@@ -260,9 +259,6 @@ export default {
   },
 }
 ```
-### Development Example
+## Samples
 The following sample is provided to help you better understand how to develop a Page ability:
-
-[DMS](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
-
-This sample describes how to start a local ability and remote ability.
+- [`DMS`: Distributed Demo (eTS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)

@@ -1,4 +1,4 @@
-# Ability综述
+# FA模型综述
 
 ## 整体架构
 OpenHarmony用户程序的开发本质上就是开发Ability。OpenHarmony系统是通过对Ability调度，结合系统提供的一致性调度契约对Ability进行生命周期管理，从而实现对用户程序的调度。
@@ -35,7 +35,6 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 ![fa-threading-nodel](figures/fa-threading-model.png)
 ## 相关实例
 针对Ability开发，有以下相关实例可供参考：
-- [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
 - [分布式调度启动远程FA](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
 - [分布式新闻客户端](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)
