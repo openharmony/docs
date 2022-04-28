@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The file management subsystem provides a complete file management solution for OpenHarmony. It provides secure and easy-to-use file access and comprehensive file management capabilities, including:
+The file management subsystem provides a complete file management solution for OpenHarmony. It provides secure and easy file access and comprehensive file management capabilities, including:
 
 - A sandbox to ensure the least privilege as well as application data security
 - Unified management of user files and streamlined user data access and storage to ensure user data security and purity
@@ -18,10 +18,10 @@ The file management subsystem provides the file access framework, file sharing f
 | Module        | Description                                                    |
 | ------------ | ------------------------------------------------------------ |
 | File access interface| 1. Provides complete JavaScript APIs to implement basic file access capabilities.<br>2. Provides extension APIs for local files, distributed files, and cloud files.|
-| Storage management    | 1. Provides data backup and restore to support system and application data backup and cloning.<br>2. Provides space management capabilities such as application space clearing and statistics, and quota control.<br>3. Provides storage management capabilities such as mount operations, external card management, device management, and multi-user management.|
-| User files    | 1.  Provides a sandbox to ensure user data security and purity.<br>2. Allows access to user data only through **mediaLibrary**.<br>3. Provides a unified file management framework.<br>4. Supports distributed and device-cloud capabilities.|
-| Application files    | 1. Provides a sandbox to ensure the least privilege as well as application data security.<br>2. Supports file sharing between applications, across devices, and in groups.<br>3. Allows applications to access distributed and cloud files as they access local files.|
-| Distributed capabilities  | 1. Provides basic cross-device access capabilities and supports distributed access using the same account and temporary access using different accounts.<br>2. Supports device-cloud interaction irrespective of the data locations.<br>3. Supports cross-device hopping, such as application hopping and distributed pasteboard.|
+| Storage management    | 1. Provides the data backup and restoration capability to support system and application data backup and cloning.<br>2. Provides space management capabilities such as application space clearing and statistics, and quota control.<br>3. Provides storage management capabilities such as mount operations, external card management, device management, and multi-user management.|
+| User files    | 1.  Provides a sandbox to ensure user data security and purity.<br>2. Allows access to user data only through **medialibrary**.<br>3. Provides a unified file management framework.<br>4. Supports distributed and device-cloud capabilities.|
+| Application files    | 1. Provides a sandbox to ensure the least privilege as well as application data security.<br>2. Supports file sharing between apps, across devices, and in groups.<br>3. Allows applications to access distributed and cloud files as they access local files.|
+| Distributed capabilities  | 1. Provides basic cross-device access capabilities and supports distributed access using the same account and temporary access using different accounts.<br>2. Support device-cloud interaction irrespective of the data locations.<br>3. Supports cross-device hopping, such as application hopping and distributed clipboard.|
 | Basic file system| 1. Supports local file systems such as ext4, Flash-Friendly File System (F2FS), Extensible File Allocation Table (exFAT), and New Technology File System (NTFS).<br>2. Supports network file systems such as the distributed file system and Network File System (NFS).<br>3. Provides tools related to file systems.|
 
 
