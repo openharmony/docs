@@ -21,8 +21,8 @@ import Ability from '@ohos.application.Ability';
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
-| launchWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability启动时的参数。 | 
-| lastRequestWant | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 否 | Ability最后请求时的参数。| 
+| launchWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability启动时的参数。 | 
+| lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
 
 
 ## Ability.onCreate
@@ -37,7 +37,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want | [Want](js-apis-application-Want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
   | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
 
 **示例：**
@@ -222,7 +222,7 @@ onNewWant(want: Want): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want类型说明) | 是 | Want类型参数，如ability名称，包名等。 | 
+  | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
 
 **示例：**
     
