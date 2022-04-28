@@ -247,6 +247,8 @@
               - [uname](kernel/kernel-small-debug-shell-cmd-uname.md)
               - [vmm](kernel/kernel-small-debug-shell-cmd-vmm.md)
               - [watch](kernel/kernel-small-debug-shell-cmd-watch.md)
+              - [reboot](kernel/kernel-small-debug-shell-cmd-reboot.md)
+              - [top](kernel/kernel-small-debug-shell-cmd-top.md)
             - File Commands
               - [cat](kernel/kernel-small-debug-shell-file-cat.md)
               - [cd](kernel/kernel-small-debug-shell-file-cd.md)
@@ -269,6 +271,8 @@
               - [touch](kernel/kernel-small-debug-shell-file-touch.md)
               - [writeproc](kernel/kernel-small-debug-shell-file-write.md)
               - [umount](kernel/kernel-small-debug-shell-file-umount.md)
+              - [du](kernel/kernel-small-debug-shell-file-du.md)
+              - [mv](kernel/kernel-small-debug-shell-file-mv.md)
             - Network Commands
               - [arp](kernel/kernel-small-debug-shell-net-arp.md)
               - [dhclient](kernel/kernel-small-debug-shell-net-dhclient.md)
@@ -311,6 +315,11 @@
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
       - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
+      - Enhanced Kernel Features 
+        - [Enhanced SWAP](kernel-standard-mm-eswap.md)
+        - Task Scheduling
+          - [Related Thread Group](kernel-standard-sched-rtg.md)
+          - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
   - Driver
     - HDF
       - [HDF Overview](driver/driver-hdf-overview.md)
