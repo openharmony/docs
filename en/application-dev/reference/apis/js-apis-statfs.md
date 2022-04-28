@@ -1,6 +1,6 @@
 # statfs
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -44,9 +44,9 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 - Example
 
   ```js
-  let path = "/data";
+  let path = "/dev";
   statfs.getFreeBytes(path).then(function (number){
-      console.info("getFreeBytes successfully:"+ number);
+      console.info("getFreeBytes promise successfully:"+ number);
   }).catch(function(err){
       console.info("getFreeBytes failed with error:"+ err);
   });
@@ -71,7 +71,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   ```js
   statfs.getFreeBytes(path, function(err, number){
-      //do something
+      console.info("getFreeBytes callback successfully:"+ number);
   });
   ```
 
@@ -98,9 +98,9 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 - Example
 
   ```js
-  let path = "/data";
+  let path = "/dev";
   statfs.getTotalBytes(path).then(function (number){
-      console.info("getTotalBytes successfully:"+ number);
+      console.info("getTotalBytes promise successfully:"+ number);
   }).catch(function(err){
       console.info("getTotalBytes failed with error:"+ err);
   });
@@ -125,6 +125,6 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   ```js
   statfs.getTotalBytes(path, function(err, number){
-      //do something
+      console.info("getTotalBytes callback successfully:"+ number);
   });
   ```
