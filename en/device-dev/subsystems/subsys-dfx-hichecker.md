@@ -20,9 +20,9 @@ HiChecker provides the APIs listed in the following table.
 
   **Table 1** HiChecker APIs
 
-| **Class**| **API**| **Description**| 
-| -------- | -------- | -------- |
-| HiChecker | uint_64_t&nbsp;RULE_CAUTION_PRINT_LOG<br>=&nbsp;1&lt;&lt;63; | Defines an alarm rule, which is programmed to record a log when an alarm is generated.| 
+| **API**| **Description**| 
+| -------- | -------- |
+| uint_64_t&nbsp;RULE_CAUTION_PRINT_LOG<br>=&nbsp;1&lt;&lt;63; | Defines an alarm rule, which is programmed to record a log when an alarm is generated.| 
 | uint_64_t&nbsp;RULE_CAUTION_TRIGGER_CRASH&nbsp;=&nbsp;1&lt;&lt;62; | Defines an alarm rule, which is programmed to force the application to exit when an alarm is generated.| 
 | uint_64_t&nbsp;RULE_THREAD_CHECK_SLOW_PROCESS&nbsp;=&nbsp;1; | Defines a check rule, which is programmed to check whether any time-consuming function is called.| 
 | uint_64_t&nbsp;RULE_CHECK_SLOW_EVENT&nbsp;=&nbsp;1&lt;&lt;32; | Defines a check rule, which is programmed to check whether the event distribution or processing time has exceeded the specified time threshold.| 
