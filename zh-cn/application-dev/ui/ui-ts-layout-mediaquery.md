@@ -15,11 +15,11 @@
 
 首先导入媒体查询模块，例如：
 ```
-  import mediaquery from '@ohos.mediaquery'
+import mediaquery from '@ohos.mediaquery'
 ```
 然后通过matchMediaSync接口设置媒体查询条件，并保存返回的条件监听句柄，例如：
 ```
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
+listener = mediaquery.matchMediaSync('(orientation: landscape)')
 ```
 最后通过上面保存的条件监听句柄listener去注册回调函数，在回调函数里更改页面布局或者实现业务逻辑，当匹配到媒体查询条件时会触发此回调函数，例如：
 ```
@@ -39,13 +39,13 @@ listener.on('change', onPortrait)
 ```
 例如：
 
-screen and (round-screen: true) // 当设备屏幕是圆形时条件成立
+`screen and (round-screen: true)` ：当设备屏幕是圆形时条件成立
 
-(max-height: 800) // 当高度小于800时条件成立
+`(max-height: 800)` ：当高度小于800时条件成立
 
-(height &lt;= 800)  // 当高度小于800时条件成立
+`(height &lt;= 800) ` ：当高度小于800时条件成立
 
-screen and (device-type: tv) or (resolution &lt; 2) // 包含多个媒体特征的多条件复杂语句查询
+`screen and (device-type: tv) or (resolution &lt; 2)` ：包含多个媒体特征的多条件复杂语句查询
 
 ###  媒体类型(media-type)
 

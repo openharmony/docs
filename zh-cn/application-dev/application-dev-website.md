@@ -578,6 +578,8 @@
     - 资源调度
 
       - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
+      - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
+      - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - 定制管理
 
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
