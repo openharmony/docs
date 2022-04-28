@@ -8,8 +8,9 @@ On the created page, we use various items to describe food, such as food names, 
 
 
 1. Create a folder named model and create a file named FoodData.ets therein.
-   ![en-us_image_0000001223127760](figures/en-us_image_0000001223127760.png)
-
+   
+![en-us_image_0000001223127760](figures/en-us_image_0000001223127760.png)
+   
 2. Define a food data storage model, FoodData, and an enum variable, Category. The FoodData class contains the food ID, name, category, image, calories, protein, fat, carbohydrates, and vitamin C attributes.
    The eTS programming language is an extension of the TS language and also supports the TS syntax.
 

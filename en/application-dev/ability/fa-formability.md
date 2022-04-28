@@ -7,10 +7,15 @@ A widget displays brief information about an application on the UI of another ap
 
 Basic concepts:
 - Widget provider
+  
   The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
+  
 - Widget host
+  
   The widget host is an application that displays the widget content and controls the position where the widget is displayed in the host application.
+  
 - Widget Manager
+  
   The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
