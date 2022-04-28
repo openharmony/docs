@@ -24,29 +24,29 @@ TimePicker(options?: TimePickerOptions)
 Creates a time picker whose default time range is from 00:00 to 23:59.
 
 - options parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | selected | Date | No| Current system time| Time of the selected item.|
+  | Name     | Type | Mandatory | Default Value       | Description                |
+  | -------- | ---- | --------- | ------------------- | -------------------------- |
+  | selected | Date | No        | Current system time | Time of the selected item. |
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| useMilitaryTime | boolean | false | Whether to display time in 24-hour format. The value cannot be modified dynamically.|
+| Name            | Type    | Default Value | Description                              |
+| --------------- | ------- | ------------- | ---------------------------------------- |
+| useMilitaryTime | boolean | false         | Whether to display time in 24-hour format. The value cannot be modified dynamically. |
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | Triggered when a time is selected.|
+| Name                                     | Description                        |
+| ---------------------------------------- | ---------------------------------- |
+| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | Triggered when a time is selected. |
 
 ### TimePickerResult
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| hour | number | Hour portion of the selected time.|
-| minute | number | Minute portion of the selected time.|
+| Name   | Type   | Description                          |
+| ------ | ------ | ------------------------------------ |
+| hour   | number | Hour portion of the selected time.   |
+| minute | number | Minute portion of the selected time. |
 
 
 ## Example

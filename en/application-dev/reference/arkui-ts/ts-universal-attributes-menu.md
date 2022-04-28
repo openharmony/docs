@@ -12,23 +12,23 @@ None
 ## Attributes
 
 
-| Name| Type| Default Value | Description|
-| -------- | -------- | -------- | -------- |
-| bindMenu | Array<MenuItem&gt; \| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported.|
-| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](../../ui/ts-types.md)<br>responseType: ResponseType | - | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported.|
+| Name                         | Type                                     | Default Value | Description                              |
+| ---------------------------- | ---------------------------------------- | ------------- | ---------------------------------------- |
+| bindMenu                     | Array<MenuItem&gt; \| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -             | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported. |
+| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](../../ui/ts-types.md)<br>responseType: ResponseType | -             | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported. |
 
 
 - MenuItem
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | value | string | Menu item text.|
-  | action | () =&gt; void | Action triggered when a menu item is clicked.|
+  | Name   | Type          | Description                              |
+  | ------ | ------------- | ---------------------------------------- |
+  | value  | string        | Menu item text.                          |
+  | action | () =&gt; void | Action triggered when a menu item is clicked. |
 
 - ResponseType<sup>8+</sup>
-  | Value| Description|
-  | -------- | -------- |
-  | LongPress | The menu is displayed when the component is long-pressed.   |
-  | RightClick | The menu is displayed when the component is right-clicked.|
+  | Value      | Description                              |
+  | ---------- | ---------------------------------------- |
+  | LongPress  | The menu is displayed when the component is long-pressed. |
+  | RightClick | The menu is displayed when the component is right-clicked. |
 
 ## Example
 

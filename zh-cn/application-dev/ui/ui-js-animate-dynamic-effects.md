@@ -80,15 +80,15 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 使用createAnimator创建动画对象时必须传入options参数。
-> 
+>
 > - begin插值起点，不设置时默认为0。
-> 
+>
 > - end插值终点，不设置时默认为1。
 
 
 ## 添加动画事件和调用接口
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的createAnimator。
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[createAnimator](../reference/apis/js-apis-animator.md)。
 
 ```
 <!-- xxx.hml -->

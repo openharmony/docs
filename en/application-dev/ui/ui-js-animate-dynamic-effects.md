@@ -1,7 +1,7 @@
 # Animation Effect
 
 
-You can set the interpolator to implement the animation effect. For details, see [Animation](../reference/apis/js-apis-basic-features-animator.md).
+You can set the interpolator to implement the animation effect.
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
@@ -82,15 +82,15 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
 > - When you use createAnimator to create an animation object, you must pass the options parameter.
-> 
+>
 > - begin indicates the start point of the animation interpolation. If it is not set, the default value 0 is used.
-> 
+>
 > - end indicates the end point of the animation interpolation. If it is not set, the default value 1 is used.
 
 
 ## Adding Animation Events and Calling Methods
 
-The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis/js-apis-basic-features-animator.md).
+The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis/js-apis-animator.md).
 
 
 ```
