@@ -11,7 +11,7 @@ The DFX subsystem provides the following functions:
 - HiSysEvent: implements system event logging. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiChecker: implements defect scanning. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiDumper: exports system information. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
-- Faultlogger: implements crash detection. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
+- FaultLogger: implements crash detection. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 
 ## Basic Concepts<a name="section5635178134811"></a>
 
