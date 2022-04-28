@@ -479,7 +479,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
-Enables listening for the properties changes of the status bar and navigation bar.
+Enables listening for properties changes of the status bar and navigation bar.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -490,7 +490,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -516,7 +516,7 @@ This is a system API and cannot be called by third-party applications.
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -934,7 +934,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name  | Type                                        | Mandatory| Description                                                        |
   | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area.**TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
   | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                                  |
 
 - Example
@@ -962,7 +962,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name| Type                           | Mandatory| Description                                                        |
   | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area.**TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
 
 - Return value
 
@@ -1251,7 +1251,7 @@ Loads content to this window. This API uses an asynchronous callback to return t
 
   | Name  | Type                     | Mandatory| Description                |
   | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | Yes  | Path of the page to which the content will be loaded.|
+  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
   
 - Example
@@ -1278,7 +1278,7 @@ Loads content to this window. This API uses a promise to return the result.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | path   | string | Yes  | Path of the page to which the content will be loaded.|
+  | path   | string | Yes  | Path of the page from which the content will be loaded.|
   
 - Return value
 
@@ -1361,7 +1361,7 @@ Enables listening for window size changes.
   | Name  | Type                         | Mandatory| Description                                                        |
   | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1384,8 +1384,8 @@ Disables listening for window size changes.
 
   | Name  | Type                         | Mandatory| Description                                                        |
   | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange<sup>7+</sup>**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the listened information.                                      |
+  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange**, which indicates listening for window size changes.|
+  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1407,7 +1407,7 @@ Enables listening for changes to the area where the window cannot be displayed.
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1431,7 +1431,7 @@ Disables listening for changes to the area where the window cannot be displayed.
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1455,7 +1455,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;number&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1481,7 +1481,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   | Name  | Type                  | Mandatory| Description                                                        |
   | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                 | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;number&gt; | No  | Callback used to return the listened information.                                      |
+  | callback | Callback&lt;number&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
@@ -2160,4 +2160,301 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-### 
+## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+
+Describes the lifecycle of a window stage.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name      | Default Value| Description    |
+| ---------- | ------ | -------- |
+| FOREGROUND | 1      | The window stage is running in the foreground.|
+| ACTIVE     | 2      | The window stage gains focus.|
+| INACTIVE   | 3      | The window stage loses focus.|
+| BACKGROUND | 4      | The window stage is running in the background.|
+
+## WindowStage<sup>9+</sup>
+
+Before calling any of the following APIs, you must use `[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)` to create a **WindowStage** instance.
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(): Promise&lt;Window&gt;
+
+Obtains the main window of this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Return value
+
+  | Type                            | Description                                                      |
+  | -------------------------------- | ---------------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getMainWindow();
+          promise.then((data)=> {
+          windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          });
+      }
+  }
+  ```
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
+
+Obtains the main window of this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Parameters
+
+  | Name  | Type                                  | Mandatory| Description                                   |
+  | -------- | -------------------------------------- | ---- | --------------------------------------- |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getMainWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string): Promise&lt;Window&gt;
+
+Creates a subwindow for this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name| Type  | Mandatory| Description          |
+  | ------ | ------ | ---- | -------------- |
+  | name   | String | Yes  | Name of the subwindow.|
+- Return value
+
+  | Type                            | Description                                             |
+  | -------------------------------- | ------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.createSubWindow("mySubWindow");
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
+
+Creates a subwindow for this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Parameters
+
+  | Name  | Type                                  | Mandatory| Description                          |
+  | -------- | -------------------------------------- | ---- | ------------------------------ |
+  | name     | String                                 | Yes  | Name of the subwindow.                |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.createSubWindow("mySubWindow", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+              windowClass.resetSize(500, 1000);
+          });
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
+
+Obtains all the subwindows of this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Return value
+
+  | Type                                         | Description                                                        |
+  | --------------------------------------------- | ------------------------------------------------------------ |
+  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getSubWindow();
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
+
+Obtains all the subwindows of this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name  | Type                                               | Mandatory| Description                                       |
+  | -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getSubWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### loadContent<sup>9+</sup>
+
+loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+Loads content to this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value 'windowSizeChange'
+
+- Parameters
+
+  | Name  | Type                     | Mandatory| Description                |
+  | -------- | ------------------------- | ---- | -------------------- |
+  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
+  
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          windowStage.loadContent("pages/page2", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                  return;
+              }
+              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+          });
+      }
+  }
+  ```
+### on('windowStageEvent')<sup>9+</sup>
+
+on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
+
+Enables listening for window stage lifecycle changes.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name  | Type                                                        | Mandatory| Description                                                        |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the information.                                      |
+
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.on(type, (data) => {
+              console.info('Succeeded in enabling the listener for window stage event changes. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### off('windowStageEvent')<sup>9+</sup>
+
+off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
+
+Disables listening for window stage lifecycle changes.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name  | Type                                                        | Mandatory| Description                                                        |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the information.                                      |
+- Example
+
+  ```
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.off(type);
+      }
+  }
+  ```
