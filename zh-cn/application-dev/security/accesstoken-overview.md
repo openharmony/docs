@@ -158,7 +158,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 
 - 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
 
-- 如需检查用户是否已向您的应用授予特定权限，可以使用[verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](#accesstoken-guidelines.md)。
+- 如需检查用户是否已向您的应用授予特定权限，可以使用[verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md)。
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 - 即使用户向应用授予过请求的权限，应用在调用受此权限管控的接口前，也应该先检查自己有无此权限，而不能把之前授予的状态持久化，因为用户在动态授予后还可以通过设置取消应用的权限。
 
