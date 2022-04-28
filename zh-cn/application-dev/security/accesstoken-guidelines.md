@@ -149,4 +149,4 @@
 
 ```
 > **说明：**
-> 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md#abilitycontextrequestpermissionsfromuser)。
+> 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
