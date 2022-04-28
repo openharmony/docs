@@ -20,9 +20,8 @@
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
             - [Running](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
     - Appendix
-        - Introduction to Development Boards
-            - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
-            - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
+        - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
+        - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
   - Getting Started with Mini and Small Systems (Installation Package Mode)
     - [Mini and Small System Overview](quick-start/quickstart-lite-overview.md)
     - [Environment Preparation](quick-start/quickstart-lite-env-setup.md)
@@ -68,9 +67,8 @@
             - [Burning](quick-start/quickstart-ide-standard-running-rk3568-burning.md)
             - [Running](quick-start/quickstart-ide-standard-running-rk3568-running.md)
     - Appendix
-        - Introduction to Development Boards
-            - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
-            - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
+        - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
+        - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
   - Getting Started with Standard System (Installation Package Mode)
     - [Standard System Overview](quick-start/quickstart-standard-overview.md)
     - [Setting Up Environments for Standard System](quick-start/quickstart-standard-env-setup.md)
