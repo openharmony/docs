@@ -15,7 +15,7 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 /base/hiviewdfx/hidumper
 ├── frameworks           # 框架代码
 │   ├── native           # 导出功能核心代码
-│   │  │── inlude        # 头文件目录
+│   │  │── include        # 头文件目录
 │   │  │── src           # 源文件目录
 │   │      │── common    # 通用功能代码
 │   │      │── executor  # 导出过程执行器代码
