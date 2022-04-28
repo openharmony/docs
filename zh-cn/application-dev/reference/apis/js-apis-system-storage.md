@@ -2,7 +2,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> - 从API Version 6开始，该接口不再维护，可以使用接口[`@ohos.data.storage`](js-apis-data-storage.md)。
+> - 从API Version 6开始，该模块不再维护，可以使用模块[`@ohos.data.storage`](js-apis-data-storage.md)。
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 
-```
+```js
 import storage from '@system.storage';
 ```
 
@@ -19,7 +19,7 @@ import storage from '@system.storage';
 
 get(Object): void
 
-读取存储的内容。
+通过索引读取缓存中存储的值。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -29,13 +29,13 @@ get(Object): void
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 内容索引。 |
 | default | string | 否 | key不存在则返回的默认值。 |
-| success | Function | 否 | 接口调用成功的回调函数，返回存储的内容。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
+| success | Function | 否 | 接口调用成功的回调函数，data为返回key对应的value。 |
+| fail | Function | 否 | 接口调用失败的回调函数，data为错误信息，code为错误码。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
-```
+```js
 export default {    
   storageGet() {        
     storage.get({            
@@ -59,7 +59,7 @@ export default {
 
 set(Object): void
 
-修改存储的内容。
+修改缓存中索引对应的值。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -67,15 +67,15 @@ set(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 要修改的存储内容的索引。 |
-| value | string | 否 | 新值。最大长度128。 |
+| key | string | 是 | 要修改的存储值的索引。 |
+| value | string | 是 | 新值。最大长度128。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
+| fail | Function | 否 | 接口调用失败的回调函数，data为错误信息，code为错误码。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
-```
+```js
 export default {    
   storageSet() {        
     storage.set({            
@@ -97,7 +97,7 @@ export default {
 
 clear(Object): void
 
-清空存储的内容。
+清空缓存中存储的键值对。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -106,12 +106,12 @@ clear(Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
+| fail | Function | 否 | 接口调用失败的回调函数，data为错误信息，code为错误码。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
-```
+```js
 export default {    
   storageClear() {        
     storage.clear({            
@@ -131,7 +131,7 @@ export default {
 
 delete(Object): void
 
-删除存储的内容。
+删除缓存中索引对应的键值对。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -141,12 +141,12 @@ delete(Object): void
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 内容索引。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
+| fail | Function | 否 | 接口调用失败的回调函数，data为错误信息，code为错误码。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
-```
+```js
 export default {    
   storageDelete() {        
     storage.delete({            
