@@ -73,9 +73,9 @@ The init module starts key service processes during system startup. If you would
     ```
     As mentioned earlier, a **.cfg** file is a text file in JSON format. For the startup module, the init process is required to parse the following types of JSON objects in the **.cfg** file: **import**, **jobs**, and **services**. The three types of JSON objects are described as follows:
 
-    1. "import": other **.cfg** files into the current **.cfg** file. These files will be parsed in sequence after the current **.cfg** file is parsed.
-    2. "jobs": command set with a name. Execution of a job is the process of executing commands in **cmds** one by one in sequence. Details about how to trigger a job will be provided in the following sections.
-    3. "services": a collection of services. The simplest service can be one that has only a name and an executable file path. The basic logic of a service is to fork a subprocess in the init process and then run the executable file of the service in the subprocess. Services form the core of the startup module. The service configuration in the **.cfg** file also includes various attributes and service control modes. More details will be provided in the following sections.
+    1. **import**: other **.cfg** files into the current **.cfg** file. These files will be parsed in sequence after the current **.cfg** file is parsed.
+    2. **jobs**: command set with a name. Execution of a job is the process of executing commands in **cmds** one by one in sequence. Details about how to trigger a job will be provided in the following sections.
+    3. **services**: a collection of services. The simplest service can be one that has only a name and an executable file path. The basic logic of a service is to fork a subprocess in the init process and then run the executable file of the service in the subprocess. Services form the core of the startup module. The service configuration in the **.cfg** file also includes various attributes and service control modes. More details will be provided in the following sections.
 
 - init service startup control (for standard system or higher)<a name = "section56901555918">
 
@@ -83,7 +83,7 @@ The init module starts key service processes during system startup. If you would
 
   - **boot**: services that need to be preferentially started in the system. This type of services are started in the init phase.
   - **normal**: common services in the system. This type of services are started in the post-init phase. This is the default service type.
-  - condition: services that are started based on the specified conditions. You can run the **start xxx** command to start such a service. Generally, this type of services are started in a condition job or in a certain phase of the init process.
+  - **condition**: services that are started based on the specified conditions. You can run the **start xxx** command to start such a service. Generally, this type of services are started in a condition job or in a certain phase of the init process.
 
   If dependencies exist between services or between services and commands, you need to use **condition** to describe services. For example:
     ```
@@ -170,7 +170,7 @@ The init module starts key service processes during system startup. If you would
 
   - Common job: A job executed in a fixed phase during init process startup, for example, pre-init, init, or post-init.
   - Custom job: A job is triggered based on certain rules.
-     - job: A user-defined job, which can be executed using the **trigger** command.
+     - Job: A user-defined job, which can be executed using the **trigger** command.
      - Control job (for standard system or higher): A job triggered based on specified conditions. You can set trigger conditions in such a job. When the corresponding attribute values meet the trigger conditions, the job will be triggered. &amp;&amp; and || operations are supported for trigger conditions, and these operations can be used in flexible combinations as needed.
 
  - bootchart plug-in
@@ -245,48 +245,48 @@ The init module starts key service processes during system startup. If you would
      **Table 2** Commands supported by a job
    | Command | Format and Example | Description | System Type |
    | -------- | -------- | -------- | -------- |
-   | mkdir | mkdir <i>target folder</i><br/>Example: mkdir /storage/myDirectory | Creates a folder. <strong>mkdir</strong> and the target folder must be separated by only one space. | small&amp;standard |
-   | chmod | chmod <i>permission</i> <i>target</i><br/>Example:<br/>chmod 0600 /storage/myFile.txt<br/>chmod 0750 /storage/myDir | Modifies the permission, which must be in the <strong>0xxx</strong> format. <strong>chmod</strong>, <i>permission</i>, and <i>target</i> must be separated by only one space. | small&amp;standard |
-   | chown | chown uid gid <i>target</i><br/>Example:<br/>chown 900 800 /storage/myDir<br/>chown 100 100 /storage/myFile.txt | Modifies the owner group. <strong>chown</strong>, <strong>uid</strong>, <strong>gid</strong>, and <i>target</i> must be separated by only one space. | small&amp;standard |
-   | mount | mount fileSystemType src dst flags data<br/>Example:<br/>mount vfat /dev/mmcblk0 /sdc rw,umask=000<br/>mount jffs2 /dev/mtdblock3 /storage nosuid | Mounts devices. Every two parameters must be separated by only one space. Currently, supported flags include <strong>nodev</strong>, <strong>noexec</strong>, <strong>nosuid</strong>, <strong>rdonly</strong>, and optionally <strong>data</strong>. | small&amp;standard |
-   | start | start serviceName<br/>Example:<br/>start foundation<br/>start shell | Starts services. <strong>start</strong> must be followed by <i>serviceName</i>, and <i>serviceName</i> must be contained in the <strong>services</strong> array. | small&amp;standard |
-   | export | export key value<br/>Example:<br/>export TEST /data/test | Exports environment variables. <strong>key</strong> and <strong>value</strong> respectively indicate the environment variable and its value.| small&amp;standard |
-   | rm | rm filename<br/>Example:<br/>rm /data/testfile | Removes a file. <strong>filename</strong> indicates the absolute file path. | small&amp;standard |
-   | rmdir | rmdir dirname<br/>Example:<br/>rmdir /data/testdir | Removes a directory. <strong>dirname</strong> indicates the absolute path of the directory. | small&amp;standard | write | write filename value<br/>Example:<br/>write /data/testfile 0 | Writes a file. <strong>filename</strong> and <strong>value</strong> respectively indicate the absolute file path and the string to write. | small&amp;standard |
-   | stop | stop servicename<br/>Example:<br/>stop console | Stops a service. <strong>servicename</strong> indicates the name of the service to stop. | small&amp;standard |
-   | copy | copy oldfile newfile<br/>Example:<br/>copy /data/old /data/new | Copies a file. <strong>oldfile</strong> and <strong>newfile</strong> respectively indicate the old and new absolute file paths. | small&amp;standard |
-   | reset | reset servicename<br/>Example:<br/>reset console | Resets a service. <strong>servicename</strong> indicates the name of the service to reset. If the service has not been started, this command will start the service. If the service is running, the command will stop the service and then restart it.| small&amp;standard |
-   | reboot | reboot *subsystem*<br/>Example:<br/>reboot updater | Restarts the system. <strong>subsystem</strong> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the correspoding subsystem upon restarting. For example, if you run **reboot updater**, the device enters the updater subsystem upon restarting. | small&amp;standard |
-   | sleep | sleep time<br/>Example:<br/>sleep 5 | Enters the sleep state. <strong>time</strong> indicates the sleep time. | small&amp;standard |
-   | domainname | domainname name<br/>Example:<br/>domainname localdomain | Sets a domain name. | small & standard |
-   | hostname | hostname name<br/>Example:<br/>hostname localhost | Sets a host name. | small&amp;standard |
-   | wait | wait PID<br/>Example:<br/>wait pid | Waits for a command.| small&amp;standard |
-   | setrlimit | setrlimit resource curValue maxValue | Sets limitations on resource usage. | small&amp;standard |
-   | write | write path content<br/>Example:<br/>write /proc/sys/kernel/sysrq 0 | Writes a file. | small&amp;standard |
-   | exec | exec *Path of the executable file* *Parameters passed by the executable file*<br/>Example:<br/>exec /system/bin/udevadm trigger | Runs an executable file. | small&amp;standard |
-   | mknode | mknod name { b \| c } Major Minor<br/>Example:<br/>mknod path b 0644 1 9 | Creates an index node corresponding to a directory entry and a special file. For details, see the **mknod** command. | standard |
-   | makedev | makedev major minor<br/>Example:<br/>makedev -v update | Creates a static device node, which is usually in the **/dev** directory.| standard |
-   | symlink | symlink path1 path2<br/>Example:<br/>symlink /proc/self/fd/0 /dev/stdin | Creates a symbolic link. | standard |
-   | trigger | trigger jobName<br/>Example:<br/>trigger early-fs | Triggers a job. | standard |
-   | insmod | insmod *ko file*<br/>Example:<br/>insmod *xxx*.ko| Loads a kernel module file. | standard |
-   | setparam | setparam *paramname* *paramvalue*<br/>Example:<br/>setparam sys.usb.config hdc | Sets a system parameter.| standard |
-   | load_persist_params | load persist params<br/>Example:<br/>load_persist_params&nbsp; | Loads **persist** parameters. There must be one and only one space after the **load_persist_params** command. | standard |
-   | load_param | load params<br/>Example:<br/>load_param /data/test.normal.para | Loads the parameters from a file to the memory.| standard |
-   | load_access_token_id | Example:<br/>load_access_token_id&nbsp; | Writes the access token to the **data/service/el0/access_token/nativetoken.json** file. There is one and only one space after **load_access_token_id**.| standard |
-   | ifup | ifup *NIC*<br/>Example:<br/>ifup eth0 | Activates the specified NIC.| standard |
-   | mount_fstab | mount_fstab fstab.test<br/>Example:<br/>mount_fstab /vendor/etc/fstab.test | Mounts partitions based on the **fstab** file. | standard |
-   | umount_fstab | umount_fstab fstab.test<br/>Example:<br/>umount_fstab /vendor/etc/fstab.test | Unmounts partitions based on the **fstab** file. | standard |
-   | restorecon | restorecon file or dir<br/>Example:<br/>restorecon /file | Reloads the SELinux context. | standard |
-   | stopAllServices | stopAllServices [bool]<br/>Example:<br/>stopAllServices false<br/>stopAllServices | Stops all services. | standard |
-   | umount |umount path<br/>Example:<br/>umount /vendor | Unmounts a mounted device. | standard |
-   | sync | Example:<br/>sync&nbsp; | Writes data to the disk synchronously. There is only one and only one space after **sync**.| standard |
-   | timer_start | timer_start serviceName<br/>Example:<br/>timer_start console | Starts the service timer. | standard |
-   | timer_stop | timer_stop serviceName<br/>Example:<br/>timer_stop console | Stops the service timer. | standard |
-   | init_global_key | init_global_key path<br/>Example:<br/>init_global_key /data | Initializes the encryption key of the data partition file.| standard |
-   | init_main_user | Example:<br/>init_main_user| Encrypts the main user directory.| standard |
-   | mkswap | mkswap file<br/>Example:<br/>mkswap /swapfile1 | Creates a swap partition on a file or device. | standard |
-   | swapon | swapon file<br/>Example:<br/>swapon /swapfile1 | Activates the swap space. | standard |
-   | loadcfg | loadcfg *filePath*<br/>Example:<br/>loadcfg /patch/fstab.cfg | Loads other <strong>.cfg</strong> files. The maximum size of the target file (Only /patch/fstab.cfg supported currently) is 50 KB. Each line in the /patch/fstab.cfg file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed. | small |
+   | mkdir | mkdir <i>target folder</i><br/>Example:<br/>mkdir /storage/myDirectory | Creates a folder. <strong>mkdir</strong> and the target folder must be separated by only one space. | Small and standard |
+   | chmod | chmod <i>permission</i> <i>target</i><br/>Example:<br/>chmod 0600 /storage/myFile.txt<br/>chmod 0750 /storage/myDir | Modifies the permission, which must be in the <strong>0xxx</strong> format. <strong>chmod</strong>, <i>permission</i>, and <i>target</i> must be separated by only one space. | Small and standard |
+   | chown | chown uid gid <i>target</i><br/>Example:<br/>chown 900 800 /storage/myDir<br/>chown 100 100 /storage/myFile.txt | Modifies the owner group. <strong>chown</strong>, <strong>uid</strong>, <strong>gid</strong>, and <i>target</i> must be separated by only one space. | Small and standard |
+   | mount | mount fileSystemType src dst flags data<br/>Example:<br/>mount vfat /dev/mmcblk0 /sdc rw,umask=000<br/>mount jffs2 /dev/mtdblock3 /storage nosuid | Mounts devices. Every two parameters must be separated by only one space. Currently, supported flags include <strong>nodev</strong>, <strong>noexec</strong>, <strong>nosuid</strong>, <strong>rdonly</strong>, and optionally <strong>data</strong>. | Small and standard |
+   | start | start serviceName<br/>Example:<br/>start foundation<br/>start shell | Starts services. <strong>start</strong> must be followed by <i>serviceName</i>, and <i>serviceName</i> must be contained in the <strong>services</strong> array. | Small and standard |
+   | export | export key value<br/>Example:<br/>export TEST /data/test | Exports environment variables. <strong>key</strong> and <strong>value</strong> respectively indicate the environment variable and its value. | Small and standard |
+   | rm | rm filename<br/>Example:<br/>rm /data/testfile | Removes a file. <strong>filename</strong> indicates the absolute file path. | Small and standard |
+   | rmdir | rmdir dirname<br/>Example:<br/>rmdir /data/testdir | Removes a directory. <strong>dirname</strong> indicates the absolute path of the directory. | Small and standard | write | write filename value<br/>Example:<br/>write /data/testfile 0 | Writes a file. <strong>filename</strong> and <strong>value</strong> respectively indicate the absolute file path and the string to write. | Small and standard |
+   | stop | stop servicename<br/>Example:<br/>stop console | Stops a service. <strong>servicename</strong> indicates the name of the service to stop. | Small and standard |
+   | copy | copy oldfile newfile<br/>Example:<br/>copy /data/old /data/new | Copies a file. <strong>oldfile</strong> and <strong>newfile</strong> respectively indicate the old and new absolute file paths. | Small and standard |
+   | reset | reset servicename<br/>Example:<br/>reset console | Resets a service. <strong>servicename</strong> indicates the name of the service to reset. If the service has not been started, this command will start the service. If the service is running, the command will stop the service and then restart it. | Small and standard |
+   | reboot | reboot *subsystem*<br/>Example:<br/>reboot updater | Restarts the system. <strong>subsystem</strong> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the correspoding subsystem upon restarting. For example, if you run **reboot updater**, the device enters the updater subsystem upon restarting. | Small and standard |
+   | sleep | sleep time<br/>Example:<br/>sleep 5 | Enters the sleep state. <strong>time</strong> indicates the sleep time. | Small and standard |
+   | domainname | domainname name<br/>Example:<br/>domainname localdomain | Sets a domain name. | Small and standard |
+   | hostname | hostname name<br/>Example:<br/>hostname localhost | Sets a host name. | Small and standard |
+   | wait | wait PID<br/>Example:<br/>wait pid | Waits for a command. | Small and standard |
+   | setrlimit | setrlimit resource curValue maxValue | Sets limitations on resource usage. | Small and standard |
+   | write | write path content<br/>Example:<br/>write /proc/sys/kernel/sysrq 0 | Writes a file. | Small and standard |
+   | exec | exec *Path of the executable file* *Parameters passed by the executable file*<br/>Example:<br/>exec /system/bin/udevadm trigger | Runs an executable file. | Small and standard |
+   | mknode | mknod name { b \| c } Major Minor<br/>Example:<br/>mknod path b 0644 1 9 | Creates an index node corresponding to a directory entry and a special file. For details, see the **mknod** command. | Standard |
+   | makedev | makedev major minor<br/>Example:<br/>makedev -v update | Creates a static device node, which is usually in the **/dev** directory. | Standard |
+   | symlink | symlink path1 path2<br/>Example:<br/>symlink /proc/self/fd/0 /dev/stdin | Creates a symbolic link. | Standard |
+   | trigger | trigger jobName<br/>Example:<br/>trigger early-fs | Triggers a job. | Standard |
+   | insmod | insmod *ko file*<br/>Example:<br/>insmod *xxx*.ko| Loads a kernel module file. | Standard |
+   | setparam | setparam *paramname* *paramvalue*<br/>Example:<br/>setparam sys.usb.config hdc | Sets a system parameter. | Standard |
+   | load_persist_params | load persist params<br/>Example:<br/>load_persist_params&nbsp; | Loads **persist** parameters. There must be one and only one space after the **load_persist_params** command. | Standard |
+   | load_param | load params<br/>Example:<br/>load_param /data/test.normal.para | Loads the parameters from a file to the memory. | Standard |
+   | load_access_token_id | Example:<br/>load_access_token_id&nbsp; | Writes the access token to the **data/service/el0/access_token/nativetoken.json** file. There is one and only one space after **load_access_token_id**. | Standard |
+   | ifup | ifup *NIC*<br/>Example:<br/>ifup eth0 | Activates the specified NIC. | Standard |
+   | mount_fstab | mount_fstab fstab.test<br/>Example:<br/>mount_fstab /vendor/etc/fstab.test | Mounts partitions based on the **fstab** file. | Standard |
+   | umount_fstab | umount_fstab fstab.test<br/>Example:<br/>umount_fstab /vendor/etc/fstab.test | Unmounts partitions based on the **fstab** file. | Standard |
+   | restorecon | restorecon file or dir<br/>Example:<br/>restorecon /file | Reloads the SELinux context. | Standard |
+   | stopAllServices | stopAllServices [bool]<br/>Example:<br/>stopAllServices false<br/>stopAllServices | Stops all services. | Standard |
+   | umount |umount path<br/>Example:<br/>umount /vendor | Unmounts a mounted device. | Standard |
+   | sync | Example:<br/>sync&nbsp; | Writes data to the disk synchronously. There is only one and only one space after **sync**. | Standard |
+   | timer_start | timer_start serviceName<br/>Example:<br/>timer_start console | Starts the service timer. | Standard |
+   | timer_stop | timer_stop serviceName<br/>Example:<br/>timer_stop console | Stops the service timer. | Standard |
+   | init_global_key | init_global_key path<br/>Example:<br/>init_global_key /data | Initializes the encryption key of the data partition file. | Standard |
+   | init_main_user | Example:<br/>init_main_user| Encrypts the main user directory. | Standard |
+   | mkswap | mkswap file<br/>Example:<br/>mkswap /swapfile1 | Creates a swap partition on a file or device. | Standard |
+   | swapon | swapon file<br/>Example:<br/>swapon /swapfile1 | Activates the swap space. | Standard |
+   | loadcfg | loadcfg *filePath*<br/>Example:<br/>loadcfg /patch/fstab.cfg | Loads other <strong>.cfg</strong> files. The maximum size of the target file (Only /patch/fstab.cfg supported currently) is 50 KB. Each line in the /patch/fstab.cfg file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed. | Small |
 
 2.  Configure the <strong>services</strong> array, which holds all system services that need to be started by the init process.
 
@@ -329,21 +329,21 @@ The init module starts key service processes during system startup. If you would
 
     | Field | Description | Value | System Type |
     | ---------- |-------- | --------| --------|
-    | name | Name of the current service. | Type: string. The value cannot be empty and can contain a maximum of 32 bytes.| small&amp;standard |
-    | path | Full path (including parameters) of the current service's executable file, in array. | The first element is the path of the executable file, and the maximum number of elements is 20. <br>Each element is a string that contains a maximum of 64 bytes.| small&amp;standard |
-    | uid | User ID (UID) of the current service process. | Type: int | small&standard |
-    | gid | Group ID (GID) of the current service process. | Type: int | small&standard |
-    | once | Whether the current service process is a one-off process. | **1**: The current service process is a one-off process. If the process exits, the init process does not restart it. <br>**0**: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal. | small&amp;standard |
-    | importance | Current service priority. | Standard system: <br>The service priority ranges from **-20** to **19**. A value beyond the range is invalid. <br>Small-scale system:<br>**0**: unimportant process<br>non-0: important process | small&amp;standard |
-    | caps | Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission. | Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name. | small&amp;standard |
-    | critical | Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted. | Standard system:<br>Type: int array, for example, **"critical": [M, N, T]**.<br>- **M**: enable flag (**0**: disable; **1**: enable)<br>- N: number of times the service is started<br>- **T**: period of time, in seconds <br>Both **M** and **N** must be greater than **0**.<br>Small and standard systems:<br>Type: int, for example, **"critical": M**.<br>**M**: enable flag (**0**: disable; **1**: enable)<br>By default, **N** is **4** and **T** is **20**. | small&amp;standard |
-    | cpucore | Number of CPU cores to be bound to the service. | Type: int array, for example, **"cpucore": [N1, N2, ...]**. **N1** and **N2** indicate the indices of the CPU cores to be bound.<br>For a single-core device, **cpucore** is **0**. | small&amp;standard |
-    | d-caps | Service distribution capability. (Available only for the standard system or higher) | Type: string array, for example, **"d-caps": ["OHOS_DMS"]**. | standard |
-    | apl | Ability privilege level. (Available only for the standard system or higher) | Type: string, for example, **"apl": "system_core"**. <br>The value can be **system_core** (default), **normal**, or **system_basic**. | standard |
-    | start-mode | Service startup mode. (Available only for the standard system or higher) | Type: string, for example, **"start-mode": "condition"**. <br>The value can be **boot**, **normal**, or **condition**. For details, see [init service startup control](#section56901555918). | standard |
-    | jobs | Jobs that can be executed by the current service in different phases. For details, see [init parallel control](#section56901555919). | small&amp;standard |
-    | ondemand | Whether to enable on-demand service startup. |Type: bool, for example, **"ondemand": true**. For small systems, this feature is available only on the Linux kernel. For details, see [init on-demand startup](#section56901555920). | small&amp;standard |
-    | disable | Reserved. | | small&amp;standard |
+    | name | Name of the current service. | Type: string. The value cannot be empty and can contain a maximum of 32 bytes. | Small and standard |
+    | path | Full path (including parameters) of the current service's executable file, in array. | The first element is the path of the executable file, and the maximum number of elements is 20. <br>Each element is a string that contains a maximum of 64 bytes. | Small and standard |
+    | uid | User ID (UID) of the current service process. | Type: int | Small and standard |
+    | gid | Group ID (GID) of the current service process. | Type: int | Small and standard |
+    | once | Whether the current service process is a one-off process. | **1**: The current service process is a one-off process. If the process exits, the init process does not restart it. <br>**0**: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal. | Small and standard |
+    | importance | Current service priority. | Standard system: <br>The service priority ranges from **-20** to **19**. A value beyond the range is invalid. <br>Small-scale system:<br>**0**: unimportant process<br>non-0: important process | Small and standard |
+    | caps | Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission. | Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name. | Small and standard |
+    | critical | Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted. | Standard system:<br>Type: int array, for example, **"critical": [M, N, T]**.<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- N: number of times the service is started.<br>- **T**: period of time, in seconds. <br>Both **M** and **N** must be greater than **0**.<br>Small and standard systems:<br>Type: int, for example, **"critical": M**.<br>**M**: enable flag (**0**: disable; **1**: enable).<br>By default, **N** is **4** and **T** is **20**. | Small and standard |
+    | cpucore | Number of CPU cores to be bound to the service. | Type: int array, for example, **"cpucore": [N1, N2, ...]**. **N1** and **N2** indicate the indices of the CPU cores to be bound.<br>For a single-core device, **cpucore** is **0**. | Small and standard |
+    | d-caps | Service distribution capability. (Available only for the standard system or higher) | Type: string array, for example, **"d-caps": ["OHOS_DMS"]**. | Standard |
+    | apl | Ability privilege level. (Available only for the standard system or higher) | Type: string, for example, **"apl": "system_core"**. <br>The value can be **system_core** (default), **normal**, or **system_basic**. | Standard |
+    | start-mode | Service startup mode. (Available only for the standard system or higher) | Type: string, for example, **"start-mode": "condition"**. <br>The value can be **boot**, **normal**, or **condition**. For details, see [init service startup control](#section56901555918). | Standard |
+    | jobs | Jobs that can be executed by the current service in different phases. For details, see [init parallel control](#section56901555919). | Small and standard |
+    | ondemand | Whether to enable on-demand service startup. |Type: bool, for example, **"ondemand": true**. For small systems, this feature is available only on the Linux kernel. For details, see [init on-demand startup](#section56901555920). | Small and standard |
+    | disable | Reserved. | | Small and standard |
 3. Add socket and on-demand startup configurations for a service.
 
     You can configure the **socket** attribute for a service in the JSON format. If a service is configured with the **socket** attribute, the init process will create a socket for the service upon startup. The socket creation time depends on whether on-demand startup is enabled for the service.
@@ -383,65 +383,65 @@ The init module starts key service processes during system startup. If you would
    **Table 4** Socket field description
    |Field| Description|
    | -------- | -------- |
-   |name|Name of the socket. It does not need to be the same as the service name. The value must not be empty and can contain a maximum of 32 bytes.|
-   |family|Address family to which the socket belongs. Currently, the AF_UNIX and AF_NETLINK families are supported.|
-   |type|Socket type. Currently, connection-based sockets, SOCK_SEQPACKET and SOCK_STREAM, and UDP-based connectionless socket, SOCK_DGRAM, are supported.|
-   |protocol|Protocol used for socket communication. Unless otherwise required, set the value to **default** so that the socket automatically selects a proper protocol based on the socket address family and socket type. In addition to the default protocol, the NETLINK_KOBJECT_UEVENT protocol is also supported.|
-   |permissions|Permissions of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
-   |uid|User ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
-   |gid|Group ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
-   |option|Socket option. This field is passed when **setsockopt** is called. Currently, the available options include **SOCKET_OPTION_PASSCRED**, **SOCKET_OPTION_RCVBUFFORCE**, **SOCK_CLOEXEC**, and **SOCK_NONBLOCK**.|
+   |name|Name of the socket. It does not need to be the same as the service name. The value must not be empty and can contain a maximum of 32 bytes. |
+   |family|Address family to which the socket belongs. Currently, the AF_UNIX and AF_NETLINK families are supported. |
+   |type|Socket type. Currently, connection-based sockets, SOCK_SEQPACKET and SOCK_STREAM, and UDP-based connectionless socket, SOCK_DGRAM, are supported. |
+   |protocol|Protocol used for socket communication. Unless otherwise required, set the value to **default** so that the socket automatically selects a proper protocol based on the socket address family and socket type. In addition to the default protocol, the NETLINK_KOBJECT_UEVENT protocol is also supported. |
+   |permissions|Permissions of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family. |
+   |uid|User ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family. |
+   |gid|Group ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family. |
+   |option|Socket option. This field is passed when **setsockopt** is called. Currently, the available options include **SOCKET_OPTION_PASSCRED**, **SOCKET_OPTION_RCVBUFFORCE**, **SOCK_CLOEXEC**, and **SOCK_NONBLOCK**. |
 
     **Table 5** fd proxy APIs<a name="table14737791479"></a>
 
    | API    | Description|Parameters |
    | ----------  |  ----------  |--------|
-   | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the fd from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Parameters<br> **serviceName**: service name.<br>**outfdCount**: length of the returned fd array.|
-   | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | Requests the init process for fd proxy.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.<br> **fds**: pointer to the fd array for fd proxy.<br>**fdCount**: length of the fd array
-   | int ServiceSaveFdWithPoll(const char *serviceName, int *fds, int fdCount)  | Requests fd proxy in poll mode.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.<br> **fds**: pointer to the fd array.<br> **fdCount**: length of the fd array.
+   | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the fd from the init process. | Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned fd array. |
+   | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | Requests the init process for fd proxy. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the fd array for fd proxy.<br>**fdCount**: length of the fd array
+   | int ServiceSaveFdWithPoll(const char *serviceName, int *fds, int fdCount)  | Requests fd proxy in poll mode. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the fd array.<br> **fdCount**: length of the fd array.
 
     ** Table 6** Service control APIs
 
-   | API    | Description|Parameters |
+   | API    | Description|Arguments: |
    | :----------  |  :----------  |:--------|
-   | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | Configures service parameters.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.<br> **extArgv**: parameter array.<br> **extArgc**: number of parameters.|
-   | int ServiceControl(const char *serviceName, int action)  | Controls the service behavior.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.|
-   | int ServiceWaitForStatus(const char *serviceName, ServiceStatus status, int waitTimeout) | Waiting for service status| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br>**serviceName**: service name.<br> **status**: service status.<br> **waitTimeout**: waiting timeout interval.|
-   | int ServiceSetReady(const char *serviceName) | Sets a service as being ready.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.|
-   | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.<br> timeout: timeout interval.|
-   | int StopServiceTimer(const char *serviceName)  | Stops a service timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Parameters<br> **serviceName**: service name.|
+   | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | Configures service parameters. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.<br> **extArgv**: parameter array.<br> **extArgc**: number of parameters. |
+   | int ServiceControl(const char *serviceName, int action)  | Controls the service behavior. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**. |
+   | int ServiceWaitForStatus(const char *serviceName, ServiceStatus status, int waitTimeout) | Waiting for service status| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br>**serviceName**: service name.<br> **status**: service status.<br> **waitTimeout**: waiting timeout interval. |
+   | int ServiceSetReady(const char *serviceName) | Sets a service as being ready. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name. |
+   | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> timeout: timeout interval. |
+   | int StopServiceTimer(const char *serviceName)  | Stops a service timer. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name. |
 
     **Table 7** begetctl commands<a name="table14737791480"></a>
 
    | Command| Format and Example| Description|
    | :----------  |  :----------  |:--------|
-   | init group test [stage] | Initializes a group test.<br/>Example:<br/>init group test| For details about **stage**, see **ServiceStatus**.|
-   | param ls [-r] [name] | Displays system parameters.<br/>Example:<br/><br>begetctl param ls persist.sys.usb   | N/A|
-   | param get [name] | Obtains system parameter information<br/>Example:<br/><br>begetctl param get<br/>param get| N/A|
-   | param set name value| Sets system parameters.<br/>Example:<br/><br>begetctl param set ohos.servicectrl.display 1<br/>param set ohos.servicectrl.display 1| N/A|
-   | param wait name [value] [timeout] | Waits for system parameters.<br/>Example:<br/><br>begetctl param wait persist.sys.usb.config hdc<br/>param wait persist.sys.usb.config hdc| The default value of **timeout** is **30**.|
-   | param dump [verbose] | Dumps system parameter information.<br/>Example:<br/><br>begetctl param dump<br/>param dump| N/A|
-   | param shell [name] | Enters the parameter shell.<br/>Example:<br/><br>begetctl param shell<br/>param shell| N/A|
-   | timer_stop servicename | Stops the service timer.<br/>Example:<br/><br>begetctl timer_stop appspawn | The value of **servicename** can contain a maximum of 96 characters.|
-   | timer_start servicename timeout | Starts the service timer.<br/>Example:<br/><br>begetctl timer_start appspawn | The value of **servicename** can contain a maximum of 96 characters. The default value of **timeout** is **10**.|
-   | start_service servicename | Starts a service.<br/>Example:<br/><br>begetctl start_service appspawn<br/>start_service appspawn| N/A|
-   | stop_service servicename | Stops a service.<br/>Example:<br/><br>begetctl stop_service appspawn<br/>stop_service appspawn| N/A|
-   | service_control start servicename | Starts a service.<br/>Example:<br/><br>begetctl service_control start appspawn<br/>service_control start appspawn| N/A|
-   | service_control stop servicename | Stops a service.<br/>Example:<br/><br>begetctl service_control stop appspawn<br/>service_control stop appspawn | N/A|
-   | misc_daemon --write_logo xxx.rgb | Writes the startup logo.<br/>Example:<br/><br>begetctl misc_daemon --write_logo logo.rgb<br/>misc_daemon --write_logo logo.rgb| The maximum size of an RGB file is **1024*2038**. Only Hi3516D V300 is supported.|
-   | reboot | Restarts the system.<br/>Example:<br/><br>begetctl reboot<br/>reboot|N/A|
-   | reboot shutdown | Shuts down the system.<br/>Example:<br/><br>begetctl reboot shutdown<br/>reboot shutdown|N/A|
-   | reboot suspend | Suspends the system.<br/>Example:<br/><br>begetctl reboot suspend<br/>reboot suspend| N/A|
-   | reboot updater | Restarts the system and enters updater.<br/>Example:<br/><br>begetctl reboot updater<br/>reboot updater| N/A|
-   | reboot updater[:options] | Restarts the system and enters updater.<br/>Example:<br/><br>begetctl reboot updater<br/>reboot updater| N/A|
-   | reboot flashd | Restarts the system and enters flashd.<br/>Example:<br/><br>begetctl reboot flashd<br/>reboot flashd| N/A|
-   | reboot flashd[:options] | Restarts the system and enters flashd.<br/>Example:<br/><br>begetctl reboot flashd<br/>reboot flashd| N/A|
-   | reboot charing | Restarts the system and enters the charing mode.<br/>Example:<br/><br>begetctl reboot charing<br/>reboot charing| N/A|
-   | reboot loader | Restarts the system and enters the burning mode.<br/>Example:<br/><br>begetctl reboot loader<br/>reboot loader| N/A|
-   | bootchart stop | Stops chart analysis.<br/>Example:<br/><br>begetctl bootchart stop | Only rk3568 is supported.|
-   | bootchart start | Starts chart analysis.<br/>Example:<br/><br>begetctl bootchart start | N/A|
-   | bootchart disable | Disables chart analysis.<br/>Example:<br/><br>begetctl bootchart disable | N/A|
-   | bootchart enable | Enables chart analysis.<br/>Example:<br/><br>begetctl bootchart enable | N/A|
+   | init group test [stage] | Initializes a group test.<br/>Example:<br/>init group test| For details about **stage**, see **ServiceStatus**. |
+   | param ls [-r] [name] | Displays system parameters.<br/>Example:<br>begetctl param ls persist.sys.usb   | N/A|
+   | param get [name] | Obtains system parameter information<br/>Example:<br>begetctl param get<br/>param get| N/A|
+   | param set name value| Sets system parameters.<br/>Example:<br>begetctl param set ohos.servicectrl.display 1<br/>param set ohos.servicectrl.display 1| N/A|
+   | param wait name [value] [timeout] | Waits for system parameters.<br/>Example:<br>begetctl param wait persist.sys.usb.config hdc<br/>param wait persist.sys.usb.config hdc| The default value of **timeout** is **30**. |
+   | param dump [verbose] | Dumps system parameter information.<br/>Example:<br>begetctl param dump<br/>param dump| N/A|
+   | param shell [name] | Enters the parameter shell.<br/>Example:<br>begetctl param shell<br/>param shell| N/A|
+   | timer_stop servicename | Stops the service timer.<br/>Example:<br>begetctl timer_stop appspawn | The value of **servicename** can contain a maximum of 96 characters. |
+   | timer_start servicename timeout | Starts the service timer.<br/>Example:<br>begetctl timer_start appspawn | The value of **servicename** can contain a maximum of 96 characters. The default value of **timeout** is **10**. |
+   | start_service servicename | Starts a service.<br/>Example:<br>begetctl start_service appspawn<br/>start_service appspawn| N/A|
+   | stop_service servicename | Stops a service.<br/>Example:<br>begetctl stop_service appspawn<br/>stop_service appspawn| N/A|
+   | service_control start servicename | Starts a service.<br/>Example:<br>begetctl service_control start appspawn<br/>service_control start appspawn| N/A|
+   | service_control stop servicename | Stops a service.<br/>Example:<br>begetctl service_control stop appspawn<br/>service_control stop appspawn | N/A|
+   | misc_daemon --write_logo xxx.rgb | Writes the startup logo.<br/>Example:<br>begetctl misc_daemon --write_logo logo.rgb<br/>misc_daemon --write_logo logo.rgb| The maximum size of an RGB file is **1024*2038**. Only Hi3516D V300 is supported. |
+   | reboot | Restarts the system.<br/>Example:<br>begetctl reboot<br/>reboot|N/A|
+   | reboot shutdown | Shuts down the system.<br/>Example:<br>begetctl reboot shutdown<br/>reboot shutdown|N/A|
+   | reboot suspend | Suspends the system.<br/>Example:<br>begetctl reboot suspend<br/>reboot suspend| N/A|
+   | reboot updater | Restarts the system and enters updater.<br/>Example:<br>begetctl reboot updater<br/>reboot updater| N/A|
+   | reboot updater[:options] | Restarts the system and enters updater.<br/>Example:<br>begetctl reboot updater<br/>reboot updater| N/A|
+   | reboot flashd | Restarts the system and enters flashd.<br/>Example:<br>begetctl reboot flashd<br/>reboot flashd| N/A|
+   | reboot flashd[:options] | Restarts the system and enters flashd.<br/>Example:<br>begetctl reboot flashd<br/>reboot flashd| N/A|
+   | reboot charging | Restarts the system and enters the charging mode.<br/>Example:<br>begetctl reboot charging<br/>reboot charging| N/A|
+   | reboot loader | Restarts the system and enters the burning mode.<br/>Example:<br>begetctl reboot loader<br/>reboot loader| N/A|
+   | bootchart stop | Stops chart analysis.<br/>Example:<br>begetctl bootchart stop | Only rk3568 is supported. |
+   | bootchart start | Starts chart analysis.<br/>Example:<br>begetctl bootchart start | N/A|
+   | bootchart disable | Disables chart analysis.<br/>Example:<br>begetctl bootchart disable | N/A|
+   | bootchart enable | Enables chart analysis.<br/>Example:<br>begetctl bootchart enable | N/A|
 
 ## Development Example
 
