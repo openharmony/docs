@@ -15,16 +15,6 @@
 import bluetooth from '@system.bluetooth';
 ```
 
-
-## 权限列表
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-
 ## bluetooth.startBLEScan(OBJECT)
 
 开始搜寻附近的低功耗蓝牙外围设备。此操作比较耗费系统资源，请在搜索并连接到设备后调用[bluetooth.stopBLEScan](#bluetoothstopblescanobject)方法停止搜索。
