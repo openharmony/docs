@@ -231,7 +231,7 @@ You should override **onDestroy** to delete widget data.
        }
 ```
 
-For details about the persistence method, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about the persistence method, see [Lightweight Data Store Development](../database/database-storage-guidelines.md).
 
 Note that the **Want** passed by the widget host to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
 
