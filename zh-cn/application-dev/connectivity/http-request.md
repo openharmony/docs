@@ -8,7 +8,7 @@
 
 HTTP数据请求功能主要由http模块提供。
 
-- 使用该功能需要申请ohos.permission.INTERNET权限。
+使用该功能需要申请ohos.permission.INTERNET权限。
 
 具体接口说明如下表。
 
@@ -17,16 +17,16 @@ HTTP数据请求功能主要由http模块提供。
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
 | destroy()                                 | 中断请求任务。                      |
-| on(type: 'headersReceive') 8<sup>+</sup>  | 订阅HTTP Response Header 事件。     |
-| off(type: 'headersReceive') 8<sup>+</sup> | 取消订阅HTTP Response Header 事件。 |
+| on(type: 'headersReceive')<sup>8+</sup>  | 订阅HTTP Response Header 事件。     |
+| off(type: 'headersReceive')<sup>8+</sup> | 取消订阅HTTP Response Header 事件。 |
 
 ## 开发步骤
 
 1. import需要的http模块。
 2. 创建一个HTTP请求，返回一个HttpRequest对象。
-3. 订阅HTTP响应头（可选）。
+3. （可选）订阅HTTP响应头。
 4. 根据URL地址，发起HTTP网络请求。
-5. 处理HTTP响应头（可选）和HTTP网络请求的返回结果。
+5. （可选）处理HTTP响应头和HTTP网络请求的返回结果。
 
 ```js
 import http from '@ohos.net.http';
@@ -71,4 +71,3 @@ httpRequest.request(
     }
 );
 ```
-
