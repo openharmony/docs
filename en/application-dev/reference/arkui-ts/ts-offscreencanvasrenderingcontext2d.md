@@ -1,4 +1,4 @@
-# OffscreenCanvasRenderingConxt2D
+# OffscreenCanvasRenderingContext2D
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**

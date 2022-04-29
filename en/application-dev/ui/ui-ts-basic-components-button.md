@@ -6,12 +6,13 @@ The **\<Button>** component is usually activated by user clicks to perform a spe
 
 ## Creating a Button
 
-You can create a button by invoking either of the following APIs:
+You can create a button that contains or does not contain child components.
 
-- Button(options?: {type?: ButtonType, stateEffect?: boolean})
-  This API creates a button that contains child components. In the syntax, **type** indicates the button type, and **stateEffect** indicates whether to enable the click effect for the button.
+- Create a button that contains child components.
 
-  
+  `Button(options?: {type?: ButtonType, stateEffect?: boolean})`, where `type` indicates the button type, and `stateEffect` indicates whether to enable the click effect for the button.
+
+
   ```
   Button({ type: ButtonType.Normal, stateEffect: true }) {
     Row() {
@@ -23,10 +24,11 @@ You can create a button by invoking either of the following APIs:
 
   ![en-us_image_0000001260555857](figures/en-us_image_0000001260555857.png)
 
-- Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
-  This API creates a button that does not contain any child components. In the syntax, **label** indicates whether the created button contains child components.
+- Create a button that does not contain child components.
 
-  
+  `Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })`, where `label` indicates whether the button contains child components.
+
+
   ```
   Button('Ok', { type: ButtonType.Normal, stateEffect: true })
     .borderRadius(8)
@@ -42,7 +44,7 @@ You can create a button by invoking either of the following APIs:
 Use the **type** parameter to set the button type to **Capsule**, **Circle**, or **Normal**.
 
 - Capsule button (default type)
-  
+
   ```
   Button('Disable', { type: ButtonType.Capsule, stateEffect: false })
     .backgroundColor(0x317aff)
@@ -52,7 +54,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001215645452](figures/en-us_image_0000001215645452.png)
 
 - Circle button
-  
+
   ```
   Button('Circle', { type: ButtonType.Circle, stateEffect: false })
     .backgroundColor(0x317aff)
@@ -68,18 +70,19 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 - Set the border radius:
   In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
-  
+
   ```
   Button('circle border', { type: ButtonType.Normal })
     .borderRadius(20)
   ```
 
-  ![en-us_image_0000001190463780](figures/en-us_image_0000001190463780.png)
+  ![zh-cn_image_0000001190463780](figures/zh-cn_image_0000001190463780.png)
 
-- Setting Text Styles
+- Set the text style:
+  
   Add a font style for text displayed on the button.
 
-  
+
   ```
   Button('font style', { type: ButtonType.Normal })
     .fontSize(20)
@@ -87,12 +90,13 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .fontWeight(800)
   ```
 
-  ![en-us_image_0000001189744672](figures/en-us_image_0000001189744672.png)
+  ![zh-cn_image_0000001189744672](figures/zh-cn_image_0000001189744672.png)
 
 - Set the background color:
+  
   You can do so by adding the **backgroundColor** attribute.
 
-  
+
   ```
   Button('background color').backgroundColor(0xF55A42)
   ```
@@ -100,9 +104,10 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001235146483](figures/en-us_image_0000001235146483.png)
 
 - Assign a function to the button:
+  
   In this example, we are creating a button with the delete function.
 
-  
+
   ```
   Button({ type: ButtonType.Circle, stateEffect: true }) {
     Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
@@ -133,7 +138,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ```
   import router from '@ohos.router'
-  
+
   @Entry
   @Component
   struct ButtonCase1 {
@@ -144,13 +149,13 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
             router.push({ url: 'xxx' })
           })
         }
-  
+
         ListItem() {
           Button("Second").onClick(() => {
             router.push({ url: 'yyy' })
           })
         }
-  
+
         ListItem() {
           Button("Third").onClick(() => {
             router.push({ url: 'zzz' })
@@ -168,9 +173,10 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
 
 - Using the Button for Submitting Forms
+  
   On the user login/registration page, you can use a button to submit a login or registration request.
 
-  
+
   ```
   @Entry
   @Component
@@ -184,5 +190,5 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
     }
   }
   ```
-  
+
   ![en-us_image_0000001190466492](figures/en-us_image_0000001190466492.png)
