@@ -416,7 +416,7 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
-Obtains the audio track information. This API uses a callback to return the result.
+Obtains the audio track information. This API uses a callback to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -452,7 +452,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 getTrackDescription(): Promise<Array\<MediaDescription>>
 
-Obtains the audio track information. This API uses a promise to return the result.
+Obtains the audio track information. This API uses a promise to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
