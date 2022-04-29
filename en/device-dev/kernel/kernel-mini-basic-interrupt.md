@@ -1,11 +1,5 @@
 # Interrupt Management<a name="EN-US_TOPIC_0000001123863135"></a>
 
--   [Basic Concepts](#section1699312388210)
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section11841123033618)
--   [Development Example](#section460018317164)
--   [Verification](#section668510614519)
-
 ## Basic Concepts<a name="section1699312388210"></a>
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. An interrupt alerts the processor to a high-priority condition requiring the interruption of the current code being executed by the processor. When a hardware interrupt is triggered, the interrupt handler is located based on the interrupt ID and then executed to handle the interrupt.
