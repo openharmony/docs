@@ -20,7 +20,7 @@ The compiled executable program is run directly without being converted to an ap
 
 Call the **UtilsSetEnv** function of the KV store to set the data storage path.
 
-  
+
 ```
 UtilsSetEnv("/storage/com.example.kv");
 ```
@@ -38,7 +38,7 @@ There is no such a global variable.
 
 You can obtain DOM elements via the **ref** attribute. You can use methods of the obtained elements but cannot change their attributes. The sample code is as follows:
 
-  
+
 ```
 
 
@@ -77,7 +77,7 @@ You can pass values through **params** of the **router.replace** method. The sam
 
 Set **params** to the values to be passed on a page. The sample code is as follows:
 
-  
+
 ```
 router.replace({
     uri:'pages/detail/detail',  // URI of the page to be redirected to.
@@ -87,7 +87,7 @@ router.replace({
 
 Receive the passed values on another page.
 
-  
+
 ```
 onInit(){
     const data = this.transferData;  // Use the onInit function to receive the passed data.
@@ -141,7 +141,7 @@ The object or its attributes are not defined before dynamic binding.
 
 ### How do I implement relative and absolute positioning?
 
-You can use the **<div>** and **<stack>** (with **top** and **left** attributes) components to implement relative positioning and absolute positioning.
+You can use the **<div\>** and **<stack\>** (with **top** and **left** attributes) components to implement relative positioning and absolute positioning.
 
 
 ### How do I display or hide a component?
@@ -180,9 +180,11 @@ Do not include too many elements in an array. Avoid frequent operations on a lar
 ### Why does hdc_std fail to connect to a device?
 
 - **Symptom**
-  After the **hdc_std list targets** command is executed, **[Empty]** is displayed.
-
+  
+After the **hdc_std list targets** command is executed, **[Empty]** is displayed.
+  
 - **Solution**
+  
   1. The device cannot be identified.
       Check whether **HDC Device** exists under the **Universal Serial Bus controllers** in the **Device Manager**. If **HDC Device** does not exist, the device cannot be connected. In this case, disconnect and then reconnect the USB connection between the test PC and the OpenHarmony device, or burn the latest image.
   2. hdc_std works improperly.
@@ -194,7 +196,9 @@ Do not include too many elements in an array. Avoid frequent operations on a lar
 ### hdc_std fail to run
 
 - **Symptom**
-  After you click **hdc_std.exe**, the file fails to execute.
-
+  
+After you click **hdc_std.exe**, the file fails to execute.
+  
 - **Solution**
+  
   **hdc_std.exe** requires no installation. You can use it after placing it to a local directory or adding the tool path to environment variables. Run the **cmd** command and then run the **hdc_std** command to start the tool.

@@ -34,12 +34,14 @@ Perform the following steps to download the code in the repository to your compu
         ```
 
     2.  Clone the remote repository.
-        -   You can copy the address of the remote repository on the repository page.
+        - You can copy the address of the remote repository on the repository page.
 
-            **Figure  1** <a name="fig1772512534014"></a>  
+          **Figure  1** <a name="fig1772512534014"></a>  
+
+          ![](figures/clone.png "clone")
 
         -   Run the following command on the local host:
-
+        
             ```
             git clone $remote_link
             ```
