@@ -981,13 +981,13 @@ async function routePage() {
     console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
   }
 }
-var alias = "HuksDemoRSA";
+var keyalias = "HuksDemoRSA";
 var properties = new Array();
 var options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle = {};
+var handle;
 var resultMessage = "";
 async function generateKey() {
   properties[0] = {
@@ -1010,7 +1010,7 @@ async function generateKey() {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
   };
-  huks.generateKey(alias, options);
+  huks.generateKey(keyalias, options);
 }
 function stringToUint8Array(str) {
   var arr = [];
@@ -1021,19 +1021,14 @@ function stringToUint8Array(str) {
   return tmpUint8Array;
 }
 async function huksInit() {
-  await huks.init(alias, options).then((data) => {
+  await huks.init(keyalias, options).then((data) => {
     console.log(`test init data: ${JSON.stringify(data)}`);
-    handle = {
-      "handle1": data.handle1,
-      "handle2": data.handle2
-    };
+    handle = data.handle;
   }).catch((err) => {
     console.log("test init err information: " + JSON.stringify(err))
   })
 }
 async function huksUpdate() {
-  let count = 2;
-  for (let i = 0; i < count; i++) {
     options.inData = stringToUint8Array("huksHmacTest");
     await huks.update(handle, options).then((data) => {
       if (data.errorCode === 0) {
@@ -1041,11 +1036,8 @@ async function huksUpdate() {
       } else {
         resultMessage += "update fail!";
       }
-    }).catch((err) => {
-      resultMessage += "update times: " + count + (i + 1) + " fail catch errorMessage:" + JSON.stringify(err) + "        "
     });
     console.log(resultMessage);
-  }
 }
 function huksFinish() {
   options.inData = stringToUint8Array("HuksDemoHMAC");
@@ -1110,7 +1102,7 @@ struct Index {
         generateKey()
       })
       Button() {
-        Text('huksInit')
+        Text('Init')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1124,7 +1116,7 @@ struct Index {
         huksInit()
       })
       Button() {
-        Text('huksUpdate')
+        Text('Update')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1138,7 +1130,7 @@ struct Index {
         huksUpdate()
       })
       Button() {
-        Text('huksFinish')
+        Text('Finish')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1152,7 +1144,7 @@ struct Index {
         huksFinish()
       })
       Button() {
-        Text('huksAbort')
+        Text('Abort')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1210,13 +1202,13 @@ async function routePage() {
   }
 }
 
-var alias = "HuksDemoRSA";
+var keyalias = "HuksDemoRSA";
 var properties = new Array();
 var options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle = {};
+var handle;
 var resultMessage = "";
 function stringToUint8Array(str) {
   var arr = [];
@@ -1248,17 +1240,14 @@ async function generateKey() {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
   };
-  huks.generateKey(alias, options, function (err, data) { });
+  huks.generateKey(keyalias, options, function (err, data) { });
 }
 async function huksInit() {
   return new Promise((resolve, reject) => {
-    huks.init(alias, options, async function (err, data) {
+    huks.init(keyalias, options, async function (err, data) {
       if (data.errorCode === 0) {
-        resultMessage = "init success！"
-        handle = {
-          "handle1": data.handle1,
-          "handle2": data.handle2
-        }
+        resultMessage = "init success!"
+        handle = data.handle;
       } else {
         resultMessage = "init fail errorCode: " + data.errorCode
       }
@@ -1267,8 +1256,6 @@ async function huksInit() {
 }
 
 async function huksUpdate() {
-  let count = 2;
-  for (let i = 0; i < count; i++) {
     options.inData = stringToUint8Array("huksHmacTest");
     new Promise((resolve, reject) => {
       huks.update(handle, options, function (err, data) {
@@ -1280,7 +1267,7 @@ async function huksUpdate() {
       });
     });
     console.log(resultMessage);
-  }
+
 }
 
 async function huksFinish() {
@@ -1341,7 +1328,7 @@ struct Index {
         generateKey()
       })
       Button() {
-        Text('huksInit')
+        Text('Init')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1355,7 +1342,7 @@ struct Index {
         huksInit()
       })
       Button() {
-        Text('huksUpdate')
+        Text('Update')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1369,7 +1356,7 @@ struct Index {
         huksUpdate()
       })
       Button() {
-        Text('huksFinish')
+        Text('Finish')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1383,7 +1370,7 @@ struct Index {
         huksFinish()
       })
       Button() {
-        Text('huksAbort')
+        Text('Abort')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
