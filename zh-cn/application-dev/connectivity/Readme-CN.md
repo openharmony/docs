@@ -2,7 +2,7 @@
 
 - 网络管理
     - [网络管理开发概述](net-mgmt-overview.md)
-    - [HTTP数据请求开发指导](http-request.md)
+    - [HTTP数据请求](http-request.md)
     - [WebSocket连接](websocket-connection.md)
     - [Socket连接](socket-connection.md)
 - IPC与RPC通信
