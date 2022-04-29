@@ -6,16 +6,16 @@ The **&lt;dialog&gt;** component is custom pop-up container for showing critical
 
 ## Creating a &lt;dialog&gt; Component
 
-  Create a **&lt;dialog&gt;** component in the .hml file under **pages/index** and add **&lt;button&gt;** components to trigger the **&lt;dialog&gt;**. The **&lt;dialog&gt;** component supports only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles.
+Create a **&lt;dialog&gt;** component in the .hml file under **pages/index** and add **&lt;button&gt;** components to trigger the **&lt;dialog&gt;**. The **&lt;dialog&gt;** component supports only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles.
 
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId">
-<div class="content" dragable="true">
+  <dialog class="dialogClass" id="dialogId" dragable="true">
+    <div class="content">
       <text>this is a dialog</text>
     </div>
-</dialog>
+  </dialog>
   <button value="click me" onclick="openDialog"></button>
 </div>
 ```
@@ -24,8 +24,8 @@ The **&lt;dialog&gt;** component is custom pop-up container for showing critical
 ```
 /* xxx.css */
 .doc-page {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -77,7 +77,7 @@ Add a **cancel** event that is triggered when a user touches a non-dialog area t
 ```
 <!-- xxx.hml -->
 <div class="doc-page">
-  <dialog class="dialogClass" id="dialogId">
+  <dialog class="dialogClass" id="dialogId" oncancel="canceldialog">
     <div class="dialogDiv">
       <text>dialog</text>
       <button value="confirm" onclick="confirmClick"></button>
@@ -92,8 +92,8 @@ Add a **cancel** event that is triggered when a user touches a non-dialog area t
 ```
 /* xxx.css */
 .doc-page {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -128,13 +128,21 @@ button{
 /* xxx.js */
 import prompt from '@system.prompt';
 export default {
+  canceldialog(e){
+    prompt.showToast({
+      message: 'dialogCancel'
+    })
+  },
   openDialog(){
     this.$element('dialogId').show()
+     prompt.showToast({
+      message: 'dialogShow'
+    })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
     prompt.showToast({
-      message: 'Confirmed.'
+      message: 'dialogClose'
     })
   },
 }
@@ -144,7 +152,7 @@ export default {
 ![en-us_image_0000001223287720](figures/en-us_image_0000001223287720.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - This component supports only one child component.
 > 
 > - Attributes and styles of a **&lt;dialog&gt;** component cannot be dynamically updated.
@@ -321,3 +329,8 @@ export default {
 
 
 ![en-us_image_0000001223127756](figures/en-us_image_0000001223127756.gif)
+## Samples
+
+The following sample is provided to help you better understand how to develop the **&lt;dialog&gt;** component:
+
+[`JsDialog`: JS Dialog Box (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)

@@ -78,7 +78,7 @@ Set the **type** attribute of the **&lt;input&gt;** component to **button**, **d
 ![en-us_image_0000001222967744](figures/en-us_image_0000001222967744.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - For capsule buttons, border-related styles are not supported.
 > 
 > - For circle buttons, text-related styles are not supported.
@@ -164,7 +164,7 @@ export default {
  setProgress(e) {
     if(this.isPaused){
       prompt.showToast({
-        message: "Download started"
+        message: "Started Downloading"
       })
       this.star();
       this.isPaused = false;
@@ -181,8 +181,9 @@ export default {
 
 ![en-us_image_0000001223287652](figures/en-us_image_0000001223287652.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> - The **setProgress** method supports only buttons of the download type.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> The **setProgress** method supports only buttons of the download type.
 
 
 ## Example Scenario
