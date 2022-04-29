@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import LightWeightSet from '@ohos.util.LightWeightSet'  
 ```
 
@@ -32,7 +32,7 @@ LightWeightSet的构造函数。
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 ```
 
@@ -51,7 +51,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.isEmpty();
 ```
@@ -76,7 +76,7 @@ add(obj: T): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -96,7 +96,7 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -126,7 +126,7 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -156,7 +156,7 @@ has(key: T): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
@@ -184,7 +184,7 @@ equal(obj: Object): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -207,7 +207,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.increaseCapacityTo(10);
 ```
@@ -233,7 +233,7 @@ getIndexOf(key: T): number
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -261,7 +261,7 @@ remove(key: T): T
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -289,7 +289,7 @@ removeAt(index: number): boolean
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -317,7 +317,7 @@ getValueAt(index: number): T
 
 **参数：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -333,7 +333,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -355,7 +355,7 @@ toString(): String
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -377,7 +377,7 @@ toArray(): Array&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -399,7 +399,7 @@ values(): IterableIterator&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -434,7 +434,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sdfs");
 lightWeightSet.add("dfsghsf");
@@ -458,7 +458,7 @@ entries(): IterableIterator<[T, T]>
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -485,7 +485,7 @@ while(index < lightWeightSet.length) {
 
 **示例：**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");

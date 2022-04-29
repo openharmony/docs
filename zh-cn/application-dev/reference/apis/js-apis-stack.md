@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import Stack from '@ohos.util.Stack'  
 ```
 
@@ -33,7 +33,7 @@ Stack的构造函数。
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 ```
 
@@ -58,7 +58,7 @@ push(item: T): T
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
@@ -82,7 +82,7 @@ pop(): T
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -106,7 +106,7 @@ peek(): T
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -135,7 +135,7 @@ locate(element: T): number
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -168,7 +168,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -193,7 +193,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -216,7 +216,7 @@ let result = stack.isEmpty();
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **示例：**
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
