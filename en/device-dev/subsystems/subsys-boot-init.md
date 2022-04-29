@@ -341,7 +341,7 @@ The init module starts key service processes during system startup. If you would
     | d-caps | Service distribution capability. (Available only for the standard system or higher) | Type: string array, for example, **"d-caps": ["OHOS_DMS"]**. | Standard |
     | apl | Ability privilege level. (Available only for the standard system or higher) | Type: string, for example, **"apl": "system_core"**. <br>The value can be **system_core** (default), **normal**, or **system_basic**. | Standard |
     | start-mode | Service startup mode. (Available only for the standard system or higher) | Type: string, for example, **"start-mode": "condition"**. <br>The value can be **boot**, **normal**, or **condition**. For details, see [init service startup control](#section56901555918). | Standard |
-    | jobs | Jobs that can be executed by the current service in different phases. For details, see [init parallel control](#section56901555919). | Small and standard |
+    | jobs | Jobs that can be executed by the current service in different phases. | For details, see [init parallel control](#section56901555919). | Small and standard |
     | ondemand | Whether to enable on-demand service startup. |Type: bool, for example, **"ondemand": true**. For small systems, this feature is available only on the Linux kernel. For details, see [init on-demand startup](#section56901555920). | Small and standard |
     | disable | Reserved. | | Small and standard |
 3. Add socket and on-demand startup configurations for a service.
