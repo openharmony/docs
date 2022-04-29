@@ -235,18 +235,20 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用callback方式作为异步方法。
+创建子窗口，使用callback方式作为异步方法，其中Context详见[Context](js-apis-Context.md)。
+
+从API version 9开始，当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名   | 类型                                           | 必填 | 说明                   |
-  | -------- | ---------------------------------------------- | ---- | ---------------------- |
-  | ctx      | [Context](js-apis-serviceExtAbilityContext.md) | 是   | 当前应用上下文信息。   |
-  | id       | string                                         | 是   | 窗口id。               |
-  | type     | [WindowType](#windowtype)                      | 是   | 窗口类型。             |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;         | 是   | 回调返回当前窗口对象。 |
+  | 参数名   | 类型                                   | 必填 | 说明                                                         |
+  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-serviceExtAbilityContext.md)。 |
+  | id       | string                                 | 是   | 窗口id。                                                     |
+  | type     | [WindowType](#windowtype)              | 是   | 窗口类型。                                                   |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前窗口对象。                                       |
 
 - 示例
 
@@ -267,17 +269,19 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用Promise方式作为异步方法。
+创建子窗口，使用Promise方式作为异步方法，其中Context详见[Context](js-apis-Context.md)。
+
+从API version 9开始，当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 - 参数
 
-  | 参数名 | 类型                                           | 必填 | 说明                 |
-  | ------ | ---------------------------------------------- | ---- | -------------------- |
-  | ctx    | [Context](js-apis-serviceExtAbilityContext.md) | 是   | 当前应用上下文信息。 |
-  | id     | string                                         | 是   | 窗口id。             |
-  | type   | [WindowType](#windowtype)                      | 是   | 窗口类型。           |
+  | 参数名 | 类型                      | 必填 | 说明                                                         |
+  | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx    | Context                   | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-serviceExtAbilityContext.md)。 |
+  | id     | string                    | 是   | 窗口id。                                                     |
+  | type   | [WindowType](#windowtype) | 是   | 窗口类型。                                                   |
 
 - 返回值
 
@@ -427,7 +431,7 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
   | 参数名   | 类型                                   | 必填 | 说明                                                         |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | Context                                | 是   | 当前应用上下文信息。API 8的Context定义见[Context](js-apis-Context.md)。API 9的Context定义见[Context](js-apis-ability-context.md)。 |
+  | ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。                       |
 
 - 示例
@@ -456,7 +460,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
   | 参数名 | 类型    | 必填 | 说明                                                         |
   | ------ | ------- | ---- | ------------------------------------------------------------ |
-  | ctx    | Context | 是   | 当前应用上下文信息。API8的Context定义见[Context](js-apis-Context.md)。API 9的Context定义见[Context](js-apis-ability-context.md)。 |
+  | ctx    | Context | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
 
 - 返回值
 
