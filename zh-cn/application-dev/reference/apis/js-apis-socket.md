@@ -622,7 +622,7 @@ UDPSocket发送参数。
 
 | 参数名  | 类型                               | 必填 | 说明           |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string                             | 是   | 发送的数据。   |
+| data    | string \| ArrayBuffer<sup>8+</sup>                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
 ## UDPExtraOptions
@@ -1430,7 +1430,7 @@ TCPSocket发送请求的参数。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string | 是   | 发送的数据。                                                 |
+| data     | string\| ArrayBuffer<sup>8+</sup>  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
 
 ## TCPExtraOptions
