@@ -9,7 +9,7 @@
 ## Modules to Import
 
 
-```
+```js
 import battery from '@system.battery';
 ```
 
@@ -39,7 +39,7 @@ The following value will be returned when the check result is obtained.
 
 **Example**
 
-```
+```js
 export default {    
   getStatus() {       
     battery.getStatus({           
