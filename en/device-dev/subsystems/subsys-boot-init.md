@@ -402,7 +402,7 @@ The init module starts key service processes during system startup. If you would
 
     ** Table 6** Service control APIs
 
-   | API    | Description|Arguments: |
+   | API    | Description| Parameters |
    | :----------  |  :----------  |:--------|
    | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | Configures service parameters. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.<br> **extArgv**: parameter array.<br> **extArgc**: number of parameters. |
    | int ServiceControl(const char *serviceName, int action)  | Controls the service behavior. | Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**. |
