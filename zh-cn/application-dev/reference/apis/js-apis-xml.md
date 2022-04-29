@@ -32,7 +32,7 @@ XmlSerializer的构造函数。
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
@@ -54,7 +54,7 @@ setAttributes(name: string, value: string): void
 
 **示例：**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -74,8 +74,8 @@ addEmptyElement(name: string): void
 
 **示例：**
 
-```
- var thatSer = new xml.XmlSerializer(bufView);
+```js
+var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
 
@@ -88,7 +88,7 @@ setDeclaration(): void
 
 **示例：**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -108,7 +108,7 @@ startElement(name: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("notel");
@@ -124,7 +124,7 @@ endElement(): void
 
 **示例：**
 
-```
+```js
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
@@ -149,7 +149,7 @@ setNamespace(prefix: string, namespace: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
@@ -172,7 +172,7 @@ setComment(text: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
@@ -195,7 +195,7 @@ setCDATA(text: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1028);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
@@ -216,7 +216,7 @@ setText(text: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
@@ -240,7 +240,7 @@ setDocType(text: string): void
 
 **示例：**
 
-```
+```js
 var arrayBuffer = new ArrayBuffer(1024);
 var thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
@@ -265,7 +265,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 **示例：**
 
-```
+```js
 var strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -297,7 +297,7 @@ parse(option: ParseOptions): void
 
 **示例：**
 
-```
+```js
 var strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
