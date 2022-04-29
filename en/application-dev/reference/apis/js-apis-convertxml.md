@@ -39,7 +39,7 @@ Converts an XML text into a JavaScript object.
 
 - Example
 
-  ```
+  ```js
   let xml =
       '<?xml version="1.0" encoding="utf-8"?>' +
       '<note importance="high" logged="true">' +

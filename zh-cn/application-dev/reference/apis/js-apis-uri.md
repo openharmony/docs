@@ -46,11 +46,11 @@ constructor是URI的构造函数。
 
 **示例：**
 
-```
+```js
 var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 ```
-```
+```js
 new uri.URI('http://username:password@host:8080'); // Output 'http://username:password@host:8080';
 ```
 
@@ -69,7 +69,7 @@ toString(): string
 
 **示例：**
 
-```
+```js
 const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString()
 ```
@@ -95,7 +95,7 @@ equals(other: URI): boolean
 
 **示例：**
 
-```
+```js
 const uriInstance = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da#fragment');
 uriInstance.equals(uriInstance1);
@@ -115,7 +115,7 @@ checkIsAbsolute(): boolean
 
 **示例：**
 
-```
+```js
 const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080?query=pppppp');
 uriInstance.checkIsAbsolute();
 ```
@@ -134,7 +134,7 @@ normalize(): URI
 | URI | 返回一个path被规范化后的URI对象。 |
 
 **示例：**
-```
+```js
 const uriInstance = new uri.URI('http://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 let uriInstance1 = uriInstance.normalize();
 uriInstance1.path;
