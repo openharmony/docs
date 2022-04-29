@@ -190,8 +190,12 @@
 
 -   **Possible Cause 1:**  Python is not installed.
 -   **Solutions**
-
-    [Install Python](../quick-start/quickstart-lite-env-setup-linux.md).
+    
+    Run the following command to install Python 3:
+    
+    ```
+    sudo apt-get install python3.8
+    ```
 
 -   **Possible Cause 2:**  The soft link that points to the Python does not exist in the  **usr/bin**  directory.
 
@@ -226,6 +230,9 @@
 
 -   **Solutions**
 
-    [Install Python](../quick-start/quickstart-lite-env-setup-linux.md).
-
+    Run the following command to install Python 3:
+    
+    ```
+    sudo apt-get install python3.8
+    ```
 
