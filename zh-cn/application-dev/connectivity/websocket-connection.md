@@ -46,7 +46,7 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
    var defaultIpAddress = "ws://";
    let ws = webSocket.createWebSocket();
    ws.on('open', (err, value) => {
-       console.log("on open, status:" + value.status + ", message:" + value.message);
+       console.log("on open, status:" + JSON.stringify(value));
        // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
        ws.send("Hello, server!", (err, value) => {
            if (!err) {
