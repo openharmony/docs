@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import LinkedList from '@ohos.util.LinkedList'  
 ```
 
@@ -34,7 +34,7 @@ LinkedList的构造函数。
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 ```
 
@@ -59,7 +59,7 @@ add(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
@@ -83,7 +83,7 @@ addFirst(element: T): void
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.addFirst("a");
 linkedList.addFirst(1);
@@ -108,7 +108,7 @@ insert(index: number, element: T): void
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
@@ -135,7 +135,7 @@ has(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 let result1 = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
 linkedList.add("Ahfbrgrbgnutfodgorrogorg");
@@ -162,7 +162,7 @@ get(index: number): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -194,7 +194,7 @@ getLastIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -226,7 +226,7 @@ getIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -258,7 +258,7 @@ removeByIndex(index: number): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -282,7 +282,7 @@ removeFirst(): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -306,7 +306,7 @@ removeLast(): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -336,7 +336,7 @@ remove(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -365,7 +365,7 @@ removeFirstFound(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -394,7 +394,7 @@ removeLastFound(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -417,7 +417,7 @@ clone(): LinkedList&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -450,7 +450,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -469,7 +469,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -499,7 +499,7 @@ set(index: number, element: T): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -521,7 +521,7 @@ convertToArray(): Array&lt;T&gt;
 | Array&lt;T&gt; | 返回转换后的数组。 |
 
 **示例：**
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -544,7 +544,7 @@ getFirst(): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -567,7 +567,7 @@ getLast(): T
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -591,7 +591,7 @@ linkedList.getLast();
 
 **示例：**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);

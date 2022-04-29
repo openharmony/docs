@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import Vector from '@ohos.util.Vector'  
 ```
 
@@ -33,7 +33,7 @@ Vector的构造函数。
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 ```
 
@@ -58,7 +58,7 @@ add(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
@@ -83,7 +83,7 @@ insert(element: T, index: number): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.insert("A", 0);
 vector.insert(0, 1);
@@ -110,7 +110,7 @@ has(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -137,7 +137,7 @@ getIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -169,7 +169,7 @@ getLastIndexOf(element: T): number
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -201,7 +201,7 @@ removeByIndex(index: number): T
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -231,7 +231,7 @@ remove(element: T): boolean
 
 **返回值：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -255,7 +255,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -290,7 +290,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -328,7 +328,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -361,7 +361,7 @@ comparator的参数说明：
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -393,7 +393,7 @@ subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
 **返回值：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -413,7 +413,7 @@ clear(): void
 
 **返回值：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -436,7 +436,7 @@ clone(): Vector&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -459,7 +459,7 @@ getCapacity(): number
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -482,7 +482,7 @@ convertToArray(): Array&lt;T&gt;
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -505,7 +505,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -528,7 +528,7 @@ increaseCapacityTo(newCapacity: number): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -546,7 +546,7 @@ trimToCurrentLength(): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -569,7 +569,7 @@ toString(): string
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -592,7 +592,7 @@ copyToArray(array: Array&lt;T&gt;): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -616,7 +616,7 @@ getFirstElement(): T
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -639,7 +639,7 @@ getLastElement(): T
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -669,7 +669,7 @@ getLastIndexFrom(element: T, index: number): number
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -700,7 +700,7 @@ getIndexFrom(element: T, index: number): number
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -724,7 +724,7 @@ setLength(newSize: number): void
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -754,7 +754,7 @@ get(index: number): T
 
 **示例：**
 
-  ```
+  ```ts
   let vector = new Vector();
   vector.add(2);
   vector.add(4);
@@ -783,7 +783,7 @@ set(index: number, element: T): T
 
 **示例：**
 
-  ```
+  ```ts
   let vector = new Vector();
   vector.add(2);
   vector.add(4);
@@ -806,7 +806,7 @@ set(index: number, element: T): T
 
 **示例：**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
