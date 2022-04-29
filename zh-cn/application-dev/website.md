@@ -198,6 +198,7 @@
         - [音频采集开发指导](media/audio-capturer.md)
       - 视频
         - [视频播放开发指导](media/video-playback.md)
+        - [视频录制开发指导](media/video-recorder.md)
       - 图片
         - [图片开发指导](media/image.md)
     - 安全
