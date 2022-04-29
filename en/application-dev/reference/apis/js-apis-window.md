@@ -5,7 +5,7 @@
 
 ## Modules to Import
 
-```
+```js
 import window from '@ohos.window';
 ```
 
@@ -180,7 +180,7 @@ This API is discarded since API version 8. You are advised to use [window.create
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    window.create("first", window.WindowType.TYPE_APP, (err, data) => {
       if (err.code) {
@@ -218,7 +218,7 @@ This API is discarded since API version 8. You are advised to use [window.create
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.create("first", window.WindowType.TYPE_APP);
    promise.then((data)=> {
@@ -248,7 +248,7 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
       if (err.code) {
@@ -285,7 +285,7 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
    promise.then((data)=> {
@@ -313,7 +313,7 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    window.find("alertWindow", (err, data) => {
      if (err.code) {
@@ -347,7 +347,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.find("alertWindow");
    promise.then((data)=> {
@@ -374,7 +374,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 - Example
 
-  ```
+  ```js
   var windowClass = null;
   window.getTopWindow((err, data) => {
       if (err.code) {
@@ -402,7 +402,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.getTopWindow();
    promise.then((data)=> {
@@ -425,12 +425,12 @@ Obtains the top window of the current application. This API uses an asynchronous
 
   | Name  | Type                                  | Mandatory| Description                                                        |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | [Context](js-apis-Context.md)   | Yes  | Current application context. |
+  | ctx      | Context   | Yes  | Current application context.For the definition of **Context** of API version 8, see [Context](js-apis-Context.md). For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md). |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
 
 - Example
 
-  ```
+  ```js
   var windowClass = null;
   window.getTopWindow(this.context, (err, data) => {
       if (err.code) {
@@ -454,7 +454,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
   | Name| Type   | Mandatory| Description                                                        |
   | ------ | ------- | ---- | ------------------------------------------------------------ |
-  | ctx    | [Context](js-apis-Context.md) | Yes  | Current application context. |
+  | ctx    | Context | Yes  | Current application context.For the definition of **Context** of API version 8, see [Context](js-apis-Context.md). For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md). |
 
 - Return value
 
@@ -464,7 +464,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 - Example
 
-  ```
+  ```js
    var windowClass = null;
    let promise = window.getTopWindow(this.context);
    promise.then((data)=> {
@@ -494,7 +494,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
   var type = 'systemBarTintChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for systemBarTint changes. Data: ' + JSON.stringify(data));
@@ -520,7 +520,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
   var type = 'systemBarTintChange';
   windowClass.off(type);
   ```
@@ -547,7 +547,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
   windowClass.hide((err, data) => {
       if (err.code) {
           console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
@@ -575,7 +575,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.hide();
    promise.then((data)=> {
       console.info('window hidden. Data: ' + JSON.stringify(data))
@@ -600,7 +600,7 @@ Shows this window. This API uses an asynchronous callback to return the result.
 
 - Example
 
-  ```
+  ```js
   windowClass.show((err, data) => {
       if (err.code) {
           console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -626,7 +626,7 @@ Shows this window. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.show();
    promise.then((data)=> {
       console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data))
@@ -651,7 +651,7 @@ Destroys this window. This API uses an asynchronous callback to return the resul
 
 - Example
 
-  ```
+  ```js
   windowClass.destroy((err, data) => {
       if (err.code) {
           console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
@@ -677,7 +677,7 @@ Destroys this window. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.destroy();
    promise.then((data)=> {
       console.info('Succeeded in destroying the window. Data: ' + JSON.stringify(data))
@@ -704,7 +704,7 @@ Moves the position of this window. This API uses an asynchronous callback to ret
 
 - Example
 
-  ```
+  ```js
   windowClass.moveTo(300, 300, (err, data)=>{
       if (err.code) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
@@ -738,7 +738,7 @@ Moves the position of this window. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.moveTo(300, 300);
    promise.then((data)=> {
       console.info('Window moved. Data: ' + JSON.stringify(data))
@@ -765,7 +765,7 @@ Changes the size of this window. This API uses an asynchronous callback to retur
 
 - Example
 
-  ```
+  ```js
   windowClass.resetSize(500, 1000, (err, data) => {
       if (err.code) {
           console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
@@ -798,7 +798,7 @@ Changes the size of this window. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.resetSize(500, 1000);
    promise.then((data)=> {
       console.info('Window size changed. Data: ' + JSON.stringify(data))
@@ -826,7 +826,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
   var type = window.TYPE_APP;
   windowClass.setWindowType(type, (err, data) => {
     if (err.code) {
@@ -861,7 +861,7 @@ This is a system API and cannot be called by third-party applications.
 
 - Example
 
-  ```
+  ```js
    var type = window.TYPE_APP;
    let promise = windowClass.setWindowType(type);
    promise.then((data)=> {
@@ -887,7 +887,7 @@ Obtains the properties of this window. This API uses an asynchronous callback to
 
 - Example
 
-  ```
+  ```js
   windowClass.getProperties((err, data) => {
       if (err.code) {
           console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
@@ -939,7 +939,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 - Example
 
-  ```
+  ```js
   var type = window.AvoidAreaType.TYPE_SYSTEM;
   windowClass.getAvoidArea(type, (err, data) => {
       if (err.code) {
@@ -972,7 +972,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.getAvoidArea();
    promise.then((data)=> {
       console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data))
@@ -998,7 +998,7 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 
 - Example
 
-  ```
+  ```js
   var isFullScreen = true;
   windowClass.setFullScreen(isFullScreen, (err, data) => {
       if (err.code) {
@@ -1031,7 +1031,7 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 - Example
 
-  ```
+  ```js
   var isFullScreen = true;
   let promise = windowClass.setFullScreen(isFullScreen);
   promise.then((data)=> {
@@ -1058,7 +1058,7 @@ Sets whether the window layout is in full-screen mode. This API uses an asynchro
 
 - Example
 
-  ```
+  ```js
   var isLayoutFullScreen= true;
   windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
       if (err.code) {
@@ -1091,7 +1091,7 @@ Sets whether the window layout is in full-screen mode. This API uses a promise t
 
 - Example
 
-  ```
+  ```js
   var isLayoutFullScreen = true;
   let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
   promise.then((data)=> {
@@ -1118,7 +1118,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 - Example
 
-  ```
+  ```js
   var names = ["status", "navigation"];
   windowClass.setSystemBarEnable(names, (err, data) => {
       if (err.code) {
@@ -1151,7 +1151,7 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 - Example
 
-  ```
+  ```js
   var names = ["status", "navigation"];
   let promise = windowClass.setSystemBarEnable(names);
   promise.then((data)=> {
@@ -1178,7 +1178,7 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 - Example
 
-  ```
+  ```js
   var SystemBarProperties={
       statusBarColor: '#ff00ff',
       navigationBarColor: '#00ff00',
@@ -1220,7 +1220,7 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 - Example
 
-  ```
+  ```js
   var SystemBarProperties={
       statusBarColor: '#ff00ff',
       navigationBarColor: '#00ff00',
@@ -1256,7 +1256,7 @@ Loads content to this window. This API uses an asynchronous callback to return t
   
 - Example
 
-  ```
+  ```js
   windowClass.loadContent("pages/page2/page2", (err, data) => {
      if (err.code) {
            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
@@ -1288,7 +1288,7 @@ Loads content to this window. This API uses a promise to return the result.
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.loadContent("pages/page2/page2");
   promise.then((data)=> {
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
@@ -1313,7 +1313,7 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 - Example
 
-  ```
+  ```js
   windowClass.isShowing((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window is showing. Cause:' + JSON.stringify(err));
@@ -1339,7 +1339,7 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.isShowing();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window is showing. Data: ' + JSON.stringify(data))
@@ -1365,7 +1365,7 @@ Enables listening for window size changes.
 
 - Example
 
-  ```
+  ```js
   var type = 'windowSizeChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for window size changes. Data: ' + JSON.stringify(data));
@@ -1411,7 +1411,7 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 - Example
 
-  ```
+  ```js
   var type = 'systemAvoidAreaChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
@@ -1455,11 +1455,11 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
+  | callback | Callback&lt;number&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
-  ```
+  ```js
   var type = 'keyboardHeightChange';
   windowClass.on(type, (data) => {
       console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
@@ -1506,7 +1506,7 @@ Checks whether this window supports the wide color gamut mode. This API uses an 
 
 - Example
 
-  ```
+  ```js
   windowClass.isSupportWideGamut((err, data) => {
       if (err.code) {
           console.error('Failed to check whether the window support WideGamut. Cause:' + JSON.stringify(err));
@@ -1532,7 +1532,7 @@ Checks whether this window supports the wide color gamut mode. This API uses a p
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
@@ -1558,7 +1558,7 @@ Sets this window to the wide or default color gamut mode. This API uses an async
 
 - Example
 
-  ```
+  ```js
   windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
       if (err.code) {
           console.error('Failed to set window colorspace. Cause:' + JSON.stringify(err));
@@ -1590,7 +1590,7 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
   promise.then((data)=> {
       console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
@@ -1615,7 +1615,7 @@ Obtains the color gamut mode of this window. This API uses an asynchronous callb
 
 - Example
 
-  ```
+  ```js
   windowClass.getColorSpace((err, data) => {
       if (err.code) {
           console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
@@ -1641,7 +1641,7 @@ Obtains the color gamut mode of this window. This API uses a promise to return t
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.getColorSpace();
   promise.then((data)=> {
       console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
@@ -1669,7 +1669,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var color = '#00ff33';
   windowClass.setBackgroundColor(color, (err, data) => {
       if (err.code) {
@@ -1704,7 +1704,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var color = '#00ff33';
   let promise = windowClass.setBackgroundColor(color);
   promise.then((data)=> {
@@ -1733,7 +1733,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var brightness = 1;
   windowClass.setBrightness(brightness, (err, data) => {
       if (err.code) {
@@ -1768,7 +1768,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var brightness = 1;
   let promise = windowClass.setBrightness(brightness);
   promise.then((data)=> {
@@ -1797,7 +1797,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   windowClass.setDimBehind(0.5, (err, data) => {
       if (err.code) {
           console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
@@ -1831,7 +1831,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.setDimBehind(0.5);
   promise.then((data)=> {
       console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
@@ -1859,7 +1859,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isFocusable= true;
   windowClass.setFocusable(isFocusable, (err, data) => {
       if (err.code) {
@@ -1894,7 +1894,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isFocusable= true;
   let promise = windowClass.setFocusable(isFocusable);
   promise.then((data)=> {
@@ -1923,7 +1923,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isKeepScreenOn = true;
   windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
       if (err.code) {
@@ -1958,7 +1958,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isKeepScreenOn= true;
   let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
   promise.then((data)=> {
@@ -1987,7 +1987,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   windowClass.setOutsideTouchable(true, (err, data) => {
       if (err.code) {
           console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
@@ -2021,7 +2021,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.setOutsideTouchable(true);
   promise.then((data)=> {
       console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
@@ -2049,7 +2049,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isPrivacyMode = true;
   windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
       if (err.code) {
@@ -2085,7 +2085,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isPrivacyMode = true;
   let promise = windowClass.setPrivacyMode(isPrivacyMode);
   promise.then((data)=> {
@@ -2114,7 +2114,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isTouchable = true;
   windowClass.setTouchable(isTouchable, (err, data) => {
       if (err.code) {
@@ -2150,7 +2150,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Example
 
-  ```
+  ```js
   var isTouchable = true;
   let promise = windowClass.setTouchable(isTouchable);
   promise.then((data)=> {
@@ -2160,4 +2160,301 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-### 
+## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+
+Describes the lifecycle of a window stage.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name       | Default Value | Description                                    |
+| ---------- | ------------- | ---------------------------------------------- |
+| FOREGROUND | 1             | The window stage is running in the foreground. |
+| ACTIVE     | 2             | The window stage gains focus.                  |
+| INACTIVE   | 3             | The window stage loses focus.                  |
+| BACKGROUND | 4             | The window stage is running in the background. |
+
+## WindowStage<sup>9+</sup>
+
+Before calling any of the following APIs, you must use `[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)` to create a **WindowStage** instance.
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(): Promise&lt;Window&gt;
+
+Obtains the main window of this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Return value
+
+  | Type                             | Description                             |
+  | -------------------------------- | --------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the main window. |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getMainWindow();
+          promise.then((data)=> {
+          windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          });
+      }
+  }
+  ```
+
+### getMainWindow<sup>9+</sup>
+
+getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
+
+Obtains the main window of this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Parameters
+
+  | Name     | Type                                   | Mandatory | Description                              |
+  | -------- | -------------------------------------- | --------- | ---------------------------------------- |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the main window. |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getMainWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string): Promise&lt;Window&gt;
+
+Creates a subwindow for this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name | Type   | Mandatory | Description            |
+  | ---- | ------ | --------- | ---------------------- |
+  | name | String | Yes       | Name of the subwindow. |
+- Return value
+
+  | Type                             | Description                                   |
+  | -------------------------------- | --------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.createSubWindow("mySubWindow");
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### createSubWindow<sup>9+</sup>
+
+createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
+
+Creates a subwindow for this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+- Parameters
+
+  | Name     | Type                                   | Mandatory | Description                                    |
+  | -------- | -------------------------------------- | --------- | ---------------------------------------------- |
+  | name     | String                                 | Yes       | Name of the subwindow.                         |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the subwindow created. |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.createSubWindow("mySubWindow", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+              windowClass.resetSize(500, 1000);
+          });
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
+
+Obtains all the subwindows of this window stage. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Return value
+
+  | Type                                          | Description                                |
+  | --------------------------------------------- | ------------------------------------------ |
+  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows. |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          let promise = windowStage.getSubWindow();
+          promise.then((data)=> {
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data))
+          }).catch((err)=>{
+              console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+          })
+      }
+  }
+  ```
+
+### getSubWindow<sup>9+</sup>
+
+getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
+
+Obtains all the subwindows of this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name     | Type                                                | Mandatory | Description                                 |
+  | -------- | --------------------------------------------------- | --------- | ------------------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes       | Callback used to return all the subwindows. |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var windowClass = null;
+          windowStage.getSubWindow((err, data) => {
+              if (err.code) {
+                  console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+                  return;
+              }
+              windowClass = data;
+              console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### loadContent<sup>9+</sup>
+
+loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
+
+Loads content to this window stage. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value 'windowSizeChange'
+
+- Parameters
+
+  | Name     | Type                      | Mandatory | Description                                             |
+  | -------- | ------------------------- | --------- | ------------------------------------------------------- |
+  | path     | string                    | Yes       | Path of the page from which the content will be loaded. |
+  | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the execution result.           |
+  
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          windowStage.loadContent("pages/page2", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                  return;
+              }
+              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+          });
+      }
+  }
+  ```
+### on('windowStageEvent')<sup>9+</sup>
+
+on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
+
+Enables listening for window stage lifecycle changes.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name     | Type                                                         | Mandatory | Description                                                  |
+  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes       | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes. |
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes       | Callback used to return the information.                     |
+
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.on(type, (data) => {
+              console.info('Succeeded in enabling the listener for window stage event changes. Data: ' + JSON.stringify(data));
+          });
+      }
+  }
+  ```
+
+### off('windowStageEvent')<sup>9+</sup>
+
+off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
+
+Disables listening for window stage lifecycle changes.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+- Parameters
+
+  | Name     | Type                                                         | Mandatory | Description                                                  |
+  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes       | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes. |
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No        | Callback used to return the information.                     |
+- Example
+
+  ```ts
+  class myAbility extends Ability {
+      onWindowStageCreate(windowStage) {
+          console.log('onWindowStageCreate');
+          var type = 'windowStageEvent';
+          windowStage.off(type);
+      }
+  }
+  ```
