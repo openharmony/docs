@@ -1,7 +1,7 @@
 # Defining Animations with the background-position Attribute
 
 
-By changing the background-position attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
+By changing the **background-position** attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
 
 ```
 <!-- xxx.hml -->
@@ -14,6 +14,7 @@ By changing the background-position attribute (where the first value is the posi
 ```
 /* xxx.css */
 .container {
+  height: 100%;
   background-color:#F1F3F5;
   display: flex;
   flex-direction: column;
@@ -76,5 +77,15 @@ By changing the background-position attribute (where the first value is the posi
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> The background-position attribute can only be used to move background images, but not the background color (background-color).
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> The **background-position** attribute can only be used to move background images, but not the background color (**background-color**).
+>
+> ![en-us_image_background_img.gif](figures/en-us_image_background_img.gif)
+
+
+## Samples
+
+The following sample is provided to help you better understand how to develop an animation with the background-position attribute:
+
+- [`JsImage`: Basic Animation (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsImage)
