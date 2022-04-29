@@ -9,7 +9,7 @@
 ## 导入模块
 
 
-```
+```js
 import battery from '@system.battery';
 ```
 
@@ -39,7 +39,7 @@ success返回值：
 
 **示例：**
 
-```
+```js
 export default {    
   getStatus() {       
     battery.getStatus({           

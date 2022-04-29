@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
@@ -32,7 +32,7 @@ SystemCapability.PowerManager.BatteryManager.Core
 | isBatteryPresent<sup>7+</sup> | boolean                                  | 是    | 否    | 表示当前设备是否支持电池或者电池是否在位。 |
 
 - 示例：
-  ```
+  ```js
   import batteryInfo from '@ohos.batteryInfo';
   var batterySoc = batteryInfo.batterySOC;
   ```

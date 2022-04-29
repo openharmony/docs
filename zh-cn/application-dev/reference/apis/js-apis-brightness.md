@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import brightness from '@ohos.brightness';
 ```
 
@@ -30,6 +30,6 @@ setValue(value: number): void
 
 **示例：**
 
-```
+```js
 brightness.setValue(128);
 ```

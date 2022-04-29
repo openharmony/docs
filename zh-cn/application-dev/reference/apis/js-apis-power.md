@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```js
 import power from '@ohos.power';
 ```
 
@@ -35,7 +35,7 @@ shutdownDevice(reason: string): void
 
 **示例：**
 
-```
+```js
 power.shutdownDevice("shutdown_test");
 console.info('power_shutdown_device_test success')
 ```
@@ -57,7 +57,7 @@ rebootDevice(reason: string): void
 
 **示例：**
 
-```
+```js
 power.rebootDevice("reboot_test");
 console.info('power_reboot_device_test success')
 ```
@@ -77,7 +77,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```
+```js
 power.isScreenOn((error, screenOn) => {
     if (typeof error === "undefined") {
         console.info('screenOn status is ' + screenOn);
@@ -101,7 +101,7 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```
+```js
 power.isScreenOn()
 .then(screenOn => {
     console.info('screenOn status is ' + screenOn);

@@ -7,7 +7,7 @@
 ## 导入模块
 
 
-```
+```js
 import screenlock from '@ohos.screenLock';
 ```
 
@@ -27,7 +27,7 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例：
   
-  ```
+  ```js
   screenlock.isScreenLocked((err, data)=>{      
      if (err) {
           console.error('isScreenLocked callback error -> ${JSON.stringify(err)}');
@@ -53,7 +53,7 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 - 示例：
 
-  ```
+  ```js
   screenlock.isScreenLocked().then((data) => {
       console.log('isScreenLocked success: data -> ${JSON.stringify(data)}');
   }).catch((err) => {
@@ -80,7 +80,7 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 - 示例：
   
-  ```
+  ```js
   screenlock.isSecureMode((err, data)=>{      
      if (err) {
           console.error('isSecureMode callback error -> ${JSON.stringify(err)}');
@@ -106,7 +106,7 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 - 示例：
 
-  ```
+  ```js
   screenlock.isSecureMode().then((data) => {
       console.log('isSecureMode success: data->${JSON.stringify(data)}');
   }).catch((err) => {
@@ -133,7 +133,7 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   
-  ```
+  ```js
   screenlock.unlockScreen((err)=>{      
      if (err) {
           console.error('unlockScreen callback error -> ${JSON.stringify(err)}');
@@ -159,7 +159,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 - 示例：
   
-  ```
+  ```js
   screenlock.unlockScreen().then(() => {
       console.log('unlockScreen success');
   }).catch((err) => {
