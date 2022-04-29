@@ -24,16 +24,16 @@
    
    ```javascript
    export default {
-       onStart(want) {
+       onStart() {
            console.log('ServiceAbility onStart');
        },
-       onCommand(want, restart, startId) {
+       onCommand(want, startId) {
            console.log('ServiceAbility onCommand');
        },
        onConnect(want) {
            console.log('ServiceAbility OnConnect');
        },
-       onDisconnect() {
+       onDisconnect(want) {
            console.log('ServiceAbility OnDisConnect');
        },
        onStop() {
@@ -174,7 +174,7 @@ import rpc from "@ohos.rpc";
 
 let mMyStub;
 export default {
-    onStart(want) {
+    onStart() {
         class MyStub extends rpc.RemoteObject{
             constructor(des) {
                 if (typeof des === 'string') {
@@ -182,7 +182,7 @@ export default {
                 }
                 return null;
             }
-            onRemoteRequest(code, message, reply, option) {
+            onRemoteRequest(code, data, reply, option) {
                 console.log("ServiceAbility onRemoteRequest called");
                 if (code === 1) {
                     let op1 = data.readInt();
@@ -197,14 +197,14 @@ export default {
         }
         mMyStub = new MyStub("ServiceAbility-test");
     },
-    onCommand(want, restart, startId) {
+    onCommand(want, startId) {
         console.log('ServiceAbility onCommand');
     },
     onConnect(want) {
         console.log('ServiceAbility OnConnect');
         return mMyStub;
     },
-    onDisconnect() {
+    onDisconnect(want) {
         console.log('ServiceAbility OnDisConnect');
     },
     onStop() {
@@ -225,12 +225,12 @@ export default {
 ```ts
 let mRemote;
 function onConnectCallback(element, remote){
-    console.log('onConnectLocalService onConnectDone element: ' + element);
-    console.log('onConnectLocalService onConnectDone remote: ' + remote);
+    console.log('onConnectRemoteService onConnectDone element: ' + element);
+    console.log('onConnectRemotelService onConnectDone remote: ' + remote);
     mRemote = remote;
     if (mRemote == null) {
       prompt.showToast({
-        message: "onConnectLocalService not connected yet"
+        message: "onConnectRemoteService not connected yet"
       });
       return;
     }
@@ -243,7 +243,7 @@ function onConnectCallback(element, remote){
         console.log('sendRequest success');
         let msg = reply.readInt();
         prompt.showToast({
-            message: "onConnectLocalService connect result: " + msg,
+            message: "onConnectRemoteService connect result: " + msg,
             duration: 3000
         });
     }).catch((e) => {
