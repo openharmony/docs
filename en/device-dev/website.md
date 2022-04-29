@@ -1,5 +1,6 @@
+# OpenHarmony Device Development Documentation
 - [Device Development Guide](device-dev-guide.md)
-- Quick Start
+- Getting Started
   - Getting Started with Mini and Small Systems (IDE Mode, Recommended)
     - [Mini and Small System Overview](quick-start/quickstart-ide-lite-overview.md)
     - Environment Preparation
@@ -20,8 +21,9 @@
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
             - [Running](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
     - Appendix
-        - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
-        - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
+        - Introduction to Development Boards
+            - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
+            - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
   - Getting Started with Mini and Small Systems (Installation Package Mode)
     - [Mini and Small System Overview](quick-start/quickstart-lite-overview.md)
     - [Environment Preparation](quick-start/quickstart-lite-env-setup.md)
@@ -67,8 +69,9 @@
             - [Burning](quick-start/quickstart-ide-standard-running-rk3568-burning.md)
             - [Running](quick-start/quickstart-ide-standard-running-rk3568-running.md)
     - Appendix
-        - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
-        - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
+        - Introduction to Development Boards
+            - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
+            - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
   - Getting Started with Standard System (Installation Package Mode)
     - [Standard System Overview](quick-start/quickstart-standard-overview.md)
     - [Setting Up Environments for Standard System](quick-start/quickstart-standard-env-setup.md)
@@ -92,14 +95,14 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
-  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+    - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Compatibility and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
 - Porting
   - Mini System SoC Porting Guide
     - Porting Preparations
-      - [Before You Start](porting/oem_transplant_chip_prepare_knows.md)
+      - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
     - Kernel Porting
       - [Overview](porting/porting-chip-kernel-overview.md)
@@ -133,8 +136,8 @@
     - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
     - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
   - Mini System SoC Porting Cases
-    - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
-    - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+    - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
 - Subsystem Development
   - Kernel
     - Kernel for Mini Systems
@@ -170,8 +173,7 @@
         - [LMS](kernel/kernel-mini-memory-lms.md)
       - Appendix
         - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
-        - Basic Data Structure
-          - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
+        - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
         - Standard Libraries
           - [CMSIS Support](kernel/kernel-mini-appx-lib-cmsis.md)
           - [POSIX Support](kernel/kernel-mini-appx-lib-posix.md)
@@ -245,8 +247,6 @@
               - [uname](kernel/kernel-small-debug-shell-cmd-uname.md)
               - [vmm](kernel/kernel-small-debug-shell-cmd-vmm.md)
               - [watch](kernel/kernel-small-debug-shell-cmd-watch.md)
-              - [reboot](kernel/kernel-small-debug-shell-cmd-reboot.md)
-              - [top](kernel/kernel-small-debug-shell-cmd-top.md)
             - File Commands
               - [cat](kernel/kernel-small-debug-shell-file-cat.md)
               - [cd](kernel/kernel-small-debug-shell-file-cd.md)
@@ -269,8 +269,6 @@
               - [touch](kernel/kernel-small-debug-shell-file-touch.md)
               - [writeproc](kernel/kernel-small-debug-shell-file-write.md)
               - [umount](kernel/kernel-small-debug-shell-file-umount.md)
-              - [du](kernel/kernel-small-debug-shell-file-du.md)
-              - [mv](kernel/kernel-small-debug-shell-file-mv.md)
             - Network Commands
               - [arp](kernel/kernel-small-debug-shell-net-arp.md)
               - [dhclient](kernel/kernel-small-debug-shell-net-dhclient.md)
@@ -285,8 +283,8 @@
           - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
           - [User-Space Exception Information](kernel/kernel-small-debug-shell-error.md)
         - [Trace](kernel/kernel-small-debug-trace.md)
-        - [perf](kernel/kernel-mini-memory-perf.md)
-        - [LMS](kernel/kernel-small-memory-lms.md)
+        - [perf](kernel/kernel-mini-memory-perf)
+        - [LMS](kernel/kernel-small-memory-lms)
         - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
@@ -313,9 +311,9 @@
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
       - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
-      - Enhanced Kernel Features 
+      - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)  
         - [Enhanced SWAP](kernel-standard-mm-eswap.md)
-        - Task Scheduling
+        - [Task Scheduling](kernel-standard-sched.md)
           - [Related Thread Group](kernel-standard-sched-rtg.md)
           - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
   - Driver
@@ -379,7 +377,7 @@
       - [Development Guidelines on Photographing](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [Development Guidelines on Video Recording](subsystems/subsys-multimedia-camera-record-guide.md)
       - [Development Guidelines on Previewing](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - Audio/Video
+    - Audio and Video
       - [Overview](subsystems/subsys-multimedia-video-overview.md)
       - [Development Guidelines on Media Playback](subsystems/subsys-multimedia-video-play-guide.md)
       - [Development Guidelines on Media Recording](subsystems/subsys-multimedia-video-record-guide.md)
@@ -422,16 +420,15 @@
     - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
     - [Development Guidelines](subsystems/subsys-application-framework-guide.md)
     - [Development Example](subsystems/subsys-application-framework-demo.md)
-  - [OTA Upgrade](subsystems/subsys-ota-guide.md)
-  - Telephony Service
-    - [Telephony Service](subsystems/telephony-service.md)
-    - [Development Guidelines](subsystems/development-guidelines.md)
+  - [OTA Update](subsystems/subsys-ota-guide.md)
+  - Telephony
+    - [Telephony Overview](subsystems/subsys-tel-overview.md)
+    - [Telephony Development](subsystems/subsys-tel-guide.md)
   - Security
     - [Overview](subsystems/subsys-security-overview.md)
     - [Development Guidelines on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development Guidelines on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development Guidelines on IPC Authentication](subsystems/subsys-security-communicationverify.md)
-    - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - [init Module](subsystems/subsys-boot-init.md)
@@ -470,7 +467,7 @@
           - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
           - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
         - [Use Case](guide/device-iotcamera-control-example.md)
-    - Cameras with a Screen
+    - Cameras with a Screen)
       - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
         - Development Guidelines
@@ -493,10 +490,10 @@
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
   - [Test Subsystem](subsystems/subsys-testguide-test.md)
-  - [R&D Tools](subsystems/subsys-toolchain.md)
+  - Debugging Tools
     - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
-- [XTS](subsystems/subsys-xts-guide.md)
+- [XTS Certification](subsystems/subsys-xts-guide.md)
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
