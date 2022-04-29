@@ -14,11 +14,11 @@ None
 
 
 ```
-import lottie from 'lottie-ohos-ets'
+import lottie from '@ohos/lottieETS'
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> In the **Terminal** window, run the **npm install'lottie-ohos-ets...** command to download Lottie.
+> In the **Terminal** window, run the  `npm install @ohos/lottieETS` command to download Lottie.
 
 
 ## lottie.loadAnimation
