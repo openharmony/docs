@@ -17,8 +17,8 @@ HTTP数据请求功能主要由http模块提供。
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
 | destroy()                                 | 中断请求任务。                      |
-| on(type: 'headersReceive')<sup>8+</sup>  | 订阅HTTP Response Header 事件。     |
-| off(type: 'headersReceive')<sup>8+</sup> | 取消订阅HTTP Response Header 事件。 |
+| on(type: 'headersReceive')                | 订阅HTTP Response Header 事件。     |
+| off(type: 'headersReceive')               | 取消订阅HTTP Response Header 事件。 |
 
 ## 开发步骤
 
