@@ -14,15 +14,22 @@
     - [SysCap说明](quick-start/syscap.md)
 - 开发
   - Ability开发
-    - [FA模型综述](ability/fa-brief.md)
-    - [PageAbility开发指导](ability/fa-pageability.md)
-    - [ServiceAbility开发指导](ability/fa-serviceability.md)
-    - [DataAbility开发指导](ability/fa-dataability.md)
-    - [FA卡片开发指导](ability/fa-formability.md)
+    - [Ability框架概述](ability/ability-brief.md)
+    - FA模型
+      - [FA模型综述](ability/fa-brief.md)
+      - [PageAbility开发指导](ability/fa-pageability.md)
+      - [ServiceAbility开发指导](ability/fa-serviceability.md)
+      - [DataAbility开发指导](ability/fa-dataability.md)
+      - [FormAbility开发指导](ability/fa-formability.md)
+    - Stage模型
+      - [Stage模型综述](ability/stage-brief.md)
+      - [Ability开发指导](ability/stage-ability.md)
+      - [ServiceExtensionAbility开发指导](ability/stage-serviceextension.md)
+      - [FormExtensionAbility开发指导](ability/stage-formextension.md)
+      - [应用迁移开发指导](ability/stage-ability-continuation.md)
     - 其他
       - [WantAgent使用指导](ability/wantagent.md)
       - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
-      - [测试框架使用指导](ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于JS扩展的类Web开发范式
