@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import Deque from '@ohos.util.Deque'  
 ```
 
@@ -30,7 +30,7 @@ Deque的构造函数。
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 ```
 
@@ -48,7 +48,7 @@ insertFront(element: T): void
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront("a");
 deque.insertFront(1);
@@ -72,7 +72,7 @@ insertEnd(element: T): void
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertEnd("a");
 deque.insertEnd(1);
@@ -102,7 +102,7 @@ has(element: T): boolean
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 let result = deque.has("Ahfbrgrbgnutfodgorrogorg");
 deque.insertFront("Ahfbrgrbgnutfodgorrogorg");
@@ -123,7 +123,7 @@ popFirst(): T
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
@@ -147,7 +147,7 @@ popLast(): T
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
@@ -181,7 +181,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
@@ -206,7 +206,7 @@ getFirst(): T
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertEnd(2);
 deque.insertEnd(4);
@@ -229,7 +229,7 @@ getLast(): T
 
 **示例：**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
@@ -252,7 +252,7 @@ let result = deque.getLast();
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **示例：**
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);

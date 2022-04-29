@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import HashMap from '@ohos.util.HashMap'  
 ```
 
@@ -32,7 +32,7 @@ HashMap的构造函数。
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 ```
 
@@ -51,7 +51,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
 ```
@@ -77,7 +77,7 @@ hasKey(key: K): boolean
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -105,7 +105,7 @@ hasValue(value: V): boolean
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -133,7 +133,7 @@ get(key: K): V
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -155,7 +155,7 @@ setAll(map: HashMap<K, V>): void
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -185,7 +185,7 @@ set(key: K, value: V): Object
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -211,7 +211,7 @@ remove(key: K): V
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -227,7 +227,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -249,7 +249,7 @@ keys(): IterableIterator&lt;K&gt;
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -276,7 +276,7 @@ values(): IterableIterator&lt;V&gt;
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -310,7 +310,7 @@ replace(key: K, newValue: V): boolean
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 let result = hashMap.replace("sdfs", 357);
@@ -339,7 +339,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 hashMap.set("dfsghsf", 357);
@@ -363,7 +363,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 **示例：**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -390,7 +390,7 @@ while(temp != undefined) {
 | IterableIterator&lt;[K, V]&gt; | 返回一个迭代器。 |
 
 **示例：**
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);

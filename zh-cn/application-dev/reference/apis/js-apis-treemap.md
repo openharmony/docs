@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```ts
 import TreeMap from '@ohos.util.TreeMap'  
 ```
 
@@ -38,7 +38,7 @@ TreeMap的构造函数。
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 ```
 
@@ -57,7 +57,7 @@ isEmpty(): boolean
 
 **示例：**
 
-```
+```ts
 const treeMap = new TreeMap();
 let result = treeMap.isEmpty();
 ```
@@ -83,7 +83,7 @@ hasKey(key: K): boolean
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -111,7 +111,7 @@ hasValue(value: V): boolean
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -139,7 +139,7 @@ get(key: K): V
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -161,7 +161,7 @@ getFirstKey(): K
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -183,7 +183,7 @@ getLastKey(): K
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -205,7 +205,7 @@ setAll(map: TreeMap<K, V>): void
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -235,7 +235,7 @@ set(key: K, value: V): Object
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -261,7 +261,7 @@ remove(key: K): V
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -289,7 +289,7 @@ getLowerKey(key: K): K
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -318,7 +318,7 @@ getHigherKey(key: K): K
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -347,7 +347,7 @@ replace(key: K, newValue: V): boolean
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 let result = treeMap.replace("sdfs", 357);
@@ -362,7 +362,7 @@ clear(): void
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -384,7 +384,7 @@ keys(): IterableIterator&lt;K&gt;
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -411,7 +411,7 @@ values(): IterableIterator&lt;V&gt;
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -446,7 +446,7 @@ callbackfn的参数说明：
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 treeMap.set("dfsghsf", 357);
@@ -470,7 +470,7 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -498,7 +498,7 @@ while(temp != undefined) {
 
 **示例：**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
