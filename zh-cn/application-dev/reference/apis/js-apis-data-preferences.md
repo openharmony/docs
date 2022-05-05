@@ -44,27 +44,29 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-      if (err) {
-          console.info("Get the preferences failed")
-          return;
-      }
-      preferences.put('startup', 'auto', function (err) {
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Put the value of startup failed with err: " + err)
-              return
+              console.info("Get the preferences failed")
+              return;
           }
-          console.info("Put the value of startup successfully.")
-          preferences.flush(function (err) {
+          preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Flush to file failed with err: " + err)
+                  console.info("Put the value of startup failed, err: " + err)
                   return
               }
-              console.info("Flushed to file successfully.")
+              console.info("Put the value of startup successfully.")
+              preferences.flush(function (err) {
+                  if (err) {
+                      console.info("Flush to file failed, err: " + err)
+                      return
+                  }
+                  console.info("Flushed to file successfully.")
+              })
           })
       })
-  })
+  }
   ```
 
 
@@ -91,26 +93,28 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  let promise = data_preferences.getPreferences(this.context, 'mystore')
-  promise.then((preferences) => {
-      preferences.put('startup', 'auto', function (err) {
-          if (err) {
-              console.info("Put the value of startup failed with err: " + err)
-              return
-          }
-          console.info("Put the value of startup successfully.")
-          preferences.flush(function (err) {
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Flush to file failed with err: " + err)
+                  console.info("Put the value of startup failed, err: " + err)
                   return
               }
-              console.info("Flushed to file successfully.")
+              console.info("Put the value of startup successfully.")
+              preferences.flush(function (err) {
+                  if (err) {
+                      console.info("Flush to file failed, err: " + err)
+                      return
+                  }
+                  console.info("Flushed to file successfully.")
+              })
           })
+      }).catch((err) => {
+          console.info("Get the preferences failed")
       })
-  }).catch((err) => {
-      console.info("Get the preferences failed")
-  })
+  }
   ```
 
 
@@ -134,14 +138,16 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  data_preferences.deletePreferences(this.context, 'mystore', function (err) {
-      if (err) {
-          console.info("Deleted failed with err: " + err)
-          return
-      }
-      console.info("Deleted successfully.")
-  })
+      data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+          if (err) {
+              console.info("Deleted failed, err: " + err)
+              return
+          }
+          console.info("Deleted successfully.")
+      })
+  }
   ```
 
 
@@ -169,13 +175,15 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  let proDelete = data_preferences.deletePreferences(this.context, 'mystore')
-  proDelete.then(() => {
-      console.info("Deleted successfully.")
-  }).catch((err) => {
-      console.info("Deleted failed with err: " + err)
-  })
+      let promise = data_preferences.deletePreferences(this.context, 'mystore')
+      promise.then(() => {
+          console.info("Deleted successfully.")
+      }).catch((err) => {
+          console.info("Deleted failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -198,14 +206,16 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
-      if (err) {
-          console.info("Removed preferences from cache failed with err: " + err)
-          return
-      }
-      console.info("Removed preferences from cache successfully.")
-  })
+      data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+          if (err) {
+              console.info("Removed preferences from cache failed, err: " + err)
+              return
+          }
+          console.info("Removed preferences from cache successfully.")
+      })
+  }
   ```
 
 
@@ -232,13 +242,15 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
 
-  let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
-  promise.then(() => {
-      console.info("Removed preferences from cache successfully.")
-  }).catch((err) => {
-      console.info("Removed preferences from cache failed with err: " + err)
-  })
+      let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+      promise.then(() => {
+          console.info("Removed preferences from cache successfully.")
+      }).catch((err) => {
+          console.info("Removed preferences from cache failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -264,13 +276,24 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 - 示例：
   ```ts
-  preferences.get('startup', 'default', function(err, value) {
-      if (err) {
-          console.info("Get the value of startup failed with err: " + err)
-          return
-      }
-      console.info("The value of startup is " + value)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.get('startup', 'default', function(err, value) {
+              if (err) {
+                  console.info("Get the value of startup failed, err: " + err)
+                  return
+              }
+              console.info("The value of startup is " + value)
+          })
+      })
+  }
   ```
 
 
@@ -295,12 +318,22 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 - 示例：
   ```ts
-  let promiseget = preferences.get('startup', 'default')
-  promiseget.then((value) => {
-      console.info("The value of startup is " + value)
-  }).catch((err) => {
-      console.info("Get the value of startup failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promiseGet = preferences.get('startup', 'default')
+          promiseGet.then((value) => {
+              console.info("The value of startup is " + value)
+          }).catch((err) => {
+              console.info("Get the value of startup failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -321,13 +354,24 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```ts
-  preferences.put('startup', 'auto', function (err) {
-      if (err) {
-          console.info("Put the value of startup failed with err: " + err)
-          return
-      }
-      console.info("Put the value of startup successfully.")
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.put('startup', 'auto', function (err) {
+              if (err) {
+                  console.info("Put the value of startup failed, err: " + err)
+                  return
+              }
+              console.info("Put the value of startup successfully.")
+          })
+      })
+  }
   ```
 
 
@@ -352,12 +396,22 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 - 示例：
   ```ts
-  let promiseput = preferences.put('startup', 'auto')
-  promiseput.then(() => {
-      console.info("Put the value of startup successfully.")
-  }).catch((err) => {
-      console.info("Put the value of startup failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promisePut = preferences.put('startup', 'auto')
+          promisePut.then(() => {
+              console.info("Put the value of startup successfully.")
+          }).catch((err) => {
+              console.info("Put the value of startup failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -382,15 +436,28 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 - 示例：
   ```ts
-  preferences.has('startup', function (err, isExist) {
-      if (err) {
-          console.info("Check the key of startup failed with err: " + err)
-          return
-      }
-      if (isExist) {
-          console.info("The key of startup is contained.")
-      }
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.has('startup', function (err, isExist) {
+              if (err) {
+                  console.info("Check the key of startup failed, err: " + err)
+                  return
+              }
+              if (isExist) {
+                  console.info("The key of startup is contained.")
+              } else {
+                  console.info("The key of startup dose not contain.")
+              }
+          })
+      })
+  }
   ```
 
 
@@ -414,14 +481,26 @@ has(key: string): Promise&lt;boolean&gt;
 
 - 示例：
   ```ts
-  let promisehas = preferences.has('startup')
-  promisehas.then((isExist) => {
-      if (isExist) {
-          console.info("The key of startup is contained.")
-      }
-  }).catch((err) => {
-      console.info("Check the key of startup failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promiseHas = preferences.has('startup')
+          promiseHas.then((isExist) => {
+              if (isExist) {
+                  console.info("The key of startup is contained.")
+              } else {
+                  console.info("The key of startup dose not contain.")
+              }
+          }).catch((err) => {
+              console.info("Check the key of startup failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -441,13 +520,24 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```ts
-  preferences.delete('startup', function (err) {
-      if (err) {
-          console.info("Delete startup key failed with err: " + err)
-          return
-      }
-      console.info("Deleted startup key successfully.")
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.delete('startup', function (err) {
+              if (err) {
+                  console.info("Delete startup key failed, err: " + err)
+                  return
+              }
+              console.info("Deleted startup key successfully.")
+          })
+      })
+  }
   ```
 
 
@@ -471,12 +561,22 @@ delete(key: string): Promise&lt;void&gt;
 
 - 示例：
   ```ts
-  let promisedel = preferences.delete('startup')
-  promisedel.then(() => {
-      console.info("Deleted startup key successfully.")
-  }).catch((err) => {
-      console.info("Delete startup key failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promiseDelete = preferences.delete('startup')
+          promiseDelete.then(() => {
+              console.info("Deleted startup key successfully.")
+          }).catch((err) => {
+              console.info("Delete startup key failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -495,13 +595,24 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```ts
-  preferences.flush(function (err) {
-      if (err) {
-          console.info("Flush to file failed with err: " + err)
-          return
-      }
-      console.info("Flushed to file successfully.")
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.flush(function (err) {
+              if (err) {
+                  console.info("Flush to file failed, err: " + err)
+                  return
+              }
+              console.info("Flushed to file successfully.")
+          })
+      })
+  }
   ```
 
 
@@ -520,12 +631,22 @@ flush(): Promise&lt;void&gt;
 
 - 示例：
   ```ts
-  let promiseflush = preferences.flush()
-  promiseflush.then(() => {
-      console.info("Flushed to file successfully.")
-  }).catch((err) => {
-      console.info("Flush to file failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promiseFlush = preferences.flush()
+          promiseFlush.then(() => {
+              console.info("Flushed to file successfully.")
+          }).catch((err) => {
+              console.info("Flush to file failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -544,13 +665,24 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 - 示例：
   ```ts
-  preferences.clear(function (err) {
-      if (err) {
-          console.info("Clear to file failed with err: " + err)
-          return
-      }
-      console.info("Cleared to file successfully.")
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.clear(function (err) {
+              if (err) {
+                  console.info("Clear to file failed, err: " + err)
+                  return
+              }
+              console.info("Cleared to file successfully.")
+          })
+      })
+  }
   ```
 
 
@@ -569,12 +701,22 @@ clear(): Promise&lt;void&gt;
 
 - 示例：
   ```ts
-  let promiseclear = preferences.clear()
-  promiseclear.then(() => {
-      console.info("Cleared to file successfully.")
-  }).catch((err) => {
-      console.info("Clear to file failed with err: " + err)
-  })
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      let promise = data_preferences.getPreferences(this.context, 'mystore')
+      promise.then((preferences) => {
+          let promiseClear = preferences.clear()
+          promiseClear.then(() => {
+              console.info("Cleared to file successfully.")
+          }).catch((err) => {
+              console.info("Clear to file failed, err: " + err)
+          })
+      }).catch((err) => {
+          console.info("Get the preferences failed, err: " + err)
+      })
+  }
   ```
 
 
@@ -594,24 +736,35 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 - 示例：
   ```ts
-  var observer = function (key) {
-      console.info("The key of " + key + " changed.")
-  }
-  preferences.on('change', observer)
-  preferences.put('startup', 'auto', function (err) {
-      if (err) {
-          console.info("Put the value of startup failed with err: " + err)
-          return
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+  
+      var observer = function (key) {
+          console.info("The key of " + key + " changed.")
       }
-      console.info("Put the value of startup successfully.")
-      preferences.flush(function (err) {
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Flush to file failed with err: " + err)
+              console.info("Get the preferences failed, err: " + err)
               return
           }
-          console.info("Flushed to file successfully.")    // observer will be called.
+          preferences.on('change', observer)
+          preferences.put('startup', 'auto', function (err) {
+              if (err) {
+                  console.info("Put the value of startup failed, err: " + err)
+                  return
+              }
+              console.info("Put the value of startup successfully.")
+              preferences.flush(function (err) {
+                  if (err) {
+                      console.info("Flush to file failed, err: " + err)
+                      return
+                  }
+                  console.info("Flushed to file successfully.")    // observer will be called.
+              })
+          })  
       })
-  })
+  }
   ```
 
 
@@ -631,8 +784,33 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 - 示例：
   ```ts
-  var observer = function (key) {
-      console.info("The key of " + key + " changed.")
+  import Ability from '@ohos.application.Ability'
+  import data_preferences from '@ohos.data.preferences'
+  export default class MainAbility extends Ability {
+      var observer = function (key) {
+          console.info("The key of " + key + " changed.")
+      }
+      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+          if (err) {
+              console.info("Get the preferences failed, err: " + err)
+              return
+          }
+          preferences.on('change', observer)
+          preferences.put('startup', 'auto', function (err) {
+              if (err) {
+                  console.info("Put the value of startup failed, err: " + err)
+                  return
+              }
+              console.info("Put the value of startup successfully.")
+              preferences.flush(function (err) {
+                  if (err) {
+                      console.info("Flush to file failed, err: " + err)
+                      return
+                  }
+                  console.info("Flushed to file successfully.")    // observer will be called.
+                  preferences.off('change', observer)
+              })
+          })  
+      })
   }
-  preferences.off('change', observer)
   ```
