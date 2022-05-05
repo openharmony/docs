@@ -11,7 +11,7 @@
 
     This section describes how to develop the touchscreen driver based on the input driver model.  [Figure 1](#fig6251184817261)  shows an overall architecture of the touchscreen driver.
 
-    The input driver is developed based on the hardware driver foundation \(HDF\), platform APIs, and operating system abstraction layer \(OSAL\) APIs. It provides hardware driver capabilities through the input Hardware Driver Interfaces \(HDIs\) for upper-layer input services to control the touchscreen.
+    The input driver is developed based on the hardware driver foundation \(HDF\), platform APIs, and operating system abstraction layer \(OSAL\) APIs. It provides hardware driver capabilities through the input Hardware Device Interfaces \(HDIs\) for upper-layer input services to control the touchscreen.
 
 
 **Figure  1**  Architecture of the input driver model<a name="fig6251184817261"></a>  
@@ -88,7 +88,7 @@ Perform the following steps:
 
 1.  Add the touchscreen driver-related descriptions.
 
-    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](driver-hdf-development.md#section1969312275533).
+    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see  [Driver Development](driver-hdf-development.md#how-to-develop).
 
 2.  Complete the board-level configuration and private data configuration of the touchscreen.
 
@@ -96,7 +96,7 @@ Perform the following steps:
 
 3.  Implement differentiated adaptation APIs of the touchscreen.
 
-    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](driver-platform-gpio-des.md#section1635911016188).
+    Use the platform APIs to perform operations for the reset pins, interrupt pins, and power based on the communications interfaces designed for boards. For details about the GPIO-related operations, see  [GPIO](driver-platform-gpio-des.md#overview).
 
 
 ## Development Example<a name="section263714411191"></a>

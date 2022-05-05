@@ -1,11 +1,5 @@
 # UART<a name="EN-US_TOPIC_0000001153656474"></a>
 
--   [Overview](#section1761881586154520)
--   [How to Develop](#section944397404154520)
-    -   [UartHostMethod](#section192316441461)
-
--   [Development Example](#section774610224154520)
-
 ## Overview<a name="section1761881586154520"></a>
 
 In the Hardware Driver Foundation \(HDF\), the Universal Asynchronous Receiver/Transmitter \(UART\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
@@ -186,7 +180,7 @@ The UART module adaptation involves the following steps:
 
         >![](../public_sys-resources/icon-note.gif) **NOTE** 
 
-        >For details, see [Available APIs](#availableapis).
+        >For details, see [Available APIs](#available-apis).
 
 
 4.  Debug the driver.
