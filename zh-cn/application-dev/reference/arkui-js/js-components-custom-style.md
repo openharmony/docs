@@ -10,7 +10,7 @@
 
 可以通过设置inherit-calss属性来继承父组件的样式。
 
-父页面的hml文件，其中comp自定组件通过inherit-class属性，继承了父组件的parent-class1和parent-class2样式。
+父页面的hml文件，其中自定义组件comp通过inherit-class属性来指定继承其父组件的样式：parent-class1和parent-class2。
 ```html
 <!-- xxx.hml -->
 <element name='comp' src='../../common/component/comp.hml'></element>
