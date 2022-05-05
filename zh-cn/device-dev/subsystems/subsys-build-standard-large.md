@@ -432,7 +432,7 @@ ohos_shared_library("module2") {
      "parts":{
        "ace:ace_engine_standard":{},
        "ace:napi":{},
-       "account:os_account_standard":{},
+       "account:os_account":{},
        "distributeddatamgr:native_appdatamgr":{},
        "distributeddatamgr:distributeddatamgr":{},
        "distributeddatamgr:appdatamgr_jskits":{},
