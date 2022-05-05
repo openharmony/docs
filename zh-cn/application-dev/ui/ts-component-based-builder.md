@@ -49,18 +49,21 @@ struct CompA {
 当开发者创建自定义组件，想对该组件添加特定功能时（如：仅对自定义组件添加一个点击跳转操作）。若直接在组件内嵌入事件方法，将会导致所有初始化该组件的地方均增加了该功能。为解决此问题，引入了@BuilderParam装饰器，此装饰器修饰的属性值可为@Builder修饰的方法，开发者可在初始化自定义组件时对此属性进行赋值，为自定义组件增加特定的的功能。
 
 ### 参数初始化组件
-通过参数初始化组件时，将@Builder装饰的方法赋值给@BuilderParam修饰的属性，并在自定义组件内调用content属性值。
+通过参数初始化组件时，将@Builder装饰的方法赋值给@BuilderParam修饰的属性，并在自定义组件内调用content属性值。对@BuilderParam修饰的属性进行赋值时不带参数（如：`content: this.specificParam`），则此属性的类型需定义成无返回值的函数（如：`@BuilderParam content: () => void`）。若带参数（如：`callContent: this.specificParam1("111")`），则此属性的类型需定义成any（如：`@BuilderParam callContent: any;`）。
+
 ```
 @Component
 struct CustomContainer {
   header: string = "";
-  @BuilderParam content: () => any;
+  @BuilderParam noParam: () => void;
+  @BuilderParam withParam: any;
   footer: string = "";
   build() {
     Column() {
       Text(this.header)
         .fontSize(50)
-      this.content()
+      this.noParam()
+      this.withParam()
       Text(this.footer)
         .fontSize(50)
     }
@@ -70,7 +73,12 @@ struct CustomContainer {
 @Entry
 @Component
 struct CustomContainerUser {
-  @Builder specificParam(label: string) {
+  @Builder specificNoParam() {
+    Column() {
+      Text("noParam").fontSize(50)
+    }
+  }
+  @Builder SpecificWithParam(label: string) {
     Column() {
       Text(label).fontSize(50)
     }
@@ -80,7 +88,8 @@ struct CustomContainerUser {
     Column() {
       CustomContainer({
         header: "Header",
-        content: this.specificParam("111")
+        noParam: this.specificNoParam,
+        withParam: this.SpecificWithParam("WithParam"),
         footer: "Footer",
       })
     }
@@ -95,7 +104,7 @@ struct CustomContainerUser {
 @Component
 struct CustomContainer {
   header: string = "";
-  @BuilderParam closer: () => any;
+  @BuilderParam closer: () => void;
   build() {
     Column() {
       Text(this.header)
