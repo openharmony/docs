@@ -1243,7 +1243,7 @@ Obtains the connection status of the profile.
 |                                                   |                         |
 | ------------------------------------------------- | ----------------------- |
 | Type                                              | Description                    |
-| [ProfileConnectionState](#profileconnectionState) | Profile connection state obtained. |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
 
 
 ## A2dpSourceProfile
