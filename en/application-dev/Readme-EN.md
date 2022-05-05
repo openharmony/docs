@@ -3,19 +3,19 @@
 - [Application Development Overview](application-dev-guide.md)
 - About OpenHarmony
     - [OpenHarmony Project](../OpenHarmony-Overview.md)
-    - [Glossary](../glossary.md)
+    - [Glossary](../device-dev/glossary/glossary.md)
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
     - Getting Started
-    - - [Preparations](quick-start/start-overview.md)
-        - [Getting Started with eTS](quick-start/start-with-ets.md)
-        - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
-        - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+        - [Preparations](start-overview.md)
+        - [Getting Started with eTS](start-with-ets.md)
+        - [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md)
+        - [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md)
     - Development Fundamentals
-        - [Application Development Package Structure (FA Model)](quick-start/package-structure.md)
-        - [Application Development Package Structure (Stage Model)](quick-start/module-structure.md)
-        - [Resource File Categories](quick-start/basic-resource-file-categories.md)
-        - [SysCap](quick-start/syscap.md)
+        - [Application Development Package Structure (FA Model)](package-structure.md)
+        - [Application Development Package Structure (Stage Model)](module-structure.md)
+        - [Resource File Categories](basic-resource-file-categories.md)
+        - [SysCap](syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
@@ -39,6 +39,10 @@
 - API References
     - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
-    - [APIs](reference/apis/Readme-EN.md)
+    - APIs
+      -   [JS (eTS Included) APIs](reference/apis/Readme-EN.md)
+      -   Native APIs
+          -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
+          -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - Contribution
     - [How to Contribute](../contribute/documentation-contribution.md)

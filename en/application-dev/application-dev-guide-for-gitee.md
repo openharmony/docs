@@ -53,7 +53,11 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 They are organized as follows:
 -   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
--   [API Reference](reference/apis/Readme-EN.md)
+-   APIs
+    -   [JS (eTS Included) APIs](reference/apis/Readme-EN.md)
+    -   Native APIs
+        -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
+        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 
 
 ### Readme
