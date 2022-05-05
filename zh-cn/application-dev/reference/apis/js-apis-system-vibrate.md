@@ -27,9 +27,12 @@ vibrate(Object): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mode | string | 否 | 振动的模式，其中long表示长振动，short表示短振动，默认值为long。 |
+| success | Function | 是 | 感应到振动数据变化后的回调函数。 |
+| fail | Function | 否 | 接口调用失败的回调函数。 |
+| complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
