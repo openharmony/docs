@@ -10,7 +10,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
   init进程启动后读取/etc/init.cfg，然后解析其json格式内容，并根据解析结果依次加载系统服务。
 
-  各模块需要配置或添加关键服务时，可以在对应模块的cfg文件进行配置，编译过程中会将配置后的文件拷贝到/system/etc/init目录下，单板中可在"/etc/init/"目录下查找到对应的cfg文件，
+  各模块需要配置或添加关键服务时，可以在对应模块的cfg文件进行配置，编译过程中会将配置后的文件拷贝到/system/etc/init目录下，单板中可在"/etc/init/"目录下查找到对应的cfg文件。
 
   对于单板中/etc/init下存在的cfg文件，init进程会逐一解析，下面分别介绍一下init扫描cfg文件的规则和cfg文件内容的具体组成格式。
 
@@ -100,7 +100,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
   - “on-stop”：在服务停止时执行。
   - "on-restart"：在服务重启时执行。
 
-  配置参考如下：
+  参考配置如下：
     ```
   "services" : [{
         "name" : "serviceName",
@@ -113,13 +113,13 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
     },
     ```
 
-- init 按需启动(仅标准系统以上提供) <a name="section56901555920">
+- init按需启动(仅标准系统以上提供) <a name="section56901555920">
 
   由init管理的服务支持按需启动，按需启动的服务不会在系统启动过程中主动被拉起，而是当某些事件发生时才会被init按需拉起，触发服务启动的事件可能是被init监听的相关socket有消息上报、samgr收到客户端的请求需要拉起SA服务等情况。
 
   "ondemand"：按需启动服务的标志，一个服务配置了该属性值为true的时候，服务不再需要配置start命令来拉起，而是被监听的相应事件发生时才会被拉起。
 
-  “ondemand”配置参考如下：
+  “ondemand”参考配置如下：
     ```
     "services" : [{
       "name" : "serviceName",
@@ -134,7 +134,8 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
      1. init进程在pre-fork阶段为socket类进程创建好socket，init进程中监听创建好的socket上的网络事件。
      2. socket上有报文事件后，init进程拉起socket进程进行报文处理，init进程取消socket数据的监听，由socket进程处理。
      3. socket进程无报文处理后，可以自动退出，退出后init进程回收该子进程并重新监听socket网络数据。
-  - 热插拔服务进程按需启动  进程可根据系统参数的变化进行热插拔事件按需启动处理。
+  - 热插拔服务进程按需启动  
+    进程可根据系统参数的变化进行热插拔事件按需启动处理。
 
 - init 进程启动&amp;回收能力增强
 
@@ -171,39 +172,37 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
   - 普通job：一般是init启动的固定阶段，如“pre-init“，“init”，“post-init”等，这类job在init启动的固定阶段执行。
   - 自定义job：用户自定义的job，这类job按照一定的规则进行触发。
      - job：用户任意定义，可以通过trigger命令执行。
-     - 控制job(仅标准系统以上提供)：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&amp;&amp;和||操作，可以根据不同的属性自行组合。
+     - 控制job（仅标准系统以上提供）：按条件触发处理的能力。在job中可以设置触发条件，当对应的属性值满足设置的条件时，就会触发job执行。触发条件支持&amp;&amp;和||操作，可以根据不同的属性自行组合。
 
  - bootchart 插件
 
    bootchart是一个用于linux启动过程性能分析的开源工具软件，在系统中自动收集CPU占用率、磁盘吞吐率、进程等信息，并以图形方式显示分析结果，可用作指导优化系统启动过程。begetctl命令参考：[begetctl命令说明](#table14737791480)
 
-    如下所示：
+    使用步骤如下所述：
 
     预制条件：
       1. 准备bootchart测试环境：linux操作系统下安装python及pycairo
        pip install pycairo
-      2. 在linux解压：bootchart-master.tar
+      2. 在linux解压bootchart-master.tar
       tar -zxvf  bootchart-master.tar
 
     执行步骤：
-      1. 启动系统
+      1. 启动系统。
       2. 执行命令行：begetctl bootchart enable
-      3. 重启系统
+      3. 重启系统。
       4. 执行命令行：begetctl bootchart stop
       5. 执行命令行：begetctl bootchart disable
-      6. 在/data/bootchart目录下导出如下文件：<br>
+      6. 在/data/bootchart目录下导出如下文件并存放在bootchart文件夹：<br>
         header<br>
         proc_diskstats.log<br>
         proc_ps.log<br>
-        proc_stat.log<br>
-       并存放在bootchart文件夹
-      7. 使用命令：tar -zcvf bootchart.tgz * 进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下
-      8. 运行：<br>
-        在bootchart-master目录下运行<br>
+        proc_stat.log<br>       
+      7. 使用tar -zcvf bootchart.tgz * 命令进行打包（只支持linux版本）并将该打包文件拷贝到linux：bootchart-master目录下。
+      8. 在bootchart-master目录下运行命令：<br>        
         python3 pybootchartgui.py -f pdf bootchart.tgz<br>
 
       预期结果：<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在bootchart-master目录下生成bootchart.pdf
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在bootchart-master目录下生成bootchart.pdf。
 
 ## 开发指导
 
@@ -336,7 +335,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
     | once          | 当前服务进程是否为一次性进程。 | 1：一次性进程，当该进程退出时，init不会重新启动该服务进程。 <br> 0 : 常驻进程，当该进程退出时，init收到SIGCHLD信号并重新启动该服务进程。 | small&amp;standard |
     | importance    | 当前服务优先级 | 标准系统中:<br> &emsp; &emsp;服务优先级取值范围 [-20， 19]，超出为无效设置。<br> 小型系统中：<br> &emsp; &emsp;0 : 非重要进程 <br> &emsp;  &emsp;非0 : 重要进程 | small&amp;standard |
     | caps          | 当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置。| 类型：数字或者字符串数组，在配置数字时，按linux标准的capability进行配置。字符串时，使用标准定义的宏的名字进行配置。 | small&amp;standard |
-    | critical      | 为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。 | 标准系统中<br> &emsp; &emsp;类型：int型数组，如："critical" : [M, N, T]<br> &emsp; &emsp; M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。<br> &emsp; &emsp; M > 0; N > 0 <br> 小型系统中 & 标准系统中：<br> &emsp; &emsp;类型：int，如："critical" : M<br> &emsp; &emsp; M：使能标志位（0：不使能；1：使能）<br> &emsp; &emsp;默认拉起服务次数：4次， 时间：20秒。 | small&amp;standard |
+    | critical      | 为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。 | 标准系统中<br> &emsp; &emsp;类型：int型数组，如："critical" : [M, N, T]<br> &emsp; &emsp; M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。<br> &emsp; &emsp; M > 0; N > 0 <br> 小型系统中 & 标准系统中：<br> &emsp; &emsp;类型：int，如："critical" : M<br> &emsp; &emsp; M：使能标志位（0：不使能；1：使能）<br> &emsp; &emsp；默认拉起服务次数：4次， 时间：20秒。 | small&amp;standard |
     | cpucore      | 服务需要的绑定的cpu核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引<br> 如单核设备 cpucore : [0] | small&amp;standard |
     | d-caps       | 服务分布式能力（仅标准系统以上提供）。| 类型：字符串数组， 如 "d-caps" : ["OHOS_DMS"] | standard |
     | apl          | 服务能力特权级别（仅标准系统以上提供）。 | 类型：字符串， 如 "apl" : "system_core"。<br> 目前支持"system_core"（默认值）, "normal", "system_basic"。 | standard |
@@ -381,20 +380,20 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
    ```
 
    **表4**  socket字段说明
-   |字段名 | 说明 |
+   | 字段名 | 说明 |
    | -------- | -------- |
-   |name|当前socket的命名，不要求必须与服务同名，与服务名同样须满足非空且长度<=32字节。|
-   |family|socket所属的地址族，目前支持的为服务创建的socket有AF_UNIX和AF_NETLINK族。|
-   |type|socket的类型，目前支持的类型有基于连接的SOCK_SEQPACKET和SOCK_STREAM，还有基于UDP无连接的SOCK_DGRAM。|
-   |protocol|socket通信遵循的协议类型，在无特殊需求的情况下，该值可配置为default缺省值，因为socket接口会自动根据socket地址族和类型选择合适的协议。此处除了default，并且支持NETLINK_KOBJECT_UEVENT协议类型。|
-   |permissions|socket节点文件的权限。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
-   |uid|socket节点文件的用户ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
-   |gid|socket节点文件的组ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
-   |option|socket的可选配置。在调用setsockopt接口时传入设置，目前支持的option选项有SOCKET_OPTION_PASSCRED、SOCKET_OPTION_RCVBUFFORCE、SOCK_CLOEXEC和SOCK_NONBLOCK。|
+   | name | 当前socket的命名，不要求必须与服务同名，与服务名同样须满足非空且长度<=32字节。|
+   | family | socket所属的地址族，目前支持的为服务创建的socket有AF_UNIX和AF_NETLINK族。|
+   | type | socket的类型，目前支持的类型有基于连接的SOCK_SEQPACKET和SOCK_STREAM，还有基于UDP无连接的SOCK_DGRAM。|
+   | protocol | socket通信遵循的协议类型，在无特殊需求的情况下，该值可配置为default缺省值，因为socket接口会自动根据socket地址族和类型选择合适的协议。此处除了default，并且支持NETLINK_KOBJECT_UEVENT协议类型。|
+   | permissions | socket节点文件的权限。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
+   | uid | socket节点文件的用户ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
+   | gid | socket节点文件的组ID。此项配置仅对如AF_UNIX地址族等有实体节点文件的socket类型有效。|
+   | option | socket的可选配置。在调用setsockopt接口时传入设置，目前支持的option选项有SOCKET_OPTION_PASSCRED、SOCKET_OPTION_RCVBUFFORCE、SOCK_CLOEXEC和SOCK_NONBLOCK。|
 
     **表5**  FD代持接口介绍<a name="table14737791479"></a>
 
-   | 函数名     | 函数解释 |参数解释  |
+   | 函数名     | 函数解释 | 参数解释  |
    | ----------  |  ----------  |--------|
    | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | 获取init代持的fd | 返回值：成功返回fd数组指针，失败返回NULL。备注：需手动释放<br>参数：<br> serviceName: 服务名<br>outfdCount: 返回的fd数组长度 |
    | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | 请求init代持fd | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 <br> fds: 需要init代持的fd数组指针<br>fdCount: fd数组长度
@@ -402,7 +401,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
     **表6**  服务控制接口介绍
 
-   | 函数名     | 函数解释 |参数解释  |
+   | 函数名 | 函数解释 | 参数解释 |
    | :----------  |  :----------  |:--------|
    | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | 配置服务参数 | 返回值：成功返回0，失败返回-1 <br> 参数: <br> serviceName: 服务名 <br> action: 服务行为（"start", "stop", "restart"） <br> extArgv: 参数数组 <br> extArgc: 参数个数 |
    | int ServiceControl(const char *serviceName, int action)  | 控制服务行为 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 <br> action: 服务行为（"start"， "stop", "restart") |
@@ -415,7 +414,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
 
    | 命令 | 命令格式和示例 | 说明 |
    | :----------  |  :----------  |:--------|
-   | init group test [stage] | init group test | statge参见ServiceStatus |
+   | init group test [stage] | init group test | stage参见ServiceStatus。 |
    | param ls [-r] [name] | 显示系统参数，例如：<br>查看usb系统参数：begetctl param ls persist.sys.usb    | 无 |
    | param get [name] | 获取系统参数信息，例如：<br>begetctl param get 或 param get | 无 |
    | param set name value| 设置系统参数，例如：<br>begetctl param set ohos.servicectrl.display 1 或 param set ohos.servicectrl.display 1| 无 |
@@ -436,7 +435,7 @@ init启动引导组件负责在系统启动阶段启动关键服务进程。 若
    | reboot updater[:options] | 重新启动并进入updater，例如：<br>begetctl reboot updater 或 reboot updater | 无 |
    | reboot flashd | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
    | reboot flashd[:options] | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
-   | reboot charing | 重新启动并进入charing，例如：<br>begetctl reboot charing 或 reboot charing| 无 |
+   | reboot charging | 重新启动并进入charging，例如：<br>begetctl reboot charging 或 reboot charging| 无 |
    | reboot loader | 重新启动并进入烧写模式，例如：<br>begetctl reboot loader 或 reboot loader | 无 |
    | bootchart stop | 停止图形分析，例如：<br>begetctl bootchart stop | 仅支持rk3568|
    | bootchart start | 开始图形分析，例如：<br>begetctl bootchart start | 无 |
@@ -459,7 +458,7 @@ init启动引导程序，此处以要新增一个名为MySystemApp的系统服�
 }, {
        "name" : "init",
        "cmds" : [
-           "start MySystemApp"         // 在“init”中启动该系统服务
+           "start MySystemApp"         // 在init中启动该系统服务
         ]
 }, {
      "name" : "post-init",
@@ -510,7 +509,7 @@ init启动引导程序，此处以要新增一个名为MySystemApp的系统服�
 
 **原因分析**
 
-kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是服务不存在。
+kernel log的输出，都是由init打印。在init 中查找对应的代码位置。发现是服务不存在。
 
 **解决方法**
 
@@ -529,14 +528,14 @@ kernel log 的输出，都是由init 打印。在init 中查找对应的代码�
 
 **原因分析**
 
-kernel log 的输出，都是由init 打印。在init 中查找对应的代码位置。发现是其他服务代持fd。
+kernel log的输出，都是由init 打印。在init中查找对应的代码位置。发现是其他服务代持fd。
 
 **解决方法**
 
-只支持代持本服务的fd， 不允许让其他服务代持fd。
+只支持代持本服务的fd，不允许让其他服务代持fd。
 
 
-### 服务没有配置ondemand 选项
+### 服务没有配置 ondemand 选项
 
 **现象描述**
 
