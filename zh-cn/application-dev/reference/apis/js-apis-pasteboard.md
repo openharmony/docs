@@ -88,7 +88,7 @@ createWantData(want:Want): PasteData
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#want) | 是 | 待保存的Want内容。 |
+| want | [Want](js-apis-application-Want.md) | 是 | 待保存的Want内容。 |
 
 **返回值**
 | 类型 | 说明 |
@@ -193,7 +193,7 @@ createWantRecord(want:Want): PasteDataRecord
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#want) | 是 | Want类型数据。 |
+| want | [Want](js-apis-application-Want.md) | 是 | Want类型数据。 |
 
 **返回值**
 | 类型 | 说明 |
@@ -263,7 +263,7 @@ createUriRecord(uri:string): PasteDataRecord
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML文本内容。 |
-| want<sup>7+</sup> | [Want](js-apis-featureAbility.md#want) | 是 | 否 | Want文本内容。 |
+| want<sup>7+</sup> | [Want](js-apis-application-Want.md) | 是 | 否 | Want文本内容。 |
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
@@ -385,7 +385,7 @@ getPrimaryWant(): Want
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| [Want](js-apis-featureAbility.md#want) | Want对象内容。 |
+| [Want](js-apis-application-Want.md) | Want对象内容。 |
 
 **示例**
 
@@ -480,7 +480,7 @@ addWantRecord(want: Want): void
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#want) | 是 | Want对象内容。 |
+| want | [Want](js-apis-application-Want.md) | 是 | Want对象内容。 |
 
 **示例**
 

@@ -384,7 +384,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 名称    | 类型           | 必填 | 描述                         |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-featureAbility.md#want)           | 是   | 表示被连接的ServiceAbility。 |
+| request | [Want](js-apis-application-Want.md)           | 是   | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是   | 被指定的回调方法。           |
 
 
