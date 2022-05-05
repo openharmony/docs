@@ -2,6 +2,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -18,6 +19,7 @@ import lottie from '@ohos/lottieETS'
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > In the **Terminal** window, run the  `npm install @ohos/lottieETS` command to download Lottie.
 
 
@@ -55,7 +57,7 @@ Destroys the animation. This method must be called when a page exits. This metho
 - Example
   
   ```
-  import lottie from 'lottie-web'
+  import lottie from '@ohos/lottieETS'
   
   @Entry
   @Component
