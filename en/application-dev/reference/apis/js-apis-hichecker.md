@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import hichecker from '@ohos.hichecker';
 ```
 
@@ -42,7 +42,7 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Example**
 
-```
+```js
 // Add a rule.
 hichecker.addRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -67,7 +67,7 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Example**
 
-```
+```js
 // Remove a rule.
 hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -92,7 +92,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 **Example**
 
-```
+```js
 // Add a rule.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
@@ -122,7 +122,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Example**
 
-```
+```js
 // Add a rule.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 

@@ -1,6 +1,6 @@
 # Battery Info<a name="EN-US_TOPIC_0000001121409574"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE** 
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The Battery Info module provides APIs for querying the charger type, battery health status, and battery charging status.
@@ -8,7 +8,7 @@ The Battery Info module provides APIs for querying the charger type, battery hea
 
 ## Modules to Import<a name="section199443271307"></a>
 
-```
+```js
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
@@ -126,7 +126,7 @@ Describes battery information.
 
 -   Example
 
-    ```
+    ```js
     import batteryInfo from '@ohos.batteryInfo';
     var batterySoc = batteryInfo.batterySOC;
     ```
