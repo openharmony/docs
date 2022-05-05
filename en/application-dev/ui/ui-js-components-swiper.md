@@ -154,11 +154,12 @@ Set the width and height of the **&lt;swiper&gt;** component, the indicator's si
 ```
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 swiper{
   width:  500px;
@@ -368,3 +369,8 @@ export default {
 ```
 
 ![en-us_image_0000001231843132](figures/en-us_image_0000001231843132.gif)
+## Samples
+
+The following sample is provided to help you better understand how to develop the **&lt;swiper&gt;** component:
+
+- [`Swiper`: Swiper (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)

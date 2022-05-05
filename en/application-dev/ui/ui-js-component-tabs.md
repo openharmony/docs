@@ -12,8 +12,7 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 ```
 <!-- index.hml -->
 <div class="container" >
-  <tabs>
- <tab-bar>
+  <tabs> <tab-bar>
       <text>item1</text>
       <text>item2</text>
     </tab-bar>
@@ -199,8 +198,9 @@ export default {
 ![en-us_image_0000001222807772](figures/en-us_image_0000001222807772.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> - A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one [**&lt;tab-content&gt;**](../reference/arkui-js/js-components-container-tab-content.md).
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one [**&lt;tab-content&gt;**](../reference/arkui-js/js-components-container-tab-content.md).
 
 
 ## Example Scenario
@@ -242,12 +242,16 @@ Use the **&lt;tabs&gt;**, **&lt;tab-bar&gt;**, and **&lt;tab-content&gt;** compo
 ```
 /* xxx.css */
 .container{
+width: 100%;
+height: 100%;
 background-color:#F1F3F5;
 }
 .tab_bar {
   width: 100%;
+  height: 150px;
 }
 .tab_item {
+  height: 30%;
   flex-direction: column;
   align-items: center;
 }
@@ -315,4 +319,11 @@ export default {
 }
 ```
 
-![en-us_image_0000001267607885](figures/en-us_image_0000001267607885.gif)
+![en-us_image_tab.gif](figures/en-us_image_tab.gif)
+
+
+## Samples
+
+ The following sample is provided to help you better understand how to develop the **&lt;tabs&gt;** component:
+
+[`Tabs`: Tabs (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)

@@ -123,6 +123,9 @@ Define the chart type using the **type** attribute, for example, setting a chart
   justify-content: center;
   background-color: #F1F3F5;
 }
+.tab-bar{
+  background-color: #F1F3F5;
+}
 .chart-data {
   width: 700px;
   height: 600px;
@@ -214,7 +217,8 @@ export default {
 
 ![en-us_image_0000001275803181](figures/en-us_image_0000001275803181.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The **&lt;chart&gt;** component does not display the value of each point.
 
 
@@ -301,7 +305,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The **options** attribute supports the settings of bar charts and line charts but does not support those of gauge charts.
 > 
 > - The **datasets** attribute supports the datasets for bar charts and line charts but does not support those of gauge charts.
@@ -618,3 +622,8 @@ export default {
 ```
 
 ![en-us_image_0000001232162328](figures/en-us_image_0000001232162328.gif)
+## Samples
+
+ The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
+
+[`Chart`: chart (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)

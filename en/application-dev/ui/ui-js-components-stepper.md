@@ -4,7 +4,8 @@
 When multiple steps are required to complete a task, you can use the **&lt;stepper&gt;** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > This component is supported since API version 5.
 
 
@@ -12,26 +13,25 @@ When multiple steps are required to complete a task, you can use the **&lt;stepp
 
 Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
 
-
 ```
 <!-- index.hml -->
 <div class="container"> 
- <stepper><stepper-item>     
+ <stepper>    
+   <stepper-item>     
      <text>Step 1</text>
    </stepper-item> 
    <stepper-item>     
      <text>Step 2</text>
    </stepper-item> 
-</stepper>
+ </stepper> 
 </div>
 ```
-
 
 ```
 /* xxx.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -69,14 +69,13 @@ Set **index** to the index value of the step that you want to display by default
 </div>
 ```
 
-
 ```
 /* index.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
-  background-color:#F1F3F5;
+  background-color: #F1F3F5;
 }
 text{
   width: 100%;
@@ -110,14 +109,13 @@ Set the **label** attribute to customize the button text for the **&lt;stepper-i
 </div>
 ```
 
-
 ```
 /* index.css */
-.container {
-  width: 100%;
-  height: 100%;
+.container {  
+  width:100%;
+  height:100%;
   flex-direction: column;
-  background-color:#F1F3F5;
+  background-color: #F1F3F5;
 }
 text{
   width: 100%;
@@ -131,9 +129,9 @@ text{
 /* index.js */
 export default { 
   data: {
-   label_1:{
-      nextLabel: 'NEXT',
-      status: 'normal'
+    label_1:{
+      nextLabel: 'NEXT',      
+      status: 'normal'    
     },
     label_2:{
       prevLabel: 'BACK',
@@ -154,7 +152,7 @@ export default {
 
 ## Setting Styles
 
-  By default, the **&lt;stepper&gt;** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
+By default, the **&lt;stepper&gt;** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
 
 ```
 <!-- index.hml -->
@@ -169,12 +167,11 @@ export default {
 </div>
 ```
 
-
 ```
 /* index.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -185,7 +182,7 @@ export default {
   height: 300px;
 }
 .stepperClass{
- border:1px solid silver;
+  border:1px solid silver ;
   background-color: white;
 }
 text{
@@ -232,8 +229,8 @@ The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**,
 ```
 /* xxx.css */
 .doc-page {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -350,12 +347,11 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 </div>
 ```
 
-
 ```
 /* xxx.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -416,3 +412,8 @@ export default {
 ```
 
 ![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)
+## Samples
+
+The following sample is provided to help you better understand how to develop the **&lt;stepper&gt;** component:
+
+[`StepNavigator`: StepNavigator (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/StepNavigator)
