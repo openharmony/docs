@@ -351,19 +351,19 @@ OpenHarmony支持如下几种系统类型：
 
 当前OpenHarmony社区支持以下6款开发板，具体介绍如下：
 
-| 系统类型 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓 | 社区每日构建版本获取 |
-| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| 标准系统 | Hi3516DV300 | Hi3516DV300 | Hi3516DV300是新一代Smart&nbsp;HD&nbsp;IP摄像机SOC，集成新一代ISP(Image&nbsp;Signal&nbsp;Processor)、H.265视频压缩编码器、高性能NNIE引擎，在低码率、高画质、智能处理和分析、低功耗等方面有较好的性能。 | 可用在带屏设备上，比如带屏冰箱、车机等。 | [device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br/>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon) | 社区每日构建版本获取地址：http://ci.openharmony.cn/dailybuilds|
-| 标准系统 | 润和DAYU200 | RK3568 | 润和HH-SCDAYU200是基于Rockchip&nbsp;RK3568，集成双核心架构GPU以及高效能NPU；板载四核64位Cortex-A55&nbsp;处理器采用22nm先进工艺，主频高达2.0GHz；支持蓝牙、Wi-Fi、音频、视频和摄像头等功能，拥有丰富的扩展接口，支持多种视频输入输出接口；配置双千兆自适应RJ45以太网口，可满足NVR、工业网关等多网口产品需求。 | 影音娱乐、智慧出行、智能家居，如烟机、烤箱、跑步机等。 | [device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br/>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br/>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope) |
-| 轻量 | 汇顶GR5515-STARTER-KIT | GR5515 | 支持Bluetooth&nbsp;5.1的单模低功耗蓝牙SoC，多功能按键和LED指示灯。 | 智能硬件，如手表、手环、价格类标签。 | [device_soc_goodix](https://gitee.com/openharmony/device_soc_goodix)<br/>[device_board_goodix](https://gitee.com/openharmony/device_board_goodix) |
-| 轻量 | 朗国LANGO200 | ASR582X | LANGO200&nbsp;LANGO200 IOT开发板，集成了高性能的WIFI-BLE双模芯片ASR5822、外部存储芯片、语音播放芯片以及模数转换等，同时支持SPI等IOT设备常用外设接口，可外扩OLED显示屏、红外遥控等。 | 智能家居连接类模组。 | [device_soc_asrmicro](https://gitee.com/openharmony/device_soc_asrmicro)<br/>[device_board_lango](https://gitee.com/openharmony/device_board_lango)<br/>[vendor_asrmicro](https://gitee.com/openharmony/vendor_asrmicro) |
-| 轻量 | 欧智通V200ZR | BES2600 | Multi-modal&nbsp;V200Z-R开发板是基于恒玄科技BES2600WM芯片的一款高性能、多功能、高性价比AIoT&nbsp;SoC开发板Multi-modal&nbsp;V200Z-R开发板，单模组集成四核ARM处理器（最高主频1GHz），集成双频WiFi&nbsp;+&nbsp;双模蓝牙，支持标准的802.11&nbsp;a/b/g/n/协议，支持BT/BLE&nbsp;5.2协议，内建多种容量的RAM（最大42MB）和Flash（最大32MB），支持MIPI&nbsp;DSI及CSI，适用于各种AIoT多模态VUI&nbsp;+&nbsp;GUI交互硬件场景。 | 智能硬件带屏类模组产品，如音箱、手表等。 | [device_soc_bestechnic](https://gitee.com/openharmony/device_soc_bestechnic)<br/>[device_board_fnlink](https://gitee.com/openharmony/device_board_fnlink)<br/>[vendor_bestechnic](https://gitee.com/openharmony/vendor_bestechnic) |
-| 轻量 | 小熊派BearPi-HM&nbsp;Nano | Hi3861 | BearPi-HM_Nano开发板是一块专门为OpenHarmony设计的开发板，板载高度集成的2.4GHz&nbsp;WiFi&nbsp;SoC芯片Hi3861，并板载NFC电路及标准的E53接口，标准的E53接口可扩展智能加湿器、智能台灯、智能安防、智能烟感等案例。 | 智慧路灯、智慧物流、人体红外等连接类设备。 | [device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_bearpi](https://gitee.com/openharmony/device_board_bearpi)<br/>[vendor_bearpi](https://gitee.com/openharmony/vendor_bearpi) |
+| 系统类型 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 标准系统 | Hi3516DV300 | Hi3516DV300 | Hi3516DV300是新一代Smart&nbsp;HD&nbsp;IP摄像机SOC，集成新一代ISP(Image&nbsp;Signal&nbsp;Processor)、H.265视频压缩编码器、高性能NNIE引擎，在低码率、高画质、智能处理和分析、低功耗等方面有较好的性能。 | 可用在带屏设备上，比如带屏冰箱、车机等。 | 代码仓：<br/>[device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br/>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
+| 标准系统 | 润和DAYU200 | RK3568 | 润和HH-SCDAYU200是基于Rockchip&nbsp;RK3568，集成双核心架构GPU以及高效能NPU；板载四核64位Cortex-A55&nbsp;处理器采用22nm先进工艺，主频高达2.0GHz；支持蓝牙、Wi-Fi、音频、视频和摄像头等功能，拥有丰富的扩展接口，支持多种视频输入输出接口；配置双千兆自适应RJ45以太网口，可满足NVR、工业网关等多网口产品需求。 | 影音娱乐、智慧出行、智能家居，如烟机、烤箱、跑步机等。 | 代码仓：<br/>[device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br/>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br/>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
+| 轻量 | 汇顶GR5515-STARTER-KIT | GR5515 | 支持Bluetooth&nbsp;5.1的单模低功耗蓝牙SoC，多功能按键和LED指示灯。 | 智能硬件，如手表、手环、价格类标签。 | 代码仓：<br/>[device_soc_goodix](https://gitee.com/openharmony/device_soc_goodix)<br/>[device_board_goodix](https://gitee.com/openharmony/device_board_goodix)<br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
+| 轻量 | 朗国LANGO200 | ASR582X | LANGO200&nbsp;IOT开发板，集成了高性能的WIFI-BLE双模芯片ASR5822、外部存储芯片、语音播放芯片以及模数转换等，同时支持SPI等IOT设备常用外设接口，可外扩OLED显示屏、红外遥控等。 | 智能家居连接类模组。 | 代码仓：<br/>[device_soc_asrmicro](https://gitee.com/openharmony/device_soc_asrmicro)<br/>[device_board_lango](https://gitee.com/openharmony/device_board_lango)<br/>[vendor_asrmicro](https://gitee.com/openharmony/vendor_asrmicro) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
+| 轻量 | 欧智通V200ZR | BES2600 | Multi-modal&nbsp;V200Z-R开发板是基于恒玄科技BES2600WM芯片的一款高性能、多功能、高性价比AIoT&nbsp;SoC开发板Multi-modal&nbsp;V200Z-R开发板，单模组集成四核ARM处理器（最高主频1GHz），集成双频WiFi&nbsp;+&nbsp;双模蓝牙，支持标准的802.11&nbsp;a/b/g/n/协议，支持BT/BLE&nbsp;5.2协议，内建多种容量的RAM（最大42MB）和Flash（最大32MB），支持MIPI&nbsp;DSI及CSI，适用于各种AIoT多模态VUI&nbsp;+&nbsp;GUI交互硬件场景。 | 智能硬件带屏类模组产品，如音箱、手表等。 | 代码仓：<br/>[device_soc_bestechnic](https://gitee.com/openharmony/device_soc_bestechnic)<br/>[device_board_fnlink](https://gitee.com/openharmony/device_board_fnlink)<br/>[vendor_bestechnic](https://gitee.com/openharmony/vendor_bestechnic) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
+| 轻量 | 小熊派BearPi-HM&nbsp;Nano | Hi3861 | BearPi-HM_Nano开发板是一块专门为OpenHarmony设计的开发板，板载高度集成的2.4GHz&nbsp;WiFi&nbsp;SoC芯片Hi3861，并板载NFC电路及标准的E53接口，标准的E53接口可扩展智能加湿器、智能台灯、智能安防、智能烟感等案例。 | 智慧路灯、智慧物流、人体红外等连接类设备。 | 代码仓：<br/>[device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_bearpi](https://gitee.com/openharmony/device_board_bearpi)<br/>[vendor_bearpi](https://gitee.com/openharmony/vendor_bearpi)<br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
 
 ## 快速入门<a name="section44681652104210"></a>
 
-- [设备开发快速入门](device-dev/quick-start/Readme-CN.md)
-- [应用开发快速入门](application-dev/quick-start/Readme-CN.md)
+- [设备开发快速入门](device-dev/quick-start/quickstart-ide-lite-overview.md)
+- [应用开发快速入门](application-dev/quick-start/start-overview.md)
 
 
 
@@ -388,12 +388,6 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 ## 源码下载<a name="section39011923144212"></a>
 
 获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
-
-## 示例教程<a name="sectionsamples"></a>
-
-Samples：[示例代码](https://gitee.com/openharmony/app_samples)
-
-Codelabs：[教程指导](https://gitee.com/openharmony/codelabs)
 
 ## 如何参与<a name="section19611528174215"></a>
 
