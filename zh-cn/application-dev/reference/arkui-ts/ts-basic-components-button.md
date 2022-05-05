@@ -20,6 +20,7 @@
 ## 接口
 
 - Button(options?: {type?: ButtonType, stateEffect?: boolean})
+
   **表1** options参数说明
   
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
@@ -29,6 +30,7 @@
 
 
 - Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+
   使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
   **表2** value参数说明
