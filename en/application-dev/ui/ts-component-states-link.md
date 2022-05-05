@@ -12,10 +12,11 @@ Two-way binding can be established between the @Link decorated variable and the 
 
 - Two-way binding: When a child component changes the @Link decorated variable, the @State decorated variable of its parent component is also changed.
 
-- Support for initialization with the variable reference passed to the @Link decorated variable: When creating a new instance of the component, you must use the naming parameter to initialize all @Link decorated variables. The @Link decorated variable can be initialized by using the reference of the @State or @Link decorated variable. Wherein, the @State decorated variable can be referenced using the '$' operator.
+- Support for initialization with the variable reference passed to the @Link decorated variable: When creating a new instance of the component, you must use the naming parameter to initialize all @Link decorated variables. The @Link decorated variable can be initialized by using the reference of the @State or @Link decorated variable. Wherein, the @State decorated variable can be referenced using the  ` '$' `  operator.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The @Link decorated variable cannot be initialized within the component.
 
 
@@ -50,7 +51,7 @@ struct PlayButton {
 }
 ```
 
-The @Link semantics are derived from the '$' operator. In other words, $isPlaying is the two-way binding of the internal state this.isPlaying. When you click PlayButton, the &lt;Image&gt; and &lt;Text&gt; components of PlayButton are refreshed at the same time.
+The @Link semantics are derived from the  ` '$' `  operator. In other words,  ` $isPlaying `  is the two-way binding of the internal state  ` this.isPlaying ` . When you click **PlayButton**, the **\<Image>** and **\<Text>** components of **PlayButton** are refreshed at the same time.
 
 
 ## Complex Type Example
@@ -91,7 +92,7 @@ struct Child {
 }
 ```
 
-In the example above, click Button1 and Button2 to change the list of text items displayed in the parent component.
+In the example above, click **Button1** and **Button2** to change the list of text items displayed in the parent component.
 
 
 ## Example of Using @Link, @State, and @Prop Together
