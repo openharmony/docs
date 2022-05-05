@@ -1,6 +1,6 @@
-# 轻量级存储
+# 首选项
 
-轻量级存储为应用提供key-value键值型的文件数据处理能力，支持应用对数据进行轻量级存储及查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
+首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```ts
 import data_preferences from '@ohos.data.preferences'
 ```
 
@@ -21,13 +21,14 @@ import data_preferences from '@ohos.data.preferences'
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
 | MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
+| ValueType | number丨string丨boolean | 是 | 否 | 默认返回值，支持number、string、boolean。 |
 
 
 ## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
-读取指定文件，将数据加载到Preferences实例，用于数据操作，使用callback形式返回结果。
+读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，该方法使用callback方式作为异步方法。
 
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
@@ -35,18 +36,18 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
-  var path = this.context.getDataBaseDir()
+
   data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
       if (err) {
-          console.info("Get the preferences failed, path: " + path + '/mystore')
+          console.info("Get the preferences failed")
           return;
       }
       preferences.put('startup', 'auto', function (err) {
@@ -71,14 +72,14 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
-读取指定文件，将数据加载到Preferences实例，用于数据操作，使用Promise方式作为异步方法。
+读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 - 返回值：
@@ -87,12 +88,12 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   | Promise&lt;[Preferences](#preferences)&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
-  var path = this.context.getDataBaseDir()
-  let promisePre = data_preferences.getPreferences(this.context, 'mystore')
-  promisePre.then((preferences) => {
+
+  let promise = data_preferences.getPreferences(this.context, 'mystore')
+  promise.then((preferences) => {
       preferences.put('startup', 'auto', function (err) {
           if (err) {
               console.info("Put the value of startup failed with err: " + err)
@@ -108,7 +109,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
           })
       })
   }).catch((err) => {
-      console.info("Get the preferences failed, path: " + path + '/mystore')
+      console.info("Get the preferences failed")
   })
   ```
 
@@ -117,21 +118,23 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式作为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件。
+删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+
   data_preferences.deletePreferences(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
@@ -146,14 +149,15 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式作为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件。
+删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 - 返回值：
@@ -162,11 +166,12 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
-  let promisedelPre = data_preferences.deletePreferences(this.context, 'mystore')
-  promisedelPre.then(() => {
+
+  let proDelete = data_preferences.deletePreferences(this.context, 'mystore')
+  proDelete.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
       console.info("Deleted failed with err: " + err)
@@ -178,23 +183,22 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
-
-此方法为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
+
   data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
       if (err) {
           console.info("Removed preferences from cache failed with err: " + err)
@@ -209,16 +213,14 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
-
-此方法为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用程序或功能的上下文 |
+  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 - 返回值：
@@ -227,11 +229,12 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
-  let promiserevPre = data_preferences.removePreferencesFromCache(this.context, 'mystore')
-  promiserevPre.then(() => {
+
+  let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+  promise.then(() => {
       console.info("Removed preferences from cache successfully.")
   }).catch((err) => {
       console.info("Removed preferences from cache failed with err: " + err)
@@ -248,21 +251,19 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
-
-此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
-  | defValue | ValueType | 是 | 默认返回值。支持number、string、boolean。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | defValue | [ValueType](#属性) | 是 | 默认返回值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.get('startup', 'default', function(err, value) {
       if (err) {
           console.info("Get the value of startup failed with err: " + err)
@@ -277,17 +278,15 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返默认数据。
-
-此方法为异步方法。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
-  | defValue | ValueType | 是 | 默认返回值。支持number、string、boolean。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | defValue | [ValueType](#属性) | 是 | 默认返回值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -295,7 +294,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | Promise&lt;ValueType&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```ts
   let promiseget = preferences.get('startup', 'default')
   promiseget.then((value) => {
       console.info("The value of startup is " + value)
@@ -309,21 +308,19 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-首先获取指定文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化。
-
-此方法为异步方法。
+首先获取指定首选项持久化文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key。它不能为空。 |
-  | value | ValueType | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | 是 | 要修改的存储的key，不能为空。 |
+  | value | [ValueType](#属性) | 是 | 存储的新值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.put('startup', 'auto', function (err) {
       if (err) {
           console.info("Put the value of startup failed with err: " + err)
@@ -338,17 +335,15 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-首先获取指定文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化。
-
-此方法为异步方法。
+首先获取指定首选项持久化文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key。它不能为空。 |
-  | value | ValueType | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | 是 | 要修改的存储的key，不能为空。 |
+  | value | [ValueType](#属性) | 是 | 存储的新值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -356,7 +351,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```ts
   let promiseput = preferences.put('startup', 'auto')
   promiseput.then(() => {
       console.info("Put the value of startup successfully.")
@@ -370,16 +365,14 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
-检查存储对象是否包含名为给定key的存储。
-
-此方法为异步方法。
+检查存储对象是否包含名为给定key的存储键值对，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | key | string | 是 | 要检查的存储key名称，不能为空。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。 |
 
 - 返回值：
@@ -388,7 +381,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   | boolean | true表示存在，false表示不存在。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.has('startup', function (err, isExist) {
       if (err) {
           console.info("Check the key of startup failed with err: " + err)
@@ -405,16 +398,14 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查存储对象是否包含名为给定key的存储。
-
-此方法为异步方法。
+检查存储对象是否包含名为给定key的存储键值对，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
+  | key | string | 是 | 要检查的存储key名称，不能为空。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -422,7 +413,7 @@ has(key: string): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```ts
   let promisehas = preferences.has('startup')
   promisehas.then((isExist) => {
       if (isExist) {
@@ -438,20 +429,18 @@ has(key: string): Promise&lt;boolean&gt;
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-从存储对象中删除名为给定key的存储。
-
-此方法为异步方法。
+从存储对象中删除名为给定key的存储键值对，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | key | string | 是 | 要删除的存储key名称，不能为空。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.delete('startup', function (err) {
       if (err) {
           console.info("Delete startup key failed with err: " + err)
@@ -466,16 +455,14 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 delete(key: string): Promise&lt;void&gt;
 
-从存储对象删除名为给定key的存储。
-
-此方法为异步方法。
+从存储对象删除名为给定key的存储键值对，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。 |
+  | key | string | 是 | 要删除的存储key名称，不能为空。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -483,7 +470,7 @@ delete(key: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```ts
   let promisedel = preferences.delete('startup')
   promisedel.then(() => {
       console.info("Deleted startup key successfully.")
@@ -497,9 +484,7 @@ delete(key: string): Promise&lt;void&gt;
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到文件中。
-
-此方法为异步方法。
+将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -509,7 +494,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.flush(function (err) {
       if (err) {
           console.info("Flush to file failed with err: " + err)
@@ -524,9 +509,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 flush(): Promise&lt;void&gt;
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到文件中。
-
-此方法为异步方法。
+将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -536,7 +519,7 @@ flush(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```ts
   let promiseflush = preferences.flush()
   promiseflush.then(() => {
       console.info("Flushed to file successfully.")
@@ -550,9 +533,7 @@ flush(): Promise&lt;void&gt;
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-清除此存储对象中的所有存储。
-
-此方法为异步方法。
+清除此存储对象中的所有存储，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -562,7 +543,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```ts
   preferences.clear(function (err) {
       if (err) {
           console.info("Clear to file failed with err: " + err)
@@ -577,9 +558,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 clear(): Promise&lt;void&gt;
 
-清除此存储对象中的所有存储。
-
-此方法为异步方法。
+清除此存储对象中的所有存储，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -589,7 +568,7 @@ clear(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```ts
   let promiseclear = preferences.clear()
   promiseclear.then(() => {
       console.info("Cleared to file successfully.")
@@ -614,7 +593,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
   | callback | Callback&lt;{ key : string }&gt; | 回调对象实例。 |
 
 - 示例：
-  ```
+  ```ts
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
@@ -632,7 +611,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
           }
           console.info("Flushed to file successfully.")    // observer will be called.
       })
-  })  
+  })
   ```
 
 
@@ -651,7 +630,7 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
   | callback | Callback&lt;{ key : string }&gt; | 需要取消的回调对象实例。 |
 
 - 示例：
-  ```
+  ```ts
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
