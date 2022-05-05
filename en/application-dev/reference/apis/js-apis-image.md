@@ -104,7 +104,7 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses a callback to return the result.
+Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -126,7 +126,7 @@ pixelmap.readPixelsToBuffer(readBuffer, () => {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads pixel map data in an area. This API uses a promise to return the data read.
+Reads image pixel map data in an area. This API uses a promise to return the data read.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -156,7 +156,7 @@ pixelmap.readPixels(area).then((data) => {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data in an area. This API uses a callback to return the data read.
+Reads image pixel map data in an area. This API uses an asynchronous callback to return the data read.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -200,7 +200,7 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.|
+| area   | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.|
 
 **Return value**
 
@@ -250,7 +250,7 @@ image.createPixelMap(color, opts)
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes image pixel map data to an area. This API uses a callback to return the operation result.
+Writes image pixel map data to an area. This API uses an asynchronous callback to return the operation result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -258,7 +258,7 @@ Writes image pixel map data to an area. This API uses a callback to return the o
 
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
-| area      | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.          |
+| area      | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.          |
 | callback: | AsyncCallback\<void>           | Yes  | Callback used to return the operation result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -308,7 +308,7 @@ pixelMap.writeBufferToPixels(colorBuffer).then(() => {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses a callback to return the result.
+Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -335,7 +335,7 @@ pixelMap.writeBufferToPixels(colorBuffer, function(err) {
 
 getImageInfo(): Promise\<ImageInfo>
 
-Obtains pixel map information about this image. This API uses a promise to return the information.
+Obtains pixel map information of this image. This API uses a promise to return the information.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -359,7 +359,7 @@ pixelMap.getImageInfo().then(function(info) {
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-Obtains pixel map information about this image. This API uses a callback to return the information.
+Obtains pixel map information of this image. This API uses an asynchronous callback to return the information.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -379,7 +379,7 @@ pixelmap.getImageInfo((imageInfo) => {})
 
 getBytesNumberPerRow(): number
 
-Obtains the number of bytes in each line of the image pixel map.
+Obtains the number of bytes per line of the image pixel map.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -387,7 +387,7 @@ Obtains the number of bytes in each line of the image pixel map.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Number of bytes in each line.|
+| number | Number of bytes per line.|
 
 **Example**
 
@@ -440,7 +440,7 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **PixelMap** object. This API uses a callback to return the result.
+Releases this **PixelMap** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -522,7 +522,7 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about an image with the specified index. This API uses a callback to return the information.
+Obtains information about an image with the specified index. This API uses an asynchronous callback to return the information.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -543,7 +543,7 @@ imageSourceApi.getImageInfo(0,(error, imageInfo) => {})
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about this image. This API uses a callback to return the information.
+Obtains information about this image. This API uses an asynchronous callback to return the information.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -620,7 +620,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property with the specified index in this image. This API uses a callback to return the result.
+Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -641,7 +641,7 @@ imageSourceApi.getImageProperty("BitsPerSample",(error,data) => {})
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses a callback to return the property value in a string.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the property value in a string.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -663,7 +663,7 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {})
 
 createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object based on image decoding parameters. This API uses a callback to return the result.
+Creates a **PixelMap** object based on image decoding parameters. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -690,7 +690,7 @@ imageSourceApi.createPixelMap().then(pixelmap => {})
 
 createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object based on the default parameters. This API uses a callback to return the result.
+Creates a **PixelMap** object based on the default parameters. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -710,7 +710,7 @@ imageSourceApi.createPixelMap(pixelmap => {})
 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object based on image decoding parameters. This API uses a callback to return the result.
+Creates a **PixelMap** object based on image decoding parameters. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -731,7 +731,7 @@ imageSourceApi.createPixelMap(decodingOptions, pixelmap => {})
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImageSource** instance. This API uses a callback to return the result.
+Releases this **ImageSource** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -801,7 +801,7 @@ Provide APIs to pack images. Before calling any API in **ImagePacker**, you must
 
 packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<ArrayBuffer>>): void
 
-Packs an image. This API uses a callback to return the result.
+Packs an image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -854,7 +854,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
-Packs an image. This API uses a callback to return the result.
+Packs an image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -907,7 +907,7 @@ imagePackerApi.packing(pixelMapApi, packOpts)
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImagePacker** instance. This API uses a callback to return the result.
+Releases this **ImagePacker** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -1058,7 +1058,7 @@ Describes the exchangeable image file format (Exif) information of an image.
 
 | Name             | Default Value           | Description                |
 | ----------------- | ----------------- | -------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"   | Number of bytes in each pixel.    |
+| BITS_PER_SAMPLE   | "BitsPerSample"   | Number of bits per pixel.    |
 | ORIENTATION       | "Orientation"     | Image orientation.          |
 | IMAGE_LENGTH      | "ImageLength"     | Image length.          |
 | IMAGE_WIDTH       | "ImageWidth"      | Image width.          |
