@@ -8,7 +8,7 @@ The Power Manager module provides APIs for rebooting and shutting down the syste
 
 ## Modules to Import
 
-```
+```js
 import power from '@ohos.power';
 ```
 
@@ -35,7 +35,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 power.shutdownDevice("shutdown_test");
 console.info('power_shutdown_device_test success')
 ```
@@ -57,7 +57,7 @@ Reboots the system.
 
 **Example**
 
-```
+```js
 power.rebootDevice("reboot_test");
 console.info('power_reboot_device_test success')
 ```
@@ -77,7 +77,7 @@ Checks the screen status of the current device.
 
 **Example**
 
-```
+```js
 power.isScreenOn((error, screenOn) => {
     if (typeof error === "undefined") {
         console.info('screenOn status is ' + screenOn);
@@ -101,7 +101,7 @@ Checks the screen status of the current device.
 
 **Example**
 
-```
+```js
 power.isScreenOn()
 .then(screenOn => {
     console.info('screenOn status is ' + screenOn);
