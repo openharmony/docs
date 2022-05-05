@@ -179,13 +179,13 @@ The init module starts key service processes during system startup. If you would
 
     The following describes how to use begetctl in detail.
 
-    Prerequisites
+    **Prerequisites**
       1. Prepare the test environment by installing Python and PyCairo in Linux.
        pip install pycairo
       2. Decompress bootchart-master.tar.
       tar -zxvf  bootchart-master.tar
 
-    The operation procedure is as follows:
+    **Operation Procedure**
       1. Start the system.
       2. Run the **begetctl bootchart enable** command.
       3. Restart the system.
@@ -202,7 +202,7 @@ The init module starts key service processes during system startup. If you would
         **bootchart-master** directory
         and run the **python3 pybootchartgui.py -f pdf bootchart.tgz** command.<br>
 
-      Expected result: <br>
+      **Expected Result**<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A **bootchart.pdf** file is generated in the **bootchart-master** directory.
 
 ## Development Guidelines
