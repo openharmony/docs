@@ -47,6 +47,8 @@
 | --------- | ------ | --------------------------- |
 | type      | string | 当前事件的类型，比如click、longpress等。 |
 | timestamp | number | 该事件触发时的时间戳。                 |
+| deviceId<sup>6+</sup> | number | 触发该事件的设备ID信息。|
+| target<sup>6+</sup> | [Target](#Target对象6) | 触发该事件的目标对象。|
 
 **表2** TouchEvent对象属性列表(继承BaseEvent)
 
@@ -89,9 +91,9 @@
 | globalX      | number       | 距离屏幕左上角坐标原点横向距离。 |
 | globalY      | number       | 距离屏幕左上角坐标原点纵向距离。 |
 | timestamp    | number       | 时间戳。                         |
-| dataTransfer | DataTransfer | DataTransfer对象<sup>9+</sup>。               |
+| dataTransfer<sup>9+</sup> | [DataTransfer](#DataTransfer对象9) | 用于传输数据。               |
 
-## target对象
+## target对象<sup>6+</sup>
 
 当组件触发事件后，事件回调函数默认会收到一个事件对象，通过该事件对象可以获取相应的信息。
 
@@ -125,36 +127,44 @@ export default {
 
 在拖拽操作的过程中，可以通过dataTransfer对象来传输数据，以便在拖拽操作结束的时候对数据进行其他操作。
 
-### clearData<sup>9+</sup>
+### setData<sup>9+</sup>
 
-clearData(key?: string): boolean
+setData(key: string, value: object): boolean
 
-删除与给定类型关联的数据。如果类型为空或未指定，则删除所有数据。如果指定类型的数据不存在，或者data transfer中不包含任何数据，则该方法不会产生任何效果。
+设置给定key关联的数据。如果没有与该key关联的数据，则将其添加到末尾。如果该key关联的数据已经存在，则在相同位置替换现有数据。
 
 - 参数：
 
-	| 参数名 | 参数类型 | 必填 | 描述                                       |
-	| ------ | -------- | ---- | ------------------------------------------ |
-	| key    | string   | 否   | 数据类型。key值存在时删除该类型关联的数据，key为空时删除所有数据。 |
+	| 参数名 | 参数类型 | 必填 | 描述                    |
+	| ------ | -------- | ---- | ----------------------- |
+	| key    | string   | 是   | 数据类型   |
+	| value  | object   | 是   | 要存储的数据 |
 
 - 返回值：
 	| 类型 | 说明 |
 	| ------ | -------- | 
-	| bool  | 执行结果  |
+	| boolean  | 执行结果  |
 
 - 示例：
 
 	```js
-	dragEnd(e){
-		  var isSuccess = e.dataTransfer.clearData('name');
+	//setData 可以是基本数据类型，也可以是对象类型
+	  dragStart(e){
+		  var isSetOk = e.dataTransfer.setData('name', 1);
+	  }
+	  或
+	  dragStart(e){
+		  var person = new Object();
+		  person.name = "list";
+		  person.age = 21;
+		   var isSetOk = e.dataTransfer.setData('person', person);
 	  }
 	```
-
 ### getData<sup>9+</sup>
 
  getData(key: string): object
 
-获取给定类型关联的数据，如果该类型的数据不存在或data transfer不包含数据，则返回空字符串。
+获取给定key关联的数据，如果没有与该key关联的数据，则返回空字符串。
 
 - 参数：
 
@@ -181,40 +191,30 @@ clearData(key?: string): boolean
 	  },
 	```
 
-### setData<sup>9+</sup>
+### clearData<sup>9+</sup>
 
-setData(key: string, value: object): boolean
+clearData(key?: string): boolean
 
-设置给定类型关联的数据。如果该类型的数据不存在，则将其添加到末尾。如果该类型的数据已经存在，则在相同位置替换现有数据。
-
+删除给定key关联的数据。如果没有与该key关联的数据，则该方法不会产生任何效果。
+如果key为空，则删除所有数据。
 - 参数：
 
-	| 参数名 | 参数类型 | 必填 | 描述                    |
-	| ------ | -------- | ---- | ----------------------- |
-	| key    | string   | 是   | 数据类型   |
-	| value  | object   | 是   | 要存储的数据 |
+	| 参数名 | 参数类型 | 必填 | 描述                                       |
+	| ------ | -------- | ---- | ------------------------------------------ |
+	| key    | string   | 否   | 数据类型。key值存在时删除该类型关联的数据，key为空时删除所有数据。 |
 
 - 返回值：
 	| 类型 | 说明 |
 	| ------ | -------- | 
-	| bool  | 执行结果  |
+	| boolean  | 执行结果  |
 
 - 示例：
 
 	```js
-	//setData 可以是基本数据类型，也可以是对象类型
-	  dragStart(e){
-		  var isSetOk = e.dataTransfer.setData('name', 1);
-	  }
-	  或
-	  dragStart(e){
-		  var person = new Object();
-		  person.name = "list";
-		  person.age = 21;
-		   var isSetOk = e.dataTransfer.setData('person', person);
+	dragEnd(e){
+		  var isSuccess = e.dataTransfer.clearData('name');
 	  }
 	```
-
 
 ### setDragImage<sup>9+</sup>
 
