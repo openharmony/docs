@@ -351,7 +351,7 @@ OpenHarmony支持如下几种系统类型：
 
 当前OpenHarmony社区支持以下6款开发板，具体介绍如下：
 
-| 系统类型 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
+| 系统类型 | 开发板型号 | 芯片型号 | 主要能力 | <div style='width: 150pt'>典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | 标准系统 | Hi3516DV300 | Hi3516DV300 | Hi3516DV300是新一代Smart&nbsp;HD&nbsp;IP摄像机SOC，集成新一代ISP(Image&nbsp;Signal&nbsp;Processor)、H.265视频压缩编码器、高性能NNIE引擎，在低码率、高画质、智能处理和分析、低功耗等方面有较好的性能。 | 可用在带屏设备上，比如带屏冰箱、车机等。 | 代码仓：<br/>[device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br/>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
 | 标准系统 | 润和DAYU200 | RK3568 | 润和HH-SCDAYU200是基于Rockchip&nbsp;RK3568，集成双核心架构GPU以及高效能NPU；板载四核64位Cortex-A55&nbsp;处理器采用22nm先进工艺，主频高达2.0GHz；支持蓝牙、Wi-Fi、音频、视频和摄像头等功能，拥有丰富的扩展接口，支持多种视频输入输出接口；配置双千兆自适应RJ45以太网口，可满足NVR、工业网关等多网口产品需求。 | 影音娱乐、智慧出行、智能家居，如烟机、烤箱、跑步机等。 | 代码仓：<br/>[device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br/>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br/>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope) <br/> 社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailybuilds |
