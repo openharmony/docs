@@ -636,7 +636,7 @@
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
-      - [@ohos.data.preferences (轻量级存储)](reference/apis/js-apis-data-preferences.md)
+      - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
