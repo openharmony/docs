@@ -14,15 +14,22 @@
     - [SysCap说明](quick-start/syscap.md)
 - 开发
   - Ability开发
-    - [FA模型综述](ability/fa-brief.md)
-    - [PageAbility开发指导](ability/fa-pageability.md)
-    - [ServiceAbility开发指导](ability/fa-serviceability.md)
-    - [DataAbility开发指导](ability/fa-dataability.md)
-    - [FA卡片开发指导](ability/fa-formability.md)
+    - [Ability框架概述](ability/ability-brief.md)
+    - FA模型
+      - [FA模型综述](ability/fa-brief.md)
+      - [PageAbility开发指导](ability/fa-pageability.md)
+      - [ServiceAbility开发指导](ability/fa-serviceability.md)
+      - [DataAbility开发指导](ability/fa-dataability.md)
+      - [FormAbility开发指导](ability/fa-formability.md)
+    - Stage模型
+      - [Stage模型综述](ability/stage-brief.md)
+      - [Ability开发指导](ability/stage-ability.md)
+      - [ServiceExtensionAbility开发指导](ability/stage-serviceextension.md)
+      - [FormExtensionAbility开发指导](ability/stage-formextension.md)
+      - [应用迁移开发指导](ability/stage-ability-continuation.md)
     - 其他
       - [WantAgent使用指导](ability/wantagent.md)
       - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
-      - [测试框架使用指导](ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于JS扩展的类Web开发范式
@@ -152,13 +159,13 @@
           - [自定义组件生命周期回调函数](ui/ts-custom-component-lifecycle-callbacks.md)
           - [组件创建和重新初始化示例](ui/ts-component-creation-re-initialization.md)
         - [语法糖](ui/ts-syntactic-sugar.md)
-        - 常见组件开发指导
-          - [Button开发指导](ui/ui-ts-basic-components-button.md)
-          - [Web开发指导](ui/ui-ts-components-web.md)
-        - 常见布局开发指导
-          - [弹性布局](ui/ui-ts-layout-flex.md)
-          - [栅格布局](ui/ui-ts-layout-grid-container.md)
-          - [媒体查询](ui/ui-ts-layout-mediaquery.md)
+      - 常见组件开发指导
+        - [Button开发指导](ui/ui-ts-basic-components-button.md)
+        - [Web开发指导](ui/ui-ts-components-web.md)
+      - 常见布局开发指导
+        - [弹性布局](ui/ui-ts-layout-flex.md)
+        - [栅格布局](ui/ui-ts-layout-grid-container.md)
+        - [媒体查询](ui/ui-ts-layout-mediaquery.md)
       - 体验声明式UI
         - [创建声明式UI工程](ui/ui-ts-creating-project.md)
         - [初识Component](ui/ui-ts-components.md)
@@ -191,6 +198,7 @@
         - [音频采集开发指导](media/audio-capturer.md)
       - 视频
         - [视频播放开发指导](media/video-playback.md)
+        - [视频录制开发指导](media/video-recorder.md)
       - 图片
         - [图片开发指导](media/image.md)
     - 安全

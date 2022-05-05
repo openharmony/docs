@@ -60,7 +60,7 @@ Waits until the child process ends. This method uses a promise to return the exi
 
 **Example**
 
-```
+```js
 var child = process.runCmd('ls');
 var result = child.wait();
 result.then(val=>{
@@ -85,7 +85,7 @@ Obtains the standard output of the child process.
 
 **Example**
 
-```
+```js
 var child = process.runCmd('ls');
 var result = child.wait();
 child.getOutput.then(val=>{
@@ -110,7 +110,7 @@ Obtains the standard error output of the child process.
 
 **Example**
 
-```
+```js
 var child = process.runCmd('madir test.text');
 var result = child.wait();
 child.getErrorOutput.then(val=>{
@@ -129,7 +129,7 @@ Closes the child process in running.
 
 **Example**
 
-```
+```js
 var child = process.runCmd('sleep 5; ls');
 child.close();
 ```
@@ -151,7 +151,7 @@ Sends a signal to the specified child process to terminate it.
 
 **Example**
 
-```
+```js
 var child = process.runCmd('sleep 5; ls');
 child.kill(9);
 ```
@@ -173,7 +173,7 @@ Checks whether this process is isolated.
 
 **Example**
 
-```
+```js
 var result = process.isIsolatedProcess();
 ```
 
@@ -200,7 +200,7 @@ Checks whether a UID belongs to this app.
 
 **Example**
 
-```
+```js
 var result = process.isAppUid(688);
 ```
 
@@ -221,7 +221,7 @@ Checks whether this process is running in a 64-bit environment.
 
 **Example**
 
-```
+```js
 var ressult = process.is64Bit();
 ```
 
@@ -248,7 +248,7 @@ Obtains the process UID based on the process name.
 
 **Example**
 
-```
+```js
 var pres = process.getUidForName("tool")
 ```
 
@@ -275,7 +275,7 @@ Obtains the thread priority based on the specified TID.
 
 **Example**
 
-```
+```js
 var tid = process.getTid();
 var pres = process.getThreadPriority(tid);
 ```
@@ -297,7 +297,7 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
 
 **Example**
 
-```
+```js
 var realtime = process.getStartRealtime();
 ```
 
@@ -317,7 +317,7 @@ Obtains the CPU time (in milliseconds) from the time the process starts to the c
 
 **Example**
 
-```
+```js
 var result = process.getPastCpuTime() ;
 ```
 
@@ -344,7 +344,7 @@ Obtains the system configuration.
 
 **Example**
 
-```
+```js
 var _SC_ARG_MAX = 0
 var pres = process.getSystemConfig(_SC_ARG_MAX)
 ```
@@ -372,7 +372,7 @@ Obtains the value of an environment variable.
 
 **Example**
 
-```
+```js
 var pres = process.getEnvironmentVar("PATH")
 ```
 
@@ -408,7 +408,7 @@ Forks a new process to run a shell command and returns the **ChildProcess** obje
 
 **Example**
 
-```
+```js
 var child = process.runCmd('ls', { maxBuffer : 2 });
 var result = child.wait();
 child.getOutput.then(val=>{
@@ -427,7 +427,7 @@ Aborts a process and generates a core file. This method will cause a process to 
 
 **Example**
 
-```
+```js
 process.abort();
 ```
 
@@ -455,7 +455,7 @@ Stores the events triggered by the user.
 
 **Example**
 
-```
+```js
 process.on("data", (e)=>{
     console.log("data callback");
 })
@@ -484,7 +484,7 @@ Deletes the event stored by the user.
 
 **Example**
 
-```
+```js
 process.on("data", (e)=>{
     console.log("data callback");
 })
@@ -510,7 +510,7 @@ Exercise caution when using this API.
 
 **Example**
 
-```
+```js
 process.exit(0);
 ```
 
@@ -525,7 +525,7 @@ Obtains the working directory of this process.
 
 **Example**
 
-```
+```js
 var path = process.cwd();
 ```
 
@@ -546,7 +546,7 @@ Changes the working directory of this process.
 
 **Example**
 
-```
+```js
 process.chdir('/system');
 ```
 
@@ -567,7 +567,7 @@ Obtains the running time of this process.
 
 **Example**
 
-```
+```js
 var time = process.uptime();
 ```
 
@@ -594,7 +594,7 @@ Sends a signal to the specified process to terminate it.
 | boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.|
 
 **Example**
-```
+```js
 var pres = process.pid
 var result = that.kill(pres, 28)
 ```

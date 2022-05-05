@@ -556,7 +556,7 @@
       - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
-	  - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
+      - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
       - [@ohos.settings](reference/apis/js-apis-settings.md)
       - [resultSet](reference/apis/js-apis-data-resultset.md)
 

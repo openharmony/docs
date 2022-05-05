@@ -8,7 +8,7 @@ The Battery Info module provides APIs for querying the charger type, battery hea
 
 ## Modules to Import<a name="section199443271307"></a>
 
-```
+```js
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
@@ -126,7 +126,7 @@ Describes battery information.
 
 -   Example
 
-    ```
+    ```js
     import batteryInfo from '@ohos.batteryInfo';
     var batterySoc = batteryInfo.batterySOC;
     ```

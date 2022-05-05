@@ -9,7 +9,7 @@
 ## Modules to Import
 
 
-```
+```js
 import brightness from '@system.brightness';
 ```
 
@@ -38,7 +38,7 @@ The following values will be returned when the operation is successful.
 
 **Example**
 
-```
+```js
 export default {    
   getValue() {        
     brightness.getValue({            
@@ -73,7 +73,7 @@ Sets the screen brightness.
 
 **Example**
 
-```
+```js
 export default {    
   setValue() {        
     brightness.setValue({            
@@ -114,7 +114,7 @@ The following values will be returned when the operation is successful.
 
 **Example**
 
-```
+```js
 export default {    
   getMode() {        
     brightness.getMode({            
@@ -149,7 +149,7 @@ Sets the screen brightness adjustment mode.
 
 **Example**
 
-```
+```js
 export default {    
   setMode() {        
     brightness.setMode({            
@@ -185,7 +185,7 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 
 **Example**
 
-```
+```js
 export default {    
   setKeepScreenOn() {        
     brightness.setKeepScreenOn({            
