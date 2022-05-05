@@ -1862,7 +1862,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   ```
   <!-- xxx.hml -->
   <div>
-    <canvas id="canvasId"; style="width: 200px; height: 150px; background-color: #ffff00"></canvas>
+    <canvas id="canvasId" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
