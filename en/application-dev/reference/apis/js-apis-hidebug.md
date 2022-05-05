@@ -7,7 +7,7 @@ You can run the hidebug command to obtain the memory usage of an application, in
 
 ## Modules to Import
 
-```
+```js
 import hidebug from '@ohos.hidebug';
 ```
 
@@ -28,7 +28,7 @@ Obtains the total size of the native heap memory.
 
 
 **Example**
-  ```
+  ```js
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
 
@@ -49,7 +49,7 @@ Obtains the size of the allocated native heap memory.
 
 
 **Example**
-  ```
+  ```js
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
 
@@ -70,7 +70,7 @@ Obtains the size of the free native heap memory.
 
 
 **Example**
-  ```
+  ```js
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
 
@@ -91,7 +91,7 @@ Obtains the PSS of this process.
 
 
 **Example**
-  ```
+  ```js
   let pss = hidebug.getPss();
   ```
 
@@ -112,7 +112,7 @@ Obtains the size of the shared dirty memory of this process.
 
 
 **Example**
-  ```
+  ```js
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
