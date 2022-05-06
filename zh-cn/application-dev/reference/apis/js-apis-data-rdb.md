@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```
+```js
 import data_rdb from '@ohos.data.rdb';
 ```
 

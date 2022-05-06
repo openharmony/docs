@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```
+```js
 import dataStorage from '@ohos.data.storage';
 ```
 
