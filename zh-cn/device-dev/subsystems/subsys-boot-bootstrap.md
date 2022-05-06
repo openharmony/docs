@@ -1,7 +1,7 @@
 # bootstrap服务启动组件
 
 
-bootstrap服务启动组件实现了服务的自动初始化，即服务的初始化函数无需显式调用，而是将其使用宏定义的方式申明，就会在系统启动时自动被执行。实现原理是将服务启动的函数通过宏申明之后，放在预定义好的zInit代码段中，系统启动的时候调用OHOS_SystemInit接口，遍历该代码段并调用其中的函数。因此，需要在链接脚本中添加zInit段，并且在main函数里调用OHOS_SystemInit接口。
+bootstrap服务启动组件实现了服务的自动初始化，即服务的初始化函数无需显式调用，而是将其使用宏定义的方式申明，就会在系统启动时自动被执行。实现原理是将服务启动的函数通过宏定义的方式申明之后，放在预定义好的zInit代码段中，系统启动的时候调用OHOS_SystemInit接口遍历该代码段并调用其中的函数。因此，需要在链接脚本中添加zInit段，并且在main函数里调用OHOS_SystemInit接口。
 
 
 zInit段的添加可参考已有的Hi3861平台的链接脚本，文件路径为vendor/hisi/hi3861/hi3861/build/link/link.ld.S。
@@ -12,7 +12,7 @@ zInit段的添加可参考已有的Hi3861平台的链接脚本，文件路径为
 
 ## 接口说明
 
-bootstrap服务启动：
+bootstrap服务自动初始化宏如表1所述。
 
   **表1** 主要的服务自动初始化宏
 
@@ -49,7 +49,7 @@ void AppFeatureInit(void) {
 }
 APP_FEATURE_INIT(AppFeatureInit);
 
-// 日志的打印顺序为：
+// 日志打印顺序为：
 // Init System Service
 // Init System Feature
 // Init App Service
