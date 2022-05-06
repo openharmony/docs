@@ -35,6 +35,8 @@
        - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
        - [DFX](dfx/Readme-CN.md)
        - [国际化](internationalization/Readme-CN.md)
+       - [IDL工具规格及使用说明书](idl/idl-guidelines.md)
+       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
