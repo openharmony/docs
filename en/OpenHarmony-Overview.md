@@ -1,4 +1,4 @@
-# OpenHarmony
+# OpenHarmony Project
 
 ## Introduction<a name="section1270210396435"></a>
 
@@ -124,7 +124,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 | Update | Supports over the air (OTA) update of OpenHarmony devices. | Standard system |
 | Account | Provides interconnection with vendors' cloud account apps on the device side, and query and update of the cloud account login status. | Standard system |
 | Compilation and Building | Provides a compilation and building framework based on Generate Ninja (GN) and Ninja. | All systems |
-| Testing | The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase. | All systems |
+| Test | The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase. | All systems |
 | Data Management | Provides local data management and distributed data management:<\br> -   Local app data management for lightweight preference databases and relational databases<\br> -   Distributed data service to provide apps with the capability to store data in the databases of different devices | Standard system |
 | Programming Language Runtime | Provides the compilation and execution environment for programs developed with JavaScript or C/C++, basic libraries that support the runtime, and the runtime-associated APIs, compilers, and auxiliary tools. | All systems |
 | Distributed Scheduler | Starts, registers, queries, and manages system services. | All systems |
@@ -183,7 +183,7 @@ For details about how to obtain the source code of OpenHarmony, see  [Source Cod
 
 ## How to Participate<a name="section19611528174215"></a>
 
-For details about how to join in the OpenHarmony community, see  [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README.md).
+For details about how to join in the OpenHarmony community, see  [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README-EN.md).
 
 For details about how to contribute, see  [How to Contribute](contribute/how-to-contribute.md).
 
@@ -191,7 +191,7 @@ For details about how to contribute, see  [How to Contribute](contribute/how-to-
 
 OpenHarmony complies with Apache License Version 2.0. For details, see the LICENSE in each repository.
 
-OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](https://gitee.com/openharmony/docs/blob/master/en/contribute/third-party-open-source-software-and-license-notice.md).
+OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](contribute/third-party-open-source-software-and-license-notice.md).
 
 ## Contact Info<a name="section61728335424"></a>
 
