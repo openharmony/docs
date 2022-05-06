@@ -7,8 +7,8 @@
 
 ## 导入模块
 
-```
-import data_rdb from '@ohos.data.rdb'
+```js
+import data_rdb from '@ohos.data.rdb';
 ```
 
 
@@ -21,16 +21,17 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数**：
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数。返回一个RdbStore。 |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
 
 **示例**：
 
-```
+```js
 import data_rdb from '@ohos.data.rdb'
 const STORE_CONFIG = { name: "RdbTest.db"}
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
@@ -64,7 +65,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 **示例**：
 
-```
+```js
 import data_rdb from '@ohos.data.rdb'
 const STORE_CONFIG = { name: "RdbTest.db" }
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
@@ -97,7 +98,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例**：
-  ```
+  ```js
   import data_rdb from '@ohos.data.rdb'
   data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
       console.info('delete store done.')
@@ -124,7 +125,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
 **示例**：
-  ```
+  ```js
   import data_rdb from '@ohos.data.rdb'
   let promisedeleteRdb = data_rdb.deleteRdbStore("RdbTest.db")
   promisedeleteRdb.then(()=>{
@@ -154,7 +155,7 @@ constructor(name: string)
 | name | string | 是 | 数据库表名。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   ```
 
@@ -178,7 +179,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicate.inDevices(['12345678abcde'])
   ```
@@ -198,7 +199,7 @@ inAllDevices(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.inAllDevices()
   ```
@@ -224,7 +225,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
   ```
@@ -251,7 +252,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notEqualTo("NAME", "lisi")
   ```
@@ -272,7 +273,7 @@ beginWrap(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回带有左括号的Rdb谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
       .beginWrap()
@@ -298,7 +299,7 @@ endWrap(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回带有右括号的Rdb谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
       .beginWrap()
@@ -324,7 +325,7 @@ or(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回带有或条件的Rdb谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
       .or()
@@ -347,7 +348,7 @@ and(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回带有和条件的Rdb谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
       .and()
@@ -359,7 +360,7 @@ and(): RdbPredicates
 
 contains(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为String且value包含指定值的字段。
+配置谓词以匹配数据字段为string且value包含指定值的字段。
 
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -375,7 +376,7 @@ contains(field: string, value: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.contains("NAME", "os")
   ```
@@ -386,7 +387,7 @@ contains(field: string, value: string): RdbPredicates
 beginsWith(field: string, value: string): RdbPredicates
 
 
-配置谓词以匹配数据字段为String且值以指定字符串开头的字段。
+配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
 
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -402,7 +403,7 @@ beginsWith(field: string, value: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.beginsWith("NAME", "os")
   ```
@@ -413,7 +414,7 @@ beginsWith(field: string, value: string): RdbPredicates
 endsWith(field: string, value: string): RdbPredicates
 
 
-配置谓词以匹配数据字段为String且值以指定字符串结尾的字段。
+配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
 
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -429,7 +430,7 @@ endsWith(field: string, value: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.endsWith("NAME", "se")
   ```
@@ -455,7 +456,7 @@ isNull(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 - 示例
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.isNull("NAME")
   ```
@@ -481,7 +482,7 @@ isNotNull(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.isNotNull("NAME")
   ```
@@ -492,7 +493,7 @@ isNotNull(field: string): RdbPredicates
 like(field: string, value: string): RdbPredicates
 
 
-配置谓词以匹配数据字段为String且值类似于指定字符串的字段。
+配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
 
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -508,7 +509,7 @@ like(field: string, value: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.like("NAME", "%os%")
   ```
@@ -519,7 +520,7 @@ like(field: string, value: string): RdbPredicates
 glob(field: string, value: string): RdbPredicates
 
 
-配置RdbPredicates匹配数据字段为String的指定字段。
+配置RdbPredicates匹配数据字段为string的指定字段。
 
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -535,7 +536,7 @@ glob(field: string, value: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.glob("NAME", "?h*g")
   ```
@@ -563,7 +564,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.between("AGE", 10, 50)
   ```
@@ -591,7 +592,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notBetween("AGE", 10, 50)
   ```
@@ -617,7 +618,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThan("AGE", 18)
   ```
@@ -644,7 +645,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThan("AGE", 20)
   ```
@@ -672,7 +673,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.greaterThanOrEqualTo("AGE", 18)
   ```
@@ -700,7 +701,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.lessThanOrEqualTo("AGE", 20)
   ```
@@ -727,7 +728,7 @@ orderByAsc(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByAsc("NAME")
   ```
@@ -754,7 +755,7 @@ orderByDesc(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.orderByDesc("AGE")
   ```
@@ -775,7 +776,7 @@ distinct(): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回可用于过滤重复记录的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
   let promisequery = rdbStore.query(predicates, ["NAME"])
@@ -808,7 +809,7 @@ limitAs(value: number): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回可用于设置最大数据记录数的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").limitAs(3)
   ```
@@ -834,7 +835,7 @@ offsetAs(rowOffset: number): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回具有指定返回结果起始位置的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").offsetAs(3)
   ```
@@ -860,7 +861,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回分组查询列的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.groupBy(["AGE", "NAME"])
   ```
@@ -886,7 +887,7 @@ indexedBy(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.indexedBy("SALARY_INDEX")
   ```
@@ -914,7 +915,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.in("AGE", [18, 20])
   ```
@@ -942,7 +943,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.notIn("NAME", ["Lisa", "Rose"])
   ```
@@ -969,7 +970,7 @@ insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
 **示例**：
-  ```
+  ```js
   const valueBucket = {
       "NAME": "Lisa",
       "AGE": 18,
@@ -1002,7 +1003,7 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
 | Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
 **示例**：
-  ```
+  ```js
   const valueBucket = {
       "NAME": "Lisa",
       "AGE": 18,
@@ -1034,7 +1035,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
 
 **示例**：
-  ```
+  ```js
   const valueBucket = {
       "NAME": "Rose",
       "AGE": 22,
@@ -1068,7 +1069,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
 **示例**：
-  ```
+  ```js
   const valueBucket = {
       "NAME": "Rose",
       "AGE": 22,
@@ -1102,7 +1103,7 @@ delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.delete(predicates, function (err, rows) {
@@ -1130,7 +1131,7 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 | Promise&lt;number&gt; | 指定Promise回调函数。返回受影响的行数。 |
 
 **示例**：
-  ```
+  ```js
   let predicatesdelete = new data_rdb.RdbPredicates("EMPLOYEE")
   predicatesdelete.equalTo("NAME", "Lisa")
   let promisedelete = rdbStore.delete(predicates)
@@ -1158,7 +1159,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
@@ -1188,7 +1189,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例**：
-  ```
+  ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
   let promisequery = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -1217,7 +1218,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例**：
-  ```
+  ```js
   rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
       console.log("resultSet column names:" + resultSet.columnNames)
       console.log("resultSet column count:" + resultSet.columnCount)
@@ -1245,7 +1246,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例**：
-  ```
+  ```js
   let promisequerySql = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
   promisequerySql.then((resultSet) => {
       console.log("resultSet column names:" + resultSet.columnNames)
@@ -1272,7 +1273,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例**：
-  ```
+  ```js
   rdbStore.executeSql("DELETE FROM EMPLOYEE", null, function () {
       console.info('delete done.')
   })
@@ -1299,7 +1300,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
 **示例**：
-  ```
+  ```js
   let promiseexecuteSql = rdbStore.executeSql("DELETE FROM EMPLOYEE")
   promiseexecuteSql.then(() => {
       console.info('delete done.')
@@ -1317,7 +1318,7 @@ beginTransaction():void
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **示例**：
-```
+```js
   rdbStore.beginTransaction()
   const valueBucket = {
       "name": "lisi",
@@ -1341,7 +1342,7 @@ commit():void
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **示例**：
-```
+```js
   rdbStore.beginTransaction()
   const valueBucket = {
       "name": "lisi",
@@ -1366,7 +1367,7 @@ rollBack():void;
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **示例**：
-```
+```js
   try {
       rdbStore.beginTransaction()
       const valueBucket = {
@@ -1401,7 +1402,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例**：
-  ```
+  ```js
   rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
       if (err) {
           console.info('setDistributedTables failed.')
@@ -1431,7 +1432,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
 **示例**：
-  ```
+  ```js
   let promiseset = rdbStore.setDistributedTables(["EMPLOYEE"])
   promiseset.then(() => {
       console.info("setDistributedTables success.")
@@ -1456,7 +1457,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | callback | AsyncCallback&lt;string&gt; | 是 | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例**：
-  ```
+  ```js
   rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
       if (err) {
           console.info('obtainDistributedTableName failed.')
@@ -1487,7 +1488,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | Promise&lt;string&gt; | 指定Promise回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例**：
-  ```
+  ```js
   let promiseDistr = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
   promiseDistr.then((tableName) => {
       console.info('obtainDistributedTableName success, tableName=' + tableName)
@@ -1512,7 +1513,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
 
 **示例**：
-  ```
+  ```js
   let predicate = new rdb.RdbPredicates('EMPLOYEE')
   predicate.inDevices(['12345678abcde'])
   rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate, function (err, result) {
@@ -1549,7 +1550,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | 指定Promise回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
 **示例**：
-  ```
+  ```js
   let predicatesync = new data_rdb.RdbPredicates('EMPLOYEE')
   predicatesync.inDevices(['12345678abcde'])
   let promisesync = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
@@ -1580,7 +1581,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
 
 **示例**：
-  ```
+  ```js
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
           console.log('device=' + device[i] + ' data changed')
@@ -1611,7 +1612,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **示例**：
 
-  ```
+  ```js
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
           console.log('device=' + device[i] + ' data changed')
@@ -1623,7 +1624,6 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
       console.log('unregister observer failed')
   }
   ```
-
 
 ## StoreConfig
 

@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject'
+import distributedObject from '@ohos.data.distributedDataObject';
 ```
 
 
@@ -25,11 +25,11 @@ createDistributedObject(source: object): DistributedObject
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | source | object | 是 | 设置distributedObject的属性。 |
-  
+
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [DistributedObject](#distributedobject) | 创建好的分布式对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [DistributedObject](#distributedobject) | 创建完成的分布式对象。 |
 
 **示例：**
   ```js
@@ -83,7 +83,7 @@ setSessionId(sessionId?: string): boolean
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true：标识设置sessionId成功； <br>false：标识设置sessionId失败。 |
-  
+
 **示例：**
 
   ```js
@@ -170,8 +170,6 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
   | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备的networkId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
-
-
 
 **示例：**
   ```js
