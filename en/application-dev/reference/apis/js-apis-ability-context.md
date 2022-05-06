@@ -1,6 +1,6 @@
 # AbilityContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -46,7 +46,7 @@ Starts an ability. This API uses a callback to return the result.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.| 
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
 
 **Example**
@@ -75,7 +75,7 @@ Starts an ability. This API uses a callback to return the result.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.| 
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the **Want** used for starting an ability.| 
   | options | StartOptions | Yes| Parameters used for starting the ability.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
 
@@ -108,7 +108,7 @@ Starts an ability. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.| 
   | options | StartOptions | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -149,7 +149,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.|
+  | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
   | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
 
@@ -177,7 +177,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.|
+  | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
   | options | StartOptions | Yes| Parameters used for starting the ability.|
   | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
@@ -210,7 +210,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the **Want** used for starting an ability.|
+  | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
   | options | StartOptions | No| Parameters used for starting the ability.|
 
 
@@ -357,7 +357,7 @@ Obtains the caller interface of the specified ability, and if the specified abil
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.| 
 
 **Return value**
 

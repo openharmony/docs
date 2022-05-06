@@ -1,6 +1,6 @@
 # AbilityStage
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -47,7 +47,7 @@ Called when a specified ability is started.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
 **Return value**
 

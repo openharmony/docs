@@ -1,6 +1,6 @@
 # Ability
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -21,8 +21,8 @@ import Ability from '@ohos.application.Ability';
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.| 
-| launchWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters for starting the ability.| 
-| lastRequestWant | [Want](js-apis-featureAbility.md#Want)| Yes| No| Parameters used when the ability was started last time.| 
+| launchWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters for starting the ability.| 
+| lastRequestWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters used when the ability was started last time.| 
 
 
 ## Ability.onCreate
@@ -37,7 +37,7 @@ Called to initialize the service logic when an ability is created.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this ability, including the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Information related to this ability, including the ability name and bundle name.| 
   | param | AbilityConstant.LaunchParam | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.| 
 
 **Example**
@@ -222,7 +222,7 @@ Called when the ability startup mode is set to singleton.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want)| Yes| Want parameters, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md) | Yes| Want parameters, such as the ability name and bundle name.| 
 
 **Example**
     
