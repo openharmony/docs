@@ -60,21 +60,23 @@ ColorStop is used to describe the progressive color stop.
 
 The Resource type is used to reference resources for setting the value of a component attribute.
 
-You can use $r or $rawfile to create a Resource object. For details, see [Resource Access](ts-application-resource-access.md).
+You can use  ` $r `  or  ` $rawfile `  to create a Resource object. For details, see [Resource Access](ts-application-resource-access.md).
 
-- $r('belonging.type.name')
-  belonging: system or application resource. The value can be 'sys' or 'app'.
+- ` $r('belonging.type.name') ` 
 
-  type: resource type, which can be 'color', 'float', 'string', or 'media'.
+   ` belonging ` : system or application resource. The value can be 'sys' or 'app'.
 
-  name: resource name, which is determined during resource definition.
+   ` type ` : resource type, which can be 'color', 'float', 'string', or 'media'.
 
-- $rawfile('filename')
-  filename: name of the file in resources/rawfile of the project.
+   ` name ` : resource name, which is determined during resource definition.
+
+-  ` $rawfile('filename') ` 
+
+   ` filename ` : name of the file in resources/rawfile of the project.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Resource | {<br>readonly id: [number];<br>readonly type: [number];<br>readonly params?: any[];<br>} | id: resource ID.<br>type: resource type (enumerated value).<br>params: optional parameters.<br>After a Resource object is created using $r or $rawfile, modifying attribute values of the object is prohibited.|
+| Resource | {<br>readonly id: [number];<br>readonly type: [number];<br>readonly params?: any[];<br>} | **id**: resource ID.<br>**type**: resource type (enumerated value).<br>**params**: optional parameters.<br>After a **Resource** object is created using `$r` or `$rawfile`, modifying attribute values of the object is prohibited. |
 
 
 ## ResourceStr Type<sup>8+</sup>
@@ -94,7 +96,7 @@ You can use $r or $rawfile to create a Resource object. For details, see [Resour
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Font | {<br>size?: Length;<br>weight?: FontWeight \| number  \| string;<br>family?: string  \| Resource;<br>style?: FontStyle;<br>} | Text style.<br>size: font size. For the number type, use the unit fp.<br>weight: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is 400. A larger value indicates a larger font weight.<br>family: font family. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is 'Arial, sans-serif'.<br>style: font style.|
+| Font | {<br>size?: Length;<br>weight?: FontWeight \| number  \| string;<br>family?: string  \| Resource;<br>style?: FontStyle;<br>} | Text style.<br>**size**: font size. For the number type, use the unit fp.<br>weight: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is 400. A larger value indicates a larger font weight.<br>**family**: font family. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**.<br>**style**: font style. |
 
 ## CustomBuilder Type<sup>8+</sup>
 
