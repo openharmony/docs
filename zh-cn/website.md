@@ -9,21 +9,61 @@
     -   [OpenHarmony v3.1 Beta (2021-12-31)](release-notes/OpenHarmony-v3.1-beta.md)
     -   [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
     -   [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
-    
   - OpenHarmony 2.x Releases
-    
+  
     -   [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     -   [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
-    
   - OpenHarmony 1.x Releases 
-    
+  
     -   [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
     -   [OpenHarmony v1.1.3 LTS (2021-09-30)](release-notes/OpenHarmony-v1-1-3-LTS.md)
     -   [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
     -   [OpenHarmony 1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
     -   [OpenHarmony 1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
     -   [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
-
+  - API差异报告
+    - OpenHarmony 3.1 Release
+      - JS API差异报告（API Version 8）
+        - [元能力](release-notes/api-change/v3.1-Release/js-apidiff-ability.md)
+        - [无障碍](release-notes/api-change/v3.1-Release/js-apidiff-accessibility.md)
+        - [帐号](release-notes/api-change/v3.1-Release/js-apidiff-account.md)
+        - [ArkUI开发框架](release-notes/api-change/v3.1-Release/js-apidiff-ace.md)
+        - [电源服务](release-notes/api-change/v3.1-Release/js-apidiff-battery.md)
+        - [包管理](release-notes/api-change/v3.1-Release/js-apidiff-bundle.md)
+        - [基础通信](release-notes/api-change/v3.1-Release/js-apidiff-communicate.md)
+        - [语言编译器运行时](release-notes/api-change/v3.1-Release/js-apidiff-complier-and-runtime.md)
+        - [DFX](release-notes/api-change/v3.1-Release/js-apidiff-dfx.md)
+        - [分布式数据管理](release-notes/api-change/v3.1-Release/js-apidiff-distributed-data.md)
+        - [分布式硬件](release-notes/api-change/v3.1-Release/js-apidiff-distributed-hardware.md)
+        - [事件通知](release-notes/api-change/v3.1-Release/js-apidiff-event-and-notification.md)
+        - [文件管理](release-notes/api-change/v3.1-Release/js-apidiff-file-management.md)
+        - [位置服务](release-notes/api-change/v3.1-Release/js-apidiff-geolocation.md)
+        - [全球化](release-notes/api-change/v3.1-Release/js-apidiff-global.md)
+        - [图形图像](release-notes/api-change/v3.1-Release/js-apidiff-graphic.md)
+        - [Misc软件服务](release-notes/api-change/v3.1-Release/js-apidiff-misc.md)
+        - [多模输入](release-notes/api-change/v3.1-Release/js-apidiff-multi-modal-input.md)
+        - [OS媒体软件](release-notes/api-change/v3.1-Release/js-apidiff-multimedia.md)
+        - [网络管理](release-notes/api-change/v3.1-Release/js-apidiff-network.md)
+        - [资源调度](release-notes/api-change/v3.1-Release/js-apidiff-resource-scheduler.md)
+        - [安全基础能力](release-notes/api-change/v3.1-Release/js-apidiff-security.md)
+        - [泛Sensor服务](release-notes/api-change/v3.1-Release/js-apidiff-sensor.md)
+        - [应用](release-notes/api-change/v3.1-Release/js-apidiff-settings.md)
+        - [软总线](release-notes/api-change/v3.1-Release/js-apidiff-soft-bus.md)
+        - [电话服务](release-notes/api-change/v3.1-Release/js-apidiff-telephony.md)
+        - [USB服务](release-notes/api-change/v3.1-Release/js-apidiff-usb.md)
+        - [用户IAM](release-notes/api-change/v3.1-Release/js-apidiff-user-authentication.md)
+        - [窗口管理](release-notes/api-change/v3.1-Release/js-apidiff-window.md)
+      - JS API差异报告（API Version 9 Canary）
+        - [元能力](release-notes/api-change/v3.1-Release/js-apidiff-ability_api-9-canary.md)
+        - [包管理](release-notes/api-change/v3.1-Release/js-apidiff-bundle_api-9-canary.md)
+        - [分布式数据管理](release-notes/api-change/v3.1-Release/js-apidiff-distributed-data_api-9-canary.md)
+        - [事件通知](release-notes/api-change/v3.1-Release/js-apidiff-event-and-notification_api-9-canary.md)
+        - [文件管理](release-notes/api-change/v3.1-Release/js-apidiff-file-management_api-9-canary.md)
+        - [Misc软件服务](release-notes/api-change/v3.1-Release/js-apidiff-misc_api-9-canary.md)
+        - [OS媒体软件](release-notes/api-change/v3.1-Release/js-apidiff-multimedia_api-9-canary.md)
+        - [资源调度](release-notes/api-change/v3.1-Release/js-apidiff-resource-scheduler_api-9-canary.md)
+        - [窗口管理](release-notes/api-change/v3.1-Release/js-apidiff-window_api-9-canary.md)
+      - [Native API差异报告](release-notes/api-change/v3.1-Release/native-apidiff-v3.1-release.md)
 - 贡献
   - [参与贡献](contribute/参与贡献.md)
   - [行为准则](contribute/行为准则.md)
