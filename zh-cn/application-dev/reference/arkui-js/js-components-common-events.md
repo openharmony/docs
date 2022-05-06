@@ -151,7 +151,7 @@ setData(key: string, value: object): boolean
 	// setData的value参数，可以是基本数据类型。
 	dragStart(e) {
 		var isSetOk = e.dataTransfer.setData('name', 1);
-	}
+	},
 	// setData的value参数，也可以是对象类型。
 	dragStart(e) {
 		var person = new Object();
@@ -261,7 +261,7 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 	onInit() {
 		this.createPixelMap
-	}，
+	},
 
 	dragStart(e) {
 		e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
