@@ -25,6 +25,7 @@
         - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
         - [raw_dir.h](raw__dir_8h.md)
         - [raw_file.h](raw__file_8h.md)
+        - [OpenSLES_OpenHarmony.h](OpenSLES_OpenHarmony.md)
     - 结构体
         - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
         - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
