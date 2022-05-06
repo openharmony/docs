@@ -24,7 +24,6 @@
   - [@ohos.ability.particleAbility (particleAbility模块)](js-apis-particleAbility.md)
   - [@ohos.application.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-service-extension-ability.md)
   - [@ohos.application.StartOptions (StartOptions)](js-apis-application-StartOptions.md)
-  - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - [@ohos.application.uriPermissionManager (uriPermissionManager)](js-apis-uripermissionmanager.md)
   - [@ohos.application.Want (Want)](js-apis-application-Want.md)
   - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
@@ -97,7 +96,6 @@
 - 定制管理
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
-  - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
 
 - 安全
 
@@ -111,7 +109,6 @@
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
-  - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
