@@ -12,7 +12,7 @@ For details about the APIs, see [Window](../reference/apis/js-apis-window.md).
 | API                                                      | Description                                          |
 | :----------------------------------------------------------- | :--------------------------------------------- |
 | create(id: string, type: WindowType, callback: AsyncCallback\<Window>): void | Creates a subwindow.                                  |
-| moveTo(x: number, y: number): Promise\<void>                 | Moves the window position. A positive value of **x** indicates that the window moves to the right, and a positive value of **y** indicates that the window moves downwards.|
+| moveTo(x: number, y: number): Promise\<void>                 | Moves the window. A positive value of **x** indicates that the window moves to the right, and a positive value of **y** indicates that the window moves downwards.|
 | resetSize(width: number, height: number): Promise\<void>     | Changes the window size.                            |
 | hide(): Promise\<void>                                       | Hides the window.                                |
 | destroy(): Promise\<void>                                    | Destroys the window.                                |
