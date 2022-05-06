@@ -13,17 +13,17 @@
 ## 导入模块
 
 ```
-import dataStorage from '@ohos.data.storage'
+import dataStorage from '@ohos.data.storage';
 ```
 
-## 属性
+## 常量
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，大小为8192字节。 |
 
 
 ## dataStorage.getStorageSync
@@ -45,7 +45,7 @@ getStorageSync(path: string): Storage
   | [Storage](#storage) | 获取到要操作的Storage实例，用于进行数据存储操作。 |
 
 - 示例：
-  ```
+  ```js
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
@@ -78,7 +78,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   | callback | AsyncCallback&lt;[Storage](#storage)&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
@@ -120,7 +120,7 @@ getStorage(path: string): Promise&lt;Storage&gt;
   | Promise&lt;[Storage](#storage)&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```js
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
@@ -176,7 +176,7 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   dataStorage.deleteStorage(path + '/mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
@@ -206,7 +206,7 @@ deleteStorage(path: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```js
   let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
   promisedelSt.then(() => {
       console.info("Deleted successfully.")
@@ -232,7 +232,7 @@ removeStorageFromCacheSync(path: string): void
   | path | string | 是 | 应用程序内部数据存储路径。 |
 
 - 示例：
-  ```
+  ```js
   dataStorage.removeStorageFromCacheSync(path + '/mystore')
   ```
 
@@ -254,7 +254,7 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   dataStorage.removeStorageFromCache(path + '/mystore', function (err) {
       if (err) {
           console.info("Removed storage from cache failed with err: " + err)
@@ -286,7 +286,7 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```js
   let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
@@ -314,8 +314,8 @@ getSync(key: string, defValue: ValueType): ValueType
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
-  | defValue | ValueType | 是 | 给定key的存储不存在，则要返回的默认值。支持number、string、boolean。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | defValue | [ValueType](#valuetype) | 是 | 给定key的存储不存在，则要返回的默认值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -323,7 +323,7 @@ getSync(key: string, defValue: ValueType): ValueType
   | ValueType | 键对应的值，如果值为null或者非默认值类型，返回默认数据。 |
 
 - 示例：
-  ```
+  ```js
   let value = storage.getSync('startup', 'default')
   console.info("The value of startup is " + value)
   ```
@@ -342,12 +342,12 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
-  | defValue | ValueType | 是 | 默认返回值。支持number、string、boolean。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   storage.get('startup', 'default', function(err, value) {
       if (err) {
           console.info("Get the value of startup failed with err: " + err)
@@ -371,8 +371,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 - **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
-  | defValue | ValueType | 是 | 默认返回值。支持number、string、boolean。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
+  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -380,7 +380,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | Promise&lt;ValueType&gt; | Promise实例，用于异步获取结果。 |
 
 - 示例：
-  ```
+  ```js
   let promiseget = storage.get('startup', 'default')
   promiseget.then((value) => {
       console.info("The value of startup is " + value)
@@ -403,11 +403,11 @@ putSync(key: string, value: ValueType): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key。它不能为空。 |
-  | value | ValueType | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | 是 | 要修改的存储的key，不能为空。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
 
 - 示例：
-  ```
+  ```js
   storage.putSync('startup', 'auto')
   ```
 
@@ -425,12 +425,12 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key。它不能为空。 |
-  | value | ValueType | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | 是 | 要修改的存储的key，不能为空。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   storage.put('startup', 'auto', function (err) {
       if (err) {
           console.info("Put the value of startup failed with err: " + err)
@@ -454,8 +454,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key。它不能为空。 |
-  | value | ValueType | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | 是 | 要修改的存储的key，不能为空。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -463,7 +463,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```js
   let promiseput = storage.put('startup', 'auto')
   promiseput.then(() => {
       console.info("Put the value of startup successfully.")
@@ -486,7 +486,7 @@ hasSync(key: string): boolean
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -494,7 +494,7 @@ hasSync(key: string): boolean
   | boolean | true&nbsp;表示存在，false表示不存在。 |
 
 - 示例：
-  ```
+  ```js
   let isExist = storage.hasSync('startup')
   if (isExist) {
       console.info("The key of startup is contained.")
@@ -524,7 +524,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   | boolean | true表示存在，false表示不存在。 |
 
 - 示例：
-  ```
+  ```js
   storage.has('startup', function (err, isExist) {
       if (err) {
           console.info("Check the key of startup failed with err: " + err)
@@ -550,7 +550,7 @@ has(key: string): Promise&lt;boolean&gt;
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称。它不能为空。 |
+  | key | string | 是 | 要获取的存储key名称，不能为空。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -558,7 +558,7 @@ has(key: string): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```js
   let promisehas = storage.has('startup')
   promisehas.then((isExist) => {
       if (isExist) {
@@ -586,12 +586,12 @@ deleteSync(key: string): void
   | key | string | 是 | 要获取的存储key名称。它不能为空。 |
 
 - 示例：
-  ```
+  ```js
   storage.deleteSync('startup')
   ```
 
 
-### delete
+### deletej
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -608,7 +608,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   storage.delete('startup', function (err) {
       if (err) {
           console.info("Delete startup key failed with err: " + err)
@@ -640,7 +640,7 @@ delete(key: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```js
   let promisedel = storage.delete('startup')
   promisedel.then(() => {
       console.info("Deleted startup key successfully.")
@@ -661,7 +661,7 @@ flushSync(): void
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 示例：
-  ```
+  ```js
   storage.flushSync()
   ```
 
@@ -682,7 +682,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   storage.flush(function (err) {
       if (err) {
           console.info("Flush to file failed with err: " + err)
@@ -709,7 +709,7 @@ flush(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```js
   let promiseflush = storage.flush()
   promiseflush.then(() => {
       console.info("Flushed to file successfully.")
@@ -730,7 +730,7 @@ clearSync(): void
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
 - 示例：
-  ```
+  ```js
   storage.clearSync()
   ```
 
@@ -751,7 +751,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
-  ```
+  ```js
   storage.clear(function (err) {
       if (err) {
           console.info("Clear to file failed with err: " + err)
@@ -778,7 +778,7 @@ clear(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 - 示例：
-  ```
+  ```js
   let promiseclear = storage.clear()
   promiseclear.then(() => {
       console.info("Cleared to file successfully.")
@@ -803,7 +803,7 @@ on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 回调对象实例。 |
 
 - 示例：
-  ```
+  ```js
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
@@ -828,7 +828,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
   | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | 需要取消的回调对象实例。 |
 
 - 示例：
-  ```
+  ```js
   var observer = function (key) {
       console.info("The key of " + key + " changed.")
   }
@@ -843,3 +843,15 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 否 | 变更的数据内容。 |
+
+## ValueType
+
+用于表示允许的数据字段类型。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
+| 名称    | 说明                 |
+| ------- | -------------------- |
+| number  | 表示值类型为数字。   |
+| string  | 表示值类型为字符。   |
+| boolean | 表示值类型为布尔值。 |

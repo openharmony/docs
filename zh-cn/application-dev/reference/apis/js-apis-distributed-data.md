@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import distributedData from '@ohos.data.distributedData';
 ```
 
@@ -27,7 +27,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | KVManager实例创建时调用的回调，返回KVManager对象实例。 |
 
 **示例**：
-```
+```js
 let kvManager;
 try {
     const kvManagerConfig = {
@@ -72,7 +72,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 **示例**：
 
-```
+```js
 let kvManager;
 try {
     const kvManagerConfig = {
@@ -129,7 +129,7 @@ try {
 
 ## KVManager
 
-数据管理实例，用于获取KVStore的相关信息。在调用KVManager的方法前，需要先通过createKVManager构建一个KVManager实例。
+数据管理实例，用于获取KVStore的相关信息。在调用KVManager的方法前，需要先通过[createKVManager](#distributeddatacreatekvmanager)构建一个KVManager实例。
 
 ### getKVStore
 
@@ -145,11 +145,11 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 | ----- | ------ | ------ | ------ |
 | storeId | string | 是  | 数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | options | [Options](#options) | 是  | 创建KVStore实例的配置信息。 |
-| callback | AsyncCallback&lt;T&gt;，&lt;T extends KVStore&gt; | 是  | 创建KVStore实例的回调，返回KVStore对象实例。 |
+| callback | AsyncCallback&lt;T&gt;，&lt;T extends [KVStore](#kvstore)&gt; | 是  | 创建KVStore实例的回调，返回KVStore对象实例。 |
 
 **示例**：
 
-```
+```js
 let kvStore;
 let kvManager;
 try {
@@ -195,11 +195,11 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 
 | 类型                                    | 说明        |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt; &lt;T extends KVStore&gt; | 指定的Promise回调方法，返回创建的KVStore数据库实例。 |
+| Promise&lt;T&gt; &lt;T extends [KVStore](#kvstore)&gt; | 指定的Promise回调方法，返回创建的KVStore数据库实例。 |
 
 **示例**：
 
-```
+```js
 let kvStore;
 let kvManager;
 try {
@@ -226,7 +226,7 @@ try {
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void
 
-通过storId的值关闭指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
+通过storeId的值关闭指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -237,12 +237,12 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 | ------- | -----------------   | ---- | --------------------------- |
 | appId    | string              | 是   | 所调用数据库方的包名。         |
 | storeId  | string  | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
-| kvStore  | [KVStore](#kvstore) | 是   | 要关闭的KvStore数据库。      |
+| kvStore  | [KVStore](#kvstore) | 是   | 要关闭的KVStore数据库。     |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，如果数据库关闭成功则返回true，否则返回false。   |
 
 **示例**：
 
-```
+```js
 let kvStore;
 let kvManager;
 const options = {
@@ -272,7 +272,7 @@ const options = {
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;
 
-通过kvStore的值关闭指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
+通过storeId的值关闭指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -282,17 +282,17 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 | -----  | ------  | ---- | ----------------------------- |
 | appId  | string  | 是   | 所调用数据库方的包名。            |
 | storeId | string | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
-| kvStore | [KVStore](#kvstore)  | 是   | 要关闭的KvStore数据库。        |
+| kvStore | [KVStore](#kvstore)  | 是   | 要关闭的KVStore数据库。        |
 
 **返回值**：
 
 | 类型          | 说明            |
 | ------------- | -------------- |
-| Promise<void> | Promise实例，如果数据库关闭成功则返回true，否则返回false。 |
+| Promise\<void> | Promise实例，如果数据库关闭成功则返回true，否则返回false。 |
 
 **示例**：
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -326,7 +326,7 @@ const options = {
 
 deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void
 
-通过storeId的值删除指定的kvStore数据库，并通过callback方式返回，此方法为异步方法。
+通过storeId的值删除指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -340,7 +340,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 **示例**：
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -369,7 +369,7 @@ try {
 
 deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
-通过storeId的值删除指定的kvStore数据库，并通过Promise方式返回，此方法为异步方法。
+通过storeId的值删除指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -389,7 +389,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **示例**：
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -402,7 +402,7 @@ const options = {
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('storId', options).then(async (store) => {
+    kvManager.getKVStore('storeId', options).then(async (store) => {
         console.log('getKVStore success');
         kvStore = store;
         await kvManager.deleteKVStore('appId', 'storeId').then(() => {
@@ -423,7 +423,7 @@ try {
 
 getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
-获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
+获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -436,7 +436,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 **示例**：
 
-```
+```js
 let kvManager;
 try {
     kvManager.getAllKVStoreId('appId', function (err, data) {
@@ -453,7 +453,7 @@ try {
 
 getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
-获取所有通过getKvStore方法创建的且没有调用deleteKvStore方法删除的KvStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
+获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -472,7 +472,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 **示例**：
 
-```
+```js
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
@@ -505,7 +505,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 **示例**
 
-```
+```js
 let kvManager;
 try {
     
@@ -538,7 +538,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 **示例**
 
-```
+```js
 let kvManager;
 try {
     console.log('KVManagerOff');
@@ -563,7 +563,7 @@ try {
 | createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。     |
 | encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。     |
 | backup  | boolean | 否 |设置数据库文件是否备份，默认备份。     |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。     |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
 | schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
@@ -621,7 +621,7 @@ KVStore常量。
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 表示json根对象  |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | 表示json根对象。 |
 | indexes<sup>8+</sup>  | Array\<string> | 表示json类型的字符串数组。  |
 | mode<sup>8+</sup>  | number | 表示Schema的模式。  |
 | skip<sup>8+</sup>  | number |  Schema的跳跃大小。  |
@@ -674,7 +674,6 @@ appendChild(child: FieldNode): boolean
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#fieldnode8) | 是    | 要附加的域节点。   |
 
-
 **返回值**：
 
 | 类型          | 说明            |
@@ -683,7 +682,7 @@ appendChild(child: FieldNode): boolean
 
 **示例**
 
-```
+```js
 import ddm from '@ohos.data.distributedData';
 try {
     let node = new ddm.FieldNode("root");
@@ -706,7 +705,7 @@ try {
 
 ## KvStoreResultSet<sup>8+</sup> ##
 
-提供获取KvStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KvStore 构建一个KvStore 实例。
+提供获取KVStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KVStore 构建一个KVStore 实例。
 
 
 ### getCount<sup>8+</sup> ###
@@ -725,7 +724,7 @@ getCount(): number
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -758,7 +757,7 @@ getPosition(): number
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -792,7 +791,7 @@ moveToFirst(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -826,7 +825,7 @@ moveToLast(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -860,7 +859,7 @@ moveToNext(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -894,7 +893,7 @@ moveToPrevious(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -934,7 +933,7 @@ move(offset: number): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -974,7 +973,7 @@ moveToPosition(position: number): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1008,7 +1007,7 @@ isFirst(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1042,7 +1041,7 @@ isLast(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1075,7 +1074,7 @@ isBeforeFirst(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1109,7 +1108,7 @@ isAfterLast(): boolean
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1131,7 +1130,7 @@ try {
 
 getEntry(): Entry
 
-获取键值对
+获取键值对。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -1139,11 +1138,11 @@ getEntry(): Entry
 
 | 类型    | 说明       |
 | ------  | -------   |
-| Entry   |返回键值对。|
+| [Entry](#entry) |返回键值对。|
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1172,7 +1171,7 @@ try {
 
 constructor() 
 
-用于创建Schema实例的构造函数
+用于创建Schema实例的构造函数。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -1194,7 +1193,7 @@ reset(): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.equalTo("key", "value");
@@ -1210,7 +1209,7 @@ try {
 
 ### equalTo<sup>8+</sup> ###
 
-equalTo(field: string, value: number|string|boolean): Query;
+equalTo(field: string, value: number|string|boolean): Query
 
 构造一个Query对象来查询具有指定字段的条目，其值等于指定的值。
 
@@ -1221,7 +1220,7 @@ equalTo(field: string, value: number|string|boolean): Query;
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
-| value  | number/string/boolean  | 是    | 表示指定的值。|
+| value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值**：
 
@@ -1231,7 +1230,7 @@ equalTo(field: string, value: number|string|boolean): Query;
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.equalTo("field", "value");
@@ -1256,7 +1255,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
-| value  | number/string/boolean  | 是    | 表示指定的值。|
+| value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值**：
 
@@ -1266,7 +1265,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1301,7 +1300,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.greaterThan("field", "value");
@@ -1336,7 +1335,7 @@ lessThan(field: string, value: number|string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.lessThan("field", "value");
@@ -1371,7 +1370,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.greaterThanOrEqualTo("field", "value");
@@ -1406,7 +1405,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.lessThanOrEqualTo("field", "value");
@@ -1441,7 +1440,7 @@ isNull(field: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.isNull("field");
@@ -1477,7 +1476,7 @@ inNumber(field: string, valueList: number[]): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.inNumber("field", [0, 1]);
@@ -1512,7 +1511,7 @@ inString(field: string, valueList: string[]): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.inString("field", ['test1', 'test2']);
@@ -1547,7 +1546,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notInNumber("field", [0, 1]);
@@ -1582,7 +1581,7 @@ notInString(field: string, valueList: string[]): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notInString("field", ['test1', 'test2']);
@@ -1617,7 +1616,7 @@ like(field: string, value: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.like("field", "value");
@@ -1652,7 +1651,7 @@ unlike(field: string, value: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.unlike("field", "value");
@@ -1680,7 +1679,7 @@ and(): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value1");
@@ -1710,7 +1709,7 @@ or(): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value1");
@@ -1746,7 +1745,7 @@ orderByAsc(field: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1781,7 +1780,7 @@ orderByDesc(field: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1817,7 +1816,7 @@ limit(total: number, offset: number): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1852,7 +1851,7 @@ isNotNull(field: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.isNotNull("field");
@@ -1880,7 +1879,7 @@ beginGroup(): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.beginGroup();
@@ -1910,7 +1909,7 @@ endGroup(): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.beginGroup();
@@ -1946,7 +1945,7 @@ prefixKey(prefix: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.prefixKey("$.name");
@@ -1981,7 +1980,7 @@ setSuggestIndex(index: string): Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.setSuggestIndex("$.name");
@@ -2017,7 +2016,7 @@ deviceId(deviceId:string):Query
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.deviceId("deviceId");
@@ -2044,7 +2043,7 @@ getSqlLike():string
 
 **示例**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     let sql1 = query.getSqlLike();
@@ -2079,7 +2078,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2120,7 +2119,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2153,7 +2152,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2200,7 +2199,7 @@ delete(key: string): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2233,13 +2232,13 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | 是    |回调函数名称。       |
+| event  |'dataChange'  | 是    |回调函数名称。<br/>'dataChange'表示数据变更事件。       |
 | type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
 
 **示例**
 
-```
+```js
 let kvStore;
 kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
     console.log("dataChange callback call data: " + JSON.stringify(data));
@@ -2259,7 +2258,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'syncComplete' | 是    |回调函数名称。       |
+| event  |'syncComplete' | 是    |回调函数名称。<br>'syncComplete'表示同步完成事件。       |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | 是    |回调函数。     |
 
 **示例**
@@ -2283,12 +2282,12 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | 是    |回调函数名称。       |
+| event  |'dataChange'  | 是    |回调函数名称。<br/>'dataChange'表示数据变更事件。       |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
 
 **示例**
 
-```
+```js
 let kvStore;
 kvStore.on('dataChange', function (data) {
     console.log("syncComplete callback call data: " + data);
@@ -2303,7 +2302,7 @@ kvStore.off('dataChange', function (data) {
 
 putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
-批量插入键值对到KvStore数据库中，并通过callback方式返回，此方法为异步方法。
+批量插入键值对到KVStore数据库中，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2316,7 +2315,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2350,7 +2349,7 @@ try {
 
 putBatch(entries: Entry[]): Promise&lt;void&gt;
 
-批量插入键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
+批量插入键值对到KVStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2368,7 +2367,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2405,7 +2404,7 @@ try {
 
 deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
-批量删除KvStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
+批量删除KVStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2418,7 +2417,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2452,7 +2451,7 @@ try {
 
 deleteBatch(keys: string[]): Promise&lt;void&gt;
 
-批量删除键值对到KvStore数据库中，并通过Promise方式返回，此方法为异步方法。
+批量删除KVStore数据库中的键值对，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2470,7 +2469,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2508,7 +2507,7 @@ try {
 
 startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
-启动KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
+启动KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2520,7 +2519,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 function putBatchString(len, prefix) {
     let entries = [];
@@ -2560,7 +2559,7 @@ try {
 
 startTransaction(): Promise&lt;void&gt;
 
-启动KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
+启动KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2572,7 +2571,7 @@ startTransaction(): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var count = 0;
@@ -2595,7 +2594,7 @@ try {
 
 commit(callback: AsyncCallback&lt;void&gt;): void
 
-提交KvStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
+提交KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2607,7 +2606,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.commit(function (err,data) {
@@ -2627,7 +2626,7 @@ try {
 
 commit(): Promise&lt;void&gt;
 
-提交KvStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
+提交KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2639,7 +2638,7 @@ commit(): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.commit().then(async (err) => {
@@ -2657,7 +2656,7 @@ try {
 
 rollback(callback: AsyncCallback&lt;void&gt;): void
 
-在KvStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
+在KVStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2669,7 +2668,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.rollback(function (err,data) {
@@ -2689,7 +2688,7 @@ try {
 
 rollback(): Promise&lt;void&gt;
 
-在KvStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
+在KVStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2701,7 +2700,7 @@ rollback(): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.rollback().then(async (err) => {
@@ -2732,7 +2731,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.enableSync(true, function (err,data) {
@@ -2770,7 +2769,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.enableSync(true).then((err) => {
@@ -2802,7 +2801,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const localLabels = ['A', 'B'];
@@ -2840,7 +2839,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const localLabels = ['A', 'B'];
@@ -2902,7 +2901,7 @@ try {
 | 名称  | 参数类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
 | type | [ValueType](#value)   | 是  |  是 |值类型。   |
-| value | Uint8Array / string / number / boolean| 是  |  是 |值对象。   |
+| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值对象。   |
 
 ## ValueType
 
@@ -2923,7 +2922,7 @@ try {
 
 ## SingleKVStore
 
-单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 getKVStore 构建一个 SingleKVStore 实例。
+单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 [getKVStore](#getkvstore) 构建一个 SingleKVStore 实例。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2944,7 +2943,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2988,7 +2987,7 @@ get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -3025,7 +3024,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3076,7 +3075,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3129,7 +3128,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -3185,7 +3184,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **示例**
 
-```
+```js
 try {
     var arr = new Uint8Array([21,31]);
     let entries = [];
@@ -3237,7 +3236,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3273,7 +3272,7 @@ try {
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-从 KvStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
+从 KVStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -3291,7 +3290,7 @@ getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3346,7 +3345,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3399,7 +3398,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3450,7 +3449,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet = null;
@@ -3489,7 +3488,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet = null;
@@ -3521,7 +3520,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3572,7 +3571,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3622,7 +3621,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3669,7 +3668,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -3749,7 +3748,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const func = function (data) {
@@ -3768,6 +3767,7 @@ try {
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 在手动模式下，触发数据库同步，此方法为同步方法。
+
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
@@ -3782,7 +3782,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **示例**：
 
-```
+```js
 let kvStore;
 kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 ```
@@ -3804,7 +3804,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const defaultAllowedDelayMs = 500;
@@ -3840,7 +3840,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const defaultAllowedDelayMs = 500;
@@ -3871,7 +3871,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.getSecurityLevel(function (err,data) {
@@ -3899,7 +3899,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     kvStore.getSecurityLevel().then((data) => {
@@ -3915,7 +3915,7 @@ try {
 
 ## DeviceKVStore<sup>8+</sup> ##
 
-在分布式系统中按设备管理分布式数据，继承自KvStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过getKVStore构建一个DeviceKVStore实例。
+在分布式系统中按设备管理分布式数据，继承自KVStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个DeviceKVStore实例。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -3937,7 +3937,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3977,7 +3977,7 @@ get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -4016,7 +4016,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4069,7 +4069,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4122,7 +4122,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4180,7 +4180,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4234,7 +4234,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4293,7 +4293,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4348,7 +4348,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4388,7 +4388,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4426,7 +4426,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4483,7 +4483,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4543,7 +4543,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4600,7 +4600,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4660,7 +4660,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     console.log('CloseResultSet success');
@@ -4700,7 +4700,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     console.log('CloseResultSet success');
@@ -4733,7 +4733,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4785,7 +4785,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4837,7 +4837,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4889,7 +4889,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4939,7 +4939,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -4986,7 +4986,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -5018,6 +5018,7 @@ try {
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 在手动模式下，触发数据库同步，此方法为同步方法。
+
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
@@ -5032,7 +5033,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
@@ -5068,7 +5069,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **示例**
 
-```
+```js
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
@@ -5103,7 +5104,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **示例**
 
-```
+```js
 let kvStore;
 try {
     const func = function (data) {

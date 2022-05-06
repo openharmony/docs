@@ -10,18 +10,17 @@
 ## 导入模块
 
 ```ts
-import data_preferences from '@ohos.data.preferences'
+import data_preferences from '@ohos.data.preferences';
 ```
 
-## 属性
+## 常量
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | string类型value的最大长度限制，大小为8192字节。 |
-| ValueType | number丨string丨boolean | 是 | 否 | 默认返回值，支持number、string、boolean。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，大小为8192字节。 |
 
 
 ## data_preferences.getPreferences
@@ -45,7 +44,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
               console.info("Get the preferences failed")
@@ -94,7 +93,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       let promise = data_preferences.getPreferences(this.context, 'mystore')
       promise.then((preferences) => {
           preferences.put('startup', 'auto', function (err) {
@@ -139,7 +138,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       data_preferences.deletePreferences(this.context, 'mystore', function (err) {
           if (err) {
               console.info("Deleted failed, err: " + err)
@@ -176,7 +175,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       let promise = data_preferences.deletePreferences(this.context, 'mystore')
       promise.then(() => {
           console.info("Deleted successfully.")
@@ -191,7 +190,9 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例。
+
+移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -207,7 +208,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
           if (err) {
               console.info("Removed preferences from cache failed, err: " + err)
@@ -223,7 +224,9 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例。移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
+从内存中移除指定首选项持久化文件对应的Preferences单实例。
+
+移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -243,7 +246,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
       promise.then(() => {
           console.info("Removed preferences from cache successfully.")
@@ -271,7 +274,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#属性) | 是 | 默认返回值。支持number、string、boolean。 |
+  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
 - 示例：
@@ -309,7 +312,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#属性) | 是 | 默认返回值。支持number、string、boolean。 |
+  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -349,7 +352,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#属性) | 是 | 存储的新值。支持number、string、boolean。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 - 示例：
@@ -387,7 +390,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#属性) | 是 | 存储的新值。支持number、string、boolean。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
 
 - 返回值：
   | 类型 | 说明 |
@@ -484,7 +487,7 @@ has(key: string): Promise&lt;boolean&gt;
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
   export default class MainAbility extends Ability {
-
+  
       let promise = data_preferences.getPreferences(this.context, 'mystore')
       promise.then((preferences) => {
           let promiseHas = preferences.has('startup')
@@ -814,3 +817,15 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
       })
   }
   ```
+
+## ValueType
+
+用于表示允许的数据字段类型。
+
+**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+
+| 名称    | 说明                 |
+| ------- | -------------------- |
+| number  | 表示值类型为数字。   |
+| string  | 表示值类型为字符。   |
+| boolean | 表示值类型为布尔值。 |
