@@ -9,13 +9,19 @@ A widget displays brief information about an application on the UI of another ap
 Basic concepts:
 
 - Widget provider
+  
   The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
+  
 - Widget host
+  
   The widget host is an application that displays the widget content and controls the position where the widget is displayed in the host application.
+  
 - Widget Manager
+  
   The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -244,13 +250,14 @@ You should override **onDestroy** to delete widget data.
        }
 ```
 
-For details about the persistence method, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about the persistence method, see [Lightweight Data Store Development](../database/database-storage-guidelines.md).
 
 Note that the **Want** passed by the widget host to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
 
-Normal widget: a widget that will be persistently used by the widget host
+- Normal widget: a widget that will be persistently used by the widget host
 
-Temporary widget: a widget that is temporarily used by the widget host
+- Temporary widget: a widget that is temporarily used by the widget host
+
 
 Data of a temporary widget is not persistently stored. If the widget framework is killed and restarted, data of a temporary widget will be deleted. However, the widget provider is not notified of which widget is deleted, and still keeps the data. Therefore, the widget provider should implement data clearing. In addition, the widget host may convert a temporary widget into a normal one. If the conversion is successful, the widget provider should process the widget ID and store the data persistently. This prevents the widget provider from deleting persistent data when clearing temporary widgets.
 
@@ -258,6 +265,7 @@ Data of a temporary widget is not persistently stored. If the widget framework i
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
    - hml:
