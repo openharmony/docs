@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```ts
 import parameter from '@ohos.systemParameter'
 ```
 
@@ -34,7 +34,7 @@ Obtains the value of the attribute with the specified key.
 
 **Example**
 
-```
+```ts
 try {
     var info = parameter.getSync("test.parameter.key");
     console.log(JSON.stringify(info));
@@ -61,7 +61,7 @@ Obtains the value of the attribute with the specified key. This API uses an asyn
 
 **Example**
 
-```
+```ts
 try {
     parameter.get("test.parameter.key", function (err, data) {
     if (err == undefined) {
@@ -93,7 +93,7 @@ Obtains the value of the attribute with the specified key. This API uses an asyn
 
 **Example**
 
-```
+```ts
 try {
     parameter.get("test.parameter.key", "default", function (err, data) {
         if (err == undefined) {
@@ -131,7 +131,7 @@ Obtains the value of the attribute with the specified key. This API uses a promi
 
 **Example**
 
-```
+```ts
 try {
     var p = parameter.get("test.parameter.key");
     p.then(function (value) {
@@ -162,7 +162,7 @@ Sets a value for the attribute with the specified key.
 
 **Example**
 
-```
+```ts
 try {
     parameter.setSync("test.parameter.key", "default");
 }catch(e){
@@ -189,7 +189,7 @@ Sets a value for the attribute with the specified key. This API uses an asynchro
 
 **Example**
 
-```
+```ts
 try {
     parameter.set("test.parameter.key", "testValue", function (err, data) {
     if (err == undefined) {
@@ -226,7 +226,7 @@ Sets a value for the attribute with the specified key. This API uses a promise t
 
 **Example**
 
-```
+```ts
 try {
     var p = para.set("test.parameter.key", "testValue");
     p.then(function (value) {
