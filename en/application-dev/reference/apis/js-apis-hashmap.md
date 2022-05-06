@@ -1,12 +1,12 @@
 # Nonlinear Container HashMap
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import HashMap from '@ohos.util.HashMap'  
 ```
 
@@ -32,7 +32,7 @@ A constructor used to create a **HashMap** instance.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 ```
 
@@ -51,7 +51,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
 ```
@@ -77,7 +77,7 @@ Checks whether this container contains the specified key.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -105,7 +105,7 @@ Checks whether this container contains the specified value.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -133,7 +133,7 @@ Obtains the value of the specified key in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -155,7 +155,7 @@ Adds all entries in a **HashMap** instance to this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -185,7 +185,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -211,7 +211,7 @@ Removes an entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -227,7 +227,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -249,7 +249,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -276,7 +276,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -310,7 +310,7 @@ Replaces an entry in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 let result = hashMap.replace("sdfs", 357);
@@ -339,7 +339,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 hashMap.set("dfsghsf", 357);
@@ -363,7 +363,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -390,7 +390,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);

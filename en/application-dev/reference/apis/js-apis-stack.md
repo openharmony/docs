@@ -1,12 +1,12 @@
 # Linear Container Stack
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import Stack from '@ohos.util.Stack'  
 ```
 
@@ -33,7 +33,7 @@ A constructor used to create a **Stack** instance.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 ```
 
@@ -58,7 +58,7 @@ Adds an entry at the top of this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
@@ -82,7 +82,7 @@ Removes the top entry from this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -106,7 +106,7 @@ Obtains the top entry of this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -135,7 +135,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -168,7 +168,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -193,7 +193,7 @@ Checks whether this container is empty (contains no entries).
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -216,7 +216,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);

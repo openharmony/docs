@@ -1,12 +1,12 @@
 # Linear Container LinkedList
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import LinkedList from '@ohos.util.LinkedList'  
 ```
 
@@ -34,7 +34,7 @@ A constructor used to create a **LinkedList** instance.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 ```
 
@@ -59,7 +59,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
@@ -83,7 +83,7 @@ Adds an entry at the top of this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.addFirst("a");
 linkedList.addFirst(1);
@@ -108,7 +108,7 @@ Inserts an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
@@ -135,7 +135,7 @@ Checks whether this container has the specified entry.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 let result1 = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
 linkedList.add("Ahfbrgrbgnutfodgorrogorg");
@@ -162,7 +162,7 @@ Obtains an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -194,7 +194,7 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -226,7 +226,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -258,7 +258,7 @@ Removes an entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -282,7 +282,7 @@ Removes the first entry from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -306,7 +306,7 @@ Removes the last entry from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -336,7 +336,7 @@ Removes the first occurrence of the specified entry from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -365,7 +365,7 @@ Removes the first occurrence of the specified entry from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -394,7 +394,7 @@ Removes the last occurrence of the specified entry from this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -417,7 +417,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -450,7 +450,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -469,7 +469,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -499,7 +499,7 @@ Replaces an entry at the specified position in this container with a given entry
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -521,7 +521,7 @@ Converts this container into an array.
 | Array&lt;T&gt; | Array obtained.|
 
 **Example**
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -544,7 +544,7 @@ Obtains the first entry in this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -567,7 +567,7 @@ Obtains the last entry in this container.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
@@ -591,7 +591,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let linkedList = new LinkedList();
 linkedList.add(2);
 linkedList.add(4);
