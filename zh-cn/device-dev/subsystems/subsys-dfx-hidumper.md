@@ -15,7 +15,7 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 /base/hiviewdfx/hidumper
 ├── frameworks           # 框架代码
 │   ├── native           # 导出功能核心代码
-│   │  │── include        # 头文件目录
+│   │  │── include       # 头文件目录
 │   │  │── src           # 源文件目录
 │   │      │── common    # 通用功能代码
 │   │      │── executor  # 导出过程执行器代码
@@ -43,137 +43,137 @@ HiDumper是OpenHarmony为开发、测试人员、IDE工具提供的系统信息�
 
 | 选项 | **描述** | 
 | -------- | -------- |
-| -h | 帮助信息 | 
+| -h | 查看帮助信息。 | 
 | -t&nbsp;[timeout] | 超时时间，单位：秒。默认值是30s。如果设置为0表示无超时限定。 | 
-| -lc | 系统信息簇列表 | 
-| -ls | 系统元能力列表 | 
-| -c | 导出系统簇信息 | 
-| -c&nbsp;[base&nbsp;system] | 以base或system标签区分的系统簇信息导出 | 
+| -lc | 查看系统信息簇列表。 | 
+| -ls | 查看系统元能力列表。 | 
+| -c | 导出系统簇信息。 | 
+| -c&nbsp;[base&nbsp;system] | 以base或system标签区分的系统簇信息导出。 | 
 | -s | 导出全部系统元能力信息 | 
-| -s&nbsp;[SA0&nbsp;SA1] | 导出SA0、SA1等元能力id对应的元能力信息 | 
-| -s&nbsp;[SA]&nbsp;-a&nbsp;['-h'] | 以-h为参数导出SA指定的系统元能力信息 | 
-| -e | 导出Faultlog模块生成的崩溃日志 | 
-| --net | 导出网络信息 | 
-| --storage | 导出存储信息 | 
-| -p | 导出进程列表及全部进程信息 | 
-| -p&nbsp;[pid] | 导出指定进程号的进程全部信息 | 
-| --cpuusage&nbsp;[pid] | 导出CPU使用信息；如果指定pid则导出该进程的CPU使用信息 | 
+| -s&nbsp;[SA0&nbsp;SA1] | 导出SA0、SA1等元能力id对应的元能力信息。 | 
+| -s&nbsp;[SA]&nbsp;-a&nbsp;['-h'] | 以-h为参数导出SA指定的系统元能力信息。 | 
+| -e | 导出Faultlog模块生成的崩溃日志。 | 
+| --net | 导出网络信息。 | 
+| --storage | 导出存储信息。 | 
+| -p | 导出进程列表及全部进程信息。 | 
+| -p&nbsp;[pid] | 导出指定进程号的进程全部信息。 | 
+| --cpuusage&nbsp;[pid] | 导出CPU使用信息。如果指定pid则导出该进程的CPU使用信息。 | 
 | --cpufreq | 导出实际的CPU频率 | 
-| --mem&nbsp;[pid] | 导出内存使用信息；如果指定pid则导出该进程的内存使用信息 | 
-| --zip | 将导出信息压缩到固定文件夹下 | 
+| --mem&nbsp;[pid] | 导出内存使用信息。如果指定pid则导出该进程的内存使用信息。 | 
+| --zip | 将导出信息压缩到固定文件夹下。 | 
 
 
 ### 使用实例
 
-HiDumper可以为开发者导出系统当前基本信息，通过这些基本信息可以定位分析问题。给子服务和元能力传递复杂参数时，参数需要在双引号中。
+HiDumper可以为开发者导出系统当前基本信息，通过这些基本信息可以定位分析问题。给子服务和元能力传递复杂参数时，参数需要加双引号。
 
 具体步骤如下：
 
-1. 进入设备命令行，输入hidumper -h获取基本信息介绍，功能语法介绍。
+1. 进入设备命令行，输入 hidumper -h 获取基本信息介绍，功能语法介绍。
      
    ```
    hidumper -h
    ```
 
-2. 输入hidumper -lc获取系统信息分类列表。
+2. 输入 hidumper -lc 获取系统信息分类列表。
      
    ```
    hidumper -lc
    ```
 
-3. 输入hidumper -c获取系统base、system等所有分类信息。
+3. 输入 hidumper -c 获取系统base、system等所有分类信息。
      
    ```
    hidumper -c
    ```
 
-4. 输入 hidumper -c [base | system] 按 base 或 system 分类获取系统簇信息
+4. 输入 hidumper -c [base | system] 按 base 或 system 分类获取系统簇信息。
      
    ```
    hidumper -c base
    hidumper -c system
    ```
 
-5. 输入 hidumper -ls 命令获取系统中元能力列表
+5. 输入 hidumper -ls 命令获取系统中元能力列表。
      
    ```
    hidumper -ls
    ```
 
-6. 输入 hidumper -s 命令获取系统全部元能力信息
+6. 输入 hidumper -s 命令获取系统全部元能力信息。
      
    ```
    hidumper -s
    ```
 
-7. 运行 hidumper -s 3301 -a "-h" 命令获取id为3301的元能力的帮助
+7. 运行 hidumper -s 3301 -a "-h" 命令获取id为3301的元能力的帮助。
      
    ```
    hidumper -s 3301 -a "-h"
    ```
 
-8. 运行 hidumper -s 3008命令获取id为3008的元能力的全部信息
+8. 运行 hidumper -s 3008命令获取id为3008的元能力的全部信息。
      
    ```
    hidumper -s 3008
    ```
 
-9. 运行 hidumper -e 命令获取Faultlog模块生成的崩溃历史信息
+9. 运行 hidumper -e 命令获取Faultlog模块生成的崩溃历史信息。
      
    ```
    hidumper -e
    ```
 
-10. 运行 hidumper --net 命令获取网络信息
+10. 运行 hidumper --net 命令获取网络信息。
      
    ```
    hidumper --net
    ```
 
-11. 运行 hidumper --storage 命令获取存储相关信息
+11. 运行 hidumper --storage 命令获取存储相关信息。
      
    ```
    hidumper --storage
    ```
 
-12. 运行 hidumper -p 命令获取进程信息，包括进程、线程的列表和信息
+12. 运行 hidumper -p 命令获取进程信息，包括进程、线程的列表和信息。
      
    ```
    hidumper -p
    ```
 
-13. 运行 hidumper -p 1024 命令获取pid为1024的进程信息
+13. 运行 hidumper -p 1024 命令获取pid为1024的进程信息。
      
    ```
    hidumper -p 1024
    ```
 
-14. 运行 hidumper  --cpuusage [pid] 命令获取CPU的使用信息；如果指定了进程的pid，则只获取该进程的CPU使用信息
+14. 运行 hidumper  --cpuusage [pid] 命令获取CPU的使用信息。如果指定了进程的pid，则只获取该进程的CPU使用信息。
      
    ```
    hidumper --cpuusage
    hidumper --cpuusage 1024
    ```
 
-15. 运行 hidumper --cpufreq 命令获取每一个CPU核实际运行的频率
+15. 运行 hidumper --cpufreq 命令获取每一个CPU核实际运行的频率。
      
    ```
    hidumper --cpufreq
    ```
 
-16. 运行 hidumper --mem [pid] 命令获取全部的内存使用信息；如果指定进程的pid，只获取该进程的内存使用情况
+16. 运行 hidumper --mem [pid] 命令获取全部的内存使用信息。如果指定进程的pid，只获取该进程的内存使用情况。
      
    ```
    hidumper --mem [pid]
    ```
 
-17. 运行 hidumper --zip 命令压缩信息数据到/data/dumper目录下
+17. 运行 hidumper --zip 命令压缩信息数据到/data/dumper目录下。
      
    ```
    hidumper --zip
    ```
 
-18. 运行 hidumper -t timeout 命令设置超时时间，单位：秒。默认值是30s。如果设置为0表示无超时限定。
+18. 运行 hidumper -t timeout 命令设置超时时间，单位：秒。默认值是30s。如果设置为0表示无超时限制。
      
    ```
    hidumper -t [timeout]
