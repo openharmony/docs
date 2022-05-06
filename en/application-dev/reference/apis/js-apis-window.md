@@ -1,6 +1,7 @@
 # Window
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of API version 9 is of the Canary version and are for trial use only. The API call may be unstable.
@@ -302,7 +303,7 @@ Creates a system window when the context is [ServiceExtAbilityContext](js-apis-s
    });
   ```
 
-## window.find<sup>7+</sup><a name="window-find"></a>
+## window.find<sup>7+</sup>
 
 find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
@@ -364,7 +365,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
    });
   ```
 
-## window.getTopWindow<a name="window-gettopwindow"></a>
+## window.getTopWindow
 
 getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
@@ -533,7 +534,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## Window
 
-In the following API examples, you must use [getTopWindow()](#window-gettopwindow), [create()](#windowcreate7), or [find()](#window-find) to obtain a **Window** instance and then call a method in this instance.
+In the following API examples, you must use [getTopWindow()](#windowgettopwindow), [create()](#windowcreate7), or [find()](#windowfind7) to obtain a **Window** instance and then call a method in this instance.
 
 ### hide<sup>7+</sup>
 
