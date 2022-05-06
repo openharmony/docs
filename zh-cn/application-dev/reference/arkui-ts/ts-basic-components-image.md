@@ -19,7 +19,7 @@ ohos.permission.INTERNET（使用网络图片）
 
 ## 接口
 
-Image(src: string | PixelMap | Resource})
+Image(src: string | PixelMap | Resource)
 
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
