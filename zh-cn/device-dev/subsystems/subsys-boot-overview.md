@@ -53,7 +53,7 @@
 | -------- | -------- |
 | base/startup/appspawn_lite | 小型系统设备（参考内存 ≥ 1 MiB），如Hi3516DV300&nbsp;、Hi3518EV300 | 
 | base/startup/bootstrap_lite | 轻量系统设备（参考内存 ≥ 128 KiB），如Hi3861V100 | 
-| base/startup/init_lite | 小型系统设备（参考内存 ≥ 1MiB），如Hi3516DV300、Hi3518EV300 | 
+| base/startup/init_lite | 小型系统设备（参考内存 ≥ 1 MiB），如Hi3516DV300、Hi3518EV300 | 
 | base/startup/syspara_lite | -&nbsp;轻量系统设备（参考内存 ≥ 128 KiB），如Hi3861V100<br/>-&nbsp;小型系统设备（参考内存 ≥ 1 MiB），如Hi3516DV300、Hi3518EV300 | 
 
 - init启动引导组件：
