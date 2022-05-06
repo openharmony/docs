@@ -1,7 +1,7 @@
 # Button
 
 
-Button是按钮组件，通常用于响应用户的点击操作，如提交表单，其类型包括胶囊按钮、圆形按钮、普通按钮。
+Button是按钮组件，通常用于响应用户的点击操作，如提交表单，其类型包括胶囊按钮、圆形按钮、普通按钮。具体用法请参考[Button](../reference/arkui-ts/ts-basic-components-button.md)。
 
 
 ## 创建按钮
