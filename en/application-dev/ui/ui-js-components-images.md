@@ -20,7 +20,7 @@ The **&lt;image&gt;** component is used to render and display images. For detail
 /* xxx.css */
 .container {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -54,14 +54,14 @@ Set the **width**, **height**, and **object-fit** attributes to define the width
   flex-direction: column;
   align-items: center;
   justify-content: center;
-background-color:#F1F3F5;
+  background-color:#F1F3F5;
 }
 image{
- width: 80%;
+  width: 80%;  
   height: 500px;
   border: 5px solid saddlebrown;
   border-radius: 20px;
- object-fit: contain;
+  object-fit: contain;
   match-text-direction:true;
 
 }
@@ -130,12 +130,12 @@ export default {
 }
 ```
 
-![en-us_image_0000001267887865](figures/en-us_image_0000001267887865.gif)
+![en-us_image_images.gif ](figures/en-us_image_images.gif )
 
 
 ## Example Scenario
 
-  In this example you touch and hold an image to gradually hide it. After the image is completely hidden, it will show in its original setting. Set a **setInterval** timer to change the image opacity at a specified interval so that it is hidden gradually. When the opacity changes to **0**, the timer is cleared and the opacity is set to **1**.
+In this example you touch and hold an image to gradually hide it. After the image is completely hidden, it will show in its original setting. Set a **setInterval** timer to change the image opacity at a specified interval so that it is hidden gradually. When the opacity changes to **0**, the timer is cleared and the opacity is set to **1**.
 
 ```
 <!-- index.hml -->
@@ -180,7 +180,10 @@ export default {
   justify-content: space-between;
 }
 .testimage {
-  width: 100%;  height: 400px;   object-fit: scale-down;  border-radius: 20px;}
+  width: 100%;  height: 400px;   
+  object-fit: scale-down;  
+  border-radius: 20px;
+}
 ```
 
 

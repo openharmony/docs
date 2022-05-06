@@ -4,19 +4,21 @@
 The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > This component is supported since API version 6.
 
 
 ## Creating a &lt;form&gt; Component
 
-  Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
+Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 
 ```
 <!-- xxx.hml -->
 <div class="container">
-  <form> <input type="text" style="width:80%"></input>
-</form>
+  <form style="width: 100%; height: 20%">  
+    <input type="text" style="width:80%"></input>
+  </form>
 </div>
 ```
 
@@ -24,8 +26,8 @@ The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/ar
 ```
 /* xxx.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -38,7 +40,7 @@ The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/ar
 
 ## Zooming In or Out on a Form
 
-  To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **&lt;form&gt;** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
+To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **&lt;form&gt;** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
 
 ```
 <!-- xxx.hml -->
@@ -58,19 +60,10 @@ Add the **background-color** and **border** attributes.
 
 
 ```
-<!-- xxx.hml -->
-<div class="container">
-  <form  id="formId" class="formClass" click-effect="spring-large">
-    <input type="text"></input>  
-  </form>
-</div>
-```
-
-
-
-```
 /* xxx.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -78,7 +71,9 @@ Add the **background-color** and **border** attributes.
 }
 .formClass{
   width: 80%;
-  height: 20%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #cccccc;
 }
 ```
 
@@ -88,28 +83,47 @@ Add the **background-color** and **border** attributes.
 
 ## Adding Response Events
 
-  To submit or reset a form, add the **submit** and **reset** events.
+To submit or reset a form, add the **submit** and **reset** events.
 
 ```
 <!-- xxx.hml -->
 <div class="container">
   <form onsubmit='onSubmit' onreset='onReset' class="form">
-    
-    <div style="justify-content: center; width: 100%;">
+    <div style="width: 100%;justify-content: center;">
       <label>Option 1</label>
       <input type='radio' name='radioGroup' value='radio1'></input>
       <label>Option 2</label>
       <input type='radio' name='radioGroup' value='radio2'></input>
     </div>
-    <div style="margin-top: 30px;justify-content: center; align-items: center;">
-      <input type="submit" value="Submit" style="width:100px; margin-right:20px;" ></input>
-      <input type="reset" value="Reset" style="width:100px;"></input>
+    <div style="width: 100%;justify-content: center; margin-top: 20px">
+      <input type="submit" value="Submit" style="width:120px; margin-right:20px;" >   
+      </input>
+      <input type="reset" value="Reset" style="width:120px;"></input>
     </div>
     
   </form>
 </div>
 ```
 
+```
+/* index.css */
+.container{
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  background-color: #F1F3F5;
+}
+.form{
+  width: 100%;
+  height: 30%;
+  margin-top: 40%;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+```
 
 ```
 /* xxx.js */

@@ -8,16 +8,12 @@ The **&lt;text&gt;** component is used to display a piece of textual information
 
 Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
-
 ```
 <!-- xxx.hml -->
 <div class="container" style="text-align: center;justify-content: center; align-items: center;">
- <text>   
-     Hello World  
-  </text>
+  <text>Hello World</text>
 </div>
 ```
-
 
 ```
 /* xxx.css */
@@ -37,8 +33,9 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 ## Setting the Text Style and Attributes
 
 - Adding a text style
-  Set the color, font-size, allow-scale, word-spacing and text-align properties to add the color, size, zoom, text spacing, and vertical alignment of the text.
-
+  
+Set the color, font-size, allow-scale, word-spacing and text-align properties to add the color, size, zoom, text spacing, and vertical alignment of the text.
+  
   
   ```
   <!-- xxx.hml -->
@@ -50,8 +47,8 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
       This is a passage
     </text>
   </div>
-  ```
-
+```
+  
   
   ```
   /* xxx.css */
@@ -63,14 +60,15 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     justify-content: center;
     background-color: #F1F3F5;
   }
-  ```
-
+```
+  
     ![en-us_image_0000001222967764](figures/en-us_image_0000001222967764.png)
 
 
 - Adding a text modifier
-  Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Style](../reference/arkui-js/js-components-basic-text.md).
-
+  
+Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Style](../reference/arkui-js/js-components-basic-text.md).
+  
   
   ```
   <!-- xxx.hml -->
@@ -82,8 +80,8 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
       This is a passage
     </text>
   </div>
-  ```
-
+```
+  
   
   ```
   /* xxx.css */
@@ -97,14 +95,15 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
   text{
     font-size: 50px;
   }
-  ```
-
+```
+  
   ![en-us_image_0000001223287688](figures/en-us_image_0000001223287688.png)
 
 
 - Hiding text content
-  Set the **text-overflow** attribute to **ellipsis** so that overflowed text is displayed as an ellipsis.
-
+  
+Set the **text-overflow** attribute to **ellipsis** so that overflowed text is displayed as an ellipsis.
+  
   
   ```
   <!-- xxx.hml -->
@@ -113,8 +112,8 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
       This is a passage
     </text>
   </div>
-  ```
-
+```
+  
   
   ```
   /* xxx.css */
@@ -131,19 +130,20 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     max-lines: 1;
    text-overflow:ellipsis;
   }
-  ```
-
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+```
+  
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
   > - **text-overflow** must be used together with **max-lines**.
   > 
-  > - **max-lines** indicates the maximum number of lines in the text.
-
+> - **max-lines** indicates the maximum number of lines in the text.
+  
   ![en-us_image_0000001267647865](figures/en-us_image_0000001267647865.png)
 
 
 - Setting the text line breaking mode
-  Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
-
+  
+Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
+  
   
   ```
   <!-- xxx.hml -->
@@ -157,12 +157,14 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
       </text>
     </div>
   </div>
-  ```
-
+```
+  
   
   ```
   /* xxx.css */
   .container {
+    width: 100%;
+    height: 100%;
     background-color: #F1F3F5;
     flex-direction: column;
     align-items: center;
@@ -175,6 +177,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     justify-content: center;
   }
   .text1{
+    width: 100%;
     height: 200px;
     border:1px solid #1a1919;
     margin-bottom: 50px;
@@ -183,18 +186,19 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     font-size: 40px;
   }
   .text2{
+    width: 100%;
     height: 200px;
     border:1px solid #0931e8;
     text-align: center;
-   word-break: break-all;
+    word-break: break-all;
     font-size: 40px;
   }
-  ```
-
+```
+  
     ![en-us_image_0000001267767865](figures/en-us_image_0000001267767865.png)
 
 
-- Setting the [&lt;span&gt;](../reference/arkui-js/js-components-basic-span.md) child component.
+- Setting the [&lt;span&gt;](../reference/arkui-js/js-components-basic-span.md) child component
   
   ```
   <!-- xxx.hml -->
@@ -218,7 +222,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
   ![en-us_image_0000001223127720](figures/en-us_image_0000001223127720.png)
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
   > - When the **&lt;span&gt;** child component is used to form a text paragraph, incorrect **&lt;span&gt;** attribute settings (for example, setting of **font-weight** to **1000**) will result in abnormal display of the text paragraph.
   > 
   > - When the **&lt;span&gt;** child component is being used, do not include any text you want to show in the **&lt;text&gt;** component, as such text will not be displayed if you do so.
@@ -283,3 +287,8 @@ export default {
 ```
 
 ![en-us_image_0000001267887849](figures/en-us_image_0000001267887849.gif)
+## Samples
+
+The following sample is provided to help you better understand how to develop the **&lt;text&gt;** component:
+
+- [`JsTextComponents`:  JavaScript Basic Components (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsBasicComponents)

@@ -12,7 +12,8 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 ```
 <!-- index.hml -->
 <div class="container"> 
- <list><list-item class="listItem"></list-item>
+ <list>    
+   <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
    <list-item class="listItem"></list-item>
@@ -20,12 +21,11 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-
 ```
 /* xxx.css */
 .container {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   background-color: #F1F3F5;
@@ -39,7 +39,7 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 
 ![en-us_image_0000001223287680](figures/en-us_image_0000001223287680.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - **&lt;list-item-group&gt;** is a child component of the **&lt;list&gt;** component and is used to group items in a list. It can have a **&lt;list-item&gt;** nested inside, but not **&lt;list&gt;**.
 > 
 > - **&lt;list-item&gt;** is a child component of the **&lt;list&gt;** component and is used to display items in a list.
@@ -64,12 +64,9 @@ To display a scrollbar on the right side of the screen, set **scrollbar** to **o
 </div> 
 ```
 
-
 ```
 /* index.css */
 .container {
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
 }
@@ -118,7 +115,7 @@ Set a custom **indexer** component to add an index bar at the right boundary of 
 
 ![en-us_image_0000001223127716](figures/en-us_image_0000001223127716.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - This **indexer** attribute is valid only when **flex-direction** is set to **column** and **columns** is set to **1**.
 > 
 > - You must include **"\#"** when using a customized indexer.
@@ -204,8 +201,9 @@ export default {
 
 ![en-us_image_0000001267887845](figures/en-us_image_0000001267887845.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> - The **groupcollapse** and **groupexpand** events can be used only by the **list-item-group** component.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> The **groupcollapse** and **groupexpand** events can be used only by the **list-item-group** component.
 
 
 ## Example Scenario
@@ -225,7 +223,7 @@ Search for contacts by using an alphabetical indexer.
       <div class="container"> 
         <div class="in-container"> 
           <text class="name">{{$item.name}}</text> 
-          <text class="phone">18888888888</text> 
+          <text class="number">18888888888</text> 
         </div> 
       </div> 
     </list-item> 
@@ -243,12 +241,15 @@ Search for contacts by using an alphabetical indexer.
 ```
 /* index.css */
 .doc-page {
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
 }
 .list {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  flex-grow: 1;
 }
 .item {
   height: 120px;
@@ -259,7 +260,7 @@ Search for contacts by using an alphabetical indexer.
   color: #000000;
   font-size: 39px;
 }
-.phone {
+.number {
   color: black;
   font-size: 25px;
 }
@@ -318,3 +319,8 @@ export default {
 
 
 ![en-us_image_0000001267767861](figures/en-us_image_0000001267767861.gif)
+## Samples
+
+The following sample is provided to help you better understand how to develop the **&lt;list&gt;** component:
+
+[`JsList`: JSList Offerings (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList)
