@@ -1,7 +1,7 @@
 # 唤醒词识别配置文件的开发示例
 
 
-1. 代码路径//foundation/ai/engine/services/common/protocol/plugin_config/plugin_config_ini/中添加唤醒词识别的配置文件。
+1. 在代码路径//foundation/ai/engine/services/common/protocol/plugin_config/plugin_config_ini/中添加唤醒词识别的配置文件。
      
    ```
    [base]
@@ -15,21 +15,21 @@
    VersionName = 2.00.01.002
    XPU         = NNIE
    District    = China
-   // 编译出的插件so所在的位置
+   // 编译出的插件so文件所在的位置
    FullPath    = /usr/lib/libasr_keyword_spotting.so
    Chipset     = ALL
    ChkSum      = ''
    Key         = ''
    ```
 
-2. 代码路径//foundation/ai/engine/services/common/protocol/plugin_config/aie_algorithm_type.h文件中添加唤醒词识别算法类型id。
+2. 在代码路径//foundation/ai/engine/services/common/protocol/plugin_config/中的aie_algorithm_type.h文件添加唤醒词识别算法类型id。
      
    ```
    // 唤醒词识别的算法类型id与唤醒词识别在ALGORITHM_TYPE_ID_LIST中的序号一一对应
    const int ALGORITHM_TYPE_KWS = 3;
    ```
 
-3. 代码路径//foundation/ai/engine/services/server/plugin_manager/include/aie_plugin_info.h文件中添加唤醒词识别算法名称及在ALGORITHM_TYPE_ID_LIST中的序号。
+3. 在代码路径//foundation/ai/engine/services/server/plugin_manager/include/中的aie_plugin_info.h文件添加唤醒词识别算法名称及在ALGORITHM_TYPE_ID_LIST中的序号。
      
    ```
    const std::string ALGORITHM_ID_SAMPLE_1 = "sample_plugin_1";
