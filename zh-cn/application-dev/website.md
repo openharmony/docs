@@ -199,8 +199,8 @@
         - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
         - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
     - WebGL
-      - [WebGL开发概述](webgl-overview.md)
-      - [WebGL开发指导](webgl-guidelines.md)
+      - [WebGL开发概述](webgl/webgl-overview.md)
+      - [WebGL开发指导](webgl/webgl-guidelines.md)
     - 媒体
       - 音频
         - [音频开发概述](media/audio-overview.md)
