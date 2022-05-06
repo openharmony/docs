@@ -123,26 +123,26 @@
 
 3. 解压DevEco Device Tool软件包并对解压后的文件夹进行赋权。
 
-   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.0.0.400.zip为软件包名称，请根据实际进行修改。
+   1. 进入DevEco Device Tool软件包目录，执行如下命令解压软件包，其中devicetool-linux-tool-3.0.0.401.zip为软件包名称，请根据实际进行修改。
          
        ```
-       unzip devicetool-linux-tool-3.0.0.400.zip
+       unzip devicetool-linux-tool-3.0.0.401.zip
        ```
 
-   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.0.0.400.sh请根据实际进行修改。
+   2. 进入解压后的文件夹，执行如下命令，赋予安装文件可执行权限，其中devicetool-linux-tool-3.0.0.401.sh请根据实际进行修改。
          
        ```
-       chmod u+x devicetool-linux-tool-3.0.0.400.sh
+       chmod u+x devicetool-linux-tool-3.0.0.401.sh
        ```
 
-4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.0.0.400.sh请根据实际进行修改。
+4. 执行如下命令，安装DevEco Device Tool，其中devicetool-linux-tool-3.0.0.401.sh请根据实际进行修改。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 安装过程中，会自动检查Python是否安装，且要求Python为3.8~3.9版本。如果不满足，则安装过程中会自动安装，提示“Do you want to continue?”，请输入“Y”后继续安装。
 
      
    ```
-   sudo ./devicetool-linux-tool-3.0.0.400.sh
+   sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
 
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
