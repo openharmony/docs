@@ -42,7 +42,7 @@
     - [Mini- and Small-System Devices](guide/device-lite.md)	
     - [Standard-System Devices](guide/device-standard.md)
 - Debugging
-  - [Test Subsystem](subsystems/subsys-testguide-test.md)	
+  - [Testing Subsystem](subsystems/subsys-testguide-test.md)	
   - [R&D Tools](subsystems/subsys-toolchain.md)
 - XTS Certification	
   - [XTS](subsystems/subsys-xts-guide.md)	
