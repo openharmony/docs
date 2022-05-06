@@ -1,6 +1,7 @@
 # WantAgent Development
+
 ### Introduction
-The **WantAgent** class encapsulates a **Want** object that specifies a particular action. To trigger a **WantAgent**, you can either call **wantAgent.trigger** to trigger it directly or add it to a notification so that it will be triggered when users tap the notification.
+The **WantAgent** class encapsulates a **Want** object that specifies a particular action. You can trigger a **WantAgent** by calling **wantAgent.trigger** directly or by adding it to a notification so that it is triggered when a user taps the notification.
 
 You can use a **WantAgent** in a notification to start an ability or publish a common event.
 
