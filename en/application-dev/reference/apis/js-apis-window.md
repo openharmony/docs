@@ -2,6 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of API version 9 is of the Canary version and are for trial use only. The API call may be unstable.
 
 ## Modules to Import
 
@@ -15,7 +17,7 @@ Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name             | Default Value| Description              |
+| Name             | Default Value | Description              |
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | Application subwindow.  |
 | TYPE_SYSTEM_ALERT | 1      | System alert window.|
@@ -26,7 +28,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Default Value| Description              |
+| Name       | Default Value | Description              |
 | ----------- | ------ | ------------------ |
 | TYPE_SYSTEM | 0      | Default area of the system.|
 | TYPE_CUTOUT | 1      | Notch.  |
@@ -39,7 +41,7 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value| Description                         |
+| Name      | Default Value | Description                         |
 | ---------- | ------ | ----------------------------- |
 | UNDEFINED  | 1      | The window mode is not defined by the application.      |
 | FULLSCREEN | 2      | The application is displayed in full screen.            |
@@ -62,7 +64,7 @@ Describes the properties of the status bar and navigation bar.
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
-## SystemBarRegionTint<sup>8+</sup><a name="systembartegiontint"></a>
+## SystemBarRegionTint <sup>8+</sup><a name="systembartegiontint"></a>
 
 Describes the callback for a single system bar.
 
@@ -78,7 +80,7 @@ This is a system API and cannot be called by third-party applications.
 | backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
 | contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
 
-## SystemBarTintState<sup>8+</sup><a name="systembartintstate"></a>
+## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
 
 Describes the callback for the current system bar.
 
@@ -155,7 +157,7 @@ Describes the color gamut mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value| Description          |
+| Name      | Default Value | Description          |
 | ---------- | ------ | -------------- |
 | DEFAULT    | 0      | Default color gamut mode.|
 | WIDE_GAMUT | 1      | Wide color gamut mode.  |
@@ -233,18 +235,20 @@ This API is discarded since API version 8. You are advised to use [window.create
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses an asynchronous callback to return the result.
+Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses an asynchronous callback to return the result.
+
+Creates a system window when the context is [ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md), starting from API version 9. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 - Parameters
 
-  | Name  | Type                                           | Mandatory| Description                  |
-  | -------- | ----------------------------------------------- | ---- | ---------------------- |
-  | ctx      | [Context](js-apis-service-extension-context.md) | Yes  | Current application context.  |
-  | id       | string                                          | Yes  | Window ID.              |
-  | type     | [WindowType](#windowtype)                       | Yes  | Window type.            |
-  | callback | AsyncCallback&lt;[Window](#window)&gt;          | Yes  | Callback used to return the system window created.|
+  | Name  | Type                                  | Mandatory| Description                                                        |
+  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-serviceExtAbilityContext.md).|
+  | id       | string                                 | Yes  | Window ID.                                                    |
+  | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                                      |
 
 - Example
 
@@ -265,23 +269,25 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses a promise to return the result.
+Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses a promise to return the result.
+
+Creates a system window when the context is [ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md), starting from API version 9. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 - Parameters
 
-  | Name| Type                                           | Mandatory| Description                |
-  | ------ | ----------------------------------------------- | ---- | -------------------- |
-  | ctx    | [Context](js-apis-service-extension-context.md) | Yes  | Current application context.|
-  | id     | string                                          | Yes  | Window ID.            |
-  | type   | [WindowType](#windowtype)                       | Yes  | Window type.          |
+  | Name| Type                     | Mandatory| Description                                                        |
+  | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
+  | ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-serviceExtAbilityContext.md).|
+  | id     | string                    | Yes  | Window ID.                                                    |
+  | type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
 
 - Return value
 
   | Type                            | Description                                           |
   | -------------------------------- | ----------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the system window created.|
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
 - Example
 
@@ -425,7 +431,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
   | Name  | Type                                  | Mandatory| Description                                                        |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | Context   | Yes  | Current application context.For the definition of **Context** of API version 8, see [Context](js-apis-Context.md). For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md). |
+  | ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
   | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
 
 - Example
@@ -454,7 +460,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
   | Name| Type   | Mandatory| Description                                                        |
   | ------ | ------- | ---- | ------------------------------------------------------------ |
-  | ctx    | Context | Yes  | Current application context.For the definition of **Context** of API version 8, see [Context](js-apis-Context.md). For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md). |
+  | ctx    | Context | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
 
 - Return value
 
@@ -913,7 +919,7 @@ Obtains the properties of this window. This API uses a promise to return the res
 
 - Example
 
-  ```
+  ```js
    let promise = windowClass.getProperties();
    promise.then((data)=> {
       console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data))
@@ -934,7 +940,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name  | Type                                        | Mandatory| Description                                                        |
   | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. |
+  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
   | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                                  |
 
 - Example
@@ -962,7 +968,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
   | Name| Type                           | Mandatory| Description                                                        |
   | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. |
+  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
 
 - Return value
 
@@ -1251,7 +1257,7 @@ Loads content to this window. This API uses an asynchronous callback to return t
 
   | Name  | Type                     | Mandatory| Description                |
   | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | Yes  | Path of the page from which the content will be loaded. |
+  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
   
 - Example
@@ -1278,7 +1284,7 @@ Loads content to this window. This API uses a promise to return the result.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | path   | string | Yes  | Path of the page from which the content will be loaded. |
+  | path   | string | Yes  | Path of the page from which the content will be loaded.|
   
 - Return value
 
@@ -1452,10 +1458,10 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 - Parameters
 
-  | Name  | Type                                   | Mandatory| Description                                                        |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;number&gt; | Yes  | Callback used to return the information.                                      |
+  | Name  | Type              | Mandatory| Description                                                        |
+  | -------- | ------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string             | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
+  | callback | Callbacknumber&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -1532,7 +1538,7 @@ Checks whether this window supports the wide color gamut mode. This API uses a p
 
 - Example
 
-  ```js
+  ```
   let promise = windowClass.isSupportWideGamut();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
@@ -2166,12 +2172,12 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Default Value | Description                                    |
-| ---------- | ------------- | ---------------------------------------------- |
-| FOREGROUND | 1             | The window stage is running in the foreground. |
-| ACTIVE     | 2             | The window stage gains focus.                  |
-| INACTIVE   | 3             | The window stage loses focus.                  |
-| BACKGROUND | 4             | The window stage is running in the background. |
+| Name      | Default Value | Description    |
+| ---------- | ------ | -------- |
+| FOREGROUND | 1      | The window stage is running in the foreground.|
+| ACTIVE     | 2      | The window stage gains focus.|
+| INACTIVE   | 3      | The window stage loses focus.|
+| BACKGROUND | 4      | The window stage is running in the background.|
 
 ## WindowStage<sup>9+</sup>
 
@@ -2187,9 +2193,9 @@ Obtains the main window of this window stage. This API uses a promise to return 
 
 - Return value
 
-  | Type                             | Description                             |
-  | -------------------------------- | --------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the main window. |
+  | Type                            | Description                                                      |
+  | -------------------------------- | ---------------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
 
 - Example
 
@@ -2219,9 +2225,9 @@ Obtains the main window of this window stage. This API uses an asynchronous call
 
 - Parameters
 
-  | Name     | Type                                   | Mandatory | Description                              |
-  | -------- | -------------------------------------- | --------- | ---------------------------------------- |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the main window. |
+  | Name  | Type                                  | Mandatory| Description                                   |
+  | -------- | -------------------------------------- | ---- | --------------------------------------- |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
 
 - Example
 
@@ -2251,14 +2257,14 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 - Parameters
 
-  | Name | Type   | Mandatory | Description            |
-  | ---- | ------ | --------- | ---------------------- |
-  | name | String | Yes       | Name of the subwindow. |
+  | Name| Type  | Mandatory| Description          |
+  | ------ | ------ | ---- | -------------- |
+  | name   | String | Yes  | Name of the subwindow.|
 - Return value
 
-  | Type                             | Description                                   |
-  | -------------------------------- | --------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+  | Type                            | Description                                             |
+  | -------------------------------- | ------------------------------------------------- |
+  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 - Example
 
   ```ts
@@ -2287,10 +2293,10 @@ Creates a subwindow for this window stage. This API uses an asynchronous callbac
 
 - Parameters
 
-  | Name     | Type                                   | Mandatory | Description                                    |
-  | -------- | -------------------------------------- | --------- | ---------------------------------------------- |
-  | name     | String                                 | Yes       | Name of the subwindow.                         |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes       | Callback used to return the subwindow created. |
+  | Name  | Type                                  | Mandatory| Description                          |
+  | -------- | -------------------------------------- | ---- | ------------------------------ |
+  | name     | String                                 | Yes  | Name of the subwindow.                |
+  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
 - Example
 
@@ -2321,9 +2327,9 @@ Obtains all the subwindows of this window stage. This API uses a promise to retu
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 - Return value
 
-  | Type                                          | Description                                |
-  | --------------------------------------------- | ------------------------------------------ |
-  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows. |
+  | Type                                         | Description                                                        |
+  | --------------------------------------------- | ------------------------------------------------------------ |
+  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
 
 - Example
 
@@ -2352,9 +2358,9 @@ Obtains all the subwindows of this window stage. This API uses an asynchronous c
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 - Parameters
 
-  | Name     | Type                                                | Mandatory | Description                                 |
-  | -------- | --------------------------------------------------- | --------- | ------------------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes       | Callback used to return all the subwindows. |
+  | Name  | Type                                               | Mandatory| Description                                       |
+  | -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
 
 - Example
 
@@ -2385,10 +2391,10 @@ Loads content to this window stage. This API uses an asynchronous callback to re
 
 - Parameters
 
-  | Name     | Type                      | Mandatory | Description                                             |
-  | -------- | ------------------------- | --------- | ------------------------------------------------------- |
-  | path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-  | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the execution result.           |
+  | Name  | Type                     | Mandatory| Description                |
+  | -------- | ------------------------- | ---- | -------------------- |
+  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
   
 - Example
 
@@ -2415,10 +2421,10 @@ Enables listening for window stage lifecycle changes.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 - Parameters
 
-  | Name     | Type                                                         | Mandatory | Description                                                  |
-  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes       | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes. |
-  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes       | Callback used to return the information.                     |
+  | Name  | Type                                                        | Mandatory| Description                                                        |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
 
@@ -2443,10 +2449,10 @@ Disables listening for window stage lifecycle changes.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 - Parameters
 
-  | Name     | Type                                                         | Mandatory | Description                                                  |
-  | -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes       | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes. |
-  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No        | Callback used to return the information.                     |
+  | Name  | Type                                                        | Mandatory| Description                                                        |
+  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the information.                                      |
 - Example
 
   ```ts
