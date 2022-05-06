@@ -8,14 +8,14 @@ A widget displays brief information about an application on the UI of another ap
 
 Basic concepts:
 
-- Widget provider
+- Widget provider<br>
   The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
-- Widget host
+- Widget host<br>
   The widget host is an application that displays the widget content and controls the position where the widget is displayed in the host application.
-- Widget Manager
+- Widget Manager<br>
   The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -345,4 +345,4 @@ The following sample is provided to help you better understand how to develop a 
 
 [FormExtAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)
 
-This sample provides a widget. Users can create, update, and delete widgets on the home screen of their phones or by using their own widget host. This sample also implements widget information persistence by using lightweight data storage.
+Users can create, update, and delete widgets on the home screen of their phones or by using their own widget host. This sample also implements widget information persistence by using lightweight data storage.
