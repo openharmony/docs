@@ -35,7 +35,7 @@ onCreate(want: Want): formBindingData.FormBindingData
 
   | 参数名 | 类型                                   | 必填 | 说明                                                         |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-featureAbility.md#want) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+  | want   | [Want](js-apis-application-Want.md) | 是   | 当前Extension相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 

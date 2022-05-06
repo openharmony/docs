@@ -380,7 +380,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 | 名称       | 类型                            | 必填   | 描述        |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](#want)> | 是    | 被指定的回调方法。 |
+| callback | AsyncCallback\<[Want](js-apis-application-Want.md)> | 是    | 被指定的回调方法。 |
 
 **示例：**
 
@@ -403,7 +403,7 @@ getWant(): Promise\<Want>
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| Promise\<[Want](#want)> | 以Promise的形式返回结果。 |
+| Promise\<[Want](js-apis-application-Want.md)> | 以Promise的形式返回结果。 |
 
 **示例：**
 
@@ -496,7 +496,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 名称      | 类型             | 必填   | 描述                    |
 | ------- | -------------- | ---- | --------------------- |
-| request | [Want](#want)  | 是    | 表示被连接的ServiceAbility。 |
+| request | [Want](js-apis-application-Want.md)  | 是    | 表示被连接的ServiceAbility。 |
 | options | ConnectOptions | 是    | 被指定的回调方法。             |
 
 **Want类型说明：**
@@ -902,7 +902,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | 名称                      | 读写属性 | 类型            | 必填   | 描述                                    |
 | ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
 | resultCode<sup>7+</sup> | 只读   | number        | 是    | 指示销毁该能力后返回的结果代码。您可以定义结果代码来识别错误（暂不支持）。 |
-| want<sup>7+</sup>       | 只读   | [Want](#want) | 否    | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
+| want<sup>7+</sup>       | 只读   | [Want](js-apis-application-Want.md) | 否    | 指示销毁该能力后返回的数据。您可以定义返回的数据。此参数可以为null。  |
 
 ## StartAbilityParameter
 
@@ -910,27 +910,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| want                | 只读   | [Want](#want)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
+| want                | 只读   | [Want](js-apis-application-Want.md)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
 | abilityStartSetting | 只读   | {[key: string]: any} | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
-
-
-## Want
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
-
-| 名称                             | 读写属性 | 类型                 | 必填 | 描述                                                         |
-| -------------------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId                         | 只读     | string               | 否   | 表示运行指定Ability的设备ID。                                |
-| bundleName                       | 只读     | string               | 否   | 表示包描述。|
-| abilityName                      | 只读     | string               | 否   | 表示待启动的Ability名称。如果在Want中该字段同时指定了package和AbilityName，则Want可以直接匹配到指定的Ability。 |
-| uri                              | 只读     | string               | 否   | 表示Uri描述。如果在Want中指定了Uri，则Want将匹配指定的Uri信息，包括scheme, schemeSpecificPart, authority和path信息。 |
-| type                             | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
-| flags                            | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](#flags说明)。 |
-| action                           | 只读     | string               | 否   | 表示action选项描述。                                         |
-| parameters                       | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                         |
-| entities                         | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                       |
-| extensionAbilityName<sup>9+<sup> | 只读     | string               | 否   | Want中扩展能力名称的描述。                                   |
-| extensionAbilityType<sup>9+<sup> | 只读     | number               | 否   | Want中扩展能力类型的描述。                                   |
+                                  |
 
 ## flags说明
 

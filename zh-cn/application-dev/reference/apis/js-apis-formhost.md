@@ -780,7 +780,7 @@ SystemCapability.Ability.Form
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want | [Want](js-apis-featureAbility.md#want) | 是   | 查询卡片状态时携带的want信息 |
+| want | [Want](js-apis-application-Want.md) | 是   | 查询卡片状态时携带的want信息 |
 | callback | AsyncCallback&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | 是 | callback形式返回卡片状态 |
 
 **示例：**
@@ -808,7 +808,7 @@ function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| want   | [Want](js-apis-featureAbility.md#want) | 是   | 查询卡片状态时携带的want信息 |
+| want   | [Want](js-apis-application-Want.md) | 是   | 查询卡片状态时携带的want信息 |
 
 **返回值：**
 
