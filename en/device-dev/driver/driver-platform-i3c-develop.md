@@ -52,7 +52,7 @@ The I3C module adaptation involves the following steps:
 3. Instantiate the I3C controller object.
    
     - Initialize **I3cCntlr**.
-    - Instantiate **I3cMethod** in **I3cCntlr**. For details, see [Available APIs](#Available_apis).
+    - Instantiate **I3cMethod** in **I3cCntlr**. For details, see [Available APIs](#available-apis).
   
 4. Register an interrupt handler.
     Register an interrupt handler for the controller to implement the device hot-join and in-band interrupt (IBI) features.

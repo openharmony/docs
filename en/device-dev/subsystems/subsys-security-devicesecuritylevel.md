@@ -42,7 +42,7 @@ The security level of each device in a Super Device provides the decision-making
 
 ### Constraints
 
-The default security level of OpenHarmony devices is SL1. Device manufacturers can customize a higher security level based on service requirements. For details, see [Customizing Device Security Levels](#customizingdevicesecuritylevels).
+The default security level of OpenHarmony devices is SL1. Device manufacturers can customize a higher security level based on service requirements. For details, see [Customizing Device Security Levels](#customizing-device-security-levels).
 
 ## Development Guidelines
 
@@ -187,7 +187,7 @@ To ensure its integrity and non-repudiation, the security level information must
 
 The DSLM module provides default implementation of security level information synchronization and verification. It is assumed that the security level of all OpenHarmony devices is SL1, and a loose verification scheme is used. For details, see the [source code](https://gitee.com/openharmony/security_device_security_level/tree/master/oem_property/ohos).
 
-You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#basicconcepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) to sign credential files.
+You can change the device security level as required. For details about the OpenHarmony device security levels, see [Basic Concepts](#basic-concepts). You can also use more severe verification schemes, including but are not limited to using device-specific credential, periodically downloading updated credentials from a server and strictly authenticating the issuer and validity period of the credentials, and using Trusted Execution Environment (TEE) or even Secure Element (SE) to sign credential files.
 
 ### Generating a Credential File
 
@@ -287,9 +287,9 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 > This step must be performed in a secure and reliable environment, for example, a cryptographic machine that meets related security requirements, to ensure that the key used for signature is not disclosed.
 > The key pairs involved in this step do not need to be generated each time. Secure key pairs can be reused.
 
-##### 4.1 Generate level-3 signature verification information.
+##### 4.1 Generate verification information for an end-entity certificate signature.
 
-1. Generate an ECDSA key pair `<ecc-l2-pk>` and `<ecc-l2-sk>` for a level-2 signature.
+1. Generate an ECDSA key pair `<ecc-l2-pk>` and `<ecc-l2-sk>` for an intermediate CA certificate signature.
 2. Use `<ecc-l2-sk>` to sign `<ecc-l3-pk>` (generated in step 3.2) to obtain `<ecc-l3-pk-signature>`.
 3. Combine `<ecc-l3-pk>` and `<ecc-l3-pk-signature>` into a JSON string. The following is an example:
 
@@ -300,11 +300,12 @@ MGUCMDb9xoiFzTWVkHDU3VWSVQ59gLyw4TchZ0+eQ3vUfQsLt3Hkg0r7a/PmhkNr3X/mTgIxAIywIRE6
 }
 ```
 
-##### 4.2 Generate level-2 signature verification information.
+##### 4.2 Generate verification information for an intermediate CA certificate signature.
 
-1. Generate an ECDSA key pair `<ecc-root-pk>` and `<ecc-root-sk>` for a level-1 signature.
+1. Generate an ECDSA key pair `<ecc-root-pk>` and `<ecc-root-sk>` for a root certificate signature.
 2. Use `<ecc-root-sk>` to sign `<ecc-l2-pk>` (generated in step 4.1) to obtain `<ecc-l2-pk-signature>`.
-3. Combine `<ecc-l3-pk>` and `<ecc-l3-pk-signature>` into a JSON string. The following is an example:
+3. Combine `<ecc-l3-pk>` and `<ecc-l3-pk-signature>` into a JSON string. 
+The following is an example:
 
 ``` json
 {

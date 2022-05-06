@@ -284,7 +284,7 @@ The DAC module adaptation procedure is as follows:
         ```
         
         ![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
-         For details about **DacMethod**, see [Available APIs](#section752964871810).
+         For details about **DacMethod**, see [Available APIs](#available-apis).
     
     
     - **Init** function
