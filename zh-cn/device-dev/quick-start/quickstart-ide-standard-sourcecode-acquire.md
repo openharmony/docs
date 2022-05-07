@@ -1,7 +1,7 @@
 # 获取源码
 
 
-在Ubuntu环境下通过以下步骤拉取OpenHarmony源码。
+在Ubuntu环境下通过以下步骤获取OpenHarmony源码。
 
 
 ## 前提条件
@@ -41,7 +41,7 @@
    ```
 
 
-## 获取源码
+## 获取方式
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > Master主干为开发分支，开发者可通过Master主干获取最新特性。发布分支代码相对比较稳定，开发者可基于发布分支代码进行商用功能开发。
