@@ -1,7 +1,7 @@
 # 搭建环境
 
 
-- 开发板：Hi3516DV300
+- 准备开发板：Hi3516DV300
 
 
 - [下载源码](../get-code/sourcecode-acquire.md)[下载源码](../get-code/sourcecode-acquire.md)
