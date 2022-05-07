@@ -2263,10 +2263,10 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **示例**
 
-```
+```js
 let kvStore;
 kvStore.on('syncComplete', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
@@ -2290,10 +2290,10 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 ```js
 let kvStore;
 kvStore.on('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 kvStore.off('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
