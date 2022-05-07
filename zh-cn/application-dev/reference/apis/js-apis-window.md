@@ -64,7 +64,7 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
-## SystemBarRegionTint <sup>8+</sup>
+## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
 
@@ -80,7 +80,7 @@ import window from '@ohos.window';
 | backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
 | contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
 
-## SystemBarTintState <sup>8+</sup>
+## SystemBarTintState<sup>8+</sup>
 
 当前系统栏回调信息集合。
 
@@ -88,10 +88,10 @@ import window from '@ohos.window';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
-| 名称       | 参数类型                                           | 可读 | 可写 | 说明                       |
-| ---------- | -------------------------------------------------- | ---- | ---- | -------------------------- |
-| displayId  | number                                             | 是   | 否   | 当前物理屏幕id。           |
-| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | 是   | 是   | 当前改变所有的系统栏信息。 |
+| 名称       | 参数类型                                            | 可读 | 可写 | 说明                       |
+| ---------- | --------------------------------------------------- | ---- | ---- | -------------------------- |
+| displayId  | number                                              | 是   | 否   | 当前物理屏幕id。           |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 是   | 当前改变所有的系统栏信息。 |
 
 ## Rect<sup>7+</sup>
 
@@ -271,7 +271,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建子窗口，使用Promise方式作为异步方法，其中Context详见[Context](js-apis-Context.md)。
 
-从API version 9开始，当Context为[ServiceExtAbilityContext](js-apis-serviceExtbilityContext.md)时，创建系统窗口，使用Promise方式作为异步方法。
+从API version 9开始，当Context为[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -533,7 +533,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 ## Window
 
-下列API示例中都需使用[getTopWindow()](#window-gettopwindow)、[create()](#windowcreate7)、[find()](#window-find)等先获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getTopWindow()](#windowgettopwindow)、[create()](#windowcreate7)、[find()](#windowfind7)等先获取到Window实例，再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 
