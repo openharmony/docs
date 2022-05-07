@@ -63,4 +63,4 @@
 
     ![zh-cn_image_0000001160649343](figures/zh-cn_image_0000001160649343.png)
 
-11. 烧录成功后，请根据镜像运行章节进行操作，启动系统。
+11. 烧录成功后，请根据[运行](quickstart-ide-standard-running-hi3516-running.md)章节进行操作，启动系统。
