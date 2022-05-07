@@ -24,7 +24,7 @@
 
    ![zn-cn_image_20220428170003](figures/zn-cn_image_20220428170003.png)
 
-5. 等待编译完成，在**TERMINAL**窗口输出“SUCCESS”，编译完成。
+   等待**TERMINAL**窗口输出“SUCCESS”，编译完成。
 
    ![zn-cn_image_20220428183538](figures/zn-cn_image_20220428183538.png)
 

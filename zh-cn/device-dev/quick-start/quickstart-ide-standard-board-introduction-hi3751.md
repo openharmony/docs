@@ -3,16 +3,16 @@
 
 ## 开发板简介
 
-HiSpark-Phoenix是基于海思Hi3751V350智能电视芯片的一块高性能开发板，内置高性能多核 ARM A53 CPU，多核MALI T450 GPU，支持NTSC/PAL/SECAM制式解调，支持DTMB/DVB-C/ATSC/ISDB-T等全球数字Demod,可以扩展DVB-T/T2/S/S2,支持USB播放，支持主流的视频格式包括MPGE2,H.264,H.265,RMVB,AVS+等，支持主流音频解码及音效处理，以及海思自研的SWS音效处理，支持CVBS/YPbPr/VGA/HDMI 1.4/USB接口，内置512MB DDR，支持LVDS和miniLVDS接口，支持主流的Tconless屏。
+HiSpark-Phoenix是基于海思Hi3751V350智能电视芯片的一块高性能开发板，内置高性能多核 ARM A53 CPU，多核MALI T450 GPU，支持NTSC/PAL/SECAM制式解调，支持DTMB/DVB-C/ATSC/ISDB-T等全球数字Demod,可以扩展DVB-T/T2/S/S2,支持USB播放，支持主流的视频格式包括MPGE2、H.264、H.265、RMVB、AVS+等，支持主流音频解码及音效处理，以及海思自研的SWS音效处理，支持LVDS和miniLVDS接口，支持主流的Tconless屏。
 
-  **图1** Hi3751单板正面外观图
+  **图1** HiSpark_Phoenix单板正面外观图
 
   ![zn-cn_image_Hi3751V350](figures/zn-cn_image_Hi3751V350.png)
 
 
 ## 开发板规格
 
-  **表1** Hi3751V350开发板规格清单
+  **表1** HiSpark_Phoenix开发板规格清单
 
 | 规格类型 | 规格清单 | 
 | -------- | -------- |

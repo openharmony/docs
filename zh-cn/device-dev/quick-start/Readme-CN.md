@@ -61,21 +61,21 @@
             - [编译](quickstart-ide-standard-running-hi3516-build.md)
             - [烧录](quickstart-ide-standard-running-hi3516-burning.md)
             - [运行](quickstart-ide-standard-running-hi3516-running.md)
-        - RK3568开发板
-            - [编写“Hello World”程序](quickstart-ide-standard-running-rk3568-create.md)
-            - [编译](quickstart-ide-standard-running-rk3568-build.md)
-            - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
-            - [运行](quickstart-ide-standard-running-rk3568-running.md)
         - Hi3751开发板
             - [编写“Hello World”程序](quickstart-ide-standard-running-hi3751-create.md)
             - [编译](quickstart-ide-standard-running-hi3751-build.md)
             - [烧录](quickstart-ide-standard-running-hi3751-burning.md)
             - [运行](quickstart-ide-standard-running-hi3751-running.md)
+        - RK3568开发板
+            - [编写“Hello World”程序](quickstart-ide-standard-running-rk3568-create.md)
+            - [编译](quickstart-ide-standard-running-rk3568-build.md)
+            - [烧录](quickstart-ide-standard-running-rk3568-burning.md)
+            - [运行](quickstart-ide-standard-running-rk3568-running.md)
     - 附录
         - 开发板介绍
             - [Hi3516开发板介绍](quickstart-ide-standard-board-introduction-hi3516.md)
-            - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)
             - [Hi3751开发板介绍](quickstart-ide-standard-board-introduction-hi3751.md)
+            - [RK3568开发板介绍](quickstart-ide-standard-board-introduction-rk3568.md)
 - 标准系统快速入门（安装包方式）
     - [标准系统入门概述](quickstart-standard-overview.md)
     - [搭建标准系统环境](quickstart-standard-env-setup.md)
@@ -85,16 +85,16 @@
             - [编译](quickstart-standard-running-hi3516-build.md)
             - [烧录](quickstart-standard-running-hi3516-burning.md)
             - [运行](quickstart-standard-running-hi3516-running.md)
-        - RK3568开发板
-            - [编写“Hello World”程序](quickstart-standard-running-rk3568-create.md)
-            - [编译](quickstart-standard-running-rk3568-build.md)
-            - [烧录](quickstart-standard-running-rk3568-burning.md)
-            - [运行](quickstart-standard-running-rk3568-running.md)
         - Hi3751开发板
             - [编写“Hello World”程序](quickstart-standard-running-hi3751-create.md)
             - [编译](quickstart-standard-running-hi3751-build.md)
             - [烧录](quickstart-standard-running-hi3751-burning.md)
             - [运行](quickstart-standard-running-hi3751-running.md)
+        - RK3568开发板
+            - [编写“Hello World”程序](quickstart-standard-running-rk3568-create.md)
+            - [编译](quickstart-standard-running-rk3568-build.md)
+            - [烧录](quickstart-standard-running-rk3568-burning.md)
+            - [运行](quickstart-standard-running-rk3568-running.md)
     - 常见问题
         - [hb安装异常](quickstart-standard-faq-hb.md)
         - [编译异常](quickstart-standard-faq-compose.md)
@@ -102,6 +102,6 @@
     - 附录
         - 开发板介绍
             - [Hi3516开发板介绍](quickstart-standard-board-introduction-hi3516.md)
-            - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
             - [Hi3751开发板介绍](quickstart-standard-board-introduction-hi3751.md)
+            - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
         - [参考信息](quickstart-standard-reference.md)

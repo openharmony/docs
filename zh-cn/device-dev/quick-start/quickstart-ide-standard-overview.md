@@ -28,7 +28,7 @@ OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，
 
 ## 开发板
 
-本文选取了两款典型开发板：Hi3516DV300、RK3568，并基于上述两款开发板进行开发介绍。开发板的具体外观和规格可参见[本文附录](../quick-start/quickstart-ide-standard-board-introduction-hi3516.md)，开发者可根据需要自行购买开发板。
+本文选取了三款典型开发板：Hi3516DV300、Hi3751V350和RK3568，并基于上述三款开发板进行开发介绍。开发板的具体外观和规格可参见[本文附录](../quick-start/quickstart-ide-standard-board-introduction-hi3516.md)，开发者可根据需要自行购买开发板。
 
 
 ## 开发流程
