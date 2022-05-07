@@ -17,15 +17,15 @@ It is considered best practice to learn the following basic concepts before you 
 
 -   Subsystem
 
-    OpenHarmony is designed with a layered architecture, which consists of the kernel layer, system service layer, framework layer, and application layer from the bottom up. System functions are developed by the level of system, subsystem, and module. In a multi-device deployment scenario, you can customize subsystems and modules as required. A subsystem is a logical concept and is a flexible combination of modules.
+    OpenHarmony is designed with a layered architecture, which consists of the kernel layer, system service layer, framework layer, and application layer from the bottom up. System functions are developed by the level of system, subsystem, and component. In a multi-device deployment scenario, you can customize subsystems and components as required. A subsystem is a logical concept and is a flexible combination of components.
 
--   Module
+-   Component
 
-    A module is a reusable software unit that contains source code, configuration files, resource files, and build scripts. A module can be built independently, integrated in binary mode, and then tested independently.
+    A component is a reusable software unit that contains source code, configuration files, resource files, and build scripts. A component can be built independently, integrated in binary mode, and then tested independently.
 
 -   GN
 
-    Generate Ninja (GN) is a system used to generate build files for Ninja.
+    GN is a system used to generate build files for Ninja.
 
 -   Ninja
 
@@ -54,4 +54,4 @@ See the readme of the **build** repository.
 
 [build\_lite](https://gitee.com/openharmony/build_lite)
 
-build
+[build](https://gitee.com/openharmony/build)
