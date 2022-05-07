@@ -8,6 +8,10 @@ Ability Call调用是Ability能力的扩展，它为Ability提供一种能够被
 
 ![stage-call](figures/stage-call.png)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> Callee被调用端所在的Ability，启动模式需要为单实例。
+> 当前仅支持系统应用及ServiceExtensionAbility使用Call访问Callee。
+
 ## 接口说明
 Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md#caller)。
 
