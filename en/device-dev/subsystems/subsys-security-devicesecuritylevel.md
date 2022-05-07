@@ -94,7 +94,8 @@ All the APIs are native C interfaces for implementing underlying capabilities an
     // Obtain the device security level from the device security level information.
     ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret == SUCCESS) {
-        // The operation is successful.
+        //The level is successfully queried.
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // Release the memory before the processing is complete.
@@ -126,6 +127,7 @@ void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *o
     ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret != SUCCESS) {
         // Failed to obtain the security level. You can develop a retry process as required.
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // After the device security level is successfully obtained, check the lowest security level required for the current operation.
@@ -151,6 +153,7 @@ void DeviceSecurityInfoCallback(const DeviceIdentify *identify, struct DeviceSec
     int32_t ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret != SUCCESS) {
         // Failed to obtain the information. You can develop a retry process as required.
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // After the device security level is successfully obtained, check the lowest security level required for the current operation.
