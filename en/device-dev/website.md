@@ -95,7 +95,7 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
-    - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Compatibility and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
