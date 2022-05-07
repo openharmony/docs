@@ -218,7 +218,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1.  Set up the OpenHarmony environment.
 
-    Using Hi3518EV300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3518-running.md).
+    Using Hi3518EV300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
 
     The following screen is displayed after a successful login to the OS.
 

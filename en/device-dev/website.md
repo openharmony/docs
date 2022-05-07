@@ -95,7 +95,7 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
-    - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Compatibility and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
@@ -311,11 +311,11 @@
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
       - [Guidelines for Building the Linux Kernel](kernel/kernel-standard-build.md)
-      - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)  
-        - [Enhanced SWAP](kernel-standard-mm-eswap.md)
-        - [Task Scheduling](kernel-standard-sched.md)
-          - [Related Thread Group](kernel-standard-sched-rtg.md)
-          - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
+      - Enhanced Kernel Features 
+        - [Enhanced SWAP](kernel/kernel-standard-mm-eswap.md)
+        - Task Scheduling
+          - [Related Thread Group](kernel/kernel-standard-sched-rtg.md)
+          - [Lightweight CPU Isolation](kernel/kernel-standard-sched-cpuisolation.md)  
   - Driver
     - HDF
       - [HDF Overview](driver/driver-hdf-overview.md)

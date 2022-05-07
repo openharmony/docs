@@ -81,7 +81,7 @@ board_include_dirs = []
 
 After the product directory, product definition, and board settings are correctly configured, run the precompilation command `hb set` in the project root directory. Then you can find the related product in the displayed list.
 
-![ohos_config.json](figures/asr582x_ohos_config.png)
+![ohos_config.json](figure/asr582x_ohos_config.png)
 
 After selecting a product, press **Enter**. The `ohos_config.json` file is automatically generated in the root directory. Information about the product to be compiled is listed here.
 
@@ -151,7 +151,7 @@ endchoice
 
 To compile the board BOARD_DEV_WIFI_A, you need to select **SOC_COMPANY_ASRMICRO**, **SOC_SERIES_ASR582X**, and **SOC_ASR5822S**. You can do so by running `make menuconfig` in `kernel/liteos_m`.
 
-![asr5822s_select.json](figures/asr5822s_select.png)
+![asr5822s_select.json](figure/asr5822s_select.png)
 
 The configurations are saved in `//vendor/asrmicro/wifi_demo/kernel_configs/debug.config` by default. You can directly modify the configurations in **debug.config**.
 

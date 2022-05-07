@@ -4,6 +4,3 @@
 
 -   **[hdc\_std](subsys-toolchain-hdc-guide.md)**  
 
--   **[hiperf](subsys-toolchain-hiperf.md)**  
-
-
