@@ -1,7 +1,7 @@
 # ServiceExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Implements the context that provides the capabilities and APIs of **ServiceExtension**. This class is inherited from **ExtensionContext**.
@@ -19,7 +19,7 @@ Starts an ability. This API uses a callback to return the result.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.| 
   | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
 **Example**
@@ -47,7 +47,7 @@ Starts an ability. This API uses a promise to return the result.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
 **Return value**
 
@@ -130,7 +130,7 @@ Connects this ability to a Service ability.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
   | options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.| 
 
 **Return value**
