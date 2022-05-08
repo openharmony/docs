@@ -1,12 +1,12 @@
 # Nonlinear Container HashSet
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import HashSet from '@ohos.util.HashSet';
 ```
 
@@ -32,7 +32,7 @@ A constructor used to create a **HashSet** instance.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 ```
 
@@ -51,9 +51,9 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const hashSet = new HashSet();
-hashSet.isEmpty();
+let result = hashSet.isEmpty();
 ```
 
 
@@ -77,7 +77,7 @@ Checks whether this container contains the specified entry.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -105,7 +105,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -131,7 +131,7 @@ Removes an entry from this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -147,7 +147,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -169,7 +169,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -204,7 +204,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("sdfs");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -227,7 +227,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -255,7 +255,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");

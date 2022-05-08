@@ -1,12 +1,12 @@
 # Nonlinear Container TreeMap 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import TreeMap from '@ohos.util.TreeMap'  
 ```
 
@@ -38,7 +38,7 @@ A constructor used to create a **TreeMap** instance.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 ```
 
@@ -57,7 +57,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const treeMap = new TreeMap();
 let result = treeMap.isEmpty();
 ```
@@ -83,7 +83,7 @@ Checks whether this container has the specified key.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -111,7 +111,7 @@ Checks whether this container has the specified value.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -139,7 +139,7 @@ Obtains the value of the specified key in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -161,7 +161,7 @@ Obtains the first key in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -183,7 +183,7 @@ Obtains the last key in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -205,7 +205,7 @@ Adds all entries in a **TreeMap** instance to this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -235,7 +235,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -261,7 +261,7 @@ Removes the entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -289,7 +289,7 @@ Obtains the key that is placed in front of the input key in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -318,7 +318,7 @@ Obtains the key that is placed next to the input key in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -347,7 +347,7 @@ Replaces an entry in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 let result = treeMap.replace("sdfs", 357);
@@ -362,7 +362,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -384,7 +384,7 @@ Obtains an iterator that contains all the keys in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -411,7 +411,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -446,7 +446,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 treeMap.set("dfsghsf", 357);
@@ -470,7 +470,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);
@@ -498,7 +498,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let treeMap = new TreeMap();
 treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 treeMap.set("sdfs", 356);

@@ -1,12 +1,12 @@
 # Linear Container Queue
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import Queue from '@ohos.util.Queue'  
 ```
 
@@ -33,7 +33,7 @@ A constructor used to create a **Queue** instance.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 ```
 
@@ -58,7 +58,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
@@ -83,7 +83,7 @@ Removes the first entry from this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -107,7 +107,7 @@ Obtains the first entry of this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -140,7 +140,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -161,12 +161,12 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+| IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Example**
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);

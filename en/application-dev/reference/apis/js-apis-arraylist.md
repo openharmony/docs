@@ -1,11 +1,11 @@
 # Linear Container ArrayList
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```ts
 import ArrayList from '@ohos.util.ArrayList'
 ```
 
@@ -30,7 +30,7 @@ A constructor used to create an **ArrayList** instance.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 ```
 
@@ -55,7 +55,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-  ```
+  ```ts
   let arrayList = new ArrayList();
   let result = arrayList.add("a");
   let result1 = arrayList.add(1);
@@ -80,7 +80,7 @@ Inserts an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
@@ -107,7 +107,7 @@ Checks whether this container has the specified entry.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -134,7 +134,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -166,7 +166,7 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -198,7 +198,7 @@ Removes an entry with the specified position from this container.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -228,7 +228,7 @@ Removes the first occurrence of the specified entry from this container.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -252,7 +252,7 @@ Removes from this container all of the entries within a range, including the ent
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -287,7 +287,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -325,7 +325,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -357,7 +357,7 @@ comparator
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -389,7 +389,7 @@ Obtains entries within a range in this container, including the entry at the sta
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -408,7 +408,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -432,7 +432,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -455,7 +455,7 @@ Obtains the capacity of this container.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -478,7 +478,7 @@ Converts this container into an array.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -501,7 +501,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -524,7 +524,7 @@ Increases the capacity of this container.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -542,7 +542,7 @@ Trims the capacity of this container to its current length.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
@@ -565,7 +565,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let arrayList = new ArrayList();
 arrayList.add(2);
 arrayList.add(4);
