@@ -25,7 +25,7 @@ import StartOptions from '@ohos.application.StartOptions';
 
 | 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| windowMode | 是 | 否 | number | 否 | 窗口模式。 | 
+| [windowMode](js-apis-window.md#windowmode) | 是 | 否 | number | 否 | 窗口模式。 | 
 | displayId | 是 | 否 | number | 否 | 显示ID。 | 
  
 
