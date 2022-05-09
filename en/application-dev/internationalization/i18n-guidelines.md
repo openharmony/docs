@@ -1,5 +1,6 @@
 # Internationalization Development (i18n)
 
+This development guide describes how to use i18n APIs that are not defined in ECMA 402.
 
 ## Obtaining System Language and Region Information
 
