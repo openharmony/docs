@@ -38,7 +38,7 @@ struct UartHostMethod {
 | Deinit | host：&nbsp;结构体指针，核心层UART控制器 | 无 | HDF_STATUS相关状态 | 去初始化Uart设备 | 
 | Read | host：&nbsp;结构体指针，核心层UART控制器<br>size：uint32_t，数据大小 | data：&nbsp;uint8_t指针，传出的数据 | HDF_STATUS相关状态 | 接收数据RX | 
 | Write | host：&nbsp;结构体指针，核心层UART控制器<br>data：uint8_t指针，传入数据<br>size：uint32_t，数据大小 | 无 | HDF_STATUS相关状态 | 发送数据TX | 
-| SetBaud | host：&nbsp;结构体指针，核心层UART控制器<br>baudRate:：&nbsp;uint32_t指针，波特率传入值 | 无 | HDF_STATUS相关状态 | 设置波特率 | 
+| SetBaud | host：&nbsp;结构体指针，核心层UART控制器<br>baudRate：&nbsp;uint32_t指针，波特率传入值 | 无 | HDF_STATUS相关状态 | 设置波特率 | 
 | GetBaud | host：&nbsp;结构体指针，核心层UART控制器 | baudRate：&nbsp;uint32_t指针，传出的波特率 | HDF_STATUS相关状态 | 获取当前设置的波特率 | 
 | GetAttribute | host：&nbsp;结构体指针，核心层UART控制器 | attribute：&nbsp;结构体指针，传出的属性值（见uart_if.h中UartAttribute定义） | HDF_STATUS相关状态 | 获取设备uart相关属性 | 
 | SetAttribute | host：&nbsp;结构体指针，核心层UART控制器<br>attribute：&nbsp;结构体指针，属性传入值 | 无 | HDF_STATUS相关状态 | 设置设备UART相关属性 | 
@@ -80,7 +80,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
    ```
    struct HdfDriverEntry g_hdfUartDevice = {
        .moduleVersion = 1,
-       .moduleName = "HDF_PLATFORM_UART",// 【必要且与 HCS 里面的名字匹配】
+       .moduleName = "HDF_PLATFORM_UART",// 【必要且与HCS里面的名字匹配】
        .Bind = HdfUartDeviceBind,        // 见Bind参考
        .Init = HdfUartDeviceInit,        // 见Init参考
        .Release = HdfUartDeviceRelease,  // 见Release参考
@@ -258,7 +258,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       static int32_t HdfUartDeviceBind(struct HdfDeviceObject *device)
       {
           ...
-          return (UartHostCreate(device) == NULL) ? HDF_FAILURE : HDF_SUCCESS;// 【必须做】调用核心层函数 UartHostCreate
+          return (UartHostCreate(device) == NULL) ? HDF_FAILURE : HDF_SUCCESS;// 【必须做】调用核心层函数UartHostCreate
       }
       // uart_core.c核心层UartHostCreate函数说明
       struct UartHost *UartHostCreate(struct HdfDeviceObject *device)
