@@ -4,7 +4,8 @@
 
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发](quick-start/start-with-ets.md)
+    - [使用eTS语言开发（传统代码方式）](quick-start/start-with-ets.md)
+    - [使用eTS语言开发（低代码方式）](quick-start/start-with-ets-low-code.md)
     - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
 
