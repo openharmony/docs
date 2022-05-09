@@ -12,7 +12,7 @@ To accommodate different developer habits, OpenHarmony provides two modes for ge
 - Installation package mode: Dependency download and installation as well as building operations are performed using commands. Burning and running are performed in DevEco Device Tool.
   OpenHarmony also provides the [Docker environment](../get-code/gettools-acquire.md), which can significantly simplify the environment configuration before compilation. You can build your source code in the Docker environment if you are more accustomed to using the installation package mode.
 
-This document exemplifies how to use the IDE mode. For details about the installation package mode, see [Getting Started with Mini and Small Systems (Installation Package Mode)](../quick-start/quickstart-lite-package-directory.md).
+This document exemplifies how to use the IDE mode. For details about the installation package mode, see [Getting Started with Mini and Small Systems (Installation Package Mode)](../quick-start/quickstart-lite-overview.md).
 
 
 ## Development Environment
@@ -28,7 +28,7 @@ This document describes how to develop OpenHarmony in the Windows+Ubuntu environ
 
 ## Development Boards
 
-In this document, two development board models are used as examples: Hi3861 and Hi3516D V300. For details about these development boards, see [Appendix](../quick-start/quickstart-ide-lite-board-introduction.md). You can purchase the development board as required.
+In this document, two development board models are used as examples: Hi3861 and Hi3516D V300. For details about these development boards, see [Appendix](../quick-start/quickstart-ide-lite-introduction-hi3861.md). You can purchase the development board as required.
 
 
 ## Development Process
