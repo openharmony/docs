@@ -17,7 +17,7 @@ OpenHarmony标准系统适用于参考内存≥128MiB的设备。通过本文，
 
 ## 开发环境
 
-开发者通常习惯采用Windows+Ubuntu环境进行OpenHarmony开发：
+推荐开发者采用Windows+Ubuntu环境进行OpenHarmony开发：
 
 - Windows：用于源码开发、烧录等。
 

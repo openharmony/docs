@@ -20,7 +20,7 @@ OpenHarmony轻量和小型系统适用于内存较小的IOT设备（参考内存
 
 ## 开发环境
 
-开发者通常习惯采用Windows+Ubuntu环境进行OpenHarmony开发：
+推荐开发者采用Windows+Ubuntu环境进行OpenHarmony开发：
 
 - Windows：用于源码开发、烧录等。
 
