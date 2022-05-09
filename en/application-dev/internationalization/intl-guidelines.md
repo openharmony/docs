@@ -1,5 +1,6 @@
 # Internationalization Development (intl)
 
+This development guide describes how to use i18n APIs that are defined in ECMA 402.
 
 ## Setting Locale Information
 
