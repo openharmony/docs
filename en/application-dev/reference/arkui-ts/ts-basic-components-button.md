@@ -2,6 +2,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -21,7 +22,8 @@ Supported
 ## APIs
 
 - Button(options?: {type?: ButtonType, stateEffect?: boolean})
-    **Table1** options parameters
+  
+  **Table 1** options parameters
   
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
@@ -30,14 +32,15 @@ Supported
 
 
 - Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+  
   Creates a button component based on text content. In this case, the **&lt;Button&gt;** component cannot contain child components.
 
-    **Table2** value parameters
-  
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | label | string | No | - | Button text. |
-  | options | Object | No | - | For details, see the **options** parameters. |
+  **Table 2** value parameters
+
+| Name | Type | Mandatory | Default Value | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| label | string | No | - | Button text. |
+| options | Object | No | - | For details, see the **options** parameters. |
 
 
 ## Attributes
