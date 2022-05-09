@@ -3,17 +3,17 @@
 
 ## 概述
 
-- SPI是串行外设接口（Serial Peripheral Interface）的缩写，是一种高速的，全双工，同步的通信总线。
+SPI指串行外设接口（Serial Peripheral Interface），是一种高速的，全双工，同步的通信总线。
 
-- SPI是由Motorola公司开发，用于在主设备和从设备之间进行通信，常用于与闪存、实时时钟、传感器以及模数转换器等进行通信。
+SPI是由Motorola公司开发，用于在主设备和从设备之间进行通信，常用于与闪存、实时时钟、传感器以及模数转换器等进行通信。
 
-- SPI以主从方式工作，通常有一个主设备和一个或者多个从设备。主设备和从设备之间一般用4根线相连，它们分别是：
-  - SCLK – 时钟信号，由主设备产生；
-  - MOSI – 主设备数据输出，从设备数据输入；
-  - MISO – 主设备数据输入，从设备数据输出；
-  - CS – 片选，从设备使能信号，由主设备控制。
+SPI以主从方式工作，通常有一个主设备和一个或者多个从设备。主设备和从设备之间一般用4根线相连，它们分别是：
+  - SCLK：时钟信号，由主设备产生；
+  - MOSI：主设备数据输出，从设备数据输入；
+  - MISO：主设备数据输入，从设备数据输出；
+  - CS：片选，从设备使能信号，由主设备控制。
 
-- 一个主设备和两个从设备的连接示意图如下所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
+一个主设备和两个从设备的连接示意图如下所示，Device A和Device B共享主设备的SCLK、MISO和MOSI三根引脚，Device A的片选CS0连接主设备的CS0，Device B的片选CS1连接主设备的CS1。
 
   **图1** SPI主从设备连接示意图
 
@@ -32,11 +32,11 @@
 
 - SPI接口定义了操作SPI设备的通用方法集合，包括：
   - SPI设备句柄获取和释放。
-  - SPI读写:  从SPI设备读取或写入指定长度数据。
+  - SPI读写: 从SPI设备读取或写入指定长度数据。
   - SPI自定义传输：通过消息传输结构体执行任意读写组合过程。
   - SPI设备配置：获取和设置SPI设备属性。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 当前只支持主机模式，不支持从机模式。
 
 
@@ -44,13 +44,17 @@
 
   **表1** SPI驱动API接口功能介绍
 
-| 功能分类 | 接口名 | 
+| 接口名 | 接口描述 | 
 | -------- | -------- |
-| SPI设备句柄获取释放接口 | -&nbsp;SpiOpen：获取SPI设备句柄<br/>-&nbsp;SpiClose：释放SPI设备句柄 | 
-| SPI读写接口 | -&nbsp;SpiRead：读取指定长度的数据<br/>-&nbsp;SpiWrite：写入指定长度的数据<br/>-&nbsp;SpiTransfer：SPI数据传输接口 | 
-| SPI设备配置接口 | -&nbsp;SpiSetCfg：根据指定参数，配置SPI设备<br/>-&nbsp;SpiGetCfg：获取SPI设备配置参数 | 
+| SpiOpen | 获取SPI设备句柄 | 
+| SpiClose | 释放SPI设备句柄 | 
+| SpiRead | 读取指定长度的数据 | 
+| SpiWrite | 写入指定长度的数据 | 
+| SpiTransfer | SPI数据传输接口 | 
+| SpiSetCfg | 根据指定参数，配置SPI设备 | 
+| SpiGetCfg | 获取SPI设备配置参数 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
@@ -79,10 +83,10 @@ DevHandle SpiOpen(const struct SpiDevInfo *info);
 
 | **参数** | **参数描述** |
 | -------- | -------- |
-| info       | SPI设备描述符       |
-| **返回值** | **返回值描述**      |
-| NULL       | 获取SPI设备句柄失败 |
-| 设备句柄   | 对应的SPI设备句柄   |
+| info | SPI设备描述符 |
+| **返回值** | **返回值描述** |
+| NULL | 获取SPI设备句柄失败 |
+| 设备句柄 | 对应的SPI设备句柄 |
 
 假设系统中的SPI设备总线号为0，片选号为0，获取该SPI设备句柄的示例如下：
 
@@ -115,11 +119,11 @@ int32_t SpiGetCfg(DevHandle handle, struct SpiCfg *cfg);
 
 | **参数** | **参数描述** |
 | -------- | -------- |
-| handle     | SPI设备句柄     |
+| handle     | SPI设备句柄 |
 | cfg        | SPI设备配置参数 |
-| **返回值** | **返回值描述**  |
-| 0          | 获取配置成功    |
-| 负数       | 获取配置失败    |
+| **返回值** | **返回值描述** |
+| 0          | 获取配置成功 |
+| 负数       | 获取配置失败 |
 
 
 ```
@@ -145,11 +149,11 @@ int32_t SpiSetCfg(DevHandle handle, struct SpiCfg *cfg);
 
 | **参数** | **参数描述** |
 | -------- | -------- |
-| handle     | SPI设备句柄     |
+| handle     | SPI设备句柄 |
 | cfg        | SPI设备配置参数 |
-| **返回值** | **返回值描述**  |
-| 0          | 配置成功        |
-| 负数       | 配置失败        |
+| **返回值** | **返回值描述** |
+| 0          | 配置成功 |
+| 负数       | 配置失败 |
 
 
 ```
@@ -181,12 +185,12 @@ if (ret != 0) {
 
   | **参数** | **参数描述** |
   | -------- | -------- |
-  | handle     | SPI设备句柄      |
+  | handle     | SPI设备句柄 |
   | buf        | 待写入数据的指针 |
   | len        | 待写入的数据长度 |
-  | **返回值** | **返回值描述**   |
-  | 0          | 写入成功         |
-  | 负数       | 写入失败         |
+  | **返回值** | **返回值描述** |
+  | 0          | 写入成功 |
+  | 负数       | 写入失败 |
 
 
   ```
@@ -212,12 +216,12 @@ if (ret != 0) {
 
   | **参数** | **参数描述** |
   | -------- | -------- |
-  | handle     | SPI设备句柄      |
-  | buf        | 待读取数据的指针 |
-  | len        | 待读取的数据长度 |
-  | **返回值** | **返回值描述**   |
-  | 0          | 读取成功         |
-  | 负数       | 读取失败         |
+  | handle | SPI设备句柄 |
+  | buf | 待读取数据的指针 |
+  | len | 待读取的数据长度 |
+  | **返回值** | **返回值描述** |
+  | 0 | 读取成功 |
+  | 负数 | 读取失败 |
 
 
   ```
@@ -243,19 +247,19 @@ if (ret != 0) {
 
   | **参数** | **参数描述** |
   | -------- | -------- |
-  | handle     | SPI设备句柄      |
-  | msgs       | 待传输数据的数组 |
-  | count      | msgs数组长度     |
-  | **返回值** | **返回值描述**   |
-  | 0          | 执行成功         |
-  | 负数       | 执行失败         |
+  | handle | SPI设备句柄 |
+  | msgs | 待传输数据的数组 |
+  | count | msgs数组长度 |
+  | **返回值** | **返回值描述** |
+  | 0 | 执行成功 |
+  | 负数 | 执行失败 |
 
 
   ```
   int32_t ret;
   uint8_t wbuff[1] = {0x12};
   uint8_t rbuff[1] = {0};
-  struct SpiMsg msg;        /* 自定义传输的消息*/
+  struct SpiMsg msg;        /* 自定义传输的消息 */
   msg.wbuf = wbuff;         /* 写入的数据 */
   msg.rbuf = rbuff;         /* 读取的数据 */
   msg.len = 1;              /* 读取、写入数据的长度都是1 */
@@ -285,7 +289,7 @@ void SpiClose(DevHandle handle);
 
 | **参数** | **参数描述** |
 | -------- | -------- |
-| handle   | SPI设备句柄  |
+| handle | SPI设备句柄 |
 
 
 ```
