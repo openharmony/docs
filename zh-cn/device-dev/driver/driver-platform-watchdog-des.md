@@ -10,15 +10,18 @@
 
   **表1** 看门狗API接口功能介绍
 
-| 功能分类 | 接口描述 | 
+| 接口 | 接口描述 | 
 | -------- | -------- |
-| 打开/关闭看门狗 | WatchdogOpen：打开看门狗设备<br/>WatchdogClose：关闭看门狗设备 | 
-| 启动/停止看门狗 | WatchdogStart：启动看门狗<br/>WatchdogStop：停止看门狗 | 
-| 设置/获取超时时间 | WatchdogSetTimeout：设置看门狗超时时间<br/>WatchdogGetTimeout：获取看门狗超时时间 | 
-| 获取看门狗状态 | WatchdogGetStatus：获取看门狗状态 | 
-| 清除看门狗定时器 | WatchdogFeed：清除看门狗定时器(喂狗) | 
+| WatchdogOpen | 打开看门狗 | 
+| WatchdogClose | 关闭看门狗 | 
+| WatchdogStart | 启动看门狗 | 
+| WatchdogStop | 停止看门狗 | 
+| WatchdogSetTimeout | 设置看门狗超时时间 | 
+| WatchdogGetTimeout | 获取看门狗超时时间 | 
+| WatchdogGetStatus | 获取看门狗状态 | 
+| WatchdogFeed | 清除看门狗定时器（喂狗) | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的看门狗的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
