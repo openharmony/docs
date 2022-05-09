@@ -4,7 +4,7 @@
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of API version 9 is of the Canary version and are for trial use only. The API call may be unstable.
+> The APIs of API version 9 are of the canary version and are for trial use only. The API call may be unstable.
 
 ## Modules to Import
 
