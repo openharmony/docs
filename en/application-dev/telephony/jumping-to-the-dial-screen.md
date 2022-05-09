@@ -5,7 +5,7 @@ You can use this service for your application to redirect users to the dial scre
 
 ## Available APIs
 
-The call module provides APIs for call management. The observer module provides APIs to register or unregister the observer for cellular network status changes. The following table describes the related APIs.
+The call module provides APIs for call management. The observer module provides APIs to register or unregister an observer for call service status changes. The following table describes the related APIs.
 
 | Category| API| Description| Required Permission|
 | -------- | -------- | -------- | -------- |
