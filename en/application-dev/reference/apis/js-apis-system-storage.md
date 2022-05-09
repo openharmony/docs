@@ -2,7 +2,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
-> - The APIs of this module are no longer maintained since API Version 6. You are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+> - The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -10,7 +10,7 @@
 ## Modules to Import
 
 
-```
+```js
 import storage from '@system.storage';
 ```
 
@@ -19,7 +19,7 @@ import storage from '@system.storage';
 
 get(Object): void
 
-Obtains the stored data.
+Reads the value stored in the cache based on the specified key.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -27,15 +27,15 @@ Obtains the stored data.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Index of the data to obtain.|
+| key | string | Yes| Key of the data to read.|
 | default | string | No| Default value returned when the **key** does not exist.|
-| success | Function | No| Called when the stored data is successfully obtained.|
-| fail | Function | No| Called when the stored data failed to be obtained.|
-| complete | Function | No| Called when the execution is complete.|
+| success | Function | No| Called to return the value obtained when **storage.get()** is successful.|
+| fail | Function | No| Called when **storage.get()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
+| complete | Function | No| Called when **storage.get()** is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   storageGet() {        
     storage.get({            
@@ -59,7 +59,7 @@ export default {
 
 set(Object): void
 
-Modifies the stored data.
+Sets the value in the cache based on the specified key.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -67,15 +67,15 @@ Modifies the stored data.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Index of the data to modify.|
-| value | string | No| New value to set. The maximum length is 128 bytes.|
-| success | Function | No| Called when the data is successfully modified.|
-| fail | Function | No| Called when the data failed to be modified.|
-| complete | Function | No| Called when the execution is complete.|
+| key | string | Yes| Key of the value to set.|
+| value | string | Yes| New value to set. The maximum length is 128 bytes.|
+| success | Function | No| Called when **storage.set()** is successful.|
+| fail | Function | No| Called when **storage.set()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
+| complete | Function | No| Called when **storage.set()** is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   storageSet() {        
     storage.set({            
@@ -97,7 +97,7 @@ export default {
 
 clear(Object): void
 
-Clears the stored data.
+Clears the key-value pairs from the cache.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -105,13 +105,13 @@ Clears the stored data.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No| Called when the data is successfully cleared.|
-| fail | Function | No| Called when the data failed to be cleared.|
-| complete | Function | No| Called when the execution is complete.|
+| success | Function | No| Called when **storage.clear()** is successful.|
+| fail | Function | No| Called when **storage.clear()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
+| complete | Function | No| Called when **storage.clear()** is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   storageClear() {        
     storage.clear({            
@@ -131,7 +131,7 @@ export default {
 
 delete(Object): void
 
-Deletes the stored data.
+Deletes the key-value pair based on the specified key.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -139,14 +139,14 @@ Deletes the stored data.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Index of the data to delete.|
-| success | Function | No| Called when the data is deleted.|
-| fail | Function | No| Called when the data failed to be deleted.|
-| complete | Function | No| Called when the execution is complete.|
+| key | string | Yes| Key of the data to delete.|
+| success | Function | No| Called when **storage.delete()** is successful.|
+| fail | Function | No| Called when **storage.delete()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
+| complete | Function | No| Called when **storage.delete()** is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   storageDelete() {        
     storage.delete({            
