@@ -1,7 +1,8 @@
-# OffscreenCanvasRenderingConxt2D
+# OffscreenCanvasRenderingContext2D
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
