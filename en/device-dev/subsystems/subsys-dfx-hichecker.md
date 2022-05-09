@@ -20,23 +20,23 @@ HiChecker provides the APIs listed in the following table.
 
   **Table 1** HiChecker APIs
 
-| **API**| **Description**| 
-| -------- | -------- |
-| uint_64_t&nbsp;RULE_CAUTION_PRINT_LOG<br>=&nbsp;1&lt;&lt;63; | Defines an alarm rule, which is programmed to record a log when an alarm is generated.| 
-| uint_64_t&nbsp;RULE_CAUTION_TRIGGER_CRASH&nbsp;=&nbsp;1&lt;&lt;62; | Defines an alarm rule, which is programmed to force the application to exit when an alarm is generated.| 
-| uint_64_t&nbsp;RULE_THREAD_CHECK_SLOW_PROCESS&nbsp;=&nbsp;1; | Defines a check rule, which is programmed to check whether any time-consuming function is called.| 
-| uint_64_t&nbsp;RULE_CHECK_SLOW_EVENT&nbsp;=&nbsp;1&lt;&lt;32; | Defines a check rule, which is programmed to check whether the event distribution or processing time has exceeded the specified time threshold.| 
-| uint_64_t&nbsp;RULE_CHECK_ABILITY_CONNECTION_LEAK&nbsp;=&nbsp;1&lt;&lt;33; | Defines a check rule, which is programmed to check ability leakage.| 
-| AddRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.| 
-| RemoveRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | Removes one or more rules. The removed rules will no longer take effect.| 
-| GetRule()&nbsp;:&nbsp;uint_64_t | Obtains a collection of thread, process, and alarm rules that have been added.| 
-| Contains(uint_64_t&nbsp;rule)&nbsp;:&nbsp;bool | Checks whether the collection of added rules contains a specific rule. If a thread-level rule is specified, the system only checks whether it is contained in the current thread.| 
-| NotifySlowProcess(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application of a slow process so that your application avoids calling it directly in key threads.| 
-| NotifySlowEvent(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application that event distribution or execution has timed out.| 
-| NotifyAbilityConnectionLeak(Caution&nbsp;caution)&nbsp;:&nbsp;void | Notifies your application that AbilityConnection leakage has occurred.| 
-| GetTriggerRule()&nbsp;:&nbsp;uint_64_t | Obtains the rule that triggers the current alarm.| 
-| GetCautionMsg()&nbsp;:&nbsp;std::string | Obtains the alarm message.| 
-| GetStackTrace()&nbsp;:&nbsp;std::string | Obtains the stack when an alarm is triggered.| 
+| **Class**| **API**| **Description**| 
+| -------- | -------- | -------- |
+| HiChecker | uint_64_t&nbsp;RULE_CAUTION_PRINT_LOG<br>=&nbsp;1&lt;&lt;63; | Defines an alarm rule, which is programmed to record a log when an alarm is generated.| 
+|| uint_64_t&nbsp;RULE_CAUTION_TRIGGER_CRASH&nbsp;=&nbsp;1&lt;&lt;62; | Defines an alarm rule, which is programmed to force the application to exit when an alarm is generated.| 
+|| uint_64_t&nbsp;RULE_THREAD_CHECK_SLOW_PROCESS&nbsp;=&nbsp;1; | Defines a check rule, which is programmed to check whether any time-consuming function is called.| 
+|| uint_64_t&nbsp;RULE_CHECK_SLOW_EVENT&nbsp;=&nbsp;1&lt;&lt;32; | Defines a check rule, which is programmed to check whether the event distribution or processing time has exceeded the specified time threshold.| 
+|| uint_64_t&nbsp;RULE_CHECK_ABILITY_CONNECTION_LEAK&nbsp;=&nbsp;1&lt;&lt;33; | Defines a check rule, which is programmed to check ability leakage.| 
+|| AddRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.| 
+|| RemoveRule(uint_64_t&nbsp;rule)&nbsp;:&nbsp;void | Removes one or more rules. The removed rules will no longer take effect.| 
+|| GetRule()&nbsp;:&nbsp;uint_64_t | Obtains a collection of thread, process, and alarm rules that have been added.| 
+|| Contains(uint_64_t&nbsp;rule)&nbsp;:&nbsp;bool | Checks whether the collection of added rules contains a specific rule. If a thread-level rule is specified, the system only checks whether it is contained in the current thread.| 
+|| NotifySlowProcess(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application of a slow process so that your application avoids calling it directly in key threads.| 
+|| NotifySlowEvent(std::string&nbsp;tag)&nbsp;:&nbsp;void | Notifies your application that event distribution or execution has timed out.| 
+|| NotifyAbilityConnectionLeak(Caution&nbsp;caution)&nbsp;:&nbsp;void | Notifies your application that AbilityConnection leakage has occurred.| 
+| Caution | GetTriggerRule()&nbsp;:&nbsp;uint_64_t | Obtains the rule that triggers the current alarm.| 
+|| GetCautionMsg()&nbsp;:&nbsp;std::string | Obtains the alarm message.| 
+|| GetStackTrace()&nbsp;:&nbsp;std::string | Obtains the stack when an alarm is triggered.| 
 
 
 ### Development Example
