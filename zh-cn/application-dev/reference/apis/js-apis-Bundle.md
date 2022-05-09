@@ -1364,9 +1364,9 @@ bundle.getAbilityIcon(bundleName, moduleName, abilityName, (err, data) => {
 })
 ```
 
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
+## bundle.queryExtensionAbilityInfos<sup>9+</sup>
 
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
+queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用Promise形式返回结果。
 
@@ -1383,6 +1383,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型     | 必填   | 描述                                       |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | Want   | 是    | 包含要查询的应用程序包名称的意图。                        |
+| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型                 |
 | extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
 | userId         | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 
@@ -1395,13 +1396,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
+let extensionType = 0;
 let extensionFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
+bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
@@ -1411,9 +1413,9 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
 
 
 
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
+## bundle.c<sup>9+</sup>
 
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
+queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
 
@@ -1430,6 +1432,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | Want                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型                   |
 | extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值，大于等于0。 |
 | userId         | number                                   | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 | callback       | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
@@ -1437,24 +1440,25 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
+let extensionType = 0;
 let extensionFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
-})
+const receiver = function onReceive(err, data) {
+    var errValue = JSON.stringify(err)
+    var dataValue = JSON.stringify(data)
+    console.error('Operation failed. Cause: ' + errValue);
+    console.error('Operation failed. Cause: ' + dataValue);
+}
+bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, userId, receiver)
 ```
 
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
+## bundle.queryExtensionAbilityInfos<sup>9+</sup>
 
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
+queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
 
 以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
 
@@ -1471,24 +1475,26 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | Want                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型                   |
 | extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
 | callback       | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
 
 **示例：**
 
 ```js
+let extensionType = 0;
 let extensionFlags = 0;
 let want = {
     bundleName : "com.example.myapplication",
     abilityName : "com.example.myapplication.MainAbility"
 };
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
-})
+const receiver = function onReceive(err, data) {
+    var errValue = JSON.stringify(err)
+    var dataValue = JSON.stringify(data)
+    console.error('Operation failed. Cause: ' + errValue);
+    console.error('Operation failed. Cause: ' + dataValue);
+}
+bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, receiver)
 ```
 
 ## ElementName
