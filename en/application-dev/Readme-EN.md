@@ -20,6 +20,7 @@
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
     - Basic Feature Development
+       - [Common Event and Notification](notification/Readme-EN.md)
        - [Window Manager](windowmanager/Readme-EN.md)
        - [WebGL](webgl/Readme-EN.md)
        - [Media](media/Readme-EN.md)
@@ -28,6 +29,7 @@
        - [Data Management](database/Readme-EN.md)
        - [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
        - [Background Task Management](background-task-management/Readme-EN.md)
+       - [Work Scheduler](work-scheduler/Readme-EN.md)
        - [Device Management](device/Readme-EN.md)
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
@@ -36,6 +38,7 @@
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
     - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+    - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master)
 - API References
     - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)

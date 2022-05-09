@@ -5,27 +5,44 @@
   - [@ohos.ability.dataUriUtils](js-apis-DataUriUtils.md)
   - [@ohos.ability.errorCode](js-apis-ability-errorCode.md)
   - [@ohos.ability.wantConstant](js-apis-ability-wantConstant.md)
+  - [@ohos.application.Ability](js-apis-application-ability.md)
+  - [@ohos.application.AbilityConstant](js-apis-application-abilityConstant.md)
   - [@ohos.application.abilityDelegatorRegistry](js-apis-abilityDelegatorRegistry.md)
+  - [@ohos.application.AbilityStage](js-apis-application-abilitystage.md)
   - [@ohos.application.appManager](js-apis-appmanager.md)
   - [@ohos.application.Configuration](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
+  - [@ohos.application.DataShareExtensionAbility](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
+  - [@ohos.application.FormExtension](js-apis-formextension.md)
   - [@ohos.application.formError](js-apis-formerror.md)
   - [@ohos.application.formHost](js-apis-formhost.md)
   - [@ohos.application.formInfo](js-apis-formInfo.md)
   - [@ohos.application.missionManager](js-apis-missionManager.md)
   - [@ohos.application.formProvider](js-apis-formprovider.md)
   - [@ohos.ability.particleAbility](js-apis-particleAbility.md)
+  - [@ohos.application.ServiceExtensionAbility](js-apis-service-extension-ability.md)
+  - [@ohos.application.StartOptions](js-apis-application-StartOptions.md)
+  - [@ohos.application.uriPermissionManager](js-apis-uripermissionmanager.md)
   - [@ohos.application.Want](js-apis-application-Want.md)
   - [@ohos.wantAgent](js-apis-wantAgent.md)
   - ability/[dataAbilityHelper](js-apis-dataAbilityHelper.md)
   - app/[context](js-apis-Context.md)
+  - application/[AbilityContext](js-apis-ability-context.md)
   - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
   - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
+  - application/[abilityMonitor](js-apis-application-abilityMonitor.md)
   - application/[AbilityRunningInfo](js-apis-abilityrunninginfo.md)
+  - application/[AbilityStageContext](js-apis-abilitystagecontext.md)
+  - application/[Context](js-apis-application-context.md)
+  - application/[ExtensionContext](js-apis-extension-context.md)
+  - application/[ExtensionRunningInfo](js-apis-extensionrunninginfo.md)
+  - application/[FormExtensionContext](js-apis-formextensioncontext.md)
   - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
+  - application/[PermissionRequestResult](js-apis-permissionrequestresult.md)
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
+  - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
 
 - Common Event and Notification
@@ -34,6 +51,7 @@
   - [@ohos.events.emitter](js-apis-emitter.md)
   - [@ohos.notification](js-apis-notification.md)
   - [@ohos.reminderAgent](js-apis-reminderAgent.md)
+  - application/[EventHub](js-apis-eventhub.md)
 - Bundle Management
 
   - [@ohos.bundle](js-apis-Bundle.md)
@@ -58,6 +76,7 @@
 - Media
 
   - [@ohos.multimedia.audio](js-apis-audio.md)
+  - [@ohos.multimedia.camera](js-apis-camera.md)
   - [@ohos.multimedia.image](js-apis-image.md)
   - [@ohos.multimedia.media](js-apis-media.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
@@ -70,6 +89,8 @@
 - Resource Scheduling 
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
+  - [@ohos.workScheduler](js-apis-workScheduler.md)
+  - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
 
 - Custom Management
 
@@ -89,9 +110,8 @@
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
   - [@ohos.settings](js-apis-settings.md)
-  - [@ohos.data.storage](js-apis-data-storage.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
-
+  
 - File Management
 
   - [@ohos.document](js-apis-document.md)
@@ -100,6 +120,7 @@
   - [@ohos.fileManager](js-apis-filemanager.md)
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
+  - [@ohos.volumeManager](js-apis-volumemanager.md)
 
 - Telephony Service
 
@@ -201,6 +222,7 @@
 - APIs No Longer Maintained
 
   - [@ohos.bytrace](js-apis-bytrace.md)
+  - [@ohos.data.storage](js-apis-data-storage.md)
   - [@system.app](js-apis-system-app.md)
   - [@system.battery](js-apis-system-battery.md)
   - [@system.bluetooth](js-apis-system-bluetooth.md)
