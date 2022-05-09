@@ -18,17 +18,17 @@
 
 master：最新开发版本。  
 
-发布OpenHarmony 3.1 Release版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.1-release.md)。
+OpenHarmony 3.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.1-release.md)了解版本详情。
 
-发布OpenHarmony 3.0 LTS版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)。该版本已更新至OpenHarmony 3.0.3 LTS，[了解版本详情](zh-cn/release-notes/OpenHarmony-v3.0.3-LTS.md)。
+发布OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。该版本已更新至OpenHarmony 3.0.3 LTS，点击[此处](zh-cn/release-notes/OpenHarmony-v3.0.3-LTS.md)了解版本详情。
 
-发布 OpenHarmony v2.2 Beta2版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)。
+OpenHarmony v2.2 Beta2版本：点击[此处](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)了解版本详情。
 
-发布OpenHarmony 2.0 Canary预览版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)。
+OpenHarmony 2.0 Canary预览版本：点击[此处](zh-cn/release-notes/OpenHarmony-2-0-Canary.md)了解版本详情。
 
 ### 历史稳定版本
 
-OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本，[了解版本详情](zh-cn/release-notes/OpenHarmony-v1-1-4-LTS.md)。
+OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本：点击[此处](zh-cn/release-notes/OpenHarmony-v1-1-4-LTS.md)了解版本详情。
 
 [了解更多版本详情](zh-cn/release-notes/)。
 
@@ -39,7 +39,7 @@ OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本，[了解版本详�
 
 ## 贡献
 
-非常欢迎您参与[贡献](zh-cn/contribute/参与贡献.md)，我们鼓励开发者以各种方式参与文档反馈和贡献。
+欢迎您参与[贡献](zh-cn/contribute/参与贡献.md)，我们鼓励开发者以各种方式参与文档反馈和贡献。
 
 您可以对现有文档进行评价、简单更改、反馈文档质量问题、贡献您的原创内容，详细请参考[贡献文档](zh-cn/contribute/贡献文档.md)。
 
