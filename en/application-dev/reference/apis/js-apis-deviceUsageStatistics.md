@@ -1,6 +1,7 @@
 # Device Usage Statistics
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,10 +21,10 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns whether the application specified by **bundleName** is in the idle state if the value of **bundleName** is valid; returns **null** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of an application.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns whether the application specified by **bundleName** is in the idle state if the value of **bundleName** is valid; returns **null** otherwise.|
 
 **Example**
 
@@ -47,19 +48,19 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of an application.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. Returns whether the application specified by **bundleName** is in the idle state if the value of **bundleName** is valid; returns **null** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns whether the application specified by **bundleName** is in the idle state if the value of **bundleName** is valid; returns **null** otherwise.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.isIdleState("com.ohos.camera").then( res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -77,13 +78,13 @@ Queries the priority group of the current invoker application. This API uses an 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup((err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
@@ -103,13 +104,13 @@ Queries the priority group of the current invoker application. This API uses a p
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryAppUsagePriorityGroup().then( res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( err => {
@@ -129,15 +130,15 @@ Queries the application usage duration statistics based on the specified start t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
-  | callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
+| callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
@@ -165,20 +166,20 @@ Queries the application usage duration statistics based on the specified start t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
@@ -204,16 +205,16 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | byInterval | [IntervalType](#intervaltype) | Yes| Interval type.|
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
-  | callback | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| byInterval | [IntervalType](#intervaltype) | Yes| Interval type.|
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
+| callback | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
@@ -239,21 +240,21 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | byInterval | [IntervalType](#intervaltype) | Yes| Interval type.|
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| byInterval | [IntervalType](#intervaltype) | Yes| Interval type.|
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -277,15 +278,15 @@ Queries events of all applications based on the specified start time and end tim
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
@@ -311,20 +312,20 @@ Queries events of all applications based on the specified start time and end tim
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -346,15 +347,15 @@ Queries events of this application based on the specified start time and end tim
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
@@ -378,20 +379,20 @@ Queries events of this application based on the specified start time and end tim
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | begin | number | Yes| Start time.|
-  | end | number | Yes| End time.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| begin | number | Yes| Start time.|
+| end | number | Yes| End time.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
-  ```
+  ```js
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
@@ -402,6 +403,133 @@ Queries events of this application based on the specified start time and end tim
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
   ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+
+Obtains the number of FA usage records specified by **maxNum**. This API uses a promise to return the records sorted by time (most recent first).
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| maxNum | number | No| Maximum number of returned records. The maximum and default value is **1000**. If this parameter is not specified, **1000** is used.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+    bundleState.getRecentlyUsedModules(this.maxNum).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
+    // Invocation when maxNum is not passed
+    bundleState.getRecentlyUsedModules().then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+  ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+
+Obtains the number of FA usage records specified by **maxNum**. This API uses an asynchronous callback to return the records sorted by time (most recent first).
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| maxNum | number | No| Maximum number of returned records. The maximum and default value is **1000**. If this parameter is not specified, **1000** is used.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+    bundleState.getRecentlyUsedModules(this.maxNum,(err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+        }
+    });
+
+    // Invocation when maxNum is not passed
+    stats.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+  ```
+
+## BundleActiveModuleInfo<sup>9+</sup>
+Provides the information about the FA usage.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | No| ID of the device to which the FA belongs.|
+| bundleName | string | Yes| Name of the application bundle to which the FA belongs.|
+| moduleName | string | Yes| Name of the module to which the FA belongs.|
+| abilityName | string | No| **MainAbility** name of the FA.|
+| appLabelId | number | No| Application label ID of the FA.|
+| labelId | number | No| Label ID of the module to which the FA belongs.|
+| descriptionId | number | No| Description ID of the application to which the FA belongs.|
+| abilityLableId | number | No| **MainAbility** label ID of the FA.|
+| abilityDescriptionId | number | No| **MainAbility** description ID of the FA.|
+| abilityIconId | number | No| **MainAbility** icon ID of the FA.|
+| launchedCount | number | Yes| Number of FA startup times.|
+| lastModuleUsedTime | number | Yes| Last time when the FA is used.|
+| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo9)&gt; | Yes| Array of widget usage records in the FA.|
+
+## BundleActiveFormInfo<sup>9+</sup>
+Provides the FA widget usage information.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| formName | number | Yes| Widget name.|
+| formDimension | number | Yes| Widget dimensions.|
+| formId | number | Yes| Widget ID.|
+| formLastUsedTime | number | Yes| Last time when the widget was clicked.|
+| count | number | Yes| Number of clicks on the widget.|
 
 ## BundleStateInfo
 Provides the usage duration information of an application.
@@ -435,9 +563,9 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Application usage information to merge.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Application usage information to merge.|
 
 ## BundleActiveState
 
