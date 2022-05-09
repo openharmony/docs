@@ -28,7 +28,7 @@ OpenHarmony 2.0 Canary预览版本：点击[此处](zh-cn/release-notes/OpenHarm
 
 ### 历史稳定版本
 
-OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本：点击[此处](zh-cn/release-notes/OpenHarmony-v1-1-4-LTS.md)了解版本详情。
+OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本，点击[此处](zh-cn/release-notes/OpenHarmony-v1-1-4-LTS.md)了解版本详情。
 
 [了解更多版本详情](zh-cn/release-notes/)。
 
