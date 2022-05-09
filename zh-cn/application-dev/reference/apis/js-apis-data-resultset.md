@@ -391,12 +391,12 @@ close(): void
 
 - 示例：
   ```js
-  let predicatesclose = new dataRdb.RdbPredicates("EMPLOYEE")
-  let predicatesclose = rdbStore.query(predicatesclose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoPrev.then((resultSet) {
+  let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promiseClose.then((resultSet) {
       resultSet.close()
   }).catch((err) => {
-      console.log('query failed')
+      console.log('resultset close failed')
   })
   ```
 
