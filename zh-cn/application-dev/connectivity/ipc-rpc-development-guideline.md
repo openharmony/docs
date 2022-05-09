@@ -26,7 +26,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
    class ITestAbility : public IRemoteBroker {
    public:
-   // DECLARE_INTERFACE_DESCRIPTOR是必须的，入参需使用std::u16string；
+   // DECLARE_INTERFACE_DESCRIPTOR是必需的，入参需使用std::u16string；
    DECLARE_INTERFACE_DESCRIPTOR(u"test.ITestAbility");
    int TRANS_ID_PING_ABILITY = 1; // 定义消息码
    virtual int TestPingAbility(const std::u16string &dummy) = 0; // 定义业务函数
