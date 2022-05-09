@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action, for example, submitting a form. Buttons are classified as capsule, circle, or normal buttons.
+The **\<Button>** component is usually activated by user clicks to perform a specific action, for example, submitting a form. Buttons are classified as capsule, circle, or normal buttons. For details, see [Button](../reference/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
