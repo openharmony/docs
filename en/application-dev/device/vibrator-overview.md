@@ -1,7 +1,7 @@
 # Vibrator Overview
 
 
-The vibrator service opens up the latest capabilities of the vibrator hardware to the maximum extent. By expanding the native vibrator service to implement integrated vibration and interaction design, the service delivers an exquisite integrated vibration experience and differentiated experience, and improves user interaction efficiency and usability.
+The vibrator service is built on the native vibrator service, bolstered by the latest capabilities of the vibrator hardware. By innovatively integrating vibration and interaction, the service takes user interaction efficiency and usability to the next level.
 
 
 ## Working Principles
@@ -12,7 +12,7 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
 ![0752d302-aeb9-481a-bb8f-e5524eb61eeb](figures/0752d302-aeb9-481a-bb8f-e5524eb61eeb.png)
 
-- Vibrator API: provides basic vibrator APIs, including the APIs for querying the vibrator list, querying the vibrator by effect, and triggering and stopping vibration.
+- Vibrator API: provides basic vibrator APIs, including the APIs for obtaining the vibrator list, querying the vibrator by effect, and triggering and stopping vibration.
 
 - Vibrator Framework: manages the framework layer of the vibrator and communicates with the Misc Device Service.
 
