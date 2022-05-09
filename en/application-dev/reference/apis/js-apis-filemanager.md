@@ -1,5 +1,5 @@
-# Public File Access and Management
->![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+# User File Access and Management
+>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 >- The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >- The APIs of this module are system APIs and cannot be called by third-party applications. Currently, these APIs can be called only by **filepicker**.
@@ -14,20 +14,20 @@ import filemanager from '@ohos.fileManager';
 
 getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
-Obtains information about the files in the first-level directory in asynchronous mode. This method uses a promise to return the result.
+Obtains information about the root album or directory in asynchronous mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
 - Parameters
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
 
 - Return value
 
   | Type| Description|
   | --- | -- |
-  | Promise&lt;[FileInfo](#fileinfo)[]&gt; | Promise used to return the file information obtained.|
+  | Promise&lt;[FileInfo](#fileinfo)[]&gt; | Promise used to return the root album or directory information obtained.|
 
 - Example
 
@@ -35,7 +35,7 @@ Obtains information about the files in the first-level directory in asynchronous
   filemanager.getRoot().then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   }).catch((err) => {
@@ -47,7 +47,7 @@ Obtains information about the files in the first-level directory in asynchronous
 
 getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
-Obtains information about the files in the first-level directory in asynchronous mode. This method uses a callback to return the result.
+Obtains information about the root album or directory in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
@@ -55,8 +55,8 @@ Obtains information about the files in the first-level directory in asynchronous
 
   | Name  | Type                     | Mandatory| Description                         |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained. |
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the root album or directory information obtained. |
 
 - Example
 
@@ -64,7 +64,7 @@ Obtains information about the files in the first-level directory in asynchronous
   filemanager.getRoot((err, fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   });
@@ -74,7 +74,7 @@ Obtains information about the files in the first-level directory in asynchronous
 
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}) : Promise&lt;FileInfo[]&gt;
 
-Obtains information about the files in the second-level directory in asynchronous mode. This method uses a promise to return the result.
+Obtains information about the second-level album or files in asynchronous mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
@@ -83,32 +83,32 @@ Obtains information about the files in the second-level directory in asynchronou
   | --- | --- | --- | -- |
   | path | string | Yes| URI of the directory to query.|
   | type | string | Yes| Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
   
 - Return value
 
   | Type| Description|
   | --- | -- |
-  | Promise&lt;FileInfo[]&gt; | Promise used to return the file information obtained.|
+  | Promise&lt;FileInfo[]&gt; | Promise used to return the album or file information obtained.|
 
 - Error
   | Error Info| Error Code|Description|
   | -- | --- | -- |
-  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
   | No such process | 3 | Failed to obtain the FMS service.|
-  | Not a directory | 20 | The object specified by the URI is not a directory.|
+  | Not a directory | 20 | The object specified by the URI is not a directory or album.|
 
 - Example
 
   ```js
   // Obtain all files in the directory.
-  // Call listFile() and getRoot() to obtain file URIs.
+  // Call listFile() and getRoot() to obtain the file URI.
   let media_path = file.uri
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   }).catch((err) => {
@@ -120,7 +120,7 @@ Obtains information about the files in the second-level directory in asynchronou
 
 listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : number, count? : number}, callback : AsyncCallback&lt;FileInfo[]&gt;) : void
 
-Obtains information about the files in the second-level directory in asynchronous mode. This method uses a callback to return the result.
+Obtains information about the second-level album or files in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
@@ -130,25 +130,25 @@ Obtains information about the files in the second-level directory in asynchronou
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
   | path     | string                    | Yes  | URI of the directory to query.                                               |
   | type     | string                    | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained.                                |
 - Error
 
   | Error Info                 | Error Code| Description                     |
   | ------------------------- | ------ | ------------------------- |
-  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
   | No such process           | 3      | Failed to obtain the FMS service.          |
-  | Not a directory           | 20     | The object specified by the URI is not a directory.|
+  | Not a directory           | 20     | The object specified by the URI is not a directory or album.|
 
 - Example
 
   ```js
-  // Call listFile() and getRoot() to obtain file URIs.
+  // Call listFile() and getRoot() to obtain the file URI.
   let media_path = file.uri
   filemanager.listFile(media_path, "file", (err, fileInfo) => {
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
-              console.log(JSON.Stringify(fileInfo))
+              console.log("file:"+JSON.stringify(fileInfo));
           }
       }
   });
@@ -158,7 +158,7 @@ Obtains information about the files in the second-level directory in asynchronou
 
 filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
 
-Creates a file in the specified path in asynchronous mode. This method uses a promise to return the result.
+Creates a file in the specified path in asynchronous mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
@@ -167,7 +167,7 @@ Creates a file in the specified path in asynchronous mode. This method uses a pr
   | --- | --- | --- | -- |
   | filename | string | Yes| Name of the file to create.|
   | path | string | Yes| URI of the file to create.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
 
 - Return value
 
@@ -179,9 +179,9 @@ Creates a file in the specified path in asynchronous mode. This method uses a pr
   | Error Info| Error Code|Description|
   | -- | --- | -- |
   | Operation not permitted | 1 | A file with the same name already exists.|
-  | No such file or directory | 2 | The directory or file of the specified URI does not exist.|
+  | No such file or directory | 2 | The directory or album of the specified URI does not exist.|
   | No such process | 3 | Failed to obtain the FMS service.|
-  | Not a directory | 20 | The object specified by the URI is not a directory.|
+  | Not a directory | 20 | The object specified by the URI is not a directory or album.|
 
 - Example
 
@@ -189,12 +189,11 @@ Creates a file in the specified path in asynchronous mode. This method uses a pr
   // Create a file.
   let media_path = file.uri // Obtain the file URI using listFile() and getRoot().
   let name = "xxx.jpg" // File to be saved.
-  filemanager.createFile(media_path, name)
-  .then((uri) => {
-  // The URI of the file created is returned.
-  })
-  .catch((err) => {
-      console.log(err)
+  filemanager.createFile(media_path, name).then((uri) => {
+      // The URI of the file created is returned.
+      console.log("file uri:"+uri);
+  }).catch((err) => {
+      console.log(err);
   });
   ```
 
@@ -202,7 +201,7 @@ Creates a file in the specified path in asynchronous mode. This method uses a pr
 
 createFile(path : string, filename: string, options? : {dev? : DevInfo}, callback : AsyncCallback&lt;string&gt;) : void
 
-Creates a file in the specified path in asynchronous mode. This method uses a callback to return the result.
+Creates a file in the specified path in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.FileManagerService
 
@@ -212,7 +211,7 @@ Creates a file in the specified path in asynchronous mode. This method uses a ca
   | -------- | ------------------------- | ---- | ----------------------------- |
   | filename | string                    | Yes  | Name of the file to create.               |
   | path     | string                    | Yes  | URI of the file to create.            |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: Device type. For details, see [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained. |
 
 - Error
@@ -220,9 +219,9 @@ Creates a file in the specified path in asynchronous mode. This method uses a ca
   | Error Info                 | Error Code| Description                     |
   | ------------------------- | ------ | ------------------------- |
   | Operation not permitted   | 1      | A file with the same name already exists.             |
-  | No such file or directory | 2      | The directory or file of the specified URI does not exist.|
+  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
   | No such process           | 3      | Failed to obtain the FMS service.          |
-  | Not a directory           | 20     | The object specified by the URI is not a directory.|
+  | Not a directory           | 20     | The object specified by the URI is not a directory or album.|
 
 - Example
 
@@ -233,7 +232,8 @@ Creates a file in the specified path in asynchronous mode. This method uses a ca
   // File to be saved.
   let name = "xxx.jpg"
   filemanager.createFile(media_path, name, (err, uri) => {
-  // The URI of the file created is returned.
+      // The URI of the file created is returned.
+      console.log("file uri:"+uri);
   });
   ```
 
