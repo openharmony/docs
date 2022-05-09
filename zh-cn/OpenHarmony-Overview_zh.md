@@ -389,6 +389,12 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 
 获取OpenHarmony源码：[下载说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
 
+## 示例教程<a name="sectionsamples"></a>
+
+Samples：[示例代码](https://gitee.com/openharmony/app_samples)
+
+Codelabs：[教程指导](https://gitee.com/openharmony/codelabs)
+
 ## 如何参与<a name="section19611528174215"></a>
 
 参与社区：[社区介绍](https://gitee.com/openharmony/community/blob/master/README.md)
