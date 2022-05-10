@@ -3,9 +3,9 @@
 
 ## Overview<a name="section1347805272150053"></a>
 
-A Secure Digital Input Output \(SDIO\) card is an extension of the SD specification to cover I/O functions. SD and SDIO are called multimedia card \(MMCs\). In the Hardware Driver Foundation \(HDF\) framework, the SDIO module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
+A Secure Digital Input Output \(SDIO\) card is an extension of the SD specification to cover I/O functions. SD and SDIO cards are called multimedia cards \(MMCs\). In the Hardware Driver Foundation \(HDF\) framework, the SDIO module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
-**Figure  1**  Independent service mode<a name="fig124181331222"></a>  
+**Figure  1** Independent service mode<a name="fig124181331222"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-12")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -35,7 +35,7 @@ struct SdioDeviceOps {
 };
 ```
 
-**Table  1**  Callbacks for the members in the SdioDeviceOps structure
+**Table  1** Callbacks for the members in the SdioDeviceOps structure
 
 <a name="table878215448417"></a>
 <table><thead align="left"><tr id="row17784344241"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p67842444414"><a name="p67842444414"></a><a name="p67842444414"></a>Callback</p>
@@ -263,35 +263,33 @@ struct SdioDeviceOps {
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE** 
-
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >CommonInfo includes the following information:
->-   **maxBlockNum**: specifies the maximum number of blocks in a request.
->-   **maxBlockSize**: specifies the maximum number of bytes in a block.
->-   **maxRequestSize**: specifies the maximum number of bytes in a request.
->-   **enTimeout**: specifies the maximum timeout period, in milliseconds.
->-   **funcNum**: specifies the function number, which ranges from  **1**  to  **7**.
->-   **irqCap**: specifies the interrupt request \(IRQ\) capabilities.
->-   **\(void \*\)data**
+>- **maxBlockNum**: specifies the maximum number of blocks in a request.
+>- **maxBlockSize**: specifies the maximum number of bytes in a block.
+>- **maxRequestSize**: specifies the maximum number of bytes in a request.
+>- **enTimeout**: specifies the maximum timeout period, in milliseconds.
+>- **funcNum**: specifies the function number, which ranges from **1** to **7**.
+>- **irqCap**: specifies the interrupt request \(IRQ\) capabilities.
+>- **\(void \*\)data**
 
 ## How to Develop<a name="section581179475150053"></a>
 
 The SDIO module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **sdio\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **sdio\_config.hcs** file.
 
 3.  Instantiate the SDIO controller object.
-    -   Initialize  **SdioDevice**.
-    -   Instantiate  **SdioDeviceOps**  in the  **SdioDevice**  object.
+    -   Initialize **SdioDevice**.
+    -   Instantiate **SdioDeviceOps** in the **SdioDevice** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
-
+        >![](../public_sys-resources/icon-note.gif) **NOTE**<br>
         >For details, see [Available APIs](#available-apis).
 
 
@@ -301,11 +299,11 @@ The SDIO module adaptation involves the following steps:
 
 ## Development Example<a name="section2112250242150053"></a>
 
-The following uses  **sdio\_adapter.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **sdio\_adapter.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   SDIO driver entry reference
 
@@ -315,17 +313,17 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
                 .Bind = Hi35xxLinuxSdioBind,       // See the Bind function.
           .Init = Hi35xxLinuxSdioInit,       // See the Init function.
             .Release = Hi35xxLinuxSdioRelease// See the Release function.
-           .moduleName = "HDF_PLATFORM_SDIO",// (Mandatory) The value must be the same as that of moduleName in the .hcs file.
+           .moduleName = "HDF_PLATFORM_SDIO",// (Mandatory) The value must be the same as that of moduleName in the **.hcs** file.
         };
         // Call HDF_INIT to register the driver entry with the HDF.
         HDF_INIT(g_sdioDriverEntry);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **sdio\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **SdioDevice**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **sdio\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **SdioDevice** members at the core layer.
 
-    In this example, there is only one SDIO controller. If there are multiple SDIO controllers, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **sdio\_config**  file.
+    In this example, there is only one SDIO controller. If there are multiple SDIO controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **sdio\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
          root {
@@ -349,7 +347,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
         }
         ```
 
-    -   **sdio\_config.hcs**  configuration reference
+    -  **sdio\_config.hcs** configuration reference
 
         ```
         root {
@@ -357,8 +355,8 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
             sdio_config {
               template sdio_controller {
                 match_attr = "";
-                hostId = 2; // (Mandatory) It is set to 2. For details, see mmc_config.hcs.
-                devType = 2; // (Mandatory) It is set to 2. For details, see mmc_config.hcs.
+                hostId = 2; // (Mandatory) Set the value to 2. For details, see mmc_config.hcs.
+                devType = 2; // (Mandatory) Set the value to 2. For details, see mmc_config.hcs.
               }
               controller_0x2dd1 :: sdio_controller {
                   match_attr = "hisilicon_hi35xx_sdio_0";// (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
@@ -367,11 +365,11 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
         }
         ```
 
-3.  Initialize the  **SdioDevice**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **SdioDeviceOps**  \(used to call underlying functions of the driver\) in  **SdioDevice**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **SdioDevice** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **SdioDeviceOps** \(used to call underlying functions of the driver\) in **SdioDevice**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
 
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **sdio\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values are also passed to the objects at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **sdio\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values are also passed to the objects at the core layer.
 
         ```
         typedef struct {
@@ -399,7 +397,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
         };
         ```
 
-    -   Instantiate the callback function structure  **SdioDeviceOps**  in  **SdioDevice**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the callback function structure **SdioDeviceOps** in **SdioDevice**. Other members are initialized by using the **Init** function.
 
         ```
         static struct SdioDeviceOps g_sdioDeviceOps = {
@@ -427,13 +425,13 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the **.hcs** configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-        **Table  2**  Input parameters and return values of the Bind function
+       **Table  2** Input parameters and return values of the Bind function
 
         <a name="table297118388199"></a>
         <table><thead align="left"><tr id="row197133831916"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1972138191917"><a name="p1972138191917"></a><a name="p1972138191917"></a>Status (Value)</p>
@@ -477,7 +475,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Function description:
 
-        Initializes the custom structure object and  **SdioCntlr**, calls the  **SdioCntlrAdd**  function at the core layer, and performs other initialization operations customized by the vendor.
+        Initializes the custom structure object and **SdioCntlr**, calls the **SdioCntlrAdd** function at the core layer, and performs other initialization operations customized by the vendor.
 
         ```
         static int32_t Hi35xxLinuxSdioBind(struct HdfDeviceObject *obj)
@@ -513,7 +511,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the **.hcs** configuration file information.
 
         Return values:
 
@@ -536,7 +534,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the **.hcs** configuration file information.
 
         Return values:
 
@@ -544,7 +542,7 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Bind**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Bind** function has the corresponding value assignment operations.
 
 
     ```
@@ -556,5 +554,3 @@ The following uses  **sdio\_adapter.c**  as an example to present the contents t
         Hi35xxLinuxSdioDeleteCntlr((struct MmcCntlr *)obj->service);// (Mandatory) Custom function for releasing memory. A forced conversion from HdfDeviceObject to MmcCntlr is involved.
     }
     ```
-
-
