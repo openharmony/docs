@@ -488,7 +488,7 @@ try {
 ```
 
 
-### on<sup>8+</sup> ###
+### on('distributedDataServiceDie')<sup>8+</sup> ###
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
@@ -500,7 +500,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  | 'distributedDataServiceDie'  | 是    | 服务状态改变时触发的事件名。     |
+| event  | string | 是    | 订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback  | Callback&lt;void&gt;  | 是    | 回调函数，在设备状态改变时获取通知。    |
 
 **示例**
@@ -520,7 +520,7 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('distributedDataServiceDie')<sup>8+</sup> ###
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
@@ -532,7 +532,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  | 'distributedDataServiceDie'  | 是    | 服务状态改变时触发的事件名。     |
+| event  | string | 是    | 取消订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
 | deathCallback  | Callback&lt;void&gt;  | 否    | 回调函数，取消设备状态改变时获取通知。    |
 
 
@@ -571,7 +571,7 @@ try {
 
 ## KVStoreType
 
-用于指定创建的数据库的类型。
+用于指定创建的数据库类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
@@ -2220,7 +2220,7 @@ try {
 ```
 
 
-### on
+### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
@@ -2232,7 +2232,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | 是    |回调函数名称。<br/>'dataChange'表示数据变更事件。       |
+| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
 
@@ -2246,7 +2246,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 ```
 
 
-### on
+### on('syncComplete')
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -2258,7 +2258,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'syncComplete' | 是    |回调函数名称。<br>'syncComplete'表示同步完成事件。       |
+| event  |string | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。       |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | 是    |回调函数。     |
 
 **示例**
@@ -2270,7 +2270,7 @@ kvStore.on('syncComplete', function (data) {
 });
 ```
 
-### off<sup>8+</sup>
+### off('dataChange')<sup>8+</sup>
 
 off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
@@ -2282,7 +2282,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | 是    |回调函数名称。<br/>'dataChange'表示数据变更事件。       |
+| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
 
 **示例**
@@ -3695,7 +3695,7 @@ try {
 ```
 
 
-### on<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup> ###
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -3707,12 +3707,12 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| event  |'syncComplete'   | 是    |同步完成时触发的事件名。    |
+| event  |string   | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 是    |用于向调用方发送同步结果的回调。    |
 
 **示例**
 
-```
+```js
 let kvStore;
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
@@ -3731,7 +3731,7 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup> ###
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -3743,7 +3743,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| event  |'syncComplete'   | 是    |同步完成时触发的事件名。    |
+| event  |string   | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。    |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 否    |用于向调用方发送同步结果的回调。    |
 
 **示例**
@@ -5052,7 +5052,7 @@ try {
 }
 ```
 
-### on<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup> ###
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -5064,8 +5064,8 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| event    |'syncComplete'      | 是    |同步完成时触发的事件名。 |
-| syncCallback            |Callback<Array&lt;<[string, number]&gt; | 是    |用于向调用方发送同步结果的回调。  |
+| event    |string      | 是    |订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
+| syncCallback            |Callback<Array&lt;[string, number]&gt;> | 是    |用于向调用方发送同步结果的回调。  |
 
 **示例**
 
@@ -5087,7 +5087,7 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup> ###
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -5099,7 +5099,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| event         |'syncComplete'                           | 是    |同步完成时触发的事件名。 |
+| event         |string                           | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
 | syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | 否    |用于向调用方发送同步结果的回调。  |
 
 **示例**
