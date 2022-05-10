@@ -245,11 +245,14 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
 ## Example
 
-The following example shows how to trigger an interrupt for a GPIO pin. The procedure is as follows: Set an ISR function. Set the interrupt trigger mode to edge triggering, and enable high and low levels to be written to the pin alternately to trigger the interrupt. Observe the execution of the ISR function.
+The following example shows how to trigger an interrupt for a GPIO pin. The procedure is as follows: 
 
-Select an idle GPIO pin. This example uses a Hi3516D V300 development board and pin GPIO10_3 as an example. The pin number of GPIO10_3 is 83.
+1. Select an idle GPIO pin. This example uses a Hi3516D V300 development board and pin GPIO10_3 as an example. The pin number of GPIO10_3 is 83. You can select an idle GPIO pin as required.
+2. Set an ISR function. 
+3. Set the interrupt trigger mode to edge triggering, and enable high and low levels to be written to the pin alternately to trigger the interrupt. 
+4. Observe the execution of the ISR function.
 
-  You can select an idle GPIO pin as required.
+The sample code is as follows:  
 
 ```
 #include "gpio_if.h"
