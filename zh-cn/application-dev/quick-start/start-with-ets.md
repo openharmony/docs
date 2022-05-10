@@ -8,7 +8,7 @@
 
 ## 创建eTS工程
 
-1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，则点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，请点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
 
    ![zh-cn_image_0000001223556342](figures/zh-cn_image_0000001223556342.png)
 

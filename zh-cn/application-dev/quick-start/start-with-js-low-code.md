@@ -23,7 +23,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该功能在DevEco Studio 3.0 Beta2及更高版本中支持，且compileSdkVersion必须为7或以上。
 
-1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，则点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，请点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
 
    ![zh-cn_image_0000001268198893](figures/zh-cn_image_0000001268198893.png)
 
