@@ -1190,11 +1190,11 @@ release(): Promise\<void>
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                  | 类型               | 可读 | 可写 | 说明               |
-| --------------------- | ------------------ | ---- | ---- | ------------------ |
-| clipRect<sup>9+</sup> | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。 |
-| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。         |
-| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式。         |
+| 名称                  | 类型               | 可读 | 可写 | 说明                                               |
+| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
+| clipRect<sup>9+</sup> | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
+| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
 
