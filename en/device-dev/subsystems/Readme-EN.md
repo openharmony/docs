@@ -53,7 +53,7 @@
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
   - [Sensor Usage Example](subsys-sensor-demo.md)
 - [USB](subsys-usbservice.md)
-  - [[USB Overview](subsys-usbservice-overview.md)
+  - [USB Overview](subsys-usbservice-overview.md)
   - [USB Usage Guidelines](subsys-usbservice-guide.md)
   - [USB Usage Example](subsys-usbservice-demo.md)
 - [Application Framework](subsys-application-framework.md)

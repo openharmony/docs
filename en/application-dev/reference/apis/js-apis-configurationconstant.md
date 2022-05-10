@@ -1,6 +1,6 @@
 # ConfigurationConstant
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -34,7 +34,7 @@ ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
 | COLOR_MODE_LIGHT | 1 | Light mode.| 
 
 
-## ConfigurationConstant.Direction
+## ConfigurationConstant.Direction<sup>9+</sup>
 
 The value is obtained through the **ConfigurationConstant.Direction** API.
 
@@ -48,12 +48,12 @@ ConfigurationConstant.Direction.DIRECTION_VERTICAL
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
-| DIRECTION_NOT_SET<sup>9+</sup> | -1 | Unspecified direction.| 
-| DIRECTION_VERTICAL<sup>9+</sup> | 0 | Vertical direction.| 
-| DIRECTION_HORIZONTAL<sup>9+</sup> | 1 | Horizontal direction.| 
+| DIRECTION_NOT_SET | -1 | Unspecified direction.| 
+| DIRECTION_VERTICAL | 0 | Vertical direction.| 
+| DIRECTION_HORIZONTAL | 1 | Horizontal direction.| 
 
 
-## ConfigurationConstant.ScreenDensity
+## ConfigurationConstant.ScreenDensity<sup>9+</sup>
 
 The value is obtained through the **ConfigurationConstant.ScreenDensity** API.
 
@@ -67,10 +67,10 @@ ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_NOT_SET
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
-| SCREEN_DENSITY_NOT_SET<sup>9+</sup> | 0 | Unspecified screen resolution.| 
-| SCREEN_DENSITY_SDPI<sup>9+</sup> | 120 | The screen resolution is sdpi.| 
-| SCREEN_DENSITY_MDPI<sup>9+</sup> | 160 | The screen resolution is mdpi.| 
-| SCREEN_DENSITY_LDPI<sup>9+</sup> | 240 | The screen resolution is ldpi.| 
-| SCREEN_DENSITY_XLDPI<sup>9+</sup> | 320 | The screen resolution is xldpi.| 
-| SCREEN_DENSITY_XXLDPI<sup>9+</sup> | 480 | The screen resolution is xxldpi.| 
-| SCREEN_DENSITY_XXXLDPI<sup>9+</sup> | 640 | The screen resolution is xxxldpi.| 
+| SCREEN_DENSITY_NOT_SET | 0 | Unspecified screen resolution.| 
+| SCREEN_DENSITY_SDPI | 120 | The screen resolution is sdpi.| 
+| SCREEN_DENSITY_MDPI | 160 | The screen resolution is mdpi.| 
+| SCREEN_DENSITY_LDPI | 240 | The screen resolution is ldpi.| 
+| SCREEN_DENSITY_XLDPI | 320 | The screen resolution is xldpi.| 
+| SCREEN_DENSITY_XXLDPI | 480 | The screen resolution is xxldpi.| 
+| SCREEN_DENSITY_XXXLDPI | 640 | The screen resolution is xxxldpi.| 

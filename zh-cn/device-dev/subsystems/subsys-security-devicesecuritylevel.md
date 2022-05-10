@@ -94,7 +94,8 @@ OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备
     // 从设备安全等级信息中提取设备安全等级字段
     ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret == SUCCESS) {
-        // 查询成功。
+        // 成功查询到相关等级。 
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // 结束处理前，需要释放内存
@@ -126,6 +127,7 @@ void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *o
     ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret != SUCCESS) {
         // 提取信息失败， 此场景建议开发者根据实际情况进行重试
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // 成功获取到设备安全等级，确认当前操作允许的最低安全等级
@@ -151,6 +153,7 @@ void DeviceSecurityInfoCallback(const DeviceIdentify *identify, struct DeviceSec
     int32_t ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret != SUCCESS) {
         // 获取信息失败。此场景建议开发者根据实际情况进行重试
+        FreeDeviceSecurityInfo(info);
         return;
     }
     // 成功获取到设备安全等级，确认当前操作允许的最低安全等级

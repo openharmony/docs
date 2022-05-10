@@ -10,4 +10,4 @@
 
 - **[IPC通信鉴权开发指导](subsys-security-communicationverify.md)**
 
-- **[设备安全等级管理开发指南](subsys-security-dslm.md)**
+- **[设备安全等级管理开发指南](subsys-security-devicesecuritylevel.md)**

@@ -1,6 +1,6 @@
 # ServiceExtensionAbility
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -40,7 +40,7 @@ Called when an extension is created to initialize the service logic.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
+  | want |  [Want](js-apis-application-Want.md) | Yes| Information related to this extension, including the ability name and bundle name.| 
 
 **Example**
 
@@ -84,7 +84,7 @@ Called after **onCreate** is invoked when an ability is started by calling **sta
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
+  | want |  [Want](js-apis-application-Want.md) | Yes| Information related to this extension, including the ability name and bundle name.| 
   | startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.| 
 
 **Example**
@@ -110,7 +110,7 @@ Called after **onCreate** is invoked when an ability is started by calling **con
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |  [Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
+  | want |  [Want](js-apis-application-Want.md)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
 **Return value**
 
@@ -150,7 +150,7 @@ Called when the ability is disconnected.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | want |[Want](js-apis-featureAbility.md#Want)| Yes| Information related to this extension, including the ability name and bundle name.| 
+  | want |[Want](js-apis-application-Want.md)| Yes| Information related to this extension, including the ability name and bundle name.| 
 
 **Example**
 

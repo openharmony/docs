@@ -423,7 +423,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-featureAbility.md#Want) | 是   | 启动Ability参数    |
+| want     | [Want](js-apis-application-Want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
 **示例：**
@@ -455,7 +455,7 @@ startAbility(want: Want): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-featureAbility.md#Want) | 是   | 启动Ability参数 |
+| want   | [Want](js-apis-application-Want.md) | 是   | 启动Ability参数 |
 
 **返回值：**
 

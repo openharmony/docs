@@ -100,4 +100,4 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc_std使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
-- [XTS认证用例开发指导](subsys-xts-guide.md)
+- [XTS测试用例开发指导](subsys-xts-guide.md)

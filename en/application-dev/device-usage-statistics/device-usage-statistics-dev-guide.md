@@ -1,4 +1,4 @@
-## Device Usage Statistics Development
+# Device Usage Statistics Development
 
 ## When to Use
 
@@ -21,6 +21,7 @@ import stats from '@ohos.bundleState';
 | function queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void | Queries the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually).|
 | function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the current invoker application.|
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the application specified by **bundleName** is in the idle state. |
+| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**.|
 
 ## How to Develop
 
@@ -203,5 +204,59 @@ import stats from '@ohos.bundleState';
         } else {
             console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
+    });
+    ```
+
+8. Obtain the number of FA usage records specified by **maxNum**. If **maxNum** is not specified, the default value **1000** is used. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured in the **config.json** file.
+
+    ```js
+    import stats from '@ohos.bundleState'
+
+    // Use a promise to return the result.
+    stats.getRecentlyUsedModules(1000).then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
+    // Use a promise to return the result when maxNum is not specified.
+    stats.getRecentlyUsedModules().then( res => {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
+    });
+
+    // Use an asynchronous callback to return the result.
+    stats.getRecentlyUsedModules(1000,(err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+
+    // Use an asynchronous callback to return the result when maxNum is not specified.
+    stats.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
     });
     ```

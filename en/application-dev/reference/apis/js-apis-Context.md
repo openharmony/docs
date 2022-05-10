@@ -1,5 +1,8 @@
 # Context Module
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Modules to Import
 
 ```js
@@ -15,7 +18,7 @@ var context = featureAbility.getContext();
 context.getOrCreateLocalDir()
 ```
 
-## Context.getOrCreateLocalDir
+## Context.getOrCreateLocalDir<sup>7+</sup>
 
 getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
@@ -43,7 +46,7 @@ context.getOrCreateLocalDir((err, data)=>{
 
 
 
-## Context.getOrCreateLocalDir
+## Context.getOrCreateLocalDir<sup>7+</sup>
 
 getOrCreateLocalDir(): Promise\<string>
 
@@ -71,7 +74,7 @@ context.getOrCreateLocalDir().then((data) => {
 
 
 
-## Context.verifyPermission
+## Context.verifyPermission<sup>7+</sup>
 
 verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
@@ -100,7 +103,7 @@ bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
 
 
 
-## Context.verifyPermission
+## Context.verifyPermission<sup>7+</sup>
 
 verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
@@ -123,7 +126,7 @@ var context = featureAbility.getContext();
 context.verifyPermission("com.example.permission")
 ```
 
-## Context.verifyPermission
+## Context.verifyPermission<sup>7+</sup>
 
 verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
 
@@ -158,7 +161,7 @@ context.verifyPermission('com.context.permission',Permission).then((data) => {
 
 
 
-## Context.requestPermissionsFromUser
+## Context.requestPermissionsFromUser<sup>7+</sup>
 
 requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
 
@@ -194,7 +197,7 @@ context.requestPermissionsFromUser(
 
 
 
-## Context.getApplicationInfo
+## Context.getApplicationInfo<sup>7+</sup>
 
 getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -218,7 +221,7 @@ context.getApplicationInfo()
 
 
 
-## Context.getApplicationInfo
+## Context.getApplicationInfo<sup>7+</sup>
 
 getApplicationInfo(): Promise\<ApplicationInfo>
 
@@ -245,7 +248,7 @@ context.getApplicationInfo().then((data) => {
 
 
 
-## Context.getBundleName
+## Context.getBundleName<sup>7+</sup>
 
 getBundleName(callback: AsyncCallback\<string>): void
 
@@ -269,7 +272,7 @@ context.getBundleName()
 
 
 
-## Context.getBundleName
+## Context.getBundleName<sup>7+</sup>
 
 getBundleName(): Promise\<string>
 
@@ -296,7 +299,7 @@ context.getBundleName().then((data) => {
 
 
 
-## Context.getProcessInfo
+## Context.getProcessInfo<sup>7+</sup>
 
 getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
@@ -320,7 +323,7 @@ context.getProcessInfo()
 
 
 
-## Context.getProcessInfo
+## Context.getProcessInfo<sup>7+</sup>
 
 getProcessInfo(): Promise\<ProcessInfo>
 
@@ -347,7 +350,7 @@ context.getProcessInfo().then((data) => {
 
 
 
-## Context.getElementName
+## Context.getElementName<sup>7+</sup>
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
@@ -373,7 +376,7 @@ context.getElementName()
 
 
 
-## Context.getElementName
+## Context.getElementName<sup>7+</sup>
 
 getElementName(): Promise\<ElementName>
 
@@ -400,7 +403,7 @@ context.getElementName().then((data) => {
 });
 ```
 
-## Context.getProcessName
+## Context.getProcessName<sup>7+</sup>
 
 getProcessName(callback: AsyncCallback\<string>): void
 
@@ -424,7 +427,7 @@ context.getProcessName()
 
 
 
-## Context.getProcessName
+## Context.getProcessName<sup>7+</sup>
 
 getProcessName(): Promise\<string>
 
@@ -451,7 +454,7 @@ context.getProcessName().then((data) => {
 
 
 
-## Context.getCallingBundle
+## Context.getCallingBundle<sup>7+</sup>
 
 getCallingBundle(callback: AsyncCallback\<string>): void
 
@@ -475,7 +478,7 @@ context.getCallingBundle()
 
 
 
-## Context.getCallingBundle
+## Context.getCallingBundle<sup>7+</sup>
 
 getCallingBundle(): Promise\<string>
 
@@ -606,7 +609,7 @@ context.getFilesDir().then((data) => {
 });
 ```
 
-## Context.getOrCreateDistributedDir
+## Context.getOrCreateDistributedDir<sup>7+</sup>
 
 getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
@@ -636,7 +639,7 @@ context.getOrCreateDistributedDir((err, data) => {
 });
 ```
 
-## Context.getOrCreateDistributedDir
+## Context.getOrCreateDistributedDir<sup>7+</sup>
 
 getOrCreateDistributedDir(): Promise\<string>
 
@@ -662,7 +665,7 @@ context.getOrCreateDistributedDir().then((data) => {
 });
 ```
 
-## Context.getAppType
+## Context.getAppType<sup>7+</sup>
 
 getAppType(callback: AsyncCallback\<string>): void
 
@@ -690,7 +693,7 @@ context.getAppType((err, data) => {
 });
 ```
 
-## Context.getAppType
+## Context.getAppType<sup>7+</sup>
 
 getAppType(): Promise\<string>
 
@@ -714,7 +717,7 @@ context.getAppType().then((data) => {
 });
 ```
 
-## Context.getHapModuleInfo
+## Context.getHapModuleInfo<sup>7+</sup>
 
 getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
@@ -742,7 +745,7 @@ context.getHapModuleInfo((err, data) => {
 });
 ```
 
-## Context.getHapModuleInfo
+## Context.getHapModuleInfo<sup>7+</sup>
 
 getHapModuleInfo(): Promise\<HapModuleInfo>
 
@@ -766,7 +769,7 @@ context.getHapModuleInfo().then((data) => {
 });
 ```
 
-## Context.getAppVersionInfo
+## Context.getAppVersionInfo<sup>7+</sup>
 
 getAppVersionInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
@@ -794,7 +797,7 @@ context.getAppVersionInfo((err, data) => {
 });
 ```
 
-## Context.getAppVersionInfo
+## Context.getAppVersionInfo<sup>7+</sup>
 
 getAppVersionInfo(): Promise\<AppVersionInfo>
 
@@ -818,7 +821,7 @@ context.getAppVersionInfo().then((data) => {
 });
 ```
 
-## Context.getAbilityInfo
+## Context.getAbilityInfo<sup>7+</sup>
 
 getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
@@ -846,7 +849,7 @@ context.getAbilityInfo((err, data) => {
 });
 ```
 
-## Context.getAbilityInfo
+## Context.getAbilityInfo<sup>7+</sup>
 
 getAbilityInfo(): Promise\<AbilityInfo>
 
@@ -870,7 +873,7 @@ context.getAbilityInfo().then((data) => {
 });
 ```
 
-## Context.getApplicationContext
+## Context.getApplicationContext<sup>7+</sup>
 
 getApplicationContext(): Context
 
@@ -891,7 +894,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext().getApplicationContext();
 ```
 
-## PermissionOptions
+## PermissionOptions<sup>7+</sup>
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -900,7 +903,7 @@ var context = featureAbility.getContext().getApplicationContext();
 | pid  | Read-only    | number | No  | Process ID.|
 | uid  | Read-only    | number | No  | User ID.|
 
-## PermissionRequestResult
+## PermissionRequestResult<sup>7+</sup>
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -910,7 +913,7 @@ var context = featureAbility.getContext().getApplicationContext();
 | permissions | Read-only    | Array\<string> | Yes  | Permissions requested.    |
 | authResults | Read-only    | Array\<number> | Yes  | Permission request result.   |
 
-## HapModuleInfo
+## HapModuleInfo<sup>7+</sup>
 
 Describes the HAP module information.
 
@@ -933,7 +936,7 @@ Describes the HAP module information.
 | installationFree | boolean       | Yes  | No  | When installation-free is supported.    |
 | mainElementName | string | Yes| No| Information about the entry ability.|
 
-## AppVersionInfo
+## AppVersionInfo<sup>7+</sup>
 
 | Name            | Type| Readable   | Writable  | Description|
 | ------          | ------ | ------| ------ | ------    |

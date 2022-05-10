@@ -148,7 +148,7 @@ Hi3861 WLAN模组需要的工具如下表所示。
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
 > - Hi3861开发板平台仅支持使用libgcc运行时库的静态链接，不建议开发者使用libgcc运行时库的动态链接，以免产品需遵从GPLV3许可证。
 > 
-> - 通过下述步骤2-14，我们编译好了gcc_riscv32镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载gcc_riscv32镜像的开发者可省略下述2-14步。
+> - 通过下述步骤2-14，编译好了gcc_riscv32镜像，提供给开发者[直接下载](https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz)使用。直接下载gcc_riscv32镜像的开发者可省略下述2-14步。
 
 1. 打开Linux编译服务器终端。
 

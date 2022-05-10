@@ -1,12 +1,12 @@
 # Nonlinear Container TreeSet 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import TreeSet from '@ohos.util.TreeSet'  
 ```
 
@@ -38,7 +38,7 @@ A constructor used to create a **TreeSet** instance.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 ```
 
@@ -57,7 +57,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const treeSet = new TreeSet();
 let result = treeSet.isEmpty();
 ```
@@ -83,7 +83,7 @@ Checks whether this container has the specified value.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.has(123);
 treeSet.add(123);
@@ -105,7 +105,7 @@ Obtains the value of the first entry in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -127,7 +127,7 @@ Obtains the value of the last entry in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -155,7 +155,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -181,7 +181,7 @@ Removes the entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -209,7 +209,7 @@ Obtains the value that is placed in front of the input key in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -238,7 +238,7 @@ Obtains the value that is placed next to the input key in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -261,7 +261,7 @@ Removes the first entry in this container.
 
 **Return value**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -283,7 +283,7 @@ Removes the last entry in this container.
 
 **Return value**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -299,7 +299,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -321,7 +321,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -356,7 +356,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
@@ -380,7 +380,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");
@@ -409,7 +409,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let treeSet = new TreeSet();
 treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 treeSet.add("sdfs");

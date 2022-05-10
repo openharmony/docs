@@ -5,7 +5,7 @@
 
 ## Modules to Import
 
-```
+```ts
 import deviceInfo from '@ohos.deviceInfo'
 ```
 

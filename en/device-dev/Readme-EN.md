@@ -2,7 +2,7 @@
 
 - [Device Development Overview](device-dev-guide.md)
 - Learn About OpenHarmony
-  - [OpenHarmony Community](../OpenHarmony-Overview.md) 
+  - [OpenHarmony Project](../OpenHarmony-Overview.md) 
   - [Glossary](../glossary.md) 
   - [Release Notes](../release-notes/Readme.md) 
 - Quick Start
@@ -13,6 +13,7 @@
 - Porting
   - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty.md)
   - [Mini System SoC Porting Guide](porting/porting-minichip.md)
+  - [Mini System SoC Porting Cases](porting/porting-minichip-cases.md)
   - [Small System SoC Porting Guide](porting/porting-smallchip.md)
   - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)	 	
 - Subsystem Development

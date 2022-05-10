@@ -1,12 +1,12 @@
 # Nonlinear Container LightWeightMap 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import LightWeightMap from '@ohos.util.LightWeightMap'  
 ```
 
@@ -32,7 +32,7 @@ A constructor used to create a **LightWeightMap** instance.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 ```
 
@@ -51,7 +51,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.isEmpty();
 ```
@@ -77,7 +77,7 @@ Checks whether this container contains all entries of the specified **LightWeigh
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -107,7 +107,7 @@ Checks whether this container contains the specified key.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasKey;
 lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -136,7 +136,7 @@ Checks whether this container contains the specified value.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -158,7 +158,7 @@ Increases the capacity of this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
 ```
@@ -184,7 +184,7 @@ Obtains the value of the specified key in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -212,7 +212,7 @@ Obtains the index of the first occurrence of an entry with the specified key in 
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -240,7 +240,7 @@ Obtains the index of the first occurrence of an entry with the specified value i
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -268,7 +268,7 @@ Obtains the key of an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -290,7 +290,7 @@ Adds all entries in a **LightWeightMap** instance to this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -319,7 +319,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -345,7 +345,7 @@ Removes an entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -363,7 +363,7 @@ Removes an entry at the specified position from this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the entry.|
 
 **Return value**
 
@@ -373,7 +373,7 @@ Removes an entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -402,7 +402,7 @@ Sets a value for an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -430,7 +430,7 @@ Obtains the value of an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -446,7 +446,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -468,7 +468,7 @@ Obtains an iterator that contains all the keys in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -495,7 +495,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -530,7 +530,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sdfs", 123);
 lightWeightMap.set("dfsghsf", 357);
@@ -554,7 +554,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);
@@ -581,7 +581,7 @@ Concatenates the entries in this container into a string and returns the string.
 
 **Example**
 
-  ```
+  ```ts
   let lightWeightMap = new LightWeightMap();
   lightWeightMap.set("A", 123);
   lightWeightMap.set("sdfs", 356);
@@ -602,7 +602,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 lightWeightMap.set("sdfs", 356);

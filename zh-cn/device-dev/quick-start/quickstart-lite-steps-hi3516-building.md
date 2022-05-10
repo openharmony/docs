@@ -42,7 +42,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
      ![zh-cn_image_0000001271594749](figures/zh-cn_image_0000001271594749.png)
 
-5. 编译结束后，出现“build success”字样，则证明构建成功。
+5. 编译结束后，出现“build success”字样，说明构建成功。
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 烧录相关文件获取路径：
    > 

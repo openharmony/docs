@@ -1,12 +1,12 @@
 # Linear Container List
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```ts
 import List from '@ohos.util.List'  
 ```
 
@@ -34,7 +34,7 @@ A constructor used to create a **List** instance.
 
 **Example**
 
-```
+```ts
 let list = new List();
 ```
 
@@ -59,7 +59,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 let result = list.add("a");
 let result1 = list.add(1);
@@ -84,7 +84,7 @@ Inserts an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.insert("A", 0);
 list.insert(0, 1);
@@ -111,7 +111,7 @@ Checks whether this container has the specified entry.
 
 **Example**
 
-```
+```ts
 let list = new List();
 let result = list.has("Ahfbrgrbgnutfodgorrogorg");
 list.add("Ahfbrgrbgnutfodgorrogorg");
@@ -138,7 +138,7 @@ Obtains the entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -170,7 +170,7 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -202,7 +202,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -235,7 +235,7 @@ Compares whether a specified object is equal to this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -270,7 +270,7 @@ Removes an entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -300,7 +300,7 @@ Removes the first occurrence of the specified entry from this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -333,7 +333,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -371,7 +371,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -391,20 +391,20 @@ Sorts entries in this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| comparator | function | Yes| Callback invoked for sorting.|
+| comparator | function | Yes | Callback invoked for sorting. |
 
 comparator
 
-| Name| Value Type | Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| firstValue | T | Yes| Previous entry.|
-| secondValue | T | Yes| Next entry.|
+| firstValue | T | Yes | Previous entry. |
+| secondValue | T | Yes | Next entry. |
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -435,7 +435,7 @@ Obtains entries within a range in this container, including the entry at the sta
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -454,7 +454,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -484,7 +484,7 @@ Replaces an entry at the specified position in this container with a given entry
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -502,13 +502,13 @@ Converts this container into an array.
 
 **Return value**
 
-| Value Type | Description|
+| Type | Description |
 | -------- | -------- |
-| Array&lt;T&gt; | Array obtained.|
+| Array&lt;T&gt; | Array obtained. |
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -531,7 +531,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -554,7 +554,7 @@ Obtains the first entry in this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -577,7 +577,7 @@ Obtains the last entry in this container.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);
@@ -601,7 +601,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let list = new List();
 list.add(2);
 list.add(4);

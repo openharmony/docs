@@ -170,10 +170,8 @@ if (this.subscriber != null) {
 }
 ```
 
-## Development Example
+## Samples
 
 The following sample is provided to help you better understand how to use the common event functionality:
 
-- [CommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/CommonEvent)
-
-This sample shows how to use **CommonEvent** APIs in Extended TypeScript (eTS) to create subscribers and subscribe to, publish, and unsubscribe from common events.
+- [`CommonEvent`: eTS Common Event (API 7)](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent)

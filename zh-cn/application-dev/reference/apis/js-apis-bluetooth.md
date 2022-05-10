@@ -13,17 +13,6 @@ import bluetooth from '@ohos.bluetooth';
 ```
 
 
-## 权限
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.LOCATION
-
-
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
@@ -236,6 +225,8 @@ cancelPairedDevice(deviceId: string): boolean
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -979,18 +970,44 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | [ProfileId](#ProfileId) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| A2dpSourceProfile 或者 HandsFreeAudioGatewayProfile | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [A2dpSourceProfile](#A2dpSourceProfile)或[HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
 
 **示例：**
 
 ```js
 let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+```
+
+## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
+
+getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile
+
+通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名       | 类型        | 必填   | 说明                                    |
+| --------- | --------- | ---- | ------------------------------------- |
+| profileId | [ProfileId](#ProfileId) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [A2dpSourceProfile](#A2dpSourceProfile)或 [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile)或[HidHostProfile](#HidHostProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile。 |
+
+**示例：**
+
+```js
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
 ```
 
 
@@ -1215,11 +1232,16 @@ getConnectionDevices(): Array&lt;string&gt;
 
 **返回值：**
 
-|                     |               |
-| ------------------- | ------------- |
 | 类型                  | 说明            |
+| ------------------- | ------------- |
 | Array&lt;string&gt; | 返回已连接设备的地址列表。 |
 
+**示例：**
+
+```js
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let retArray = a2dpSrc.getConnectionDevices();
+```
 
 ### getDeviceState<sup>8+</sup><a name="getDeviceState"></a>
 
@@ -1236,15 +1258,19 @@ getDeviceState(device: string): ProfileConnectionState
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
-|                                                   |                         |
-| ------------------------------------------------- | ----------------------- |
 | 类型                                              | 说明                    |
+| ------------------------------------------------- | ----------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | 返回profile的连接状态。 |
 
+**示例：**
+
+```js
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+```
 
 ## A2dpSourceProfile
 
@@ -1266,13 +1292,11 @@ connect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1298,13 +1322,11 @@ disconnect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1315,7 +1337,7 @@ let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### A2dpSourceProfile.on('connectionStateChange')<sup>8+</sup>
+### on('connectionStateChange')<sup>8+</sup>
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
@@ -1340,11 +1362,12 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-A2dpSourceProfile.on('connectionStateChange', onReceiveEvent);
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### A2dpSourceProfile.off('connectionStateChange')<sup>8+</sup>
+### off('connectionStateChange')<sup>8+</sup>
 
 off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
@@ -1357,7 +1380,7 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1369,7 +1392,9 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-A2dpSourceProfile.off('connectionStateChange', onReceiveEvent);
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+a2dpSrc.on('connectionStateChange', onReceiveEvent);
+a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
@@ -1389,9 +1414,8 @@ getPlayingState(device: string): PlayingState
 
 **返回值：**
 
-|                               |            |
-| ----------------------------- | ---------- |
 | 类型                            | 说明         |
+| ----------------------------- | ---------- |
 | [PlayingState](#PlayingState) | 远端设备的播放状态。 |
 
 **示例：**
@@ -1422,13 +1446,11 @@ connect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1454,7 +1476,6 @@ disconnect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
@@ -1470,7 +1491,7 @@ let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### HandsFreeAudioGatewayProfile.on('connectionStateChange')<sup>8+</sup>
+### on('connectionStateChange')<sup>8+</sup>
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
@@ -1495,15 +1516,116 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-HandsFreeAudioGatewayProfile.on('connectionStateChange', onReceiveEvent);
+let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### HandsFreeAudioGatewayProfile.off('connectionStateChange')<sup>8+</sup>
+### off('connectionStateChange')<sup>8+</sup>
 
 off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅HFP连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否    | 表示回调函数的入参。                               |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hfp state = '+ JSON.stringify(data));
+}
+let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+hfpAg.on('connectionStateChange', onReceiveEvent);
+hfpAg.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## HidHostProfile
+
+使用HidHostProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### connect<sup>9+</sup><a name="connect"></a>
+
+connect(device: string): boolean
+
+连接设备的HidHost服务。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### disconnect<sup>9+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+断开连接设备的HidHost服务。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### on('connectionStateChange')<sup>9+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅HidHost连接状态变化事件。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1522,9 +1644,41 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 
 ```js
 function onReceiveEvent(data) {
-    console.info('hfp state = '+ JSON.stringify(data));
+    console.info('hidHost state = '+ JSON.stringify(data));
 }
-HandsFreeAudioGatewayProfile.off('connectionStateChange', onReceiveEvent);
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+hidHost.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')<sup>9+</sup>
+
+off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅HidHost连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否   | 表示回调函数的入参。                                      |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+hidHost.on('connectionStateChange', onReceiveEvent);
+hidHost.off('connectionStateChange', onReceiveEvent);
 ```
 
 
@@ -3436,7 +3590,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-枚举，蓝牙profile id。
+蓝牙profile枚举，API9新增PROFILE_HID_HOST。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3444,3 +3598,4 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------------------------------- | ------ | --------------- |
 | PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
+| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | 表示HID profile。  |

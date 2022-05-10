@@ -622,7 +622,7 @@ Defines the parameters for sending data over the UDPSocket connection.
 
 | Name | Type                              | Mandatory| Description          |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string                             | Yes  | Data to send.  |
+| data    | string \| ArrayBuffer<sup>8+</sup>                             | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
 
 ## UDPExtraOptions
@@ -1430,7 +1430,7 @@ Defines the parameters for sending data over the TCPSocket connection.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string | Yes  | Data to send.                                                |
+| data     | string\| ArrayBuffer<sup>8+</sup> | Yes  | Data to send.                                                |
 | encoding | string | No  | Character encoding format. The options are as follows: **UTF-8**, **UTF-16BE**, **UTF-16LE**, **UTF-16**, **US-AECII**, and **ISO-8859-1**. The default value is **UTF-8**.|
 
 ## TCPExtraOptions

@@ -8,7 +8,7 @@
 
 需要通过[RdbStore.query()](js-apis-data-rdb.md#query)获取resultSet对象。
 
-```
+```js
 import dataRdb from '@ohos.data.rdb';
 let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
@@ -17,10 +17,6 @@ promise.then((resultSet) => {
     console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
     console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
 ```
-
-
-
-
 
 ## ResultSet
 
@@ -63,7 +59,7 @@ getColumnIndex(columnName: string): number
   | number | 返回指定列的索引。 |
 
 - 示例：
-  ```
+  ```js
   resultSet.goToFirstRow()
   const id = resultSet.getLong(resultSet.getColumnIndex("ID"))
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
@@ -91,7 +87,7 @@ getColumnName(columnIndex: number): string
   | string | 返回指定列的名称。 |
 
 - 示例：
-  ```
+  ```js
   const id = resultSet.getColumnName(0)
   const name = resultSet.getColumnName(1)
   const age = resultSet.getColumnName(2)
@@ -117,7 +113,7 @@ goTo(offset:number): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoto.then((resultSet) {
@@ -148,7 +144,7 @@ goToRow(position: number): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygotorow.then((resultSet) {
@@ -175,7 +171,7 @@ goToFirstRow(): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoFirst.then((resultSet) {
@@ -201,7 +197,7 @@ goToLastRow(): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoLast.then((resultSet) {
@@ -227,7 +223,7 @@ goToNextRow(): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoNext.then((resultSet) {
@@ -253,7 +249,7 @@ goToPreviousRow(): boolean
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoPrev.then((resultSet) {
@@ -284,7 +280,7 @@ getBlob(columnIndex: number): Uint8Array
   | Uint8Array | 以字节数组的形式返回指定列的值。 |
 
 - 示例：
-  ```
+  ```js
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"))
   ```
 
@@ -308,7 +304,7 @@ getString(columnIndex: number): string
   | string | 以字符串形式返回指定列的值。 |
 
 - 示例：
-  ```
+  ```js
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
   ```
 
@@ -332,7 +328,7 @@ getLong(columnIndex: number): number
   | number | 以Long形式返回指定列的值。 |
 
 - 示例：
-  ```
+  ```js
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"))
   ```
 
@@ -356,7 +352,7 @@ getDouble(columnIndex: number): number
   | number | 以double形式返回指定列的值。 |
 
 - 示例：
-  ```
+  ```js
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"))
   ```
 
@@ -380,7 +376,7 @@ isColumnNull(columnIndex: number): boolean
   | boolean | 如果当前行中指定列的值为null，则返回true，否则返回false。 |
 
 - 示例：
-  ```
+  ```js
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"))
   ```
 
@@ -394,12 +390,13 @@ close(): void
 **系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 - 示例：
-  ```
-  let predicatesclose = new dataRdb.RdbPredicates("EMPLOYEE")
-  let predicatesclose = rdbStore.query(predicatesclose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoPrev.then((resultSet) {
+  ```js
+  let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promiseClose.then((resultSet) {
       resultSet.close()
   }).catch((err) => {
-      console.log('query failed')
+      console.log('resultset close failed')
   })
   ```
+

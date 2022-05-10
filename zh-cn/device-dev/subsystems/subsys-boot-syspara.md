@@ -3,7 +3,7 @@
 
 ## 系统参数简介
 
-syspara系统为各系统服务提供简单易用的键值对访问接口，使得各个系统服务可以通过各自的系统参数来进行业务功能的配置。系统参数的访问和操作有以下几个基本原语
+syspara系统为各系统服务提供简单易用的键值对访问接口，使得各个系统服务可以通过各自的系统参数来进行业务功能的配置。系统参数的访问和操作有下图所示几个基本原语：
 
   **图1** 系统参数操作原语
 
@@ -13,12 +13,12 @@ syspara系统为各系统服务提供简单易用的键值对访问接口，使�
 
 | 功能 | 说明 | 
 | -------- | -------- |
-| get | 获取系统参数的值 | 
-| set | 设置系统参数的值 | 
-| wait | 同步等待系统参数的值变更 | 
-| watch | 异步观察系统参数的值变更 | 
+| get | 获取系统参数的值。 | 
+| set | 设置系统参数的值。 | 
+| wait | 同步等待系统参数的值变更。 | 
+| watch | 异步观察系统参数的值变更。 | 
 
-系统参数名称采用点分格式由多段组成，每一段由字母、数字、下划线组成，总长度不超过96字节；系统参数名称分为两类：
+系统参数名称采用点分格式由多段组成，每一段由字母、数字、下划线组成，总长度不超过96字节。系统参数名称分为两类：
 
   **表2** 系统参数名称
 
@@ -33,7 +33,7 @@ syspara系统为各系统服务提供简单易用的键值对访问接口，使�
 
 | 类别 | 前缀 | 说明 | 
 | -------- | -------- | -------- |
-| 常量 | **const.** | 常量参数，一旦赋值后续不会再变更；值最大长度为4096字节（包括结束符）。 | 
+| 常量 | **const.** | 常量参数，一旦赋值后续不会再变更，值最大长度为4096字节（包括结束符）。 | 
 | 可写 | 其它 | 可写参数，重启后丢失，值最大长度96字节（包括结束符）。 | 
 | 可持久化 | **persist.** | 可写并可持久化保存参数，重启后不会丢失，值最大长度96字节（包括结束符）。 | 
 
@@ -83,12 +83,12 @@ Last line."
 | -------- | -------- | -------- |
 | 字符串 | const.product.name=OHOS-PRODUCT | 不支持多行字符串，不支持注释。 | 
 | 数字 | const.os.version.api=26 | 数字不需要引号。 | 
-| 布尔 | const.telephony.enable=false | 布尔型的可以为0,1,false,true。 | 
+| 布尔 | const.telephony.enable=false | 布尔型的可以为0,1或false,true。 | 
 
 
 ### 系统参数DAC访问控制定义文件
 
-当前系统参数的访问权限控制通过自主访问控制（**Discretionary Access Control**）方式管理，访问权限定义文件后缀名为**".para.dac"**，示例如下：
+当前系统参数的访问权限控制通过自主访问控制（Discretionary Access Control）方式管理，访问权限定义文件后缀名为**".para.dac"**，示例如下：
 
   
 ```
@@ -97,7 +97,7 @@ const.product.="root:root:660"
 
 如上所示，可以通过**参数路径**为相同前缀的所有系统参数定义一类访问权限信息；DAC信息通过":"分三段来描述，分别为参数的user，group以及UGO规则信息。
 
-UGO规则信息每一位的定义如下：
+UGO规则信息每一位的定义如下图所示：
 
   **图2** UGO规则信息
 
@@ -132,7 +132,7 @@ ohos_prebuilt_etc("ohos.para.dac") {
 
 | 类别 | 路径 | 说明 | 
 | -------- | -------- | -------- |
-| 内核参数 | /proc/cmdline | 内核参数中ohospara.xxx=valXXX类型的参数都转换成ohos.boot.xxx=valXXX系统参数 | 
+| 内核参数 | /proc/cmdline | 内核参数中ohospara.xxx=valXXX类型的参数都转换成ohos.boot.xxx=valXXX系统参数。 | 
 | OS固定值 | /system/etc/param/ohos_const/\*.para | OS固定系统参数值参数优先加载。 | 
 | vendor参数值 | /vendor/etc/param/\*.para | 厂商参数值定义文件次优先级加载，可以覆盖system参数值定义。 | 
 | system参数值 | /system/etc/param/\*.para | 最后加载system参数值定义文件，文件中的系统参数值如果已经存在，则忽略掉。 | 
@@ -140,7 +140,7 @@ ohos_prebuilt_etc("ohos.para.dac") {
 
 ## shell命令使用说明
 
-通过shell命令中可直接操作系统参数：
+通过shell命令中可直接操作系统参数。系统参数shell命令如下表所示：
 
 
   **表6** 系统参数shell命令说明
@@ -148,7 +148,7 @@ ohos_prebuilt_etc("ohos.para.dac") {
 | 功能 | 说明 | 
 | -------- | -------- |
 | param&nbsp;get&nbsp;[**key**] | 获取指定key名称的系统参数值；如果不指定任何name，则返回所有系统参数值。 | 
-| param&nbsp;set&nbsp;**key&nbsp;value** | 设置指定key名称的参数值为value | 
+| param&nbsp;set&nbsp;**key&nbsp;value** | 设置指定key名称的参数值为value。 | 
 | param&nbsp;wait&nbsp;**keyvalue** | 同步等待指定key名称的系统参数值与value匹配。value可支持模糊匹配，如"\*"表示任何值，"val\*"表示只匹配前三个val字符。 | 
 | param&nbsp;dump | 显示系统参数的统计信息。 | 
 
@@ -185,8 +185,8 @@ ohos_prebuilt_etc("ohos.para.dac") {
 | const&nbsp;char\*&nbsp;GetBuildHost(void) | 返回构建主机名。 | 
 | const&nbsp;char\*&nbsp;GetBuildTime(void) | 返回构建时间。 | 
 | const&nbsp;char\*&nbsp;GetBuildRootHash(void) | 返回当前版本hash。 | 
-| const&nbsp;char\*&nbsp;GetOsReleaseType(void) | 返回系统发布类型 | 
-| int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid | 
+| const&nbsp;char\*&nbsp;GetOsReleaseType(void) | 返回系统发布类型。 | 
+| int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid。 | 
 
 
 ## 开发实例

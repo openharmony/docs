@@ -7,7 +7,7 @@
 
 - 不带界面的Ability应用，比如：音乐播放器能在后台播放音乐、后台提供计算服务、导航服务的各类应用等。
 
-- 不管是带界面的Ability应用还是不带界面的Ability应用，都要打包成Hap包，最终发布到应用市场，用户通过应用市场下载安装相应的应用。
+不管是带界面的Ability应用还是不带界面的Ability应用，都要打包成Hap包，最终发布到应用市场，用户通过应用市场下载安装相应的应用。
 
 
 ## 接口说明
@@ -17,7 +17,7 @@
 | 接口名称 | 接口描述 | 
 | -------- | -------- |
 | Want&nbsp;\*WantParseUri(const&nbsp;char&nbsp;\*uri) | 反序列化接口，由字符串生成Want对象。 | 
-| const&nbsp;char&nbsp;\*WantToUri(Want&nbsp;want) | 序列化，把Want对象生成字符串。 | 
+| const&nbsp;char&nbsp;\*WantToUri(Want&nbsp;want) | 序列化接口，把Want对象生成字符串。 | 
 | void&nbsp;SetWantElement(Want&nbsp;\*want,&nbsp;ElementName&nbsp;element); | 设置ElementName对象。 | 
 | void&nbsp;SetWantData(Want&nbsp;\*want,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;uint16_t&nbsp;dataLength) | 设置数据。 | 
 | bool&nbsp;SetWantSvcIdentity(Want&nbsp;\*want,&nbsp;SvcIdentity&nbsp;sid) | 设置SvcIdentity。 | 
@@ -80,7 +80,7 @@
    };
    ```
 
-2. 调用REGISTER_AA宏将ServiceAbility注册到应用框架中，以便应用框架实例化的MyServiceAbility。
+2. 调用REGISTER_AA宏将ServiceAbility注册到应用框架中，以便应用框架实例化MyServiceAbility。
      
    ```
    #include "my_service_ability.h"
@@ -303,7 +303,7 @@
    ```
    const uint32_t WAIT_TIMEOUT = 30;
    sem_init(&g_sem, 0, 0);
-   std::string installPath = “/storage/bundle/demo.hap”; // hap包的存储路径
+   std::string installPath = “/storage/bundle/demo.hap”; // Hap包的存储路径
    bool result = Install(installPath.c_str(), &installParam, InstallCallback);
    struct timespec ts = {};
    clock_gettime(CLOCK_REALTIME, &ts);
@@ -389,7 +389,7 @@
   
   | 命令参数 | 对应的资源文件 | 说明 | 是否可缺省 | 
   | -------- | -------- | -------- | -------- |
-  | --mode | - | 为“hap”字段，打包生成hap | 否 | 
+  | --mode | - | 为“hap”字段，打包生成Hap | 否 | 
   | --json-path | 清单文件config.json | - | 否 | 
   | --resources-path | 资源文件resources | - | 是 | 
   | --assets-path | 资源文件assets | - | 是 | 
@@ -397,7 +397,7 @@
   | --shared-libs-path | 共享库文件 | 针对系统应用的共享库，特殊情况下使用 | 是 | 
   | --ability-so-path | 主功能so文件 | - | 是 | 
   | --index-path | 资源索引 | 资源索引文件由资源生成工具生成，由资源流水线会集成该工具 | 是 | 
-  | --out-path | - | 生成的hap包输出路径，默认为当前目录 | 是 | 
+  | --out-path | - | 生成的Hap包输出路径，默认为当前目录 | 是 | 
   | --force | - | 是否覆盖原有同名文件，默认为false | 是 | 
 
 - 打包示例
