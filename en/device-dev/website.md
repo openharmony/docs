@@ -363,12 +363,12 @@
       - [WatchDog](driver-platform-watchdog-des.md)
     - Peripheral Driver Usage
       - [LCD](driver/driver-peripherals-lcd-des.md)
-      - [TOUCHSCREEN](driver/driver-peripherals-touch-des.md)
-      - [SENSOR](driver/driver-peripherals-sensor-des.md)
+      - [Touchscreen](driver/driver-peripherals-touch-des.md)
+      - [Sensor](driver/driver-peripherals-sensor-des.md)
       - [WLAN](driver/driver-peripherals-external-des.md)
-      - [AUDIO](driver/driver-peripherals-audio-des.md)
+      - [Audio](driver/driver-peripherals-audio-des.md)
       - [USB](driver/driver-peripherals-usb-des.md)
-      - [CAMERA](driver/driver-peripherals-camera-des.md)
+      - [Camera](driver/driver-peripherals-camera-des.md)
       - [Vibrator](driver-peripherals-vibrator-des.md)
       - [Light](driver-peripherals-light-des.md)
   - Compilation and Building
@@ -424,7 +424,7 @@
     - [Sensor Usage Guidelines](subsystems/subsys-sensor-guide.md)
     - [Sensor Usage Example](subsystems/subsys-sensor-demo.md)
   - USB
-    - [[USB Overview](subsystems/subsys-usbservice-overview.md)
+    - [USB Overview](subsystems/subsys-usbservice-overview.md)
     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   - Application Framework
@@ -450,7 +450,7 @@
     - [syspara Module](subsystems/subsys-boot-syspara.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
-  - [Testing](subsystems/subsys-testguide-test.md)
+  - [Test](subsystems/subsys-testguide-test.md)
   - DFX
     - [DFX](subsystems/subsys-dfx-overview.md)
     - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
