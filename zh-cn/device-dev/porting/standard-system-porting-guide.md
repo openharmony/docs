@@ -9,61 +9,53 @@
 本文以移植名为MyProduct的开发板为例讲解移植过程，假定MyProduct是MyProductVendor公司的开发板，使用MySoCVendor公司生产的MySOC芯片作为处理器。
 
 
-### 定义SOC
-
-在“//productdefine/common/device”目录下创建以SOC名字命名的json文件，并指定CPU的架构。
-
-如要移植一个叫MySOC的SOC，这个SOC采用32位ARM内核。配置如下：
-
-//productdefine/common/device/MySOC.json
-
-  
-```
-{
-    "target_os": "ohos",
-    "target_cpu": "arm"
-}
-```
-
-根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。当前仅支持arm作为target_cpu。
-
-
 ### 定义产品
 
-在“//productdefine/common/products”目录下创建以产品名命名的json文件。该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下
+在“//vendor/MyProductVendor”目录下创建以SOC名称的目录，在此目录下创建一个config.json文件，该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下：
 
-//productdefine/common/products/MyProduct.json
+//vendor/MyProductVendor/MySOC/config.json
 
   
 ```
 {
-  "product_name": "MyProduct",
-  "product_company" : "MyProductVendor",
-  "product_device": "MySOC",
-  "version": "2.0",
-  "type": "standard",
-  "parts":{
-    "ace:ace_engine_standard":{},
-    "ace:napi":{},
-    ...
-    "xts:phone_tests":{}
-  }
+    "product_name": "MyProduct",
+    "version": "3.0",
+    "type": "small",
+    "target_cpu": "arm",
+    "ohos_version": "OpenHarmony 1.0",
+    "device_company": "MyProductVendor",
+    "board": "MySOC",
+    "kernel_type": "linux",
+    "kernel_version": "5.10",
+    "subsystems": [
+      {
+        "subsystem": "ace",
+        "components": [
+          { "component": "ace_engine_lite", "features":[""] }
+        ]
+      }，
+	    …
+    ]
 }
 
+
 ```
+主要的配置内容
 
-主要的配置内容包括：
-
-1. product_device：配置所使用的SOC
-
-2. type：配置系统的级别， 这里直接standard即可
-
-3. parts：系统需要启用的子系统。子系统可以简单理解为一块独立构建的功能块。
+product_name： 配置所使用的SOC  必填
+version：版本  必填
+type：配置的系统级别，包含（small，standard …) 必填
+target_cpu ：设备的cpu类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
+ohos_version：操作系统版本  选填
+device_company：device厂商名   必填
+board：开发板名称  必填
+kernel_type  选填
+kernel_version   选填   kernel_type与 kernel_version在 standard 是固定的不需要写。
+subsystems:系统需要启用的子系统。子系统可以简单理解位一块独立构建的功能块。必填
+ 
 
 已定义的子系统可以在“//build/subsystem_config.json”中找到。当然你也可以定制子系统。
-
 这里建议先拷贝Hi3516DV300 开发板的配置文件，删除掉 hisilicon_products 这个子系统。这个子系统为Hi3516DV300 SOC编译内核，显然不适合MySOC。
-
 
 ### 移植验证
 
