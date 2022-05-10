@@ -569,7 +569,6 @@
       - [@ohos.application.appManager (appManager)](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration (Configuration)](reference/apis/js-apis-configuration.md)
       - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-configurationconstant.md)
-      - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](reference/apis/js-apis-application-DataShareExtensionAbility.md)
       - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis/js-apis-formbindingdata.md)
       - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-formextension.md)
@@ -609,20 +608,17 @@
       - [@ohos.notification (Notification模块)](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
-    
   - 应用程序包管理
     
     - [@ohos.bundle (Bundle模块)](reference/apis/js-apis-Bundle.md)
       - [@ohos.bundleState (设备使用信息统计)](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.zlib (Zip模块)](reference/apis/js-apis-zlib.md)
-    
   - UI界面
     
     - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
-    
   - 图形图像
     
     - [@ohos.display (屏幕属性)](reference/apis/js-apis-display.md)
@@ -630,7 +626,6 @@
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
       - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
       - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
-    
   - 媒体
     
     - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
@@ -638,30 +633,25 @@
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
-    
   - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    
   - 资源调度
     
     - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
       - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
-    
   - 定制管理
     
     - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
       - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
-    
   - 安全
     
     - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
-    
   - 数据管理
     
     - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
@@ -671,7 +661,6 @@
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
-    
   - 文件管理
     
     - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)

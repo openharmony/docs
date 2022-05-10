@@ -12,7 +12,6 @@
   - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
   - [@ohos.application.Configuration (Configuration)](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-configurationconstant.md)
-  - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension (FormExtension)](js-apis-formextension.md)
@@ -45,7 +44,6 @@
   - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
   - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
-
 - 公共事件与通知
 
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -53,20 +51,17 @@
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
-
 - 应用程序包管理
 
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
-
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
-
 - 图形图像
 
   - [@ohos.display (屏幕属性)](js-apis-display.md)
@@ -74,7 +69,6 @@
   - [@ohos.window (窗口)](js-apis-window.md)
   - [webgl (WebGL)](js-apis-webgl.md)
   - [webgl2 (WebGL2)](js-apis-webgl2.md)
-
 - 媒体
 
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
@@ -82,30 +76,25 @@
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
-
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
-
 - 资源调度
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
-
 - 定制管理
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
-
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
-
 - 数据管理
 
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
@@ -115,7 +104,6 @@
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
-
 - 文件管理
 
   - [@ohos.document (文件交互)](js-apis-document.md)
@@ -125,7 +113,6 @@
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
-
 - 电话服务
 
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -135,14 +122,12 @@
   - [@ohos.telephony.sim (SIM卡管理)](js-apis-sim.md)
   - [@ohos.telephony.sms (短信服务)](js-apis-sms.md)
   - [@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
-
 - 网络管理
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
-
 - 通信与连接
 
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
@@ -150,7 +135,6 @@
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
   - [@ohos.wifi (WLAN)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN)](js-apis-wifiext.md)
-
 - 系统基础能力
 
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
@@ -168,7 +152,6 @@
   - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [Timer (定时器)](js-apis-timer.md)
-
 - 设备管理
 
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -188,13 +171,11 @@
   - [@ohos.update (升级)](js-apis-update.md)
   - [@ohos.usb (USB管理)](js-apis-usb.md)
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
-
 - 帐号管理
 
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
-
 - 语言基础类库
 
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
@@ -218,11 +199,9 @@
   - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
-
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
-
 - 已停止维护的接口
 
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
