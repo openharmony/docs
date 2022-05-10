@@ -124,8 +124,8 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-- ace_ace_engine
-- aafwk_standard
-- multimedia_media_standard
-- multimedia_camera_standard
-- Window Manager
+- [ace_ace_engine](https://gitee.com/openharmony/ace_ace_engine)
+- [aafwk_standard](https://gitee.com/openharmony/aafwk_standard)
+- [multimedia_media_standard](https://gitee.com/openharmony/multimedia_media_standard)
+- [multimedia_camera_standard](https://gitee.com/openharmony/multimedia_camera_standard)
+- [Window Manager](https://gitee.com/openharmony/windowmanager)
