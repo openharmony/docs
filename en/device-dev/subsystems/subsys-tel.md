@@ -1,6 +1,5 @@
-# Subsystems
+# Telephony
 
--   [Telephony Service](telephony-service.md)
-    -   [Telephony Service](telephony-service.md)
-    -   [Development Guidelines](development-guidelines.md)
+-   [Telephony Overview](subsys-tel-overview.md)
+-   [Telephony Development](subsys-tel-guide.md)
 

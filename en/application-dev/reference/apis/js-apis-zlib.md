@@ -127,9 +127,9 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 | Name                       | Description                                                        |
 | --------------------------- | ------------------------------------------------------------ |
-| level?: CompressLeve        | See [zip.CompressLevel](#zip.CompressLevel).|
-| memLevel?: MemLevel         | See [zip.MemLevel](#zip.MemLevel)       |
-| strategy?: CompressStrategy | See [zip.CompressStrategy](#zip.CompressStrategy)|
+| level?: CompressLeve        | See [zip.CompressLevel](#zipcompresslevel). |
+| memLevel?: MemLevel         | See [zip.MemLevel](#zipmemlevel)     |
+| strategy?: CompressStrategy | See [zip.CompressStrategy](#zipcompressstrategy) |
 
 ## zip.MemLevel
 
