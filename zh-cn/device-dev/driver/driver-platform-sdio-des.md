@@ -14,9 +14,9 @@ SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端
 - D0-3信号：4条数据线，其中，DAT1信号线复用为中断线，在1BIT模式下DAT0用来传输数据，在4BIT模式下DAT0-DAT3用来传输数据。
 - CMD信号：用于HOST发送命令和DEVICE回复响应。
 
-  **图1** SDIO的HOST-DEVICE连接示意图
+**图1** SDIO的HOST-DEVICE连接示意图
 
-  ![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
+![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
 
 SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
 
