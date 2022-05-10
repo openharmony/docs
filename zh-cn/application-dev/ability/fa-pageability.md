@@ -76,37 +76,10 @@ ability支持单实例和多实例两种启动模式。
     action: "",
     entities: [""],
     type: "",
-    options: {
-      // Grant the permission to perform read operations on the URI.
-      authReadUriPermission: true,
-      // Grant the permission to perform write operations on the URI.
-      authWriteUriPermission: true,
-      // support forwarding the Want result to the ability.
-      abilityForwardResult: true,
-      // Enable abiligy continuation.
-      abilityContinuation: true,
-      // Specify that a component does not belong to ohos.
-      notOhosComponent: true,
-      // Specify that an ability is started.
-      abilityFormEnabled: true,
-      // Grant the permission for possible persisting on the URI.
-      authPersistableUriPermission: true,
-      // Grant the permission for possible persisting on the prefix URI.
-      authPrefixUriPermission: true,
-      // Support distributed scheduling system startup on multiple devices.
-      abilitySliceMultiDevice: true,
-      // A service ability is started regardless of whether the host application has been started.
-      startForegroundAbility: true,
-      // Install the specified ability if it is not installed.
-      installOnDemand: true,
-      // Return the result to the ability slice.
-      abilitySliceForwardResult: true,
-      // Install the specified ability with background mode if it is not installed.
-      installWithBackgroundMode: true
-    },
     deviceId: "",
-    bundleName: "com.example.startability",
-    abilityName: "com.example.startability.MainAbility",
+    bundleName: "com.example.myapplication",
+    /* FA模型中abilityName由package + Ability name组成 */
+    abilityName: "com.example.entry.secondAbility",
     uri: ""
   },
   },
@@ -122,10 +95,10 @@ ability支持单实例和多实例两种启动模式。
   featureAbility.startAbility({
     want:
     {
-        bundleName: "com.example.startability",
+        bundleName: "com.example.myapplication",
         uri: "",
         parameters: {
-            abilityName: "com.example.startability.MainAbility"
+            abilityName: "com.example.entry.secondAbility"
         }
     },
   },
@@ -261,4 +234,5 @@ export default {
 ```
 ## 相关实例
 针对PageAbility开发，有以下相关实例可供参考：
+
 - [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
