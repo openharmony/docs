@@ -2186,7 +2186,7 @@ function requestEnabledNotificationCallback() {
     console.log('------------- requestEnabledNotification --------------');
 };
 
-Notification.requestEnabledNotification(requestEnabledNotificationCallback);
+Notification.requestEnableNotification(requestEnabledNotificationCallback);
 ```
 
 
