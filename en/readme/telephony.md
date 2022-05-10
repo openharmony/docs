@@ -141,6 +141,6 @@ Removing the Observer
 
 [telephony\_state\_registry](https://gitee.com/openharmony/telephony_state_registry/blob/master/README.md)
 
-telephony\_data\_storage
+[telephony\_data\_storage](https://gitee.com/openharmony/telephony_data_storage)
 
 [telephony\_ril\_adapter](https://gitee.com/openharmony/telephony_ril_adapter/blob/master/README.md)
