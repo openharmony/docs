@@ -11,7 +11,7 @@
 import window from '@ohos.window';
 ```
 
-## WindowType<sup>7+</sup><a name="windowtype"></a>
+## WindowType<sup>7+</sup>
 
 窗口类型。
 
@@ -22,7 +22,7 @@ import window from '@ohos.window';
 | TYPE_APP          | 0      | 表示应用子窗口。   |
 | TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
 
-## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
+## AvoidAreaType<sup>7+</sup>
 
 窗口内容需要规避区域的类型。
 
@@ -33,7 +33,7 @@ import window from '@ohos.window';
 | TYPE_SYSTEM | 0      | 表示系统默认区域。 |
 | TYPE_CUTOUT | 1      | 表示刘海屏区域。   |
 
-## WindowMode<sup>7+</sup><a name="windowmode"></a>
+## WindowMode<sup>7+</sup>
 
 窗口模式。
 
@@ -49,7 +49,7 @@ import window from '@ohos.window';
 | SECONDARY  | 4      | 表示APP分屏多窗口次要模式。   |
 | FLOATING   | 5      | 表示APP自由悬浮形式窗口模式。 |
 
-## SystemBarProperties<a name="systembarproperties"></a>
+## SystemBarProperties
 
 状态栏导航栏的属性。
 
@@ -64,7 +64,7 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
-## SystemBarRegionTint <sup>8+</sup><a name="systembartegiontint"></a>
+## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
 
@@ -80,7 +80,7 @@ import window from '@ohos.window';
 | backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
 | contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
 
-## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
+## SystemBarTintState<sup>8+</sup>
 
 当前系统栏回调信息集合。
 
@@ -88,12 +88,12 @@ import window from '@ohos.window';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
-| 名称       | 参数类型                                           | 可读 | 可写 | 说明                       |
-| ---------- | -------------------------------------------------- | ---- | ---- | -------------------------- |
-| displayId  | number                                             | 是   | 否   | 当前物理屏幕id。           |
-| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | 是   | 是   | 当前改变所有的系统栏信息。 |
+| 名称       | 参数类型                                            | 可读 | 可写 | 说明                       |
+| ---------- | --------------------------------------------------- | ---- | ---- | -------------------------- |
+| displayId  | number                                              | 是   | 否   | 当前物理屏幕id。           |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 是   | 当前改变所有的系统栏信息。 |
 
-## Rect<sup>7+</sup><a name="rect"></a>
+## Rect<sup>7+</sup>
 
 矩形。
 
@@ -106,7 +106,7 @@ import window from '@ohos.window';
 | width  | number   | 是   | 是   | 矩形区域的宽度。   |
 | height | number   | 是   | 是   | 矩形区域的高度。   |
 
-## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
+## AvoidArea<sup>7+</sup>
 
 表示窗口内容规避区域。
 
@@ -119,7 +119,7 @@ import window from '@ohos.window';
 | rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
 | bottomRect | [Rect](#rect) | 是   | 是   | 屏幕底部的矩形区。 |
 
-## Size<sup>7+</sup><a name="size"></a>
+## Size<sup>7+</sup>
 
 窗口大小。
 
@@ -130,7 +130,7 @@ import window from '@ohos.window';
 | width  | number   | 是   | 是   | 窗口宽度。 |
 | height | number   | 是   | 是   | 窗口高度。 |
 
-## WindowProperties<a name="windowproperties"></a>
+## WindowProperties
 
 窗口属性。
 
@@ -148,10 +148,10 @@ import window from '@ohos.window';
 | dimBehindValue<sup>7+</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | isKeepScreenOn                  | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | 是   | 是   | 隐私模式，默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| isRoundCorner<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否为圆角。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| isRoundCorner<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | isTransparent<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否透明。默认为false。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
-## ColorSpace<sup>8+</sup><a name="colorspace"></a>
+## ColorSpace<sup>8+</sup>
 
 色域模式。
 
@@ -302,7 +302,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
    });
   ```
 
-## window.find<sup>7+</sup><a name="window-find"></a>
+## window.find<sup>7+</sup>
 
 find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
@@ -364,7 +364,7 @@ find(id: string): Promise&lt;Window&gt;
    });
   ```
 
-## window.getTopWindow<a name="window-gettopwindow"></a>
+## window.getTopWindow
 
 getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
@@ -495,7 +495,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
   | 参数名   | 类型                                                      | 必填 | 说明                                                         |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'systemBarTintChange'时表示监听类型为导航栏、状态栏属性变化监听； |
+  | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
@@ -521,7 +521,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
   | 参数名   | 类型                                                      | 必填 | 说明                                                         |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'systemBarTintChange'时表示监听类型为导航栏、状态栏属性变化监听； |
+  | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
@@ -533,7 +533,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 ## Window
 
-下列API示例中都需使用[getTopWindow()](#window-gettopwindow)、[create()](#windowcreate7)、[find()](#window-find)等先获取到Window实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getTopWindow()](#windowgettopwindow)、[create()](#windowcreate7)、[find()](#windowfind7)等先获取到Window实例，再通过此实例调用对应方法。
 
 ### hide<sup>7+</sup>
 
@@ -1259,7 +1259,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | 是   | 设置加载页面的路径。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
-  
+
 - 示例
 
   ```js
@@ -1285,7 +1285,7 @@ loadContent(path: string): Promise&lt;void&gt;
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
   | path   | string | 是   | 设置加载页面的路径。 |
-  
+
 - 返回值
 
   | 类型                | 说明                                            |
@@ -1364,10 +1364,10 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 - 参数
 
-  | 参数名   | 类型                          | 必填 | 说明                                                         |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'时表示监听类型为窗口尺寸变化监听； |
-  | callback | Callback&lt;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                       |
+  | 参数名   | 类型                          | 必填 | 说明                                                     |
+  | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+  | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
+  | callback | Callback&lt;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                   |
 
 - 示例
 
@@ -1388,14 +1388,14 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 
 - 参数
 
-  | 参数名   | 类型                          | 必填 | 说明                                                         |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | 是   | 设置监听类型。<br/>-&nbsp;type为'windowSizeChange'<sup>7+</sup>时表示监听类型为窗口尺寸变化监听； |
-  | callback | Callback&lt;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                       |
+  | 参数名   | 类型                          | 必填 | 说明                                                     |
+  | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+  | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
+  | callback | Callback&lt;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                   |
 
 - 示例
 
-  ```
+  ```js
   var type = 'windowSizeChange';
   windowClass.off(type);
   ```
@@ -1412,7 +1412,7 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'systemAvoidAreaChange'时表示监听类型为系统窗口规避区变化监听。 |
+  | type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
@@ -1436,12 +1436,12 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | 是   | 设置监听类型。<br/>-&nbsp;type为'systemAvoidAreaChange'时表示监听类型为系统窗口规避区变化监听。 |
+  | type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
 
-  ```
+  ```js
   var type = 'systemAvoidAreaChange';
   windowClass.off(type);
   ```
@@ -1460,7 +1460,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
   | 参数名   | 类型               | 必填 | 说明                                                         |
   | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string             | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
+  | type     | string             | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
   | callback | Callbacknumber&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
@@ -1486,12 +1486,12 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
   | 参数名   | 类型                   | 必填 | 说明                                                         |
   | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                 | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardHeightChange'时表示监听类型为键盘高度变化监听。 |
+  | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
   | callback | Callback&lt;number&gt; | 否   | 回调返回监听到的信息。                                       |
 
 - 示例
 
-  ```
+  ```js
   var type = 'keyboardHeightChange';
   windowClass.off(type);
   ```
@@ -1538,7 +1538,7 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
 - 示例
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
@@ -1578,7 +1578,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
-设置当前窗口为广色域模式或默认色域模式，使用promise方式作为异步方法。
+设置当前窗口为广色域模式或默认色域模式，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -2166,7 +2166,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
   });
   ```
 
-## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+## WindowStageEventType<sup>9+</sup>
 
 WindowStage生命周期。
 
@@ -2255,16 +2255,19 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 创建该WindowStage实例下的子窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
 
   | 参数名 | 类型   | 必填 | 说明           |
   | ------ | ------ | ---- | -------------- |
   | name   | String | 是   | 子窗口的名字。 |
+
 - 返回值
 
   | 类型                             | 说明                                              |
   | -------------------------------- | ------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的子窗口对象。 |
+
 - 示例
 
   ```ts
@@ -2325,6 +2328,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 获取该WindowStage实例下的所有子窗口，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 返回值
 
   | 类型                                          | 说明                                                         |
@@ -2356,6 +2360,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 获取该WindowStage实例下的所有子窗口，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
 
   | 参数名   | 类型                                                | 必填 | 说明                                        |
@@ -2395,7 +2400,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | 是   | 设置加载页面的路径。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
-  
+
 - 示例
 
   ```ts
@@ -2412,6 +2417,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
       }
   }
   ```
+
 ### on('windowStageEvent')<sup>9+</sup>
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
@@ -2419,11 +2425,12 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 开启WindowStage生命周期变化的监听。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
 
   | 参数名   | 类型                                                         | 必填 | 说明                                                         |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowStageEvent'时表示监听类型为WindowStage生命周期变化监听。 |
+  | type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 是   | 回调返回监听到的信息。                                       |
 
 - 示例
@@ -2447,12 +2454,14 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 关闭WindowStage生命周期变化的监听。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
 - 参数
 
   | 参数名   | 类型                                                         | 必填 | 说明                                                         |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'windowStageEvent'时表示监听类型为WindowStage生命周期变化监听。 |
+  | type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调返回监听到的信息。                                       |
+
 - 示例
 
   ```ts
