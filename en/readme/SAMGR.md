@@ -26,10 +26,10 @@ The System Ability Manager (SAMGR) subsystem implements the system service frame
 
 **SAMGR**
 
-distributedschedule\_safwk
+[distributedschedule\_safwk](https://gitee.com/openharmony/distributedschedule_safwk)
 
-distributedschedule\_samgr
+[distributedschedule\_samgr](https://gitee.com/openharmony/distributedschedule_samgr)
 
-distributedschedule\_safwk\_lite
+[distributedschedule\_safwk\_lite](https://gitee.com/openharmony/distributedschedule_safwk_lite)
 
-distributedschedule\_samgr\_lite
+[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite)
