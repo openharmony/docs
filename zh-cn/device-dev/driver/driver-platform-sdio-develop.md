@@ -3,7 +3,7 @@
 
 ## 概述
 
-SDIO由SD卡发展而来，被统称为mmc（MultiMediaCard），相关技术差别不大,在HDF框架中，SDIO的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
+SDIO由SD卡发展而来，被统称为mmc（MultiMediaCard），相关技术差别不大。在HDF框架中，SDIO的接口适配模式采用独立服务模式。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
   **图1** SDIO独立服务模式结构图
 
@@ -42,26 +42,26 @@ struct SdioDeviceOps {
 
 | 函数 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| incrAddrReadBytes | dev:&nbsp;结构体指针,SDIO设备控制器;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小 | data:&nbsp;uint8_t指针,传出值; | HDF_STATUS相关状态 | 从指定的SDIO地址增量读取给定长度的数据 | 
-| incrAddrWriteBytes | dev:&nbsp;结构体指针,SDIO设备控制器;data:&nbsp;uint8_t指针,传入值;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小 | 无 | HDF_STATUS相关状态 | 将给定长度的数据增量写入指定的SDIO地址 | 
-| fixedAddrReadBytes | dev:&nbsp;结构体指针,SDIO设备控制器;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小;scatterLen:&nbsp;uint32_t,数据长度； | data:&nbsp;uint8_t指针,传出值; | HDF_STATUS相关状态 | 从固定SDIO地址读取给定长度的数据。 | 
-| fixedAddrWriteBytes | dev:&nbsp;结构体指针,SDIO设备控制器;data:&nbsp;uint8_t指针,传入值;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小;scatterLen:&nbsp;uint32_t,数据长度; | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入固定SDIO地址 | 
-| func0ReadBytes | dev:&nbsp;结构体指针,SDIO设备控制器;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小; | data:&nbsp;uint8_t指针,传出值; | HDF_STATUS相关状态 | 从SDIO函数0的地址空间读取给定长度的数据。 | 
-| func0WriteBytes | dev:&nbsp;结构体指针,SDIO设备控制器;data:&nbsp;uint8_t指针,传入值;addr:&nbsp;uint32_t,地址值;size:&nbsp;uint32_t,大小; | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入SDIO函数0的地址空间。 | 
-| setBlockSize | dev:&nbsp;结构体指针,SDIO设备控制器;blockSize:&nbsp;uint32_t,Block大小 | 无 | HDF_STATUS相关状态 | 设置block大小 | 
-| getCommonInfo | dev:&nbsp;联合体指针,SDIO设备控制器;infoType:&nbsp;uint32_t,info类型; | info:&nbsp;结构体指针,传出SdioFuncInfo信息; | HDF_STATUS相关状态 | 获取CommonInfo，说明见下 | 
-| setCommonInfo | dev:&nbsp;结构体指针,SDIO设备控制器;info:&nbsp;联合体指针，SdioFuncInfo信息传入;infoType:&nbsp;uint32_t,info类型; | 无 | HDF_STATUS相关状态 | 设置CommonInfo，说明见下 | 
-| flushData | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 当SDIO需要重新初始化或发生意外错误时调用的函数 | 
-| enableFunc | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 使能SDIO设备 | 
-| disableFunc | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 去使能SDIO设备 | 
-| claimIrq | dev:&nbsp;结构体指针,SDIO设备控制器;irqHandler:&nbsp;void函数指针; | 无 | HDF_STATUS相关状态 | 注册SDIO中断 | 
-| releaseIrq | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 释放SDIO中断 | 
-| findFunc | dev:&nbsp;结构体指针,SDIO设备控制器;configData:&nbsp;结构体指针,&nbsp;SDIO函数关键信息 | 无 | HDF_STATUS相关状态 | 寻找匹配的funcNum | 
-| claimHost | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 独占HOST | 
-| releaseHost | dev:&nbsp;结构体指针,SDIO设备控制器; | 无 | HDF_STATUS相关状态 | 释放HOST | 
+| incrAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | data：uint8_t指针，传出值; | HDF_STATUS相关状态 | 从指定的SDIO地址增量读取给定长度的数据 | 
+| incrAddrWriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | 无 | HDF_STATUS相关状态 | 将给定长度的数据增量写入指定的SDIO地址 | 
+| fixedAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小<br>scatterLen：uint32_t，数据长度； | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从固定SDIO地址读取给定长度的数据。 | 
+| fixedAddrWriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小<br>scatterLen：uint32_t，数据长度 | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入固定SDIO地址 | 
+| func0ReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小; | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从SDIO函数0的地址空间读取给定长度的数据。 | 
+| func0WriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入SDIO函数0的地址空间。 | 
+| setBlockSize | dev：结构体指针，SDIO设备控制器<br>blockSize：uint32_t，Block大小 | 无 | HDF_STATUS相关状态 | 设置block大小 | 
+| getCommonInfo | dev：联合体指针，SDIO设备控制器<br>infoType：uint32_t，info类型 | info：结构体指针，传出SdioFuncInfo信息 | HDF_STATUS相关状态 | 获取CommonInfo，说明见下 | 
+| setCommonInfo | dev：结构体指针，SDIO设备控制器<br>info：联合体指针，SdioFuncInfo信息传入<br>infoType：uint32_t，info类型 | 无 | HDF_STATUS相关状态 | 设置CommonInfo，说明见下 | 
+| flushData | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 当SDIO需要重新初始化或发生意外错误时调用的函数 | 
+| enableFunc | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 使能SDIO设备 | 
+| disableFunc | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 去使能SDIO设备 | 
+| claimIrq | dev：结构体指针，SDIO设备控制器<br>irqHandler：void函数指针 | 无 | HDF_STATUS相关状态 | 注册SDIO中断 | 
+| releaseIrq | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 释放SDIO中断 | 
+| findFunc | dev：结构体指针，SDIO设备控制器<br>configData：结构体指针，SDIO函数关键信息 | 无 | HDF_STATUS相关状态 | 寻找匹配的funcNum | 
+| claimHost | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 独占HOST | 
+| releaseHost | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 释放HOST | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> CommonInfo包括maxBlockNum(单个request中最大block数), maxBlockSize(单个block最大字节数), maxRequestSize(单个Request最大字节数), enTimeout(最大超时时间,毫秒), funcNum(功能编号1~7), irqCap(IRQ capabilities), (void \*)data.
+> CommonInfo包括maxBlockNum（单个request中最大block数）， maxBlockSize（单个block最大字节数）， maxRequestSize（单个Request最大字节数）， enTimeout（最大超时时间，毫秒）， funcNum（功能编号1~7）， irqCap（IRQ capabilities）， (void \*)data.
 
 
 ## 开发步骤
@@ -79,7 +79,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 3. **实例化SDIO控制器对象：**
    - 初始化SdioDevice成员。
    - 实例化SdioDevice成员SdioDeviceOps。
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 实例化SdioDevice成员SdioDeviceOps，其定义和成员说明见[接口说明](#接口说明)。
 
 4. **驱动调试：**
@@ -98,12 +98,12 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
    ```
    struct HdfDriverEntry g_sdioDriverEntry = {
        .moduleVersion = 1,
-       .Bind = Hi35xxLinuxSdioBind,      //见Bind参考
-       .Init = Hi35xxLinuxSdioInit,      //见Init参考
-       .Release = Hi35xxLinuxSdioRelease,//见Release参考
-       .moduleName = "HDF_PLATFORM_SDIO",//【必要 且与 HCS文件中里面的moduleName匹配】
+       .Bind = Hi35xxLinuxSdioBind,      // 见Bind参考
+       .Init = Hi35xxLinuxSdioInit,      // 见Init参考
+       .Release = Hi35xxLinuxSdioRelease,// 见Release参考
+       .moduleName = "HDF_PLATFORM_SDIO",// 【必要，且与HCS文件中里面的moduleName匹配】
    };
-   //调用HDF_INIT将驱动入口注册到HDF框架中 
+   // 调用HDF_INIT将驱动入口注册到HDF框架中 
    HDF_INIT(g_sdioDriverEntry);
    ```
 
@@ -124,9 +124,9 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
                policy = 1;
                priority = 70;
                permission = 0644;
-               moduleName = "HDF_PLATFORM_SDIO";   //【必要】用于指定驱动名称，需要与驱动Entry中的moduleName一致；
-               serviceName = "HDF_PLATFORM_MMC_2"; //【必要】驱动对外发布服务的名称，必须唯一
-               deviceMatchAttr = "hisilicon_hi35xx_sdio_0";//【必要】用于配置控制器私有数据，要与sdio_config.hcs中对应控制器保持一致
+               moduleName = "HDF_PLATFORM_SDIO";   // 【必要】用于指定驱动名称，需要与驱动Entry中的moduleName一致；
+               serviceName = "HDF_PLATFORM_MMC_2"; // 【必要】驱动对外发布服务的名称，必须唯一
+               deviceMatchAttr = "hisilicon_hi35xx_sdio_0";// 【必要】用于配置控制器私有数据，要与sdio_config.hcs中对应控制器保持一致
              }
            }
          }
@@ -143,11 +143,11 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
          sdio_config {
            template sdio_controller {
              match_attr = "";
-             hostId = 2;  //【必要】模式固定为2，在mmc_config.hcs有介绍
-             devType = 2; //【必要】模式固定为2，在mmc_config.hcs有介绍
+             hostId = 2;  // 【必要】模式固定为2，在mmc_config.hcs有介绍
+             devType = 2; // 【必要】模式固定为2，在mmc_config.hcs有介绍
            }
            controller_0x2dd1 :: sdio_controller {
-             match_attr = "hisilicon_hi35xx_sdio_0";//【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+             match_attr = "hisilicon_hi35xx_sdio_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
          }
        }
      }
@@ -170,7 +170,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           void *data;              // 私有数据
       } SdioFuncInfo;
       
-      //SdioDevice是核心层控制器结构体，其中的成员在Bind函数中会被赋值
+      // SdioDevice是核心层控制器结构体，其中的成员在Bind函数中会被赋值
       struct SdioDevice {
           struct SdDevice sd;
           struct SdioDeviceOps *sdioOps;
@@ -212,11 +212,11 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
-        HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+        HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
         **表2** Bind函数入参及返回值
       
       | 状态(值) | 问题描述 | 
@@ -241,18 +241,18 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           ...
           cntlr = (struct MmcCntlr *)OsalMemCalloc(sizeof(struct MmcCntlr));// 分配内存
           ...
-          cntlr->ops = &g_sdioCntlrOps;  //【必要】struct MmcCntlrOps g_sdioCntlrOps={
+          cntlr->ops = &g_sdioCntlrOps;  // 【必要】struct MmcCntlrOps g_sdioCntlrOps={
                                          // .rescanSdioDev = Hi35xxLinuxSdioRescan,};
-          cntlr->hdfDevObj = obj;        //【必要】使HdfDeviceObject与MmcCntlr可以相互转化的前提
-          obj->service = &cntlr->service;//【必要】使HdfDeviceObject与MmcCntlr可以相互转化的前提    
+          cntlr->hdfDevObj = obj;        // 【必要】使HdfDeviceObject与MmcCntlr可以相互转化的前提
+          obj->service = &cntlr->service;// 【必要】使HdfDeviceObject与MmcCntlr可以相互转化的前提    
           ret = Hi35xxLinuxSdioCntlrParse(cntlr, obj);//【必要】初始化cntlr 的 index, devType, 失败则 goto _ERR;
           ...
-          ret = MmcCntlrAdd(cntlr);       //【必要】调用核心层mmc_core.c的函数， 失败则 goto _ERR;
+          ret = MmcCntlrAdd(cntlr);       // 【必要】调用核心层mmc_core.c的函数， 失败则 goto _ERR;
           ...
-          ret = MmcCntlrAllocDev(cntlr, (enum MmcDevType)cntlr->devType);//【必要】调用核心层mmc_core.c的函数， 失败则 goto _ERR;
+          ret = MmcCntlrAllocDev(cntlr, (enum MmcDevType)cntlr->devType);// 【必要】调用核心层mmc_core.c的函数， 失败则 goto _ERR;
           ...
           
-          MmcDeviceAddOps(cntlr->curDev, &g_sdioDeviceOps);//【必要】调用核心层mmc_core.c的函数， 钩子函数挂载
+          MmcDeviceAddOps(cntlr->curDev, &g_sdioDeviceOps);// 【必要】调用核心层mmc_core.c的函数， 钩子函数挂载
           HDF_LOGD("Hi35xxLinuxSdioBind: Success!");
           return HDF_SUCCESS;
       
@@ -267,7 +267,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -281,7 +281,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       ```
       static int32_t Hi35xxLinuxSdioInit(struct HdfDeviceObject *obj)
       {
-          (void)obj;//无操作，可根据厂商需要添加
+          (void)obj;// 无操作，可根据厂商需要添加
           HDF_LOGD("Hi35xxLinuxSdioInit: Success!");
           return HDF_SUCCESS;
       }
@@ -290,7 +290,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -298,7 +298,7 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       函数说明：
 
-      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。所有强制转换获取相应对象的操作前提是在Bind函数中具备对应赋值的操作。
+      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。所有强制转换获取相应对象的操作前提是在Bind函数中具备对应赋值的操作。
 
         
       ```
@@ -307,6 +307,6 @@ SDIO模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           if (obj == NULL) {
               return;
           }
-          Hi35xxLinuxSdioDeleteCntlr((struct MmcCntlr *)obj->service);//【必要】自定义的内存释放函数,这里有HdfDeviceObject到MmcCntlr的强制转化
+          Hi35xxLinuxSdioDeleteCntlr((struct MmcCntlr *)obj->service);// 【必要】自定义的内存释放函数，这里有HdfDeviceObject到MmcCntlr的强制转化
       }
       ```
