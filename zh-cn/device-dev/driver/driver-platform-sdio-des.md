@@ -3,22 +3,22 @@
 
 ## 概述
 
-- SDIO是安全数字输入输出接口（Secure Digital Input and Output）的缩写，是从SD内存卡接口的基础上演化出来的一种外设接口。SDIO接口兼容以前的SD内存卡，并且可以连接支持SDIO接口的设备。
+SDIO是安全数字输入输出接口（Secure Digital Input and Output）的缩写，是从SD内存卡接口的基础上演化出来的一种外设接口。SDIO接口兼容以前的SD内存卡，并且可以连接支持SDIO接口的设备。
 
-- SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且很多SDIO外设也被开发出来，使得手机外接外设更加容易。常见的SDIO外设有WLAN、GPS、CAMERA、蓝牙等。
+SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且很多SDIO外设也被开发出来，使得手机外接外设更加容易。常见的SDIO外设有WLAN、GPS、CAMERA、蓝牙等。
 
-- SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端（DEVICE）。所有的通信都是由HOST端发出命令开始的，在DEVICE端只要能解析HOST的命令，就可以同HOST进行通信了。SDIO的HOST可以连接多个DEVICE，如下图所示：
-  - CLK信号：HOST给DEVICE的时钟信号。
-  - VDD信号：电源信号。
-  - VSS信号：Ground信号。
-  - D0-3信号：4条数据线，其中，DAT1信号线复用为中断线，在1BIT模式下DAT0用来传输数据，在4BIT模式下DAT0-DAT3用来传输数据。
-  - CMD信号：用于HOST发送命令和DEVICE回复响应。
+SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端（DEVICE）。所有的通信都是由HOST端发出命令开始的，在DEVICE端只要能解析HOST的命令，就可以同HOST进行通信了。SDIO的HOST可以连接多个DEVICE，如下图所示：
+- CLK信号：HOST给DEVICE的时钟信号。
+- VDD信号：电源信号。
+- VSS信号：Ground信号。
+- D0-3信号：4条数据线，其中，DAT1信号线复用为中断线，在1BIT模式下DAT0用来传输数据，在4BIT模式下DAT0-DAT3用来传输数据。
+- CMD信号：用于HOST发送命令和DEVICE回复响应。
 
-    **图1** SDIO的HOST-DEVICE连接示意图
+  **图1** SDIO的HOST-DEVICE连接示意图
 
-    ![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
+  ![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
 
-- SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
+SDIO接口定义了操作SDIO的通用方法集合，包括打开/关闭SDIO控制器、独占/释放HOST、使能/去使能设备、申请/释放中断、读写、获取/设置公共信息等。
 
 
 ## 接口说明
@@ -36,7 +36,7 @@
 | SDIO使能/去使能功能设备接口 | -&nbsp;SdioEnableFunc：使能SDIO功能设备<br/>-&nbsp;SdioDisableFunc：去使能SDIO功能设备 | 
 | SDIO申请/释放中断接口 | -&nbsp;SdioClaimIrq：申请中断<br/>-&nbsp;SdioReleaseIrq：释放中断 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，目前只支持在内核态使用，不支持在用户态使用。
 
 
