@@ -14,7 +14,7 @@ The SDIO bus has two ends, named host and device. All communication starts when 
    **Figure 1**  Connections between the host and devices in SDIO<a name="fig1185316527498"></a>  
     
 
-    ![](figures/en-us_image_0000001160971556.png)
+   ![](figures/en-us_image_0000001160971556.png)
 
 The SDIO interface defines a set of common methods for operating an SDIO device, including opening and closing an SDIO controller, exclusively claiming and releasing the host, enabling and disabling devices, claiming and releasing an SDIO IRQ, reading and writing data based on SDIO, and obtaining and setting common information.
 
