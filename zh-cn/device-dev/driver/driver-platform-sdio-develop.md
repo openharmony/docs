@@ -42,11 +42,11 @@ struct SdioDeviceOps {
 
 | 函数 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| incrAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | data：uint8_t指针，传出值; | HDF_STATUS相关状态 | 从指定的SDIO地址增量读取给定长度的数据 | 
+| incrAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从指定的SDIO地址增量读取给定长度的数据 | 
 | incrAddrWriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | 无 | HDF_STATUS相关状态 | 将给定长度的数据增量写入指定的SDIO地址 | 
-| fixedAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小<br>scatterLen：uint32_t，数据长度； | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从固定SDIO地址读取给定长度的数据。 | 
+| fixedAddrReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小<br>scatterLen：uint32_t，数据长度 | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从固定SDIO地址读取给定长度的数据。 | 
 | fixedAddrWriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小<br>scatterLen：uint32_t，数据长度 | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入固定SDIO地址 | 
-| func0ReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小; | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从SDIO函数0的地址空间读取给定长度的数据。 | 
+| func0ReadBytes | dev：结构体指针，SDIO设备控制器<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | data：uint8_t指针，传出值 | HDF_STATUS相关状态 | 从SDIO函数0的地址空间读取给定长度的数据。 | 
 | func0WriteBytes | dev：结构体指针，SDIO设备控制器<br>data：uint8_t指针，传入值<br>addr：uint32_t，地址值<br>size：uint32_t，大小 | 无 | HDF_STATUS相关状态 | 将给定长度的数据写入SDIO函数0的地址空间。 | 
 | setBlockSize | dev：结构体指针，SDIO设备控制器<br>blockSize：uint32_t，Block大小 | 无 | HDF_STATUS相关状态 | 设置block大小 | 
 | getCommonInfo | dev：联合体指针，SDIO设备控制器<br>infoType：uint32_t，info类型 | info：结构体指针，传出SdioFuncInfo信息 | HDF_STATUS相关状态 | 获取CommonInfo，说明见下 | 
@@ -60,7 +60,7 @@ struct SdioDeviceOps {
 | claimHost | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 独占HOST | 
 | releaseHost | dev：结构体指针，SDIO设备控制器 | 无 | HDF_STATUS相关状态 | 释放HOST | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > CommonInfo包括maxBlockNum（单个request中最大block数）， maxBlockSize（单个block最大字节数）， maxRequestSize（单个Request最大字节数）， enTimeout（最大超时时间，毫秒）， funcNum（功能编号1~7）， irqCap（IRQ capabilities）， (void \*)data.
 
 
