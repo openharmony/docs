@@ -20,13 +20,12 @@
 {
     "product_name": "MyProduct",
     "version": "3.0",
-    "type": "small",
+    "type": "standard",
     "target_cpu": "arm",
     "ohos_version": "OpenHarmony 1.0",
     "device_company": "MyProductVendor",
     "board": "MySOC",
-    "kernel_type": "linux",
-    "kernel_version": "5.10",
+    "enable_ramdisk": true,
     "subsystems": [
       {
         "subsystem": "ace",
@@ -49,10 +48,12 @@ target_cpu ：设备的cpu类型（根据实际情况，这里的target_cpu也�
 ohos_version：操作系统版本  选填
 device_company：device厂商名   必填
 board：开发板名称  必填
+enable_ramdisk：true 启用虚拟硬盘 必填
 kernel_type  选填
 kernel_version   选填   kernel_type与 kernel_version在 standard 是固定的不需要写。
 subsystems:系统需要启用的子系统。子系统可以简单理解位一块独立构建的功能块。必填
  
+product_company：不体现在配置中，而是目录名，vendor下一级目录就是product_company，BUILD.gn脚本依然可以访问。
 
 已定义的子系统可以在“//build/subsystem_config.json”中找到。当然你也可以定制子系统。
 这里建议先拷贝Hi3516DV300 开发板的配置文件，删除掉 hisilicon_products 这个子系统。这个子系统为Hi3516DV300 SOC编译内核，显然不适合MySOC。

@@ -426,13 +426,12 @@ ohos_shared_library("module2") {
    {
       "product_name": "MyProduct",
       "version": "3.0",
-      "type": "small",
+      "type": "standard",
       "target_cpu": "arm",
       "ohos_version": "OpenHarmony 1.0",
       "device_company": "MyProductVendor",
       "board": "MySOC",
-      "kernel_type": "linux",
-      "kernel_version": "5.10",
+      "enable_ramdisk": true,
       "subsystems": [
         {
           "subsystem": "ace",
@@ -446,7 +445,7 @@ ohos_shared_library("module2") {
 
    ```
 
-   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的部件。
+   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的子系统。
 
 2. build目录下的subsystem_config.json文件。
      
