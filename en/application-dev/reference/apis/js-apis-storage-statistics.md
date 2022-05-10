@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 
@@ -15,7 +15,7 @@ import storagestatistics from "@ohos.storageStatistics";
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Asynchronously obtains the total space of the specified volume. This method uses a promise to return the result.
+Asynchronously obtains the total space of the specified volume. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -46,7 +46,7 @@ Asynchronously obtains the total space of the specified volume. This method uses
 
 getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
-Asynchronously obtains the total space of the specified volume. This method uses a callback to return the result.
+Asynchronously obtains the total space of the specified volume. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -62,7 +62,7 @@ Asynchronously obtains the total space of the specified volume. This method uses
   ```js
   let uuid = "";
   storagestatistics.getTotalSizeOfVolume(uuid, function(error, number){
-      // Do something
+      // Do something.
       console.info("getTotalSizeOfVolume successfully:"+ number);
   });
   ```
@@ -73,7 +73,7 @@ Asynchronously obtains the total space of the specified volume. This method uses
 
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
-Asynchronously obtains the available space of the specified volume. This method uses a promise to return the result.
+Asynchronously obtains the available space of the specified volume. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -105,7 +105,7 @@ Asynchronously obtains the available space of the specified volume. This method 
 
 getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
-Asynchronously obtains the available space of the specified volume. This method uses a callback to return the result.
+Asynchronously obtains the available space of the specified volume. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -121,7 +121,7 @@ Asynchronously obtains the available space of the specified volume. This method 
   ```js
   let uuid = "";
   storagestatistics.getFreeSizeOfVolume(uuid, function(error, number){
-      // Do something
+      // Do something.
       console.info("getFreeSizeOfVolume successfully:"+ number);
   });
   ```
@@ -130,7 +130,7 @@ Asynchronously obtains the available space of the specified volume. This method 
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Obtains the bundle status. This method uses a promise to return the result.
+Asynchronously obtains app information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -144,7 +144,7 @@ Obtains the bundle status. This method uses a promise to return the result.
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the bundle status on the volume.|
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the app information.|
 
 - Example
 
@@ -161,7 +161,7 @@ Obtains the bundle status. This method uses a promise to return the result.
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Obtains the bundle status. This method uses an asynchronous callback to return the result.
+Asynchronously obtains app information. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -170,14 +170,14 @@ Obtains the bundle status. This method uses an asynchronous callback to return t
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the app.|
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the bundle status on the volume.|
+  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the app information.|
   
 - Example
 
   ```js
   let packageName = "";
   storagestatistics.getBundleStats(packageName, function(error, BundleStats){
-      // Do something
+      // Do something.
       console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
   });
   ```
@@ -186,10 +186,10 @@ Obtains the bundle status. This method uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-### Attributes
+### Attribute
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
 | appSize<sup>9+</sup>   | number | Size of the app.   |
-| cacheSize<sup>9+</sup> | number | Size of the cached data.  |
+| cacheSize<sup>9+</sup> | number | Cache size of the app.  |
 | dataSize<sup>9+</sup>  | number | Total data size of the app.|
