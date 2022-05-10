@@ -1,8 +1,9 @@
-# OpenSL ES音频播放开发指导
+# OpenSL ES音频录制开发指导
 
 ## 场景介绍
 
-OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的硬件音频加速API。 
+开发者可以通过本文了解到在**OpenHarmony**如何使用**OpenSL ES**进行录音相关操作；当前仅实现了部分[**OpenSL ES**接口]  
+(https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**
 
  
 
@@ -10,7 +11,15 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
 
 以下步骤描述了在**OpenHarmony**如何使用 **OpenSL ES** 开发音频录音功能：
 
-1. 使用 **slCreateEngine** 接口创建引擎对象和实例化引擎对象 **engine**。
+1. 添加头文件
+
+    ```c++
+    #include <OpenSLES.h>
+    #include <OpenSLES_OpenHarmony.h>
+    #include <OpenSLES_Platform.h>
+    ```
+
+2. 使用 **slCreateEngine** 接口创建引擎对象和实例化引擎对象 **engine**。
 
     ```c++
     SLObjectItf engineObject = nullptr;
@@ -20,7 +29,7 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
 
     
 
-2. 获取接口 **SL_IID_ENGINE** 的引擎接口 **engineEngine** 实例
+3. 获取接口 **SL_IID_ENGINE** 的引擎接口 **engineEngine** 实例
 
     ```c++
     SLEngineItf engineItf = nullptr;
@@ -29,7 +38,7 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
 
     
 
-3. 配置录音器信息（配置输入源audiosource、输出源audiosink），创建录音对象**pcmCapturerObject** 。
+4. 配置录音器信息（配置输入源audiosource、输出源audiosink），创建录音对象**pcmCapturerObject** 。
 
     ```c++
     SLDataLocator_IODevice io_device = {
@@ -59,6 +68,7 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
         0,
         0
     };
+
     SLDataSink audioSink = {
         &buffer_queue,
         &format_pcm
@@ -70,14 +80,14 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
     (*pcmCapturerObject)->Realize(pcmCapturerObject, SL_BOOLEAN_FALSE);
     ```
 
-4. 获取录音接口**SL_IID_RECORD** 的 **recordItf** 接口实例
+5. 获取录音接口**SL_IID_RECORD** 的 **recordItf** 接口实例
  
     ```
     SLRecordItf  recordItf;
     (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
     ```   
 
-5. 获取接口 **SL_IID_OH_BUFFERQUEUE** 的 **bufferQueueItf** 实例
+6. 获取接口 **SL_IID_OH_BUFFERQUEUE** 的 **bufferQueueItf** 实例
 
     ```
     SLOHBufferQueueItf bufferQueueItf;
@@ -86,12 +96,12 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
 
     
 
-6. 注册 **BuqqerQueueCallback** 回调
+7. 注册 **BuqqerQueueCallback** 回调
 
     ```c++
-    static void BuqqerQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
+    static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
     {
-        AUDIO_INFO_LOG("BuqqerQueueCallback");
+        AUDIO_INFO_LOG("BufferQueueCallback");
         FILE *wavFile = (FILE *)pContext;
         if (wavFile != nullptr) {
             SLuint8 *buffer = nullptr;
@@ -107,12 +117,11 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
     }
     
     //wavFile_ 需要设置为用户想要播放的文件描述符
-    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BuqqerQueueCallback, wavFile_);
+    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
-    
 
-7. 开始录音
+8. 开始录音
 
     ```c++
     static void CaptureStart(SLRecordItf recordItf, SLOHBufferQueueItf bufferQueueItf, FILE *wavFile)
@@ -128,7 +137,7 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
                 fwrite(buffer, 1, pSize, wavFile);
                 (*bufferQueueItf)->Enqueue(bufferQueueItf, buffer, pSize);
             } else {
-                AUDIO_INFO_LOG("BuqqerQueueCallback, buffer is null or pSize: %{public}lu.", pSize);
+                AUDIO_INFO_LOG("CaptureStart, buffer is null or pSize: %{public}lu.", pSize);
             }
         }
 
@@ -136,16 +145,20 @@ OpenSL ES™ 是无授权费、跨平台、针对嵌入式系统精心优化的�
     }
     ```
 
-    
 
-7. 结束录音
+9. 结束录音
 
     ```c++
-    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
-    (*pcmCapturerObject)->Destroy(pcmCapturerObject);
-    (*engineObject)->Destroy(engineObject);
-    fclose(wavFile_);
-    wavFile_ = nullptr;    
+    static void CaptureStop(SLRecordItf recordItf)
+    {
+        AUDIO_INFO_LOG("Enter CaptureStop");
+        fflush(wavFile_);
+        (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
+        (*pcmCapturerObject)->Destroy(pcmCapturerObject);
+        fclose(wavFile_);
+        wavFile_ = nullptr;
+        return;
+    }  
     ```
 
 
