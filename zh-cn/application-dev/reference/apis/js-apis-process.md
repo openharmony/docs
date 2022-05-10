@@ -597,5 +597,5 @@ kill(signal: number, pid: number): boolean
 
 ```js
 var pres = process.pid
-var result = that.kill(pres, 28)
+var result = that.kill(28, pres)
 ```
