@@ -68,11 +68,11 @@ In RPC, the requesting process \(client\) can obtain the proxy of the process th
 
 **DSoftBus subsystem**
 
-communication\_bluetooth
+[communication\_bluetooth](https://gitee.com/openharmony/communication_bluetooth)
 
-communication\_dsoftbus
+[communication\_dsoftbus](https://gitee.com/openharmony/communication_dsoftbus)
 
-communication\_ipc
+[communication\_ipc](https://gitee.com/openharmony/communication_ipc)
 
-communication\_wifi
+[communication\_wifi](https://gitee.com/openharmony/communication_wifi)
 
