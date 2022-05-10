@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+> - API version 9 is a canary release for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 
@@ -186,7 +186,7 @@ Asynchronously obtains app information. This API uses a callback to return the r
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-### Attribute
+### Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
