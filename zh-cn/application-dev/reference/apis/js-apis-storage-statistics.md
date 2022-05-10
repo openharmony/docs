@@ -144,7 +144,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | 返回指定卷上的应用存储状态 |
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | 返回指定卷上的应用存储数据 |
 
 - 示例
 
@@ -170,7 +170,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | 参数名   | 类型                                                      | 必填 | 说明                                 |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调 |
+  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储数据之后的回调 |
   
 - 示例
 
