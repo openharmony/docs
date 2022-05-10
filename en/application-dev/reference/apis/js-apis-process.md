@@ -596,5 +596,5 @@ Sends a signal to the specified process to terminate it.
 **Example**
 ```js
 var pres = process.pid
-var result = that.kill(pres, 28)
+var result = that.kill(28, pres)
 ```
