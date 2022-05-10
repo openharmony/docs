@@ -1,12 +1,12 @@
 # Sensor Overview
 
 
-Sensors in OpenHarmony are an abstraction of underlying hardware-based sensors. Your application can access the underlying sensors via the sensors. Using the APIs provided by sensors, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, fitness and health, and games applications.
+Sensors in OpenHarmony are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via the sensors. Using the APIs provided by sensors, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
 
 A sensor is a device to detect events or changes in an environment and send messages about the events or changes to another device (for example, a CPU). Generally, a sensor is composed of sensitive components and conversion components. Sensors are the cornerstone of the IoT. A unified sensor management framework is required to achieve data sensing at a low latency and low power consumption, thereby keeping up with requirements of "1+8+N" products or business in the Seamless AI Life Strategy. The sensor list is as follows:
 
-| Sensor Type                             | Sensor Name              | Description                                                        | Usage                                |
+| Type                             | Name              | Description                                                        | Usage                                |
 | --------------------------------------- | ------------------ | ------------------------------------------------------------ | ---------------------------------------- |
 | SENSOR_TYPE_ACCELEROMETER               | Acceleration sensor      | Measures the acceleration (including the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Detecting the motion status                            |
 | SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED  | Uncalibrated acceleration sensor| Measures the uncalibrated acceleration (including the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Measuring the acceleration bias estimation                      |
@@ -56,7 +56,7 @@ The following modules work cooperatively to implement OpenHarmony sensors: Senso
 
    | Sensor                      | Permission                             | Sensitivity        | Permission Description                   |
    | ------------------------- | -------------------------------- | ------------ | ----------------------- |
-   | Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | Allows your application to subscribe to data of these acceleration-related sensors in the motion category.|
+   | Acceleration sensor, uncalibrated acceleration sensor, and linear acceleration sensor| ohos.permission.ACCELEROMETER    | system_grant | Allows an application to subscribe to data of these acceleration-related sensors in the motion category.|
    | Gyroscope sensor and uncalibrated gyroscope sensor         | ohos.permission.GYROSCOPE        | system_grant | Allows an application to subscribe to data of the gyroscope-related sensors in the motion category.|
    | Pedometer sensor                      | ohos.permission.ACTIVITY_MOTION  | user_grant   | Allows an application to subscribe to the motion status.               |
    | Heart rate sensor                      | ohos.permission.READ_HEALTH_DATA | user_grant   | Allows an application to read health data.               |
