@@ -5,12 +5,11 @@
 Secure Digital Input/Output \(SDIO\) is a peripheral interface evolved from the Secure Digital \(SD\) memory card interface. The SDIO interface is compatible with SD memory cards and can be connected to devices that support the SDIO interface.
 SDIO is widely used. Currently, many smartphones support SDIO, and many SDIO peripherals are developed for connections to smartphones. Common SDIO peripherals include WLAN, GPS, cameras, and Bluetooth.
 The SDIO bus has two ends, named host and device. All communication starts when the host sends a command. The device can communicate with the host as long as it can parse the command of the host. An SDIO host can connect to multiple devices, as shown in the figure below.
-
-    - CLK signal: clock signal sent from the host to the device
-    - VDD signal: power signal
-    - VSS signal: ground signal
-    - D0-3 signal: four data lines. The DAT1 signal cable is multiplexed as the interrupt line. In 1-bit mode, DAT0 is used to transmit data. In 4-bit mode, DAT0 to DAT3 are used to transmit data.
-    - CMD signal: used by the host to send commands and the device to respond to commands.
+- CLK signal: clock signal sent from the host to the device
+- VDD signal: power signal
+- VSS signal: ground signal
+- D0-3 signal: four data lines. The DAT1 signal cable is multiplexed as the interrupt line. In 1-bit mode, DAT0 is used to transmit data. In 4-bit mode, DAT0 to DAT3 are used to transmit data.
+- CMD signal: used by the host to send commands and the device to respond to commands.
 
    **Figure 1**  Connections between the host and devices in SDIO<a name="fig1185316527498"></a>  
     
