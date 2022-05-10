@@ -897,9 +897,9 @@ Note: The sample code used in this article sees extensive use of the '//' post-c
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
-* ​
+* 
 * http://www.apache.org/licenses/LICENSE-2.0
-* ​
+* 
 * Unless required by applicable law or agreed to in writing, software
 * distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -1483,7 +1483,7 @@ The number of parameters in a function must not exceed 5. If the number of param
 
 ## <a name="c5-3"></a>Inline Functions
 
-An inline function is a function optimization method introduced by C99. Function inlining can eliminate the overhead of function calls; thanks to inlining, combination with the called code is implemented, so that the compiler can achieve further code optimization from a larger perspective. The inline function is similar to a function-like macro. For details, see [Rec 6.1](#a6-1).
+An inline function is a function optimization method introduced by C99. Function inlining can eliminate the overhead of function calls; thanks to inlining, combination with the called code is implemented, so that the compiler can achieve further code optimization from a larger perspective. The inline function is similar to a function-like macro. For details, see [Rec 6.1](#rec-61-use-functions-instead-of-function-like-macros).
 
 ### <a name="a5-7"></a>Rec 5.7 Include no more than 10 lines in an inline function (excluding blank lines and comments).
 
@@ -1548,8 +1548,8 @@ Before defining a function-like macro, consider whether it can be replaced with 
 The disadvantages of the function-like macro are as follows:
 
 - Function-like macros haves no type check, which is not as strict as the function call check. For the example code, see [Below](#macro_lack_of_type_check__example).
-- If macro parameters are not calculated during macro expansion, unexpected results may be generated. For details, see [Rule 6.1](#r6-1) and [Rule 6.3](#r6-3).
-- A macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#r6-2) may be generated.
+- If macro parameters are not calculated during macro expansion, unexpected results may be generated. For details, see [Rule 6.1](#rule-61-use-complete-parentheses-for-macro-parameters-when-defining-a-macro) and [Rule 6.3](#rule-63-do-not-pass-expressions-with-side-effects-to-a-function-like-macro).
+- A macro has no independent scope. When it is used together with control flow statements, unexpected results described in [Rule 6.2](#rule-62-place-implementation-statements-of-function-like-macros-that-contain-multiple-statements-in-a-do-while0) may be generated.
 - There are high skill requirements on the proper use of macros (for example, the usage of `#` and wide use of parentheses), which reduces readability.
 - Extensions of some macros can only be implemented by specific compilers in specific scenarios, such as `statement expression` of `gcc`, reducing the portability.
 - After the macro is expanded during precompilation, it is invisible during subsequent compilation, linking, and debugging. Besides, macros that contain multiple lines are expanded into a line.

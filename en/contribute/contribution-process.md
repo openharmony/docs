@@ -36,7 +36,7 @@ Perform the following steps to download the code in the repository to your compu
     2.  Clone the remote repository.
         -   You can copy the address of the remote repository on the repository page.
 
-            **Figure  1** <a name="fig1772512534014"></a>  
+            ![](figures/clone.png)
 
         -   Run the following command on the local host:
 
@@ -185,9 +185,11 @@ Access the fork repository on Gitee, click the button for creating a PR, and sel
 
 For details, visit  [https://gitee.com/help/articles/4128](https://gitee.com/help/articles/4128).
 
->![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+>![](public_sys-resources/icon-notice.gif) **NOTICE**
+>
 >**How do I create PRs at the same time if multiple code repositories have compilation dependencies?**
 >During the development of the operating system \(OS\), it is common that multiple code repositories have compilation dependencies. Therefore, the PRs need to be created and merged at the same time. For this reason, Gitee uses issues as the dependency identifiers for code repositories with compilation dependencies to commit the PRs. Follow the operations below:
+>
 >1.  Create an issue in any of the code repositories.
 >2.  Associate PRs that need to be built and merged at the same time with the issue. For details, visit  [https://gitee.com/help/articles/4142](https://gitee.com/help/articles/4142).
 >3.  After the build is triggered, the build center identifies the PRs associated with the same issue, downloads the build, and merges the PRs into the code library after the code is approved.
@@ -237,5 +239,5 @@ Visit [CI portal](http://ci.openharmony.cn/#/pipeLine).
 
 For details, visit [https://gitee.com/help/articles/4304](https://gitee.com/help/articles/4304).
 
-Related topic: [FAQs](faqs.md)
+Related topic: [FAQs](FAQ.md)
 
