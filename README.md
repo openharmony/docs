@@ -35,12 +35,12 @@ OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/
 
 ## Third-Party Open-Source Software and License Notice
 
-3rd-Party-License: [Third-Party Open-Source Software and License Notice](en/contribute/third-party-open-source-software-and-license-notice.md)
+Third-party license: [Third-Party Open-Source Software and License Notice](en/contribute/third-party-open-source-software-and-license-notice.md)
 
 ## How to Contribute
 
-A great open-source project wouldn't be possible without the hard work of many contributors. We'd like to invite anyone from around the world to  [participate](contribute/contribution.md)  in this exciting journey, and we're grateful for your time, passion, and efforts!
+A great open-source project wouldn't be possible without the hard work of many contributors. We'd like to invite anyone from around the world to  [participate](en/contribute/how-to-contribute.md)  in this exciting journey, and we're grateful for your time, passion, and efforts!
 
-You can evaluate available documents, make simple modifications, provide feedback on document quality, and contribute your original content. For details, see  [Documentation Contribution](contribute/documentation-contribution.md).
+You can evaluate available documents, make simple modifications, provide feedback on document quality, and contribute your original content. For details, see  [Documentation Contribution](en/contribute/documentation-contribution.md).
 
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
