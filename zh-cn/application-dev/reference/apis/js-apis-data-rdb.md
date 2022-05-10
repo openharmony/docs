@@ -33,7 +33,7 @@ getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;Rdb
 const STORE_CONFIG = { name: "RdbTest.db"}
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-    rdbStore.executeSql(SQL_CREATE_TABLE, null, funtion() {
+    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
         console.info('create table done.')
         })
 })
@@ -63,7 +63,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 const STORE_CONFIG = { name: "RdbTest.db"}
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-    rdbStore.executeSql(SQL_CREATE_TABLE, null, funtion() {
+    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
         console.info('create table done.')
         })    
 })
@@ -76,7 +76,7 @@ export default class MainAbility extends Ability {
     const STORE_CONFIG = { name: "RdbTest.db"}
     const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
     data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-        rdbStore.executeSql(SQL_CREATE_TABLE, null, funtion() {
+        rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
         console.info('create table done.')
         })
     })
@@ -349,7 +349,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例**：
   ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicate.inDevices(['12345678abcde'])
+  predicates.inDevices(['12345678abcde'])
   ```
 
 ### inAllDevices<sup>8+</sup>
@@ -1213,7 +1213,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
   rdbStore.update(valueBucket, predicates, function (err, ret) {
-      console.log("updated row count: " + changedRows)})
+      console.log("updated row count: " + ret)})
   ```
 
 
@@ -1248,7 +1248,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
   predicates.equalTo("NAME", "Lisa")
   let promiseupdate = rdbStore.update(valueBucket, predicates)
   promiseupdate.then(async (ret) => {
-       console.log("updated row count: " + changedRows)
+       console.log("updated row count: " + ret)
   }).catch((err) => {
       console.log("update err.")
   })
@@ -1752,7 +1752,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
   ```js
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
-          console.log('device=' + device[i] + ' data changed')
+          console.log('device=' + devices[i] + ' data changed')
       }
   }
   try {
@@ -1783,7 +1783,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
   ```js
   function storeObserver(devices) {
       for (let i = 0; i < devices.length; i++) {
-          console.log('device=' + device[i] + ' data changed')
+          console.log('device=' + devices[i] + ' data changed')
       }
   }
   try {
