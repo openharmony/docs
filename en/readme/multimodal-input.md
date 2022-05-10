@@ -27,5 +27,5 @@ Available APIs of Multimodal Input are event injection ones, which are open only
 
 **Multimodal input subsystem**
 
-multimodalinput\_input
+[multimodalinput\_input](https://gitee.com/openharmony/multimodalinput_input)
 
