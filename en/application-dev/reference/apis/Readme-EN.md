@@ -57,6 +57,7 @@
 - Bundle Management
 
   - [@ohos.bundle](js-apis-Bundle.md)
+  - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
 
 - UI Page
@@ -92,8 +93,6 @@
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler ](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
-
-  - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
 
 - Custom Management
 
@@ -230,6 +229,7 @@
   - [@ohos.data.storage](js-apis-data-storage.md)
   - [@system.app](js-apis-system-app.md)
   - [@system.battery](js-apis-system-battery.md)
+  - [@system.bluetooth](js-apis-system-bluetooth.md)
   - [@system.brightness](js-apis-system-brightness.md)
   - [@system.configuration](js-apis-system-configuration.md)
   - [@system.device](js-apis-system-device.md)
@@ -238,6 +238,7 @@
   - [@system.geolocation](js-apis-system-location.md)
   - [@system.mediaquery](js-apis-system-mediaquery.md)
   - [@system.network](js-apis-system-network.md)
+  - [@system.notification](js-apis-system-notification.md)
   - [@system.package](js-apis-system-package.md)
   - [@system.prompt](js-apis-system-prompt.md)
   - [@system.request](js-apis-system-request.md)
