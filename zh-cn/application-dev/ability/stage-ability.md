@@ -271,6 +271,56 @@ export default class MainAbility extends Ability { {
 }
 ```
 
+### 通过onNewWant实现指定页面启动Ability
+当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
+
+使用startAbility再次拉起Ability，通过want中的uri参数传递页面信息：
+```ts
+async function reStartAbility() {
+  try {
+    await this.context.startAbility({
+      bundleName: "com.sample.MyApplication",
+      abilityName: "MainAbility",
+      uri: "pages/second"
+    })
+    console.log('start ability succeed')
+  } catch (error) {
+    console.error(`start ability failed with ${error.code}`)
+  }
+}
+```
+
+在Ability的onNewWant回调中获取包含页面信息的want参数：
+```ts
+import Ability from '@ohos.application.Ability'
+
+export default class MainAbility extends Ability {
+  onNewWant(want) {
+    globalThis.newWant = want
+  }
+}
+```
+
+在自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
+```ts
+import router from '@system.router'
+
+@Entry
+@Component
+struct Index {
+  newWant = undefined
+
+  onPageShow() {
+    console.info('Index onPageShow')
+    let newWant = globalThis.newWant
+    if (newWant.hasOwnProperty("uri")) {
+      router.push({ uri: newWant.uri });
+      globalThis.newWant = undefined
+    }
+  }
+}
+```
+
 ## 相关实例
 针对Stage模型Ability开发，有以下相关示例可供参考：
 - [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
