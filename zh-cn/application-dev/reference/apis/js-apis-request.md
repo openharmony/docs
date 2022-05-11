@@ -8,25 +8,25 @@
 ## 导入模块
 
 
-```
+```js
 import request from '@ohos.request';
 ```
 
 
 ## 限制与约束
 
-- 默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
-  
-  ```
-    "deviceConfig": {
-      "default": {
-        "network": {
-          "cleartextTraffic": true
-        }
-        ...
+默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
+
+```
+  "deviceConfig": {
+    "default": {
+      "network": {
+        "cleartextTraffic": true
       }
+      ...
     }
-  ```
+  }
+```
 
 
 ## 常量

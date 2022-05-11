@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import data from '@ohos.telephony.data';
 ```
 
@@ -28,7 +28,7 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```
+```js
 data.getDefaultCellularDataSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -52,7 +52,7 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 
 **示例：**
 
-```
+```js
 let promise = data.getDefaultCellularDataSlotId();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -77,7 +77,7 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 
 **示例：**
 
-```
+```js
 data.getCellularDataFlowType((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -99,7 +99,7 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 
 **示例：**
 
-```
+```js
 let promise = data.getCellularDataFlowType();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -124,7 +124,7 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
 **示例：**
 
-```
+```js
 data.getCellularDataState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -146,7 +146,7 @@ getCellularDataState(): Promise\<DataConnectState\>
 
 **示例：**
 
-```
+```js
 let promise = data.getCellularDataState();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -173,7 +173,7 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```
+```js
 data.isCellularDataEnabled((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -197,7 +197,7 @@ isCellularDataEnabled(): Promise\<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = data.isCellularDataEnabled();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -225,7 +225,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 
 **示例：**
 
-```
+```js
 data.isCellularDataRoamingEnabled(0,(err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -255,7 +255,7 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = data.isCellularDataRoamingEnabled(0);
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);

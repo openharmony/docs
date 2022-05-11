@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```javascript
+```js
 import connection from '@ohos.net.connection'
 ```
 
@@ -29,7 +29,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet(function (error, netHandle) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(netHandle))
@@ -54,7 +54,7 @@ getDefaultNet(): Promise\<NetHandle>
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     console.log(JSON.stringify(netHandle))
 })
@@ -76,7 +76,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
-```javascript
+```js
 connection.hasDefaultNet(function (error, has) {
     console.log(JSON.stringify(error))
     console.log(has)
@@ -99,7 +99,7 @@ hasDefaultNet(): Promise\<boolean>
 
 **示例：**
 
-```javascript
+```js
 connection.hasDefaultNet().then(function (has) {
     console.log(has)
 })
@@ -122,7 +122,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 **示例：**
 
-```
+```js
 connection.getAllNets(function (error, nets) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(nets))
@@ -147,7 +147,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
 **示例：**
 
-```
+```js
 connection.getAllNets().then(function (nets) {
     console.log(JSON.stringify(nets))
 });
@@ -172,7 +172,7 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getConnectionProperties(netHandle, function (error, info) {
         console.log(JSON.stringify(error))
@@ -205,7 +205,7 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getConnectionProperties(netHandle).then(function (info) {
         console.log(JSON.stringify(info))
@@ -232,7 +232,7 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getNetCapabilities(netHandle, function (error, info) {
         console.log(JSON.stringify(error))
@@ -265,7 +265,7 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getNetCapabilities(netHandle).then(function (info) {
         console.log(JSON.stringify(info))
@@ -291,7 +291,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetConnected(netHandle, function (error) {
         console.log(JSON.stringify(error))
@@ -322,7 +322,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 **示例：**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetConnected(netHandle).then(function () {
         console.log(`report success`)
@@ -349,7 +349,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetDisconnected(netHandle, function (error) {
         console.log(JSON.stringify(error))
@@ -380,7 +380,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 **示例：**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetDisconnected(netHandle).then(function () {
         console.log(`report success`)
@@ -407,7 +407,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **示例：**
 
-```
+```js
 let host = "xxxx";
 connection.getAddressesByName(host, function (error, addresses) {
     console.log(JSON.stringify(error))
@@ -439,7 +439,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 **示例：**
 
-```
+```js
 let host = "xxxx";
 connection.getAddressesByName(host).then(function (addresses) {
     console.log(JSON.stringify(addresses))
@@ -469,7 +469,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 **示例：**
 
-```javascript
+```js
 // 关注默认网络
 let netConnection = connection.createNetConnection()
 
@@ -502,7 +502,7 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 **示例：**
 
-```javascript
+```js
 netConnection.on('netAvailable', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -525,7 +525,7 @@ on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, net
 
 **示例：**
 
-```javascript
+```js
 netConnection.on('netCapabilitiesChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -548,7 +548,7 @@ on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHan
 
 **示例：**
 
-```javascript
+```js
 netConnection.on('netConnectionPropertiesChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -571,7 +571,7 @@ on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, b
 
 **示例：**
 
-```javascript
+```js
 netConnection.on('netBlockStatusChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -594,7 +594,7 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 
 **示例：**
 
-```javascript
+```js
 let netConnection1 = connection.createNetConnection()
 netConnection1.on('netLost', function (data) {
     console.log(JSON.stringify(data))
@@ -618,7 +618,7 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 netConnection.on('netUnavailable', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -642,7 +642,7 @@ register(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 netConnection.register(function (error) {
     console.log(JSON.stringify(error))
 })
@@ -664,7 +664,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 netConnection.unregister(function (error) {
     console.log(JSON.stringify(error))
 })
@@ -703,7 +703,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressesByName(host, function (error, addresses) {
@@ -737,7 +737,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressesByName(host).then(function (addresses) {
@@ -765,7 +765,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressByName(host, function (error, address) {
@@ -799,7 +799,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 **示例：**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressByName(host).then(function (address) {

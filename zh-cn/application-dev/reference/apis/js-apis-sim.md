@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```
+```js
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -28,7 +28,7 @@ isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 sim.isSimActive(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -57,7 +57,7 @@ isSimActive\(slotId: number\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = sim.isSimActive(0);
 promise.then(data => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
@@ -83,7 +83,7 @@ getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
 **示例：**
 
-```
+```js
 sim.getDefaultVoiceSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -106,7 +106,7 @@ getDefaultVoiceSlotId\(\): Promise<number\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getDefaultVoiceSlotId();
 promise.then(data => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -132,7 +132,7 @@ hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```
+```js
 sim.hasOperatorPrivileges(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -160,7 +160,7 @@ hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = sim.hasOperatorPrivileges(0);
 promise.then(data => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
@@ -186,7 +186,7 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): voi
 
 **示例：**
 
-```
+```js
 sim.getISOCountryCodeForSim(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -215,7 +215,7 @@ getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getISOCountryCodeForSim(0);
 promise.then(data => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
@@ -242,7 +242,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **示例：**
 
-```
+```js
 sim.getSimOperatorNumeric(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -271,7 +271,7 @@ getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getSimOperatorNumeric(0);
 promise.then(data => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
@@ -298,7 +298,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **示例：**
 
-```
+```js
 sim.getSimSpn(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -327,7 +327,7 @@ getSimSpn\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getSimSpn(0);
 promise.then(data => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
@@ -354,7 +354,7 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 **示例：**
 
-```
+```js
 sim.getSimState(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -383,7 +383,7 @@ getSimState\(slotId: number\): Promise<SimState\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getSimState(0);
 promise.then(data => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
@@ -409,7 +409,7 @@ getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
 **示例：**
 
-```
+```js
 sim.getCardType(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -438,7 +438,7 @@ getCardType\(slotId: number\): Promise<CardType\>
 
 **示例：**
 
-```
+```js
 let promise = sim.getCardType(0);
 promise.then(data => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
@@ -465,7 +465,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```jsjs
 sim.hasSimCard(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -494,7 +494,7 @@ hasSimCard\(slotId: number\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = sim.hasSimCard(0);
 promise.then(data => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
@@ -520,7 +520,7 @@ getMaxSimCount\(\): number
 
 **示例：**
 
-```
+```js
 console.log(sim.getMaxSimCount())
 ```
 
