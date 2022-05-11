@@ -172,7 +172,7 @@ int32_t RtcWriteTime(DevHandle handle, struct RtcTime \*time);
 | 0 | 操作成功 |
 | 负数 | 操作失败 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > RTC起始时间为UTC 1970/01/01 Thursday 00:00:00，年的最大取值按照用户器件手册要求计算配置，星期不用配置。
 
 
