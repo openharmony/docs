@@ -17,13 +17,13 @@ import process from '@ohos.process';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| egid | number | 是 | 否 | 进程的有效组标识。 |
-| euid | number | 是 | 否 | 进程的有效用户身份。 |
-| gid | number | 是 | 否 | 进程的组标识。 |
+| egid | number | 是 | 否 | 进程的有效组标识。该接口为系统接口，三方应用不支持调用。 |
+| euid | number | 是 | 否 | 进程的有效用户身份。该接口为系统接口，三方应用不支持调用。 |
+| gid | number | 是 | 否 | 进程的组标识。该接口为系统接口，三方应用不支持调用。 |
 | uid | number | 是 | 否 | 进程的用户标识。 |
-| groups | number[] | 是 | 否 | 带有补充组id的数组。 |
+| groups | number[] | 是 | 否 | 带有补充组id的数组。该接口为系统接口，三方应用不支持调用。 |
 | pid | number | 是 | 否 | 当前进程的pid。 |
-| ppid | number | 是 | 否 | 当前进程的父进程的pid。 |
+| ppid | number | 是 | 否 | 当前进程的父进程的pid。该接口为系统接口，三方应用不支持调用。 |
 | tid<sup>8+</sup> | number | 是 | 否 | 当前进程的tid。 |
 
 
@@ -38,10 +38,10 @@ import process from '@ohos.process';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 子进程的pid。 |
-| ppid | number | 是 | 否 | 子进程的父进程的pid。 |
-| exitCode | number | 是 | 否 | 子进程的退出码。 |
-| killed | boolean | 是 | 否 | 父进程给子进程发信号是否成功。 |
+| pid | number | 是 | 否 | 子进程的pid。该接口为系统接口，三方应用不支持调用。 |
+| ppid | number | 是 | 否 | 子进程的父进程的pid。该接口为系统接口，三方应用不支持调用。 |
+| exitCode | number | 是 | 否 | 子进程的退出码。该接口为系统接口，三方应用不支持调用。 |
+| killed | boolean | 是 | 否 | 父进程给子进程发信号是否成功。该接口为系统接口，三方应用不支持调用。 |
 
 
 ### wait
@@ -49,6 +49,8 @@ import process from '@ohos.process';
 wait(): Promise&lt;number&gt;
 
 等待子进程运行结束，返回promise对象，其值为子进程的退出码。
+
+该接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -75,6 +77,8 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准输出。
 
+该接口为系统接口，三方应用不支持调用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -99,6 +103,8 @@ child.getOutput.then(val=>{
 getErrorOutput(): Promise&lt;Uint8Array&gt;
 
 获取子进程的标准错误输出。
+
+该接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -125,6 +131,8 @@ close(): void
 
 关闭正在运行的子进程。
 
+该接口为系统接口，三方应用不支持调用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -140,6 +148,8 @@ child.close();
 kill(signal: number | string): void
 
 用于发送信号给子进程，结束指定进程。
+
+该接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -383,6 +393,8 @@ runCmd(command: string, options?: { timeout : number, killSignal : number | stri
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 
+该接口为系统接口，三方应用不支持调用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -438,6 +450,8 @@ on(type: string, listener: EventListener): void
 
 存储用户所触发的事件。
 
+该接口为系统接口，三方应用不支持调用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -467,6 +481,8 @@ process.on("data", (e)=>{
 off(type: string): boolean
 
 删除用户存储的事件。
+
+该接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -521,6 +537,8 @@ cwd(): string
 
 用该方法获取进程的工作目录。
 
+该接口为系统接口，三方应用不支持调用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -535,6 +553,8 @@ var path = process.cwd();
 chdir(dir: string): void
 
 更改进程的当前工作目录。
+
+该接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
