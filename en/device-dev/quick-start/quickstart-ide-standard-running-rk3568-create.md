@@ -150,7 +150,7 @@ Perform the steps below in the source code directory:
 
 4. Modify the product configuration file.
 
-     In the productdefine\common\products\rk3568.json file, add the hello part after the existing part.
+     In the vendor\hisilicon\rk3568\config.json file, add the hello part after the existing part.
      
    ```
        "usb:usb_manager_native":{},

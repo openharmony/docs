@@ -420,27 +420,32 @@ ohos_shared_library("module2") {
 
 鸿蒙操作系统的配置文件主要有四个。
 
-1. productdefine/common/products目录下的产品名.json文件。
+1. vendor\产品厂商\产品名\config.json
      
    ```
    {
-     "product_name": "Hi3516DV300",
-     "product_company": "hisilicon",
-     "product_device": "hi3516dv300",
-     "version": "2.0",
-     "type": "standard",
-     "parts":{
-       "ace:ace_engine_standard":{},
-       "ace:napi":{},
-       "account:os_account":{},
-       "distributeddatamgr:native_appdatamgr":{},
-       "distributeddatamgr:distributeddatamgr":{},
-       "distributeddatamgr:appdatamgr_jskits":{},
-     }
-   }
+      "product_name": "MyProduct",
+      "version": "3.0",
+      "type": "standard",
+      "target_cpu": "arm",
+      "ohos_version": "OpenHarmony 1.0",
+      "device_company": "MyProductVendor",
+      "board": "MySOC",
+      "enable_ramdisk": true,
+      "subsystems": [
+        {
+          "subsystem": "ace",
+          "components": [
+            { "component": "ace_engine_lite", "features":[""] }
+          ]
+        }，
+        ...
+      ]
+  }
+
    ```
 
-   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的部件。
+   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的子系统。
 
 2. build目录下的subsystem_config.json文件。
      
