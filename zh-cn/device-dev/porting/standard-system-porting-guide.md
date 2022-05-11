@@ -11,7 +11,7 @@
 
 ### 定义产品
 
-在“//vendor/MyProductVendor”目录下创建以SOC名称的目录，在此目录下创建一个config.json文件，该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下：
+在“//vendor/MyProductVendor/{product_name}名称的目录下创建一个config.json文件，该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下：
 
 //vendor/MyProductVendor/MySOC/config.json
 
@@ -24,7 +24,7 @@
     "target_cpu": "arm",
     "ohos_version": "OpenHarmony 1.0",
     "device_company": "MyProductVendor",
-    "board": "MySOC",
+    "board": "MyProduct",
     "enable_ramdisk": true,
     "subsystems": [
       {
@@ -41,18 +41,17 @@
 ```
 主要的配置内容
 
-product_name： 配置所使用的SOC  必填
+product_name： 产品名称  必填
 version：版本  必填
 type：配置的系统级别，包含（small，standard …) 必填
 target_cpu ：设备的cpu类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
 ohos_version：操作系统版本  选填
 device_company：device厂商名   必填
 board：开发板名称  必填
-enable_ramdisk：true 启用虚拟硬盘 必填
+enable_ramdisk：是否启动ramdisk 必填
 kernel_type  选填
 kernel_version   选填   kernel_type与 kernel_version在 standard 是固定的不需要写。
 subsystems:系统需要启用的子系统。子系统可以简单理解位一块独立构建的功能块。必填
- 
 product_company：不体现在配置中，而是目录名，vendor下一级目录就是product_company，BUILD.gn脚本依然可以访问。
 
 已定义的子系统可以在“//build/subsystem_config.json”中找到。当然你也可以定制子系统。
