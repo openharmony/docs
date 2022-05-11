@@ -21,18 +21,18 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | name | string | 是 | 数据库表中的表名。 |
   | dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | 是 | DataAbility谓词。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | 返回RdbPredicates对象。 |
 
-- 示例：
+**示例：**
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
   dataAbilityPredicates.equalTo("NAME", "Rose").between("AGE", 16, 30)
@@ -55,18 +55,18 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -83,18 +83,18 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.notEqualTo("NAME", "lisi")
@@ -111,12 +111,12 @@ beginWrap(): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有左括号的DataAbility谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbilitylity.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -138,12 +138,12 @@ endWrap(): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有右括号的DataAbility谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "lisi")
@@ -165,12 +165,12 @@ or(): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有或条件的DataAbility谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
@@ -189,12 +189,12 @@ and(): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回带有和条件的DataAbility谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Lisa")
@@ -213,18 +213,18 @@ contains(field: string, value: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | string | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.contains("NAME", "os")
@@ -241,18 +241,18 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | string | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.beginsWith("NAME", "os")
@@ -269,18 +269,18 @@ endsWith(field: string, value: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | string | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.endsWith("NAME", "se")
@@ -297,17 +297,17 @@ isNull(field: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.isNull("NAME")
@@ -324,17 +324,17 @@ isNotNull(field: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.isNotNull("NAME")
@@ -351,18 +351,18 @@ like(field: string, value: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | string | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.like("NAME", "%os%")
@@ -379,18 +379,18 @@ glob(field: string, value: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | string | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.glob("NAME", "?h*g")
@@ -407,19 +407,19 @@ between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
   | high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.between("AGE", 10, 50)
@@ -436,19 +436,19 @@ notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicate
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | low | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最小值。 |
   | high | [ValueType](#valuetype) | 是 | 指示与谓词匹配的最大值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.notBetween("AGE", 10, 50)
@@ -465,18 +465,18 @@ greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.greaterThan("AGE", 18)
@@ -493,18 +493,18 @@ lessThan(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.lessThan("AGE", 20)
@@ -521,18 +521,18 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.greaterThanOrEqualTo("AGE", 18)
@@ -549,18 +549,18 @@ lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | [ValueType](#valuetype) | 是 | 指示要与谓词匹配的值。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.lessThanOrEqualTo("AGE", 20)
@@ -577,17 +577,17 @@ orderByAsc(field: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.orderByAsc("NAME")
@@ -604,17 +604,17 @@ orderByDesc(field: string): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.orderByDesc("AGE")
@@ -631,12 +631,12 @@ distinct(): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于过滤重复记录的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").distinct("NAME")
@@ -659,17 +659,17 @@ limitAs(value: number): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | value | number | 是 | 最大数据记录数。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回可用于设置最大数据记录数的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").limitAs(3)
@@ -686,17 +686,17 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定返回结果起始位置的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose").offsetAs(3)
@@ -713,17 +713,17 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | fields | Array&lt;string&gt; | 是 | 指定分组依赖的列名。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回分组查询列的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.groupBy(["AGE", "NAME"])
@@ -738,17 +738,17 @@ indexedBy(field: string): DataAbilityPredicates
 配置谓词以指定索引列。
 
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | indexName | string | 是 | 索引列的名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回具有指定索引列的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.indexedBy("SALARY_INDEX")
@@ -765,19 +765,19 @@ in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
 
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.in("AGE", [18, 20])
@@ -794,19 +794,19 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | field | string | 是 | 数据库表中的列名。 |
   | value | Array&lt;[ValueType](#valuetype)&gt; | 是 | 以ValueType类型数组形式指定的要匹配的值。 |
 
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | [DataAbilityPredicates](#dataabilitypredicates) | 返回与指定字段匹配的谓词。 |
 
-- 示例：
+**示例：**
   ```js
   let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
   predicates.notIn("NAME", ["Lisa", "Rose"])

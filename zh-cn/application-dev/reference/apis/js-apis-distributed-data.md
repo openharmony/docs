@@ -1,5 +1,7 @@
 # 分布式数据管理
 
+分布式数据管理为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
+
 >![](../../public_sys-resources/icon-note.gif) **说明：** 
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -19,14 +21,14 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 **系统能力**：SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | config | [KVManagerConfig](#kvmanagerconfig) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | KVManager实例创建时调用的回调，返回KVManager对象实例。 |
 
-**示例**：
+**示例：**
 ```js
 let kvManager;
 try {
@@ -58,19 +60,19 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | config |[KVManagerConfig](#kvmanager) | 是  | 提供KVManager实例的配置信息，包括调用方的包名和用户信息。 |
 
-**返回值**：
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[KVManager](#kvmanager)&gt; | 指定的Promise回调方法，返回创建的KVManager对象实例。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -139,7 +141,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
@@ -147,7 +149,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 | options | [Options](#options) | 是  | 创建KVStore实例的配置信息。 |
 | callback | AsyncCallback&lt;T&gt;，&lt;T extends [KVStore](#kvstore)&gt; | 是  | 创建KVStore实例的回调，返回KVStore对象实例。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvStore;
@@ -183,7 +185,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名   | 参数类型                | 必填  | 说明    |
 | ------- | ---------------------- | ---- | -------------------- |
@@ -191,13 +193,13 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 | options  | [Options](#options)   | 是   | 创建KVStore实例的配置信息。|
 
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明        |
 | -------------------------------------- | ------------------------ |
 | Promise&lt;T&gt; &lt;T extends [KVStore](#kvstore)&gt; | 指定的Promise回调方法，返回创建的KVStore数据库实例。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvStore;
@@ -230,7 +232,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 
 | 参数名   | 参数类型              | 必填 | 说明         |
@@ -240,7 +242,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 | kvStore  | [KVStore](#kvstore) | 是   | 要关闭的KVStore数据库。     |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，如果数据库关闭成功则返回true，否则返回false。   |
 
-**示例**：
+**示例：**
 
 ```js
 let kvStore;
@@ -276,7 +278,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明        |
 | -----  | ------  | ---- | ----------------------------- |
@@ -284,13 +286,13 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 | storeId | string | 是   | 要关闭的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | kvStore | [KVStore](#kvstore)  | 是   | 要关闭的KVStore数据库。        |
 
-**返回值**：
+**返回值：**
 
 | 类型          | 说明            |
 | ------------- | -------------- |
 | Promise\<void> | Promise实例，如果数据库关闭成功则返回true，否则返回false。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -330,7 +332,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -338,7 +340,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 | storeId | string | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;void&gt;  | 是   | 回调函数，如果成功返回true，否则返回false。   |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -373,7 +375,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -381,13 +383,13 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 | storeId | string | 是   | 要删除的数据库唯一标识符，长度不大于[MAX_STORE_ID_LENGTH](#constants)。 |
 
 
-**返回值**：
+**返回值：**
 
 | 类型          | 说明            |
 | ------------- | -------------- |
 | Promise&lt;void&gt; | Promise实例，如果成功返回true，否则返回false。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -427,14 +429,14 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是    | 所调用数据库方的包名。     |
 | callback | AsyncCallback&lt;void&gt; | 是   |回调函数，返回所有创建的 KvStore 数据库的 storeId。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -457,20 +459,20 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是    | 所调用数据库方的包名。     |
 
 
-**返回值**：
+**返回值：**
 
 | 类型          | 说明            |
 | ------------- | -------------- |
 | Promise&lt;string[]&gt;| Promise实例，返回所有创建的 KvStore 数据库的 storeId。 |
 
-**示例**：
+**示例：**
 
 ```js
 let kvManager;
@@ -496,7 +498,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -528,7 +530,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -654,7 +656,7 @@ constructor(name: string)
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
@@ -668,13 +670,13 @@ appendChild(child: FieldNode): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#fieldnode8) | 是    | 要附加的域节点。   |
 
-**返回值**：
+**返回值：**
 
 | 类型          | 说明            |
 | ------------- | -------------- |
@@ -716,7 +718,7 @@ getCount(): number
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型   | 说明               |
 | ------ | --------------    |
@@ -749,7 +751,7 @@ getPosition(): number
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型   | 说明               |
 | ------ | --------------    |
@@ -783,7 +785,7 @@ moveToFirst(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -817,7 +819,7 @@ moveToLast(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -851,7 +853,7 @@ moveToNext(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -885,7 +887,7 @@ moveToPrevious(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -919,13 +921,13 @@ move(offset: number): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | offset  | number  | 是    | 表示与当前位置的相对偏移量，负偏移表示向后移动，正偏移表示向前移动。   |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -959,13 +961,13 @@ moveToPosition(position: number): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | position  | number  | 是    |表示绝对位置。          |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -999,7 +1001,7 @@ isFirst(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -1033,7 +1035,7 @@ isLast(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -1066,7 +1068,7 @@ isBeforeFirst(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -1100,7 +1102,7 @@ isAfterLast(): boolean
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
@@ -1134,7 +1136,7 @@ getEntry(): Entry
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1185,7 +1187,7 @@ reset(): Query
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1215,14 +1217,14 @@ equalTo(field: string, value: number|string|boolean): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1250,14 +1252,14 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1285,14 +1287,14 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1320,14 +1322,14 @@ lessThan(field: string, value: number|string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1355,14 +1357,14 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1390,14 +1392,14 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1426,13 +1428,13 @@ isNull(field: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1461,14 +1463,14 @@ inNumber(field: string, valueList: number[]): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1496,14 +1498,14 @@ inString(field: string, valueList: string[]): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1531,14 +1533,14 @@ notInNumber(field: string, valueList: number[]): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1566,14 +1568,14 @@ notInString(field: string, valueList: string[]): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1601,14 +1603,14 @@ like(field: string, value: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | string  | 是    | 表示指定的字符串值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1636,14 +1638,14 @@ unlike(field: string, value: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 | valueList  | string  | 是    | 表示指定的字符串值。|
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1671,7 +1673,7 @@ and(): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1701,7 +1703,7 @@ or(): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1731,13 +1733,13 @@ orderByAsc(field: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1766,13 +1768,13 @@ orderByDesc(field: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1801,14 +1803,14 @@ limit(total: number, offset: number): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | total  | number  | 是    |表示指定的结果数。  |
 | offset | number  | 是    |表示起始位置。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1837,13 +1839,13 @@ isNotNull(field: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | 是    |表示指定字段。      |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1871,7 +1873,7 @@ beginGroup(): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1901,7 +1903,7 @@ endGroup(): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1931,13 +1933,13 @@ prefixKey(prefix: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | prefix | string  | 是    |表示指定的键前缀。     |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -1966,13 +1968,13 @@ setSuggestIndex(index: string): Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | index  | string  | 是    |指示要设置的索引。   |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2001,14 +2003,14 @@ deviceId(deviceId:string):Query
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | deviceId | string  | 是    |指示查询的设备 ID。   |
 
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2035,7 +2037,7 @@ getSqlLike():string
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2068,7 +2070,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2104,14 +2106,14 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2143,7 +2145,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2185,13 +2187,13 @@ delete(key: string): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | 是    |要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2228,7 +2230,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2254,7 +2256,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2278,7 +2280,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2306,7 +2308,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2353,13 +2355,13 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | 是    |表示要批量插入的键值对。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2408,7 +2410,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2455,13 +2457,13 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keys   |string[] | 是    |表示要批量删除的键值对。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2511,7 +2513,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2563,7 +2565,7 @@ startTransaction(): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2598,7 +2600,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2630,7 +2632,7 @@ commit(): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2660,7 +2662,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2692,7 +2694,7 @@ rollback(): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2722,7 +2724,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2755,13 +2757,13 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | 是    |指定是否开启同步，ture表示开启同步，false表示不启用同步。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2791,7 +2793,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2823,7 +2825,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2831,7 +2833,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 | remoteSupportLabels  |string[] | 是    |表示要同步数据的设备的同步标签。  |
 
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -2934,7 +2936,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -2972,14 +2974,14 @@ get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
 
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3015,7 +3017,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -3061,13 +3063,13 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | 是    |表示要匹配的键前缀。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3119,7 +3121,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -3170,13 +3172,13 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3227,7 +3229,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -3276,13 +3278,13 @@ getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | 是    |表示要匹配的键前缀。 |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3336,7 +3338,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3384,13 +3386,13 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)    | 是    |表示查询对象。             |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3440,7 +3442,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3474,13 +3476,13 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3511,7 +3513,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3557,13 +3559,13 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。         |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3612,7 +3614,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3654,13 +3656,13 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | 是    |表示要删除设备的名称。       |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3703,7 +3705,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3739,7 +3741,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3772,7 +3774,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3780,7 +3782,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 | mode  |[SyncMode](#syncmode)   | 是   |同步类型。    |
 | allowedDelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
-**示例**：
+**示例：**
 
 ```js
 let kvStore;
@@ -3795,7 +3797,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3825,14 +3827,14 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | 是    |表示数据库同步允许的默认延迟，以毫秒为单位。    |
 
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3863,7 +3865,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3891,7 +3893,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -3927,7 +3929,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 
 **系统能力**：  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -3962,14 +3964,14 @@ get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | key       |string  | 是    |表示要查询 key 值的键。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4006,7 +4008,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4054,14 +4056,14 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4113,7 +4115,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4166,13 +4168,13 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4224,7 +4226,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4278,14 +4280,14 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4338,7 +4340,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4373,14 +4375,14 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4417,7 +4419,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4469,13 +4471,13 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4533,7 +4535,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4585,14 +4587,14 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4651,7 +4653,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4686,13 +4688,13 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4724,7 +4726,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4771,13 +4773,13 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4827,7 +4829,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4874,14 +4876,14 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -4930,7 +4932,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -4972,13 +4974,13 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要删除其数据的设备。  |
 
-**返回值**：
+**返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
@@ -5023,7 +5025,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -5060,7 +5062,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
@@ -5095,7 +5097,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 **系统能力**： SystemCapability.DistributedDataManager.KVStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |

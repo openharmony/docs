@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import usb from "@ohos.usb";
 ```
 
@@ -17,13 +17,13 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | 设备信息列表。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let devicesList = usb.getDevices();
   console.log(`devicesList = ${JSON.stringify(devicesList)}`);
   //devicesList  返回的数据结构
@@ -89,18 +89,18 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | device | [USBDevice](#usbdevice) | 是 | USB设备信息。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | 指定的传输通道对象。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let devicepipe= usb.connectDevice(device);
   console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
   ```
@@ -114,18 +114,18 @@ hasRight(deviceName: string): boolean
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceName | string | 是 | 设备名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true表示有访问设备的权限，false表示没有访问设备的权限。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let divicesName="1-1";
   let bool = usb.hasRight(divicesName);
   console.log(bool);
@@ -140,18 +140,18 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceName | string | 是 | 设备名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 获取到true则表示软件包的临时权限已访问成功，&nbsp;获取到false则表示软件包的临时权限已访问失败。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let divicesName="1-1";
   usb.requestRight(divicesName).then((ret) => {
     console.log(`requestRight = ${JSON.stringify(ret)}`);
@@ -169,20 +169,20 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): numbe
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
   | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
   | force | boolean | 否 | 可选参数，是否强制获取。默认值false&nbsp;，表示不强制获取。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.claimInterface(devicepipe, interfaces);
   console.log(`claimInterface = ${ret}`);
   ```
@@ -198,19 +198,19 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
   | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.releaseInterface(devicepipe, interfaces);
   console.log(`releaseInterface = ${ret}`);
   ```
@@ -226,19 +226,19 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
   | config | [USBConfig](#usbconfig) | 是 | 用于确定需要设置的配置。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.setConfiguration(devicepipe, config);
   console.log(`setConfiguration = ${ret}`);
   ```
@@ -254,19 +254,19 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
   | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要设置的接口。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.setInterface(devicepipe, interfaces);
   console.log(`setInterface = ${ret}`);
   ```
@@ -282,18 +282,18 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Uint8Array | 返回获取的原始数据。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.getRawDescriptor(devicepipe);
   ```
 
@@ -308,7 +308,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
@@ -318,8 +318,8 @@ getFileDescriptor(pipe: USBDevicePipe): number
   | -------- | -------- |
   | number | 返回设备对应的文件描述符。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.getFileDescriptor(devicepipe);
   ```
 
@@ -334,20 +334,20 @@ controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: nu
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
   | contrlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
   | timeout | number | 否 | 超时时间，可选参数，默认为0不超时。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 获取传输或接收到的数据块大小，&nbsp;获取到-1则表示异常。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
    console.log(`controlTransfer = ${JSON.stringify(ret)}`);
   })
@@ -364,7 +364,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
@@ -372,13 +372,13 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
   | buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
   | timeout | number | 否 | 超时时间，可选参数，默认为0不超时。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 获取传输或接收到的数据块大小，&nbsp;获取到-1则表示异常。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   //usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
   //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
   //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
@@ -398,18 +398,18 @@ closePipe(pipe: USBDevicePipe): number
 
 **系统能力**: SystemCapability.USB.USBManager
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
 
-- 示例：
-  ```
+**示例：**
+  ```js
   let ret = usb.closePipe(devicepipe);
   console.log(`closePipe = ${ret}`);
   ```
