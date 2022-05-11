@@ -552,7 +552,6 @@
       - [@ohos.application.appManager](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration](reference/apis/js-apis-configuration.md)
       - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
-      - [@ohos.application.DataShareExtensionAbility](reference/apis/js-apis-application-DataShareExtensionAbility.md)
       - [@ohos.ability.featureAbility](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
       - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-formextension.md)
@@ -597,7 +596,7 @@
       - [@ohos.bundleState ](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.zlib](reference/apis/js-apis-zlib.md)
     - UI Page
-  
+    
       - [@ohos.animator](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt](reference/apis/js-apis-prompt.md)

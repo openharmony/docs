@@ -12,7 +12,6 @@
   - [@ohos.application.appManager](js-apis-appmanager.md)
   - [@ohos.application.Configuration](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
-  - [@ohos.application.DataShareExtensionAbility](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension](js-apis-formextension.md)
@@ -44,7 +43,6 @@
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
-
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)
@@ -57,14 +55,12 @@
   - [@ohos.bundle](js-apis-Bundle.md)
   - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
-
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
   - [@ohos.mediaquery](js-apis-mediaquery.md)
   - [@ohos.prompt](js-apis-prompt.md)
   - [@ohos.router](js-apis-router.md)
-
 - Graphics
 
   - [@ohos.display ](js-apis-display.md)
@@ -72,7 +68,6 @@
   - [@ohos.window](js-apis-window.md)
   - [webgl](js-apis-webgl.md)
   - [webgl2](js-apis-webgl2.md)
-
 - Media
 
   - [@ohos.multimedia.audio](js-apis-audio.md)
@@ -80,29 +75,24 @@
   - [@ohos.multimedia.image](js-apis-image.md)
   - [@ohos.multimedia.media](js-apis-media.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
-
 - Resource Management
   - [@ohos.i18n](js-apis-i18n.md)
   - [@ohos.intl](js-apis-intl.md)
   - [@ohos.resourceManager](js-apis-resource-manager.md)
-
 - Resource Scheduling 
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
-
 - Custom Management
 
   - [@ohos.configPolicy](js-apis-config-policy.md)
-
 - Security
 
   - [@ohos.abilityAccessCtrl](js-apis-abilityAccessCtrl.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
   - [@system.cipher](js-apis-system-cipher.md)
-
 - Data Management
 
   - [@ohos.data.dataAbility ](js-apis-data-ability.md)
@@ -111,7 +101,6 @@
   - [@ohos.data.rdb](js-apis-data-rdb.md)
   - [@ohos.settings](js-apis-settings.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
-  
 - File Management
 
   - [@ohos.document](js-apis-document.md)
@@ -121,7 +110,6 @@
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
-
 - Telephony Service
 
   - [@ohos.contact](js-apis-contact.md)
@@ -131,14 +119,12 @@
   - [@ohos.telephony.sim](js-apis-sim.md)
   - [@ohos.telephony.sms](js-apis-sms.md)
   - [@ohos.telephony.data](js-apis-telephony-data.md)
-
 - Network Management
   - [@ohos.net.connection](js-apis-net-connection.md)
   - [@ohos.net.http](js-apis-http.md)
   - [@ohos.request](js-apis-request.md)
   - [@ohos.net.socket](js-apis-socket.md)
   - [@ohos.net.webSocket](js-apis-webSocket.md) 
-
 - Connectivity
 
   - [@ohos.bluetooth](js-apis-bluetooth.md)
@@ -146,7 +132,6 @@
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
-
 - Basic Features
 
   - [@ohos.accessibility](js-apis-accessibility.md)
@@ -164,7 +149,6 @@
   - [@ohos.systemTime](js-apis-system-time.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
   - [Timer](js-apis-timer.md)
-
 - Device Management
 
   - [@ohos.batteryInfo ](js-apis-battery-info.md)
@@ -184,13 +168,11 @@
   - [@ohos.update](js-apis-update.md)
   - [@ohos.usb](js-apis-usb.md)
   - [@ohos.vibrator](js-apis-vibrator.md)
-
 - Account Management
 
   - [@ohos.account.appAccount](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount](js-apis-distributed-account.md)
   - [@ohos.account.osAccount](js-apis-osAccount.md)
-
 - Language Base Class Library
 
   - [@ohos.convertxml](js-apis-convertxml.md)
@@ -214,11 +196,9 @@
   - [@ohos.util.Vector](js-apis-vector.md)
   - [@ohos.worker](js-apis-worker.md)
   - [@ohos.xml](js-apis-xml.md)
-
 - Test
   - [@ohos.application.testRunner](js-apis-testRunner.md)
   - [@ohos.uitest](js-apis-uitest.md)
-
 - APIs No Longer Maintained
 
   - [@ohos.bytrace](js-apis-bytrace.md)
