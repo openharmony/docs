@@ -11,7 +11,7 @@ RTC（real-time clock）为操作系统中的实时时钟设备，为操作系�
   **表1** RTC设备API接口功能介绍
 
 | 功能分类 | 接口描述 | 
-| -------- | -------- | -------- |
+| -------- | -------- |
 | RTC句柄操作 | RtcOpen：获取RTC设备驱动句柄<br/>RtcClose：释放RTC设备驱动句柄 |
 | RTC时间操作接口 | RtcReadTime：读RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒<br/>RtcWriteTime：写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
 | RTC报警操作接口 | RtcReadAlarm：读RTC报警时间信息<br/>RtcWriteAlarm：写RTC报警时间信息<br/>RtcRegisterAlarmCallback：注册报警超时回调函数<br/>RtcAlarmInterruptEnable：使能/去使能RTC报警中断 |
