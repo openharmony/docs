@@ -10,13 +10,13 @@ RTC（real-time clock）为操作系统中的实时时钟设备，为操作系�
 
   **表1** RTC设备API接口功能介绍
 
-| 功能分类 | 接口名 | 描述 | 
+| 功能分类 | 接口描述 | 
 | -------- | -------- | -------- |
-| RTC句柄操作 | RtcOpen：获取RTC设备驱动句柄<br/>RtcClose：释放RTC设备驱动句柄 | NA | 
-| RTC时间操作接口 | RtcReadTime：读RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒<br/>RtcWriteTime：写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |NA | 
-| RTC报警操作接口 | RtcReadAlarm：读RTC报警时间信息<br/>RtcWriteAlarm：写RTC报警时间信息<br/>RtcRegisterAlarmCallback：注册报警超时回调函数<br/>RtcAlarmInterruptEnable：使能/去使能RTC报警中断 | NA | 
-| RTC配置操作 | RtcGetFreq：读RTC外接晶振频率<br/>RtcSetFreq：配置RTC外接晶振频率<br/>RtcReset：RTC复位 | NA | 
-| 读写用户定义寄存器 | RtcReadReg：读用户自定义寄存器<br/>RtcWriteReg：写用户自定义寄存器 | NA |  
+| RTC句柄操作 | RtcOpen：获取RTC设备驱动句柄<br/>RtcClose：释放RTC设备驱动句柄 |
+| RTC时间操作接口 | RtcReadTime：读RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒<br/>RtcWriteTime：写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
+| RTC报警操作接口 | RtcReadAlarm：读RTC报警时间信息<br/>RtcWriteAlarm：写RTC报警时间信息<br/>RtcRegisterAlarmCallback：注册报警超时回调函数<br/>RtcAlarmInterruptEnable：使能/去使能RTC报警中断 |
+| RTC配置操作 | RtcGetFreq：读RTC外接晶振频率<br/>RtcSetFreq：配置RTC外接晶振频率<br/>RtcReset：RTC复位 |
+| 读写用户定义寄存器 | RtcReadReg：读用户自定义寄存器<br/>RtcWriteReg：写用户自定义寄存器 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**</br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
