@@ -3,15 +3,15 @@
 
 ## 概述
 
-- UART是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）的缩写，是通用串行数据总线，用于异步通信。该总线双向通信，可以实现全双工传输。
+UART指异步收发传输器（Universal Asynchronous Receiver/Transmitter），是通用串行数据总线，用于异步通信。该总线双向通信，可以实现全双工传输。
 
-- UART应用比较广泛，常用于输出打印信息，也可以外接各种模块，如GPS、蓝牙等。
+UART应用比较广泛，常用于输出打印信息，也可以外接各种模块，如GPS、蓝牙等。
 
-- 两个UART设备的连接示意图如下，UART与其他模块一般用2线（图1）或4线（图2）相连，它们分别是：
-  - TX：发送数据端，和对端的RX相连；
-  - RX：接收数据端，和对端的TX相连；
-  - RTS：发送请求信号，用于指示本设备是否准备好，可接受数据，和对端CTS相连；
-  - CTS：允许发送信号，用于判断是否可以向对端发送数据，和对端RTS相连；
+两个UART设备的连接示意图如下，UART与其他模块一般用2线（图1）或4线（图2）相连，它们分别是：
+  - TX：发送数据端，和对端的RX相连。
+  - RX：接收数据端，和对端的TX相连。
+  - RTS：发送请求信号，用于指示本设备是否准备好，可接受数据，和对端CTS相连。
+  - CTS：允许发送信号，用于判断是否可以向对端发送数据，和对端RTS相连。
 
        **图1** 2线UART设备连接示意图
 
@@ -30,15 +30,19 @@
 
   **表1** UART驱动API接口功能介绍
 
-| 功能分类 | 接口名 | 
+| 接口名 | 接口描述 | 
 | -------- | -------- |
-| UART获取/释放设备句柄 | -&nbsp;UartOpen：UART获取设备句柄<br/>-&nbsp;UartClose：UART释放设备句柄 | 
-| UART读写接口 | -&nbsp;UartRead：从UART设备中读取指定长度的数据<br/>-&nbsp;UartWrite：向UART设备中写入指定长度的数据 | 
-| UART获取/设置波特率接口 | -&nbsp;UartGetBaud：UART获取波特率<br/>-&nbsp;UartSetBaud：UART设置波特率 | 
-| UART获取/设置设备属性 | -&nbsp;UartGetAttribute：UART获取设备属性<br/>-&nbsp;UartSetAttribute：UART设置设备属性 | 
-| UART设置传输模式 | UartSetTransMode：UART设置传输模式 | 
+| UartOpen | UART获取设备句柄 | 
+| UartClose | UART释放设备句柄 | 
+| UartRead | 从UART设备中读取指定长度的数据 | 
+| UartWrite | 向UART设备中写入指定长度的数据 | 
+| UartGetBaud | UART获取波特率 | 
+| UartSetBaud | UART设置波特率 |
+| UartGetAttribute | UART获取设备属性 | 
+| UartSetAttribute | UART设置设备属性 | 
+| UartSetTransMode | UART设置传输模式 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
