@@ -69,7 +69,7 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                 | 必填   | 说明              |
   | -------- | ---------------------------------- | ---- | --------------- |
   | path     | string                             | 是    | 待获取文件的绝对路径。     |
@@ -91,7 +91,7 @@ statSync(path:string): Stat
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待获取文件的绝对路径。 |
@@ -117,7 +117,7 @@ opendir(path: string): Promise&lt;Dir&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明            |
   | ---- | ------ | ---- | ------------- |
   | path | string | 是    | 待打开文件目录的绝对路径。 |
@@ -145,12 +145,13 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
+  
   | 参数名      | 类型                               | 必填   | 说明             |
   | -------- | -------------------------------- | ---- | -------------- |
   | path     | string                           | 是    | 待打开文件目录的绝对路径。  |
   | callback | AsyncCallback&lt;[Dir](#dir)&gt; | 是    | 异步打开文件目录之后的回调。 |
-
+  
 - **示例：**
   ```js
   fileio.opendir(path, function (err, dir) { 
@@ -169,11 +170,12 @@ opendirSync(path: string): Dir
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 
-- **参数：**：
+- **参数：**
+  
   | 参数名  | 类型     | 必填   | 说明            |
   | ---- | ------ | ---- | ------------- |
   | path | string | 是    | 待打开文件目录的绝对路径。 |
-
+  
 - **返回值：**
   | 类型          | 说明       |
   | ----------- | -------- |
@@ -195,12 +197,13 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：.
+- **参数：**
+  
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待访问文件的绝对路径。                              |
   | mode | number | 否    | 访问文件时的选项，可给定如下选项，以按位或的方式使用多个选项，默认给定0。<br/>确认当前进程是否具有对应权限：<br/>-&nbsp;0：确认文件是否存在。<br/>-&nbsp;1：确认当前进程是否具有可执行权限。<br/>-&nbsp;2：确认当前进程是否具有写权限。<br/>-&nbsp;4：确认当前进程是否具有读权限。 |
-
+  
 - **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
@@ -224,7 +227,7 @@ access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明                                       |
   | -------- | ------------------------- | ---- | ---------------------------------------- |
   | path     | string                    | 是    | 待访问文件的绝对路径。                              |
@@ -247,7 +250,7 @@ accessSync(path: string, mode?: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待访问文件的绝对路径。                              |
@@ -271,7 +274,7 @@ close(fd: number):Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待关闭文件的文件描述符。 |
@@ -300,7 +303,7 @@ close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
   | fd       | number                    | 是    | 待关闭文件的文件描述符。 |
@@ -323,7 +326,7 @@ closeSync(fd: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待关闭文件的文件描述符。 |
@@ -365,7 +368,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
@@ -386,7 +389,7 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
@@ -416,7 +419,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
   | src      | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
@@ -440,7 +443,7 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
@@ -461,7 +464,7 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待创建目录的绝对路径。                              |
@@ -490,7 +493,7 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明                                       |
   | -------- | ------------------------- | ---- | ---------------------------------------- |
   | path     | string                    | 是    | 待创建目录的绝对路径。                              |
@@ -513,7 +516,7 @@ mkdirSync(path: string, mode?: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待创建目录的绝对路径。                              |
@@ -533,7 +536,7 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名   | 类型     | 必填   | 说明                                       |
   | ----- | ------ | ---- | ---------------------------------------- |
   | path  | string | 是    | 待打开文件的绝对路径。                              |
@@ -563,7 +566,7 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | path     | string                          | 是    | 待打开文件的绝对路径。                              |
@@ -587,7 +590,7 @@ openSync(path:string, flags?:number, mode?:number): number
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名   | 类型     | 必填   | 说明                                       |
   | ----- | ------ | ---- | ---------------------------------------- |
   | path  | string | 是    | 待打开文件的绝对路径。                              |
@@ -617,7 +620,7 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | 是    | 待读取文件的文件描述符。                             |
@@ -654,7 +657,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 待读取文件的文件描述符。                             |
@@ -687,7 +690,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | 是    | 待读取文件的文件描述符。                             |
@@ -715,7 +718,7 @@ rmdir(path: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待删除目录的绝对路径。 |
@@ -743,7 +746,7 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
   | path     | string                    | 是    | 待删除目录的绝对路径。  |
@@ -766,7 +769,7 @@ rmdirSync(path: string): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待删除目录的绝对路径。 |
@@ -785,7 +788,7 @@ unlink(path:string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待删除文件的绝对路径。 |
@@ -813,7 +816,7 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
   | path     | string                    | 是    | 待删除文件的绝对路径。  |
@@ -835,7 +838,7 @@ unlinkSync(path: string): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待删除文件的绝对路径。 |
@@ -859,7 +862,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
@@ -895,7 +898,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待写入文件的文件描述符。                             |
@@ -927,7 +930,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
@@ -954,7 +957,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名       | 类型     | 必填   | 说明                                       |
   | --------- | ------ | ---- | ---------------------------------------- |
   | path      | string | 是    | 待计算哈希值文件的绝对路径。                           |
@@ -983,7 +986,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名       | 类型                          | 必填   | 说明                                       |
   | --------- | --------------------------- | ---- | ---------------------------------------- |
   | path      | string                      | 是    | 待计算哈希值文件的绝对路径。                           |
@@ -1008,7 +1011,7 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待改变文件权限的绝对路径。                            |
@@ -1037,7 +1040,7 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明                                       |
   | -------- | ------------------------- | ---- | ---------------------------------------- |
   | path     | string                    | 是    | 待改变文件权限的绝对路径。                            |
@@ -1060,7 +1063,7 @@ chmodSync(path: string, mode: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待改变文件权限的绝对路径。                            |
@@ -1080,7 +1083,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待获取文件的文件描述符。 |
@@ -1108,7 +1111,7 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                 | 必填   | 说明               |
   | -------- | ---------------------------------- | ---- | ---------------- |
   | fd       | number                             | 是    | 待获取文件的文件描述符。     |
@@ -1131,7 +1134,7 @@ fstatSync(fd: number): Stat
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待获取文件的文件描述符。 |
@@ -1156,7 +1159,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明               |
   | ---- | ------ | ---- | ---------------- |
   | fd   | number | 是    | 待截断文件的文件描述符。     |
@@ -1186,7 +1189,7 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明               |
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | 是    | 待截断文件的文件描述符。     |
@@ -1209,7 +1212,7 @@ ftruncateSync(fd: number, len?: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明               |
   | ---- | ------ | ---- | ---------------- |
   | fd   | number | 是    | 待截断文件的文件描述符。     |
@@ -1229,7 +1232,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明               |
   | ---- | ------ | ---- | ---------------- |
   | path | string | 是    | 待截断文件的绝对路径。      |
@@ -1258,7 +1261,7 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明               |
   | -------- | ------------------------- | ---- | ---------------- |
   | path     | string                    | 是    | 待截断文件的绝对路径。      |
@@ -1281,7 +1284,7 @@ truncateSync(path: string, len?: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明               |
   | ---- | ------ | ---- | ---------------- |
   | path | string | 是    | 待截断文件的绝对路径。      |
@@ -1305,7 +1308,7 @@ readText(filePath: string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型     | 必填   | 说明                                       |
   | -------- | ------ | ---- | ---------------------------------------- |
   | filePath | string | 是    | 待读取文件的绝对路径。                              |
@@ -1338,7 +1341,7 @@ readText(filePath: string, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                          | 必填   | 说明                                       |
   | -------- | --------------------------- | ---- | ---------------------------------------- |
   | filePath | string                      | 是    | 待读取文件的绝对路径。                              |
@@ -1365,7 +1368,7 @@ readTextSync(filePath: string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型     | 必填   | 说明                                       |
   | -------- | ------ | ---- | ---------------------------------------- |
   | filePath | string | 是    | 待读取文件的绝对路径。                              |
@@ -1390,7 +1393,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                |
   | ---- | ------ | ---- | ----------------- |
   | path | string | 是    | 目标文件的绝对路径，指向链接状态。 |
@@ -1418,7 +1421,7 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                 | 必填   | 说明                |
   | -------- | ---------------------------------- | ---- | ----------------- |
   | path     | string                             | 是    | 目标文件的绝对路径，指向链接状态。 |
@@ -1440,7 +1443,7 @@ lstatSync(path:string): Stat
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                |
   | ---- | ------ | ---- | ----------------- |
   | path | string | 是    | 目标文件的绝对路径，指向链接状态。 |
@@ -1468,7 +1471,7 @@ read(buffer: ArrayBuffer, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型        | 必填 | 说明                                                         |
   | ------- | ----------- | ---- | ------------------------------------------------------------ |
   | buffer  | ArrayBuffer | 是   | 用于保存读取到的文件数据的缓冲区。                           |
@@ -1502,14 +1505,14 @@ read(buffer: ArrayBuffer, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;约束:offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步从文件读取数据之后的回调。                          |
 
-- 示例
+- **示例：**
   ```js
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
@@ -1529,7 +1532,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型   | 必填 | 说明                     |
   | ------- | ------ | ---- | ------------------------ |
   | oldPath | string | 是   | 目标文件的当前绝对路径。 |
@@ -1558,7 +1561,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
   | oldPath  | string                    | 是    | 目标文件的当前绝对路径。  |
@@ -1580,7 +1583,7 @@ renameSync(oldPath: string, newPath: string): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型     | 必填   | 说明           |
   | ------- | ------ | ---- | ------------ |
   | oldPath | string | 是    | 目标文件的当前绝对路径。 |
@@ -1600,7 +1603,7 @@ fsync(fd: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待同步文件的文件描述符。 |
@@ -1628,7 +1631,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明              |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | 是    | 待同步文件的文件描述符。    |
@@ -1650,7 +1653,7 @@ fsyncSync(fd: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待同步文件的文件描述符。 |
@@ -1669,7 +1672,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待同步文件的文件描述符。 |
@@ -1697,7 +1700,7 @@ fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                              | 必填   | 说明                |
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | 是    | 待同步文件的文件描述符。      |
@@ -1719,7 +1722,7 @@ fdatasyncSync(fd: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待同步文件的文件描述符。 |
@@ -1738,7 +1741,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型     | 必填   | 说明           |
   | ------- | ------ | ---- | ------------ |
   | target  | string | 是    | 目标文件的绝对路径。   |
@@ -1767,7 +1770,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明               |
   | -------- | ------------------------- | ---- | ---------------- |
   | target   | string                    | 是    | 目标文件的绝对路径。       |
@@ -1790,7 +1793,7 @@ symlinkSync(target: string, srcPath: string): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型     | 必填   | 说明           |
   | ------- | ------ | ---- | ------------ |
   | target  | string | 是    | 目标文件的绝对路径。   |
@@ -1810,7 +1813,7 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明              |
   | ---- | ------ | ---- | --------------- |
   | path | string | 是    | 待改变文件的绝对路径。     |
@@ -1841,7 +1844,7 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明              |
   | -------- | ------------------------- | ---- | --------------- |
   | path     | string                    | 是    | 待改变文件的绝对路径。     |
@@ -1866,7 +1869,7 @@ chownSync(path: string, uid: number, gid: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待改变文件的绝对路径。 |
@@ -1888,7 +1891,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
@@ -1916,7 +1919,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                          | 必填   | 说明                          |
   | -------- | --------------------------- | ---- | --------------------------- |
   | prefix   | string                      | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
@@ -1938,7 +1941,7 @@ mkdtempSync(prefix: string): string
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
@@ -1962,7 +1965,7 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | 是    | 待改变文件的文件描述符。                             |
@@ -1991,7 +1994,7 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待改变文件的文件描述符。                             |
@@ -2014,7 +2017,7 @@ fchmodSync(fd: number, mode: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | 是    | 待改变文件的文件描述符。                             |
@@ -2034,7 +2037,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待打开文件的绝对路径。                              |
@@ -2063,7 +2066,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                      | 必填   | 说明                                       |
   | -------- | --------------------------------------- | ---- | ---------------------------------------- |
   | path     | string                                  | 是    | 待打开文件的绝对路径。                              |
@@ -2086,7 +2089,7 @@ createStreamSync(path: string, mode: string): Stream
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path | string | 是    | 待打开文件的绝对路径。                              |
@@ -2111,7 +2114,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | 是    | 待打开文件的文件描述符。                             |
@@ -2140,7 +2143,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
@@ -2163,7 +2166,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | 是    | 待打开文件的文件描述符。                             |
@@ -2188,7 +2191,7 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待改变文件的文件描述符。 |
@@ -2219,7 +2222,7 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明              |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | 是    | 待改变文件的文件描述符。    |
@@ -2244,7 +2247,7 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 待改变文件的文件描述符。 |
@@ -2266,7 +2269,7 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待打开文件的绝对路径。 |
@@ -2297,7 +2300,7 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明              |
   | -------- | ------------------------- | ---- | --------------- |
   | path     | string                    | 是    | 待打开文件的绝对路径。     |
@@ -2322,7 +2325,7 @@ lchownSync(path: string, uid: number, gid: number): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名  | 类型     | 必填   | 说明          |
   | ---- | ------ | ---- | ----------- |
   | path | string | 是    | 待打开文件的绝对路径。 |
@@ -2344,7 +2347,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                | 必填   | 说明                                       |
   | -------- | --------------------------------- | ---- | ---------------------------------------- |
   | filename | string                            | 是    | 待监视文件的绝对路径。                              |
@@ -2561,7 +2564,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明                     |
   | -------- | ------------------------- | ---- | ---------------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 以异步方法关闭watcher监听之后的回调。 |
@@ -2611,7 +2614,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
@@ -2672,7 +2675,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                        | 必填   | 说明             |
   | -------- | ------------------------- | ---- | -------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步刷新文件流后的回调函数。 |
@@ -2714,7 +2717,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
@@ -2749,7 +2752,7 @@ write(buffer: ArrayBuffer | string, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
   | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
@@ -2781,7 +2784,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
@@ -2811,7 +2814,7 @@ read(buffer: ArrayBuffer, options?: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
@@ -2846,7 +2849,7 @@ read(buffer: ArrayBuffer, options: {
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
@@ -2885,10 +2888,11 @@ readSync(buffer: ArrayBuffer, options?: {
   | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;约束:offset+length<=buffer.size。  |
   
 - **返回值：**
+  
   | 类型     | 说明       |
   | ------ | -------- |
   | number | 实际读取的长度。 |
-
+  
 - **示例：**
   ```js
   let ss = fileio.createStreamSync(fpath, "r+");
@@ -2933,7 +2937,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-- **参数：**：
+- **参数：**
   | 参数名      | 类型                                     | 必填   | 说明               |
   | -------- | -------------------------------------- | ---- | ---------------- |
   | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | 是    | 异步读取下一个目录项之后的回调。 |
