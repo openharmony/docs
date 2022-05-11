@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList'  
+import LinkedList from '@ohos.util.LinkedList';  
 ```
 
 ## 系统能力
@@ -457,7 +457,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -600,14 +600,14 @@ linkedList.add(4);
 
 // 使用方法一：
 for (let item of linkedList) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // 使用方法二：
 let iter = linkedList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

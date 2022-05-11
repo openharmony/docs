@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import PlainArray from '@ohos.util.PlainArray'  
+import PlainArray from '@ohos.util.PlainArray';  
 ```
 
 ## 系统能力
@@ -440,8 +440,8 @@ callbackfn的参数说明：
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.forEach((value, key) => {
-  console.log(value, key);
+plainArray.forEach((value, index) => {
+  console.log("value:" + value, index);
 });
 ```
 
@@ -467,16 +467,16 @@ plainArray.add(2, "sffdfhf");
 
 // 使用方法一：
 for (let item of plainArray) { 
-  console.log("index: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("index:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // 使用方法二：
 let iter = plainArray[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("index:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

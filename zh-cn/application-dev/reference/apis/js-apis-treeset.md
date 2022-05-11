@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import TreeSet from '@ohos.util.TreeSet'  
+import TreeSet from '@ohos.util.TreeSet';  
 ```
 
 ## 系统能力
@@ -328,7 +328,7 @@ treeSet.add("sdfs");
 let iter = treeSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -361,7 +361,7 @@ let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
 treeSet.forEach((value, key) => {
-  console.log(value, key)
+  console.log("value:" + value, key)
 });
 ```
 
@@ -387,8 +387,8 @@ treeSet.add("sdfs");
 let iter = treeSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -416,14 +416,14 @@ treeSet.add("sdfs");
   
 // 使用方法一：
 for (let item of treeSet) { 
-  console.log("value: " + item);
+  console.log("value:" + item);
 }
 
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
