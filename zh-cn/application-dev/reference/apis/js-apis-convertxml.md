@@ -17,17 +17,17 @@ import convertxml from '@ohos.convertxml';
 
 convert(xml: string, options?: ConvertOptions) : Object
 
-转化xml文本为JavaScript对象。
+转换xml文本为JavaScript对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 
 **参数：**
 
-  | 参数名  | 类型                              | 必填 | 说明               |
-  | ------- | --------------------------------- | ---- | ------------------ |
-  | xml     | string                            | 是   | 传入的xml文本。    |
-  | options | [ConvertOptions](#convertoptions) | 否   | 用户可进行的选项。 |
+| 参数名  | 类型                              | 必填 | 说明            |
+| ------- | --------------------------------- | ---- | --------------- |
+| xml     | string                            | 是   | 传入的xml文本。 |
+| options | [ConvertOptions](#convertoptions) | 否   | 转换选项。      |
 
 **返回值：**
 
@@ -55,8 +55,11 @@ let result = JSON.stringify(conv.convert(xml, options));
 console.log(result)
 ```
 
-
 ## ConvertOptions
+
+转换选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 | 名称              | 参数类型 | 必填 | 说明                                                        |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
