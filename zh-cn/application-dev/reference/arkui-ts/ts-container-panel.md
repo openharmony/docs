@@ -86,8 +86,8 @@ struct PanelExample {
       .type(PanelType.Foldable).mode(PanelMode.Half)
       .dragBar(true) // 默认开启
       .halfHeight(500) // 默认一半
-      .onChange((value: any) => {
-        console.info(`width:${value.width},height:${value.height},mode:${value.mode}`)
+      .onChange((width: number, height: number, mode: PanelMode) => {
+        console.info(`width:${width},height:${height},mode:${mode}`)
       })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
