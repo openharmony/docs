@@ -13,7 +13,7 @@
 
 在“//vendor/MyProductVendor/{product_name}名称的目录下创建一个config.json文件，该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下：
 
-//vendor/MyProductVendor/MySOC/config.json
+//vendor/MyProductVendor/MyProduct/config.json
 
   
 ```
