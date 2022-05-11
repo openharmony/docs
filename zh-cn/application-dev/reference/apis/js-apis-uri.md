@@ -10,14 +10,11 @@
 import uri from '@ohos.uri'  
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## URI
 
-
 ### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -37,6 +34,8 @@ SystemCapability.Utils.Lang
 constructor(uri: string)
 
 constructor是URI的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -59,6 +58,8 @@ new uri.URI('http://username:password@host:8080'); // Output 'http://username:pa
 
 toString(): string
 
+**系统能力：** SystemCapability.Utils.Lang
+
 返回适用于URL中的查询字符串。
 
 **返回值：**
@@ -80,6 +81,8 @@ url.toString()
 equals(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -107,6 +110,8 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -126,6 +131,8 @@ uriInstance.checkIsAbsolute();
 normalize(): URI
 
 规范化此URI的路径。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

@@ -10,10 +10,6 @@
 import convertxml from '@ohos.convertxml';
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## ConvertXML
 
 
@@ -23,39 +19,41 @@ convert(xml: string, options?: ConvertOptions) : Object
 
 转化xml文本为JavaScript对象。
 
+**系统能力：** SystemCapability.Utils.Lang
 
-- 参数：
+
+**参数：**
 
   | 参数名  | 类型                              | 必填 | 说明               |
   | ------- | --------------------------------- | ---- | ------------------ |
   | xml     | string                            | 是   | 传入的xml文本。    |
   | options | [ConvertOptions](#convertoptions) | 否   | 用户可进行的选项。 |
 
-- 返回值：
+**返回值：**
 
-  | 类型   | 说明                         |
-  | ------ | ---------------------------- |
-  | Object | 处理后返回的JavaScript对象。 |
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| Object | 处理后返回的JavaScript对象。 |
 
-- 示例：
+**示例：**
 
-  ```js
-  let xml =
-      '<?xml version="1.0" encoding="utf-8"?>' +
-      '<note importance="high" logged="true">' +
-      '    <title>Happy</title>' +
-      '    <todo>Work</todo>' +
-      '    <todo>Play</todo>' +
-      '</note>';
-  let conv = new convertxml.ConvertXML();
-  let options = {trim : false, declarationKey:"_declaration",
-                 instructionKey : "_instruction", attributesKey : "_attributes",
-                 textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-                 commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-                 nameKey : "_name", elementsKey : "_elements"}
-  let result = JSON.stringify(conv.convert(xml, options));
-  console.log(result)
-  ```
+```js
+let xml =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
+let conv = new convertxml.ConvertXML();
+let options = {trim : false, declarationKey:"_declaration",
+               instructionKey : "_instruction", attributesKey : "_attributes",
+               textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
+               commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
+               nameKey : "_name", elementsKey : "_elements"}
+let result = JSON.stringify(conv.convert(xml, options));
+console.log(result)
+```
 
 
 ## ConvertOptions
