@@ -9,7 +9,7 @@
 ## 导入模块
 
 
-```
+```js
 import cipher from '@system.cipher'
 ```
 
@@ -36,7 +36,7 @@ RSA 算法加解密。
 
 **示例：**
 
-```
+```js
 export default {    
   rsa() {        
     cipher.rsa({            
@@ -118,7 +118,7 @@ AES 算法加解密。
 
 **示例：**
 
-```
+```js
 export default {    
   aes() {        
     cipher.aes({            

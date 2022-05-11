@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```
+```js
 import socket from '@ohos.net.socket';
 ```
 
@@ -28,7 +28,7 @@ constructUDPSocketInstance\(\): UDPSocket
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 ```
 
@@ -56,7 +56,7 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -93,7 +93,7 @@ bind\(address: NetAddress\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
 promise .then(() => {
@@ -123,7 +123,7 @@ send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.send({
   data:'Hello, server!',
@@ -166,7 +166,7 @@ send\(options: UDPSendOptions\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.send({
   data:'Hello, server!',
@@ -202,7 +202,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.close(err => {
   if (err) {
@@ -232,7 +232,7 @@ close\(\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.close();
 promise.then(() => {
@@ -264,7 +264,7 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -304,7 +304,7 @@ getState\(\): Promise<SocketStateBase\>
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -345,7 +345,7 @@ setExtraOptions\(options: UDPExtraOptions, callback: AsyncCallback<void\>\): voi
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
   if (err) {
@@ -397,7 +397,7 @@ setExtraOptions\(options: UDPExtraOptions\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1});
 promise.then(() => {
@@ -437,7 +437,7 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('message', value => {
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -465,7 +465,7 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -494,7 +494,7 @@ on\(type: 'listening' | 'close', callback: Callback<void\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
 	console.log("on listening success");
@@ -525,7 +525,7 @@ off\(type: 'listening' | 'close', callback?: Callback<void\>\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback1 = () =>{
 	console.log("on listening, success");
@@ -562,7 +562,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
@@ -590,7 +590,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
@@ -680,7 +680,7 @@ constructTCPSocketInstance\(\): TCPSocket
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 ```
 
@@ -709,7 +709,7 @@ bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -745,7 +745,7 @@ bind\(address: NetAddress\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
@@ -775,7 +775,7 @@ connect\(options: TCPConnectOptions, callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000}, err => {
   if (err) {
@@ -811,7 +811,7 @@ connect\(options: TCPConnectOptions\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -844,7 +844,7 @@ send\(options: TCPSendOptions, callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -891,7 +891,7 @@ send\(options: TCPSendOptions\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise1.then(() => {
@@ -929,7 +929,7 @@ close\(callback: AsyncCallback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.close(err => {
   if (err) {
@@ -959,7 +959,7 @@ close\(\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.close();
 promise.then(() => {
@@ -991,7 +991,7 @@ getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1030,7 +1030,7 @@ getRemoteAddress\(\): Promise<NetAddress\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise1.then(() => {
@@ -1069,7 +1069,7 @@ getState\(callback: AsyncCallback<SocketStateBase\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1109,7 +1109,7 @@ getState\(\): Promise<SocketStateBase\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1148,7 +1148,7 @@ setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): voi
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1203,7 +1203,7 @@ setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1246,7 +1246,7 @@ on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: Sock
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('message', value => {
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
@@ -1274,7 +1274,7 @@ off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: So
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -1304,7 +1304,7 @@ on\(type: 'connect' | 'close', callback: Callback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
 	console.log("on connect success")
@@ -1335,7 +1335,7 @@ off\(type: 'connect' | 'close', callback?: Callback<void\>\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback1 = () =>{
 	console.log("on connect success");
@@ -1371,7 +1371,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
@@ -1399,7 +1399,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));

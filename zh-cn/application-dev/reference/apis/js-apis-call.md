@@ -30,7 +30,7 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 call.dial("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -57,7 +57,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean
 
 **示例：**
 
-```
+```js
 call.dial("138xxxxxxxx", {
     extras: false
 }, (err, data) => {
@@ -91,7 +91,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = call.dial("138xxxxxxxx", {
     extras: false
 });
@@ -121,7 +121,7 @@ makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```
+```js
 call.makeCall("138xxxxxxxx", err => { 
     console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
 });
@@ -152,7 +152,7 @@ makeCall(phoneNumber: string): Promise\<void\>
 
 **示例：**
 
-```
+```js
 let promise = call.makeCall("138xxxxxxxx"); 
 promise.then(() => { 
     console.log(`makeCall success`); 
@@ -177,7 +177,7 @@ hasCall\(callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 call.hasCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -200,7 +200,7 @@ hasCall\(\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let promise = call.hasCall();
 promise.then(data => {
     console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
@@ -226,7 +226,7 @@ getCallState\(callback: AsyncCallback<CallState\>\): void
 
 **示例：**
 
-```
+```js
 call.getCallState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -249,7 +249,7 @@ getCallState\(\): Promise<CallState\>
 
 **示例：**
 
-```
+```js
 let promise = call.getCallState();
 promise.then(data => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
@@ -272,7 +272,7 @@ hasVoiceCapability(): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | - true：设备具备语音通话能力<br/>- false：设备不具备语音通话能力 |
 
-```
+```js
 let result = call.hasVoiceCapability(); 
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
@@ -294,7 +294,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\)
 
 **示例：**
 
-```
+```js
 call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -319,7 +319,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 
 **示例：**
 
-```
+```js
 call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -349,7 +349,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 **示例：**
 
-```
+```js
 let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
 promise.then(data => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -375,7 +375,7 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 **示例：**
 
-```
+```js
 call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -400,7 +400,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 **示例：**
 
-```
+```js
 call.formatPhoneNumber("138xxxxxxxx",{
     countryCode: "CN"
 }, (err, data) => {
@@ -432,7 +432,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 **示例：**
 
-```
+```js
 let promise = call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 });
@@ -465,7 +465,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 
 **示例：**
 
-```
+```js
 call.formatPhoneNumberToE164("138xxxxxxxx",{
     countryCode: "CN"
 }, (err, data) => {
@@ -501,7 +501,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 
 **示例：**
 
-```
+```js
 let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
     countryCode: "CN"
 });

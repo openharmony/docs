@@ -30,7 +30,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getRadioTech(slotId, (err, data) =>{ 
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -62,7 +62,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getRadioTech(slotId);
 promise.then(data => {
@@ -91,7 +91,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
 **示例：**
 
-```
+```js
 radio.getNetworkState((err, data) =>{
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -117,7 +117,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getNetworkState(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -149,7 +149,7 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getNetworkState(slotId);
 promise.then(data => {
@@ -177,7 +177,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getNetworkSelectionMode(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -207,7 +207,7 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getNetworkSelectionMode(slotId);
 promise.then(data => {
@@ -235,7 +235,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -265,7 +265,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getISOCountryCodeForNetwork(slotId);
 promise.then(data => {
@@ -292,7 +292,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 **示例：**
 
-```
+```js
 radio.getPrimarySlotId((err, data) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -315,7 +315,7 @@ getPrimarySlotId\(\): Promise\<number\>
 
 **示例：**
 
-```
+```js
 let promise = radio.getPrimarySlotId();
 promise.then(data => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
@@ -342,7 +342,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getSignalInformation(slotId, (err, data) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -372,7 +372,7 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getSignalInformation(slotId);
 promise.then(data => {
@@ -405,7 +405,7 @@ isNrSupported\(slotId: number\): boolean
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let result = radio.isNrSupported(slotId);
 console.log(result);
@@ -430,7 +430,7 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 radio.isRadioOn((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -456,7 +456,7 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.isRadioOn(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -488,7 +488,7 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.isRadioOn(slotId);
 promise.then(data => {
@@ -516,7 +516,7 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 radio.getOperatorName(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -546,7 +546,7 @@ getOperatorName\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getOperatorName(slotId);
 promise.then(data => {

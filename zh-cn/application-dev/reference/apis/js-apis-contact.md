@@ -29,7 +29,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.addContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -65,7 +65,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -96,7 +96,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.deleteContact('xxx', (err) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -129,7 +129,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -157,7 +157,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.updateContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -190,7 +190,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 **示例：**
 
-  ```
+  ```js
   contact.updateContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -229,7 +229,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.updateContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -262,7 +262,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -295,7 +295,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -323,7 +323,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.isMyCard(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -356,7 +356,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -383,7 +383,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryMyCard((err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -412,7 +412,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 **示例：**
 
-  ```
+  ```js
   contact.queryMyCard({
       attributes:['ATTR_EMAIL', 'ATTR_NAME']
   }, (err, data) => {
@@ -447,7 +447,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryMyCard({
       attributes:['ATTR_EMAIL', 'ATTR_NAME']
   });
@@ -478,7 +478,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.selectContact((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -508,7 +508,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -536,7 +536,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContact('xxx', (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -566,7 +566,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       holderId: 0
   }, (err, data) => {
@@ -598,7 +598,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -631,7 +631,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       holderId: 0
   }, {
@@ -670,7 +670,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryContact('xxx', {
       holderId: 0
   }, {
@@ -701,7 +701,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContacts((err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -730,7 +730,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContacts({
       holderId: 0
   }, (err, data) => {
@@ -761,7 +761,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContacts({
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -793,7 +793,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContacts({
       holderId: 0
   }, {
@@ -831,7 +831,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryContacts({
       holderId: 0
   }, {
@@ -863,7 +863,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -893,7 +893,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, (err, data) => {
@@ -925,7 +925,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -958,7 +958,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, {
@@ -997,7 +997,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, {
@@ -1029,7 +1029,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1059,7 +1059,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, (err, data) => {
@@ -1091,7 +1091,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -1124,7 +1124,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 **示例：**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, {
@@ -1163,7 +1163,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, {
@@ -1194,7 +1194,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryGroups((err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -1223,7 +1223,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 **示例：**
 
-  ```
+  ```js
   contact.queryGroups({
       holderId: 0
   }, (err, data) => {
@@ -1258,7 +1258,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryGroups({
       holderId: 0
   });
@@ -1287,7 +1287,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryHolders((err, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -1315,7 +1315,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -1343,7 +1343,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```
+  ```js
   contact.queryKey(/*id*/1, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -1373,7 +1373,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 **示例：**
 
-  ```
+  ```js
   contact.queryKey(id, {
       holderId:1
   }, (err, data) => {
@@ -1409,7 +1409,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 **示例：**
 
-  ```
+  ```js
   let promise = contact.queryKey(id, {
       holderId: 0
   });
@@ -1462,7 +1462,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 使用JSON格式创建联系人数据：
 
 
-```
+```json
 let myContact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
@@ -1480,7 +1480,7 @@ let myContact = {
 
   或使用new一个Contact对象的方式创建数据：
 
-```
+```js
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -1508,7 +1508,7 @@ myContact.phoneNumbers = [phoneNumber];
 使用JSON格式创建数据：
 
 
-```
+```json
 let contactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
@@ -1521,7 +1521,7 @@ let contactAttributes = {
 或使用new一个ContactAttributes对象的方式创建数据：
 
 
-```
+```js
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = ["ATTR_EMAIL"];
 ```
@@ -1555,7 +1555,7 @@ contactAttributes.attributes = ["ATTR_EMAIL"];
 
 使用JSON格式创建数据：
 
-```
+```json
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -1591,7 +1591,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
   使用JSON格式创建数据：
 
-```
+```json
 let email = {
     email: "xxx@email.com",
     displayName: "displayName"
@@ -1601,7 +1601,7 @@ let email = {
 
   或使用new一个Email对象的方式创建数据：
 
-```
+```js
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -1624,7 +1624,7 @@ email.email = "xxx@email.com";
 
   使用JSON格式创建数据：
 
-```
+```json
 let holder = {
   holderId: 0
 };
@@ -1632,7 +1632,7 @@ let holder = {
 
   或使用new一个Holder对象的方式创建数据：
 
-```
+```js
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -1668,7 +1668,7 @@ holder.holderId = 0;
 
   使用JSON格式创建数据：
 
-```
+```json
 let event = {
     eventDate: "xxxxxx"
 };
@@ -1676,7 +1676,7 @@ let event = {
 
   或使用new一个Event对象的方式创建数据：
 
-```
+```js
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -1698,7 +1698,7 @@ event.eventDate = "xxxxxx";
 
   使用JSON格式创建数据：
 
-```
+```json
 let group = {
     groupId: 1,
     title: "title"
@@ -1707,7 +1707,7 @@ let group = {
 
   或使用new一个Group对象的方式创建数据：
 
-```
+```js
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -1747,7 +1747,7 @@ group.title = "title";
 
   使用JSON格式创建数据：
 
-```
+```json
 let imAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
@@ -1757,7 +1757,7 @@ let imAddress = {
 
   或使用new一个ImAddress对象的方式创建数据：
 
-```
+```js
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -1786,7 +1786,7 @@ imAddress.imAddress = "imAddress";
 
   使用JSON格式创建数据：
 
-```
+```json
 let name = {
     familyName: "familyName",
     fullName: "fullName"
@@ -1795,7 +1795,7 @@ let name = {
 
   或使用new一个name对象的方式创建数据：
 
-```
+```js
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -1817,7 +1817,7 @@ name.fullName = "fullName";
 
   使用JSON格式创建数据：
 
-```
+```json
 let nickName = {
     nickName: "nickName"
 };
@@ -1825,7 +1825,7 @@ let nickName = {
 
   或使用new一个NickName对象的方式创建数据：
 
-```
+```js
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -1846,7 +1846,7 @@ nickName.nickName = "nickName";
 
   使用JSON格式创建数据：
 
-```
+```json
 let note = {
     noteContent: "noteContent"
 };
@@ -1854,7 +1854,7 @@ let note = {
 
   或使用new一个Note对象的方式创建数据：
 
-```
+```js
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -1876,7 +1876,7 @@ note.noteContent = "noteContent";
 
   使用JSON格式创建数据：
 
-```
+```json
 let organization = {
     name: "name",
     title: "title"
@@ -1885,7 +1885,7 @@ let organization = {
 
   或使用new一个Organization对象的方式创建数据：
 
-```
+```js
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -1939,7 +1939,7 @@ organization.title = "title";
 
   使用JSON格式创建数据：
 
-```
+```json
 let phoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
@@ -1948,7 +1948,7 @@ let phoneNumber = {
 
   或使用new一个PhoneNumber对象的方式创建数据：
 
-```
+```js
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -1969,7 +1969,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
   使用JSON格式创建数据：
 
-```
+```json
 let portrait = {
     uri: "uri"
 };
@@ -1977,7 +1977,7 @@ let portrait = {
 
   或使用new一个Portrait对象的方式创建数据：
 
-```
+```js
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -2020,7 +2020,7 @@ portrait.uri = "uri";
 
   使用JSON格式创建数据：
 
-```
+```json
 let postalAddress = {
     city: "city"
 };
@@ -2028,7 +2028,7 @@ let postalAddress = {
 
   或使用new一个PostalAddress对象的方式创建数据：
 
-```
+```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -2075,7 +2075,7 @@ postalAddress.city = "city";
 
   使用JSON格式创建数据：
 
-```
+```json
 let relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
@@ -2084,7 +2084,7 @@ let relation = {
 
   或使用new一个Relation对象的方式创建数据：
 
-```
+```js
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -2121,7 +2121,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
   使用JSON格式创建数据：
 
-```
+```json
 var sipAddress = {
     sipAddress: "sipAddress"
 };
@@ -2129,7 +2129,7 @@ var sipAddress = {
 
   或使用new一个SipAddress对象的方式创建数据：
 
-```
+```js
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -2150,7 +2150,7 @@ sipAddress.sipAddress = "sipAddress";
 
   使用JSON格式创建数据：
 
-```
+```json
 let website = {
     website: "website"
 };
@@ -2158,7 +2158,7 @@ let website = {
 
   或使用new一个Website对象的方式创建数据：
 
-```
+```js
 let website = new contact.Website();
 website.website = "website";
 ```

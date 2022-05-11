@@ -7,13 +7,13 @@
 
 ## 导入模块
 
-```
+```js
 import http from '@ohos.net.http';
 ```
 
 ## 完整示例
 
-```
+```js
 import http from '@ohos.net.http';
 
 // 每一个httpRequest对应一个http请求任务，不可复用
@@ -71,7 +71,7 @@ createHttp\(\): HttpRequest
 
 **示例：**
 
-```
+```js
 import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
@@ -100,7 +100,7 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 **示例：**
 
-```
+```js
 httpRequest.request("EXAMPLE_URL", (err, data) => {
     if (!err) {
         console.info('Result:' + data.result);
@@ -133,7 +133,7 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 
 **示例：**
 
-```
+```js
 httpRequest.request("EXAMPLE_URL",
 {
     method: http.RequestMethod.GET,
@@ -183,7 +183,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 **示例：**
 
-```
+```js
 let promise = httpRequest.request("EXAMPLE_URL", {
     method: http.RequestMethod.GET,
     connectTimeout: 60000,
@@ -214,7 +214,7 @@ destroy\(\): void
 
 **示例：**
 
-```
+```js
 httpRequest.destroy();
 ```
 
@@ -238,7 +238,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 
 **示例：**
 
-```
+```js
 httpRequest.on('headerReceive', (err, data) => {
     if (!err) {
         console.info('header: ' + JSON.stringify(data));
@@ -272,7 +272,7 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 
 **示例：**
 
-```
+```js
 httpRequest.off('headerReceive');
 ```
 
@@ -293,7 +293,7 @@ on\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 **示例：**
 
-```
+```js
 httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
@@ -320,7 +320,7 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 
 **示例：**
 
-```
+```js
 httpRequest.off('headersReceive');
 ```
 
@@ -341,7 +341,7 @@ once\(type: 'headersReceive', callback: Callback<Object\>\): void
 
 **示例：**
 
-```
+```js
 httpRequest.once('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });

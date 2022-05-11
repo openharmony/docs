@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -28,7 +28,7 @@ createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallba
 
 **示例：**
 
-```
+```js
 const specification = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu = [0x08, 0x91];
@@ -61,7 +61,7 @@ createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessag
 
 **示例：**
 
-```
+```js
 const specification = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu = [0x08, 0x91];
@@ -91,7 +91,7 @@ sendMessage(options: SendMessageOptions): void
 
 **示例：**
 
-```
+```js
 let sendCallback = function (err, data) {    
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
@@ -124,7 +124,7 @@ getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
 
 **示例：**
 
-```
+```js
 sms.getDefaultSmsSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -147,7 +147,7 @@ getDefaultSmsSlotId\(\): Promise<number\>
 
 **示例：**
 
-```
+```js
 let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -179,7 +179,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 sms.setSmscAddr(slotId, smscAddr, (err,data) => {
@@ -215,7 +215,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 let promise = sms.setSmscAddr(slotId, smscAddr);
@@ -248,7 +248,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 sms.getSmscAddr(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -282,7 +282,7 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 **示例：**
 
-```
+```js
 let slotId = 0;
 let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
@@ -306,7 +306,7 @@ hasSmsCapability(): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | - true：设备具备短信发送和接收能力<br/>- false：设备不具备短信发送和接收能力 |
 
-```
+```js
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
