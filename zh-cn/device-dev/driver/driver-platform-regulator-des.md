@@ -243,7 +243,7 @@ int32_t ret;
 int32_t minUv = 0;        // 最小电压为0µV
 int32_t maxUv = 20000;    // 最大电压为20000µV
 
-/*设置Regulator电压输出电压范围*/
+/* 设置Regulator电压输出电压范围 */
 ret = RegulatorSetVoltage(handle, minUv, maxUv);
 if (ret != 0) {
 	/* 错误处理 */
