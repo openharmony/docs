@@ -18,7 +18,7 @@ RTC（real-time clock）为操作系统中的实时时钟设备，为操作系�
 | RTC配置操作 | RtcGetFreq：读RTC外接晶振频率<br/>RtcSetFreq：配置RTC外接晶振频率<br/>RtcReset：RTC复位 |
 | 读写用户定义寄存器 | RtcReadReg：读用户自定义寄存器<br/>RtcWriteReg：写用户自定义寄存器 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**</br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
@@ -40,7 +40,7 @@ RTC（real-time clock）为操作系统中的实时时钟设备，为操作系�
 
 RTC驱动加载成功后，使用驱动框架提供的查询接口并调用RTC设备驱动接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**</br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 当前操作系统支持一个RTC设备。
 
 DevHandle RtcOpen(void);
