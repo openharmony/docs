@@ -38,51 +38,6 @@ data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
         })
 })
 ```
-
-
-## data_rdb.getRdbStore<sup>8+</sup>
-
-getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
-
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。
-
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数**：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。|
-| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
-| version | number | 是 | 数据库版本。 |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
-
-**示例**：
-
-```js
-const STORE_CONFIG = { name: "RdbTest.db"}
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
-        console.info('create table done.')
-        })    
-})
-```
-
-API 9的示例请参考如下代码：
-
-```ts
-export default class MainAbility extends Ability {
-    const STORE_CONFIG = { name: "RdbTest.db"}
-    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-        rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
-        console.info('create table done.')
-        })
-    })
-}
-```
-
 ## data_rdb.getRdbStore
 
 getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
@@ -122,6 +77,36 @@ promisegetRdb.then(async (rdbStore) => {
 })
 ```
 
+
+## data_rdb.getRdbStore<sup>8+</sup>
+
+getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
+
+获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
+| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
+| version | number | 是 | 数据库版本。 |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
+
+**示例**：
+
+```js
+const STORE_CONFIG = { name: "RdbTest.db"}
+const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
+        console.info('create table done.')
+        })    
+})
+```
+
 ## data_rdb.getRdbStore<sup>8+</sup>
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
@@ -134,7 +119,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。 |
+| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 
@@ -162,25 +147,6 @@ promisegetRdb.then(async (rdbStore) => {
 })
 ```
 
-API 9的示例请参考如下代码：
-
-```ts
-export default class MainAbility extends Ability {
-    const STORE_CONFIG = { name: "RdbTest.db" }
-    const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-    let promisegetRdb = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-    promisegetRdb.then(async (rdbStore) => {
-        let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
-        promiseExecSql.then(() => {
-            console.info('executeSql creat done.')
-        }).catch((err) => {
-            console.log("executeSql creat err.")
-        })
-    }).catch((err) => {
-        console.log("getRdbStore err.")
-    })
-}
-```
 ## data_rdb.deleteRdbStore
 
 deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
@@ -201,39 +167,7 @@ deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
       console.info('delete store done.')
   })
   ```
-
-## data_rdb.deleteRdbStore<sup>8+</sup>
-
-deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
-
-删除数据库，结果以callback形式返回。
-
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数**：
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。|
-| name | string | 是 | 数据库名称。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
-
-**示例**：
-  ```js
-  data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-      console.info('delete store done.')
-  })
-  ```
-
-API 9的示例请参考如下代码：
-
-```ts
-export default class MainAbility extends Ability {
-    data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-        console.info('delete store done.')
-    })
-}
-```
-## data_rdb.deleteRdbStore
+  ## data_rdb.deleteRdbStore
 
 deleteRdbStore(name: string): Promise&lt;void&gt;
 
@@ -263,6 +197,28 @@ deleteRdbStore(name: string): Promise&lt;void&gt;
 
 ## data_rdb.deleteRdbStore<sup>8+</sup>
 
+deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
+
+删除数据库，结果以callback形式返回。
+
+**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数**：
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
+| name | string | 是 | 数据库名称。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
+
+**示例**：
+  ```js
+  data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+      console.info('delete store done.')
+  })
+  ```
+
+## data_rdb.deleteRdbStore<sup>8+</sup>
+
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。
@@ -272,7 +228,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。|
+| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 
 **返回值**：
@@ -290,18 +246,6 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
   })
   ```
 
-API 9的示例请参考如下代码：
-
-```ts
-export default class MainAbility extends Ability {
-    let promisedeleteRdb = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
-    promisedeleteRdb.then(()=>{
-        console.info('delete store done.')
-    }).catch((err) => {
-        console.log("deleteRdbStore err.")
-    })
-}
-```
 
 ## RdbPredicates
 
