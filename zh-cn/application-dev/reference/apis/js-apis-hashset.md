@@ -176,7 +176,7 @@ hashSet.add("sdfs");
 let iter = hashSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -209,7 +209,7 @@ let hashSet = new HashSet();
 hashSet.add("sdfs");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -234,8 +234,8 @@ hashSet.add("sdfs");
 let iter = hashSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -269,7 +269,7 @@ for (let item of hashSet) {
 let iter = hashSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value: " + temp);
   temp = iter.next().value;
 }
 ```

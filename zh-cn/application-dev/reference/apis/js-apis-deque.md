@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import Deque from '@ohos.util.Deque'  
+import Deque from '@ohos.util.Deque'; 
 ```
 
 ## 系统能力
@@ -188,7 +188,7 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -261,14 +261,14 @@ deque.insertFront(4);
 
 // 使用方法一：
 for (let item of deque) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // 使用方法二：
 let iter = deque[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
