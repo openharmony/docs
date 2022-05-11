@@ -1,5 +1,7 @@
 # 窗口
 
+窗口提供管理窗口的一些基础能力，包括对窗口的创建、销毁，以及对串口的属性设置等各项功能。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -171,7 +173,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                       |
   | -------- | -------------------------------------- | ---- | -------------------------- |
@@ -179,7 +181,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
   | type     | [WindowType](#windowtype)              | 是   | 窗口类型。                 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回创建的子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -204,20 +206,20 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型                      | 必填 | 说明       |
   | ------ | ------------------------- | ---- | ---------- |
   | id     | string                    | 是   | 窗口id。   |
   | type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                              |
   | -------------------------------- | ------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -240,7 +242,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                                         |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -249,7 +251,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
   | type     | [WindowType](#windowtype)              | 是   | 窗口类型。                                                   |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前窗口对象。                                       |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -274,7 +276,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型                      | 必填 | 说明                                                         |
   | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
@@ -282,13 +284,13 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
   | id     | string                    | 是   | 窗口id。                                                     |
   | type   | [WindowType](#windowtype) | 是   | 窗口类型。                                                   |
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                            |
   | -------------------------------- | ----------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -309,14 +311,14 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                         |
   | -------- | -------------------------------------- | ---- | ---------------------------- |
   | id       | string                                 | 是   | 窗口id。                     |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前查找的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -338,19 +340,19 @@ find(id: string): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明     |
   | ------ | ------ | ---- | -------- |
   | id     | string | 是   | 窗口id。 |
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                            |
   | -------------------------------- | ----------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前查找的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -371,13 +373,13 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                   |
   | -------- | -------------------------------------- | ---- | -------------------------------------- |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
   var windowClass = null;
@@ -399,13 +401,13 @@ getTopWindow(): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                                      |
   | -------------------------------- | --------------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前应用内最后显示的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -426,14 +428,14 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                                         |
   | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
   | ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前应用内最后显示的窗口对象。                       |
 
-- 示例
+**示例：**
 
   ```js
   var windowClass = null;
@@ -455,19 +457,19 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型    | 必填 | 说明                                                         |
   | ------ | ------- | ---- | ------------------------------------------------------------ |
   | ctx    | Context | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                                      |
   | -------------------------------- | --------------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前应用内最后显示的窗口对象。 |
 
-- 示例
+**示例：**
 
   ```js
    var windowClass = null;
@@ -490,14 +492,14 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                      | 必填 | 说明                                                         |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 是   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'systemBarTintChange';
@@ -516,14 +518,14 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                      | 必填 | 说明                                                         |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                                    | 是   | 监听事件，固定为'systemBarTintChange'，即导航栏、状态栏属性变化事件。 |
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | 否   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'systemBarTintChange';
@@ -544,13 +546,13 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.hide((err, data) => {
@@ -572,13 +574,13 @@ hide(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.hide();
@@ -597,13 +599,13 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.show((err, data) => {
@@ -623,13 +625,13 @@ show(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.show();
@@ -648,13 +650,13 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.destroy((err, data) => {
@@ -674,13 +676,13 @@ destroy(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.destroy();
@@ -699,7 +701,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                                    |
   | -------- | ------------------------- | ---- | --------------------------------------- |
@@ -707,7 +709,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
   | y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.moveTo(300, 300, (err, data)=>{
@@ -728,20 +730,20 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                    |
   | ------ | ------ | ---- | --------------------------------------- |
   | x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移。 |
   | y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.moveTo(300, 300);
@@ -760,7 +762,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明             |
   | -------- | ------------------------- | ---- | ---------------- |
@@ -768,7 +770,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
   | height   | number                    | 是   | 目标窗口的高度。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.resetSize(500, 1000, (err, data) => {
@@ -788,20 +790,20 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
   | width  | number | 是   | 目标窗口的宽度。 |
   | height | number | 是   | 目标窗口的高度。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.resetSize(500, 1000);
@@ -822,14 +824,14 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
   | type     | [WindowType](#windowtype) | 是   | 窗口类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
-- 示例
+**示例：**
 
   ```js
   var type = window.TYPE_APP;
@@ -852,19 +854,19 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型                      | 必填 | 说明       |
   | ------ | ------------------------- | ---- | ---------- |
   | type   | [WindowType](#windowtype) | 是   | 窗口类型。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
    var type = window.TYPE_APP;
@@ -884,13 +886,13 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                       | 必填 | 说明               |
   | -------- | ---------------------------------------------------------- | ---- | ------------------ |
   | callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | 是   | 回调返回窗口属性。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.getProperties((err, data) => {
@@ -910,13 +912,13 @@ getProperties(): Promise&lt;WindowProperties&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                                                 | 说明                                  |
   | ---------------------------------------------------- | ------------------------------------- |
   | Promise&lt;[WindowProperties](#windowproperties)&gt; | 以Promise形式返回结果，返回窗口属性。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.getProperties();
@@ -935,14 +937,14 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                         | 必填 | 说明                                                         |
   | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | [AvoidAreaType](#avoidareatype)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
   | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回窗口内容规避区域。                                   |
 
-- 示例
+**示例：**
 
   ```js
   var type = window.AvoidAreaType.TYPE_SYSTEM;
@@ -963,19 +965,19 @@ getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                                         |
   | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
   | type   | [AvoidAreaType](#avoidareatype) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
 
-- 返回值
+**返回值：**
 
   | 类型                                   | 说明                                          |
   | -------------------------------------- | --------------------------------------------- |
   | Promise&lt;[AvoidArea](#avoidarea)&gt; | 以Promise形式返回结果，返回窗口内容规避区域。 |
 
-- 示例
+**示例：**
 
   ```js
    let promise = windowClass.getAvoidArea();
@@ -994,14 +996,14 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名       | 类型                      | 必填 | 说明                                           |
   | ------------ | ------------------------- | ---- | ---------------------------------------------- |
   | isFullScreen | boolean                   | 是   | 是否设为全屏状态，且全屏状态隐藏状态栏导航栏。 |
   | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
 
-- 示例
+**示例：**
 
   ```js
   var isFullScreen = true;
@@ -1022,19 +1024,19 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名       | 类型    | 必填 | 说明                                           |
   | ------------ | ------- | ---- | ---------------------------------------------- |
   | isFullScreen | boolean | 是   | 是否设为全屏状态，且全屏状态隐藏状态栏导航栏。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isFullScreen = true;
@@ -1054,14 +1056,14 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名             | 类型                      | 必填 | 说明                                                         |
   | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
   | isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
   | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-- 示例
+**示例：**
 
   ```js
   var isLayoutFullScreen= true;
@@ -1082,19 +1084,19 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名             | 类型    | 必填 | 说明                                                         |
   | ------------------ | ------- | ---- | ------------------------------------------------------------ |
   | isLayoutFullScreen | boolean | 是   | 窗口的布局是否为全屏显示状态，且全屏状态下状态栏、导航栏仍然显示。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isLayoutFullScreen = true;
@@ -1114,14 +1116,14 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                                                         |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
   | names    | Array                     | 是   | 设置状态栏和导航栏是否显示。例如，需全部显示，该参数设置为["status",&nbsp;"navigation"], 不设置，则默认不显示。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-- 示例
+**示例：**
 
   ```js
   var names = ["status", "navigation"];
@@ -1142,19 +1144,19 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型  | 必填 | 说明                                                         |
   | ------ | ----- | ---- | ------------------------------------------------------------ |
   | names  | Array | 是   | 设置状态栏和导航栏是否显示。例如，需全部显示，该参数设置为["status",&nbsp;"navigation"], 不设置，则默认不显示。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var names = ["status", "navigation"];
@@ -1174,14 +1176,14 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名              | 类型                                        | 必填 | 说明                 |
   | ------------------- | ------------------------------------------- | ---- | -------------------- |
   | SystemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏状态栏的属性。 |
   | callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。           |
 
-- 示例
+**示例：**
 
   ```js
   var SystemBarProperties={
@@ -1211,19 +1213,19 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名              | 类型                                        | 必填 | 说明                 |
   | ------------------- | ------------------------------------------- | ---- | -------------------- |
   | SystemBarProperties | [SystemBarProperties](#systembarproperties) | 是   | 导航栏状态栏的属性。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var SystemBarProperties={
@@ -1252,14 +1254,14 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                 |
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | 是   | 设置加载页面的路径。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.loadContent("pages/page2/page2", (err, data) => {
@@ -1279,19 +1281,19 @@ loadContent(path: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
   | path   | string | 是   | 设置加载页面的路径。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.loadContent("pages/page2/page2");
@@ -1310,13 +1312,13 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                         | 必填 | 说明                             |
   | -------- | ---------------------------- | ---- | -------------------------------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数返回是否显示子窗口结果。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.isShowing((err, data) => {
@@ -1336,13 +1338,13 @@ isShowing(): Promise&lt;boolean&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                   | 说明                                                  |
   | ---------------------- | ----------------------------------------------------- |
   | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回当前窗口是否已显示的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.isShowing();
@@ -1361,14 +1363,14 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                          | 必填 | 说明                                                     |
   | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
   | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
   | callback | Callback&lt;[Size](#size)&gt; | 是   | 回调返回监听到的信息。                                   |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'windowSizeChange';
@@ -1385,14 +1387,14 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                          | 必填 | 说明                                                     |
   | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
   | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
   | callback | Callback&lt;[Size](#size)&gt; | 否   | 回调返回监听到的信息。                                   |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'windowSizeChange';
@@ -1407,14 +1409,14 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'systemAvoidAreaChange';
@@ -1431,14 +1433,14 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 否   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'systemAvoidAreaChange';
@@ -1455,14 +1457,14 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型               | 必填 | 说明                                                         |
   | -------- | ------------------ | ---- | ------------------------------------------------------------ |
   | type     | string             | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
   | callback | Callbacknumber&gt; | 是   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'keyboardHeightChange';
@@ -1481,14 +1483,14 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                   | 必填 | 说明                                                         |
   | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
   | callback | Callback&lt;number&gt; | 否   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```js
   var type = 'keyboardHeightChange';
@@ -1503,13 +1505,13 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                         | 必填 | 说明                             |
   | -------- | ---------------------------- | ---- | -------------------------------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数返回是否支持广色域模式。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.isSupportWideGamut((err, data) => {
@@ -1529,13 +1531,13 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                   | 说明                                                         |
   | ---------------------- | ------------------------------------------------------------ |
   | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回当前窗口是否支持广色域模式的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.isSupportWideGamut();
@@ -1554,14 +1556,14 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名     | 类型                      | 必填 | 说明         |
   | ---------- | ------------------------- | ---- | ------------ |
   | colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式 |
   | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。   |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
@@ -1581,19 +1583,19 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名     | 类型                      | 必填 | 说明         |
   | ---------- | ------------------------- | ---- | ------------ |
   | colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
@@ -1612,13 +1614,13 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                           | 必填 | 说明                       |
   | -------- | ---------------------------------------------- | ---- | -------------------------- |
   | callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | 是   | 回调函数返回当前色域模式。 |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.getColorSpace((err, data) => {
@@ -1638,13 +1640,13 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                                     | 说明                                      |
   | ---------------------------------------- | ----------------------------------------- |
   | Promise&lt;[ColorSpace](#colorspace)&gt; | 以Promise形式返回结果，返回当前色域模式。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.getColorSpace();
@@ -1665,14 +1667,14 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                                                         |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
   | color    | string                    | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
-- 示例
+**示例：**
 
   ```js
   var color = '#00ff33';
@@ -1695,19 +1697,19 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                                         |
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | color  | string | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var color = '#00ff33';
@@ -1729,14 +1731,14 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名     | 类型                      | 必填 | 说明                                 |
   | ---------- | ------------------------- | ---- | ------------------------------------ |
   | brightness | number                    | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
   | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                           |
 
-- 示例
+**示例：**
 
   ```js
   var brightness = 1;
@@ -1759,19 +1761,19 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明                                 |
   | ---------- | ------ | ---- | ------------------------------------ |
   | brightness | number | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var brightness = 1;
@@ -1793,14 +1795,14 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名         | 类型                      | 必填 | 说明                                               |
   | -------------- | ------------------------- | ---- | -------------------------------------------------- |
   | dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
   | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                         |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.setDimBehind(0.5, (err, data) => {
@@ -1822,19 +1824,19 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名         | 类型   | 必填 | 说明                                               |
   | -------------- | ------ | ---- | -------------------------------------------------- |
   | dimBehindValue | number | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.setDimBehind(0.5);
@@ -1855,14 +1857,14 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名      | 类型                      | 必填 | 说明                         |
   | ----------- | ------------------------- | ---- | ---------------------------- |
   | isFocusable | boolean                   | 是   | 点击时是否支持切换焦点窗口。 |
   | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                   |
 
-- 示例
+**示例：**
 
   ```js
   var isFocusable= true;
@@ -1885,19 +1887,19 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名      | 类型    | 必填 | 说明                         |
   | ----------- | ------- | ---- | ---------------------------- |
   | isFocusable | boolean | 是   | 点击时是否支持切换焦点窗口。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isFocusable= true;
@@ -1919,14 +1921,14 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名         | 类型                      | 必填 | 说明                     |
   | -------------- | ------------------------- | ---- | ------------------------ |
   | isKeepScreenOn | boolean                   | 是   | 是否设置为屏幕常亮状态。 |
   | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
 
-- 示例
+**示例：**
 
   ```js
   var isKeepScreenOn = true;
@@ -1949,19 +1951,19 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名         | 类型    | 必填 | 说明                     |
   | -------------- | ------- | ---- | ------------------------ |
   | isKeepScreenOn | boolean | 是   | 是否设置为屏幕常亮状态。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isKeepScreenOn= true;
@@ -1983,14 +1985,14 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名    | 类型                      | 必填 | 说明             |
   | --------- | ------------------------- | ---- | ---------------- |
   | touchable | boolean                   | 是   | 设置是否可点击。 |
   | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
 
-- 示例
+**示例：**
 
   ```js
   windowClass.setOutsideTouchable(true, (err, data) => {
@@ -2012,19 +2014,19 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名    | 类型    | 必填 | 说明             |
   | --------- | ------- | ---- | ---------------- |
   | touchable | boolean | 是   | 设置是否可点击。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = windowClass.setOutsideTouchable(true);
@@ -2045,14 +2047,14 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名        | 类型                      | 必填 | 说明                 |
   | ------------- | ------------------------- | ---- | -------------------- |
   | isPrivacyMode | boolean                   | 是   | 窗口是否为隐私模式。 |
   | callback      | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-- 示例
+**示例：**
 
   ```js
   var isPrivacyMode = true;
@@ -2076,19 +2078,19 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名        | 类型    | 必填 | 说明                 |
   | ------------- | ------- | ---- | -------------------- |
   | isPrivacyMode | boolean | 是   | 窗口是否为隐私模式。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isPrivacyMode = true;
@@ -2110,14 +2112,14 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名      | 类型                      | 必填 | 说明                 |
   | ----------- | ------------------------- | ---- | -------------------- |
   | isTouchable | boolean                   | 是   | 窗口是否为可触状态。 |
   | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-- 示例
+**示例：**
 
   ```js
   var isTouchable = true;
@@ -2141,19 +2143,19 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名      | 类型    | 必填 | 说明                 |
   | ----------- | ------- | ---- | -------------------- |
   | isTouchable | boolean | 是   | 窗口是否为可触状态。 |
 
-- 返回值
+**返回值：**
 
   | 类型                | 说明                                            |
   | ------------------- | ----------------------------------------------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
 
-- 示例
+**示例：**
 
   ```js
   var isTouchable = true;
@@ -2190,13 +2192,13 @@ getMainWindow(): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                                       |
   | -------------------------------- | ---------------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前WindowStage下的主窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2222,13 +2224,13 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                    |
   | -------- | -------------------------------------- | ---- | --------------------------------------- |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前WindowStage下的主窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2255,19 +2257,19 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明           |
   | ------ | ------ | ---- | -------------- |
   | name   | String | 是   | 子窗口的名字。 |
 
-- 返回值
+**返回值：**
 
   | 类型                             | 说明                                              |
   | -------------------------------- | ------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | 以Promise形式返回结果，返回当前创建的子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2293,14 +2295,14 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                           |
   | -------- | -------------------------------------- | ---- | ------------------------------ |
   | name     | String                                 | 是   | 子窗口的名字。                 |
   | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调返回当前创建的子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2328,13 +2330,13 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                                          | 说明                                                         |
   | --------------------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | 以Promise形式返回结果，返回当前WindowStage下的所有子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2360,13 +2362,13 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                | 必填 | 说明                                        |
   | -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
   | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | 是   | 回调返回当前WindowStage下的所有子窗口对象。 |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2393,14 +2395,14 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Coretype为'windowSizeChange'
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                 |
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | 是   | 设置加载页面的路径。 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2425,14 +2427,14 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                         | 必填 | 说明                                                         |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
   | type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 是   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {
@@ -2454,14 +2456,14 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                         | 必填 | 说明                                                         |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
   | type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调返回监听到的信息。                                       |
 
-- 示例
+**示例：**
 
   ```ts
   class myAbility extends Ability {

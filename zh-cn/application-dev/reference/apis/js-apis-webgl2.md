@@ -11,7 +11,7 @@ WebGL标准图形API，对应OpenGL ES 3.0特性集。更多信息请参考[WebG
 
 hml内创建canvas，示例如下：
 
-  
+
 ```
 <div class="container">
     <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
@@ -21,8 +21,8 @@ hml内创建canvas，示例如下：
 
 js内获取canvas实例，示例如下：
 
-  
-```
+
+```js
 // 获取canvas组件实例
 const el = this.$refs.canvas1;
 // 从canvas组件实例获取WebGL上下文
