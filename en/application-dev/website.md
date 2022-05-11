@@ -4,7 +4,8 @@
 - Quick Start
   - Getting Started
     - [Preparations](quick-start/start-overview.md)
-    - [Getting Started with eTS](quick-start/start-with-ets.md)
+    - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
+    - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
     - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
