@@ -7,7 +7,7 @@ In this section, we will develop an infographic food details page, by building c
 ## Building the Stack Layout
 
 1. Create a food name.
-     Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the **\<Text>** component in the braces of the **\<Stack>** component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A **\<Stack>** component consists of one or more child components. The latter child component overwrites the former one.
+   Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the **\<Text>** component in the braces of the **\<Stack>** component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A **\<Stack>** component consists of one or more child components. The latter child component overwrites the former one.
 
    ```
    @Entry
@@ -26,7 +26,7 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
 
 2. Display food pictures.
-     Create an **\<Image>** component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the **\<Image>** component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the `"$rawfile('filename')"`  format, where filename indicates the relative path of the file in the rawfile folder. Currently, `$rawfile` only allows the **\<Image>** component to reference image resources.
+   Create an **\<Image>** component and specify a URL for it. The **\<Image>** and **\<Text>** components are mandatory. To display the **\<Text>** component above the **\<Image>** component, you need to declare the **\<Image>** component first. Image resources are stored in the **rawfile** folder in **resources**. When referencing the resources in the **rawfile** folder, use the `"$rawfile('filename')"` format, where filename indicates the relative path of the file in the **rawfile** folder. Currently, `$rawfile` only allows the **\<Image>** component to reference image resources.
 
    ```
    @Entry
