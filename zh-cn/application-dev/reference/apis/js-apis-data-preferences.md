@@ -32,14 +32,14 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -77,18 +77,18 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[Preferences](#preferences)&gt; | Promise实例，用于异步获取结果。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -126,14 +126,14 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -159,18 +159,18 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -196,14 +196,14 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -230,18 +230,18 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -270,14 +270,14 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要获取的存储key名称，不能为空。 |
   | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -314,12 +314,12 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | key | string | 是 | 要获取的存储key名称，不能为空。 |
   | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;ValueType&gt; | Promise实例，用于异步获取结果。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -348,14 +348,14 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
   | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -386,18 +386,18 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
   | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -426,18 +426,18 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要检查的存储key名称，不能为空。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true表示存在，false表示不存在。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -472,17 +472,17 @@ has(key: string): Promise&lt;boolean&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要检查的存储key名称，不能为空。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -515,13 +515,13 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要删除的存储key名称，不能为空。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -552,17 +552,17 @@ delete(key: string): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要删除的存储key名称，不能为空。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -591,12 +591,12 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -627,12 +627,12 @@ flush(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -661,12 +661,12 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -697,12 +697,12 @@ clear(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -731,13 +731,13 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 说明 |
   | -------- | -------- | -------- |
   | type | string | 事件类型，固定值'change'，表示数据变更。 |
   | callback | Callback&lt;{ key : string }&gt; | 回调对象实例。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -779,13 +779,13 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 说明 |
   | -------- | -------- | -------- |
   | type | string | 事件类型，固定值'change'，表示数据变更。 |
   | callback | Callback&lt;{ key : string }&gt; | 需要取消的回调对象实例。 |
 
-- 示例：
+**示例：**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'

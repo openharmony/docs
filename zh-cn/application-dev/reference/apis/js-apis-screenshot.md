@@ -58,14 +58,14 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 **需要权限**：ohos.permission.CAPTURE_SCREEN
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                    | 必填 | 说明                                                         |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
   | callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调返回一个PixelMap对象。                                   |
 
-- 示例
+**示例：**
 
   ```js
   var ScreenshotOptions = {
@@ -98,19 +98,19 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 **需要权限**：ohos.permission.CAPTURE_SCREEN
 
-- 参数
+**参数：**
 
   | 参数名  | 类型                                    | 必填 | 说明                                                         |
   | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
   | options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
 
-- 返回值
+**返回值：**
 
   | 类型                          | 说明                                            |
   | ----------------------------- | ----------------------------------------------- |
   | Promise&lt;image.PixelMap&gt; | 以Promise形式返回结果，返回image.PixelMap对象。 |
 
-- 示例
+**示例：**
 
   ```js
   var ScreenshotOptions = {
