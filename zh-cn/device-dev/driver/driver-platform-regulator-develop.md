@@ -125,7 +125,7 @@ Regulator模块适配包含以下四个步骤：
            priority = 50;
            device_regulator :: device {
                device0 :: deviceNode {	// 为每一个Regulator控制器配置一个HDF设备节点，存在多个时添加，否则不用
-                   policy = 1;	        // 2:用户态可见,1:内核态可见,0:不需要发布服务
+                   policy = 1;	        // 2：用户态可见；1：内核态可见；0：不需要发布服务
                    priority = 50;	// 驱动启动优先级
                    permission = 0644;	// 驱动创建设备节点权限
                    /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致 */
