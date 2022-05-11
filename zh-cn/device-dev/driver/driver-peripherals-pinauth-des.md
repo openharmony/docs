@@ -93,9 +93,24 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
 ### 开发步骤
 
-以下将基于pin_auth驱动框架，并以RK3568平台为例，介绍相关驱动开发的具体步骤。
+以RK3568平台为例，我们提供了Pin_auth驱动DEMO实例，以下是目录结构及各部分功能简介。
 
-1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成pin_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
+```
+// drivers/peripheral/pin_auth
+├── BUILD.gn # 编译脚本
+├── bundle.json # 组件描述文件
+└── hdi_service # Pin_auth驱动实现
+    ├── BUILD.gn # 编译脚本
+    ├── inc # 头文件
+    └── src
+        ├── executor_impl.cpp # 认证、录入等功能接口实现
+        ├── pin_auth_interface_driver.cpp # Pin_auth驱动入口
+        └── pin_auth_interface_service.cpp # 获取执行器列表接口实现
+```
+
+下面结合DEMO实例介绍驱动开发的具体步骤。
+
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成pin_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[pin_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_driver.cpp)文件。
 
    ```c++
    // 通过自定义的HdfPinAuthInterfaceHost对象包含IoService对象和真正的HDI Service实现PinAuthInterfaceService对象
@@ -197,7 +212,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
    
    
-1. 完成获取执行器列表接口实现，向框架注册执行器。
+1. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -270,7 +285,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
    
    
    
-1. 完成执行器每个功能接口实现。
+1. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口（仅作示例）
