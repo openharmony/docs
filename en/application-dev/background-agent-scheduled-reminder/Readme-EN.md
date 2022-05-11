@@ -1,4 +1,4 @@
-# Agent-Powered Scheduled Reminders 
+# Agent-Powered Scheduled Reminder 
 
-- [Overview](background-agent-scheduled-reminder-overview.md)
-- [Development Guidelines](background-agent-scheduled-reminder-guide.md)
+- [Agent-Powered Scheduled Reminder Overview](background-agent-scheduled-reminder-overview.md)
+- [Agent-Powered Scheduled Reminder Development](background-agent-scheduled-reminder-guide.md)
