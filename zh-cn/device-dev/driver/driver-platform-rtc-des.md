@@ -232,7 +232,7 @@ int32_t RtcWriteAlarm(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct R
 
   **表8** RtcWriteAlarm参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
 | handle | RTC设备句柄 |
 | alarmIndex | 报警索引 |
