@@ -12,7 +12,6 @@
   - [@ohos.application.appManager](js-apis-appmanager.md)
   - [@ohos.application.Configuration](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
-  - [@ohos.application.DataShareExtensionAbility](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension](js-apis-formextension.md)

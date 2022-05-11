@@ -7,7 +7,7 @@
 
 ## 创建JS工程
 
-1. 打开**DevEco Studio**，点击**File** &gt; **New** &gt; **Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，请点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
 
    ![zh-cn_image_0000001223558814](figures/zh-cn_image_0000001223558814.png)
 
@@ -20,7 +20,7 @@
 
 ## JS工程项目文件
 
-- **entry**：OpenHarmony工程模块，编译构建生成一个Hap包。
+- **entry**：OpenHarmony工程模块，编译构建生成一个[HAP](../../glossary.md#hap)包。
   - **src &gt; main &gt; js** ：用于存放js源码。
   - **src &gt; main &gt; js &gt; MainAbility** ：应用/服务的入口。
   - **src &gt; main &gt; js &gt; MainAbility &gt; i18n** ：用于配置不同语言场景资源内容，比如应用文本词条、图片路径等资源。
@@ -29,7 +29,7 @@
 
   - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
   - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。
-  - **build-profile.json5** ：模块的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **build-profile.json5** ：当前的模块信息 、编译信息配置项，包括 buildOption target配置等。
   - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
 - **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
@@ -52,7 +52,7 @@
    ```
 
 2. **添加按钮，并绑定onclick方法。**
-   在默认页面基础上，我们添加一个button类型的input组件，作为按钮接受用户点击的动作，从而实现跳转到另一个页面。“**index.hml**”文件的示例代码如下：
+   在默认页面基础上，我们添加一个button类型的input组件，作为按钮接收用户点击的动作，从而实现跳转到另一个页面。“**index.hml**”文件的示例代码如下：
 
    
    ```

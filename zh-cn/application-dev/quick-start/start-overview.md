@@ -14,7 +14,7 @@
 
 ### UI框架
 
-OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架）。方舟开发框架可为开发者提供应用UI开发所必需的能力，比如多种组件、布局计算、动画能力、UI交互、绘制等等。
+OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架）。方舟开发框架可为开发者提供应用UI开发所必需的能力，比如多种组件、布局计算、动画能力、UI交互、绘制等。
 
 方舟开发框架针对不同目的和技术背景的开发者提供了两种开发范式，分别是基于JS扩展的类Web开发范式（简称“类Web开发范式”）和基于TS扩展的声明式开发范式（简称“声明式开发范式”）。以下是两种开发范式的简单对比。
 
@@ -27,14 +27,14 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 对于eTS语言开发，除传统代码方式外，低代码方式则在DevEco Studio V3.0 Beta3及更高版本中支持。
 
-OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循JS开发规范，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，遵循JS开发规范，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
 
 
 ### Ability
 
 Ability是应用所具备能力的抽象，也是应用程序的重要组成部分。一个应用可以具备多种能力（即可以包含多个Ability）。OpenHarmony支持应用以Ability为单位进行部署。
 
-Ability可以分为[FA（Feature Ability）](../../glossary.md#f)和[PA（Particle Ability）](../../glossary.md#p)两种类型，每种类型为开发者提供了不同的模板，以便实现不同的业务功能。其中，FA支持[Page Ability](../ability/fa-pageability.md)模板，以提供与用户交互的能力。一个Page Ability可以含有一个或多个页面（即Page），Page Ability与Page的关系如下图所示：
+Ability分为[FA（Feature Ability）](../../glossary.md#f)和[PA（Particle Ability）](../../glossary.md#p)两种类型，每种类型为开发者提供了不同的模板，以便实现不同的业务功能。其中，FA支持[Page Ability](../ability/fa-pageability.md)模板，以提供与用户交互的能力。一个Page Ability可以含有一个或多个页面（即Page），Page Ability与Page的关系如下图所示：
 
 ![zh-cn_image_0000001215206886](figures/zh-cn_image_0000001215206886.png)
 

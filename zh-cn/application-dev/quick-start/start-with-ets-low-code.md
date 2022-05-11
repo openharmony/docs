@@ -9,7 +9,7 @@
 > 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)获取下载链接。
 
 
-OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
 
 
 使用低代码开发应用或服务有以下两种开发方式：
@@ -22,7 +22,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 创建新工程支持低代码开发
 
-1. 打开**DevEco Studio**，点击**File** &gt; **New** &gt; **Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，请点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
 
    ![zh-cn_image_0000001233528152](figures/zh-cn_image_0000001233528152.png)
 
