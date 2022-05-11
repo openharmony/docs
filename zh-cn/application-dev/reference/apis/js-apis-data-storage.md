@@ -156,7 +156,7 @@ deleteStorageSync(path: string): void
   | path | string | 是 | 应用程序内部数据存储路径。 |
 
 **示例：**
-  ```
+  ```js
   dataStorage.deleteStorageSync(path + '/mystore')
   ```
 
