@@ -41,7 +41,7 @@
   - [HPM Part](hpm-part/Readme-CN.md) 	 	
 - 设备开发示例	 
   -  [轻量和小型系统设备开发示例](guide/device-lite.md) 	
-  - [标准系统设备开发示例](guide/device-lite.md) 
+  - [标准系统设备开发示例](guide/device-standard.md) 
 - 调测
   -  [测试用例开发](subsystems/subsys-testguide-test.md)	
   - [调测工具](subsystems/subsys-toolchain.md) 
