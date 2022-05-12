@@ -116,7 +116,7 @@ getSharedDirty(): bigint
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
-## hidebug.getPrivateDirty
+## hidebug.getPrivateDirty<sup>9+<sup>
 
 getPrivateDirty(): bigint
 
@@ -136,7 +136,7 @@ getPrivateDirty(): bigint
   let privateDirty = hidebug.getPrivateDirty();
   ```
 
-## hidebug.getCpuUsage
+## hidebug.getCpuUsage<sup>9+<sup>
 
 getCpuUsage(): number
 
@@ -148,7 +148,7 @@ getCpuUsage(): number
 **返回值：**
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 获取进程的cpu占用率。 |
+| number | 获取进程的cpu占用率，返回值为小数。 |
 
 
 **示例：**
@@ -220,12 +220,12 @@ dumpHeapData(filename : string) : void
 hidebug.dumpHeapData("heap-20220216");
 ```
 
-## hidebug.getServiceDump
+## hidebug.getServiceDump<sup>9+<sup>
 
-getServiceDump(serviceid : number) : string;
+getServiceDump(serviceid : number) : string
 
 获取系统服务信息。
-不适用于第三方应用，需要系统应用配置或拥有dump权限。
+此接口为系统接口，三方应用使用需要添加dump权限。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
