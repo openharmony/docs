@@ -1857,8 +1857,6 @@ promise.then(function (value) {
 
 ### state<sup>8+</sup>
 
-只读 state: AudioState 
-
 定义当前渲染器的状态。
 
 **参数：**
@@ -2669,8 +2667,6 @@ audioRenderer.on('stateChange', (state) => {
 提供音频采集的相关接口。在调用AudioCapturer的接口前，需要先通过[createAudioCapturer](#audiocreateaudiocapturer8)创建实例。
 
 ### state<sup>8+</sup>
-
-只读 state: AudioState
 
 定义当前采集器状态。
 
