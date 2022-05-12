@@ -7,7 +7,7 @@
 
 - [AudioManager](#audiomanager)：音频管理。
 - [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
-- [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM（Pulse Code Modulation）音频数据。
+- [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
 
 ## 导入模块
 
@@ -38,7 +38,7 @@ var audioManager = audio.getAudioManager();
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
-获取音频渲染器。
+获取音频渲染器。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -100,7 +100,7 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
 | 类型                                      | 说明             |
 | ----------------------------------------- | ---------------- |
-| Promise<[AudioRenderer](#audiorenderer8)> | 音频播放器对象。 |
+| Promise<[AudioRenderer](#audiorenderer8)> | 音频渲染器对象。 |
 
 **示例：**
 
