@@ -10,7 +10,7 @@ CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface
 
 ## 接口说明 <a name="section2_MIPI_CSIDevelop"></a>
 
-MipiCsiCntlrMethod定义
+MipiCsiCntlrMethod定义：
 
 ```c
 struct MipiCsiCntlrMethod {
@@ -254,11 +254,11 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       return ret;
   }
   
-  //mipi_dsi_core.c核心层
+  // mipi_dsi_core.c核心层
   int32_t MipiCsiRegisterCntlr(struct MipiCsiCntlr *cntlr, struct HdfDeviceObject *device)
   {
   ...
-  //定义的全局变量:static struct MipiCsiHandle g_mipiCsihandle[MAX_CNTLR_CNT];
+  // 定义的全局变量:static struct MipiCsiHandle g_mipiCsihandle[MAX_CNTLR_CNT];
       if (g_mipiCsihandle[cntlr->devNo].cntlr == NULL) {
           (void)OsalMutexInit(&g_mipiCsihandle[cntlr->devNo].lock);
           (void)OsalMutexInit(&(cntlr->lock));
