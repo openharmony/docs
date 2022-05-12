@@ -1,45 +1,45 @@
-# 首选项
+# Preferences
 
-首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+Preferences provide capabilities for processing key-value (KV) data for applications and supports lightweight data persistence, modification, and query. Data is stored in KV pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-## 导入模块
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+
+## Modules to Import
 
 ```ts
 import data_preferences from '@ohos.data.preferences';
 ```
 
-## 常量
+## Constants
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，大小为8192字节。 |
+| MAX_KEY_LENGTH | string | Yes| No| Maximum length of a key. It is 80 bytes.|
+| MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It is 8192 bytes.|
 
 
 ## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
-读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，该方法使用callback方式作为异步方法。
+Reads a preference persistence file and loads data to the **Preferences** instance for data operations. This API uses an asynchronous callback to return the result.
 
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
-  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -47,21 +47,21 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed")
+              console.info("Failed to get the preferences")
               return;
           }
           preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
+                  console.info("Failed to put the value of startup, err: " + err)
                   return
               }
               console.info("Put the value of startup successfully.")
               preferences.flush(function (err) {
                   if (err) {
-                      console.info("Flush to file failed, err: " + err)
+                      console.info("Failed to flush data to file, err: " + err)
                       return
                   }
-                  console.info("Flushed to file successfully.")
+                  console.info("Flushed data to file successfully.")
               })
           })
       })
@@ -73,22 +73,22 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
-读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，该方法使用Promise方式作为异步方法。
+Reads a preference persistence file and loads data to the **Preferences** instance for data operations. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Preferences](#preferences)&gt; | Promise实例，用于异步获取结果。 |
+  | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -98,20 +98,20 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
       promise.then((preferences) => {
           preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
+                  console.info("Failed to put the value of startup, err: " + err)
                   return
               }
               console.info("Put the value of startup successfully.")
               preferences.flush(function (err) {
                   if (err) {
-                      console.info("Flush to file failed, err: " + err)
+                      console.info("Failed to flush data to file, err: " + err)
                       return
                   }
-                  console.info("Flushed to file successfully.")
+                  console.info("Flushed data to file successfully.")
               })
           })
       }).catch((err) => {
-          console.info("Get the preferences failed")
+          console.info("Failed to get the preferences")
       })
   }
   ```
@@ -121,19 +121,19 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件。
-删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
+Deletes a **Preferences** singleton instance, the persistence file and backup file, and corrupted files from the memory.
+Once a preference persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -141,10 +141,10 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
   
       data_preferences.deletePreferences(this.context, 'mystore', function (err) {
           if (err) {
-              console.info("Deleted failed, err: " + err)
+              console.info("Failed to delete data, err: " + err)
               return
           }
-          console.info("Deleted successfully.")
+          console.info("Deleted data successfully.")
       })
   }
   ```
@@ -154,23 +154,23 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件。
-删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
+Deletes a **Preferences** singleton instance, the persistence file and backup file, and corrupted files from the memory.
+Once a preference persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -178,9 +178,9 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   
       let promise = data_preferences.deletePreferences(this.context, 'mystore')
       promise.then(() => {
-          console.info("Deleted successfully.")
+          console.info("Deleted data successfully.")
       }).catch((err) => {
-          console.info("Deleted failed, err: " + err)
+          console.info("Failed to delete data, err: " + err)
       })
   }
   ```
@@ -190,20 +190,20 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例。
+Removes a **Preferences** singleton instance from the memory.
 
-移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用callback方式作为异步方法。
+When a **Preferences** singleton instance is removed, this instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -211,7 +211,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
   
       data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
           if (err) {
-              console.info("Removed preferences from cache failed, err: " + err)
+              console.info("Failed to remove preferences from cache, err: " + err)
               return
           }
           console.info("Removed preferences from cache successfully.")
@@ -224,24 +224,24 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例。
+Removes a **Preferences** singleton instance from the memory.
 
-移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，该方法使用Promise方式作为异步方法。
+When a **Preferences** singleton instance is removed, this instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
-  | name | string | 是 | 应用程序内部数据存储名称。 |
+  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -251,7 +251,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
       promise.then(() => {
           console.info("Removed preferences from cache successfully.")
       }).catch((err) => {
-          console.info("Removed preferences from cache failed, err: " + err)
+          console.info("Failed to remove preferences from cache, err: " + err)
       })
   }
   ```
@@ -259,25 +259,25 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 ## Preferences
 
-提供获取和修改存储数据的接口。
+Provides APIs for obtaining and modifying storage data.
 
 
 ### get
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据，该方法使用callback方式作为异步方法。
+Obtains the value of a key. If the value is null or a non-default value, the default data is returned. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
-  | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
+  | key | string | Yes| Key of the data to obtain. It cannot be empty.|
+  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
+  | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -304,22 +304,22 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据，该方法使用Promise方式作为异步方法。
+Obtains the value of a key. If the value is null or a non-default value, the default data is returned. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
+  | key | string | Yes| Key of the data to obtain. It cannot be empty.|
+  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;ValueType&gt; | Promise实例，用于异步获取结果。 |
+  | Promise&lt;ValueType&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -331,7 +331,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
           promiseGet.then((value) => {
               console.info("The value of startup is " + value)
           }).catch((err) => {
-              console.info("Get the value of startup failed, err: " + err)
+              console.info("Failed to get the value of startup, err: " + err)
           })
       }).catch((err) => {
           console.info("Get the preferences failed, err: " + err)
@@ -344,18 +344,18 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-首先获取指定首选项持久化文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化，该方法使用callback方式作为异步方法。
+Obtain a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses an asynchronous callback to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | key | string | Yes| Key of the data. It cannot be empty.|
+  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -363,12 +363,12 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
+                  console.info("Failed to put the value of startup, err: " + err)
                   return
               }
               console.info("Put the value of startup successfully.")
@@ -382,22 +382,22 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-首先获取指定首选项持久化文件对应的Preferences实例，然后借助Preferences API将数据写入Preferences实例，通过flush或者flushSync将Preferences实例持久化，该方法使用Promise方式作为异步方法。
+Obtain a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses a promise to return the execution result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
+  | key | string | Yes| Key of the data. It cannot be empty.|
+  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -409,7 +409,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
           promisePut.then(() => {
               console.info("Put the value of startup successfully.")
           }).catch((err) => {
-              console.info("Put the value of startup failed, err: " + err)
+              console.info("Failed to put the value of startup, err: " + err)
           })
       }).catch((err) => {
           console.info("Get the preferences failed, err: " + err)
@@ -422,22 +422,22 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
-检查存储对象是否包含名为给定key的存储键值对，该方法使用callback方式作为异步方法。
+Checks whether the **Preferences** instance contains data with a given key. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要检查的存储key名称，不能为空。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。 |
+  | key | string | Yes| Key of the data to check. It cannot be empty.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | boolean | true表示存在，false表示不存在。 |
+  | boolean | Returns **true** if the **Preferences** instance contains data with the specified key; returns **false** otherwise.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -445,18 +445,18 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.has('startup', function (err, isExist) {
               if (err) {
-                  console.info("Check the key of startup failed, err: " + err)
+                  console.info("Failed to check the key of startup, err: " + err)
                   return
               }
               if (isExist) {
                   console.info("The key of startup is contained.")
               } else {
-                  console.info("The key of startup dose not contain.")
+                  console.info("The key of startup is not contained.")
               }
           })
       })
@@ -468,21 +468,21 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查存储对象是否包含名为给定key的存储键值对，该方法使用Promise方式作为异步方法。
+Checks whether the **Preferences** instance contains data with a given key. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要检查的存储key名称，不能为空。 |
+  | key | string | Yes| Key of the data to check. It cannot be empty.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;boolean&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -495,7 +495,7 @@ has(key: string): Promise&lt;boolean&gt;
               if (isExist) {
                   console.info("The key of startup is contained.")
               } else {
-                  console.info("The key of startup dose not contain.")
+                  console.info("The key of startup is not contained.")
               }
           }).catch((err) => {
               console.info("Check the key of startup failed, err: " + err)
@@ -511,17 +511,17 @@ has(key: string): Promise&lt;boolean&gt;
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-从存储对象中删除名为给定key的存储键值对，该方法使用callback方式作为异步方法。
+Deletes the KV pair of the specified key from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要删除的存储key名称，不能为空。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -529,12 +529,12 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.delete('startup', function (err) {
               if (err) {
-                  console.info("Delete startup key failed, err: " + err)
+                  console.info("Failed to delete startup key, err: " + err)
                   return
               }
               console.info("Deleted startup key successfully.")
@@ -548,21 +548,21 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 delete(key: string): Promise&lt;void&gt;
 
-从存储对象删除名为给定key的存储键值对，该方法使用Promise方式作为异步方法。
+Deletes the KV pair of the specified key from this **Preferences** instance. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要删除的存储key名称，不能为空。 |
+  | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -574,10 +574,10 @@ delete(key: string): Promise&lt;void&gt;
           promiseDelete.then(() => {
               console.info("Deleted startup key successfully.")
           }).catch((err) => {
-              console.info("Delete startup key failed, err: " + err)
+              console.info("Failed to delete startup key, err: " + err)
           })
       }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
+          console.info("Failed to get the preferences, err: " + err)
       })
   }
   ```
@@ -587,16 +587,16 @@ delete(key: string): Promise&lt;void&gt;
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，该方法使用callback方式作为异步方法。
+Saves the modification to this **Preferences** instance and synchronizes the modification to the preference persistence file. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -604,15 +604,15 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.flush(function (err) {
               if (err) {
-                  console.info("Flush to file failed, err: " + err)
+                  console.info("Failed to flush data to file, err: " + err)
                   return
               }
-              console.info("Flushed to file successfully.")
+              console.info("Flushed data to file successfully.")
           })
       })
   }
@@ -623,16 +623,16 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 flush(): Promise&lt;void&gt;
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，该方法使用Promise方式作为异步方法。
+Saves the modification to this **Preferences** instance and synchronizes the modification to the preference persistence file. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -642,12 +642,12 @@ flush(): Promise&lt;void&gt;
       promise.then((preferences) => {
           let promiseFlush = preferences.flush()
           promiseFlush.then(() => {
-              console.info("Flushed to file successfully.")
+              console.info("Flushed data to file successfully.")
           }).catch((err) => {
-              console.info("Flush to file failed, err: " + err)
+              console.info("Failed to flush data to file, err: " + err)
           })
       }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
+          console.info("Failed to get the preferences, err: " + err)
       })
   }
   ```
@@ -657,16 +657,16 @@ flush(): Promise&lt;void&gt;
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-清除此存储对象中的所有存储，该方法使用callback方式作为异步方法。
+Clears data of this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
+- Parameters
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -674,12 +674,12 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.clear(function (err) {
               if (err) {
-                  console.info("Clear to file failed, err: " + err)
+                  console.info("Failed to clear data, err: " + err)
                   return
               }
               console.info("Cleared to file successfully.")
@@ -693,16 +693,16 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 clear(): Promise&lt;void&gt;
 
-清除此存储对象中的所有存储，该方法使用Promise方式作为异步方法。
+Clears data of this **Preferences** instance. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 返回值：
-  | 类型 | 说明 |
+- Return value
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -714,10 +714,10 @@ clear(): Promise&lt;void&gt;
           promiseClear.then(() => {
               console.info("Cleared to file successfully.")
           }).catch((err) => {
-              console.info("Clear to file failed, err: " + err)
+              console.info("Failed to clear data, err: " + err)
           })
       }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
+          console.info("Failed to get the preferences, err: " + err)
       })
   }
   ```
@@ -727,17 +727,17 @@ clear(): Promise&lt;void&gt;
 
 on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
-订阅数据变更者类，订阅的key的值发生变更后，在执行flush方法后，callback方法会被回调。
+Subscribes to data changes. When the value of the subscribed key changes, a callback will be invoked after **flush()** is executed.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
+- Parameters
+  | Name| Type| Description|
   | -------- | -------- | -------- |
-  | type | string | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 回调对象实例。 |
+  | type | string | Event type. The value **change** indicates data change events.|
+  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -748,22 +748,22 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
       }
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.on('change', observer)
           preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
+                  console.info("Failed to put the value of startup, err: " + err)
                   return
               }
               console.info("Put the value of startup successfully.")
               preferences.flush(function (err) {
                   if (err) {
-                      console.info("Flush to file failed, err: " + err)
+                      console.info("Failed to flush data to file, err: " + err)
                       return
                   }
-                  console.info("Flushed to file successfully.")    // observer will be called.
+                  console.info("Flushed data to file successfully.")    // The observer will be called.
               })
           })  
       })
@@ -775,17 +775,17 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
-当不再进行订阅数据变更时，使用此接口取消订阅。
+Unsubscribes from data changes.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- 参数：
-  | 参数名 | 类型 | 说明 |
+- Parameters
+  | Name| Type| Description|
   | -------- | -------- | -------- |
-  | type | string | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 需要取消的回调对象实例。 |
+  | type | string | Event type. The value **change** indicates data change events.|
+  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
-- 示例：
+- Example
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -795,19 +795,19 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
       }
       data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
           if (err) {
-              console.info("Get the preferences failed, err: " + err)
+              console.info("Failed to get the preferences, err: " + err)
               return
           }
           preferences.on('change', observer)
           preferences.put('startup', 'auto', function (err) {
               if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
+                  console.info("Failed to put the value of startup, err: " + err)
                   return
               }
               console.info("Put the value of startup successfully.")
               preferences.flush(function (err) {
                   if (err) {
-                      console.info("Flush to file failed, err: " + err)
+                      console.info("Failed to flush data to file, err: " + err)
                       return
                   }
                   console.info("Flushed to file successfully.")    // observer will be called.
@@ -820,12 +820,12 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+Enumerates the value types.
 
-**系统能力**：SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称    | 说明                 |
+| Name   | Description                |
 | ------- | -------------------- |
-| number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符。   |
-| boolean | 表示值类型为布尔值。 |
+| number  | The value is a number.  |
+| string  | The value is a string.  |
+| boolean | The value is of Boolean type.|
