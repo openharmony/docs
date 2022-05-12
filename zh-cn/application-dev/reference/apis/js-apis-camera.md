@@ -1566,7 +1566,7 @@ removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void\>): void
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要移除的PhotoOutput实例。 |
 | callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
@@ -1593,7 +1593,7 @@ removeOutput(photoOutput: PhotoOutput): Promise<void\>
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要移除的PhotoOutput实例。 |
 
 
 **返回值：**
@@ -1623,7 +1623,7 @@ removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void\>): void
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要移除的VideoOutput实例。 |
 | callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
@@ -1650,7 +1650,7 @@ removeOutput(videoOutput: VideoOutput): Promise<void\>
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要移除的VideoOutput实例。 |
 
 
 **返回值：**
