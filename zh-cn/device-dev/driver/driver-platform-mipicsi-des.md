@@ -3,11 +3,11 @@
 
 ## 概述<a name="section1_MIPI_CSIDes"></a>
 
-- CSI（Camera Serial Interface）是由MIPI联盟下Camera工作组指定的接口标准。CSI-2是MIPI CSI第二版，主要由应用层、协议层、物理层组成，最大支持4通道数据传输、单线传输速度高达1Gb/s。
+CSI（Camera Serial Interface）是由MIPI联盟下Camera工作组指定的接口标准。CSI-2是MIPI CSI第二版，主要由应用层、协议层、物理层组成，最大支持4通道数据传输、单线传输速度高达1Gb/s。
 
-- 物理层支持HS(High Speed)和LP(Low Power)两种工作模式。HS模式下采用低压差分信号，功耗较大，但数据传输速率可以很高（数据速率为80M～1Gbps）；LP模式下采用单端信号，数据速率很低（<10Mbps），但是相应的功耗也很低。两种模式的结合保证了MIPI总线在需要传输大量数据（如图像）时可以高速传输，而在不需要传输大数据量时又能够减少功耗。
+物理层支持HS（High Speed）和LP（Low Speed）两种工作模式。HS模式下采用低压差分信号，功耗较大，但数据传输速率可以很高（数据速率为80M～1Gbps）；LP模式下采用单端信号，数据速率很低（<10Mbps），但是相应的功耗也很低。两种模式的结合保证了MIPI总线在需要传输大量数据（如图像）时可以高速传输，而在不需要传输大数据量时又能够减少功耗。
 
-- 图1显示了简化的CSI接口。D-PHY采用1对源同步的差分时钟和1～4对差分数据线来进行数据传输。数据传输采用DDR方式，即在时钟的上下边沿都有数据传输。
+图1显示了简化的CSI接口。D-PHY采用1对源同步的差分时钟和1～4对差分数据线来进行数据传输。数据传输采用DDR方式，即在时钟的上下边沿都有数据传输。
 
   **图 1**  CSI发送、接收接口<a name="fig1_MIPI_CSIDes"></a>  
   ![](figures/CSI发送-接收接口.png)
@@ -567,7 +567,7 @@ void PalMipiCsiTestSample(void)
     
     /* lane模式参数为0 */
     mode = LANE_DIVIDE_MODE_0;
-    /* 设置MIPI RX的 Lane分布 */
+    /* 设置MIPI RX的Lane分布 */
     ret = MipiCsiSetHsMode(MipiCsiHandle, mode);
     if (ret != 0) {
         HDF_LOGE("%s: MipiCsiSetHsMode fail! ret=%d\n", __func__, ret);
