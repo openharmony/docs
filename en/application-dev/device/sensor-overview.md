@@ -37,7 +37,7 @@ The following modules work cooperatively to implement OpenHarmony sensors: Senso
 
   **Figure 1** How the sensor works
 
-![fad1a124-a90e-460f-84fc-e87d6caebb21](figures/fad1a124-a90e-460f-84fc-e87d6caebb21.png)
+![en-us_image_0000001226521897.png](figures/en-us_image_0000001226521897.png)
 
 - Sensor API: provides APIs for performing basic operations on sensors, including querying the sensor list, subscribing to or unsubscribing from sensor data, and executing control commands. This module makes application development simpler.
 

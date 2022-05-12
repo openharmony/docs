@@ -77,7 +77,7 @@ You can set different vibration effects as needed, for example, customizing the 
    vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
       if(error){ // The call fails, and error.code and error.message are printed.
           console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
-      }else{ // The call is successful, and the device stops vibration.
+      }else{ // The call is successful, and the device stops vibrating.
           Console.log("Promise returned to indicate a successful stop.");
       };
    })
