@@ -1,7 +1,7 @@
 # Work Scheduler
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 
 ## Modules to Import
@@ -220,13 +220,13 @@ Checks whether the last execution of the specified task timed out. This API uses
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | Yes   | Task ID.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| boolean | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
 
 **Example**
 
@@ -276,20 +276,21 @@ Provides detailed information about the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name            | Type                               | Mandatory  | Description              |
-| --------------- | --------------------------------- | ---- | ---------------- |
-| workId          | number                            | Yes   | Task ID.         |
-| bundleName      | string                            | Yes   | Name of the Work Scheduler task bundle.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a Work Scheduler callback.|
-| networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device is charging.            |
-| chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
-| batteryLevel    | number                            | No   | Battery level.              |
-| batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
-| storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.          |
-| repeatCycleTime | number                            | No   | Repeat interval.            |
-| repeatCount     | number                            | No   | Number of repeat times.            |
+| Name         | Type                             | Mandatory| Description                            |
+| --------------- | --------------------------------- | ---- | -------------------------------- |
+| workId          | number                            | Yes  | Task ID.                    |
+| bundleName      | string                            | Yes  | Name of the Work Scheduler task bundle.                    |
+| abilityName     | string                            | Yes  | Name of the component to be notified by a Work Scheduler callback.|
+| networkType     | [NetworkType](#networktype)       | No  | Network type.                        |
+| isCharging      | boolean                           | No  | Whether the device is charging.                        |
+| chargerType     | [ChargingType](#chargingtype)     | No  | Charging type.                        |
+| batteryLevel    | number                            | No  | Battery level.                            |
+| batteryStatus   | [BatteryStatus](#batterystatus)   | No  | Battery status.                        |
+| storageRequest  | [StorageRequest](#storagerequest) | No  | Storage status.                        |
+| isRepeat        | boolean                           | No  | Whether the task is repeated.                    |
+| repeatCycleTime | number                            | No  | Repeat interval.                        |
+| repeatCount     | number                            | No  | Number of repeat times.                        |
+| isPersisted     | boolean                           | No  | Whether to enable persistent storage for the task.              |
 
 ## NetworkType
 Enumerates the network types that can trigger the task.

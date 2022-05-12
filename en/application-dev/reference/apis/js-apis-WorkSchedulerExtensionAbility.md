@@ -1,7 +1,7 @@
 # Work Scheduler Callbacks
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 
 ## Modules to Import
@@ -36,7 +36,7 @@ Triggered when the Work Scheduler task starts.
 
 ## WorkSchedulerExtensionAbility.onWorkStop
 
-onWorkStop(work: workScheduler.WorkInfo)
+onWorkStop(work: workScheduler.WorkInfo): void
 
 Triggered when the Work Scheduler task stops.
 
