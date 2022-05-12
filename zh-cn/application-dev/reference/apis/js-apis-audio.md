@@ -1814,7 +1814,7 @@ audioManager.getAudioScene().then((value) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称       | 参数型                    | 可读 | 可写 | 说明       |
+| 名称       | 类型                    | 可读 | 可写 | 说明       |
 | ---------- | ------------------------- | ---- | ---- | ---------- |
 | deviceRole | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
 | deviceType | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
@@ -1863,7 +1863,7 @@ promise.then(function (value) {
 
 **参数：**
 
-| 名称  | 参数型                     | 可读 | 可写 | 说明               |
+| 名称  | 类型                     | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | state | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 
@@ -2676,7 +2676,7 @@ audioRenderer.on('stateChange', (state) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-| 名称  | 参数型                     | 可读 | 可写 | 说明             |
+| 名称  | 类型                     | 可读 | 可写 | 说明             |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
 | state | [AudioState](#audiostate8) | Yes  | No   | 音频采集器状态。 |
 
