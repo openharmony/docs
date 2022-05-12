@@ -69,17 +69,19 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.upload({ url: 'https://patch' }).then((data) => {
@@ -100,13 +102,14 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.upload({ url: 'https://patch' }, (err, data) => {
@@ -134,20 +137,21 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 是 | 上传进度的回调函数。 |
 
-  回调函数的参数：
+  回调函数的参数
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为KB。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
-- 示例：
+**示例：**
   
   ```js
   uploadTask.on('progress', function callback(uploadedSize, totalSize) {
@@ -167,8 +171,9 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
   | callback | function | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
@@ -179,7 +184,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
-- 示例：
+**示例：**
   
   ```js
   uploadTask.on('headerReceive', function callback(headers){   
@@ -199,8 +204,9 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 否 | 上传任务的回调函数。 |
@@ -212,7 +218,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 | uploadedSize | number | 是 | 当前已上传文件的大小，单位为KB。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为KB。 |
 
-- 示例：
+**示例：**
   
   ```js
   uploadTask.off('progress', function callback(uploadedSize, totalSize) {
@@ -232,8 +238,9 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
   | callback | function | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
@@ -244,7 +251,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
 
-- 示例：
+**示例：**
   
   ```js
   uploadTask.off('headerReceive', function callback(headers) {
@@ -264,12 +271,13 @@ remove(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 移除任务是否成功。true：成功，false：不成功。 |
 
-- 示例
+**示例：**
   
   ```js
   uploadTask.remove().then((result) => {
@@ -294,12 +302,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Upload
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务的回调函数。 |
 
-- 示例
+**示例：**
   
   ```js
   uploadTask.remove((err, result) => {
@@ -361,17 +370,19 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
 
-- 示例
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
@@ -392,13 +403,14 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
 
-- 示例
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxxx.hap', 
@@ -427,8 +439,9 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 是 | 下载的回调函数。 |
@@ -440,7 +453,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 | receivedSize | number | 是 | 当前下载的进度，单位为KB。 |
 | totalSize | number | 是 | 下载文件的总大小，单位为KB。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -467,8 +480,9 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 否 | 下载任务的回调函数。 |
@@ -480,7 +494,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | receivedSize | number | 是 | 当前下载的进度。 |
 | totalSize | number | 是 | 下载文件的总大小。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -507,13 +521,14 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型。<br>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 是 | 回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -540,13 +555,14 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 否 | 回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -573,8 +589,9 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'fail'（下载失败）。 |
   | callback | function | 是 | 下载失败的回调函数。 |
@@ -585,7 +602,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | err | number | 是 | 下载失败的错误码，错误原因见[ERROR.*](#常量)。 |
 
-- 示例
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -612,8 +629,9 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
   | callback | function | 否 | 取消下载失败的回调函数。 |
@@ -624,7 +642,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | err | number | 是 | 下载失败的错误码。错误原因见[ERROR_*](#常量)。 |
 
-- 示例
+**示例：**
   
   ```js
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
@@ -651,12 +669,13 @@ remove(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 移除任务是否成功。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.remove().then((result) => {
@@ -681,12 +700,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 移除任务是否成功。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.remove((err, result)=>{
@@ -713,12 +733,12 @@ query(): Promise&lt;DownloadInfo&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
+**参数：**
     | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 查询下载任务信息。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.query().then((downloadInfo) => {    
@@ -739,12 +759,13 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 查询下载任务的回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   downloadTask.query((err, downloadInfo)=>{
@@ -767,12 +788,13 @@ queryMimeType(): Promise&lt;string&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;string&gt; | 查询下载任务的MimeType。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.queryMimeType().then((data) => {    
@@ -793,12 +815,13 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 查询下载任务的MimeType的回调函数。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.queryMimeType((err, data)=>{
@@ -821,12 +844,13 @@ pause(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 暂停下载任务是否成功。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.pause().then((result) => {    
@@ -851,12 +875,13 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 暂停下载任务的回调函数。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.pause((err, result)=>{
@@ -883,12 +908,13 @@ resume(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数：
-    | 类型 | 说明 |
+**参数：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 重新启动暂停的下载任务是否成功。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.resume().then((result) => {
@@ -914,12 +940,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 重新启动暂停的下载任务的回调函数。 |
 
-- 示例
+**示例：**
   
   ```js
   downloadTask.resume((err, result)=>{
@@ -947,7 +974,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 允许在按流量计费的连接下下载。 |
 | enableRoaming | boolean | 否 | 允许在漫游网络中下载。 |
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径（默认在[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001135742582.xml#xref8132147102215,link:zh-cn_topic_0000001127125012.xml#section1856519365229](zh-cn_topic_0000001127125012.xml#section1856519365229)路径下）。<br/>-&nbsp;filePath:'workspace/test.txt'：默认路径下创建workspace路径，并将文件存储在workspace路径下。<br/>-&nbsp;filePath:'test.txt'：将文件存储在默认路径下。<br/>-&nbsp;filePath:'workspace/'：默认路径下创建workspace路径，并将文件存储在workspace路径下。 |
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径（默认在'internal://cache/'路径下）。<br/>-&nbsp;filePath:'workspace/test.txt'：默认路径下创建workspace路径，并将文件存储在workspace路径下。<br/>-&nbsp;filePath:'test.txt'：将文件存储在默认路径下。<br/>-&nbsp;filePath:'workspace/'：默认路径下创建workspace路径，并将文件存储在workspace路径下。 |
 | networkType | number | 否 | 设置允许下载的网络类型。 |
 | title | string | 否 | 设置下载会话标题。 |
 
