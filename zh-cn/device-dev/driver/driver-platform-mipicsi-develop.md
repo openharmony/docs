@@ -151,7 +151,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       };
   } ComboDevAttr;
   
-  //MipiCsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
+  // MipiCsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
   struct MipiCsiCntlr {
       /** 当驱动程序绑定到HDF框架时，将发送此控制器提供的服务 */
       struct IDeviceIoService service;
