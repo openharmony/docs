@@ -1,7 +1,9 @@
 # Image Processing
 
-> **NOTE**
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> API version 9 is a canary release for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 
@@ -990,14 +992,40 @@ Enumerates pixel map formats.
 | RGBA_8888 | 3      | RGBA_8888.|
 | RGB_565   | 2      | RGB_565.  |
 
+## AlphaType<sup>9+</sup>
+
+Enumerates alpha types.
+
+**System capability**: SystemCapability.Multimedia.Image
+
+| Name    | Default Value| Description                   |
+| -------- | ------ | ----------------------- |
+| UNKNOWN  | 0      | Unknown alpha type.           |
+| OPAQUE   | 1      | There is no alpha or the image is opaque.|
+| PREMUL   | 2      | Premultiplied alpha.         |
+| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.       |
+
+## ScaleMode<sup>9+</sup>
+
+Enumerates scale modes.
+
+**System capability**: SystemCapability.Multimedia.Image
+
+| Name           | Default Value| Description                                              |
+| --------------- | ------ | -------------------------------------------------- |
+| CENTER_CROP     | 1      | Scales the image so that it fills the requested bounds of the target and crops the extra.|
+| FIT_TARGET_SIZE | 2      | Reduces the image size to the dimensions of the target.                          |
+
 ## InitializationOptions<sup>8+</sup>
 
 **System capability**: SystemCapability.Multimedia.Image
 
 | Name       | Type                              | Readable| Writable| Description          |
 | ----------- | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
 | editable    | boolean                            | Yes  | Yes  | Whether the image is editable.  |
 | pixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
 | size        | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
