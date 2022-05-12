@@ -1016,7 +1016,7 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 | 名称     | 类型                             | 必填 | 说明                                            |
 | :------- | :------------------------------- | :--- | :---------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，即CamerInput错误事件。 |
+| type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
 | callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。                        |
 
 **示例：**
