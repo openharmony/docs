@@ -91,11 +91,11 @@ DDS provides apps with the capability to store data in the databases of differen
 
 Distributed Data Management subsystem
 
-distributeddatamgr\_appdatamgr
+[distributeddatamgr\_appdatamgr](https://gitee.com/openharmony/distributeddatamgr_appdatamgr)
 
-distributeddatamgr\_distributeddatamgr
+[distributeddatamgr\_distributeddatamgr](https://gitee.com/openharmony/distributeddatamgr_datamgr)
 
-third\_party\_sqlite
+[third\_party\_sqlite](https://gitee.com/openharmony/third_party_sqlite)
 
-third\_party\_flatbuffers
+[third\_party\_flatbuffers](https://gitee.com/openharmony/third_party_flatbuffers)
 
