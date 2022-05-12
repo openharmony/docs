@@ -2,8 +2,8 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The initial APIs of this module are supported since API version 9.
+> - API version 9 is a canary release for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 

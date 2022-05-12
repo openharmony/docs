@@ -107,7 +107,9 @@ The following example shows how to implement a distributed data object synchroni
         });
         }
     } 
-    local_object.on("change", this.changeCallback);
+
+    // To refresh the page in changeCallback, correctly set this.changeCallback.bind(this) in
+    changeCallback.
    ```
    
 5. Modify object attributes. The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
@@ -158,9 +160,9 @@ The following example shows how to implement a distributed data object synchroni
    
     The sample code is as follows:
    ```js
-   // Unsubscribe from statusCallback.
+   // Unsubscribe from the online status change callback.
    local_object.off("status", statusCallback);
-   // unsubscribe from all status change callbacks.
+   // Unsubscribe from all online status change callbacks.
    local_object.off("status");
    ```
 10. Remove a distributed data object from the synchronization network. After the distributed data object is removed from the network, the data changes on the local end will not be synchronized to the remote end.
@@ -169,7 +171,12 @@ The following example shows how to implement a distributed data object synchroni
        ```js
        local_object.setSessionId("");
        ```
+## Development Example
 
-   
+The following example is provided for you to better understand the development of distributed data object:
 
-   
+- [Distributed Notepad](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
+
+
+When an event occurs on a device, for example, a note is added, the tile or content of a note is changed, or the event list is cleared, the change will be synchronized to other devices in the trusted network by the Notepad app.
+ 

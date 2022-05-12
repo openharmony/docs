@@ -14,7 +14,7 @@ import huks from '@ohos.security.huks'
 ```
 ## HuksErrorCode
 
-Enumerates error codes.
+Enumerates the error codes.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -29,7 +29,7 @@ Enumerates error codes.
 | HUKS_ERROR_INSUFFICIENT_DATA | -6    |Insufficient data.|
 | HUKS_ERROR_BUFFER_TOO_SMALL | -7    |Insufficient buffer.|
 | HUKS_ERROR_INSUFFICIENT_MEMORY | -8    |Insufficient memory.|
-| HUKS_ERROR_COMMUNICATION_FAILURE | -9    |Communication failed.|
+| HUKS_ERROR_COMMUNICATION_FAILURE | -9    |Communication failure.|
 | HUKS_ERROR_STORAGE_FAILURE | -10   |Storage failure.|
 | HUKS_ERROR_HARDWARE_FAILURE | -11   |Hardware fault.|
 | HUKS_ERROR_ALREADY_EXISTS | -12   |The object already exists.|
@@ -91,7 +91,7 @@ Enumerates error codes.
 
 ## HuksKeyPurpose
 
-Represents the purpose (usage) of a key.
+Enumerates the key purposes.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -103,7 +103,7 @@ Represents the purpose (usage) of a key.
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | The key is used to verify the signed data.  |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | The key is used to derive a key.          |
 | HUKS_KEY_PURPOSE_WRAP    | 32   | The key is used for encrypted import.          |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | The key is exported in encrypted mode.              |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | The key is used for encrypted export.              |
 | HUKS_KEY_PURPOSE_MAC     | 128  | The key is used to generate a message authentication code (MAC). |
 | HUKS_KEY_PURPOSE_AGREE   | 256  | The key is used for key agreement.      |
 
@@ -135,8 +135,8 @@ Enumerates the padding algorithms.
 | HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP).|
 | HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS).|
 | HUKS_PADDING_PKCS1_V1_5 | 3    | PKCS1_V1_5.|
-| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS)#5.|
-| HUKS_PADDING_PKCS7 | 5   | PKCS#7|
+| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS) #5.|
+| HUKS_PADDING_PKCS7 | 5   | PKCS #7|
 
 ## HuksCipherMode
 
@@ -155,7 +155,7 @@ Enumerates the cipher modes.
 
 ## HuksKeySize
 
-Represents the key length.
+Enumerates the key sizes.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -182,7 +182,7 @@ Represents the key length.
 
 ## HuksKeyAlg
 
-Represents the algorithm used by a key.
+Enumerates the key algorithms.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -244,8 +244,8 @@ Enumerates the tag transfer modes.
 
 | Name                | Value  | Description             |
 | -------------------- | ---- | ----------------- |
-| HUKS_SEND_TYPE_ASYNC | 0    | Send the tag asynchronously.|
-| HUKS_SEND_TYPE_SYNC  | 1    | Send the tag synchronously.|
+| HUKS_SEND_TYPE_ASYNC | 0    | The tag is sent asynchronously.|
+| HUKS_SEND_TYPE_SYNC  | 1    | The tag is sent synchronously.|
 
 ## HuksTagType
 
@@ -274,7 +274,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_INVALID                       | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                       |
 | HUKS_TAG_ALGORITHM                     | HUKS_TAG_TYPE_UINT \| 1                  | Indicates the algorithm.                       |
 | HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Indicates the purpose of a key.                   |
-| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Indicates the key length.                   |
+| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Indicates the key size.                   |
 | HUKS_TAG_DIGEST                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Indicates the digest algorithm.                   |
 | HUKS_TAG_PADDING                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Indicates the padding algorithm.                   |
 | HUKS_TAG_BLOCK_MODE                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Indicates the cipher mode.                   |
@@ -321,7 +321,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ATTESTATION_ID_UDID           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Indicates the device UDID.                      |
 | HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Indicates the security credential used for the attestation.         |
 | HUKS_TAG_ATTESTATION_ID_VERSION_INFO   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Indicates the version information used in the attestation.           |
-| HUKS_TAG_IS_KEY_ALIAS                  | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Indicates whether to use the tag of the alias passed during key generation.|
+| HUKS_TAG_IS_KEY_ALIAS                  | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Indicates whether to use the alias passed in during key generation.|
 | HUKS_TAG_KEY_STORAGE_FLAG              | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Indicates the key storage mode.               |
 | HUKS_TAG_IS_ALLOWED_WRAP               | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                |
 | HUKS_TAG_KEY_WRAP_TYPE                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                |
@@ -352,7 +352,7 @@ Enumerates the tags used to invoke parameters.
 
 generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Generates a key. This method uses an asynchronous callback to return the result.
+Generates a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -362,7 +362,7 @@ Generates a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If any other result is returned, see **HuksResult**.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code defined in **HuksResult** will be returned.|
 
 **Example**
 
@@ -402,7 +402,7 @@ huks.generateKey(keyAlias, options, function (err, data){});
 
 generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Generates a key. This method uses a promise to return the result.
+Generates a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -453,7 +453,7 @@ var result = huks.generateKey(keyAlias, options);
 
 deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Deletes a key. This method uses an asynchronous callback to return the result.
+Deletes a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -463,7 +463,7 @@ Deletes a key. This method uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
 **Example**
 
@@ -480,7 +480,7 @@ huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
 
 deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Deletes a key. This method uses a promise to return the result.
+Deletes a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -542,7 +542,7 @@ var result = huks.getSdkVersion(emptyOptions);
 
 importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Imports a key. This method uses an asynchronous callback to return the result.
+Imports a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -552,7 +552,7 @@ Imports a key. This method uses an asynchronous callback to return the result.
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | Yes  | Key alias, which is used to hold the key pair.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
 **Example**
 
@@ -600,7 +600,7 @@ huks.importKey(keyAlias, options, function (err, data){});
 
 importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Imports a key. This method uses a promise to return the result.
+Imports a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -665,7 +665,7 @@ var result = huks.importKey(keyAlias, huksoptions);
 
 exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Exports a key. This method uses an asynchronous callback to return the result.
+Exports a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -692,7 +692,7 @@ huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 
 exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Exports a key. This method uses a promise to return the result.
+Exports a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -707,7 +707,7 @@ Exports a key. This method uses a promise to return the result.
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. For details about the error codes, see **HuksResult**.<br/>**outData** contains the public key exported.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported.|
 
 **Example**
 
@@ -724,7 +724,7 @@ var result = huks.exportKey(keyAlias, emptyOptions);
 
 getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Obtains key properties. This method uses an asynchronous callback to return the result.
+Obtains key properties. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -751,7 +751,7 @@ huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
 
 getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Obtains key properties. This method uses a promise to return the result.
+Obtains key properties. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -783,7 +783,7 @@ var result = huks.getKeyProperties(keyAlias, emptyOptions);
 
 isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
-Checks whether a key exists. This method uses an asynchronous callback to return the result.
+Checks whether a key exists. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -810,7 +810,7 @@ huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
 
 isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
-Checks whether a key exists. This method uses a promise to return the result.
+Checks whether a key exists. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -844,7 +844,7 @@ var result = huks.isKeyExist(keyAlias, emptyOptions);
 
 init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
-Initializes a key. This method uses an asynchronous callback to return the result.
+Initializes a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -853,15 +853,15 @@ Initializes a key. This method uses an asynchronous callback to return the resul
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | Yes  | Alias of the target key.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Init** operation.|
-| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | Yes  | Callback used to return the handle of the **Init** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization.|
+| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | Yes  | Callback used to return the handle of the initialization operation.|
 
 
 ## huks.init
 
 init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
-Initializes a key. This method uses a promise to return the result.
+Initializes a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -870,15 +870,15 @@ Initializes a key. This method uses a promise to return the result.
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | Yes  | Alias of the target key.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Init** operation.|
-| promise | Promise\<[HuksHandle](#hukshandle)> | Yes  | Promise used to return the handle of the **Init** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization.|
+| promise | Promise\<[HuksHandle](#hukshandle)> | Yes  | Promise used to return the handle of the initialization operation.|
 
 
 ## huks.update
 
 update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Updates a key. This method uses an asynchronous callback to return the result.
+Updates a key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -888,7 +888,7 @@ Updates a key. This method uses an asynchronous callback to return the result.
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Update** operation.|
 | token | Uint8Array | No| Token of the **Update** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Update** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation.|
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
 
@@ -896,7 +896,7 @@ Updates a key. This method uses an asynchronous callback to return the result.
 
 update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>
 
-Updates a key. This method uses a promise to return the result.
+Updates a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -906,15 +906,15 @@ Updates a key. This method uses a promise to return the result.
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Update** operation.|
 | token | Uint8Array | No| Token of the **Update** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Update** operation.|
-| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation.|
+| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise  used to return the operation result.|
 
 
 ## huks.finish
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Completes the key operation and releases resources. This method uses an asynchronous callback to return the result.
+Completes the key operation and releases resources. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -923,7 +923,7 @@ Completes the key operation and releases resources. This method uses an asynchro
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Finish** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Finish** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation.|
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
 
@@ -931,7 +931,7 @@ Completes the key operation and releases resources. This method uses an asynchro
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-Completes the key operation and releases resources. This method uses a promise to return the result.
+Completes the key operation and releases resources. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -940,7 +940,7 @@ Completes the key operation and releases resources. This method uses a promise t
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Finish** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Finish** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation.|
 | promise | Promise\<[HuksResult](#HuksResult)> | Yes| Promise used to return the operation result.|
 
 
@@ -948,7 +948,7 @@ Completes the key operation and releases resources. This method uses a promise t
 
 abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Aborts the use of the key. This method uses an asynchronous callback to return the result.
+Aborts the use of the key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -957,7 +957,7 @@ Aborts the use of the key. This method uses an asynchronous callback to return t
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Abort** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Abort** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation.|
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
 
 **Example**
@@ -981,13 +981,13 @@ async function routePage() {
     console.error(`fail callback, code: ${err.code}, msg: ${err.msg}`)
   }
 }
-var alias = "HuksDemoRSA";
+var keyalias = "HuksDemoRSA";
 var properties = new Array();
 var options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle = {};
+var handle;
 var resultMessage = "";
 async function generateKey() {
   properties[0] = {
@@ -1010,7 +1010,7 @@ async function generateKey() {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
   };
-  huks.generateKey(alias, options);
+  huks.generateKey(keyalias, options);
 }
 function stringToUint8Array(str) {
   var arr = [];
@@ -1021,19 +1021,14 @@ function stringToUint8Array(str) {
   return tmpUint8Array;
 }
 async function huksInit() {
-  await huks.init(alias, options).then((data) => {
+  await huks.init(keyalias, options).then((data) => {
     console.log(`test init data: ${JSON.stringify(data)}`);
-    handle = {
-      "handle1": data.handle1,
-      "handle2": data.handle2
-    };
+    handle = data.handle;
   }).catch((err) => {
     console.log("test init err information: " + JSON.stringify(err))
   })
 }
 async function huksUpdate() {
-  let count = 2;
-  for (let i = 0; i < count; i++) {
     options.inData = stringToUint8Array("huksHmacTest");
     await huks.update(handle, options).then((data) => {
       if (data.errorCode === 0) {
@@ -1041,11 +1036,8 @@ async function huksUpdate() {
       } else {
         resultMessage += "update fail!";
       }
-    }).catch((err) => {
-      resultMessage += "update times: " + count + (i + 1) + " fail catch errorMessage:" + JSON.stringify(err) + "        "
     });
     console.log(resultMessage);
-  }
 }
 function huksFinish() {
   options.inData = stringToUint8Array("HuksDemoHMAC");
@@ -1068,7 +1060,7 @@ async function huksAbort() {
       resultMessage = "abort fail errorCode: " + data.errorCode;
     }
   }).catch((err) => {
-    resultMessage = "Failed to abort  the use of the key. catch errorMessage:" + JSON.stringify(err)
+    resultMessage = "Failed to abort the use of the key. catch errorMessage:" + JSON.stringify(err)
   });
   console.log(resultMessage);
 }
@@ -1110,7 +1102,7 @@ struct Index {
         generateKey()
       })
       Button() {
-        Text('huksInit')
+        Text('Init')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1124,7 +1116,7 @@ struct Index {
         huksInit()
       })
       Button() {
-        Text('huksUpdate')
+        Text('Update')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1138,7 +1130,7 @@ struct Index {
         huksUpdate()
       })
       Button() {
-        Text('huksFinish')
+        Text('Finish')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1152,7 +1144,7 @@ struct Index {
         huksFinish()
       })
       Button() {
-        Text('huksAbort')
+        Text('Abort')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1176,7 +1168,7 @@ struct Index {
 
 abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
-Aborts the use of the key. This method uses a promise to return the result.
+Aborts the use of the key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1185,7 +1177,7 @@ Aborts the use of the key. This method uses a promise to return the result.
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Abort** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameter set of the **Abort** operation.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation.|
 | promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
 
 **Example**
@@ -1210,13 +1202,13 @@ async function routePage() {
   }
 }
 
-var alias = "HuksDemoRSA";
+var keyalias = "HuksDemoRSA";
 var properties = new Array();
 var options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle = {};
+var handle;
 var resultMessage = "";
 function stringToUint8Array(str) {
   var arr = [];
@@ -1248,17 +1240,14 @@ async function generateKey() {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
   };
-  huks.generateKey(alias, options, function (err, data) { });
+  huks.generateKey(keyalias, options, function (err, data) { });
 }
 async function huksInit() {
   return new Promise((resolve, reject) => {
-    huks.init(alias, options, async function (err, data) {
+    huks.init(keyalias, options, async function (err, data) {
       if (data.errorCode === 0) {
         resultMessage = "Initialization successful!"
-        handle = {
-          "handle1": data.handle1,
-          "handle2": data.handle2
-        }
+        handle = data.handle;
       } else {
         resultMessage = "init fail errorCode: " + data.errorCode
       }
@@ -1267,8 +1256,6 @@ async function huksInit() {
 }
 
 async function huksUpdate() {
-  let count = 2;
-  for (let i = 0; i < count; i++) {
     options.inData = stringToUint8Array("huksHmacTest");
     new Promise((resolve, reject) => {
       huks.update(handle, options, function (err, data) {
@@ -1280,7 +1267,7 @@ async function huksUpdate() {
       });
     });
     console.log(resultMessage);
-  }
+
 }
 
 async function huksFinish() {
@@ -1341,7 +1328,7 @@ struct Index {
         generateKey()
       })
       Button() {
-        Text('huksInit')
+        Text('Init')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1355,7 +1342,7 @@ struct Index {
         huksInit()
       })
       Button() {
-        Text('huksUpdate')
+        Text('Update')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1369,7 +1356,7 @@ struct Index {
         huksUpdate()
       })
       Button() {
-        Text('huksFinish')
+        Text('Finish')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1383,7 +1370,7 @@ struct Index {
         huksFinish()
       })
       Button() {
-        Text('huksAbort')
+        Text('Abort')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule)
@@ -1435,7 +1422,7 @@ Defines the HUKS handle structure.
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | Yes  | Error code.|
 | handle    | number       | Yes| Value of the handle.|
-| token | Uint8Array | No| Reserved field.|
+| token | Uint8Array | No| Reserved.|
 
 
 ## HuksResult
