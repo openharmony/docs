@@ -194,7 +194,8 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
    >**注意**：SDK调用AI引擎客户端接口顺序应遵循AieClientInit-\>AieClientPrepare-\>AieClientSyncProcess/AieClientAsyncProcess-\>AieClientRelease-\>AieClientDestroy，否则调用接口会返回错误码；同时应保证各个接口都有调用到，要不然会引起内存泄漏。
 
-    ```
+    
+ ```
     int32_t KWSSdk::KWSSdkImpl::Create()
     {
         if (kwsHandle_ != INVALID_KWS_HANDLE) {
@@ -319,7 +320,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
         kwsHandle_ = INVALID_KWS_HANDLE;
         return KWS_RETCODE_SUCCESS;
     }
-    ```
+ ```
 
 4.  **sample开发** [（参考唤醒词识别demo）](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai)
 
