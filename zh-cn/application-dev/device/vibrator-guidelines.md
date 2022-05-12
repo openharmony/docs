@@ -8,14 +8,14 @@
 
 ## 接口说明
 
-  | 模块 | 接口名 | 描述 | 
+| 模块 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | 触发马达按照时长振动，Promise型。 | 
-| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，Callback型。 | 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | 触发马达按照指定字符串振动，Promise型。 | 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照指定字符串振动，Callback型。 | 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。 | 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。 | 
+| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | 触发马达按照时长振动，Promise型。 |
+| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，Callback型。 |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | 触发马达按照指定字符串振动，Promise型。 |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照指定字符串振动，Callback型。 |
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。 |
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。 |
 
 
 ## 开发步骤
@@ -74,7 +74,7 @@
   
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PREET).then((error)=>{
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
       if(error){//调用失败，打印error.code和error.message
           console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
       }else{//调用成功，设备停止振动
