@@ -24,7 +24,7 @@
     "target_cpu": "arm",
     "ohos_version": "OpenHarmony 1.0",
     "device_company": "MyProductVendor",
-    "board": "MyProduct",
+    "board": "MySOC",
     "enable_ramdisk": true,
     "subsystems": [
       {
@@ -41,7 +41,7 @@
 ```
 主要的配置内容
 
-product_name： 产品名称  必填
+product_name：产品名称  必填
 
 version：版本  必填
 
