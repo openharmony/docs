@@ -2,7 +2,7 @@
 
 ## 概述 <a name="section1_MIPI_CSIDevelop"></a>
 
-CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface ）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
 图 1 无服务模式结构图
 
@@ -35,12 +35,12 @@ struct MipiCsiCntlrMethod {
 | setPhyCmvmode      | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**devno**：uint8_t，设备编号;<br>**cmvMode**：枚举类型，共模电压模式参数 | 无   | HDF_STATUS相关状态 | 设置共模电压模式           |
 | setExtDataType     | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**dataType**：结构体指针，定义YUV和原始数据格式以及位深度 | 无   | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
 | setHsMode          | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**：枚举类型，lane模式参数 | 无   | HDF_STATUS相关状态 | 设置MIPI RX的Lane分布     |
-| enableClock        | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 使能mipi的时钟             |
-| disableClock       | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 关闭mipi的时钟             |
+| enableClock        | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 使能MIPI的时钟             |
+| disableClock       | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 关闭MIPI的时钟             |
 | resetRx            | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 复位MIPI RX                |
 | unresetRx          | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t，通路序号 | 无   | HDF_STATUS相关状态 | 撤销复位MIPI RX            |
-| enableSensorClock  | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 使能mipi上的Sensor时钟     |
-| disableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 关闭mipi上的Sensor时钟     |
+| enableSensorClock  | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 使能MIPI上的Sensor时钟     |
+| disableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 关闭MIPI上的Sensor时钟     |
 | resetSensor        | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 复位Sensor                 |
 | unresetSensor      | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 撤销复位Sensor      |   
 
@@ -60,7 +60,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 3. **实例化MIPICSI控制器对象：**   
    - 初始化MipiCsiCntlr成员。
    - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod。
-     >![](../public_sys-resources/icon-note.gif) **说明：** 
+     >![](../public_sys-resources/icon-note.gif) **说明：**<br>
      >实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员说明见[接口说明](#section2_MIPI_CSIDevelop)。
    
 4. **驱动调试：**
@@ -90,8 +90,8 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
               policy = 0;
               priority = 160;
               permission = 0644;
-              moduleName = "HDF_MIPI_RX";    //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-              serviceName = "HDF_MIPI_RX";   //【必要且唯一】驱动对外发布服务的名称
+              moduleName = "HDF_MIPI_RX";    // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
+              serviceName = "HDF_MIPI_RX";   // 【必要且唯一】驱动对外发布服务的名称
           }
       }
       }
@@ -108,11 +108,11 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
   ```c 
   struct HdfDriverEntry g_mipiCsiDriverEntry = {
       .moduleVersion = 1,
-      .Init = Hi35xxMipiCsiInit,          //见Init参考
-      .Release = Hi35xxMipiCsiRelease,    //见Release参考
-      .moduleName = "HDF_MIPI_RX",        //【必要】需要与device_info.hcs 中保持一致。
+      .Init = Hi35xxMipiCsiInit,          // 见Init参考
+      .Release = Hi35xxMipiCsiRelease,    // 见Release参考
+      .moduleName = "HDF_MIPI_RX",        // 【必要】需要与device_info.hcs 中保持一致。
   };
-  HDF_INIT(g_mipiCsiDriverEntry);         //调用HDF_INIT将驱动入口注册到HDF框架中
+  HDF_INIT(g_mipiCsiDriverEntry);         // 调用HDF_INIT将驱动入口注册到HDF框架中
   ```
 
 3.  完成驱动入口注册之后，最后一步就是以核心层MipiCsiCntlr对象的初始化为核心，实现HdfDriverEntry成员函数（Bind，Init，Release）。MipiCsiCntlr对象的初始化包括厂商自定义结构体（用于传递参数和数据）和实例化MipiCsiCntlr成员MipiCsiCntlrMethod（让用户可以通过接口来调用驱动底层函数）。
@@ -196,10 +196,10 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 - **Init函数参考**
 
    **入参：** 
-   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息
+   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备hcs配置文件的信息
   
    **返回值：**
-   HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+   HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
 
   
    | 状态(值)               |   问题描述   |
@@ -221,21 +221,21 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       int32_t ret;
   
       HDF_LOGI("%s: enter!", __func__);
-      g_mipiCsi.priv = NULL;		//g_mipiTx是定义的全局变量
-      							//static struct MipiCsiCntlr g_mipiCsi = {
-      							//.devNo = 0
+      g_mipiCsi.priv = NULL;		// g_mipiTx是定义的全局变量
+      							// static struct MipiCsiCntlr g_mipiCsi = {
+      							// .devNo = 0
   								//};
       g_mipiCsi.ops = &g_method;	//MipiCsiCntlrMethod的实例化对象的挂载
   #ifdef CONFIG_HI_PROC_SHOW_SUPPORT
       g_mipiCsi.debugs = &g_debugMethod;
   #endif
-      ret = MipiCsiRegisterCntlr(&g_mipiCsi, device);	//【必要】调用核心层函数和g_mipiTx初始化核心层全局变量
+      ret = MipiCsiRegisterCntlr(&g_mipiCsi, device);	// 【必要】调用核心层函数和g_mipiTx初始化核心层全局变量
       if (ret != HDF_SUCCESS) {
           HDF_LOGE("%s: [MipiCsiRegisterCntlr] failed!", __func__);
           return ret;
       }
   
-      ret = MipiRxDrvInit(); //【必要】厂商对设备的初始化，形式不限
+      ret = MipiRxDrvInit(); // 【必要】厂商对设备的初始化，形式不限
       if (ret != HDF_SUCCESS) {
           HDF_LOGE("%s: [MipiRxDrvInit] failed.", __func__);
           return ret;
@@ -263,10 +263,10 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
           (void)OsalMutexInit(&g_mipiCsihandle[cntlr->devNo].lock);
           (void)OsalMutexInit(&(cntlr->lock));
   
-          g_mipiCsihandle[cntlr->devNo].cntlr = cntlr;	//初始化MipiCsiHandle成员
+          g_mipiCsihandle[cntlr->devNo].cntlr = cntlr;	// 初始化MipiCsiHandle成员
           g_mipiCsihandle[cntlr->devNo].priv = NULL;
-          cntlr->device = device;							//使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
-          device->service = &(cntlr->service);			//使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
+          cntlr->device = device;							// 使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
+          device->service = &(cntlr->service);			// 使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
           cntlr->priv = NULL;
           HDF_LOGI("%s: success.", __func__);
   
@@ -294,16 +294,16 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
   {
       struct MipiCsiCntlr *cntlr = NULL;
   	...
-      cntlr = MipiCsiCntlrFromDevice(device);	//这里有HdfDeviceObject到MipiCsiCntlr的强制转化
-                                          	//return (device == NULL) ? NULL : (struct MipiCsiCntlr *)device->service;
+      cntlr = MipiCsiCntlrFromDevice(device);	// 这里有HdfDeviceObject到MipiCsiCntlr的强制转化
+                                          	// return (device == NULL) ? NULL : (struct MipiCsiCntlr *)device->service;
   	...
   
       OsalSpinDestroy(&cntlr->ctxLock);
   #ifdef MIPICSI_VFS_SUPPORT
       MipiCsiDevModuleExit(cntlr->devNo);
   #endif
-      MipiRxDrvExit();						//【必要】对厂商设备所占资源的释放
-      MipiCsiUnregisterCntlr(&g_mipiCsi);		//空函数
+      MipiRxDrvExit();						// 【必要】对厂商设备所占资源的释放
+      MipiCsiUnregisterCntlr(&g_mipiCsi);		// 空函数
       g_mipiCsi.priv = NULL;
   
       HDF_LOGI("%s: unload mipi csi driver success!", __func__);
