@@ -649,7 +649,7 @@ hap包编译请参考[标准系统js应用开发指导](https://developer.harmon
 
 ## 相关仓<a name="section1371113476307"></a>
 
-xts\_acts
+[xts\_acts](https://gitee.com/openharmony/xts_acts)
 
-xts\_tools
+[xts\_tools](https://gitee.com/openharmony/xts_tools)
 
