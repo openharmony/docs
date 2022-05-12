@@ -173,7 +173,7 @@ I2C模块适配的三个环节是配置属性文件，实例化驱动入口，�
           OsalSpinlock spin;                // 【必要】厂商需要基于此锁变量对各个 i2c 操作函数实现对应的加锁解锁
           volatile unsigned char  *regBase; // 【必要】寄存器基地址
           uint16_t regSize;                 // 【必要】寄存器位宽
-          int16_t bus;                      // 【必要】i2c_config.hcs 文件中可读取具体值
+          int16_t bus;                      // 【必要】i2c_config.hcs文件中可读取具体值
           uint32_t clk;                     // 【可选】厂商自定义
           uint32_t freq;                    // 【可选】厂商自定义
           uint32_t irq;                     // 【可选】厂商自定义
