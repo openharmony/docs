@@ -1,21 +1,11 @@
 # I3C<a name="1"></a>
 
--   [概述](#section1)
-    -   [功能简介](#section2)
-    -   [基本概念](#section3)
-    -   [运作机制](#section4)
-    -   [约束与限制](#section5)
--   [使用指导](#section6)
-    -   [场景介绍](#section7)
-    -   [接口说明](#section8)
-    -   [开发步骤](#section9)
-    -   [使用实例](#section10)
-
 ## 概述<a name="section1"></a>
 
 ### 功能简介<a name="section2"></a>
 
 I3C（Improved Inter Integrated Circuit）总线是由MIPI Alliance开发的一种简单、低成本的双向二线制同步串行总线。
+I3C是两线双向串行总线，针对多个传感器从设备进行了优化，并且一次只能由一个I3C主设备控制。相比于I2C，I3C总线拥有更高的速度、更低的功耗，支持带内中断、从设备热接入以及切换当前主设备，同时向后兼容I2C从设备。I3C增加了带内中断（In-Bind Interrupt）功能，支持I3C设备进行热接入操作，弥补了I2C总线需要额外增加中断线来完成中断的不足。I3C总线上允许同时存在I2C设备、I3C从设备和I3C次级主设备。
 
 - I3C接口定义了完成I3C传输的通用方法集合，包括：
     I3C控制器管理：打开或关闭I3C控制器。
@@ -25,17 +15,22 @@ I3C（Improved Inter Integrated Circuit）总线是由MIPI Alliance开发的一�
 
 ### 基本概念<a name="section3"></a>
 
-- I3C是两线双向串行总线，针对多个传感器从设备进行了优化，并且一次只能由一个I3C主设备控制。 相比于I2C，I3C总线拥有更高的速度、更低的功耗，支持带内中断、从设备热接入以及切换当前主设备，同时向后兼容I2C从设备。
-- I3C增加了带内中断（In-Bind Interrupt）功能，支持I3C设备进行热接入操作，弥补了I2C总线需要额外增加中断线来完成中断的不足。
-- I3C总线上允许同时存在I2C设备、I3C从设备和I3C次级主设备。
-- I3C相关缩略词解释：
-    - IBI（In-Band Interrupt）：带内中断。在SCL线没有启动信号时，I3C从设备可以通过拉低SDA线使主设备发出SCL启动信号，从而发出带内中断请求。若有多个从机同时发出中断请求，I3C主机则通过从机地址进行仲裁，低地址优先相应。
-    - DAA（Dynamic Address Assignment）：动态地址分配。I3C支持对从设备地址进行动态分配从而避免地址冲突。在分配动态地址之前，连接到I3C总线上的每个I3C设备都应以两种方式之一来唯一标识：
+- IBI（In-Band Interrupt）
+带内中断。在SCL线没有启动信号时，I3C从设备可以通过拉低SDA线使主设备发出SCL启动信号，从而发出带内中断请求。若有多个从机同时发出中断请求，I3C主机则通过从机地址进行仲裁，低地址优先相应。
+
+- DAA（Dynamic Address Assignment）
+动态地址分配。I3C支持对从设备地址进行动态分配从而避免地址冲突。在分配动态地址之前，连接到I3C总线上的每个I3C设备都应以两种方式之一来唯一标识：
     1）设备可能有一个符合I2C规范的静态地址，主机可以使用此静态地址；
     2）在任何情况下，设备均应具有48位的临时ID。 除非设备具有静态地址且主机使用静态地址，否则主机应使用此48位临时ID。
-    - CCC（Common Command Code） ：通用命令代码，所有I3C设备均支持CCC，可以直接将其传输到特定的I3C从设备，也可以同时传输到所有I3C从设备。
-    - BCR（Bus Characteristic Register）：总线特性寄存器，每个连接到 I3C 总线的 I3C 设备都应具有相关的只读总线特性寄存器 （BCR），该寄存器描述了I3C兼容设备在动态地址分配和通用命令代码中的作用和功能。
-    - DCR（Device Characteristic Register）：设备特性寄存器，连接到 I3C 总线的每个 I3C 设备都应具有相关的只读设备特性寄存器 (DCR)。 该寄存器描述了用于动态地址分配和通用命令代码的 I3C 兼容设备类型（例如，加速度计、陀螺仪等）。
+
+- CCC（Common Command Code）
+通用命令代码，所有I3C设备均支持CCC，可以直接将其传输到特定的I3C从设备，也可以同时传输到所有I3C从设备。
+
+- BCR（Bus Characteristic Register）
+总线特性寄存器，每个连接到 I3C 总线的 I3C 设备都应具有相关的只读总线特性寄存器 （BCR），该寄存器描述了I3C兼容设备在动态地址分配和通用命令代码中的作用和功能。
+
+- DCR（Device Characteristic Register）
+设备特性寄存器，连接到 I3C 总线的每个 I3C 设备都应具有相关的只读设备特性寄存器 (DCR)。 该寄存器描述了用于动态地址分配和通用命令代码的 I3C 兼容设备类型（例如，加速度计、陀螺仪等）。
 
 ### 运作机制<a name="section4"></a>
 
@@ -48,7 +43,7 @@ I3C（Improved Inter Integrated Circuit）总线是由MIPI Alliance开发的一�
 
 ### 约束与限制<a name="section5"></a>
 
-I3C模块当前仅支持轻量和小型系统内核（LiteOS） 。
+I3C模块当前仅支持轻量和小型系统内核（LiteOS）。
 
 ## 使用指导<a name="section6"></a>
 
@@ -74,7 +69,7 @@ I3C可连接单个或多个I3C、I2C从器件，它主要用于：
 | I3cRequestIbi | 请求带内中断      |
 | I3cFreeIbi    | 释放带内中断      |
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
+>![](../public_sys-resources/icon-note.gif) **说明：**<br>
 >本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 ### 开发步骤<a name="section9"></a>
@@ -102,7 +97,7 @@ DevHandle I3cOpen(int16_t number);
 | NULL       | 打开I3C控制器失败   |
 | 控制器句柄 | 打开的I3C控制器句柄 |
 
-假设系统中存在8个I3C控制器，编号从0到7，那么我们现在打开1号控制器：
+假设系统中存在8个I3C控制器，编号从0到7，以下示例代码为打开1号控制器：
 
 ```c
 DevHandle i3cHandle = NULL;  /* I3C控制器句柄 /
