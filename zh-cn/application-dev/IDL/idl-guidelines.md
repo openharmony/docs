@@ -3,6 +3,8 @@
 ## 1. IDL接口描述语言简介
 在OpenHarmony中，当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。
 
+  **图1** IDL接口描述
+
 ![IDL-interface-description](./figures/IDL-interface-description.png)
 
 OpenHarmony  IDL接口描述语言主要用于：
@@ -11,7 +13,7 @@ OpenHarmony  IDL接口描述语言主要用于：
 
 - 声明Ability对外提供的服务接口，根据接口声明在编译时生成跨进程调用（IPC）或跨设备调用（RPC）的代理（Proxy）和桩（Stub）的C/C++代码或JS/TS代码。
 
-  **图2** IPC/RPC通信模型
+**图2** IPC/RPC通信模型
 
 ![IPC-RPC-communication-model](./figures/IPC-RPC-communication-model.png)
 
@@ -26,9 +28,8 @@ OpenHarmony  IDL接口描述语言主要用于：
 ### 2.1 数据类型
 
 #### 2.1.1 基础数据类型
-
 | IDL基本数据类型 | C++基本数据类型 | TS基本数据类型 |
-|   --------      |  --------      |  --------  |
+|   --------      |  --------      | --------    |
 |void             | void           | void |
 |boolean          | bool           | boolean |
 |byte             | int8_t         | number |
@@ -39,7 +40,7 @@ OpenHarmony  IDL接口描述语言主要用于：
 |double           | double         | number |
 |String           | std::string    | string |
 
-idl支持的基本数据类型及其映射到C++，TS上的数据类型的对应关系如上表所示。
+IDL支持的基本数据类型及其映射到C++、TS上的数据类型的对应关系如上表所示。
 
 #### 2.1.2 sequenceable数据类型
 sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表面该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
@@ -66,10 +67,10 @@ TS声明放在文件的头部，以 “sequenceable namespace.typename;”的形
 sequenceable idl.MySequenceable
 ```
 
-其中，namespace是该类型所属的命名空间，typename是类型名。MySequenceable类型表示可以通过Parcel进行跨进程传递。Sequenceable数据类型并不在OpenHarmony IDL文件中定义，而是定义在.ts文件中。因此，OpenHarmony IDL工具将根据声明在生成的.ts代码文件中加入如下语句：
+其中，namespace是该类型所属的命名空间，typename是类型名。MySequenceable类型表示可以通过Parcel进行跨进程传递。sequenceable数据类型并不在OpenHarmony IDL文件中定义，而是定义在.ts文件中。因此，OpenHarmony IDL工具将根据声明在生成的.ts代码文件中加入如下语句：
 
 ```
-import MySequenceable from "./mysequenceable"
+import MySequenceable from "./my_sequenceable"
 ```
 
 需要注意的是，IDL并不负责该类型的代码实现，仅仅按照指定的形式引入该头文件或import指定模块，并使用该类型，因此开发者需要自行保证引入目录、命名空间及类型的正确性。
@@ -123,15 +124,15 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 ```
 [<*interface_attr_declaration*>]interface<*interface_name_with_namespace*>{<*method_declaration*>}
 ```
-其中，<*interface_attr_declaration*>表示接口属性声明。当前仅支持“oneway”属性表示该接口中的接口都是单向方法，即调用方法后不用等待该方法执行即可返回。这个属性为可选项，如果未声明该属性，则默认为同步调用方法。接口名需要包含完整的接口头文件目录及命名空间，且必须包含方法声明，不允许出现空接口。
+其中，<*interface_attr_declaration*>表示接口属性声明。当前仅支持“oneway”属性，表示该接口中的接口都是单向方法，即调用方法后不用等待该方法执行即可返回。这个属性为可选项，如果未声明该属性，则默认为同步调用方法。接口名需要包含完整的接口头文件目录及命名空间，且必须包含方法声明，不允许出现空接口。
 接口内的方法声明形式为：
 ```
-/[<*method_attr_declaration*>]<*result_type*><*method_declaration*>
+[<*method_attr_declaration*>]<*result_type*><*method_declaration*>
 ```
-其中，<*method_attr_declaration*>表示接口属性说明。当前仅支持“oneway”属性表示该方法为单向方法，即调用方法后不在等待该方法执行即可返回。这个属性为可选项，如果未声明该属性，则默认为同步调用方法。<*result_type*>为返回值类型，<*method_declaration*>是方法名和各个参数声明。
+其中，<*method_attr_declaration*>表示接口属性说明。当前仅支持“oneway”属性，表示该方法为单向方法，即调用方法后不用等待该方法执行即可返回。这个属性为可选项，如果未声明该属性，则默认为同步调用方法。<*result_type*>为返回值类型，<*method_declaration*>是方法名和各个参数声明。
 参数声明的形式为：
 ```
-[<**formal_param_attr*>]<*type*><*identifier*>
+[<*formal_param_attr*>]<*type*><*identifier*>
 ```
 其中<*formal_param_attr*>的值为“in”，“out”，“inout”,分别表示该参数是输入参数，输出参数或输入输出参数。需要注意的是，如果一个方法被声明为oneway，则该方法不允许有输出类型的参数（及输入输出类型）和返回值。
 
@@ -150,7 +151,7 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
   }
 ```
 
-使用者通过执行命令 “./idl -gen-cpp -d dir -c dir/iTest.idl” （-d为输出目录）在执行环境的dir/iTest.idl/目录中生成接口文件、Stub文件、Proxy文件。生成的接口类文件名称和.idl文件名称保持一致，区别在于其使用.h和.cpp扩展名。例如，IIdlTestService. idl 生成的文件名是 i_idl_test_service.h、idl_test_service_proxy.h、idl_test_service_stub.h、idl_test_service_proxy.cpp、idl_test_service_stub.cpp。
+使用者通过执行命令 “./idl -gen-cpp -d dir -c dir/iTest.idl” （-d为输出目录）在执行环境的dir目录中生成接口文件、Stub文件、Proxy文件。生成的接口类文件名称和.idl文件名称保持一致，区别在于其使用.h和.cpp扩展名。例如，IIdlTestService. idl 生成的文件名是 i_idl_test_service.h、idl_test_service_proxy.h、idl_test_service_stub.h、idl_test_service_proxy.cpp、idl_test_service_stub.cpp。
 
 #### 3.1.2 服务端公开接口
 
@@ -179,7 +180,7 @@ private:
 #endif // OHOS_IDLTESTSERVICESTUB_H
 ```
 
-开发者需要继承.idl文件中定义的接口类并实现其中的方法。在本示例中，我们继承了IdlTestServiceStub接口类并实现了其中的TestIntTransaction和TestStringTransaction方法。具体的示例代码如下：
+开发者需要继承.idl文件中定义的接口类并实现其中的方法，同时在服务侧初始化时需要将定义的服务注册至SAMGR中，在本示例中，我们继承了IdlTestServiceStub接口类并实现了其中的TestIntTransaction和TestStringTransaction方法。具体的示例代码如下：
 
 ```
 #include "idl_test_service_stub.h"
@@ -220,7 +221,61 @@ int IdlTest ::OnRemoteRequest(
 }
 ```
 
-在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。如果开发者的服务要公开该接口，请扩展Ability并实现onConnect()从而返回IRemoteObject，以便客户端能与服务进程交互。服务端向客户端公开IRemoteAbility接口的代码示例如下：
+注册服务的示例代码如下：
+
+```
+#include "test_service.h"
+
+#include <string_ex.h>
+
+#include "if_system_ability_manager.h"
+#include "ipc_debug.h"
+#include "ipc_skeleton.h"
+#include "iservice_registry.h"
+#include "system_ability_definition.h"
+
+namespace OHOS {
+using namespace OHOS::HiviewDFX;
+
+int TestService::Instantiate()
+{
+    ZLOGI(LABEL, "%{public}s call in", __func__);
+    auto saMgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
+    if (saMgr == nullptr) {
+        ZLOGE(LABEL, "%{public}s:fail to get Registry", __func__);
+        return -ENODEV;
+    }
+
+    sptr<IRemoteObject> newInstance = new TestService();
+    int result = saMgr->AddSystemAbility(IPC_TEST_SERVICE, newInstance);
+    ZLOGI(LABEL, "%{public}s: IPC_TEST_SERVICE result = %{public}d", __func__, result);
+    return result;
+}
+
+TestService::TestService()
+{
+}
+
+TestService::~TestService()
+{
+}
+
+ErrCode TestService::TestIntTransaction(int data, int &rep)
+{
+    ZLOGE(LABEL, " TestService:read from client data = %{public}d", data);
+    rep = data + data;
+    return ERR_NONE;
+}
+
+ErrCode TestService::TestStringTransaction(const std::string &data)
+{
+    ZLOGE(LABEL, "TestService:read string from client data = %{public}s", data.c_str());
+    return data.size();
+}
+} // namespace OHOS
+```
+
+在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。服务端向客户端提供的Proxy接口的代码示例如下：
 
 ```
 #include "idl_test_service_proxy.h"
@@ -290,43 +345,60 @@ ErrCode IdlTestServiceProxy::TestStringTransaction(
 
 #### 3.1.3 客户端调用IPC方法
 
- 客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone()回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的src/目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。当客户端onAbilityConnectDone()回调中收到IRemoteObject，调用RemoteAbilityStub.asInterface(IRemoteObject)，以将返回的参数转换为IRemoteAbility类型，示例代码如下： 
+C++客户端通常通过SAMGR获取系统中定义的服务代理，随后即可正常调用proxy提供的接口。示例代码如下： 
 
 ```
-#ifndef OHOS_IDLTESTSERVICEPROXY_H
-#define OHOS_IDLTESTSERVICEPROXY_H
-#include <iremote_proxy.h>
-#include "iidl_test_service.h"
+#include "test_client.h"
+
+#include "if_system_ability_manager.h"
+#include "ipc_debug.h"
+#include "ipc_skeleton.h"
+#include "iservice_registry.h"
+#include "system_ability_definition.h"
 
 namespace OHOS {
-class IdlTestServiceProxy : public IRemoteProxy<IIdlTestService> {
-public:
-    explicit IdlTestServiceProxy(
-        /* [in] */ const sptr<IRemoteObject>& remote)
-        : IRemoteProxy<IIdlTestService>(remote)
-    {}
+int TestClient::ConnectService()
+{
+    auto saMgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
+    if (saMgr == nullptr) {
+        ZLOGE(LABEL, "get registry fail");
+        return -1;
+    }
 
-    virtual ~IdlTestServiceProxy()
-    {}
+    sptr<IRemoteObject> object = saMgr->GetSystemAbility(IPC_TEST_SERVICE);
+    if (object != nullptr) {
+        ZLOGE(LABEL, "Got test Service object");
+        testService_ = (new (std::nothrow) IdlTestServiceProxy(object));
+    }
 
-    ErrCode TestIntTransaction(
-        /* [in] */ int _data,
-        /* [out] */ int& result) override;
+    if (testService_ == nullptr) {
+        ZLOGE(LABEL, "Could not find Test Service!");
+        return -1;
+    }
 
-    ErrCode TestStringTransaction(
-        /* [in] */ const std::string& _data) override;
+    return 0;
+}
 
-private:
-    static constexpr int COMMAND_TEST_INT_TRANSACTION = MIN_TRANSACTION_ID + 0;
-    static constexpr int COMMAND_TEST_STRING_TRANSACTION = MIN_TRANSACTION_ID + 1;
+void TestClient::StartIntTransaction()
+{
+    if (testService_ != nullptr) {
+        ZLOGE(LABEL, "StartIntTransaction");
+        [[maybe_unused]] int result = 0;
+        testService_->TestIntTransaction(1234, result); // 1234 : test number
+        ZLOGE(LABEL, "Rec result from server %{public}d.", result);
+    }
+}
 
-    static inline BrokerDelegator<IdlTestServiceProxy> delegator_;
-};
+void TestClient::StartStringTransaction()
+{
+    if (testService_ != nullptr) {
+        ZLOGI(LABEL, "StartIntTransaction");
+        testService_->TestStringTransaction("IDL Test");
+    }
+}
 } // namespace OHOS
-#endif 
 ```
 
-如果要断开连接，请调用Ability.disconnectAbility()。
 
 
 
@@ -451,7 +523,7 @@ export default {
 
 #### 3.2.3 客户端调用IPC方法
 
-客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone()回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。当客户端onAbilityConnectDone()回调中收到IRemoteObject，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下： 
+客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。当客户端onAbilityConnectDone()回调中收到IRemoteObject，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下： 
 
 ```
 import IdlTestServiceProxy from './idl_test_service_proxy'
@@ -495,11 +567,11 @@ function connectAbility: void {
 
 ```
 
-#### 3.2.4 IPC传递Sequenceable对象
+#### 3.2.4 IPC传递sequenceable对象
 
 开发者可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。但是，必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持marshalling和unmarshalling方法。OpenHarmony 需要通过该marshalling和unmarshalling方法将对象序列化和反序列化成各进程能识别的对象。
 
-如需创建支持Sequenceable 类型数据，开发者必须执行以下操作：
+如需创建支持sequenceable 类型数据，开发者必须执行以下操作：
 
 1. 实现marshalling方法，它会获取对象的当前状态并将其序列化后写入Parcel。
 2. 实现unmarshalling方法，它会从Parcel中反序列化出对象。
@@ -584,7 +656,6 @@ NativeValue* GetNativeObject(NativeEngine& engine, NativeCallbackInfo& info)
 如上所述TS开发步骤，开发者使用TS编程语言构建.idl文件，通过命令生成接口、Stub文件、Proxy文件。Proxy文件例如：
 
 ```
-idl_test_service_proxy.ts
 
 import {testIntTransactionCallback} from "./i_idl_test_service";
 import {testStringTransactionCallback} from "./i_idl_test_service";
