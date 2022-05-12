@@ -1,26 +1,15 @@
 #  PIN
 
--   [概述](#section1)
-    -   [功能简介](#section2)
-    -   [基本概念](#section3) 
-    -   [运作机制](#section4) 
-    -   [约束与限制](#section5) 
--   [使用指导](#section6)
-    -   [场景介绍](#section7)
-    -   [接口说明](#section8) 
-    -   [开发步骤](#section9)
-    -   [使用实例](#section10)
-
 ## 概述<a name="section1"></a>
 
 ### 功能简介<a name="section2"></a>
 
--   PIN即管脚控制器，用于统一管理各SoC厂商管脚资源，对外提供管脚复用功能：包括管脚推拉方式、管脚推拉强度以及管脚功能。
--   PIN接口定义了操作PIN管脚的通用方法集合，包括：
-    -   获取/释放管脚描述句柄: 传入管脚名与链表中每个控制器下管脚名进行匹配，匹配则会获取一个管脚描述句柄，操作完PIN管脚后释放该管脚描述句柄。
-    -   设置/获取管脚推拉方式：推拉方式可以是上拉、下拉以及悬空。
-    -   设置/获取管脚推拉强度：用户可根据实际设置管脚推拉强度大小。
-    -   设置/获取管脚功能：通过管脚功能名设置/获取管脚功能，实现管脚复用。
+PIN即管脚控制器，用于统一管理各SoC厂商管脚资源，对外提供管脚复用功能：包括管脚推拉方式、管脚推拉强度以及管脚功能。
+PIN接口定义了操作PIN管脚的通用方法集合，包括：
+-   获取/释放管脚描述句柄: 传入管脚名与链表中每个控制器下管脚名进行匹配，匹配则会获取一个管脚描述句柄，操作完PIN管脚后释放该管脚描述句柄。
+-   设置/获取管脚推拉方式：推拉方式可以是上拉、下拉以及悬空。
+-   设置/获取管脚推拉强度：用户可根据实际设置管脚推拉强度大小。
+-   设置/获取管脚功能：通过管脚功能名设置/获取管脚功能，实现管脚复用。
 
 ### 基本概念<a name="section3"></a>
 PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚管理，对外提供管脚复用功能，配置PIN管脚的电气特性。
@@ -35,9 +24,12 @@ PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚�
 
 ### 运作机制<a name="section4"></a>
 
-在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务，接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务。接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型。对于没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
-PIN模块各分层作用：接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。适配层主要是将钩子函数的功能实例化，实现具体的功能。
+PIN模块各分层作用：
+- 接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。
+- 核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。
+- 适配层主要是将钩子函数的功能实例化，实现具体的功能。
 
 **图 1**  PIN无服务模式<a name="fig14423182615525"></a> 
 ![](figures/无服务模式结构图.png "PIN无服务模式")
@@ -67,10 +59,10 @@ PIN模块提供的主要接口如[表1](#table1)所示，更多关于接口的�
 | int32_t PinGetPull(DevHandle handle, enum PinPullType *pullType); | 获取管脚推拉方式 |
 | int32_t PinSetStrength(DevHandle handle, uint32_t strength); | 设置管脚推拉强度 |
 | int32_t PinGetStrength(DevHandle handle, uint32_t *strength); | 获取管脚推拉强度 |
-| int32_t PinSetFunc(DevHandle handle, const char *funcName);  | 设置管脚功能     |
-| int32_t PinGetFunc(DevHandle handle, const char **funcName); | 获取管脚功能     |
+| int32_t PinSetFunc(DevHandle handle, const char *funcName);  | 设置管脚功能 |
+| int32_t PinGetFunc(DevHandle handle, const char **funcName); | 获取管脚功能 |
 
->![](../public_sys-resources/icon-note.gif) **说明：** 
+>![](../public_sys-resources/icon-note.gif) **说明：**<br>
 >本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 ### 开发步骤<a name="section9"></a>
@@ -88,14 +80,14 @@ PIN模块提供的主要接口如[表1](#table1)所示，更多关于接口的�
 DevHandle PinGet(const char *pinName);
 ```
 
-**表 2**  PinGet参数和返回值描述
+**表 2**  PinGet参数和描述
 
 <a name="table2"></a>
 
-| 参数       | 参数描述                |
+| 参数       | 描述                |
 | ---------- | ----------------------- |
 | pinName    | 管脚名                  |
-| **返回值** | **返回值描述**          |
+| **返回值** | **描述**          |
 | NULL       | 获取PIN管脚描述句柄失败 |
 | handle     | PIN管脚描述句柄         |
 
@@ -119,15 +111,15 @@ PIN设置管脚推拉方式的函数如下所示：
 int32_t PinSetPull(DevHandle handle, enum PinPullType pullType);
 ```
 
-**表 3**  参数和返回值描述
+**表 3**  参数和描述
 
 <a name="table3"></a>
 
-| 参数       | 参数描述                |
+| 参数       | 描述                |
 | ---------- | ----------------------- |
 | handle     | PIN管脚描述句柄         |
 | pullType   | PIN管脚推拉方式         |
-| **返回值** | **返回值描述**          |
+| **返回值** | **描述**          |
 | 0          | PIN设置管脚推拉方式成功 |
 | 负数       | PIN设置管脚推拉方式失败 |
 
@@ -153,15 +145,15 @@ PIN获取管脚推拉方式的函数如下所示：
 int32_t PinGetPull(DevHandle handle, enum PinPullType *pullType);
 ```
 
-**表 4**  PinGetPull参数和返回值描述
+**表 4**  PinGetPull参数和描述
 
 <a name="table4"></a>
 
-| 参数       | 参数描述                  |
+| 参数       | 描述                  |
 | ---------- | ------------------------- |
 | handle     | PIN管脚描述句柄           |
 | pullType   | 接收PIN管脚推拉方式的指针 |
-| **返回值** | **返回值描述**            |
+| **返回值** | **描述**            |
 | 0          | PIN获取管脚推拉方式成功   |
 | 负数       | PIN获取管脚推拉方式失败   |
 
@@ -186,15 +178,15 @@ PIN设置管脚推拉强度函数如下所示：
 int32_t PinSetStrength(DevHandle handle, uint32_t strength);
 ```
 
-**表 5**  PinSetStrength参数和返回值描述
+**表 5**  PinSetStrength参数和描述
 
 <a name="table5"></a>
 
-| 参数       | 参数描述                |
+| 参数       | 描述                |
 | ---------- | ----------------------- |
 | handle     | 管脚描述句柄            |
 | strength   | PIN管脚推拉强度         |
-| **返回值** | **返回值描述**          |
+| **返回值** | **描述**          |
 | 0          | PIN设置管脚推拉强度成功 |
 | 负数       | PIN设置管脚推拉强度失败 |
 
@@ -220,15 +212,15 @@ PIN设置管脚推拉强度后，可以通过PIN获取管脚推拉强度接口�
 int32_t PinGetStrength(DevHandle handle, uint32_t *strength);
 ```
 
-**表 6**  PinGetStrength参数和返回值描述
+**表 6**  PinGetStrength参数和描述
 
 <a name="table6"></a>
 
-| 参数       | 参数描述                  |
+| 参数       | 描述                  |
 | ---------- | ------------------------- |
 | handle     | 管脚描述句柄              |
 | strength   | 接收PIN管脚推拉强度的指针 |
-| **返回值** | **返回值描述**            |
+| **返回值** | **描述**            |
 | 0          | PIN获取管脚推拉强度成功   |
 | 负数       | PIN获取管脚推拉强度失败   |
 
@@ -255,15 +247,15 @@ PIN设置管脚功能函数如下所示：
 int32_t PinSetFunc(DevHandle handle, const char *funcName);
 ```
 
-**表 7**  PinSetFunc参数和返回值描述
+**表 7**  PinSetFunc参数和描述
 
 <a name="table7"></a>
 
-| 参数       | 参数描述            |
+| 参数       | 描述            |
 | ---------- | ------------------- |
 | handle     | 管脚描述句柄        |
 | funcName   | PIN管脚功能名       |
-| **返回值** | **返回值描述**      |
+| **返回值** | **描述**      |
 | 0          | PIN设置管脚功能成功 |
 | 负数       | PIN设置管脚功能失败 |
 
@@ -288,15 +280,15 @@ PIN设置管脚功能后，可以通过PIN获取管脚功能接口来查看PIN�
 int32_t PinGetFunc(DevHandle handle, const char **funcName);
 ```
 
-**表 8**  PinGetFunc参数和返回值描述
+**表 8**  PinGetFunc参数和描述
 
 <a name="table8"></a>
 
-| 参数       | 参数描述              |
+| 参数       | 描述              |
 | ---------- | --------------------- |
 | handle     | 管脚描述句柄          |
 | funcName   | 接收PIN管脚功能名指针 |
-| **返回值** | **返回值描述**        |
+| **返回值** | **描述**        |
 | 0          | PIN获取管脚功能成功   |
 | 负数       | PIN获取管脚功能失败   |
 
@@ -321,14 +313,14 @@ PIN不再进行任何操作后，需要释放PIN管脚描述管脚句柄，函�
 void PinPut(DevHandle handle);
 ```
 
-**表 9**  PinPut参数和返回值描述
+**表 9**  PinPut参数和描述
 
 <a name="table9"></a>
 
-| 参数       | 参数描述       |
+| 参数       | 描述       |
 | ---------- | -------------- |
 | handle     | 管脚描述句柄   |
-| **返回值** | **返回值描述** |
+| **返回值** | **描述** |
 | NA         | 无返回值       |
 
 PIN销毁管脚描述句柄实例如下：
@@ -339,7 +331,7 @@ PinPut(handle);
 
 ## 使用实例<a name="section10"></a>
 
-使用PIN设置管脚相关属性完整使用可以参考如下示例代码，示例代码步骤主要如下：
+使用PIN设置管脚相关属性完整使用可以参考如下示例代码，步骤主要如下：
 1. 传入要设置的管脚名，获取PIN管脚描述句柄。
 2. 通过PIN管脚描述句柄以及推拉方式pullTypeNum设置管脚推拉方式，如果操作失败则释放PIN管脚描述句柄。
 3. 通过PIN管脚描述句柄，并用pullTypeNum承接获取的管脚推拉方式，如果操作失败则释放PIN管脚描述句柄。
