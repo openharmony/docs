@@ -1363,7 +1363,7 @@ captureSession.addOutput(photoOutput, (err) => {
 
 addOutput\(photoOutput: PhotoOutput\): Promise<void\>
 
-在当前会话中，添加一个PreviewOutput实例，通过Promise获取结果。
+在当前会话中，添加一个PhotoOutput实例，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
