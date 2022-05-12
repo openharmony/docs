@@ -116,7 +116,7 @@
         return;
     }
     
-    //wavFile_ 需要设置为用户想要播放的文件描述符
+    //wavFile_ 需要设置为用户想要录音的文件描述符
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
@@ -160,9 +160,3 @@
         return;
     }  
     ```
-
-
-## 相关实例 
-
-针对OpenSL ES音频录音，有以下示例可供参考：  
- [**OpenSL ES** 音频播放代码 demo](https://gitee.com/openharmony/multimedia_audio_standard/blob/master/services/test/audio_opensles_capture_test.cpp)
