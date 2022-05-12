@@ -40,13 +40,13 @@ getInputMethodController(): InputMethodController
 
 **系统能力**：SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
     | 类型 | 说明 |
     | -------- | -------- |
     | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
 
-- 示例
+**示例：**
   ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
@@ -58,14 +58,14 @@ getInputMethodSetting(): InputMethodSetting
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
   | 类型                                      | 说明                         |
   | ----------------------------------------- | ---------------------------- |
   | [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
 
 
-- 示例
+**示例：**
   ```js
   var InputMethodSetting = inputMethod.getInputMethodSetting();
   ```
@@ -82,13 +82,13 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**：SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
 
-- 示例
+**示例：**
 
 ```js
  InputMethodController.stopInput((error)=>{
@@ -104,13 +104,13 @@ stopInput(): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
 
-- 示例
+**示例：**
 
 
 ```js
@@ -130,12 +130,12 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
   | 参数名   | 类型                                               | 必填 | 说明                   |
   | -------- | -------------------------------------------------- | ---- | ---------------------- |
   | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
-- 示例
+**示例：**
   ```js
    InputMethodSetting.listInputMethod((properties)=>{
      for (var i = 0;i < properties.length; i++) {
@@ -153,12 +153,12 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
   | 类型                                                        | 说明                   |
   | ----------------------------------------------------------- | ---------------------- |
   | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
-- 示例
+**示例：**
   ```js
    var properties = InputMethodSetting.listInputMethod();
    for (var i = 0;i < properties.length; i++) {
@@ -175,13 +175,13 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
-- 示例
+**示例：**
   ```js
    InputMethodSetting.displayOptionalInputMethod(()=>{
      console.info('displayOptionalInputMethod is called');
@@ -196,13 +196,13 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
   **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | 回调函数。 |
 
-  - 示例
+**示例：**
     ```js
      InputMethodSetting.displayOptionalInputMethod();
     ```
