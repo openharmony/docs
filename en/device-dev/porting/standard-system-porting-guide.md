@@ -6,51 +6,60 @@ This document describes the general process for porting a development board, rat
 
 This document uses the process of porting a development board named  **MyProduct**  as an example. This development board is provided by  **MyProductVendor**  and uses the SoC  **MySOC**  produced by  **MySoCVendor**.
 
-### Defining an SoC<a name="section135mcpsimp"></a>
-
-Create a JSON file named after the SoC name in the  **//productdefine/common/device**  directory and specify the CPU architecture.
-
-For example, to port  **MySOC**, which uses a 32-bit ARM kernel, configure the file as follows:
-
-//productdefine/common/device/MySOC.json
-
-```
-{
-    "target_os": "ohos",
-    "target_cpu": "arm"
-}
-```
-
-Currently,  **target\_cpu**  can be set to  **arm**  only. In the future, you can set the value depending on the CPU architecture, such as  **arm64**,  **riscv**, or  **x86**.
-
 ### Defining a Product<a name="section145mcpsimp"></a>
 
-Create a JSON file named after the product name in the  **//productdefine/common/products**  directory. This file is used to describe the SoC used by the product and the required subsystems. Configure the file as follows:
+Create a config.json file in the directory with the name "//vendor/MyProductVendor/{product_name}. This file is used to describe the SoC used by the product and the required subsystems. configure the file as follows:
 
-//productdefine/common/products/MyProduct.json
+//vendor/MyProductVendor/MyProduct/config.json
 
+  
 ```
 {
-  "product_name": "MyProduct",
-  "product_company" : "MyProductVendor",
-  "product_device": "MySOC",
-  "version": "2.0",
-  "type": "standard",
-  "parts":{
-    "ace:ace_engine_standard":{},
-    "ace:napi":{},
-    ...
-    "xts:phone_tests":{}
-  }
+    "product_name": "MyProduct",
+    "version": "3.0",
+    "type": "standard",
+    "target_cpu": "arm",
+    "ohos_version": "OpenHarmony 1.0",
+    "device_company": "MyProductVendor",
+    "board": "MyProduct",
+    "enable_ramdisk": true,
+    "subsystems": [
+      {
+        "subsystem": "ace",
+        "components": [
+          { "component": "ace_engine_lite", "features":[""] }
+        ]
+      }，
+	    …
+    ]
 }
+
 
 ```
 
 The main configurations are as follows:
 
-1.  **product\_device**: SoC used by the product.
-2.  **type**: system level. In this example, set it to  **standard**.
-3.  **parts**: subsystem to enable. A subsystem can be treated as an independently built functional block.
+product_name： The product name  Required
+
+version：version  Required
+
+type：Configured at the system level, containing (small, standard ...)  Required
+
+target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc. ） Required
+
+ohos_version：Operating system version  Optional
+
+device_company：device Manufacturer name   Required
+
+board：Board name  Required
+
+enable_ramdisk：Whether to startramdisk Required
+
+kernel_type and kernel_version: Optional : kernel_type with kernel_version is fixed in the standard and does not need to be written.
+
+subsystems:The subsystem that the system needs to be enabled. Subsystems can simply understand a piece of function that is built independently.  Required
+
+product_company：Not reflected in the configuration, but in the directory name, the next directory of the vendor is product_company, build.gn script can still be accessed.
 
 You can find available subsystems in  **//build/subsystem\_config.json**. You can also customize subsystems.
 
@@ -83,7 +92,7 @@ Add the following subsystem configuration to the  **//build/subsystem\_config.js
   },
 ```
 
-Then, open the configuration file  **//productdefine/common/products/MyProduct.json**, which is used to define the product, and add the new subsystem to the product.
+Then, open the configuration file  **//vendor/MyProductVendor/MyProduct/config.json**, which is used to define the product, and add the new subsystem to the product.
 
 ### 2. Building the Kernel<a name="section182mcpsimp"></a>
 

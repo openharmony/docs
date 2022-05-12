@@ -19,9 +19,9 @@ applications/sample/hello
 ├── bundle.json
 build
 └── subsystem_config.json
-productdefine/common
-└── products
-    └── Hi3516DV300.json
+vendor/hisilicon
+└── Hi3516DV300
+    └── config.json
 ```
 
 
@@ -151,7 +151,7 @@ productdefine/common
 
 4. 修改产品配置文件。
 
-   在productdefine\common\products\Hi3516DV300.json中添加对应的hello部件，直接添加到原有部件后即可。
+   在vendor\hisilicon\Hi3516DV300\config.json中添加对应的hello部件，直接添加到原有部件后即可。
 
      
    ```

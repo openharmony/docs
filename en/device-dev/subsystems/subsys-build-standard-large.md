@@ -207,7 +207,7 @@ The process to build OpenHarmony is as follows:
 
 2.  Add the module to the product configuration file.
 
-    Add the module to the product configuration file  **productdefine/common/products/\{product-name\}.json**.
+    Add the module to the product configuration file  **//vendor/{product_company}/{product-name}/config.json。**.
 
     Add "subsystem\_examples:partA" to the product configuration file.  **partA**  will be built and packaged into the distribution.
 
