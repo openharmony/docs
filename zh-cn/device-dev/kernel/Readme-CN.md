@@ -147,7 +147,7 @@
                         - [tftp](kernel-small-debug-shell-net-tftp.md)
                 - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
                 - [用户态异常信息说明](kernel-small-debug-shell-error.md)
-            - [Trace](kernel-small-debug-trace.md)
+            - [Trace调测](kernel-small-debug-trace.md)
             - [Perf调测](kernel-mini-memory-perf.md)
             - [LMS调测](kernel-small-memory-lms.md)
             - 进程调测
