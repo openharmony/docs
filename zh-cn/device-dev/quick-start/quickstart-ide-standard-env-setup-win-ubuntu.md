@@ -20,8 +20,6 @@
 
 ## 搭建Ubuntu环境
 
-在Windows+Ubuntu混合开发环境场景中，在Ubuntu系统上可以不用安装Visual Studio Code，这种情况下，Ubuntu环境中就没有DevEco Device Tool的可视化操作界面。如果需要使用到Ubuntu下的DevEco Device Tool可视化操作界面，环境搭建请参考[搭建Ubuntu开发环境](https://device.harmonyos.com/cn/docs/documentation/guide/ide-install-ubuntu-0000001072959308)。
-
 1. 将Ubuntu Shell环境修改为bash。
 
    1. 执行如下命令，确认输出结果为bash。如果输出结果不是bash，请根据步骤2，将Ubuntu shell修改为bash。
