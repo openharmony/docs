@@ -1013,8 +1013,8 @@ Enumerates scale modes.
 
 | Name           | Default Value| Description                                              |
 | --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | Scales the image so that it fills the requested bounds of the target and crops the extra.|
-| FIT_TARGET_SIZE | 2      | Reduces the image size to the dimensions of the target.                          |
+| CENTER_CROP     | 1      | The image is scaled in such a way that it fits the dimensions of the target and centered in the target. |
+| FIT_TARGET_SIZE | 2      | The image size is reduced to fit the dimensions of the target. |
 
 ## InitializationOptions<sup>8+</sup>
 
