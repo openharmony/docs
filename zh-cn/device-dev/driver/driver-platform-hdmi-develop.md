@@ -83,38 +83,38 @@ struct HdmiCntlrOps {
 
 | 函数成员                 | 入参                                                         | 出参                                   | 返回值             | 功能                                               |
 | ------------------------ | ------------------------------------------------------------ | -------------------------------------- | ------------------ | -------------------------------------------------- |
-| hardWareInit             | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDMI硬件 |
-| hardWareStatusGet        | **cntlr**: 结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态 ; | 无 | 获取HDMI当前硬件状态 |
-| controllerReset          | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | 无 | 复位HDMI控制器 |
-| hotPlugStateGet          | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | bool: HDMI热插拔状态 | 获取HDMI热插拔状态 |
-| hotPlugInterruptStateGet | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | bool: HDMI热插拔中断状态 | 获取HDMI热插拔中断状态 |
-| lowPowerSet              | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能低功耗 |
-| tmdsModeSet              | **cntlr**: 结构体指针，核心层HDMI控制器<br />**mode**：TMDS模式 | 无 | 无 | 设置TMDS模式 |
-| tmdsConfigSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**mode**: TMDS参数 | 无 | HDF_STATUS相关状态 | 配置TMDS参数 |
-| infoFrameEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**infoFrameType**: packet类型<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能infoFrame |
-| infoFrameSend | **cntlr**: 结构体指针，核心层HDMI控制器<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**：数据长度 | 无 | HDF_STATUS相关状态 | 发送infoFrame |
-| cecMsgSend | **cntlr**: 结构体指针，核心层HDMI控制器<br />**msg**: CEC消息 | 无 | HDF_STATUS相关状态 | 发送CEC消息 |
-| audioPathEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能| 无 | 无 | 使能/去使能audio通路 |
-| audioPathSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**config**: 配置信息 | 无 | 无 | 设置audio通路配置信息 |
-| phyOutputEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能物理层输出状态 |
-| phyOutputSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**cfg**: 配置信息 | 无 | 无 | 设置物理层配置信息 |
-| blackDataSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 设置黑屏 |
-| videoMuteEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能video静音 |
-| videoPathSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**attr**： 配置信息| 无 | 无 | 设置viedo通路配置信息 |
-|audioMuteEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能audio静音 |
-| avmuteSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能| 无 | 无 | 使能/去使能声音图像消隐 |
-| ddcTransfer | **cntlr**: 结构体指针，核心层HDMI控制器<br />**ddcCfg**：DDC配置参数 |**ddcCfg**：DDC配置参数 |HDF_STATUS相关状态 | 读写DDC数据 |
-| scdcSourceScrambleGet | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | bool，加扰状态 | 获取source端的加扰状态 |
-| scdcSourceScrambleSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能source端的加扰 |
-| frlEnable | **cntlr**: 结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能FRL |
-| audioNctsSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**cfg**：N/CTS配置参数 | 无 | HDF_STATUS相关状态 | 设置audio的N/CTS信息 |
-| frlTrainingConfigSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**cfg**：FRL Traning配置参数 | 无 | 无| 设置FRL Traning配置信息 |
-| frlTrainingStart | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | 无 | 开始FRL Traning流程 |
-| frlGetTriningRslt | **cntlr**: 结构体指针，核心层HDMI控制器 | **rslt**：FRL Traning结果 | 无 | 获取FRL Traning结果 |
-| hdcpRegInit | **cntlr**: 结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDCP流程相关的寄存器 |
-|hdcpGenerateAksvAndAn |**cntlr**: 结构体指针，核心层HDMI控制器 | 无 | HDF_STATUS相关状态 | HDCP流程中生成aksv和an |
-| hdcpOptReg | **cntlr**: 结构体指针，核心层HDMI控制器<br />**type**: 操作类型<br />**data**: 寄存器数据<br />**len**: 数据长度 | **data**: 寄存器数据 | HDF_STATUS相关状态 | HDCP流程中读写相关寄存器 |
-| hdrTimerSet | **cntlr**: 结构体指针，核心层HDMI控制器<br />**config**: timer配置信息 | 无 | 无 | 设置HDR相关的timer配置信息 |
+| hardWareInit             | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDMI硬件 |
+| hardWareStatusGet        | **cntlr**：结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态 ; | 无 | 获取HDMI当前硬件状态 |
+| controllerReset          | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 复位HDMI控制器 |
+| hotPlugStateGet          | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool: HDMI热插拔状态 | 获取HDMI热插拔状态 |
+| hotPlugInterruptStateGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool: HDMI热插拔中断状态 | 获取HDMI热插拔中断状态 |
+| lowPowerSet              | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能低功耗 |
+| tmdsModeSet              | **cntlr**：结构体指针，核心层HDMI控制器<br />**mode**：TMDS模式 | 无 | 无 | 设置TMDS模式 |
+| tmdsConfigSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**mode**: TMDS参数 | 无 | HDF_STATUS相关状态 | 配置TMDS参数 |
+| infoFrameEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**infoFrameType**: packet类型<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能infoFrame |
+| infoFrameSend | **cntlr**：结构体指针，核心层HDMI控制器<br />**infoFrameType**: packet类型<br />**data**: infoFrame数据<br />**len**：数据长度 | 无 | HDF_STATUS相关状态 | 发送infoFrame |
+| cecMsgSend | **cntlr**：结构体指针，核心层HDMI控制器<br />**msg**: CEC消息 | 无 | HDF_STATUS相关状态 | 发送CEC消息 |
+| audioPathEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能| 无 | 无 | 使能/去使能audio通路 |
+| audioPathSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**config**: 配置信息 | 无 | 无 | 设置audio通路配置信息 |
+| phyOutputEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能物理层输出状态 |
+| phyOutputSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**: 配置信息 | 无 | 无 | 设置物理层配置信息 |
+| blackDataSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 设置黑屏 |
+| videoMuteEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能video静音 |
+| videoPathSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**attr**：配置信息| 无 | 无 | 设置viedo通路配置信息 |
+|audioMuteEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能audio静音 |
+| avmuteSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能| 无 | 无 | 使能/去使能声音图像消隐 |
+| ddcTransfer | **cntlr**：结构体指针，核心层HDMI控制器<br />**ddcCfg**：DDC配置参数 |**ddcCfg**：DDC配置参数 |HDF_STATUS相关状态 | 读写DDC数据 |
+| scdcSourceScrambleGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool，加扰状态 | 获取source端的加扰状态 |
+| scdcSourceScrambleSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能source端的加扰 |
+| frlEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能FRL |
+| audioNctsSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**：N/CTS配置参数 | 无 | HDF_STATUS相关状态 | 设置audio的N/CTS信息 |
+| frlTrainingConfigSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**：FRL Traning配置参数 | 无 | 无| 设置FRL Traning配置信息 |
+| frlTrainingStart | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 开始FRL Traning流程 |
+| frlGetTriningRslt | **cntlr**：结构体指针，核心层HDMI控制器 | **rslt**：FRL Traning结果 | 无 | 获取FRL Traning结果 |
+| hdcpRegInit | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDCP流程相关的寄存器 |
+|hdcpGenerateAksvAndAn |**cntlr**：结构体指针，核心层HDMI控制器 | 无 | HDF_STATUS相关状态 | HDCP流程中生成aksv和an |
+| hdcpOptReg | **cntlr**：结构体指针，核心层HDMI控制器<br />**type**: 操作类型<br />**data**: 寄存器数据<br />**len**: 数据长度 | **data**: 寄存器数据 | HDF_STATUS相关状态 | HDCP流程中读写相关寄存器 |
+| hdrTimerSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**config**: timer配置信息 | 无 | 无 | 设置HDR相关的timer配置信息 |
 
 
 ### 开发步骤
@@ -413,4 +413,3 @@ HDMI模块适配的三个环节是配置属性文件，实例化驱动入口以�
         
         > ![](../public_sys-resources/icon-note.gif) **说明：**<br>
         > 所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
-
