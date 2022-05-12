@@ -2,7 +2,7 @@
 
 ## When to Use
 
-You can use video playback APIs to convert video data into visible signals, play the signals using output devices, and manage playback tasks. This document describes the following video playback development scenarios: full-process, normal playback, video switching, and loop playback.
+You can use video playback APIs to convert video data into visible signals, play the signals using output devices, and manage playback tasks. This document describes development for the following video playback scenarios: full-process, normal playback, video switching, and loop playback.
 
 **Figure 1** Video playback state transition
 
@@ -22,11 +22,11 @@ Note: Video playback requires hardware capabilities such as display, audio, and 
 
 ## Compatibility
 
-You are advised to use the mainstream playback formats and resolutions, rather than custom or abnormal streams to avoid playback failure, frame freezing, and artifacts. The system is not affected by incompatibility issues. If such an error occurs, you can exit stream playback mode.
+Use the mainstream playback formats and resolutions, rather than custom ones to avoid playback failures, frame freezing, and artifacts. The system is not affected by incompatibility issues. If such an issue occurs, you can exit stream playback mode.
 
 The table below lists the mainstream playback formats and resolutions.
 
-| Video Container Specification|                     Specification Description                     |               Resolution              |
+| Video Container Format|                     Description                     |               Resolution              |
 | :----------: | :-----------------------------------------------: | :--------------------------------: |
 |     mp4      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
 |     mkv      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
@@ -41,143 +41,137 @@ For details about the APIs, see [VideoPlayer in the Media API](../reference/apis
 
 The full video playback process includes creating an instance, setting the URL, setting the surface ID, preparing for video playback, playing video, pausing playback, obtaining track information, seeking to a playback position, setting the volume, setting the playback speed, stopping playback, resetting the playback configuration, and releasing resources.
 
-For details about the **url** media source input types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
+For details about the **url** types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an XComponent, see [XComponent Creation](#xcomponent-creation).
+For details about how to create an XComponent, see [XComponent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md).
 
-*Note: **SetSurface** must be called after the URL is set but before **Prepare** is called.
+*Note: **setSurface** must be called after the URL is set but before **prepare** is called.
 
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
-
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// Report an error in the case of a function invocation failure.
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // Report an error in the case of a function invocation failure.
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// Report an error in the case of a function invocation exception.
-function catchCallback(error) {
+  // Report an error in the case of a function invocation exception.
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// Used to print the video track information.
-function printfDescription(obj) {
+  // Used to print the video track information.
+  printfDescription(obj) {
     for (let item in obj) {
-        let property = obj[item];
-        console.info('key is ' + item);
-        console.info('value is ' + property);
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
     }
-}
+  }
 
-// Call createVideoPlayer to create a VideoPlayer instance.
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let fdPath = 'fd://'
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    // Call createVideoPlayer to create a VideoPlayer instance.
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // Set the playback source URL for the player.
+    videoPlayer.url = fdPath;
 
-// Set the FD (local playback) of the video file selected by the user.
-let fdPath = 'fd://'
-// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // Set the surface ID to display the video image.
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // Call the prepare API to prepare for playback.
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the surface ID to display the video image.
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // Call the play API to start playback.
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Call the prepare interface to prepare for playback.
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // Pause playback.
+    await videoPlayer.pause().then(() => {
+      console.info('pause success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Call the play interface to start playback.
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
-
-// Pause playback.
-await videoPlayer.pause().then(() => {
-    console.info('pause success');
-}, failureCallback).catch(catchCallback);
-
-// Use a promise to obtain the video track information.
-let arrayDescription;
-await videoPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    // Use a promise to obtain the video track information.
+    let arrayDescription;
+    await videoPlayer.getTrackDescription().then((arrlist) => {
+      if (typeof (arrlist) != 'undefined') {
         arrayDescription = arrlist;
-    } else {
+      } else {
         console.log('video getTrackDescription fail');
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+
+    for (let i = 0; i < arrayDescription.length; i++) {
+      this.printfDescription(arrayDescription[i]);
     }
-}, failureCallback).catch(catchCallback);
 
-for (let i = 0; i < arrayDescription.length; i++) {
-    printfDescription(arrayDescription[i]);
+    // Seek to the 50s position. For details about the input parameters, see the interface document.
+    let seekTime = 50000;
+    await videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+      console.info('seek success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Set the volume. For details about the input parameters, see the interface document.
+    let volume = 0.5;
+    await videoPlayer.setVolume(volume).then(() => {
+      console.info('setVolume success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Set the playback speed. For details about the input parameters, see the interface document.
+    let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+    await videoPlayer.setSpeed(speed).then(() => {
+      console.info('setSpeed success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Stop playback.
+    await videoPlayer.stop().then(() => {
+      console.info('stop success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Reset the playback configuration.
+    await videoPlayer.reset().then(() => {
+      console.info('reset success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Release playback resources.
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
+
+    // Set the related instances to undefined.
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
 }
-
-// Seek to the 50s position. For details about the input parameters, see the interface document.
-let seekTime = 50000;
-await videoPlayer.seek(seekTime, media.SeekMode._NEXT_SYNC).then((seekDoneTime) => {
-    console.info('seek success');
-}, failureCallback).catch(catchCallback);
-
-// Set the volume. For details about the input parameters, see the interface document.
-let volume = 0.5;
-await videoPlayer.setVolume(volume).then(() => {
-    console.info('setVolume success');
-}, failureCallback).catch(catchCallback);
-
-// Set the playback speed. For details about the input parameters, see the interface document.
-let speed = media.PlaybackRateMode.SPEED_FORWARD_2_00_X;
-await videoPlayer.setSpeed(speed).then(() => {
-    console.info('setSpeed success');
-}, failureCallback).catch(catchCallback);
-
-// Stop playback.
-await videoPlayer.stop().then(() => {
-    console.info('stop success');
-}, failureCallback).catch(catchCallback);
-
-// Reset the playback configuration.
-await videoPlayer.reset().then(() => {
-    console.info('reset success');
-}, failureCallback).catch(catchCallback);
-
-// Release playback resources.
-await videoPlayer.release().then(() => {
-    console.info('release success');
-}, failureCallback).catch(catchCallback);
-
-// Set the related instances to undefined.
-videoPlayer = undefined;
-surfaceID = undefined;
 ```
 
 ### Normal Playback Scenario
@@ -185,86 +179,86 @@ surfaceID = undefined;
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
-
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// Report an error in the case of a function invocation failure.
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // Report an error in the case of a function invocation failure.
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// Report an error in the case of a function invocation exception.
-function catchCallback(error) {
+  // Report an error in the case of a function invocation exception.
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // Used to print the video track information.
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let fdPath = 'fd://'
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// Call createVideoPlayer to create a VideoPlayer instance.
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // Call createVideoPlayer to create a VideoPlayer instance.
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // Set the playback source for the player.
+    videoPlayer.url = fdPath;
 
-// Set the event callbacks.
-SetCallBack(videoPlayer);
+    // Set the surface ID to display the video image.
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
-let fdPath = 'fd://'
-// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // Call the prepare API to prepare for playback.
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // Call the play API to start playback.
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the surface ID to display the video image.
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // Stop playback.
+    await videoPlayer.stop().then(() => {
+      console.info('stop success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Call the prepare interface to prepare for playback.
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // Release playback resources.
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Call the play interface to start playback.
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // Set the related instances to undefined.
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
 
 ### Switching to the Next Video Clip
@@ -272,122 +266,110 @@ await videoPlayer.play().then(() => {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
-
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// Report an error in the case of a function invocation failure.
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // Report an error in the case of a function invocation failure.
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// Report an error in the case of a function invocation exception.
-function catchCallback(error) {
+  // Report an error in the case of a function invocation exception.
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // Used to print the video track information.
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let fdPath = 'fd://'
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// Call createVideoPlayer to create a VideoPlayer instance.
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // Call createVideoPlayer to create a VideoPlayer instance.
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // Set the playback source for the player.
+    videoPlayer.url = fdPath;
 
-// Set the event callbacks.
-SetCallBack(videoPlayer);
+    // Set the surface ID to display the video image.
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
-let fdPath = 'fd://'
-// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // Call the prepare API to prepare for playback.
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
+    // Call the play API to start playback.
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the surface ID to display the video image.
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
+    // Reset the playback configuration.
+    await videoPlayer.reset().then(() => {
+      console.info('reset success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Call the prepare interface to prepare for playback.
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
+    // Obtain the next video FD address.
+    fdPath = 'fd://'
+    await fileIO.open(nextPath).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
+    });
+    // Set the second video playback source.
+    videoPlayer.url = fdPath;
 
-// Call the play interface to start playback.
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // Call the prepare interface to prepare for playback.
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Send the instruction to switch to the next video clip after a period of time.
-// Reset the playback configuration.
-await videoPlayer.reset().then(() => {
-    console.info('reset success');
-}, failureCallback).catch(catchCallback);
+    // Call the play API to start playback.
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
-let fdNextPath = 'fd://'
-// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/accounts/account_0/appdata" command.
-let nextPath = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/02.mp4';
-await fileIO.open(nextPath).then(fdNumber) => {
-   fdNextPath = fdNextPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdNextPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // Release playback resources.
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdNextPath;
-
-// Set the surface ID to display the video image.
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
-
-// Call the prepare interface to prepare for playback.
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
-
-// Call the play interface to start playback.
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
+    // Set the related instances to undefined.
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
 
 ### Looping a Video Clip
@@ -395,100 +377,88 @@ await videoPlayer.play().then(() => {
 ```js
 import media from '@ohos.multimedia.media'
 import fileIO from '@ohos.fileio'
-
-let videoPlayer = undefined; // Used to store instances created by calling the createVideoPlayer API.
-let surfaceID = undefined; // Used to save the surface ID returned by the XComponent interface.
-
-// The LoadXcomponent() API is used to obtain the surface ID and save it to the **surfaceID** variable. This API is automatically called when the XComponent is loaded.
-LoadXcomponent() {
-	surfaceID = this.$element('Xcomponent').getXComponentSurfaceId();
-    console.info('LoadXcomponent surfaceID is' + surfaceID);
-}
-
-// Report an error in the case of a function invocation failure.
-function failureCallback(error) {
+export class VideoPlayerDemo {
+  // Report an error in the case of a function invocation failure.
+  failureCallback(error) {
     console.info(`error happened,error Name is ${error.name}`);
     console.info(`error happened,error Code is ${error.code}`);
     console.info(`error happened,error Message is ${error.message}`);
-}
+  }
 
-// Report an error in the case of a function invocation exception.
-function catchCallback(error) {
+  // Report an error in the case of a function invocation exception.
+  catchCallback(error) {
     console.info(`catch error happened,error Name is ${error.name}`);
     console.info(`catch error happened,error Code is ${error.code}`);
     console.info(`catch error happened,error Message is ${error.message}`);
-}
+  }
 
-// Set the 'playbackCompleted' event callback, which is triggered when the playback is complete.
-function SetCallBack(videoPlayer) {
-	videoPlayer.on('playbackCompleted', () => {
-        console.info('video play finish');
-        
-        await videoPlayer.release().then(() => {
-    		console.info('release success');
-		}, failureCallback).catch(catchCallback);
+  // Used to print the video track information.
+  printfDescription(obj) {
+    for (let item in obj) {
+      let property = obj[item];
+      console.info('key is ' + item);
+      console.info('value is ' + property);
+    }
+  }
 
-		videoPlayer = undefined;
-        surfaceID = undefined;
+  sleep(time) {
+    for(let t = Date.now(); Date.now() - t <= time;);
+  }
+
+  async videoPlayerDemo() {
+    let videoPlayer = undefined;
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let fdPath = 'fd://'
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
+    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+    await fileIO.open(path).then((fdNumber) => {
+      fdPath = fdPath + '' + fdNumber;
+      console.info('open fd sucess fd is' + fdPath);
+    }, (err) => {
+      console.info('open fd failed err is' + err);
+    }).catch((err) => {
+      console.info('open fd failed err is' + err);
     });
-}
-
-// Call createVideoPlayer to create a VideoPlayer instance.
-await media.createVideoPlayer().then((video) => {
-    if (typeof (video) != 'undefined') {
+    // Call createVideoPlayer to create a VideoPlayer instance.
+    await media.createVideoPlayer().then((video) => {
+      if (typeof (video) != 'undefined') {
         console.info('createVideoPlayer success!');
         videoPlayer = video;
-    } else {
+      } else {
         console.info('createVideoPlayer fail!');
-    }
-}, failureCallback).catch(catchCallback);
+      }
+    }, this.failureCallback).catch(this.catchCallback);
+    // Set the playback source for the player.
+    videoPlayer.url = fdPath;
 
-// Set the event callbacks.
-SetCallBack(videoPlayer);
+    // Set the surface ID to display the video image.
+    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
+      console.info('setDisplaySurface success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-// Set the FD (local playback) of the video file selected by the user.
-let fdPath = 'fd://'
-// The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
-let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp4';
-await fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
-   console.info('open fd sucess fd is' + fdPath);
-}, (err) => {
-   console.info('open fd failed err is' + err);
-}),catch((err) => {
-   console.info('open fd failed err is' + err);
-});
+    // Call the prepare API to prepare for playback.
+    await videoPlayer.prepare().then(() => {
+      console.info('prepare success');
+    }, this.failureCallback).catch(this.catchCallback);
+    // Set the loop playback attribute.
+    videoPlayer.loop = true;
+    // Call the play API to start playback.
+    await videoPlayer.play().then(() => {
+      console.info('play success');
+    }, this.failureCallback).catch(this.catchCallback);
+    // After the progress bar reaches the end, the playback continues for 3 seconds and then starts from the beginning, since loop playback is configured.
+    await videoPlayer.seek(videoPlayer.duration, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+      console.info('seek duration success');
+    }, this.failureCallback).catch(this.catchCallback);
+    this.sleep(3000);
+    // Release playback resources.
+    await videoPlayer.release().then(() => {
+      console.info('release success');
+    }, this.failureCallback).catch(this.catchCallback);
 
-videoPlayer.url = fdPath;
-
-// Set the surface ID to display the video image.
-await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-    console.info('setDisplaySurface success');
-}, failureCallback).catch(catchCallback);
-
-// Call the prepare interface to prepare for playback.
-await videoPlayer.prepare().then(() => {
-    console.info('prepare success');
-}, failureCallback).catch(catchCallback);
-
-// Set the loop playback attribute.
-videoPlayer.loop = true;
-
-// Call the play interface to start playback.
-await videoPlayer.play().then(() => {
-    console.info('play success');
-}, failureCallback).catch(catchCallback);
-```
-
-### XComponent Creation
-
-The XComponent is used to obtain the surface ID during video playback. You need to create an xxx.hml file and add the following code to the xxx.hml file, where xxx is the same as that in the xxx.js file:
-
-```js
-<xcomponent id = 'Xcomponent'
-      if = "{{isFlush}}" // Refresh the surface ID. To enable automatic loading of the XComponent and obtain the new surface ID, assign **false** to **isFlush** and then assign **true** to **isFlush**.
-      type = 'surface'
-      onload = 'LoadXcomponent' // Default interface for loading the XComponent.
-      style = "width:720px;height:480px;border-color:red;border-width:5px;"> // Set the window width, height, and other attributes.
-
+    // Set the related instances to undefined.
+    videoPlayer = undefined;
+    surfaceID = undefined;
+  }
+}
 ```
