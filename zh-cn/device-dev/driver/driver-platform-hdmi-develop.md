@@ -353,9 +353,9 @@ HDMI模块适配的三个环节是配置属性文件，实例化驱动入口以�
             cntlr->ops = &g_hdmiHostOps;     //【必要】HdmiCntlrOps的实例化对象的挂载
             cntlr->hdfDevObj = obj;          //【必要】使HdfDeviceObject与HdmiCntlr可以相互转化的前提
             obj->service = &cntlr->service;  //【必要】使HdfDeviceObject与HdmiCntlr可以相互转化的前提
-            ret = HdmiAdapterCntlrParse(cntlr, obj); //【必要】 初始化cntlr. 失败则 goto __ERR;
+            ret = HdmiAdapterCntlrParse(cntlr, obj); //【必要】初始化cntlr，失败则 goto __ERR;
             ... 
-            ret = HdmiAdapterHostParse(host, obj);   //【必要】 初始化host对象的相关属性，失败则 goto __ERR;
+            ret = HdmiAdapterHostParse(host, obj);   //【必要】初始化host对象的相关属性，失败则 goto __ERR;
             ...
             ret = HdmiAdapterHostInit(host, cntlr);  // 厂商自定义的初始化，失败则 goto __ERR;
             ...
