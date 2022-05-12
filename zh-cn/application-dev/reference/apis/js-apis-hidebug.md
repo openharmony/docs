@@ -142,13 +142,15 @@ getCpuUsage(): number
 
 获取进程的cpu占用率。
 
+如占用率为50%，则返回0.5。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
 **返回值：**
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 获取进程的cpu占用率，返回值为小数。 |
+| number | 获取进程的cpu占用率。 |
 
 
 **示例：**
@@ -225,7 +227,8 @@ hidebug.dumpHeapData("heap-20220216");
 getServiceDump(serviceid : number) : string
 
 获取系统服务信息。
-此接口为系统接口，三方应用使用需要添加dump权限。
+
+此接口为系统接口，三方应用不可用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
