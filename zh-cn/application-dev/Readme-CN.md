@@ -17,6 +17,7 @@
         - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
         - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
+        - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)

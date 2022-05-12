@@ -1,0 +1,102 @@
+#  HarmonyAppProvision配置文件的说明
+在应用的开发过程中，应用的部分信息需要在HarmonyAppProvision配置文件（该文件在部分文档中也称为profile文件）中声明。
+
+## 配置文件的内部结构
+HarmonyAppProvision文件包含基本信息、validity对象、bundle-info对象、acls对象、permissions对象、debug-info对象等部分组成。
+
+表1 配置文件内部结构说明
+| 属性名称     | 含义                                                                                     | 数据类型 | 是否可缺省 |
+| ----------- | ---------------------------------------------------------------------------------------- | -------- | -------- |
+| 基本信息     | 表示HarmonyAppProvision文件的基本信息。参考[基本信息内部结构](#基本信息内部结构)。            | 对象     | 不可缺省  |
+| validity    | 表示HarmonyAppProvision文件有效期的信息。参考[validity对象内部结构](#validity对象内部结构)。  | 对象     | 不可缺省  |
+| bundle-info | 表示应用包以及开发者的信息。参考[bundle-info对象内部结构](#bundle-info对象内部结构)。         | 对象     | 不可缺省  |
+| acls        | 表示授权的应用权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可缺省    |
+| permissions | 表示允许使用的受限敏感权限信息。参考[permissions对象内部结构](#permissions对象内部结构)。      | 对象     | 可缺省    |
+| debug-info  | 表示应用调试场景下的额外信息。参考[debug-info对象内部结构](#debug-info对象内部结构)。          | 对象     | 可缺省         |
+
+HarmonyAppProvision文件示例：
+```json
+{
+    "version-code": 1,
+    "version-name": "1.0.0",
+	"uuid": "fe686e1b-3770-4824-a938-961b140a7c98",
+	"type": "debug",
+	"validity": {
+		"not-before": 1586422743,
+		"not-after": 1617958743
+	},
+	"bundle-info" : {
+		"developer-id": "OpenHarmony",
+		"development-certificate": "-----BEGIN CERTIFICATE-----\nMIICMzCCAbegAwIBAgIEaOC/zDAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjEwMjAy\nMTIxOTMxWhcNNDkxMjMxMTIxOTMxWjBoMQswCQYDVQQGEwJDTjEUMBIGA1UEChML\nT3Blbkhhcm1vbnkxGTAXBgNVBAsTEE9wZW5IYXJtb255IFRlYW0xKDAmBgNVBAMT\nH09wZW5IYXJtb255IEFwcGxpY2F0aW9uIFJlbGVhc2UwWTATBgcqhkjOPQIBBggq\nhkjOPQMBBwNCAATbYOCQQpW5fdkYHN45v0X3AHax12jPBdEDosFRIZ1eXmxOYzSG\nJwMfsHhUU90E8lI0TXYZnNmgM1sovubeQqATo1IwUDAfBgNVHSMEGDAWgBTbhrci\nFtULoUu33SV7ufEFfaItRzAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFPtxruhl\ncRBQsJdwcZqLu9oNUVgaMAwGCCqGSM49BAMDBQADaAAwZQIxAJta0PQ2p4DIu/ps\nLMdLCDgQ5UH1l0B4PGhBlMgdi2zf8nk9spazEQI/0XNwpft8QAIwHSuA2WelVi/o\nzAlF08DnbJrOOtOnQq5wHOPlDYB4OtUzOYJk9scotrEnJxJzGsh/\n-----END CERTIFICATE-----\n",
+		"distribution-certificate": "Base64 string",
+		"bundle-name": "com.OpenHarmony.app.test",
+		"apl": "normal",
+        "app-feature": "hos_normal_app"
+	},
+	"acls": {
+		"allowed-acls": ["string"]
+    },
+	"permissions": {
+		"restricted-permissions": ["string"]
+    },
+    "debug-info" : {
+	    "device-id-type": "udid",
+	    "device-ids": ["69C7505BE341BDA5948C3C0CB44ABCD530296054159EFE0BD16A16CD0129CC42"]
+    },
+    "issuer": "OpenHarmony"
+}
+
+```
+### 基本信息内部结构
+表2 基本信息的内部结构说明
+| 属性名称   | 含义                                                         | 数据类型 | 是否可缺省         |
+| ---------- | ------------------------------------------------------------ | -------- | ------------------ |
+| version-code | 表示HarmonyAppProvision文件格式的版本号，取值范围为二进制32位以内的正整数 | 数值   | 不可缺省                 |
+| version-name     | 表示版本号的文字描述，推荐使用三段数字版本号，如A.B.C         | 字符串   | 不可缺省 |
+| uuid    | 表示文件的唯一ID号，用于OEM厂商标识HarmonyAppProvision文件，开源社区版本该属性不做强制要求                        | 字符串     | 不可缺省   |
+| type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括: debug(用于应用调试场景)和release(用于应用发布场景) ，开源社区版本该属性值建议为debug | 字符串     | 不可缺省 |
+| issuer | 表示HarmonyAppProvision签发者         | 字符串     | 可缺省 |
+
+### validity对象内部结构
+表3 validity对象的内部结构
+| 属性名称    | 含义                            | 数据类型 | 是否可缺省 |
+| ---------- | ------------------------------- | ------- | --------- |
+| not-before | 表示文件有效期的开始时间，非负整数 | 数值    | 不可缺省   |
+| not-after  | 表示文件有效期的结束时间，非负整数 | 数值    | 不可缺省   |
+
+### bundle-info对象内部结构
+表4 bundle-info对象的内部结构
+| 属性名称                  | 含义                            | 数据类型 | 是否可缺省 |
+| ------------------------ | ------------------------------- | ------- | --------- |
+| developer-id | 表示开发者的唯一ID号，用于OEM厂商标识开发者，开源社区版本该属性不做强制要求 | 字符串    | 不可缺省   |
+| development-certificate  | 表示[调试证书](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/security/hapsigntool-guidelines.md)的信息 | 数值    | 当type属性为debug时，该属性不可缺省；否则，该属性可缺省   |
+| distribution-certificate  | 表示[发布证书](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/security/hapsigntool-guidelines.md)的信息 | 数值    | 当type属性为release时，该标签不可缺省；否则，该标签可缺省   |
+| bundle-name  | 表示应用程序的包名 | 字符串    | 不可缺省   |
+| apl  | 表示应用程序的[apl级别](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/security/accesstoken-overview.md)，系统预定义的apl包括：normal、system_basic和system_core | 字符串    | 不可缺省   |
+| app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用） | 字符串    | 不可缺省   |
+
+
+### acls对象内部结构
+acls对象包含已授权的acl权限，这类权限通常是指应用安装时即可授权的权限（system_grant权限）。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/quick-start/package-structure.md)）将acls权限信息填写到reqPermissions属性中。
+
+表5 acls对象的内部结构
+| 属性名称                  | 含义                            | 数据类型 | 是否可缺省 |
+| ------------------------ | ------------------------------- | ------- | --------- |
+| allowed-acls | 表示授权的[acl权限](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/security/accesstoken-overview.md)列表 | 字符串数组    | 可缺省   |
+
+### permissions对象内部结构
+permissions对象包含允许使用的受限敏感权限；不同于acls对象，permissions对象中的权限仅代表应用允许使用该敏感权限，权限最终由用户运行时授权。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/quick-start/package-structure.md)）将permissions权限信息填写到reqPermissions属性中。
+
+表6 permissions对象的内部结构
+| 属性名称                  | 含义                            | 数据类型 | 是否可缺省 |
+| ------------------------ | ------------------------------- | ------- | --------- |
+| restricted-permissions | 表示允许使用的[受限敏感权限](https://gitee.com/openharmony/docs/blob/49108dac7b7f2365f0b67b7315966e7e530f19b1/zh-cn/application-dev/security/accesstoken-overview.md) | 字符串数组    | 可缺省   |
+
+### debug-info对象内部结构
+debug-info对象包含应用调试场景下的信息，主要是设备管控的信息。
+
+表7 debug-info对象的内部结构
+| 属性名称                  | 含义                            | 数据类型 | 是否可缺省 |
+| ------------------------ | ------------------------------- | ------- | --------- |
+| device-id-type | 表示设备ID的类型，当前系统仅提供udid的设备ID类型 | 字符串    | 不可缺省   |
+| device-ids | 表示应用调试场景下允许调试的设备ID列表 | 字符串数组    | 可缺省   |
