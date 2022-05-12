@@ -21,7 +21,7 @@ Create a config.json file in the directory with the name "//vendor/MyProductVend
     "target_cpu": "arm",
     "ohos_version": "OpenHarmony 1.0",
     "device_company": "MyProductVendor",
-    "board": "MyProduct",
+    "board": "MySOC",
     "enable_ramdisk": true,
     "subsystems": [
       {
@@ -39,23 +39,23 @@ Create a config.json file in the directory with the name "//vendor/MyProductVend
 
 The main configurations are as follows:
 
-product_name： The product name  Required
+product_name：The product name.Required
 
-version：version  Required
+version：version.Required
 
-type：Configured at the system level, containing (small, standard ...)  Required
+type：Configured at the system level, containing (small, standard ...).Required
 
-target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc. ） Required
+target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc. ）.Required
 
-ohos_version：Operating system version  Optional
+ohos_version：Operating system version.Optional
 
-device_company：device Manufacturer name   Required
+device_company：device manufacturer name.Required
 
-board：Board name  Required
+board：Board name.Required
 
-enable_ramdisk：Whether to startramdisk Required
+enable_ramdisk：Whether to start ramdisk.Required
 
-kernel_type and kernel_version: Optional : kernel_type with kernel_version is fixed in the standard and does not need to be written.
+kernel_type and kernel_version: kernel_type with kernel_version is fixed in the standard and does not need to be written.Optional
 
 subsystems:The subsystem that the system needs to be enabled. Subsystems can simply understand a piece of function that is built independently.  Required
 
