@@ -216,14 +216,14 @@ OpenHarmony侧的编译构建流程主要包括编译命令行解析，调用gn�
    在产品配置文件中添加 "subsystem_examples:partA"，表示该产品中会编译并打包partA到版本中。
 
 3. 编译。
-     以编译Hi3516DV300为例，编译命令如下：
+     以编译hispark_taurus_standard为例，编译命令如下：
      
    ```
-   ./build.sh --product-name Hi3516DV300 --ccache
+   ./build.sh --product-name hispark_taurus_standard --ccache
    ```
 
 4. 编译输出。
-   编译所生成的文件都归档在out/hi3516dv300/目录下，结果镜像输出在 out/hi3516dv300/packages/phone/images/ 目录下。
+   编译所生成的文件都归档在out/hispark_taurus/目录下，结果镜像输出在 out/hispark_taurus/packages/phone/images/ 目录下。
 
 
 ## 常见问题
