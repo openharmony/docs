@@ -116,6 +116,45 @@ getSharedDirty(): bigint
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
+## hidebug.getPrivateDirty
+
+getPrivateDirty(): bigint
+
+获取进程的私有脏内存大小。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+
+**返回值：**
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| bigint | 返回进程的私有脏内存大小。 |
+
+
+**示例：**
+  ```js
+  let privateDirty = hidebug.getPrivateDirty();
+  ```
+
+## hidebug.getCpuUsage
+
+getCpuUsage(): number
+
+获取进程的cpu占用率。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+
+**返回值：**
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 获取进程的cpu占用率。 |
+
+
+**示例：**
+  ```js
+  let cpuUsage = hidebug.getCpuUsage();
+  ```
 
 ## hidebug.startProfiling
 
@@ -179,4 +218,31 @@ dumpHeapData(filename : string) : void
 
 ```js
 hidebug.dumpHeapData("heap-20220216");
+```
+
+## hidebug.getServiceDump
+
+getServiceDump(serviceid : number) : string;
+
+获取系统服务信息。
+不适用于第三方应用，需要系统应用配置或拥有dump权限。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
+
+**返回值：**
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回dump的service信息文件的绝对路径。 |
+
+**示例：**
+
+```js
+let serviceId = 10;
+let pathName = hidebug.getServiceDump(serviceId);
 ```
