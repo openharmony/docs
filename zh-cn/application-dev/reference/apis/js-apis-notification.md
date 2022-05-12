@@ -2492,6 +2492,156 @@ Notification.getDeviceRemindType()
     });
 ```
 
+## Notification.publishAsBundle<sup>9+</sup>
+
+publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
+
+发布代理通知（callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| request              | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
+| userId               | number                                      | 是   | 接收通知用户的Id。                            |
+| callback             | AsyncCallback                               | 是   | 发布代理通知的回调方法。                      |
+
+**示例：**
+
+```js
+//publishAsBundle回调
+function publishAsBundleCallback(err) {
+	console.info("==========================>publishAsBundleCallback=======================>");
+}
+// 被代理应用的包名
+let representativeBundle = "com.example.demo"
+// 接收通知的用户ID
+let userId = 100
+//通知Request对象
+let notificationRequest = {
+    id: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+
+Notification.publishAsBundle(notificationRequest, representativeBundle, userId, publishCallback);
+```
+
+## Notification.publishAsBundle<sup>9+</sup>
+
+publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
+
+发布代理通知（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+
+| 参数名               | 类型                                        | 必填 | 说明                                          |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| request              | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
+| userId               | number                                      | 是   | 接收通知用户的Id。                            |
+
+**示例：**
+
+```js
+// 被代理应用的包名
+let representativeBundle = "com.example.demo"
+// 接收通知的用户ID
+let userId = 100
+//通知Request对象
+var notificationRequest = {
+    id: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+
+Notification.publishAsBundle(notificationRequest, representativeBundle, userId).then(() => {
+	console.info("==========================>publishAsBundleCallback=======================>");
+});
+```
+
+## Notification.cancelAsBundle<sup>9+</sup>
+
+cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
+
+取消代理通知（callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+
+| 参数名               | 类型          | 必填 | 说明                     |
+| -------------------- | ------------- | ---- | ------------------------ |
+| id                   | number        | 是   | 通知ID。                 |
+| representativeBundle | string        | 是   | 被代理应用的包名。       |
+| userId               | number        | 是   | 接收通知用户的Id。       |
+| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
+
+**示例：**
+
+```js
+//cancelAsBundle
+function cancelAsBundleCallback(err) {
+	console.info("==========================>cancelAsBundleCallback=======================>");
+}
+// 被代理应用的包名
+let representativeBundle = "com.example.demo"
+// 接收通知的用户ID
+let userId = 100
+
+Notification.cancelAsBundle(0, representativeBundle, userId, publishCallback);
+```
+
+## Notification.cancelAsBundle<sup>9+</sup>
+
+cancelAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
+
+发布代理通知（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+
+| 参数名               | 类型   | 必填 | 说明               |
+| -------------------- | ------ | ---- | ------------------ |
+| id                   | number | 是   | 通知ID。           |
+| representativeBundle | string | 是   | 被代理应用的包名。 |
+| userId               | number | 是   | 接收通知用户的Id。 |
+
+**示例：**
+
+```js
+// 被代理应用的包名
+let representativeBundle = "com.example.demo"
+// 接收通知的用户ID
+let userId = 100
+
+Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
+	console.info("==========================>cancelAsBundleCallback=======================>");
+});
+```
+
 ## NotificationSubscriber
 
 ### onConsume
