@@ -3,7 +3,7 @@
 
 ## 概述
 
-PWM（Pulse Width Modulator）即脉冲宽度调节器，在HDF框架中，PWM的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
+PWM（Pulse Width Modulator）即脉冲宽度调节器。在HDF框架中，PWM的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
   **图1** PWM独立服务模式结构图
 
@@ -27,9 +27,9 @@ struct PwmMethod {
 
 | 成员函数 | 入参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- |
-| setConfig | **pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器；<br/>**config**:&nbsp;&nbsp;结构体指针，属性传入值; | HDF_STATUS相关状态 | 配置属性 | 
-| open | **pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器； | HDF_STATUS相关状态 | 打开设备 | 
-| close | **pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器； | HDF_STATUS相关状态 | 关闭设备 | 
+| setConfig | -**pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器<br/>-**config**:&nbsp;&nbsp;结构体指针，属性传入值 | HDF_STATUS相关状态 | 配置属性 | 
+| open | **pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器 | HDF_STATUS相关状态 | 打开设备 | 
+| close | **pwm**:&nbsp;&nbsp;结构体指针，核心层PWM控制器 | HDF_STATUS相关状态 | 关闭设备 | 
 
 
 ## 开发步骤
@@ -47,7 +47,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 3. **实例化PWM控制器对象：**
    - 初始化PwmDev成员。
    - 实例化PwmDev成员PwmMethod。
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 实例化PwmDev成员PwmMethod，其定义和成员说明见[接口说明](#接口说明)。
 
 4. **驱动调试：**
@@ -62,22 +62,22 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
    一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
-     PWM驱动入口参考
+     PWM驱动入口参考：
      
    ```
    struct HdfDriverEntry g_hdfPwm = {
        .moduleVersion = 1,
-       .moduleName = "HDF_PLATFORM_PWM",//【必要 且与 HCS文件中里面的moduleName匹配】
+       .moduleName = "HDF_PLATFORM_PWM",// 【必要，且与HCS文件中里面的moduleName匹配】
        .Bind = HdfPwmBind,
        .Init = HdfPwmInit,
        .Release = HdfPwmRelease,
    };
-   //调用HDF_INIT将驱动入口注册到HDF框架中
+   // 调用HDF_INIT将驱动入口注册到HDF框架中
    HDF_INIT(g_hdfPwm);
    ```
 
 2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 pwm_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层PwmDev成员的默认值或限制范围有密切关系。 如有更多个器件信息，则需要在device_info文件增加deviceNode信息，以及在pwm_config文件中增加对应的器件属性**。**
-   - device_info.hcs 配置参考。
+   - device_info.hcs配置参考
 
         
       ```
@@ -86,14 +86,14 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           platform :: host {
             hostName = "platform_host";
             priority = 50;
-            device_pwm :: device {//为每一个 pwm 控制器配置一个HDF设备节点，存在多个时【必须】添加，否则不用
+            device_pwm :: device {// 为每一个 pwm 控制器配置一个HDF设备节点，存在多个时【必须】添加，否则不用
               device0 :: deviceNode {
                 policy = 1;       // 等于1，向内核态发布服务
                 priority = 80;    // 驱动启动优先级
                 permission = 0644;// 驱动创建设备节点权限
-                moduleName = "HDF_PLATFORM_PWM";   //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-                serviceName = "HDF_PLATFORM_PWM_0";//【必要且唯一】驱动对外发布服务的名称
-                deviceMatchAttr = "hisilicon_hi35xx_pwm_0";//【必要】用于配置控制器私有数据，要与 pwm_config.hcs 中对应
+                moduleName = "HDF_PLATFORM_PWM";   // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
+                serviceName = "HDF_PLATFORM_PWM_0";// 【必要且唯一】驱动对外发布服务的名称
+                deviceMatchAttr = "hisilicon_hi35xx_pwm_0";// 【必要】用于配置控制器私有数据，要与 pwm_config.hcs 中对应
                                                            // 控制器保持一致，具体的控制器信息在 pwm_config.hcs 中
               }
               device1 :: deviceNode {
@@ -109,26 +109,26 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         }
       }
       ```
-   - pwm_config.hcs 配置参考。
+   - pwm_config.hcs 配置参考
 
         
       ```
       root {
         platform {
           pwm_config {
-            template pwm_device {                   //【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+            template pwm_device {                   // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
               serviceName = "";
               match_attr = "";
-              num = 0;                              //【必要】设备号
-              base = 0x12070000;                    //【必要】地址映射需要
+              num = 0;                              // 【必要】设备号
+              base = 0x12070000;                    // 【必要】地址映射需要
             }
             device_0x12070000 :: pwm_device {
-              match_attr = "hisilicon_hi35xx_pwm_0";//【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+              match_attr = "hisilicon_hi35xx_pwm_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
             }
-            device_0x12070020 :: pwm_device {       //存在多个设备时【必须】添加，否则不用
+            device_0x12070020 :: pwm_device {       // 存在多个设备时【必须】添加，否则不用
               match_attr = "hisilicon_hi35xx_pwm_1";
               num = 1;
-              base = 0x12070020;                    //【必要】地址映射需要
+              base = 0x12070020;                    // 【必要】地址映射需要
             }
           }
         }
@@ -143,7 +143,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         
       ```
       struct HiPwm {
-          struct PwmDev dev;          //【必要】 核心层结构体
+          struct PwmDev dev;          // 【必要】 核心层结构体
           volatile unsigned char *base;
           struct HiPwmRegs *reg;      // 设备属性结构体，可自定义
           bool supportPolarity;
@@ -153,12 +153,12 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       struct PwmDev {
           struct IDeviceIoService service;
           struct HdfDeviceObject *device;
-          struct PwmConfig cfg;       //属性结构体，相关定义见下
-          struct PwmMethod *method;   //钩子函数模板
+          struct PwmConfig cfg;       // 属性结构体，相关定义见下
+          struct PwmMethod *method;   // 钩子函数模板
           bool busy;
-          uint32_t num;               //设备号
+          uint32_t num;               // 设备号
           OsalSpinlock lock;
-          void *priv;                 //私有数据，一般存储自定义结构体首地址，方便调用
+          void *priv;                 // 私有数据，一般存储自定义结构体首地址，方便调用
       };
       struct PwmConfig {
           uint32_t duty;              // 占空时间 nanoseconds
@@ -180,20 +180,20 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         
       ```
-      // pwm_hi35xx.c 中的示例：钩子函数的填充
+      // pwm_hi35xx.c中的示例：钩子函数的填充
       struct PwmMethod g_pwmOps = {
-          .setConfig = HiPwmSetConfig,//配置属性
+          .setConfig = HiPwmSetConfig,// 配置属性
       };
       ```
    - Init函数参考
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
-      HDF_STATUS相关状态  （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
 
         | 状态(值) | 问题描述 | 
       | -------- | -------- |
@@ -210,7 +210,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         
       ```
-      //此处bind函数为空函数，可与init函数结合，也可根据厂商需要实现相关操作
+      // 此处bind函数为空函数，可与init函数结合，也可根据厂商需要实现相关操作
       static int32_t HdfPwmBind(struct HdfDeviceObject *obj)
       {
         (void)obj;
@@ -224,7 +224,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         ...
         hp = (struct HiPwm *)OsalMemCalloc(sizeof(*hp));
         ...
-        ret = HiPwmProbe(hp, obj); //【必要】实现见下
+        ret = HiPwmProbe(hp, obj); // 【必要】实现见下
         ...
         return ret;
       }
@@ -237,27 +237,27 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           iface = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);//初始化自定义结构体HiPwm
           ...
           
-          hp->reg = (struct HiPwmRegs *)hp->base;         //初始化自定义结构体HiPwm
-          hp->supportPolarity = false;                    //初始化自定义结构体HiPwm
-          hp->dev.method = &g_pwmOps;                     //PwmMethod的实例化对象的挂载
-          hp->dev.cfg.duty = PWM_DEFAULT_DUTY_CYCLE;      //初始化PwmDev
-          hp->dev.cfg.period = PWM_DEFAULT_PERIOD;        //初始化PwmDev
-          hp->dev.cfg.polarity = PWM_DEFAULT_POLARITY;    //初始化PwmDev
-          hp->dev.cfg.status = PWM_DISABLE_STATUS;        //初始化PwmDev
-          hp->dev.cfg.number = 0;                         //初始化PwmDev
-          hp->dev.busy = false;                           //初始化PwmDev
-          if (PwmDeviceAdd(obj, &(hp->dev)) != HDF_SUCCESS) {//【重要】调用核心层函数，初始化hp->dev 的设备和服务
+          hp->reg = (struct HiPwmRegs *)hp->base;         // 初始化自定义结构体HiPwm
+          hp->supportPolarity = false;                    // 初始化自定义结构体HiPwm
+          hp->dev.method = &g_pwmOps;                     // PwmMethod的实例化对象的挂载
+          hp->dev.cfg.duty = PWM_DEFAULT_DUTY_CYCLE;      // 初始化PwmDev
+          hp->dev.cfg.period = PWM_DEFAULT_PERIOD;        // 初始化PwmDev
+          hp->dev.cfg.polarity = PWM_DEFAULT_POLARITY;    // 初始化PwmDev
+          hp->dev.cfg.status = PWM_DISABLE_STATUS;        // 初始化PwmDev
+          hp->dev.cfg.number = 0;                         // 初始化PwmDev
+          hp->dev.busy = false;                           // 初始化PwmDev
+          if (PwmDeviceAdd(obj, &(hp->dev)) != HDF_SUCCESS) {// 【重要】调用核心层函数，初始化hp->dev 的设备和服务
               OsalIoUnmap((void *)hp->base);
               return HDF_FAILURE;
           }
           return HDF_SUCCESS;
       }
       ```
-   - Release 函数参考
+   - Release函数参考
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -265,7 +265,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       函数说明：
 
-      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。
+      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
 
         
       ```
@@ -273,9 +273,9 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       {
           struct HiPwm *hp = NULL;
           ...
-          hp = (struct HiPwm *)obj->service;//这里有HdfDeviceObject到HiPwm的强制转化
+          hp = (struct HiPwm *)obj->service;// 这里有HdfDeviceObject到HiPwm的强制转化
           ...
-          PwmDeviceRemove(obj, &(hp->dev));//【必要】调用核心层函数，释放PwmDev的设备和服务,这里有HiPwm到PwmDev的强制转化
-          HiPwmRemove(hp);                 //释放HiPwm
+          PwmDeviceRemove(obj, &(hp->dev));// 【必要】调用核心层函数，释放PwmDev的设备和服务,这里有HiPwm到PwmDev的强制转化
+          HiPwmRemove(hp);                 // 释放HiPwm
       }
       ```
