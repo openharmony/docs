@@ -246,7 +246,7 @@ The process of signing a HAP is as follows:
 >
 > For security purposes, the ECC algorithm is recommended for generating key pairs for application signing signatures. The RSA algorithm is not recommended.<br/>
 >  You are advised to place the HAP, profile, KS file **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation.
->  The **developtools_hapsigner/autosign/result/** directory has the following files:<br/>-&nbsp;OpenHarmony KS file **OpenHarmony.p12** <br/>-&nbsp;Root CA certificate **rootCA.cer**<br/>-&nbsp;Intermediate CA certificate **subCA.cer**<br/>-&nbsp;Profile signing certificate **OpenHarmonyProfileRelease.pem**
+>  The [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result) directory has the following files:<br/>-&nbsp;OpenHarmony KS file **OpenHarmony.p12** <br/>-&nbsp;Root CA certificate **rootCA.cer**<br/>-&nbsp;Intermediate CA certificate **subCA.cer**<br/>-&nbsp;Profile signing certificate **OpenHarmonyProfileRelease.pem**
 
 
 **1. Generate a key pair for the application signing certificate.**
