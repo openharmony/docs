@@ -39,8 +39,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.deleteForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost deleteForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost deleteForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -71,7 +71,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.deleteForm(formId).catch((error) => {
+  formHost.deleteForm(formId).then(() => {
+      console.log('formHost deleteForm success');
+  }).catch((error) => {
       console.log('formHost deleteForm, error:' + JSON.stringify(error));
   });
   ```
@@ -98,8 +100,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.releaseForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost releaseForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost releaseForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -127,8 +129,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.releaseForm(formId, true, (error, data) => {
-      if (error) {
-          console.log('formHost releaseForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost releaseForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -160,7 +162,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.releaseForm(formId, true).catch((error) => {
+  formHost.releaseForm(formId, true).then(() => {
+      console.log('formHost releaseForm success');
+  }).catch((error) => {
       console.log('formHost releaseForm, error:' + JSON.stringify(error));
   });
   ```
@@ -187,8 +191,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.requestForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost requestForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost requestForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -219,7 +223,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.requestForm(formId).catch((error) => {
+  formHost.requestForm(formId).then(() => {
+      console.log('formHost requestForm success');
+  }).catch((error) => {
       console.log('formHost requestForm, error:' + JSON.stringify(error));
   });
   ```
@@ -246,8 +252,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.castTempForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost castTempForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost castTempForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -278,7 +284,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.castTempForm(formId).catch((error) => {
+  formHost.castTempForm(formId).then(() => {
+      console.log('formHost castTempForm success');
+  }).catch((error) => {
       console.log('formHost castTempForm, error:' + JSON.stringify(error));
   });
   ```
@@ -305,8 +313,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.notifyVisibleForms(formId, (error, data) => {
-      if (error) {
-          console.log('formHost notifyVisibleForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -337,7 +345,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.notifyVisibleForms(formId).catch((error) => {
+  formHost.notifyVisibleForms(formId).then(() => {
+      console.log('formHost notifyVisibleForms success');
+  }).catch((error) => {
       console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
   });
   ```
@@ -364,8 +374,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.notifyInvisibleForms(formId, (error, data) => {
-      if (error) {
-          console.log('formHost notifyInvisibleForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -396,7 +406,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.notifyInvisibleForms(formId).catch((error) => {
+  formHost.notifyInvisibleForms(formId).then(() => {
+      console.log('formHost notifyInvisibleForms success');
+  }).catch((error) => {
       console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
   });
   ```
@@ -423,8 +435,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.enableFormsUpdate(formId, (error, data) => {
-      if (error) {
-          console.log('formHost enableFormsUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -455,7 +467,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.enableFormsUpdate(formId).catch((error) => {
+  formHost.enableFormsUpdate(formId).then(() => {
+      console.log('formHost enableFormsUpdate success');
+  }).catch((error) => {
       console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
@@ -482,8 +496,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.disableFormsUpdate(formId, (error, data) => {
-      if (error) {
-          console.log('formHost disableFormsUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -514,7 +528,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.disableFormsUpdate(formId).catch((error) => {
+  formHost.disableFormsUpdate(formId).then(() => {
+      console.log('formHost disableFormsUpdate success');
+  }).catch((error) => {
       console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
@@ -540,8 +556,8 @@ SystemCapability.Ability.Form
   ```js
   var formId = "12400633174999288";
   formHost.isSystemReady((error, data) => {
-      if (error) {
-          console.log('formHost isSystemReady, error:' + error.code);
+      if (error.code) {
+          console.log('formHost isSystemReady, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -566,7 +582,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formId = "12400633174999288";
-  formHost.isSystemReady().catch((error) => {
+  formHost.isSystemReady().then(() => {
+      console.log('formHost isSystemReady success');
+  }).catch((error) => {
       console.log('formHost isSystemReady, error:' + JSON.stringify(error));
   });
   ```
@@ -591,8 +609,10 @@ SystemCapability.Ability.Form
 
   ```js
   formHost.getAllFormsInfo((error, data) => {
-      if (error) {
-          console.log('formHost getAllFormsInfo, error:' + error.code);
+      if (error.code) {
+          console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -616,7 +636,9 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  formHost.getAllFormsInfo().catch((error) => {
+  formHost.getAllFormsInfo().then((data) => {
+      console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
+  }).catch((error) => {
       console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
   });
   ```
@@ -642,8 +664,10 @@ SystemCapability.Ability.Form
 
   ```js
   formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
-      if (error) {
-          console.log('formHost getFormsInfo, error:' + error.code);
+      if (error.code) {
+          console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -670,8 +694,10 @@ SystemCapability.Ability.Form
 
   ```js
   formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
-      if (error) {
-          console.log('formHost getFormsInfo, error:' + error.code);
+      if (error.code) {
+          console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -702,7 +728,9 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").catch((error) => {
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
+      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+  }).catch((error) => {
       console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   });
   ```
@@ -729,8 +757,10 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds, (error, data) => {
-      if (error) {
-          console.log('formHost deleteInvalidForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -761,7 +791,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.deleteInvalidForms(formIds).catch((error) => {
+  formHost.deleteInvalidForms(formIds).then((data) => {
+      console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+  }).catch((error) => {
       console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
   });
   ```
@@ -792,8 +824,10 @@ SystemCapability.Ability.Form
   	"abilityName": "com.extreme.test.MainAbility"
   };
   formHost.acquireFormState(want, (error, data) => {
-      if (error) {
-          console.log('formHost acquireFormState, error:' + error.code);
+      if (error.code) {
+          console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost acquireFormState, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -828,7 +862,9 @@ SystemCapability.Ability.Form
   	"bundleName": "com.extreme.test",
   	"abilityName": "com.extreme.test.MainAbility"
   };
-  formHost.acquireFormState(want).catch((error) => {
+  formHost.acquireFormState(want).then((data) => {
+      console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+  }).catch((error) => {
       console.log('formHost acquireFormState, error:' + JSON.stringify(error));
   });
   ```
@@ -908,8 +944,8 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsVisible(formIds, true, (error, data) => {
-      if (error) {
-          console.log('formHost notifyFormsVisible, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -941,7 +977,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.notifyFormsVisible(formIds, true).catch((error) => {
+  formHost.notifyFormsVisible(formIds, true).then(() => {
+      console.log('formHost notifyFormsVisible success');
+  }).catch((error) => {
       console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
   });
   ```
@@ -969,8 +1007,8 @@ SystemCapability.Ability.Form
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
-      if (error) {
-          console.log('formHost notifyFormsEnableUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -1002,7 +1040,9 @@ SystemCapability.Ability.Form
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.notifyFormsEnableUpdate(formIds, true).catch((error) => {
+  formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
+      console.log('formHost notifyFormsEnableUpdate success');
+  }).catch((error) => {
       console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
   ```
