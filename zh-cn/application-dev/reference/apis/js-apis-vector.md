@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import Vector from '@ohos.util.Vector'  
+import Vector from '@ohos.util.Vector';  
 ```
 
 ## 系统能力
@@ -335,7 +335,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log(value, index)
+  console.log("value:" + value, index)
 });
 
 ```
@@ -367,8 +367,8 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.sort(a, (b => a - b));
-vector.sort(a, (b => b - a));
+vector.sort((a, b) => a - b);
+vector.sort((a, b) => b - a);
 vector.sort();
 ```
 
@@ -815,14 +815,14 @@ vector.add(4);
 
 // 使用方法一：
 for (let item of vector) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // 使用方法二：
 let iter = vector[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

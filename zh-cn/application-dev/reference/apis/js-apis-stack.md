@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import Stack from '@ohos.util.Stack'  
+import Stack from '@ohos.util.Stack';  
 ```
 
 ## 系统能力
@@ -175,7 +175,7 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 stack.forEach((value, index) => {
- console.log(value, index);
+ console.log("value:" + value, index);
 });
 ```
 
@@ -225,14 +225,14 @@ stack.push(4);
 
 // 使用方法一：
 for (let item of stack) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // 使用方法二：
 let iter = stack[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

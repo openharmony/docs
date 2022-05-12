@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import List from '@ohos.util.List'  
+import List from '@ohos.util.List';  
 ```
 
 ## 系统能力
@@ -378,7 +378,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value: " + value, index);
 });
 
 ```
@@ -410,8 +410,8 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.sort(a, (b => a - b));
-list.sort(a, (b => b - a));
+list.sort((a, b) => a - b);
+list.sort((a, b) => b - a);
 ```
 
 ### getSubList
@@ -610,14 +610,14 @@ list.add(4);
 
 // 使用方法一：
 for (let item of list) { 
-  console.log(item); 
+  console.log("value: " + item); 
 }
 
 // 使用方法二：
 let iter = list[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value: " + temp);
   temp = iter.next().value;
 }
 ```

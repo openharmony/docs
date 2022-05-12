@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet'  
+import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
 
 ## 系统能力
@@ -439,7 +439,7 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sdfs");
 lightWeightSet.add("dfsghsf");
 lightWeightSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -492,14 +492,14 @@ lightWeightSet.add("sdfs");
 
 // 使用方法一：
 for (let item of lightWeightSet) { 
-  console.log("value: " + item);
+  console.log("value:" + item);
 }
 
 // 使用方法二：
 let iter = lightWeightSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
