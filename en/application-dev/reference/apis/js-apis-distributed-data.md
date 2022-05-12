@@ -2264,10 +2264,10 @@ Subscribes to data synchronization completion events. This method uses a synchro
 
 **Example**
 
-```
+```js
 let kvStore;
 kvStore.on('syncComplete', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
@@ -2291,10 +2291,10 @@ Unsubscribes from data change events. This method uses a synchronous callback to
 ```
 let kvStore;
 kvStore.on('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+     console.log("callback call data: " + data);
 });
 kvStore.off('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
