@@ -43,9 +43,9 @@ product_name：The product name.Required
 
 version：version.Required
 
-type：Configured at the system level, containing (small, standard ...).Required
+type：Configured at the system level,  select from (mini, small, standard).Required
 
-target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc. ）.Required
+target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc..).Required
 
 ohos_version：Operating system version.Optional
 
