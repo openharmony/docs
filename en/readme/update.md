@@ -73,5 +73,5 @@ base/update             # Update subsystem repository
 
 [update\_updater](https://gitee.com/openharmony/update_updater)
 
-[update\_packaging\_tools](hhttps://gitee.com/openharmony/update_packaging_tools)
+[update\_packaging\_tools](https://gitee.com/openharmony/update_packaging_tools)
 
