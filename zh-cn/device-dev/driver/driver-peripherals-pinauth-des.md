@@ -6,7 +6,7 @@
 
 口令认证是端侧设备不可或缺的一部分，为设备提供一种用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。用户注册口令后，口令认证模块就可为设备提供密码解锁的功能，保证设备的安全使用。口令识别的整体架构如图1。
 
-基于HDF（Hardware Driver Foundation）驱动框架开发的pin_auth驱动，pin_auth驱动模型屏蔽硬件差异，为上层用户IAM子系统基础框架和口令认证SA提供稳定的口令认证基础能力，包括口令认证执行器列表查询、执行器信息查询、指定模板防暴信息查询、用户认证和执行器间的模板信息对账，以及口令的录入、认证、删除。
+基于HDF（Hardware Driver Foundation）驱动框架开发的Pin_auth驱动，Pin_auth驱动模型屏蔽硬件差异，为上层用户IAM子系统基础框架和口令认证SA提供稳定的口令认证基础能力，包括口令认证执行器列表查询、执行器信息查询、指定模板防暴信息查询、用户认证和执行器间的模板信息对账，以及口令的录入、认证、删除。
 
 **图1** 口令认证架构图
 
@@ -76,13 +76,13 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 | GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。                                             |
 | GetExecutorInfo(ExecutorInfo& info)                          | 获取执行器信息。                                             |
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定templateId的模板信息。                               |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& frameworkPublicKey,<br/>        const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>const std::vector<uint8_t>& frameworkPublicKey,<br/>const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
 | OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data) | 用于回调传pin码认证的子类型和脱敏数据。                      |
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | pin码录入操作。                                              |
-| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证操作。                                              |
+| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。                                              |
+| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。                                              |
 | Delete(uint64_t templateId)                                  | 删除pin码模板。                                              |
 | Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定操作。                                 |
-| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | pin码预留接口。                                              |
+| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 预留接口。                                              |
 
 **表2** 回调函数介绍
 
@@ -247,7 +247,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        ScheduleMap scheduleMap_;
    };
    
-   // 获取执行器列表实现，创建执行器 （仅作示例）
+   // 获取执行器列表实现，创建执行器（仅作示例）
    int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<IExecutor>> &executorList)
    {
        IAM_LOGI("start");
@@ -325,7 +325,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        return HDF_SUCCESS;
    }
    
-   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口,将公钥信息保持，template 列表用于和本地的template做对账
+   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口,将公钥信息保持，template列表用于和本地的template做对账
    int32_t ExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
        const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
    {
@@ -380,7 +380,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        return HDF_SUCCESS;
    }
    
-   //实现回调数据获取的接口
+   // 实现回调数据获取的接口
    int32_t ExecutorImpl::OnSetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data)
    {
        IAM_LOGI("start");
