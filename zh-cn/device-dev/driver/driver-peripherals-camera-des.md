@@ -51,7 +51,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | CamRetCode GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback, OHOS::sptr<IStreamOperator> &streamOperator) |
+  | 获取流控制器                 | CamRetCode GetStreamOperator(<br>const OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IStreamOperator> &streamOperator) |
   | 更新设备控制参数             | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settingss) |
   | 设置Result回调模式和回调函数 | CamRetCode SetResultMode(const ResultCallbackMode &mode)     |
   | 获取使能的ResultMeta         | CamRetCode GetEnabledResults(std::vector<MetaType> &results) |
@@ -74,7 +74,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 设置ICameraHost回调接口        | CamRetCode SetCallback(const OHOS::sptr<ICameraHostCallback> &callback) |
   | 获取当前可用的Camera设备ID列表 | CamRetCode GetCameraIds(std::vector\<std::string\> &cameraIds) |
   | 获取Camera设备能力集合         | CamRetCode GetCameraAbility(const std::string &cameraId, std::shared_ptr<CameraAbility> &ability) |
-  | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &device) |
+  | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId,<br>const OHOS::sptr<ICameraDeviceCallback> &callback,<br>OHOS::sptr<ICameraDevice> &device) |
   | 打开或关闭闪光灯               | CamRetCode SetFlashlight(const std::string &cameraId, bool &isEnable) |
 
 - icamera_host_callback.h
@@ -96,7 +96,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(OperationMode mode, const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting, const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info, StreamSupportType &type) |
+  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br>OperationMode mode,<br>const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br>const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br>StreamSupportType &type) |
   | 创建流                           | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) |
   | 释放流                           | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) |
   | 配置流                           | CamRetCode CommitStreams(OperationMode mode, const std::shared_ptr<CameraMetadata> &modeSetting) |
@@ -105,7 +105,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 解除生产者句柄和指定流的绑定关系 | CamRetCode DetachBufferQueue(int streamId)                   |
   | 捕获图像                         | CamRetCode Capture(int captureId, const std::shared_ptr<CaptureInfo> &info, bool isStreaming) |
   | 取消捕获                         | CamRetCode CancelCapture(int captureId)                      |
-  | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds, OHOS::sptr<IStreamOperatorCallback> &callback, OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
+  | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br>OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
 
 - istream_operator_callback.h
 
@@ -114,7 +114,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 捕获开始回调，在捕获开始时调用           | void OnCaptureStarted(int32_t captureId, const std::vector<int32_t> &streamIds) |
   | 捕获结束回调，在捕获结束时调用           | void OnCaptureEnded(int32_t captureId, const std::vector<std::shared_ptr<CaptureEndedInfo>> &infos) |
   | 捕获错误回调，在捕获过程中发生错误时调用 | void OnCaptureError(int32_t captureId, const std::vector<std::shared_ptr<CaptureErrorInfo>> &infos) |
-  | 帧捕获回调                               | void OnFrameShutter(int32_t captureId, const std::vector<int32_t> &streamIds, uint64_t timestamp) |
+  | 帧捕获回调                               | void OnFrameShutter(int32_t captureId,<br>const std::vector<int32_t> &streamIds, uint64_t timestamp) |
 
 ### 开发步骤<a name="7"></a>
 Camera驱动的开发过程主要包含以下步骤：
