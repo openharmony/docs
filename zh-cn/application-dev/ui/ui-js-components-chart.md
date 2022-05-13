@@ -300,9 +300,9 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - options只支持柱状图和线形图设置参数，量规图不生效。
-> 
+>
 > - datasets只支持柱状图和线形图设置数据集合，量规图不生效。
-> 
+>
 > - series只有线形图支持。
 
 
@@ -619,6 +619,6 @@ export default {
 
 针对Chart开发，有以下相关实例可供参考：
 
-- [`Chart`：图表组件（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
+- [`Chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
 
 - [chart（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)

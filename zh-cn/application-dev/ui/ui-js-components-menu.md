@@ -42,7 +42,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - Menu仅支持[option](../reference/arkui-js/js-components-basic-option.md)子组件。
-> 
+>
 > - Menu组件不支持focusable、disabled属性。
 
 
@@ -283,4 +283,4 @@ export default {
 
 针对Menu开发，有以下相关实例可供参考：
 
-- [`JSMenu`：菜单（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSMenu)
+- [`JSMenu`：菜单（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSMenu)

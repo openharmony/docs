@@ -147,9 +147,9 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 仅支持单个子组件。
-> 
+>
 > - Dialog属性、样式均不支持动态更新。
-> 
+>
 > - Dialog组件不支持focusable、click-effect属性。
 
 
@@ -325,6 +325,6 @@ export default {
 
 针对Dialog开发，有以下相关实例可供参考：
 
-- [`JsDialog`：页面弹窗（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
+- [`JsDialog`：页面弹窗（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
 
 - [dialog（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

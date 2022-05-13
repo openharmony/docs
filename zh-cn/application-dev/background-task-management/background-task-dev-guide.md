@@ -4,32 +4,20 @@
 
 应用或业务模块处于后台（无可见界面）时，如果有需要继续执行或者后续执行的业务，可基于业务类型，申请短时任务延迟挂起（Suspend）或者长时任务避免进入挂起状态。
 
-
-## 接口说明
-
-```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
-```
-
 ## 短时任务
+
+### 接口说明
 
 **表1** 短时任务主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| function&nbsp;requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;**DelaySuspendInfo**; | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
-| function&nbsp;getRemainingDelayTime(requestId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;<br/>function&nbsp;getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt;; | 获取应用程序进入挂起状态前的剩余时间。(requestId从requestSuspendDelay的返回值获取)<br/>提供两种异步方法，使用Callback形式其任务执行结果以参数形式提供给回调函数，Promise形式则返回一个Promise对象。 |
-| function&nbsp;cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void; | 取消延迟挂起。(requestId从requestSuspendDelay的返回值获取) |
-
-**表2** DelaySuspendInfo包含参数
-
-| 参数名 | 类型 | 是否必选 | 描述 |
-| -------- | -------- | -------- | -------- |
-| requestId | number | 是 | 延迟挂起的请求ID。 |
-| actualDelayTime | number | 是 | 应用的实际挂起延迟时间，以毫秒为单位。 |
+| requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量时默认值为60000。 |
+| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>其任务执行结果以Promise形式返回给应用。 |
+| cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。 |
 
 
-## 开发步骤
+### 开发步骤
 
 
 1. 申请延迟挂起
@@ -65,7 +53,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
     ```
 
 
-## 开发实例
+### 开发实例
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -99,17 +87,19 @@ backgroundTaskManager.cancelSuspendDelay(id);
 
 ohos.permission.KEEP_BACKGROUND_RUNNING
 
-**表3** 长时任务主要接口
+### 接口说明
+
+**表2** 长时任务主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void;<br/>function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行 |
-| function stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void;<br/>function stopBackgroundRunning(context: Context): Promise&lt;void&gt;; | 停止后台长时任务的运行 |
+| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行。 |
+| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行。 |
 
 
 其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
 
-**表4** 后台模式类型
+**表3** 后台模式类型
 
 | 参数名 | id值 | 描述 | 配置项 |
 | -------- | -------- | -------- | -------- |
@@ -124,39 +114,30 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 | TASK_KEEPING            | 9 | 计算任务（仅供特定设备使用） | taskKeeping |
 
 
-## 开发步骤
+### 开发步骤
 
 1. 新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
 
     ```
     "module": {
       "package": "com.example.myapplication",
-      
       "abilities": [
-      
         {
           "backgroundModes": [
             "dataTransfer",
-            "location",
-            
-          ],
-          
-          "type": "service"
-        }
-      ],
-      "defPermissions": [
-        {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+            "location"
+          ], // 后台模式类型
+          "type": "service"  // ability类型为service
         }
       ],
       "reqPermissions": [
         {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
       ]
     }
     ```
-
+    
 2. 申请长时任务
 
     ```js
@@ -201,13 +182,11 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     
     ```
 
-## 开发实例
-
+### 开发实例
 基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
 当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动Service Ability。并在Service Ability的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
 
-当服务启动后，在serviceAbility的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。在onStop回调方法里，调用长时任务取消接口，声明取消长时任务。
 当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
 ```js
@@ -289,7 +268,6 @@ export default {
     },
     onStop() {
         console.info('ServiceAbility onStop');
-        stopBackgroundRunning();
     },
     onConnect(want) {
         console.info('ServiceAbility onConnect');
@@ -306,3 +284,9 @@ export default {
     }
 };
 ```
+
+## 相关实例
+
+基于后台任务管理，有以下相关实例可供参考：
+
+- [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)

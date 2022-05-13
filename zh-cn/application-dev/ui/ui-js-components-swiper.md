@@ -117,9 +117,9 @@ text{
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 设置indicator（是否启用导航点指示器）属性为true时digital（是否启用数字导航点）属性才会生效。
-> 
+>
 > - Swiper子组件的个数大于等于2时设置的loop属性才会生效。
-> 
+>
 > - scrolleffect属性仅在loop属性值为false时生效。
 
 
@@ -369,4 +369,4 @@ export default {
 
 针对Swiper开发，有以下相关实例可供参考：
 
-- [`Swiper`：内容滑动容器（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)
+- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)
