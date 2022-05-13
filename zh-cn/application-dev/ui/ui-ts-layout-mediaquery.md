@@ -152,5 +152,5 @@ listener.on('change', onPortrait)
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [`MediaQuery`：Ets媒体查询（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MediaQuery)
+- [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MediaQuery)
 
