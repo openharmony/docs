@@ -103,6 +103,27 @@ switchArea(mode: AreaMode): void;
   ```
 
 
+## Context.getArea()
+
+getArea(): AreaMode;
+
+获取文件分级信息，可以查看当前是处于哪个分区。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | [AreaMode](#areamode) | 文件分区。  | 
+
+**示例：**
+    
+  ```js
+  let mode = this.context.getArea();
+  ```
+
+
 ## AreaMode
 
 访问的文件分区，每个文件分区有对应自己的内容。
