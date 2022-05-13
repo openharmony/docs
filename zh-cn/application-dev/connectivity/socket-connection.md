@@ -122,3 +122,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        tcp.off('close');
    }, 30 * 1000);
    ```
+
+## 相关实例
+针对Socket连接开发，有以下相关实例可供参考：
+- [`Socket`：Socket 连接（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Network/Socket)

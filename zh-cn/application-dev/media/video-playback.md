@@ -462,3 +462,7 @@ export class VideoPlayerDemo {
   }
 }
 ```
+
+## 相关实例
+针对视频播放开发，有以下相关实例可供参考：
+- [`VideoPlayer`：视频播放（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)
