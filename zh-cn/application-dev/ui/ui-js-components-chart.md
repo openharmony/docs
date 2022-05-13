@@ -619,6 +619,6 @@ export default {
 
 针对Chart开发，有以下相关实例可供参考：
 
-- [`Chart`：图表组件（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
+- [`Chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
 
 - [chart（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)
