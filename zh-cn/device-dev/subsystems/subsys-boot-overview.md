@@ -5,7 +5,7 @@
 
 下图是启动子系统上下文结构图：
 
-  **图1** 下图是启动子系统上下文结构图：
+  **图1** 启动子系统上下文结构图
 
   ![zh-cn_image_0000001217858866](figures/zh-cn_image_0000001217858866.png)
 
@@ -13,28 +13,28 @@
 
 1. 内核加载init进程，一般在bootloader启动内核时通过设置内核的cmdline来指定init的位置。
 2. init进程启动后，会挂载tmpfs，procfs，创建基本的dev设备节点，提供最基本的根文件系统。
-3. init也会启动ueventd监听内核热插拔设备事件，为这些设备创建dev设备节点；包括block设备各个分区设备都是通过此事件创建。
+3. init也会启动ueventd监听内核热插拔设备事件，为这些设备创建dev设备节点。包括block设备各个分区设备都是通过此事件创建。
 4. init进程挂载block设备各个分区（system，vendor）后，开始扫描各个系统服务的init启动脚本，并拉起各个SA服务。
 5. samgr是各个SA的服务注册中心，每个SA启动时，都需要向samgr注册，每个SA会分配一个ID，应用可以通过该ID访问SA。
-6. foundation是一个特殊的SA服务进程，提供了用户程序管理框架及基础服务；由该进程负责应用的生命周期管理。
+6. foundation是一个特殊的SA服务进程，提供了用户程序管理框架及基础服务。由该进程负责应用的生命周期管理。
 7. 由于应用都需要加载JS的运行环境，涉及大量准备工作，因此appspawn作为应用的孵化器，在接收到foundation里的应用启动请求时，可以直接孵化出应用进程，减少应用启动时间。
 
 
 启动子系统内部涉及以下组件：
 
-- init启动引导组件
+- init启动引导组件：
   init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
 
-- ueventd启动引导组件
+- ueventd启动引导组件：
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
 
-- appspawn应用孵化组件
+- appspawn应用孵化组件：
   负责接收**用户程序框架**的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
 
-- bootstrap服务启动组件
+- bootstrap服务启动组件：
   提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用bootstrap标识的入口函数，并启动系统服务。
 
-- syspara系统属性组件
+- syspara系统属性组件：
   系统属性组件，根据OpenHarmony产品兼容性规范提供获取设备信息的接口，如：产品名、品牌名、厂家名等，同时提供设置/读取系统属性的接口。
 
 
@@ -56,7 +56,8 @@
   - 每个系统服务各自安装其启动脚本到/system/etc/init目录下，init进程统一扫码执行。
 
 - 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
-  - 配置文件init.cfg仅支持json格式。
+
+  （说明：配置文件init.cfg仅支持json格式。）
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
 
@@ -82,7 +83,7 @@
 
 ### uboot启动引导过程
 
-本文以常见的[uboot](https://elinux.org/U-Boot)为例介绍bootloader加载OpenHarmony各个系统镜像的关键过程。u-boot启动OpenHarmony系统时，主要通过bootargs向OS传递启动信息。
+本文以常见的[uboot](https://elinux.org/U-Boot)为例介绍bootloader加载OpenHarmony各个系统镜像的关键过程。u-boot启动OpenHarmony系统时，主要通过bootargs向系统传递启动信息。
 
 - u-boot加载解析boot.img
 
@@ -98,7 +99,7 @@
 
       1. its文件
 
-         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的ohos.its文件.
+         image source file，负责描述要生成的image的信息。需要自行构造，例如Hi3516平台中的ohos.its文件。
 
       2. Mkimage打包工具
 
@@ -106,7 +107,7 @@
 
       3. ramdisk
 
-         使用cpio打包的ramdisk.img镜像文件.
+         使用cpio打包的ramdisk.img镜像文件。
 
       4. zImage-dtb
 
@@ -130,7 +131,7 @@
 
   - u-boot加载
 
-    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk 的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为root=/dev/ram0 initrd=0x84000000,0x292e00.
+    支持了ramdisk的启动过程，此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关开启ramdisk生成，这一部分与平台相关，不同的平台对于ramdisk 的处理方式不一样。以Hi3516DV300平台为例，需要将u-boot中的原启动参数修改为root=/dev/ram0 initrd=0x84000000,0x292e00。
 
 
 - u-boot进入
@@ -139,13 +140,13 @@
 
   | 名称        | 示例                                                         | 说明                                                         |
   | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | initrd      | 0x84000000,0x292e00                                          | 参考内核文档。kernel/linux/linux-5.10/Documentation/filesystems/ramfs-rootfs-initramfs.rst<br/>kernel/linux/linux-5.10/Documentation/admin-guide/initrd.rst |
+  | initrd      | 0x84000000,0x292e00                                          | 参考内核文档。<br/>[ramfs-rootfs-initramfs.rst](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/Documentation/filesystems/ramfs-rootfs-initramfs.rst)<br/>[initrd.rst](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/Documentation/admin-guide/initrd.rst) |
   | init        | /init                                                        |                                                              |
-  | blkdevparts | mmcblk0:1M(boot),15M(kernel),200M(system),200M(vendor),2M(misc),20M(updater),-(userdata) | 分区表信息，kernel会根据此信息创建物理分区。                 |
-  | hardware    | Hi3516DV300、rk3568等                                                  | （必要信息）硬件平台 |
-  | root        | /dev/ram0（Hi3516DV00)、root=PARTUUID=614e0000-0000 rw（rk3568）                                                    | kernel加载的启动设备 |
-  | rootfstype  | ext4                                                         | 根文件系统类型 |
-  | default_boot_device | soc/10100000.himci.eMMC | （建议配置信息）默认启动设备，在启动第一阶段会根据这个参数创建required设备的软链接 |
+  | blkdevparts | mmcblk0:1M(boot),15M(kernel),200M(system),200M(vendor),<br/>2M(misc),20M(updater),-(userdata) | 分区表信息，kernel会根据此信息创建物理分区。                 |
+  | hardware    | Hi3516DV300、rk3568等                                                  | （必要信息）硬件平台。 |
+  | root        | /dev/ram0（Hi3516DV00)、root=PARTUUID=614e0000-0000 rw（rk3568）                                                    | kernel加载的启动设备。 |
+  | rootfstype  | ext4                                                         | 根文件系统类型。 |
+  | default_boot_device | soc/10100000.himci.eMMC | （建议配置信息）默认启动设备，在启动第一阶段会根据这个参数创建required设备的软链接。 |
 
 - init挂载required分区
 
@@ -182,7 +183,7 @@
 
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取fstab.required文件到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
-      Note：从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
+      （说明：从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。）
 
       1. 读取fstab文件，获得required设备信息
           ```
@@ -240,6 +241,7 @@
          存在devices中的设备信息，就是在此处与内核上报的uevent事件进行匹配的。对于system分区设备的uevent消息，其uevent->partitionName值应该为system，与devices中存在的/dev/block/platform/fe310000.sdhci/by-name/system字段匹配成功，则开始处理system分区设备的uevent消息。
 
       5. 创建required设备节点和对应软链接
+
          首先应该格式化对应软链接的路径，这一部分就用到了bootargs中default_boot_device的值，与上报的required设备节点路径进行匹配，以创建平台无关的可读性更高的指向该设备节点的软链接，关键部分代码如下：
          ```
          if (STRINGEQUAL(bus, "/sys/bus/platform")) {
@@ -279,6 +281,7 @@
          软链接路径格式化完成后，将根据uevent中的信息进行最后的创建设备节点和软链接的动作，至此，system分区设备的设备节点创建完毕。
 
       6. 挂载required分区
+
          设备节点创建完成后，即可挂载对应分区，主要接口如下：
          ```
           int MountRequriedPartitions(const Fstab *fstab)
