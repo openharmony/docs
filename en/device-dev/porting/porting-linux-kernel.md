@@ -211,7 +211,7 @@ The procedure is as follows:
     Run the following command:
 
     ```
-    ./build.sh --product-name Hi3516DV300 --build-target hdf_test
+    ./build.sh --product-name hispark_taurus_standard --build-target hdf_test
     ```
 
     Wait until the build is complete.

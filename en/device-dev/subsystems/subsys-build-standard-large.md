@@ -213,14 +213,14 @@ The process to build OpenHarmony is as follows:
 
 3.  Build the module.
 
-    For example, run the following command to build Hi3516D V300:
+    For example, run the following command to build hispark_taurus_standard:
 
     ```
-    ./build.sh --product-name Hi3516DV300 --ccache
+    ./build.sh --product-name hispark_taurus_standard --ccache
     ```
 
 4.  Obtain the build result.
 
-    Files generated during the build process are stored in the  **out/hi3516dv300/**  directory, and the generated image is stored in the  **out/hi3516dv300/packages/phone/images/**  directory.
+    Files generated during the build process are stored in the  **out/hispark_taurus/**  directory, and the generated image is stored in the  **out/hispark_taurus/packages/phone/images/**  directory.
 
 

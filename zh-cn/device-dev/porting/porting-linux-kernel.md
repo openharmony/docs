@@ -230,7 +230,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
      
    ```
-   ./build.sh --product-name Hi3516DV300 --build-target hdf_test
+   ./build.sh --product-name hispark_taurus_standard --build-target hdf_test
    ```
 
    等待编译完成。

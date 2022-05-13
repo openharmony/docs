@@ -718,13 +718,13 @@ subsystem  # 子系统
 
 由于Windows环境下无法实现用例编译，因此执行用例前需要在Linux环境下进行用例编译，用例编译命令：
 ```
-./build.sh --product-name Hi3516DV300 --build-target make_test
+./build.sh --product-name hispark_taurus_standard --build-target make_test
 ```
 >说明:
->- product-name：指定编译产品名称，例如Hi3516DV300。
+>- product-name：指定编译产品名称，例如hispark_taurus_standard。
 >- build-target：指定所需要编译的用例，make_test表示指定全部用例，实际开发中可指定特定用例。
 
-编译完成后，测试用例将自动保存在out/hi3516dv300/packages/phone/tests目录下。
+编译完成后，测试用例将自动保存在out/hispark_taurus/packages/phone/tests目录下。
 
 #### 搭建执行环境
 1. 在Windows环境创建测试框架目录Test，并在此目录下创建testcase目录

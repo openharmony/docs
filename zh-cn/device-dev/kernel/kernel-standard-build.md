@@ -1,6 +1,7 @@
 # Linux内核编译与构建指导
 
-- [开发示例1](#开发示例1)
+- [Linux内核编译与构建指导](#linux内核编译与构建指导)
+  - [开发示例1](#开发示例1)
 
 ## 开发示例1
 
@@ -11,7 +12,7 @@
 
 
 ```
-./build.sh --product-name Hi3516DV300              # 编译hi3516dv300镜像
-    --build-target build_kernel                    # 编译hi3516dv300的uImage内核镜像
+./build.sh --product-name hispark_taurus_standard              # 编译hispark_taurus_standard镜像
+    --build-target build_kernel                    # 编译hispark_taurus_standard的uImage内核镜像
     --gn-args linux_kernel_version=\"linux-5.10\"  # 编译指定内核版本
 ```
