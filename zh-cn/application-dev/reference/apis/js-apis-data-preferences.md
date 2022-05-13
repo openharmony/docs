@@ -35,38 +35,20 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed")
-              return;
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Flush to file failed, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")
-              })
-          })
-      })
-  }
-  ```
+```ts
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    if (err) {
+        console.info("Get preferences failed.")
+        return;
+    }
+    console.info("Get preferences successfully.")
+})
+```
 
 
 ## data_preferences.getPreferences
@@ -80,7 +62,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 **返回值：**
@@ -89,32 +71,14 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
   | Promise&lt;[Preferences](#preferences)&gt; | Promise实例，用于异步获取结果。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Flush to file failed, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")
-              })
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed")
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.getPreferences(this.context, 'mystore')
+promise.then((preferences) => {
+    console.info("Get preferences successfully.")
+}).catch((err) => {
+    console.info("Get preferences failed.")
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -129,25 +93,20 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.deletePreferences(this.context, 'mystore', function (err) {
-          if (err) {
-              console.info("Deleted failed, err: " + err)
-              return
-          }
-          console.info("Deleted successfully.")
-      })
-  }
-  ```
+```ts
+data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+    if (err) {
+        console.info("Deleted preferences failed, err: " + err)
+        return
+    }
+    console.info("Deleted preferences successfully.")
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -162,7 +121,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 **返回值：**
@@ -171,19 +130,14 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.deletePreferences(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Deleted successfully.")
-      }).catch((err) => {
-          console.info("Deleted failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.deletePreferences(this.context, 'mystore')
+promise.then(() => {
+    console.info("Deleted preferences successfully.")
+}).catch((err) => {
+    console.info("Deleted preferences failed, err: " + err)
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -199,25 +153,20 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
-          if (err) {
-              console.info("Removed preferences from cache failed, err: " + err)
-              return
-          }
-          console.info("Removed preferences from cache successfully.")
-      })
-  }
-  ```
+```ts
+data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+    if (err) {
+        console.info("Removed preferences from cache failed, err: " + err)
+        return
+    }
+    console.info("Removed preferences from cache successfully.")
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -233,7 +182,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | 是 | 应用程序或功能的上下文。 |
+  | context | [Context](js-apis-ability-context.md) | 是 | 应用程序或功能的上下文。 |
   | name | string | 是 | 应用程序内部数据存储名称。 |
 
 **返回值：**
@@ -242,19 +191,14 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Removed preferences from cache successfully.")
-      }).catch((err) => {
-          console.info("Removed preferences from cache failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+promise.then(() => {
+    console.info("Removed preferences from cache successfully.")
+}).catch((err) => {
+    console.info("Removed preferences from cache failed, err: " + err)
+})
+```
 
 
 ## Preferences
@@ -278,26 +222,15 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
   | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.get('startup', 'default', function(err, value) {
-              if (err) {
-                  console.info("Get the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("The value of startup is " + value)
-          })
-      })
-  }
-  ```
+```ts
+ preferences.get('startup', 'default', function(err, value) {
+    if (err) {
+        console.info("Get value of startup failed, err: " + err)
+        return
+    }
+    console.info("Get value of startup is " + value)
+})
+```
 
 
 ### get
@@ -320,24 +253,14 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | Promise&lt;ValueType&gt; | Promise实例，用于异步获取结果。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseGet = preferences.get('startup', 'default')
-          promiseGet.then((value) => {
-              console.info("The value of startup is " + value)
-          }).catch((err) => {
-              console.info("Get the value of startup failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.get('startup', 'default')
+promise.then((value) => {
+    console.info("Get value of startup is " + value)
+}).catch((err) => {
+    console.info("Get value of startup failed, err: " + err)
+})
+```
 
 
 ### put
@@ -356,26 +279,15 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Put value of startup failed, err: " + err)
+        return
+    }
+    console.info("Put value of startup successfully.")
+})
+```
 
 
 ### put
@@ -398,24 +310,14 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promisePut = preferences.put('startup', 'auto')
-          promisePut.then(() => {
-              console.info("Put the value of startup successfully.")
-          }).catch((err) => {
-              console.info("Put the value of startup failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.put('startup', 'auto')
+promise.then(() => {
+    console.info("Put value of startup successfully.")
+}).catch((err) => {
+    console.info("Put value of startup failed, err: " + err)
+})
+```
 
 
 ### has
@@ -438,30 +340,19 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   | boolean | true表示存在，false表示不存在。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.has('startup', function (err, isExist) {
-              if (err) {
-                  console.info("Check the key of startup failed, err: " + err)
-                  return
-              }
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup dose not contain.")
-              }
-          })
-      })
-  }
-  ```
+```ts
+preferences.has('startup', function (err, isExist) {
+    if (err) {
+        console.info("Check the key of startup failed, err: " + err)
+        return
+    }
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup dose not contain.")
+    }
+})
+```
 
 
 ### has
@@ -483,28 +374,18 @@ has(key: string): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseHas = preferences.has('startup')
-          promiseHas.then((isExist) => {
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup dose not contain.")
-              }
-          }).catch((err) => {
-              console.info("Check the key of startup failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.has('startup')
+promise.then((isExist) => {
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup dose not contain.")
+    }
+}).catch((err) => {
+    console.info("Check the key of startup failed, err: " + err)
+})
+```
 
 
 ### delete
@@ -522,26 +403,15 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.delete('startup', function (err) {
-              if (err) {
-                  console.info("Delete startup key failed, err: " + err)
-                  return
-              }
-              console.info("Deleted startup key successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.delete('startup', function (err) {
+    if (err) {
+        console.info("Delete startup key failed, err: " + err)
+        return
+    }
+    console.info("Deleted startup key successfully.")
+})
+```
 
 
 ### delete
@@ -563,24 +433,14 @@ delete(key: string): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseDelete = preferences.delete('startup')
-          promiseDelete.then(() => {
-              console.info("Deleted startup key successfully.")
-          }).catch((err) => {
-              console.info("Delete startup key failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.delete('startup')
+promise.then(() => {
+    console.info("Deleted startup key successfully.")
+}).catch((err) => {
+    console.info("Delete startup key failed, err: " + err)
+})
+```
 
 
 ### flush
@@ -597,26 +457,15 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.flush(function (err) {
-              if (err) {
-                  console.info("Flush to file failed, err: " + err)
-                  return
-              }
-              console.info("Flushed to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.flush(function (err) {
+    if (err) {
+        console.info("Flush to file failed, err: " + err)
+        return
+    }
+    console.info("Flushed to file successfully.")
+})
+```
 
 
 ### flush
@@ -633,24 +482,14 @@ flush(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseFlush = preferences.flush()
-          promiseFlush.then(() => {
-              console.info("Flushed to file successfully.")
-          }).catch((err) => {
-              console.info("Flush to file failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.flush()
+promise.then(() => {
+    console.info("Flushed to file successfully.")
+}).catch((err) => {
+    console.info("Flush to file failed, err: " + err)
+})
+```
 
 
 ### clear
@@ -667,26 +506,15 @@ clear(callback: AsyncCallback&lt;void&gt;): void
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.clear(function (err) {
-              if (err) {
-                  console.info("Clear to file failed, err: " + err)
-                  return
-              }
-              console.info("Cleared to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.clear(function (err) {
+    if (err) {
+        console.info("Clear to file failed, err: " + err)
+        return
+    }
+    console.info("Cleared to file successfully.")
+})
+```
 
 
 ### clear
@@ -703,24 +531,14 @@ clear(): Promise&lt;void&gt;
   | Promise&lt;void&gt; | Promise实例，用于异步处理。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseClear = preferences.clear()
-          promiseClear.then(() => {
-              console.info("Cleared to file successfully.")
-          }).catch((err) => {
-              console.info("Clear to file failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.clear()
+promise.then(() => {
+    console.info("Cleared to file successfully.")
+}).catch((err) => {
+    console.info("Clear to file failed, err: " + err)
+})
+```
 
 
 ### on('change')
@@ -738,37 +556,30 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
   | callback | Callback&lt;{ key : string }&gt; | 回调对象实例。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Flush to file failed, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")    // observer will be called.
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Put the value of startup failed, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Flush to file failed, err: " + err)
+            return
+        }
+        console.info("Flushed to file successfully.")    // observer will be called.
+    })
+})
+```
 
 
 ### off('change')
@@ -786,37 +597,31 @@ off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
   | callback | Callback&lt;{ key : string }&gt; | 需要取消的回调对象实例。 |
 
 **示例：**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Put the value of startup failed, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Flush to file failed, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")    // observer will be called.
-                  preferences.off('change', observer)
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Put the value of startup failed, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Flush to file failed, err: " + err)
+            return
+        }
+        console.info("Flushed to file successfully.")    // observer will be called.
+        preferences.off('change', observer)
+    })
+})
+```
 
 ## ValueType
 
