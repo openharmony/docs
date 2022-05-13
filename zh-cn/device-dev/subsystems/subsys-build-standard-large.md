@@ -211,7 +211,7 @@ OpenHarmony侧的编译构建流程主要包括编译命令行解析，调用gn�
    - test_list：组件中对应模块的测试用例；
 
 2. 将组件添加到产品配置中。
-   在产品的配置中添加组件，产品对应的配置文件：productdefine/common/products/{product-name}.json。
+   在产品的配置中添加组件，产品对应的配置文件：//vendor/{product_company}/{product-name}/config.json。
 
    在产品配置文件中添加 "subsystem_examples:partA"，表示该产品中会编译并打包partA到版本中。
 
@@ -370,7 +370,7 @@ ohos_shared_library("module2") {
 
    ohos.build文件包含两个部分，第一部分subsystem说明了子系统的名称，parts定义了该子系统包含的部件，要添加一个部件，需要把该部件对应的内容添加进parts中去。添加的时候需要指明该部件包含的模块module_list，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test_list中说明，inner_kits与test_list没有也可以不添加。
 
-3. 在productdefine/common/products目录下的产品配置文件（json格式）中添加对应的部件，直接添加到原有部件后即可。
+3. 在//vendor/{product_company}/{product-name}/config.json中添加对应的部件，直接添加到原有部件后即可。
      
    ```
    {
@@ -400,7 +400,7 @@ ohos_shared_library("module2") {
 
    该文件定义了有哪些子系统以及这些子系统所在文件夹路径，添加子系统时需要说明子系统path与name，分别表示子系统路径和子系统名。
 
-4. 在productdefine/common/products目录下的产品配置如Hi3516DV300.json中添加对应的部件，直接添加到原有部件后即可。
+4. 在//vendor/{product_company}/{product-name}目录下的产品配置如product-name是Hi3516DV300时，在config.json中添加对应的部件，直接添加到原有部件后即可。
      
    ```
    {

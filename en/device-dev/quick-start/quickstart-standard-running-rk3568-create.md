@@ -18,9 +18,9 @@ applications/sample/hello
 │   └── bundle.json
 build
 └── subsystem_config.json
-productdefine/common
-└── products
-    └── rk3568.json
+vendor/hihope
+└── rk3568
+    └── config.json
 ```
 
 
@@ -149,7 +149,7 @@ Perform the steps below in the source code directory:
 
 4. Modify the product configuration file.
 
-     In the **productdefine/common/products/rk3568.json** file, add the **hello** part after the existing part.
+     In the **vendor\hihope\rk3568\config.json** file, add the **hello** part after the existing part.
      
    ```
        "usb:usb_manager_native":{},
