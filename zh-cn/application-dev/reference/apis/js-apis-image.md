@@ -987,7 +987,7 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8)
 
 ### 属性
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称                  | 类型                         | 可读 | 可写 | 说明               |
 | --------------------- | ---------------------------- | ---- | ---- | ------------------ |
