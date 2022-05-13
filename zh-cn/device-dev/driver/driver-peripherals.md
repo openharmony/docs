@@ -13,7 +13,7 @@
 
 - **[Light](driver-peripherals-light-des.md)**
 
-- **[Light](driver-peripherals-pinauth-des.md)**
+- **[Pin_auth](driver-peripherals-pinauth-des.md)**
 
 - **[Sensor](driver-peripherals-sensor-des.md)**
 
