@@ -1,6 +1,6 @@
 # 数据存储
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 从API Version 6开始，该模块不再维护，可以使用模块[`@ohos.data.storage`](js-apis-data-storage.md)。在API Version 9后，推荐使用新模块[`@ohos.data.preferences`](js-apis-data-preferences.md)。
 >

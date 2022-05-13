@@ -1,10 +1,9 @@
 # 窗口
 
-窗口提供管理窗口的一些基础能力，包括对窗口的创建、销毁，以及对串口的属性设置等各项功能。
+窗口提供管理窗口的一些基础能力，包括对窗口的创建、销毁，以及对窗口的属性设置等各项功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
 
 ## 导入模块
 
@@ -16,7 +15,7 @@ import window from '@ohos.window';
 
 窗口类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称              | 默认值 | 说明               |
 | ----------------- | ------ | ------------------ |
@@ -27,7 +26,7 @@ import window from '@ohos.window';
 
 窗口内容需要规避区域的类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称        | 默认值 | 说明               |
 | ----------- | ------ | ------------------ |
@@ -40,7 +39,7 @@ import window from '@ohos.window';
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称       | 默认值 | 说明                          |
 | ---------- | ------ | ----------------------------- |
@@ -54,7 +53,7 @@ import window from '@ohos.window';
 
 状态栏导航栏的属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
@@ -71,7 +70,7 @@ import window from '@ohos.window';
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -87,7 +86,7 @@ import window from '@ohos.window';
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称       | 参数类型                                            | 可读 | 可写 | 说明                       |
 | ---------- | --------------------------------------------------- | ---- | ---- | -------------------------- |
@@ -96,9 +95,9 @@ import window from '@ohos.window';
 
 ## Rect<sup>7+</sup>
 
-矩形。
+窗口矩形区域。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称   | 参数类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
@@ -111,7 +110,7 @@ import window from '@ohos.window';
 
 表示窗口内容规避区域。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称       | 参数类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
@@ -124,7 +123,7 @@ import window from '@ohos.window';
 
 窗口大小。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称   | 参数类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
@@ -135,7 +134,7 @@ import window from '@ohos.window';
 
 窗口属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称                            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -156,7 +155,7 @@ import window from '@ohos.window';
 
 色域模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称       | 默认值 | 说明           |
 | ---------- | ------ | -------------- |
@@ -171,7 +170,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 从API version 8开始，此接口废弃，推荐使用[window.create<sup>8+</sup>](#windowcreate8)接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -204,7 +203,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 从API version 8开始，此接口废弃，推荐使用[window.create<sup>8+</sup>](#windowcreate8)接口。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -240,7 +239,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -274,7 +273,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -309,7 +308,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 查找id所对应的窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -338,7 +337,7 @@ find(id: string): Promise&lt;Window&gt;
 
 查找id所对应的窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -371,7 +370,9 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最后显示的窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+从API version 8开始，此接口废弃，推荐使用[window.getTopWindow<sup>8+</sup>](#windowgettopwindow8)接口。
+
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -399,7 +400,9 @@ getTopWindow(): Promise&lt;Window&gt;
 
 获取当前应用内最后显示的窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+从API version 8开始，此接口废弃，推荐使用[window.getTopWindow<sup>8+</sup>](#windowgettopwindow8)接口。
+
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -426,7 +429,7 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最后显示的窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -455,7 +458,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 获取当前应用内最后显示的窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -490,7 +493,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -516,7 +519,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -544,7 +547,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -572,7 +575,7 @@ hide(): Promise&lt;void&gt;
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -597,7 +600,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
 显示当前窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -623,7 +626,7 @@ show(): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -648,7 +651,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
 销毁当前窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -674,7 +677,7 @@ destroy(): Promise&lt;void&gt;
 
 销毁当前窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -699,7 +702,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动窗口位置，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -728,7 +731,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -760,7 +763,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -788,7 +791,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -822,7 +825,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -852,7 +855,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 此接口为系统接口，三方应用不支持调用。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -884,7 +887,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
 获取当前窗口的属性，使用callback方式作为异步方法返回WindowProperties。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -910,7 +913,7 @@ getProperties(): Promise&lt;WindowProperties&gt;
 
 获取当前窗口的属性，使用promise方式作为异步方法返回WindowProperties。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -935,7 +938,7 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -963,7 +966,7 @@ getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -994,7 +997,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置是否为全屏状态，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1022,7 +1025,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 设置是否为全屏状态，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1054,7 +1057,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 设置窗口的布局是否为全屏显示状态，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1082,7 +1085,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 设置窗口的布局是否为全屏显示状态，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1114,7 +1117,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 设置导航栏、状态栏的可见模式，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1142,7 +1145,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 设置导航栏、状态栏的可见模式，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1174,7 +1177,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 设置窗口内导航栏、状态栏的属性，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1211,7 +1214,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 设置窗口内导航栏、状态栏的属性，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1252,7 +1255,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 当前窗口加载具体页面内容，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1279,7 +1282,7 @@ loadContent(path: string): Promise&lt;void&gt;
 
 当前窗口加载具体页面内容，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1310,7 +1313,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前窗口是否已显示，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1336,7 +1339,7 @@ isShowing(): Promise&lt;boolean&gt;
 
 判断当前窗口是否已显示，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -1361,7 +1364,7 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 开启监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1385,7 +1388,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 
 关闭监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1407,7 +1410,7 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 开启监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1431,7 +1434,7 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
 关闭监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1455,7 +1458,7 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1481,7 +1484,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1503,7 +1506,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前窗口是否支持广色域模式，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1529,7 +1532,7 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
 判断当前窗口是否支持广色域模式，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -1554,7 +1557,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 设置当前窗口为广色域模式或默认色域模式，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1581,7 +1584,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 设置当前窗口为广色域模式或默认色域模式，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1612,7 +1615,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 获取当前窗口色域模式，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1638,7 +1641,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 获取当前窗口色域模式，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -1665,7 +1668,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1695,7 +1698,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1729,7 +1732,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1759,7 +1762,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1793,7 +1796,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1822,7 +1825,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1855,7 +1858,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1885,7 +1888,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1919,7 +1922,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1949,7 +1952,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -1983,7 +1986,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2012,7 +2015,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2045,7 +2048,7 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2076,7 +2079,7 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2110,7 +2113,7 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2141,7 +2144,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2171,7 +2174,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 WindowStage生命周期。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**以下各项对应的系统能力均为SystemCapability.WindowManager.WindowManager.Core
 
 | 名称       | 默认值 | 说明     |
 | ---------- | ------ | -------- |
@@ -2190,7 +2193,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 获取该WindowStage实例下的主窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -2222,7 +2225,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 获取该WindowStage实例下的主窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2255,7 +2258,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 创建该WindowStage实例下的子窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2293,7 +2296,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 创建该WindowStage实例下的子窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2328,7 +2331,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 获取该WindowStage实例下的所有子窗口，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -2360,7 +2363,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 获取该WindowStage实例下的所有子窗口，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2393,7 +2396,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 为当前WindowStage的主窗口加载具体页面内容，使用callback方式作为异步方法。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Coretype为'windowSizeChange'
+**系统能力：**SystemCapability.WindowManager.WindowManager.Coretype为'windowSizeChange'
 
 **参数：**
 
@@ -2425,7 +2428,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 开启WindowStage生命周期变化的监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -2454,7 +2457,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 关闭WindowStage生命周期变化的监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：**SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 

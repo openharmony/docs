@@ -399,4 +399,4 @@ export default {
 
 针对ServiceAbility开发，有以下相关实例可供参考：
 - [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+- [`DMS`：分布式Demo（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
