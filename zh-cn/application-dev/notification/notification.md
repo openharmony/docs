@@ -264,4 +264,4 @@ Notification.cancel(1, "label", cancelCallback)
 
 - [`Notification`：订阅、发送通知（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
 
-- [`Notification`：通知（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
+- [`Notification`：通知（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
