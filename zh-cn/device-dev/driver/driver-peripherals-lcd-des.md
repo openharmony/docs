@@ -175,7 +175,7 @@ LCD器件驱动示例如下：
 #define VERTICAL_SYNC_WIDTH       2
 #define FRAME_RATE                60
 
-/* Panel Info结构体结构体 */
+/* PanelInfo结构体结构体 */
 struct PanelInfo {
     uint32_t width;
     uint32_t height;
