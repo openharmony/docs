@@ -1,11 +1,11 @@
 #  	Ability Access Control
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
@@ -26,7 +26,7 @@ Creates an **AtManager** instance, which is used for ability access control.
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 ```
 
@@ -57,7 +57,7 @@ Checks whether an application has been granted the specified permission. This AP
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
@@ -92,7 +92,7 @@ Grants a user granted permission to an application. This API uses a promise to r
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
@@ -124,7 +124,7 @@ Grants a user granted permission to an application. This API uses an asynchronou
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
@@ -159,7 +159,7 @@ Revokes a user granted permission given to an application. This API uses a promi
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
@@ -190,7 +190,7 @@ Revokes a user granted permission given to an application. This API uses an asyn
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
@@ -223,7 +223,7 @@ Obtains the flags of the specified permission of a given application. This API u
 
 **Example**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
