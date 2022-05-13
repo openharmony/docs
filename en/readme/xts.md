@@ -632,3 +632,9 @@ Use the standard syntax of Jasmine to write test cases. The ES6 specification is
 
 For details about how to build a HAP, see the JS application development guide of the standard system  [Building and Creating HAPs](https://developer.harmonyos.com/en/docs/documentation/doc-guides/build_overview-0000001055075201).
 
+
+## Repositories Involved<a name="section1371113476307"></a>
+
+[xts\_acts](https://gitee.com/openharmony/xts_acts)
+
+[xts\_tools](https://gitee.com/openharmony/xts_tools)
