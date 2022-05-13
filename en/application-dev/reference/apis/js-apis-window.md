@@ -1,10 +1,9 @@
 # Window
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of API version 9 are of the canary version and are for trial use only. The API call may be unstable.
+> API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 
@@ -12,7 +11,7 @@
 import window from '@ohos.window';
 ```
 
-## WindowType<sup>7+</sup><a name="windowtype"></a>
+## WindowType<sup>7+</sup>
 
 Enumerates the window types.
 
@@ -23,7 +22,7 @@ Enumerates the window types.
 | TYPE_APP          | 0      | Application subwindow.  |
 | TYPE_SYSTEM_ALERT | 1      | System alert window.|
 
-## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
+## AvoidAreaType<sup>7+</sup>
 
 Enumerates the types of the area where the window cannot be displayed.
 
@@ -34,7 +33,7 @@ Enumerates the types of the area where the window cannot be displayed.
 | TYPE_SYSTEM | 0      | Default area of the system.|
 | TYPE_CUTOUT | 1      | Notch.  |
 
-## WindowMode<sup>7+</sup><a name="windowmode"></a>
+## WindowMode<sup>7+</sup>
 
 Enumerates the window modes of an application.
 
@@ -50,7 +49,7 @@ This is a system API and cannot be called by third-party applications.
 | SECONDARY  | 4      | The application is displayed in the secondary window in split-screen mode.  |
 | FLOATING   | 5      | The application is displayed in a floating window.|
 
-## SystemBarProperties<a name="systembarproperties"></a>
+## SystemBarProperties
 
 Describes the properties of the status bar and navigation bar.
 
@@ -65,7 +64,7 @@ Describes the properties of the status bar and navigation bar.
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
-## SystemBarRegionTint <sup>8+</sup><a name="systembartegiontint"></a>
+## SystemBarRegionTint<sup>8+</sup>
 
 Describes the callback for a single system bar.
 
@@ -81,7 +80,7 @@ This is a system API and cannot be called by third-party applications.
 | backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
 | contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
 
-## SystemBarTintState <sup>8+</sup><a name="systembartintstate"></a>
+## SystemBarTintState<sup>8+</sup>
 
 Describes the callback for the current system bar.
 
@@ -89,12 +88,12 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Type                                          | Readable| Writable| Description                      |
-| ---------- | -------------------------------------------------- | ---- | ---- | -------------------------- |
-| displayId  | number                                             | Yes  | No  | ID of the current physical screen.          |
-| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | Yes  | Yes  | All system bar information changed.|
+| Name      | Type                                           | Readable| Writable| Description                      |
+| ---------- | --------------------------------------------------- | ---- | ---- | -------------------------- |
+| displayId  | number                                              | Yes  | No  | ID of the current physical screen.          |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information changed.|
 
-## Rect<sup>7+</sup><a name="rect"></a>
+## Rect<sup>7+</sup>
 
 Describes a rectangle.
 
@@ -107,7 +106,7 @@ Describes a rectangle.
 | width  | number   | Yes  | Yes  | Width of the rectangle.  |
 | height | number   | Yes  | Yes  | Height of the rectangle.  |
 
-## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
+## AvoidArea<sup>7+</sup>
 
 Describes the area where the window cannot be displayed.
 
@@ -120,7 +119,7 @@ Describes the area where the window cannot be displayed.
 | rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
 | bottomRect | [Rect](#rect) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
-## Size<sup>7+</sup><a name="size"></a>
+## Size<sup>7+</sup>
 
 Describes the window size.
 
@@ -131,7 +130,7 @@ Describes the window size.
 | width  | number   | Yes  | Yes  | Window width.|
 | height | number   | Yes  | Yes  | Window height.|
 
-## WindowProperties<a name="windowproperties"></a>
+## WindowProperties
 
 Describes the window properties.
 
@@ -149,10 +148,10 @@ Describes the window properties.
 | dimBehindValue<sup>7+</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 
-## ColorSpace<sup>8+</sup><a name="colorspace"></a>
+## ColorSpace<sup>8+</sup>
 
 Describes the color gamut mode.
 
@@ -496,7 +495,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
+  | type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at **systemBarTintChange**, indicating the property change event of the status bar and navigation bar.|
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
@@ -522,7 +521,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name  | Type                                                     | Mandatory| Description                                                        |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
+  | type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at **systemBarTintChange**, indicating the property change event of the status bar and navigation bar.|
   | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
@@ -1260,7 +1259,7 @@ Loads content to this window. This API uses an asynchronous callback to return t
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
-  
+
 - Example
 
   ```js
@@ -1286,7 +1285,7 @@ Loads content to this window. This API uses a promise to return the result.
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
   | path   | string | Yes  | Path of the page from which the content will be loaded.|
-  
+
 - Return value
 
   | Type               | Description                                           |
@@ -1365,10 +1364,10 @@ Enables listening for window size changes.
 
 - Parameters
 
-  | Name  | Type                         | Mandatory| Description                                                        |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                      |
+  | Name  | Type                         | Mandatory| Description                                                    |
+  | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+  | type     | string                        | Yes  | Type of event to listen for. The value is fixed at **windowSizeChange**, indicating the window size change event.|
+  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                  |
 
 - Example
 
@@ -1389,14 +1388,14 @@ Disables listening for window size changes.
 
 - Parameters
 
-  | Name  | Type                         | Mandatory| Description                                                        |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange<sup>7+</sup>**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                      |
+  | Name  | Type                         | Mandatory| Description                                                    |
+  | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+  | type     | string                        | Yes  | Type of event to listen for. The value is fixed at **windowSizeChange**, indicating the window size change event.|
+  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                  |
 
 - Example
 
-  ```
+  ```js
   var type = 'windowSizeChange';
   windowClass.off(type);
   ```
@@ -1413,7 +1412,7 @@ Enables listening for changes to the area where the window cannot be displayed.
 
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
+  | type     | string                                  | Yes  | Type of event to listen for. The value is fixed at **systemAvoidAreaChange**, indicating the event of changes to the area where the window cannot be displayed.|
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
@@ -1437,12 +1436,12 @@ Disables listening for changes to the area where the window cannot be displayed.
 
   | Name  | Type                                   | Mandatory| Description                                                        |
   | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
+  | type     | string                                  | Yes  | Type of event to listen for. The value is fixed at **systemAvoidAreaChange**, indicating the event of changes to the area where the window cannot be displayed.|
   | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
-  ```
+  ```js
   var type = 'systemAvoidAreaChange';
   windowClass.off(type);
   ```
@@ -1461,7 +1460,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   | Name  | Type              | Mandatory| Description                                                        |
   | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string             | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
+  | type     | string             | Yes  | Type of event to listen for. The value is fixed at **keyboardHeightChange**, indicating the keyboard height change event.|
   | callback | Callbacknumber&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
@@ -1487,12 +1486,12 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
   | Name  | Type                  | Mandatory| Description                                                        |
   | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                 | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
+  | type     | string                 | Yes  | Type of event to listen for. The value is fixed at **keyboardHeightChange**, indicating the keyboard height change event.|
   | callback | Callback&lt;number&gt; | No  | Callback used to return the information.                                      |
 
 - Example
 
-  ```
+  ```js
   var type = 'keyboardHeightChange';
   windowClass.off(type);
   ```
@@ -1539,7 +1538,7 @@ Checks whether this window supports the wide color gamut mode. This API uses a p
 
 - Example
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
@@ -2167,7 +2166,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+## WindowStageEventType<sup>9+</sup>
 
 Describes the lifecycle of a window stage.
 
@@ -2256,16 +2255,19 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 Creates a subwindow for this window stage. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 - Parameters
 
   | Name| Type  | Mandatory| Description          |
   | ------ | ------ | ---- | -------------- |
   | name   | String | Yes  | Name of the subwindow.|
+
 - Return value
 
   | Type                            | Description                                             |
   | -------------------------------- | ------------------------------------------------- |
   | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+
 - Example
 
   ```ts
@@ -2326,6 +2328,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 Obtains all the subwindows of this window stage. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 - Return value
 
   | Type                                         | Description                                                        |
@@ -2357,6 +2360,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 Obtains all the subwindows of this window stage. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 - Parameters
 
   | Name  | Type                                               | Mandatory| Description                                       |
@@ -2396,7 +2400,7 @@ Loads content to this window stage. This API uses an asynchronous callback to re
   | -------- | ------------------------- | ---- | -------------------- |
   | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
-  
+
 - Example
 
   ```ts
@@ -2413,6 +2417,7 @@ Loads content to this window stage. This API uses an asynchronous callback to re
       }
   }
   ```
+
 ### on('windowStageEvent')<sup>9+</sup>
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
@@ -2420,11 +2425,12 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 Enables listening for window stage lifecycle changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 - Parameters
 
   | Name  | Type                                                        | Mandatory| Description                                                        |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at **windowStageEvent**, indicating the window stage lifecycle change event.|
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the information.                                      |
 
 - Example
@@ -2448,12 +2454,14 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 Disables listening for window stage lifecycle changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
 - Parameters
 
   | Name  | Type                                                        | Mandatory| Description                                                        |
   | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
+  | type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at **windowStageEvent**, indicating the window stage lifecycle change event.|
   | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the information.                                      |
+
 - Example
 
   ```ts
