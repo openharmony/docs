@@ -61,23 +61,23 @@ createBundleContext(bundleName: string): Context;
 
 ## Context.getApplicationContext
 
-getApplicationContext(): Context;
+getApplicationContext(): ApplicationContext;
 
-获取当前context。
+获取当前applicationContext。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Context | 当前Context&nbsp;信息。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| ApplicationContext | 当前ApplicationContext对象信息。 |
 
 **示例：**
     
   ```js
   // 必选项。
-  let context = this.context.getApplicationContext();
+  let applicationContext = this.context.getApplicationContext();
   ```
 
 
