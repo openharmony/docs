@@ -3,7 +3,7 @@
 轻量级存储为应用提供key-value键值型的文件数据处理能力，支持应用对数据进行轻量级存储及查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -18,7 +18,7 @@ import dataStorage from '@ohos.data.storage';
 
 ## 常量
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -32,7 +32,7 @@ getStorageSync(path: string): Storage
 
 读取指定文件，将数据加载到Storage实例，用于数据操作。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -69,7 +69,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
 读取指定文件，将数据加载到Storage实例，用于数据操作，使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -107,7 +107,7 @@ getStorage(path: string): Promise&lt;Storage&gt;
 
 读取指定文件，将数据加载到Storage实例，用于数据操作，使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -148,7 +148,7 @@ deleteStorageSync(path: string): void
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -167,7 +167,7 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -193,7 +193,7 @@ deleteStorage(path: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题，使用promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -222,7 +222,7 @@ removeStorageFromCacheSync(path: string): void
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -241,7 +241,7 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -267,7 +267,7 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 从内存中移除指定文件对应的Storage单实例。移除Storage单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -301,7 +301,7 @@ getSync(key: string, defValue: ValueType): ValueType
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -327,7 +327,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 获取键对应的值，如果值为null或者非默认值类型，返回默认数据。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -354,7 +354,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 获取键对应的值，如果值为null或者非默认值类型，返默认数据。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -385,7 +385,7 @@ putSync(key: string, value: ValueType): void
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -405,7 +405,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -432,7 +432,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 首先获取指定文件对应的Storage实例，然后借助Storage API将数据写入Storage实例，通过flush或者flushSync将Storage实例持久化。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -462,7 +462,7 @@ hasSync(key: string): boolean
 
 检查存储对象是否包含名为给定key的存储。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -489,7 +489,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
 检查存储对象是否包含名为给定key的存储。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -522,7 +522,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 检查存储对象是否包含名为给定key的存储。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -553,7 +553,7 @@ deleteSync(key: string): void
 
 从存储对象中删除名为给定key的存储。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -572,7 +572,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从存储对象中删除名为给定key的存储。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -598,7 +598,7 @@ delete(key: string): Promise&lt;void&gt;
 
 从存储对象删除名为给定key的存储。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -627,7 +627,7 @@ flushSync(): void
 
 将当前storage对象中的修改保存到当前的storage，并同步存储到文件中。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **示例：**
   ```js
@@ -641,7 +641,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 将当前storage对象中的修改保存到当前的storage，并异步存储到文件中。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -666,7 +666,7 @@ flush(): Promise&lt;void&gt;
 
 将当前storage对象中的修改保存到当前的storage，并异步存储到文件中。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
   | 类型 | 说明 |
@@ -690,7 +690,7 @@ clearSync(): void
 
 清除此存储对象中的所有存储。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **示例：**
   ```js
@@ -704,7 +704,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 清除此存储对象中的所有存储。使用callback方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -729,7 +729,7 @@ clear(): Promise&lt;void&gt;
 
 清除此存储对象中的所有存储。使用Promise方式返回结果，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
   | 类型 | 说明 |
@@ -753,7 +753,7 @@ on(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 订阅数据变更者类需要实现StorageObserver接口，订阅的key的值发生变更后，在执行flush/flushSync方法后，callback方法会被回调。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 说明 |
@@ -778,7 +778,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 当不再进行订阅数据变更时，使用此接口取消订阅。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 说明 |
@@ -797,7 +797,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 ## StorageObserver
 
-**系统能力：**以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -807,7 +807,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 用于表示允许的数据字段类型。
 
-**系统能力：**SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称    | 说明                 |
 | ------- | -------------------- |

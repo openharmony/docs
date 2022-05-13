@@ -34,7 +34,7 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Type
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
 
   **表1** Type
 
@@ -62,7 +62,7 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 ## Interface
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Graphic.Graphic2D.WebGL。
 
   **表2** Interface
 

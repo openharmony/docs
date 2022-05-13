@@ -15,7 +15,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 获取USB设备列表。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **返回值：**
 
@@ -88,7 +88,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device；再调用[usb.requestRight](#usbrequestright)获取设备请求权限。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -113,7 +113,7 @@ hasRight(deviceName: string): boolean
 
 判断是否有权访问该设备。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -139,7 +139,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 请求软件包的临时权限以访问设备。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -168,7 +168,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): numbe
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -197,7 +197,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 需要调用[usb.claimInterface](#usbclaiminterface)先获取接口，才能使用此方法释放接口。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -225,7 +225,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及config；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -253,7 +253,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -281,7 +281,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -307,7 +307,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -334,7 +334,7 @@ controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: nu
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)接口得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -364,7 +364,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备信息列表以及endpoint；再调用[usb.requestRight](#usbrequestright)获取设备请求权限；然后调用[usb.connectDevice](#usbconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usb.claimInterface](#usbclaiminterface)；再调用usb.bulkTransfer接口。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -398,7 +398,7 @@ closePipe(pipe: USBDevicePipe): number
 
 需要调用[usb.getDevices](#usbgetdevices)获取设备列表；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
 
-**系统能力：** SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |

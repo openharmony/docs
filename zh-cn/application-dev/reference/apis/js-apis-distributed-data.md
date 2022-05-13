@@ -2,7 +2,7 @@
 
 分布式数据管理为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
->![](../../public_sys-resources/icon-note.gif) **说明：** 
+>**说明：** 
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -19,7 +19,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -58,7 +58,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -99,7 +99,7 @@ try {
 
 提供KVManager实例的配置信息，包括调用方的包名和用户信息。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
@@ -110,7 +110,7 @@ try {
 
 用户信息。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
@@ -122,7 +122,7 @@ try {
 
 用户类型。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称 | 默认值 | 说明 |
 | ----- | ------ | ------ |
@@ -139,7 +139,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -183,7 +183,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -230,7 +230,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 
 通过storeId的值关闭指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -276,7 +276,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 
 通过storeId的值关闭指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -330,7 +330,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 通过storeId的值删除指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -373,7 +373,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 通过storeId的值删除指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -427,7 +427,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -457,7 +457,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -496,7 +496,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -528,7 +528,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 取消订阅服务状态变更通知，并通过callback方式返回，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -558,7 +558,7 @@ try {
 
 用于提供创建数据库的配置信息。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
@@ -575,7 +575,7 @@ try {
 
 用于指定创建的数据库类型。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 默认值 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -588,7 +588,7 @@ try {
 
 用于指定创建的数据库的安全级别。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 默认值 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -604,7 +604,7 @@ try {
 
 KVStore常量。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 默认值 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -619,7 +619,7 @@ KVStore常量。
 
 表示数据库模式，可以在创建或打开数据库时创建 Schema 对象并将它们放入 Options 中。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -634,13 +634,13 @@ constructor()
 
 用于创建Schema实例的构造函数。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 ## FieldNode<sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -654,7 +654,7 @@ constructor(name: string)
 
 用于创建带有string字段FieldNode实例的构造函数。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -668,7 +668,7 @@ appendChild(child: FieldNode): boolean
 
 向这个 FieldNode 添加一个子节点。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -716,7 +716,7 @@ getCount(): number
 
 获取结果集中的行数。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -749,7 +749,7 @@ getPosition(): number
 
 获取结果集中当前的读取位置。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -783,7 +783,7 @@ moveToFirst(): boolean
 
 将读取位置移动到第一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -817,7 +817,7 @@ moveToLast(): boolean
 
 将读取位置移动到最后一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -851,7 +851,7 @@ moveToNext(): boolean
 
 将读取位置移动到下一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -885,7 +885,7 @@ moveToPrevious(): boolean
 
 将读取位置移动到上一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -919,7 +919,7 @@ move(offset: number): boolean
 
 将读取位置移动到当前位置的相对偏移量。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -959,7 +959,7 @@ moveToPosition(position: number): boolean
 
 将读取位置从 0 移动到绝对位置。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -999,7 +999,7 @@ isFirst(): boolean
 
 检查读取位置是否为第一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1033,7 +1033,7 @@ isLast(): boolean
 
 检查读取位置是否为最后一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1066,7 +1066,7 @@ isBeforeFirst(): boolean
 
 检查读取位置是否在第一行之前。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1100,7 +1100,7 @@ isAfterLast(): boolean
 
 检查读取位置是否在最后一行之后。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1134,7 +1134,7 @@ getEntry(): Entry
 
 获取键值对。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1167,7 +1167,7 @@ try {
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 ### constructor<sup>8+</sup> ###
 
@@ -1175,7 +1175,7 @@ constructor()
 
 用于创建Schema实例的构造函数。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 
 ### reset<sup>8+</sup> ###
@@ -1184,7 +1184,7 @@ reset(): Query
 
 公共查询重置。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 
 **返回值：**
@@ -1215,7 +1215,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 构造一个Query对象来查询具有指定字段的条目，其值等于指定的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1250,7 +1250,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 构造一个Query对象以查询具有指定字段且值不等于指定值的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1285,7 +1285,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 构造一个Query对象以查询具有大于指定值的指定字段的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1320,7 +1320,7 @@ lessThan(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有小于指定值的指定字段的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1355,7 +1355,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有指定字段且值大于或等于指定值的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1390,7 +1390,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有指定字段且值小于或等于指定值的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1426,7 +1426,7 @@ isNull(field: string): Query
 构造一个Query对象以查询具有值为null的指定字段的条目。
 
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1461,7 +1461,7 @@ inNumber(field: string, valueList: number[]): Query
 构造一个Query对象以查询具有指定字段的条目，其值在指定的值列表中。
 
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1496,7 +1496,7 @@ inString(field: string, valueList: string[]): Query
 
 构造一个Query对象以查询具有指定字段的条目，其值在指定的字符串值列表中。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1531,7 +1531,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 构造一个Query对象以查询具有指定字段的条目，该字段的值不在指定的值列表中。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1566,7 +1566,7 @@ notInString(field: string, valueList: string[]): Query
 
 构造一个Query对象以查询具有指定字段且值不在指定字符串值列表中的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1601,7 +1601,7 @@ like(field: string, value: string): Query
 
 构造一个Query对象以查询具有与指定字符串值相似的指定字段的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1636,7 +1636,7 @@ unlike(field: string, value: string): Query
 
 构造一个Query对象以查询具有与指定字符串值不相似的指定字段的条目。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1671,7 +1671,7 @@ and(): Query
 
 构造一个带有与条件的查询对象。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1701,7 +1701,7 @@ or(): Query
 
 构造一个带有或条件的Query对象。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1731,7 +1731,7 @@ orderByAsc(field: string): Query
 
 构造一个Query对象，将查询结果按升序排序。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1766,7 +1766,7 @@ orderByDesc(field: string): Query
 
 构造一个Query对象，将查询结果按降序排序。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1801,7 +1801,7 @@ limit(total: number, offset: number): Query
 
 构造一个Query对象来指定结果的数量和开始位置。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1837,7 +1837,7 @@ isNotNull(field: string): Query
 
 使用不为空的指定字段创建查询条件。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1871,7 +1871,7 @@ beginGroup(): Query
 
 创建一个带有左括号的查询条件组。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1901,7 +1901,7 @@ endGroup(): Query
 
 创建一个带有右括号的查询条件组。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -1931,7 +1931,7 @@ prefixKey(prefix: string): Query
 
 创建具有指定键前缀的查询条件。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -1966,7 +1966,7 @@ setSuggestIndex(index: string): Query
 
 设置一个指定的索引，将优先用于查询。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2001,7 +2001,7 @@ deviceId(deviceId:string):Query
 
 添加设备ID作为key的前缀。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2035,7 +2035,7 @@ getSqlLike():string
 
 获取指定Query对象的查询语句。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -2060,7 +2060,7 @@ try {
 
 KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅同步完成的方法。在调用KVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 ### put
 
@@ -2068,7 +2068,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 添加指定类型键值对到数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2104,7 +2104,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 添加指定类型键值对到数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2143,7 +2143,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除指定键值的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2185,7 +2185,7 @@ delete(key: string): Promise&lt;void&gt;
 
 从数据库中删除指定键值的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2228,7 +2228,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 
 订阅指定类型的数据变更通知，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2254,7 +2254,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2278,7 +2278,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 取消订阅数据变更通知，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2306,7 +2306,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 批量插入键值对到KVStore数据库中，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2353,7 +2353,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 批量插入键值对到KVStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2408,7 +2408,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 批量删除KVStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2455,7 +2455,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 批量删除KVStore数据库中的键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2511,7 +2511,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 启动KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2563,7 +2563,7 @@ startTransaction(): Promise&lt;void&gt;
 
 启动KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -2598,7 +2598,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 提交KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2630,7 +2630,7 @@ commit(): Promise&lt;void&gt;
 
 提交KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -2660,7 +2660,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 在KVStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2692,7 +2692,7 @@ rollback(): Promise&lt;void&gt;
 
 在KVStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -2722,7 +2722,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设定是否开启同步，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2755,7 +2755,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 设定是否开启同步，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2791,7 +2791,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 设置同步范围标签，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2823,7 +2823,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 设置同步范围标签，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2861,7 +2861,7 @@ try {
 
 描述订阅类型。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 默认值   | 说明                    |
 | -----  | ------   | ----------------------- |
@@ -2873,7 +2873,7 @@ try {
 
 数据变更时通知的对象，包括数据插入的数据、更新的数据、删除的数据和设备ID。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 参数类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
@@ -2886,7 +2886,7 @@ try {
 
 存储在数据库中的键值对。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 参数类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
@@ -2898,7 +2898,7 @@ try {
 
 存储在数据库中的对象。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 参数类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
@@ -2911,7 +2911,7 @@ try {
 
 只能被内部应用使用。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 默认值   | 说明                    |
 | -----  | ------   | ----------------------- |
@@ -2926,7 +2926,7 @@ try {
 
 单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 [getKVStore](#getkvstore) 构建一个 SingleKVStore 实例。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 ### get
 
@@ -2934,7 +2934,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 获取指定键的值，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -2972,7 +2972,7 @@ get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3015,7 +3015,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取匹配指定键前缀的所有键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3061,7 +3061,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3119,7 +3119,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3170,7 +3170,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3227,7 +3227,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;)
 
 从 KvStore 数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3276,7 +3276,7 @@ getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 从 KVStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3336,7 +3336,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3384,7 +3384,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3440,7 +3440,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3474,7 +3474,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3511,7 +3511,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3557,7 +3557,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3612,7 +3612,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3654,7 +3654,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3703,7 +3703,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3739,7 +3739,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3772,7 +3772,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3795,7 +3795,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 设置允许数据库同步的默认延迟，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3825,7 +3825,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 设置允许数据库同步的默认延迟，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3863,7 +3863,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 获取数据库的安全级别，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -3891,7 +3891,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 获取数据库的安全级别，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **返回值：**
 
@@ -3919,7 +3919,7 @@ try {
 
 在分布式系统中按设备管理分布式数据，继承自KVStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个DeviceKVStore实例。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 ### get<sup>8+</sup> ###
 
@@ -3927,7 +3927,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|num
 
 获取与指定设备 ID 和 key 匹配的 String 值，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**   SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -3962,7 +3962,7 @@ get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&
 
 获取与指定设备 ID 和 key 匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4006,7 +4006,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 
 获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4054,7 +4054,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4113,7 +4113,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4166,7 +4166,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 
 获取与指定 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4224,7 +4224,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4278,7 +4278,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4338,7 +4338,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 
 获取与指定设备 ID 和　key 前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4373,7 +4373,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&g
 
 获取与指定设备 ID 和 key 前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4417,7 +4417,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): voi
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4469,7 +4469,7 @@ getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4533,7 +4533,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4585,7 +4585,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4651,7 +4651,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4686,7 +4686,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4724,7 +4724,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
 获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4771,7 +4771,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4827,7 +4827,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4874,7 +4874,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 获取与指定设备 ID 和 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4930,7 +4930,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 从当前数据库中删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -4972,7 +4972,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 从当前数据库中删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
 **参数：**
 
@@ -5023,7 +5023,7 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -5060,7 +5060,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，该方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -5095,7 +5095,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知，该方法为同步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
 
 **参数：**
 
@@ -5124,7 +5124,7 @@ try {
 
 用于指定同步模式。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称       | 默认值     | 说明                    |
 | -----      | ------    | ----------------------- |

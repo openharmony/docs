@@ -21,7 +21,7 @@ get(Object): void
 
 通过索引读取缓存中存储的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -61,7 +61,7 @@ set(Object): void
 
 修改缓存中索引对应的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -99,7 +99,7 @@ clear(Object): void
 
 清空缓存中存储的键值对。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -133,7 +133,7 @@ delete(Object): void
 
 删除缓存中索引对应的键值对。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 

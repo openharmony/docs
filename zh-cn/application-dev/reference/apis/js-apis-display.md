@@ -14,7 +14,7 @@ import display from '@ohos.display';
 
 用于表示显示设备的状态。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -31,7 +31,7 @@ import display from '@ohos.display';
 
 描述display对象的属性。
 
-**系统能力：**以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -56,7 +56,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 获取当前默认的display对象。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -82,7 +82,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 获取当前默认的display对象。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -107,7 +107,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
@@ -133,7 +133,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 获取当前所有的display对象。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
 
@@ -158,7 +158,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启监听。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -182,7 +182,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭监听。
 
-**系统能力：**SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
