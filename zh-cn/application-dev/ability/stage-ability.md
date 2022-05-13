@@ -89,29 +89,29 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -273,4 +273,4 @@ export default class MainAbility extends Ability { {
 
 ## 相关实例
 针对Stage模型Ability开发，有以下相关示例可供参考：
-- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
+- [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
