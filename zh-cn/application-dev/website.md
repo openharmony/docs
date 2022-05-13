@@ -299,6 +299,7 @@
         - [动画样式](reference/arkui-js/js-components-common-animation.md)
         - [渐变样式](reference/arkui-js/js-components-common-gradient.md)
         - [转场样式](reference/arkui-js/js-components-common-transition.md)
+        - [媒体查询](reference/arkui-js/js-components-common-mediaquery.md)
         - [自定义字体样式](reference/arkui-js/js-components-common-customizing-font.md)
         - [原子布局](reference/arkui-js/js-components-common-atomic-layout.md)
       - 容器组件
@@ -533,8 +534,9 @@
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [列表选择弹窗](reference/arkui-ts/ts-methods-action-sheet.md)
         - [自定义弹窗](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-        - [日期时间选择弹窗](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-        - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+        - [日期滑动选择器弹窗](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [时间滑动选择器弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [文本滑动选择器弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
   - 接口参考
@@ -580,6 +582,12 @@
       - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
       - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md)
       - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
+      - [AbilityManager(AbilityManager)](reference/apis/js-apis-abilityManager.md)
+      - [AbilityStageContext(AbilityStageContext)](reference/apis/js-apis-abilityStageContext.md)
+      - [Context(Context)](reference/apis/js-apis-applicationContext.md)
+      - [ExtensionAbilityContext(ExtensionAbilityContext)](reference/apis/js-apis-extension-ability-context.md)
+      - [ExtensionAbilityInfo(ExtensionAbilityInfo)](reference/apis/js-apis-extensionAbilityInfo.md)
+      - [ServiceExtAbilityContext(ServiceExtAbilityContext)](reference/apis/js-apis-serviceExtAbilityContext.md)
     - 公共事件与通知
     
       - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
