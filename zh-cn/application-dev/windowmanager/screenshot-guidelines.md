@@ -37,5 +37,5 @@ screenshot.save(ScreenshotOptions).then((image) => {
 ```
 ## 相关实例
 针对屏幕截图开发，有以下相关实例可供参考：
-- [`Screenshot`：基础功能-屏幕截图（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Basic/Screenshot)
+- [`Screenshot`：屏幕截图（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Basic/Screenshot)
 

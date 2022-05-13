@@ -1,6 +1,6 @@
 # 数据存储
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 从API Version 6开始，该模块不再维护，可以使用模块[`@ohos.data.storage`](js-apis-data-storage.md)。在API Version 9后，推荐使用新模块[`@ohos.data.preferences`](js-apis-data-preferences.md)。
 >
@@ -21,7 +21,7 @@ get(Object): void
 
 通过索引读取缓存中存储的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -61,7 +61,7 @@ set(Object): void
 
 修改缓存中索引对应的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -99,7 +99,7 @@ clear(Object): void
 
 清空缓存中存储的键值对。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
@@ -133,7 +133,7 @@ delete(Object): void
 
 删除缓存中索引对应的键值对。
 
-**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+**系统能力：**  SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
