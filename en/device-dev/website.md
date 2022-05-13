@@ -1,7 +1,7 @@
 # OpenHarmony Device Development Documentation
 - [Device Development Guide](device-dev-guide.md)
 
-- - Getting Started
+- Getting Started
   - Getting Started with Mini and Small Systems (IDE Mode, Recommended)
     - [Mini and Small System Overview](quick-start/quickstart-ide-lite-overview.md)
     - Environment Preparation
