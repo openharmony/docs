@@ -3,9 +3,9 @@
 
 ## Overview<a name="section1266787503161538"></a>
 
-The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
+The Display Serial Interface \(DSI\) is a specification developed by the Mobile Industry Processor Interface \(MIPI\) Alliance to reduce the cost of display controllers in mobile devices. In the Hardware Driver Foundation (HDF) framework, the MIPI DSI module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode, **DevHandle** \(a void pointer\) directly points to the kernel-mode address of the device object.
 
-**Figure  1**  Service-free mode<a name="fig207610236189"></a>  
+**Figure  1** Service-free mode<a name="fig207610236189"></a>  
 ![](figures/service-free-mode.png "service-free-mode")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -26,7 +26,7 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 };
 ```
 
-**Table  1**  Callbacks for the members in the MipiDsiCntlrMethod structure
+**Table  1** Callbacks for the members in the MipiDsiCntlrMethod structure
 
 <a name="table218771071713"></a>
 <table><thead align="left"><tr id="row1188121012177"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p118851010174"><a name="p118851010174"></a><a name="p118851010174"></a>Callback</p>
@@ -105,21 +105,18 @@ struct MipiDsiCntlrMethod {// Member functions of the core layer structure
 The MIPI DSI module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF framework.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **mipidsi\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **mipidsi\_config.hcs** file.
 
 3.  Instantiate the MIPI DSI controller object.
-    -   Initialize  **MipiDsiCntlr**.
-    -   Instantiate  **MipiDsiCntlrMethod**  in the  **MipiDsiCntlr**  object.
+    -   Initialize **MipiDsiCntlr**.
+    -   Instantiate **MipiDsiCntlrMethod** in the **MipiDsiCntlr** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE**
- 
-        >For details, see [Available APIs](#available-apis).
-
+        For details, see [Available APIs](#available-apis).
 
 4.  Debug the driver.
     -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
@@ -128,13 +125,13 @@ The MIPI DSI module adaptation involves the following steps:
 
 ## Development Example<a name="section1167576616161538"></a>
 
-The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **mipi\_tx\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Generally, you need to configure the device attributes in  **xx\_config.hcs**  and add the  **deviceNode**  information to the  **device\_info.hcs**  file. The device attribute values are closely related to the default values or value range of the  **MipiDsiCntlr**  members at the core layer. The  **deviceNode**  information is related to the driver entry registration.
+1.  Generally, you need to configure the device attributes in **xx\_config.hcs** and add the **deviceNode** information to the **device\_info.hcs** file. The device attribute values are closely related to the default values or value range of the **MipiDsiCntlr** members at the core layer. The **deviceNode** information is related to the driver entry registration.
 
-    In this example, no additional attribute needs to be configured for the MIPI DSI controller. If required, you need to add the  **deviceMatchAttr**  information to  **deviceNode**  in the  **device\_info**  file and add the  **mipidsi\_config**  file.
+    In this example, no additional attribute needs to be configured for the MIPI DSI controller. If required, you need to add the **deviceMatchAttr** information to **deviceNode** in the **device\_info** file and add the **mipidsi\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -157,9 +154,9 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         }
         ```
 
-2.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. The function pointer members of the  **HdfDriverEntry**  structure are filled by the vendors' operation functions. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+2.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. The function pointer members of the **HdfDriverEntry** structure are filled by the vendors' operation functions. In the HDF framework, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exits.
 
     -   MIPI DSI driver entry reference
 
@@ -173,10 +170,10 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         HDF_INIT(g_mipiTxDriverEntry);  // Call HDF_INIT to register the driver entry with the HDF framework.
         ```
 
-3.  Initialize the  **MipiDsiCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **MipiDsiCntlrMethod**  \(used to call underlying functions of the driver\) in  **MipiDsiCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **MipiDsiCntlr** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **MipiDsiCntlrMethod** \(used to call underlying functions of the driver\) in **MipiDsiCntlr**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **config**  file are used to initialize the structure members. In this example, the MIPI DSI has no device attribute file. Therefore, the basic member structure is similar to that of  **MipiDsiCntlr**.
+        To the driver, the custom structure carries parameters and data. The values in the **config** file are used to initialize the structure members. In this example, the MIPI DSI has no device attribute file. Therefore, the basic member structure is similar to that of **MipiDsiCntlr**.
 
         ```
         typedef struct {
@@ -202,7 +199,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         };
         ```
 
-    -   Instantiate the callback function structure  **MipiDsiCntlrMethod**  in  **MipiDsiCntlr**. Other members are initialized by using the Init  function.
+    -   Instantiate the callback function structure **MipiDsiCntlrMethod** in **MipiDsiCntlr**. Other members are initialized by using the Init  function.
 
         ```
         static struct MipiDsiCntlrMethod g_method = {
@@ -218,11 +215,11 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
         <a name="table344041707161538"></a>
         <table><thead align="left"><tr id="row1205250994161538"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1646623665161538p0"><a name="entry1646623665161538p0"></a><a name="entry1646623665161538p0"></a>Status (Value)</p>
@@ -266,16 +263,16 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
         Function description:
 
-        Connects to the  **MipiDsiCntlrMethod**  instance, calls  **MipiDsiRegisterCntlr**, and performs other vendor-defined initialization operations.
+        Connects to the **MipiDsiCntlrMethod** instance, calls **MipiDsiRegisterCntlr**, and performs other vendor-defined initialization operations.
 
         ```
         static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
         {
         int32_t ret;
         g_mipiTx.priv = NULL; // g_mipiTx is a global variable.
-                                //static struct MipiDsiCntlr g_mipiTx { 
+                                // static struct MipiDsiCntlr g_mipiTx { 
                                 //     .devNo=0
-                                //};
+                                // };
         g_mipiTx.ops = &g_method;// Connect to the MipiDsiCntlrMethod instance.
         ret = MipiDsiRegisterCntlr(&g_mipiTx, device);// (Mandatory) Call the function at the core layer and g_mipiTx to initialize global variables at the core layer.
         ...
@@ -308,7 +305,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -316,7 +313,7 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF framework fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
         ```
         static void Hi35xxMipiTxRelease(struct HdfDeviceObject *device)
@@ -332,6 +329,3 @@ The following uses  **mipi\_tx\_hi35xx.c**  as an example to present the content
         HDF_LOGI("%s: unload mipi_tx driver 1212!", __func__);
         } 
         ```
-
-
-
