@@ -70,7 +70,7 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:**<br>
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >All watchdog functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section10103184312813"></a>
