@@ -118,8 +118,8 @@ The MIPI DSI module adaptation involves the following steps:
 
         For details, see [Available APIs](#available-apis).
 
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
 
 
 
