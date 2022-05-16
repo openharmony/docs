@@ -180,8 +180,9 @@ The UART module adaptation involves the following steps:
 
         For details, see [Available APIs](#available-apis).
       
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
+4.  \(Optional\) Debug the driver.
+    
+    For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
 
 
 ## Development Example<a name="section774610224154520"></a>
