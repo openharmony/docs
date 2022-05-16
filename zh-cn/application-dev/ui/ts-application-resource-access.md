@@ -13,13 +13,13 @@
 - 二级目录为资源目录
   - 用于存放字符串、颜色、浮点数等基础元素，以及媒体等资源文件。
   - 当前支持的文件和资源类型如下：
-       | 文件名 | 资源类型 |
-     | -------- | -------- |
-     | color.json | 颜色资源。 |
-     | float.json | 间距、圆角、字体等资源。 |
-     | string.json | 字符串资源。 |
-     | plural.json | 字符串资源。 |
-     | media目录 | 图片资源。 |
+       | 文件名         | 资源类型         |
+       | ----------- | ------------ |
+       | color.json  | 颜色资源。        |
+       | float.json  | 间距、圆角、字体等资源。 |
+       | string.json | 字符串资源。       |
+       | plural.json | 字符串资源。       |
+       | media目录     | 图片资源。        |
 
 
 ## 资源引用
@@ -168,4 +168,4 @@ Image($rawfile('newDir/newTest.png')) //rawfile$r引用rawfile目录下图片
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/ResourceManager)
+- [`ResourceManager`：资源管理器（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/ResourceManager)

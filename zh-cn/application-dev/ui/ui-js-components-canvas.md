@@ -144,4 +144,4 @@ export default {
 
 针对Canvas开发，有以下相关实例可供参考：
 
-- [`JsCanvas`：画布组件（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas)
+- [`JsCanvas`：画布组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas)

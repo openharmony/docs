@@ -6,7 +6,7 @@ Svg组件主要作为svg画布的根节点使用，也可以在svg中嵌套使�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 从API version 7开始支持。
-> 
+>
 > - svg父组件或者svg组件需要定义宽高值，否则不进行绘制。
 
 
@@ -76,7 +76,7 @@ svg{
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - x和y设置的的是当前Svg的x轴和y轴坐标，如果当前Svg为根节点，x轴和y轴属性无效。
-> 
+>
 > - viewBox的宽高和svg的宽高不一致，会以中心对齐进行缩放。
 
 
@@ -84,4 +84,4 @@ svg{
 
 针对Svg开发，有以下相关实例可供参考：
 
-- [`JsSvg`：可缩放矢量图形（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg)
+- [`JsSvg`：可缩放矢量图形（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg)

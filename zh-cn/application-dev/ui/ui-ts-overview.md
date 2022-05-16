@@ -63,13 +63,17 @@
 
 - [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Canvas)
 
-- [`Drag`：ArkUI-拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
+- [`Drag`：拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
 
-- [`ArkUIAnimation`：Ets动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
+- [`ArkUIAnimation`：动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
 
-- [`Xcomponent`：ArkUI-XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/XComponent)
+- [`Xcomponent`：XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/XComponent)
 
-- [`MouseEvent`：ArkUI-鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
+- [`MouseEvent`：鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
+
+- [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Gallery)
+
+- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/BringApp)
 
 - [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
