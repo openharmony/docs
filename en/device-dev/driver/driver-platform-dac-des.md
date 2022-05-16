@@ -42,7 +42,8 @@ The DAC module is divided into the following layers:
 - The core layer provides the capabilities of binding, initializing, and releasing devices.
 - The adaptation layer implements other functions.
 
-![](../public_sys-resources/icon-note.gif)NOTE<br/>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
+>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
 
 **Figure 1** Unified service mode
 
@@ -88,10 +89,10 @@ DevHandle DacOpen(uint32_t number);
 
 **Table 2** Description of DacOpen
 
-| **Parameter**      | Description         |
+| **Parameter**     | Description         |
 | ---------- | ----------------- |
 | number     | DAC device number.        |
-| **Return Value**| **Description**   |
+| **Return Value**| **Description**  |
 | NULL       | Failed to open the DAC device.  |
 | Device handle  | Handle of the DAC device opened.|
 
@@ -119,7 +120,7 @@ int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);
 **Table 3** Description of DacWrite
 
 
-| **Parameter**      | Description      |
+| **Parameter**     | Description      |
 | ---------- | -------------- |
 | handle     | DAC device handle.   |
 | channel    | DAC channel number. |
@@ -148,7 +149,7 @@ void DacClose(DevHandle handle);
 **Table 4** Description of DacClose
 
 
-| **Parameter**      | Description      |
+| **Parameter**     | Description      |
 | ---------- | -------------- |
 | handle     | DAC device handle.   |
 | **Return Value**| **Description**|
