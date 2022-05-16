@@ -129,8 +129,8 @@ The Watchdog module adaptation involves the following steps:
 
         For details, see [Available APIs](#available-apis).
 
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
 
 
 ## Development Example<a name="section1832270347160117"></a>
