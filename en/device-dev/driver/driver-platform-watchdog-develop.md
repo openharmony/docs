@@ -126,6 +126,7 @@ The Watchdog module adaptation involves the following steps:
 3.  Instantiate the Watchdog controller object.
     -   Initialize **WatchdogCntlr**.
     -   Instantiate **WatchdogMethod** in the **WatchdogCntlr** object.
+
         For details, see [Available APIs](#available-apis).
 
 4.  Debug the driver.
