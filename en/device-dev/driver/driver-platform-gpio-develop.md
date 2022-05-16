@@ -163,7 +163,7 @@ The GPIO module adaptation involves the following steps:
     -   Initialize **GpioCntlr**.
     -   Instantiate **GpioMethod** in the **GpioCntlr** object.
 
-        For details, see [Available APIs](#section752964871810) 	
+        For details, see [Available APIs](#section752964871810).
 	
 4.  \(Optional\) Debug the driver.
     For new drivers, verify the basic functions, such as the GPIO control status and response to interrupts.
