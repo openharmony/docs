@@ -18,6 +18,7 @@ A UART is connected to other modules through two wires \(as shown in  [Figure 1]
 
 
 The transmitting and receiving UARTs must ensure that they have the same settings on particular attributes such as the baud rate and data format \(start bit, data bit, parity bit, and stop bit\) before they start to communicate. During data transmission, a UART sends data to the peer end over the TX pin and receives data from the peer end over the RX pin. When the size of the buffer used by a UART for storing received data reaches the preset threshold, the RTS signal of the UART changes to **1** \(data cannot be received\), and the peer UART stops sending data to it because its CTS signal does not allow it to send data.
+
 The UART interface defines a set of common functions for operating a UART port, including obtaining and releasing device handles, reading and writing data of a specified length, and obtaining and setting the baud rate, as well as the device attributes.
 
 ## Available APIs<a name="section1928742202715"></a>
