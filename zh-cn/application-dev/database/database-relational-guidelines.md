@@ -309,4 +309,5 @@
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
 - [`Rdb`：关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
+- [`DistributedRdb`：分布式关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
 - [关系型数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
