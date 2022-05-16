@@ -152,7 +152,7 @@ export default {
 ![en-us_image_0000001223287720](figures/en-us_image_0000001223287720.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - This component supports only one child component.
 > 
 > - Attributes and styles of a **&lt;dialog&gt;** component cannot be dynamically updated.

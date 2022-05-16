@@ -242,3 +242,9 @@ export default {
 
 
 ![en-us_image_0000001276003501](figures/en-us_image_0000001276003501.gif)
+
+## Samples
+
+The following sample is provided to help you better understand how to develop the **\<grid>** component:
+
+[`JsGrid`: grid (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGrid)

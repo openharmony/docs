@@ -32,7 +32,7 @@ canvas{
 
 ![en-us_image_0000001232162316](figures/en-us_image_0000001232162316.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The default background color of the **&lt;canvas&gt;** component is the same as that of the parent component.
 > 
 > - The default width and height of **&lt;canvas&gt;** are 300 px and 150 px, respectively.
@@ -61,8 +61,8 @@ Set **width**, **height**, **background-color**, and **border** of the **&lt;can
 }
 canvas{
   width: 500px;
-  height: 500px;
-  background-color: #fdfdfd;
+  height: 500px;  
+  background-color: #fdfdfd;  
   border: 5px solid red;
 }
 ```
@@ -86,9 +86,29 @@ Add the long press event to the **&lt;canvas&gt;** component. When the event is 
 
 
 ```
-/* xxx.css */.container{  flex-direction: column;  justify-content: center;  align-items: center;  background-color: #F1F3F5;}canvas{  width: 500px;  height: 500px;  background-color: #fdfdfd;  border: 5px solid red;
-  margin-bottom: 50px;
-}.content{  border: 5px solid blue;  padding: 10px;  width: 90%;  height: 400px;  overflow: scroll;}
+/* xxx.css */
+.container{
+  width:100%;
+  height:100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F1F3F5;
+  }
+  canvas{  
+    width: 500px;  
+    height: 500px;
+    background-color: #fdfdfd;
+    border: 5px solid red;
+    margin-bottom: 50px;
+}
+.content{
+  border: 5px solid blue;
+  padding: 10px;
+  width: 90%;
+  height: 400px; 
+  overflow: scroll;
+}
 ```
 
 
@@ -103,19 +123,26 @@ export default {
   },
   onShow(){
     let el = this.$refs.canvas1;
-    let ctx = el.getContext("2d");
+    let ctx = el.getContext("2d"); 
     ctx.strokeRect(100,100,300,300);
   },
   getUrl(){
-    let el = this.$refs.canvas1;
-    let dataUrl = el.toDataURL();
+    let el = this.$refs.canvas1
+    let dataUrl = el.toDataURL()
     this.dataURL = dataUrl;
-    prompt.showToast({duration:2000,message:"long press,get dataURL"});
+    prompt.showToast({duration:2000,message:"long press,get dataURL"})
   }
 }
 ```
 
 ![en-us_image_0000001276003513](figures/en-us_image_0000001276003513.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The **&lt;canvas&gt;** component cannot be created in **onInit** or **onReady**.
+
+## Samples
+
+The following sample is provided to help you better understand how to develop the **\<canvas>** component:
+
+[`JsCanvas`: \<canvas> (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas)
+

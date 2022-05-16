@@ -24,7 +24,7 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
         <text>content2</text>
       </div>
     </tab-content>
-</tabs>
+  </tabs>
 </div>
 ```
 
@@ -56,7 +56,7 @@ By default, the active tab of a **&lt;tabs&gt;** component is the one with the s
 ```
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
-  <tabs index="1" vertical="true">
+  <tabs index="1"  vertical="true">
     <tab-bar >
       <text>item1</text>
       <text style="margin-top: 50px;">item2</text>
@@ -149,7 +149,7 @@ Set the **mode** attribute to enable the child components of the **&lt;tab-bar&g
   margin-top: 10px;
   height: 300px;
   color: blue;   
-  justify-content: center;
+  justify-content: center;  
   align-items: center;
 }
 ```
@@ -165,7 +165,7 @@ Add the **change** event for the **&lt;tabs&gt;** component to display the index
 ```
 <!-- index.hml -->
 <div class="container" style="background-color:#F1F3F5;">
-  <tabs class="tabs"onchange="tabChange">
+  <tabs class="tabs" onchange="tabChange">
     <tab-bar class="tabBar">
       <text class="tabBarItem">item1</text>
       <text class="tabBarItem">item2</text>
@@ -324,6 +324,6 @@ export default {
 
 ## Samples
 
- The following sample is provided to help you better understand how to develop the **&lt;tabs&gt;** component:
+The following sample is provided to help you better understand how to develop the **&lt;tabs&gt;** component:
 
 [`Tabs`: Tabs (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)

@@ -217,9 +217,8 @@ export default {
 
 ![en-us_image_0000001275803181](figures/en-us_image_0000001275803181.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>The **&lt;chart&gt;** component does not display the value of each point.
 >
-> The **&lt;chart&gt;** component does not display the value of each point.
 
 
 ## Setting the Chart Attributes
@@ -305,7 +304,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The **options** attribute supports the settings of bar charts and line charts but does not support those of gauge charts.
 > 
 > - The **datasets** attribute supports the datasets for bar charts and line charts but does not support those of gauge charts.
@@ -400,12 +399,7 @@ export default {
       }
     },
   },
- addData() {
-    this.$refs.linechart.append({
-      serial: 0,
-        data: [Math.floor(Math.random() * 400) + 200]
-    })
-  }
+  addData() {    this.$refs.linechart.append({      serial: 0,        data: [Math.floor(Math.random() * 400) + 200]    })  }
 }
 ```
 
@@ -624,6 +618,6 @@ export default {
 ![en-us_image_0000001232162328](figures/en-us_image_0000001232162328.gif)
 ## Samples
 
- The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
+The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
 
 [`Chart`: chart (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
