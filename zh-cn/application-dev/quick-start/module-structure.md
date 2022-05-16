@@ -447,7 +447,7 @@ skills示例
 | description | 该标签标识extensionAbility的描述，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | icon        | 该标签标识extensionAbility图标，标签值为资源文件的索引。如果extensionAbility被配置为MainElement，该标签必须配置。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | label       | 该标签标识extensionAbility对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果extensionAbility被配置为MainElement，该标签必须配置，且应用内唯一。 | 字符串     | 该标签不可缺省。              |
-| type        | 该标签标识extensionAbility的类型，取值为form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、staticSubscriber、wallpaper、backup其中之一。 | 字符串     | 该标签不可缺省。              |
+| type        | 该标签标识extensionAbility的类型，取值为form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、staticSubscriber、wallpaper、backup、window其中之一。 | 字符串     | 该标签不可缺省。              |
 | permissions | 该标签标识被其它应用的ability调用时需要申请的权限的集合，字符串数组类型，每个数组元素为一个权限名称，通常采用反向域名方式表示（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。    |
 | uri         | 该标签标识ability提供的数据uri，为字符数组类型（最大长度255），用反向域名的格式表示。该标签在type为dataShare类型的extensionAbility时，不可缺省。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | skills      | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则 : entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。    |
