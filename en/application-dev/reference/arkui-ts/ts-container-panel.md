@@ -59,7 +59,7 @@ Panel(value:{show:boolean})
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the dragbar height plus the height of the content area. |
+| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
 
 
 ## Example
@@ -87,8 +87,8 @@ struct PanelExample {
         }
       }
       .type(PanelType.Foldable).mode(PanelMode.Half)
-      .dragBar(true) // The dragbar is enabled by default.
-      .halfHeight(500) // Half of the height by default
+      .dragBar(true) // The drag bar is enabled by default.
+      .halfHeight(500) // The default value is half of the screen height.
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })
