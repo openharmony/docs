@@ -183,7 +183,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
   ```js
@@ -234,7 +234,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
   ```js
