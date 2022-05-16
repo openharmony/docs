@@ -30,7 +30,7 @@ The **utils** repository provides common enhanced APIs for development in C and 
 
 **utils subsystem**
 
-utils
+[utils](https://gitee.com/openharmony/utils)
 
 [utils\_native](https://gitee.com/openharmony/utils_native)
 
