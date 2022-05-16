@@ -6,7 +6,7 @@
 
 The Inter-Integrated Circuit \(I2C\) bus is a simple and bidirectional two-wire synchronous serial bus developed by Philips. In the Hardware Driver Foundation (HDF) framework, the I2C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I2C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I2C module has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
-**Figure  1**  Unified service mode<a name="fig17640124912440"></a>  
+**Figure  1** Unified service mode<a name="fig17640124912440"></a>  
 ![](figures/unified-service-mode.png "unified-service-mode-8")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -23,7 +23,7 @@ struct I2cLockMethod {// Lock mechanism operation structure
 };
 ```
 
-**Table  1**  Callbacks for the members in the I2cMethod structure
+**Table  1** Callbacks for the members in the I2cMethod structure
 
 <a name="table10549174014611"></a>
 <table><thead align="left"><tr id="row17550114013460"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p155014403467"><a name="p155014403467"></a><a name="p155014403467"></a>Callback</p>
@@ -57,41 +57,39 @@ struct I2cLockMethod {// Lock mechanism operation structure
 The I2C module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF framework.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **i2c\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **i2c\_config.hcs** file.
 
 3.  Instantiate the I2C controller object.
-    -   Initialize  **I2cCntlr**.
-    -   Instantiate  **I2cMethod**  and  **I2cLockMethod**  in  **I2cCntlr**.
+    -   Initialize **I2cCntlr**.
+    -   Instantiate **I2cMethod** and **I2cLockMethod** in **I2cCntlr**.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis). 
+       
+4.  \(Optional\) Debug the driver.
 
-        >For details, see [Available APIs](#available-apis).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
+    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether data is successfully transmitted.
 
 
 
 
 ## Development Example<a name="section1773332551114257"></a>
 
-The following uses  **i2c\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **i2c\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF framework, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   I2C driver entry reference
 
         Many devices may be connected to the I2C module. Therefore, in the HDF framework, a manager object is created for the I2C, and a manager service is launched to handle external access requests in a unified manner. When a user wants to open a device, the user obtains the manager service first. Then, the manager service locates the target device based on the parameters specified by the user.
 
-        The driver of the I2C manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the  **Init**  function, the  **I2cCntlrAdd**  function of the core layer must be called to implement the corresponding features.
+        The driver of the I2C manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the **Init** function, the **I2cCntlrAdd** function of the core layer must be called to implement the corresponding features.
 
         ```
         struct HdfDriverEntry g_i2cDriverEntry = {
@@ -113,11 +111,11 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
         HDF_INIT(g_i2cManagerEntry);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **i2c\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the  **I2cCntlr**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **i2c\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the **I2cCntlr** members at the core layer.
 
-    In the unified service mode, the first device node in the  **device\_info**  file must be the I2C manager.  [Table 2](#table96651915911)  lists settings of its parameters.
+    In the unified service mode, the first device node in the **device\_info** file must be the I2C manager.  [Table 2](#table96651915911)  lists settings of its parameters.
 
-    **Table  2**  Settings of the I2C manager
+   **Table  2** Settings of the I2C manager
 
     <a name="table96651915911"></a>
     <table><thead align="left"><tr id="row96618194915"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1066119790"><a name="p1066119790"></a><a name="p1066119790"></a>Member</p>
@@ -149,9 +147,9 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
     </tbody>
     </table>
 
-    Configure I2C controller information from the second node. This node specifies a type of I2C controllers rather than an I2C controller. The  **busID**  and  **reg\_pbase**  parameters distinguish controllers, which can be seen in the  **i2c\_config**  file.
+    Configure I2C controller information from the second node. This node specifies a type of I2C controllers rather than an I2C controller. The **busID** and **reg\_pbase** parameters distinguish controllers, which can be seen in the **i2c\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -180,7 +178,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-    -   **i2c\_config.hcs**  configuration reference
+    -  **i2c\_config.hcs** configuration reference
 
         ```
         root {
@@ -208,10 +206,10 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-3.  Initialize the  **I2cCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **I2cMethod**  \(used to call underlying functions of the driver\) in  **I2cCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **I2cCntlr** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **I2cMethod** \(used to call underlying functions of the driver\) in **I2cCntlr**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **i2c\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the  **I2cCntlr**  object at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **i2c\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the **I2cCntlr** object at the core layer.
 
         ```
         // Vendor custom function structure
@@ -238,7 +236,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
         };
         ```
 
-    -   Instantiate the member callback function structure  **I2cMethod**  in  **I2cCntlr**  and the lock callback function structure  **I2cLockMethod**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the member callback function structure **I2cMethod** in **I2cCntlr** and the lock callback function structure **I2cLockMethod**. Other members are initialized by using the **Init** function.
 
         ```
         // Example in i2c_hi35xx.c
@@ -256,13 +254,13 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-        **Table  3**  Input parameters and return values of the Init function
+       **Table  3** Input parameters and return values of the Init function
 
         <a name="table1743073181511"></a>
         <table><thead align="left"><tr id="row443033171513"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p34306341517"><a name="p34306341517"></a><a name="p34306341517"></a>Status (Value)</p>
@@ -306,7 +304,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Initializes the custom structure object and  **I2cCntlr**, calls the  **I2cCntlrAdd**  function at the core layer, and connects to the VFS \(optional\).
+        Initializes the custom structure object and **I2cCntlr**, calls the **I2cCntlrAdd** function at the core layer, and connects to the VFS \(optional\).
 
         ```
         static int32_t Hi35xxI2cInit(struct HdfDeviceObject *device)
@@ -358,7 +356,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -366,7 +364,7 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF framework fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
 
         ```
         static void Hi35xxI2cRelease(struct HdfDeviceObject *device)
@@ -395,6 +393,3 @@ The following uses  **i2c\_hi35xx.c**  as an example to present the contents tha
             return;
         }
         ```
-
-
-
