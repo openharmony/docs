@@ -3,7 +3,7 @@
 
 ## 驱动模型介绍
 
-HDF框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个host里面，开发者也可以将驱动功能分层独立开发和部署，支持一个驱动多个node，HDF驱动模型如下图所示：
+HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个host里面，开发者也可以将驱动功能分层独立开发和部署，支持一个驱动多个node。HDF驱动模型如下图所示：
 
   **图1** HDF驱动模型
 
@@ -12,7 +12,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 
 ## 驱动开发步骤
 
-基于HDF框架进行驱动的开发主要分为两个部分，驱动实现和驱动配置，详细开发流程如下所示：
+基于HDF框架进行驱动的开发主要分为两个部分，驱动实现和驱动配置。详细开发流程如下所示：
 
 1. 驱动实现
 
@@ -22,11 +22,11 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
         
       ```
       #include "hdf_device_desc.h"  // HDF框架对驱动开发相关能力接口的头文件
-      #include "hdf_log.h"          // HDF 框架提供的日志接口头文件
+      #include "hdf_log.h"          // HDF框架提供的日志接口头文件
       
       #define HDF_LOG_TAG "sample_driver"   // 打印日志所包含的标签，如果不定义则用默认定义的HDF_TAG标签
       
-      //驱动对外提供的服务能力，将相关的服务接口绑定到HDF框架
+      // 驱动对外提供的服务能力，将相关的服务接口绑定到HDF框架
       int32_t HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver bind success");
@@ -59,7 +59,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
           .Release = HdfSampleDriverRelease,
       };
       
-      // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
+      // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
       HDF_INIT(g_sampleDriverEntry);
       ```
 
@@ -79,7 +79,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
          LOCAL_INCLUDE :=  #本驱动的头文件目录
          LOCAL_SRCS :=     #本驱动的源代码文件
          LOCAL_CFLAGS ：=  #自定义的编译选项
-         include $(HDF_DRIVER) #导入模板makefile完成编译
+         include $(HDF_DRIVER) #导入Makefile模板完成编译
          ```
 
         编译结果文件链接到内核镜像，添加到drivers/adapter/khdf/liteos目录下的hdf_lite.mk里面，示例如下：
@@ -213,7 +213,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 
    - 驱动私有配置信息（可选）
 
-     如果驱动有私有配置，则可以添加一个驱动的配置文件，用来填写一些驱动的默认配置信息，HDF框架在加载驱动的时候，会将对应的配置信息获取并保存在HdfDeviceObject 中的property里面，通过Bind和Init（参考步骤1）传递给驱动，驱动的配置信息示例如下：
+     如果驱动有私有配置，则可以添加一个驱动的配置文件，用来填写一些驱动的默认配置信息，HDF框架在加载驱动的时候，会将对应的配置信息获取并保存在HdfDeviceObject中的property里面，通过Bind和Init（参考步骤1）传递给驱动，驱动的配置信息示例如下：
 
         
       ```
@@ -221,7 +221,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
           SampleDriverConfig {
               sample_version = 1;
               sample_bus = "I2C_0";
-              match_attr = "sample_config";   //该字段的值必须和device_info.hcs中的deviceMatchAttr值一致
+              match_attr = "sample_config";   // 该字段的值必须和device_info.hcs中的deviceMatchAttr值一致
           }
       }
       ```
@@ -235,7 +235,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
       ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 驱动加载方式支持按需加载和按序加载两种方式，具体使用方法如下：
 > 
 > - 按需加载
@@ -249,7 +249,7 @@ HDF框架以组件化的驱动模型作为核心设计思路，为开发者提�
 >   } DevicePreload;
 >   ```
 > 
->   配置文件中preload 字段配成 0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载；配成1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同；配成2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](../driver/driver-hdf-message-management.md)）时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
+>   配置文件中preload字段配成0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载；配成1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同；配成2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](../driver/driver-hdf-message-management.md)）时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
 > 
 > - 按序加载（需要驱动为默认加载）
->   配置文件中的priority（取值范围为整数0到200）是用来表示host和驱动的优先级，不同的host内的驱动，host的priority值越小，驱动加载优先级越高；同一个host内驱动的priority值越小，加载优先级越高。
+>   配置文件中的priority（取值范围为整数0到200）是用来表示host和驱动的优先级。不同的host内的驱动，host的priority值越小，驱动加载优先级越高；同一个host内驱动的priority值越小，加载优先级越高。

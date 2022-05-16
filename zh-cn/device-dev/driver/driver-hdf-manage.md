@@ -42,7 +42,7 @@ HCS配置语法保留了以下关键字。
 
 ### 基本结构
 
-HCS主要分为属性(Attribute)和节点(Node)两种结构。
+HCS主要分为属性（Attribute）和节点（Node）两种结构。
 
 **属性**
 
@@ -53,7 +53,7 @@ HCS主要分为属性(Attribute)和节点(Node)两种结构。
   attribute_name = value;
 ```
 
-- attribute_name 是**字母、数字、下划线**的组合且必须以字母或下划线开头，字母区分大小写。
+- attribute_name是**字母、数字、下划线**的组合且必须以字母或下划线开头，字母区分大小写。
 
 - value的可用格式如下：
 
@@ -61,7 +61,7 @@ HCS主要分为属性(Attribute)和节点(Node)两种结构。
   - 字符串，内容使用双引号("")引用。
   - 节点引用。
 
-- attribute 必须以分号(;)结束且必须属于一个node。
+- attribute必须以分号（;）结束且必须属于一个node。
 
 **节点**
 
@@ -75,7 +75,7 @@ HCS主要分为属性(Attribute)和节点(Node)两种结构。
   }
 ```
 
-- node_name  是**字母、数字、下划线**的组合且必须以字母或下划线开头，字母区分大小写。
+- node_name是**字母、数字、下划线**的组合且必须以字母或下划线开头，字母区分大小写。
 
 - 大括号后无需添加结束符“;”。
 
@@ -103,11 +103,11 @@ HCS主要分为属性(Attribute)和节点(Node)两种结构。
 
 **字符串**
 
-字符串使用双引号("")表示。
+字符串使用双引号（""）表示。
 
 **数组**
 
-数组元素支持整型、字符串，不支持混合类型。整型数组中uint32_t uint64_t混用会向上转型为uint64_t 数组。整型数组与字符串数组示例如下：
+数组元素支持整型、字符串，不支持混合类型。整型数组中uint32_t uint64_t混用会向上转型为uint64_t数组。整型数组与字符串数组示例如下：
 
   
 ```
@@ -132,7 +132,7 @@ bool类型中**true**表示真，**false**表示假。
 #include "../bar.hcs"
 ```
 
-- 文件名必须使用双引号("")，不在同一目录使用相对路径引用。被include文件也必须是合法的HCS文件。
+- 文件名必须使用双引号（""），不在同一目录使用相对路径引用。被include文件也必须是合法的HCS文件。
 
 - 多个include，如果存在相同的节点，后者覆盖前者，其余的节点依次展开。
 
@@ -157,7 +157,7 @@ bool类型中**true**表示真，**false**表示假。
   */
   ```
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
   > 多行注释不支持嵌套。
 
 
@@ -295,7 +295,7 @@ root {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 在同一个HCS文件中不允许使用delete，建议直接删除不需要的属性。
 
 
@@ -403,14 +403,14 @@ options:
   -h          show this help message
 ```
 
-生成.c/.h 配置文件方法：
+生成.c/.h配置文件方法：
 
   
 ```
 hc-gen -o [OutputCFileName] -t [SourceHcsFileName]
 ```
 
-生成HCB 配置文件方法：
+生成HCB配置文件方法：
 
   
 ```
