@@ -6,7 +6,7 @@ The real-time clock \(RTC\) driver provides precise real time for the operating 
 
 ## Available APIs<a name="section20331159102519"></a>
 
-**Table  1**  APIs provided by the RTC driver
+**Table  1** APIs provided by the RTC driver
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="21.902190219021904%" id="mcps1.2.4.1.1"><p id="p641050105320"><a name="p641050105320"></a><a name="p641050105320"></a><strong id="b17744818255"><a name="b17744818255"></a><a name="b17744818255"></a>Capability</strong></p>
@@ -95,7 +95,7 @@ The real-time clock \(RTC\) driver provides precise real time for the operating 
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >All functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section20636145604113"></a>
@@ -106,19 +106,19 @@ During the OS startup, the HDF loads the RTC driver based on the configuration f
 
 [Figure 1](#fig1610020107333)  illustrates the process of using an RTC device.
 
-**Figure  1**  Process of using an RTC device<a name="fig1610020107333"></a>  
+**Figure  1** Process of using an RTC device<a name="fig1610020107333"></a>  
 ![](figures/process-of-using-an-rtc-device.png "process-of-using-an-rtc-device")
 
 ### Creating an RTC Device Handle<a name="section1131212144310"></a>
 
 After the RTC driver is loaded, you can use the API provided by the HDF and call APIs of the RTC driver.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >Currently, only one RTC device is supported in the OS.
 
 DevHandle RtcOpen\(void\);
 
-**Table  2**  Description of RtcOpen
+**Table  2** Description of RtcOpen
 
 <a name="table1380712985611"></a>
 <table><tbody><tr id="row580722985616"><td class="cellrowborder" valign="top" width="21.45%"><p id="p1280722911565"><a name="p1280722911565"></a><a name="p1280722911565"></a><strong id="b748651620573"><a name="b748651620573"></a><a name="b748651620573"></a>Parameter</strong></p>
@@ -165,7 +165,7 @@ You can call the following function to release the RTC device handle, thereby re
 
 void RtcClose\(DevHandle handle\);
 
-**Table  3**  Description of RtcClose
+**Table  3** Description of RtcClose
 
 <a name="table37525421510"></a>
 <table><tbody><tr id="row10752134216114"><td class="cellrowborder" valign="top" width="21.45%"><p id="p1075217421019"><a name="p1075217421019"></a><a name="p1075217421019"></a><strong id="b229461765710"><a name="b229461765710"></a><a name="b229461765710"></a>Parameter</strong></p>
@@ -188,11 +188,11 @@ RtcClose(handle);
 
 ### Registering RtcAlarmCallback<a name="section14839440184320"></a>
 
-After the OS is started, call the following function to register  **RtcAlarmCallback**, which will be invoked when an alarm is generated at the specified time:
+After the OS is started, call the following function to register **RtcAlarmCallback**, which will be invoked when an alarm is generated at the specified time:
 
 int32\_t RtcRegisterAlarmCallback\(DevHandle handle, enum RtcAlarmIndex alarmIndex, RtcAlarmCallback cb\);
 
-**Table  4**  Description of RtcRegisterAlarmCallback
+**Table  4** Description of RtcRegisterAlarmCallback
 
 <a name="table7603619123820"></a>
 <table><thead align="left"><tr id="row1060351914386"><th class="cellrowborder" valign="top" width="21.36%" id="mcps1.2.3.1.1"><p id="p14603181917382"><a name="p14603181917382"></a><a name="p14603181917382"></a><strong id="b4295161718571"><a name="b4295161718571"></a><a name="b4295161718571"></a>Parameter</strong></p>
@@ -234,7 +234,7 @@ int32\_t RtcRegisterAlarmCallback\(DevHandle handle, enum RtcAlarmIndex alarmInd
 </tbody>
 </table>
 
-The following is an example of registering  **RtcAlarmCallback**  for processing alarm  **RTC\_ALARM\_INDEX\_A**:
+The following is an example of registering **RtcAlarmCallback** for processing alarm **RTC\_ALARM\_INDEX\_A**:
 
 ```
 /* Register an RTC alarm callback. */
@@ -265,7 +265,7 @@ Call the following function to read time information from the RTC driver, includ
 
 int32\_t RtcReadTime\(DevHandle handle, struct RtcTime \*time\);
 
-**Table  5**  Description of RtcReadTime
+**Table  5** Description of RtcReadTime
 
 <a name="table1018490043"></a>
 <table><tbody><tr id="row31848013417"><td class="cellrowborder" valign="top" width="21.45%"><p id="p1415816132411"><a name="p1415816132411"></a><a name="p1415816132411"></a><strong id="b10296717125710"><a name="b10296717125710"></a><a name="b10296717125710"></a>Parameter</strong></p>
@@ -318,7 +318,7 @@ Call the following function to set the RTC time:
 
 int32\_t RtcWriteTime\(DevHandle handle, struct RtcTime \*time\);
 
-**Table  6**  Description of RtcWriteTime
+**Table  6** Description of RtcWriteTime
 
 <a name="table223910318361"></a>
 <table><tbody><tr id="row924033173613"><td class="cellrowborder" valign="top" width="21.54%"><p id="p16240143143611"><a name="p16240143143611"></a><a name="p16240143143611"></a><strong id="b17297111720576"><a name="b17297111720576"></a><a name="b17297111720576"></a>Parameter</strong></p>
@@ -354,8 +354,8 @@ int32\_t RtcWriteTime\(DevHandle handle, struct RtcTime \*time\);
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). The maximum value of  **year**  must be set based on the requirements specified in the product manual of the in-use component. You do not need to configure the day of the week.
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
+>The RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). The maximum value of **year** must be set based on the requirements specified in the product manual of the in-use component. You do not need to configure the day of the week.
 
 ```
 int32_t ret;
@@ -382,7 +382,7 @@ Call the following function to read the alarm time:
 
 int32\_t RtcReadAlarm\(DevHandle handle, enum RtcAlarmIndex alarmIndex, struct RtcTime \*time\);
 
-**Table  7**  Description of RtcReadAlarm
+**Table  7** Description of RtcReadAlarm
 
 <a name="table11342203111420"></a>
 <table><tbody><tr id="row133429310140"><td class="cellrowborder" valign="top" width="21.54%"><p id="p9886411201416"><a name="p9886411201416"></a><a name="p9886411201416"></a><strong id="b152971517185720"><a name="b152971517185720"></a><a name="b152971517185720"></a>Parameter</strong></p>
@@ -440,7 +440,7 @@ Call the following function to set the RTC alarm time based on the alarm index:
 
 int32\_t RtcWriteAlarm\(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct RtcTime \*time\);
 
-**Table  8**  Description of RtcWriteAlarm
+**Table  8** Description of RtcWriteAlarm
 
 <a name="table107922162179"></a>
 <table><tbody><tr id="row14793316131710"><td class="cellrowborder" valign="top" width="21.62%"><p id="p1891718412183"><a name="p1891718412183"></a><a name="p1891718412183"></a><strong id="b029811725716"><a name="b029811725716"></a><a name="b029811725716"></a>Parameter</strong></p>
@@ -481,8 +481,8 @@ int32\_t RtcWriteAlarm\(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->The RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). The maximum value of  **year**  must be set based on the requirements specified in the product manual of the in-use component. You do not need to configure the day of the week.
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
+>The RTC start time is 1970/01/01 Thursday 00:00:00 \(UTC\). The maximum value of **year** must be set based on the requirements specified in the product manual of the in-use component. You do not need to configure the day of the week.
 
 ```
 int32_t ret;
@@ -505,11 +505,11 @@ if (ret != 0) {
 
 -   Enabling or disabling alarm interrupts
 
-Before performing alarm operations, use the following function to enable alarm interrupts, so that  **RtcAlarmCallback**  will be called when the alarm is not generated upon a timeout:
+Before performing alarm operations, use the following function to enable alarm interrupts, so that **RtcAlarmCallback** will be called when the alarm is not generated upon a timeout:
 
 int32\_t RtcAlarmInterruptEnable\(DevHandle handle, enum RtcAlarmIndex alarmIndex, uint8\_t enable\);
 
-**Table  9**  Description of RtcAlarmInterruptEnable
+**Table  9** Description of RtcAlarmInterruptEnable
 
 <a name="table1934615314159"></a>
 <table><tbody><tr id="row5346853171519"><td class="cellrowborder" valign="top" width="21.36%"><p id="p143464533153"><a name="p143464533153"></a><a name="p143464533153"></a><strong id="b829913171576"><a name="b829913171576"></a><a name="b829913171576"></a>Parameter</strong></p>
@@ -566,7 +566,7 @@ Call the following function to read the frequency of the external crystal oscill
 
 int32\_t RtcGetFreq\(DevHandle handle, uint32\_t \*freq\);
 
-**Table  10**  Description of RtcGetFreq
+**Table  10** Description of RtcGetFreq
 
 <a name="table125881625185"></a>
 <table><tbody><tr id="row1458811241816"><td class="cellrowborder" valign="top" width="21.36%"><p id="p658820241813"><a name="p658820241813"></a><a name="p658820241813"></a><strong id="b3300217175712"><a name="b3300217175712"></a><a name="b3300217175712"></a>Parameter</strong></p>
@@ -619,7 +619,7 @@ Call the following function to set the frequency of the external crystal oscilla
 
 int32\_t RtcSetFreq\(DevHandle handle, uint32\_t freq\);
 
-**Table  11**  Description of RtcSetFreq
+**Table  11** Description of RtcSetFreq
 
 <a name="table1170124316209"></a>
 <table><tbody><tr id="row270119432202"><td class="cellrowborder" valign="top" width="21.36%"><p id="p127011343132010"><a name="p127011343132010"></a><a name="p127011343132010"></a><strong id="b130031711578"><a name="b130031711578"></a><a name="b130031711578"></a>Parameter</strong></p>
@@ -672,7 +672,7 @@ Call the following function to perform a reset on the RTC driver \(after the res
 
 int32\_t RtcReset\(DevHandle handle\);
 
-**Table  12**  Description of RtcReset
+**Table  12** Description of RtcReset
 
 <a name="table398973152517"></a>
 <table><tbody><tr id="row179899311254"><td class="cellrowborder" valign="top" width="21.36%"><p id="p199899314257"><a name="p199899314257"></a><a name="p199899314257"></a><strong id="b1330101719577"><a name="b1330101719577"></a><a name="b1330101719577"></a>Parameter</strong></p>
@@ -719,7 +719,7 @@ Call the following function to read the configuration of a custom RTC register b
 
 int32\_t RtcReadReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t \*value\);
 
-**Table  13**  Description of RtcReadReg
+**Table  13** Description of RtcReadReg
 
 <a name="table1624674153319"></a>
 <table><tbody><tr id="row92469423320"><td class="cellrowborder" valign="top" width="21.62%"><p id="p102461548331"><a name="p102461548331"></a><a name="p102461548331"></a><strong id="b73024170576"><a name="b73024170576"></a><a name="b73024170576"></a>Parameter</strong></p>
@@ -778,7 +778,7 @@ Call the following function to configure a register based on the specified regis
 
 int32\_t RtcWriteReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t value\);
 
-**Table  14**  Description of RtcWriteReg
+**Table  14** Description of RtcWriteReg
 
 <a name="table1072216482360"></a>
 <table><tbody><tr id="row187221648133611"><td class="cellrowborder" valign="top" width="21.62%"><p id="p2722184823617"><a name="p2722184823617"></a><a name="p2722184823617"></a><strong id="b530321795712"><a name="b530321795712"></a><a name="b530321795712"></a>Parameter</strong></p>
@@ -838,7 +838,7 @@ This section describes the process of using RTC APIs:
 1.  During the OS startup, the HDF identifies the RTC component in the system.
 2.  The HDF initializes and creates the RTC device.
 3.  You can perform operations on the RTC device by calling different APIs.
-4.  Call the  **RtcClose**  function to release the device handle and device resources.
+4.  Call the **RtcClose** function to release the device handle and device resources.
 
 Example:
 
@@ -927,4 +927,3 @@ void RtcTestSample(void)
     RtcClose(handle);
 }
 ```
-
