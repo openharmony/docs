@@ -6,7 +6,7 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 
 ## Available APIs<a name="section1180575010271"></a>
 
-**Table  1**  Watchdog APIs
+**Table  1** Watchdog APIs
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="26.619999999999997%" id="mcps1.2.4.1.1"><p id="p641050105320"><a name="p641050105320"></a><a name="p641050105320"></a>Capability</p>
@@ -70,7 +70,7 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE:**<br>
 >All watchdog functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section10103184312813"></a>
@@ -79,16 +79,16 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 
 [Figure 1](#fig430533913392)  illustrates the process of using a watchdog.
 
-**Figure  1**  Process of using a watchdog<a name="fig430533913392"></a>  
+**Figure  1** Process of using a watchdog<a name="fig430533913392"></a>  
 ![](figures/process-of-using-a-watchdog.png "process-of-using-a-watchdog")
 
 ### Opening a Watchdog<a name="section66089201107"></a>
 
-Use  **WatchdogOpen**  to open a watchdog. A system may have multiple watchdogs. You can open the specified watchdog by using the ID.
+Use **WatchdogOpen** to open a watchdog. A system may have multiple watchdogs. You can open the specified watchdog by using the ID.
 
 int32\_t WatchdogOpen\(int16\_t wdtId\); 
 
-**Table  2**  Description of WatchdogOpen
+**Table  2** Description of WatchdogOpen
 
 <a name="table1413702552814"></a>
 <table><thead align="left"><tr id="row131371325142819"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p191372254283"><a name="p191372254283"></a><a name="p191372254283"></a><strong id="b9239182472212"><a name="b9239182472212"></a><a name="b9239182472212"></a>Parameter</strong></p>
@@ -133,7 +133,7 @@ if (handle == NULL) {
 
 int32\_t WatchdogGetStatus\(DevHandle handle, int32\_t \*status\); 
 
-**Table  3**  Description of WatchdogGetStatus
+**Table  3** Description of WatchdogGetStatus
 
 <a name="table1018490043"></a>
 <table><thead align="left"><tr id="row31848013417"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p1415816132411"><a name="p1415816132411"></a><a name="p1415816132411"></a><strong id="b8395121072312"><a name="b8395121072312"></a><a name="b8395121072312"></a>Parameter</strong></p>
@@ -185,7 +185,7 @@ if (ret != 0) {
 
 int32\_t WatchdogSetTimeout\(PalHandle \*handle, uint32\_t seconds\); 
 
-**Table  4**  Description of WatchdogSetTimeout
+**Table  4** Description of WatchdogSetTimeout
 
 <a name="table9159112182210"></a>
 <table><thead align="left"><tr id="row1216012212212"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p1416017262215"><a name="p1416017262215"></a><a name="p1416017262215"></a><strong id="b16573184672318"><a name="b16573184672318"></a><a name="b16573184672318"></a>Parameter</strong></p>
@@ -237,7 +237,7 @@ if (ret != 0) {
 
 int32\_t WatchdogGetTimeout\(PalHandle \*handle, uint32\_t \*seconds\); 
 
-**Table  5**  Description of WatchdogGetTimeout
+**Table  5** Description of WatchdogGetTimeout
 
 <a name="table10147164819233"></a>
 <table><thead align="left"><tr id="row14147848142313"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p4147124892316"><a name="p4147124892316"></a><a name="p4147124892316"></a><strong id="b1387481413247"><a name="b1387481413247"></a><a name="b1387481413247"></a>Parameter</strong></p>
@@ -289,7 +289,7 @@ if (ret != 0) {
 
 int32\_t WatchdogStart\(DevHandle handle\); 
 
-**Table  6**  Description of WatchdogStart
+**Table  6** Description of WatchdogStart
 
 <a name="table529165182515"></a>
 <table><thead align="left"><tr id="row92915122513"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p5292582517"><a name="p5292582517"></a><a name="p5292582517"></a><strong id="b99151951162417"><a name="b99151951162417"></a><a name="b99151951162417"></a>Parameter</strong></p>
@@ -335,7 +335,7 @@ if (ret != 0) {
 
 int32\_t WatchdogFeed\(DevHandle handle\);
 
-**Table  7**  Description of WatchdogFeed
+**Table  7** Description of WatchdogFeed
 
 <a name="table091163515394"></a>
 <table><thead align="left"><tr id="row891133515393"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p1911143513918"><a name="p1911143513918"></a><a name="p1911143513918"></a><strong id="b16850010142518"><a name="b16850010142518"></a><a name="b16850010142518"></a>Parameter</strong></p>
@@ -381,7 +381,7 @@ if (ret != 0) {
 
 int32\_t WatchdogStop\(DevHandle handle\); 
 
-**Table  8**  Description of WatchdogStop
+**Table  8** Description of WatchdogStop
 
 <a name="table1286810515254"></a>
 <table><thead align="left"><tr id="row28687517259"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p6868185120254"><a name="p6868185120254"></a><a name="p6868185120254"></a><strong id="b204221347152519"><a name="b204221347152519"></a><a name="b204221347152519"></a>Parameter</strong></p>
@@ -425,11 +425,11 @@ if (ret != 0) {
 
 ### Closing a Watchdog<a name="section96561824121311"></a>
 
-If the watchdog is no longer required, call  **WatchdogClose**  to close the watchdog handle.
+If the watchdog is no longer required, call **WatchdogClose** to close the watchdog handle.
 
 void WatchdogClose\(DevHandle handle\);
 
-**Table  9**  Description of WatchdogClose
+**Table  9** Description of WatchdogClose
 
 <a name="table1017315185320"></a>
 <table><thead align="left"><tr id="row417314182327"><th class="cellrowborder" valign="top" width="44.99%" id="mcps1.2.3.1.1"><p id="p117310184320"><a name="p117310184320"></a><a name="p117310184320"></a><strong id="b97421847122514"><a name="b97421847122514"></a><a name="b97421847122514"></a>Parameter</strong></p>
@@ -536,4 +536,3 @@ static int32_t TestCaseWatchdog(void)
     return -1;
 }
 ```
-
