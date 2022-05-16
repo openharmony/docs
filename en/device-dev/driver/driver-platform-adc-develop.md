@@ -87,9 +87,7 @@ The ADC module adaptation involves the following steps:
     -   Initialize **AdcDevice**.
     -   Instantiate **AdcMethod** in the **AdcDevice** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
-        >For details, see [Available APIs](#available-apis).
-
+        For details, see [Available APIs](#available-apis).
 
 4.  \(Optional\) Debug the driver.
     For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
