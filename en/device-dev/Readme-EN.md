@@ -38,7 +38,7 @@
   - [Startup](subsystems/subsys-boot.md)
   - [DFX](subsystems/subsys-dfx.md)
 - Featured Topics
-  - [HPM Bundle](hpm-part/Readme-EN.md) 	 	
+  - [HPM Part](hpm-part/Readme-EN.md) 	 	
 - Device Development Examples	 
   - [Mini- and Small-System Devices](guide/device-lite.md)	
   - [Standard-System Devices](guide/device-standard.md)
