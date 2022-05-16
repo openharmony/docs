@@ -36,7 +36,8 @@ The DAC module is divided into the following layers:
 - The core layer provides the capabilities of binding, initializing, and releasing devices.
 - The adaptation layer implements other functions.
 
-![](../public_sys-resources/icon-note.gif)NOTE<br/>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
+![](../public_sys-resources/icon-note.gif)NOTE<br>
+>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
 
 **Figure 1** Unified service mode<a name="fig14423182615525"></a>
 
@@ -129,7 +130,7 @@ The DAC module adaptation procedure is as follows:
 
      Configure DAC controller information from the second node. This node specifies a type of DAC controllers rather than a specific DAC controller. In this example, there is only one DAC device. If there are multiple DAC devices, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **dac_config** file.
 
-        **device_info.hcs** configuration reference
+       **device_info.hcs** configuration reference
 
         ```
         root {
@@ -283,15 +284,15 @@ The DAC module adaptation procedure is as follows:
         };
         ```
         
-        ![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
-         For details about **DacMethod**, see [Available APIs](#available-apis).
+        ![](../public_sys-resources/icon-note.gif)NOTE<br>
+        >For details about **DacMethod**, see [Available APIs](#available-apis).
     
     
     - **Init** function
     
         Input parameters:
     
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
     
         Return value:
     
@@ -388,11 +389,11 @@ The DAC module adaptation procedure is as follows:
       }
       ```
     
-    -   **Release** function
+    -  **Release** function
         
           Input parameters:
         
-          **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
         
           Return value
         
@@ -466,5 +467,3 @@ The DAC module adaptation procedure is as follows:
 4. Debug the driver.
 
    (Optional) Verify the basic functions of the new driver, for example, whether the test cases are successful after the driver is loaded.
-
-   
