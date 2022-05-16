@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import socket from '@ohos.net.socket';
 ```
 
@@ -28,7 +28,7 @@ Creates a **UDPSocket** object.
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 ```
 
@@ -56,7 +56,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -93,7 +93,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
 promise .then(() => {
@@ -123,7 +123,7 @@ Sends data over a UDPSocket connection. This API uses an asynchronous callback t
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.send({
   data:'Hello, server!',
@@ -166,7 +166,7 @@ Sends data over a UDPSocket connection. This API uses a promise to return the re
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.send({
   data:'Hello, server!',
@@ -202,7 +202,7 @@ Closes a UDPSocket connection. This API uses an asynchronous callback to return 
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.close(err => {
   if (err) {
@@ -232,7 +232,7 @@ Closes a UDPSocket connection. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.close();
 promise.then(() => {
@@ -264,7 +264,7 @@ Obtains the status of the UDPSocket connection. This API uses an asynchronous ca
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -304,7 +304,7 @@ Obtains the status of the UDPSocket connection. This API uses a promise to retur
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -345,7 +345,7 @@ Sets other properties of the UDPSocket connection. This API uses an asynchronous
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
   if (err) {
@@ -397,7 +397,7 @@ Sets other properties of the UDPSocket connection. This API uses a promise to re
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1});
 promise.then(() => {
@@ -437,7 +437,7 @@ Enables listening for message receiving events of the UDPSocket connection. This
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('message', value => {
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -465,7 +465,7 @@ Disables listening for message receiving events of the UDPSocket connection. Thi
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -494,7 +494,7 @@ Enables listening for data packet message events or close events of the UDPSocke
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
 	console.log("on listening success");
@@ -525,7 +525,7 @@ Disables listening for data packet message events or close events of the UDPSock
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback1 = () =>{
 	console.log("on listening, success");
@@ -562,7 +562,7 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
@@ -590,7 +590,7 @@ Disables listening for error events of the UDPSocket connection. This API uses a
 
 **Example**
 
-```
+```js
 let udp = socket.constructUDPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
@@ -680,7 +680,7 @@ Creates a **TCPSocket** object.
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 ```
 
@@ -709,7 +709,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
   if (err) {
@@ -745,7 +745,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
@@ -775,7 +775,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000}, err => {
   if (err) {
@@ -811,7 +811,7 @@ Sets up a connection to the specified IP address and port number. This API uses 
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -844,7 +844,7 @@ Sends data over a TCPSocket connection. This API uses an asynchronous callback t
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -891,7 +891,7 @@ Sends data over a TCPSocket connection. This API uses a promise to return the re
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise1.then(() => {
@@ -929,7 +929,7 @@ Closes a TCPSocket connection. This API uses an asynchronous callback to return 
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.close(err => {
   if (err) {
@@ -959,7 +959,7 @@ Closes a TCPSocket connection. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.close();
 promise.then(() => {
@@ -991,7 +991,7 @@ Obtains the remote address of a TCPSocket connection. This API uses an asynchron
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1030,7 +1030,7 @@ Obtains the remote address of a TCPSocket connection. This API uses a promise to
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise1.then(() => {
@@ -1069,7 +1069,7 @@ Obtains the status of the TCPSocket connection. This API uses an asynchronous ca
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1109,7 +1109,7 @@ Obtains the status of the TCPSocket connection. This API uses a promise to retur
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1148,7 +1148,7 @@ Sets other properties of the TCPSocket connection. This API uses an asynchronous
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1203,7 +1203,7 @@ Sets other properties of the TCPSocket connection. This API uses a promise to re
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , timeout: 6000});
 promise.then(() => {
@@ -1246,7 +1246,7 @@ Enables listening for message receiving events of the TCPSocket connection. This
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('message', value => {
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
@@ -1274,7 +1274,7 @@ Disables listening for message receiving events of the TCPSocket connection. Thi
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
@@ -1304,7 +1304,7 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
 	console.log("on connect success")
@@ -1335,7 +1335,7 @@ Disables listening for connection or close events of the TCPSocket connection. T
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback1 = () =>{
 	console.log("on connect success");
@@ -1371,7 +1371,7 @@ Enables listening for error events of the TCPSocket connection. This API uses an
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('error', err => {
 	console.log("on error, err:" + JSON.stringify(err))
@@ -1399,7 +1399,7 @@ Disables listening for error events of the TCPSocket connection. This API uses a
 
 **Example**
 
-```
+```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));

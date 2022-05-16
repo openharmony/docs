@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import contact from '@ohos.contact';
 ```
 
@@ -29,7 +29,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```
+  ```js
   contact.addContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -65,7 +65,7 @@ Adds a contact. This API uses a promise to return the result.
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -96,7 +96,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
 **Example**
 
-  ```
+  ```js
   contact.deleteContact('xxx', (err) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -129,7 +129,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -157,7 +157,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 **Example**
 
-  ```
+  ```js
   contact.updateContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -190,7 +190,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 **Example**
 
-  ```
+  ```js
   contact.updateContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -229,7 +229,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.updateContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -262,7 +262,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 **Example**
 
-  ```
+  ```js
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -295,7 +295,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -323,7 +323,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
 **Example**
 
-  ```
+  ```js
   contact.isMyCard(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -356,7 +356,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -383,7 +383,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```
+  ```js
   contact.queryMyCard((err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -412,7 +412,7 @@ Queries my card based on the specified contact attributes. This API uses an asyn
 
 **Example**
 
-  ```
+  ```js
   contact.queryMyCard({
       attributes:['ATTR_EMAIL', 'ATTR_NAME']
   }, (err, data) => {
@@ -447,7 +447,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryMyCard({
       attributes:['ATTR_EMAIL', 'ATTR_NAME']
   });
@@ -478,7 +478,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Example**
 
-  ```
+  ```js
   contact.selectContact((err, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -508,7 +508,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -536,7 +536,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Example**
 
-  ```
+  ```js
   contact.queryContact('xxx', (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -566,7 +566,7 @@ Queries contacts based on the specified key and application. This API uses an as
 
 **Example**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       holderId: 0
   }, (err, data) => {
@@ -598,7 +598,7 @@ Queries contacts based on the specified key and attributes. This API uses an asy
 
 **Example**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -631,7 +631,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 
 **Example**
 
-  ```
+  ```js
   contact.queryContact('xxx', {
       holderId: 0
   }, {
@@ -670,7 +670,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryContact('xxx', {
       holderId: 0
   }, {
@@ -701,7 +701,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-  ```
+  ```js
   contact.queryContacts((err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -730,7 +730,7 @@ Queries all contacts based on the specified application. This API uses an asynch
 
 **Example**
 
-  ```
+  ```js
   contact.queryContacts({
       holderId: 0
   }, (err, data) => {
@@ -761,7 +761,7 @@ Queries all contacts based on the specified attributes. This API uses an asynchr
 
 **Example**
 
-  ```
+  ```js
   contact.queryContacts({
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -793,7 +793,7 @@ Queries all contacts based on the specified application and attributes. This API
 
 **Example**
 
-  ```
+  ```js
   contact.queryContacts({
       holderId: 0
   }, {
@@ -831,7 +831,7 @@ Queries all contacts based on the specified application and attributes. This API
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryContacts({
       holderId: 0
   }, {
@@ -863,7 +863,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -893,7 +893,7 @@ Queries contacts based on the specified phone number and application. This API u
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, (err, data) => {
@@ -925,7 +925,7 @@ Queries contacts based on the specified phone number and attributes. This API us
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -958,7 +958,7 @@ Queries contacts based on the specified phone number, application, and attribute
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, {
@@ -997,7 +997,7 @@ Queries contacts based on the specified phone number, application, and attribute
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0
   }, {
@@ -1029,7 +1029,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1059,7 +1059,7 @@ Queries contacts based on the specified email address and application. This API 
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, (err, data) => {
@@ -1091,7 +1091,7 @@ Queries contacts based on the specified email address and attributes. This API u
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: ["ATTR_EMAIL", "ATTR_NAME"]
   }, (err, data) => {
@@ -1124,7 +1124,7 @@ Queries contacts based on the specified email address, application, and attribut
 
 **Example**
 
-  ```
+  ```js
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, {
@@ -1163,7 +1163,7 @@ Queries contacts based on the specified email address, application, and attribut
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0
   }, {
@@ -1194,7 +1194,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 **Example**
 
-  ```
+  ```js
   contact.queryGroups((err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -1223,7 +1223,7 @@ Queries all groups of this contact based on the specified application. This API 
 
 **Example**
 
-  ```
+  ```js
   contact.queryGroups({
       holderId: 0
   }, (err, data) => {
@@ -1258,7 +1258,7 @@ Queries all groups of this contact based on the specified application. This API 
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryGroups({
       holderId: 0
   });
@@ -1287,7 +1287,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 **Example**
 
-  ```
+  ```js
   contact.queryHolders((err, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -1315,7 +1315,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -1343,7 +1343,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 **Example**
 
-  ```
+  ```js
   contact.queryKey(/*id*/1, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -1373,7 +1373,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 
 **Example**
 
-  ```
+  ```js
   contact.queryKey(id, {
       holderId:1
   }, (err, data) => {
@@ -1409,7 +1409,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 
 **Example**
 
-  ```
+  ```js
   let promise = contact.queryKey(id, {
       holderId: 0
   });
@@ -1462,7 +1462,7 @@ Defines a contact.
 Create contact data in JSON format:
 
 
-```
+```js
 let myContact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
@@ -1480,7 +1480,7 @@ let myContact = {
 
   Or, create data by configuring a new Contact object.
 
-```
+```js
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -1508,7 +1508,7 @@ If **null** is passed, all attributes are queried by default.
 Create contact data in JSON format:
 
 
-```
+```js
 let contactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
@@ -1521,7 +1521,7 @@ let contactAttributes = {
 Or, create data by configuring a **ContactAttributes** object.
 
 
-```
+```js
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = ["ATTR_EMAIL"];
 ```
@@ -1555,7 +1555,7 @@ Enumerates contact attributes.
 
 Create contact data in JSON format:
 
-```
+```js
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -1591,7 +1591,7 @@ Defines a contact's email.
 
   Create contact data in JSON format:
 
-```
+```js
 let email = {
     email: "xxx@email.com",
     displayName: "displayName"
@@ -1601,7 +1601,7 @@ let email = {
 
   Or, create data by configuring an **Email** object.
 
-```
+```js
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -1624,7 +1624,7 @@ Defines an application that creates the contact.
 
   Create contact data in JSON format:
 
-```
+```js
 let holder = {
   holderId: 0
 };
@@ -1632,7 +1632,7 @@ let holder = {
 
   Or, create data by configuring a **Holder** object.
 
-```
+```js
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -1668,7 +1668,7 @@ Defines a contact's event.
 
   Create contact data in JSON format:
 
-```
+```js
 let event = {
     eventDate: "xxxxxx"
 };
@@ -1676,7 +1676,7 @@ let event = {
 
   Or, create data by configuring an **Event** object.
 
-```
+```js
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -1698,7 +1698,7 @@ Defines a contact group.
 
   Create contact data in JSON format:
 
-```
+```js
 let group = {
     groupId: 1,
     title: "title"
@@ -1707,7 +1707,7 @@ let group = {
 
   Or, create data by configuring a **Group** object.
 
-```
+```js
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -1747,7 +1747,7 @@ Enumerates IM addresses.
 
   Create contact data in JSON format:
 
-```
+```js
 let imAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
@@ -1757,7 +1757,7 @@ let imAddress = {
 
   Or, create data by configuring an **ImAddress** object.
 
-```
+```js
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -1786,7 +1786,7 @@ Defines a contact's name.
 
   Create contact data in JSON format:
 
-```
+```js
 let name = {
     familyName: "familyName",
     fullName: "fullName"
@@ -1795,7 +1795,7 @@ let name = {
 
   Or, create data by configuring a **Name** object.
 
-```
+```js
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -1817,7 +1817,7 @@ Defines a contact's nickname.
 
   Create contact data in JSON format:
 
-```
+```js
 let nickName = {
     nickName: "nickName"
 };
@@ -1825,7 +1825,7 @@ let nickName = {
 
   Or, create data by configuring a **NickName** object.
 
-```
+```js
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -1846,7 +1846,7 @@ Defines a contact's note.
 
   Create contact data in JSON format:
 
-```
+```js
 let note = {
     noteContent: "noteContent"
 };
@@ -1854,7 +1854,7 @@ let note = {
 
   Or, create data by configuring a **Note** object.
 
-```
+```js
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -1876,7 +1876,7 @@ Defines a contact's organization.
 
   Create contact data in JSON format:
 
-```
+```js
 let organization = {
     name: "name",
     title: "title"
@@ -1885,7 +1885,7 @@ let organization = {
 
   Or, create data by configuring an **Organization** object.
 
-```
+```js
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -1939,7 +1939,7 @@ Defines a contact's phone number.
 
   Create contact data in JSON format:
 
-```
+```js
 let phoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
@@ -1948,7 +1948,7 @@ let phoneNumber = {
 
   Or, create data by configuring a new **PhoneNumber** object.
 
-```
+```js
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -1969,7 +1969,7 @@ Defines a contact's portrait.
 
   Create contact data in JSON format:
 
-```
+```js
 let portrait = {
     uri: "uri"
 };
@@ -1977,7 +1977,7 @@ let portrait = {
 
   Or, create data by configuring a new **Portrait** object.
 
-```
+```js
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -2020,7 +2020,7 @@ Defines a contact's postal address.
 
   Create contact data in JSON format:
 
-```
+```js
 let postalAddress = {
     city: "city"
 };
@@ -2028,7 +2028,7 @@ let postalAddress = {
 
   Or, create data by configuring a new **PostalAddress** object.
 
-```
+```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
 ```
@@ -2075,7 +2075,7 @@ Defines a contact's relationship.
 
   Create contact data in JSON format:
 
-```
+```js
 let relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
@@ -2084,7 +2084,7 @@ let relation = {
 
   Or, create data by configuring a new **Relation** object.
 
-```
+```js
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -2121,7 +2121,7 @@ Defines a contact's SIP address.
 
   Create contact data in JSON format:
 
-```
+```js
 var sipAddress = {
     sipAddress: "sipAddress"
 };
@@ -2129,7 +2129,7 @@ var sipAddress = {
 
   Or, create data by configuring a new **SipAddress** object.
 
-```
+```js
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -2150,7 +2150,7 @@ Defines a contact's website.
 
   Create contact data in JSON format:
 
-```
+```js
 let website = {
     website: "website"
 };
@@ -2158,7 +2158,7 @@ let website = {
 
   Or, create data by configuring a new **Website** object.
 
-```
+```js
 let website = new contact.Website();
 website.website = "website";
 ```
