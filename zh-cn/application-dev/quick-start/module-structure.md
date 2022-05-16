@@ -317,8 +317,9 @@ abilities描述ability的配置信息，标签值为数组类型。
 | continuable     | 该标签标识ability是否可以迁移，为布尔类型，true表示可以被迁移， false表示不可以被迁移。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
 | skills          | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则 : entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | backgroundModes | 该标签标识ability长时任务集合。指定用于满足特定类型的长时任务。<br />长时任务类型有如下 :<br/>dataTransfer :通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>audioPlayback :音频输出业务。<br/>audioRecording :音频输入业务。<br/>location :定位、导航业务。<br/>bluetoothInteraction :蓝牙扫描、连接、传输业务（穿戴）。<br/>multiDeviceConnection :多设备互联业务。<br/>wifiInteraction :Wifi扫描、连接、传输业务（克隆 多屏）。<br/>voip :音视频电话，VOIP业务。<br/>taskKeeping :计算业务。 <br/> | 字符串     | 可缺省，缺省为空。                                           |
-| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。取值示例：$media:icon。 | 字符串       | 不可缺省。                                     |
-| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。取值示例：$color:red。 | 字符串       | 不可缺省。                                     |
+| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。取值示例：$media:icon。 | 字符串       | 不可缺省。|
+| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。取值示例：$color:red。 | 字符串       | 不可缺省。|
+| removeMissionAfterTerminate    | 该标签标识ability销毁后是否从任务列表中移除任务。为布尔类型，true表示销毁后移除任务， false表示销毁后不移除任务。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 abilities示例
 
@@ -352,7 +353,8 @@ abilities示例
             "taskKeeping"
         ],
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:red"
+        "startWindowBackground": "$color:red",
+        "removeMissionAfterTerminate": true
     }],
 }
 ```
