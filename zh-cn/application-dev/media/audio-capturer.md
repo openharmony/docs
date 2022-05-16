@@ -10,6 +10,10 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
 
 详细API含义可参考：[音频管理API文档AudioCapturer](../reference/apis/js-apis-audio.md)
 
+**图1** 音频采集状态机
+
+![](figures/audio-capturer-state.png)
+
 ## 开发步骤
 
 1. 使用createAudioCapturer()创建一个AudioCapturer实例。
