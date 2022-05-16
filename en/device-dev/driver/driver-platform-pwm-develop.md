@@ -19,7 +19,7 @@ struct PwmMethod {
 };
 ```
 
-**Table  1**  Callbacks for the members in the PwmMethod structure
+**Table  1** Callbacks for the members in the PwmMethod structure
 
 <a name="table11173154124311"></a>
 <table><thead align="left"><tr id="row2173441164311"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p17174144144310"><a name="p17174144144310"></a><a name="p17174144144310"></a>Callback</p>
@@ -68,33 +68,30 @@ struct PwmMethod {
 The PWM module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **pwm\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **pwm\_config.hcs** file.
 
 3.  Instantiate the PWM controller object.
-    -   Initialize  **PwmDev**.
-    -   Instantiate  **PwmMethod**  in the  **PwmDev**  object.
+    -   Initialize **PwmDev**.
+    -   Instantiate **PwmMethod** in the **PwmDev** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis). 
 
-        >For details, see [Available APIs](#available-apis).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the PWM control status and response to interrupts.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify the basic functions, such as the PWM control status and response to interrupts.
 
 
 ## Development Example<a name="section1883877829164144"></a>
 
-The following uses  **pwm\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **pwm\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exits.
 
     -   PWM driver entry reference
 
@@ -110,8 +107,8 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
         HDF_INIT(g_hdfPwm);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **pwm\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **PwmDev**  members at the core layer. If there are multiple devices, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **pwm\_config**  file.
-    -   **device\_info.hcs**  configuration reference
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **pwm\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **PwmDev** members at the core layer. If there are multiple devices, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **pwm\_config** file.
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -143,7 +140,7 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-    -   **pwm\_config.hcs**  configuration reference
+    -  **pwm\_config.hcs** configuration reference
 
         ```
         root {
@@ -168,10 +165,10 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-3.  Initialize the  **PwmDev**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **PwmMethod**  \(used to call underlying functions of the driver\) in  **PwmDev**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **PwmDev** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **PwmMethod** \(used to call underlying functions of the driver\) in **PwmDev**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **pwm\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the device number, are also passed to the objects at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **pwm\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number, are also passed to the objects at the core layer.
 
         ```
         struct HiPwm {
@@ -208,7 +205,7 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
         };
         ```
 
-    -   Instantiate the callback function structure  **PwmMethod**  in  **PwmDev**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the callback function structure **PwmMethod** in **PwmDev**. Other members are initialized by using the **Init** function.
 
         ```
         // Example in pwm_hi35xx.c: fill the hook function
@@ -221,11 +218,11 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
         <a name="table1057438215164144"></a>
         <table><thead align="left"><tr id="row31521027164144"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1990732428164144p0"><a name="entry1990732428164144p0"></a><a name="entry1990732428164144p0"></a>Status (Value)</p>
@@ -269,7 +266,7 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Initializes the custom structure object and  **PwmDev**, and calls the  **PwmDeviceAdd**  function at the core layer.
+        Initializes the custom structure object and **PwmDev**, and calls the **PwmDeviceAdd** function at the core layer.
 
         ```
         // The bind function is empty. It can be combined with the init function or implement related operations based on the vendor's requirements.
@@ -320,7 +317,7 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -328,7 +325,7 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
 
         ```
         static void HdfPwmRelease(struct HdfDeviceObject *obj)
@@ -341,6 +338,3 @@ The following uses  **pwm\_hi35xx.c**  as an example to present the contents tha
             HiPwmRemove(hp); //Release HiPwm.
         }
         ```
-
-
-
