@@ -1,4 +1,4 @@
-# 应用事件开发指导
+# 应用事件打点开发指导
 
 ## 场景介绍
 
@@ -75,6 +75,6 @@
 
 ## 相关实例
 
-针对应用事件开发，有以下相关实例可供参考：
+针对应用事件打点开发，有以下相关实例可供参考：
 
-- [`JsDotTest`：测试打点（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
+- [`JsDotTest`：测试打点（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
