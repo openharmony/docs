@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject'
+import distributedObject from '@ohos.data.distributedDataObject';
 ```
 
 
@@ -25,11 +25,11 @@ Creates a distributed data object.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | source | object | Yes| Attribute of the distributed data object to create.|
-  
+
 **Return Value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DistributedObject](#distributedobject) | Distributed data object created.|
+| Type| Description|
+| -------- | -------- |
+| [DistributedObject](#distributedobject) | Distributed data object created.|
 
 **Example**
   ```js
@@ -83,7 +83,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
-  
+
 **Example**
 
   ```js
@@ -170,8 +170,6 @@ Subscribes to the status changes (online or offline) of this distributed data ob
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type to subscribe to. The value is "status", which indicates the status (online or offline) change events.|
   | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback used to return the online or offline status.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the network ID of the device.<br>**status** indicates the status, which can be online or offline.|
-
-
 
 **Example**
   ```js
