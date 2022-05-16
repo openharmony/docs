@@ -5,15 +5,15 @@
 
 ### HDMI
 
-- High-definition multimedia interface (HDMI) is an interface for transmitting audio and video data from a source device, such as a DVD player or set-top box (STB), to a sink device, such as a TV or display.
-- HDMI works in master/slave mode and usually has a source and a sink.
-- The HDMI APIs provide a set of common functions for HDMI transmission, including:
+High-definition multimedia interface (HDMI) is an interface for transmitting audio and video data from a source device, such as a DVD player or set-top box (STB), to a sink device, such as a TV or display.
+HDMI works in master/slave mode and usually has a source and a sink.
+The HDMI APIs provide a set of common functions for HDMI transmission, including:
 
-    - Opening and closing an HDMI controller
-    - Starting and stopping HDMI transmission
-    - Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
-    - Reading the raw Extended Display Identification Data (EDID) from a sink
-    - Registering and unregistering a callback for HDMI hot plug detect (HPD).
+- Opening and closing an HDMI controller
+- Starting and stopping HDMI transmission
+- Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
+- Reading the raw Extended Display Identification Data (EDID) from a sink
+- Registering and unregistering a callback for HDMI hot plug detect (HPD).
 
 ### Basic Concepts
 
@@ -88,7 +88,7 @@ DevHandle HdmiOpen(int16_t number);
 | Parameter      | Description            |
 | ---------- | -------------------- |
 | number     | HDMI controller ID.        |
-| **Return Value**| **Description**      |
+| **Return Value**| **Description**     |
 | NULL       | Failed to open the HDMI controller.  |
 | Controller handle| Handle of the opened HDMI controller.|
 
@@ -117,7 +117,7 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 | ---------- | ------------------ |
 | handle     | HDMI controller handle.    |
 | callback   | Pointer to the callback to be invoked to return the HPD result.|
-| **Return Value**| **Description**    |
+| **Return Value**| **Description**   |
 | 0          | The operation is successful.          |
 | Negative value      | The operation failed.          |
 
@@ -165,7 +165,7 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 | handle     | HDMI controller handle.        |
 | buffer     | Pointer to the data buffer.            |
 | len        | Data length.              |
-| **Return Value**| **Description**        |
+| **Return Value**| **Description**       |
 | Positive integer    | Raw EDID read.|
 | Negative number or 0   | Failed to read the EDID.              |
 
@@ -194,7 +194,7 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 | ------ | -------------- |
 | handle | HDMI controller handle.|
 | attr   | Pointer to the audio attributes.      |
-| **Return Value**| **Description**    |
+| **Return Value**| **Description**   |
 | 0      | The operation is successful.      |
 | Negative value  | The operation failed.      |
 
@@ -295,7 +295,7 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 | ---------- | ----------------- |
 | handle     | HDMI controller handle.   |
 | enable     | Whether to enable the AV mute feature.|
-| **Return Value**| **Description**   |
+| **Return Value**| **Description**  |
 | 0          | The operation is successful.         |
 | Negative value      | The operation failed.         |
 
