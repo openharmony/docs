@@ -154,18 +154,20 @@
 
   所谓required分区，就是系统启动引导过程的必要分区，必须在二级启动开始前进行挂载。比如system、vendor等必选镜像，挂载这些镜像前，需要先创建对应的块设备文件。这些块设备文件是通过内核上报UEVENT事件来创建的。init需要知道存储器的主设备目录，需要bootloader通过default_boot_device传递。
 
+  目前init支持两种方式获取required分区信息，一是通过保存在/proc/cmdline中的bootargs，init会首先尝试从cmdline读取required分区信息；二是通过读取ramdisk中的fstab.required文件，只有在前一种方式获取失败的情况下才会尝试通过这种方式获取。
+
     - 块设备的创建逻辑
 
       - 准备工作
 
-      1. init会读取fstab.required中的内容，获取必须挂载的块设备的PARTNAME，例如system和vendor.
+      1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
       2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
       3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
 
       - 触发事件
 
       1. 通过ueventd触发内核上报uevent事件
-      2. 匹配uevent事件中的partitionName与从fstab.required中读取的device信息。
+      2. 匹配uevent事件中的partitionName与required fstab中的device信息。
       3. 匹配成功后将会进一步处理，格式化设备节点路径，准备开始创建设备节点。
 
       - 创建节点
@@ -183,18 +185,32 @@
 
     - 实例
 
-      下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取fstab.required文件到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
+      下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
       ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 
           从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
-      1. 读取fstab文件，获得required设备信息
+      1. 获取required设备信息
           ```
-          const char *fstabFile = "/etc/fstab.required";
-          fstab = ReadFstabFromFile(fstabFile, false);
-          char **devices = GetRequiredDevices(*fstab, &requiredNum);
+          Fstab* LoadRequiredFstab(void)
+          {
+              Fstab *fstab = NULL;
+              fstab = LoadFstabFromCommandLine();
+              if (fstab == NULL) {
+                  INIT_LOGI("Cannot load fstab from command line, try read from fstab.required");
+                  const char *fstabFile = "/etc/fstab.required";
+                  if (access(fstabFile, F_OK) != 0) {
+                      fstabFile = "/system/etc/fstab.required";
+                  }
+                  INIT_ERROR_CHECK(access(fstabFile, F_OK) == 0, abort(), "Failed get fstab.required");
+                  fstab = ReadFstabFromFile(fstabFile, false);
+              }
+              return fstab;
+          }
           ```
+          以上代码分别展示了获取fstab信息的两种方式，首先调用LoadFstabFromCommandLine()，从cmdline中获取fstab信息，如果获取失败，则输出log，表示继续尝试从fstab.required文件中获取fstab信息。
+
           对于system分区来说，其读到devices中的关键信息如下所示：
           ```
           /dev/block/platform/fe310000.sdhci/by-name/system
