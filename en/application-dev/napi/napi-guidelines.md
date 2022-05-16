@@ -1,37 +1,37 @@
 # Using Native APIs in Application Projects
 
-OpenHarmony applications need to use JavaScript (JS) when calling native APIs. The napi interfaces provided by the **arkui_napi** repository are used to implement the interaction with JS. Currently, the **arkui_napi** repository supports some third-party **Node.js** interfaces. The names of the napi interfaces are the same as those in the third-party **Node.js**. For details about the interfaces supported, see `libnapi.ndk.json` in this repository.
+OpenHarmony applications use JavaScript (JS) when calling native APIs. The native APIs (NAPIs) provided by the **arkui_napi** repository are used to implement the interaction with JS. Currently, the **arkui_napi** repository supports some third-party **Node.js** interfaces. The names of the NAPIs are the same as those in the third-party **Node.js**. For details about the interfaces supported, see `libnapi.ndk.json` in this repository.
 
 ## How to Develop
 
-The IDE has a default project that uses native APIs. You can choose `File` > `New` > `Create Project` to create a `Native C++` project. The cpp directory is generated in the main directory. You can use the napi interfaces provided by the **arkui_napi** repository for development.
+The IDE has a default project that uses NAPIs. You can choose `File` > `New` > `Create Project` to create a `Native C++` project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **arkui_napi** repository for development.
 
-You can `import` the native .so that contains the JS processing logic. For example, `import hello from 'libhello.so'` to use the **libhello.so** capability. Then, the JS object created using the NAPI interface can be passed to the `hello` object of the application to call the native capability.
+You can `import` the native .so that contains the JS processing logic. For example, `import hello from 'libhello.so'` to use the **libhello.so** capability. Then, the JS object created using the NAPI can be passed to the `hello` object of the application to call the native capability.
 
 ## Development Guidelines
 
 ### Registration
 
 * Add **static** to the **nm_register_func** function to prevent symbol conflicts with other .so files.
-* The name of the module registration entry, that is, the function modified by **\_\_attribute\_\_((constructor))**, must be unique.
+* The name of the module registration entry, that is, the function decorated by **\_\_attribute\_\_((constructor))**, must be unique.
 ### .so Naming Rules
 
 Each module has a .so file. For example, if the module name is `hello`, name the .so file **libhello.so**. The `nm_modname` field in `napi_module` must be `hello`, which is the same as the module name. The sample code for importing the .so file is `import hello from 'libhello.so'`.
 
 ### JS Objects and Threads
 
-The Ark engine prevents napi interfaces from being called to operate JS objects in non-JS threads. Otherwise, the application will crash.
+The Ark engine prevents NAPIs from being called to operate JS objects in non-JS threads. Otherwise, the application will crash.
 
-* The napi interfaces can be used only in JS threads.
-* **env** is bound to a thread and cannot be used across threads. The JS object created by a native API can be used only in the thread, in which the object is created, that is, the JS object is bound to the **env** of the thread.
+* The NAPIs can be used only in JS threads.
+* **env** is bound to a thread and cannot be used across threads. The JS object created by a NAPI can be used only in the thread, in which the object is created, that is, the JS object is bound to the **env** of the thread.
 
 ### napi_create_async_work
 
 **napi_create_async_work** has two callbacks:
 
-* **execute**: processes service logic asynchronously. This callback is not executed by a JS thread, therefore, it cannot call any NAPI interface. The return value of **execute** is processed by the **complete** callback.
+* **execute**: processes service logic asynchronously. This callback is not executed by a JS thread; therefore, it cannot call any NAPI. The return value of **execute** is processed by the **complete** callback.
 
-* **complete**: calls the napi interface to encapsulate the return value of **execute** into a JS object and return it for processing. This callback is executed by a JS thread.
+* **complete**: calls the NAPI to encapsulate the return value of **execute** into a JS object and return it for processing. This callback is executed by a JS thread.
 
 ```c++
 napi_status napi_create_async_work(napi_env env,
@@ -45,7 +45,7 @@ napi_status napi_create_async_work(napi_env env,
 
 
 
-## Example 1 Encapsulating Synchronous and Asynchronous APIs for the Storage Module
+## Example 1: Encapsulating Synchronous and Asynchronous APIs for the Storage Module
 
 ### Overview
 
@@ -131,7 +131,7 @@ static napi_value JSStorageGetSync(napi_env env, napi_callback_info info)
     char value[128] = {0};
     size_t valueLen = 0;
 
-    // parse parameters
+    // Parse parameters.
     for (size_t i = 0; i < argc; i++) {
         napi_valuetype valueType;
         napi_typeof(env, argv[i], &valueType);
@@ -212,7 +212,7 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
 
     napi_create_async_work(
         env, nullptr, resource,
-        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the napi interface. Do not operate JS objects using the napi interface because the execution is asynchronous.
+        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the NAPI. Do not operate JS objects using theNAPI because the execution is asynchronous.
         [](napi_env env, void* data) {
             StorageAsyncContext* asyncContext = (StorageAsyncContext*)data;
             auto itr = gKeyValueStorage.find(asyncContext->key);
@@ -239,10 +239,10 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
             if (asyncContext->deferred) {
                 // If a promise is used, check the result of callback 1.
                 if (!asyncContext->status) {
-                    // Triggered when callback 1 is successful (status is 1), that is, invoke the callback passed in then in the promise.
+                    // Triggered when callback 1 is successful (status is 1), that is, to invoke the callback passed in then in the promise.
                     napi_resolve_deferred(env, asyncContext->deferred, result[1]);
                 } else {
-                    // Triggered when callback 1 fails (status is 0), that is, invoke the callback passed in catch in the promise.
+                    // Triggered when callback 1 fails (status is 0), that is, to invoke the callback passed in catch in the promise.
                     napi_reject_deferred(env, asyncContext->deferred, result[0]);
                 }
             } else {
@@ -287,11 +287,11 @@ export default {
 
 
 
-## Example 2 Binding Native and JS Objects for the NetServer Module
+## Example 2: Binding Native and JS Objects for the NetServer Module
 
 ### Overview
 
-This example shows how to implement the `on/off/once` method and bind C++ and JS objects using the **wrap** API. The NetServer module implements a network service.
+This example shows how to implement the `on/off/once` method and bind C++ and JS objects using the **wrap** API. The NetServer module implements the network service.
 
 ### API Declaration
 
@@ -486,11 +486,11 @@ export default {
 
 
 
-## Example 3 Calling Back a JS API in a Non-JS Thread
+## Example 3: Calling Back a JS API in a Non-JS Thread
 
 ### Overview
 
-This example describes how to invoke a JS callback in a non-JS thread. For example, a sensor listener is registered for a JS application. The sensor data is reported by an SA. When the SA invokes the client through Inter-Process Communication (IPC), the execution thread is an IPC thread, which is different from the JS thread of the application. In this case, the JS callback must be thrown to the JS thread to execute. Otherwise, the application will crash.
+This example describes how to invoke a JS callback in a non-JS thread. For example, a sensor listener is registered for a JS application. The sensor data is reported by an SA. When the SA invokes the client through Inter-Process Communication (IPC), the execution thread is an IPC thread, which is different from the JS thread of the SA. In this case, the JS callback must be thrown to the JS thread to execute. Otherwise, the application will crash.
 
 ### Implementation
 
@@ -513,7 +513,7 @@ static napi_value CallbackExport(napi_env env, napi_value exports)
     return exports;
 }
 
-// Define the callback
+// Define the callback.
 static napi_module callbackModule = {
     .nm_version = 1,
     .nm_flags = 0,
@@ -524,7 +524,7 @@ static napi_module callbackModule = {
     .reserved = { 0 },
 };
 
-// Register the callback
+// Register the callback.
 extern "C" __attribute__((constructor)) void CallbackTestRegister()
 {
     napi_module_register(&callbackModule);
@@ -574,7 +574,7 @@ void callbackTest(CallbackContext* context)
                 return;
             }
 
-            // Call napi interfaces.
+            // Call the NAPIs.
             napi_value callback = nullptr;
             napi_get_reference_value(context->env, context->callbackRef, &callback);
             napi_value retArg;

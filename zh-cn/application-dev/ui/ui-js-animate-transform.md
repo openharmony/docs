@@ -580,11 +580,11 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsAnimation`：动效示例应用（JS）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
+- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
 
-- [`JsAnimationStyle`：动画与自定义字体（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
+- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
 
-- [`Clock`：时钟（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
+- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
 
 - [动画样式（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 

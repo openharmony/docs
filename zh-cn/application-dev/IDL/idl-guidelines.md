@@ -180,45 +180,29 @@ private:
 #endif // OHOS_IDLTESTSERVICESTUB_H
 ```
 
-开发者需要继承.idl文件中定义的接口类并实现其中的方法，同时在服务侧初始化时需要将定义的服务注册至SAMGR中，在本示例中，我们继承了IdlTestServiceStub接口类并实现了其中的TestIntTransaction和TestStringTransaction方法。具体的示例代码如下：
+开发者需要继承.idl文件中定义的接口类并实现其中的方法，同时在服务侧初始化时需要将定义的服务注册至SAMGR中，在本示例中，TestService类继承了IdlTestServiceStub接口类并实现了其中的TestIntTransaction和TestStringTransaction方法。具体的示例代码如下：
 
 ```
+#ifndef OHOS_IPC_TEST_SERVICE_H
+#define OHOS_IPC_TEST_SERVICE_H
+
+#include "hilog/log.h"
+#include "log_tags.h"
 #include "idl_test_service_stub.h"
 
 namespace OHOS {
-int IdlTest ::OnRemoteRequest(
-    /* [in] */ uint32_t code,
-    /* [in] */ MessageParcel& data,
-    /* [out] */ MessageParcel& reply,
-    /* [in] */ MessageOption& option)
-{
-    if (data.ReadInterfaceToken() != GetDescriptor()) {
-        return ERR_TRANSACTION_FAILED;
-    }
-    switch (code) {
-        case COMMAND_TEST_INT_TRANSACTION: {
-            int _data = data.ReadInt32();
-            int result;
-            ErrCode ec = TestIntTransaction(_data, result);
-            reply.WriteInt32(ec);
-            if (SUCCEEDED(ec)) {
-                reply.WriteInt32(result);
-            }
-            return ERR_NONE;
-        }
-        case COMMAND_TEST_STRING_TRANSACTION: {
-            std::string _data = Str16ToStr8(data.ReadString16());
-            ErrCode ec = TestStringTransaction(_data);
-            reply.WriteInt32(ec);
-            return ERR_NONE;
-        }
-        default:
-            return IPCObjectStub::OnRemoteRequest(code, data, reply, option);
-    }
-
-    return ERR_TRANSACTION_FAILED;
-}
-}
+class TestService : public IdlTestServiceStub {
+public:
+    TestService();
+    ~TestService();
+    static int Instantiate();
+    ErrCode TestIntTransaction(int data, int &rep) override;
+    ErrCode TestStringTransaction(const std::string& data) override;
+private:
+    static constexpr HiviewDFX::HiLogLabel LABEL = { LOG_CORE, LOG_ID_IPC, "TestService" };
+};
+} // namespace OHOS
+#endif // OHOS_IPC_TEST_SERVICE_H
 ```
 
 注册服务的示例代码如下：
@@ -275,73 +259,6 @@ ErrCode TestService::TestStringTransaction(const std::string &data)
 } // namespace OHOS
 ```
 
-在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。服务端向客户端提供的Proxy接口的代码示例如下：
-
-```
-#include "idl_test_service_proxy.h"
-
-namespace OHOS {
-ErrCode IdlTestServiceProxy::TestIntTransaction(
-    /* [in] */ int _data,
-    /* [out] */ int& result)
-{
-    MessageParcel data;
-    MessageParcel reply;
-    MessageOption option(MessageOption::TF_SYNC);
-
-    if (!data.WriteInterfaceToken(GetDescriptor())) {
-        return ERR_INVALID_VALUE;
-    }
-
-    data.WriteInt32(_data);
-
-    if (Remote() == nullptr) {
-        return ERR_INVALID_VALUE;
-    }
-    int32_t st = Remote()->SendRequest(COMMAND_TEST_INT_TRANSACTION, data, reply, option);
-    if (st != ERR_NONE) {
-        return st;
-    }
-
-    ErrCode ec = reply.ReadInt32();
-    if (FAILED(ec)) {
-        return ec;
-    }
-
-    result = reply.ReadInt32();
-    return ERR_OK;
-}
-
-ErrCode IdlTestServiceProxy::TestStringTransaction(
-    /* [in] */ const std::string& _data)
-{
-    MessageParcel data;
-    MessageParcel reply;
-    MessageOption option(MessageOption::TF_SYNC);
-
-    if (!data.WriteInterfaceToken(GetDescriptor())) {
-        return ERR_INVALID_VALUE;
-    }
-
-    data.WriteString16(Str8ToStr16(_data));
-
-    if (Remote() == nullptr) {
-        return ERR_INVALID_VALUE;
-    }
-    int32_t st = Remote()->SendRequest(COMMAND_TEST_STRING_TRANSACTION, data, reply, option);
-    if (st != ERR_NONE) {
-        return st;
-    }
-
-    ErrCode ec = reply.ReadInt32();
-    if (FAILED(ec)) {
-        return ec;
-    }
-
-    return ERR_OK;
-}
-} 
-```
 
 #### 3.1.3 客户端调用IPC方法
 
@@ -523,7 +440,7 @@ export default {
 
 #### 3.2.3 客户端调用IPC方法
 
-客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。当客户端onAbilityConnectDone()回调中收到IRemoteObject，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下： 
+客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
 ```
 import IdlTestServiceProxy from './idl_test_service_proxy'

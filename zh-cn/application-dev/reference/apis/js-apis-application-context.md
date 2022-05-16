@@ -79,3 +79,58 @@ getApplicationContext(): Context;
   // 必选项。
   let context = this.context.getApplicationContext();
   ```
+
+
+## Context.switchArea
+
+switchArea(mode: AreaMode): void;
+
+切换需要访问的文件分区。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | mode | [AreaMode](#areamode) | 是 | 文件分区。 |
+
+**示例：**
+    
+  ```js
+  var areaMode = 0;
+  this.context.switchArea(areaMode);
+  ```
+
+
+## Context.getArea()
+
+getArea(): AreaMode;
+
+获取文件分级信息，可以查看当前是处于哪个分区。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | [AreaMode](#areamode) | 文件分区。  | 
+
+**示例：**
+    
+  ```js
+  let mode = this.context.getArea();
+  ```
+
+
+## AreaMode
+
+访问的文件分区，每个文件分区有对应自己的内容。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量            | 值    | 描述            |
+| --------------- | ---- | --------------- |
+| EL1             | 0    | 设备级加密区。   |
+| EL2             | 1    | 用户凭据加密区。默认为EL2。 |

@@ -39,9 +39,10 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | true | 设置是否显示侧边栏。 |
 | controlButton | ButtonStyle                                                | - | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | true | 设置是否显示控制按钮。 |
-| sideBarWidth | number | 200 | 设置侧边栏的宽度。 |
-| minSideBarWidth | number | 200 | 设置侧边栏最小宽度。 |
-| maxSideBarWidth | number | 280 | 设置侧边栏最大宽度。 |
+| sideBarWidth | Length | 200 | 设置侧边栏的宽度。 |
+| minSideBarWidth | Length | 200 | 设置侧边栏最小宽度。 |
+| maxSideBarWidth | Length | 280 | 设置侧边栏最大宽度。 |
+| autoHide<sup>9+</sup> | boolean | true | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。 |
 
 - ButtonStyle对象说明
   | 名称 | 参数类型 | 必填 | 默认值 | 描述 |

@@ -24,7 +24,7 @@
     "target_cpu": "arm",
     "ohos_version": "OpenHarmony 1.0",
     "device_company": "MyProductVendor",
-    "board": "MyProduct",
+    "board": "MySOC",
     "enable_ramdisk": true,
     "subsystems": [
       {
@@ -41,7 +41,7 @@
 ```
 主要的配置内容
 
-product_name： 产品名称  必填
+product_name：产品名称  必填
 
 version：版本  必填
 
@@ -101,7 +101,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
   },
 ```
 
-接着需要修改定义产品的配置文件//productdefine/common/products/MyProduct.json，将刚刚定义的子系统加入到产品中。
+接着需要修改定义产品的配置文件//vendor/MyProductVendor/MyProduct/config.json，将刚刚定义的子系统加入到产品中。
 
 
 ### 2. 编译内核

@@ -1,5 +1,6 @@
 # OpenHarmony Device Development Documentation
 - [Device Development Guide](device-dev-guide.md)
+
 - Getting Started
   - Getting Started with Mini and Small Systems (IDE Mode, Recommended)
     - [Mini and Small System Overview](quick-start/quickstart-ide-lite-overview.md)
@@ -94,11 +95,16 @@
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+
 - Compatibility and Security
+
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
+
 - Porting
+
   - Mini System SoC Porting Guide
+
     - Porting Preparations
       - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
@@ -114,8 +120,10 @@
       - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
       - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
       - [XTS](porting/porting-chip-board-xts.md)
-    - [FAQ](porting/porting-chip-faqs.md)
+    - [FAQs](porting/porting-chip-faqs.md)
+
   - Small System SoC Porting Guide
+
     - Porting Preparations
       - [Before You Start](porting/porting-smallchip-prepare-needs.md)
       - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
@@ -126,17 +134,23 @@
       - [Overview](porting/porting-smallchip-driver-overview.md)
       - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
       - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+
   - Standard System SoC Porting Guide
+
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
+
   - Third-Party Library Porting Guide for Mini and Small Systems
     - [Overview](porting/porting-thirdparty-overview.md)
     - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
     - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+
   - Mini System SoC Porting Cases
-    - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting-bes2600w-on-minisystem-display-demo.md)
-    - [Combo Solution – ASR Chip Porting Case](porting-asr582x-combo-demo.md)
+    - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+    - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
 - Subsystem Development
+
   - Kernel
     - Kernel for Mini Systems
       - [Kernel Overview](kernel/kernel-mini-overview.md)
@@ -285,8 +299,8 @@
           - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
           - [User-Space Exception Information](kernel/kernel-small-debug-shell-error.md)
         - [Trace](kernel/kernel-small-debug-trace.md)
-        - [perf](kernel/kernel-mini-memory-perf)
-        - [LMS](kernel/kernel-small-memory-lms)
+        - [perf](kernel/kernel-mini-memory-perf.md)
+        - [LMS](kernel/kernel-small-memory-lms.md)
         - [CPUP](kernel/kernel-small-debug-process-cpu.md)
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
@@ -438,23 +452,23 @@
     - [Telephony Development](subsystems/subsys-tel-guide.md)
   - Security
     - [Overview](subsystems/subsys-security-overview.md)
-    - [Development Guidelines on Application Signature Verification](subsystems/subsys-security-sigverify.md)
-    - [Development Guidelines on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
-    - [Development Guidelines on IPC Authentication](subsystems/subsys-security-communicationverify.md)
+    - [Development on Application Signature Verification](subsystems/subsys-security-sigverify.md)
+    - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
+    - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - [init Module](subsystems/subsys-boot-init.md)
     - [appspawn Module](subsystems/subsys-boot-appspawn.md)
+    - [appspawn Module for the Standard System](subsystems/subsys-boot-appspawn-standard.md)
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
     - [syspara Module](subsystems/subsys-boot-syspara.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
-  - [Test](subsystems/subsys-testguide-test.md)
   - DFX
     - [DFX](subsystems/subsys-dfx-overview.md)
     - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
-    - [HiLog_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
+    - [HiLog\_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
     - [HiTrace Development](subsystems/subsys-dfx-hitrace.md)
     - [HiCollie Development](subsystems/subsys-dfx-hicollie.md)
     - HiSysEvent Development
@@ -463,6 +477,8 @@
       - [HiSysEvent Listening](subsystems/subsys-dfx-hisysevent-listening.md)
       - [HiSysEvent Query](subsystems/subsys-dfx-hisysevent-query.md)
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
+    - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
+    - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -480,7 +496,7 @@
           - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
           - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
         - [Use Case](guide/device-iotcamera-control-example.md)
-    - Cameras with a Screen)
+    - Cameras with a Screen
       - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
         - Development Guidelines
@@ -502,19 +518,20 @@
     - [Development Example for Platform Drivers](guide/device-driver-demo.md)
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
+
   - [Test Subsystem](subsystems/subsys-testguide-test.md)
   - Debugging Tools
-    - [bytrace Usage Guidelines](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc_std Usage Guidelines](subsystems/subsys-toolchain-hdc-guide.md)
+    - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
+    - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hiperf](subsystems/subsys-toolchain-hiperf.md)
 - [XTS Certification](subsystems/subsys-xts-guide.md)
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
-  - [Overview of FAQs](faqs/faqs-overview.md)
+  - [FAQs Overview](faqs/faqs-overview.md)
   - [Environment Setup](faqs/faqs-environment-setup.md)
   - [Compilation and Building Subsystem](faqs/faqs-building.md)
   - [Burning](faqs/faqs-burning.md)

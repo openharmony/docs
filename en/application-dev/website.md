@@ -9,20 +9,31 @@
     - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
-    - [Directory Structure](quick-start/package-structure.md)
+    - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
+    - [Application Package Structure Configuration File (Stage Model)](quick-start/module-structure.md)
     - [Resource File Categories](quick-start/basic-resource-file-categories.md)
+    - [SysCap Usage Guidelines](quick-start/syscap.md)
 - Development
-  - [Ability Development](ability/Readme-EN.md)
+  - Ability Development
     - [Ability Framework Overview](ability/ability-brief.md)
+    - [Context Usage](ability/context-userguide.md)
     - FA Model
       - [FA Model Overview](ability/fa-brief.md)
       - [Page Ability Development](ability/fa-pageability.md)
       - [Service Ability Development](ability/fa-serviceability.md)
       - [Data Ability Development](ability/fa-dataability.md)
-      - [FA Widget Development](ability/fa-formability.md)
-
+  - [FA Widget Development](ability/fa-formability.md)
+    - Stage Model
+      - [Stage Model Overview](ability/stage-brief.md)
+      - [Ability Development](ability/stage-ability.md)
+      - [Service Extension Ability Development](ability/stage-serviceextension.md)
+      - [Ability Continuation Development](ability/stage-ability-continuation.md)
+      - [Ability Call Developmen](ability/stage-call.md)
+      - [Stage Widget Development](ability/stage-formextension.md)
     - Other
+      - [WantAgent Development](ability/wantagent.md)
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+      - [Test Framework Usage](ability/ability-delegator.md)
   - UI
     - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
@@ -75,10 +86,11 @@
           - [Qrcode Development](ui/ui-js-components-qrcode.md)
           - [Search Development](ui/ui-js-components-search.md)
         - Canvas Development
+          - [Canvas](ui/ui-js-components-canvas.md)
           - [CanvasRenderingContext2D](ui/ui-js-components-canvasrenderingcontext2d.md)
           - [Path2D](ui/ui-js-components-path2d.md)
           - [OffscreenCanvas](ui/ui-js-components-offscreencanvas.md)
-        - [Grid-container Development](ui/ui-js-components-calendar.md)
+        - [Grid-container Development](ui/ui-js-components-grid.md)
         - Svg
           - [Basics](ui/ui-js-components-svg-overview.md)
           - [Graph Drawing](ui/ui-js-components-svg-graphics.md)
@@ -126,6 +138,7 @@
             - [@Builder](ui/ts-component-based-builder.md)
             - [@Extend](ui/ts-component-based-extend.md)
             - [@CustomDialog](ui/ts-component-based-customdialog.md)
+            - [@Styles](ui/ts-component-based-styles.md)
         - About UI State Management
           - [Basic Concepts](ui/ts-ui-state-mgmt-concepts.md)
           - Managing Component States
@@ -167,6 +180,14 @@
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
   - Basic Functions
+    - Common Event and Notification
+      - [Common Event and Notification Overview](notification/notification-brief.md)
+      - Common Event
+        - [Common Event Development](notification/common-event.md)
+      - Notification
+        - [Notification Development](notification/notification.md)
+      - Debugging Tools
+        - [Debugging Assistant Usage](notification/assistant-guidelines.md)
     - Window Manager
       - Window
         - [Window Overview](windowmanager/window-overview.md)
@@ -184,9 +205,9 @@
       - Audio
         - [Audio Overview](media/audio-overview.md)
         - [Audio Playback Development](media/audio-playback.md)
-        - [Audio Rendering Development](media/audio-renderer.md)
         - [Audio Recording Development](media/audio-recorder.md)
-        - [Audio Capture Development](media/audio-capturer)
+        - [Audio Rendering Development](media/audio-renderer.md)
+        - [Audio Capture Development](media/audio-capturer.md)
       - Video
         - [Video Playback Development](media/video-playback.md)
         - [Video Recording Development](media/video-recorder.md)
@@ -196,13 +217,28 @@
       - User Authentication
         - [User Authentication Overview](security/userauth-overview.md)
         - [User Authentication Development](security/userauth-guidelines.md)
+      - Key Management
+        - [HUKS Overview](security/huks-overview.md)
+        - [HUKS Development](security/huks-guidelines.md)
       - hapsigner
         - [hapsigner Guide](security/hapsigntool-guidelines.md)
+      - Access Control
+        - [Access Control Overview](security/accesstoken-overview.md)
+        - [Access Control Development](security/accesstoken-guidelines.md)
     - Connectivity
+      - Network Management
+        - [Network Management Overview](connectivity/net-mgmt-overview.md)
+        - [HTTP Data Request](connectivity/http-request.md)
+        - [WebSocket Connection](connectivity/websocket-connection.md)
+        - [Socket Connection](connectivity/socket-connection.md)
       - IPC & RPC
         - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
         - [IPC & RPC Development Guidelines](connectivity/ipc-rpc-development-guideline.md)
         - [Subscribing to State Changes of a Remote Object](connectivity/subscribe-remote-state.md)
+    - Telephony
+      - [Telephony Service Overview](telephony/telephony-overview.md)
+      - [Redirecting to the Dial Screen](telephony/jumping-to-the-dial-screen.md)
+      - [Obtaining Current Cellular Network Signal Information](telephony/cellular-network-signal-info.md)
     - Data Management
       - Distributed Data Service
         - [Distributed Data Service Overview](database/database-mdds-overview.md)
@@ -213,12 +249,18 @@
       - Lightweight Data Store
         - [Lightweight Data Store Overview](database/database-preference-overview.md)
         - [Lightweight Data Store Development](database/database-preference-guidelines.md)
+      - Distributed Data Object
+        - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
+        - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
     - Agent-Powered Scheduled Reminders
-      - [Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-      - [Development Guidelines](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
+      - [Agent-Powered Scheduled Reminder Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
+      - [Agent-Powered Scheduled Reminder Development](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - Background Task Management
       - [Background Task Management Overview](background-task-management/background-task-overview.md)
       - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
+    - Work Scheduler
+      - [Work Scheduler Overview](work-scheduler/work-scheduler-overview.md)
+      - [Work Scheduler Development](work-scheduler/work-scheduler-dev-guide.md)
     - Device
       - USB Service
         - [USB Service Overview](device/usb-overview.md)
@@ -233,6 +275,7 @@
       - Vibrator
         - [Vibrator Overview](device/vibrator-overview.md)
         - [Vibrator Development](device/vibrator-guidelines.md)
+      - 
     - Device Usage Statistics
       - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
@@ -250,12 +293,15 @@
       - [Overview](internationalization/international-overview.md)
       - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
       - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
+    - 
+    - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-  - Compent Reference (JavaScript-based Web-like Development Paradigm)
+  - Component Reference (JavaScript-based Web-like Development Paradigm)
     - Components
       - Common
         - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
@@ -265,6 +311,7 @@
         - [Animation Styles](reference/arkui-js/js-components-common-animation.md)
         - [Gradient Styles](reference/arkui-js/js-components-common-gradient.md)
         - [Transition Styles](reference/arkui-js/js-components-common-transition.md)
+        - [Media Query](reference/arkui-js/js-components-common-mediaquery.md)
         - [Custom Font Styles](reference/arkui-js/js-components-common-customizing-font.md)
         - [Atomic Layout](reference/arkui-js/js-components-common-atomic-layout.md)
       - Container Components
@@ -354,8 +401,9 @@
       - [Event Parameter](reference/arkui-js/js-components-custom-event-parameter.md)
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
-    - [Type Attributes](reference/arkui-js/js-appendix-types.md)
-  - Compent Reference (TypeScript-based Declarative Development Paradigm)
+    - Appendix 
+      - [Type Attributes](reference/arkui-js/js-appendix-types.md)
+  - Component Reference (TypeScript-based Declarative Development Paradigm)
     - Components
       - Universal Components
         - Universal Events
@@ -440,7 +488,7 @@
         - [TimePicker](reference/arkui-ts/ts-basic-components-timepicker.md)
         - [Toggle](reference/arkui-ts/ts-basic-components-toggle.md)
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
-        - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
+        - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - Container Components
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
@@ -500,12 +548,13 @@
         - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
         - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
         - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
-    - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+  - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - APIs
     - Ability Framework
-
+  
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
@@ -546,10 +595,10 @@
       - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
       - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
       - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
-      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+    - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
       - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
     - Common Event and Notification
-
+  
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
@@ -606,10 +655,11 @@
       - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
-      - [@ohos.settings](reference/apis/js-apis-settings.md)
+    - [@ohos.settings](reference/apis/js-apis-settings.md)
       - [resultSet](reference/apis/js-apis-data-resultset.md)
     - File Management
-
+  
+      - [@ohos.document](reference/apis/js-apis-document.md)
       - [@ohos.environment](reference/apis/js-apis-environment.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
       - [@ohos.fileManager](reference/apis/js-apis-filemanager.md)
@@ -711,6 +761,7 @@
       - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
       - [@system.app](reference/apis/js-apis-system-app.md)
       - [@system.battery](reference/apis/js-apis-system-battery.md)
+      - [@system.bluetooth](reference/apis/js-apis-system-bluetooth.md)
       - [@system.brightness](reference/apis/js-apis-system-brightness.md)
       - [@system.configuration](reference/apis/js-apis-system-configuration.md)
       - [@system.device](reference/apis/js-apis-system-device.md)
@@ -719,6 +770,7 @@
       - [@system.geolocation](reference/apis/js-apis-system-location.md)
       - [@system.mediaquery](reference/apis/js-apis-system-mediaquery.md)
       - [@system.network](reference/apis/js-apis-system-network.md)
+      - [@system.notification](reference/apis/js-apis-system-notification.md)
       - [@system.package](reference/apis/js-apis-system-package.md)
       - [@system.prompt](reference/apis/js-apis-system-prompt.md)
       - [@system.request](reference/apis/js-apis-system-request.md)

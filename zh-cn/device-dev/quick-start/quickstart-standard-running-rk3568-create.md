@@ -18,9 +18,9 @@ applications/sample/hello
 │   └── bundle.json
 build
 └── subsystem_config.json
-productdefine/common
-└── products
-    └── rk3568.json
+vendor/hihope
+└── rk3568
+    └── config.json
 ```
 
 
@@ -149,7 +149,7 @@ productdefine/common
 
 4. 修改产品配置文件。
 
-     在productdefine/common/products/rk3568.json中添加对应的hello部件，直接添加到原有部件后即可。
+     在vendor\hihope\rk3568\config.json中添加对应的hello部件，直接添加到原有部件后即可。
      
    ```
        "usb:usb_manager_native":{},

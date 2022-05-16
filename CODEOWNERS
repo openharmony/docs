@@ -16,6 +16,6 @@
 zh-cn/device-dev/kernel/ @Austin23
 zh-cn/device-dev/website.md @Austin23
 README.md @Austin23
-zh-cn/device-dev/porting duangavin123_admin
-zh-cn/device-dev/guide duangavin123_admin
-zh-cn/device-dev/subsystems li-yan339
+zh-cn/device-dev/porting/ @duangavin123_admin
+zh-cn/device-dev/guide/ @duangavin123_admin
+zh-cn/device-dev/subsystems/ @li-yan339

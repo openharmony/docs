@@ -28,6 +28,8 @@
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > - Hi3516DV300开发板Product选择“Hi3516DV300”。
    > 
+   > - Hi3751V350开发板Product选择“Hi3751V350”。
+   >
    > - RK3568开发板Product选择“rk3568”。
 
    ![zh-cn_image_0000001271448821](figures/zh-cn_image_0000001271448821.png)

@@ -232,7 +232,7 @@ int main()
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 用户态应用程序使用了HDF框架中的消息发送接口，因此在编译用户态程序的过程中需要依赖HDF框架对外提供的hdf_core和osal的动态库，在gn编译文件中添加如下依赖项：
 > 
 > deps = [

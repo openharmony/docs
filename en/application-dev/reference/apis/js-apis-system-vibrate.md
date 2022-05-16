@@ -1,7 +1,7 @@
 # Vibrator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The initial APIs of this module are supported since API version 4. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.vibrator`](js-apis-vibrator.md) instead.
 > - This module requires hardware support and can only be debugged on real devices.
@@ -27,9 +27,12 @@ Triggers device vibration.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | mode | string | No| Vibration mode. The value **long** indicates long vibration, and **short** indicates short vibration. The default value is **long**.|
+| success | Function | Yes| Called when the vibrator data changes.|
+| fail | Function | No| Called when the API call fails.|
+| complete | Function | No| Called when the API call is complete.|
 
 **Example**
 

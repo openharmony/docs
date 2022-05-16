@@ -19,9 +19,9 @@ applications/sample/hello
 ├── bundle.json
 build
 └── subsystem_config.json
-productdefine/common
-└── products
-    └── Hi3516DV300.json
+vendor/hisilicon
+└── Hi3516DV300
+    └── config.json
 ```
 
 

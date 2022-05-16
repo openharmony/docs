@@ -32,13 +32,14 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 是 | 回调函数，返回壁纸的主要颜色信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
@@ -59,17 +60,19 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | 返回壁纸的主要颜色信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
@@ -88,13 +91,14 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的ID。如果配置了指定类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
@@ -116,17 +120,19 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1~2^31-1。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
@@ -145,12 +151,13 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getMinHeight((error, data) => {
@@ -172,12 +179,13 @@ getMinHeight(): Promise&lt;number&gt;
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getMinHeight().then((data) => {
@@ -197,12 +205,13 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getMinWidth((error, data) => {
@@ -223,12 +232,13 @@ getMinWidth(): Promise&lt;number&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getMinWidth().then((data) => {
@@ -247,12 +257,13 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回是否允许应用改变当前用户的壁纸。如果允许返回true，否则返回false。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.isChangePermitted((error, data) => {
@@ -273,12 +284,13 @@ isChangePermitted(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回是否允许应用改变当前用户的壁纸。如果允许返回true，否则返回false。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.isChangePermitted().then((data) => {
@@ -297,12 +309,13 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回是否允许用户设置壁纸。如果允许返回true，否则返回false。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.isOperationAllowed((error, data) => {
@@ -323,12 +336,13 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 异步回调函数，返回是否允许用户设置壁纸。如果允许返回true，否则返回false。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.isOperationAllowed().then((data) => {
@@ -349,13 +363,14 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
@@ -378,17 +393,19 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
@@ -409,14 +426,15 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) |  | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   // source类型为string
@@ -462,18 +480,20 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | source | string&nbsp;\|[PixelMap](js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 调用成功则返回是返回设置的结果，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   // source类型为string
@@ -514,13 +534,14 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
@@ -542,17 +563,19 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
 
-- 示例：
+**示例：**
   
   ```js
   wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
@@ -571,13 +594,14 @@ on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取值为'colorChange'，表示壁纸颜色变化结果上报事件。 |
   | callback | function | 是 | 壁纸颜色变化触发该回调方法，返回壁纸类型和壁纸的主要颜色信息。<br/>-&nbsp;colors<br/>&nbsp;&nbsp;壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;壁纸类型。 |
 
-- 示例:
+**示例：**
   
   ```js
   let listener = (colors, wallpaperType) => {
@@ -595,13 +619,14 @@ off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperTy
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取值为'colorChange'，表示取消订阅壁纸颜色变化结果上报事件。 |
   | callback | function | 否 | &nbsp;&nbsp;表示取消壁纸颜色变化结果上报，不填写该参数则取消订阅该type对应的所有回调。<br/>-&nbsp;colors<br/>&nbsp;&nbsp;壁纸的主要颜色信息，其类型见[RgbaColor](#rgbacolor)。<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;壁纸类型。 |
 
-- 示例:
+**示例：**
   
   ```js
   let listener = (colors, wallpaperType) => {
