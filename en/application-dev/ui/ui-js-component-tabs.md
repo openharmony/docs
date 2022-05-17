@@ -326,4 +326,4 @@ export default {
 
 The following sample is provided to help you better understand how to develop the **&lt;tabs&gt;** component:
 
-[`Tabs`: Tabs (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)
+[`Tabs`: Tabs (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)

@@ -333,4 +333,4 @@ export default {
 
 The following sample is provided to help you better understand how to develop the **&lt;dialog&gt;** component:
 
-[`JsDialog`: JS Dialog Box (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
+[`JsDialog`: JS Dialog Box (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)

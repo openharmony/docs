@@ -620,4 +620,4 @@ export default {
 
 The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
 
-[`Chart`: chart (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
+[`Chart`: chart (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)

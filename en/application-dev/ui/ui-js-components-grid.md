@@ -247,4 +247,4 @@ export default {
 
 The following sample is provided to help you better understand how to develop the **\<grid>** component:
 
-[`JsGrid`: grid (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGrid)
+[`JsGrid`: grid (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGrid)

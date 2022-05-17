@@ -23,13 +23,14 @@ Components can be classified into the following types based on their functions.
 
 The following samples are provided to help you better understand how to develop components: 
 
-- [`JsPanel`: Content Display Panel (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel)
-- [`Popup`: JavaScript Bubble (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Popup)
-- [`RefreshContainer`: Refresh Container (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/RefreshContainer)
+- [`JsPanel`: Content Display Panel (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel)
+- [`Popup`: JavaScript Bubble (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Popup)
+- [`RefreshContainer`: Refresh Container (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/RefreshContainer)
 - [`JSComponments`:  JavaScript Bubble (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JSComponments)
 - [`JsUserRegistration`: User Registration (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsUserRegistration)
 - [`ECG`: Heart Rate Detection (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/ECG)
 
-- [`Badge`: Badge (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
+- [`Badge`: Badge (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
+- [`JsVideo`: JsVideo (API 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo)
 - [Rating (JavaScript)](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 - [Simple Video Player](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

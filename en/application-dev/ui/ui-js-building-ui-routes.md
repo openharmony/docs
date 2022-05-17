@@ -94,4 +94,4 @@ The figure below shows the effect.
 
 The following sample is provided to help you better understand how to develop page routing: 
 
-[`JsRouter`: Page Routing (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsRouter)
+[`JsRouter`: Page Routing (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsRouter)

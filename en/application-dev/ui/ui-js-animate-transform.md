@@ -591,10 +591,10 @@ You can set multiple transform attributes at the same time to apply different tr
 
 The following samples are provided to help you better understand how to develop animations with the **transform** attribute: 
 
-- [`JsAnimation`: Animation App (JavaScript)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
-- [`JsAnimationStyle`: JS Animation and Custom Font Styles (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
+- [`JsAnimation`: Animation App (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
+- [`JsAnimationStyle`: JS Animation and Custom Font Styles (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
 
-- [`Clock`: Clock (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
+- [`Clock`: Clock (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
 
 - [Animation Styles (JavaScaript)](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 
