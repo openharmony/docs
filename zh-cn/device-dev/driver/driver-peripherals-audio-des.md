@@ -5,7 +5,7 @@
 
 多媒体系统是物联网设备开发中不可缺少的一部分，Audio作为其中重要的一个模块，Audio驱动模型的构建显得尤为重要。
 
-本文主要介绍基于HDF(Hardware Driver Foundation)驱动框架开发的Audio驱动，包括Audio驱动的架构组成和功能部件。芯片厂商可以根据此驱动架构，进行各自驱动的开发及HAL层接口的调用。
+本文主要介绍基于HDF（Hardware Driver Foundation）驱动框架开发的Audio驱动，包括Audio驱动的架构组成和功能部件。芯片厂商可以根据此驱动架构，进行各自驱动的开发及HAL层接口的调用。
 
 
 
@@ -16,45 +16,45 @@ Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/do
 ![](figures/Audio框架图.png)
 
 驱动架构主要由以下几部分组成。
-- HDI adapter ： 实现Audio HAL层驱动（HDI接口适配），给Audio服务（frameworks）提供所需的音频硬件驱动能力接口。包含 Audio Manager、Audio Adapter、 Audio Control、Audio Capture、Audio Render 等接口对象。 
-- Audio Interface Lib ： 配合内核中的Audio Driver Model使用，实现音频硬件的控制、录音数据的读取、播放数据的写入。它里面包括Stream_ctrl_common 通用层，主要是为了和上层的audio HDI adapter 层进行对接。
-- ADM（Audio Driver Model）： 音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配OpenHarmony系统。
-- Audio Control Dispatch : 接收lib层的控制指令并将控制指令分发到驱动层。
-- Audio Stream Dispatch : 接收lib层的数据并将数据分发到驱动层。
+- HDI adapter： 实现Audio HAL层驱动（HDI接口适配），给Audio服务（frameworks）提供所需的音频硬件驱动能力接口。包含 Audio Manager、Audio Adapter、Audio Control、Audio Capture、Audio Render等接口对象。 
+- Audio Interface Lib：配合内核中的Audio Driver Model使用，实现音频硬件的控制、录音数据的读取、播放数据的写入。它里面包括Stream_ctrl_common 通用层，主要是为了和上层的audio HDI adapter层进行对接。
+- ADM（Audio Driver Model）：音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配OpenHarmony系统。
+- Audio Control Dispatch: 接收lib层的控制指令并将控制指令分发到驱动层。
+- Audio Stream Dispatch: 接收lib层的数据并将数据分发到驱动层。
 
-- Card Manager : 多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、SAPM模块。
-- Platform Drivers : 驱动适配层。
-- SAPM(Smart Audio Power Manager) : 电源管理模块，对整个ADM电源进行功耗策略优化。
+- Card Manager: 多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、SAPM模块。
+- Platform Drivers: 驱动适配层。
+- SAPM（Smart Audio Power Manager）：电源管理模块，对整个ADM电源进行功耗策略优化。
 
 ## Audio驱动开发
 
 以下将基于Audio驱动框架，并以Hi3516DV300平台为例，介绍相关驱动开发的具体步骤。
 
 ### Audio ADM模块框架介绍
-Audio驱动对HDI层提供三个服务hdf_audio_render、hdf_audio_capture、hdf_audio_control。开发板dev目录下 驱动服务节点如下：
+Audio驱动对HDI层提供三个服务hdf_audio_render、hdf_audio_capture、hdf_audio_control。开发板dev目录下驱动服务节点如下：
 
 ```c
 # ls -l hdf_audio*
-crw-rw---- 1 system system 248,   6 1970-01-01 00:00 hdf_audio_capture    //音频数据录音流服务。
-crw-rw---- 1 system system 248,   4 1970-01-01 00:00 hdf_audio_codec_dev0 //音频声卡设备0名称。
-crw-rw---- 1 system system 248,   4 1970-01-01 00:00 hdf_audio_codec_dev1 //音频声卡设备1名称。
-crw-rw---- 1 system system 248,   5 1970-01-01 00:00 hdf_audio_control    //音频控制流服务。
-crw-rw---- 1 system system 248,   7 1970-01-01 00:00 hdf_audio_render     //音频数据播放流务。
+crw-rw---- 1 system system 248,   6 1970-01-01 00:00 hdf_audio_capture    // 音频数据录音流服务。
+crw-rw---- 1 system system 248,   4 1970-01-01 00:00 hdf_audio_codec_dev0 // 音频声卡设备0名称。
+crw-rw---- 1 system system 248,   4 1970-01-01 00:00 hdf_audio_codec_dev1 // 音频声卡设备1名称。
+crw-rw---- 1 system system 248,   5 1970-01-01 00:00 hdf_audio_control    // 音频控制流服务。
+crw-rw---- 1 system system 248,   7 1970-01-01 00:00 hdf_audio_render     // 音频数据播放流务。
 ```
 
 音频声卡设备包括的驱动服务：
 
 hdf_audio_codec_dev0
-- dma_service_0 : dma 服务                  
-- dai_service : cpu dai 服务              
-- codec_service_0 : codec 服务（特指内置codec）
+- dma_service_0 : dma服务                  
+- dai_service : cpu dai服务              
+- codec_service_0 : codec服务（特指内置codec）
 - dsp_service_0 : dsp 服务（可选项）         
 
 hdf_audio_codec_dev1
-- dma_service_0 : dma 服务
-- dai_service : cpu dai 服务
-- codec_service_1 : accessory 服务（特指smartPA）
-- dsp_service_0 : dsp 服务（可选项）
+- dma_service_0 : dma服务
+- dai_service : cpu dai服务
+- codec_service_1 : accessory服务（特指smartPA）
+- dsp_service_0 : dsp服务（可选项）
 
 #### 启动流程
 
@@ -99,7 +99,7 @@ hdf_audio_codec_dev1
 
 #### 已有平台开发
 
-ADM适配已有平台(Hi3516DV300)Codec或Accessory（Smart PA）的驱动开发流程：
+ADM适配已有平台（Hi3516DV300）Codec或Accessory（Smart PA）的驱动开发流程：
 
 ![](figures/开发流程图1.png)
 
@@ -166,7 +166,7 @@ struct AudioDaiOps g_codecDaiDeviceOps = {
 
 struct DaiData g_codecDaiData = {
   .DaiInit = CodecDaiDeviceInit,  // codecdai设备初始化（适配新平台需重新实现）
-  .ops = &g_codecDaiDeviceOps,  //codecdai操作函数
+  .ops = &g_codecDaiDeviceOps,  // codecdai操作函数
 };
 ```
 
@@ -178,27 +178,27 @@ CodecDeviceInit将完成AIAO的设置、寄存器默认值初始化、g_audioCon
 int32_t CodecDeviceInit(struct AudioCard *audioCard, struct CodecDevice *codec)
 {
   	...
-	/* hi3516平台AIAO的Set和Get 注册*/
+	/* hi3516平台AIAO的Set和Get注册 */
 	CodecSetCtlFunc(codec->devData, AudioCodecAiaoGetCtrlOps, AudioCodecAiaoSetCtrlOps)
   	...
-	/* hi3516平台codec寄存器IoRemap*/
+	/* hi3516平台codec寄存器IoRemap */
 	CodecHalSysInit();
   	...
-	/* hi3516平台codec寄存器默认值初始化*/
+	/* hi3516平台codec寄存器默认值初始化 */
 	CodecRegDefaultInit(codec->devData->regCfgGroup);
   	...
-	/* hi3516平台g_audioControls 挂到Control链表上*/
+	/* hi3516平台g_audioControls挂到Control链表上 */
   	AudioAddControls(audioCard, codec->devData->controls, codec->devData->numControls);
   	...
-	/* hi3516平台codec加载到sapm*/
+	/* hi3516平台codec加载到sapm */
 	AudioSapmNewComponents(audioCard, codec->devData->sapmComponents, codec->devData->numSapmComponent);
   	...
-	/* hi3516平台codec加挂到通路选择链表上*/
+	/* hi3516平台codec加挂到通路选择链表上 */
   	AudioSapmAddRoutes(audioCard, g_audioRoutes, HDF_ARRAY_SIZE(g_audioRoutes);
    	...
 	AudioSapmNewControls(audioCard);
   	...
-	/* hi3516平台codec电源管理*/
+	/* hi3516平台codec电源管理 */
   	AudioSapmSleep(audioCard);
    	...
    	return HDF_SUCCESS;
@@ -357,7 +357,7 @@ vendor/hisilicon/hispark_taurus/hdf_config/
            permission = 0666;
            moduleName = "CODEC_HI3516"; // 名字会与HdfDriverEntry结构体中moduleName进行匹配
            serviceName = "codec_service_0"; // 对外提供的服务名称
-           deviceMatchAttr = "hdf_codec_driver"; //私有配置属性名称,通过此名称匹配对应的私有数据（包含寄存器配置）
+           deviceMatchAttr = "hdf_codec_driver"; // 私有配置属性名称，通过此名称匹配对应的私有数据（包含寄存器配置）
          }
        }
 ```
@@ -373,15 +373,15 @@ root {
     platform {
         ...
         controller_0x120c1001 :: card_controller {
-            //配置私有数据属性名称，与device_info.hcs中的deviceMatchAttr对应
+            // 配置私有数据属性名称，与device_info.hcs中的deviceMatchAttr对应
             match_attr = "hdf_audio_driver_1"; 
-            serviceName = "hdf_audio_smartpa_dev0"; //对外提供的服务名称
-            accessoryName = "codec_service_1"; //外置codec服务名称
-            platformName = "dma_service_0"; //dma服务
-            cpuDaiName = "dai_service"; //cpu dai 服务
-            accessoryDaiName = "accessory_dai"; //外置dai
-            dspName = "dsp_service_0"; //dsp服务名称
-            dspDaiName = "dsp_dai"; //dsp dai
+            serviceName = "hdf_audio_smartpa_dev0"; // 对外提供的服务名称
+            accessoryName = "codec_service_1"; // 外置codec服务名称
+            platformName = "dma_service_0"; // dma服务
+            cpuDaiName = "dai_service"; // cpu dai服务
+            accessoryDaiName = "accessory_dai"; // 外置dai
+            dspName = "dsp_service_0"; // dsp服务名称
+            dspDaiName = "dsp_dai"; // dsp dai
         }
     }
 }
@@ -405,7 +405,7 @@ root {
 
 - initSeqConfig：初始化过程寄存器配置组名称。
 
-- controlsConfig：控制功能配置组，其中array index（具体业务场景）和 iface（与HAL保持一致）为固定的值。
+- controlsConfig：控制功能配置组，其中array index（具体业务场景）和iface（与HAL保持一致）为固定的值。
 
 ```
 array index
@@ -446,9 +446,9 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
             
 	        /* 3516寄存器基地址 */
             idInfo {
-                chipName = "hi3516";        //codec名字
-                chipIdRegister = 0x113c0000;  //codec 基地址
-                chipIdSize = 0x1000;         //codec 地址偏移
+                chipName = "hi3516";        // codec名字
+                chipIdRegister = 0x113c0000;  // codec基地址
+                chipIdSize = 0x1000;         // codec地址偏移
             }
             
 	       /* 寄存器配置，包含各种寄存器配置信息 */
@@ -494,13 +494,13 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
                 /* control function register config 
                    reg, rreg, shift, rshift, min, max, mask, invert, value */
                 ctrlParamsSeqConfig = [
-                    0x3c, 0x3c, 24, 24, 0x0, 0x57, 0x7F, 1, 0,   //"Main Capture Volume"
-                    0x38, 0x38, 31, 31, 0x0, 0x1, 0x1, 0, 0,     //"Playback Mute"
-                    0x3c, 0x3c, 31, 31, 0x0, 0x1, 0x1, 0, 0,      //"Capture Mute"
-                    0x20, 0x20, 16, 16, 0x0, 0xF, 0x1F, 0, 0,     //"Mic Left Gain"
-                    0x20, 0x20, 24, 24, 0x0, 0xF, 0x1F, 0, 0,     //"Mic Right Gain"
-                    0x2000, 0x2000, 16, 16, 0x0, 0x7, 0x7, 0, 0,  //"Render Channel Mode"
-                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  //"Capture Channel Mode"
+                    0x3c, 0x3c, 24, 24, 0x0, 0x57, 0x7F, 1, 0,   // "Main Capture Volume"
+                    0x38, 0x38, 31, 31, 0x0, 0x1, 0x1, 0, 0,     // "Playback Mute"
+                    0x3c, 0x3c, 31, 31, 0x0, 0x1, 0x1, 0, 0,      // "Capture Mute"
+                    0x20, 0x20, 16, 16, 0x0, 0xF, 0x1F, 0, 0,     // "Mic Left Gain"
+                    0x20, 0x20, 24, 24, 0x0, 0xF, 0x1F, 0, 0,     // "Mic Right Gain"
+                    0x2000, 0x2000, 16, 16, 0x0, 0x7, 0x7, 0, 0,  // "Render Channel Mode"
+                    0x1000, 0x1000, 16, 16, 0x0, 0x7, 0x7, 0, 0  // "Capture Channel Mode"
                 ];
 
                 /* 上层下发参数后，写入音频相关信息的寄存器 
@@ -514,10 +514,10 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
                 /* 电源管理功能寄存器配置 
                    reg, rreg, shift, rshift, min, max, mask, invert, value */
                 ctrlSapmParamsSeqConfig = [  
-                    0x20, 0x20, 23, 23, 0x0, 0x1, 0x1, 0, 0,  //LPGA MIC 0 -- connect MIC
-                    0x20, 0x20, 31, 31, 0x0, 0x1, 0x1, 0, 0,  //RPGA MIC 0 -- connect MIC
-                    0x30, 0x30, 27, 27, 0x0, 0x1, 0x1, 0, 0,  //dacl to dacr mixer
-                    0x30, 0x30, 26, 26, 0x0, 0x1, 0x1, 0, 0  //dacr to dacl mixer
+                    0x20, 0x20, 23, 23, 0x0, 0x1, 0x1, 0, 0,  // LPGA MIC 0 -- connect MIC
+                    0x20, 0x20, 31, 31, 0x0, 0x1, 0x1, 0, 0,  // RPGA MIC 0 -- connect MIC
+                    0x30, 0x30, 27, 27, 0x0, 0x1, 0x1, 0, 0,  // dacl to dacr mixer
+                    0x30, 0x30, 26, 26, 0x0, 0x1, 0x1, 0, 0  // dacr to dacl mixer
                 ];
 
         		/*
@@ -526,19 +526,19 @@ ctrlParamsSeqConfig：控制功能寄存器配置组，其中item与controlsConf
                  sapmType,compNameIndex,reg, mask,shift,invert, kcontrolNews,kcontrolsNum
                 */
                 sapmComponent = [ 
-                    10,  0,  0x20,  0x1,  15,  1,  0,  0,    //ADCL
-                    10,  1,  0x20,  0x1,  14,  1,  0,  0,    //ADCR
-                    11,  2,  0x14,  0x1,  11,  1,  0,  0,    //DACL
-                    11,  3,  0x14,  0x1,  12,  1,  0,  0,    //DACR
-                    8,   4,  0x20,  0x1,  13,  1,  1,  1,    //LPGA
-                    8,   5,  0x20,  0x1,  12,  1,  2,  1,    //RPGA
-                    15,  6,  0,     0x1,  0,   0,  3,  1,    //SPKL
-                    15,  7,  0,     0x1,  0,   0,  4,  1,    //SPKR
-                    0,   8,  0,     0x1,  0,   0,  0,  0     //MIC
+                    10,  0,  0x20,  0x1,  15,  1,  0,  0,    // ADCL
+                    10,  1,  0x20,  0x1,  14,  1,  0,  0,    // ADCR
+                    11,  2,  0x14,  0x1,  11,  1,  0,  0,    // DACL
+                    11,  3,  0x14,  0x1,  12,  1,  0,  0,    // DACR
+                    8,   4,  0x20,  0x1,  13,  1,  1,  1,    // LPGA
+                    8,   5,  0x20,  0x1,  12,  1,  2,  1,    // RPGA
+                    15,  6,  0,     0x1,  0,   0,  3,  1,    // SPKL
+                    15,  7,  0,     0x1,  0,   0,  4,  1,    // SPKR
+                    0,   8,  0,     0x1,  0,   0,  0,  0     // MIC
                 ];
                 
 	          /* 电源管理功能配置 
-                   array index,  iface,  enable
+                   array index, iface, enable
               */ 
                 sapmConfig = [
         	        0,    5,    1,
@@ -624,11 +624,11 @@ SmartPA归属于Accessory驱动的一种，开发步骤类似于codec：
 
 Accessory模块需要填充如下3个结构体：
 
-- g_tfa9879Data ：accessory设备操作函数集，其中包含HCS文件中的配置信息，且定义与映射了accessory设备的初始化、读写寄存器的方法函数。
+- g_tfa9879Data：accessory设备操作函数集，其中包含HCS文件中的配置信息，且定义与映射了accessory设备的初始化、读写寄存器的方法函数。
 
-- g_tfa9879DaiDeviceOps ：accessory设备DAI的数据集，其中定义与映射了accessory设备DAI的操作集。
+- g_tfa9879DaiDeviceOps：accessory设备DAI的数据集，其中定义与映射了accessory设备DAI的操作集。
 
-- g_tfa9879DaiData ：accessory设备DAI的数据集，其中定义与映射了accessory设备的数据访问接口的驱动名、初始化和操作集。
+- g_tfa9879DaiData：accessory设备DAI的数据集，其中定义与映射了accessory设备的数据访问接口的驱动名、初始化和操作集。
 
 ```c
 struct AccessoryData g_tfa9879Data = {
@@ -850,13 +850,13 @@ struct AudioDmaOps g_dmaDeviceOps = {
     .DmaPrep = Hi3516DmaPrep,                     // dma准备函数接口
     .DmaSubmit = Hi3516DmaSubmit,                 // dma submit函数接口
     .DmaPending = Hi3516DmaPending,               // dma pending函数接口
-    .DmaPause = Hi3516DmaPause,                   // dma 暂停、停止函数接口
-    .DmaResume = Hi3516DmaResume,                 // dma 恢复函数接口
+    .DmaPause = Hi3516DmaPause,                   // dma暂停、停止函数接口
+    .DmaResume = Hi3516DmaResume,                 // dma恢复函数接口
     .DmaPointer = Hi3516DmaPointer,               // dma获取当前播放或录音位置函数接口
 };
 
 struct PlatformData g_platformData = {
-    .PlatformInit = AudioDmaDeviceInit, //dma设备初始化接口
+    .PlatformInit = AudioDmaDeviceInit, // dma设备初始化接口
     .ops = &g_dmaDeviceOps,
 };
 ```
@@ -904,7 +904,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 - 填充g_platformDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
-- 实现Bind、Init、Release函数指针。 
+- 实现Bind、Init、Release函数指针 
 
 drivers/peripheral/audio/chipsets/hi3516dv300/soc/src/hi3516_dma_adapter.c
 
@@ -961,9 +961,9 @@ Dai驱动开发主要包含如下几个重要步骤：
 
 Dai模块需要填充如下2个结构体：
 
-- g_daiData ：dai设备私有配置，其中包含dai设备的初始化、读写寄存器、操作函数。
+- g_daiData：dai设备私有配置，其中包含dai设备的初始化、读写寄存器、操作函数。
 
-- g_daiDeviceOps ：dai设备操作函数集，包含了dai的参数设置、触发、启动。
+- g_daiDeviceOps：dai设备操作函数集，包含了dai的参数设置、触发、启动。
 
 ```c
 struct AudioDaiOps g_daiDeviceOps = {
@@ -1196,9 +1196,9 @@ $(KHDF_AUDIO_HI3516DV300_DIR)/soc/src/hi3516_dma_adapter.c
 │       │   └── hi3516_dma_ops.h
 │       ├── src
 │       │   ├── hi3516_aiao_impl.c
-│       │   ├── hi3516_dai_adapter.c   //dai驱动入口
+│       │   ├── hi3516_dai_adapter.c   // dai驱动入口
 │       │   ├── hi3516_dai_ops.c
-│       │   ├── hi3516_dma_adapter.c   //dma驱动入口
+│       │   ├── hi3516_dma_adapter.c   // dma驱动入口
 │       │   └── hi3516_dma_ops.c
 │       └── test
 │           └── unittest
@@ -1265,7 +1265,7 @@ HAL（Hardware Abstraction Layer）的核心功能说明如下:
 
 4. 调用创建好的播放类中挂载的方法调用render->control.Start()、render->RenderFrame()进行下发开始命令，音频数据循环下发。
 
-5. 播放过程中可调用其他控制命令对播放业务进行控制操作，例如调节音量、暂停、静音等render->control.Pause()、 render->control.Resume()、 render->volume.SetVolume()。
+5. 播放过程中可调用其他控制命令对播放业务进行控制操作，例如调节音量、暂停、静音等render->control.Pause()、render->control.Resume()、render->volume.SetVolume()。
 
 6. 播放业务完成后，下发停止命令、销毁播放类、卸载声卡。
 
@@ -1284,7 +1284,7 @@ HAL（Hardware Abstraction Layer）的核心功能说明如下:
 #include <pthread.h>
 #include "audio_manager.h"
 
- /*  so动态库引用打开 */
+ /* so动态库引用打开 */
 char *soPathHdi = "/system/lib/libhdi_audio.z.so";  
 void *g_handle = dlopen(soPathHdi , 1);
 
@@ -1315,7 +1315,7 @@ int32_t FrameStart(void *param)
 
 static void *hal_main()
 {
-    /*  映射入口函数及调用 */
+    /* 映射入口函数及调用 */
     struct AudioManager *(*getAudioManager)() =
     (struct AudioManager *(*)())(dlsym(g_handle, "GetAudioManagerFuncs"));
     struct AudioManager *manager = getAudioManager();
@@ -1334,23 +1334,23 @@ static void *hal_main()
     /* 根据匹配到的声卡信息进行加载声卡 */
     struct AudioAdapter *adapter = NULL;
     struct AudioAdapterDescriptor *desc = &descs[index];  // 根据匹配到的声卡信息获取对应设备
-    manager->LoadAdapter(manager, desc, &adapter);   //加载声卡，获取声卡方法实例
+    manager->LoadAdapter(manager, desc, &adapter);   // 加载声卡，获取声卡方法实例
 
     /* 创建播放类 */
     struct AudioRender *render;
     struct AudioDeviceDescriptor devDesc;  
     struct AudioSampleAttributes attrs;
-    InitDevDesc(&devDesc, renderPort.portId);  //初始化设置设备参数
+    InitDevDesc(&devDesc, renderPort.portId);  // 初始化设置设备参数
     WavHeadAnalysis(g_file, &attrs);  // 解析音频文件设置Attributes
     adapter->CreateRender(adapter, &devDesc, &attrs, &render);
 
     /* 下发音频数播放 */
     render->control.Start((AudioHandle)render);   // 下发控制命令start，准备动作
-    pthread_create(&g_tids, NULL, (void *)(&FrameStart), &g_str); // 起线程进行播放
+    pthread_create(&g_tids, NULL, (void *)(&FrameStart), &g_str); // 拉起线程进行播放
 
     /* 控制命令 */
-    render->control.Pause((AudioHandle)render);  // 下发进行暂停操作
-    render->control.Resume((AudioHandle)render); // 恢复操作
+    render->control.Pause((AudioHandle)render);  // 下发暂停操作
+    render->control.Resume((AudioHandle)render); // 下发恢复操作
     render->volume.SetVolume((AudioHandle)render, 0.5); // 设置音量
 
      /* 停止播放，销毁播放类 */
