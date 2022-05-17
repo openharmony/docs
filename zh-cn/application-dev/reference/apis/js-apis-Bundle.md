@@ -1383,8 +1383,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型     | 必填   | 描述                                       |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | Want   | 是    | 包含要查询的应用程序包名称的意图。                        |
-| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型                 |
-| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
+| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: <a href="#extensionabilitytype9">bundle.ExtensionAbilityType</a> |
+| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: <a href= "#extensionflag9">bundle.ExtensionFlags</a> |
 | userId         | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 
 **返回值：**
@@ -1413,7 +1413,7 @@ bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, userId)
 
 
 
-## bundle.c<sup>9+</sup>
+## bundle.queryExtensionAbilityInfos<sup>9+</sup>
 
 queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
@@ -1432,8 +1432,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | Want                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型                   |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值，大于等于0。 |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: <a href="#extensionabilitytype9">bundle.ExtensionAbilityType</a> |
+| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: <a href= "#extensionflag9">bundle.ExtensionFlags</a> |
 | userId         | number                                   | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 | callback       | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
 
@@ -1475,8 +1475,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | Want                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型                   |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: <a href="#extensionabilitytype9">bundle.ExtensionAbilityType</a> |
+| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: <a href= "#extensionflag9">bundle.ExtensionFlags</a> |
 | callback       | AsyncCallback<Array\<ExtensionAbilityInfo>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
 
 **示例：**
@@ -1794,7 +1794,7 @@ Ability的子类型
 | CA          | 1    | Ability子类型是带有 UI 的服务 |
 
 
-## ExtensionAbilityType<sup>9+</sup>
+## <a id = "extensionabilitytype9">ExtensionAbilityType<sup>9+</sup></a>
 
 ExtensionAbility的类型
 
@@ -1814,7 +1814,7 @@ ExtensionAbility的类型
 | BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复   |
 | UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
 
-## ExtensionFlag<sup>9+</sup>
+## <a id = "extensionflag9">ExtensionFlag<sup>9+</sup></a>
 
 扩展标志
 
@@ -1826,7 +1826,6 @@ ExtensionAbility的类型
 | GET_EXTENSION_INFO_WITH_PERMISSION<sup>9+</sup> | 0x00000002 | 获取携带权限信息的extensionAbilityInfo  |
 | GET_EXTENSION_INFO_WITH_APPLICATION<sup>9+</sup> | 0x00000004 | 获取携带应用信息的extensionAbilityInfo  |
 | GET_EXTENSION_INFO_WITH_METADATA<sup>9+</sup> | 0x00000020 | 获取携带元数据信息的extensionAbilityInfo |
-
 
 ## ColorMode
 
@@ -1868,7 +1867,7 @@ ExtensionAbility信息
 | descriptionId<sup>9+</sup>        | number                      | 是    | 否    | ExtensionAbility的描述id             |
 | iconId<sup>9+</sup>               | number                      | 是    | 否    | ExtensionAbility的图标id             |
 | isVisible<sup>9+</sup>            | boolean                     | 是    | 否    | 判断ExtensionAbility是否可以被其他应用调用     |
-| extensionAbilityType<sup>9+</sup> | bundle.ExtensionAbilityType | 是    | 否    | ExtensionAbility类型                |
+| <a href="#extensionabilitytype9">extensionAbilityType<sup>9+</sup></a> | bundle.ExtensionAbilityType | 是    | 否    | ExtensionAbility类型                |
 | permissions<sup>9+</sup>          | Array\<string>              | 是    | 否    | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
 | applicationInfo<sup>9+</sup>      | ApplicationInfo             | 是    | 否    | 应用程序的配置信息                         |
 | metaData<sup>9+</sup>             | Array\<Metadata>            | 是    | 否    | ExtensionAbility的元信息              |
