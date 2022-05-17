@@ -18,6 +18,8 @@ getNativeHeapSize(): bigint
 
 获取native heap内存的总大小。
 
+底层依赖的mallinfo接口尚未实现，目前返回结果为空。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -39,6 +41,8 @@ getNativeHeapAllocatedSize(): bigint
 
 获取native heap内存的已分配内存大小。
 
+底层依赖的mallinfo接口尚未实现，目前返回结果为空。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
@@ -59,6 +63,8 @@ getNativeHeapAllocatedSize(): bigint
 getNativeHeapFreeSize(): bigint
 
 获取native heap内存的空闲内存大小。
+
+底层依赖的mallinfo接口尚未实现，目前返回结果为空。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
