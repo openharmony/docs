@@ -71,3 +71,7 @@ httpRequest.request(
     }
 );
 ```
+
+## Samples
+The following sample is provided to help you better understand how to develop the HTTP data request feature:
+- [`Http`: HTTP Data Request (eTS) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Network/Http)
