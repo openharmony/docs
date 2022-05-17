@@ -18,6 +18,8 @@ getNativeHeapSize(): bigint
 
 获取native heap内存的总大小。
 
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -39,6 +41,8 @@ getNativeHeapAllocatedSize(): bigint
 
 获取native heap内存的已分配内存大小。
 
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
@@ -59,6 +63,8 @@ getNativeHeapAllocatedSize(): bigint
 getNativeHeapFreeSize(): bigint
 
 获取native heap内存的空闲内存大小。
+
+本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
