@@ -2,11 +2,11 @@
 
 ## Overview<a name="section1"></a>
 
--   An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
+An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
 
--   The ADC APIs provide a set of common functions for ADC data transfer, including:
-    -   Opening or closing an ADC device
-    -   Obtaining the analog-to-digital (AD) conversion result
+The ADC APIs provide a set of common functions for ADC data transfer, including:
+-   Opening or closing an ADC device
+-   Obtaining the analog-to-digital (AD) conversion result
 
     **Figure 1** ADC physical connection<a name="fig1"></a>
 	

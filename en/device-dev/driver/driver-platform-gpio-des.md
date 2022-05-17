@@ -15,7 +15,7 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 ## Available APIs<a name="section589913442203"></a>
 
-**Table  1**  APIs available for the GPIO driver
+**Table  1** APIs available for the GPIO driver
 
 <a name="table89681075215"></a>
 <table><thead align="left"><tr id="row996807162115"><th class="cellrowborder" valign="top" width="19.74%" id="mcps1.2.4.1.1"><p id="p296817716212"><a name="p296817716212"></a><a name="p296817716212"></a>Capability</p>
@@ -75,16 +75,16 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
 >All functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section259614242196"></a>
 
 ### How to Use<a name="section103477714216"></a>
 
-The GPIO APIs use the GPIO pin number to specify a pin.  [Figure 1](#fig16151101653713)  shows the general process of using a GPIO.
+The GPIO APIs use the GPIO pin number to specify a pin. [Figure 1](#fig16151101653713)  shows the general process of using a GPIO.
 
-**Figure  1**  Process of using a GPIO<a name="fig16151101653713"></a>  
+**Figure  1** Process of using a GPIO<a name="fig16151101653713"></a>  
 ![](figures/process-of-using-a-gpio.png "process-of-using-a-gpio")
 
 ### Determining a GPIO Pin Number<a name="section370083272117"></a>
@@ -116,7 +116,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioSetDir\(uint16\_t gpio, uint16\_t dir\);
 
-    **Table  2**  Description of GpioSetDir
+   **Table  2** Description of GpioSetDir
 
     <a name="table63111557616"></a>
     <table><tbody><tr id="row17311165469"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p53110515616"><a name="p53110515616"></a><a name="p53110515616"></a><strong id="b1142022718160"><a name="b1142022718160"></a><a name="b1142022718160"></a>Parameter</strong></p>
@@ -159,7 +159,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioRead\(uint16\_t gpio, uint16\_t \*val\);
 
-    **Table  3**  Description of GpioRead
+   **Table  3** Description of GpioRead
 
     <a name="table20347743174816"></a>
     <table><tbody><tr id="row17348144394816"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p19348164313481"><a name="p19348164313481"></a><a name="p19348164313481"></a><strong id="b4862227121610"><a name="b4862227121610"></a><a name="b4862227121610"></a>Parameter</strong></p>
@@ -199,7 +199,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioWrite\(uint16\_t gpio, uint16\_t val\);
 
-    **Table  4**  Description of GpioWrite
+   **Table  4** Description of GpioWrite
 
     <a name="table1214911207520"></a>
     <table><tbody><tr id="row6149720175218"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p18149132005216"><a name="p18149132005216"></a><a name="p18149132005216"></a><strong id="b19864427181615"><a name="b19864427181615"></a><a name="b19864427181615"></a>Parameter</strong></p>
@@ -269,7 +269,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioSetIrq\(uint16\_t gpio, uint16\_t mode, GpioIrqFunc func, void \*arg\);
 
-    **Table  5**  Description of GpioSetIrq
+   **Table  5** Description of GpioSetIrq
 
     <a name="table16804111812466"></a>
     <table><tbody><tr id="row880401834615"><td class="cellrowborder" valign="top" width="48.54%"><p id="p380491819469"><a name="p380491819469"></a><a name="p380491819469"></a><strong id="b0865192761614"><a name="b0865192761614"></a><a name="b0865192761614"></a>Parameter</strong></p>
@@ -316,13 +316,13 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </table>
 
     >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
-    >Only one ISR function can be set for a GPIO pin at a time. If  **GpioSetIrq**  is called repeatedly, the previous IRS function will be replaced.
+    >Only one ISR function can be set for a GPIO pin at a time. If **GpioSetIrq** is called repeatedly, the previous IRS function will be replaced.
 
     If the ISR function is no longer required, call the following function to cancel the setting:
 
     int32\_t GpioUnSetIrq\(uint16\_t gpio\);
 
-    **Table  6**  Description of GpioUnSetIrq
+   **Table  6** Description of GpioUnSetIrq
 
     <a name="table1157224664316"></a>
     <table><tbody><tr id="row175721546174317"><td class="cellrowborder" valign="top" width="48.54%"><p id="p16572144694311"><a name="p16572144694311"></a><a name="p16572144694311"></a><strong id="b16866132761617"><a name="b16866132761617"></a><a name="b16866132761617"></a>Parameter</strong></p>
@@ -357,7 +357,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioEnableIrq\(uint16\_t gpio\);
 
-    **Table  7**  Description of GpioEnableIrq
+   **Table  7** Description of GpioEnableIrq
 
     <a name="table26659291568"></a>
     <table><tbody><tr id="row866632919566"><td class="cellrowborder" valign="top" width="50%"><p id="p066642985615"><a name="p066642985615"></a><a name="p066642985615"></a><strong id="b108661927171614"><a name="b108661927171614"></a><a name="b108661927171614"></a>Parameter</strong></p>
@@ -395,7 +395,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     int32\_t GpioDisableIrq\(uint16\_t gpio\);
 
-    **Table  8**  Description of GpioDisableIrq
+   **Table  8** Description of GpioDisableIrq
 
     <a name="table186682041918"></a>
     <table><tbody><tr id="row186684413116"><td class="cellrowborder" valign="top" width="50%"><p id="p866844916"><a name="p866844916"></a><a name="p866844916"></a><strong id="b88678273169"><a name="b88678273169"></a><a name="b88678273169"></a>Parameter</strong></p>
@@ -546,4 +546,3 @@ static int32_t TestCaseGpioIrqEdge(void)
     return (g_irqCnt > 0) ? HDF_SUCCESS : HDF_FAILURE;
 }
 ```
-

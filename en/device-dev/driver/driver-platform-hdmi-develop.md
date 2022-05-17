@@ -40,7 +40,7 @@ Currently, the HDMI module supports only the kernels (LiteOS) of mini and small 
 HDMI features high transmission rate, wide transmission bandwidth, high compatibility, and can transmit uncompressed audio and video signals. Compared with the traditional full analog interface, HDMI simplifies connection between devices and provides HDMI-specific intelligent features, which are ideal for high-quality audio and video transmission of small-sized devices.
 
 ### Available APIs
-  **HdmiCntlrOps**:
+ **HdmiCntlrOps**:
     
 ```c
 struct HdmiCntlrOps {
@@ -149,7 +149,7 @@ The HDMI module adaptation involves the following steps:
         .Bind = HdmiAdapterBind,
         .Init = HdmiAdapterInit,
         .Release = HdmiAdapterRelease,
-        .moduleName = "adapter_hdmi_driver",// (mandatory) The value must be the same as that in the .hcs file.
+        .moduleName = "adapter_hdmi_driver",// (Mandatory) The value must be the same as that in the .hcs file.
     };
     HDF_INIT(g_hdmiDriverEntry);            // Call HDF_INIT to register the driver entry with the HDF.
     ```
@@ -315,11 +315,11 @@ The HDMI module adaptation involves the following steps:
 
     - **Bind()** function
 
-        **Input parameter**:
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+       **Input parameter**:
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         
-        **Return value**:
-        **HDF\_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** definition in the **/drivers/framework/include/utils/hdf\_base.h file**.)
+       **Return value**:
+       **HDF\_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** definition in the **/drivers/framework/include/utils/hdf\_base.h file**.)
 
         | State | Description |
         |:-|:-|
@@ -330,7 +330,7 @@ The HDMI module adaptation involves the following steps:
         |HDF_SUCCESS           |Transmission successful.|
         |HDF_FAILURE           |Transmission failed.|
 
-        **Function description**:
+       **Function description**:
         Initializes the custom structure object **HdmiAdapterHost** and **HdmiCntlr**, and calls the **HdmiCntlrAdd** function to add the HDMI controller to the core layer.
         
         The **HdmiCntlr**, **HdmiAdapterHost**, and **HdfDeviceObject** assign values with each other so that other functions can be converted successfully.
@@ -374,13 +374,13 @@ The HDMI module adaptation involves the following steps:
 
     - **Init()** function
 
-        **Input parameter**:
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+       **Input parameter**:
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         
-        **Return value**:
+       **Return value**:
         HDF_STATUS
         
-        **Function description**:
+       **Function description**:
         
         Implements the **HdmiAdapterInit** function.
 
@@ -393,13 +393,13 @@ The HDMI module adaptation involves the following steps:
 
     - **Release()** function
 
-        **Input parameter**:
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+       **Input parameter**:
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
        
-        **Return value**:
+       **Return value**:
         –
         
-        **Function description**:
+       **Function description**:
         Releases the memory and deletes the controller. This function assigns a value to the **Release()** API in the driver entry structure. If the HDF fails to call the **Init()** function to initialize the driver, the **Release()** function can be called to release driver resources.
 
         ```c
