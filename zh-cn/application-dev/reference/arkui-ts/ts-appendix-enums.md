@@ -90,11 +90,3 @@
 | Off | 不显示。 | 
 | On | 常驻显示。 | 
 | Auto | 按需显示(触摸时显示，2s后消失)。 | 
-## LayoutDirection枚举说明
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| Row | 主轴与行方向一致作为布局模式。 | 
-| Column | 主轴与列方向一致作为布局模式。 | 
-| RowReverse | 与Row相反方向进行布局。 | 
-| ColumnReverse | 与Column相反方向进行布局。 | 
