@@ -4,7 +4,7 @@
 
 In the Hardware Driver Foundation \(HDF\), the Universal Asynchronous Receiver/Transmitter \(UART\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
-**Figure  1**  Independent service mode<a name="fig1474518243468"></a>  
+**Figure  1** Independent service mode<a name="fig1474518243468"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-14")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -26,7 +26,7 @@ struct UartHostMethod {
 };
 ```
 
-**Table  1**  Callbacks for the members in the UartHostMethod structure
+**Table  1** Callbacks for the members in the UartHostMethod structure
 
 <a name="table22862114719"></a>
 <table><thead align="left"><tr id="row5297211471"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p12291121134710"><a name="p12291121134710"></a><a name="p12291121134710"></a>Callback</p>
@@ -167,33 +167,31 @@ struct UartHostMethod {
 The UART module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **uart\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **uart\_config.hcs** file.
 
 3.  Instantiate the UART controller object.
-    -   Initialize  **UartHost**.
-    -   Instantiate  **UartHostMethod**  in the  **UartHost**  object.
+    -   Initialize **UartHost**.
+    -   Instantiate **UartHostMethod** in the **UartHost** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
-
-        >For details, see [Available APIs](#available-apis).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
+        For details, see [Available APIs](#available-apis).
+      
+4.  \(Optional\) Debug the driver.
+    
+    For new drivers, verify the basic functions, such as the UART control status and response to interrupts.
 
 
 ## Development Example<a name="section774610224154520"></a>
 
-The following uses  **uart\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **uart\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   UART driver entry reference
 
@@ -209,11 +207,11 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         HDF_INIT(g_hdfUartDevice);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **uart\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **UartHost**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **uart\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **UartHost** members at the core layer.
 
-    In this example, there is only one UART controller. If there are multiple UART controllers, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **uart\_config**  file.
+    In this example, there is only one UART controller. If there are multiple UART controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **uart\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -246,7 +244,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         }
         ```
 
-    -   **uart\_config.hcs**  configuration reference
+    -  **uart\_config.hcs** configuration reference
 
         ```
         root {
@@ -278,10 +276,10 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         }
         ```
 
-3.  Initialize the  **UartHost**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **UartHostMethod**  \(used to call underlying functions of the driver\) in  **UartHost**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **UartHost** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **UartHostMethod** \(used to call underlying functions of the driver\) in **UartHost**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **uart\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the device number, are also passed to the objects at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **uart\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number, are also passed to the objects at the core layer.
 
         ```
         struct UartPl011Port {// Structure related to the API
@@ -314,7 +312,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         #define UART_FLG_RD_BLOCK     (1 << 2)
             RecvNotify recv; // Pointer to the function that receives serial port data
             struct UartOps *ops; // Custom function pointer structure. For details, see device/hisilicon/drivers/uart/uart_pl011.c.
-            void *private; // It stores the pointer to the start address of UartPl011Port for easy invocation.
+            void *private; // Pointer to the start address of UartPl011Port for easy invocation
         };
         
         // UartHost is the controller structure at the core layer. Its members are assigned with values by using the Init function.
@@ -328,7 +326,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
         };
         ```
 
-    -   Instantiate the callback function structure  **UartHostMethod**  in  **UartHost**. Other members are initialized by using the  **Bind**  function.
+    -   Instantiate the callback function structure **UartHostMethod** in **UartHost**. Other members are initialized by using the **Bind** function.
 
         ```
         // Example in pwm_hi35xx.c: instantiate the hook.
@@ -350,13 +348,13 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-        **Table  2**  Input parameters and return values of the Bind function
+       **Table  2** Input parameters and return values of the Bind function
 
         <a name="table69781823185619"></a>
         <table><thead align="left"><tr id="row997916234569"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p99801123205616"><a name="p99801123205616"></a><a name="p99801123205616"></a>Status (Value)</p>
@@ -400,7 +398,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Function description:
 
-        Initializes the custom structure object and  **UartHost**.
+        Initializes the custom structure object and **UartHost**.
 
         ```
         //uart_hi35xx.c
@@ -430,7 +428,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -438,7 +436,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Function description:
 
-        Initializes the custom structure object and  **UartHost**, calls the  **artAddDev**  function at the core layer, and connects to VFS.
+        Initializes the custom structure object and **UartHost**, calls the **artAddDev** function at the core layer, and connects to VFS.
 
         ```
         int32_t HdfUartDeviceInit(struct HdfDeviceObject *device)
@@ -502,7 +500,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -510,7 +508,7 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
         ```
         void HdfUartDeviceRelease(struct HdfDeviceObject *device)
@@ -545,6 +543,3 @@ The following uses  **uart\_hi35xx.c**  as an example to present the contents th
             host->priv = NULL;
         }
         ```
-
-
-
