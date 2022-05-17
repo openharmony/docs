@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -28,7 +28,7 @@ Creates an SMS message instance based on the protocol data unit (PDU) and the sp
 
 **Example**
 
-```
+```js
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -61,7 +61,7 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 
 **Example**
 
-```
+```js
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -91,7 +91,7 @@ Sends an SMS message.
 
 **Example**
 
-```
+```js
 let sendCallback = function (err, data) {    
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
@@ -124,7 +124,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 **Example**
 
-```
+```js
 sms.getDefaultSmsSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -147,7 +147,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 **Example**
 
-```
+```js
 let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -179,7 +179,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 sms.setSmscAddr(slotId, smscAddr, (err,data) => {
@@ -215,7 +215,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 let promise = sms.setSmscAddr(slotId, smscAddr);
@@ -248,7 +248,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 sms.getSmscAddr(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -282,7 +282,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
@@ -306,7 +306,7 @@ Checks whether the current device can send and receive SMS messages. This API wo
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
 
-```
+```js
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
