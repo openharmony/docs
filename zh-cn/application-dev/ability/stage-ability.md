@@ -1,6 +1,6 @@
 # Ability开发指导
 ## 场景介绍
-Stage模型是基于API version 9的应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
+Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json和app.json配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
 - 创建Page Ability应用，如视频播放、新闻资讯等，需要通过屏幕进行浏览的应用，以及支持人机交互。
 - 获取Ability的配置信息，如ApplicationInfo、AbilityInfo及HapModuleInfo等。
 - 启动/带参数启动/带返回结果启动/带AccountId启动其他Ability。
@@ -89,29 +89,29 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-   
+
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-   
+
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-   
+
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-   
+
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-   
+
     onForeground() {
         console.log("MainAbility onForeground")
     }
-   
+
     onBackground() {
         console.log("MainAbility onBackground")
     }
