@@ -119,32 +119,24 @@
 
 对访问者进行权限校验的开发步骤为：
 
-1. 获取调用者的身份标识：tokenId。
-2. 识别需要校验的权限：permissionNameUser。
-3. 对访问verifyAccessToken接口对当前调用者进行权限校验。
-4. 根据权限校验结果采取对应的措施。
+1. 获取ability的上下文context。
+2. 调用requestPermissionsFromUser接口进行权限校验。
+3. 根据权限校验结果采取对应的措施。
 
 ```js
-  import {describe, beforeEach, afterEach, it, expect} from 'deccjsunit/index'
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-  import bundle from '@ohos.bundle'
-
-  async requestPermission() {
-    var permissionNameUser = "ohos.permission.PERMISSION2";
-    var bundleFlag = 0;
-    var tokenID = undefined;
-    var userID = 100;
-    var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', bundleFlag, userID);
-    tokenID = appInfo.accessTokenId;
-    console.log("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
-        + ", bundleName:" + appInfo.bundleName)
-    var atManager = abilityAccessCtrl.createAtManager();
-    var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
-    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-        // 执行操作
-    } else {
-        // 申请动态授权，使用接口：requestPermissionsFromUser
-    }
+  //ability的onWindowStageCreate生命周期
+  onWindowStageCreate() {
+    var context = this.context
+    let array:Array<string> = ["ohos.permission.PERMISSION2"];
+    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+    context.requestPermissionsFromUser(array).then(function(data) {
+        console.log("data type:" + typeof(data));
+        console.log("data:" + data);
+        console.log("data permissions:" + data.permissions);
+        console.log("data result:" + data.authResults);
+    }, (err) => {
+        console.error('Failed to start ability', err.code);
+    });
   }
 
 ```
