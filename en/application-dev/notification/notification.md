@@ -131,13 +131,25 @@ var subscriber = {
 
 ### Publishing Notifications
 
-Before publishing a notification, make sure the notification feature is enabled for your application. This feature is disabled by default and can be enabled in the notification settings.
+##### Enabling Notification
+
+Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application can use **Notification.requestEnableNotification** to prompt the user to enable the feature.
+
+```js
+Notification.requestEnableNotification() .then((data) => {
+	console.info('===>requestEnableNotification success');
+}).catch((err) => {
+	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
+});
+```
+
+
 
 ##### Publishing Notifications
 
 To publish a notification, create a **NotificationRequest** object and set attributes such as the notification type, title, and content. In the following examples, a normal text notification and a notification containing a **WantAgent** are being published.
 
-Normal Text Notification
+Normal text notification:
 
 ```js
 // Create a NotificationRequest object.
@@ -163,7 +175,7 @@ Notification.publish(notificationRequest) .then((data) => {
 
 
 
-Notification Containing WantAgent.
+Notification containing **WantAgent**:
 
 For details about how to use **WantAgent**, see [WantAgent Development](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ability/wantagent.md).
 
@@ -234,7 +246,7 @@ Notification.publish(notificationRequest) .then((data) => {
 
 - Cancel the notification.
 
-An application can cancel a single notification or all notifications. An application can cancel only the notifications published by itself.
+  An application can cancel a single notification or all notifications. An application can cancel only the notifications published by itself.
 
 ```js
 // cancel callback
@@ -246,3 +258,8 @@ Notification.cancel(1, "label", cancelCallback)
 ```
 
 
+## Samples
+
+The following sample is provided to help you better understand how to develop notification functions:
+
+[`Notification`: Notification (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
