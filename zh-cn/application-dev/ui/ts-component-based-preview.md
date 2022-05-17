@@ -4,7 +4,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 在单个源文件中，最多可以使用@Preview装饰一个自定义组件。
+> 在单个源文件中，最多可以使用10个@Preview装饰自定义组件。
 
 
 @Preview的用法如下：
