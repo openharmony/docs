@@ -61,7 +61,7 @@ export default {
 
 **概述**
 
-​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir等，还有应用的一些基本方法：createBundleContext、switchArea等。
+​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
 
 **获取方法**
 
@@ -275,17 +275,10 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ```
 
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ServiceExtensionContext.d.ts
 
 ### application/FormExtensionContext
 
 ​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/FormExtensionContext.d.ts
 
 ## 常见问题
 
