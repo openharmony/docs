@@ -6,7 +6,7 @@
 ### HDMI
 
 High-definition multimedia interface (HDMI) is an interface for transmitting audio and video data from a source device, such as a DVD player or set-top box (STB), to a sink device, such as a TV or display.
-HDMI works in master/slave mode and usually has a source and a sink.
+HDMI works in primary/secondary mode and usually has a source and a sink.
 The HDMI APIs provide a set of common functions for HDMI transmission, including:
 
 - Opening and closing an HDMI controller
