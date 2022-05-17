@@ -257,9 +257,8 @@
       - [后台代理概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - 后台任务管理
-      - 后台任务
-        - [后台任务概述](background-task-management/background-task-overview.md)
-        - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      - [后台任务概述](background-task-management/background-task-overview.md)
+      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
     - 延迟任务调度
       - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
       - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
