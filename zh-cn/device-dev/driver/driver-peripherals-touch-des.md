@@ -34,7 +34,7 @@
 
 ## 接口说明
 
-Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类:
+Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简单分为如下三类：
 
 - 电源接口
 
@@ -93,7 +93,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
    配置对应的IO管脚功能，例如对单板上为Touchscreen设计预留的I2C Pin脚，需设置对应的寄存器，使其选择I2C的通信功能。
 
 3. 实现器件差异化适配接口
-   根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)
+   根据硬件单板设计的通信接口，使用Platform接口层提供的管脚操作接口配置对应的复位管脚、中断管脚以及电源操作，对于GPIO的操作，可参考[GPIO操作接口指导](../driver/driver-platform-gpio-des.md#概述)。
 
 
 ## 开发实例
@@ -114,7 +114,7 @@ input :: host {
                 device0 :: deviceNode {
                     policy = 2;        // 向外发布服务
                     priority = 100;    // 加载优先级，在input模块内，manager模块优先级应为最高
-                    preload = 0;       // 加载该驱动 0:加载 1:不加载
+                    preload = 0;       // 加载该驱动，0：加载；1：不加载
                     permission = 0660;
                     moduleName = "HDF_INPUT_MANAGER";
                     serviceName = "input_dev_manager";
