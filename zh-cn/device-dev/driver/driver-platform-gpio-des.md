@@ -26,7 +26,7 @@ GPIO接口定义了操作GPIO管脚的标准方法集合，包括：
 | GPIO配置 | -&nbsp;GpioSetDir：设置管脚方向<br/>-&nbsp;GpioGetDir：获取管脚方向 | 
 | GPIO中断设置 | -&nbsp;GpioSetIrq：设置管脚对应的中断服务函数<br/>-&nbsp;GpioUnSetIrq：取消管脚对应的中断服务函数<br/>-&nbsp;GpioEnableIrq：使能管脚中断<br/>-&nbsp;GpioDisableIrq：禁止管脚中断 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
@@ -154,7 +154,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
   | 0 | 设置成功 | 
   | 负数 | 设置失败 | 
 
-  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**<br>
   > 同一时间，只能为某个GPIO管脚设置一个中断服务函数，如果重复调用GpioSetIrq函数，则之前设置的中断服务函数会被取代。
 
   当不再需要响应中断服务函数时，使用如下函数取消中断设置：
@@ -183,7 +183,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
   | 0 | 使能成功 | 
   | 负数 | 使能失败 | 
 
-  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**<br>
   > 必须通过此函数使能管脚中断，之前设置的中断服务函数才能被正确响应。
 
   如果要临时屏蔽此中断，可以通过如下函数禁止GPIO管脚中断：
