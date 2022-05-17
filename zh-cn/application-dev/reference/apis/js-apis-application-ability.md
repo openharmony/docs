@@ -143,7 +143,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 
 onForeground(): void;
 
-Ability生命周期回调，当应用处于前台时触发。
+Ability生命周期回调，当应用从后台转到前台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -162,7 +162,7 @@ Ability生命周期回调，当应用处于前台时触发。
 
 onBackground(): void;
 
-Ability生命周期回调，当应用处于后台时触发。
+Ability生命周期回调，当应用从前台转到后台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

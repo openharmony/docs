@@ -1,6 +1,8 @@
 # Resource Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+The resource management module provides APIs to obtain information about the current device configuration (including the language, region, screen direction, and MCC/MNC) and device capability (including the device type and resolution).
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -14,14 +16,14 @@ import resourceManager from '@ohos.resourceManager';
 
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-Obtains the **ResourceManager** object of this application. This method uses a callback to return the result.
+Obtains the **ResourceManager** object of this application. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the **ResourceManager** object obtained.|
 
 **Example**
   ```
@@ -45,7 +47,7 @@ Obtains the **ResourceManager** object of this application. This method uses a c
 
 getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-Obtains the **ResourceManager** object of an application. This method uses an asynchronous callback to return the result.
+Obtains the **ResourceManager** object of an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -53,7 +55,7 @@ Obtains the **ResourceManager** object of an application. This method uses an as
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | Yes   | Bundle name of the target application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object obtained.|
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the **ResourceManager** object obtained.|
 
 **Example**
   ```
@@ -66,7 +68,7 @@ Obtains the **ResourceManager** object of an application. This method uses an as
 
 getResourceManager(): Promise&lt;ResourceManager&gt;
 
-Obtains the **ResourceManager** object of this application. This method uses a promise to return the result.
+Obtains the **ResourceManager** object of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -95,7 +97,7 @@ Obtains the **ResourceManager** object of this application. This method uses a p
 
 getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
-Obtains the **ResourceManager** object of an application. This method uses a promise to return the result.
+Obtains the **ResourceManager** object of an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -139,12 +141,12 @@ Enumerates the device types.
 
 | Name                  | Default Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Mobile phone.  |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
-| DEVICE_TYPE_CAR      | 0x02 | Automobile.  |
-| DEVICE_TYPE_PC       | 0x03 | Computer.  |
-| DEVICE_TYPE_TV       | 0x04 | TV.  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
+| DEVICE_TYPE_CAR      | 0x02 | Head unit  |
+| DEVICE_TYPE_PC       | 0x03 | PC  |
+| DEVICE_TYPE_TV       | 0x04 | TV  |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
 
 
 ## ScreenDensity
@@ -175,6 +177,16 @@ Defines the device configuration.
 | direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
 | locale    | string                  | Yes   | No   | Current system language.  |
 
+**Example**
+
+  ```
+resourceManager.getResourceManager((error, mgr) => {
+      mgr.getConfiguration((error, value) => {
+          console.log(value.direction);
+          console.log(value.locale);
+      });
+  });
+  ```
 
 ## DeviceCapability
 
@@ -188,6 +200,16 @@ Defines the device capability.
 | screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Type of the device.  |
 
+**Example**
+
+  ```
+resourceManager.getResourceManager((error, mgr) => {
+      mgr.getDeviceCapability((error, value) => {
+          console.log(value.screenDensity);
+          console.log(value.deviceType);
+      });
+  });
+  ```
 
 ## RawFileDescriptor<sup>8+</sup>
 
@@ -205,7 +227,7 @@ Defines the descriptor information of the raw file.<br>
 
 Defines the capability of accessing application resources.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
@@ -215,7 +237,7 @@ Defines the capability of accessing application resources.
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the string corresponding to the specified resource ID. This method uses an asynchronous callback to return the result.
+Obtains the string corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -223,7 +245,7 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the string obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the obtained string.|
 
 **Example**
   ```
@@ -243,7 +265,7 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
 getString(resId: number): Promise&lt;string&gt;
 
-Obtains the string corresponding to the specified resource ID. This method uses a promise to return the result.
+Obtains the string corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -273,7 +295,7 @@ Obtains the string corresponding to the specified resource ID. This method uses 
 
 getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the array of strings corresponding to the specified resource ID. This method uses an asynchronous callback to return the result.
+Obtains the array of strings corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -281,7 +303,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained array of strings.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the obtained array of strings.|
 
 **Example**
   ```
@@ -301,7 +323,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
 getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the array of strings corresponding to the specified resource ID. This method uses a promise to return the result.
+Obtains the array of strings corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -331,7 +353,7 @@ Obtains the array of strings corresponding to the specified resource ID. This me
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This method uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -339,7 +361,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the media file obtained.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the content of the media file obtained.|
 
 **Example**
   ```
@@ -359,7 +381,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the media file corresponding to the specified resource ID. This method uses a promise to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -389,7 +411,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 
 getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of the image corresponding to the specified resource ID. This method uses an asynchronous callback to return the result.
+Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -397,7 +419,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the Base64 code of the image obtained.|
 
 **Example**
   ```
@@ -417,7 +439,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
 getMediaBase64(resId: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of the image corresponding to the specified resource ID. This method uses a promise to return the result.
+Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -447,14 +469,14 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
-Obtains the device configuration. This method uses an asynchronous callback to return the result.
+Obtains the device configuration. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the obtained device configuration.|
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Asynchronous callback used to return the obtained device configuration.|
 
 **Example**
   ```
@@ -474,7 +496,7 @@ Obtains the device configuration. This method uses an asynchronous callback to r
 
 getConfiguration(): Promise&lt;Configuration&gt;
 
-Obtains the device configuration. This method uses a promise to return the result.
+Obtains the device configuration. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -499,14 +521,14 @@ Obtains the device configuration. This method uses a promise to return the resul
 
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
-Obtains the device capability. This method uses an asynchronous callback to return the result.
+Obtains the device capability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the obtained device capability.|
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Asynchronous callback used to return the obtained device capability.|
 
 **Example**
   ```
@@ -526,7 +548,7 @@ Obtains the device capability. This method uses an asynchronous callback to retu
 
 getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
-Obtains the device capability. This method uses a promise to return the result.
+Obtains the device capability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -551,7 +573,7 @@ Obtains the device capability. This method uses a promise to return the result.
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This method uses an asynchronous callback to return the result.
+Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -560,7 +582,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number that determines the plural or singular form.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the singular-plural string obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the singular-plural string obtained.|
 
 **Example**
   ```
@@ -580,7 +602,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This method uses a promise to return the result.
+Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -610,7 +632,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the raw file in the specified path. This method uses an asynchronous callback to return the result.
+Obtains the content of rawfile in the specified path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -618,7 +640,7 @@ Obtains the content of the raw file in the specified path. This method uses an a
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the raw file content, in byte arrays.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the raw file content, in byte arrays.|
 
 **Example**
   ```
@@ -637,7 +659,7 @@ Obtains the content of the raw file in the specified path. This method uses an a
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the raw file in the specified path. This method uses a promise to return the result.
+Obtains the content of the raw file in the specified path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -666,7 +688,7 @@ Obtains the content of the raw file in the specified path. This method uses a pr
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the descriptor of the raw file in the specified path. This method uses an asynchronous callback to return the result.
+Obtains the descriptor of the raw file in the specified path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -674,7 +696,7 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the raw file descriptor.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Asynchronous callback used to return the raw file descriptor.|
 
 **Example**
   ```
@@ -695,7 +717,7 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the descriptor of the raw file in the specified path. This method uses a promise to return the result.
+Obtains the descriptor of the raw file in the specified path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -726,7 +748,7 @@ Obtains the descriptor of the raw file in the specified path. This method uses a
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the descriptor of the raw file in the specified path. This method uses an asynchronous callback to return the result.
+Closes the descriptor of the raw file in the specified path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -734,7 +756,7 @@ Closes the descriptor of the raw file in the specified path. This method uses an
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Asynchronous callback used to return the result.       |
 
 **Example**
   ```
@@ -751,7 +773,7 @@ Closes the descriptor of the raw file in the specified path. This method uses an
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-Closes the descriptor of the raw file in the specified path. This method uses a promise to return the result.
+Closes the descriptor of the raw file in the specified path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

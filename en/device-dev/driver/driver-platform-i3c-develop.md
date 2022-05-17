@@ -24,7 +24,7 @@ The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidir
     };
     ```
 
-    **Table 1** APIs for the members in the I3cMethod structure
+   **Table 1** APIs for the members in the I3cMethod structure
     
     |Method|Input Parameter|Output Parameter|Return Value|Description|
     |-|-|-|-|-|
@@ -52,7 +52,9 @@ The I3C module adaptation involves the following steps:
 3. Instantiate the I3C controller object.
    
     - Initialize **I3cCntlr**.
-    - Instantiate **I3cMethod** in **I3cCntlr**. For details, see [Available APIs](#available-apis).
+    - Instantiate **I3cMethod** in **I3cCntlr**. 
+
+    For details, see [Available APIs](#available-apis).
   
 4. Register an interrupt handler.
     Register an interrupt handler for the controller to implement the device hot-join and in-band interrupt (IBI) features.
@@ -197,7 +199,7 @@ The I3C module adaptation involves the following steps:
     - **Init** function
     
         > Input parameter:
-        >  **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+        > **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         > 
         > Return value:
         > **HDF_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** definition in the **/drivers/framework/include/utils/hdf\_base.h file**.)

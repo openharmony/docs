@@ -4,11 +4,13 @@
 -   [目录](#section1464106163817)
 -   [约束](#section1718733212019)
 -   [使用](#section10729231131110)
--   [涉及仓](#section176111311166)
+-   [相关仓](#section176111311166)
 
 ## 简介<a name="section11660541593"></a>
 
-DeviceProfile是设备硬件能力和系统软件特征的管理器，典型的Profile有设备类型、设备名称、设备OS类型、OS版本号等。DeviceProfile提供快速访问本地和远端设备Profile的能力，是发起分布式业务的基础。主要功能如下：
+DeviceProfile是设备硬件能力和系统软件特征的管理器，典型的Profile有设备类型、设备名称、设备OS类型、OS版本号等。
+
+DeviceProfile提供快速访问本地和远端设备Profile的能力，是发起分布式业务的基础。主要功能如下：
 
 -   本地设备Profile的查询、插入、删除。
 -   远程设备Profile的查询。
@@ -188,7 +190,7 @@ DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEv
     callback, failedEvents);
 ```
 
-## 涉及仓<a name="section176111311166"></a>
+## 相关仓<a name="section176111311166"></a>
 
 **DeviceProfile子系统**
 

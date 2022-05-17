@@ -1,6 +1,6 @@
 # webgl
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -11,18 +11,18 @@ This module provides WebGL APIs that correspond to the OpenGL ES 2.0 feature set
 
 Create a **<canvas\>** component in the HML file. The following is an example:
 
-  
+
 ```
-<div class="container">
-    <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
+
+    
     <button class="btn-button" onclick="BtnDraw2D">BtnDraw2D</button>
-</div>
+
 ```
 
 Obtain the **<canvas\>** component instance in the JS file. The following is an example:
 
-  
-```
+
+```js
 // Obtain the <canvas> component instance.
 const el = this.$refs.canvas1;
 // Obtain the WebGL context from the <canvas> component instance.

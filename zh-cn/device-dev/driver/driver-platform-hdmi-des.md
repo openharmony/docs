@@ -5,15 +5,15 @@
 
 ### 功能简介
 
-- HDMI（High Definition Multimedia Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频Source到TV、显示器等Sink设备的传输。
-- HDMI以主从方式工作，通常有一个Source端和一个Sink端。
-- HDMI接口定义了完成HDMI传输的通用方法集合，包括：
+HDMI（High Definition Multimedia Interface），即高清多媒体接口，主要用于DVD、机顶盒等音视频Source到TV、显示器等Sink设备的传输。
+HDMI以主从方式工作，通常有一个Source端和一个Sink端。
+HDMI接口定义了完成HDMI传输的通用方法集合，包括：
 
-    - HDMI控制器管理：打开或关闭HDMI控制器
-    - HDMI启动/停止传输：启动或停止HDMI传输
-    - HDMI控制器设置：设置音频、视频及HDR属性，设置色彩深度、声音图像消隐等
-    - HDMI读取EDID：读取Sink端原始的EDID数据
-    - HDMI热插拔：注册/注销热插拔回调函数
+- HDMI控制器管理：打开或关闭HDMI控制器
+- HDMI启动/停止传输：启动或停止HDMI传输
+- HDMI控制器设置：设置音频、视频及HDR属性，设置色彩深度、声音图像消隐等
+- HDMI读取EDID：读取Sink端原始的EDID数据
+- HDMI热插拔：注册/注销热插拔回调函数
 
 ### 基本概念
 
@@ -22,9 +22,9 @@ HDMI是Hitachi、Panasonic、Philips、Silicon Image、Sony、Thomson、Toshiba�
 - TMDS（Transition Minimized Differential signal）：过渡调制差分信号，也被称为最小化传输差分信号，用于发送音频、视频及各种辅助数据。
 - DDC（Display Data Channel）：显示数据通道，发送端与接收端可利用DDC通道得知彼此的发送与接收能力，但HDMI仅需单向获知接收端（显示器）的能力。
 - CEC（Consumer Electronics Control）：消费电子控制，该功能应该能够在连接HDMI的发送设备与接收设备之间实现交互操作。
-- FRL（Fixed Rate Link）：TMDS 的架构进行讯号传输时，最高带宽可达 18Gbps，而 FRL 模式的带宽则提升到 48 Gbps。
+- FRL（Fixed Rate Link）：TMDS 的架构进行讯号传输时，最高带宽可达 18Gbps，而FRL模式的带宽则提升到48 Gbps。
 - HDCP（High-bandwidth Digital Content Protection）：即高带宽数字内容保护技术，当用户对高清晰信号进行非法复制时，该技术会进行干扰，降低复制出来的影像的质量，从而对内容进行保护。
-- EDID（Extended Display Identification Data）：扩展显示标识数据， 通常存储在显示器的固件中，标识供应商信息、EDID版本信息、最大图像大小、颜色设置、厂商预设置、频率范围的限制以及显示器名和序列号的字符串。
+- EDID（Extended Display Identification Data）：扩展显示标识数据，通常存储在显示器的固件中，标识供应商信息、EDID版本信息、最大图像大小、颜色设置、厂商预设置、频率范围的限制以及显示器名和序列号的字符串。
 
 ### 运作机制
 
@@ -38,7 +38,7 @@ HDMI物理连接如图1所示：
 
 ### 约束与限制
 
-HDMI模块当前仅支持轻量和小型系统内核（LiteOS） 。
+HDMI模块当前仅支持轻量和小型系统内核（LiteOS）。
 
 ## 使用指导
 
@@ -92,7 +92,7 @@ DevHandle HdmiOpen(int16_t number);
 | NULL       | 打开HDMI控制器失败   |
 | 控制器句柄 | 打开的HDMI控制器句柄 |
 
-假设系统中存在2个HDMI控制器，编号从0到1，那么我们现在获取0号控制器：
+假设系统中存在2个HDMI控制器，编号从0到1，以下代码示例为获取0号控制器：
 
 ```c
 DevHandle hdmiHandle = NULL;  /* HDMI控制器句柄 /

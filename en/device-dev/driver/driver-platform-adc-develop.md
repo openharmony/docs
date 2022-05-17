@@ -4,7 +4,7 @@
 
 The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\), the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
-**Figure  1**  Unified service mode<a name="fig14423182615525"></a>  
+**Figure  1** Unified service mode<a name="fig14423182615525"></a>  
 ![](figures/unified-service-mode.png "ADC-unified-service-mode")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -19,7 +19,7 @@ struct AdcMethod {
 };
 ```
 
-**Table  1**  Callbacks for the members in the AdcMethod structure
+**Table  1** Callbacks for the members in the AdcMethod structure
 
 <a name="table1943202316536"></a>
 <table><thead align="left"><tr id="row2451223135315"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p845123185313"><a name="p845123185313"></a><a name="p845123185313"></a>Callback</p>
@@ -76,39 +76,36 @@ struct AdcMethod {
 The ADC module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **adc\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **adc\_config.hcs** file.
 
 3.  Instantiate the ADC controller object.
-    -   Initialize  **AdcDevice**.
-    -   Instantiate  **AdcMethod**  in the  **AdcDevice**  object.
+    -   Initialize **AdcDevice**.
+    -   Instantiate **AdcMethod** in the **AdcDevice** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis).
 
-        >For details, see [Available APIs](#available-apis).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
 
 
 ## Development Example<a name="section1745221471165048"></a>
 
-The following uses  **adc\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **adc\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exits.
 
     -   ADC driver entry reference
 
         Many devices may connect to the ADC. In the HDF, a manager object needs to be created for the ADC. When a device needs to be started, the manager object locates the device based on the specified parameters.
 
-        The driver of the ADC manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the  **Init**  function, the  **AdcDeviceAdd**  function of the core layer must be called to implement the corresponding features.
+        The driver of the ADC manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the **Init** function, the **AdcDeviceAdd** function of the core layer must be called to implement the corresponding features.
 
         ```
         static struct HdfDriverEntry g_hi35xxAdcDriverEntry = {
@@ -129,9 +126,9 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
         HDF_INIT(g_adcManagerEntry);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **adc\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the  **AdcDevice**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **adc\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the **AdcDevice** members at the core layer.
 
-    In the unified service mode, the first device node in the  **device\_info**  file must be the ADC manager, and the parameters must be set as follows:
+    In the unified service mode, the first device node in the **device\_info** file must be the ADC manager, and the parameters must be set as follows:
 
     <a name="table1344068233165048"></a>
     <table><thead align="left"><tr id="row1551612465165048"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1856185125165048p0"><a name="entry1856185125165048p0"></a><a name="entry1856185125165048p0"></a>Member</p>
@@ -163,9 +160,9 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
     </tbody>
     </table>
 
-    Configure ADC controller information from the second node. This node specifies a type of ADC controllers rather than an ADC controller. In this example, there is only one ADC device. If there are multiple ADC devices, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **adc\_config**  file.
+    Configure ADC controller information from the second node. This node specifies a type of ADC controllers rather than an ADC controller. In this example, there is only one ADC device. If there are multiple ADC devices, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **adc\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -221,10 +218,10 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-3.  Initialize the  **AdcDevice**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **AdcMethod**  \(used to call underlying functions of the driver\) in  **AdcDevice**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **AdcDevice** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **AdcMethod** \(used to call underlying functions of the driver\) in **AdcDevice**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **adc\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the  **AdcDevice**  object at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **adc\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the **AdcDevice** object at the core layer.
 
         ```
         struct Hi35xxAdcDevice {
@@ -254,7 +251,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
         };
         ```
 
-    -   Instantiate the callback function structure  **AdcMethod**  in  **AdcDevice**. The  **AdcLockMethod**  callback function structure is not implemented in this example. To instantiate the structure, refer to the I2C driver development. Other members are initialized in the  **Init**  function.
+    -   Instantiate the callback function structure **AdcMethod** in **AdcDevice**. The **AdcLockMethod** callback function structure is not implemented in this example. To instantiate the structure, refer to the I2C driver development. Other members are initialized in the **Init** function.
 
         ```
         static const struct AdcMethod g_method = {
@@ -268,11 +265,11 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
         <a name="table127573104165048"></a>
         <table><thead align="left"><tr id="row1932243367165048"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry405408385165048p0"><a name="entry405408385165048p0"></a><a name="entry405408385165048p0"></a>Status (Value)</p>
@@ -316,7 +313,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Initializes the custom structure object and  **AdcDevice**, and calls the  **AdcDeviceAdd**  function at the core layer.
+        Initializes the custom structure object and **AdcDevice**, and calls the **AdcDeviceAdd** function at the core layer.
 
         ```
         static int32_t Hi35xxAdcInit(struct HdfDeviceObject *device)
@@ -371,7 +368,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -379,7 +376,7 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
         ```
         static void Hi35xxAdcRelease(struct HdfDeviceObject *device)
@@ -415,6 +412,3 @@ The following uses  **adc\_hi35xx.c**  as an example to present the contents tha
         }
         return
         ```
-
-
-

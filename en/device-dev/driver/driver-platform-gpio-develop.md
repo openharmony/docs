@@ -2,9 +2,9 @@
 
 ## Overview<a name="section1826197354103451"></a>
 
-In the Hardware Driver Foundation \(HDF\) framework, the general-purpose input/output \(GPIO\) module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode,  **DevHandle**  \(a void pointer\) directly points to the kernel-mode address of the device object.
+In the Hardware Driver Foundation \(HDF\) framework, the general-purpose input/output \(GPIO\) module uses the service-free mode for API adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS system that does not distinguish the user mode and the kernel mode. In the service-free mode, **DevHandle** \(a void pointer\) directly points to the kernel-mode address of the device object.
 
-**Figure  1**  Service-free mode<a name="fig5511033193814"></a>  
+**Figure  1** Service-free mode<a name="fig5511033193814"></a>  
 ![](figures/service-free-mode.png "service-free-mode")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -26,7 +26,7 @@ struct GpioMethod {
   int32_t (*disableIrq)(struct GpioCntlr *cntlr, uint16_t local);
 }
 ```
-**Table  1**  Callbacks for the members in the GpioMethod structure
+**Table  1** Callbacks for the members in the GpioMethod structure
 
 <a name="table151341544111"></a>
 <table><thead align="left"><tr id="row19514101504111"><th class="cellrowborder" align="center" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p451461513418"><a name="p451461513418"></a><a name="p451461513418"></a>Callback</p>
@@ -152,32 +152,30 @@ The GPIO controller manages all pins by group. The related parameters are descri
 The GPIO module adaptation involves the following steps: 
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF framework.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **gpio\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **gpio\_config.hcs** file.
 
 3.  Instantiate the GPIO controller object.
-    -   Initialize  **GpioCntlr**.
-    -   Instantiate  **GpioMethod**  in the  **GpioCntlr**  object.
+    -   Initialize **GpioCntlr**.
+    -   Instantiate **GpioMethod** in the **GpioCntlr** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-        >For details, see [Available APIs](#section752964871810).
-		
+        For details, see [Available APIs](#section752964871810).
 	
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the GPIO control status and response to interrupts.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify the basic functions, such as the GPIO control status and response to interrupts.
 
 
 ## Development Example<a name="section800425816103451"></a>
 
-The following uses  **gpio\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **gpio\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF framework, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exits.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exits.
 
     -   GPIO driver entry reference
 
@@ -193,11 +191,11 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
         HDF_INIT(g_gpioDriverEntry);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **gpio\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **GpioCntlr**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **gpio\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **GpioCntlr** members at the core layer.
 
-    In this example, there is only one GPIO controller. If there are multiple GPIO controllers, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **gpio\_config**  file.
+    In this example, there is only one GPIO controller. If there are multiple GPIO controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **gpio\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -220,7 +218,7 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
         }
         ```
 
-    -   **gpio\_config.hcs**  configuration reference
+    -  **gpio\_config.hcs** configuration reference
 
         ```
         root {
@@ -240,10 +238,10 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
         } 
         ```
 
-3.  Initialize the  **GpioCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **GpioMethod**  \(used to call underlying functions of the driver\) in  **GpioCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **GpioCntlr** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **GpioMethod** \(used to call underlying functions of the driver\) in **GpioCntlr**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **gpio\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also passed to the  **GpioCntlr**  object at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **gpio\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also passed to the **GpioCntlr** object at the core layer.
 
         ```
         struct Pl061GpioCntlr {
@@ -279,7 +277,7 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
         };
         ```
 
-    -   Instantiate the callback function structure  **GpioMethod**  in  **GpioCntlr**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the callback function structure **GpioMethod** in **GpioCntlr**. Other members are initialized by using the **Init** function.
 
         ```
         // The members of the GpioMethod structure are all callbacks. Vendors need to implement the corresponding functions according to [Table 1](#table151341544111).
@@ -304,13 +302,13 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
 
     Input parameters:
 
-    **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+   **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
     Return values:
 
-    HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+    HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-    **Table  2**  Init function description
+   **Table  2** Init function description
 
     <a name="table165981547354"></a>
     <table><thead align="left"><tr id="row8599145423516"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p959995453515"><a name="p959995453515"></a><a name="p959995453515"></a>Status (Value)</p>
@@ -354,7 +352,7 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
 
     Function description:
 
-    Initializes the custom structure object and  **GpioCntlr**, calls the  **GpioCntlrAdd**  function at the core layer, and connects to the VFS \(optional\).
+    Initializes the custom structure object and **GpioCntlr**, calls the **GpioCntlrAdd** function at the core layer, and connects to the VFS \(optional\).
 
     ```
     static int32_t Pl061GpioInit(struct HdfDeviceObject *device)
@@ -392,7 +390,7 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
 
     Input parameters:
 
-    **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+   **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
     Return values:
 
@@ -400,7 +398,7 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
 
     Function description:
 
-    Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+    Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF framework fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
     
 	```
@@ -422,7 +420,3 @@ The following uses  **gpio\_hi35xx.c**  as an example to present the contents th
            pl061->regBase = NULL;
         }
         ```
-	
-	
-
-

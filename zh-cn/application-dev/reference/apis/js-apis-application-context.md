@@ -29,6 +29,7 @@
 | bundleCodeDir | string | 是 | 否 | 应用安装路径。 | 
 | distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 | 
 | eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。| 
+| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。| 
 
 
 ## Context.createBundleContext
@@ -61,66 +62,23 @@ createBundleContext(bundleName: string): Context;
 
 ## Context.getApplicationContext
 
-getApplicationContext(): Context;
+getApplicationContext(): ApplicationContext;
 
-获取当前context。
+获取当前applicationContext。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Context | 当前Context&nbsp;信息。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| ApplicationContext | 当前ApplicationContext对象信息。 |
 
 **示例：**
     
   ```js
   // 必选项。
-  let context = this.context.getApplicationContext();
-  ```
-
-
-## Context.switchArea
-
-switchArea(mode: AreaMode): void;
-
-切换需要访问的文件分区。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | mode | [AreaMode](#areamode) | 是 | 文件分区。 |
-
-**示例：**
-    
-  ```js
-  var areaMode = 0;
-  this.context.switchArea(areaMode);
-  ```
-
-
-## Context.getArea()
-
-getArea(): AreaMode;
-
-获取文件分级信息，可以查看当前是处于哪个分区。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | [AreaMode](#areamode) | 文件分区。  | 
-
-**示例：**
-    
-  ```js
-  let mode = this.context.getArea();
+  let applicationContext = this.context.getApplicationContext();
   ```
 
 

@@ -5,7 +5,7 @@
 
 ### 功能简介
 
-为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力。用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
+为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达（Vibrator）驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力。用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
 
 **图 1** 马达驱动模型图
 
@@ -21,7 +21,7 @@
 
 - 周期振动
 
-  周期振动是指按照预置的效果模式控制振动。例如： 预置效果为“haptic.clock.timer” = [600, 600, 200, 600]，等待600ms，振动600ms，等待200ms，振动600ms。
+  周期振动是指按照预置的效果模式控制振动。例如：预置效果为“haptic.clock.timer” = [600, 600, 200, 600]，等待600ms，振动600ms，等待200ms，振动600ms。
 
 ### 运作机制
 
@@ -33,9 +33,9 @@
 
 马达驱动模型以标准系统Hi3516DV300产品为例，介绍整个驱动加载及运行流程：
 
-1. 从device info HCS 的Vibrator Host读取Vibrator管理配置信息。
+1. 从device_info.hcs配置文件中的Vibrator Host读取Vibrator管理配置信息。
 2. 解析Vibrator管理配置信息，并关联对应马达抽象驱动。
-3. 从linear_vibrator_config HCS读取Vibrator数据配置信息。
+3. 从linear_vibrator_config.hcs配置文件中读取Vibrator数据配置信息。
 4. 解析Vibrator数据配置信息，并关联对应Haptic驱动。
 5. 客户端下发Vibrator Stub控制到服务端。
 6. Vibrator Stub控制调用马达服务。
@@ -48,7 +48,7 @@
 
 ### 场景介绍
 
-当设备需要设置不同的振动效果时，可以调用 Vibrator 模块，例如，设备的按键可以设置不同强度和时长的振动，闹钟和来电可以设置不同强度和时长的单次或周期性振动。
+当设备需要设置不同的振动效果时，可以调用Vibrator模块，例如，设备的按键可以设置不同强度和时长的振动，闹钟和来电可以设置不同强度和时长的单次或周期性振动。
 
 ### 接口说明
 
@@ -64,7 +64,7 @@
 
 ### 开发步骤
 
-Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF（Hardware Driver Foundation）驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。马达具体的开发步骤如下：
+Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。马达具体的开发步骤如下：
 
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，配置资源和HCS解析。
 
@@ -73,11 +73,11 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      ```c
      /* 注册马达抽象驱动入口数据结构体对象 */
      struct HdfDriverEntry g_vibratorDriverEntry = {
-         .moduleVersion = 1, //马达模块版本号
-         .moduleName = "HDF_VIBRATOR", //马达模块名，要与device_info.hcs文件里的马达moduleName字段值一样
-         .Bind = BindVibratorDriver, //马达绑定函数
-         .Init = InitVibratorDriver, //马达初始化函数
-        .Release = ReleaseVibratorDriver, //马达资源释放函数
+         .moduleVersion = 1, // 马达模块版本号
+         .moduleName = "HDF_VIBRATOR", // 马达模块名，要与device_info.hcs文件里的马达moduleName字段值一样
+         .Bind = BindVibratorDriver, // 马达绑定函数
+         .Init = InitVibratorDriver, // 马达初始化函数
+        .Release = ReleaseVibratorDriver, // 马达资源释放函数
      };
      
      HDF_INIT(g_vibratorDriverEntry);
@@ -154,13 +154,13 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
                  hostName = "vibrator_host";
                  device_vibrator :: device {
                      device0 :: deviceNode {
-                         policy = 2; //驱动服务发布的策略
-                         priority = 100; //驱动启动优先级（0-200），值越大优先级越低，建议配置100，优先级相同则不保证device的加载顺序
-                         preload = 0; //驱动按需加载字段，0表示加载，2表示不加载
-                         permission = 0664; //驱动创建设备节点权限
-                         moduleName = "HDF_VIBRATOR"; //驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
-                         serviceName = "hdf_misc_vibrator"; //驱动对外发布服务的名称，必须唯一 
-                         deviceMatchAttr = "hdf_vibrator_driver"; //驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
+                         policy = 2; // 驱动服务发布的策略
+                         priority = 100; // 驱动启动优先级（0-200），值越大优先级越低，建议配置100，优先级相同则不保证device的加载顺序
+                         preload = 0; // 驱动按需加载字段，0表示加载，2表示不加载
+                         permission = 0664; // 驱动创建设备节点权限
+                         moduleName = "HDF_VIBRATOR"; // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
+                         serviceName = "hdf_misc_vibrator"; // 驱动对外发布服务的名称，必须唯一 
+                         deviceMatchAttr = "hdf_vibrator_driver"; // 驱动私有数据匹配的关键字，必须和驱动私有数据配置表中的match_attr值相等
                      }
                  }
      ```
@@ -201,23 +201,23 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
 
-   - 马达效果模型使用HCS作为配置描述源码，HCS配置字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
 
      ```
      /* 马达数据配置模板（vibrator_config.hcs） */
      root {
          vibratorConfig {
              boardConfig {
-                 match_attr = "hdf_vibrator_driver"; //需要和马达设备配置match_attr字段保持一致
+                 match_attr = "hdf_vibrator_driver"; // 需要和马达设备配置match_attr字段保持一致
                  vibratorAttr {
-                     /* 0:转子 1:线性 */
-                     deviceType = 1; //设备类型
-                     supportPreset = 1; //支持的预设类型
+                     /* 0：转子；1：线性 */
+                     deviceType = 1; // 设备类型
+                     supportPreset = 1; // 支持的预设类型
                  }
                  vibratorHapticConfig {
                      haptic_clock_timer {
                          effectName = "haptic.clock.timer";
-                         type = 1; // 0 内置模式, 1 时间序列
+                         type = 1; // 0：内置模式；1：时间序列
                          seq = [600, 600, 200, 600]; // 时间序列
                      }
                      haptic_default_effect {

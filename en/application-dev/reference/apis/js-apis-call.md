@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import call from '@ohos.telephony.call';
 ```
 
@@ -30,7 +30,7 @@ Initiates a call. This API uses an asynchronous callback to return the execution
 
 **Example**
 
-```
+```js
 call.dial("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -57,7 +57,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Example**
 
-```
+```js
 call.dial("138xxxxxxxx", {
     extras: false
 }, (err, data) => {
@@ -91,7 +91,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Example**
 
-```
+```js
 let promise = call.dial("138xxxxxxxx", {
     extras: false
 });
@@ -121,7 +121,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Example**
 
-```
+```js
 call.makeCall("138xxxxxxxx", err => { 
     console.log(`makeCall callback: err->${JSON.stringify(err)}`); 
 });
@@ -152,7 +152,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 **Example**
 
-```
+```js
 let promise = call.makeCall("138xxxxxxxx"); 
 promise.then(() => { 
     console.log(`makeCall success`); 
@@ -177,7 +177,7 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 **Example**
 
-```
+```js
 call.hasCall((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -200,7 +200,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 **Example**
 
-```
+```js
 let promise = call.hasCall();
 promise.then(data => {
     console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
@@ -226,7 +226,7 @@ Obtains the call status. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```
+```js
 call.getCallState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -249,7 +249,7 @@ Obtains the call status. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let promise = call.getCallState();
 promise.then(data => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
@@ -272,7 +272,7 @@ Checks whether a device supports voice calls. This API works in synchronous mode
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
 
-```
+```js
 let result = call.hasVoiceCapability(); 
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
@@ -294,7 +294,7 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Example**
 
-```
+```js
 call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -319,7 +319,7 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Example**
 
-```
+```js
 call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -349,7 +349,7 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 
 **Example**
 
-```
+```js
 let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
 promise.then(data => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -375,7 +375,7 @@ Formats a phone number based on the specified ISO country code. This API uses an
 
 **Example**
 
-```
+```js
 call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -400,7 +400,7 @@ Formats a phone number based on specified formatting options. This API uses an a
 
 **Example**
 
-```
+```js
 call.formatPhoneNumber("138xxxxxxxx",{
     countryCode: "CN"
 }, (err, data) => {
@@ -432,7 +432,7 @@ Formats a phone number based on specified formatting options. This API uses a pr
 
 **Example**
 
-```
+```js
 let promise = call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 });
@@ -465,7 +465,7 @@ All country codes are supported.
 
 **Example**
 
-```
+```js
 call.formatPhoneNumberToE164("138xxxxxxxx",{
     countryCode: "CN"
 }, (err, data) => {
@@ -501,7 +501,7 @@ All country codes are supported.
 
 **Example**
 
-```
+```js
 let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
     countryCode: "CN"
 });
