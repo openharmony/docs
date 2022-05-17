@@ -1,10 +1,10 @@
 # Fault Logger
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -56,7 +56,7 @@ Obtains the fault information about the current process. This API uses a callbac
 
 **Example**
 
-```
+```js
 function queryFaultLogCallback(error, value) {
     if (error) {
         console.info('error is ' + error);
@@ -101,7 +101,7 @@ Obtains the fault information about the current process. This API uses a promise
 
 **Example**
 
-```
+```js
 async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
