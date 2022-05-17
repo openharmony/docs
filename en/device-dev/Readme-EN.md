@@ -13,6 +13,7 @@
 - Porting
   - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty.md)
   - [Mini System SoC Porting Guide](porting/porting-minichip.md)
+  - [Mini System SoC Porting Cases](porting/porting-minichip-cases.md)
   - [Small System SoC Porting Guide](porting/porting-smallchip.md)
   - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)	 	
 - Subsystem Development
@@ -37,7 +38,7 @@
   - [Startup](subsystems/subsys-boot.md)
   - [DFX](subsystems/subsys-dfx.md)
 - Featured Topics
-  - [HPM Bundle](bundles/Readme-EN.md) 	 	
+  - [HPM Part](hpm-part/Readme-EN.md) 	 	
 - Device Development Examples	 
   - [Mini- and Small-System Devices](guide/device-lite.md)	
   - [Standard-System Devices](guide/device-standard.md)
