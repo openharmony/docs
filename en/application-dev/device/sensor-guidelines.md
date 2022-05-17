@@ -13,9 +13,9 @@
 
 - Data provided by the Hall effect sensor implements the smart cover mode of your device.
 
-- Data provided by the heart rate sensor helps your application track the health of a user.
+- Data provided by the heart rate sensor helps your application track the heart health of a user.
 
-- Data provided by the pedometer sensor helps your application obtain the number steps a user has walked.
+- Data provided by the pedometer sensor helps your application obtain the number of steps a user has walked.
 
 - Data provided by the wear detection sensor helps your application detect whether a user is wearing a wearable device.
 
@@ -31,7 +31,7 @@
 
 ## How to Develop
 
-1. To obtain data from a type of sensor, configure the request permissions in the **config.json** file.  
+1. To obtain data from a type of sensor, configure the requested permissions in the **config.json** file.  
   
    ```
    "reqPermissions":[
@@ -75,7 +75,7 @@
    ```
    import sensor from "@ohos.sensor"
    sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = "+ data);// The call is successful, and the obtained sensor data is printed.
+          console.info("Subscription succeeded. data = "+ data); // The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
@@ -89,7 +89,7 @@
    ```
    import sensor from "@ohos.sensor"
    sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
-       console.info("Succeeded in unsubscribing from acceleration sensor data.");// The unsubscription is successful, and the result is printed.
+       console.info("Succeeded in unsubscribing from acceleration sensor data."); // The unsubscription is successful, and the result is printed.
      }
    );
    ```
@@ -103,7 +103,7 @@
    ```
    import sensor from "@ohos.sensor"
    sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-           console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
+           console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
@@ -117,9 +117,14 @@
     ```
     try {
       sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-          console.info("Data obtained successfully. data=" + data);// The call is successful, and the obtained sensor data is printed.
+          console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
       });
     } catch (error) {
       console.error(error);
     }
     ```
+## Samples
+
+The following sample is provided to help you better understand how to develop sensors:
+
+- [`Sensor`: sensor (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
