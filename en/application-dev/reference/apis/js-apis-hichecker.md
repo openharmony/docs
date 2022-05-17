@@ -1,6 +1,6 @@
 # HiChecker
 
-> **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,7 +22,7 @@ Provides the constants of all rule types.
 | RULE\_CAUTION\_PRINT\_LOG            | BigInt   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
 | RULE\_CAUTION\_TRIGGER\_CRASH        | BigInt   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
 | RULE\_THREAD\_CHECK\_SLOW\_PROCESS    | BigInt   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
-| RULE\_CHECK\_SLOW\_EVENT             | BigInt   | Caution rule, which is programmed to detect whether the event distribution or processing time has exceeded the specified time threshold.|
+| RULE\_CHECK\_SLOW\_EVENT             | BigInt   | Caution rule, which is programmed to detect whether the event distribution or processing time has exceeded the specified time threshold. |
 | RULE\_CHECK\_ABILITY\_CONNECTION\_LEAK| BigInt   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
 
 
@@ -36,9 +36,9 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be added.|
+| rule   | BigInt | Yes  | Rule to be added. |
 
 **Example**
 
@@ -61,9 +61,9 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be removed.|
+| rule   | BigInt | Yes  | Rule to be removed. |
 
 **Example**
 
@@ -88,7 +88,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| BigInt | Collection of added rules.|
+| BigInt | Collection of added rules. |
 
 **Example**
 
@@ -110,15 +110,15 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
+| Name | Type | Mandatory | Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be checked.|
+| rule   | BigInt | Yes  | Rule to be checked. |
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
 
 **Example**
 
