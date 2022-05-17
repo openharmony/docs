@@ -85,4 +85,22 @@ In OpenHarmony, the data transfer management module provides cross-device data t
 
 Security subsystem
 
-[base/security](https://gitee.com/openharmony/security)
+[security_dataclassification](https://gitee.com/openharmony/security_dataclassification)
+
+[security_access_token](https://gitee.com/openharmony/security_access_token)
+
+[security_huks](https://gitee.com/openharmony/security_huks)
+
+[security_selinux](https://gitee.com/openharmony/security_selinux)
+
+[security](https://gitee.com/openharmony/security)
+
+[security_deviceauth](https://gitee.com/openharmony/security_deviceauth)
+
+[security_permission](https://gitee.com/openharmony/security_permission)
+
+[security_device_security_level](https://gitee.com/openharmony/security_device_security_level)
+
+[security_appverify](https://gitee.com/openharmony/security_appverify)
+
+[security_itrustee_ree_lite](https://gitee.com/openharmony/security_itrustee_ree_lite)

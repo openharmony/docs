@@ -2,27 +2,29 @@
 
 ## Overview<a name="section833012453535"></a>
 
--   The Universal Asynchronous Receiver/Transmitter \(UART\) is a universal serial data bus used for asynchronous communication. It enables bi-directional communication between devices in full-duplex mode.
--   UART is widely used to print information for debugging or to connect to various external modules such as GPS and Bluetooth.
--   A UART is connected to other modules through two wires \(as shown in  [Figure 1](#fig68294715408)\) or four wires \(as shown in  [Figure 2](#fig179241542163112)\).
-    -   TX: TX pin of the transmitting UART. It is connected to the RX pin of the peer UART.
-    -   RX: RX pin of the receiving UART. It is connected to the TX pin of the peer UART.
-    -   RTS: Request to Send signal pin. It is connected to the CTS pin of the peer UART and is used to indicate whether the local UART is ready to receive data.
-    -   CTS: Clear to Send signal pin. It is connected to the RTS pin of the peer UART and is used to indicate whether the local UART is allowed to send data to the peer end.
+The Universal Asynchronous Receiver/Transmitter \(UART\) is a universal serial data bus used for asynchronous communication. It enables bi-directional communication between devices in full-duplex mode.
+UART is widely used to print information for debugging or to connect to various external modules such as GPS and Bluetooth.
+A UART is connected to other modules through two wires \(as shown in  [Figure 1](#fig68294715408)\) or four wires \(as shown in  [Figure 2](#fig179241542163112)\).
+-   TX: TX pin of the transmitting UART. It is connected to the RX pin of the peer UART.
+-   RX: RX pin of the receiving UART. It is connected to the TX pin of the peer UART.
+-   RTS: Request to Send signal pin. It is connected to the CTS pin of the peer UART and is used to indicate whether the local UART is ready to receive data.
+-   CTS: Clear to Send signal pin. It is connected to the RTS pin of the peer UART and is used to indicate whether the local UART is allowed to send data to the peer end.
 
-        **Figure  1**  2-wire UART communication<a name="fig68294715408"></a>  
+       **Figure  1** 2-wire UART communication<a name="fig68294715408"></a>  
         ![](figures/2-wire-uart-communication.png "2-wire-uart-communication")
 
-        **Figure  2**  4-wire UART communication<a name="fig179241542163112"></a>  
+       **Figure  2** 4-wire UART communication<a name="fig179241542163112"></a>  
         ![](figures/4-wire-uart-communication.png "4-wire-uart-communication")
 
 
--   The transmitting and receiving UARTs must ensure that they have the same settings on particular attributes such as the baud rate and data format \(start bit, data bit, parity bit, and stop bit\) before they start to communicate. During data transmission, a UART sends data to the peer end over the TX pin and receives data from the peer end over the RX pin. When the size of the buffer used by a UART for storing received data reaches the preset threshold, the RTS signal of the UART changes to  **1**  \(data cannot be received\), and the peer UART stops sending data to it because its CTS signal does not allow it to send data.
--   The UART interface defines a set of common functions for operating a UART port, including obtaining and releasing device handles, reading and writing data of a specified length, and obtaining and setting the baud rate, as well as the device attributes.
+The transmitting and receiving UARTs must ensure that they have the same settings on particular attributes such as the baud rate and data format \(start bit, data bit, parity bit, and stop bit\) before they start to communicate. During data transmission, a UART sends data to the peer end over the TX pin and receives data from the peer end over the RX pin. When the size of the buffer used by a UART for storing received data reaches the preset threshold, the RTS signal of the UART changes to **1** \(data cannot be received\), and the peer UART stops sending data to it because its CTS signal does not allow it to send data.
+
 
 ## Available APIs<a name="section1928742202715"></a>
 
-**Table  1**  APIs for the UART driver
+The UART interface defines a set of common functions for operating a UART port, including obtaining and releasing device handles, reading and writing data of a specified length, and obtaining and setting the baud rate, as well as the device attributes.
+
+**Table  1** APIs for the UART driver
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row1223152681611"><th class="cellrowborder" valign="top" width="26.619999999999997%" id="mcps1.2.4.1.1"><p id="p210413571619"><a name="p210413571619"></a><a name="p210413571619"></a><strong id="b4100105545211"><a name="b4100105545211"></a><a name="b4100105545211"></a>Capability</strong></p>
@@ -94,7 +96,7 @@
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
 >All functions provided in this document can be called only in kernel space.
 
 ## Usage Guidelines<a name="section12779050105412"></a>
@@ -103,16 +105,16 @@
 
 [Figure 3](#fig99673244388)  shows the process of using a UART device.
 
-**Figure  3**  Process of using a UART device<a name="fig99673244388"></a>  
+**Figure  3** Process of using a UART device<a name="fig99673244388"></a>  
 ![](figures/process-of-using-a-uart-device.png "process-of-using-a-uart-device")
 
 ### Obtaining a UART Device Handle<a name="section124512065617"></a>
 
-Before performing UART communication, call  **UartOpen**  to obtain a UART device handle. This function returns the pointer to the UART device handle with a specified port number.
+Before performing UART communication, call **UartOpen** to obtain a UART device handle. This function returns the pointer to the UART device handle with a specified port number.
 
 DevHandle UartOpen\(uint32\_t port\);
 
-**Table  2**  Description of UartOpen
+**Table  2** Description of UartOpen
 
 <a name="table14222165114310"></a>
 <table><thead align="left"><tr id="row1022175133111"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p13221551153117"><a name="p13221551153117"></a><a name="p13221551153117"></a><strong id="b538194163718"><a name="b538194163718"></a><a name="b538194163718"></a>Parameter</strong></p>
@@ -144,7 +146,7 @@ DevHandle UartOpen\(uint32\_t port\);
 </tbody>
 </table>
 
-The following example shows how to obtain a UART device handle based on the assumption that the UART port number is  **3**:
+The following example shows how to obtain a UART device handle based on the assumption that the UART port number is **3**:
 
 ```
 DevHandle handle = NULL;    /* The UART device handle */
@@ -162,7 +164,7 @@ After obtaining the UART device handle, set the UART baud rate by calling the fo
 
 int32\_t UartSetBaud\(DevHandle handle, uint32\_t baudRate\);
 
-**Table  3**  Description of UartSetBaud
+**Table  3** Description of UartSetBaud
 
 <a name="table539135313325"></a>
 <table><thead align="left"><tr id="row15391205311323"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p11390453103216"><a name="p11390453103216"></a><a name="p11390453103216"></a><strong id="b0704124143717"><a name="b0704124143717"></a><a name="b0704124143717"></a>Parameter</strong></p>
@@ -199,7 +201,7 @@ int32\_t UartSetBaud\(DevHandle handle, uint32\_t baudRate\);
 </tbody>
 </table>
 
-The following example shows how to set the UART baud rate to  **9600**:
+The following example shows how to set the UART baud rate to **9600**:
 
 ```
 int32_t ret;
@@ -216,7 +218,7 @@ After setting the UART baud rate, obtain the current baud rate by calling the fo
 
 int32\_t UartGetBaud\(DevHandle handle, uint32\_t \*baudRate\);
 
-**Table  4**  Description of UartGetBaud
+**Table  4** Description of UartGetBaud
 
 <a name="table20393185311326"></a>
 <table><thead align="left"><tr id="row19392653123215"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p6392105315326"><a name="p6392105315326"></a><a name="p6392105315326"></a><strong id="b13706541173716"><a name="b13706541173716"></a><a name="b13706541173716"></a>Parameter</strong></p>
@@ -271,7 +273,7 @@ Before performing UART communication, set the UART device attributes by calling 
 
 int32\_t UartSetAttribute\(DevHandle handle, struct UartAttribute \*attribute\);
 
-**Table  5**  Description of UartSetAttribute
+**Table  5** Description of UartSetAttribute
 
 <a name="table1453119335341"></a>
 <table><thead align="left"><tr id="row3530433103416"><th class="cellrowborder" valign="top" width="49.980000000000004%" id="mcps1.2.3.1.1"><p id="p1853073310341"><a name="p1853073310341"></a><a name="p1853073310341"></a><strong id="b8706441133719"><a name="b8706441133719"></a><a name="b8706441133719"></a>Parameter</strong></p>
@@ -333,7 +335,7 @@ After setting the UART device attributes, obtain the current device attributes b
 
 int32\_t UartGetAttribute\(DevHandle handle, struct UartAttribute \*attribute\);
 
-**Table  6**  Description of UartGetAttribute
+**Table  6** Description of UartGetAttribute
 
 <a name="table17532123316342"></a>
 <table><thead align="left"><tr id="row18531193383420"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p85311833143420"><a name="p85311833143420"></a><a name="p85311833143420"></a><strong id="b1770784123715"><a name="b1770784123715"></a><a name="b1770784123715"></a>Parameter</strong></p>
@@ -388,7 +390,7 @@ Before performing UART communication, set the UART transmission mode by calling 
 
 int32\_t UartSetTransMode\(DevHandle handle, enum UartTransMode mode\);
 
-**Table  7**  Description of UartSetTransMode
+**Table  7** Description of UartSetTransMode
 
 <a name="table131892266313"></a>
 <table><thead align="left"><tr id="row018922615318"><th class="cellrowborder" valign="top" width="49.980000000000004%" id="mcps1.2.3.1.1"><p id="p131891826835"><a name="p131891826835"></a><a name="p131891826835"></a><strong id="b197086411379"><a name="b197086411379"></a><a name="b197086411379"></a>Parameter</strong></p>
@@ -425,7 +427,7 @@ int32\_t UartSetTransMode\(DevHandle handle, enum UartTransMode mode\);
 </tbody>
 </table>
 
-The following example shows how to set the transmission mode to  **UART\_MODE\_RD\_BLOCK**:
+The following example shows how to set the transmission mode to **UART\_MODE\_RD\_BLOCK**:
 
 ```
 int32_t ret;
@@ -442,7 +444,7 @@ To write data into a UART device, call the following function:
 
 int32\_t UartWrite\(DevHandle handle, uint8\_t \*data, uint32\_t size\);
 
-**Table  8**  Description of UartWrite
+**Table  8** Description of UartWrite
 
 <a name="table27825111368"></a>
 <table><thead align="left"><tr id="row1578171123619"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p078112115360"><a name="p078112115360"></a><a name="p078112115360"></a><strong id="b14708841203711"><a name="b14708841203711"></a><a name="b14708841203711"></a>Parameter</strong></p>
@@ -502,7 +504,7 @@ To write data into a UART device, call the following function:
 
 int32\_t UartRead\(DevHandle handle, uint8\_t \*data, uint32\_t size\);
 
-**Table  9**  Description of UartRead
+**Table  9** Description of UartRead
 
 <a name="table162341717123713"></a>
 <table><thead align="left"><tr id="row023313171377"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1123331710376"><a name="p1123331710376"></a><a name="p1123331710376"></a><strong id="b970911411374"><a name="b970911411374"></a><a name="b970911411374"></a>Parameter</strong></p>
@@ -557,7 +559,7 @@ if (ret < 0) {
 ```
 
 >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
->Data is successfully read from the UART device if a non-negative value is returned. If the return value is  **0**, no valid data can be read from the UART device. If the return value is greater than  **0**, the return value is the length of the data actually read from the UART device. The length is less than or equal to the value of  **size**  and does not exceed the maximum length of data to read at a time specified by the UART controller in use.
+>Data is successfully read from the UART device if a non-negative value is returned. If the return value is **0**, no valid data can be read from the UART device. If the return value is greater than **0**, the return value is the length of the data actually read from the UART device. The length is less than or equal to the value of **size** and does not exceed the maximum length of data to read at a time specified by the UART controller in use.
 
 ### Destroying the UART Device Handle<a name="section1477410521406"></a>
 
@@ -567,7 +569,7 @@ void UartClose\(DevHandle handle\);
 
 This function will release the resources previously obtained.
 
-**Table  10**  Description of UartClose
+**Table  10** Description of UartClose
 
 <a name="table03348317351"></a>
 <table><thead align="left"><tr id="row15334837351"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p933411316354"><a name="p933411316354"></a><a name="p933411316354"></a><strong id="b1710184115375"><a name="b1710184115375"></a><a name="b1710184115375"></a>Parameter</strong></p>
@@ -656,4 +658,3 @@ _ERR:
     UartClose(handle); 
 }
 ```
-

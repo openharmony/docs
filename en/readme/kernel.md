@@ -182,13 +182,13 @@ For details, see "Usage" in LiteOS-A Kernel [README](https://gitee.com/openharmo
 
 ## Build<a name="section19369206113115"></a>
 
-The following uses the Hi3516D V300 development board and Ubuntu x86 server as an example.
+The following uses the hispark_taurus development board and Ubuntu x86 server as an example.
 
 Perform a full build for the project to generate the **uImage** kernel image.
 
 ```
-./build.sh --product-name Hi3516DV300              # Build the Hi3516D V300 image.
-    --build-target build_kernel                    # Build the uImage kernel image of Hi3516D V300.
+./build.sh --product-name hispark_taurus_standard              # Build the hispark_taurus_standard image.
+    --build-target build_kernel                    # Build the uImage kernel image of hispark_taurus_standard.
     --gn-args linux_kernel_version=\"linux-5.10\"  # Build the specified kernel version.
 ```
 

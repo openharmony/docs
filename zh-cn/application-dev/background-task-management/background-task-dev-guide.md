@@ -284,3 +284,9 @@ export default {
     }
 };
 ```
+
+## 相关实例
+
+基于后台任务管理，有以下相关实例可供参考：
+
+- [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)

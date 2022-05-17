@@ -20,9 +20,12 @@ PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚�
 
 ### 运作机制
 
-在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务，接口适配模式采用无服务模式（如图1所示），用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务。接口适配模式采用无服务模式（如图1所示），用于不需要在用户态提供API的设备类型。对于没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
-PIN模块各分层作用：接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。适配层主要是将钩子函数的功能实例化，实现具体的功能。
+PIN模块各分层作用：
+- 接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。
+- 核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。
+- 适配层主要是将钩子函数的功能实例化，实现具体的功能。
 
 **图 1**  无服务模式结构图
 
@@ -58,12 +61,12 @@ struct PinCntlrMethod {
 
 | 成员函数     | 入参                                        | 出参                                   | 返回值 | 功能 |
 | ------------ | ------------------------------------------- | ------ | ---- | ---- |
-| SetPinPull | **cntlr**：结构体指针，核心层Pin控制器；<br>**index**：uint32_t变量，管脚索引号；<br/>**pullType**：枚举常量，Pin管脚推拉方式； | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
-| GetPinPull | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号； | **pullType**：枚举常量指针，传出Pin管脚推拉方式； | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
-| SetPinStrength | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号；<br/>**strength**：uint32_t变量，Pin推拉强度； | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
-| GetPinStrength | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号； | **strength**：uint32_t变量指针，传出Pin推拉强度； | HDF_STATUS相关状态 | PIN获取推拉强度 |
-| SetPinFunc | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号；<br/>**funcName**：char指针常量，传入Pin管脚功能； | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
-| GetPinFunc | **cntlr**：结构体指针，核心层Pin控制器；<br/>**index**：uint32_t变量，管脚索引号； | **funcName**：char双重指针常量，传出Pin管脚功能； | HDF_STATUS相关状态 | PIN获取管脚功能 |
+| SetPinPull | **cntlr**：结构体指针，核心层Pin控制器<br>**index**：uint32_t变量，管脚索引号<br/>**pullType**：枚举常量，Pin管脚推拉方式 | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
+| GetPinPull | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **pullType**：枚举常量指针，传出Pin管脚推拉方式 | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
+| SetPinStrength | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号<br/>**strength**：uint32_t变量，Pin推拉强度 | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
+| GetPinStrength | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **strength**：uint32_t变量指针，传出Pin推拉强度 | HDF_STATUS相关状态 | PIN获取推拉强度 |
+| SetPinFunc | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号<br/>**funcName**：char指针常量，传入Pin管脚功能 | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
+| GetPinFunc | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **funcName**：char双重指针常量，传出Pin管脚功能 | HDF_STATUS相关状态 | PIN获取管脚功能 |
 
 ### 开发步骤
 
@@ -125,7 +128,7 @@ PIN模块适配包含以下四个步骤：
         }
         ```
    - 添加pin_config.hcs器件属性文件。
-     在device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs目录下配置器件属性 ，其中配置参数如下：
+     在device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs目录下配置器件属性，其中配置参数如下：
         ```c
         root {
             platform {
@@ -162,7 +165,7 @@ PIN模块适配包含以下四个步骤：
                         }
                         ...... // 对应管脚控制器下的每个管脚，按实际添加
                     }
-                    ......//每个管脚控制器对应一个controller节点，如存在多个Pin控制器，请依次添加对应的controller节点。
+                    ......// 每个管脚控制器对应一个controller节点，如存在多个Pin控制器，请依次添加对应的controller节点
                 }
             }
         }
@@ -281,7 +284,7 @@ PIN模块适配包含以下四个步骤：
    - Init函数
 
         入参：
-        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
 
         返回值：
         HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
@@ -371,11 +374,11 @@ PIN模块适配包含以下四个步骤：
         }
         ```
 
-   - Release 函数
+   - Release函数
 
         入参：
 
-        HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+        HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
    
         返回值：
    
@@ -383,7 +386,7 @@ PIN模块适配包含以下四个步骤：
    
         函数说明：
    
-        释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。
+        释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口。当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
 
         ```c
         static void Hi35xxPinRelease(struct HdfDeviceObject *device)

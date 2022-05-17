@@ -84,4 +84,4 @@ svg{
 
 针对Svg开发，有以下相关实例可供参考：
 
-- [`JsSvg`：可缩放矢量图形（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg)
+- [`JsSvg`：可缩放矢量图形（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsSvg)

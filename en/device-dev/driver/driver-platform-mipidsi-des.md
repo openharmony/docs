@@ -2,18 +2,18 @@
 
 ## Overview<a name="section16806142183217"></a>
 
--   The Display Serial Interface \(DSI\) is a specification stipulated by the Mobile Industry Processor Interface \(MIPI\) Alliance, aiming to reduce the cost of display controllers in a mobile device. It defines a serial bus and communication protocol among the host, the source of image data, and the target device. In this way, the DSI can send pixel data or commands to peripherals \(usually LCDs or similar display devices\) in serial mode, or reads information such as status and pixel from the peripherals.
+The Display Serial Interface \(DSI\) is a specification stipulated by the Mobile Industry Processor Interface \(MIPI\) Alliance, aiming to reduce the cost of display controllers in a mobile device. It defines a serial bus and communication protocol among the host, the source of image data, and the target device. In this way, the DSI can send pixel data or commands to peripherals \(usually LCDs or similar display devices\) in serial mode, or reads information such as status and pixel from the peripherals.
 
--   MIPI DSI is capable of working in both high speed \(HS\) mode and low power \(LP\) mode. All data lanes can only travel from the DSI host to a peripheral in HS mode, except the first data lane, which can also receive data such as status information and pixels from the peripheral in LP mode. The clock lane is dedicated to transmitting synchronization clock signals in HS mode.
--   [Figure 1](#fig1122611461203)  shows a simplified DSI interface. Conceptually, a DSI-compliant interface has the same features as interfaces complying with DBI-2 and DPI-2 standards. It sends pixels or commands to a peripheral and can read status or pixel information from the peripheral. The main difference is that the DSI serializes all pixel data, commands, and events that, in traditional interfaces, are conveyed to and from the peripheral on a parallel data bus with additional control signals.
+MIPI DSI is capable of working in both high speed \(HS\) mode and low power \(LP\) mode. All data lanes can only travel from the DSI host to a peripheral in HS mode, except the first data lane, which can also receive data such as status information and pixels from the peripheral in LP mode. The clock lane is dedicated to transmitting synchronization clock signals in HS mode.
+[Figure 1](#fig1122611461203)  shows a simplified DSI interface. Conceptually, a DSI-compliant interface has the same features as interfaces complying with DBI-2 and DPI-2 standards. It sends pixels or commands to a peripheral and can read status or pixel information from the peripheral. The main difference is that the DSI serializes all pixel data, commands, and events that, in traditional interfaces, are conveyed to and from the peripheral on a parallel data bus with additional control signals.
 
-    **Figure  1**  DSI transmitting and receiving interface<a name="fig1122611461203"></a>  
+   **Figure  1** DSI transmitting and receiving interface<a name="fig1122611461203"></a>  
     ![](figures/dsi-transmitting-and-receiving-interface.png "dsi-transmitting-and-receiving-interface")
 
 
 ## Available APIs<a name="section12720125432316"></a>
 
-**Table  1**  APIs for MIPI DSI
+**Table  1** APIs for MIPI DSI
 
 <a name="table4199102313245"></a>
 <table><thead align="left"><tr id="row1619910238244"><th class="cellrowborder" valign="top" width="26.619999999999997%" id="mcps1.2.4.1.1"><p id="p141991023182411"><a name="p141991023182411"></a><a name="p141991023182411"></a>Capability</p>
@@ -75,25 +75,25 @@
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
 >All functions described in this document can be called only in kernel space.
 
 ## Usage Guidelines<a name="section037231715335"></a>
 
 ### How to Use<a name="section49299119344"></a>
 
-[Figure 2](#fig129103491241)  shows the process of using a MIPI DSI device.
+[Figure 2](#fig129103491241) shows the process of using a MIPI DSI device.
 
-**Figure  2**  Process of using a MIPI DSI device<a name="fig129103491241"></a>  
+**Figure  2** Process of using a MIPI DSI device<a name="fig129103491241"></a>  
 ![](figures/process-of-using-a-mipi-dsi-device.png)
 
 ### Obtaining a MIPI DSI Device Handle<a name="section5126155683811"></a>
 
-Before performing MIPI DSI communication, obtain a MIPI DSI device handle by calling  **MipiDsiOpen**. This function returns a MIPI DSI device handle with a specified channel ID.
+Before performing MIPI DSI communication, obtain a MIPI DSI device handle by calling **MipiDsiOpen**. This function returns a MIPI DSI device handle with a specified channel ID.
 
 DevHandle MipiDsiOpen\(uint8\_t id\);
 
-**Table  2**  Description of  **MipiDsiOpen**
+**Table  2** Description of **MipiDsiOpen**
 
 <a name="table7603619123820"></a>
 <table><thead align="left"><tr id="row1060351914386"><th class="cellrowborder" valign="top" width="20.66%" id="mcps1.2.3.1.1"><p id="p14603181917382"><a name="p14603181917382"></a><a name="p14603181917382"></a><strong id="b824620346298"><a name="b824620346298"></a><a name="b824620346298"></a>Parameter</strong></p>
@@ -125,7 +125,7 @@ DevHandle MipiDsiOpen\(uint8\_t id\);
 </tbody>
 </table>
 
-The following example shows how to obtain a MIPI DSI device handle with the channel ID  **0**:
+The following example shows how to obtain a MIPI DSI device handle with the channel ID **0**:
 
 ```
 DevHandle mipiDsiHandle = NULL;  /* Device handle */
@@ -145,7 +145,7 @@ if (mipiDsiHandle == NULL) {
 
 int32\_t MipiDsiSetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 
-**Table  3**  Description of  **MipiDsiSetCfg**
+**Table  3** Description of **MipiDsiSetCfg**
 
 <a name="table10692555281"></a>
 <table><thead align="left"><tr id="row116914559288"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1169195516288"><a name="p1169195516288"></a><a name="p1169195516288"></a><strong id="b1804534152914"><a name="b1804534152914"></a><a name="b1804534152914"></a>Parameter</strong></p>
@@ -213,7 +213,7 @@ if (ret != 0) {
 
 int32\_t MipiDsiGetCfg\(DevHandle handle, struct MipiCfg \*cfg\);
 
-**Table  4**  Description of  **MipiDsiGetCfg**
+**Table  4** Description of **MipiDsiGetCfg**
 
 <a name="table7709554280"></a>
 <table><thead align="left"><tr id="row670115515282"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p470205515287"><a name="p470205515287"></a><a name="p470205515287"></a><strong id="b14806334142912"><a name="b14806334142912"></a><a name="b14806334142912"></a>Parameter</strong></p>
@@ -267,7 +267,7 @@ if (ret != HDF_SUCCESS) {
 
 int32\_t MipiDsiTx\(PalHandle handle, struct DsiCmdDesc \*cmd\);
 
-**Table  5**  Description of  **MipiDsiTx**
+**Table  5** Description of **MipiDsiTx**
 
 <a name="table1018490043"></a>
 <table><thead align="left"><tr id="row31848013417"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1415816132411"><a name="p1415816132411"></a><a name="p1415816132411"></a><strong id="b1280873492913"><a name="b1280873492913"></a><a name="b1280873492913"></a>Parameter</strong></p>
@@ -335,7 +335,7 @@ HdfFree(cmd);
 
 int32\_t MipiDsiRx\(DevHandle handle, struct DsiCmdDesc \*cmd, uint32\_t readLen, uint8\_t \*out\);
 
-**Table  6**  Description of  **MipiDsiRx**
+**Table  6** Description of **MipiDsiRx**
 
 <a name="table223910318361"></a>
 <table><thead align="left"><tr id="row924033173613"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p16240143143611"><a name="p16240143143611"></a><a name="p16240143143611"></a><strong id="b19809334172910"><a name="b19809334172910"></a><a name="b19809334172910"></a>Parameter</strong></p>
@@ -417,9 +417,9 @@ After the MIPI DSI communication, release the MIPI DSI device handle by calling 
 
 void MipiDsiClose\(DevHandle handle\);
 
-This function releases the resources requested by  **MipiDsiOpen**.
+This function releases the resources requested by **MipiDsiOpen**.
 
-**Table  7**  Description of  **MipiDsiClose**
+**Table  7** Description of **MipiDsiClose**
 
 <a name="table72517953115"></a>
 <table><thead align="left"><tr id="row1525793312"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p115402031153111"><a name="p115402031153111"></a><a name="p115402031153111"></a><strong id="b1487612133120"><a name="b1487612133120"></a><a name="b1487612133120"></a>Parameter</strong></p>
@@ -537,4 +537,3 @@ void PalMipiDsiTestSample(void)
     MipiDsiClose(handle); 
 }
 ```
-

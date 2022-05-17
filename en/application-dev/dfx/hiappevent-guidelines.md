@@ -75,4 +75,4 @@ In this example, an application event is logged after the application startup ex
 
 The following sample is provided to help you better understand how to develop the application event logging feature:
 
-- [`JsDotTest`: Event Logging Test (JavaScript) (API 7)](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
+- [`JsDotTest`: Event Logging Test (JavaScript) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)

@@ -1,6 +1,6 @@
 # 结果集
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -25,7 +25,7 @@ promise.then((resultSet) => {
 
 ### 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -46,7 +46,7 @@ getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -74,7 +74,7 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -100,7 +100,7 @@ goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -131,7 +131,7 @@ goToRow(position: number): boolean
 
 转到结果集的指定行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -163,7 +163,7 @@ goToFirstRow(): boolean
 
 转到结果集的第一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **返回值：**
   | 类型 | 说明 |
@@ -189,7 +189,7 @@ goToLastRow(): boolean
 
 转到结果集的最后一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **返回值：**
   | 类型 | 说明 |
@@ -215,7 +215,7 @@ goToNextRow(): boolean
 
 转到结果集的下一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **返回值：**
   | 类型 | 说明 |
@@ -241,7 +241,7 @@ goToPreviousRow(): boolean
 
 转到结果集的上一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **返回值：**
   | 类型 | 说明 |
@@ -267,7 +267,7 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -291,7 +291,7 @@ getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -315,7 +315,7 @@ getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -339,7 +339,7 @@ getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -363,7 +363,7 @@ isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -387,7 +387,7 @@ close(): void
 
 关闭结果集。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **示例：**
   ```js

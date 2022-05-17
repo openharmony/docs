@@ -4,7 +4,7 @@
 ### 功能简介<a name="2"></a>
 
 OpenHarmony相机驱动框架模型对上实现相机HDI（Hardware Device Interface）接口，对下实现相机Pipeline模型，管理相机各个硬件设备。
-该驱动框架模型内部分为三层，依次为HDI实现层、框架层和设备适配层，各层基本概念如下：
+该驱动框架模型内部分为三层，依次为HDI实现层、框架层和设备适配层。各层基本概念如下：
 
 + HDI实现层：实现OHOS（OpenHarmony Operation System）相机标准南向接口。
 + 框架层：对接HDI实现层的控制、流的转发，实现数据通路的搭建，管理相机各个硬件设备等功能。
@@ -51,7 +51,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | CamRetCode GetStreamOperator(<br/>    const OHOS::sptr<IStreamOperatorCallback> &callback,<br/>    OHOS::sptr<IStreamOperator> &streamOperator) |
+  | 获取流控制器                 | CamRetCode GetStreamOperator(<br>const OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IStreamOperator> &streamOperator) |
   | 更新设备控制参数             | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settingss) |
   | 设置Result回调模式和回调函数 | CamRetCode SetResultMode(const ResultCallbackMode &mode)     |
   | 获取使能的ResultMeta         | CamRetCode GetEnabledResults(std::vector<MetaType> &results) |
@@ -73,8 +73,8 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | ------------------------------ | ------------------------------------------------------------ |
   | 设置ICameraHost回调接口        | CamRetCode SetCallback(const OHOS::sptr<ICameraHostCallback> &callback) |
   | 获取当前可用的Camera设备ID列表 | CamRetCode GetCameraIds(std::vector\<std::string\> &cameraIds) |
-  | 获取Camera设备能力集合         | CamRetCode GetCameraAbility(const std::string &cameraId,<br/>    std::shared_ptr<CameraAbility> &ability) |
-  | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId,<br/>    const OHOS::sptr<ICameraDeviceCallback> &callback,<br/>    OHOS::sptr<ICameraDevice> &device) |
+  | 获取Camera设备能力集合         | CamRetCode GetCameraAbility(const std::string &cameraId, std::shared_ptr<CameraAbility> &ability) |
+  | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId,<br>const OHOS::sptr<ICameraDeviceCallback> &callback,<br>OHOS::sptr<ICameraDevice> &device) |
   | 打开或关闭闪光灯               | CamRetCode SetFlashlight(const std::string &cameraId, bool &isEnable) |
 
 - icamera_host_callback.h
@@ -96,30 +96,30 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br/>    OperationMode mode,<br/>    const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br/>    const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br/>    StreamSupportType &type) |
+  | 查询是否支持添加参数对应的流     | CamRetCode IsStreamsSupported(<br>OperationMode mode,<br>const std::shared_ptr\<Camera::CameraMetadata\> &modeSetting,<br>const std::vector&ltstd::shared_ptr&ltStreamInfo&gt> &info,<br>StreamSupportType &type) |
   | 创建流                           | CamRetCode CreateStreams(const std::vector<std::shared_ptr<StreamInfo>> &streamInfos) |
   | 释放流                           | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) |
-  | 配置流                           | CamRetCode CommitStreams(OperationMode mode,<br/>    const std::shared_ptr<CameraMetadata> &modeSetting) |
-  | 获取流的属性                     | CamRetCode GetStreamAttributes(<br/>    std::vector<std::shared_ptr<StreamAttribute>> &attributes) |
+  | 配置流                           | CamRetCode CommitStreams(OperationMode mode, const std::shared_ptr<CameraMetadata> &modeSetting) |
+  | 获取流的属性                     | CamRetCode GetStreamAttributes(std::vector<std::shared_ptr<StreamAttribute>> &attributes) |
   | 绑定生产者句柄和指定流           | CamRetCode AttachBufferQueue(int streamId, const OHOS::sptr\<OHOS::IBufferProducer\> &producer) |
   | 解除生产者句柄和指定流的绑定关系 | CamRetCode DetachBufferQueue(int streamId)                   |
-  | 捕获图像                         | CamRetCode Capture(int captureId,<br/>    const std::shared_ptr<CaptureInfo> &info, bool isStreaming) |
+  | 捕获图像                         | CamRetCode Capture(int captureId, const std::shared_ptr<CaptureInfo> &info, bool isStreaming) |
   | 取消捕获                         | CamRetCode CancelCapture(int captureId)                      |
-  | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br/>    OHOS::sptr<IStreamOperatorCallback> &callback,<br/>    OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
+  | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br>OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
 
 - istream_operator_callback.h
 
   | 功能描述                                 | 接口名称                                                     |
   | ---------------------------------------- | ------------------------------------------------------------ |
   | 捕获开始回调，在捕获开始时调用           | void OnCaptureStarted(int32_t captureId, const std::vector<int32_t> &streamIds) |
-  | 捕获结束回调，在捕获结束时调用           | void OnCaptureEnded(int32_t captureId,<br/>    const std::vector<std::shared_ptr<CaptureEndedInfo>> &infos) |
-  | 捕获错误回调，在捕获过程中发生错误时调用 | void OnCaptureError(int32_t captureId,<br/>    const std::vector<std::shared_ptr<CaptureErrorInfo>> &infos) |
-  | 帧捕获回调                               | void OnFrameShutter(int32_t captureId,<br/>    const std::vector<int32_t> &streamIds, uint64_t timestamp) |
+  | 捕获结束回调，在捕获结束时调用           | void OnCaptureEnded(int32_t captureId, const std::vector<std::shared_ptr<CaptureEndedInfo>> &infos) |
+  | 捕获错误回调，在捕获过程中发生错误时调用 | void OnCaptureError(int32_t captureId, const std::vector<std::shared_ptr<CaptureErrorInfo>> &infos) |
+  | 帧捕获回调                               | void OnFrameShutter(int32_t captureId,<br>const std::vector<int32_t> &streamIds, uint64_t timestamp) |
 
 ### 开发步骤<a name="7"></a>
 Camera驱动的开发过程主要包含以下步骤：
 
-1. **注册CameraHost**
+1. 注册CameraHost
 
     定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法。
     ```
@@ -133,7 +133,7 @@ Camera驱动的开发过程主要包含以下步骤：
    HDF_INIT(g_cameraHostDriverEntry); // 将Camera的HdfDriverEntry结构体注册到HDF上
    ```
 
-2. **初始化Host服务**
+2. 初始化Host服务
 
     步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
 
@@ -142,7 +142,7 @@ Camera驱动的开发过程主要包含以下步骤：
    {
        HDF_LOGI("HdfCameraHostDriverBind enter!");
        if (deviceObject == nullptr) {
-           HDF_LOGE("HdfCameraHostDriverBind: HdfDeviceObject is NULL !");
+           HDF_LOGE("HdfCameraHostDriverBind: HdfDeviceObject is NULL!");
            return HDF_FAILURE;
        }
        HdfCameraService *hdfCameraService = reinterpret_cast<HdfCameraService *>(OsalMemAlloc(sizeof(HdfCameraService)));
@@ -192,7 +192,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    CameraHostStubInstance()接口最终调用CameraHostImpl::Init()方法，该方法会获取物理Camera，并对DeviceManager和PipelineCore进行初始化。
 
-3. **获取Host服务**
+3. 获取Host服务
 
    调用Get()接口从远端CameraService中获取CameraHost对象。get()方法如下：
 
@@ -218,7 +218,7 @@ Camera驱动的开发过程主要包含以下步骤：
    }
    ```
 
-4. **打开设备**
+4. 打开设备
 
    CameraHostProxy对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
    CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
@@ -285,7 +285,7 @@ Camera驱动的开发过程主要包含以下步骤：
    }
    ```
 
-5. **获取流**
+5. 获取流
 
    CameraDeviceImpl定义了GetStreamOperator、UpdateSettings、SetResultMode和GetEnabledResult等方法，获取流操作方法如下：
 
@@ -299,7 +299,7 @@ Camera驱动的开发过程主要包含以下步骤：
        }
        spCameraDeviceCallback_ = callback;
        if (spStreamOperator_ == nullptr) {
-           // 这里new了一个spStreamOperator对象传递给调用者，以便对stream进行各种操作。
+           // 这里新建一个spStreamOperator对象传递给调用者，以便对stream进行各种操作。
            spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeviceCallback_, shared_from_this());
            if (spStreamOperator_ == nullptr) {
                CAMERA_LOGW("create stream operator failed.");
@@ -315,7 +315,7 @@ Camera驱动的开发过程主要包含以下步骤：
    }
    ```
 
-6. **创建流**
+6. 创建流
 
    调用CreateStreams创建流前需要填充StreamInfo结构体，具体内容如下：
 
@@ -439,17 +439,17 @@ Camera驱动的开发过程主要包含以下步骤：
    }  
    ```
 
-9. **取消捕获和释放离线流**
+9. 取消捕获和释放离线流
 
    StreamOperatorImpl类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
 
    ```
    CamRetCode StreamOperatorImpl::CancelCapture(int captureId)
    {
-         auto itr = camerCaptureMap_.find(captureId); //根据captureId 在Map中查找对应的CameraCapture对象
-         RetCode rc = itr->second->Cancel(); //调用CameraCapture中Cancel方法结束数据捕获
+         auto itr = camerCaptureMap_.find(captureId); // 根据captureId 在Map中查找对应的CameraCapture对象
+         RetCode rc = itr->second->Cancel(); // 调用CameraCapture中Cancel方法结束数据捕获
          std::unique_lock<std::mutex> lock(captureMutex_);
-         camerCaptureMap_.erase(itr); //擦除该CameraCapture对象
+         camerCaptureMap_.erase(itr); // 擦除该CameraCapture对象
          return NO_ERROR;
    }
    ```
@@ -459,14 +459,14 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
    CamRetCode StreamOperatorImpl::ReleaseStreams(const std::vector<int>& streamIds)
    {
-       RetCode rc = DestroyStreamPipeline(streamIds); //销毁该streamIds 的pipeline
+       RetCode rc = DestroyStreamPipeline(streamIds); // 销毁该streamIds 的pipeline
        rc = DestroyHostStreamMgr(streamIds);
-       rc = DestroyStreams(streamIds); //销毁该streamIds 的 Stream
+       rc = DestroyStreams(streamIds); // 销毁该streamIds 的 Stream
        return NO_ERROR;
    }
    ```
 
-10. **关闭Camera设备**
+10. 关闭Camera设备
     
     调用CameraDeviceImpl中的Close()来关闭CameraDevice，该接口调用deviceManager中的PowerDown()来给设备下电。     
 

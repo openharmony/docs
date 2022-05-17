@@ -29,6 +29,7 @@
 | bundleCodeDir | string | 是 | 否 | 应用安装路径。 | 
 | distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 | 
 | eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。| 
+| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。| 
 
 
 ## Context.createBundleContext
@@ -61,21 +62,33 @@ createBundleContext(bundleName: string): Context;
 
 ## Context.getApplicationContext
 
-getApplicationContext(): Context;
+getApplicationContext(): ApplicationContext;
 
-获取当前context。
+获取当前applicationContext。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Context | 当前Context&nbsp;信息。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| ApplicationContext | 当前ApplicationContext对象信息。 |
 
 **示例：**
     
   ```js
   // 必选项。
-  let context = this.context.getApplicationContext();
+  let applicationContext = this.context.getApplicationContext();
   ```
+
+
+## AreaMode
+
+访问的文件分区，每个文件分区有对应自己的内容。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量            | 值    | 描述            |
+| --------------- | ---- | --------------- |
+| EL1             | 0    | 设备级加密区。   |
+| EL2             | 1    | 用户凭据加密区。默认为EL2。 |

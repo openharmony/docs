@@ -240,8 +240,8 @@ typedef struct {    // Good: The anonymous struct is used because self-nesting i
     int a;
     int b;
 } MyType;           // The struct alias uses the UpperCamelCase style.
-
-​```c
+```
+```c
 typedef struct tagNode {    // Good: Add the 'tag' prefix or use 'Node_'.
     struct tagNode *prev;
     struct tagNode *next;

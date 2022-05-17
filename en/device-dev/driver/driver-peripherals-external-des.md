@@ -4,7 +4,7 @@
 
 The WLAN module is developed based on the Hardware Driver Foundation \(HDF\). It supports cross-OS migration, component adaptation, and modular assembly and compilation. Based on the unified APIs provided by the WLAN module, driver developers of WLAN vendors can adapt their driver code and are capable of creating, disabling, scanning, and connecting to WLAN hotspots. The WLAN driver provides the Hardware Device Interface \(HDI\) layer with the capabilities of setting and obtaining the device MAC address and setting the transmit power. The following figure shows the framework of the WLAN module:
 
-**Figure  1**  WLAN framework<a name="fig4415112614415"></a>  
+**Figure  1** WLAN framework<a name="fig4415112614415"></a>  
 ![](figures/wlan-framework.png "wlan-framework")
 
 ### WLAN Driver API Architecture<a name="section178022416377"></a>
@@ -17,14 +17,14 @@ The WLAN module provides the following three types of APIs:
 
 3. Capability APIs for vendors
 
-**Figure  2**  Available APIs of the WLAN module<a name="fig1492411431166"></a>  
+**Figure  2** Available APIs of the WLAN module<a name="fig1492411431166"></a>  
 ![](figures/available-apis-of-the-wlan-module.png "available-apis-of-the-wlan-module")
 
 ## Available APIs<a name="section7331102018815"></a>
 
-The WLAN driver module provides APIs that can be directly called by driver developers, such as creating/releasing a  **WifiModule**, connecting to/disconnecting from a WLAN hotspot, applying for/releasing a  **NetBuf**, and converting between the  **pbuf**  structure of Lightweight IP \(lwIP\) and a  **NetBuf**.  [Table 1](#table1521573319472)  describes some APIs.
+The WLAN driver module provides APIs that can be directly called by driver developers, such as creating/releasing a **WifiModule**, connecting to/disconnecting from a WLAN hotspot, applying for/releasing a **NetBuf**, and converting between the **pbuf** structure of Lightweight IP \(lwIP\) and a **NetBuf**.  [Table 1](#table1521573319472)  describes some APIs.
 
-**Table  1**  APIs that can be directly called by driver developers
+**Table  1** APIs that can be directly called by driver developers
 
 <a name="table1521573319472"></a>
 <table><thead align="left"><tr id="row121519334474"><th class="cellrowborder" valign="top" width="15.079999999999998%" id="mcps1.2.4.1.1"><p id="p1221510339475"><a name="p1221510339475"></a><a name="p1221510339475"></a>File</p>
@@ -110,9 +110,9 @@ The WLAN driver module provides APIs that can be directly called by driver devel
 </tbody>
 </table>
 
-The WLAN driver module provides APIs for driver developers, such as initializing/deregistering, opening/stopping a  **NetDevice**, and obtaining the state of a  **NetDevice**.  [Table 2](#table74613501475)  describes some APIs.
+The WLAN driver module provides APIs for driver developers, such as initializing/deregistering, opening/stopping a **NetDevice**, and obtaining the state of a **NetDevice**.  [Table 2](#table74613501475)  describes some APIs.
 
-**Table  2**  APIs for driver developers of WLAN vendors to implement
+**Table  2** APIs for driver developers of WLAN vendors to implement
 
 <a name="table74613501475"></a>
 <table><thead align="left"><tr id="row194625016476"><th class="cellrowborder" valign="top" width="20.75%" id="mcps1.2.4.1.1"><p id="p10468502479"><a name="p10468502479"></a><a name="p10468502479"></a>File</p>
@@ -158,9 +158,9 @@ The WLAN driver module provides APIs for driver developers, such as initializing
 </tbody>
 </table>
 
-The WLAN driver provides the HDI layer with the APIs for creating and destroying an  **IWiFi**  object and setting the MAC address.  [Table 3](#table141076311618)  describes some APIs.
+The WLAN driver provides the HDI layer with the APIs for creating and destroying an **IWiFi** object and setting the MAC address.  [Table 3](#table141076311618)  describes some APIs.
 
-**Table  3**  APIs provided by the WLAN HAL module
+**Table  3** APIs provided by the WLAN HAL module
 
 <a name="table141076311618"></a>
 <table><thead align="left"><tr id="row010716312120"><th class="cellrowborder" valign="top" width="15.950000000000001%" id="mcps1.2.4.1.1"><p id="p1110713311116"><a name="p1110713311116"></a><a name="p1110713311116"></a>Header File</p>
@@ -223,14 +223,14 @@ The WLAN driver provides the HDI layer with the APIs for creating and destroying
 
 The WLAN driver is developed based on the HDF and PLATFORM. It provides a unified driver model for WLAN modules of different vendors regardless of the operating system \(OS\) and system on a chip \(SoC\).
 
-1.  Set hardware parameters such as  **module**  \(different features\) and  **chip**  in the  **wifi\_config.hcs**  file.
-2.  Parse the  **wifi\_config.hcs**  file and generate a structure with the configured parameters.
+1.  Set hardware parameters such as **module** \(different features\) and **chip** in the **wifi\_config.hcs** file.
+2.  Parse the **wifi\_config.hcs** file and generate a structure with the configured parameters.
 3.  Initialize and create a module.
 4.  Mount and initialize the chip.
 5.  Initialize the bus.
 6.  Mount the upper-layer WPA service.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE:**<br>
 >Some of the above adaptation steps have been provided. For details, see  [Development Example](#section1395253612512). The steps waiting to be performed by developers include setting configuration parameters based on hardware attributes, adapting and mounting a chip, and performing tests and verification.
 
 ## Development Example<a name="section1395253612512"></a>
@@ -289,7 +289,7 @@ root {
 }
 ```
 
-2. Mount the  **init**  and  **deinit**  functions of the WLAN chip and WLAN chip driver.
+2. Mount the **init** and **deinit** functions of the WLAN chip and WLAN chip driver.
 
 ```
 /* WLAN module initialization and mount process */
@@ -504,7 +504,7 @@ int32_t Hi3881Deinit(struct HdfChipDriver *chipDriver, struct NetDevice *netDevi
 }
 ```
 
-3. During the chip initialization, call the  **NetDeviceInit\(\)**  function to initialize a network device, call the  **NetDeviceAdd\(\)**  function to add the network device to a protocol stack, and implement some function pointers of  **netdev**.
+3. During the chip initialization, call the **NetDeviceInit\(\)** function to initialize a network device, call the **NetDeviceAdd\(\)** function to add the network device to a protocol stack, and implement some function pointers of **netdev**.
 
 ```
 hi_s32 wal_init_drv_wlan_netdev(nl80211_iftype_uint8 type, wal_phy_mode mode, hi_char* ifname, hi_u32* len)
@@ -553,7 +553,7 @@ hi_s32 wal_init_netif(nl80211_iftype_uint8 type, oal_net_device_stru *netdev, co
 }
 ```
 
-4. Implement functions of  **WifiMac80211Ops**.
+4. Implement functions of **WifiMac80211Ops**.
 
 ```
 /* Mount some function pointers of mac80211. */
@@ -604,4 +604,3 @@ hi_void HiMac80211Init(struct HdfChipDriver *chipDriver)
     chipDriver->apOps = &g_apOps;
 }
 ```
-

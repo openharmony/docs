@@ -9,6 +9,6 @@
 - Key Management
   - [HUKS Overview](huks-overview.md)
   - [HUKS Development](huks-guidelines.md)
-- hapsigntool  
-  - [hapsigntool Guide](hapsigntool-guidelines.md)
+- hapsigner  
+  - [hapsigner Guide](hapsigntool-guidelines.md)
 

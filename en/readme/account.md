@@ -35,5 +35,5 @@ To query and update the login status of a distributed account, you must obtain t
 
 **Account subsystem**
 
-[account\_os\_account](https://gitee.com/openharmony/account_os_account)
+[account_os_account](https://gitee.com/openharmony/account_os_account)
 

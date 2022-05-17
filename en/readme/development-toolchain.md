@@ -318,9 +318,12 @@ Examples:
 
 ### profiler
 
-The profiler module consists of the system and application profiler frameworks. It provides a performance profiler platform for you to analyze system issues such as memory and performance.
+The profiler module consists of the system and application profiler frameworks. It provides a performance profiler platform for you to analyze system issues related to the memory and performance.
 
-This module provides capabilities respectively for the PC and for the device. The capabilities for the PC are released as a DevEco Studio plug-in, which contains the following sub-modules: UI drawing, device management, process management, plug-in management, data import, data storage, data analysis, session management, and configuration management. The capabilities for the device mainly contain the following sub-modules: the command line tool, service processes, plug-ins, and application components. The device-side profiler provides APIs for extending plug-ins. With these APIs, you can define your desired capabilities and integrate them into the framework. Currently, the real-time memory analysis and trace plug-ins are available. For details, see the profiler readme.
+The profiler module provides the following capabilities:
+
+- Capabilities for the PC: The capabilities are released as a DevEco Studio plug-in, which contains UI drawing, device management, process management, plug-in management, data import, data storage, data analysis, session management, and configuration management. 
+- Capabilities for the device: The capabilities include the command line tool, service processes, plug-ins, and application components. The device-side profiler provides APIs for extending plug-ins. With these APIs, you can define capabilities and integrate them into the framework. Currently, the real-time memory analysis and trace plug-ins are available. For details, see the profiler readme.
 
 ## Repositories Involved<a name="section1371113476307"></a>
 

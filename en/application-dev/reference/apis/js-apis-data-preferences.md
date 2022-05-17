@@ -32,14 +32,14 @@ Reads a preference persistence file and loads data to the **Preferences** instan
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -77,18 +77,18 @@ Reads a preference persistence file and loads data to the **Preferences** instan
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -126,14 +126,14 @@ Once a preference persistence file is deleted, the **Preferences** instance cann
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -159,18 +159,18 @@ Once a preference persistence file is deleted, the **Preferences** instance cann
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -196,14 +196,14 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -230,18 +230,18 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -270,14 +270,14 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to obtain. It cannot be empty.|
   | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
   | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -308,18 +308,18 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+- **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to obtain. It cannot be empty.|
   | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;ValueType&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -344,18 +344,18 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Obtain a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses an asynchronous callback to return the execution result.
+Obtains a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses an asynchronous callback to return the execution result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data. It cannot be empty.|
   | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -382,22 +382,22 @@ Obtain a **Preferences** instance, writes data to the **Preferences** instance, 
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Obtain a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses a promise to return the execution result.
+Obtains a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses a promise to return the execution result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data. It cannot be empty.|
   | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -426,18 +426,18 @@ Checks whether the **Preferences** instance contains data with a given key. This
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to check. It cannot be empty.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the **Preferences** instance contains data with the specified key; returns **false** otherwise.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -472,17 +472,17 @@ Checks whether the **Preferences** instance contains data with a given key. This
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to check. It cannot be empty.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -515,13 +515,13 @@ Deletes the KV pair of the specified key from this **Preferences** instance. Thi
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -552,17 +552,17 @@ Deletes the KV pair of the specified key from this **Preferences** instance. Thi
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -591,12 +591,12 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -627,12 +627,12 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -661,12 +661,12 @@ Clears data of this **Preferences** instance. This API uses an asynchronous call
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -697,12 +697,12 @@ Clears data of this **Preferences** instance. This API uses a promise to return 
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -731,13 +731,13 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Description|
   | -------- | -------- | -------- |
   | type | string | Event type. The value **change** indicates data change events.|
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'
@@ -779,13 +779,13 @@ Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Description|
   | -------- | -------- | -------- |
   | type | string | Event type. The value **change** indicates data change events.|
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
-- Example
+**Example**
   ```ts
   import Ability from '@ohos.application.Ability'
   import data_preferences from '@ohos.data.preferences'

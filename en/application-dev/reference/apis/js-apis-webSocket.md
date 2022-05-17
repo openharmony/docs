@@ -12,13 +12,13 @@ If an error occurs in any of the preceding processes, the client will receive a 
 
 ## Modules to Import
 
-```
+```js
 import webSocket from '@ohos.net.webSocket';
 ```
 
 ## Complete Example
 
-```
+```js
 import webSocket from '@ohos.net.webSocket';
 
 var defaultIpAddress = "ws://";
@@ -78,7 +78,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ```
 
@@ -107,7 +107,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -141,7 +141,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, {
@@ -184,7 +184,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
@@ -215,7 +215,7 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -254,7 +254,7 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -286,7 +286,7 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.close((err, value) => {
@@ -318,7 +318,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.close({
@@ -358,7 +358,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.close({
@@ -391,7 +391,7 @@ Enables listening for the **open** events of a WebSocket connection. This API us
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
 	console.log("on open, status:" + value.status + ", message:" + value.message);
@@ -419,7 +419,7 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let callback1 = (err, value) => {
 	console.log("on open, status:" + value.status + ", message:" + value.message);
@@ -451,7 +451,7 @@ Enables listening for the **message** events of a WebSocket connection. This API
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('message', (err, value) => {
 	console.log("on message, message:" + value);
@@ -480,7 +480,7 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
@@ -503,7 +503,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
 	console.log("on close, code is " + value.code + ", reason is " + value.reason);
@@ -532,7 +532,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
@@ -556,7 +556,7 @@ Enables listening for the **error** events of a WebSocket connection. This API u
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('error', (err) => {
 	console.log("on error, error:" + JSON.stringify(err))
@@ -584,7 +584,7 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 
 **Example**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```

@@ -42,8 +42,9 @@ featureAbility.startAbility(
             type: "",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",,
             uri: ""
         },
     },
@@ -80,8 +81,9 @@ featureAbility.startAbility(
             type: "MIMETYPE",
 			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     }
@@ -148,8 +150,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",
             uri:""
         },
     },
@@ -193,8 +196,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters:
             {
@@ -245,8 +249,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -298,8 +303,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* FA模型中abilityName由package + Ability name组成 */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,

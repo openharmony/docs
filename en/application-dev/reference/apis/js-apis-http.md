@@ -7,13 +7,13 @@
 
 ## Modules to Import
 
-```
+```js
 import http from '@ohos.net.http';
 ```
 
 ## Example
 
-```
+```js
 import http from '@ohos.net.http';
 
 // Each HttpRequest corresponds to an HttpRequestTask object and cannot be reused.
@@ -71,7 +71,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 **Example**
 
-```
+```js
 import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
@@ -100,7 +100,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Example**
 
-```
+```js
 httpRequest.request("EXAMPLE_URL", (err, data) => {
     if (!err) {
         console.info('Result:' + data.result);
@@ -133,7 +133,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Example**
 
-```
+```js
 httpRequest.request("EXAMPLE_URL",
 {
     method: http.RequestMethod.GET,
@@ -183,7 +183,7 @@ Initiates an HTTP request to a given URL. This API uses a promise to return the 
 
 **Example**
 
-```
+```js
 let promise = httpRequest.request("EXAMPLE_URL", {
     method: http.RequestMethod.GET,
     connectTimeout: 60000,
@@ -214,7 +214,7 @@ Destroys an HTTP request.
 
 **Example**
 
-```
+```js
 httpRequest.destroy();
 ```
 
@@ -239,7 +239,7 @@ Registers an observer for HTTP Response Header events.
 
 **Example**
 
-```
+```js
 httpRequest.on('headerReceive', (err, data) => {
     if (!err) {
         console.info('header: ' + JSON.stringify(data));
@@ -273,7 +273,7 @@ Unregisters the observer for HTTP Response Header events.
 
 **Example**
 
-```
+```js
 httpRequest.off('headerReceive');
 ```
 
@@ -294,7 +294,7 @@ Registers an observer for HTTP Response Header events.
 
 **Example**
 
-```
+```js
 httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
@@ -322,7 +322,7 @@ Unregisters the observer for HTTP Response Header events.
 
 **Example**
 
-```
+```js
 httpRequest.off('headersReceive');
 ```
 
@@ -343,7 +343,7 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 
 **Example**
 
-```
+```js
 httpRequest.once('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
