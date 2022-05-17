@@ -1,6 +1,7 @@
 # Background Task Management
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,7 +26,7 @@ The default duration of delayed suspension is 180000 when the battery level is h
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | Yes   | Reason for delayed transition to the suspended state.                    |
-| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out.|
+| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out. |
 
 **Return value**
 | Type                                   | Description       |
@@ -33,11 +34,17 @@ The default duration of delayed suspension is 180000 when the battery level is h
 | [DelaySuspendInfo](#delaysuspendinfo) | Information about the suspension delay.|
 
 **Example**
+
   ```js
   let myReason = 'test requestSuspendDelay';
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
+  
+  var id = delayInfo.requestId;
+  var time = delayInfo.actualDelayTime;
+  console.info("The requestId is: " + id);
+  console.info("The actualDelayTime is: " + time);
   ```
 
 
@@ -61,9 +68,9 @@ Obtains the remaining duration before the application is suspended. This API use
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
       if(err.data === 0) {
-          console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
       } else {
-          console.log('promise => Operation failed. Cause: ' + err.data);
+          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.data);
       }
   })
   ```
@@ -91,9 +98,9 @@ Obtains the remaining duration before the application is suspended. This API use
   ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-      console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+      console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
-      console.log('promise => Operation failed. Cause: ' + err.data);
+      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
   })
   ```
 
@@ -143,9 +150,9 @@ import wantAgent from '@ohos.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
     } else {
-        console.info("Operation succeeded");
+        console.info("Operation startBackgroundRunning succeeded");
     }
 }
 
@@ -158,7 +165,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -206,15 +213,15 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
         backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-        console.info("Operation succeeded");
+        console.info("Operation startBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
     });
 });
 
@@ -241,9 +248,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
     } else {
-        console.info("Operation succeeded");
+        console.info("Operation stopBackgroundRunning succeeded");
     }
 }
 
@@ -275,9 +282,9 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation succeeded");
+    console.info("Operation stopBackgroundRunning succeeded");
 }).catch((err) => {
-    console.error("Operation failed Cause: " + err);
+    console.error("Operation stopBackgroundRunning failed Cause: " + err);
 });
 
 ```

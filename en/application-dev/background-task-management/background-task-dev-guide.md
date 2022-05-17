@@ -42,7 +42,8 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
         console.info("Request suspension delay will time out.");
     });
     
-    var id = delayInfo.requestId;console.info("requestId is: " + id);
+    var id = delayInfo.requestId;
+    console.info("requestId is: " + id);
     ```
 
 
@@ -50,9 +51,9 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
     ```js
     backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-        console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('promise => Operation failed. Cause: ' + err.data);
+        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
     });
     ```
 
@@ -83,9 +84,9 @@ console.info("The actualDelayTime is: " + time);
 
 // Obtain the remaining duration before the application is suspended.
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-    console.log('promise => Operation succeeded. Data: ' + JSON.stringify(res));
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch( err => {
-    console.log('promise => Operation failed. Cause: ' + err.data);
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
 });
 
 // Cancel the suspension delay.
@@ -110,7 +111,7 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
 
 **Table 4** Background modes
 
-| Name| ID Value| Description| Item|
+| Name| ID| Description| Item|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER           | 1 | Data transfer.| dataTransfer |
 | AUDIO_PLAYBACK          | 2 | Audio playback.| audioPlayback |
@@ -125,9 +126,9 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
 
 ## How to Develop
 
-1. Configure the continuous task permission and background mode type in the **config.json** file, with the ability type set to **service**.
+1. Create an API version 8 project. Then right-click the project directory and choose **New > Ability > Service Ability** to create a Service ability. Configure the continuous task permission and background mode type in the **config.json** file, with the ability type set to **service**.
 
-    ```json
+    ```
     "module": {
       "package": "com.example.myapplication",
       
@@ -172,16 +173,16 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
         ],
         operationType: wantAgent.OperationType.START_ABILITY,
         requestCode: 0,
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
-    // Obtain the WantAgent object by using the getWantAgent method of the wantAgent module.
+    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation succeeded");
+            console.info("Operation startBackgroundRunning succeeded");
         }).catch((err) => {
-            console.error("Operation failed Cause: " + err);
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
         });
     });
     ```
@@ -193,59 +194,98 @@ For details about **wantAgent**, see [WantAgent](../reference/apis/js-apis-wantA
     import featureAbility from '@ohos.ability.featureAbility';
     
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation succeeded");
+        console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
     
     ```
 
 ## Development Examples
 
+For details about how to use the Service ability in the FA model, see [Service Ability Development](../ability/fa-serviceability.md).
+
+If an application does not need to interact with a continuous task in the background, you can use **startAbility()** to start the Service ability. In the **onStart** callback of the Service ability, call **startBackgroundRunning()** to declare that the Service ability needs to run in the background for a long time. After the task execution is complete, call **stopBackgroundRunning()** to release resources.
+
 After a service is started, call the API for requesting a continuous task in the **onStart** callback of the Service ability to declare that the service needs to run in the background for a long time. In the **onStop** callback, call the API for canceling the continuous task.
-In the **service.js** file:
+If an application needs to interact with a continuous task in the background (for example, an application related to music playback), you can use **connectAbility()** to start and connect to the Service ability. After obtaining the proxy of the Service ability, the application can communicate with the Service ability and control the request and cancellation of continuous tasks.
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
+import rpc from "@ohos.rpc";
 
 function startBackgroundRunning() {
     let wantAgentInfo = {
+        // List of operations to be executed after the notification is clicked.
         wants: [
             {
                 bundleName: "com.example.myapplication",
                 abilityName: "com.example.myapplication.MainAbility"
             }
         ],
+        // Type of the operation to perform after the notification is clicked.
         operationType: wantAgent.OperationType.START_ABILITY,
+        // Custom request code.
         requestCode: 0,
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+        // Execution attribute of the operation to perform after the notification is clicked.
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
-    // Obtain the WantAgent object by using the getWantAgent method of the wantAgent module.
+    // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
             backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation succeeded");
+            console.info("Operation startBackgroundRunning succeeded");
         }).catch((err) => {
-            console.error("Operation failed Cause: " + err);
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
         });
     });
 }
 
 function stopBackgroundRunning() {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info("Operation succeeded");
+        console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
+}
+
+let mMyStub;
+
+class MyStub extends rpc.RemoteObject {
+    constructor(des) {
+        if (typeof des === 'string') {
+            super(des);
+        } else {
+            return null;
+        }
+    }
+    onRemoteRequest(code, data, reply, option) {
+        console.log('ServiceAbility onRemoteRequest called');
+        // The meaning of code is user-defined.
+        if (code === 1) {
+            // Received the request code for requesting a continuous task.
+            startContinuousTask();
+            // Execute the continuous task.
+        } else if (code === 2) {
+            // Received the request code for canceling the continuous task.
+            stopContinuousTask();
+        } else {
+            console.log('ServiceAbility unknown request code');
+        }
+        return true;
+    }
 }
 
 export default {
     onStart(want) {
         console.info('ServiceAbility onStart');
+        mMyStub = new MyStub("ServiceAbility-test");
         startBackgroundRunning();
+        // Execute a specific continuous task in the background.
+        stopBackgroundRunning();
     },
     onStop() {
         console.info('ServiceAbility onStop');
@@ -253,7 +293,7 @@ export default {
     },
     onConnect(want) {
         console.info('ServiceAbility onConnect');
-        return {};
+        return mMyStub;
     },
     onReconnect(want) {
         console.info('ServiceAbility onReconnect');
