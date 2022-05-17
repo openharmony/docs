@@ -1,7 +1,6 @@
 # HUKS
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Openharmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations.
@@ -20,73 +19,73 @@ Enumerates the error codes.
 
 | Name                      | Value   | Description|
 | -------------------------- | ----- | ---- |
-| HUKS_SUCCESS | 0     |Success.|
-| HUKS_FAILURE | -1    |Failure.|
-| HUKS_ERROR_BAD_STATE | -2    |Incorrect state.|
-| HUKS_ERROR_INVALID_ARGUMENT | -3    |Invalid argument.|
-| HUKS_ERROR_NOT_SUPPORTED | -4    |Not supported.|
-| HUKS_ERROR_NO_PERMISSION | -5    |No permission.|
-| HUKS_ERROR_INSUFFICIENT_DATA | -6    |Insufficient data.|
-| HUKS_ERROR_BUFFER_TOO_SMALL | -7    |Insufficient buffer.|
-| HUKS_ERROR_INSUFFICIENT_MEMORY | -8    |Insufficient memory.|
-| HUKS_ERROR_COMMUNICATION_FAILURE | -9    |Communication failure.|
-| HUKS_ERROR_STORAGE_FAILURE | -10   |Storage failure.|
-| HUKS_ERROR_HARDWARE_FAILURE | -11   |Hardware fault.|
-| HUKS_ERROR_ALREADY_EXISTS | -12   |The object already exists.|
-| HUKS_ERROR_NOT_EXIST | -13   |The object does not exist.|
-| HUKS_ERROR_NULL_POINTER | -14   |Null pointer.|
-| HUKS_ERROR_FILE_SIZE_FAIL | -15   |Incorrect file size.|
-| HUKS_ERROR_READ_FILE_FAIL | -16   |Failed to read the file.|
-| HUKS_ERROR_INVALID_PUBLIC_KEY | -17   |Invalid public key.|
-| HUKS_ERROR_INVALID_PRIVATE_KEY | -18   |Invalid private key.|
-| HUKS_ERROR_INVALID_KEY_INFO | -19   |Invalid key information.|
-| HUKS_ERROR_HASH_NOT_EQUAL | -20   |The hash values are not equal.|
-| HUKS_ERROR_MALLOC_FAIL | -21   |MALLOC failed.|
-| HUKS_ERROR_WRITE_FILE_FAIL | -22   |Failed to write the file.|
-| HUKS_ERROR_REMOVE_FILE_FAIL | -23   |Failed to delete the file.|
-| HUKS_ERROR_OPEN_FILE_FAIL | -24   |Failed to open the file.|
-| HUKS_ERROR_CLOSE_FILE_FAIL | -25   |Failed to close the file.|
-| HUKS_ERROR_MAKE_DIR_FAIL | -26   |Failed to create the directory.|
-| HUKS_ERROR_INVALID_KEY_FILE | -27   |Invalid key file.|
-| HUKS_ERROR_IPC_MSG_FAIL | -28   |Incorrect IPC information.|
-| HUKS_ERROR_REQUEST_OVERFLOWS | -29   |Request overflows.|
-| HUKS_ERROR_PARAM_NOT_EXIST | -30   |The parameter does not exist.|
-| HUKS_ERROR_CRYPTO_ENGINE_ERROR | -31   |CRYPTO ENGINE error.|
-| HUKS_ERROR_COMMUNICATION_TIMEOUT | -32   |Communication timed out.|
-| HUKS_ERROR_IPC_INIT_FAIL | -33   |IPC initialization failed.|
-| HUKS_ERROR_IPC_DLOPEN_FAIL | -34   |IPC DLOPEN failed.|
-| HUKS_ERROR_EFUSE_READ_FAIL | -35   |Failed to read eFUSE.|
-| HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST | -36   |New root key material exists.|
-| HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL | -37   |Failed to update the root key material.|
-| HUKS_ERROR_VERIFICATION_FAILED | -38   |Failed to verify the certificate chain.|
+| HUKS_SUCCESS | 0     |Success. |
+| HUKS_FAILURE | -1    |Failure. |
+| HUKS_ERROR_BAD_STATE | -2    |Incorrect state. |
+| HUKS_ERROR_INVALID_ARGUMENT | -3    |Invalid argument. |
+| HUKS_ERROR_NOT_SUPPORTED | -4    |Not supported. |
+| HUKS_ERROR_NO_PERMISSION | -5    |No permission. |
+| HUKS_ERROR_INSUFFICIENT_DATA | -6    |Insufficient data. |
+| HUKS_ERROR_BUFFER_TOO_SMALL | -7    |Insufficient buffer. |
+| HUKS_ERROR_INSUFFICIENT_MEMORY | -8    |Insufficient memory. |
+| HUKS_ERROR_COMMUNICATION_FAILURE | -9    |Communication failure. |
+| HUKS_ERROR_STORAGE_FAILURE | -10   |Storage failure. |
+| HUKS_ERROR_HARDWARE_FAILURE | -11   |Hardware fault. |
+| HUKS_ERROR_ALREADY_EXISTS | -12   |The object already exists. |
+| HUKS_ERROR_NOT_EXIST | -13   |The object does not exist. |
+| HUKS_ERROR_NULL_POINTER | -14   |Null pointer. |
+| HUKS_ERROR_FILE_SIZE_FAIL | -15   |Incorrect file size. |
+| HUKS_ERROR_READ_FILE_FAIL | -16   |Failed to read the file. |
+| HUKS_ERROR_INVALID_PUBLIC_KEY | -17   |Invalid public key. |
+| HUKS_ERROR_INVALID_PRIVATE_KEY | -18   |Invalid private key. |
+| HUKS_ERROR_INVALID_KEY_INFO | -19   |Invalid key information. |
+| HUKS_ERROR_HASH_NOT_EQUAL | -20   |The hash values are not equal. |
+| HUKS_ERROR_MALLOC_FAIL | -21   |MALLOC failed. |
+| HUKS_ERROR_WRITE_FILE_FAIL | -22   |Failed to write the file. |
+| HUKS_ERROR_REMOVE_FILE_FAIL | -23   |Failed to delete the file. |
+| HUKS_ERROR_OPEN_FILE_FAIL | -24   |Failed to open the file. |
+| HUKS_ERROR_CLOSE_FILE_FAIL | -25   |Failed to close the file. |
+| HUKS_ERROR_MAKE_DIR_FAIL | -26   |Failed to create the directory. |
+| HUKS_ERROR_INVALID_KEY_FILE | -27   |Invalid key file. |
+| HUKS_ERROR_IPC_MSG_FAIL | -28   |Incorrect IPC information. |
+| HUKS_ERROR_REQUEST_OVERFLOWS | -29   |Request overflows. |
+| HUKS_ERROR_PARAM_NOT_EXIST | -30   |The parameter does not exist. |
+| HUKS_ERROR_CRYPTO_ENGINE_ERROR | -31   |CRYPTO ENGINE error. |
+| HUKS_ERROR_COMMUNICATION_TIMEOUT | -32   |Communication timed out. |
+| HUKS_ERROR_IPC_INIT_FAIL | -33   |IPC initialization failed. |
+| HUKS_ERROR_IPC_DLOPEN_FAIL | -34   |IPC DLOPEN failed. |
+| HUKS_ERROR_EFUSE_READ_FAIL | -35   |Failed to read eFUSE. |
+| HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST | -36   |New root key material exists. |
+| HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL | -37   |Failed to update the root key material. |
+| HUKS_ERROR_VERIFICATION_FAILED | -38   |Failed to verify the certificate chain. |
 | HUKS_ERROR_CHECK_GET_ALG_FAIL | -100  |Failed to check whether the ALG is obtained. |
-| HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL | -101  |Failed to check whether the key size is obtained.|
-| HUKS_ERROR_CHECK_GET_PADDING_FAIL | -102  |Failed to check whether padding is obtained.|
-| HUKS_ERROR_CHECK_GET_PURPOSE_FAIL | -103  |Failed to check whether the purpose is obtained.|
-| HUKS_ERROR_CHECK_GET_DIGEST_FAIL | -104  |Failed to check whether digest is obtained.|
-| HUKS_ERROR_CHECK_GET_MODE_FAIL | -105  |Failed to check whether the mode is obtained.|
-| HUKS_ERROR_CHECK_GET_NONCE_FAIL | -106  |Failed to check whether the nonce is obtained.|
-| HUKS_ERROR_CHECK_GET_AAD_FAIL | -107  |Failed to check whether the AAD is obtained.|
-| HUKS_ERROR_CHECK_GET_IV_FAIL | -108  |Failed to check whether the initialization vector (IV) is obtained.|
-| HUKS_ERROR_CHECK_GET_AE_TAG_FAIL | -109  |Failed to check whether the AE flag is obtained.|
-| HUKS_ERROR_CHECK_GET_SALT_FAIL | -110  |Failed to check whether the SALT is obtained.|
-| HUKS_ERROR_CHECK_GET_ITERATION_FAIL | -111  |Failed to check whether the iteration is obtained.|
-| HUKS_ERROR_INVALID_ALGORITHM | -112  |Invalid algorithm.|
-| HUKS_ERROR_INVALID_KEY_SIZE | -113  |Invalid key size.|
-| HUKS_ERROR_INVALID_PADDING | -114  |Invalid padding.|
-| HUKS_ERROR_INVALID_PURPOSE | -115  |Invalid purpose.|
-| HUKS_ERROR_INVALID_MODE | -116  |Invalid mode.|
-| HUKS_ERROR_INVALID_DIGEST | -117  |Invalid digest.|
-| HUKS_ERROR_INVALID_SIGNATURE_SIZE | -118  |Invalid signature size.|
-| HUKS_ERROR_INVALID_IV | -119  |Invalid IV.|
-| HUKS_ERROR_INVALID_AAD | -120  |Invalid AAD.|
-| HUKS_ERROR_INVALID_NONCE | -121  |Invalid nonce.|
-| HUKS_ERROR_INVALID_AE_TAG | -122  |Invalid AE tag.|
-| HUKS_ERROR_INVALID_SALT | -123  |Invalid SALT.|
-| HUKS_ERROR_INVALID_ITERATION | -124  |Invalid iteration.|
-| HUKS_ERROR_INVALID_OPERATION | -125  |Invalid operation.|
-| HUKS_ERROR_INTERNAL_ERROR | -999  |Internal error.|
-| HUKS_ERROR_UNKNOWN_ERROR | -1000 |Unknown error.|
+| HUKS_ERROR_CHECK_GET_KEY_SIZE_FAIL | -101  |Failed to check whether the key size is obtained. |
+| HUKS_ERROR_CHECK_GET_PADDING_FAIL | -102  |Failed to check whether padding is obtained. |
+| HUKS_ERROR_CHECK_GET_PURPOSE_FAIL | -103  |Failed to check whether the purpose is obtained. |
+| HUKS_ERROR_CHECK_GET_DIGEST_FAIL | -104  |Failed to check whether digest is obtained. |
+| HUKS_ERROR_CHECK_GET_MODE_FAIL | -105  |Failed to check whether the mode is obtained. |
+| HUKS_ERROR_CHECK_GET_NONCE_FAIL | -106  |Failed to check whether the nonce is obtained. |
+| HUKS_ERROR_CHECK_GET_AAD_FAIL | -107  |Failed to check whether the AAD is obtained. |
+| HUKS_ERROR_CHECK_GET_IV_FAIL | -108  |Failed to check whether the initialization vector (IV) is obtained. |
+| HUKS_ERROR_CHECK_GET_AE_TAG_FAIL | -109  |Failed to check whether the AE flag is obtained. |
+| HUKS_ERROR_CHECK_GET_SALT_FAIL | -110  |Failed to check whether the SALT is obtained. |
+| HUKS_ERROR_CHECK_GET_ITERATION_FAIL | -111  |Failed to check whether the iteration is obtained. |
+| HUKS_ERROR_INVALID_ALGORITHM | -112  |Invalid algorithm. |
+| HUKS_ERROR_INVALID_KEY_SIZE | -113  |Invalid key size. |
+| HUKS_ERROR_INVALID_PADDING | -114  |Invalid padding. |
+| HUKS_ERROR_INVALID_PURPOSE | -115  |Invalid purpose. |
+| HUKS_ERROR_INVALID_MODE | -116  |Invalid mode. |
+| HUKS_ERROR_INVALID_DIGEST | -117  |Invalid digest. |
+| HUKS_ERROR_INVALID_SIGNATURE_SIZE | -118  |Invalid signature size. |
+| HUKS_ERROR_INVALID_IV | -119  |Invalid IV. |
+| HUKS_ERROR_INVALID_AAD | -120  |Invalid AAD. |
+| HUKS_ERROR_INVALID_NONCE | -121  |Invalid nonce. |
+| HUKS_ERROR_INVALID_AE_TAG | -122  |Invalid AE tag. |
+| HUKS_ERROR_INVALID_SALT | -123  |Invalid SALT. |
+| HUKS_ERROR_INVALID_ITERATION | -124  |Invalid iteration. |
+| HUKS_ERROR_INVALID_OPERATION | -125  |Invalid operation. |
+| HUKS_ERROR_INTERNAL_ERROR | -999  |Internal error. |
+| HUKS_ERROR_UNKNOWN_ERROR | -1000 |Unknown error. |
 
 
 ## HuksKeyPurpose
@@ -97,8 +96,8 @@ Enumerates the key purposes.
 
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | The key is used to encrypt plain text.|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | The key is used to decrypt the cipher text.|
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | The key is used to encrypt plain text. |
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | The key is used to decrypt the cipher text. |
 | HUKS_KEY_PURPOSE_SIGN    | 4    | The key is used to sign data.    |
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | The key is used to verify the signed data.  |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | The key is used to derive a key.          |
@@ -115,13 +114,13 @@ Enumerates the digest algorithms.
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_DIGEST_NONE       | 0   | No digest algorithm.|
-| HUKS_DIGEST_MD5        | 1    | MD5.|
-| HUKS_DIGEST_SHA1       | 10   | SHA1.|
-| HUKS_DIGEST_SHA224 | 11   | SHA-224.|
-| HUKS_DIGEST_SHA256 | 12  | SHA-256.|
-| HUKS_DIGEST_SHA384  | 13  | SHA-384.|
-| HUKS_DIGEST_SHA512 | 14  | SHA-512.|
+| HUKS_DIGEST_NONE       | 0   | No digest algorithm. |
+| HUKS_DIGEST_MD5        | 1    | MD5. |
+| HUKS_DIGEST_SHA1       | 10   | SHA1. |
+| HUKS_DIGEST_SHA224 | 11   | SHA-224. |
+| HUKS_DIGEST_SHA256 | 12  | SHA-256. |
+| HUKS_DIGEST_SHA384  | 13  | SHA-384. |
+| HUKS_DIGEST_SHA512 | 14  | SHA-512. |
 
 ## HuksKeyPadding
 
@@ -131,11 +130,11 @@ Enumerates the padding algorithms.
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_PADDING_NONE | 0    | No padding algorithm.|
-| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP).|
-| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS).|
-| HUKS_PADDING_PKCS1_V1_5 | 3    | PKCS1_V1_5.|
-| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS) #5.|
+| HUKS_PADDING_NONE | 0    | No padding algorithm. |
+| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP). |
+| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS). |
+| HUKS_PADDING_PKCS1_V1_5 | 3    | PKCS1_V1_5. |
+| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS) #5. |
 | HUKS_PADDING_PKCS7 | 5   | PKCS #7|
 
 ## HuksCipherMode
@@ -146,12 +145,12 @@ Enumerates the cipher modes.
 
 | Name         | Value  | Description                 |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | Electronic Code BLock (ECB) mode.|
-| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode.|
-| HUKS_MODE_CTR | 3    | Counter (CTR) mode.|
-| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode.|
-| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode.|
-| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode.|
+| HUKS_MODE_ECB | 1    | Electronic Code BLock (ECB) mode. |
+| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode. |
+| HUKS_MODE_CTR | 3    | Counter (CTR) mode. |
+| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode. |
+| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode. |
+| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode. |
 
 ## HuksKeySize
 
@@ -175,7 +174,7 @@ Enumerates the key sizes.
 | HUKS_AES_KEY_SIZE_192        | 196  | AES key of 196 bits.       |
 | HUKS_AES_KEY_SIZE_256        | 256  | AES key of 256 bits.       |
 | HUKS_AES_KEY_SIZE_512        | 512  | AES key of 512 bits.       |
-| HUKS_CURVE25519_KEY_SIZE_256 | 256  | Curve25519 key of 256 bits.|
+| HUKS_CURVE25519_KEY_SIZE_256 | 256  | Curve25519 key of 256 bits. |
 | HUKS_DH_KEY_SIZE_2048        | 2048 | DH key of 2048 bits.       |
 | HUKS_DH_KEY_SIZE_3072        | 3072 | DH key of 3072 bits.       |
 | HUKS_DH_KEY_SIZE_4096        | 4096 | DH key of 4096 bits.       |
@@ -197,7 +196,7 @@ Enumerates the key algorithms.
 | HUKS_ALG_PBKDF2  | 52   | PBKDF2. |
 | HUKS_ALG_ECDH    | 100  | ECDH.   |
 | HUKS_ALG_X25519  | 101  | X25519 algorithm. |
-| HUKS_ALG_ED25519 | 102  | ED25519 algorithm.|
+| HUKS_ALG_ED25519 | 102  | ED25519 algorithm. |
 | HUKS_ALG_DH      | 103  | DH.     |
 
 ## HuksKeyGenerateType
@@ -208,9 +207,9 @@ Enumerates the key generation types.
 
 | Name                          | Value  | Description            |
 | ------------------------------ | ---- | ---------------- |
-| HUKS_KEY_GENERATE_TYPE_DEFAULT | 0    | Key generated by default.|
-| HUKS_KEY_GENERATE_TYPE_DERIVE  | 1    | Derived key.|
-| HUKS_KEY_GENERATE_TYPE_AGREE   | 2    | Key generated by agreement.|
+| HUKS_KEY_GENERATE_TYPE_DEFAULT | 0    | Key generated by default. |
+| HUKS_KEY_GENERATE_TYPE_DERIVE  | 1    | Derived key. |
+| HUKS_KEY_GENERATE_TYPE_AGREE   | 2    | Key generated by agreement. |
 
 ## HuksKeyFlag
 
@@ -222,8 +221,8 @@ Enumerates the key generation modes.
 | -------------------------- | ---- | ------------------------------------ |
 | HUKS_KEY_FLAG_IMPORT_KEY   | 1    | The key is imported by using the public key import API.    |
 | HUKS_KEY_FLAG_GENERATE_KEY | 2    | The key is generated by using the private key generation API.    |
-| HUKS_KEY_FLAG_AGREE_KEY    | 3    | The key is generated by using the key agreement API.|
-| HUKS_KEY_FLAG_DERIVE_KEY   | 4    | The key is generated by using the key derivation API.|
+| HUKS_KEY_FLAG_AGREE_KEY    | 3    | The key is generated by using the key agreement API. |
+| HUKS_KEY_FLAG_DERIVE_KEY   | 4    | The key is generated by using the key derivation API. |
 
 ## HuksKeyStorageType
 
@@ -234,7 +233,7 @@ Enumerates the key storage modes.
 | Name                   | Value  | Description                          |
 | ----------------------- | ---- | ------------------------------ |
 | HUKS_STORAGE_TEMP       | 0    | The key is managed locally.    |
-| HUKS_STORAGE_PERSISTENT | 1    | The key is managed by the HUKS service.|
+| HUKS_STORAGE_PERSISTENT | 1    | The key is managed by the HUKS service. |
 
 ## HuksSendType
 
@@ -244,8 +243,8 @@ Enumerates the tag transfer modes.
 
 | Name                | Value  | Description             |
 | -------------------- | ---- | ----------------- |
-| HUKS_SEND_TYPE_ASYNC | 0    | The tag is sent asynchronously.|
-| HUKS_SEND_TYPE_SYNC  | 1    | The tag is sent synchronously.|
+| HUKS_SEND_TYPE_ASYNC | 0    | The tag is sent asynchronously. |
+| HUKS_SEND_TYPE_SYNC  | 1    | The tag is sent synchronously. |
 
 ## HuksTagType
 
@@ -258,7 +257,7 @@ Enumerates the tag data types.
 | --------------------- | ------- | --------------------------------------- |
 | HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type.                    |
 | HUKS_TAG_TYPE_INT     | 1 << 28 | Number of the int type. |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type.|
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type. |
 | HUKS_TAG_TYPE_ULONG   | 3 << 28 | bigint.          |
 | HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean.         |
 | HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array.      |
@@ -272,30 +271,30 @@ Enumerates the tags used to invoke parameters.
 | Name                                  | Value                                      | Description                                  |
 | -------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | HUKS_TAG_INVALID                       | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                       |
-| HUKS_TAG_ALGORITHM                     | HUKS_TAG_TYPE_UINT \| 1                  | Indicates the algorithm.                       |
-| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Indicates the purpose of a key.                   |
-| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Indicates the key size.                   |
-| HUKS_TAG_DIGEST                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Indicates the digest algorithm.                   |
-| HUKS_TAG_PADDING                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Indicates the padding algorithm.                   |
-| HUKS_TAG_BLOCK_MODE                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Indicates the cipher mode.                   |
-| HUKS_TAG_KEY_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Indicates the key type.                   |
-| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Indicates the associated authentication data.           |
-| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Indicates the field for key encryption and decryption.                |
-| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | Indicates the IV.                |
-| HUKS_TAG_INFO                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Indicates the information generated during key derivation.                |
-| HUKS_TAG_SALT                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Indicates the salt value used for key derivation.                |
-| HUKS_TAG_PWD                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Indicates the password used for key derivation.            |
-| HUKS_TAG_ITERATION                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Indicates the number of iterations for key derivation.            |
-| HUKS_TAG_KEY_GENERATE_TYPE             | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Indicates the key generation type.               |
-| HUKS_TAG_DERIVE_MAIN_KEY               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Indicates the main key for key derivation.              |
-| HUKS_TAG_DERIVE_FACTOR                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Indicates the factor for key derivation.            |
-| HUKS_TAG_DERIVE_ALG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Indicates the type of the algorithm used for key derivation.            |
-| HUKS_TAG_AGREE_ALG                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Indicates the type of the algorithm used in key agreement.            |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Indicates the alias of the public key during key agreement.            |
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Indicates the private key alias used in key agreement.            |
-| HUKS_TAG_AGREE_PUBLIC_KEY              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Indicates the public key used in key agreement.                |
-| HUKS_TAG_KEY_ALIAS                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Indicates the key alias.                        |
-| HUKS_TAG_DERIVE_KEY_SIZE               | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Indicates the size of the derived key.                  |
+| HUKS_TAG_ALGORITHM                     | HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.                       |
+| HUKS_TAG_PURPOSE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of a key.                   |
+| HUKS_TAG_KEY_SIZE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.                   |
+| HUKS_TAG_DIGEST                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.                   |
+| HUKS_TAG_PADDING                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.                   |
+| HUKS_TAG_BLOCK_MODE                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.                   |
+| HUKS_TAG_KEY_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.                   |
+| HUKS_TAG_ASSOCIATED_DATA               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.           |
+| HUKS_TAG_NONCE                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.                |
+| HUKS_TAG_IV                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.                |
+| HUKS_TAG_INFO                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.                |
+| HUKS_TAG_SALT                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.                |
+| HUKS_TAG_PWD                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.            |
+| HUKS_TAG_ITERATION                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.            |
+| HUKS_TAG_KEY_GENERATE_TYPE             | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.               |
+| HUKS_TAG_DERIVE_MAIN_KEY               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.              |
+| HUKS_TAG_DERIVE_FACTOR                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.            |
+| HUKS_TAG_DERIVE_ALG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.            |
+| HUKS_TAG_AGREE_ALG                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used in key agreement.            |
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Alias of the public key during key agreement.            |
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.            |
+| HUKS_TAG_AGREE_PUBLIC_KEY              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                |
+| HUKS_TAG_KEY_ALIAS                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                        |
+| HUKS_TAG_DERIVE_KEY_SIZE               | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                  |
 | HUKS_TAG_ACTIVE_DATETIME               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Reserved.                                |
 | HUKS_TAG_ORIGINATION_EXPIRE_DATETIME   | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Reserved.                                |
 | HUKS_TAG_USAGE_EXPIRE_DATETIME         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Reserved.                                |
@@ -306,44 +305,44 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_USER_AUTH_TYPE                | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | Reserved.                                |
 | HUKS_TAG_AUTH_TIMEOUT                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Reserved.                                |
 | HUKS_TAG_AUTH_TOKEN                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Reserved.                                |
-| HUKS_TAG_ATTESTATION_CHALLENGE         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Indicates the challenge value used in the attestation.           |
-| HUKS_TAG_ATTESTATION_APPLICATION_ID    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Indicates the application ID used in the attestation.   |
-| HUKS_TAG_ATTESTATION_ID_BRAND          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Indicates the device brand.                     |
-| HUKS_TAG_ATTESTATION_ID_DEVICE         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Indicates the device.                    |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Indicates the product.                   |
-| HUKS_TAG_ATTESTATION_ID_SERIAL         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | Indicates the device SN.                      |
-| HUKS_TAG_ATTESTATION_ID_IMEI           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | Indicates the device IMEI.                    |
-| HUKS_TAG_ATTESTATION_ID_MEID           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Indicates the device MEID.                    |
-| HUKS_TAG_ATTESTATION_ID_MANUFACTURER   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Indicates the device manufacturer.                    |
-| HUKS_TAG_ATTESTATION_ID_MODEL          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Indicates the device model.                      |
-| HUKS_TAG_ATTESTATION_ID_ALIAS          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Indicates the key alias used in the attestation.         |
-| HUKS_TAG_ATTESTATION_ID_SOCID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | Indicates the device SOCID.                     |
-| HUKS_TAG_ATTESTATION_ID_UDID           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Indicates the device UDID.                      |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Indicates the security credential used for the attestation.         |
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Indicates the version information used in the attestation.           |
-| HUKS_TAG_IS_KEY_ALIAS                  | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Indicates whether to use the alias passed in during key generation.|
-| HUKS_TAG_KEY_STORAGE_FLAG              | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Indicates the key storage mode.               |
+| HUKS_TAG_ATTESTATION_CHALLENGE         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.           |
+| HUKS_TAG_ATTESTATION_APPLICATION_ID    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.   |
+| HUKS_TAG_ATTESTATION_ID_BRAND          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Device brand.                     |
+| HUKS_TAG_ATTESTATION_ID_DEVICE         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Device.                    |
+| HUKS_TAG_ATTESTATION_ID_PRODUCT        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product.                   |
+| HUKS_TAG_ATTESTATION_ID_SERIAL         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | Device SN.                      |
+| HUKS_TAG_ATTESTATION_ID_IMEI           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | Device IMEI.                    |
+| HUKS_TAG_ATTESTATION_ID_MEID           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Device MEID.                    |
+| HUKS_TAG_ATTESTATION_ID_MANUFACTURER   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Device manufacturer.                    |
+| HUKS_TAG_ATTESTATION_ID_MODEL          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.                      |
+| HUKS_TAG_ATTESTATION_ID_ALIAS          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.         |
+| HUKS_TAG_ATTESTATION_ID_SOCID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | Device SOCID.                     |
+| HUKS_TAG_ATTESTATION_ID_UDID           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Device UDID.                      |
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security credential used for the attestation.         |
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.           |
+| HUKS_TAG_IS_KEY_ALIAS                  | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation. |
+| HUKS_TAG_KEY_STORAGE_FLAG              | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.               |
 | HUKS_TAG_IS_ALLOWED_WRAP               | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                |
 | HUKS_TAG_KEY_WRAP_TYPE                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                |
 | HUKS_TAG_KEY_AUTH_ID                   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.                                |
 | HUKS_TAG_KEY_ROLE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.                                |
-| HUKS_TAG_KEY_FLAG                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Indicates the flag of the key.                   |
+| HUKS_TAG_KEY_FLAG                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.                   |
 | HUKS_TAG_IS_ASYNCHRONIZED              | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.                                |
 | HUKS_TAG_SECURE_KEY_ALIAS              | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.                                |
 | HUKS_TAG_SECURE_KEY_UUID               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.                                |
 | HUKS_TAG_KEY_DOMAIN                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.                                |
-| HUKS_TAG_PROCESS_NAME                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Indicates the process name.                   |
+| HUKS_TAG_PROCESS_NAME                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.                   |
 | HUKS_TAG_PACKAGE_NAME                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.                                |
 | HUKS_TAG_ACCESS_TIME                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.                                |
 | HUKS_TAG_USES_TIME                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.                                |
 | HUKS_TAG_CRYPTO_CTX                    | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.                                |
 | HUKS_TAG_KEY                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.                                |
-| HUKS_TAG_KEY_VERSION                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Indicates the key version.                   |
+| HUKS_TAG_KEY_VERSION                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.                   |
 | HUKS_TAG_PAYLOAD_LEN                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.                                |
 | HUKS_TAG_AE_TAG                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Reserved.                                |
 | HUKS_TAG_IS_KEY_HANDLE                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.                                |
-| HUKS_TAG_OS_VERSION                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | Indicates the operating system version.               |
-| HUKS_TAG_OS_PATCHLEVEL                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | Indicates the operating system patch level.           |
+| HUKS_TAG_OS_VERSION                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.               |
+| HUKS_TAG_OS_PATCHLEVEL                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.           |
 | HUKS_TAG_SYMMETRIC_KEY_DATA            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.                                |
 | HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.                                |
 | HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.                                |
@@ -362,7 +361,7 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code defined in **HuksResult** will be returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code defined in **HuksResult** will be returned. |
 
 **Example**
 
@@ -411,13 +410,13 @@ Generates a key. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key.              |
-| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. |
 
 **Return value**
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. |
 
 **Example**
 
@@ -463,7 +462,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. |
 
 **Example**
 
@@ -488,14 +487,14 @@ Deletes a key. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                                 |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
-| keyAlias | string      | Yes  | Key alias passed in when the key was generated.|
-| options | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| keyAlias | string      | Yes  | Key alias passed in when the key was generated. |
+| options | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
 
 **Return value**
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. |
 
 **Example**
 
@@ -520,13 +519,13 @@ Obtains the SDK version of the current system.
 
 | Name | Type      | Mandatory| Description                     |
 | ------- | ---------- | ---- | ------------------------- |
-| options | [HuksOptions](#huksoptions) | Yes  | Empty object, which is used to hold the SDK version.|
+| options | [HuksOptions](#huksoptions) | Yes  | Empty object, which is used to hold the SDK version. |
 
 **Return value**
 
 | Type  | Description         |
 | ------ | ------------- |
-| string | SDK version obtained.|
+| string | SDK version obtained. |
 
 **Example**
 
@@ -550,9 +549,9 @@ Imports a key. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                    | Mandatory| Description                                             |
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
-| keyAlias | string                   | Yes  | Key alias, which is used to hold the key pair.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
+| keyAlias | string                   | Yes  | Key alias, which is used to hold the key pair. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. |
 
 **Example**
 
@@ -608,14 +607,14 @@ Imports a key. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                |
 | -------- | ----------- | ---- | ------------------------------------ |
-| keyAlias | string      | Yes  | Key alias, which is used to hold the key pair.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import.|
+| keyAlias | string      | Yes  | Key alias, which is used to hold the key pair. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key pair to import. |
 
 **Return value**
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. |
 
 **Example**
 
@@ -675,7 +674,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported. |
 
 **Example**
 
@@ -700,14 +699,14 @@ Exports a key. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                                        |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
 
 **Return value**
 
 | Type                               | Description                                                        |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported.|
+| Promise\<[HuksResult](#huksresult)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned. **outData** contains the public key exported. |
 
 **Example**
 
@@ -734,7 +733,7 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise.|
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. **HUKS_SUCCESS** will be returned if the operation is successful; an error code will be returned otherwise. |
 
 **Example**
 
@@ -759,14 +758,14 @@ Obtains key properties. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                                        |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| keyAlias | string      | Yes  | Key alias, which must be the same as the alias used when the key was generated. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
 
 **Return value**
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In the return result, **HUKS_SUCCESS** will be returned for **errorCode** if the operation is successful; an error code will be returned otherwise. **properties** returns the parameters required for generating the key.|
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. In the return result, **HUKS_SUCCESS** will be returned for **errorCode** if the operation is successful; an error code will be returned otherwise. **properties** returns the parameters required for generating the key. |
 
 **Example**
 
@@ -791,9 +790,9 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| keyAlias | string                 | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. **TRUE** means that the key exists; **FALSE** means the opposite.|
+| keyAlias | string                 | Yes  | Alias of the key to check. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. **TRUE** means that the key exists; **FALSE** means the opposite. |
 
 **Example**
 
@@ -818,14 +817,14 @@ Checks whether a key exists. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
-| keyAlias | string      | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).|
+| keyAlias | string      | Yes  | Alias of the key to check. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty). |
 
 **Return value**
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. **TRUE** means that the key exists; **FALSE** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **TRUE** means that the key exists; **FALSE** means the opposite. |
 
 **Example**
 
@@ -852,9 +851,9 @@ Initializes a key. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| keyAlias | string                 | Yes  | Alias of the target key.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization.|
-| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | Yes  | Callback used to return the handle of the initialization operation.|
+| keyAlias | string                 | Yes  | Alias of the target key. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization. |
+| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | Yes  | Callback used to return the handle of the initialization operation. |
 
 
 ## huks.init
@@ -869,9 +868,9 @@ Initializes a key. This API uses a promise to return the result.
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| keyAlias | string                 | Yes  | Alias of the target key.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization.|
-| promise | Promise\<[HuksHandle](#hukshandle)> | Yes  | Promise used to return the handle of the initialization operation.|
+| keyAlias | string                 | Yes  | Alias of the target key. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters used for initialization. |
+| promise | Promise\<[HuksHandle](#hukshandle)> | Yes  | Promise used to return the handle of the initialization operation. |
 
 
 ## huks.update
@@ -886,10 +885,10 @@ Updates a key. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Update** operation.|
-| token | Uint8Array | No| Token of the **Update** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Update** operation. |
+| token | Uint8Array | No| Token of the **Update** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result. |
 
 
 ## huks.update
@@ -904,10 +903,10 @@ Updates a key. This API uses a promise to return the result.
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Update** operation.|
-| token | Uint8Array | No| Token of the **Update** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation.|
-| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Update** operation. |
+| token | Uint8Array | No| Token of the **Update** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Update** operation. |
+| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result. |
 
 
 ## huks.finish
@@ -922,9 +921,9 @@ Completes the key operation and releases resources. This API uses an asynchronou
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Finish** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Finish** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result. |
 
 
 ## huks.finish
@@ -939,9 +938,9 @@ Completes the key operation and releases resources. This API uses a promise to r
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Finish** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation.|
-| promise | Promise\<[HuksResult](#HuksResult)> | Yes| Promise used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Finish** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation. |
+| promise | Promise\<[HuksResult](#HuksResult)> | Yes| Promise used to return the operation result. |
 
 
 ## huks.abort
@@ -956,9 +955,9 @@ Aborts the use of the key. This API uses an asynchronous callback to return the 
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Abort** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation.|
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Abort** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation. |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | Yes| Callback used to return the operation result. |
 
 **Example**
 
@@ -1176,9 +1175,9 @@ Aborts the use of the key. This API uses a promise to return the result.
 
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
-| handle | number           | Yes  | Handle of the **Abort** operation.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation.|
-| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
+| handle | number           | Yes  | Handle of the **Abort** operation. |
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Abort** operation. |
+| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result. |
 
 **Example**
 
@@ -1399,7 +1398,7 @@ Defines the **param** in the **properties** array of **options** used in the API
 | Name| Type                               | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
 | tag    | HuksTag                             | Yes  | Tag.      |
-| value  | boolean\|number\|bigint\|Uint8Array | Yes  | Value of the tag.|
+| value  | boolean\|number\|bigint\|Uint8Array | Yes  | Value of the tag. |
 
 ## HuksOptions
 
@@ -1409,7 +1408,7 @@ Defines the **options** used in the APIs.
 
 | Name    | Type             | Mandatory| Description                    |
 | ---------- | ----------------- | ---- | ------------------------ |
-| properties | Array\<HuksParam> | No  | Array used to hold **HuksParam**.|
+| properties | Array\<HuksParam> | No  | Array used to hold **HuksParam**. |
 | inData     | Uint8Array        | No  | Input data.              |
 
 ## HuksHandle
@@ -1418,11 +1417,11 @@ Defines the HUKS handle structure.
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name    | Type            | Mandatory| Description    |
+| Name    | Type            | Mandatory | Description    |
 | ---------- | ---------------- | ---- | -------- |
-| errorCode  | number           | Yes  | Error code.|
-| handle    | number       | Yes| Value of the handle.|
-| token | Uint8Array | No| Reserved.|
+| errorCode  | number           | Yes  | Error code. |
+| handle    | number       | Yes| Value of the handle. |
+| token | Uint8Array | No| Reserved. |
 
 
 ## HuksResult
@@ -1433,9 +1432,9 @@ Defines the **HuksResult** structure.
 
 
 
-| Name    | Type             | Mandatory| Description    |
+| Name    | Type             | Mandatory | Description    |
 | ---------- | ----------------- | ---- | -------- |
 | errorCode  | number            | Yes  | Error code.  |
-| outData    | Uint8Array        | No  | Output data.|
+| outData    | Uint8Array        | No  | Output data. |
 | properties | Array\<HuksParam> | No  | Properties.    |
 | certChains | Array\<string>    | No  | Certificate chain.  |
