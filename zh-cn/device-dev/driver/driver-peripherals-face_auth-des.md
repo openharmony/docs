@@ -206,7 +206,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
        .Release = HdfFaceAuthInterfaceDriverRelease,
    };
    
-   // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
+   // 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
    HDF_INIT(g_faceAuthInterfaceDriverEntry);
    ```
 
