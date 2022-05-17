@@ -1,25 +1,14 @@
 # ADC<a name="1"></a>
 
--   [概述](#section1)
-    -   [功能简介](#section2)
-    -   [基本概念](#section3) 
-    -   [运作机制](#section4) 
-    -   [约束与限制](#section5)
--   [使用指导](#section6)
-    -   [场景介绍](#section7)
-    -   [接口说明](#section8) 
-    -   [开发步骤](#section9)
-    -   [使用实例](#section10)
-
 ## 概述<a name="section1"></a>
 
 ### 功能简介<a name="section2"></a>
 
--   ADC（Analog to Digital Converter），即模拟-数字转换器，是一种将模拟信号转换成对应数字信号的设备。
+ADC（Analog to Digital Converter），即模拟-数字转换器，是一种将模拟信号转换成对应数字信号的设备。
 
--   ADC接口定义了完成ADC传输的通用方法集合，包括：
-    -   ADC设备管理：打开或关闭ADC设备。
-    -   ADC读取转换结果：读取AD转换结果。
+ADC接口定义了完成ADC传输的通用方法集合，包括：
+-  ADC设备管理：打开或关闭ADC设备。
+-  ADC读取转换结果：读取AD转换结果。
 
 ### 基本概念<a name="section3"></a>
 
