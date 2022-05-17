@@ -97,7 +97,7 @@ import IIdlTestObserver from "./i_idl_test_observer"
 ```
 
 #### 2.1.4 数组类型
-数组类型使用“T[]”表示，其中T可以是基本数据类型、sequenceable数据类型、interface类型和数据类型。该类型在C++生成代码中将被生成为std::vector&lt;T&gt;类型。
+数组类型使用“T[]”表示，其中T可以是基本数据类型、sequenceable数据类型、interface类型和数组类型。该类型在C++生成代码中将被生成为std::vector&lt;T&gt;类型。
 OpenHarmony IDL数组数据类型与TS数据类型、C++数据类型的对应关系如下表所示：
 
 |OpenHarmony IDL数据类型  | C++数据类型       | TS数据类型     |
