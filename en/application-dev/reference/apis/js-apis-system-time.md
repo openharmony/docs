@@ -1,12 +1,12 @@
 # Setting the System Time
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 
 
 ## Modules to Import
 
-  
+
 ```
 import systemTime from '@ohos.systemTime';
 ```
@@ -22,16 +22,17 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | time | number | Yes| Timestamp to set, in milliseconds.| 
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+**Parameters**
 
-- Example
-    
-  ```
-  // Set the system time to 2021-01-20 02:36:25.
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| time | number | Yes| Timestamp to set, in milliseconds.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+
+**Example**
+
+  ```js
+// Set the system time to 2021-01-20 02:36:25.
   var time = 1611081385000;
   systemTime.setTime(time, (error, data) => {
       if (error) {
@@ -53,26 +54,28 @@ Sets the system time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | time | number | Yes| Timestamp to set, in milliseconds.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| time | number | Yes| Timestamp to set, in milliseconds.|
 
-- Example
-    
-  ```
-  // Set the system time to 2021-01-20 02:36:25.
-  var time = 1611081385000;
-  systemTime.setTime(time).then((data) => {
-      console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
-  });
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+// Set the system time to 2021-01-20 02:36:25.
+var time = 1611081385000;
+systemTime.setTime(time).then((data) => {
+    console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
+});
   ```
 
 
@@ -84,15 +87,16 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getCurrentTime(true, (error, data) => {
       if (error) {
           console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
@@ -111,19 +115,21 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the time.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
 
-- Example
-    
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getCurrentTime().then((data) => {
       console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
   }).catch((error) => {
@@ -140,15 +146,16 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getRealActiveTime(true, (error, data) => {
       if (error) {
           console.error(`failed to systemTime.getRealActiveTimebecause ` + JSON.stringify(error));
@@ -167,19 +174,21 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the time.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
 
-- Example
-    
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getCurrentTime().then((data) => {
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
   }).catch((error) => {
@@ -196,15 +205,16 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getRealTime(true, (error, data) => {
       if (error) {
           console.error(`failed to systemTime.getRealTime because ` + JSON.stringify(error));
@@ -223,19 +233,21 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the time.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
 
-- Example
-    
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the time.|
+
+**Example**
+
+  ```js
   systemTime.getRealTime().then((data) => {
       console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
   }).catch((error) => {
@@ -254,15 +266,16 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | date | Date | Yes| Target date to set.| 
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| date | Date | Yes| Target date to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+
+**Example**
+
+  ```js
   var data = new Date("October 13, 2020 11:13:00");
   systemTime.setDate(data,(error, data) => {       
       if (error) {            
@@ -284,19 +297,21 @@ Sets the system date. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | date | Date | Yes| Target date to set.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| date | Date | Yes| Target date to set.|
 
-- Example
-    
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
   var data = new Date("October 13, 2020 11:13:00"); 
   systemTime.setDate(data).then((value) => {        
       console.log(`systemTime.setDate success data : ` + JSON.stringify(value));    
@@ -314,14 +329,15 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Date&gt; | Yes| Callback used to return the current system date.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Date&gt; | Yes| Callback used to return the current system date.|
+
+**Example**
+
+  ```js
   systemTime.getDate((error, data) => {
       if (error) {
           console.error(`failed to systemTime.getDate because ` + JSON.stringify(error));
@@ -340,14 +356,15 @@ Obtains the current system date. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;Date&gt; | Promise used to return the current system date.| 
+**Return value**
 
-- Example
-    
-  ```
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Date&gt; | Promise used to return the current system date.|
+
+**Example**
+
+  ```js
   systemTime.getDate().then((data) => {
       console.log(`systemTime.getDate success data : ` + JSON.stringify(data));
   }).catch((error) => {
@@ -366,15 +383,16 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | timezone | string | Yes| System time zone to set.| 
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| timezone | string | Yes| System time zone to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+
+**Example**
+
+  ```js
   systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
       if (error) {          
           console.error('failed to systemTime.setTimezone because ' + JSON.stringify(error));         
@@ -395,19 +413,21 @@ Sets the system time zone. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | timezone | string | Yes| System time zone to set.| 
+**Parameters**
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| timezone | string | Yes| System time zone to set.|
 
-- Example
-    
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
   systemTime.setTimezone('Asia/Shanghai').then((data) => {        
       console.log(`systemTime.setTimezone success data : ` + JSON.stringify(data));     
   }).catch((error) => {        
@@ -424,14 +444,15 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- **Parameters**
-    | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the system time zone.| 
+**Parameters**
 
-- Example
-    
-  ```
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the system time zone.|
+
+**Example**
+
+  ```js
   systemTime.getTimezone((error, data) => {
       if (error) {
           console.error(`failed to systemTime.getTimezone because ` + JSON.stringify(error));
@@ -450,14 +471,15 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-- Return value
-    | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the system time zone.| 
+**Return value**
 
-- Example
-    
-  ```
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise used to return the system time zone.|
+
+**Example**
+
+  ```js
   systemTime.getTimezone().then((data) => {
       console.log(`systemTime.getTimezone success data : ` + JSON.stringify(data));
   }).catch((error) => {
