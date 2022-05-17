@@ -206,13 +206,13 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-Exports the heap data.
+Exports data from the specified heap file.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory | Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the app based on the specified `filename`.|
 
@@ -226,7 +226,7 @@ hidebug.dumpHeapData("heap-20220216");
 
 getServiceDump(serviceid : number) : string
 
-Obtains system service information.
+Obtains information on the specified system service.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -236,12 +236,12 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| serviceid | number | Yes  | Obtains the system service information based on the specified service ID.|
+| serviceid | number | Yes  | ID of the system service. |
 
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | Absolute path of the service information file to dump.|
+| string | Absolute path of the file that contains the service information to dump. |
 
 **Example**
 
