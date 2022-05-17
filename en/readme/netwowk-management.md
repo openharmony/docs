@@ -1,7 +1,7 @@
-# Network Management<a name="ZH-CN_TOPIC_0000001162422291"></a>
+# Network Management
 
 
-## Introduction<a name="section104mcpsimp"></a>
+## Introduction
 
 As a mandatory component for device networking, the network management subsystem manages different types of network connections in a unified manner and provides network protocol stack capabilities. An application can call APIs to obtain connection information of a data network, query and subscribe to connection status, and transfer data by using the network protocol stack.
 
@@ -14,7 +14,7 @@ The network management subsystem consists of the following components:
 
 ![](figures/en_architecture-of-netmanager-subsystem.png)
 
-## Directory Structure<a name="section119mcpsimp"></a>
+## Directory Structure
 
 ```
 foundation/communication/
@@ -22,21 +22,21 @@ foundation/communication/
 └── netstack                   # Network protocol stacks
 ```
 
-## Usage<a name="section128mcpsimp"></a>
+## Usage
 
-### Receiving Network Status Change Notifications<a name="section1458213210369"></a>
+### Receiving Network Status Change Notifications
 
 1. Import the **connection** namespace from **@ohos.net.connection.d.ts**.
 
-2. Call **createNetConnection()** to create a **NetConnection object**. You can specify the network capability, network type, and timeout interval (optional). 
+2. Call **createNetConnection()** to create a **NetConnection** object. You can specify the network capability, network type, and timeout interval. 
 
 3. Call the **on()** method of the object to subscribe to concerned events by specifying **type** and **callback**.
 
-4. Call the **register()** method of the object to subscribe to status change notifications of the specified network.
+4. Call the **register()** method of the object to subscribe to status changes of the specified network.
 
 5. When the network is available, the callback will be invoked to return the **netAvailable** event.
 
-6. Call the **unregister()** method of the object to unsubscribe from the notifications if required.
+6. Call the **unregister()** method of the object to unsubscribe from the status changes if required.
 
    ```
    // Import the package name.
@@ -66,11 +66,11 @@ foundation/communication/
    ```
 
 
-### Sending a Network Request<a name="section750135512369"></a>
+### Sending a Network Request
 
 1. Import the **http** namespace from **@ohos.net.http.d.ts**.
 2. Call the **createHttp** method to create an **HttpRequest** object.
-3. Call the **on()** method of the object to subscribe to the HTTP response header. This method returns a response earlier than the request. You can subscribe to HTTP Response Header events based on service requirements.
+3. Call the **on()** method of the object to subscribe to the HTTP response header. This method returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
 4. Call the **request()** method of the object with the URL and optional parameters of the HTTP request to initiate a network request.
 5. Parse the returned result based on service requirements.
 6. Call the **destroy()** method to destroy the request.
@@ -81,7 +81,7 @@ import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HttpRequestTask object and cannot be reused.
 let httpRequest = http.createHttp();
-// Subscribe to the HTTP response header, which is returned earlier than httpRequest. You can subscribe to HTTP Response Header events based on service requirements.
+// Subscribe to the HTTP response header, which is returned earlier than httpRequest. You can subscribe to HTTP response header events based on service requirements.
 httpRequest.on('headersReceive', (data) => {
     console.info('header: ' + data.header);
 });
@@ -118,10 +118,10 @@ httpRequest.request(
 ```
 
 
-## Repositories Involved<a name="section152mcpsimp"></a>
+## Repositories Involved
 
 **Network Management Subsystem**
 
-[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base/blob/master/README_zh.md)
+[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base)
 
-[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/README_zh.md)
+[communication_netstack](https://gitee.com/openharmony/communication_netstack)
