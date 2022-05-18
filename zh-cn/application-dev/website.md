@@ -11,7 +11,7 @@
 
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
-    - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
+    - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
 - 开发
@@ -297,7 +297,10 @@
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+    - Native API的相关指导
+      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
