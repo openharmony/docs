@@ -1,6 +1,6 @@
 # Distributed Call Chain Tracing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -16,16 +16,16 @@ Enumerates trace flag types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value| Description|
+| Name | Default Value | Description |
 | -------- | -------- | -------- |
-| DEFAULT           | 0      | Default flag.      |
-| INCLUDE_ASYNC     | 1      | Asynchronous call flag. By default, only synchronous calls are traced. If this flag is set, both synchronous and asynchronous calls will be traced.  |
-| DONOT_CREATE_SPAN | 1 << 1 | No span flag. By default, a span is automatically created during tracing of synchronous and asynchronous calls. If this flag is set, no span will be created.    |
-| TP_INFO           | 1 << 2 | Trace point flag. By default, no trace point is added when tracing is enabled. This flag is used for debugging. If this flag is set, trace points will be automatically added on the TX and RX sides of synchronous and asynchronous calls to output trace point and timestamp information. Trace points are classified into four types: [CS, SR, SS, and CR](#hitracetracepointtype). For a synchronous call, the output trace points are CS, SR, SS, and CR; for an asynchronous call, the output trace points are CS, SR, and SS.      |
-| NO_BE_INFO        | 1 << 3 | No begin/end flag. By default, information about the start and end of the trace task is printed. If this flag is set, information about the start and end of the trace task will not be printed.|
+| DEFAULT           | 0      | Default flag. |
+| INCLUDE_ASYNC     | 1      | Asynchronous call flag. By default, only synchronous calls are traced. If this flag is set, both synchronous and asynchronous calls will be traced. |
+| DONOT_CREATE_SPAN | 1 << 1 | No span flag. By default, a span is automatically created during tracing of synchronous and asynchronous calls. If this flag is set, no span will be created. |
+| TP_INFO           | 1 << 2 | Trace point flag. By default, no trace point is added when tracing is enabled. This flag is used for debugging. If this flag is set, trace points will be automatically added on the TX and RX sides of synchronous and asynchronous calls to output trace point and timestamp information. Trace points are classified into four types: [CS, SR, SS, and CR](#hitracetracepointtype). For a synchronous call, the output trace points are CS, SR, SS, and CR; for an asynchronous call, the output trace points are CS, SR, and SS. |
+| NO_BE_INFO        | 1 << 3 | No begin/end flag. By default, information about the start and end of the trace task is printed. If this flag is set, information about the start and end of the trace task will not be printed. |
 | DISABLE_LOG       | 1 << 4 | Log association flag. If this flag is set, information about the trace task will not be printed. |
 | FAILURE_TRIGGER   | 1 << 5 | Failure trigger flag. This flag is reserved for future use. |
-| D2D_TP_INFO       | 1 << 6 | Device-to-device trace point flag. It is a subset of **TP_INFO**. If this flag is set, trace points are added only for call chain tracing between devices.|
+| D2D_TP_INFO       | 1 << 6 | Device-to-device trace point flag. It is a subset of **TP_INFO**. If this flag is set, trace points are added only for call chain tracing between devices. |
 
 ## HiTraceTracepointType
 
@@ -33,13 +33,13 @@ Enumerates trace point types.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value| Description|
+| Name| Default Value | Description |
 | -------- | -------- | -------- |
-| CS       | 0 | Client Send (CS) trace point.       |
-| CR       | 1 | Client Receive (CS) trace point.       |
-| SS       | 2 | Server Send (SS) trace point.       |
-| SR       | 3 | Server Receive (SR) trace point.       |
-| GENERAL  | 4 | General trace points except CS, CR, SS, and SR.|
+| CS       | 0 | Client Send (CS) trace point. |
+| CR       | 1 | Client Receive (CS) trace point. |
+| SS       | 2 | Server Send (SS) trace point. |
+| SR       | 3 | Server Receive (SR) trace point. |
+| GENERAL  | 4 | General trace points except CS, CR, SS, and SR. |
 
 ## HiTraceCommunicationMode
 
@@ -47,9 +47,9 @@ Enumerates communication modes.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Default Value| Description|
+| Name| Default Value | Description |
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | Default communication mode.   |
+| DEFAULT  | 0 | Default communication mode. |
 | THREAD   | 1 | Inter-thread communication. |
 | PROCESS  | 2 | Inter-process communication. |
 | DEVICE   | 3 | Inter-device communication. |
@@ -60,12 +60,12 @@ Defines a **HiTraceId** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| chainId      | bigint | Yes| Call chain ID.  |
-| spanId      | number | No| Span ID.    |
-| parentSpanId | number | No| Parent span ID.  |
-| flags        | number | No| Trace flag combination.|
+| chainId      | bigint | Yes| Call chain ID. |
+| spanId      | number | No| Span ID. |
+| parentSpanId | number | No| Parent span ID. |
+| flags        | number | No| Trace flag combination. |
 
 ## hiTraceChain.begin
 
@@ -77,16 +77,16 @@ Starts call chain tracing. This API works in synchronous manner.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name  | string | Yes| Traced service name.|
-| flags | number | Yes| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag).|
+| name  | string | Yes| Traced service name. |
+| flags | number | Yes| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
 
 **Return Value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [HiTraceId](#hitraceid) | **HiTraceId** instance.|
+| [HiTraceId](#hitraceid) | **HiTraceId** instance. |
 
 **Example**
 
@@ -104,9 +104,9 @@ Stops call chain tracing. This API works in synchronous manner.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
+| id | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance. |
 
 **Example**
 
@@ -126,9 +126,9 @@ Obtains the trace ID. This API works in synchronous manner.
 
 **Return Value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [HiTraceId](#hitraceid) | **HiTraceId** instance.|
+| [HiTraceId](#hitraceid) | **HiTraceId** instance. |
 
 **Example**
 
@@ -148,9 +148,9 @@ Sets a trace ID. This API works in synchronous manner.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
+| id | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance. |
 
 **Example**
 
@@ -186,9 +186,9 @@ Creates a trace span. This API works in synchronous manner.
 
 **Return Value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| [HiTraceId](#hitraceid) | **HiTraceId** instance.|
+| [HiTraceId](#hitraceid) | **HiTraceId** instance. |
 
 **Example**
 
@@ -208,12 +208,12 @@ Triggers a trace point. This API works in synchronous manner.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | Yes| Communication mode for the trace point.|
-| type | [HiTraceTracepointType](#hitracetracepointtype)| Yes| Trace point type.|
-| id   | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance for trace point triggering.|
-| msg  | string | No| Trace description passed for trace point triggering.|
+| mode | [HiTraceCommunicationMode](#hitracecommunicationmode) | Yes| Communication mode for the trace point. |
+| type | [HiTraceTracepointType](#hitracetracepointtype)| Yes| Trace point type. |
+| id   | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance for trace point triggering. |
+| msg  | string | No| Trace description passed for trace point triggering. |
 
 **Example**
 
@@ -233,15 +233,15 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
+| id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance. |
 
 **Return Value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the **HiTraceId** instance is valid; returns **false** otherwise.|
+| boolean | Returns **true** if the **HiTraceId** instance is valid; returns **false** otherwise. |
 
 **Example**
 
@@ -260,16 +260,16 @@ Checks whether the specified trace flag in the **HiTraceId** instance is enabled
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
-| flag | [HiTraceFlag](#hitraceflag) | Yes| Specified trace flag.|
+| id  | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
+| flag | [HiTraceFlag](#hitraceflag) | Yes | Specified trace flag. |
 
 **Return Value**
 
-| Type| Description|
+| Type | Description |
 | -------- | -------- |
-| boolean | Returns **true** if the specified trace flag in the **HiTraceId** instance is enabled; returns **false** otherwise.|
+| boolean | Returns **true** if the specified trace flag in the **HiTraceId** instance is enabled; returns **false** otherwise. |
 
 **Example**
 
@@ -288,10 +288,10 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| id  | [HiTraceId](#hitraceid) | Yes| **HiTraceId** instance.|
-| flag | [HiTraceFlag](#hitraceflag) | Yes| Specified trace flag.|
+| id | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
+| flag | [HiTraceFlag](#hitraceflag) | Yes | Specified trace flag. |
 
 **Example**
 
