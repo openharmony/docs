@@ -21,7 +21,7 @@ wantAgent封装了一个指定行为的意图，可以通过wantAgent.trigger接
 import wantAgent from '@ohos.wantAgent';
 ```
 
-2. 创建WantAgentInfo信息，详细的WantAgentInfo信息数据类型及包含的参数请见[WantAgentInfo文档](../reference/apis/js-apis-wantAgent.md#WantAgentInfo)介绍。
+2. 创建WantAgentInfo信息，详细的WantAgentInfo信息数据类型及包含的参数请见[WantAgentInfo文档](../reference/apis/js-apis-wantAgent.md#wantagentinfo)介绍。
 
 ```javascript
 private wantAgentObj = null	//用于保存创建成功的wantAgent对象，后续使用其完成触发的动作
