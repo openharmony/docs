@@ -76,7 +76,7 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
@@ -97,7 +97,7 @@ export class VideoPlayerDemo {
         console.info('createVideoPlayer fail!');
       }
     }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source URL for the player.
+    // Set the playback source for the player.
     videoPlayer.url = fdPath;
 
     // Set the surface ID to display the video image.
@@ -134,19 +134,19 @@ export class VideoPlayerDemo {
       this.printfDescription(arrayDescription[i]);
     }
 
-    // Seek to the 50s position. For details about the input parameters, see the interface document.
+    // Seek to the 50s position. For details about the input parameters, see the API document.
     let seekTime = 50000;
     await videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
       console.info('seek success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // Set the volume. For details about the input parameters, see the interface document.
+    // Set the volume. For details about the input parameters, see the API document.
     let volume = 0.5;
     await videoPlayer.setVolume(volume).then(() => {
       console.info('setVolume success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // Set the playback speed. For details about the input parameters, see the interface document.
+    // Set the playback speed. For details about the input parameters, see the API document.
     let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
     await videoPlayer.setSpeed(speed).then(() => {
       console.info('setSpeed success');
@@ -205,7 +205,7 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
@@ -292,7 +292,7 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
@@ -350,7 +350,7 @@ export class VideoPlayerDemo {
     // Set the second video playback source.
     videoPlayer.url = fdPath;
 
-    // Call the prepare interface to prepare for playback.
+    // Call the prepare API to prepare for playback.
     await videoPlayer.prepare().then(() => {
       console.info('prepare success');
     }, this.failureCallback).catch(this.catchCallback);
@@ -407,7 +407,7 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
@@ -462,3 +462,7 @@ export class VideoPlayerDemo {
   }
 }
 ```
+
+## Samples
+The following samples are provided to help you better understand how to develop video playback:
+- [`VideoPlayer`: Video Playback (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)
