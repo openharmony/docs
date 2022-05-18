@@ -30,7 +30,7 @@ This function has the following advantages:
 
 2. Set up the environment.
 
-   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool.
+   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [Install hb](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup.md#install-hb).
 
 3. Open the Kconfig configuration interface.
 

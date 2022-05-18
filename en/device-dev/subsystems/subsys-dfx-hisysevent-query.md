@@ -1,10 +1,5 @@
 # HiSysEvent Query<a name="EN-US_TOPIC_0000001231455461"></a>
 
--   [Overview](#section279684125212)
--   [Development Guidelines](#section315316761113)
-    -   [Available APIs](#section03869128521)
-    -   [Development Example](#section14286111855212)
-
 ## Overview<a name="section279684125212"></a>
 
 HiSysEvent provides an API for you to query system events. You can query concerned events by specifying search criteria. For example, for a power consumption module, you can query required system events for analysis.

@@ -1,4 +1,4 @@
-# Building a Standard System<a name="EN-US_TOPIC_0000001076490572"></a>
+# Building the Standard System<a name="EN-US_TOPIC_0000001076490572"></a>
 
 ## Overview<a name="section17466112012244"></a>
 
