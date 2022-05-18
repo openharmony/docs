@@ -32,7 +32,7 @@ Text(content?: string)
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | textAlign | TextAlign | TextAlign.Start | 设置多行文本的文本对齐方式。 |
-| textOverflow | {overflow:&nbsp;TextOverflow} | {overflow:&nbsp;TextOverflow.Clip} | 设置文本超长时的显示方式。 |
+| textOverflow | {overflow:&nbsp;TextOverflow} | {overflow:&nbsp;TextOverflow.Clip} | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
 | maxLines | number | Infinity | 设置文本的最大行数。 |
 | lineHeight | Length | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
 | decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
@@ -91,7 +91,7 @@ struct TextExample1 {
       Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to Clip text content.')
         .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1).fontSize(12).border({ width: 1 }).padding(10)
-      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
+      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.'.split('').join('\u200B'))
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .maxLines(1).fontSize(12).border({ width: 1 }).padding(10)
 
