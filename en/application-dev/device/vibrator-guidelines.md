@@ -20,38 +20,38 @@ You can set different vibration effects as needed, for example, customizing the 
 
 ## How to Develop
 
-1. Declare the permissions required for controlling vibrators on the hardware device in the **config.json** file.  
+1. Declare the permissions required for controlling vibrators on the hardware device in the `config.json` file.  
   
    ```
-   "reqPermissions":[
+   "reqPermissions": [
      {
-        "name":"ohos.permission.ACCELEROMETER",
-        "reason"":"", 
-        "usedScene":{
-         "ability""[
-           ".MainAbility"
+         "name": "ohos.permission.ACCELEROMETER",
+         "reason": "", 
+         "usedScene": {
+         "ability": [
+             ".MainAbility"
          ],
-         "when":"inuse"
+         "when": "inuse"
        }
      },
      {
-        "name":"ohos.permission.VIBRATE",
-        "reason"":"", 
-        "usedScene":{
-         "ability""[
-           ".MainAbility"
+         "name": "ohos.permission.VIBRATE",
+         "reason": "", 
+         "usedScene": {
+         "ability": [
+             ".MainAbility"
          ],
-         "when":"inuse"
+         "when": "inuse"
        }
      },
      {
-        "name":"ohos.permission.ACTIVITY_MOTION",
-        "reason"":"", 
-        "usedScene":{
-         "ability""[
-           ".MainAbility"
+         "name": "ohos.permission.ACTIVITY_MOTION",
+         "reason": "", 
+         "usedScene": {
+         "ability": [
+             ".MainAbility"
          ],
-         "when":"inuse"
+         "when": "inuse"
        }
      },
    ]
@@ -77,7 +77,7 @@ You can set different vibration effects as needed, for example, customizing the 
    vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
       if(error){ // The call fails, and error.code and error.message are printed.
           Console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
-      }else{ // The call is successful, and the device stops vibration.
+      }else{ // The call is successful, and the device stops vibrating.
           Console.log("Promise returned to indicate a successful stop.");
       };
    })
