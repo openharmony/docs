@@ -427,7 +427,7 @@ Sets a specified source as the wallpaper of a specified type.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | Uri path of the JPEG or PNG file, or bitmap of the PNG file. |
+| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI path of the JPEG or PNG file, or bitmap of the PNG file. |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
 
@@ -481,7 +481,7 @@ Sets a specified source as the wallpaper of a specified type.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | Uri path of the JPEG or PNG file, or bitmap of the PNG file. |
+| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI path of the JPEG or PNG file, or bitmap of the PNG file. |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
 **Return value**
