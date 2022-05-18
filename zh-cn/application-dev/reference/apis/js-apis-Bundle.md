@@ -1502,6 +1502,7 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | abilityName | 只读   | string | 是    | 表示待启动的Ability名称。如果在Want中同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。 |
 | uri         | 只读   | string | 否    | 资源标识符。                                   |
 | shortName   | 只读   | string | 否    | ElementName的简名。                          |
+| moduleName<sup>9</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。同一应用的不同hap的组件可能重名，仅通过BundleName和AbilityName无法区分时，可以通过设置moduleName加以区分，以匹配到指定的Ability。 |
 
 ## InstallErrorCode
 
