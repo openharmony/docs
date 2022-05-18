@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import Deque from '@ohos.util.Deque'  
+```ts
+import Deque from '@ohos.util.Deque'; 
 ```
 
 ## System Capabilities
@@ -30,7 +30,7 @@ A constructor used to create a **Deque** instance.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 ```
 
@@ -48,7 +48,7 @@ Inserts an entry at the front of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront("a");
 deque.insertFront(1);
@@ -72,7 +72,7 @@ Inserts an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertEnd("a");
 deque.insertEnd(1);
@@ -102,7 +102,7 @@ Checks whether this container has the specified entry.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 let result = deque.has("Ahfbrgrbgnutfodgorrogorg");
 deque.insertFront("Ahfbrgrbgnutfodgorrogorg");
@@ -123,7 +123,7 @@ Removes the first entry of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
@@ -147,7 +147,7 @@ Removes the last entry of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
@@ -181,14 +181,14 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -206,7 +206,7 @@ Obtains the first entry of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertEnd(2);
 deque.insertEnd(4);
@@ -229,7 +229,7 @@ Obtains the last entry of this container.
 
 **Example**
 
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
@@ -252,7 +252,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let deque = new Deque();
 deque.insertFront(2);
 deque.insertFront(4);
@@ -261,14 +261,14 @@ deque.insertFront(4);
 
 // Method 1:
 for (let item of deque) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // Method 2:
 let iter = deque[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

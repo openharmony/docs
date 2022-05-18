@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import Queue from '@ohos.util.Queue'  
+```ts
+import Queue from '@ohos.util.Queue';  
 ```
 
 ## System Capabilities
@@ -33,7 +33,7 @@ A constructor used to create a **Queue** instance.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 ```
 
@@ -58,7 +58,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 let result = queue.add("a");
 let result1 = queue.add(1);
@@ -83,7 +83,7 @@ Removes the first entry from this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -107,7 +107,7 @@ Obtains the first entry of this container.
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -140,14 +140,14 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
 queue.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 
 ```
@@ -166,7 +166,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let queue = new Queue();
 queue.add(2);
 queue.add(4);
@@ -175,14 +175,14 @@ queue.add(4);
 
 // Method 1:
 for (let item of queue) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // Method 2:
 let iter = queue[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import HashMap from '@ohos.util.HashMap'  
+```ts
+import HashMap from '@ohos.util.HashMap'; 
 ```
 
 ## System Capabilities
@@ -32,7 +32,7 @@ A constructor used to create a **HashMap** instance.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 ```
 
@@ -51,7 +51,7 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const hashMap = new HashMap();
 let result = hashMap.isEmpty();
 ```
@@ -77,7 +77,7 @@ Checks whether this container contains the specified key.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -105,7 +105,7 @@ Checks whether this container contains the specified value.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
@@ -133,7 +133,7 @@ Obtains the value of the specified key in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -155,7 +155,7 @@ Adds all entries in a **HashMap** instance to this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -185,7 +185,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 ```
@@ -211,7 +211,7 @@ Removes an entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -227,7 +227,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
@@ -249,14 +249,14 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
 let iter = hashMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
@@ -276,14 +276,14 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
 let iter = hashMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
@@ -310,7 +310,7 @@ Replaces an entry in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 let result = hashMap.replace("sdfs", 357);
@@ -339,12 +339,12 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("sdfs", 123);
 hashMap.set("dfsghsf", 357);
 hashMap.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -363,15 +363,15 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
 let iter = hashMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -390,23 +390,23 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let hashMap = new HashMap();
 hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 hashMap.set("sdfs", 356);
 
 // Method 1:
 for (let item of hashMap) { 
-  console.log("key: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("key:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // Method 2:
 let iter = hashMap[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

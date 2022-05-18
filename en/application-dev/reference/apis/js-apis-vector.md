@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import Vector from '@ohos.util.Vector'  
+```ts
+import Vector from '@ohos.util.Vector';  
 ```
 
 ## System Capability
@@ -33,7 +33,7 @@ A constructor used to create a **Vector** instance.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 ```
 
@@ -58,7 +58,7 @@ Adds an entry at the end of this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
@@ -83,7 +83,7 @@ Inserts an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.insert("A", 0);
 vector.insert(0, 1);
@@ -110,7 +110,7 @@ Checks whether this container has the specified entry.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -137,7 +137,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -169,7 +169,7 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -201,7 +201,7 @@ Removes an entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -231,7 +231,7 @@ Removes the first occurrence of the specified entry from this container.
 
 **Return value**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -255,7 +255,7 @@ Removes from this container all of the entries within a range, including the ent
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -290,7 +290,7 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -328,14 +328,14 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log(value, index)
+  console.log("value:" + value, index)
 });
 
 ```
@@ -361,14 +361,14 @@ comparator
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.sort(a, (b => a - b));
-vector.sort(a, (b => b - a));
+vector.sort((a, b) => a - b);
+vector.sort((a, b) => b - a);
 vector.sort();
 ```
 
@@ -393,7 +393,7 @@ Obtains entries within a range in this container, including the entry at the sta
 
 **Return value**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -413,7 +413,7 @@ Clears all entries in this container and sets its length to **0**.
 
 **Return value**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -436,7 +436,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -459,7 +459,7 @@ Obtains the capacity of this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -482,7 +482,7 @@ Converts this container into an array.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -505,7 +505,7 @@ Checks whether this container is empty (contains no entries).
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -528,7 +528,7 @@ Increases the capacity of this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -546,7 +546,7 @@ Trims the capacity of this container into its current length.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -569,7 +569,7 @@ Uses commas (,) to concatenate entries in this container into a string.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -592,7 +592,7 @@ Copies entries in this container into an array to overwrite elements of the same
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -616,7 +616,7 @@ Obtains the first entry in this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -639,7 +639,7 @@ Obtains the last entry in this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -669,7 +669,7 @@ Searches for an entry backward from the specified position index and returns the
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -700,7 +700,7 @@ Searches for an entry forward from the specified position index and returns the 
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -724,7 +724,7 @@ Sets a new length for this container.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -754,7 +754,7 @@ Obtains an entry at the specified position in this container.
 
 **Example**
 
-  ```
+  ```ts
   let vector = new Vector();
   vector.add(2);
   vector.add(4);
@@ -783,7 +783,7 @@ Replaces an entry at the specified position in this container with a given entry
 
 **Example**
 
-  ```
+  ```ts
   let vector = new Vector();
   vector.add(2);
   vector.add(4);
@@ -806,7 +806,7 @@ Obtains an iterator. Each item of the iterator is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let vector = new Vector();
 vector.add(2);
 vector.add(4);
@@ -815,14 +815,14 @@ vector.add(4);
 
 // Method 1:
 for (let item of vector) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // Method 2:
 let iter = vector[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
