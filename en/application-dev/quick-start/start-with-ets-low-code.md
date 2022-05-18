@@ -1,10 +1,9 @@
 # Getting Started with eTS in the Low-Code Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
-> 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
+>
 > The component lineup that supports low-code development in eTS is now at its preliminary stage and will be expanding in coming versions.
-> 
+>
 > For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
@@ -21,7 +20,7 @@ You can develop applications or services in the low-code approach using either o
 
 ## Creating a Project That Supports Low-Code Development
 
-1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+1. In DevEco Studio, if no project is open, click **Create Project**; if a project is already open, choose **File** &gt; **New** &gt; **Create Project**. Then, select **Empty Ability** and click **Next**.
 
    ![en-us_image_0000001233528152](figures/en-us_image_0000001233528152.png)
 
@@ -50,26 +49,32 @@ After the project synchronization is complete, the default first page contains t
 Add **Column**, **Text**, and **Button** components to the first page. A column is a container component whose child components are vertically arranged. For details, see [Column](../reference/arkui-ts/ts-container-column.md).
 
 1. Delete the existing template components from the canvas.<a name="delete_origin_content"></a>
-   Open the index.visual file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
+   
+   Open the **index.visual** file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
 
-   ![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
+![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
 
 2. Add a **Column** component and set its styles and attributes.<a name="add_container"></a>
+
    Drag the **Column** component from the **UI Control** area to the canvas. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001233048996](figures/en-us_image_0000001233048996.png)**General** and set **Height** to **100%** so that the component fills the entire screen. Click ![en-us_image_0000001233368860](figures/en-us_image_0000001233368860.png)**Feature** and set **AlignItems** to **center** so that the child components of the **Column** component are centered along the horizontal axis. Below is an illustration of the operations.
 
    ![en-us_image_0000001277488977](figures/en-us_image_0000001277488977.gif)
 
 3. Add a **Text** component.
+
    Drag the **Text** component from the **UI Control** area to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277608813](figures/en-us_image_0000001277608813.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hello World**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
 
    ![en-us_image_0000001235731706](figures/en-us_image_0000001235731706.gif)
 
 4. Add a **Button** component.
+
    Drag the **Button** component from the **UI Control** area to the canvas and then to a position under the **Text** component. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001277728577](figures/en-us_image_0000001277728577.png)**General** and set **Height** of the **Button** component to **40vp**. Click ![en-us_image_0000001277809337](figures/en-us_image_0000001277809337.png)**Feature** and set **Label** to **Next** and **FontSize** to **25fp**. Below is an illustration of the operations.
 
-   ![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
+![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
 
-5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. Below is how the first page looks in the Previewer.
+5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. 
+
+   Below is how the first page looks in the Previewer.
 
    ![en-us_image_0000001235892798](figures/en-us_image_0000001235892798.png)
 
@@ -77,9 +82,10 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 ## Building the Second Page
 
 1. Create the second page.
-   In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **ets** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Visual**, name the page **second**, and click **Finish**. Below is the structure of the **pages** folder.
+   
+   In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **ets** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Visual**, name the page **second**, and click **Finish**. Below, you can see the structure of the **pages** folder.
 
-   ![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
+![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
 
 2. [Delete the existing template components from the canvas.](#delete_origin_content)
 
@@ -108,6 +114,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
       ![en-us_image_0000001280255513](figures/en-us_image_0000001280255513.gif)
 
 5. Add a **Button** component.
+
    Drag the **Button** component from the **UI Control** area to the canvas and then to a position under the **Text** component. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001233528160](figures/en-us_image_0000001233528160.png)**General** and set **Height** of the **Button** component to **40vp**. Click ![en-us_image_0000001277728597](figures/en-us_image_0000001277728597.png)**Feature** and set **Value** to **Back** and **FontSize** to **25fp**. Below is an illustration of the operations.
 
    ![en-us_image_0000001280383937](figures/en-us_image_0000001280383937.gif)
@@ -118,7 +125,9 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 You can implement page redirection through the page router, which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
-     In the files of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. This operation needs to be completed in both .ets and .visual files.
+   
+   In the files of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. This operation needs to be completed in both .ets and .visual files.
+   
    - In the **index.ets** file:
      
      ```
@@ -143,12 +152,13 @@ You can implement page redirection through the page router, which finds the targ
        }
      }
      ```
+
+   - In the **index.visual** file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233209020](figures/en-us_image_0000001233209020.png)**Events** and set **OnClick** to **this.onclick**.
+
+       ![en-us_image_0000001235745716](figures/en-us_image_0000001235745716.png)
    
-   - In the index.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233209020](figures/en-us_image_0000001233209020.png)**Events** and set **OnClick** to **this.onclick**.
-
-     ![en-us_image_0000001235745716](figures/en-us_image_0000001235745716.png)
-
 2. Implement redirection from the second page to the first page.
+
    In the files of the second page, bind the **back** method to the **Back** button so that clicking the button redirects the user back to the first page. This operation needs to be completed in both .ets and .visual files.
 
    - In the **second.ets** file:
@@ -174,7 +184,7 @@ You can implement page redirection through the page router, which finds the targ
         }
       }
       ```
-   - In the second.visual file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233368900](figures/en-us_image_0000001233368900.png)**Events** and set **OnClick** to **this.back**.
+   - In the **second.visual** file, select the **Button** component on the canvas. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001233368900](figures/en-us_image_0000001233368900.png)**Events** and set **OnClick** to **this.back**.
 
       ![en-us_image_0000001280385809](figures/en-us_image_0000001280385809.png)
 
