@@ -271,11 +271,12 @@ Example of the **module** tag structure:
 
 Table 12 Internal structure of the distro attribute
 
-| Attribute        | Description                                                        | Data Type| Initial Value Allowed|
-| ---------------- | ------------------------------------------------------------ | -------- | ---------- |
-| moduleName       | Name of the current HAP file. The maximum length is 31 characters.                           | String  | No  |
-| moduleType       | Type of the current HAP file. The value can be **entry** or **feature**. For the HAR type, set this attribute to **har**.| String  | No  |
-| installationFree | Whether the HAP file supports the installation-free feature.<br> **true**: The HAP file supports the installation-free feature and meets installation-free constraints.<br> **false**: The HAP file does not support the installation-free feature.<br> Pay attention to the following:<br> When **entry.hap** is set to **true**, all **feature.hap** fields related to **entry.hap **must be **true**.<br> When **entry.hap** is set to **false**, **feature.hap** related to **entry.hap** can be set to **true** or **false** based on service requirements.| Boolean  | No        |
+| Attribute        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Data Type| Initial Value Allowed|
+| ---------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- | ---------- |
+| moduleName       | Name of the current HAP file. The maximum length is 31 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | String  | No  |
+| moduleType       | Type of the current HAP file. The value can be **entry** or **feature**. For the HAR type, set this attribute to **har**.                                                                                                                                                                                                                                                                                                                                                                                                                                        | String  | No  |
+| installationFree | Whether the HAP file supports the installation-free feature.<br> **true**: The HAP file supports the installation-free feature and meets installation-free constraints.<br> **false**: The HAP file does not support the installation-free feature.<br> Pay attention to the following:<br> When **entry.hap** is set to **true**, all **feature.hap** fields related to **entry.hap **must be **true**.<br> When **entry.hap** is set to **false**, **feature.hap** related to **entry.hap** can be set to **true** or **false** based on service requirements. | Boolean  | No        |
+| deliveryWithInstall | Whether the HAP file supports the installation with application。<br /> true： Support。<br /> false：No Support。                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Boolean   | No                    |
 
 Example of the **distro** attribute structure:
 
@@ -283,7 +284,8 @@ Example of the **distro** attribute structure:
 "distro": {
 	"moduleName": "ohos_entry",
 	"moduleType": "entry",
-	"installationFree": true
+	"installationFree": true,
+    "deliveryWithInstall": true
 }
 ```
 
