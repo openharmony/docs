@@ -11,7 +11,7 @@
 
 ​        **FA模型** 只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意context实例所代表的实际含义。
 
-​        **Stage模型** 除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext和application/ServiceExtensionContext七种Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
+​        **Stage模型** 除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
 
 
 ![contextIntroduction](figures/contextIntroduction.png)
@@ -29,26 +29,18 @@
 ​        应用的使用方式：
 
 ```javascript
-// 1.引入featureAbility
 import featureAbility from '@ohos.ability.featureAbility'
-
 export default {
   onCreate() {
-    console.log('Application onCreate')
-
-    // 2.获取Context
+    // 获取context并调用相关方法
     let context = featureAbility.getContext();
-
-    // 3.调用对应的方法
-    context.setShowOnLockScreen(false, (data) => {
-      console.log("data: " + JSON.stringify(data));
+    context.getBundleName((data, bundleName)=>{
+      console.info("ability bundleName:" + bundleName)
     });
-  },
-  onActive() {
-    console.log('Application onActive')
+    console.info('Application onCreate')
   },
   onDestroy() {
-    console.log('Application onDestroy')
+    console.info('Application onDestroy')
   },
 }
 ```
@@ -62,28 +54,6 @@ export default {
 **概述**
 
 ​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
-
-**获取方法**
-
-​        需要在AbilityStage、Ability、Extension等组件中通过context.getApplicationContext()拿到。
-
-**示例**
-
-```javascript
-export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    // 获取ApplicationContext
-    let appContext = this.context.getApplicationContext();
-    // 获取路径
-    console.log('filesDir is ' + appContext.filesDir);
-  }
-
-  onDestroy() {
-    console.log('MainAbility onDestroy is called');
-  }
-}
-```
 
 **d.ts声明**
 
@@ -191,90 +161,45 @@ export default class MyAbilityStage extends AbilityStage {
 **示例**
 
 ```javascript
+import Ability from '@ohos.application.Ability'
+
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    var want = {
-      "bundleName": "com.example.MyApplication",
-      "abilityName": "ServiceExtAbility",
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
     }
-    // 1.这里的Context就是AbilityContext
-    let contxt = this.context;
-    // 2.startAbility
-    contxt.startAbility(want).then((data) => {
-      console.info("startAbility success:" + JSON.stringify(data));
-    }).catch((error) => {
-      console.error("startAbility failed:" + JSON.stringify(error));
-    });
-  }
 
-  onDestroy() {
-    console.log("MainAbility on Destroy is called");
-  }
-}
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate")
+
+        // 在这里获取AbilityContext，打印ability的信息
+        let context = this.context;
+        console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
+
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy")
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground")
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground")
+    }
+};
 ```
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AbilityContext.d.ts
-
-### application/ExtensionContext
-
- **概述**
-
-​        和FA模型不同的是，Stage模型把Service从Ability中剥离出来，单独定义了一组通用扩展类Extension用来处理等同的功能。Extension是一个基类，不承担具体业务功能。业务方根据自己的需要去扩展对应的Extension，例如：ServiceAbility扩展为了ServiceExtensionAbility，卡片扩展为了FormExtension。
-
-​        因此新增了一种和Extension匹配的ExtensionContext。ExtensionContext中包含HapModuleInfo和Configuration两个属性。
-
-**获取方法**
-
-​        不会单独使用。
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ExtensionContext.d.ts
-
-### application/ServiceExtensionContext
-
- **概述**
-
-​        ServiceExtensionAbility类似于FA模型的ServiceAbility，里面只有生命周期回调相关的处理。
-
-​        操作ServiceExtensionAbility的方法移动到了ServiceExtensionContext中(如startAbility、connectAbility等)。
-
-**获取方法**
-
-​        ServiceExtensionAbility中通过context属性获取。
-
-**示例**
-```javascript
-export default class ServiceExtAbility extends ServiceExtensionAbility {
-  onCreate(want) {
-    console.info("ServiceAbility onCreate**");
-    // 1.这里的Context就是ServiceExtensionContext
-    let contxt = this.context;
-  }
-
-  onRequest(want, startId)  {
-    console.info("ServiceAbility onRequest**");
-  }
-
-  onConnect(want)  {
-    console.info("ServiceAbility onConnect**");
-    return new StubTest("test");
-  }
-
-  onDisconnect(want) {
-    console.info("ServiceAbility onDisconnect**");
-  }
-
-  onDestroy() {
-    console.info("ServiceAbility onDestroy**");
-  }
-}
-
-```
-
 
 ### application/FormExtensionContext
 
