@@ -159,6 +159,76 @@ export default {
 
 
 
+## inputDevice.on
+
+function on(type: "change", listener: Callback<DeviceListener>): void;
+
+开始监听设备插拔事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数     | 类型                     | 必填 | 说明     |
+| -------- | ------------------------ | ---- | -------- |
+| type     | string                   | 是   | 监听类型 |
+| listener | Callback<DeviceListener> | 是   | 回调函数 |
+
+**示例：**
+
+```js
+export default {
+    DeviceListener: {
+        type : "NA",
+        deviceId : 0
+    },
+    callback: function(deviceChangedData) {
+        this.DeviceListener = deviceChangedData;
+    },
+    testOn: function () {
+        // 示例监听设备插拔事件
+        console.info("InputDeviceJsTest---start---testOn");
+        inputDevice.on("change", this.callback);
+        console.info("InputDeviceJsTest---end---testOn");
+    }
+}
+```
+
+## inputDevice.off
+
+function off(type: "change", listener?: Callback<DeviceListener>): void;
+
+停止监听设备插拔事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数     | 类型                     | 必填 | 说明               |
+| -------- | ------------------------ | ---- | ------------------ |
+| type     | string                   | 是   | 监听类型           |
+| listener | Callback<DeviceListener> | 否   | 停止监听的回调函数 |
+
+**示例：**
+
+```js
+export default {
+    DeviceListener: {
+        type : "NA",
+        deviceId : 0
+    },
+    callback: function(deviceChangedData) {
+        this.DeviceListener = deviceChangedData;
+    },
+    testOff: function () {
+        // 示例监听设备插拔事件
+        console.info("InputDeviceJsTest---start---testOff");
+        inputDevice.off("change", this.callback);
+        console.info("InputDeviceJsTest---end---testOff");
+    }
+}
+```
+
 ## InputDeviceData
 
 输入设备的描述信息。
@@ -204,3 +274,14 @@ export default {
 | trackball   | string | 表示输入设备是轨迹球。 |
 | touchpad    | string | 表示输入设备是触摸板。 |
 | joystick    | string | 表示输入设备是操纵杆。 |
+
+## DeviceListener
+
+设备插拔事件。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+
+| 名称     | 参数类型 | 说明                              |
+| -------- | -------- | --------------------------------- |
+| type     | string   | 表示设备插拔类型，取值add和remove |
+| deviceId | number   | 表示设备id                        |

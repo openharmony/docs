@@ -24,17 +24,17 @@ ohos.permission.INPUT_MONITORING
 
 on(type: "touch", receiver: TouchEventReceiver): void
 
-开始监听全局输入。
+开始监听全局触屏事件。
 
 **需要权限：**ohos.permission.INPUT_MONITORING
 
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
-| 参数       | 类型                                       | 必填   | 说明                   |
-| -------- | ---------------------------------------- | ---- | -------------------- |
-| type     | string                                   | 是    | 监听输入事件类型，只支持“touch”。 |
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 是    | 触摸输入事件回调函数。          |
+| 参数     | 类型                                      | 必填 | 说明                            |
+| -------- | ----------------------------------------- | ---- | ------------------------------- |
+| type     | string                                    | 是   | 监听输入事件类型，取值“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 是   | 触摸输入事件回调函数。          |
 
   **示例：**
 
@@ -60,22 +60,60 @@ export default {
 }
 ```
 
+on(type: "mouse", receiver: TouchEventReceiver): void
 
-## inputMonitor.off
-
-off(type: "touch", receiver: TouchEventReceiver): void
-
-停止监听全局输入。
+开始监听全局鼠标事件。
 
 **需要权限：**ohos.permission.INPUT_MONITORING
 
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
-| 参数       | 类型                                       | 必填   | 说明                   |
-| -------- | ---------------------------------------- | ---- | -------------------- |
-| type     | string                                   | 是    | 监听输入事件类型，只支持“touch”。 |
-| receiver | [TouchEventReceiver](#toucheventreceiver) | 否    | 触摸输入事件回调函数。          |
+
+| 参数     | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| type     | string               | 是   | 监听输入事件类型，取值“mouse”。        |
+| receiver | Callback<MouseEvent> | 是   | 鼠标输入事件回调函数。MouseEvent参考xx |
+
+  **示例：**
+
+```
+export default {
+    callback: function (value) {
+        if (checkEvent(value)) {
+            //事件满足业务要求，事件被消费
+        } else {
+            //事件不满足业务要求，事件未被消费
+        }
+    },
+    testOn: function () {
+        console.info("InputMonitorJsTest---start---testOn");
+        inputMonitor.on(
+            "mouse",
+            this.callback
+        );
+        console.info("InputMonitorJsTest---end---testOn");
+    }
+}
+```
+
+
+
+## inputMonitor.off
+
+off(type: "touch", receiver: TouchEventReceiver): void
+
+开始监听全局触屏事件。
+
+**需要权限：**ohos.permission.INPUT_MONITORING
+
+**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **参数：**
+| 参数     | 类型                                      | 必填 | 说明                            |
+| -------- | ----------------------------------------- | ---- | ------------------------------- |
+| type     | string                                    | 是   | 监听输入事件类型，取值“touch”。 |
+| receiver | [TouchEventReceiver](#toucheventreceiver) | 否   | 触摸输入事件回调函数。          |
 
   **示例：**
 
@@ -100,6 +138,44 @@ export default {
     }
   }
 ```
+
+off(type: "mouse", receiver?: Callback<MouseEvent>): void
+
+停止监听全局鼠标事件。
+
+**需要权限：**ohos.permission.INPUT_MONITORING
+
+**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **参数：**
+
+| 参数     | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| type     | string               | 是   | 监听输入事件类型，取值“mouse”。        |
+| receiver | Callback<MouseEvent> | 否   | 触摸输入事件回调函数。MouseEvent参考xx |
+
+**示例：**
+
+```
+export default {
+    callback: function (value) {
+        if (checkEvent(value)) {
+            //事件满足业务要求，事件被消费
+        } else {
+            //事件不满足业务要求，事件未被消费
+        }
+    },
+    testOff: function () {
+        console.info("InputMonitorJsTest---start---testOff");
+        inputMonitor.off(
+            "touch",
+            this.callback
+        );
+        console.info("InputMonitorJsTest---end---testOff");
+    }
+  }
+```
+
 
 
 ## TouchEventReceiver
