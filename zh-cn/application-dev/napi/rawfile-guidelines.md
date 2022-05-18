@@ -70,7 +70,7 @@
     RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
     ```
     
-
+    
     
 4. 根据RawDir实例，使用OH_ResourceManager_GetRawFileCount接口获取对应目录下的rawfile文件总数 。
 

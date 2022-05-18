@@ -1,4 +1,4 @@
-# native drawing 开发指导
+# drawing开发指导
 
 ## 场景介绍
 
@@ -93,7 +93,7 @@ native drawing模块提供了一系列的接口用于基本图形和字体的绘
     ```
 
 4. **设置画笔和画刷样式**。使用 **drawing_pen.h** 的 **OH_Drawing_PenCreate** 接口创建一个画笔实例 **cPen**, 并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用**drawing_brush.h** 的 **OH_Drawing_BrushCreate** 接口创建一个画刷实例 **cBrush**, 并设置填充颜色， 画刷用于形状内部的填充。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasAttachPen** 和 **OH_Drawing_CanvasAttachBrush** 接口将画笔画刷的实例设置到画布实例中。
- 
+
     ```c++
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
     OH_Drawing_Pen* cPen = OH_Drawing_PenCreate();
@@ -110,7 +110,7 @@ native drawing模块提供了一系列的接口用于基本图形和字体的绘
 
     // 将Brush画刷设置到canvas中
     OH_Drawing_CanvasAttachBrush(cCanvas, cBrush);
-    ```   
+    ```
 
 5. **绘制Path形状**。使用 **drawing_canvas.h** 的 **OH_Drawing_CanvasDrawPath** 接口将五角星绘制到画布上，绘制完毕后不再使用的实例需要调用对应的接口进行销毁。
 
