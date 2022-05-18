@@ -131,8 +131,8 @@ zh-cn/application-dev/device/sample-server-overview.md @HelloCrease
 zh-cn/application-dev/device/sample-server-guidelines.md @HelloCrease
 zh-cn/application-dev/reference/arkui-js/ @HelloCrease
 zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
-zh-cn/application-dev/reference/native-apis @zengyawen
-zh-cn/application-dev/reference/native-lib @zengyawen
+zh-cn/application-dev/reference/native-apis @RayShih
+zh-cn/application-dev/reference/native-lib @RayShih
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-ability-errorCode.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-ability-wantConstant.md @RayShih
