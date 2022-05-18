@@ -189,7 +189,7 @@ DEBUG: 比INFO级别更详细的流程记录，通过该级别的日志可以更
 
 **说明：** 系统各领域使用HiLog API打印日志须先到DFX申请标识业务的Domain ID。Domain ID用于度量和管控单个业务日志质量，支持开发人员调试使用Domain ID过滤出自身业务日志分析提高调试效率，不允许在不申请Domain ID情况下，直接使用其它领域的Domain ID。对测试代码，要求使用专门为测试配置的Domain ID 0xD000F00 打印日志。
 
-系统Domain ID的范围为：**0xD000001\~0xD00FFFF**
+系统Domain ID的范围为：**0xD000001\~0xD0FFFFF**
 
 - **【建议】每个业务内部基于Domain ID分配机制在领域内按照层次、模块的粒度划分使用**
 
