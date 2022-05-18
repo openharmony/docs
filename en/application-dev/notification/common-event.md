@@ -13,7 +13,7 @@ Each application can subscribe to common events as required. After your applicat
 ## Common Event Subscription Development
 
 ### When to Use
-You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md).
+You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md#required-permissions).
 
 ### Available APIs
 | API                                                                                         | Description|
@@ -170,10 +170,8 @@ if (this.subscriber != null) {
 }
 ```
 
-## Development Example
+## Samples
 
 The following sample is provided to help you better understand how to use the common event functionality:
 
-- [CommonEvent](https://gitee.com/openharmony/app_samples/tree/master/ability/CommonEvent)
-
-This sample shows how to use **CommonEvent** APIs in Extended TypeScript (eTS) to create subscribers and subscribe to, publish, and unsubscribe from common events.
+- [`CommonEvent`: eTS Common Event (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent)
