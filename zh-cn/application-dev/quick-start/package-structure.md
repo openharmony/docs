@@ -373,8 +373,9 @@ metaData示例：
 | srcLanguage      | Ability开发语言的类型。                                      | 字符串     | 取值为java、js或ets                                      |
 | srcPath          | 该标签表示Ability对应的JS组件代码路径                        | 字符串     | 可缺省，缺省值为空。                                     |
 | uriPermission    | 表示该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。运行OHOS的设备不支持此属性。参考表18。 | 对象       | 可缺省，缺省值为空。                                     |
-| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。取值示例：$media:icon。 | 字符串       | 可缺省，缺省值为空。                                     |
-| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。取值示例：$color:red。 | 字符串       | 可缺省，缺省值为空。                                     |
+| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的ability。取值示例：$media:icon。 | 字符串       | 可缺省，缺省值为空。|
+| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的ability。取值示例：$color:red。 | 字符串       | 可缺省，缺省值为空。|
+| removeMissionAfterTerminate    | 该标签标识ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的ability。为布尔类型，true表示销毁后移除任务， false表示销毁后不移除任务。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 表18 uriPermission对象的内部结构说明
 
@@ -415,7 +416,8 @@ abilities示例：
         ], 
         "type": "page",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:red"
+        "startWindowBackground": "$color:red",
+        "removeMissionAfterTerminate": true
     },
     {
         "name": ".PlayService",
