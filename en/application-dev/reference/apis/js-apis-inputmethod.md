@@ -1,7 +1,7 @@
 # Input Method Framework
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 
 
 ## Modules to Import
@@ -40,16 +40,18 @@ Obtains an [InputMethodController](#InputMethodController) instance.
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Return value
+**Return value**
 
-    | Type| Description|
-    | -------- | -------- |
-    | [InputMethodController](#InputMethodController) | Returns the current **InputMethodController** instance.|
+| Type| Description|
+| -------- | -------- |
+| [InputMethodController](#InputMethodController) | Returns the current **InputMethodController** instance.|
 
-- Example
-  ```
-  var InputMethodController = inputMethod.getInputMethodController();
-  ```
+**Example**
+
+```
+var InputMethodController = inputMethod.getInputMethodController();
+```
+
 ## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
 
 getInputMethodSetting(): InputMethodSetting
@@ -58,17 +60,17 @@ Obtains an [InputMethodSetting](#InputMethodSetting) instance.
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Return value
+**Return value**
 
-  | Type                                     | Description                        |
-  | ----------------------------------------- | ---------------------------- |
-  | [InputMethodSetting](#InputMethodSetting) | Returns the current **InputMethodSetting** instance.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| [InputMethodSetting](#InputMethodSetting) | Returns the current **InputMethodSetting** instance.|
 
+**Example**
 
-- Example
-  ```
-  var InputMethodSetting = inputMethod.getInputMethodSetting();
-  ```
+```js
+var InputMethodSetting = inputMethod.getInputMethodSetting();
+```
 
 ## InputMethodController<a name="InputMethodController"></a>
 
@@ -82,15 +84,15 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Parameters
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the keyboard is successfully hidden.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the keyboard is successfully hidden.|
 
-- Example
+**Example**
 
-```
+```js
  InputMethodController.stopInput((error)=>{
      console.info('stopInput');
  });
@@ -104,16 +106,16 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Return value
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the keyboard is successfully hidden.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the keyboard is successfully hidden.|
 
-- Example
+**Example**
 
 
-```
+```js
  var isSuccess = InputMethodController.stopInput();
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
@@ -130,20 +132,22 @@ Obtains the list of installed input methods. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Parameters
-  | Name  | Type                                              | Mandatory| Description                  |
-  | -------- | -------------------------------------------------- | ---- | ---------------------- |
-  | callback | Array<[InputMethodProperty](#InputMethodProperty)> | Yes  | Callback used to return the list of installed input methods.|
+**Parameters**
 
-- Example
-  ```
-   InputMethodSetting.listInputMethod((properties)=>{
-     for (var i = 0;i < properties.length; i++) {
-       var property = properties[i];
-       console.info(property.packageName + "/" + property.methodId);
-     }
-  });
-  ```
+| Name  | Type                                              | Mandatory| Description                  |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| callback | Array<[InputMethodProperty](#InputMethodProperty)> | Yes  | Callback used to return the list of installed input methods.|
+
+**Example**
+
+```js
+ InputMethodSetting.listInputMethod((properties)=>{
+   for (var i = 0;i < properties.length; i++) {
+     var property = properties[i];
+     console.info(property.packageName + "/" + property.methodId);
+   }
+});
+```
 
 ### listInputMethod
 
@@ -153,19 +157,21 @@ Obtains the list of installed input methods. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Return value
-  | Type                                                       | Description                  |
-  | ----------------------------------------------------------- | ---------------------- |
-  | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | Promise used to return the list of installed input methods.|
+**Return value**
 
-- Example
-  ```
-   var properties = InputMethodSetting.listInputMethod();
-   for (var i = 0;i < properties.length; i++) {
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId);
-   }
-  ```
+| Type                                                       | Description                  |
+| ----------------------------------------------------------- | ---------------------- |
+| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | Promise used to return the list of installed input methods.|
+
+**Example**
+
+```js
+ var properties = InputMethodSetting.listInputMethod();
+ for (var i = 0;i < properties.length; i++) {
+   var property = properties[i];
+   console.info(property.packageName + "/" + property.methodId);
+ }
+```
 
 ### displayOptionalInputMethod
 
@@ -181,12 +187,12 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
-- Example
-  ```
-   InputMethodSetting.displayOptionalInputMethod(()=>{
-     console.info('displayOptionalInputMethod is called');
-   });
-  ```
+**Example**
+```js
+ InputMethodSetting.displayOptionalInputMethod(()=>{
+   console.info('displayOptionalInputMethod is called');
+ });
+```
 
 ### displayOptionalInputMethod
 
@@ -194,15 +200,16 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-  **System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.Miscservices.InputMethodFramework
 
-- Return value
+**Return value**
 
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the execution result.|
 
-  - Example
-    ```
-     InputMethodSetting.displayOptionalInputMethod();
-    ```
+**Example**
+
+```js
+ InputMethodSetting.displayOptionalInputMethod();
+```
