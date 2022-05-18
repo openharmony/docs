@@ -96,15 +96,15 @@ Enumerates the key purposes.
 
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | The key is used to encrypt plain text. |
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | The key is used to decrypt the cipher text. |
-| HUKS_KEY_PURPOSE_SIGN    | 4    | The key is used to sign data.    |
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | The key is used to verify the signed data.  |
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | The key is used to derive a key.          |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | The key is used for encrypted import.          |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | The key is used for encrypted export.              |
-| HUKS_KEY_PURPOSE_MAC     | 128  | The key is used to generate a message authentication code (MAC). |
-| HUKS_KEY_PURPOSE_AGREE   | 256  | The key is used for key agreement.      |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt plain text. |
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text. |
+| HUKS_KEY_PURPOSE_SIGN    | 4    | Usedd to sign data.    |
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signed data.  |
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
+| HUKS_KEY_PURPOSE_WRAP    | 32   | Used for encrypted import.          |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for encrypted export.              |
+| HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC). |
+| HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.      |
 
 ## HuksKeyDigest
 
