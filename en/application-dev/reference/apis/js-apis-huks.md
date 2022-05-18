@@ -1,6 +1,6 @@
 # HUKS
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Openharmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations.
