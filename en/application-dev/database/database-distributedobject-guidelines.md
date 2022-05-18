@@ -43,7 +43,7 @@ Call **on()** to subscribe to data changes of a distributed data object. When th
 | Class| API| Description| 
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Subscribes to data changes.| 
-| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Unsubscribes from data changes. **Callback**: specifies callback used to return changes of the distributed data object. If this parameter is not specified, all callbacks related to data changes will be unregistered.|
+| DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Unsubscribes from data changes. <br>**Callback**: specifies callback used to return changes of the distributed data object. If this parameter is not specified, all callbacks related to data changes will be unregistered.|
 
 ### Observing Online or Offline Status
 
@@ -93,7 +93,7 @@ The following example shows how to implement a distributed data object synchroni
    // After learning that the device goes online, the remote object synchronizes data. That is, name changes to jack and age to 18.
    ```
    
-4. Observe the data changes of the distributed data object. You can subscribe to data changes of the peer object. When the data in the peer object changes, a callback will be called to return the data changes.
+4. Observe the data changes of the distributed data object. You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be called to return the data changes.
 
    The sample code is as follows:
    
