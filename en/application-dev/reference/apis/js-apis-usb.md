@@ -1,6 +1,7 @@
 # USB
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -17,66 +18,68 @@ Obtains the USB device list.
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | Device information list.|
+**Return value**
 
-- Example
-  ```
-  let devicesList = usb.getDevices();
-  console.log(`devicesList = ${JSON.stringify(devicesList)}`);
-  // devicesList is a list of USB devices.
-  // A simple example of devicesList is provided as follows:
-  [
-    {
-      name: "1-1",
-      serial: "",
-      manufacturerName: "",
-      productName: "",
-      version: "",
-      vendorId: 7531,
-      productId: 2,
-      clazz: 9,
-      subclass: 0,
-      protocol: 1,
-      devAddress: 1,
-      busNum: 1,
-      configs: [
-        {
-          id: 1,
-          attributes: 224,
-          isRemoteWakeup: true,
-          isSelfPowered: true,
-          maxPower: 0,
-          name: "1-1",
-          interfaces: [
-            {
-              id: 0,
-              protocol: 0,
-              clazz: 9,
-              subclass: 0,
-              alternateSetting: 0,
-              name: "1-1",
-              endpoints: [
-                {
-                  address: 129,
-                  attributes: 3,
-                  interval: 12,
-                  maxPacketSize: 4,
-                  direction: 128,
-                  number: 1,
-                  type: 3,
-                  interfaceId: 0,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ]
-  ```
+| Type| Description|
+| -------- | -------- |
+| Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | Device information list.|
+
+**Example**
+
+```
+let devicesList = usb.getDevices();
+console.log(`devicesList = ${JSON.stringify(devicesList)}`);
+// devicesList is a list of USB devices.
+// A simple example of devicesList is provided as follows:
+[
+  {
+    name: "1-1",
+    serial: "",
+    manufacturerName: "",
+    productName: "",
+    version: "",
+    vendorId: 7531,
+    productId: 2,
+    clazz: 9,
+    subclass: 0,
+    protocol: 1,
+    devAddress: 1,
+    busNum: 1,
+    configs: [
+      {
+        id: 1,
+        attributes: 224,
+        isRemoteWakeup: true,
+        isSelfPowered: true,
+        maxPower: 0,
+        name: "1-1",
+        interfaces: [
+          {
+            id: 0,
+            protocol: 0,
+            clazz: 9,
+            subclass: 0,
+            alternateSetting: 0,
+            name: "1-1",
+            endpoints: [
+              {
+                address: 129,
+                attributes: 3,
+                interval: 12,
+                maxPacketSize: 4,
+                direction: 128,
+                number: 1,
+                type: 3,
+                interfaceId: 0,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]
+```
 
 
 ## usb.connectDevice
@@ -89,21 +92,24 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | device | [USBDevice](#usbdevice) | Yes| USB device information.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| device | [USBDevice](#usbdevice) | Yes| USB device information.|
 
-- Example
-  ```
-  let devicepipe= usb.connectDevice(device);
-  console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
+
+**Example**
+
+```
+let devicepipe= usb.connectDevice(device);
+console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
+```
 
 
 ## usb.hasRight
@@ -114,22 +120,25 @@ Checks whether the application has the permission to access the device.
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceName | string | Yes| Device name.|
 
-- Example
-  ```
-  let divicesName="1-1";
-  let bool = usb.hasRight(divicesName);
-  console.log(bool);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
+
+**Example**
+
+```
+let divicesName="1-1";
+let bool = usb.hasRight(divicesName);
+console.log(bool);
+```
 
 
 ## usb.requestRight
@@ -140,23 +149,26 @@ Requests the temporary permission for the application to access the USB device.
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Returns **true** if the temporary device access permissions are granted; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceName | string | Yes| Device name.|
 
-- Example
-  ```
-  let divicesName="1-1";
-  usb.requestRight(divicesName).then((ret) => {
-    console.log(`requestRight = ${JSON.stringify(ret)}`);
-  });
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Returns **true** if the temporary device access permissions are granted; returns **false** otherwise.|
+
+**Example**
+
+```
+let divicesName="1-1";
+usb.requestRight(divicesName).then((ret) => {
+  console.log(`requestRight = ${JSON.stringify(ret)}`);
+});
+```
 
 
 ## usb.claimInterface
@@ -169,23 +181,26 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
-  | force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
+| force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
 
-- Example
-  ```
-  let ret = usb.claimInterface(devicepipe, interfaces);
-  console.log(`claimInterface = ${ret}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
+
+**Example**
+
+```
+let ret = usb.claimInterface(devicepipe, interfaces);
+console.log(`claimInterface = ${ret}`);
+```
 
 
 ## usb.releaseInterface
@@ -198,22 +213,25 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
 
-- Example
-  ```
-  let ret = usb.releaseInterface(devicepipe, interfaces);
-  console.log(`releaseInterface = ${ret}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
+
+**Example**
+
+```
+let ret = usb.releaseInterface(devicepipe, interfaces);
+console.log(`releaseInterface = ${ret}`);
+```
 
 
 ## usb.setConfiguration
@@ -226,22 +244,25 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | config | [USBConfig](#usbconfig) | Yes| USB configuration to set.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| config | [USBConfig](#usbconfig) | Yes| USB configuration to set.|
 
-- Example
-  ```
-  let ret = usb.setConfiguration(devicepipe, config);
-  console.log(`setConfiguration = ${ret}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
+
+**Example**
+
+```
+let ret = usb.setConfiguration(devicepipe, config);
+console.log(`setConfiguration = ${ret}`);
+```
 
 
 ## usb.setInterface
@@ -254,22 +275,25 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface to set.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface to set.|
 
-- Example
-  ```
-  let ret = usb.setInterface(devicepipe, interfaces);
-  console.log(`setInterface = ${ret}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
+
+**Example**
+
+```
+let ret = usb.setInterface(devicepipe, interfaces);
+console.log(`setInterface = ${ret}`);
+```
 
 
 ## usb.getRawDescriptor
@@ -282,20 +306,23 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Uint8Array | Raw descriptor data.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
 
-- Example
-  ```
-  let ret = usb.getRawDescriptor(devicepipe);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Raw descriptor data.|
+
+**Example**
+
+```
+let ret = usb.getRawDescriptor(devicepipe);
+```
 
 
 ## usb.getFileDescriptor
@@ -308,20 +335,23 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | File descriptor of the USB device.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
 
-- Example
-  ```
-  let ret = usb.getFileDescriptor(devicepipe);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | File descriptor of the USB device.|
+
+**Example**
+
+```
+let ret = usb.getFileDescriptor(devicepipe);
+```
 
 
 ## usb.controlTransfer
@@ -334,24 +364,27 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
+| contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
+| timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
 
-- Example
-  ```
-  usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
-   console.log(`controlTransfer = ${JSON.stringify(ret)}`);
-  })
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+
+**Example**
+
+```
+usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
+ console.log(`controlTransfer = ${JSON.stringify(ret)}`);
+})
+```
 
 
 ## usb.bulkTransfer
@@ -364,28 +397,31 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
-  | buffer | Uint8Array | Yes| Buffer for writing or reading data.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
+| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
+| buffer | Uint8Array | Yes| Buffer for writing or reading data.|
+| timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
 
-- Example
-  ```
-  // Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
-  // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
-  // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
-  usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
-   console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
-  });
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+
+**Example**
+
+```
+// Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
+// Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
+// Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
+usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
+ console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
+});
+```
 
 
 ## usb.closePipe
@@ -398,21 +434,24 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **System capability**: SystemCapability.USB.USBManager
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
 
-- Example
-  ```
-  let ret = usb.closePipe(devicepipe);
-  console.log(`closePipe = ${ret}`);
-  ```
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
+
+**Example**
+
+```
+let ret = usb.closePipe(devicepipe);
+console.log(`closePipe = ${ret}`);
+```
 
 
 ## USBEndpoint
