@@ -10,9 +10,9 @@
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
     - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
-    - [Application Package Structure Configuration File (Stage Model)](quick-start/module-structure.md)
+    - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
     - [Resource File Categories](quick-start/basic-resource-file-categories.md)
-    - [SysCap Usage Guidelines](quick-start/syscap.md)
+    - [SysCap](quick-start/syscap.md)
 - Development
   - Ability Development
     - [Ability Framework Overview](ability/ability-brief.md)
@@ -22,19 +22,20 @@
       - [Page Ability Development](ability/fa-pageability.md)
       - [Service Ability Development](ability/fa-serviceability.md)
       - [Data Ability Development](ability/fa-dataability.md)
-  - [FA Widget Development](ability/fa-formability.md)
+      - [FA Widget Development](ability/fa-formability.md)
+    
     - Stage Model
       - [Stage Model Overview](ability/stage-brief.md)
       - [Ability Development](ability/stage-ability.md)
       - [Service Extension Ability Development](ability/stage-serviceextension.md)
       - [Ability Continuation Development](ability/stage-ability-continuation.md)
-      - [Ability Call Developmen](ability/stage-call.md)
+      - [Ability Call Development](ability/stage-call.md)
       - [Stage Widget Development](ability/stage-formextension.md)
     - Other
       - [WantAgent Development](ability/wantagent.md)
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
       - [Test Framework Usage](ability/ability-delegator.md)
-  - UI
+  - UI Development
     - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
@@ -126,7 +127,7 @@
         - General UI Description Specifications
           - [Basic Concepts](ui/ts-general-ui-concepts.md)
           - Declarative UI Description Specifications
-            - [Parameterless Configuration](ui/ts-parameterless-configuration.md)
+            - [Configuration Without Parameters](ui/ts-parameterless-configuration.md)
             - [Configuration with Mandatory Parameters](ui/ts-configuration-with-mandatory-parameters.md)
             - [Attribution Configuration](ui/ts-attribution-configuration.md)
             - [Event Configuration](ui/ts-event-configuration.md)
@@ -159,7 +160,7 @@
           - [LazyForEach](ui/ts-rending-control-syntax-lazyforeach.md)
         - About @Component
           - [build Function](ui/ts-function-build.md)
-          - [Custom Component Initialization](ui/ts-custom-component-initialization.md)
+          - [Initialization of Custom Components' Member Variables](ui/ts-custom-component-initialization.md)
           - [Custom Component Lifecycle Callbacks](ui/ts-custom-component-lifecycle-callbacks.md)
           - [Example: Component Creation and Re-Initialization](ui/ts-component-creation-re-initialization.md)
         - [Syntactic Sugar](ui/ts-syntactic-sugar.md)
@@ -233,7 +234,7 @@
         - [Socket Connection](connectivity/socket-connection.md)
       - IPC & RPC
         - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
-        - [IPC & RPC Development Guidelines](connectivity/ipc-rpc-development-guideline.md)
+        - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
         - [Subscribing to State Changes of a Remote Object](connectivity/subscribe-remote-state.md)
     - Telephony
       - [Telephony Service Overview](telephony/telephony-overview.md)
@@ -243,7 +244,7 @@
       - Distributed Data Service
         - [Distributed Data Service Overview](database/database-mdds-overview.md)
         - [Distributed Data Service Development](database/database-mdds-guidelines.md)
-      - Relational Database Overview
+      - Relational Database
         - [RDB Overview](database/database-relational-overview.md)
         - [RDB Development](database/database-relational-guidelines.md)
       - Lightweight Data Store
@@ -252,7 +253,7 @@
       - Distributed Data Object
         - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
         - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
-    - Agent-Powered Scheduled Reminders
+    - Agent-Powered Scheduled Reminder
       - [Agent-Powered Scheduled Reminder Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [Agent-Powered Scheduled Reminder Development](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - Background Task Management
@@ -282,7 +283,7 @@
     - DFX
       - Application Event Logging
         - [Overview of Application Event Logging](dfx/hiappevent-overview.md)
-        - [Development Guidelines on Application Event Logging](dfx/hiappevent-guidelines.md)
+        - [Development of Application Event Logging](dfx/hiappevent-guidelines.md)
       - Performance Tracing
         - [Overview of Performance Tracing](dfx/hitracemeter-overview.md)
         - [Development of Performance Tracing](dfx/hitracemeter-guidelines.md)
@@ -290,12 +291,13 @@
         - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
         - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
     - Internationalization
-      - [Overview](internationalization/international-overview.md)
+      - [Internationalization Overview](internationalization/international-overview.md)
       - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
       - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
     - 
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 - Tools
+  
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
@@ -595,10 +597,11 @@
       - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
       - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
       - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
-    - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md) 
+      
       - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
-    - Common Event and Notification
-  
+  - Common Event and Notification
+    
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
@@ -656,9 +659,10 @@
       - [@ohos.data.preferences](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
     - [@ohos.settings](reference/apis/js-apis-settings.md)
-      - [resultSet](reference/apis/js-apis-data-resultset.md)
+      
+    - [resultSet](reference/apis/js-apis-data-resultset.md)
     - File Management
-  
+    
       - [@ohos.document](reference/apis/js-apis-document.md)
       - [@ohos.environment](reference/apis/js-apis-environment.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
