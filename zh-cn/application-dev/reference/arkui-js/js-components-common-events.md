@@ -22,14 +22,14 @@
 | click                    | -          | 点击动作触发该事件。                               | 是<sup>6+</sup> |
 | doubleclick<sup>7+</sup> | -          | 双击动作触发该事件                                | 否<br/>**说明：** 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 |
 | longpress                | -          | 长按动作触发该事件。                               | 否<br/>**说明：** 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 |
-| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。<br/>> **说明：** SwipeEvent具体可参考表6 SwipeEvent 基础事件对象属性列表 | 否<br/>**说明：** 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。|
+| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。<br/>> **说明：** SwipeEvent具体可参考表4 SwipeEvent 基础事件对象属性列表 | 否<br/>**说明：** 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。|
 | attached<sup>6+</sup>    | -          | 当前组件节点挂载在渲染树后触发。                         | 否              |
 | detached<sup>6+</sup>    | -          | 当前组件节点从渲染树中移除后触发。                        | 否              |
-| pinchstart<sup>7+</sup>  | PinchEvent | 手指开始执行捏合操作时触发该事件。<br/>> **说明：** PinchEvent具体可参考表7 PinchEvent 对象属性列表 | 否              |
+| pinchstart<sup>7+</sup>  | PinchEvent | 手指开始执行捏合操作时触发该事件。<br/>> **说明：** PinchEvent具体可参考表5 PinchEvent 对象属性列表 | 否              |
 | pinchupdate<sup>7+</sup> | PinchEvent | 手指执行捏合操作过程中触发该事件。                        | 否              |
 | pinchend<sup>7+</sup>    | PinchEvent | 手指捏合操作结束离开屏幕时触发该事件。                      | 否              |
 | pinchcancel<sup>7+</sup> | PinchEvent | 手指捏合操作被打断时触发该事件。                         | 否              |
-| dragstart<sup>7+</sup>   | DragEvent  | 用户开始拖拽时触发该事件。<br/>> **说明：** DragEvent具体可参考表8 DragEvent对象属性列表 | 否              |
+| dragstart<sup>7+</sup>   | DragEvent  | 用户开始拖拽时触发该事件。<br/>> **说明：** DragEvent具体可参考表6 DragEvent对象属性列表 | 否              |
 | drag<sup>7+</sup>        | DragEvent  | 拖拽过程中触发该事件。                              | 否              |
 | dragend<sup>7+</sup>     | DragEvent  | 用户拖拽完成后触发。                               | 否              |
 | dragenter<sup>7+</sup>   | DragEvent  | 进入释放目标时触发该事件。                            | 否              |
@@ -66,14 +66,14 @@
 | size               | number | 触摸接触面积。                        |
 | force<sup>6+</sup> | number | 接触力信息。                         |
 
-**表6** SwipeEvent 基础事件对象属性列表（继承BaseEvent）
+**表4** SwipeEvent 基础事件对象属性列表（继承BaseEvent）
 
 | 属性                    | 类型     | 说明                                       |
 | --------------------- | ------ | ---------------------------------------- |
 | direction             | string | 滑动方向，可能值有：<br/>1.&nbsp;left：向左滑动；<br/>2.&nbsp;right：向右滑动；<br/>3.&nbsp;up：向上滑动；<br/>4.&nbsp;down：向下滑动。 |
 | distance<sup>6+</sup> | number | 在滑动方向上的滑动距离。                             |
 
-**表7** PinchEvent 对象属性列表<sup>7+</sup>
+**表5** PinchEvent 对象属性列表<sup>7+</sup>
 
 | 属性           | 类型     | 说明             |
 | ------------ | ------ | -------------- |
@@ -81,7 +81,7 @@
 | pinchCenterX | number | 捏合中心点X轴坐标，单位px |
 | pinchCenterY | number | 捏合中心点Y轴坐标，单位px |
 
-**表8** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
+**表6** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
 
 | 属性        | 类型     | 说明               |
 | --------- | ------ | ---------------- |
