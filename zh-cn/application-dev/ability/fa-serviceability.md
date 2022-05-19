@@ -32,6 +32,7 @@
        },
        onConnect(want) {
            console.log('ServiceAbility OnConnect');
+           return null;
        },
        onDisconnect(want) {
            console.log('ServiceAbility OnDisConnect');
@@ -78,12 +79,12 @@ Ability为开发者提供了startAbility()方法来启动另外一个Ability。�
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-let promise = await featureAbility.startAbility(
+let promise = featureAbility.startAbility(
     {
         want:
         {
-            bundleName: "com.jstest.serviceability",
-            abilityName: "com.jstest.serviceability.MainAbility",
+            bundleName: "com.jstest.service",
+            abilityName: "com.jstest.service.ServiceAbility",
         },
     }
 ); 
@@ -110,6 +111,8 @@ let promise = await featureAbility.startAbility(
 创建连接本地Service回调实例的代码示例如下：
 
 ```javascript
+import prompt from '@system.prompt'
+
 let mRemote;
 function onConnectCallback(element, remote){
     console.log('onConnectLocalService onConnectDone element: ' + element);
@@ -154,8 +157,8 @@ function onFailedCallback(code){
 import featureAbility from '@ohos.ability.featureAbility';
 let connId = featureAbility.connectAbility(
     {
-        bundleName: "com.jstest.serviceability",
-        abilityName: "com.jstest.serviceability.MainAbility",
+        bundleName: "com.jstest.service",
+        abilityName: "com.jstest.service.ServiceAbility",
     },
     {
         onConnect: onConnectCallback,
@@ -223,6 +226,8 @@ export default {
 创建连接远程Service回调实例的代码示例如下：
 
 ```ts
+import prompt from '@system.prompt'
+
 let mRemote;
 function onConnectCallback(element, remote){
     console.log('onConnectRemoteService onConnectDone element: ' + element);
@@ -264,7 +269,10 @@ function onFailedCallback(code){
 
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+//dmClass具体实现请参考：相关实例 分布式Demo 章节中的实现
 let dmClass;
+
 function getRemoteDeviceId() {
     if (typeof dmClass === 'object' && dmClass != null) {
         let list = dmClass.getTrustedDeviceListSync();
@@ -327,9 +335,6 @@ async function RequestPermission() {
   let context = featureAbility.getContext();
   context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
     console.info("data:" + JSON.stringify(data));
-    console.info("data requestCode:" + data.requestCode);
-    console.info("data permissions:" + data.permissions);
-    console.info("data authResults:" + data.authResults);
   });
   console.info('RequestPermission end');
 }
