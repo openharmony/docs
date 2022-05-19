@@ -1,6 +1,6 @@
 # Performance Tracing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,10 +25,10 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes | Name of the trace task to start. |
+| taskId | number | Yes| Task ID. |
 
 **Example**
 
@@ -52,8 +52,8 @@ To stop a trace task, the values of name and task ID in **finishTrace** must be 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes| Name of the trace task to start. |
+| taskId | number | Yes| Task ID. |
 
 **Example**
 
@@ -96,8 +96,8 @@ Traces the value changes of a variable.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the variable.|
-| count | number | Yes| Value of the variable.|
+| name | string | Yes | Name of the variable. |
+| count | number | Yes | Value of the variable. |
 
 **Example**
 ```js
