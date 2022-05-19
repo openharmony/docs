@@ -1,11 +1,4 @@
-# ls<a name="EN-US_TOPIC_0000001179845929"></a>
-
--   [Command Function](#section6538163771614)
--   [Syntax](#section45881743111616)
--   [Parameters](#section17528148171617)
--   [Usage](#section041212533166)
--   [Example](#section986105716167)
--   [Output](#section2036124918592)
+# ls
 
 ## Command Function<a name="section6538163771614"></a>
 

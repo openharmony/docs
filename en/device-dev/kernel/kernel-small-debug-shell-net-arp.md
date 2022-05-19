@@ -1,10 +1,5 @@
-# arp<a name="EN-US_TOPIC_0000001134006270"></a>
+# arp
 
--   [Command Function](#section201149459368)
--   [Syntax](#section579813484364)
--   [Parameters](#section168065311366)
--   [Usage](#section19190125723612)
--   [Example](#section10383416372)
 
 ## Command Function<a name="section201149459368"></a>
 

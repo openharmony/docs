@@ -1,4 +1,4 @@
-# Network Commands<a name="EN-US_TOPIC_0000001133846492"></a>
+# Network Commands
 
 -   **[arp](kernel-small-debug-shell-net-arp.md)**  
 

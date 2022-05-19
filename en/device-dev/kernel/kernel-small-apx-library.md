@@ -1,18 +1,9 @@
-# Standard Library<a name="EN-US_TOPIC_0000001126847658"></a>
-
--   [Standard Library API Framework](#section149319478561)
--   [Development Example](#section20874620185915)
--   [Differences from the Linux Standard Library](#section6555642165713)
-    -   [Process](#section11299104511409)
-    -   [Memory](#section175754484116)
-    -   [File System](#section118191113134220)
-    -   [Signal](#section195939264421)
-    -   [Time](#section20825124304213)
+# Standard Library
 
 
 The OpenHarmony kernel uses the musl libc library that supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.
 
-## Standard Library API Framework<a name="section149319478561"></a>
+## Standard Library API Framework
 
 **Figure  1**  POSIX framework<a name="fig153258541429"></a>  
 ![](figures/posix-framework.png "posix-framework")
@@ -21,7 +12,7 @@ The musl libc library supports POSIX standards. The OpenHarmony kernel adapts th
 
 For details about the APIs supported by the standard library, see the API document of the C library, which also covers the differences between the standard library and the POSIX standard library.
 
-## Development Example<a name="section20874620185915"></a>
+## Development Example
 
 In this example, the main thread creates  **THREAD\_NUM**  child threads. Once a child thread is started, it enters the standby state. After the main thread successfully wakes up all child threads, they continue to execute until the lifecycle ends. The main thread uses the  **pthread\_join**  method to wait until all child threads are executed.
 
@@ -197,17 +188,17 @@ int main(int argc, char *argv[])
 #endif /* __cplusplus */
 ```
 
-## Differences from the Linux Standard Library<a name="section6555642165713"></a>
+## Differences from the Linux Standard Library
 
 This section describes the key differences between the standard library carried by the OpenHarmony kernel and the Linux standard library. For more differences, see the API document of the C library.
 
-### Process<a name="section11299104511409"></a>
+### Process
 
 1.  The OpenHarmony user-mode processes support only static priorities, which range from 10 \(highest\) to 31 \(lowest\).
 2.  The OpenHarmony user-mode threads support only static priorities, which range from 0 \(highest\) to 31 \(lowest\).
 3.  The OpenHarmony process scheduling supports  **SCHED\_RR**  only, and thread scheduling supports  **SCHED\_RR**  or  **SCHED\_FIFO**.
 
-### Memory<a name="section175754484116"></a>
+### Memory
 
 **h2****Difference with Linux mmap**
 
@@ -266,7 +257,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-### File System<a name="section118191113134220"></a>
+### File System
 
 **System directories**: You cannot modify system directories and device mount directories, which include  **/dev**,  **/proc**,  **/app**,  **/bin**,  **/data**,  **/etc**,  **/lib**,  **/system**  and  **/usr**.
 
@@ -274,14 +265,14 @@ int main(int argc, char *argv[])
 
 Except in the system and user directories, you can create directories and mount devices. Note that nested mount is not allowed, that is, a mounted folder and its subfolders cannot be mounted repeatedly. A non-empty folder cannot be mounted.
 
-### Signal<a name="section195939264421"></a>
+### Signal
 
 -   The default behavior for signals does not include  **STOP**,  **CONTINUE**, or  **COREDUMP**.
 -   A sleeping process \(for example, a process enters the sleeping status by calling the sleep function\) cannot be woken up by a signal. The signal mechanism does not support the wakeup function. The behavior for a signal can be processed only when the process is scheduled by the CPU.
 -   After a process exits,  **SIGCHLD**  is sent to the parent process. The sending action cannot be canceled.
 -   Only signals 1 to 30 are supported. The callback is executed only once even if the same signal is received multiple times.
 
-### Time<a name="section20825124304213"></a>
+### Time
 
 The OpenHarmony time precision is based on tick. The default value is 10 ms/tick. The time error of the  **sleep**  and  **timeout**  functions is less than or equal to 20 ms.
 

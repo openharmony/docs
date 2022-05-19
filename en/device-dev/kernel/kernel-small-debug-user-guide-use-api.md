@@ -1,9 +1,5 @@
-# Calling APIs<a name="EN-US_TOPIC_0000001166036359"></a>
+# Calling APIs
 
--   [Sample Code](#section5490173592518)
--   [Compilation](#section534302242515)
--   [Debugging Information](#section1017419992515)
--   [Call Stack Parsing](#section1485163282417)
 
 ## Sample Code<a name="section5490173592518"></a>
 
@@ -37,13 +33,13 @@ int main()
 }
 ```
 
-## Compilation<a name="section534302242515"></a>
+## Compilation
 
 ```
 $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos --sysroot=/home/<user-name>/directory/out/hispark_taurus/ipcamera_hispark_taurus/sysroot $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE** <br/>
 >-   In this example, the compiler path is written into an environment variable in the  **.bashrc**  file.
 >-   When compiling user programs and required libraries, add the option  **-funwind-tables -rdynamic -g**  for stack backtracking.
 >-   The  **-mfloat-abi=softfp**,  **-mcpu=cortex-a7**, and  **-mfpu=neon-vfpv4**  options specify the floating-point calculation optimization, chip architecture, and FPU, which must be the same as the compilation options used by the libc library. Otherwise, the libc library file cannot be found during the link time.
@@ -51,7 +47,7 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 >-   **--sysroot=/home/<user-name\>/directory/out/hispark\_taurus/ipcamera\_hispark\_taurus/sysroot**  specifies the root directory of the compiler library files. In this example, the OpenHarmony project code is stored in  **/home/<user-name\>/directory**. The  **out/hispark\_taurus/ipcamera\_hispark\_taurus**  directory indicates the product specified by the  **hb set**  command during compilation. In this example,  **ipcamera\_hispark\_taurus**  is the product specified.
 >-   **$\(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a\)**  specifies the path of the unwind library.
 
-## Debugging Information<a name="section1017419992515"></a>
+## Debugging Information
 
 ```
 OHOS # ./mem_check
@@ -102,7 +98,7 @@ Check heap integrity ok! // Heap memory integrity check
 Check heap integrity ok!
 ```
 
-## Call Stack Parsing<a name="section1485163282417"></a>
+## Call Stack Parsing
 
 The  **parse\_mem\_info.sh**  script in  **kernel/liteos\_a/tools/scripts/parse\_memory/**  can be used to parse the call stack. You can use the script to convert the debug information into specific source code line number. In the following command,  **mem\_debug.txt**  stores the memory debugging information, and  **elf1**  and  **elf2**  are the executable and linkable format \(ELF\) files to parse.
 

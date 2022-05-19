@@ -1,11 +1,5 @@
-# rmdir<a name="EN-US_TOPIC_0000001179845933"></a>
+# rmdir
 
--   [Command Function](#section1839611420266)
--   [Syntax](#section329574512266)
--   [Parameters](#section15865747102620)
--   [Usage](#section107857508261)
--   [Example](#section11196165315262)
--   [Output](#section1073811415613)
 
 ## Command Function<a name="section1839611420266"></a>
 

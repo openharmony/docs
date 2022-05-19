@@ -1,4 +1,4 @@
-# Extended Components<a name="EN-US_TOPIC_0000001078204130"></a>
+# Extended Components
 
 -   **[System Call](kernel-small-bundles-system.md)**  
 

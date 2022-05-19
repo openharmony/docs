@@ -1,6 +1,4 @@
-# Queue<a name="EN-US_TOPIC_0000001123863117"></a>
-
-
+# Queue
 
 ## Basic Concepts<a name="section5747112216469"></a>
 
@@ -20,9 +18,9 @@ An asynchronous processing mechanism is provided to allow messages in a queue no
 -   Multiple tasks can receive messages from and send messages to the same queue.
 -   When a queue is created, the required dynamic memory space is automatically allocated in the queue API.
 
-## Working Principles<a name="section1582619446311"></a>
+## Working Principles
 
-### Queue Control Block<a name="section1648304614720"></a>
+### Queue Control Block
 
 ```
 /**
@@ -63,7 +61,7 @@ Each queue control block contains information about the queue status.
 
 The preceding figure illustrates how to write data to the tail node only. Writing data to the head node is similar.
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 <a name="table10903105695114"></a>
 <table><thead align="left"><tr id="row1293645645110"><th class="cellrowborder" valign="top" width="23.56%" id="mcps1.1.4.1.1"><p id="p59361562512"><a name="p59361562512"></a><a name="p59361562512"></a>Function</p>
@@ -130,7 +128,7 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 1.  Call **LOS\_QueueCreate** to create a queue. The queue ID is returned when the queue is created.
 2.  Call **LOS\_QueueWrite** or **LOS\_QueueWriteCopy** to write messages to the queue.
@@ -138,7 +136,7 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 4.  Call **LOS\_QueueInfoGet** to obtain queue information.
 5.  Call **LOS\_QueueDelete** to delete the queue.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >-   The maximum number of queues supported by the system is the total number of queue resources of the system, not the number of queue resources available to users. For example, if the system software timer occupies one more queue resource, the number of queue resources available to users decreases by one.
 >-   The input parameters queue name and flags passed when a queue is created are reserved for future use.
 >-   The input parameter **timeOut** in the queue interface function is relative time.
@@ -147,9 +145,9 @@ The preceding figure illustrates how to write data to the tail node only. Writin
 >-   If the input parameter **bufferSize** in **LOS\_QueueReadCopy** is less than the length of the message, the message will be truncated.
 >-   **LOS\_QueueWrite**, **LOS\_QueueWriteHead**, and **LOS\_QueueRead** are called to manage data addresses, which means that the actual data read or written is pointer data. Therefore, before using these APIs, ensure that the message node size is the pointer length during queue creation, to avoid waste and read failures.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
-### Example Description<a name="section2148236125814"></a>
+### Example Description
 
 Create a queue and two tasks. Enable task 1 to call the queue write API to send messages, and enable task 2 to receive messages by calling the queue read API.
 
@@ -159,7 +157,7 @@ Create a queue and two tasks. Enable task 1 to call the queue write API to send 
 4.  Enable messages to be received in task 2 by calling **RecvEntry**.
 5.  Call **LOS\_QueueDelete** to delete the queue.
 
-### Sample Code<a name="section121451047155716"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -243,7 +241,7 @@ UINT32 ExampleQueue(VOID)
 }
 ```
 
-### Verification<a name="section2742182082117"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

@@ -1,9 +1,4 @@
-# FAT<a name="EN-US_TOPIC_0000001078576202"></a>
-
--   [Basic Concepts](#section621393911385)
--   [Working Principles](#section10796155213381)
--   [Development Guidelines](#section144094483919)
-    -   [How to Develop](#section139086116394)
+# FAT
 
 
 ## Basic Concepts<a name="section621393911385"></a>
@@ -32,7 +27,7 @@ Example:
 mount("/dev/mmcblk0p0", "/mnt", "vfat", 0, NULL);
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >-   The size of a single FAT file cannot be greater than 4 GiB.
 >-   When there are two SD card slots, the first card inserted is card 0, and that inserted later is card 1.
 >-   When multi-partition is enabled and there are multiple partitions, the device node  **/dev/mmcblk0**  \(primary device\) registered by card 0 and  **/dev/mmcblk0p0**  \(secondary device\) are the same device. In this case, you cannot perform operations on the primary device.

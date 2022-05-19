@@ -1,11 +1,5 @@
-# cd<a name="EN-US_TOPIC_0000001133846482"></a>
+# cd
 
--   [Command Function](#section11690184921316)
--   [Syntax](#section75695409569)
--   [Parameters](#section71961353181311)
--   [Usage](#section3629759111317)
--   [Example](#section211620301412)
--   [Output](#section1968117214577)
 
 ## Command Function<a name="section11690184921316"></a>
 
