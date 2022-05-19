@@ -21,16 +21,16 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | type | ToggleType | 是 | - | 创建相应的开关状态组件。 |
-  | isOn | boolean | 否 | false | 设置开关状态组件初始化状态。 |
+  | type | ToggleType | 是 | - | 开关类型。 |
+  | isOn | boolean | 否 | false | 开关是否打开，true：打开，false：关闭。 |
 
 
 - ToggleType枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
-  | Checkbox | 提供单选框样式，子组件设置文本不生效，如需文本设置，可将Text和当前组件放入布局组件中。<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;[通用属性](ts-universal-attributes-size.md)padding有默认值：{<br>                                                      top: 14 vp,<br>                                                      right: 6 vp,<br>                                                      bottom: 14 vp,<br>                                                      left: 6 vp<br>                                                       }， |
+  | Checkbox | 提供单选框样式，子组件设置文本不生效，如需文本设置，可将Text和当前组件放入布局组件中。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> } |
   | Button | 提供状态按钮样式，如果有文本设置，则相应的文本内容会显示在按钮内部。 |
-  | Switch | 提供开关样式，子组件设置文本不生效，如需文本设置，可将Text和当前组件放入布局组件中。<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;[通用属性](ts-universal-attributes-size.md)padding有默认值：{<br/>                                                      top: 12 vp,<br/>                                                      right: 12 vp,<br/>                                                      bottom: 12 vp,<br/>                                                      left: 12 vp<br/>                                                       } |
+  | Switch | 提供开关样式，子组件设置文本不生效，如需文本设置，可将Text和当前组件放入布局组件中。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 12 vp,<br/>&nbsp;right: 12 vp,<br/>&nbsp;bottom: 12 vp,<br/>&nbsp;left: 12 vp<br/> } |
 
 
 ## 属性
@@ -38,7 +38,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 | 名称 | 参数 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | selectedColor | Color | - | 设置组件打开状态的背景颜色。 |
-| switchPointColor | Color | - | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
+| switchPointColor | Color | - | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
 
 
 ## 事件
@@ -54,18 +54,19 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 @Entry
 @Component
 struct ToggleExample {
+
   build() {
     Column({ space: 10 }) {
       Text('type: Switch').fontSize(12).fontColor(0xcccccc).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
-        Toggle({ type: ToggleType.Switch, isOn: false })//开关是否打开，false：关闭
+        Toggle({ type: ToggleType.Switch, isOn: false })
           .selectedColor(0xed6f21)
           .switchPointColor(0xe5ffffff)
           .onChange((isOn: boolean) => {
             console.info('Component status:' + isOn)
           })
 
-        Toggle({ type: ToggleType.Switch, isOn: true })//开关是否打开，true：打开
+        Toggle({ type: ToggleType.Switch, isOn: true })
           .selectedColor(0x39a2db)
           .switchPointColor(0xe5ffffff)
           .onChange((isOn: boolean) => {
