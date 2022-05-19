@@ -106,15 +106,21 @@ zh-cn/device-dev/subsystems/subsys-toolchain-hiperf.md @Austin23
 zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 
 zh-cn/application-dev/ability/ @RayShih
-zh-cn/application-dev/ui/ @HelloCrease
+zh-cn/application-dev/ui/ @HelloCrease @kukixi
 zh-cn/application-dev/notification/ @RayShih
 zh-cn/application-dev/windowmanager/ @ge-yafang
 zh-cn/application-dev/webgl/ @ge-yafang
 zh-cn/application-dev/media/ @zengyawen
 zh-cn/application-dev/security/ @zengyawen
 zh-cn/application-dev/connectivity/ @zengyawen
+zh-cn/application-dev/connectivity/ipc-rpc-overview.md @qinxiaowang
+zh-cn/application-dev/connectivity/ipc-rpc-development-guideline.md @qinxiaowang
+zh-cn/application-dev/connectivity/subscribe-remote-state.md @qinxiaowang
 zh-cn/application-dev/telephony/ @zengyawen
+zh-cn/application-dev/dfx/ @zengyawen
 zh-cn/application-dev/database/ @ge-yafang
+zh-cn/application-dev/napi/drawing_guidelines.md @ge-yafang
+zh-cn/application-dev/napi/rawfile_guidelines.md @HelloCrease
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @RayShih
 zh-cn/application-dev/work-scheduler/ @HelloCrease
@@ -129,8 +135,8 @@ zh-cn/application-dev/device/vibrator-overview.md @HelloCrease
 zh-cn/application-dev/device/vibrator-guidelines.md @HelloCrease
 zh-cn/application-dev/device/sample-server-overview.md @HelloCrease
 zh-cn/application-dev/device/sample-server-guidelines.md @HelloCrease
-zh-cn/application-dev/reference/arkui-js/ @HelloCrease
-zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
+zh-cn/application-dev/reference/arkui-js/ @HelloCrease @kukixi
+zh-cn/application-dev/reference/arkui-ts/ @HelloCrease @kukixi
 zh-cn/application-dev/reference/native-apis @RayShih
 zh-cn/application-dev/reference/native-lib @RayShih
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @RayShih
@@ -183,13 +189,13 @@ zh-cn/application-dev/reference/apis/js-apis-eventhub.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-Bundle.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
-zh-cn/application-dev/reference/apis/js-apis-display.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-screenshot.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-window.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @kukixi
+zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease @kukixi
+zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease @kukixi
+zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @kukixi
+zh-cn/application-dev/reference/apis/js-apis-display.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
@@ -213,8 +219,10 @@ zh-cn/application-dev/reference/apis/js-apis-data-ability.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-data-storage.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-system-storage.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-settings.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-settings.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-document.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-environment.md @qinxiaowang
