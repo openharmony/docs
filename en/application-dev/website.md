@@ -9,7 +9,7 @@
     - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
-    - [Application Package Structure Configuration File (Stage Model)](quick-start/package-structure.md)
+    - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
     - [ Application Package Structure Configuration File (Stage Model)](quick-start/module-structure.md)
     - [Resource File Categories](quick-start/basic-resource-file-categories.md)
     - [SysCap Usage Guidelines](quick-start/syscap.md)
@@ -250,7 +250,7 @@
       - [Background Task Management Overview](background-task-management/background-task-overview.md)
       - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
     - Work Scheduler
-      - [Work Scheduler Development](work-scheduler/work-scheduler-overview.md)
+      - [Work Scheduler Overview](work-scheduler/work-scheduler-overview.md)
       - [Work Scheduler Development](work-scheduler/work-scheduler-dev-guide.md)
     - Device
       - USB Service
@@ -283,13 +283,13 @@
       - [Overview](internationalization/international-overview.md)
       - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
       - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
-- Tool
+- Tools
   
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master)
+  - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - Component Reference (JavaScript-based Web-like Development Paradigm)
     - Components
@@ -301,6 +301,7 @@
         - [Animation Styles](reference/arkui-js/js-components-common-animation.md)
         - [Gradient Styles](reference/arkui-js/js-components-common-gradient.md)
         - [Transition Styles](reference/arkui-js/js-components-common-transition.md)
+        - [Media Query](reference/arkui-js/js-components-common-mediaquery.md)
         - [Custom Font Styles](reference/arkui-js/js-components-common-customizing-font.md)
         - [Atomic Layout](reference/arkui-js/js-components-common-atomic-layout.md)
       - Container Components
@@ -536,12 +537,13 @@
         - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
         - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
         - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
-  - APIs
+- APIs
     - Ability Framework
-
+    
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
@@ -554,7 +556,7 @@
       - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
       - [@ohos.ability.featureAbility](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
-      - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-formextension.md)
+      - [@ohos.application.FormExtension](reference/apis/js-apis-formextension.md)
       - [@ohos.application.formError](reference/apis/js-apis-formerror.md)
       - [@ohos.application.formHost](reference/apis/js-apis-formhost.md)
       - [@ohos.application.formInfo](reference/apis/js-apis-formInfo.md)
@@ -571,25 +573,28 @@
       - [AbilityContext](reference/apis/js-apis-ability-context.md)
       - [abilityDelegator](reference/apis/js-apis-application-abilityDelegator.md)
       - [abilityDelegatorArgs](reference/apis/js-apis-application-abilityDelegatorArgs.md)
-      - [abilityMonitor (AbilityMonitor)](reference/apis/js-apis-application-abilityMonitor.md)
+      - [abilityMonitor](reference/apis/js-apis-application-abilityMonitor.md)
       - [AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
-      - [AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
-      - [Context (Context)](reference/apis/js-apis-application-context.md)
-      - [ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
-      - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
-      - [FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
-      - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
-      - [PermissionRequestResult (PermissionRequestResult)](reference/apis/js-apis-permissionrequestresult.md)
-      - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
-      - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md)
-      - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
+      - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
+      - [Context](reference/apis/js-apis-application-context.md)
+      - [ExtensionContext](reference/apis/js-apis-extension-context.md)
+      - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
+      - [FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
+      - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md)
+      - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
+      - 
+      - [AbilityStageContext](reference/apis/js-apis-abilityStageContext.md)
+      - 
     - Common Event and Notification
     
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
-      - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
+      - [EventHub](reference/apis/js-apis-eventhub.md)
     - Bundle Management
     
       - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
