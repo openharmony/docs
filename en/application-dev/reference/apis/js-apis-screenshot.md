@@ -1,6 +1,7 @@
 # Screenshot
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -54,39 +55,39 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 Takes a screenshot and saves it as a **PixelMap** object. This method uses a callback to return the result.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Required permissions**: ohos.permission.CAPTURE_SCREEN
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                   | Mandatory| Description                                                        |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
-  | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+| callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
-- Example
+**Example**
 
-  ```js
-  var ScreenshotOptions = {
-  	"screenRect": {
-  		"left": 200,
-  		"top": 100,
-  		"width": 200,
-  		"height": 200},
-  	"imageSize": {
-  		"width": 300,
-  		"height": 300},
-  	"rotation": 0
-  };
-  screenshot.save(ScreenshotOptions, (err, data) => {
-  	if (err) {
-  		console.error('Failed to save the screenshot. Error: ' + JSON.stringify(err));
-  		return;
-  	}
-  	console.info('Screenshot saved. Data: ' + JSON.stringify(data));
-  });
-  ```
+```js
+var ScreenshotOptions = {
+	"screenRect": {
+		"left": 200,
+		"top": 100,
+		"width": 200,
+		"height": 200},
+	"imageSize": {
+		"width": 300,
+		"height": 300},
+	"rotation": 0
+};
+screenshot.save(ScreenshotOptions, (err, data) => {
+	if (err) {
+		console.error('Failed to save the screenshot. Error: ' + JSON.stringify(err));
+		return;
+	}
+	console.info('Screenshot saved. Data: ' + JSON.stringify(data));
+});
+```
 
 ## screenshot.save
 
@@ -94,40 +95,40 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 Takes a screenshot and saves it as a **PixelMap** object. This method uses a promise to return the result.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Required permissions**: ohos.permission.CAPTURE_SCREEN
 
-- Parameters
+**Parameters**
 
-  | Name | Type                                   | Mandatory| Description                                                        |
-  | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
 
-- Return value
+**Return value**
 
-  | Type                         | Description                                           |
-  | ----------------------------- | ----------------------------------------------- |
-  | Promise&lt;image.PixelMap&gt; | Promise used to return an **image.PixelMap** object.|
+| Type                         | Description                                           |
+| ----------------------------- | ----------------------------------------------- |
+| Promise&lt;image.PixelMap&gt; | Promise used to return an **image.PixelMap** object.|
 
-- Example
+**Example**
 
-  ```js
-  var ScreenshotOptions = {
-  	"screenRect": {
-  		"left": 200,
-  		"top": 100,
-  		"width": 200,
-  		"height": 200},
-  	"imageSize": {
-  		"width": 300,
-  		"height": 300},
-  	"rotation": 0
-  };
-  let promise = screenshot.save(ScreenshotOptions);
-  promise.then(() => {
-      console.log('screenshot save success');
-  }).catch((err) => {
-      console.log('screenshot save fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+var ScreenshotOptions = {
+	"screenRect": {
+		"left": 200,
+		"top": 100,
+		"width": 200,
+		"height": 200},
+	"imageSize": {
+		"width": 300,
+		"height": 300},
+	"rotation": 0
+};
+let promise = screenshot.save(ScreenshotOptions);
+promise.then(() => {
+    console.log('screenshot save success');
+}).catch((err) => {
+    console.log('screenshot save fail: ' + JSON.stringify(err));
+});
+```
