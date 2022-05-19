@@ -1,6 +1,6 @@
-# FeatureAbility (JavaScript)
+# FeatureAbility Module (JavaScript)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Constraints
@@ -25,7 +25,7 @@ Starts an ability. This API uses a callback to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start. |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start.|
 | callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result.     |
 
 **Example**
@@ -42,8 +42,9 @@ featureAbility.startAbility(
             type: "",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",,
             uri: ""
         },
     },
@@ -64,7 +65,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start. |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start.|
 
 **Example**
 
@@ -80,8 +81,9 @@ featureAbility.startAbility(
             type: "MIMETYPE",
 			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     }
@@ -102,13 +104,13 @@ Obtains a **dataAbilityHelper** object.
 
 | Name  | Type    | Mandatory  | Description          |
 | ---- | ------ | ---- | ------------ |
-| uri  | string | Yes   | URI of the file to open. |
+| uri  | string | Yes   | URI of the file to open.|
 
 **Return value**
 
 | Type               | Description                             |
 | ----------------- | ------------------------------- |
-| DataAbilityHelper | A utility class used to help other abilities access the Data ability. |
+| DataAbilityHelper | A utility class used to help other abilities access the Data ability.|
 
 **Example**
 
@@ -131,7 +133,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start. |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start.|
 | callback  | AsyncCallback\<[AbilityResult](#abilityresult)> | Yes   | Callback used to return the result.     |
 
 **Example**
@@ -148,8 +150,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:""
         },
     },
@@ -171,13 +174,13 @@ Starts an ability. This API uses a promise to return the execution result when t
 
 | Name       | Type                                      | Mandatory  | Description           |
 | --------- | ---------------------------------------- | ---- | ------------- |
-| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start. |
+| parameter | [StartAbilityParameter](#startabilityparameter) | Yes   | Ability to start.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](#abilityresult)> | Promised returned with the execution result. |
+| Promise\<[AbilityResult](#abilityresult)> | Promised returned with the execution result.|
 
 **Example**
 
@@ -193,8 +196,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters:
             {
@@ -227,7 +231,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start. |
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
 
 **Example**
@@ -245,8 +249,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -275,13 +280,13 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description           |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start. |
+| parameter | [AbilityResult](#abilityresult) | Yes   | Ability to start.|
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -298,8 +303,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -332,7 +338,7 @@ Checks whether the main window of this ability has the focus. This API uses a ca
 
 | Name      | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>Returns **true** if the main window of this ability has the focus; returns **false** otherwise. |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
 
 **Example**
 
@@ -355,7 +361,7 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 
 | Type               | Description                                   |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Returns **true** if the main window of this ability has the focus; returns **false** otherwise. |
+| Promise\<boolean> | Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
 
 **Example**
 
@@ -380,7 +386,7 @@ Obtains the **Want** object sent from this ability. This API uses a callback to 
 
 | Name      | Type                           | Mandatory  | Description       |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](#want)> | Yes   | Callback used to return the result. |
+| callback | AsyncCallback\<[Want](js-apis-application-Want.md)> | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -403,7 +409,7 @@ Obtains the **Want** object sent from this ability. This API uses a promise to r
 
 | Type                     | Description              |
 | ----------------------- | ---------------- |
-| Promise\<[Want](#want)> | Promise used to return the result. |
+| Promise\<[Want](js-apis-application-Want.md)> | Promise used to return the result.|
 
 **Example**
 
@@ -426,7 +432,7 @@ Obtains the application context.
 
 | Type     | Description        |
 | ------- | ---------- |
-| Context | Application context returned. |
+| Context | Application context returned.|
 
 **Example**
 
@@ -450,7 +456,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name      | Type                  | Mandatory  | Description      |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -473,7 +479,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -496,7 +502,7 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 | Name     | Type            | Mandatory  | Description                   |
 | ------- | -------------- | ---- | --------------------- |
-| request | [Want](#want)  | Yes   | Service ability to connect. |
+| request | [Want](js-apis-application-Want.md)  | Yes   | Service ability to connect.|
 | options | ConnectOptions | Yes   | Callback used to return the result.            |
 
 Want
@@ -505,7 +511,7 @@ Want
 
 | Name         | Readable/Writable| Type    | Mandatory  | Description                                      |
 | ----------- | ---- | ------ | ---- | ---------------------------------------- |
-| deviceId    | Read-only  | string | No   | Device ID of the Service ability to connect. The default value is the local device ID. |
+| deviceId    | Read-only  | string | No   | Device ID of the Service ability to connect. The default value is the local device ID.|
 | bundleName  | Read-only  | string | Yes   | Bundle name of the Service ability to connect.                |
 | abilityName | Read-only  | string | Yes   | Class name of the Service ability to connect.                |
 
@@ -517,13 +523,13 @@ ConnectOptions
 | ------------ | ---- | -------- | ---- | ------------------------- |
 | onConnect    | Read-only  | function | Yes   | Callback invoked when the connection is successful.              |
 | onDisconnect | Read-only  | function | Yes   | Callback invoked when the connection fails.              |
-| onFailed     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called. |
+| onFailed     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Returns the ID of the Service ability connected. |
+| number | Returns the ID of the Service ability connected.|
 
 **Example**
 
@@ -565,7 +571,7 @@ Disconnects this ability from a specific Service ability. This API uses a callba
 
 | Name        | Type                  | Mandatory  | Description                     |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | Yes   | ID of the Service ability to disconnect. |
+| connection | number               | Yes   | ID of the Service ability to disconnect.|
 | callback   | AsyncCallback\<void> | Yes   | Callback used to return the result.               |
 
 **Example**
@@ -612,13 +618,13 @@ Disconnects this ability from a specific Service ability. This API uses a promis
 
 | Name        | Type    | Mandatory  | Description                     |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | Yes   | ID of the Service ability to disconnect. |
+| connection | number | Yes   | ID of the Service ability to disconnect.|
 
 **Return value**
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -664,7 +670,7 @@ Obtains the window corresponding to this ability. This API uses a callback to re
 
 | Name    | Type                         | Mandatory| Description                         |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<window.Window> | Yes  | Callback used to return the window. |
+| callback | AsyncCallback\<window.Window> | Yes  | Callback used to return the window.|
 
 **Example**
 
@@ -684,7 +690,7 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 | Type                   | Description                         |
 | ----------------------- | ----------------------------- |
-| Promise\<window.Window> | Promise used to return the window. |
+| Promise\<window.Window> | Promise used to return the window.|
 
 **Example**
 
@@ -707,7 +713,7 @@ Callback invoked when the connection is successful.
 | Name         | Type               | Mandatory  | Description      |
 | ----------- | ----------------- | ---- | -------- |
 | elementName | ElementName       | Yes   | Element name.    |
-| remote      | rpc.IRemoteObject | Yes   | RPC remote object. |
+| remote      | rpc.IRemoteObject | Yes   | RPC remote object.|
 
 **Example**
 
@@ -749,7 +755,7 @@ Callback invoked when the connection fails.
 
 | Name         | Type         | Mandatory  | Description  |
 | ----------- | ----------- | ---- | ---- |
-| elementName | ElementName | Yes   | Element name. |
+| elementName | ElementName | Yes   | Element name.|
 
 **Example**
 
@@ -791,7 +797,7 @@ Callback invoked when **connectAbility** fails to be called.
 
 | Name  | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
-| code | number | Yes   | Number type. |
+| code | number | Yes   | Number type.|
 
 **Example**
 
@@ -839,11 +845,11 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 | Name                                      | Name  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode. |
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode.|
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The Page ability is in full screen mode.   |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The Page ability is displayed in the primary window when it is in split-screen mode. |
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The Page ability is displayed in the secondary window when it is in split-screen mode. |
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The Page ability is displayed in floating window mode. |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The Page ability is displayed in the primary window when it is in split-screen mode.|
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The Page ability is displayed in the secondary window when it is in split-screen mode.|
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The Page ability is displayed in floating window mode.|
 
 
 ## AbilityStartSetting
@@ -862,9 +868,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | Name                          | Name             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | Ability window size. |
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | Ability window display mode. |
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | Display device ID. |
+| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | Ability window size.|
+| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | Ability window display mode.|
+| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | Display device ID.|
 
 ## ErrorCode
 
@@ -874,10 +880,10 @@ Enumerates error codes.
 
 | Variable                            | Value   | Description                                      |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR<sup>7+</sup>          | 0    | No error occurs. |
-| INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter. |
-| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | The ability is not found. |
-| PERMISSION_DENY<sup>7+</sup>   | -3   | The request is denied. |
+| NO_ERROR<sup>7+</sup>          | 0    | No error occurs.|
+| INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter.|
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | The ability is not found.|
+| PERMISSION_DENY<sup>7+</sup>   | -3   | The request is denied.|
 
 
 ## DataAbilityOperationType
@@ -888,10 +894,10 @@ Enumerates operation types of the Data ability.
 
 | Variable                      | Value   | Description                                      |
 | ------------------------ | ---- | ---------------------------------------- |
-| TYPE_INSERT<sup>7+</sup> | 1    | Insert operation. |
-| TYPE_UPDATE<sup>7+</sup> | 2    | Update operation. |
-| TYPE_DELETE<sup>7+</sup> | 3    | Deletion operation. |
-| TYPE_ASSERT<sup>7+</sup> | 4    | Assert operation. |
+| TYPE_INSERT<sup>7+</sup> | 1    | Insert operation.|
+| TYPE_UPDATE<sup>7+</sup> | 2    | Update operation.|
+| TYPE_DELETE<sup>7+</sup> | 3    | Deletion operation.|
+| TYPE_ASSERT<sup>7+</sup> | 4    | Assert operation.|
 
 
 
@@ -901,8 +907,8 @@ Enumerates operation types of the Data ability.
 
 | Name                     | Readable/Writable| Type           | Mandatory  | Description                                   |
 | ----------------------- | ---- | ------------- | ---- | ------------------------------------- |
-| resultCode<sup>7+</sup> | Read-only  | number        | Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon. |
-| want<sup>7+</sup>       | Read-only  | [Want](#want) | No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
+| resultCode<sup>7+</sup> | Read-only  | number        | Yes   | Result code returned after the ability is destroyed. The feature for defining error-specific result codes is coming soon.|
+| want<sup>7+</sup>       | Read-only  | [Want](js-apis-application-Want.md) | No   | Data returned after the ability is destroyed. You can define the data to be returned. This parameter can be **null**. |
 
 ## StartAbilityParameter
 
@@ -910,27 +916,9 @@ Enumerates operation types of the Data ability.
 
 | Name                 | Readable/Writable| Type                  | Mandatory  | Description                                    |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| want                | Read-only  | [Want](#want)        | Yes   | Information about the ability to start.                    |
-| abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call. |
-
-
-## Want
-
-**System capability**: SystemCapability.Ability.AbilityBase
-
-| Name                            | Readable/Writable| Type                | Mandatory| Description                                                        |
-| -------------------------------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId                         | Read-only    | string               | No  | ID of the device that runs the ability.                               |
-| bundleName                       | Read-only    | string               | No  | Bundle name of the ability to start. |
-| abilityName                      | Read-only    | string               | No  | Name of the ability to start. If both **package** and **AbilityName** are specified in this field in a **Want** object, the **Want** object can directly match the specified ability. |
-| uri                              | Read-only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**. |
-| type                             | Read-only    | string               | No  | MIME type, for example, text/plain or image/*.  |
-| flags                            | Read-only    | number               | No  | How the **Want** object will be handled. By default, a number is passed. For details, see [flags](#flags). |
-| action                           | Read-only    | string               | No  | Action option.                                        |
-| parameters                       | Read-only    | {[key: string]: any} | No  | List of parameters in the **Want** object.                                        |
-| entities                         | Read-only    | Array\<string>       | No  | List of entities.                                      |
-| extensionAbilityName<sup>9+<sup> | Read-only    | string               | No  | Description of the Extension ability name in the **Want** object.                                  |
-| extensionAbilityType<sup>9+<sup> | Read-only    | number               | No  | Description of the Extension ability type in the **Want** object.                                  |
+| want                | Read-only  | [Want](js-apis-application-Want.md)        | Yes   | Information about the ability to start.                    |
+| abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
+                                  |
 
 ## flags
 
@@ -951,6 +939,6 @@ Enumerates operation types of the Data ability.
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**. |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the historical mission stack.                      |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists. |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.|
