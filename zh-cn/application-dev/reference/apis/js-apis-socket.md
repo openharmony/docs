@@ -110,6 +110,8 @@ send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
 
 通过UDPSocket连接发送数据。使用callback方式作为异步方法。
 
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -147,6 +149,8 @@ udp.send({
 send\(options: UDPSendOptions\): Promise<void\>
 
 通过UDPSocket连接发送数据。使用Promise方式作为异步方法。
+
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
 
 **需要权限**：ohos.permission.INTERNET
 
