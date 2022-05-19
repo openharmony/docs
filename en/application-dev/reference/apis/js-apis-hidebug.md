@@ -18,6 +18,8 @@ getNativeHeapSize(): bigint
 
 Obtains the total size of the native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
@@ -39,6 +41,8 @@ getNativeHeapAllocatedSize(): bigint
 
 Obtains the size of the allocated native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
@@ -59,6 +63,8 @@ Obtains the size of the allocated native heap memory.
 getNativeHeapFreeSize(): bigint
 
 Obtains the size of the free native heap memory.
+
+This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
