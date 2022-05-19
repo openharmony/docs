@@ -1,4 +1,4 @@
-# Network and Connectivity
+# Connectivity
 
 - Network Management
     - [Network Management Overview](net-mgmt-overview.md)
@@ -7,5 +7,5 @@
     - [Socket Connection](socket-connection.md)
 - IPC & RPC
     - [IPC & RPC Overview](ipc-rpc-overview.md)
-    - [IPC & RPC Development Guidelines](ipc-rpc-development-guideline.md)
+    - [IPC & RPC Development](ipc-rpc-development-guideline.md)
     - [Subscribing to State Changes of a Remote Object](subscribe-remote-state.md)

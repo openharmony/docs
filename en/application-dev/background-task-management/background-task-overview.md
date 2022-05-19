@@ -1,4 +1,4 @@
-# Background Task Overview
+# Background Task Management Overview
 
 Frequent activities of background applications cause user devices to consume power quickly and respond slowly. To meet performance and power consumption requirements, the system allows applications to execute only activities within the specifications in the background. Activities beyond the specifications are suspended by default, and resources allocated to them will be reclaimed when the available resources are insufficient.
 
