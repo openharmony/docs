@@ -8,7 +8,8 @@
   - [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md)
   
 - Development Fundamentals
-  - [Application Development Package Structure (FA Model)](package-structure.md)
-  - [Application Development Package Structure (Stage Model)](module-structure.md)
+  - [Application Package Structure Configuration File (FA Model)](package-structure.md)
+  - [Application Package Structure Configuration File (Stage Model)](module-structure.md)
   - [Resource File Categories](basic-resource-file-categories.md)
   - [SysCap](syscap.md)
+

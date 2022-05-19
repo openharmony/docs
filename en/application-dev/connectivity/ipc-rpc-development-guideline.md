@@ -1,4 +1,4 @@
-# IPC & RPC Development Guidelines<a name="EN-US_TOPIC_0000001103710988"></a>
+# IPC & RPC Development<a name="EN-US_TOPIC_0000001103710988"></a>
 
 ## When to Use<a name="section18502174174019"></a>
 

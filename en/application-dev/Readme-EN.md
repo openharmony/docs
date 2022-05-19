@@ -33,7 +33,7 @@
        - [Device Management](device/Readme-EN.md)
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
-       - [Internationalization](internationalization/international-overview.md)
+       - [Internationalization](internationalization/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
