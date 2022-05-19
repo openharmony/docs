@@ -4,7 +4,7 @@ Preferences are used for access and persistence operations on the data in the ke
 
 ## Basic Concepts
 
-- **Key-Value data structure**
+- **Key-value data structure**
 
   A type of data structure. The key is the unique identifier for a piece of data, and the value is the specific data being identified.
 
@@ -14,8 +14,9 @@ Preferences are used for access and persistence operations on the data in the ke
 
 ## Working Principles
 
-1. When an application loads data from a **Preferences** file to a **Preferences** instance, the system stores the instance in the memory through a static container. Each file of an application or process has only one **Preferences** instance in the memory, till the application removes the instance from the memory or deletes the **Preferences** file.
-2. When obtaining a **Preferences** instance, the application can read data from or write data to the instance. The data in the instance can be flushed to its **Preferences** file by calling the **flush()** method.
+When an application loads data from a **Preferences** file to a **Preferences** instance, the system stores the instance in the memory through a static container. Each file of an application or process has only one **Preferences** instance in the memory, till the application removes the instance from the memory or deletes the **Preferences** file.
+
+When obtaining a **Preferences** instance, the application can read data from or write data to the instance. The data in the instance can be flushed to its **Preferences** file by calling the **flush()** method.
 
 **Figure 1** How **Preferences** work
 
