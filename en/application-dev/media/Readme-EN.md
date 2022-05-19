@@ -4,11 +4,10 @@
 
     -   [Audio Overview](audio-overview.md)
     -   [Audio Playback Development](audio-playback.md) 
-    
     -   [Audio Recording Development](audio-recorder.md) 
     -   [Audio Rendering Development](audio-renderer.md)
-    
-    -   [Audio Capture Development](audio-capturer)  
+    -   [Audio Capture Development](audio-capturer.md)
+    -   [OpenSL ES Audio Playback Development](opensles-playback.md)
 -   Video
 
     - [Video Playback Development](video-playback.md)
