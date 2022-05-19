@@ -27,15 +27,13 @@ let path = dir + "/xxx.txt";
 let fd = fileio.openSync(path, 0o102, 0o666);
 ```
 
-## 系统能力
-
-SystemCapability.FileManagement.File.DistributedFile
-
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, dataLevel:string):Promise&lt;void&gt;
 
 以异步方法设置数据标签，以promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
 
 **参数：**
 
@@ -66,6 +64,8 @@ setSecurityLabel(path:string, dataLevel:string, callback: AsyncCallback&lt;void&
 
 以异步方法设置数据标签，以callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+
 **参数：**
 
 | 参数名    | 类型                      | 必填 | 说明                                         |
@@ -87,6 +87,8 @@ setSecurityLabelSync(path:string, dataLevel:string):void
 
 以同步方法设置数据标签。
 
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+
 **参数：**
 
 | 参数名    | 类型   | 必填 | 说明                                         |
@@ -105,6 +107,8 @@ securityLabel.setSecurityLabelSync(path, dataLevel);
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
 异步方法获取数据标签，以promise形式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
 
 **参数：**
 
@@ -134,6 +138,8 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
 异步方法获取数据标签，以callback形式返回结果。
 
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+
 **参数：**
 
   | 参数名   | 类型                        | 必填 | 说明                       |
@@ -153,6 +159,8 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 getSecurityLabelSync(path:string):string
 
 以同步方法获取数据标签。
+
+**系统能力**：SystemCapability.FileManagement.File.DistributedFile
 
 **参数：**
 
