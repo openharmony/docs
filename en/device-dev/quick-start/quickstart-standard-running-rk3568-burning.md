@@ -44,7 +44,7 @@ After the source code is imported, perform the following steps:
 
 2. Connect the computer to the target development board through the USB port.
 
-3. In DevEco Device Tool, choose **REMOTE DEVELOPMENT** > **Local PC** to check the connection status between the remote computer (Ubuntu build environment) and the local computer (Windows build environment).
+3. In DevEco Device Tool, choose **REMOTE DEVELOPMENT** > **Local PC** to check the connection status between the remote computer (Ubuntu development environment) and the local computer (Windows development environment).
 
    - If ![en-us_image_0000001261315939](figures/en-us_image_0000001261315939.png) is displayed on the right of **Local PC**, the remote computer is connected to the local computer. Inthis case, no further action is required.
    - If ![en-us_image_0000001261515989](figures/en-us_image_0000001261515989.png) is displayed, click the connect icon.
@@ -52,7 +52,7 @@ After the source code is imported, perform the following steps:
    ![en-us_image_0000001261395999](figures/en-us_image_0000001261395999.png)
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > This operation is required only in remote access mode (in the Windows+Ubuntu hybrid build environment). If the local access mode (Windows or Ubuntu build environment) is used, skip this step.
+   > This operation is required only in remote access mode (in the Windows+Ubuntu hybrid development environment). If the local access mode (Windows or Ubuntu development environment) is used, skip this step.
 
 4. In DevEco Device Tool, choose QUICK ACCESS > DevEco Home > Projects, and then click Settings.
 
