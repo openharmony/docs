@@ -1,9 +1,5 @@
 # HiSysEvent Tool Usage<a name="EN-US_TOPIC_0000001231614021"></a>
 
--   [Overview](#section1886702718521)
--   [Subscribing to Real-Time System Events](#section1210623418527)
--   [Querying Historical System Events](#section1210623418539)
-
 ## Overview<a name="section1886702718521"></a>
 
 The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** directory of the system. You can use this tool to subscribe to real-time system events or query historical system vents.

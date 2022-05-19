@@ -1,12 +1,5 @@
 # HiSysEvent Logging<a name="EN-US_TOPIC_0000001231373947"></a>
 
--   [Overview](#section77571101789)
-    -   [Introduction](#section123133332175224)
-        -   [Constraints](#section123181432175224)
--   [Development Guidelines](#section314416685113)
-    -   [Available APIs](#section13480315886)
-    -   [Development Example](#section112771171317)
-
 ## Overview<a name="section77571101789"></a>
 
 ### Introduction<a name="section123133332175224"></a>

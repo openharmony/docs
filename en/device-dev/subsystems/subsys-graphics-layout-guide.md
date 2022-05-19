@@ -1,4 +1,4 @@
-# Development Guidelines on Layout Container Components<a name="EN-US_TOPIC_0000001052661991"></a>
+# Development of Layout Container Components<a name="EN-US_TOPIC_0000001052661991"></a>
 
 Layout container components consist of basic view classes. You can set the view positions to achieve nested and overlapped layouts, set the layout type and margin to standardize the child components in the layout, and call certain functions to implement layout views based on parent and sibling components.
 

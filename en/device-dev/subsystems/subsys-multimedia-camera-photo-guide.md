@@ -1,4 +1,4 @@
-# Development Guidelines on Photographing<a name="EN-US_TOPIC_0000001052170554"></a>
+# Photographing Development<a name="EN-US_TOPIC_0000001052170554"></a>
 
 ## When to Use<a name="section1963312376119"></a>
 
