@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import LightWeightSet from '@ohos.util.LightWeightSet'  
+```ts
+import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
 
 ## System Capabilities
@@ -32,7 +32,7 @@ A constructor used to create a **LightWeightSet** instance.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 ```
 
@@ -51,7 +51,7 @@ Checks whether this container is empty.
 
 **Example**
 
-```
+```ts
 const lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.isEmpty();
 ```
@@ -76,7 +76,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -96,7 +96,7 @@ Adds all entries in a **LightWeightSet** instance to this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -126,7 +126,7 @@ Checks whether this container contains all entries of the specified **LightWeigh
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -156,7 +156,7 @@ Checks whether this container has the specified key.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
@@ -184,7 +184,7 @@ Checks whether this container contains objects of the same type as the specified
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -207,7 +207,7 @@ Increases the capacity of this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.increaseCapacityTo(10);
 ```
@@ -233,7 +233,7 @@ Obtains the position index of the entry with the specified key in this container
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -261,7 +261,7 @@ Removes an entry of the specified key from this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -289,7 +289,7 @@ Removes the entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -317,7 +317,7 @@ Obtains the value of the entry at the specified position in this container.
 
 **Parameters**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -333,7 +333,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -355,7 +355,7 @@ Obtains a string that contains all entries in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -377,7 +377,7 @@ Obtains an array that contains all objects in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -399,7 +399,7 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -434,12 +434,12 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sdfs");
 lightWeightSet.add("dfsghsf");
 lightWeightSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -458,7 +458,7 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
@@ -485,21 +485,21 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 lightWeightSet.add("sdfs");
 
 // Method 1:
 for (let item of lightWeightSet) { 
-  console.log("value: " + item);
+  console.log("value:" + item);
 }
 
 // Method 2:
 let iter = lightWeightSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

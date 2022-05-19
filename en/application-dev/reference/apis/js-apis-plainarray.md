@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import PlainArray from '@ohos.util.PlainArray'  
+```ts
+import PlainArray from '@ohos.util.PlainArray';  
 ```
 
 ## System Capability
@@ -32,7 +32,7 @@ A constructor used to create a **PlainArray** instance.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 ```
 
@@ -51,7 +51,7 @@ Checks whether this container is empty.
 
 **Example**
 
-```
+```ts
 const plainArray = new PlainArray();
 let result = plainArray.isEmpty();
 ```
@@ -77,7 +77,7 @@ Checks whether this container contains the specified key.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.has(1);
 plainArray.add(1, "sddfhf");
@@ -105,7 +105,7 @@ Obtains the value of the specified key in this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -133,7 +133,7 @@ Obtains the index of the first occurrence of an entry with the specified key in 
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -161,7 +161,7 @@ Obtains the index of the first occurrence of an entry with the specified value i
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -189,7 +189,7 @@ Obtains the key of the entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -216,7 +216,7 @@ Obtains the value of an entry at the specified position in this container.
 
 **Example**
 
-  ```
+  ```ts
   let plainArray = new PlainArray();
   plainArray.add(1, "sddfhf");
   plainArray.add(2, "sffdfhf");
@@ -237,7 +237,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -260,7 +260,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 ```
@@ -286,7 +286,7 @@ Removes an entry with the specified key from this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -315,7 +315,7 @@ Removes an entry at the specified position from this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -345,7 +345,7 @@ Removes entries in a specified range from this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -368,7 +368,7 @@ Sets a value for an entry at the specified position in this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -390,7 +390,7 @@ Obtains a string that contains all entries in this container.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -406,7 +406,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
@@ -436,12 +436,12 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-plainArray.forEach((value, key) => {
-  console.log(value, key);
+plainArray.forEach((value, index) => {
+  console.log("value:" + value, index);
 });
 ```
 
@@ -460,23 +460,23 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
 
 // Method 1:
 for (let item of plainArray) { 
-  console.log("index: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("index:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // Method 2:
 let iter = plainArray[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("index:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

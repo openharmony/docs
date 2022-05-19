@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```ts
 import HashSet from '@ohos.util.HashSet';
 ```
 
@@ -32,7 +32,7 @@ A constructor used to create a **HashSet** instance.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 ```
 
@@ -51,9 +51,9 @@ Checks whether this container is empty (contains no entry).
 
 **Example**
 
-```
+```ts
 const hashSet = new HashSet();
-hashSet.isEmpty();
+let result = hashSet.isEmpty();
 ```
 
 
@@ -77,7 +77,7 @@ Checks whether this container contains the specified entry.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
@@ -105,7 +105,7 @@ Adds an entry to this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 ```
@@ -131,7 +131,7 @@ Removes an entry from this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -147,7 +147,7 @@ Clears this container and sets its length to **0**.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -169,14 +169,14 @@ Obtains an iterator that contains all the values in this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
 let iter = hashSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -204,12 +204,12 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("sdfs");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -227,15 +227,15 @@ Obtains an iterator that contains all the entries in this container.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
 let iter = hashSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -255,7 +255,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Example**
 
-```
+```ts
 let hashSet = new HashSet();
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.add("sdfs");
@@ -269,7 +269,7 @@ for (let item of hashSet) {
 let iter = hashSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value: " + temp);
   temp = iter.next().value;
 }
 ```

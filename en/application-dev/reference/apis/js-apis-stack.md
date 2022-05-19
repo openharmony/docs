@@ -6,8 +6,8 @@
 
 ## Modules to Import
 
-```
-import Stack from '@ohos.util.Stack'  
+```ts
+import Stack from '@ohos.util.Stack';  
 ```
 
 ## System Capabilities
@@ -33,7 +33,7 @@ A constructor used to create a **Stack** instance.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 ```
 
@@ -58,7 +58,7 @@ Adds an entry at the top of this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
@@ -82,7 +82,7 @@ Removes the top entry from this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -106,7 +106,7 @@ Obtains the top entry of this container.
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -135,7 +135,7 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -168,14 +168,14 @@ callbackfn
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 stack.forEach((value, index) => {
- console.log(value, index);
+ console.log("value:" + value, index);
 });
 ```
 
@@ -193,7 +193,7 @@ Checks whether this container is empty (contains no entries).
 
 **Example**
 
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -216,7 +216,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
-```
+```ts
 let stack = new Stack();
 stack.push(2);
 stack.push(4);
@@ -225,14 +225,14 @@ stack.push(4);
 
 // Method 1:
 for (let item of stack) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // Method 2:
 let iter = stack[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
