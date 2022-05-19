@@ -41,9 +41,9 @@ It is applicable to the following scenarios:
 
 | Scenario| Tool| Usage| 
 | -------- | -------- | -------- |
-| To understand the function call sequence| DumpCatcher&nbsp;API | See [Using DumpCatcher to Obtain the Call Stack](#Using DumpCatcher to Obtain the Call Stack)| 
-| Application suspension or high CPU usage| ProcessDump | See [Using ProcessDump to Obtain the Call Stack](#Using ProcessDump to Obtain the Call Stack)| 
-| Signal crash not handled by the process| Crash log and addr2line tool| See [Locating Faults Based on Crash Logs](#Locating Faults Based on Crash Logs)| 
+| To understand the function call sequence| DumpCatcher&nbsp;API | See [Using DumpCatcher to Obtain the Call Stack](#using-dumpcatcher-to-obtain-the-call-stack)| 
+| Application suspension or high CPU usage| ProcessDump | See [Using ProcessDump to Obtain the Call Stack](#using-processdump-to-obtain-the-call-stack)| 
+| Signal crash not handled by the process| Crash log and addr2line tool| See [Locating Faults Based on Crash Logs](#locating-faults-based-on-crash-logs)| 
 
 
 ## Using DumpCatcher to Obtain the Call Stack

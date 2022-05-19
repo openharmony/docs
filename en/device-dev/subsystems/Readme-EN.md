@@ -95,7 +95,7 @@
     - [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
   - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
-  - [Faultlogger Development](subsys-dfx-faultlogger.md)
+  - [FaultLogger Development](subsys-dfx-faultlogger.md)
 - [R&D Tools](subsys-toolchain.md)
   - [bytrace Usage Guidelines](subsys-toolchain-bytrace-guide.md)
   - [hdc\_std Usage Guidelines](subsys-toolchain-hdc-guide.md)
