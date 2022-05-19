@@ -340,7 +340,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        return HDF_SUCCESS;
    }
    
-   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口,将公钥信息保持，template列表用于和本地的template做对账
+   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口，将公钥信息保存，template列表用于和本地的template做对账
    int32_t ExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
        const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
    {
@@ -524,57 +524,9 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
    
 
 ### 调测验证
-驱动开发完成后，通过[用户认证 API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，基于RK3568平台验证。认证和取消功能验证的JS测试代码如下：
+驱动开发完成后，可基于RK3568平台验证, 通过设备的设置和锁屏功能验证口令认证功能是否正常，测试步骤如下：
 
-```js
-// API version 8
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-let auth = new userIAM_userAuth.UserAuth();
-
-export default {
-    getVersion() {
-        console.info("start get version");
-        let version = this.auth.getVersion();
-        console.info("auth version = " + version);
-    },
-
-    startAuth() {
-        console.info("start auth");
-        this.auth.auth(null, userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.AuthTrustLevel.ATL3, {
-            onResult: (result, extraInfo) => {
-                try {
-                    console.info("auth onResult result = " + result);
-                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == 'SUCCESS') {
-                        // 此处添加认证成功逻辑
-                    }  else {
-                        // 此处添加认证失败逻辑
-                    }
-                } catch (e) {
-                    console.info("auth onResult error = " + e);
-                }
-            }
-        });
-    },
-
-    cancelAuth() {
-        console.info("start cancel auth");
-        // contextId通过auth接口获取
-        let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.AuthTrustLevel.ATL3, {
-            onResult: (result, extraInfo) => {
-                console.info("auth onResult result = " + result);
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                console.info("auth onAcquireInfo module = " + module);
-            }
-        });
-        let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-            console.info("cancel auth success");
-        } else {
-            console.error("cancel auth fail");
-        }
-    }
-}
-```
+1.  点击设备的 “ 设置 > 生物识别和密码 > 锁屏密码" 后，录入锁屏密码。
+2.  按设备电源键进行锁屏，再次按设备的电源键进行解锁，输入锁屏密码进行解锁验证，至此就完成了口令的录入和认证功能。
+3.  进入设置中的生物识别和密码，点击关闭锁屏密码或者更改锁屏密码，来验证口令的删除和更新功能是否正常。
+4.  在步骤1完成后，进行步骤2的输入锁屏密码时，输入错误密码达到一定的次数来验证，防暴力破解能力是否正常（例如：连续输入5次错误密码，设备将被冻结60s）。
