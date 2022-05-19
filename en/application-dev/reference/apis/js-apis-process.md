@@ -17,13 +17,13 @@ import process from '@ohos.process';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| egid | number | Yes| No| Effective group identifier (EGID) of a process.|
-| euid | number | Yes| No| Effective user identifier (EUID) of a process.|
-| gid | number | Yes| No| Group identifier (GID) of a process.|
+| egid | number | Yes| No| Effective group identifier (EGID) of a process. This is a system API and cannot be called by third-party applications.|
+| euid | number | Yes| No| Effective user identifier (EUID) of a process. This is a system API and cannot be called by third-party applications.|
+| gid | number | Yes| No| Group identifier (GID) of a process. This is a system API and cannot be called by third-party applications.|
 | uid | number | Yes| No| User identifier (UID) of a process.|
-| groups | number[] | Yes| No| Array with supplementary group IDs.|
+| groups | number[] | Yes| No| Array with supplementary group IDs. This is a system API and cannot be called by third-party applications.|
 | pid | number | Yes| No| Process ID (PID) of a process.|
-| ppid | number | Yes| No| Parent process ID (PPID) of a process.|
+| ppid | number | Yes| No| Parent process ID (PPID) of a process. This is a system API and cannot be called by third-party applications.|
 | tid<sup>8+</sup> | number | Yes| No| Thread ID (TID) of a process.|
 
 
@@ -38,10 +38,10 @@ Allows a process to obtain the standard input and output of its child processes,
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | Yes| No| PID of the child process.|
-| ppid | number | Yes| No| PPID of the child process.|
-| exitCode | number | Yes| No| Exit code of the child process.|
-| killed | boolean | Yes| No| Whether the parent process successfully sends a signal to the child process to terminate it.|
+| pid | number | Yes| No| PID of the child process. This is a system API and cannot be called by third-party applications.|
+| ppid | number | Yes| No| PPID of the child process. This is a system API and cannot be called by third-party applications.|
+| exitCode | number | Yes| No| Exit code of the child process. This is a system API and cannot be called by third-party applications.|
+| killed | boolean | Yes| No| Whether the parent process successfully sends a signal to the child process to terminate it. This is a system API and cannot be called by third-party applications.|
 
 
 ### wait
@@ -49,6 +49,8 @@ Allows a process to obtain the standard input and output of its child processes,
 wait(): Promise&lt;number&gt;
 
 Waits until the child process ends. This method uses a promise to return the exit code of the child process.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -75,6 +77,8 @@ getOutput(): Promise&lt;Uint8Array&gt;
 
 Obtains the standard output of the child process.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -99,6 +103,8 @@ child.getOutput.then(val=>{
 getErrorOutput(): Promise&lt;Uint8Array&gt;
 
 Obtains the standard error output of the child process.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -125,6 +131,8 @@ close(): void
 
 Closes the child process in running.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -140,6 +148,8 @@ child.close();
 kill(signal: number | string): void
 
 Sends a signal to the specified child process to terminate it.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -383,6 +393,8 @@ runCmd(command: string, options?: { timeout : number, killSignal : number | stri
 
 Forks a new process to run a shell command and returns the **ChildProcess** object.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -438,6 +450,8 @@ on(type: string, listener: EventListener): void
 
 Stores the events triggered by the user.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -467,6 +481,8 @@ process.on("data", (e)=>{
 off(type: string): boolean
 
 Deletes the event stored by the user.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -521,6 +537,8 @@ cwd(): string
 
 Obtains the working directory of this process.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -535,6 +553,8 @@ var path = process.cwd();
 chdir(dir: string): void
 
 Changes the working directory of this process.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -594,6 +614,7 @@ Sends a signal to the specified process to terminate it.
 | boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.|
 
 **Example**
+
 ```js
 var pres = process.pid
 var result = that.kill(28, pres)
