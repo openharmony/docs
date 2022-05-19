@@ -384,30 +384,30 @@
       - [Vibrator](driver-peripherals-vibrator-des.md)
       - [Light](driver-peripherals-light-des.md)
   - Compilation and Building
-    - [Building Guidelines for Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
-    - [Building Guidelines for Standard Systems](subsystems/subsys-build-standard-large.md)
+    - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
+    - [Building the Standard System](subsystems/subsys-build-standard-large.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
-    - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guid.md)
+    - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - Graphics
-    - [Graphics](subsystems/subsys-graphics-overview.md)
-    - [Development Guidelines on Container Components](subsystems/subsys-graphics-container-guide.md)
-    - [Development Guidelines on Layout Container Components](subsystems/subsys-graphics-layout-guide.md)
-    - [Development Guidelines on Common Components](subsystems/subsys-graphics-common-guide.md)
-    - [Development Guidelines on Animators](subsystems/subsys-graphics-animation-guide.md)
+    - [Graphics Overview](subsystems/subsys-graphics-overview.md)
+    - [Container Component Development](subsystems/subsys-graphics-container-guide.md)
+    - [Development of Layout Container Components](subsystems/subsys-graphics-layout-guide.md)
+    - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
+    - [Animator Development Guidelines](subsystems/subsys-graphics-animation-guide.md)
   - Multimedia
     - Camera
-      - [Overview](subsystems/subsys-multimedia-camera-overview.md)
-      - [Development Guidelines on Photographing](subsystems/subsys-multimedia-camera-photo-guide.md)
-      - [Development Guidelines on Video Recording](subsystems/subsys-multimedia-camera-record-guide.md)
-      - [Development Guidelines on Previewing](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - Audio and Video
-      - [Overview](subsystems/subsys-multimedia-video-overview.md)
-      - [Development Guidelines on Media Playback](subsystems/subsys-multimedia-video-play-guide.md)
-      - [Development Guidelines on Media Recording](subsystems/subsys-multimedia-video-record-guide.md)
+      - [Camera Overview](subsystems/subsys-multimedia-camera-overview.md)
+      - [Photographing Development](subsystems/subsys-multimedia-camera-photo-guide.md)
+      - [Video Recording Development](subsystems/subsys-multimedia-camera-record-guide.md)
+      - [Previewing Development](subsystems/subsys-multimedia-camera-preview-guide.md)
+    - Audio/Video
+      - [Audio/Video Overview](subsystems/subsys-multimedia-video-overview.md)
+      - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
+      - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)
   - Utils
     - [Utils Overview](subsystems/subsys-utils-overview.md)
-    - [Utils Development Guidelines](subsystems/subsys-utils-guide.md)
+    - [Utils Development](subsystems/subsys-utils-guide.md)
     - [Utils FAQ](subsystems/subsys-utils-faqs.md)
   - AI Framework
     - [AI Engine Framework](subsystems/subsys-aiframework-guide.md)
@@ -440,7 +440,7 @@
     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   - Application Framework
-    - [Overview](subsystems/subsys-application-framework-overview.md)
+    - [Application Framework Overview](subsystems/subsys-application-framework-overview.md)
     - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
     - [Development Guidelines](subsystems/subsys-application-framework-guide.md)
     - [Development Example](subsystems/subsys-application-framework-demo.md)
@@ -449,13 +449,13 @@
     - [Telephony Overview](subsystems/subsys-tel-overview.md)
     - [Telephony Development](subsystems/subsys-tel-guide.md)
   - Security
-    - [Overview](subsystems/subsys-security-overview.md)
+    - [Security Overview](subsystems/subsys-security-overview.md)
     - [Development on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
-    - [Startup](subsystems/subsys-boot-overview.md)
+    - [Startup Overview](subsystems/subsys-boot-overview.md)
     - [init Module](subsystems/subsys-boot-init.md)
     - [appspawn Module](subsystems/subsys-boot-appspawn.md)
     - [appspawn Module for the Standard System](subsystems/subsys-boot-appspawn-standard.md)
@@ -517,7 +517,7 @@
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
 
-  - [Test Subsystem](subsystems/subsys-testguide-test.md)
+  - [Test](subsystems/subsys-testguide-test.md)
   - Debugging Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)

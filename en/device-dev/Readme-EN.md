@@ -43,7 +43,7 @@
   - [Mini- and Small-System Devices](guide/device-lite.md)	
   - [Standard-System Devices](guide/device-standard.md)
 - Debugging
-  - [Test Subsystem](subsystems/subsys-testguide-test.md)	
+  - [Test](subsystems/subsys-testguide-test.md)	
   - [R&D Tools](subsystems/subsys-toolchain.md)
 - XTS Certification	
   - [XTS](subsystems/subsys-xts-guide.md)	
@@ -53,8 +53,8 @@
 
 - Hands-On Tutorials	
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md) 
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)  
+  - [Codelabs](https://gitee.com/openharmony/codelabs)  
 - References
   - [FAQs](faqs/Readme-EN.md)
 - Contribution
-  - [How to Contribute](../contribute/contribution.md)
+  - [How to Contribute](../contribute/documentation-contribution.md)
