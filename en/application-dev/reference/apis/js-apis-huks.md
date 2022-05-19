@@ -98,7 +98,7 @@ Enumerates the key purposes.
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
 | HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt plain text. |
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text. |
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt cipher text. |
 | HUKS_KEY_PURPOSE_SIGN    | 4    | Usedd to sign data.    |
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signed data.  |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
