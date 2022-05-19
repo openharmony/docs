@@ -208,7 +208,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
+    media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
         if (fileAsset != undefined) {
             console.info('createAsset successfully, message = ' + err);
         } else {
@@ -250,7 +250,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
+    media.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
         console.info("createAsset successfully:"+ JSON.stringify(asset));
     }).catch(function(err){
         console.info("createAsset failed with error:"+ err);
