@@ -273,7 +273,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 
 #### Registering and Binding Codec to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
 
 Fill in the **g_codecDriverEntry** structure. Ensure that the value of **moduleName** is the same as that in **device_info.hcs**. Implement the pointers to the **Bind**, **Init**, and **Release** functions.
 
@@ -335,7 +335,7 @@ Configure the driver node, loading sequence, and service name in the .hcs file. 
 
 Path of the standard-system configuration file:
 
-**vendor/hisilicon/Hi3516DV300/hdf_config/khdf/**
+**vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/**
 
 Path of the small-system configuration file:
 
@@ -779,7 +779,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 
 #### Registering and Binding Accessory to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
 
 Fill in the **g_tfa9879DriverEntry** structure. Ensure that the value of **moduleName** is the same as that in **device_info.hcs**. Implement the pointers to the **Bind**, **Init**, and **Release** functions.
 
@@ -900,7 +900,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 #### Registering and Binding Platform to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
 
 - Fill in the **g_platformDriverEntry** structure.
 - Ensure that the value of **moduleName** is the same as that in **device_info.hcs**.
@@ -1064,7 +1064,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 
 #### Registering and Binding DAI to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
 
 - Fill in the **g_daiDriverEntry** structure.
 - Ensure that the value of **moduleName** is the same as that in **device_info.hcs**.
@@ -1215,7 +1215,7 @@ HCS Files and Directory
 
 ```
 Standard system:
-vendor/hisilicon/Hi3516DV300/
+vendor/hisilicon/hispark_taurus_standard/
 └── hdf_config
     └── khdf
         ├── audio

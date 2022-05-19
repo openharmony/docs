@@ -335,7 +335,7 @@ hcs中配置驱动节点、加载顺序、服务名称等。hcs语法可参考HD
 
 标准系统配置文件路径：
 
-vendor/hisilicon/Hi3516DV300/hdf_config/khdf/
+vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/
 
 小型系统配置文件路径：
 
@@ -1215,7 +1215,7 @@ hcs文件与目录
 
 ```
 标准系统：
-vendor/hisilicon/Hi3516DV300/
+vendor/hisilicon/hispark_taurus_standard/
 └── hdf_config
     └── khdf
         ├── audio

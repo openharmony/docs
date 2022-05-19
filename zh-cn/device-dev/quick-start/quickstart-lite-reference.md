@@ -11,7 +11,7 @@
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > _name_为产品名称，例如Hi3516DV300、rk3568等。
+   > _name_为产品名称，例如hispark_taurus_standard、rk3568等。
 
 2. 检查编译结果。编译完成后，log中显示如下：
      

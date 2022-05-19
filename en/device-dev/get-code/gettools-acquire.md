@@ -156,7 +156,7 @@ Run the following script to start building for standard-system devices \(referen
 ./build.sh --product-name {product_name} --ccache
 ```
 
-**product\_name**  indicates the platform supported by the current distribution, for example, Hi3516DV300 and rk3568.
+**product\_name**  indicates the platform supported by the current distribution, for example, hispark_taurus_standard and rk3568.
 
 Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
