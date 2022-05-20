@@ -155,6 +155,7 @@ Sets a trace ID. This API works in synchronous manner.
 **Example**
 
 ```js
+let asyncTraceId;
 let traceId = hiTraceChain.begin("business");
 // Set the current trace ID after the service logic is executed for several times.
 hiTraceChain.setId(asyncTraceId);
@@ -297,7 +298,7 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 
 ```js
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-hiTraceChain.enable(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+hiTraceChain.enableFlag(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // The value of enabledDoNotCreateSpanFlag is true.
 let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 ```
