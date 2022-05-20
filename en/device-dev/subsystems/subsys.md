@@ -4,10 +4,10 @@
 -   **[Distributed Remote Startup](subsys-remote-start.md)**  
 -   **[Graphics](subsys-graphics.md)**  
 -   **[Multimedia](subsys-multimedia.md)**  
--   **[Data Management](subsys-data.md)**  
 -   **[Utils](subsys-utils.md)**  
 -   **[AI Framework](subsys-aiframework.md)**  
--   **[Sensors](subsys-sensor.md)**  
+-   **[Data Management](subsys-data.md)**  
+-   **[Sensor](subsys-sensor.md)**  
 -   **[Application Framework](subsys-application-framework.md)**  
 -   **[OTA Update](subsys-ota-guide.md)**  
 -   **[Telephony](subsys-tel.md)**

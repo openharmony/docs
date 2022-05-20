@@ -1,16 +1,5 @@
 # HiSysEvent Logging Configuration<a name="EN-US_TOPIC_0000001080478132"></a>
 
--   [Overview](#section315316685115)
-    -   [Basic Concepts](#section123181432175143)
-        -   [Constraints](#section123181432175114)
--   [Writing a YAML File](#section123181432175113)
-    -   [Writing Rules](#section123181432175133)
-        -   [Example](#section123181432175123)
--   [Verifying the YAML File](#section123181432175115)
-    -   [Configuring the YAML File Path](#section123181432175135)
-    -   [Compiling the YAML File](#section123181432175137)
-    -   [Logging and Querying Events](#section123181432175139)
-
 ## Overview<a name="section315316685115"></a>
 
 If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#section123181432175135) in the **bundle.js** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.js** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
