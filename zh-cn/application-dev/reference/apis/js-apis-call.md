@@ -364,7 +364,7 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
 格式化电话号码。使用callback异步回调。
 
-电话号码格式化后为标准数字字串，例如：”138 xxxx xxxx“、”0755 xxxx xxxx“。
+电话号码格式化后为标准数字字串，例如：“138 xxxx xxxx”、“0755 xxxx xxxx”。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -389,7 +389,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 
 格式化电话号码，可设置格式化参数。使用callback异步回调。
 
-电话号码格式化后为标准数字字串，例如：”138 xxxx xxxx“、”0755 xxxx xxxx“。
+电话号码格式化后为标准数字字串，例如：“138 xxxx xxxx”、“0755 xxxx xxxx”。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
