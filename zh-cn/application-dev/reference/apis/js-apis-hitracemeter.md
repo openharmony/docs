@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import hiTraceMeter from '@ohos.hiTraceMeter';
 ```
 
@@ -32,9 +32,8 @@ startTrace(name: string, taskId: number): void
 
 **示例：**
 
-```
+```js
 hiTraceMeter.startTrace("myTestFunc", 1);
-hiTraceMeter.startTrace("myTestFunc", 1, 5); //从startTrace到finishTrace流程的耗时期望为5ms
 ```
 
 
@@ -57,11 +56,11 @@ finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemetersta
 
 **示例：**
 
-```
+```js
 hiTraceMeter.finishTrace("myTestFunc", 1);
 ```
 
-```
+```js
 //追踪并行执行的同名任务
 hiTraceMeter.startTrace("myTestFunc", 1);
 //业务流程...... 
@@ -72,7 +71,7 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 hiTraceMeter.finishTrace("myTestFunc", 2);
 ```
 
-```
+```js
 //追踪串行执行的同名任务
 hiTraceMeter.startTrace("myTestFunc", 1);
 //业务流程...... 
@@ -100,7 +99,7 @@ traceByValue(name: string, count: number): void
 | count | number | 是 | 变量的值 |
 
 **示例：**
-```
+```js
 let traceCount = 3;
 hiTraceMeter.traceByValue("myTestCount", traceCount);
 traceCount = 4;

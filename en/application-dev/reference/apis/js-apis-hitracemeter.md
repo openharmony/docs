@@ -1,12 +1,12 @@
 # Performance Tracing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import hiTraceMeter from '@ohos.hiTraceMeter';
 ```
 
@@ -25,16 +25,15 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name| Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes | Name of the trace task to start. |
+| taskId | number | Yes| Task ID. |
 
 **Example**
 
-```
+```js
 hiTraceMeter.startTrace("myTestFunc", 1);
-hiTraceMeter.startTrace("myTestFunc", 1, 5); // The expected duration of the trace task is 5 ms.
 ```
 
 
@@ -52,16 +51,16 @@ To stop a trace task, the values of name and task ID in **finishTrace** must be 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes| Name of the trace task to start. |
+| taskId | number | Yes| Task ID. |
 
 **Example**
 
-```
+```js
 hiTraceMeter.finishTrace("myTestFunc", 1);
 ```
 
-```
+```js
 // Start track tasks with the same name concurrently.
 hiTraceMeter.startTrace("myTestFunc", 1);
 // Service flow
@@ -72,7 +71,7 @@ hiTraceMeter.finishTrace("myTestFunc", 1);
 hiTraceMeter.finishTrace("myTestFunc", 2);
 ```
 
-```
+```js
 // Start track tasks with the same name at different times.
 hiTraceMeter.startTrace("myTestFunc", 1);
 // Service flow
@@ -96,11 +95,11 @@ Traces the value changes of a variable.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the variable.|
-| count | number | Yes| Value of the variable.|
+| name | string | Yes | Name of the variable. |
+| count | number | Yes | Value of the variable. |
 
 **Example**
-```
+```js
 let traceCount = 3;
 hiTraceMeter.traceByValue("myTestCount", traceCount);
 traceCount = 4;
