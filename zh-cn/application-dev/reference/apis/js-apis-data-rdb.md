@@ -17,7 +17,7 @@ getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;Rdb
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -25,15 +25,16 @@ getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;Rdb
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
 
-**示例**：
+**示例：**
 
 ```js
 const STORE_CONFIG = { name: "RdbTest.db"}
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
-        console.info('create table done.')
-        })
+    if (err) {
+        console.info("Get RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Get RdbStore successfully.")
 })
 ```
 ## data_rdb.getRdbStore
@@ -44,7 +45,7 @@ getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -57,21 +58,15 @@ getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 | -------- | -------- |
 | Promise&lt;[RdbStore](#rdbstore)&gt; | 指定Promise回调函数。返回一个RdbStore。 |
 
-**示例**：
+**示例：**
 
 ```js
 const STORE_CONFIG = { name: "RdbTest.db" }
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promisegetRdb = data_rdb.getRdbStore(STORE_CONFIG, 1);
-promisegetRdb.then(async (rdbStore) => {
-    let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
-    promiseExecSql.then(() => {
-        console.info('executeSql creat done.')
-    }).catch((err) => {
-        console.log("executeSql creat err.")
-    })
+let promise = data_rdb.getRdbStore(STORE_CONFIG, 1);
+promise.then(async (rdbStore) => {
+    console.log("Get RdbStore successfully.")
 }).catch((err) => {
-    console.log("getRdbStore err.")
+    console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
@@ -84,7 +79,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -93,15 +88,16 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
 
-**示例**：
+**示例：**
 
 ```js
 const STORE_CONFIG = { name: "RdbTest.db"}
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-    rdbStore.executeSql(SQL_CREATE_TABLE, null, function() {
-        console.info('create table done.')
-        })    
+    if (err) {
+        console.info("Get RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Get RdbStore successfully.")
 })
 ```
 
@@ -113,7 +109,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -127,21 +123,15 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 | -------- | -------- |
 | Promise&lt;[RdbStore](#rdbstore)&gt; | 指定Promise回调函数。返回一个RdbStore。 |
 
-**示例**：
+**示例：**
 
 ```js
 const STORE_CONFIG = { name: "RdbTest.db" }
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promisegetRdb = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
-promisegetRdb.then(async (rdbStore) => {
-    let promiseExecSql = rdbStore.executeSql(SQL_CREATE_TABLE, null)
-    promiseExecSql.then(() => {
-        console.info('executeSql creat done.')
-    }).catch((err) => {
-        console.log("executeSql creat err.")
-    })
+let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+promise.then(async (rdbStore) => {
+    console.log("Get RdbStore successfully.")
 }).catch((err) => {
-    console.log("getRdbStore err.")
+    console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
@@ -153,18 +143,22 @@ deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
-**示例**：
-  ```js
-  data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
-      console.info('delete store done.')
-  })
-  ```
+**示例：**
+```js
+data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
+    if (err) {
+        console.info("Delete RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Delete RdbStore successfully.")
+})
+```
   ## data_rdb.deleteRdbStore
 
 deleteRdbStore(name: string): Promise&lt;void&gt;
@@ -183,15 +177,15 @@ deleteRdbStore(name: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
-**示例**：
-  ```js
-  let promisedeleteRdb = data_rdb.deleteRdbStore("RdbTest.db")
-  promisedeleteRdb.then(()=>{
-      console.info('delete store done.')
-  }).catch((err) => {
-      console.log("deleteRdbStore err.")
-  })
-  ```
+**示例：**
+```js
+let promise = data_rdb.deleteRdbStore("RdbTest.db")
+promise.then(()=>{
+    console.log("Delete RdbStore successfully.")
+}).catch((err) => {
+    console.info("Delete RdbStore failed, err: " + err)
+})
+```
 
 ## data_rdb.deleteRdbStore<sup>8+</sup>
 
@@ -201,19 +195,23 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
-**示例**：
-  ```js
-  data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
-      console.info('delete store done.')
-  })
-  ```
+**示例：**
+```js
+data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+    if (err) {
+        console.info("Delete RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Delete RdbStore successfully.")
+})
+```
 
 ## data_rdb.deleteRdbStore<sup>8+</sup>
 
@@ -234,15 +232,15 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
-**示例**：
-  ```js
-  let promisedeleteRdb = data_rdb.deleteRdbStore("RdbTest.db")
-  promisedeleteRdb.then(()=>{
-      console.info('delete store done.')
-  }).catch((err) => {
-      console.log("deleteRdbStore err.")
-  })
-  ```
+**示例：**
+```js
+let promise = data_rdb.deleteRdbStore("RdbTest.db")
+promise.then(()=>{
+    console.log("Delete RdbStore successfully.")
+}).catch((err) => {
+    console.info("Delete RdbStore failed, err: " + err)
+})
+```
 
 
 ## RdbPredicates
@@ -259,15 +257,15 @@ constructor(name: string)
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库表名。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+```
 
 ### inDevices<sup>8+</sup>
 
@@ -278,7 +276,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | devices | Array&lt;string&gt; | 是 | 指定的组网内的远程设备ID。 |
@@ -288,11 +286,11 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.inDevices(['12345678abcde'])
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.inDevices(['12345678abcde'])
+```
 
 ### inAllDevices<sup>8+</sup>
 
@@ -308,11 +306,11 @@ inAllDevices(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.inAllDevices()
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.inAllDevices()
+```
 
 ### equalTo
 
@@ -323,7 +321,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -334,11 +332,11 @@ equalTo(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "lisi")
+```
 
 
 ### notEqualTo
@@ -350,7 +348,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -361,11 +359,11 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.notEqualTo("NAME", "lisi")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.notEqualTo("NAME", "lisi")
+```
 
 
 ### beginWrap
@@ -382,16 +380,16 @@ beginWrap(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回带有左括号的Rdb谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
-      .beginWrap()
-      .equalTo("AGE", 18)
-      .or()
-      .equalTo("SALARY", 200.5)
-      .endWrap()
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "lisi")
+    .beginWrap()
+    .equalTo("AGE", 18)
+    .or()
+    .equalTo("SALARY", 200.5)
+    .endWrap()
+```
 
 
 ### endWrap
@@ -408,16 +406,16 @@ endWrap(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回带有右括号的Rdb谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
-      .beginWrap()
-      .equalTo("AGE", 18)
-      .or()
-      .equalTo("SALARY", 200.5)
-      .endWrap()
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "lisi")
+    .beginWrap()
+    .equalTo("AGE", 18)
+    .or()
+    .equalTo("SALARY", 200.5)
+    .endWrap()
+```
 
 
 ### or
@@ -434,13 +432,13 @@ or(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回带有或条件的Rdb谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-      .or()
-      .equalTo("NAME", "Rose")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+    .or()
+    .equalTo("NAME", "Rose")
+```
 
 
 ### and
@@ -457,13 +455,13 @@ and(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回带有和条件的Rdb谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-      .and()
-      .equalTo("SALARY", 200.5)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+    .and()
+    .equalTo("SALARY", 200.5)
+```
 
 
 ### contains
@@ -474,7 +472,7 @@ contains(field: string, value: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -485,11 +483,11 @@ contains(field: string, value: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.contains("NAME", "os")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.contains("NAME", "os")
+```
 
 
 ### beginsWith
@@ -501,7 +499,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -512,11 +510,11 @@ beginsWith(field: string, value: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.beginsWith("NAME", "os")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.beginsWith("NAME", "os")
+```
 
 
 ### endsWith
@@ -528,7 +526,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -539,11 +537,11 @@ endsWith(field: string, value: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.endsWith("NAME", "se")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.endsWith("NAME", "se")
+```
 
 
 ### isNull
@@ -555,7 +553,7 @@ isNull(field: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -566,10 +564,10 @@ isNull(field: string): RdbPredicates
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
 - 示例
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.isNull("NAME")
-  ```
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.isNull("NAME")
+```
 
 
 ### isNotNull
@@ -581,7 +579,7 @@ isNotNull(field: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -591,11 +589,11 @@ isNotNull(field: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.isNotNull("NAME")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.isNotNull("NAME")
+```
 
 
 ### like
@@ -607,7 +605,7 @@ like(field: string, value: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -618,11 +616,11 @@ like(field: string, value: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.like("NAME", "%os%")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.like("NAME", "%os%")
+```
 
 
 ### glob
@@ -634,7 +632,7 @@ glob(field: string, value: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -645,11 +643,11 @@ glob(field: string, value: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.glob("NAME", "?h*g")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.glob("NAME", "?h*g")
+```
 
 
 ### between
@@ -661,7 +659,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -673,11 +671,11 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.between("AGE", 10, 50)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.between("AGE", 10, 50)
+```
 
 
 ### notBetween
@@ -689,7 +687,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -701,11 +699,11 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.notBetween("AGE", 10, 50)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.notBetween("AGE", 10, 50)
+```
 
 
 ### greaterThan
@@ -716,7 +714,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -727,11 +725,11 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.greaterThan("AGE", 18)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.greaterThan("AGE", 18)
+```
 
 
 ### lessThan
@@ -743,7 +741,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -754,11 +752,11 @@ lessThan(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.lessThan("AGE", 20)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.lessThan("AGE", 20)
+```
 
 
 ### greaterThanOrEqualTo
@@ -771,7 +769,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -782,11 +780,11 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.greaterThanOrEqualTo("AGE", 18)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.greaterThanOrEqualTo("AGE", 18)
+```
 
 
 ### lessThanOrEqualTo
@@ -799,7 +797,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -810,11 +808,11 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.lessThanOrEqualTo("AGE", 20)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.lessThanOrEqualTo("AGE", 20)
+```
 
 
 ### orderByAsc
@@ -827,7 +825,7 @@ orderByAsc(field: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -837,11 +835,11 @@ orderByAsc(field: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.orderByAsc("NAME")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.orderByAsc("NAME")
+```
 
 
 ### orderByDesc
@@ -854,7 +852,7 @@ orderByDesc(field: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -864,11 +862,11 @@ orderByDesc(field: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.orderByDesc("AGE")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.orderByDesc("AGE")
+```
 
 
 ### distinct
@@ -885,18 +883,18 @@ distinct(): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回可用于过滤重复记录的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promisequery = rdbStore.query(predicates, ["NAME"])
-  promisequery.then((resultSet) => {
-      console.log("resultSet column names:" + resultSet.columnNames)
-      console.log("resultSet column count:" + resultSet.columnCount)
-  }).catch((err) => {
-      console.log("query err.")
-  })
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Rose").distinct("NAME")
+let promise = rdbStore.query(predicates, ["NAME"])
+promise.then((resultSet) => {
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+}).catch((err) => {
+    console.log("query err.")
+})
+```
 
 
 ### limitAs
@@ -908,7 +906,7 @@ limitAs(value: number): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 最大数据记录数。 |
@@ -918,11 +916,11 @@ limitAs(value: number): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回可用于设置最大数据记录数的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").limitAs(3)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Rose").limitAs(3)
+```
 
 
 ### offsetAs
@@ -934,7 +932,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
@@ -944,11 +942,11 @@ offsetAs(rowOffset: number): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回具有指定返回结果起始位置的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").offsetAs(3)
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Rose").offsetAs(3)
+```
 
 
 ### groupBy
@@ -960,7 +958,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | fields | Array&lt;string&gt; | 是 | 指定分组依赖的列名。 |
@@ -970,11 +968,11 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回分组查询列的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.groupBy(["AGE", "NAME"])
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.groupBy(["AGE", "NAME"])
+```
 
 
 ### indexedBy
@@ -985,7 +983,7 @@ indexedBy(field: string): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 索引列的名称。 |
@@ -996,11 +994,11 @@ indexedBy(field: string): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.indexedBy("SALARY_INDEX")
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.indexedBy("SALARY_INDEX")
+```
 
 
 ### in
@@ -1012,7 +1010,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -1024,11 +1022,11 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.in("AGE", [18, 20])
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.in("AGE", [18, 20])
+```
 
 
 ### notIn
@@ -1040,7 +1038,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | field | string | 是 | 数据库表中的列名。 |
@@ -1052,11 +1050,11 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 | -------- | -------- |
 | [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.notIn("NAME", ["Lisa", "Rose"])
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.notIn("NAME", ["Lisa", "Rose"])
+```
 
 
 ## RdbStore
@@ -1072,25 +1070,29 @@ insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 指定的目标表名。 |
 | values | [ValuesBucket](#valuesbucket) | 是 | 表示要插入到表中的数据行。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
-**示例**：
-  ```js
-  const valueBucket = {
-      "NAME": "Lisa",
-      "AGE": 18,
-      "SALARY": 100.5,
-      "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-  }
-  rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
-      console.log("insert first done: " + ret)
-  })
-  ```
+**示例：**
+```js
+const valueBucket = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
+    if (err) {
+        console.info("Insert failed, err: " + err)
+        return
+    }
+    console.log("Insert first done: " + ret)
+})
+```
 
 
 ### insert
@@ -1101,7 +1103,7 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 指定的目标表名。 |
@@ -1112,21 +1114,21 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
 | -------- | -------- |
 | Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
-**示例**：
-  ```js
-  const valueBucket = {
-      "NAME": "Lisa",
-      "AGE": 18,
-      "SALARY": 100.5,
-      "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-  }
-  let promiseinsert = rdbStore.insert("EMPLOYEE", valueBucket)
-  promiseinsert.then(async (ret) => {
-      console.log("insert first done: " + ret)
-  }).catch((err) => {
-      console.log("insert err.")
-  })
-  ```
+**示例：**
+```js
+const valueBucket = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let promise = rdbStore.insert("EMPLOYEE", valueBucket)
+promise.then(async (ret) => {
+    console.log("Insert first done: " + ret)
+}).catch((err) => {
+    console.log("Insert failed, err: " + err)
+})
+```
 
 
 ### update
@@ -1137,26 +1139,31 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | 是 | value指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示要插入到表中的数据行。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
 
-**示例**：
-  ```js
-  const valueBucket = {
-      "NAME": "Rose",
-      "AGE": 22,
-      "SALARY": 200.5,
-      "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-  }
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-  rdbStore.update(valueBucket, predicates, function (err, ret) {
-      console.log("updated row count: " + ret)})
-  ```
+**示例：**
+```js
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+rdbStore.update(valueBucket, predicates, function (err, ret) {
+    if (err) {
+        console.info("Updated failed, err: " + err)
+        return
+    }
+    console.log("Updated row count: " + ret)
+})
+```
 
 
 ### update
@@ -1167,7 +1174,7 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | 是 | value指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
@@ -1178,23 +1185,23 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 | -------- | -------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
-**示例**：
-  ```js
-  const valueBucket = {
-      "NAME": "Rose",
-      "AGE": 22,
-      "SALARY": 200.5,
-      "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-  }
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-  let promiseupdate = rdbStore.update(valueBucket, predicates)
-  promiseupdate.then(async (ret) => {
-       console.log("updated row count: " + ret)
-  }).catch((err) => {
-      console.log("update err.")
-  })
-  ```
+**示例：**
+```js
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+let promise = rdbStore.update(valueBucket, predicates)
+promise.then(async (ret) => {
+    console.log("Updated row count: " + ret)
+}).catch((err) => {
+    console.info("Updated failed, err: " + err)
+})
+```
 
 
 ### delete
@@ -1206,20 +1213,24 @@ delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
-  rdbStore.delete(predicates, function (err, rows) {
-      console.log("delete rows: " + rows)
-  })
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+rdbStore.delete(predicates, function (err, rows) {
+    if (err) {
+        console.info("Delete failed, err: " + err)
+        return
+    }
+    console.log("Delete rows: " + rows)
+})
+```
 
 
 ### delete
@@ -1230,7 +1241,7 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
@@ -1240,17 +1251,17 @@ delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 | -------- | -------- |
 | Promise&lt;number&gt; | 指定Promise回调函数。返回受影响的行数。 |
 
-**示例**：
-  ```js
-  let predicatesdelete = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicatesdelete.equalTo("NAME", "Lisa")
-  let promisedelete = rdbStore.delete(predicates)
-  promisedelete.then((rows) => {
-      console.log("delete rows: " + rows)
-  }).catch((err) => {
-      console.log("delete err.")
-  })
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Lisa")
+let promise = rdbStore.delete(predicates)
+promise.then((rows) => {
+    console.log("Delete rows: " + rows)
+}).catch((err) => {
+    console.info("Delete failed, err: " + err)
+})
+```
 
 
 ### query
@@ -1261,22 +1272,26 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
-**示例**：
-  ```js
-  let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose")
-  rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-      console.log("resultSet column names:" + resultSet.columnNames)
-      console.log("resultSet column count:" + resultSet.columnCount)
-  })
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
+predicates.equalTo("NAME", "Rose")
+rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+    if (err) {
+        console.info("Query failed, err: " + err)
+        return
+    }
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+})
+```
 
 
 ### query
@@ -1287,7 +1302,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
@@ -1298,16 +1313,16 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 | -------- | -------- |
 | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
-**示例**：
+**示例：**
   ```js
   let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
   predicates.equalTo("NAME", "Rose")
-  let promisequery = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequery.then((resultSet) => {
+  let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promise.then((resultSet) => {
       console.log("resultSet column names:" + resultSet.columnNames)
       console.log("resultSet column count:" + resultSet.columnCount)
   }).catch((err) => {
-      console.log("query err.")
+      console.info("Query failed, err: " + err)
   })
   ```
 
@@ -1320,20 +1335,24 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
-**示例**：
-  ```js
-  rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
-      console.log("resultSet column names:" + resultSet.columnNames)
-      console.log("resultSet column count:" + resultSet.columnCount)
-  })
-  ```
+**示例：**
+```js
+rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
+    if (err) {
+        console.info("Query failed, err: " + err)
+        return
+    }
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+})
+```
 
 
 ### querySql<sup>8+</sup>
@@ -1344,7 +1363,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
@@ -1355,16 +1374,16 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | -------- | -------- |
 | Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
-**示例**：
-  ```js
-  let promisequerySql = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
-  promisequerySql.then((resultSet) => {
-      console.log("resultSet column names:" + resultSet.columnNames)
-      console.log("resultSet column count:" + resultSet.columnCount)
-  }).catch((err) => {
-      console.log("querySql err.")
-  })
-  ```
+**示例：**
+```js
+let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
+promise.then((resultSet) => {
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+}).catch((err) => {
+    console.info("Query failed, err: " + err)
+})
+```
 
 
 ### executeSql
@@ -1375,19 +1394,24 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
-**示例**：
-  ```js
-  rdbStore.executeSql("DELETE FROM EMPLOYEE", null, function () {
-      console.info('delete done.')
-  })
-  ```
+**示例：**
+```js
+const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
+    if (err) {
+        console.info("executeSql failed, err: " + err)
+        return
+    }
+    console.info('create table done.')
+})
+```
 
 
 ### executeSql
@@ -1398,7 +1422,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
@@ -1409,15 +1433,16 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
-**示例**：
-  ```js
-  let promiseexecuteSql = rdbStore.executeSql("DELETE FROM EMPLOYEE")
-  promiseexecuteSql.then(() => {
-      console.info('delete done.')
-  }).catch((err) => {
-      console.log("executeSql err.")
-  })
-  ```
+**示例：**
+```js
+const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
+let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
+promise.then(() => {
+    console.info('create table done.')
+}).catch((err) => {
+    console.info("ExecuteSql failed, err: " + err)
+})
+```
 
 ### beginTransaction<sup>8+</sup>
 
@@ -1427,19 +1452,23 @@ beginTransaction():void
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**示例**：
+**示例：**
 ```js
-  rdbStore.beginTransaction()
-  const valueBucket = {
-      "name": "lisi",
-      "age": 18,
-      "salary": 100.5,
-      "blobType": new Uint8Array([1, 2, 3]),
-  }
-  rdbStore.insert("test", valueBucket, function (err, ret) {
-      console.log("insert done: " + ret)
-  })
-  rdbStore.commit()
+rdbStore.beginTransaction()
+const valueBucket = {
+    "name": "lisi",
+    "age": 18,
+    "salary": 100.5,
+    "blobType": new Uint8Array([1, 2, 3]),
+}
+rdbStore.insert("test", valueBucket, function (err, ret) {
+    if (err) {
+        console.info("Insert failed, err: " + err)
+        return
+    }
+    console.log("Insert successfully: " + ret)
+})
+rdbStore.commit()
 ```
 
 
@@ -1451,20 +1480,24 @@ commit():void
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**示例**：
+**示例：**
 ```js
-  rdbStore.beginTransaction()
-  const valueBucket = {
-      "name": "lisi",
-      "age": 18,
-      "salary": 100.5,
-      "blobType": new Uint8Array([1, 2, 3]),
-  }
+rdbStore.beginTransaction()
+const valueBucket = {
+    "name": "lisi",
+    "age": 18,
+    "salary": 100.5,
+    "blobType": new Uint8Array([1, 2, 3]),
+}
 
-  rdbStore.insert("test", valueBucket, function (err, ret) {
-      console.log("insert done: " + ret)
-  })
-  rdbStore.commit()
+rdbStore.insert("test", valueBucket, function (err, ret) {
+    if (err) {
+        console.info("Insert failed, err: " + err)
+        return
+    }
+    console.log("Insert successfully: " + ret)
+})
+rdbStore.commit()
 ```
 
 
@@ -1476,24 +1509,28 @@ rollBack():void;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**示例**：
+**示例：**
 ```js
-  try {
-      rdbStore.beginTransaction()
-      const valueBucket = {
-          "id": 1,
-          "name": "lisi",
-          "age": 18,
-          "salary": 100.5,
-          "blobType": new Uint8Array([1, 2, 3]),
-      }
-      rdbStore.insert("test", valueBucket, function (err, ret) {
-          console.log("insert done: " + ret)
-      })
-      rdbStore.commit()
-  } catch (e) {
-      rdbStore.rollBack()
-  }
+try {
+    rdbStore.beginTransaction()
+    const valueBucket = {
+        "id": 1,
+        "name": "lisi",
+        "age": 18,
+        "salary": 100.5,
+        "blobType": new Uint8Array([1, 2, 3]),
+    }
+    rdbStore.insert("test", valueBucket, function (err, ret) {
+        if (err) {
+            console.info("Insert failed, err: " + err)
+            return
+        }
+        console.log("Insert successfully: " + ret)
+    })
+    rdbStore.commit()
+} catch (e) {
+    rdbStore.rollBack()
+}
 ```
 
 
@@ -1505,21 +1542,21 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | tables | Array&lt;string&gt; | 是 | 要设置的分布式列表表名 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
-**示例**：
-  ```js
-  rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
-      if (err) {
-          console.info('setDistributedTables failed.')
-          return
-      }
-      console.info('setDistributedTables success.')
-  })
+**示例：**
+```js
+rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
+    if (err) {
+        console.info('setDistributedTables failed, err: ' + err)
+        return
+    }
+    console.info('setDistributedTables successfully.')
+})
   ```
 
 
@@ -1531,7 +1568,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | tables | Array&lt;string&gt; | 是 | 要设置的分布式列表表名。 |
@@ -1541,15 +1578,15 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | -------- | -------- |
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
-**示例**：
-  ```js
-  let promiseset = rdbStore.setDistributedTables(["EMPLOYEE"])
-  promiseset.then(() => {
-      console.info("setDistributedTables success.")
-  }).catch((err) => {
-      console.info("setDistributedTables failed.")
-  })
-  ```
+**示例：**
+```js
+let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
+promise.then(() => {
+    console.info("setDistributedTables successfully.")
+}).catch((err) => {
+    console.info("setDistributedTables failed, err: " + err)
+})
+```
 
 ### obtainDistributedTableName<sup>8+</sup>
 
@@ -1559,23 +1596,23 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 远程设备 。|
 | table | string | 是 | 本地表名。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
-**示例**：
-  ```js
-  rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
-      if (err) {
-          console.info('obtainDistributedTableName failed.')
-          return
-      }
-      console.info('obtainDistributedTableName success, tableName=.' + tableName)
-   })
-  ```
+**示例：**
+```js
+rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
+    if (err) {
+        console.info('obtainDistributedTableName failed, err: ' + err)
+        return
+    }
+    console.info('obtainDistributedTableName successfully, tableName=.' + tableName)
+})
+```
 
 
 ### obtainDistributedTableName<sup>8+</sup>
@@ -1586,7 +1623,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 远程设备。 |
@@ -1597,15 +1634,15 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | -------- | -------- |
 | Promise&lt;string&gt; | 指定Promise回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
-**示例**：
-  ```js
-  let promiseDistr = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
-  promiseDistr.then((tableName) => {
-      console.info('obtainDistributedTableName success, tableName=' + tableName)
-  }).catch((err) => {
-      console.info('obtainDistributedTableName failed.')
-  })
-  ```
+**示例：**
+```js
+let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+promise.then((tableName) => {
+    console.info('obtainDistributedTableName successfully, tableName=' + tableName)
+}).catch((err) => {
+    console.info('obtainDistributedTableName failed, err: ' + err)
+})
+```
 
 ### sync<sup>8+</sup>
 
@@ -1615,28 +1652,28 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是 | 约束同步数据和设备。 |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是 | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。|
 
-**示例**：
-  ```js
-  let predicate = new rdb.RdbPredicates('EMPLOYEE')
-  predicate.inDevices(['12345678abcde'])
-  rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate, function (err, result) {
-      if (err) {
-          console.log('sync failed')
-          return
-       }
-      console.log('sync done.')
-      for (let i = 0; i < result.length; i++) {
-          console.log('device=' + result[i][0] + ' status=' + result[i][1])
-       }
-  })
-  ```
+**示例：**
+```js
+let predicates = new rdb.RdbPredicates('EMPLOYEE')
+predicates.inDevices(['12345678abcde'])
+rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+    if (err) {
+        console.log('sync failed, err: ' + err)
+        return
+    }
+    console.log('sync done.')
+    for (let i = 0; i < result.length; i++) {
+        console.log('device=' + result[i][0] + ' status=' + result[i][1])
+    }
+})
+```
 
 
 ### sync<sup>8+</sup>
@@ -1647,7 +1684,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mode | [SyncMode](#syncmode8) | 是 | 指同步模式。该值可以是推、拉。 |
@@ -1659,20 +1696,20 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | -------- | -------- |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | 指定Promise回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
-**示例**：
-  ```js
-  let predicatesync = new data_rdb.RdbPredicates('EMPLOYEE')
-  predicatesync.inDevices(['12345678abcde'])
-  let promisesync = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicatesync)
-  promisesync.then((result) =>{
-      console.log('sync done.')
-      for (let i = 0; i < result.length; i++) {
-          console.log('device=' + result[i][0] + ' status=' + result[i][1])
-      }
-  }).catch((err) => {
-      console.log('sync failed')
-  })
-  ```
+**示例：**
+```js
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
+predicates.inDevices(['12345678abcde'])
+let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
+promise.then((result) =>{
+    console.log('sync done.')
+    for (let i = 0; i < result.length; i++) {
+        console.log('device=' + result[i][0] + ' status=' + result[i][1])
+    }
+}).catch((err) => {
+    console.log('sync failed')
+})
+```
 
 ### on('dataChange')<sup>8+</sup>
 
@@ -1682,7 +1719,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1690,19 +1727,19 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | type | [SubscribeType](#subscribetype8) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
 
-**示例**：
-  ```js
-  function storeObserver(devices) {
-      for (let i = 0; i < devices.length; i++) {
-          console.log('device=' + devices[i] + ' data changed')
-      }
-  }
-  try {
-      rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
-  } catch (err) {
-      console.log('register observer failed')
-  }
-  ```
+**示例：**
+```js
+function storeObserver(devices) {
+    for (let i = 0; i < devices.length; i++) {
+        console.log('device=' + devices[i] + ' data changed')
+    }
+}
+try {
+    rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+} catch (err) {
+    console.log('register observer failed')
+}
+```
 
 ### off('dataChange')<sup>8+</sup>
 
@@ -1712,7 +1749,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-**参数**：
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1720,20 +1757,19 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | type | [SubscribeType](#subscribetype8)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
 
-**示例**：
-
-  ```js
-  function storeObserver(devices) {
-      for (let i = 0; i < devices.length; i++) {
-          console.log('device=' + devices[i] + ' data changed')
-      }
-  }
-  try {
-      rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
-  } catch (err) {
-      console.log('unregister observer failed')
-  }
-  ```
+**示例：**
+```js
+function storeObserver(devices) {
+    for (let i = 0; i < devices.length; i++) {
+        console.log('device=' + devices[i] + ' data changed')
+    }
+}
+try {
+    rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+} catch (err) {
+    console.log('unregister observer failed')
+}
+```
 
 ## StoreConfig
 
