@@ -42,7 +42,37 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
        var state = audioRenderer.state;
    ```
 
-2. 调用start()方法来启动/恢复采集任务。
+2. （可选）使用on（'stateChange'）API订阅音频采集器状态更改事件。(根据订阅事件的状态去更新采集器的状态)。应用程序还可以订阅更多的事件，例如'markReach'和'periodReach'。有关详细信息，请参阅[音频](../reference/apis/js-apis-audio.md)。
+
+   ```js
+    audioCapturer.on('stateChange',(state) => {
+    console.info('AudioCapturerLog: Changed State to : ' + state)
+    switch (state) {
+     case audio.AudioState.STATE_PREPARED:
+         console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
+         console.info('Audio State is : Prepared');
+         break;
+     case audio.AudioState.STATE_RUNNING:
+         console.info('--------CHANGE IN AUDIO STATE----------RUNNING--------------');
+         console.info('Audio State is : Running');
+         break;
+     case audio.AudioState.STATE_STOPPED:
+         console.info('--------CHANGE IN AUDIO STATE----------STOPPED--------------');
+         console.info('Audio State is : stopped');
+         break;
+     case audio.AudioState.STATE_RELEASED:
+         console.info('--------CHANGE IN AUDIO STATE----------RELEASED--------------');
+         console.info('Audio State is : released');
+         break;
+     default:
+         console.info('--------CHANGE IN AUDIO STATE----------INVALID--------------');
+         console.info('Audio State is : invalid');
+         break;
+     }
+    });
+   ```
+
+3. 调用start()方法来启动/恢复采集任务。
 
    启动完成后，采集器状态将变更为STATE_RUNNING，然后应用可以开始读取缓冲区。
 
