@@ -110,7 +110,7 @@ hb set
 ./build.sh --product-name {product_name} --ccache
 ```
 
-{product_name}为当前版本支持的平台。比如：Hi3516DV300和rk3568等。
+{product_name}为当前版本支持的平台。比如：hispark_taurus_standard和rk3568等。
 
 编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在 out/{device_name}/packages/phone/images/ 目录下。
 

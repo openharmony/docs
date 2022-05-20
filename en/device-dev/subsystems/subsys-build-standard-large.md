@@ -87,7 +87,7 @@ The process to build OpenHarmony is as follows:
     ./build.sh --product-name {product_name}
     ```
 
-    **product\_name**  indicates the product supported by the current distribution, for example, Hi3516D V300.
+    **product\_name**  indicates the product supported by the current distribution, for example, hispark_taurus_standard.
 
     The image generated after build is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 

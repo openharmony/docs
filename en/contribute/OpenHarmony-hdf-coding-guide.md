@@ -139,10 +139,10 @@ The driver loading information required by the HDF comes from the driver device 
 ```bash
 $openharmony_src_root/vendor/hisilicon/hispark_taurus/hdf_config # Directory for storing the kernel-mode configuration file. There are no user-mode configuration files.
 
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf # Directory for storing the kernel-mode configuration file.
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/uhdf # Directory for storing the user-mode configuration file.
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/device_info/device_info.hcs # Device description file of the kernel-mode driver.
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/lcd/lcd_config.hcs # Private configuration file of the kernel-mode driver.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf # Directory for storing the kernel-mode configuration file.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/uhdf # Directory for storing the user-mode configuration file.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/device_info/device_info.hcs # Device description file of the kernel-mode driver.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/lcd/lcd_config.hcs # Private configuration file of the kernel-mode driver.
 ```
 
 #### [Rule] Use existing configuration information and inherit existing configuration templates during driver configuration.
@@ -373,9 +373,9 @@ If a driver has private configurations, you can add a driver configuration file 
 [Example]
 
 ```bash
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/sample/sample_config.hcs # Correct. The private configuration file is stored in the sample directory.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/sample/sample_config.hcs # Correct. The private configuration file is stored in the sample directory.
 
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/sample_config.hcs # Incorrect. The private configuration file is placed in the root directory.
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/sample_config.hcs # Incorrect. The private configuration file is placed in the root directory.
 ```
 
 #### [Rule] Add the private configuration file of a driver to the hdf.hcs file in the hdf_config directory.
