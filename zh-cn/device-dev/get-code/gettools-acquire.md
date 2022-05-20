@@ -9,7 +9,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 - 基于HPM的Docker环境：适用于使用HPM工具进行发行版编译的场景。
 
-  **表1** Docker镜像介绍
+**表1** Docker镜像介绍
 
 | 系统类型 | 运行平台 | Docker镜像仓库 | 标签 | 
 | -------- | -------- | -------- | -------- |
@@ -24,7 +24,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 1. 安装Docker，Docker安装请参考[官方指导](https://docs.docker.com/engine/install/)。
 
 2. 获取OpenHarmony源码，请参考[获取源码](https://device.harmonyos.com/cn/docs/documentation/guide/sourcecode-acquire-0000001050769927)。
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
    > HPM Docker环境无需单独获取源码。
 
 
@@ -69,7 +69,7 @@ hb set
 
   ![zh-cn_image_0000001153508656](figures/zh-cn_image_0000001153508656.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 当前开发板平台和编译界面的对应关系如下：
 > 
 > - Hi3861：wifiiot_hispark_pegasus\@hisilicon
@@ -115,8 +115,8 @@ hb set
 编译所生成的文件都归档在out/{device_name}/目录下，结果镜像输出在 out/{device_name}/packages/phone/images/ 目录下。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 退出Docker执行exit命令即可。
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
+> 如需退出Docker，执行exit命令即可。
 
 
 ## 基于HPM的Docker环境
@@ -140,7 +140,7 @@ docker_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，
 
 执行编译。自动安装docker只能在Ubuntu环境下执行，如果其他环境，需要用户自行安装docker，然后拉取镜像，执行编译。
 
-- **自动安装docker（Ubuntu环境）**
+- **自动安装docker（Ubuntu环境）**<br>
   以下命令可以帮助用户自动安装docker, 拉取镜像，并且在容器中开始运行对应解决方案的拉取和编译。
 
   **方式一：**
@@ -179,7 +179,7 @@ docker_dist是一个[HPM](https://hpm.harmonyos.com/)系统中的模板组件，
   @ohos/hispark_taurus: distribution building completed.
   ```
 
-- **自行安装docker（非Ubuntu环境）**
+- **自行安装docker（非Ubuntu环境）**<br>
   自行安装docker相关操作如下：
 
     
