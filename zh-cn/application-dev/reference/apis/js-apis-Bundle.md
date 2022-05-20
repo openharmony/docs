@@ -807,7 +807,7 @@ bundle.getAbilityLabel(bundleName, moduleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-以异步方法根据给定的意图查询ability是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -848,7 +848,7 @@ bundle.isAbilityEnabled(Info)
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的意图查询ability是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -885,7 +885,7 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-以异步方法根据给定的意图查询指定应用程序是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -923,7 +923,7 @@ bundle.isApplicationEnabled(bundleName)
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的意图查询指定应用程序是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 
