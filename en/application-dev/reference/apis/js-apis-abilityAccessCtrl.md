@@ -53,7 +53,7 @@ Checks whether an application has been granted the specified permission. This AP
 
  | Type | Description |
  | :------------ | :---------------------------------- |
- | Promise&lt;GrantStatus&gt; | Promise instance used to return the result. |
+ | Promise&lt;GrantStatus&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -88,7 +88,7 @@ Grants a user granted permission to an application. This API uses a promise to r
 
  | Type | Description |
  | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise instance used to return the result. |
+ | Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -155,7 +155,7 @@ Revokes a user granted permission given to an application. This API uses a promi
 
  | Type | Description |
  | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise instance used to return the result. |
+ | Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -219,7 +219,7 @@ Obtains the flags of the specified permission of a given application. This API u
 
  | Type | Description |
  | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise instance used to return the result. |
+ | Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
