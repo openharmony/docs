@@ -4,8 +4,8 @@
 Custom components decorated by @Preview can be previewed in the Previewer of DevEco Studio. When the page is loaded, the custom components decorated by @Preview are created and displayed.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> In a source file, at most one custom component can be decorated by @Preview.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> In a source file, at most 10 custom components can be decorated by @Preview.
 
 
 Example of using @Preview:
