@@ -527,7 +527,8 @@ The development procedure is as follows:
 Verify whether PIN authentication can be successfully performed on the RK3568 platform as follows:
 
 1. Set a PIN.
-    Touch **Settings** > **Biometrics & passwords** > **Password**, and enter your password.
+    
+   Touch **Settings** > **Biometrics & passwords** > **Password**, and enter your password.
     
 2. Verify PIN authentication.
 
