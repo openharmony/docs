@@ -10,7 +10,7 @@
 ## 导入模块
 
 
-```
+```js
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ```
 
@@ -38,7 +38,7 @@ on(type: "touch", receiver: TouchEventReceiver): void
 
   **示例：**
 
-```
+```js
 export default {
     callback: function (value) {
         if (checkEvent(value)) {
@@ -64,20 +64,20 @@ on(type: "mouse", receiver: TouchEventReceiver): void
 
 开始监听全局鼠标事件。
 
-**需要权限：**ohos.permission.INPUT_MONITORING
+**需要权限：** ohos.permission.INPUT_MONITORING
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **参数：**
+  **参数：** 
 
-| 参数     | 类型                 | 必填 | 说明                                   |
-| -------- | -------------------- | ---- | -------------------------------------- |
-| type     | string               | 是   | 监听输入事件类型，取值“mouse”。        |
-| receiver | Callback<MouseEvent> | 是   | 鼠标输入事件回调函数。MouseEvent参考xx |
+| 参数     | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| type     | string               | 是   | 监听输入事件类型，取值“mouse”。 |
+| receiver | Callback<MouseEvent> | 是   | 鼠标输入事件回调函数。          |
 
   **示例：**
 
-```
+```js
 export default {
     callback: function (value) {
         if (checkEvent(value)) {
@@ -117,7 +117,7 @@ off(type: "touch", receiver: TouchEventReceiver): void
 
   **示例：**
 
-```
+```js
 export default {
     callback: function (value) {
         if (checkEvent(value)) {
@@ -156,7 +156,7 @@ off(type: "mouse", receiver?: Callback<MouseEvent>): void
 
 **示例：**
 
-```
+```js
 export default {
     callback: function (value) {
         if (checkEvent(value)) {
@@ -201,7 +201,7 @@ export default {
 
   **示例：**
 
-```
+```js
 export default {
     callback: function (value) {  //此处为(touchEvent:TouchEvent): Boolean 方法的实现
         if (checkEvent(value)) {

@@ -59,9 +59,9 @@ function getDeviceIds(): Promise<Array<number>>
 
 **返回值：**
 
-| 参数                     | 说明                 |
-| ---------------------- | ------------------ |
-| Promise<Array<number>> | Promise实例，用于异步获取结果 |
+| 参数                   | 说明                            |
+| ---------------------- | ------------------------------- |
+| Promise<Array<number>> | Promise实例，用于异步获取结果。 |
 
 **示例：**
 
@@ -130,9 +130,9 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 **返回值：**
 
-| 参数                       | 说明                 |
-| ------------------------ | ------------------ |
-| Promise<InputDeviceData> | Promise实例，用于异步获取结果 |
+| 参数                     | 说明                            |
+| ------------------------ | ------------------------------- |
+| Promise<InputDeviceData> | Promise实例，用于异步获取结果。 |
 
 **示例：**
 
@@ -159,9 +159,9 @@ export default {
 
 
 
-## inputDevice.on
+## inputDevice.on<sup>9+</sup>
 
-function on(type: "change", listener: Callback<DeviceListener>): void;
+on(type: "change", listener: Callback<DeviceListener>): void
 
 开始监听设备插拔事件。
 
@@ -169,10 +169,10 @@ function on(type: "change", listener: Callback<DeviceListener>): void;
 
 **返回值：**
 
-| 参数     | 类型                     | 必填 | 说明     |
-| -------- | ------------------------ | ---- | -------- |
-| type     | string                   | 是   | 监听类型 |
-| listener | Callback<DeviceListener> | 是   | 回调函数 |
+| 参数     | 类型                     | 必填 | 说明       |
+| -------- | ------------------------ | ---- | ---------- |
+| type     | string                   | 是   | 监听类型。 |
+| listener | Callback<DeviceListener> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -204,10 +204,10 @@ function off(type: "change", listener?: Callback<DeviceListener>): void;
 
 **返回值：**
 
-| 参数     | 类型                     | 必填 | 说明               |
-| -------- | ------------------------ | ---- | ------------------ |
-| type     | string                   | 是   | 监听类型           |
-| listener | Callback<DeviceListener> | 否   | 停止监听的回调函数 |
+| 参数     | 类型                     | 必填 | 说明                 |
+| -------- | ------------------------ | ---- | -------------------- |
+| type     | string                   | 是   | 监听类型。           |
+| listener | Callback<DeviceListener> | 否   | 停止监听的回调函数。 |
 
 **示例：**
 
@@ -251,12 +251,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型                      | 说明       |
-| ------ | ------------------------- | -------- |
+| 名称   | 参数类型                  | 说明             |
+| ------ | ------------------------- | ---------------- |
 | source | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis   | [AxisType](axistype)      | 轴的类型     |
-| max    | number                    | 轴上报的最大值  |
-| min    | number                    | 轴上报的最小值  |
+| axis   | [AxisType](axistype)      | 轴的类型。       |
+| max    | number                    | 轴上报的最大值。 |
+| min    | number                    | 轴上报的最小值。 |
 
 
 
@@ -281,7 +281,7 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型 | 说明                              |
-| -------- | -------- | --------------------------------- |
-| type     | string   | 表示设备插拔类型，取值add和remove |
-| deviceId | number   | 表示设备id                        |
+| 名称     | 参数类型 | 说明                                |
+| -------- | -------- | ----------------------------------- |
+| type     | string   | 表示设备插拔类型，取值add和remove。 |
+| deviceId | number   | 表示设备id。                        |
