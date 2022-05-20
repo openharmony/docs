@@ -1,11 +1,4 @@
-# cat<a name="EN-US_TOPIC_0000001179965845"></a>
-
--   [Command Function](#section16710153391315)
--   [Syntax](#section1699392313158)
--   [Parameters](#section1677217374136)
--   [Usage](#section186772414131)
--   [Example](#section12158131814561)
--   [Output](#section183926225561)
+# cat
 
 ## Command Function<a name="section16710153391315"></a>
 

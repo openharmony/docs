@@ -1,11 +1,5 @@
-# partinfo<a name="EN-US_TOPIC_0000001179845931"></a>
+# partinfo
 
--   [Command Function](#section1777503617199)
--   [Syntax](#section185501447132114)
--   [Parameters](#section1304151212252)
--   [Usage](#section4566131982520)
--   [Example](#section4351134942514)
--   [Output](#section66689331412)
 
 ## Command Function<a name="section1777503617199"></a>
 

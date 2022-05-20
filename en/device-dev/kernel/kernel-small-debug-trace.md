@@ -1,17 +1,4 @@
-# Trace<a name="EN-US_TOPIC_0000001123695263"></a>
-
--   [Basic Concepts](#section531482192018)
--   [Working Principles](#section5125124532010)
--   [Available APIs](#section17747184017458)
-    -   [Kernel Mode](#section104473014465)
-    -   [User Mode](#section1996920294531)
-
--   [Development Guidelines](#section10302175017543)
-    -   [Kernel-mode Development Process](#section04021008552)
-
--   [Kernel-mode Programming Example](#section112034213583)
--   [Kernel-mode Sample Code](#section10348549155812)
--   [Verification](#section8601444165916)
+# Trace
 
 ## Basic Concepts<a name="section531482192018"></a>
 

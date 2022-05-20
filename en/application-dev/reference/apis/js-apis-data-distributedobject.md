@@ -1,6 +1,6 @@
 # Distributed Data Object
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,7 +26,7 @@ Creates a distributed data object.
   | -------- | -------- | -------- | -------- |
   | source | object | Yes| Attribute of the distributed data object to create.|
 
-**Return Value**
+**Return value**
 | Type| Description|
 | -------- | -------- |
 | [DistributedObject](#distributedobject) | Distributed data object created.|
@@ -34,7 +34,7 @@ Creates a distributed data object.
 **Example**
   ```js
   import distributedObject from '@ohos.data.distributedDataObject'
-  // Create a distributedObject instance. The attribute type of the object can be string, number, boolean, or Object.
+  // Create a distributed data object, which contains attributes of four types, namely, string, number, boolean, and object.
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   ```
@@ -48,7 +48,7 @@ Creates a random session ID.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**Return Value**
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Session ID created.|
@@ -62,7 +62,7 @@ Creates a random session ID.
 
 ## DistributedObject
 
-Represents a **distributedObject** instance.
+Represents a distributed data object.
 
 ### setSessionId
 
@@ -78,7 +78,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
   | -------- | -------- | -------- | -------- |
   | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
-**Return Value**
+**Return value**
 
   | Type| Description|
   | -------- | -------- |
@@ -101,15 +101,15 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
-Subscribes to the data changes of this distributed data object.
+Subscribes to the changes of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data change events.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the attributes of the distributed data object changed.|
+  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
   ```js
@@ -130,15 +130,15 @@ Subscribes to the data changes of this distributed data object.
 
 off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
-Unsubscribes from the data changes of this distributed data object.
+Unsubscribes from the changes of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data change events.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback used to return changes of the distributed data object. If this parameter is not specified, all callbacks related to data changes will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the attributes of the distributed data object changed.|
+  | type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback used to return the changes of the distributed data object. If this parameter is not specified, this API unsubscribes from all callbacks for data changes of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
@@ -149,11 +149,11 @@ Unsubscribes from the data changes of this distributed data object.
   g_object.on("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  // Unsubscribe from the data change callback for the specified distributed data object.
+  // Unsubscribe from the specified data change callback for the distributed data object.
   g_object.off("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  // Unsubscribe from all data change callbacks.
+  // Unsubscribe from all data change callbacks for the distributed data object.
   g_object.off("change");
   ```
 
@@ -161,15 +161,15 @@ Unsubscribes from the data changes of this distributed data object.
 
 on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
 
-Subscribes to the status changes (online or offline) of this distributed data object.
+Subscribes to the status change (online or offline) of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is "status", which indicates the status (online or offline) change events.|
-  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback used to return the online or offline status.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the network ID of the device.<br>**status** indicates the status, which can be online or offline.|
+  | type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the change in the status (online or offline) of the distributed data object.|
+  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** indicates the network ID of the device.<br>**status** indicates the status, which can be online or offline.|
 
 **Example**
   ```js
@@ -186,15 +186,15 @@ Subscribes to the status changes (online or offline) of this distributed data ob
 off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' | 'offline' }>): void
 
 
-Unsubscribes from the status (online or offline) changes of the distributed data object. 
+Unsubscribes from the status change (online or offline) of this distributed data object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type to subscribe to. The value is "status", which indicates the status (online or offline) change events.|
-  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback used to return the status changes. If this parameter is not specified, all the status change callbacks will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the status, which can be online or offline.|
+  | type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the change in the status (online or offline) of the distributed data object.|
+  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback used to return the status change. If this parameter is not specified, this API unsubscribes from all callbacks of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the status, which can be online or offline.|
 
 
 **Example**
@@ -203,10 +203,10 @@ Unsubscribes from the status (online or offline) changes of the distributed data
   g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });
-  // Unsubscribe from the status change callback for the specified distributed data object.
+  // Unsubscribe from the specified status change callback for the distributed data object.
   g_object.off("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });
-  // Unsubscribe from all status change callbacks.
+  // Unsubscribe from all status change callbacks for the distributed data object.
   g_object.off("status");
   ```

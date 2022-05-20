@@ -1,4 +1,4 @@
-# Kernel-Mode Memory Debugging<a name="EN-US_TOPIC_0000001124056309"></a>
+# Kernel-Mode Memory Debugging
 
 -   **[Memory Information Statistics](kernel-small-debug-memory-info.md)**  
 

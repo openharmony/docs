@@ -1,11 +1,4 @@
-# systeminfo<a name="EN-US_TOPIC_0000001134006256"></a>
-
--   [Command Function](#section863016434820)
--   [Syntax](#section139791817795)
--   [Parameters](#section19472339164813)
--   [Usage](#section285522592)
--   [Example](#section9471171015105)
--   [Output](#section1657011114915)
+# systeminfo
 
 ## Command Function<a name="section863016434820"></a>
 

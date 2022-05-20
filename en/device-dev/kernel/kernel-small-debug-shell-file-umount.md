@@ -1,11 +1,5 @@
-# umount<a name="EN-US_TOPIC_0000001179965855"></a>
+# umount
 
--   [Command Function](#section365125133520)
--   [Syntax](#section9615254123512)
--   [Parameters](#section63446577355)
--   [Usage](#section92931509368)
--   [Example](#section144311323616)
--   [Output](#section360525113611)
 
 ## Command Function<a name="section365125133520"></a>
 

@@ -1,11 +1,4 @@
-# Virtual File System<a name="EN-US_TOPIC_0000001123796667"></a>
-
--   [Basic Concepts](#section1253851143520)
--   [Working Principles](#section14915913123510)
--   [Development Guidelines](#section1759563620358)
-    -   [Available APIs](#section17865142133511)
-    -   [How to Develop](#section64113023616)
-    -   [Development Example](#section236041883618)
+# Virtual File System
 
 
 ## Basic Concepts<a name="section1253851143520"></a>

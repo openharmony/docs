@@ -1,10 +1,4 @@
-# Startup in User Mode<a name="EN-US_TOPIC_0000001123640059"></a>
-
--   [Startup of the Root Process in User Mode](#section79911135647)
-    -   [Startup Process of the Root Process](#section1184317581349)
-    -   [Responsibilities of the Root Process](#section1590220321759)
-
--   [Running Programs in User Mode](#section194576310611)
+# Startup in User Mode
 
 ## Startup of the Root Process in User Mode<a name="section79911135647"></a>
 

@@ -1,13 +1,4 @@
-# Heap Memory Management<a name="EN-US_TOPIC_0000001123795191"></a>
-
--   [Basic Concepts](#section449414395916)
--   [Working Principles](#section465085575911)
--   [Development Guidelines](#section577019272015)
-    -   [When to Use](#section326917198583)
-    -   [Available APIs](#section1032331584)
-    -   [How to Develop](#section07271773592)
-    -   [Development Example](#section84931234145913)
-    -   [Verification](#section165233233917)
+# Heap Memory Management
 
 
 ## Basic Concepts<a name="section449414395916"></a>

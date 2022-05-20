@@ -1,11 +1,4 @@
-# date<a name="EN-US_TOPIC_0000001134006248"></a>
-
--   [Command Function](#section56472016338)
--   [Syntax](#section16635112512316)
--   [Parameters](#section15896030039)
--   [Usage](#section116361036636)
--   [Example](#section021711411237)
--   [Output](#section17950184414312)
+# date
 
 ## Command Function<a name="section56472016338"></a>
 

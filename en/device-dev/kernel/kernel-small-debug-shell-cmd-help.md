@@ -1,11 +1,4 @@
-# help<a name="EN-US_TOPIC_0000001134006250"></a>
-
--   [Command Function](#section991211345413)
--   [Syntax](#section19103204016410)
--   [Parameters](#section1533416233432)
--   [Usage](#section4156445417)
--   [Example](#section12776124712417)
--   [Output](#section092662412544)
+# help
 
 ## Command Function<a name="section991211345413"></a>
 

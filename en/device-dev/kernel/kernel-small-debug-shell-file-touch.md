@@ -1,11 +1,5 @@
-# touch<a name="EN-US_TOPIC_0000001134006268"></a>
+# touch
 
--   [Command Function](#section17541924112716)
--   [Syntax](#section866182711274)
--   [Parameters](#section268912296270)
--   [Usage](#section412093332714)
--   [Example](#section414434814354)
--   [Output](#section1028419515711)
 
 ## Command Function<a name="section17541924112716"></a>
 

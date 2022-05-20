@@ -1,10 +1,5 @@
-# statfs<a name="EN-US_TOPIC_0000001179965853"></a>
+# statfs
 
--   [Command Function](#section153921657152613)
--   [Syntax](#section135391102717)
--   [Parameters](#section074312314279)
--   [Usage](#section133816772712)
--   [Example](#section526149182717)
 
 ## Command Function<a name="section153921657152613"></a>
 

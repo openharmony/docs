@@ -1,11 +1,4 @@
-# Dynamic Loading and Linking<a name="EN-US_TOPIC_0000001078523712"></a>
-
--   [Basic Concepts](#section208951139453)
--   [Working Principles](#section14140155320511)
--   [Development Guidelines](#section133501496612)
-    -   [Available APIs](#section874113201669)
-    -   [How to Develop](#section196712561563)
-
+# Dynamic Loading and Linking
 
 ## Basic Concepts<a name="section208951139453"></a>
 

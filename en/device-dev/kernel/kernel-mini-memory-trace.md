@@ -1,20 +1,10 @@
-# Trace<a name="EN-US_TOPIC_0000001162019075"></a>
+# Trace
 
--   [Basic Concepts](#section44851752123712)
--   [Working Principles](#section5282148123813)
--   [Available APIs](#section16304193215387)
--   [Development Guidelines](#section498695853819)
-    -   [How to Develop](#section1875652316393)
-    -   [Development Example](#section0403134913395)
-    -   [Sample Code](#section1492711418400)
-    -   [Verification](#section869613984012)
-
-
-## Basic Concepts<a name="section44851752123712"></a>
+## Basic Concepts
 
 Trace helps you learn about the kernel running process and the execution sequence of modules and tasks. With the information, you can better understand the code running process of the kernel and locate time sequence problems.
 
-## Working Principles<a name="section5282148123813"></a>
+## Working Principles
 
 The kernel provides a hook framework to embed hooks in the main process of each module. In the initial startup phase of the kernel, the trace function is initialized and the trace handlers are registered with the hooks.
 
@@ -28,7 +18,7 @@ In offline mode, trace frames are stored in a circular buffer. If too many frame
 
 The online mode must be used with the integrated development environment \(IDE\). Trace frames are sent to the IDE in real time. The IDE parses the records and displays them in a visualized manner.
 
-## Available APIs<a name="section16304193215387"></a>
+## Available APIs
 
 The trace module of the OpenHarmony LiteOS-M kernel provides the following functions. For more details about the APIs, see the API reference.
 
@@ -178,9 +168,9 @@ The trace module of the OpenHarmony LiteOS-M kernel provides the following funct
     The interrupt events with interrupt ID of  **TIMER\_INT**  or  **DMA\_INT**  are not traced.
 
 
-## Development Guidelines<a name="section498695853819"></a>
+## Development Guidelines
 
-### How to Develop<a name="section1875652316393"></a>
+### How to Develop
 
 The typical trace process is as follows:
 
@@ -271,7 +261,7 @@ The methods in steps 3 to 7 are encapsulated with shell commands. After the shel
 -   LOS\_TraceStop —— trace\_stop
 -   LOS\_TraceRecordDump —— trace\_dump
 
-### Development Example<a name="section0403134913395"></a>
+### Development Example
 
 This example implements the following:
 
@@ -281,7 +271,7 @@ This example implements the following:
 4.  Stop trace.
 5.  Output trace data in the specified format.
 
-### Sample Code<a name="section1492711418400"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -330,7 +320,7 @@ UINT32 Example_Trace_test(VOID){
 }
 ```
 
-### Verification<a name="section869613984012"></a>
+### Verification
 
 The output is as follows:
 

@@ -1,7 +1,6 @@
-# Kernel Overview<a name="EN-US_TOPIC_0000001122933245"></a>
+# Kernel Overview
 
--   [Overview](#section6614133913129)
--   [Kernel Architecture](#section827143517385)
+
 
 ## Overview<a name="section6614133913129"></a>
 
@@ -84,7 +83,7 @@ The LiteOS-A integrates the HDF framework. The HDF framework provides a more pre
 -   Configurable component-based driver model
 -   Message-based driver interface model
 -   Object-based driver and device management
--   Unified hardware driver interface \(HDI\)
+-   Unified hardware device interface \(HDI\)
 -   Power management and plug and play \(PnP\)
 
 **Extended Components**

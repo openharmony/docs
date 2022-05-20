@@ -1,19 +1,6 @@
-# Event<a name="EN-US_TOPIC_0000001078716886"></a>
+# Event
 
--   [Basic Concepts](#section11650123134315)
--   [Working Principles](#section1735611583011)
-    -   [Event Control Block](#section1161415384467)
-    -   [Working Principles](#section187761153144617)
-
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section896412438910)
-    -   [Sample Code](#section149077554912)
-    -   [Verification](#section4461439172017)
-
-
-## Basic Concepts<a name="section11650123134315"></a>
+## Basic Concepts
 
 An event is a mechanism for communication between tasks. It can be used to synchronize tasks. The events have the following features:
 
@@ -23,9 +10,9 @@ An event is a mechanism for communication between tasks. It can be used to synch
 
 APIs are provided to initialize, read/write, clear, and destroy events.
 
-## Working Principles<a name="section1735611583011"></a>
+## Working Principles
 
-### Event Control Block<a name="section1161415384467"></a>
+### Event Control Block
 
 ```
 /**
@@ -58,7 +45,7 @@ The input parameters  **eventMask**  and  **mode**  determine whether the condit
 **Figure  1**  Event working mechanism for mini systems<a name="fig17799175324612"></a>  
 ![](figures/event-working-mechanism-for-mini-systems.png "event-working-mechanism-for-mini-systems")
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 <a name="table14277123518139"></a>
 <table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="17.77177717771777%" id="mcps1.1.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Function</p>
@@ -119,7 +106,7 @@ The input parameters  **eventMask**  and  **mode**  determine whether the condit
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical event development process is as follows:
 
@@ -134,9 +121,9 @@ The typical event development process is as follows:
 >-   When an event is read or written, the 25th bit of the event is reserved and cannot be set.
 >-   Repeated writes of the same event are treated as one write.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
-### Example Description<a name="section896412438910"></a>
+### Example Description
 
 In this example, run the  **Example\_TaskEntry**  task to create the  **Example\_Event**  task. Run the  **Example\_Event**  task to read an event to trigger task switching. Run the  **Example\_TaskEntry**  task to write an event. You can understand the task switching during event operations based on the sequence in which logs are recorded.
 
@@ -230,7 +217,7 @@ UINT32 Example_TaskEntry(VOID)
 }
 ```
 
-### Verification<a name="section4461439172017"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

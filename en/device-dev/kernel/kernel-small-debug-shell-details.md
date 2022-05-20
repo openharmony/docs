@@ -1,4 +1,4 @@
-# Shell Command Reference<a name="EN-US_TOPIC_0000001179845913"></a>
+# Shell Command Reference
 
 This chapter describes the functions, syntax, parameter ranges, usage, and examples of key system commands.
 
