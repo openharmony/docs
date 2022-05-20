@@ -8,7 +8,7 @@
   - [使用JS语言开发（低代码方式）](start-with-js-low-code.md)
 - 开发基础知识
   - [应用包结构说明(FA模型)](package-structure.md)
-  - [应用包结构说明(Stage模型)](module-structure.md)
+  - [应用包结构说明(Stage模型)](stage-structure.md)
   - [资源文件的分类](basic-resource-file-categories.md)
   - [SysCap说明](syscap.md)
 

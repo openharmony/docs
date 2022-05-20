@@ -1,5 +1,6 @@
 # OpenHarmony应用开发文档
 - [应用开发导读](application-dev-guide.md)
+
 - 快速开始
 
   - 快速入门
@@ -10,9 +11,10 @@
     - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
-    - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
+    - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
+  
 - 开发
   
   - Ability开发
@@ -34,6 +36,7 @@
         - [WantAgent开发指导](ability/wantagent.md)
         - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
         - [测试框架使用指导](ability/ability-delegator.md)
+    
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于JS扩展的类Web开发范式
@@ -179,6 +182,7 @@
         - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
+    
   - 基础功能开发
     - 公共事件与通知
       - [公共事件与通知概述](notification/notification-brief.md)
@@ -188,6 +192,7 @@
         - [通知开发指导](notification/notification.md)
       - 调试工具
         - [调试助手使用指导](notification/assistant-guidelines.md)
+      
     - 窗口管理
       - 窗口
         - [窗口开发概述](windowmanager/window-overview.md)
@@ -198,9 +203,11 @@
       - 屏幕截图
         - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
         - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+      
     - WebGL
       - [WebGL开发概述](webgl/webgl-overview.md)
       - [WebGL开发指导](webgl/webgl-guidelines.md)
+      
     - 媒体
       - 音频
         - [音频开发概述](media/audio-overview.md)
@@ -213,6 +220,7 @@
         - [视频录制开发指导](media/video-recorder.md)
       - 图片
         - [图片开发指导](media/image.md)
+      
     - 安全
       - 用户认证
         - [用户认证开发概述](security/userauth-overview.md)
@@ -225,11 +233,13 @@
       - 访问控制
         - [访问控制开发概述](security/accesstoken-overview.md)
         - [访问控制开发指导](security/accesstoken-guidelines.md)
+      
     - 网络与连接
       - IPC与RPC通信
         - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
         - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
         - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
+      
     - 数据管理
       - 分布式数据服务
         - [分布式数据服务概述](database/database-mdds-overview.md)
@@ -243,15 +253,19 @@
       - 分布式数据对象
         - [分布式数据对象概述](database/database-distributedobject-overview.md)
         - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
+      
     - 后台代理提醒
       - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
+      
     - 后台任务管理
       - [后台任务概述](background-task-management/background-task-overview.md)
       - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      
     - 延迟任务调度
       - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
       - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
+      
     - 设备管理
       - USB服务
         - [USB服务开发概述](device/usb-overview.md)
@@ -266,9 +280,11 @@
       - 振动
         - [振动开发概述](device/vibrator-overview.md)
         - [振动开发指导](device/vibrator-guidelines.md)
+      
     - 设备使用信息统计
       - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
       - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
+      
     - DFX
       - 应用事件打点
         - [应用事件打点概述](dfx/hiappevent-overview.md)
@@ -279,15 +295,28 @@
       - 分布式跟踪
         - [分布式跟踪概述](dfx/hitracechain-overview.md)
         - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
+      
     - 国际化
       - [国际化开发概述](internationalization/international-overview.md)
+      
       - [Intl开发指导](internationalization/intl-guidelines.md)
+      
       - [I18n开发指导](internationalization/i18n-guidelines.md)
+      
+    - Native API的相关指导
+      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      
+        
+  
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+  
 - API参考
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件
