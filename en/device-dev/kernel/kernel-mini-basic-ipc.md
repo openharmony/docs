@@ -1,4 +1,4 @@
-# Kernel Communication Mechanisms<a name="EN-US_TOPIC_0000001124573873"></a>
+# Kernel Communication Mechanisms
 
 -   **[Event](kernel-mini-basic-ipc-event.md)**  
 

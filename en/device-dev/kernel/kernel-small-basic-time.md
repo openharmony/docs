@@ -1,10 +1,4 @@
-# Time Management<a name="EN-US_TOPIC_0000001123753363"></a>
-
--   [Basic Concepts](#section12903185785119)
--   [Development Guidelines](#section430981720522)
-    -   [Available APIs](#section1040142705214)
-    -   [How to Develop](#section1381224710522)
-    -   [Development Example](#section1344610245416)
+# Time Management
 
 
 ## Basic Concepts<a name="section12903185785119"></a>

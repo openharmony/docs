@@ -1,19 +1,14 @@
-# POSIX Support<a name="EN-US_TOPIC_0000001078589734"></a>
-
--   [Basic Concepts](#section1757915134139)
--   [Development Guidelines](#section1573664211318)
-    -   [Available APIs](#section10429150121317)
-    -   [Important Notes](#section109174418147)
-    -   [Development Example](#section206149278155)
+# POSIX Support
 
 
-## Basic Concepts<a name="section1757915134139"></a>
+
+## Basic Concepts
 
 The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs and supports the Portable Operating System Interface \(POSIX\). You can develop components and applications working on the kernel based on the POSIX.
 
-## Development Guidelines<a name="section1573664211318"></a>
+## Development Guidelines
 
-### Available APIs<a name="section10429150121317"></a>
+### Available APIs
 
 **Table  1**  Available APIs
 
@@ -191,7 +186,7 @@ The OpenHarmony kernel uses the  **musl libc**  library and self-developed APIs 
 |  | #include <libc.h> | int libc_get_version(void); | Obtains the libc version.|
 
 
-### Important Notes<a name="section109174418147"></a>
+### Important Notes
 
 Error codes
 
@@ -248,7 +243,7 @@ Error codes
 | EOVERFLOW | 75 | Value too large for defined data type |
 | EMSGSIZE | 90 | Message too long |
 
-### Development Example<a name="section206149278155"></a>
+### Development Example
 
 Demo:
 

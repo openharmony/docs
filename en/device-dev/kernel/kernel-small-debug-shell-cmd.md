@@ -1,4 +1,4 @@
-# System Commands<a name="EN-US_TOPIC_0000001179965831"></a>
+# System Commands
 
 -   **[cpup](kernel-small-debug-shell-cmd-cpup.md)**  
 

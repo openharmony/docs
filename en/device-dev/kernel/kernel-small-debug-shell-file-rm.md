@@ -1,11 +1,5 @@
-# rm<a name="EN-US_TOPIC_0000001134006266"></a>
+# rm
 
--   [Command Function](#section181141523142613)
--   [Syntax](#section8800926132619)
--   [Parameters](#section15476229152617)
--   [Usage](#section10578163215262)
--   [Example](#section18548133511263)
--   [Output](#section1565323814265)
 
 ## Command Function<a name="section181141523142613"></a>
 

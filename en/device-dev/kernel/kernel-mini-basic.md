@@ -1,4 +1,4 @@
-# Basic Kernel<a name="EN-US_TOPIC_0000001123863157"></a>
+# Basic Kernel
 
 -   **[Interrupt Management](kernel-mini-basic-interrupt.md)**  
 

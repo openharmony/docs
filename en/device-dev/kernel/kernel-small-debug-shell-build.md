@@ -1,10 +1,4 @@
-# Shell Command Programming Example<a name="EN-US_TOPIC_0000001134006246"></a>
-
--   [Example Description](#section87143612316)
--   [Static Registration](#section1660495712314)
--   [Static Registration Programming Example](#section1233411684113)
--   [Dynamic Registration](#section6804126192412)
--   [Dynamic Registration Programming Example](#section2335121613418)
+# Shell Command Programming Example
 
 ## Example Description<a name="section87143612316"></a>
 

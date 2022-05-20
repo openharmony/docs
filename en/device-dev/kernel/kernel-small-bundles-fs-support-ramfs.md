@@ -1,8 +1,4 @@
-# Ramfs<a name="EN-US_TOPIC_0000001078864272"></a>
-
--   [Basic Concepts](#section9507151014420)
--   [Working Principles](#section1859711263447)
--   [Development Guidelines](#section163554380448)
+# Ramfs
 
 ## Basic Concepts<a name="section9507151014420"></a>
 

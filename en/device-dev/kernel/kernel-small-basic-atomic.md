@@ -1,14 +1,7 @@
-# Atomic Operation<a name="EN-US_TOPIC_0000001078876272"></a>
-
--   [Basic Concepts](#section1792118384594)
--   [Working Principles](#section1786635117596)
--   [Development Guidelines](#section2911115308)
-    -   [Available APIs](#section335914201010)
-    -   [How to Develop](#section12207371304)
-    -   [Development Example](#section8538651511)
+# Atomic Operation
 
 
-## Basic Concepts<a name="section1792118384594"></a>
+## Basic Concepts
 
 In an OS that supports multiple tasks, modifying data in a memory area requires three steps: read data, modify data, and write data. However, data in a memory area may be simultaneously accessed by multiple tasks. If the data modification is interrupted by another task, the execution result of the operation is unpredictable.
 
@@ -16,7 +9,7 @@ Although you can enable or disable interrupts to ensure that the multi-task exec
 
 The ARMv6 architecture has introduced the  **LDREX**  and  **STREX**  instructions to support more discreet non-blocking synchronization of the shared memory. The atomic operations implemented thereby can ensure that the "read-modify-write" operations on the same data will not be interrupted, that is, the operation atomicity is ensured.
 
-## Working Principles<a name="section1786635117596"></a>
+## Working Principles
 
 The OpenHarmony system has encapsulated the  **LDREX**  and  **STREX**  in the ARMv6 architecture to provide a set of atomic operation APIs.
 
@@ -45,9 +38,9 @@ The OpenHarmony system has encapsulated the  **LDREX**  and  **STREX**  in the A
     -   If the flag register is  **1**, the system continues the loop and performs the atomic operation again.
 
 
-## Development Guidelines<a name="section2911115308"></a>
+## Development Guidelines
 
-### Available APIs<a name="section335914201010"></a>
+### Available APIs
 
 The following table describes the APIs available for the OpenHarmony LiteOS-A kernel atomic operation module. For more details about the APIs, see the API reference.
 
@@ -197,11 +190,11 @@ The following table describes the APIs available for the OpenHarmony LiteOS-A ke
 </tbody>
 </table>
 
-### How to Develop<a name="section12207371304"></a>
+### How to Develop
 
 When multiple tasks perform addition, subtraction, and swap operations on the same memory data, use atomic operations to ensure predictability of results.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >Atomic operation APIs support only integer data.
 
 ### Development Example<a name="section8538651511"></a>

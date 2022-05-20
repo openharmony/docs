@@ -1,4 +1,4 @@
-# Kernel for the Small System<a name="EN-US_TOPIC_0000001171191693"></a>
+# Small-System Kernel
 
 -   **[Kernel Overview](kernel-small-overview.md)**  
 

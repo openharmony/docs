@@ -1,8 +1,4 @@
-# Startup in Kernel Mode<a name="EN-US_TOPIC_0000001127506594"></a>
-
--   [Kernel Startup Process](#section9882154318299)
--   [Programming Example](#section19145114703217)
-    -   [Example Description](#section1045483642518)
+# Startup in Kernel Mode
 
 
 ## Kernel Startup Process<a name="section9882154318299"></a>

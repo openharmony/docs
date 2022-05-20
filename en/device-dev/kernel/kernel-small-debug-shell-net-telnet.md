@@ -1,11 +1,5 @@
-# telnet<a name="EN-US_TOPIC_0000001179845941"></a>
+# telnet
 
--   [Command Function](#section3551830123913)
--   [Syntax](#section14897133233918)
--   [Parameters](#section977718353392)
--   [Usage](#section134991538183916)
--   [Example](#section1097414426398)
--   [Output](#section11846624191310)
 
 ## Command Function<a name="section3551830123913"></a>
 

@@ -1,6 +1,6 @@
-# Interrupt Management<a name="EN-US_TOPIC_0000001123863135"></a>
+# Interrupt Management
 
-## Basic Concepts<a name="section1699312388210"></a>
+## Basic Concepts
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. An interrupt alerts the processor to a high-priority condition requiring the interruption of the current code being executed by the processor. When a hardware interrupt is triggered, the interrupt handler is located based on the interrupt ID and then executed to handle the interrupt.
 
@@ -37,7 +37,7 @@ The following describes the concepts related to interrupts:
     An area for storing interrupt vectors. It stores the mapping between interrupt vectors and interrupt IDs.
 
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 The following table describes APIs available for the OpenHarmony LiteOS-M interrupt module. For more details about the APIs, see the API reference.
 
@@ -56,19 +56,19 @@ The following table describes APIs available for the OpenHarmony LiteOS-M interr
 | Triggering an interrupt| LOS_HwiTrigger | Triggers an interrupt (simulate an external interrupt by writing the related register of the interrupt controller).|
 | Clearing interrupt register status| LOS_HwiClear | Clears the status bit of the interrupt register corresponding to the interrupt ID. The implementation of this API depends on the interrupt controller version. It is optional.|
 
-## How to Develop<a name="section11841123033618"></a>
+## How to Develop
 
 1. Call **LOS_HwiCreate** to create an interrupt.
 2. Call **LOS_HwiTrigger** to trigger the interrupt.
 3. Call **LOS_HwiDelete** to delete the specified interrupt. Use this API based on actual requirements.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 >-   Configure the maximum number of interrupts supported and the number of configurable interrupt priorities based on the specific hardware.
 >-   If the interrupt handler takes long time, the CPU cannot respond to interrupt requests in a timely manner.
 >-   Functions that trigger  **LOS\_Schedule**  cannot be directly or indirectly executed during interrupt response process.
 >-   The input parameter of  **LOS\_IntRestore\(\)**  must be the return value of  **LOS\_IntLock\(\)**, that is, the current program status register \(CPSR\) value before the interrupt is disabled. Interrupts 0 to 15 in the Cortex-M series processors are for internal use. You are advised not to apply for or create interrupts 0 to 15.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
 This example implements the following:
 
@@ -128,7 +128,7 @@ static UINT32 Example_Interrupt(VOID)
 }
 ```
 
-## Verification<a name="section668510614519"></a>
+## Verification
 
 The development is successful if the return result is as follows:
 

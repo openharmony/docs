@@ -1,15 +1,6 @@
-# Memory Information Statistics<a name="EN-US_TOPIC_0000001078916690"></a>
+# Memory Information Statistics
 
--   [Basic Concepts](#section52691565235)
--   [Function Configuration](#section470611682411)
--   [Development Guidelines](#section9368374243)
-    -   [How to Develop](#section679912407257)
-    -   [Development Example](#section1025453412611)
-    -   [Sample Code](#section165277971315)
-    -   [Verification](#section3460102414271)
-
-
-## Basic Concepts<a name="section52691565235"></a>
+## Basic Concepts
 
 Memory information includes the memory pool size, memory usage, remaining memory size, maximum free memory, memory waterline, number of memory nodes, and fragmentation rate.
 
@@ -22,13 +13,13 @@ Memory information includes the memory pool size, memory usage, remaining memory
 
 -   Other parameters: You can call APIs \(described in  [Memory Management](kernel-mini-basic-memory-basic.md)\) to scan node information in the memory pool and collect statistics.
 
-## Function Configuration<a name="section470611682411"></a>
+## Function Configuration
 
 **LOSCFG\_MEM\_WATERLINE**: specifies the setting of the memory information statistics function. This function is enabled by default. To disable the function, set this macro to  **0**  in  **target\_config.h**. If you want to obtain the memory waterline, you must enable this macro.
 
-## Development Guidelines<a name="section9368374243"></a>
+## Development Guidelines
 
-### How to Develop<a name="section679912407257"></a>
+### How to Develop
 
 Key structure:
 
@@ -52,7 +43,7 @@ typedef struct {
     Fragmentation rate = 100 – 100 x Maximum free memory block size/Remaining memory size
 
 
-### Development Example<a name="section1025453412611"></a>
+### Development Example
 
 This example implements the following:
 
@@ -62,7 +53,7 @@ This example implements the following:
 
 3. Calculate the memory usage and fragmentation rate.
 
-### Sample Code<a name="section165277971315"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -107,7 +98,7 @@ int MemTest(void)
 }
 ```
 
-### Verification<a name="section3460102414271"></a>
+### Verification
 
 The result is as follows:
 

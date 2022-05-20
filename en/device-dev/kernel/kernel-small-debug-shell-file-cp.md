@@ -1,11 +1,4 @@
-# cp<a name="EN-US_TOPIC_0000001133846484"></a>
-
--   [Command Function](#section6841203041513)
--   [Syntax](#section24286359150)
--   [Parameters](#section558617385152)
--   [Usage](#section16128156162)
--   [Example](#section19354171211618)
--   [Output](#section16754183195914)
+# cp
 
 ## Command Function<a name="section6841203041513"></a>
 

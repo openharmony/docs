@@ -1,16 +1,12 @@
-# Doubly Linked List<a name="EN-US_TOPIC_0000001123753381"></a>
-
--   [Basic Concepts](#section1990715203418)
--   [Available APIs](#section848334511411)
--   [How to Develop](#section01781261552)
-    -   [Development Example](#section8354175218128)
+# Doubly Linked List
 
 
-## Basic Concepts<a name="section1990715203418"></a>
+
+## Basic Concepts
 
 A doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains a pointer to the previous node and a pointer to the next node in the sequence of nodes. The pointer head is unique. A doubly linked list allows access from a list node to its next node and also the previous node on the list. This data structure facilitates data search, especially traversal of a large amount of data. The symmetry of the doubly linked list also makes operations, such as insertion and deletion, easy. However, pay attention to the pointer direction when performing operations.
 
-## Available APIs<a name="section848334511411"></a>
+## Available APIs
 
 The following table describes APIs available for the doubly linked list. For more details about the APIs, see the API reference.
 

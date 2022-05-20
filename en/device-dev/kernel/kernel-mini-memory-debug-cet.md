@@ -1,19 +1,13 @@
-# Memory Corruption Check<a name="EN-US_TOPIC_0000001124471131"></a>
-
--   [Basic Concepts](#section17368154517335)
--   [Function Configuration](#section4696190123420)
--   [Development Guidelines](#section672362973417)
-    -   [How to Develop](#section026014863416)
-    -   [Development Example](#section186311302356)
-    -   [Sample Code](#section12709533354)
-    -   [Verification](#section81214126369)
+# Memory Corruption Check
 
 
-## Basic Concepts<a name="section17368154517335"></a>
+
+
+## Basic Concepts
 
 As an optional function of the kernel, memory corruption check is used to check the integrity of a dynamic memory pool. This mechanism can detect memory corruption errors in the memory pool in a timely manner and provide alerts. It helps reduce problem locating costs and increase troubleshooting efficiency.
 
-## Function Configuration<a name="section4696190123420"></a>
+## Function Configuration
 
 **LOSCFG\_BASE\_MEM\_NODE\_INTEGRITY\_CHECK**: specifies the setting of the memory corruption check. This function is disabled by default. To enable the function, set this macro to  **1**  in  **target\_config.h**.
 
@@ -25,13 +19,13 @@ This check only detects the corrupted memory node and provides information about
 >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
 >If memory corruption check is enabled, a magic number is added to the node header, which increases the size of the node header. The real-time integrity check has a great impact on the performance. In performance-sensitive scenarios, you are advised to disable this function and use  **LOS\_MemIntegrityCheck**  to check the memory pool integrity.
 
-## Development Guidelines<a name="section672362973417"></a>
+## Development Guidelines
 
-### How to Develop<a name="section026014863416"></a>
+### How to Develop
 
 Check for memory corruption by calling  **LOS\_MemIntegrityCheck**. If no memory corruption occurs,  **0**  is returned and no log is output. If memory corruption occurs, related log is output. For details, see the output of the following example.
 
-### Development Example<a name="section186311302356"></a>
+### Development Example
 
 This example implements the following:
 
@@ -39,7 +33,7 @@ This example implements the following:
 2.  Call  **memset**  to construct an out-of-bounds access and overwrites the first four bytes of the next node.
 3.  Call  **LOS\_MemIntegrityCheck**  to check whether memory corruption occurs.
 
-### Sample Code<a name="section12709533354"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -60,7 +54,7 @@ void MemIntegrityTest(void)
 }
 ```
 
-### Verification<a name="section81214126369"></a>
+### Verification
 
 The log is as follows:
 

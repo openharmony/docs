@@ -1,11 +1,4 @@
-# chgrp<a name="EN-US_TOPIC_0000001134006260"></a>
-
--   [Command Function](#section6103119161418)
--   [Syntax](#section186958132141)
--   [Parameters](#section81796174141)
--   [Usage](#section14330152417140)
--   [Example](#section951823119149)
--   [Output](#section14271133125715)
+# chgrp
 
 ## Command Function<a name="section6103119161418"></a>
 

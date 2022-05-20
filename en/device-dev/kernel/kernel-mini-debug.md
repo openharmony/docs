@@ -1,4 +1,4 @@
-# Kernel Debugging<a name="EN-US_TOPIC_0000001123763653"></a>
+# Kernel Debugging
 
 -   **[Memory Debugging](kernel-mini-memory-debug.md)**  
 

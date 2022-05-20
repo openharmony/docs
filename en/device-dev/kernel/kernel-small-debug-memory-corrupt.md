@@ -1,10 +1,4 @@
-# Memory Corruption Check<a name="EN-US_TOPIC_0000001079036352"></a>
-
--   [Basic Concepts](#section17368154517335)
--   [Function Configuration](#section4696190123420)
--   [Development Guidelines](#section672362973417)
-    -   [How to Develop](#section026014863416)
-    -   [Development Example](#section186311302356)
+# Memory Corruption Check
 
 
 ## Basic Concepts<a name="section17368154517335"></a>

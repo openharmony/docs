@@ -1,14 +1,4 @@
-# Semaphore<a name="EN-US_TOPIC_0000001078912740"></a>
-
--   [Basic Concepts](#section1577111168131)
--   [Working Principles](#section118423019134)
--   [Development Guidelines](#section01419503131)
-    -   [Available APIs](#section1232345431312)
-    -   [How to Develop](#section154261711141419)
-    -   [Development Example](#section658135571417)
-    -   [Example Description](#section125244411653)
-    -   [Sample Code](#section1742105514512)
-    -   [Verification](#section11297301617)
+# Semaphore
 
 
 ## Basic Concepts<a name="section1577111168131"></a>
