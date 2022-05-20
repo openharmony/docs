@@ -42,7 +42,8 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
        var state = audioRenderer.state;
    ```
 
-2. （可选）使用on（'stateChange'）API订阅音频采集器状态更改事件。(根据订阅事件的状态去更新采集器的状态)。应用程序还可以订阅更多的事件，例如'markReach'和'periodReach'。有关详细信息，请参阅[音频](../reference/apis/js-apis-audio.md)。
+2. （可选）使用on（'stateChange'）订阅音频采集器状态更改。
+如果应用需要在采集器状态更新时进行一些操作，可以订阅该事件。更多事件请参考[API参考文档](../reference/apis/js-apis-audio.md)。
 
    ```js
     audioCapturer.on('stateChange',(state) => {
@@ -85,14 +86,14 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    }
    ```
 
-3. 使用getBufferSize()方法获取要读取的最小缓冲区大小。
+4. 使用getBufferSize()方法获取要读取的最小缓冲区大小。
 
    ```js
    var bufferSize = await audioCapturer.getBufferSize();
    console.info('AudioRecLog: buffer size: ' + bufferSize);
    ```
 
-4. 读取采集器的音频数据并将其转换为字节流。重复调用read()方法读取数据，直到应用准备停止采集。   
+5. 读取采集器的音频数据并将其转换为字节流。重复调用read()方法读取数据，直到应用准备停止采集。   
 
    参考以下示例，将采集到的数据写入文件。 
 
@@ -128,7 +129,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    }
    ```
 
-5. 采集完成后，调用stop方法，停止录制。
+6. 采集完成后，调用stop方法，停止录制。
 
    ```
    await audioCapturer.stop();
@@ -139,7 +140,7 @@ AudioCapturer提供了用于获取原始音频文件的方法。开发者可以�
    }
    ```
 
-6. 任务结束，调用release()方法释放相关资源。
+7. 任务结束，调用release()方法释放相关资源。
 
    ```js
    await audioCapturer.release();
