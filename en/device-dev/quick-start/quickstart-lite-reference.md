@@ -21,7 +21,7 @@
    ```
 
      Files generated during the build are stored in the **out/{device_name}/** directory, and the generated image is stored in the **out/{device_name}/packages/phone/images/** directory.
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
    > For details about other modular compilation operations, see [Building a Standard System](../subsystems/subsys-build-standard-large.md).
 
 

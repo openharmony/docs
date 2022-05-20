@@ -27,7 +27,7 @@ In addition, OpenHarmony provides a wide array of system components that can be 
 
 ## Document Outline<a name="section19810171681218"></a>
 
-**Table 1** Mini and small system development guidelines (reference memory < 128 MB)
+**Table 1** Mini and small system development guidelines (reference memory < 128 MiB)
 
 | Topic| Development Scenario| Related Documentation|
 | -------- | -------- | -------- |
@@ -41,7 +41,7 @@ In addition, OpenHarmony provides a wide array of system components that can be 
 | Reference| Referring to development specifications| [FAQs](faqs/faqs-overview.md) |
 
 
-**Table 2** Standard system development guidelines (reference memory ≥ 128 MB)
+**Table 2** Standard system development guidelines (reference memory ≥ 128 MiB)
 | Topic| Development Scenario| Related Documentation|
 | -------- | -------- | -------- |
 | About OpenHarmony| Getting familiar with OpenHarmony| -&nbsp;[About OpenHarmony](https://gitee.com/openharmony)<br>-&nbsp;[Glossary](../glossary.md) |
