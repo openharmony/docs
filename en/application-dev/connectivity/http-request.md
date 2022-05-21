@@ -12,20 +12,20 @@ To use related APIs, you must declare the **ohos.permission.INTERNET** permissio
 
 The following table describes the related APIs.
 
-| API                                   | Description                           |
-| ----------------------------------------- | ----------------------------------- |
-| createHttp()                              | Creates an HTTP request.                 |
-| request()                                 | Initiates an HTTP request to a given URL.    |
-| destroy()                                 | Destroys an HTTP request.                     |
+| API                                       | Description                                               |
+| ----------------------------------------- | --------------------------------------------------------- |
+| createHttp()                              | Creates an HTTP request.                                  |
+| request()                                 | Initiates an HTTP request to a given URL.                 |
+| destroy()                                 | Destroys an HTTP request.                                 |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
-| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
+| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events. |
 
 ## How to Develop
 
 1. Import the required HTTP module.
 2. Create an **HttpRequest** object.
 3. (Optional) Listen for HTTP Response Header events.
-4. Initiates an HTTP request to a given URL.
+4. Initiate an HTTP request to a given URL.
 5. (Optional) Process the HTTP Response Header event and the return result of the HTTP request.
 
 ```js
