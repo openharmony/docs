@@ -19,4 +19,4 @@ In OpenHarmony documents, proxy represents the service requester, and stub repre
 
 ## Related Modules
 
-Distributed Scheduler
+[Distributed Scheduler](#https://gitee.com/openharmony/distributedschedule_dms_fwk)
