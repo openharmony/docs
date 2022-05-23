@@ -1,6 +1,6 @@
 # Work Scheduler Callbacks
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 
@@ -20,9 +20,9 @@ Triggered when the Work Scheduler task starts.
 
 **Parameters**
 
-| Name | Type                   | Mandatory  | Description            |
+| Name | Type | Mandatory | Description |
 | ---- | --------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Task to be added to the execution queue.|
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes | Task to be added to the execution queue.|
 
 **Example**
 
@@ -44,9 +44,9 @@ Triggered when the Work Scheduler task stops.
 
 **Parameters**
 
-| Name | Type                   | Mandatory  | Description            |
+| Name | Type | Mandatory | Description |
 | ---- | --------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Task to be added to the execution queue.|
+| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes | Task to be added to the execution queue.|
 
 
 **Example**
