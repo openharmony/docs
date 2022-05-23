@@ -104,10 +104,10 @@ SPI communication is usually initiated by the SPI controller and is operated as 
 
 ### How to Use<a name="section32846814820"></a>
 
-[Figure 2](#fig1586912310348)  shows the process of using an SPI device.
+The figure below illustrates how to use the APIs.
 
-**Figure  2** Process of using an SPI device<a name="fig1586912310348"></a>  
-![](figures/process-of-using-an-spi-device.png "process-of-using-an-spi-device")
+**Figure  2** Using SPI driver APIs<a name="fig1586912310348"></a>  
+![](figures/using-spi-process.png "process-of-using-an-spi-device")
 
 ### Obtaining an SPI Device Handle<a name="section1927265711481"></a>
 
