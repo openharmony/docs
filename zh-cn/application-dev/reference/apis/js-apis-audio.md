@@ -571,8 +571,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 
 **系统能力：**SystemCapability.Multimedia.Audio.Device
 
-**参数：**
-
 | 名称              | 类型                                              | 必填 | 说明               |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
 | type              | [DeviceChangeType](#DeviceChangeType)             | 是   | 设备连接状态变化。 |

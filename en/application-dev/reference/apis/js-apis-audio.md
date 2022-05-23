@@ -480,8 +480,6 @@ Describes audio stream information.
 
 **System capability:** SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
-
 | Name          | Type                                      | Mandatory | Description           |
 | :------------ | :---------------------------------------- | :-------- | :-------------------- |
 | samplingRate  | [AudioSamplingRate](#audiosamplingrate8)  | Yes       | Sampling rate.        |
@@ -495,8 +493,6 @@ Describes audio renderer information.
 
 **System capability:** SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
-
 | Name          | Type                        | Mandatory | Description           |
 | :------------ | :-------------------------- | :-------- | :-------------------- |
 | contentType   | [ContentType](#contenttype) | Yes       | Content type.         |
@@ -509,8 +505,6 @@ Describes audio renderer configuration options.
 
 **System capability:** SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
-
 | Name          | Type                                      | Mandatory | Description           |
 | :------------ | :-----------------------------------------| :-------- | :-------------------- |
 | streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
@@ -521,8 +515,6 @@ Describes audio renderer configuration options.
 Describes audio capturer information.
 
 **System capability:** SystemCapability.Multimedia.Audio.Core
-
-**Parameters:**
 
 | Name            | Type                       | Mandatory | Description           |
 | :---------------| :------------------------- | :-------- | :-------------------- |
@@ -535,8 +527,6 @@ Describes audio capturer configuration options.
 
 **System capability:** SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
-
 | Name          | Type                                      | Mandatory | Description           |
 | :------------ | :-----------------------------------------| :-------- | :-------------------- |
 | streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
@@ -547,8 +537,6 @@ Describes audio capturer configuration options.
 Describes the interrupt event received by the app when playback is interrupted.
 
 **System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-**Parameters:**
 
 | Name      | Type                                          | Mandatory | Description                                                       |
 | :-------- | :-------------------------------------------- | :-------- | :---------------------------------------------------------------- |
@@ -592,8 +580,6 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability:** SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
-
 | Name       | Type                                | Mandatory | Description                              |
 | :--------- | :---------------------------------- | :-------- | :--------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Volume type of the current stream.       |
@@ -605,8 +591,6 @@ This is a system API and cannot be called by third-party applications.
 Describes the device change type and device information.
 
 **System capability:** SystemCapability.Multimedia.Audio.Device
-
-**Parameters:**
 
 | Name                | Type                                              | Mandatory | Description         |
 | :------------------ | :------------------------------------------------ | :-------- | :------------------ |
