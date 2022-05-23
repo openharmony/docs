@@ -16,12 +16,14 @@
 
 Xcomponent创建方法可参考：[XComponent创建方法](#xcomponent创建方法)
 
+拍照保存接口可参考：[图片处理API文档](../reference/apis/js-apis-image.md)
+
 #### 创建实例
 
 ```js
-import camera from '@ohos.mutimedia.camera'
-import image from '@ohos.mutimedia.image'
-import media from '@ohos.mutimedia.media'
+import camera from '@ohos.multimedia.camera'
+import image from '@ohos.multimedia.image'
+import media from '@ohos.multimedia.media'
 import featureAbility from '@ohos.ability.featureAbility'
 
 //创建CameraManager对象
