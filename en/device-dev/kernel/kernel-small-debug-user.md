@@ -1,4 +1,4 @@
-# User-Mode Memory Debugging<a name="EN-US_TOPIC_0000001201662323"></a>
+# User-Mode Memory Debugging
 
 -   **[Basic Concepts](kernel-small-debug-user-concept.md)**  
 

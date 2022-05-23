@@ -1,12 +1,4 @@
-# Interrupt and Exception Handling<a name="EN-US_TOPIC_0000001123638623"></a>
-
--   [Basic Concepts](#section439816296117)
--   [Working Principles](#section2792838318)
--   [Development Guidelines](#section15415165510110)
-    -   [Available APIs](#section57441612024)
-    -   [How to Develop](#section64332181221)
-    -   [Development Example](#section204698276478)
-    -   [Verification](#section1466144215476)
+# Interrupt and Exception Handling
 
 
 ## Basic Concepts<a name="section439816296117"></a>

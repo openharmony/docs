@@ -1,34 +1,25 @@
-# Static Memory<a name="EN-US_TOPIC_0000001078876516"></a>
+# Static Memory
 
--   [Working Principles](#section165473517522)
--   [Development Guidelines](#section57511620165218)
-    -   [When to Use](#section215474911529)
-    -   [Available APIs](#section79231214539)
-    -   [How to Develop](#section1388511316548)
-    -   [Development Example](#section17801515105519)
-    -   [Verification](#section11818154112319)
-
-
-## Working Principles<a name="section165473517522"></a>
+## Working Principles
 
 The static memory is a static array. The block size in the static memory pool is set during initialization and cannot be changed after initialization.
 
-The static memory pool consists of a control block  **LOS\_MEMBOX\_INFO**  and several memory blocks  **LOS\_MEMBOX\_NODE**  of the same size. The control block is located at the head of the memory pool and used for memory block management. It contains the memory block size \(**uwBlkSize**\), number of memory blocks \(**uwBlkNum**\), number of allocated memory blocks \(**uwBlkCnt**\), and free list \(**stFreeList**\). Memory is allocated and released by block size. Each memory block contains the pointer  **pstNext**  that points to the next memory block.
+The static memory pool consists of a control block **LOS\_MEMBOX\_INFO** and several memory blocks **LOS\_MEMBOX\_NODE** of the same size. The control block is located at the head of the memory pool and used for memory block management. It contains the memory block size \(**uwBlkSize**\), number of memory blocks \(**uwBlkNum**\), number of allocated memory blocks \(**uwBlkCnt**\), and free list \(**stFreeList**\). Memory is allocated and released by block size. Each memory block contains the pointer **pstNext** that points to the next memory block.
 
-**Figure  1**  Static memory<a name="fig11343112011276"></a>  
+**Figure 1** Static memory 
 ![](figures/static-memory.png "static-memory")
 
-## Development Guidelines<a name="section57511620165218"></a>
+## Development Guidelines
 
-### When to Use<a name="section215474911529"></a>
+### When to Use
 
 Use static memory allocation to obtain memory blocks of the fixed size. When the memory is no longer required, release the static memory.
 
-### Available APIs<a name="section79231214539"></a>
+### Available APIs
 
 The following table describes APIs available for OpenHarmony LiteOS-M static memory management. For more details about the APIs, see the API reference.
 
-**Table  1**  APIs of the static memory module
+**Table 1** APIs of the static memory module
 
 <a name="table1415203765610"></a>
 <table><thead align="left"><tr id="row134151837125611"><th class="cellrowborder" valign="top" width="16.19161916191619%" id="mcps1.2.4.1.1"><p id="p16415637105612"><a name="p16415637105612"></a><a name="p16415637105612"></a>Function</p>
@@ -80,32 +71,32 @@ The following table describes APIs available for OpenHarmony LiteOS-M static mem
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >The number of memory blocks in the memory pool after initialization is not equal to the total memory size divided by the memory block size. The reason is the control block of the memory pool and the control header of each memory block have memory overheads. When setting the total memory size, you need to consider these factors.
 
-### How to Develop<a name="section1388511316548"></a>
+### How to Develop
 
 The typical development process of static memory is as follows:
 
 1.  Plan a memory space as the static memory pool.
-2.  Call the  **LOS\_MemboxInit**  API to initialize the static memory pool.
+2.  Call the **LOS\_MemboxInit** API to initialize the static memory pool.
 
     During initialization, the memory space specified by the input parameter is divided into multiple blocks \(the number of blocks depends on the total static memory size and the block size\). Insert all memory blocks to the free list, and place the control header at the beginning of the memory.
 
-3.  Call the  **LOS\_MemboxAlloc**  API to allocate static memory.
+3.  Call the **LOS\_MemboxAlloc** API to allocate static memory.
 
     The system allocates the first free memory block from the free list and returns the start address of this memory block.
 
-4.  Call the  **LOS\_MemboxClr**  API.
+4.  Call the **LOS\_MemboxClr** API.
 
     Clear the memory block corresponding to the address contained in the input parameter.
 
-5.  Call the  **LOS\_MemboxFree**  API.
+5.  Call the **LOS\_MemboxFree** API.
 
     Add the memory block to the free list.
 
 
-### Development Example<a name="section17801515105519"></a>
+### Development Example
 
 This example implements the following:
 
@@ -167,7 +158,7 @@ VOID Example_StaticMem(VOID)
 }
 ```
 
-### Verification<a name="section11818154112319"></a>
+### Verification
 
 The output is as follows:
 

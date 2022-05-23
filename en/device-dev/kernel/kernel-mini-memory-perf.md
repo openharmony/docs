@@ -1,28 +1,11 @@
-# perf<a name="EN-US_TOPIC_0000001230395951"></a>
-
--   [Basic Concepts](#section531482192018)
--   [Working Principles](#section5125124532010)
--   [Available APIs](#section17747184017458)
-    -   [Kernel Mode](#section104473014465)
-    -   [User Mode](#section1996920294531)
-
--   [Development Guidelines](#section10302175017543)
-    -   [Kernel-mode Development Process](#section04021008552)
-
--   [Kernel-mode Development Example](#section112034213583)
--   [Kernel-mode Sample Code](#section10348549155812)
-    -   [Kernel-mode Verification](#section61719481795)
-    -   [User-mode Development Process](#section1425821711114)
-    -   [User-mode Development Example](#section3470546163)
-    -   [User-Mode Sample Code](#section183253286161)
-    -   [User-mode Verification](#section5665123516214)
+# perf
 
 
-## Basic Concepts<a name="section531482192018"></a>
+## Basic Concepts
 
 perf is a performance analysis tool. It uses the performance monitoring unit \(PMU\) to count sampling events and collect context information and provides hot spot distribution and hot paths.
 
-## Working Principles<a name="section5125124532010"></a>
+## Working Principles
 
 When a performance event occurs, the corresponding event counter overflows and triggers an interrupt. The interrupt handler records the event information, including the current PC, task ID, and call stack.
 
@@ -30,9 +13,9 @@ perf provides two working modes: counting mode and sampling mode.
 
 In counting mode, perf collects only the number of event occurrences and duration. In sampling mode, perf also collects context data and stores the data in a circular buffer. The IDE then analyzes the data and provides information about hotspot functions and paths.
 
-## Available APIs<a name="section17747184017458"></a>
+## Available APIs
 
-### Kernel Mode<a name="section104473014465"></a>
+### Kernel Mode
 
 The perf module of the OpenHarmony LiteOS-A kernel provides the following APIs. For more details about the APIs, see the  [API](https://gitee.com/openharmony/kernel_liteos_a/blob/master/kernel/include/los_perf.h)  reference.
 
@@ -117,7 +100,7 @@ The perf module of the OpenHarmony LiteOS-A kernel provides the following APIs. 
     The API for flushing the cache is configured based on the platform.
 
 
-### User Mode<a name="section1996920294531"></a>
+### User Mode
 
 The perf character device is located in  **/dev/perf**. You can read, write, and control the user-mode perf by running the following commands on the device node:
 
@@ -134,11 +117,11 @@ The perf character device is located in  **/dev/perf**. You can read, write, and
     The operations correspond to  **LOS\_PerfStart**  and  **LOS\_PerfStop**.
 
 
-For more details, see  [User-mode Development Example](#section3470546163).
+For more details, see  [User-mode Development Example](#user-mode-development-example).
 
-## Development Guidelines<a name="section10302175017543"></a>
+## Development Guidelines
 
-### Kernel-mode Development Process<a name="section04021008552"></a>
+### Kernel-mode Development Process
 
 The typical process of enabling perf is as follows:
 
@@ -235,7 +218,7 @@ The typical process of enabling perf is as follows:
 4.  Call  **LOS\_PerfStop**  at the end of the code to be sampled.
 5.  Call  **LOS\_PerfDataRead**  to read the sampling data and use IDE to analyze the collected data.
 
-## Kernel-mode Development Example<a name="section112034213583"></a>
+## Kernel-mode Development Example
 
 This example implements the following:
 
@@ -246,7 +229,7 @@ This example implements the following:
 5.  Stop perf.
 6.  Export the result. 
 
-## Kernel-mode Sample Code<a name="section10348549155812"></a>
+## Kernel-mode Sample Code
 
 Prerequisites: The perf module configuration is complete in  **menuconfig**.
 
@@ -333,7 +316,7 @@ UINT32 Example_Perf_test(VOID){
 LOS_MODULE_INIT(perfTestHwEvent, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
-### Kernel-mode Verification<a name="section61719481795"></a>
+### Kernel-mode Verification
 
 The output is as follows:
 
@@ -362,7 +345,7 @@ hex:  00 ef ef ef 00 00 00 00 14 00 00 00 60 00 00 00 00 00 00 00 70 88 36 40 08
     You can also call  **LOS\_PerfDataRead**  to read data to a specified address for further analysis. In the example,  **OsPrintBuff**  is a test API, which prints the sampled data by byte.  **num**  indicates the sequence number of the byte, and  **hex**  indicates the value in the byte.
 
 
-### User-mode Development Process<a name="section1425821711114"></a>
+### User-mode Development Process
 
 Choose  **Driver**  \>  **Enable PERF DRIVER**  in  **menuconfig**  to enable the perf driver. This option is available in  **Driver**  only after  **Enable Perf Feature**  is selected in the kernel.
 
@@ -440,10 +423,10 @@ time used: 0.059000(s)
 save perf data success at /storage/data/perf.data
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >After running the  **./perf stat/record**  command, you can run the  **./perf start**  and  **./perf stop**  commands multiple times. The sampling event configuration is as per the parameters set in the latest  **./perfstat/record**  command.
 
-### User-mode Development Example<a name="section3470546163"></a>
+### User-mode Development Example
 
 This example implements the following:
 
@@ -453,7 +436,7 @@ This example implements the following:
 4.  Stop perf.
 5.  Read the perf sampling data.
 
-### User-Mode Sample Code<a name="section183253286161"></a>
+### User-Mode Sample Code
 
 The code is as follows:
 
@@ -523,7 +506,7 @@ int main(int argc, char **argv)
 }
 ```
 
-### User-mode Verification<a name="section5665123516214"></a>
+### User-mode Verification
 
 The output is as follows:
 

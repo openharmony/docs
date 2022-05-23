@@ -1,11 +1,5 @@
-# tftp<a name="EN-US_TOPIC_0000001179965861"></a>
+# tftp
 
--   [Command Function](#section15142134573911)
--   [Syntax](#section20958174917394)
--   [Parameters](#section576613532395)
--   [Usage](#section149795134408)
--   [Example](#section148921918114015)
--   [Output](#section7872155631313)
 
 ## Command Function<a name="section15142134573911"></a>
 

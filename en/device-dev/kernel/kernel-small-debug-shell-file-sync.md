@@ -1,11 +1,5 @@
-# sync<a name="EN-US_TOPIC_0000001133846490"></a>
+# sync
 
--   [Command Function](#section1285017122274)
--   [Syntax](#section4731516162712)
--   [Parameters](#section9352418122714)
--   [Usage](#section10725192142717)
--   [Example](#section414434814354)
--   [Output](#section19618121710317)
 
 ## Command Function<a name="section1285017122274"></a>
 

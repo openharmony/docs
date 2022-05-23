@@ -1,18 +1,10 @@
-# Exception Debugging<a name="EN-US_TOPIC_0000001124786041"></a>
+# Exception Debugging
 
--   [Basic Concepts](#section2741911123412)
--   [Working Principles](#section16618124317346)
--   [Available APIs](#section16111931351)
--   [Usage Guidelines](#section16317163520350)
-    -   [How to Develop](#section13457839133618)
-    -   [How to Locate Exceptions](#section197332323815)
-
-
-## Basic Concepts<a name="section2741911123412"></a>
+## Basic Concepts
 
 The OpenHarmony LiteOS-M provides exception handling and debugging measures to help locate and analyze problems. Exception handling involves a series of actions taken by the OS to respond to exceptions occurred during the OS running, for example, printing the exception type, system status, call stack information of the current function, CPU information, and call stack information of tasks.
 
-## Working Principles<a name="section16618124317346"></a>
+## Working Principles
 
 A stack frame contains information such as function parameters, variables, and return value in a function call process. When a function is called, a stack frame of the subfunction is created, and the input parameters, local variables, and registers of the function are stored into the stack. Stack frames grow towards lower addresses. The ARM32 CPU architecture is used as an example. Each stack frame stores the historical values of the program counter \(PC\), LR \(link register\), stack pointer \(SP\), and frame pointer \(FP\) registers. The LR points to the return address of a function, and the FP points to the start address of the stack frame of the function's parent function. The FP helps locate the parent function's stack frame, which further helps locate the parent function's FP. The parent function's FP helps locate the grandparent function's stack frame and FP... In this way, the call stack of the program can be traced to obtain the relationship between the functions called.
 
@@ -20,12 +12,12 @@ When an exception occurs in the system, the system prints the register informati
 
 The following figure illustrates the stack analysis mechanism for your reference. The actual stack information varies depending on the CPU architecture.
 
-**Figure  1**  Stack analysis mechanism<a name="fig5280123462820"></a>  
+**Figure  1**  Stack analysis mechanism
 ![](figures/stack-analysis-mechanism.png "stack-analysis-mechanism")
 
 In the figure, the registers in different colors indicate different functions. The registers save related data when functions are called. The FP register helps track the stack to the parent function of the abnormal function and further presents the relationships between the functions called.
 
-## Available APIs<a name="section16111931351"></a>
+## Available APIs
 
 The following table describes APIs available for the OpenHarmony LiteOS-M stack trace module. For more details about the APIs, see the API reference.
 
@@ -55,9 +47,9 @@ The following table describes APIs available for the OpenHarmony LiteOS-M stack 
 </tbody>
 </table>
 
-## Usage Guidelines<a name="section16317163520350"></a>
+## Usage Guidelines
 
-### How to Develop<a name="section13457839133618"></a>
+### How to Develop
 
 The typical process for enabling exception debugging is as follows:
 
@@ -262,7 +254,7 @@ The typical process for enabling exception debugging is as follows:
     ```
 
 
-### How to Locate Exceptions<a name="section197332323815"></a>
+### How to Locate Exceptions
 
 The procedure for locating the exception is as follows:
 

@@ -1,4 +1,4 @@
-# Extended Components<a name="EN-US_TOPIC_0000001123863139"></a>
+# Extended Components
 
 -   **[C++ Support](kernel-mini-extend-support.md)**  
 

@@ -1,7 +1,4 @@
-# Virtual Dynamic Shared Object<a name="EN-US_TOPIC_0000001078863800"></a>
-
--   [Basic Concepts](#section174577181688)
--   [Working Principles](#section546363114810)
+# Virtual Dynamic Shared Object
 
 ## Basic Concepts<a name="section174577181688"></a>
 

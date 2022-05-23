@@ -1,4 +1,4 @@
-# Kernel Communication Mechanisms<a name="EN-US_TOPIC_0000001123795189"></a>
+# Kernel Communication Mechanisms
 
 -   **[Event](kernel-small-basic-trans-event.md)**  
 

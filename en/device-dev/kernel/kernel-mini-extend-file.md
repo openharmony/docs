@@ -1,8 +1,8 @@
-# File System<a name="EN-US_TOPIC_0000001079036460"></a>
+# File System
 
 The OpenHarmony LiteOS-M kernel supports File Allocation Table file system \(FATFS\) and LittleFS file systems. Like the OpenHarmony LiteOS-A kernel, the OpenHarmony LiteOS-M kernel provides POSIX over the virtual file system \(VFS\) to ensure interface consistency. However, the VFS of the LiteOS-M kernel is light due to insufficient resources and does not provide advanced functions \(such as pagecache\). Therefore, the VFS of the LiteOS-M kernel implements only API standardization and adaptation. The file systems handle specific transactions. The following table lists the functions supported by the file systems.
 
-**Table  1**  Function list
+**Table 1** Function list
 
 <a name="table147491853163018"></a>
 <table><thead align="left"><tr id="row10807205323013"><th class="cellrowborder" valign="top" width="12.738726127387261%" id="mcps1.2.6.1.1"><p id="p980714539304"><a name="p980714539304"></a><a name="p980714539304"></a>Function</p>

@@ -1,9 +1,5 @@
-# File System Adaptation<a name="EN-US_TOPIC_0000001078936814"></a>
+# File System Adaptation
 
--   [Basic Concepts](#section19480121811422)
--   [Adapting the Mount API](#section147051940104212)
--   [Adapting the Lookup API](#section11930181394317)
--   [Summary and Precautions](#section5617183014319)
 
 ## Basic Concepts<a name="section19480121811422"></a>
 
@@ -28,7 +24,7 @@ struct VnodeOps g_yourFsVnodeOps = {
 FSMAP_ENTRY(yourfs_fsmap, "your fs name", g_yourFsMountOps, TRUE, TRUE); // Register the file system.
 ```
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >1.  The  **open**  and  **close**  APIs are not necessarily implemented because they are used to operate files and are imperceptible to the underlying file system. You need to implement them only when special operations need to be performed during the open and close operations on the file system.
 >2.  Basic file system knowledge is required for file system adaptation. You need to have a deep understanding of the principles and implementation of the target file system. This section does not include the file system basics in detail. If you have any questions during the adaptation process, refer to the code in the  **kernel/liteos\_a/fs**  directory.
 
@@ -215,7 +211,7 @@ The general adaptation procedure is as follows:
 
 The core logic is how to use the private data to implement API functions. These APIs implement common functions of the file systems and are generally implemented before the files systems are ported. Therefore, the key is to determine the private data required by the file system and store the data in the Vnode for later use. Generally, the private data is information that can uniquely locate a file on a storage medium. Most file systems have similar data structures, for example, the inode data structure in JFFS2.
 
->![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+>![](../public_sys-resources/icon-caution.gif) **CAUTION:**<br/> 
 >1.  When a file is accessed, the  **Lookup**  API of the file system is not necessarily called. The  **Lookup**  API is called only when the PathCache is invalid.
 >2.  Do not directly return the Vnode located by using  **VfsHashGet**  as the result. The information stored in the Vnode may be invalid. Update the fields and return it.
 >3.  Vnodes are automatically released in the background based on memory usage. If data needs to be stored persistently, do not save it only in Vnodes.

@@ -1,11 +1,5 @@
-# ifconfig<a name="EN-US_TOPIC_0000001133846494"></a>
+# ifconfig
 
--   [Command Function](#section174940284379)
--   [Syntax](#section136073203715)
--   [Parameters](#section6493235203710)
--   [Usage](#section05763403371)
--   [Example](#section168802042123717)
--   [Output](#section124638211109)
 
 ## Command Function<a name="section174940284379"></a>
 

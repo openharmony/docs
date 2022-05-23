@@ -1,16 +1,6 @@
-# Task Management<a name="EN-US_TOPIC_0000001124066565"></a>
+# Task Management
 
--   [Basic Concepts](#section1524821422111)
-    -   [Task-related Concepts](#section1124425582117)
-    -   [Task Running Mechanism](#section123321315152219)
-
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Verification](#section62921315208)
-
-
-## Basic Concepts<a name="section1524821422111"></a>
+## Basic Concepts
 
 From the perspective of the operating system, tasks are the minimum running units that compete for system resources. They can use or wait for CPUs, use system resources such as memory, and run independently.
 
@@ -20,9 +10,9 @@ The task module of the OpenHarmony LiteOS-M provides multiple tasks and supports
 -   A task represents a thread.
 -   The preemptive scheduling mechanism is used for tasks. High-priority tasks can interrupt low-priority tasks. Low-priority tasks can be scheduled only after high-priority tasks are blocked or complete.
 -   Time slice round-robin is used to schedule tasks with the same priority.
--   A total of 32 \(**0**  to  **31**\) priorities are defined.  **0**  is the highest priority, and  **31**  is the lowest.
+-   A total of 32 \(**0** to **31**\) priorities are defined. **0** is the highest priority, and **31** is the lowest.
 
-### Task-related Concepts<a name="section1124425582117"></a>
+### Task-related Concepts
 
 **Task States**
 
@@ -37,7 +27,7 @@ A task can be in any of the following states:
 
 **Task State Transitions**
 
-**Figure  1**  Task state transitions<a name="fig186971918162613"></a>  
+**Figure 1** Task state transitions<a name="fig186971918162613"></a>  
 ![](figures/task-state-transitions.png "task-state-transitions")
 
 The task transition process is as follows:
@@ -103,11 +93,11 @@ Task switching involves actions, such as obtaining the task with the highest pri
 
 When a task is created, the system initializes the task stack and presets the context. The system places the task entry function in the corresponding position so that the function is executed when the task enters the running state for the first time.
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 The following table describes APIs available for the OpenHarmony LiteOS-M task module. For more details about the APIs, see the API reference.
 
-**Table  1**  APIs of the task management module
+**Table 1** APIs of the task management module
 
 | Category| API| Description|
 | -------- | -------- | -------- |
@@ -139,33 +129,33 @@ The following table describes APIs available for the OpenHarmony LiteOS-M task m
 | Reclaiming task stack resources| LOS_TaskResRecycle | Reclaims all task stack resources.|
 
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical development process of the task module is as follows:
 
-1.  Use  **LOS\_TaskLock**  to lock task scheduling and prevent high-priority tasks from being scheduled.
-2.  Use  **LOS\_TaskCreate**  to create a task.
-3.  Use  **LOS\_TaskUnlock**  to unlock task scheduling so that tasks can be scheduled by priority.
-4.  Use  **LOS\_TaskDelay**  to delay a task.
-5.  Use  **LOS\_TaskSuspend**  to suspend a task.
-6.  Use  **LOS\_TaskResume**  to resume the suspended task.
+1.  Use **LOS\_TaskLock** to lock task scheduling and prevent high-priority tasks from being scheduled.
+2.  Use **LOS\_TaskCreate** to create a task.
+3.  Use **LOS\_TaskUnlock** to unlock task scheduling so that tasks can be scheduled by priority.
+4.  Use **LOS\_TaskDelay** to delay a task.
+5.  Use **LOS\_TaskSuspend** to suspend a task.
+6.  Use **LOS\_TaskResume** to resume the suspended task.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >-   Running idle tasks reclaims the TCBs and stacks in the to-be-recycled linked list.
 >-   The task name is a pointer without memory space allocated. When setting the task name, do not assign the local variable address to the task name pointer.
 >-   The task stack size is 8-byte aligned. Follow the "nothing more and nothing less" principle while determining the task stack size.
 >-   A running task cannot be suspended if task scheduling is locked.
 >-   Idle tasks and software timer tasks cannot be suspended or deleted.
->-   In an interrupt handler or when a task is locked, the operation of calling  **LOS\_TaskDelay**  fails.
+>-   In an interrupt handler or when a task is locked, the operation of calling **LOS\_TaskDelay** fails.
 >-   Locking task scheduling does not disable interrupts. Tasks can still be interrupted while task scheduling is locked.
 >-   Locking task scheduling must be used together with unlocking task scheduling.
 >-   Task scheduling may occur while a task priority is being set.
 >-   The maximum number of tasks that can be set for the operating system is the total number of tasks of the operating system, not the number of tasks available to users. For example, if the system software timer occupies one more task resource, the number of task resources available to users decreases by one.
->-   **LOS\_CurTaskPriSet**  and  **LOS\_TaskPriSet**  cannot be used in interrupts or used to modify the priorities of software timer tasks.
->-   If the task corresponding to the task ID sent to  **LOS\_TaskPriGet**  has not been created or the task ID exceeds the maximum number of tasks,  **-1**  will be returned.
+>-   **LOS\_CurTaskPriSet** and **LOS\_TaskPriSet** cannot be used in interrupts or used to modify the priorities of software timer tasks.
+>-   If the task corresponding to the task ID sent to **LOS\_TaskPriGet** has not been created or the task ID exceeds the maximum number of tasks, **-1** will be returned.
 >-   Resources such as a mutex or a semaphore allocated to a task must have been released before the task is deleted.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
 This example describes the priority-based task scheduling and use of task-related APIs, including creating, delaying, suspending, and resuming two tasks with different priorities, and locking/unlocking task scheduling. The sample code is as follows:
 
@@ -281,7 +271,7 @@ UINT32 Example_TskCaseEntry(VOID)
 }
 ```
 
-### Verification<a name="section62921315208"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

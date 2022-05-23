@@ -1,3 +1,4 @@
 # Memory Management
 
-- **[Enhanced Swap] (kernel-standard-mm-eswap.md)**
+- **[Enhanced Swap](kernel-standard-mm-eswap.md)**
+

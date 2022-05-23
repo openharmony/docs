@@ -1,36 +1,28 @@
 # Memory Leak Check
 
+## Basic Concepts
 
-## Basic Concepts<a name="section1026719436293"></a>
+As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
 
-As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory mechanism automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
+## Function Configuration
 
-## Function Configuration<a name="section13991354162914"></a>
-
-1.  **LOSCFG\_MEM\_LEAKCHECK**: specifies the setting of the memory leak check. This function is disabled by default. To enable this function, configure it in  **Debug-\> Enable Function call stack of Mem operation recorded**.
-2.  **LOS\_RECORD\_LR\_CNT**: number of LRs recorded. The default value is  **3**. Each LR consumes the memory of  **sizeof\(void \*\)**  bytes.
-3.  **LOS\_OMIT\_LR\_CNT**: number of ignored LRs. The default value is  **2**, which indicates that LRs are recorded from the time when  **LOS\_MemAlloc**  is called. You can change the value based on actual requirements. This macro is configured because:
+1.  **LOSCFG\_MEM\_LEAKCHECK**: specifies the setting of the memory leak check. This function is disabled by default. To enable the function, set this macro to  **1**  in  **target\_config.h**.
+2.  **LOSCFG\_MEM\_RECORD\_LR\_CNT**: number of LRs recorded. The default value is  **3**. Each LR consumes the memory of  **sizeof\(void \*\)**  bytes.
+3.  **LOSCFG\_MEM\_OMIT\_LR\_CNT**: number of ignored LRs. The default value is  **4**, which indicates that LRs are recorded from the time when  **LOS\_MemAlloc**  is called. You can change the value based on actual requirements. This macro is configured because: 
     -   **LOS\_MemAlloc**  is also called internally.
     -   **LOS\_MemAlloc**  may be encapsulated externally.
-    -   The number of LRs configured by  **LOS\_RECORD\_LR\_CNT**  is limited.
+    -   The number of LRs configured by  **LOSCFG\_MEM\_RECORD\_LR\_CNT**  is limited.
 
 
 Correctly setting this macro can ignore invalid LRs and reduce memory consumption.
 
-## Development Guidelines<a name="section95828159308"></a>
+## Development Guidelines
 
-### How to Develop<a name="section369844416304"></a>
+### How to Develop
 
 Memory leak check provides a method to check for memory leak in key code logic. If this function is enabled, LR information is recorded each time when memory is allocated. When  **LOS\_MemUsedNodeShow**  is called before and after the code snippet is checked, information about all nodes that have been used in the specified memory pool is printed. You can compare the node information. The newly added node information indicates the node where the memory leak may occur. You can locate the code based on the LR and further check whether a memory leak occurs.
 
-The node information output by calling  **LOS\_MemUsedNodeShow**  is in the following format: 
-
--   Each line contains information about a node. 
--   The first column indicates the node address, based on which you can obtain complete node information using a tool such as a GNU Debugger \(GDB\). 
--   The second column indicates the node size, which is equal to the node header size plus the data field size. 
--   Columns 3 to 5 list the LR addresses. 
-
-You can determine the specific memory location of the node based on the LR addresses and the assembly file.
+The node information output by calling  **LOS\_MemUsedNodeShow**  is in the following format: Each line contains information about a node. The first column indicates the node address, based on which you can obtain complete node information using a tool such as a GNU Debugger \(GDB\). The second column indicates the node size, which is equal to the node header size plus the data field size. Columns 3 to 5 list the LR addresses. You can determine the specific memory location of the node based on the LR addresses and the assembly file.
 
 ```
 node        size   LR[0]      LR[1]       LR[2]  
@@ -42,20 +34,20 @@ node        size   LR[0]      LR[1]       LR[2]
 0x100179cc: 0x5c  0x9b02c24e  0x9b02c246  0x9b008ef0 
 ```
 
->![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+>![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
 >Enabling memory leak check affects memory application performance. LR addresses will be recorded for each memory node, increasing memory overhead.
 
-### Development Example<a name="section460801313313"></a>
+### Development Example
 
 This example implements the following:
 
-1.  Call  **OsMemUsedNodeShow**  to print information about all nodes.
+1.  Call  **LOS\_MemUsedNodeShow**  to print information about all nodes.
 2.  Simulate a memory leak by requesting memory without releasing it.
-3.  Call  **OsMemUsedNodeShow**  to print information about all nodes.
+3.  Call  **LOS\_MemUsedNodeShow**  to print information about all nodes.
 4.  Compare the logs to obtain information about the node where a memory leak occurred.
 5.  Locate the code based on the LR address.
 
-**Sample Code**
+### Sample Code
 
 The sample code is as follows:
 
@@ -67,14 +59,14 @@ The sample code is as follows:
 
 void MemLeakTest(void)
 {
-    OsMemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
+    LOS_MemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
     void *ptr1 = LOS_MemAlloc(LOSCFG_SYS_HEAP_ADDR, 8);
     void *ptr2 = LOS_MemAlloc(LOSCFG_SYS_HEAP_ADDR, 8);
-    OsMemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
+    LOS_MemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
 }
 ```
 
-**Verification**
+### Verification
 
 The log is as follows:
 

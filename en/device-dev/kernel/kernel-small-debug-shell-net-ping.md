@@ -1,11 +1,5 @@
-# ping<a name="EN-US_TOPIC_0000001133846496"></a>
+# ping
 
--   [Command Function](#section119672573385)
--   [Syntax](#section869419010390)
--   [Parameters](#section9877183173918)
--   [Usage](#section1097046193914)
--   [Example](#section14564129113911)
--   [Output](#section1621732891215)
 
 ## Command Function<a name="section119672573385"></a>
 

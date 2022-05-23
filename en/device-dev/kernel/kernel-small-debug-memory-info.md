@@ -1,11 +1,4 @@
-# Memory Information Statistics<a name="EN-US_TOPIC_0000001078716768"></a>
-
--   [Basic Concepts](#section52691565235)
--   [Function Configuration](#section470611682411)
--   [Development Guidelines](#section9368374243)
-    -   [How to Develop](#section679912407257)
-    -   [Development Example](#section1025453412611)
-
+# Memory Information Statistics
 
 ## Basic Concepts<a name="section52691565235"></a>
 

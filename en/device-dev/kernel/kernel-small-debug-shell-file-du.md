@@ -1,11 +1,4 @@
-# du<a name="EN-US_TOPIC_0000001175075028"></a>
-
--   [Command Function](#section201149459368)
--   [Syntax](#section579813484364)
--   [Parameters](#section168065311366)
--   [Usage](#section19190125723612)
--   [Example](#section10383416372)
--   [Output](#section16633113552815)
+# du
 
 ## Command Function<a name="section201149459368"></a>
 

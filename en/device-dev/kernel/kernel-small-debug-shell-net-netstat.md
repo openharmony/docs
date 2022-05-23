@@ -1,11 +1,5 @@
-# netstat<a name="EN-US_TOPIC_0000001179845939"></a>
+# netstat
 
--   [Command Function](#section13469162113816)
--   [Syntax](#section795712373812)
--   [Parameters](#section17629431193817)
--   [Usage](#section5277153519380)
--   [Example](#section108141437163820)
--   [Output](#section1357015107117)
 
 ## Command Function<a name="section13469162113816"></a>
 

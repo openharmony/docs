@@ -1,10 +1,4 @@
-# Virtual Memory Management<a name="EN-US_TOPIC_0000001123800847"></a>
-
--   [Basic Concepts](#section650193717411)
--   [Working Principles](#section072885512412)
--   [Development Guidelines](#section20956116050)
-    -   [Available APIs](#section166137221657)
-    -   [How to Develop](#section8752103914513)
+# Virtual Memory Management
 
 
 ## Basic Concepts<a name="section650193717411"></a>

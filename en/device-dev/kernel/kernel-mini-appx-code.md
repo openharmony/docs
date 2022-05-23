@@ -1,20 +1,9 @@
 # Kernel Coding Specification<a name="EN-US_TOPIC_0000001079036432"></a>
 
--   [Principle](#section9512812145915)
--   [Directory Structure](#section1355317267017)
--   [Naming](#section1375364815017)
--   [Comments](#section1692516179119)
--   [Format](#section10888536113)
--   [Macros](#section12276501124)
--   [Header Files](#section158507231319)
--   [Data Types](#section91351731446)
--   [Variables](#section575493915417)
--   [Assertions](#section13864440410)
--   [Functions](#section671919481745)
 
 This kernel coding specification is developed based on the general programming specifications in the industry. It defines the programming styles for kernel developers to follow.
 
-## Principle<a name="section9512812145915"></a>
+## Principle
 
 Overall principle:
 
@@ -25,13 +14,13 @@ Overall principle:
 
 Comply with this specification in most cases. When third-party open-source code needs to modified or a large number of open-source code APIs are used, follow the specifications applied to the third-party open-source code. Flexibly use this specification based on general principles.
 
-## Directory Structure<a name="section1355317267017"></a>
+## Directory Structure
 
 You are advised to divide directories by function module and then define the header file directory and source file directory for each module.
 
 Unless otherwise specified, use lowercase letters separated by underscores \(\_\) for directory names and file names.
 
-## **Naming**<a name="section1375364815017"></a>
+## **Naming**
 
 The CamelCase style is recommended. The rules are as follows:
 
@@ -106,7 +95,7 @@ OsTaskScan
 OsMuxInit
 ```
 
-## Comments<a name="section1692516179119"></a>
+## Comments
 
 Generally, clear software architecture and appropriate symbol naming improve code readability.
 
@@ -142,7 +131,7 @@ You are advised to align multiple consecutive comments on the right. For example
 #define CONST_B 2000   /* Const B */
 ```
 
-## **Format**<a name="section10888536113"></a>
+## **Format**
 
 Indent code of each level with four spaces rather than tabs \('\\t'\) for a better readability.
 
@@ -233,7 +222,7 @@ int Foo(const char * restrict p); // OK: When there is the restrict modifier, a 
 sz = sizeof(int*); // OK: There is no variable on the right, and * follows the data type.
 ```
 
-## Macros<a name="section12276501124"></a>
+## Macros
 
 If a function-like macro can be replaced by a function, use a function instead. Use inline functions for performance-critical scenarios.
 
@@ -293,11 +282,11 @@ Do not reference external function APIs or variables in declaration mode. Use th
 
 It is recommended that header files be included by stability in the following sequence: header file corresponding to the source code, C standard library, operating system library, platform library, project public library, and other dependencies.
 
-## Data Types<a name="section91351731446"></a>
+## Data Types
 
 You are advised to use the basic data types defined in  **los\_compiler.h**. For example, define the 32-bit unsigned integer as  **UINT32**.
 
-## Variables<a name="section575493915417"></a>
+## Variables
 
 Avoid large stack allocations, such as large local arrays.
 
@@ -309,7 +298,7 @@ Do not return the address of a local variable outside its scope.
 
 A variable that points to a resource handle or descriptor is assigned a new value immediately after the resource is released. If the scope of the variable ends immediately, no new value needs to be assigned. Variables that point to resource handles or descriptors include pointers, file descriptors, socket descriptors, and other variables that point to resources.
 
-## Assertions<a name="section13864440410"></a>
+## Assertions
 
 Assertions must be defined using macros and take effect only in the debugging version.
 
@@ -319,7 +308,7 @@ Do not change the running environment in an assertion.
 
 An assertion is used to check only one error.
 
-## Functions<a name="section671919481745"></a>
+## Functions
 
 The validity of data sent from a process to another process and data sent from an application to the kernel must be verified. The verification includes but is not limited to the following:
 

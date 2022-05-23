@@ -1,11 +1,5 @@
-# mkdir<a name="EN-US_TOPIC_0000001133846486"></a>
+# mkdir
 
--   [Command Function](#section1083613274175)
--   [Syntax](#section820913118178)
--   [Parameters](#section1256834121718)
--   [Usage](#section1294234115172)
--   [Example](#section1113345211713)
--   [Output](#section10142201012)
 
 ## Command Function<a name="section1083613274175"></a>
 
