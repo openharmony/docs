@@ -1,8 +1,7 @@
 # StartOptions
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
-> The initial APIs of this module are supported since API version 9. The APIs of API version 9 is of the Canary version and are for trial use only. The API call may be unstable.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable. 
 
 
 **StartOptions** is the basic communication component of the system.
@@ -21,6 +20,6 @@ import StartOptions from '@ohos.application.StartOptions';
 
 | Name| Readable| Writable| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| windowMode | Yes| No| number | No| Window mode.|
+| [windowMode](js-apis-window.md#windowmode) | Yes| No| number | No| Window mode.|
 | displayId | Yes| No| number | No| Display ID.|
 
