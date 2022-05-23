@@ -1,11 +1,5 @@
-# swtmr<a name="EN-US_TOPIC_0000001133846478"></a>
+# swtmr
 
--   [Command Function](#section166171064814)
--   [Syntax](#section424011111682)
--   [Parameters](#section1268410459465)
--   [Usage](#section169806213815)
--   [Example](#section16676026389)
--   [Output](#section1541991614710)
 
 ## Command Function<a name="section166171064814"></a>
 

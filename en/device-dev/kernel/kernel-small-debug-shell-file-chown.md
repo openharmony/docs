@@ -1,11 +1,4 @@
-# chown<a name="EN-US_TOPIC_0000001179965847"></a>
-
--   [Command Function](#section247414691513)
--   [Syntax](#section14773151018159)
--   [Parameters](#section598731391517)
--   [Usage](#section16524152071510)
--   [Example](#section17901152561510)
--   [Output](#section15513163115816)
+# chown
 
 ## Command Function<a name="section247414691513"></a>
 

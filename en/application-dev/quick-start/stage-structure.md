@@ -175,12 +175,12 @@ Table 2 Internal structure of the app tag
 | vendor                         | Application vendor. The value is a string with a maximum of 255 bytes.| String  | Yes (initial value: left empty)                 |
 | versionCode                    | Version number of the application. The value is a 32-bit non-negative integer and less than 2 to the power of 31. It is used only to determine whether a version is later than another version. A larger value indicates a later version. Ensure that a new version of the application uses a value greater than any of its predecessors. | Number    | No |
 | versionName                    | Text description of the version number, which is displayed to users.<br>The value consists of only digits and dots. The four-segment format *A.B.C.D* is recommended, wherein:<br>Segment 1: major version number, which ranges from 0 to 99. A major version consists of major new features or large changes.<br>Segment 2: minor version number, which ranges from 0 to 99. A minor version consists of some new features and large bug fixes.<br>Segment 3: feature version number, which ranges from 0 to 99. A feature version consists of scheduled new features.<br>Segment 4: maintenance release number or patch number, which ranges from 0 to 999. A maintenance release or patch consists of resolution to security flaws or minor bugs.| String  | No                             |
-| minCompatibleVersionCode       | Minimum API version required for running the application.                       | Number    | Yes (initial value: value of **versionCode**)|
-| minAPIVersion                  | Target API version required for running the application.                       | Number    | No                           |
+| minCompatibleVersionCode       | Minimum API version compatible with the application.                       | Number    | Yes (initial value: value of **versionCode**)|
+| minAPIVersion                  | Minimum API version required for running the application.                       | Number    | No                           |
 | targetAPIVersion               | Target API version required for running the application.                       | Integer    | No                           |
 | apiReleaseType                 | Type of the target API version required for running the application. The value can be **CanaryN**, **BetaN**, or **Release**, where **N** represents a positive integer.<br>**Canary**: indicates a restricted release.<br>**Beta**: indicates a publicly released beta version.<br>**Release**: indicates a publicly released official version.| String  | Yes (initial value: **"Release"**)            |
 | distributedNotificationEnabled | Whether the distributed notification feature is enabled for the application.                        | Boolean  | Yes (initial value: **true**)               |
-| entityType                     | Category of the application, which can be **game**, **media**, **communication**, **news**, **travel**, **utility**, **shopping**, **education**, **kids**, **business**, and **photography**.| String  | Yes (initial value: unspecified)        |
+| entityType                     | Type of the application, which can be **game**, **media**, **communication**, **news**, **travel**, **utility**, **shopping**, **education**, **kids**, **business**, and **photography**.| String  | Yes (initial value: unspecified)        |
 
 ### Internal Structure of the module Tag
 
@@ -212,9 +212,9 @@ Table 4 System-defined deviceTypes values
 | Device Type | Value      | Description                                      |
 | ------------ | ------------ | -------------------------------------------------------- |
 | tablet       | tablet       | Tablet, speaker with a screen                                          |
-| smart TV     | tv           |                                                          |
+| smart TV     | tv           | N/A |
 | smart watch  | wearable     | Smart watch, kids' watch, especially a watch that provides call features|
-| head unit    | car          |                                                          |
+| head unit    | car          | N/A |
 | router       | router       | Router                                                  |
 
 Example of the **deviceTypes** attribute structure:
@@ -309,7 +309,7 @@ Table 6 Internal structure of the abilities attribute
 | icon            | Icon of the ability. The value is the index to the resource file. This attribute can be left empty, and the default value is an empty array.<br>If **ability** is set to **MainElement**, this attribute is mandatory.| String    | Yes (initial value: left empty)<br>If **ability** is set to **MainElement**, this attribute is mandatory.|
 | permissions     | A set of permissions that need to be applied for when the capability of another application is invoked. The value is a string array. Each array element is a permission name, which is usually represented by a reverse domain name (a maximum of 255 bytes). The permission can be predefined by the system or customized by the application. For the latter, the value must be the same as the **name** value of a permission defined in the **defPermissions** attribute. | String array| Yes (initial value: left empty)                                  |
 | metadata        | Metadata about the ability. For details about metadata, see [Internal Structure of the metadata Attribute](#internal-structure-of-the-metadata-attribute).| Array      | Yes (initial value: left empty)                                  |
-| visible         | Indicates whether the ability can be invoked by other applications. The value **true** means that the ability can be invoked by other applications, and **false** means the opposite.| Boolean    | Yes (initial value: **false**)                               |
+| visible         | Whether the ability can be invoked by other applications. The value **true** means that the ability can be invoked by other applications, and **false** means the opposite.| Boolean    | Yes (initial value: **false**)                               |
 | continuable     | Whether the ability can be migrated. The value **true** means that the ability can be migrated, and **false** means the opposite.| Boolean    | Yes (initial value: **false**)                               |
 | skills          | Feature set of wants that can be received by the ability.<br>Configuration rule: In an entry package, you can configure multiple abilities with the **skills** attribute (where **action.system.home** and **entity.system.home** are configured) that has the entry capability. The **label** and **icon** in the first ability that has **skills** configured are used as the **label** and **icon** of the entire service/application.<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application,<br>but not for an OpenHarmony service.<br>For details about the internal structure of **skills**, see [Internal Structure of the skills Attribute](#internal-structure-of-the-skills-attribute).| Array      | Yes (initial value: left empty)                                  |
 | backgroundModes | Continuous task modes of the ability.<br>Continuous tasks are classified into the following types:<br>**dataTransfer**: service for downloading, backing up, sharing, or transferring data from the network or peer devices<br>**audioPlayback**: audio playback service<br>**audioRecording**: audio recording service<br>**location**: location and navigation services<br>**bluetoothInteraction**: Bluetooth scanning, connection, and transmission services (wearables)<br>**multiDeviceConnection**: multi-device interconnection service<br>**wifiInteraction**: Wi-Fi scanning, connection, and transmission services (multi-screen cloning)<br>**voip**: voice/video call and VoIP services<br>**taskKeeping**: computing service<br>| String    | Yes (initial value: left empty)                                          |
@@ -361,7 +361,7 @@ Table 7 Internal structure of the skills attribute
 | -------- | ------------------------------------------------------------ | ---------- | -------------------- |
 | actions  | A set of want action values that can be received. The value can be a value predefined by the system or a custom value.| String array| Yes (initial value: left empty)|
 | entities | Categories of abilities that can receive the want. The value can be a value predefined by the system or a custom value.| String array| Yes (initial value: left empty)|
-| uris     | Data specifications to be added to the want filter. The specification can be of data type only (**mimeType** attribute), URI only, or both. For details about the internal structure of **uris**, see Table 8.| Object array  | Yes (initial value: left empty)|
+| uris     | Data specification to be added to the want filter. The specification can be of data type only (**mimeType** attribute), URI only, or both. For details about the internal structure of **uris**, see Table 8.| Object array  | Yes (initial value: left empty)|
 
 Table 8 Internal structure of the uris attribute
 
@@ -612,7 +612,7 @@ Table 13 Internal structure of the shortcuts attribute
 
 | Attribute  | Description                                                        | Data Type| Initial Value Allowed                |
 | ---------- | ------------------------------------------------------------ | -------- | -------------------------- |
-| shortcutId | Shortcut ID. The value is a string with a maximum of 63 bytes.                | String  | No                        |
+| shortcutId | ID of the shortcut. The value is a string with a maximum of 63 bytes.                | String  | No                        |
 | label      | Label of the shortcut, that is, the text description displayed by the shortcut. The value can be a string or a resource index to the description. The value is a string with a maximum of 63 bytes.| String  | Yes (initial value: left empty)        |
 | icon       | Icon of the shortcut. The value is the index to the resource file.          | String  | Yes (initial value: left empty)|
 | wants      | Wants to which the shortcut points. The attribute consists of the **bundleName** and **abilityName** sub-attributes.<br>**bundleName**: target bundle name of the shortcut; string type.<br>**abilityName**: target component name of the shortcut; string type.| Object    | Yes (initial value: left empty)  |

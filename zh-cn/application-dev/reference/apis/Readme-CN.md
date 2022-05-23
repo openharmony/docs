@@ -113,6 +113,7 @@
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
+  - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
 - 电话服务
 
   - [@ohos.contact (联系人)](js-apis-contact.md)

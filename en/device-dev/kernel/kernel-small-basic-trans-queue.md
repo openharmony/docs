@@ -1,4 +1,4 @@
-# Queue<a name="EN-US_TOPIC_0000001078912736"></a>
+# Queue
 
 
 ## Basic Concepts<a name="section81171363232"></a>

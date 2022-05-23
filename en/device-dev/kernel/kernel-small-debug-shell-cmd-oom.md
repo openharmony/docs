@@ -1,11 +1,4 @@
-# oom<a name="EN-US_TOPIC_0000001179845919"></a>
-
--   [Command Function](#section366714216619)
--   [Syntax](#section8833164614615)
--   [Parameters](#section12809111019453)
--   [Usage](#section15935131220717)
--   [Example](#section387104374416)
--   [Output](#section12742311179)
+# oom
 
 ## Command Function<a name="section366714216619"></a>
 

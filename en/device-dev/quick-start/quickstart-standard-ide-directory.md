@@ -1,7 +1,7 @@
 ## Getting Started with Standard System (IDE Mode)
 - [Standard System Overview](quickstart-ide-standard-overview.md)
     - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
+        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
         - [Obtaining Source Code](quickstart-ide-standard-sourcecode-acquire.md)
     - [Creating a Source Code Project](quickstart-ide-standard-create-project.md)
     - Running a Hello World Program

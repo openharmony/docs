@@ -1,11 +1,4 @@
-# watch<a name="EN-US_TOPIC_0000001134006258"></a>
-
--   [Command Function](#section20643141481314)
--   [Syntax](#section1075441721316)
--   [Parameters](#section1472810220135)
--   [Usage](#section186772414131)
--   [Example](#section4764192791314)
--   [Output](#section5791253155517)
+# watch
 
 ## Command Function<a name="section20643141481314"></a>
 

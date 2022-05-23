@@ -1,9 +1,8 @@
-# Kernel<a name="EN-US_TOPIC_0000001111039554"></a>
+# Kernel
 
--   **[Kernel for Mini Systems](kernel-mini.md)**  
+-   **[Mini-System Kernel](kernel-mini.md)**  
 
--   **[Kernel for Small Systems](kernel-small.md)**  
+-   **[Small-System Kernel](kernel-small.md)**  
 
--   **[User-Mode Memory Debugging](kernel-small-debug-user.md)**  
-
+-   **[Standard-System Kernel](kernel-standard.md)**  
 

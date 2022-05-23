@@ -28,7 +28,13 @@ getMediaLibrary(context: Context): MediaLibrary
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | 媒体库实例 |
 
-**示例：**
+**示例：（从API Version 9开始）**
+
+```
+var media = mediaLibrary.getMediaLibrary(this.context);
+```
+
+**示例：（API Version 8）**
 
 ```
 import featureAbility from '@ohos.ability.featureAbility';
@@ -893,6 +899,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
 
+**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
+
 **需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -927,6 +935,8 @@ async function example() {
 open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
+
+**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
 
 **需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
 

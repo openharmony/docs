@@ -2,7 +2,7 @@
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 ## Modules to Import
 
 ```
@@ -463,7 +463,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-Obtains the information about all applications of the specified user. This API uses an asynchronous callback to return the result.
+Obtains the information about all applications. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -649,7 +649,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-Checks whether an ability is enabled based on a given want. This API uses a promise to return the result.
+Checks whether an ability is enabled based on a given **AbilityInfo** object. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -690,7 +690,7 @@ bundle.isAbilityEnabled(Info)
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-Checks whether an ability is enabled based on a given want. This API uses an asynchronous callback to return the result.
+Checks whether an ability is enabled based on a given **AbilityInfo** object. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -727,7 +727,7 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-Checks whether an application is enabled based on a given want. This API uses a promise to return the result.
+Checks whether an application is enabled based on a given bundle name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -857,7 +857,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
 | want        | Want                               | Yes   | Want that contains the bundle name.                  |
-| bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0. |
+| bundleFlags | number                             | Yes   | Type of the ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId      | number                             | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
 | callback    | AsyncCallback<Array\<AbilityInfo>> | Yes   | Callback used to return the ability information.           |
 
@@ -894,7 +894,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
 | want        | Want                               | Yes   | Want that contains the bundle name.                  |
-| bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0. |
+| bundleFlags | number                             | Yes   | Type of the ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | callback    | AsyncCallback<Array\<AbilityInfo>> | Yes   | Callback used to return the ability information.           |
 
 **Example**
@@ -1056,7 +1056,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
-Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This API uses a promise to return the result.
+Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -1095,7 +1095,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
-Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the corresponding icon based on a given bundle name and ability name. This API uses an asynchronous callback to return the result.
+Obtains the [PixelMap](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -1274,13 +1274,13 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
 | Name                                      | Default Value | Description                       |
 | ---------------------------------------- | ---- | ------------------------- |
 | SUCCESS                                  | 0    | Installation succeeded.                     |
-| STATUS_INSTALL_FAILURE                   | 1    | Installation failed. (The application to be installed does not exist.)           |
+| STATUS_INSTALL_FAILURE                   | 1    | Installation failed. (The application to be installed is not found.)           |
 | STATUS_INSTALL_FAILURE_ABORTED           | 2    | Installation aborted.                     |
 | STATUS_INSTALL_FAILURE_INVALID           | 3    | Invalid installation parameter.                   |
-| STATUS_INSTALL_FAILURE_CONFLICT          | 4    | Installation conflict. (The basic information about the application to upgrade is inconsistent with that of the existing application.) |
+| STATUS_INSTALL_FAILURE_CONFLICT          | 4    | Installation conflict. (The basic information of the application to update is inconsistent with that of the existing application.) |
 | STATUS_INSTALL_FAILURE_STORAGE           | 5    | Failed to store the bundle information.                  |
-| STATUS_INSTALL_FAILURE_INCOMPATIBLE      | 6    | Installation incompatible. (A downgrade occurs or the signature information is incorrect.) |
-| STATUS_UNINSTALL_FAILURE                 | 7    | Uninstallation failed. (The application to be uninstalled does not exist.)          |
+| STATUS_INSTALL_FAILURE_INCOMPATIBLE      | 6    | Installation incompatibility. (A downgrade occurs or the signature information is incorrect.) |
+| STATUS_UNINSTALL_FAILURE                 | 7    | Uninstallation failed. (The application to be uninstalled is not found.)          |
 | STATUS_UNINSTALL_FAILURE_BLOCKED         | 8    | Uninstallation aborted. (This error code is not in use.)              |
 | STATUS_UNINSTALL_FAILURE_ABORTED         | 9    | Uninstallation aborted. (Invalid parameters.)            |
 | STATUS_UNINSTALL_FAILURE_CONFLICT        | 10   | Uninstallation conflict. (Failed to uninstall a system application or end the application process.)|
@@ -1311,7 +1311,7 @@ Enumerates bundle flags.
 | GET_ABILITY_INFO_WITH_METADATA<sup>8+</sup> | 0x00000020 | Obtains the ability metadata information.    |
 | GET_BUNDLE_WITH_EXTENSION_ABILITY<sup>9+</sup> | 0x00000020 | Obtains the bundle information with the Extension ability information. |
 | GET_APPLICATION_INFO_WITH_METADATA<sup>8+</sup> | 0x00000040 | Obtains the application metadata information.         |
-| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | Obtains the ability information with information about system applications. |
+| GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | Obtains the ability information of system applications.|
 | GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | Obtains information about disabled abilities.  |
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | Obtains information about disabled applications.       |
 | GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | Obtains all application information.          |
@@ -1355,7 +1355,7 @@ Describes the application bundle information.
 | cpuAbi                            | string                       | Yes   | No   | cpuAbi information of the bundle.         |
 | isSilentInstallation              | string                       | Yes   | No   | Whether to install the bundle in silent mode.             |
 | minCompatibleVersionCode          | number                       | Yes   | No   | Earliest version compatible with the bundle in the distributed scenario.    |
-| entryInstallationFree             | boolean                      | Yes   | No   | Whether installation-free is supported for the entry.         |
+| entryInstallationFree             | boolean                      | Yes   | No   | Whether installation-free is supported for the entry module.         |
 | reqPermissionStates<sup>8+</sup>  | Array\<number>               | Yes   | No   | Permission grant state.            |
 | extensionAbilityInfo<sup>9+</sup> | Array\<ExtensionAbilityInfo> | Yes   | No   | Extended information of the ability.        |
 
@@ -1376,7 +1376,7 @@ Describes the application information.
 | labelId                    | string                             | Yes   | No   | Application label ID.            |
 | icon                       | string                             | Yes   | No   | Application icon.              |
 | iconId                     | string                             | Yes   | No   | Application icon ID.            |
-| process                    | string                             | Yes   | No   | Process in which the application runs. If this parameter is not set, the bundle name is used by default. |
+| process                    | string                             | Yes   | No   | Process in which the application runs. If this parameter is not set, the bundle name is used.|
 | supportedModes             | number                             | Yes   | No   | Running modes supported by the application.          |
 | moduleSourceDirs           | Array\<string>                     | Yes   | No   | Relative paths for storing application resources.       |
 | permissions                | Array\<string>                     | Yes   | No   | Permissions required for accessing the application.          |
@@ -1599,7 +1599,7 @@ Enumerates color modes.
 
 ## GrantStatus
 
-Enumerates permission grant statuses.
+Enumerates permission grant states.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 

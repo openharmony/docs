@@ -139,10 +139,10 @@ HDF框架加载驱动所需要的信息来源于HDF框架定义的驱动设备�
 ```bash
 $openharmony_src_root/vendor/hisilicon/hispark_taurus/hdf_config # 内核态配置文件目录，无用户态
 
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf # 内核态配置文件目录
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/uhdf # 用户态配置文件目录
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/device_info/device_info.hcs # 内核态驱动设备描述配置文件
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/lcd/lcd_config.hcs # 内核态驱动私有配置文件
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf # 内核态配置文件目录
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/uhdf # 用户态配置文件目录
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/device_info/device_info.hcs # 内核态驱动设备描述配置文件
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/lcd/lcd_config.hcs # 内核态驱动私有配置文件
 ```
 
 #### 【规则】驱动设备在配置时，应当充分使用已有的配置信息，继承已有的配置模板
@@ -373,9 +373,9 @@ root {
 【样例】
 
 ```bash
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/sample/sample_config.hcs # 正确，将私有配置文件放置在了sample目录下
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/sample/sample_config.hcs # 正确，将私有配置文件放置在了sample目录下
 
-$openharmony_src_root/vendor/hisilicon/Hi3516DV300/hdf_config/khdf/sample_config.hcs # 错误，将私有配置文件放置在了配置根目录下
+$openharmony_src_root/vendor/hisilicon/hispark_taurus_standard/hdf_config/khdf/sample_config.hcs # 错误，将私有配置文件放置在了配置根目录下
 ```
 
 #### 【规则】应当将驱动私有配置文件包含到hdf_config配置目录下的hdf.hcs文件中

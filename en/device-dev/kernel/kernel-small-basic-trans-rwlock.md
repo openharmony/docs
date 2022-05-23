@@ -1,10 +1,4 @@
-# RW Lock<a name="EN-US_TOPIC_0000001078912738"></a>
-
--   [Basic Concepts](#section4692105214260)
--   [Working Principles](#section1239111562720)
--   [Development Guidelines](#section11643194275)
-    -   [Available APIs](#section15335332122717)
-    -   [How to Develop](#section14774114882714)
+# RW Lock
 
 
 ## Basic Concepts<a name="section4692105214260"></a>

@@ -1,11 +1,5 @@
-# Mutex<a name="EN-US_TOPIC_0000001078912734"></a>
+# Mutex
 
--   [Basic Concepts](#section85865329185)
--   [Working Principles](#section8547454201819)
--   [Development Guidelines](#section2038861117194)
-    -   [Available APIs](#section11168318131917)
-    -   [How to Develop](#section4201191122116)
-    -   [Development Example](#section10679328202117)
 
 
 ## Basic Concepts<a name="section85865329185"></a>

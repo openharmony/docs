@@ -1,8 +1,4 @@
-# Working Principles<a name="EN-US_TOPIC_0000001166037675"></a>
-
--   [Memory Leak Check](#section142061581018)
--   [Heap Memory Statistics](#section136902041337)
--   [Memory Integrity Check](#section196491231761)
+# Working Principles
 
 ## Memory Leak Check<a name="section142061581018"></a>
 

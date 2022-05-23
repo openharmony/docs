@@ -1,6 +1,6 @@
 # URL String Parsing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -9,10 +9,6 @@
 ```
 import Url from '@ohos.url' 
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## URLSearchParams
 
@@ -23,11 +19,13 @@ constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearc
 
 Creates a **URLSearchParams** instance.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>-&nbsp;**Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object |
 
 **Example**
 
@@ -45,6 +43,8 @@ var params = new URLSearchParams(urlObject.search);
 append(name: string, value: string): void
 
 Appends a key-value pair into the query string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -68,6 +68,8 @@ delete(name: string): void
 
 Deletes key-value pairs of the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -88,6 +90,8 @@ paramsobject.delete('fod');
 getAll(name: string): string[]
 
 Obtains all the key-value pairs based on the specified key.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -117,6 +121,8 @@ entries(): IterableIterator<[string, string]>
 
 Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -138,6 +144,8 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -170,6 +178,8 @@ get(name: string): string | null
 
 Obtains the value of the first key-value pair based on the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -199,6 +209,8 @@ has(name: string): boolean
 
 Checks whether a key has a value.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -226,6 +238,8 @@ set(name: string, value: string): void
 
 Sets the value for a key. If key-value pairs matching the specified key exist, the value of the first key-value pair will be set to the specified value and other key-value pairs will be deleted. Otherwise, the key-value pair will be appended to the query string.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -246,8 +260,9 @@ paramsObject.set('baz', 3); // Add a third parameter.
 
 sort(): void
 
+Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined.  This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
 
-Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined. This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -262,8 +277,9 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-
 Obtains an ES6 iterator that contains the keys of all the key-value pairs.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -287,6 +303,8 @@ values(): IterableIterator&lt;string&gt;
 
 Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -307,8 +325,9 @@ for (var value of searchParams.values()) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-
 Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -330,8 +349,9 @@ for (const [name, value] of paramsObject) {
 
 toString(): string
 
-
 Obtains search parameters that are serialized as a string and, if necessary, percent-encodes the characters in the string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -351,8 +371,9 @@ console.log(params.toString());
 
 ## URL
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -374,8 +395,9 @@ console.log(params.toString());
 
 constructor(url: string, base?: string | URL)
 
-
 Creates a URL.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -408,6 +430,8 @@ toString(): string
 
 Converts the parsed URL into a string.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -426,8 +450,9 @@ url.toString()
 
 toJSON(): string
 
-
 Converts the parsed URL into a JSON string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 

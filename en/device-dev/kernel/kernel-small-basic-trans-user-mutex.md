@@ -1,7 +1,5 @@
-# Futex<a name="EN-US_TOPIC_0000001078912732"></a>
+# Futex
 
--   [Basic Concepts](#section643519912920)
--   [Working Principles](#section16834132502910)
 
 ## Basic Concepts<a name="section643519912920"></a>
 

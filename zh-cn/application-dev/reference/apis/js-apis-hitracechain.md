@@ -155,6 +155,7 @@ setId(id: HiTraceId): void
 **示例：**
 
 ```js
+let asyncTraceId;
 let traceId = hiTraceChain.begin("business");
 // 若干业务逻辑完成后，设置当前HiTraceId。
 hiTraceChain.setId(asyncTraceId);
@@ -297,7 +298,7 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 ```js
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
-hiTraceChain.enable(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
+hiTraceChain.enableFlag(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // enabledDoNotCreateSpanFlag为true
 let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 ```

@@ -1,10 +1,4 @@
-# Process<a name="EN-US_TOPIC_0000001078704186"></a>
-
--   [Basic Concepts](#section89346055119)
--   [Working Principles](#section174514474512)
--   [Development Guidelines](#section159637182521)
-    -   [Available APIs](#section1153124135212)
-    -   [How to Develop](#section1533674618526)
+# Process
 
 
 ## Basic Concepts<a name="section89346055119"></a>

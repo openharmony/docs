@@ -1,10 +1,4 @@
-# Memory Leak Check<a name="EN-US_TOPIC_0000001078876382"></a>
-
--   [Basic Concepts](#section1026719436293)
--   [Function Configuration](#section13991354162914)
--   [Development Guidelines](#section95828159308)
-    -   [How to Develop](#section369844416304)
-    -   [Development Example](#section460801313313)
+# Memory Leak Check
 
 
 ## Basic Concepts<a name="section1026719436293"></a>

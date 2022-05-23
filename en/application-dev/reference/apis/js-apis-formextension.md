@@ -1,6 +1,6 @@
 # FormExtension
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides **FormExtension** APIs.
@@ -35,7 +35,7 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
   | Name| Type                                  | Mandatory| Description                                                        |
   | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-featureAbility.md#want) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+  | want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 

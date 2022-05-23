@@ -279,7 +279,7 @@ A data record is an abstract definition of the content on the pasteboard. The pa
 | Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | Yes | No | HTML text. |
-| want<sup>7+</sup> | [Want](js-apis-featureAbility.md#want) | Yes | No | Want text. |
+| want<sup>7+</sup> | [Want](js-apis-application-Want.md) | Yes | No | Want text. |
 | mimeType<sup>7+</sup> | string | Yes | No | Data type. |
 | plainText<sup>7+</sup> | string | Yes | No | Plain text. |
 | uri<sup>7+</sup> | string | Yes | No | URI text. |
@@ -506,7 +506,7 @@ The pasteboard supports a maximum number of 128 data records.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#want) | Yes | Want object. |
+| want | [Want](js-apis-application-Want.md) | Yes | Want object. |
 
 **Example**
 

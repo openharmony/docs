@@ -1,18 +1,12 @@
-# LittleFS<a name="EN-US_TOPIC_0000001106260762"></a>
+# LittleFS
 
--   [Basic Concepts](#section1553253111412)
--   [Development Guidelines](#section1496101821515)
--   [Sample Code](#section1034515054620)
-    -   [Verification](#section176167422148)
-
-
-## Basic Concepts<a name="section1553253111412"></a>
+## Basic Concepts
 
 LittleFS is a small file system designed for flash. By combining the log-structured file system and the copy-on-write \(COW\) file system, LittleFS stores metadata in log structure and data in the COW structure. This special storage empowers LittleFS high power-loss resilience. LittleFS uses the statistical wear leveling algorithm when allocating COW data blocks, effectively prolonging the service life of flash devices. LittleFS is designed for small-sized devices with limited resources, such as ROM and RAM. All RAM resources are allocated through a buffer with the fixed size \(configurable\). That is, the RAM usage does not grow with the file system.
 
 LittleFS is a good choice when you look for a flash file system that is power-cut resilient and has wear leveling support on a small device with limited resources.
 
-## Development Guidelines<a name="section1496101821515"></a>
+## Development Guidelines
 
 When porting LittleFS to a new hardware device, you need to declare  **lfs\_config**:
 
@@ -45,7 +39,7 @@ const struct lfs_config cfg = {
 
 **block\_count**  indicates the number of blocks that can be erased, which depends on the capacity of the block device and the size of the block to be erased \(**block\_size**\).
 
-## Sample Code<a name="section1034515054620"></a>
+## Sample Code
 
 The sample code is as follows:
 
@@ -95,7 +89,7 @@ int main(void) {
 }
 ```
 
-### Verification<a name="section176167422148"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

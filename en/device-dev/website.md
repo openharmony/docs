@@ -479,6 +479,7 @@
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
     - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
+    - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)

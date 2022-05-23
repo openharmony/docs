@@ -1,4 +1,4 @@
-# Basic Concepts<a name="EN-US_TOPIC_0000001110493760"></a>
+# Basic Concepts
 
 Memory management, one of the core modules of the OS, manages the memory resources of the system. Memory management primarily involves initializing, allocating, and releasing memory.
 

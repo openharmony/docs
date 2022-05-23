@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```typescript
 import settings from '@ohos.settings';
 ```
 
@@ -34,7 +34,7 @@ getUriSync(name: string): string
   | string | 数据项的URI。 |
 
 - 示例：
-  ```
+  ```typescript
    // 获取数据项的URI
    let urivar = settings.getUriSync('settings.screen.brightness');  
   ```
@@ -61,7 +61,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
   | string | 返回数据项的值。 |
 
 - 示例：
-  ```
+  ```typescript
   import featureAbility from '@ohos.featureAbility';
 
   //获取数据项亮度的值（该数据项在数据库中已存在）
@@ -96,7 +96,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
   | boolean | 返回设置数据项的值是否成功的结果。true表示设置成功，false则表示设置失败。 |
 
 - 示例：
-  ```
+  ```typescript
   import featureAbility from '@ohos.featureAbility';
 
   //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
