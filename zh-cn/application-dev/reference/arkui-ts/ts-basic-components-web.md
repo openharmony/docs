@@ -34,13 +34,19 @@
 | 名称                | 参数类型                                     | 默认值            | 描述                                       |
 | ----------------- | ---------------------------------------- | -------------- | ---------------------------------------- |
 | domStorageAccess  | boolean                                  | false          | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
-| fileAccess        | boolean                                  | true           | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
+| fileAccess        | boolean                                  | false          | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
+| fileFromUrlAccess | boolean                                  | true           | 设置是否允许在一个URL环境中的JS代码访问任意内容，默认未启用。 |
 | imageAccess       | boolean                                  | true           | 设置是否允许自动加载图片资源，默认允许。                     |
 | javaScriptProxy   | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -              | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。 <br/> object: 参与注册的对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean。<br/> name: 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。<br/> methodList: 参与注册的应用侧JavaScript对象的方法。<br/> controller: 控制器。 |
 | javaScriptAccess  | boolean                                  | true           | 设置是否允许执行JavaScript脚本，默认允许执行。             |
 | mixedMode         | MixedMode                                | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
 | onlineImageAccess | boolean                                  | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
-| zoomAccess        | boolean                                  | true           | 设置是否支持手势进行缩放，默认允许执行缩放。                   |
+| zoomAccess        | boolean                                  | true           | 设置是否支持手势进行缩放，默认允许执行缩放。|
+| overviewModeAccess | boolean                                  | true           | 设置是否使用概览模式加载网页，默认使用该方式。|
+| databaseAccess| boolean                                  | false           | 设置是否开启数据库存储API权限，默认使不开启。|
+| cachemode |  CacheMode | CacheMode.Default| 设置缓存模式。|
+| textZoomAtio |  number | 100 | 设置页面的文本缩放百分比，默认为100%。 |
+| userAgent |  string | - | 设置用户代理。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
@@ -53,12 +59,19 @@
   | Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
   | None       | 不允许加载HTTP和HTTPS混合内容。               |
 
+- <span id="CacheMode">CacheMode枚举说明</span>
+  | 名称         | 描述                                 |
+  | ---------- | ---------------------------------- |
+  | Default    | 加载资源使用不过期的cache，如果没有从网络中获取。 |
+  | None | 加载资源使用cache，如果没有从网络中获取。         |
+  | Online       | 加载资源不使用cache，全部从网络中获取。  |
+  | Only       | 只从cache中加载资源。               |
 ## 事件
 
 不支持通用事件。
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页触发alert()告警弹窗时触发回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（只有确认场景），并且根据用户的确认操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>刷新或关闭场景下，在即将离开当前页面时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用confirm()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
@@ -66,10 +79,14 @@
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>网页的下载任务开始时触发该回调。<br />url：文件下载的URL。<br />userAgent：下载的用户代理（UA）名称。<br />contentDisposition：服务器返回的 Content-Disposition响应头，可能为空。<br />mimetype：服务器返回内容媒体类型（MIME）信息。<br />contentLength：服务器返回文件的长度。</p> |
 | onErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), error: [WebResourceError](#webresourceerror对象说明) }) => void) | <p>网页加载遇到错误时触发该回调。<br/>出于性能考虑，建议此回调中尽量执行简单逻辑。<br/>request：网页请求的封装信息。<br/>error：网页加载资源错误的封装信息 。</p> |
 | onHttpErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), response: [WebResourceResponse](#webresourceresponse对象说明) }) => void) | <p>网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。<br/>request：网页请求的封装信息。<br/>response：网页响应的封装信息</p> |
-| onPageBegin(callback: (event?: { url: string }) => void) | <p>网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。<br/>url：页面的URL地址。</p> |
-| onPageEnd(callback: (event?: { url: string }) => void) | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>url：页面的URL地址。</p> |
+| onPageBegin(callback: (event?: { url: string }) => void)     | <p>网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。<br/>url：页面的URL地址。</p> |
+| onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>url：页面的URL地址。</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：新的加载进度，取值范围为0到100的整数。</p> |
 | onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页document标题更改时触发该回调。<br/>title：document标题内容。</p> |
+| onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>通知应用更新自身访问的URL记录，加载webview界面时触发该回调。<br/>url：访问的URL。<br/>isRefreshed：true表示该URL是被重新加载的。</p> |
+| onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#RenderExitReason枚举说明) }) => void) | <p>通知应用render进程异常退出，render进程异常退出时触发该回调。<br/>renderExitReason：render进程异常退出的具体原因。</p> |
+| onFileSelectorShow(callback: (event?: { result: FileSelectorResult, fileSelector:  FileSelectorParam }) => void) | <p>通知应用上传或者保存文件，进行文件选择是触发该回调。<br/>result：通知web组件文件选择的结果。<br/>fileSelector：文件选择器的相关信息。</p> |
+| onUrlLoadIntercept(callback: (event?: { data:string \| WebResourceRequest }) => boolean) | <p>当web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载<br/>data：url的相关信息。</p> |
 
 ### ConsoleMessage对象说明
 
@@ -148,6 +165,46 @@ Web组件返回的请求/响应头对象。
   | getResponseEncoding(): string            | 获取资源响应的编码。         |
   | getResponseHeader(): Array\<[Header](#header对象说明)\> | 获取资源响应头。           |
   | getResponseMimeType(): string            | 获取资源响应的媒体（MIME）类型。 |
+
+### RenderExitReason枚举说明
+
+onRenderExited接口返回的render进程退出具体原因
+
+| 名称                         | 描述                           |
+| ---------------------------- | ------------------------------ |
+| PROCESS_ABNORMAL_TERMINATION | render进程退出，非0返回。      |
+| PROCESS_WAS_KILLED           | 收到SIGKILL，或被手动杀死。    |
+| PROCESS_CRASHED              | render进程崩溃退出，如段错误。 |
+| PROCESS_OOM                  | 程序内存不足。                 |
+| PROCESS_EXIT_UNKNOWN         | 其他原因。                     |
+
+### FileSelectorResult对象说明
+Web组件返回的弹窗确认或弹窗取消功能对象。
+
+- 接口
+
+  | 接口名称                                       | 功能描述                                                     |
+  | ---------------------------------------------- | ------------------------------------------------------------ |
+  | handleFileList(fileList: Array\<string>): void | 通知Web组件进行文件选择操作，fileList为需要进行操作的文件列表。 |
+
+### FileSelectorParam对象说明
+- 接口
+
+  | 接口名称                                     | 功能描述               |
+  | ---------------------------------------- | ------------------ |
+  | title(): string               | 文件选择器标题。      |
+  | mode(): FileSelectorMode                | 文件选择器的模式。        |
+  | accpetType(): Array\<string\>                | 文件过滤类型。          |
+  | isCapture(): boolean            | 是否需要调用多媒体能力。         |
+  
+### FileSelectorMode枚举说明
+FileSelectorParam对象中，mode的具体说明
+| 名称                         | 描述                           |
+| ---------------------------- | ------------------------------ |
+| FILE_OPEN_MODE | 打开上传单个文件。     |
+| FILE_OPEN_MULTIPLE_MODE           | 打开上传多个文件。    |
+| FILE_OPEN_FOLDER_MODE              | 打开上传文件夹模式。 |
+| FILE_SAVE_MODE                  | 文件保存模式。                 |
 
 ## WebController
 
@@ -229,7 +286,7 @@ getHitTest(): HitTestType
   | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
   | Img           | HTML::img标签。             |
   | Map           | 地理地址。                    |
-  | PhoneNumber   | 电话号码。                    |
+  | Phonenumber   | 电话号码。                    |
   | Unknown       | 未知内容。                    |
 
 ### loadData
@@ -320,6 +377,35 @@ stop(): void
 
 停止页面加载。
 
+### ClearHistory
+
+ClearHistory(): void
+
+删除所有前进后退记录。
+
+### getCookieManager
+
+getCookieManager() : WebCookie
+
+获取web组件cookie管理对象。
+## WebCookie
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+### setCookie
+setCookie(url: string, value: string) : boolean
+
+设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
+
+- 参数说明
+
+  | 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
+  | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
+  | url   | string                   | 是    | -    | 要设置的cookie所属的url。                            |
+  | value | string | 是    | -    | cookie的值。 |
+
+### saveCookieSync
+saveCookieSync() : boolean
+
+将当前存在内存中的cookie同步到磁盘中，该方法为同步方法，同步成功返回true，否则返回false。
 ## 示例
 
 ```
