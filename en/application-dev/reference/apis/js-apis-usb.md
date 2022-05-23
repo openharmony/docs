@@ -511,7 +511,7 @@ Represents control transfer parameters.
  | Name | Type | Description |
  | -------- | -------- | -------- |
  | request | number | Request type. |
- | target | [USBRequestTargetType](#usbrequesttargettype) | Represents the request target type. |
+ | target | [USBRequestTargetType](#usbrequesttargettype) | Type of the request target. |
  | reqType | [USBControlRequestType](#usbcontrolrequesttype) | Request control type. |
  | value | number | Request parameters |
  | index | number | Index of the request parameter value. |
