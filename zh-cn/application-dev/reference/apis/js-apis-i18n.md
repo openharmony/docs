@@ -1418,6 +1418,25 @@ getFirstPreferredLanguage(): string
   ```
 
 
+## i18n.getAppPreferredLanguage<sup>9+</sup>
+
+getAppPreferredLanguage(): string
+
+获取应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型     | 说明             |
+| ------ | -------------- |
+| string | 应用的偏好语言。 |
+
+**示例：** 
+  ```
+  var appPreferredLanguage = i18n.getAppPreferredLanguage();
+  ```
+
+
 ## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
