@@ -13,7 +13,7 @@
 | 属性名称     | 含义                                                         | 数据类型 | 是否可缺省 |
 | ------------ | ------------------------------------------------------------ | -------- | ---------- |
 | app          | 表示应用的全局配置信息。同一个应用的不同HAP包的app配置必须保持一致。参考[app对象内部结构](#app对象内部结构)。 | 对象     | 否         |
-| deviceConfig | 表示应用在具体设备上的而配置信息。参考[deviceconfig对象内部结构](#deviceconfig对象的内部结构)。 | 对象     | 否         |
+| deviceConfig | 表示应用在具体设备上的配置信息。参考[deviceconfig对象内部结构](#deviceconfig对象的内部结构)。 | 对象     | 否         |
 | module       | 表示HAP包的配置信息。该标签下的配置只对当前HAP包生效。参考[module对象的内部结构](#module对象的内部结构)。 | 对象     | 否         |
 
 config.json示例：
@@ -276,6 +276,7 @@ module示例：
 | moduleName       | 表示当前HAP的名称，最大长度为31。                            | 字符串   | 不可缺省   |
 | moduleType       | 表示当前HAP的类型，包括两种类型：entry和feature。另外，如果表示HAR类型，请设置为har。 | 字符串   | 不可缺省   |
 | installationFree | 表示当前HAP是否支持免安装特性。<br /> true：表示支持免安装特性，且符合免安装约束。<br /> false：表示不支持免安装特性。<br /> 另外还需注意：<br /> 当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。<br /> 当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务 需求配置true或false。 | 布尔值   | 否         |
+| deliveryWithInstall | 表示当前HAP是否支持随应用安装。<br /> true： 支持随应用安装。<br /> false：不支持随应用安装。| 布尔值 | 不可缺省 |
 
 distro示例：
 
@@ -283,7 +284,8 @@ distro示例：
 "distro": {
 	"moduleName": "ohos_entry",
 	"moduleType": "entry",
-	"installationFree": true
+	"installationFree": true,
+    "deliveryWithInstall": true
 }
 ```
 
