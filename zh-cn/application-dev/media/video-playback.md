@@ -440,7 +440,7 @@ export class VideoPlayerDemo {
     videoPlayer.loop = true;
     // 调用play接口正式开始循环播放
     await videoPlayer.play().then(() => {
-      console.info('play success');
+      console.info('play success， loop value is ' + videoPlayer.loop);
     }, this.failureCallback).catch(this.catchCallback);
   }
 }
