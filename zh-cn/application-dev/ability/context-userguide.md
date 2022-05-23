@@ -4,7 +4,7 @@
 
 ​        Context是应用中对象的上下文，提供获取应用程序环境信息的能力。
 
-​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型，其中application/BaseContext属于通用的Context基类，里面有一个属性stageMode，用来区分开发模型是FA还是Stage。
+​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型，其中application/BaseContext属于通用的Context基类，里面包含一个属性stageMode，用来区分开发模型是FA还是Stage。
 
 ​+ FA模型
 只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
@@ -202,10 +202,6 @@ export default class MainAbility extends Ability {
 ## 常见错误使用方式
 
 **错误1：Stage模型通过globalThis去获取Context**
-
-**结论**
-
-​        Stage模型不能使用globalThis去获取Context。
 
 **原因**
 
