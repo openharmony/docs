@@ -61,7 +61,7 @@ kernel_type  选填
 
 kernel_version   选填   kernel_type与 kernel_version在 standard 是固定的不需要写。
 
-subsystems:系统需要启用的子系统。子系统可以简单理解位一块独立构建的功能块。必填
+subsystems:系统需要启用的子系统。子系统可以简单理解为一块独立构建的功能块。必填
 
 product_company：不体现在配置中，而是目录名，vendor下一级目录就是product_company，BUILD.gn脚本依然可以访问。
 
