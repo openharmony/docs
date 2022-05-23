@@ -1,8 +1,10 @@
 # 公共文件访问与管理
 >![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
->- 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >- 本模块接口为系统接口，三方应用不支持调用，当前只支持filepicker调用。
+
+该模块提供公共文件访问和管理的服务接口，向下对接底层文件管理服务，如媒体库、外卡管理；向上对应用程序提供公共文件查询、创建的能力。
 
 ## 导入模块
 
@@ -156,7 +158,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 ## filemanager.createFile
 
-filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
+createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
 
