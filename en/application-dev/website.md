@@ -10,9 +10,9 @@
     - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
   - Development Fundamentals
     - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
-    - [ Application Package Structure Configuration File (Stage Model)](quick-start/module-structure.md)
+    - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
     - [Resource File Categories](quick-start/basic-resource-file-categories.md)
-    - [SysCap Usage Guidelines](quick-start/syscap.md)
+    - [SysCap](quick-start/syscap.md)
 - Development
   - Ability Development
     - [Ability Framework Overview](ability/ability-brief.md)
@@ -33,8 +33,7 @@
         - [WantAgent Development](ability/wantagent.md)
         - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
         - [Test Framework Usage](ability/ability-delegator.md)
-  - UI
-    
+  - UI    
     - [ArkUI Overview](ui/arkui-overview.md)
     - JavaScript-based Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
@@ -283,11 +282,11 @@
       - [Overview](internationalization/international-overview.md)
       - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
       - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
-- Tools
-  
+    - Native APIs
+      - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
+- Tools  
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
-- Hands-On Tutorials
-  
+- Hands-On Tutorials  
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
@@ -542,8 +541,7 @@
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
 - APIs
-    - Ability Framework
-    
+    - Ability Framework    
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
@@ -585,37 +583,29 @@
       - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
       - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md)
       - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
-      - 
       - [AbilityStageContext](reference/apis/js-apis-abilityStageContext.md)
-      - 
-    - Common Event and Notification
-    
+    - Common Event and Notification    
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
       - [@ohos.notification](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent](reference/apis/js-apis-reminderAgent.md)
       - [EventHub](reference/apis/js-apis-eventhub.md)
-    - Bundle Management
-    
+    - Bundle Management    
       - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
       - [@ohos.bundleState ](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.zlib](reference/apis/js-apis-zlib.md)
-    - UI Page
-    
+    - UI Page    
       - [@ohos.animator](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt](reference/apis/js-apis-prompt.md)
       - [@ohos.router](reference/apis/js-apis-router.md)
     - Graphics
-    
       - [@ohos.display ](reference/apis/js-apis-display.md)
       - [@ohos.screenshot](reference/apis/js-apis-screenshot.md)
       - [@ohos.window](reference/apis/js-apis-window.md)
       - [webgl](reference/apis/js-apis-webgl.md)
-      
       - [webgl2](reference/apis/js-apis-webgl2.md)
-    - Media
-      
+    - Media      
         - [@ohos.multimedia.audio](reference/apis/js-apis-audio.md)
         - [@ohos.multimedia.camera](reference/apis/js-apis-camera.md)
         - [@ohos.multimedia.image](reference/apis/js-apis-image.md)
@@ -625,30 +615,25 @@
         - [@ohos.i18n](reference/apis/js-apis-i18n.md)
         - [@ohos.intl](reference/apis/js-apis-intl.md)
         - [@ohos.resourceManager](reference/apis/js-apis-resource-manager.md)
-    - Resource Scheduling 
-      
+    - Resource Scheduling      
         - [@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)
         - [@ohos.workScheduler ](reference/apis/js-apis-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
-    - Custom Management
-      
+    - Custom Management      
         - [@ohos.configPolicy](reference/apis/js-apis-config-policy.md)
-    - Security
-      
+    - Security      
         - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
         - [@ohos.security.huks ](reference/apis/js-apis-huks.md)
         - [@ohos.userIAM.userAuth ](reference/apis/js-apis-useriam-userauth.md)
         - [@system.cipher](reference/apis/js-apis-system-cipher.md)
-    - Data Management
-      
+    - Data Management      
         - [@ohos.data.dataAbility ](reference/apis/js-apis-data-ability.md)
         - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
         - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
         - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
         - [@ohos.settings](reference/apis/js-apis-settings.md)
         - [resultSet](reference/apis/js-apis-data-resultset.md)
-    - File Management
-      
+    - File Management      
         - [@ohos.document](reference/apis/js-apis-document.md)
         - [@ohos.environment](reference/apis/js-apis-environment.md)
         - [@ohos.fileio](reference/apis/js-apis-fileio.md)
@@ -656,8 +641,7 @@
         - [@ohos.statfs](reference/apis/js-apis-statfs.md)
         - [@ohos.storageStatistics](reference/apis/js-apis-storage-statistics.md)
         - [@ohos.volumeManager](reference/apis/js-apis-volumemanager.md)
-    - Telephony Service
-      
+    - Telephony Service      
         - [@ohos.contact](reference/apis/js-apis-contact.md)
         - [@ohos.telephony.call](reference/apis/js-apis-call.md)
         - [@ohos.telephony.observer](reference/apis/js-apis-observer.md)
@@ -671,15 +655,13 @@
         - [@ohos.request](reference/apis/js-apis-request.md)
         - [@ohos.net.socket](reference/apis/js-apis-socket.md)
         - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md) 
-    - Connectivity
-      
+    - Connectivity      
         - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
         - [@ohos.connectedTag](reference/apis/js-apis-connectedTag.md)
         - [@ohos.rpc](reference/apis/js-apis-rpc.md)
         - [@ohos.wifi](reference/apis/js-apis-wifi.md)
         - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
-    - Basic Features
-      
+    - Basic Features      
         - [@ohos.accessibility](reference/apis/js-apis-accessibility.md)
         - [@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)
         - [@ohos.hiAppEvent](reference/apis/js-apis-hiappevent.md)
@@ -695,8 +677,7 @@
         - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
         - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
         - [Timer](reference/apis/js-apis-timer.md)
-    - Device Management
-      
+    - Device Management      
         - [@ohos.batteryInfo ](reference/apis/js-apis-battery-info.md)
         - [@ohos.brightness](reference/apis/js-apis-brightness.md)
         - [@ohos.deviceInfo](reference/apis/js-apis-device-info.md)
@@ -719,8 +700,7 @@
         - [@ohos.account.appAccount](reference/apis/js-apis-appAccount.md)
         - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
         - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)
-    - Language Base Class Library
-      
+    - Language Base Class Library      
         - [@ohos.convertxml](reference/apis/js-apis-convertxml.md)
         - [@ohos.process](reference/apis/js-apis-process.md)
         - [@ohos.uri](reference/apis/js-apis-uri.md)
@@ -745,8 +725,7 @@
     - Test
         - [@ohos.application.testRunner](reference/apis/js-apis-testRunner.md)
         - [@ohos.uitest](reference/apis/js-apis-uitest.md)
-    - APIs No Longer Maintained
-      
+    - APIs No Longer Maintained      
         - [@ohos.bytrace](reference/apis/js-apis-bytrace.md)
         - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
         - [@system.app](reference/apis/js-apis-system-app.md)

@@ -13,7 +13,8 @@
       - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
       - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
     - Development Fundamentals
-      - [Directory Structure](quick-start/package-structure.md)
+      - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
+      - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
       - [Resource File Categories](quick-start/basic-resource-file-categories.md)
       - [SysCap](quick-start/syscap.md)
 - Development
