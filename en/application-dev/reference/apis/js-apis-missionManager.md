@@ -1,11 +1,11 @@
 # missionManager
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-Provides mission management. You can use the APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
+missionManager provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 
 ## Modules to Import
@@ -34,7 +34,7 @@ Registers a listener to observe the mission status.
 
   | Type| Description|
   | -------- | -------- |
-  | number | Returns the index of the listener, which is created by the system and allocated when the mission status listener is registered. Each listener has a unique index.|
+  | number | Returns the unique index of the mission status listener, which is created by the system and allocated when the listener is registered.|
 
 **Example**
 
@@ -55,7 +55,7 @@ Registers a listener to observe the mission status.
 
 unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Unregisters a mission status listener. This API uses an asynchronous callback to return the result.
+Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -63,7 +63,7 @@ Unregisters a mission status listener. This API uses an asynchronous callback to
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Index of the mission status listener to unregister. Each listener has a unique index, which is returned by **registerMissionListener**.|
+  | listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -88,7 +88,7 @@ Unregisters a mission status listener. This API uses an asynchronous callback to
 
 unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
-Unregisters a mission status listener. This API uses a promise to return the result.
+Deregisters a mission status listener. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -96,7 +96,7 @@ Unregisters a mission status listener. This API uses a promise to return the res
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Index of the mission status listener to unregister. Each listener has a unique index, which is returned by **registerMissionListener**.|
+  | listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
 
 **Return value**
 
@@ -126,7 +126,7 @@ Unregisters a mission status listener. This API uses a promise to return the res
 
 getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
 
-Obtains the information of a given mission. This API uses an asynchronous callback to return the result.
+Obtains the information about a given mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -159,7 +159,7 @@ Obtains the information of a given mission. This API uses an asynchronous callba
 
 getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
-Obtains the information of a given mission. This API uses a promise to return the result.
+Obtains the information about a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -191,7 +191,7 @@ Obtains the information of a given mission. This API uses a promise to return th
 
 getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
 
-Obtains information of all missions. This API uses an asynchronous callback to return the result.
+Obtains information about all missions. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -220,7 +220,7 @@ Obtains information of all missions. This API uses an asynchronous callback to r
 
 getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
 
-Obtains information of all missions. This API uses a promise to return the result.
+Obtains information about all missions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -617,7 +617,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
-Switches a given mission to the foreground, with the startup parameters for the switch specified, such as the window mode and device ID. This API uses an asynchronous callback to return the result.
+Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -651,7 +651,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
 
-Switches a given mission to the foreground, with the startup parameters for the switch specified, such as the window mode and device ID. This API uses a promise to return the result.
+Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -697,7 +697,7 @@ Describes the mission information.
 | runningState | number | Yes| Yes| Running state of the mission.| 
 | lockedState | boolean | Yes| Yes| Locked state of the mission.| 
 | timestamp | string | Yes| Yes| Latest time when the mission was created or updated.| 
-| want | [Want](js-apis-featureAbility.md#want) | Yes| Yes| **Want** information of the mission.| 
+| want | [Want](js-apis-application-Want.md) | Yes| Yes| **Want** information of the mission.| 
 | label | string | Yes| Yes| Label of the mission.| 
 | iconPath | string | Yes| Yes| Path of the mission icon.| 
 | continuable | boolean | Yes| Yes| Whether the mission is continuable.| 
