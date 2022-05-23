@@ -1,6 +1,6 @@
 # FormHost
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides APIs related to the widget host.
@@ -23,24 +23,24 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Deletes a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, and the Widget Manager will not retain the widget information.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.deleteForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost deleteForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost deleteForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -51,28 +51,30 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 
 Deletes a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, and the Widget Manager will not retain the widget information.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Parameters**
 
   ```js
   var formId = "12400633174999288";
-  formHost.deleteForm(formId).catch((error) => {
-      console.log('formProvider deleteForm, error:' + JSON.stringify(error));
+  formHost.deleteForm(formId).then(() => {
+      console.log('formHost deleteForm success');
+  }).catch((error) => {
+      console.log('formHost deleteForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -82,24 +84,24 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Releases a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager still retains the widget cache and storage information.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.releaseForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost releaseForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost releaseForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -108,27 +110,27 @@ SystemCapability.Ability.Form
 
 releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-Releases a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and determines whether to retain the cache information based on the setting.
+Releases a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and retains or releases the cache information based on the setting.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name        | Type    | Mandatory| Description       |
-  | -------------- | ------  | ---- | ----------- |
-  | formId         | string  | Yes  | ID of a widget.    |
-  | isReleaseCache | boolean | Yes  | Whether to release the cache.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name        | Type    | Mandatory| Description       |
+| -------------- | ------  | ---- | ----------- |
+| formId         | string  | Yes  | ID of a widget.    |
+| isReleaseCache | boolean | Yes  | Whether to release the cache.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.releaseForm(formId, true, (error, data) => {
-      if (error) {
-          console.log('formHost releaseForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost releaseForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -137,31 +139,33 @@ SystemCapability.Ability.Form
 
 releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;;
 
-Releases a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and determines whether to retain the cache information based on the setting.
+Releases a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and retains or releases the cache information based on the setting.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name        | Type    | Mandatory| Description       |
-  | -------------- | ------  | ---- | ----------- |
-  | formId         | string  | Yes  | ID of a widget.    |
-  | isReleaseCache | boolean | No  | Whether to release the cache.|
+| Name        | Type    | Mandatory| Description       |
+| -------------- | ------  | ---- | ----------- |
+| formId         | string  | Yes  | ID of a widget.    |
+| isReleaseCache | boolean | No  | Whether to release the cache.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.releaseForm(formId, true).catch((error) => {
-      console.log('formProvider releaseForm, error:' + JSON.stringify(error));
+  formHost.releaseForm(formId, true).then(() => {
+      console.log('formHost releaseForm success');
+  }).catch((error) => {
+      console.log('formHost releaseForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -177,18 +181,18 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.requestForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost requestForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost requestForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -205,22 +209,24 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.requestForm(formId).catch((error) => {
-      console.log('formProvider requestForm, error:' + JSON.stringify(error));
+  formHost.requestForm(formId).then(() => {
+      console.log('formHost requestForm success');
+  }).catch((error) => {
+      console.log('formHost requestForm, error:' + JSON.stringify(error));
   });
   ```
 
@@ -230,24 +236,24 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Converts a temporary widget to a normal one. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.castTempForm(formId, (error, data) => {
-      if (error) {
-          console.log('formHost castTempForm, error:' + error.code);
+      if (error.code) {
+          console.log('formHost castTempForm, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -258,264 +264,274 @@ castTempForm(formId: string): Promise&lt;void&gt;;
 
 Converts a temporary widget to a normal one. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.castTempForm(formId).catch((error) => {
-      console.log('formProvider castTempForm, error:' + JSON.stringify(error));
+  formHost.castTempForm(formId).then(() => {
+      console.log('formHost castTempForm success');
+  }).catch((error) => {
+      console.log('formHost castTempForm, error:' + JSON.stringify(error));
   });
   ```
 
 ## notifyVisibleForms
 
-notifyVisibleForms(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 Instructs the widget framework to make a widget visible. This API uses an asynchronous callback to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.notifyVisibleForms(formId, (error, data) => {
-      if (error) {
-          console.log('formHost notifyVisibleForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
       }
   });
   ```
 
 ## notifyVisibleForms
 
-notifyVisibleForms(formId: string): Promise&lt;void&gt;;
+notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget visible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.notifyVisibleForms(formId).catch((error) => {
-      console.log('formProvider notifyVisibleForms, error:' + JSON.stringify(error));
+  formHost.notifyVisibleForms(formId).then(() => {
+      console.log('formHost notifyVisibleForms success');
+  }).catch((error) => {
+      console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
   });
   ```
 
 ## notifyInvisibleForms
 
-notifyInvisibleForms(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
 Instructs the widget framework to make a widget invisible. This API uses an asynchronous callback to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.notifyInvisibleForms(formId, (error, data) => {
-      if (error) {
-          console.log('formHost notifyInvisibleForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
       }
   });
   ```
 
 ## notifyInvisibleForms
 
-notifyInvisibleForms(formId: string): Promise&lt;void&gt;;
+notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget invisible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.notifyInvisibleForms(formId).catch((error) => {
-      console.log('formProvider notifyInvisibleForms, error:' + JSON.stringify(error));
+  formHost.notifyInvisibleForms(formId).then(() => {
+      console.log('formHost notifyInvisibleForms success');
+  }).catch((error) => {
+      console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
   });
   ```
 
 ## enableFormsUpdate
 
-enableFormsUpdate(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Instructs the widget framework to make a widget to be updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
+Instructs the widget framework to make a widget updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.enableFormsUpdate(formId, (error, data) => {
-      if (error) {
-          console.log('formHost enableFormsUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
 
 ## enableFormsUpdate
 
-enableFormsUpdate(formId: string): Promise&lt;void&gt;;
+enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-Instructs the widget framework to make a widget to be updatable. This API uses a promise to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
+Instructs the widget framework to make a widget updatable. This API uses a promise to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.enableFormsUpdate(formId).catch((error) => {
-      console.log('formProvider enableFormsUpdate, error:' + JSON.stringify(error));
+  formHost.enableFormsUpdate(formId).then(() => {
+      console.log('formHost enableFormsUpdate success');
+  }).catch((error) => {
+      console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
 
 ## disableFormsUpdate
 
-disableFormsUpdate(formId: string, callback: AsyncCallback&lt;void&gt;): void;
+disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-Instructs the widget framework to make a widget not to be updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget is in the disabled state and cannot receive updates from the widget provider.
+Instructs the widget framework to make a widget not updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget cannot receive updates from the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds  | Array&lt;string&gt;       | Yes  | List of widget IDs.        |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.disableFormsUpdate(formId, (error, data) => {
-      if (error) {
-          console.log('formHost disableFormsUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
 
 ## disableFormsUpdate
 
-disableFormsUpdate(formId: string): Promise&lt;void&gt;;
+disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-Instructs the widget framework to make a widget not to be updatable. This API uses a promise to return the result. After this API is called, the widget is in the disabled state and cannot receive updates from the widget provider.
+Instructs the widget framework to make a widget not updatable. This API uses a promise to return the result. After this API is called, the widget cannot receive updates from the widget provider.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formId | string | Yes  | ID of a widget.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.disableFormsUpdate(formId).catch((error) => {
-      console.log('formProvider disableFormsUpdate, error:' + JSON.stringify(error));
+  formHost.disableFormsUpdate(formId).then(() => {
+      console.log('formHost disableFormsUpdate success');
+  }).catch((error) => {
+      console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
   });
   ```
 
@@ -525,23 +541,23 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void;
 
 Checks whether the system is ready. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
   formHost.isSystemReady((error, data) => {
-      if (error) {
-          console.log('formHost isSystemReady, error:' + error.code);
+      if (error.code) {
+          console.log('formHost isSystemReady, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -552,22 +568,24 @@ isSystemReady(): Promise&lt;void&gt;;
 
 Checks whether the system is ready. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formId = "12400633174999288";
-  formHost.isSystemReady().catch((error) => {
-      console.log('formProvider isSystemReady, error:' + JSON.stringify(error));
+  formHost.isSystemReady().then(() => {
+      console.log('formHost isSystemReady success');
+  }).catch((error) => {
+      console.log('formHost isSystemReady, error:' + JSON.stringify(error));
   });
   ```
 
@@ -577,22 +595,24 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
 
 Obtains the widget information provided by all applications on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
   ```js
   formHost.getAllFormsInfo((error, data) => {
-      if (error) {
-          console.log('formHost getAllFormsInfo, error:' + error.code);
+      if (error.code) {
+          console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getAllFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -603,7 +623,7 @@ getAllFormsInfo(): Promise&lt;Array&lt;FormInfo&gt;&gt;;
 
 Obtains the widget information provided by all applications on the device. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
@@ -616,8 +636,10 @@ SystemCapability.Ability.Form
 **Example**
 
   ```js
-  formHost.getAllFormsInfo().catch((error) => {
-      console.log('formProvider getAllFormsInfo, error:' + JSON.stringify(error));
+  formHost.getAllFormsInfo().then((data) => {
+      console.log('formHost getAllFormsInfo data:' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('formHost getAllFormsInfo, error:' + JSON.stringify(error));
   });
   ```
 
@@ -627,23 +649,25 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;FormInfo&gt
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | bundleName | string | Yes|  Bundle name of the target application.|
-  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| bundleName | string | Yes|  Bundle name of the target application.|
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
   ```js
-  formHost.getFormsInfo("com.example.ohos.accountjsdemo", (error, data) => {
-      if (error) {
-          console.log('formHost getFormsInfo, error:' + error.code);
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", (error, data) => {
+      if (error.code) {
+          console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -654,24 +678,26 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | bundleName | string | Yes|  Bundle name of the target application.|
-  | moduleName | string | Yes|  Module name.|
-  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| bundleName | string | Yes|  Bundle name of the target application.|
+| moduleName | string | Yes|  Module name.|
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
   ```js
-  formHost.getFormsInfo("com.example.ohos.accountjsdemo", (error, data) => {
-      if (error) {
-          console.log('formHost getFormsInfo, error:' + error.code);
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry", (error, data) => {
+      if (error.code) {
+          console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -682,16 +708,16 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;FormI
 
 Obtains the widget information provided by a given application on the device. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | bundleName | string | Yes|  Bundle name of the target application.|
-  | moduleName | string | No|  Module name.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| bundleName | string | Yes|  Bundle name of the target application.|
+| moduleName | string | No|  Module name.|
 
 **Return value**
 
@@ -702,8 +728,10 @@ SystemCapability.Ability.Form
 **Example**
 
   ```js
-  formHost.getAllFormsInfo().catch((error) => {
-      console.log('formProvider getAllFormsInfo, error:' + JSON.stringify(error));
+  formHost.getFormsInfo("com.example.ohos.formjsdemo", "entry").then((data) => {
+      console.log('formHost getFormsInfo, data:' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('formHost getFormsInfo, error:' + JSON.stringify(error));
   });
   ```
 
@@ -713,43 +741,45 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 Deletes invalid widgets from the list. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of widgets deleted.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of widgets deleted.|
 
 **Example**
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.deleteInvalidForms(formIds, (error, data) => {
-      if (error) {
-          console.log('formHost deleteInvalidForms, error:' + error.code);
+      if (error.code) {
+          console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
       }
   });
   ```
 
 ## deleteInvalidForms
 
-function deleteInvalidForms(formIds: Array&ltstring&gt): Promise&lt;number&gt;;
+function deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 Deletes invalid widgets from the list. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
 
 **Return value**
 
@@ -761,8 +791,10 @@ SystemCapability.Ability.Form
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.deleteInvalidForms(formIds).catch((error) => {
-      console.log('formProvider deleteInvalidForms, error:' + JSON.stringify(error));
+  formHost.deleteInvalidForms(formIds).then((data) => {
+      console.log('formHost deleteInvalidForms, data:' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('formHost deleteInvalidForms, error:' + JSON.stringify(error));
   });
   ```
 
@@ -772,7 +804,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;FormStateInfo&gt;): void
 
 Obtains the widget state. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
@@ -792,8 +824,10 @@ SystemCapability.Ability.Form
   	"abilityName": "com.extreme.test.MainAbility"
   };
   formHost.acquireFormState(want, (error, data) => {
-      if (error) {
-          console.log('formHost acquireFormState, error:' + error.code);
+      if (error.code) {
+          console.log('formHost acquireFormState, error:' + JSON.stringify(error));
+      } else {
+          console.log('formHost acquireFormState, data:' + JSON.stringify(data));
       }
   });
   ```
@@ -806,9 +840,9 @@ Obtains the widget state. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| want   | [Want](js-apis-featureAbility.md#want) | Yes  | **Want** information carried to query the widget state.|
 
 **Return value**
 
@@ -816,7 +850,7 @@ Obtains the widget state. This API uses a promise to return the result.
 | :------------ | :---------------------------------- |
 | Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state.|
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
@@ -828,8 +862,10 @@ SystemCapability.Ability.Form
   	"bundleName": "com.extreme.test",
   	"abilityName": "com.extreme.test.MainAbility"
   };
-  formHost.acquireFormState(want).catch((error) => {
-      console.log('formProvider acquireFormState, error:' + JSON.stringify(error));
+  formHost.acquireFormState(want).then((data) => {
+      console.log('formHost acquireFormState, data:' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('formHost acquireFormState, error:' + JSON.stringify(error));
   });
   ```
 
@@ -839,52 +875,50 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
 Subscribes to widget uninstall events.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | type | string | Yes  | Type of event to subscribe to. The value **formUninstall** indicates a widget uninstallation event.|
-  | callback | Callback&lt;string&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Type of event to subscribe to. The value **formUninstall** indicates a widget uninstallation event.|
+| callback | Callback&lt;string&gt; | Yes| Callback used for event subscription.|
 
 **Example**
 
   ```js
-  formHost.on("formUninstall", (error, data) => {
-      if (error) {
-          console.log('formHost on formUninstall, error:' + error.code);
-      }
-  });
+  let callback = function(formId) {
+      console.log('formHost on formUninstall, formId:' + formId);
+  }
+  formHost.on("formUninstall", callback);
   ```
 
 ## off("formUninstall")
 
-off(type: "formUninstall", callback: Callback&lt;string&gt;): void;
+off(type: "formUninstall", callback?: Callback&lt;string&gt;): void;
 
 Unsubscribes from widget uninstall events.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | type | string | Yes  | Type of event to unsubscribe from. The value **formUninstall** indicates a widget uninstallation event.|
-  | callback | Callback&lt;string&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Type of event to subscribe to. The value **formUninstall** indicates a widget uninstallation event.|
+| callback | Callback&lt;string&gt; | No| Callback used for event unsubscription. If it is left unspecified, it indicates the callback for all the events that have been subscribed.|
 
 **Example**
 
   ```js
-  formHost.off("formUninstall", (error, data) => {
-      if (error) {
-          console.log('formHost off formUninstall, error:' + error.code);
-      }
-  });
+  let callback = function(formId) {
+      console.log('formHost on formUninstall, formId:' + formId);
+  }
+  formHost.off("formUninstall", callback);
   ```
 
 ## notifyFormsVisible
@@ -893,25 +927,25 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 Instructs the widgets to make themselves visible. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | isVisible | boolean | Yes  | Whether to be visible.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isVisible | boolean | Yes  | Whether to be visible.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsVisible(formIds, true, (error, data) => {
-      if (error) {
-          console.log('formHost notifyFormsVisible, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -922,29 +956,31 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 Instructs the widgets to make themselves visible. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | isVisible | boolean | Yes  | Whether to be visible.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isVisible | boolean | Yes  | Whether to be visible.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.notifyFormsVisible(formIds, true).catch((error) => {
-      console.log('formProvider notifyFormsVisible, error:' + JSON.stringify(error));
+  formHost.notifyFormsVisible(formIds, true).then(() => {
+      console.log('formHost notifyFormsVisible success');
+  }).catch((error) => {
+      console.log('formHost notifyFormsVisible, error:' + JSON.stringify(error));
   });
   ```
 
@@ -952,27 +988,27 @@ SystemCapability.Ability.Form
 
 notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
-Instructs the widgets to enable or disable update. This API uses an asynchronous callback to return the result.
+Instructs the widgets to enable or disable updates. This API uses an asynchronous callback to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | isEnableUpdate | boolean | Yes  | Whether to enable update.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isEnableUpdate | boolean | Yes  | Whether to enable update.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
   formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
-      if (error) {
-          console.log('formHost notifyFormsEnableUpdate, error:' + error.code);
+      if (error.code) {
+          console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
       }
   });
   ```
@@ -981,30 +1017,32 @@ SystemCapability.Ability.Form
 
 notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): Promise&lt;void&gt;;
 
-Instructs the widgets to enable or disable update. This API uses a promise to return the result.
+Instructs the widgets to enable or disable updates. This API uses a promise to return the result.
 
-**System capability**:
+**System capability**
 
 SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type   | Mandatory| Description   |
-  | ------ | ------ | ---- | ------- |
-  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-  | isEnableUpdate | boolean | Yes  | Whether to enable update.|
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+| isEnableUpdate | boolean | Yes  | Whether to enable update.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
   ```js
   var formIds = new Array("12400633174999288", "12400633174999289");
-  formHost.notifyFormsEnableUpdate(formIds, true).catch((error) => {
-      console.log('formProvider notifyFormsEnableUpdate, error:' + JSON.stringify(error));
+  formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
+      console.log('formHost notifyFormsEnableUpdate success');
+  }).catch((error) => {
+      console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
   ```
