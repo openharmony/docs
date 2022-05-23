@@ -1,6 +1,6 @@
 # Display
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -56,7 +56,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 Obtains the default display object.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
@@ -82,7 +82,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 Obtains the default display object.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Return value**
 
@@ -107,7 +107,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 Obtains all the display objects.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
@@ -133,7 +133,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 Obtains all the display objects.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Return value**
 
@@ -158,7 +158,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 Enables listening.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
@@ -182,7 +182,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 Disables listening.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|

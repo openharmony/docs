@@ -2,9 +2,8 @@
 
 The **Window** module provides basic capabilities for managing windows, including creating and destroying windows and setting serial port attributes.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>  **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 
 ## Modules to Import
 
@@ -96,7 +95,7 @@ This is a system API and cannot be called by third-party applications.
 
 ## Rect<sup>7+</sup>
 
-Describes a rectangle.
+Describes the rectangular area of the window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -371,6 +370,8 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
+This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -398,6 +399,8 @@ Obtains the top window of the current application. This API uses an asynchronous
 getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the top window of the current application. This API uses a promise to return the result.
+
+This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2393,7 +2396,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Loads content to this window stage. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value 'windowSizeChange'
+**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value **windowSizeChange**
 
 **Parameters**
 
