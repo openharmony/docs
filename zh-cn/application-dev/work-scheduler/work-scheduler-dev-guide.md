@@ -48,6 +48,8 @@ storageRequest|存储状态|    StorageRequest
 isRepeat|是否循环任务|    boolean
 repeatCycleTime |循环间隔|    number
 repeatCount    |循环次数| number
+isDeepIdle |是否要求设备进入空闲状态（后续演进）| boolean
+idleWaitTime    |空闲等待事件（后续演进）| number
 
 **表3** 延迟任务回调接口
 
