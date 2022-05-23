@@ -573,8 +573,6 @@ Describes the device connection status and device information.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters**
-
 | Name             | Type                                             | Mandatory| Description              |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
 | type              | [DeviceChangeType](#DeviceChangeType)             | Yes  | Device connection status.|
