@@ -1,4 +1,4 @@
-# Development Guidelines<a name="EN-US_TOPIC_0000001054903130"></a>
+# Screen and Camera Control Development<a name="EN-US_TOPIC_0000001054903130"></a>
 
 -   **[Photographing](device-camera-control-demo-photoguide.md)**  
 

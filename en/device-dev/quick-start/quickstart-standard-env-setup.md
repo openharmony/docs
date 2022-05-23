@@ -140,7 +140,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
 
 
-## Configuring Windows to Remotely Access the Ubuntu Build Environment
+## Configuring Windows to Remotely Access the Ubuntu Development Environment
 
 
 ### Installing the SSH Service and Obtaining the IP Address for Remote Access

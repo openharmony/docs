@@ -1,10 +1,10 @@
 # Setting Up the Windows+Ubuntu Hybrid Development Environment
 
 
-In embedded development, Windows-based tools, such as Visual Studio Code, are widely used in code editing. Yet, as the source code of most development boards, such as Hi3861 and Hi3516, cannot be built in Windows, these development boards require the Ubuntu build environment.
+In embedded development, Windows-based tools, such as Visual Studio Code, are widely used in code editing. Yet, as the source code of most development boards, such as Hi3861 and Hi3516, cannot be built in Windows, these development boards require the Ubuntu development environment.
 
 
-In the Windows+Ubuntu hybrid build environment, you can enjoy the benefits of both DevEco Device Tool for Windows and DevEco Device Tool for Ubuntu (where Visual Studio Code is optional).
+In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits of both DevEco Device Tool for Windows and DevEco Device Tool for Ubuntu (where Visual Studio Code is optional).
 
 
 ## System Requirements
@@ -18,9 +18,7 @@ In the Windows+Ubuntu hybrid build environment, you can enjoy the benefits of bo
 - DevEco Device Tool: 3.0 Release
 
 
-## Setting Up the Ubuntu Build Environment
-
-The setup procedure varies, depending on whether you need a GUI. If you need a GUI, you need to install Visual Studio Code. In this case, follow the instructions in [Setting Up the Ubuntu Development Environment](https://device.harmonyos.com/en/docs/documentation/guide/ide-install-ubuntu-0000001072959308). If you do not need a GUI, perform the steps below:
+## Setting Up the Ubuntu Development Environment
 
 1. Make sure the Ubuntu shell environment is **bash**.
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
@@ -116,7 +114,7 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
    ![en-us_image_0000001225760456](figures/en-us_image_0000001225760456.png)
 
 
-## Configuring Windows to Remotely Access the Ubuntu Build Environment
+## Configuring Windows to Remotely Access the Ubuntu Development Environment
 
 
 ### Installing the SSH Service and Obtaining the IP Address for Remote Access

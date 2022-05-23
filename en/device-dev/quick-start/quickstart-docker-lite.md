@@ -4,7 +4,7 @@
 
 - **[Mini and Small System Overview](quickstart-lite-overview.md)**
 
-- **[Environment Preparation](quickstart-lite-env-setup.md)**
+- **[Setting Up Environments for the Mini and Small Systems](quickstart-lite-env-setup.md)**
 
 - **[Running a Hello World Program](quickstart-lite-steps.md)**
 

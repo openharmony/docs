@@ -23,14 +23,14 @@ The download steps for other resources are the same as those in the mainline ver
 # Porting Procedure
 
 - [Mini System SoC Porting Guide](porting-minichip.md)
-  - [Porting Preparations](porting-chip-prepare.md)
-    - [Before You Start](oem_transplant_chip_prepare_knows.md)
+  - Porting Preparations
+    - [Before You Start](porting-chip-prepare-knows.md)
     - [Building Adaptation Process](porting-chip-prepare-process.md)
-  - [Kernel Porting](porting-chip-kernel.md)
+  - Kernel Porting
     - [Overview](porting-chip-kernel-overview.md)
     - [Basic Kernel Adaptation](porting-chip-kernel-adjustment.md)
     - [Kernel Porting Verification](porting-chip-kernel-verify.md)
-  - [Board-Level OS Porting](porting-chip-board.md)
+  - Board-Level OS Porting
     - [Overview](porting-chip-board-overview.md)
     - [Board-Level Driver Adaptation](porting-chip-board-driver.md)
     - [Implementation of APIs at the HAL](porting-chip-board-hal.md)
@@ -38,22 +38,22 @@ The download steps for other resources are the same as those in the mainline ver
     - [lwIP Module Adaptation](porting-chip-board-lwip.md)
     - [Third-party Module Adaptation](porting-chip-board-bundle.md)
     - [XTS](porting-chip-board-xts.md)
-  - [FAQ](porting-chip-faqs.md)
-- [Small System SoC Porting Guide](porting-smallchip.md)
-  - [Porting Preparations](porting-smallchip-prepare.md)
+  - [FAQs](porting-chip-faqs.md)
+- Small System SoC Porting Guide
+  - Porting Preparations
     - [Before You Start](porting-smallchip-prepare-needs.md)
     - [Compilation and Building](porting-smallchip-prepare-building.md)
-  - [Kernel Porting](porting-smallchip-kernel.md)
+  - Kernel Porting
     - [LiteOS Cortex-A](porting-smallchip-kernel-a.md)
     - [Linux Kernel](porting-smallchip-kernel-linux.md)
-  - [Driver Porting](porting-smallchip-driver.md)
+  - Driver Porting
     - [Overview](porting-smallchip-driver-overview.md)
     - [Platform Driver Porting](porting-smallchip-driver-plat.md)
     - [Device Driver Porting](porting-smallchip-driver-oom.md)
 - Standard System SoC Porting Guide
     - [Standard System Porting Guide](standard-system-porting-guide.md)
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting-linux-kernel.md)
-- [Third-Party Library Porting Guide for Mini and Small Systems](porting-thirdparty.md)
+- Third-Party Library Porting Guide for Mini and Small Systems
     - [Overview](porting-thirdparty-overview.md)
     - [Porting a Library Built Using CMake](porting-thirdparty-cmake.md)
     - [Porting a Library Built Using Makefile](porting-thirdparty-makefile.md)
