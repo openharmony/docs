@@ -1221,7 +1221,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
