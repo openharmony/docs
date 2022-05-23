@@ -1,20 +1,20 @@
 # 应用上下文使用指导
 
 ## Context概述
-​        context是应用中对象的上下文，提供获取应用程序环境信息的能力。
 
-## Context整体结构介绍
+​        Context是应用中对象的上下文，提供获取应用程序环境信息的能力。
 
-​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型：
+​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型，其中application/BaseContext属于通用的Context基类，里面有一个属性stageMode，用来区分开发模型是FA还是Stage。
 
-​        **application/BaseContext** 属于一个通用的Context基类，既不属于FA模型也不属于Stage模型，里面只有一个属性stageMode，用来区分开发模型是FA还是Stage。
+​+ FA模型
+只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
 
-​        **FA模型** 只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意context实例所代表的实际含义。
+​+ Stage模型
+除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
 
-​        **Stage模型** 除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
+![context概述.png](C:\Users\jie\Desktop\context概述.png)
 
-
-![contextIntroduction](figures/contextIntroduction.png)
+​        ​        ​        ​        ​        ​        ​        ​        图1 - Context整体类图
 
 ## FA模型的Context详细介绍
 
@@ -22,11 +22,11 @@
 
 ​        FA模型只有一个Context定义。Context中所有的功能都是通过方法来提供的，它提供了一些featureAbility中不存在的方法，相当于featureAbility的一个扩展和补全。
 
-​        d.ts文件如下：
+​**d.ts声明**
 
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/app/context.d.ts
 
-​        应用的使用方式：
+​**示例**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -47,11 +47,9 @@ export default {
 
 ## Stage模型和Context详细介绍
 
-​        Stage模型有7大Context：
+​        Stage模型有如下几类Context：
 
 ### application/Context
-
-**概述**
 
 ​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
 
@@ -60,8 +58,6 @@ export default {
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/Context.d.ts
 
 ### application/ApplicationContext
-
- **概述**
 
 ​         application/ApplicationContext是应用级别的Context。和基类Context相比，应用级别的Context中提供了监听进程内组件的生命周期的能力，包括registerAbilityLifecycleCallback和unregisterAbilityLifecycleCallback两种方法。
 
@@ -123,8 +119,6 @@ export default class MyAbilityStage extends AbilityStage {
 
 ### application/AbilityStageContext
 
- **概述**
-
 ​        application/AbilityStageContext是Hap包级别的Context。和基类Context相比，Hap包级别的Context中多了HapModuleInfo和Configuration两个信息。
 
 **获取方法**
@@ -137,7 +131,7 @@ export default class MyAbilityStage extends AbilityStage {
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     // 属性context就是AbilityStageContext类型的
-    console.log('HapModuleInfo is ' + context.currentHapModuleInfo);
+    console.log('HapModuleInfo is ' + this.context.currentHapModuleInfo);
   }
 }
 ```
@@ -147,8 +141,6 @@ export default class MyAbilityStage extends AbilityStage {
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AbilityStageContext.d.ts
 
 ### application/AbilityContext
-
- **概述**
 
 ​        Stage模型下，每个Ability中都包含了一个Context属性。
 
@@ -203,15 +195,17 @@ export default class MainAbility extends Ability {
 
 ### application/FormExtensionContext
 
+卡片业务相关，点下面链接了解。
+
 ​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
 
-## 常见问题
+## 常见错误使用方式
 
-**通过globalThis去获取Context**
+**错误1：Stage模型通过globalThis去获取Context**
 
 **结论**
 
-​        FA模型可以通过该方式去获取；Stage模型不可通过该方式去获取，要通过对应组件的属性去获取。
+​        Stage模型不能使用globalThis去获取Context。
 
 **原因**
 
