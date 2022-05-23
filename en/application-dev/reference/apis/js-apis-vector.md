@@ -1,6 +1,6 @@
 # Linear Container Vector
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,9 +20,9 @@ SystemCapability.Utils.Lang
 
 ### Attributes
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a vector (called container later).|
+ | Name | Type | Readable | Writable | Description |
+ | -------- | -------- | -------- | -------- | -------- |
+ | length | number | Yes | No | Number of entries in a vector (called container later). |
 
 
 ### constructor
@@ -46,15 +46,15 @@ Adds an entry at the end of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to add.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to add. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+ | Type | Description |
+ | -------- | -------- |
+ | boolean | Returns **true** if the entry is added successfully; returns **false** otherwise. |
 
 **Example**
 
@@ -76,10 +76,10 @@ Inserts an entry at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to insert.|
-| index | number | Yes| Index of the position where the entry is to be inserted.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to insert. |
+ | index | number | Yes | Index of the position where the entry is to be inserted. |
 
 **Example**
 
@@ -98,15 +98,15 @@ Checks whether this container has the specified entry.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to check. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the entry is contained; returns **false** otherwise.|
+ | Type | Description |
+ | -------- | -------- |
+ | boolean | Returns **true** if the entry is contained; returns **false** otherwise. |
 
 **Example**
 
@@ -125,15 +125,15 @@ Obtains the index of the first occurrence of the specified entry in this contain
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to obtain.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to obtain. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+ | Type | Description |
+ | -------- | -------- |
+ | number | Returns the position index if obtained; returns **-1** if the specified entry is not found. |
 
 **Example**
 
@@ -157,15 +157,15 @@ Obtains the index of the last occurrence of the specified entry in this containe
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to obtain.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to obtain. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+ | Type | Description |
+ | -------- | -------- |
+ | number | Returns the position index if obtained; returns **-1** if the specified entry is not found. |
 
 **Example**
 
@@ -189,15 +189,15 @@ Removes an entry at the specified position from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | index | number | Yes | Position index of the entry to remove. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | Entry removed.|
+ | Type | Description |
+ | -------- | -------- |
+ | T | Entry removed. |
 
 **Example**
 
@@ -219,15 +219,15 @@ Removes the first occurrence of the specified entry from this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to remove.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to remove. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+ | Type | Description |
+ | -------- | -------- |
+ | boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise. |
 
 **Return value**
 
@@ -248,10 +248,10 @@ Removes from this container all of the entries within a range, including the ent
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| fromIndex | number | Yes| Index of the start position.|
-| toIndex | number | Yes| Index of the end position.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | fromIndex | number | Yes | Index of the start position. |
+ | toIndex | number | Yes | Index of the end position. |
 
 **Example**
 
@@ -275,18 +275,18 @@ Replaces all entries in this container with new entries, and returns the new one
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | callbackfn | function | Yes | Callback invoked for replacement. |
+ | thisArg | Object | No | Value to use when the callback is invoked. |
 
 callbackfn
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | value | T | Yes | Value of the entry that is currently traversed. |
+ | index | number | No | Position index of the entry that is currently traversed. |
+ | vector | Vector&lt;T&gt; | No | Instance that invokes the **replaceAllElements** API. |
 
 **Example**
 
@@ -313,18 +313,18 @@ Uses a callback to traverse the entries in this container and obtain their posit
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | callbackfn | function | Yes | Callback invoked for replacement. |
+ | thisArg | Object | No | Value to use when the callback is invoked. |
 
 callbackfn
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | value | T | Yes | Value of the entry that is currently traversed. |
+ | index | number | No | Position index of the entry that is currently traversed. |
+ | vector | Vector&lt;T&gt; | No | Instance that invokes the **forEach** API. |
 
 **Example**
 
@@ -348,16 +348,16 @@ Sorts entries in this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| comparator | function | No | Callback invoked for sorting. |
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | comparator | function | No | Callback invoked for sorting. |
 
 comparator
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| firstValue | T | Yes | Previous entry. |
-| secondValue | T | Yes | Next entry. |
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | firstValue | T | Yes | Previous entry. |
+ | secondValue | T | Yes | Next entry. |
 
 **Example**
 
@@ -380,16 +380,16 @@ Obtains entries within a range in this container, including the entry at the sta
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| fromIndex | number | Yes| Index of the start position.|
-| toIndex | number | Yes| Index of the end position.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | fromIndex | number | Yes | Index of the start position. |
+ | toIndex | number | Yes | Index of the end position. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Vector&lt;T&gt; | New **Vector** instance obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | Vector&lt;T&gt; | New **Vector** instance obtained. |
 
 **Return value**
 
@@ -430,9 +430,9 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Vector&lt;T&gt; | New **Vector** instance obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | Vector&lt;T&gt; | New **Vector** instance obtained. |
 
 **Example**
 
@@ -453,9 +453,9 @@ Obtains the capacity of this container.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Capacity obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | number | Capacity obtained. |
 
 **Example**
 
@@ -476,9 +476,9 @@ Converts this container into an array.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Array&lt;T&gt; | Array obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | Array&lt;T&gt; | Array obtained. |
 
 **Example**
 
@@ -499,9 +499,9 @@ Checks whether this container is empty (contains no entries).
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+ | Type | Description |
+ | -------- | -------- |
+ | boolean | Returns **true** if the container is empty; returns **false** otherwise. |
 
 **Example**
 
@@ -522,9 +522,9 @@ Increases the capacity of this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes| New capacity.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | newCapacity | number | Yes | New capacity. |
 
 **Example**
 
@@ -563,9 +563,9 @@ Uses commas (,) to concatenate entries in this container into a string.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | String obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | string | String obtained. |
 
 **Example**
 
@@ -586,9 +586,9 @@ Copies entries in this container into an array to overwrite elements of the same
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| array | Array&lt;T&gt; | Yes| Array to which the entries in the container will be copied.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | array | Array&lt;T&gt; | Yes | Array to which the entries in the container will be copied. |
 
 **Example**
 
@@ -610,9 +610,9 @@ Obtains the first entry in this container.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | The first entry obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | T | The first entry obtained. |
 
 **Example**
 
@@ -633,9 +633,9 @@ Obtains the last entry in this container.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | The last entry obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | T | The last entry obtained. |
 
 **Example**
 
@@ -656,16 +656,16 @@ Searches for an entry backward from the specified position index and returns the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
-| index | number | Yes| Position index where the search starts.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to query. |
+ | index | number | Yes | Position index where the search starts. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the entry is not found.|
+ | Type | Description |
+ | -------- | -------- |
+ | number | Returns the position index if obtained; returns **-1** if the entry is not found. |
 
 **Example**
 
@@ -687,16 +687,16 @@ Searches for an entry forward from the specified position index and returns the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
-| index | number | Yes| Position index where the search starts.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | element | T | Yes | Entry to query. |
+ | index | number | Yes | Position index where the search starts. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the entry is not found.|
+ | Type | Description |
+ | -------- | -------- |
+ | number | Returns the position index if obtained; returns **-1** if the entry is not found. |
 
 **Example**
 
@@ -718,9 +718,9 @@ Sets a new length for this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| newSize | number | Yes| New length to set.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | newSize | number | Yes | New length to set. |
 
 **Example**
 
@@ -742,15 +742,15 @@ Obtains an entry at the specified position in this container.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position index of the entry to obtain.|
+  | index | number | Yes | Position index of the entry to obtain. |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | T | Entry obtained.|
+  | T | Entry obtained. |
 
 **Example**
 
@@ -770,16 +770,16 @@ Replaces an entry at the specified position in this container with a given entry
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to replace.|
-| element | T | Yes| Entry to be used for replacement.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | index | number | Yes | Position index of the entry to replace. |
+ | element | T | Yes | Entry to be used for replacement. |
 
 **Return value**
 
-  | Type| Description|
+  | Type | Description |
   | -------- | -------- |
-  | T | New entry.|
+  | T | New entry. |
 
 **Example**
 
@@ -800,9 +800,9 @@ Replaces an entry at the specified position in this container with a given entry
 Obtains an iterator. Each item of the iterator is a JavaScript object.
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | IterableIterator&lt;T&gt; | Iterator obtained. |
 
 **Example**
 
