@@ -2,7 +2,7 @@
 
 ## 获取设备开发工具（HUAWEI DevEco Device Tool）
 
-HUAWEI DevEco Device Tool是OpenHarmony面向智能设备开发者提供的一站式集成开发环境，支持OpenHarmony的组件按需定制，支持代码编辑、编译、烧录、调试等功能，支持C/C++语言，以插件的形式部署在Visual Studio Code上。具体可参见[获取工具](https://device.harmonyos.com/cn/ide)和[工具使用指南](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)**。**
+HUAWEI DevEco Device Tool是OpenHarmony面向智能设备开发者提供的一站式集成开发环境，支持OpenHarmony的组件按需定制，支持代码编辑、编译、烧录和调试等功能，支持C/C++语言，以插件的形式部署在Visual Studio Code上。具体可参见[获取工具](https://device.harmonyos.com/cn/ide)和[工具使用指南](https://device.harmonyos.com/cn/docs/ide/user-guides/service_introduction-0000001050166905)。
 
 ## 获取应用开发工具（HUAWEI DevEco Studio）
 
