@@ -64,7 +64,7 @@
    ```
 
 2. 添加按钮。
-   在默认页面基础上，我们添加一个Button组件，作为按钮接收用户点击的动作，从而实现跳转到另一个页面。“**index.ets**”文件的示例如下：
+   在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.ets**”文件的示例如下：
 
    
    ```
@@ -79,7 +79,7 @@
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-           // 添加按钮，以接收用户点击
+           // 添加按钮，以响应用户点击
            Button() {
              Text('Next')
                .fontSize(30)
@@ -171,7 +171,7 @@
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-           // 添加按钮，以接收用户点击
+           // 添加按钮，以响应用户点击
            Button() {
              Text('Next')
                .fontSize(30)
