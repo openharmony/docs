@@ -1,4 +1,4 @@
-# appspawn系统应用孵化组件<a name="ZH-CN_TOPIC_0000001063680582"></a>
+# appspawn应用孵化组件<a name="ZH-CN_TOPIC_0000001063680582"></a>
 
 ## 小型系统
 
