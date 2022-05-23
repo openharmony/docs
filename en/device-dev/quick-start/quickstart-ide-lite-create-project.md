@@ -10,7 +10,7 @@ After [setting up the Windows+Ubuntu hybrid development environment](../quick-st
 
 2. Select the source code directory to be imported and click **Import**.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
    > Make sure the selected directory does not contain Chinese characters or spaces. Otherwise, the building may fail.
 
    ![en-us_image_0000001271477045](figures/en-us_image_0000001271477045.png)

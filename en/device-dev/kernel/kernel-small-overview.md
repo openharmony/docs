@@ -1,7 +1,6 @@
-# Kernel Overview<a name="EN-US_TOPIC_0000001122933245"></a>
+# Kernel Overview
 
--   [Overview](#section6614133913129)
--   [Kernel Architecture](#section827143517385)
+
 
 ## Overview<a name="section6614133913129"></a>
 

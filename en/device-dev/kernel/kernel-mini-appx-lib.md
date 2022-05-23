@@ -1,4 +1,4 @@
-# Standard Libraries<a name="EN-US_TOPIC_0000001078876478"></a>
+# Standard Libraries
 
 -   **[CMSIS Support](kernel-mini-appx-lib-cmsis.md)**  
 

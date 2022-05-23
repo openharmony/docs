@@ -1,6 +1,6 @@
 # Screenshot
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>  **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -54,7 +54,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 Takes a screenshot and saves it as a **PixelMap** object. This method uses a callback to return the result.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Required permissions**: ohos.permission.CAPTURE_SCREEN
 
@@ -94,15 +94,15 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 Takes a screenshot and saves it as a **PixelMap** object. This method uses a promise to return the result.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Required permissions**: ohos.permission.CAPTURE_SCREEN
 
 **Parameters**
 
-  | Name | Type                                   | Mandatory| Description                                                        |
-  | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+| Name | Type                                   | Mandatory| Description                                                        |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
 
 **Return value**
 

@@ -1,19 +1,10 @@
-# Memory Leak Check<a name="EN-US_TOPIC_0000001079076672"></a>
+# Memory Leak Check
 
--   [Basic Concepts](#section1026719436293)
--   [Function Configuration](#section13991354162914)
--   [Development Guidelines](#section95828159308)
-    -   [How to Develop](#section369844416304)
-    -   [Development Example](#section460801313313)
-    -   [Sample Code](#section96539275311)
-    -   [Verification](#section20527343183119)
-
-
-## Basic Concepts<a name="section1026719436293"></a>
+## Basic Concepts
 
 As an optional function of the kernel, memory leak check is used to locate dynamic memory leak problems. After this function is enabled, the dynamic memory automatically records the link registers \(LRs\) used when memory is allocated. If a memory leak occurs, the recorded information helps locate the memory allocated for further analysis.
 
-## Function Configuration<a name="section13991354162914"></a>
+## Function Configuration
 
 1.  **LOSCFG\_MEM\_LEAKCHECK**: specifies the setting of the memory leak check. This function is disabled by default. To enable the function, set this macro to  **1**  in  **target\_config.h**.
 2.  **LOSCFG\_MEM\_RECORD\_LR\_CNT**: number of LRs recorded. The default value is  **3**. Each LR consumes the memory of  **sizeof\(void \*\)**  bytes.
@@ -25,9 +16,9 @@ As an optional function of the kernel, memory leak check is used to locate dynam
 
 Correctly setting this macro can ignore invalid LRs and reduce memory consumption.
 
-## Development Guidelines<a name="section95828159308"></a>
+## Development Guidelines
 
-### How to Develop<a name="section369844416304"></a>
+### How to Develop
 
 Memory leak check provides a method to check for memory leak in key code logic. If this function is enabled, LR information is recorded each time when memory is allocated. When  **LOS\_MemUsedNodeShow**  is called before and after the code snippet is checked, information about all nodes that have been used in the specified memory pool is printed. You can compare the node information. The newly added node information indicates the node where the memory leak may occur. You can locate the code based on the LR and further check whether a memory leak occurs.
 
@@ -43,10 +34,10 @@ node        size   LR[0]      LR[1]       LR[2]
 0x100179cc: 0x5c  0x9b02c24e  0x9b02c246  0x9b008ef0 
 ```
 
->![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+>![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
 >Enabling memory leak check affects memory application performance. LR addresses will be recorded for each memory node, increasing memory overhead.
 
-### Development Example<a name="section460801313313"></a>
+### Development Example
 
 This example implements the following:
 
@@ -56,7 +47,7 @@ This example implements the following:
 4.  Compare the logs to obtain information about the node where a memory leak occurred.
 5.  Locate the code based on the LR address.
 
-### Sample Code<a name="section96539275311"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -75,7 +66,7 @@ void MemLeakTest(void)
 }
 ```
 
-### Verification<a name="section20527343183119"></a>
+### Verification
 
 The log is as follows:
 

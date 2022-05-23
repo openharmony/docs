@@ -1,28 +1,17 @@
-# Dynamic Loading<a name="EN-US_TOPIC_0000001136290130"></a>
+# Dynamic Loading
 
--   [Basic Concepts](#section4330230191314)
--   [Working Principles](#section139861939219)
-    -   [Exporting the Symbol Table](#section15414650102716)
-    -   [Loading an ELF File](#section5221181562810)
-    -   [ELF File Link](#section68441639182817)
+## Basic Concepts
 
--   [ELF Specifications](#section187315541916)
-    -   [ELF Type](#section1701552268)
-    -   [Options for Linking](#section17292133274)
+In small devices with limited hardware resources, dynamic algorithm deployment capability is required to solve the problem that multiple algorithms cannot be deployed at the same time. The LiteOS-M kernel uses the Executable and Linkable Format \(ELF\) loading because it is easy to use and compatible with a wide variety of platforms. The LiteOS-M provides APIs similar to **dlopen** and **dlsym**. Apps can load and unload required algorithm libraries by using the APIs provided by the dynamic loading module. As shown in the following figure, the app obtains the corresponding information output through the API required by the third-party algorithm library. The third-party algorithm library depends on the basic APIs provided by the kernel, such as **malloc**. After the app loads the API and relocates undefined symbols, it can call the API to complete the function. The dynamic loading component supports only the Arm architecture. In addition, the signature and source of the shared library to be loaded must be verified to ensure system security.
 
-
-## Basic Concepts<a name="section4330230191314"></a>
-
-In small devices with limited hardware resources, dynamic algorithm deployment capability is required to solve the problem that multiple algorithms cannot be deployed at the same time. The LiteOS-M kernel uses the Executable and Linkable Format \(ELF\) loading because it is easy to use and compatible with a wide variety of platforms. The LiteOS-M provides APIs similar to  **dlopen**  and  **dlsym**. Apps can load and unload required algorithm libraries by using the APIs provided by the dynamic loading module. As shown in the following figure, the app obtains the corresponding information output through the API required by the third-party algorithm library. The third-party algorithm library depends on the basic APIs provided by the kernel, such as  **malloc**. After the app loads the API and relocates undefined symbols, it can call the API to complete the function. The dynamic loading component supports only the Arm architecture. In addition, the signature and source of the shared library to be loaded must be verified to ensure system security.
-
-**Figure  1**  LiteOS-M kernel dynamic loading architecture<a name="fig3662173651419"></a>  
+**Figure 1** LiteOS-M kernel dynamic loading architecture 
 ![](figures/liteos-m-kernel-dynamic-loading-architecture.png "liteos-m-kernel-dynamic-loading-architecture")
 
-## Working Principles<a name="section139861939219"></a>
+## Working Principles
 
-### Exporting the Symbol Table<a name="section15414650102716"></a>
+### Exporting the Symbol Table
 
-The kernel needs to proactively expose the API required by the dynamic library when the shared library calls a kernel API, as shown in the following figure. This mechanism compiles the symbol information to the specified section and calls the  **SYM\_EXPORT**  macro to export information of the specified symbol. The symbol information is described in the structure  **SymInfo**. Its members include the symbol name and symbol address information. The macro  **SYM\_EXPORT**  imports the symbol information to the  **.sym.\***  section by using the  **\_\_attribute\_\_**  compilation attribute.
+The kernel needs to proactively expose the API required by the dynamic library when the shared library calls a kernel API, as shown in the following figure. This mechanism compiles the symbol information to the specified section and calls the **SYM\_EXPORT** macro to export information of the specified symbol. The symbol information is described in the structure **SymInfo**. Its members include the symbol name and symbol address information. The macro **SYM\_EXPORT** imports the symbol information to the **.sym.\*** section by using the **\_\_attribute\_\_** compilation attribute.
 
 ```
 typedef struct {
@@ -37,12 +26,12 @@ const SymInfo sym_##func __attribute__((section(".sym."#func))) = { \
 };
 ```
 
-**Figure  2**  Exported symbol table information<a name="fig1024363510159"></a>  
+**Figure 2** Exported symbol table information 
 ![](figures/exported-symbol-table-information.png "exported-symbol-table-information")
 
-### Loading an ELF File<a name="section5221181562810"></a>
+### Loading an ELF File
 
-During the loading process, the LOAD section to be loaded to the memory is obtained based on the ELF file handle and the section offset of the program header table. Generally, there are two sections: read-only section and read-write section. You can run the  **readelf -l**  command to view the LOAD section information of the ELF file. The physical memory is requested according to the related alignment attributes. Then, a code section or a data segment is written into the memory based on the loading base address and an offset of each section.
+During the loading process, the LOAD section to be loaded to the memory is obtained based on the ELF file handle and the section offset of the program header table. Generally, there are two sections: read-only section and read-write section. You can run the **readelf -l** command to view the LOAD section information of the ELF file. The physical memory is requested according to the related alignment attributes. Then, a code section or a data segment is written into the memory based on the loading base address and an offset of each section.
 
 ```
 $ readelf -l lib.so
@@ -66,29 +55,29 @@ Program Headers:
    03     .dynamic
 ```
 
-**Figure  3**  Process of loading an ELF file<a name="fig15547494157"></a>  
+**Figure 3** Process of loading an ELF file 
 ![](figures/process-of-loading-an-elf-file.png "process-of-loading-an-elf-file")
 
-### ELF File Link<a name="section68441639182817"></a>
+### ELF File Link
 
-A relocation table is obtained by using a  **.dynamic**  section of the ELF file. Each entry that needs to be relocated in the table is traversed. Then, the symbol is searched, based on the symbol name that needs to be relocated, in the shared library and the exported symbol table provided by the kernel. The relocation information is updated based on the symbol found.
+A relocation table is obtained by using a **.dynamic** section of the ELF file. Each entry that needs to be relocated in the table is traversed. Then, the symbol is searched, based on the symbol name that needs to be relocated, in the shared library and the exported symbol table provided by the kernel. The relocation information is updated based on the symbol found.
 
-**Figure  4**  ELF file linking process<a name="fig968155141613"></a>  
+**Figure 4** ELF file linking process 
 ![](figures/elf-file-linking-process.png "elf-file-linking-process")
 
-## ELF Specifications<a name="section187315541916"></a>
+## ELF Specifications
 
-### ELF Type<a name="section1701552268"></a>
+### ELF Type
 
-When compiling a shared library, you can add  **-fPIC**  \(a compilation option\) to compile location-independent code. The shared library file type is  **ET\_DYN**, which can be loaded to any valid address range.
+When compiling a shared library, you can add **-fPIC** \(a compilation option\) to compile location-independent code. The shared library file type is **ET\_DYN**, which can be loaded to any valid address range.
 
-Example:  **arm-none-eabi-gcc -fPIC –shared –o lib.so lib.c**
+Example: **arm-none-eabi-gcc -fPIC –shared –o lib.so lib.c**
 
-### Options for Linking<a name="section17292133274"></a>
+### Options for Linking
 
 1.  **-nostdlib**: Do not use the lib library in the compiler when linking.
 2.  **-nostartfiles**: Do not use the startup files in the compiler when linking.
 3.  **-fPIC**: compiles location-independent shared libraries.
-4.  **-z max-page-size=4**: sets the number of alignment bytes of the loadable sections in the binary file to  **4**. This setting saves memory and can be used for a dynamic library.
-5.  **-mcpu=**  specifies the CPU architecture.
+4.  **-z max-page-size=4**: sets the number of alignment bytes of the loadable sections in the binary file to **4**. This setting saves memory and can be used for a dynamic library.
+5.  **-mcpu=** specifies the CPU architecture.
 

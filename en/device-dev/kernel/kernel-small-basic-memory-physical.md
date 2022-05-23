@@ -1,12 +1,4 @@
-# Physical Memory Management<a name="EN-US_TOPIC_0000001078575732"></a>
-
--   [Basic Concepts](#section210891719217)
--   [Working Principles](#section111355315213)
--   [Development Guidelines](#section393116496217)
-    -   [Available APIs](#section13210155619214)
-    -   [How to Develop](#section178441091231)
-    -   [Development Example](#section1258174015319)
-    -   [Verification](#section515091342819)
+# Physical Memory Management
 
 
 ## Basic Concepts<a name="section210891719217"></a>

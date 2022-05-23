@@ -1,5 +1,8 @@
 # 烧录
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 如您使用的是master分支2022年5月9日及之后的源码，请使用HiTool工具进行烧录。
+> - 当前版本的DevEco Device Tool暂不支持上述日期后的源码烧录，将在下个版本中适配。
 
 在Windows下采用USB烧录方式进行Hi3516DV300的烧录，具体步骤如下：
 

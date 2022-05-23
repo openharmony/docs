@@ -17,7 +17,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 - 直接创建一个支持低代码开发的新工程以进行开发。本文以此方式为例进行说明。
 
-- 在已有工程中，创建Visual文件来进行开发。
+- 在已有工程中，创建visual文件来进行开发。
 
 
 ## 创建新工程支持低代码开发
@@ -46,9 +46,9 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 构建第一个页面
 
-工程同步完成后，第一个页面已有一个容器、文本（Hello World）显示。为了更详细地了解低代码开发，我们将删除画布原有模板组件，从零开始完成页面的添加、设置。
+工程同步完成后，第一个页面已有一个容器、一段文本（Hello World）显示。为了更详细地了解低代码开发，我们将删除画布原有模板组件，从零开始完成页面的添加、设置。
 
-第一个页面内有一个容器、文本和一个按钮，通过Column、Text和Button组件来实现。其中，Column为沿垂直方向布局的容器组件，具体使用请见[Column](../reference/arkui-ts/ts-container-column.md)。
+第一个页面内有一个容器、一段文本和一个按钮，通过Column、Text和Button组件来实现。其中，Column为沿垂直方向布局的容器组件，具体使用请见[Column](../reference/arkui-ts/ts-container-column.md)。
 
 1. 删除画布原有模板组件。<a name="delete_origin_content"></a>
    打开index.visual文件，选中画布中的组件，单击鼠标右键，选择Delete删除画布原有模板组件。操作如下所示：

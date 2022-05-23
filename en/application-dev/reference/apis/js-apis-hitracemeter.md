@@ -34,7 +34,6 @@ If the trace tasks with the same name are not performed at the same time, the sa
 
 ```js
 hiTraceMeter.startTrace("myTestFunc", 1);
-hiTraceMeter.startTrace("myTestFunc", 1, 5); // The expected duration of the trace task is 5 ms.
 ```
 
 

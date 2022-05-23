@@ -1,11 +1,5 @@
-# ntpdate<a name="EN-US_TOPIC_0000001179965859"></a>
+# ntpdate
 
--   [Command Function](#section38494293815)
--   [Syntax](#section5503114413387)
--   [Parameters](#section136934472383)
--   [Usage](#section121401651173816)
--   [Example](#section3431554203811)
--   [Output](#section18638194610115)
 
 ## Command Function<a name="section38494293815"></a>
 

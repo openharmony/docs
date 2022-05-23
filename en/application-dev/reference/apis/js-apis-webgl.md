@@ -1,6 +1,6 @@
 # webgl
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>  **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,10 +13,10 @@ Create a **<canvas\>** component in the HML file. The following is an example:
 
 
 ```
-
-    
+<div class="container">
+    <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
     <button class="btn-button" onclick="BtnDraw2D">BtnDraw2D</button>
-
+</div>
 ```
 
 Obtain the **<canvas\>** component instance in the JS file. The following is an example:

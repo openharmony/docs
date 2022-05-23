@@ -5,7 +5,7 @@
 
 Bolstered by the Rockchip RK3568 chip, the RK3568 development board integrates a dual-core GPU and high-efficiency NPU. Its quad-core 64-bit Cortex-A55 processor uses the advanced 22 nm manufacturing process and is clocked at up to 2.0 GHz. The development board is packed with Bluetooth, Wi-Fi, audio, video, and camera features, with a wide range of expansion ports as well as video input and output ports. It comes with dual GE auto-sensing RJ45 ports, so it can be used in multi-connectivity products, such as NVRs and industrial gateways.
 
-  **Figure 1** Front view of the RK3568 development board
+**Figure 1** Front view of the RK3568 development board
 
   ![en-us_image_0000001271442261](figures/en-us_image_0000001271442261.png)
 

@@ -106,5 +106,5 @@
     -   [Event Parameter](js-components-custom-event-parameter.md)
     -   [slot](js-components-custom-slot.md)
     -   [Lifecycle Definition](js-components-custom-lifecycle.md)
--   [Type Attributes](js-appendix-types.md)
-
+- Appendix
+    - [Type Attributes](js-appendix-types.md)

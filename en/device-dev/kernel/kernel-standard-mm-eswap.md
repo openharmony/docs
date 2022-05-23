@@ -1,4 +1,4 @@
-# Enhanced SWAP
+# Enhanced Swap
 
 
 ## Basic Concepts

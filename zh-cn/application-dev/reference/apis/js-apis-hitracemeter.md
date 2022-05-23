@@ -34,7 +34,6 @@ startTrace(name: string, taskId: number): void
 
 ```js
 hiTraceMeter.startTrace("myTestFunc", 1);
-hiTraceMeter.startTrace("myTestFunc", 1, 5); //从startTrace到finishTrace流程的耗时期望为5ms
 ```
 
 

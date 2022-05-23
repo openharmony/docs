@@ -1,24 +1,16 @@
-# C++ Support<a name="EN-US_TOPIC_0000001079036442"></a>
+# C++ Support
 
--   [Basic Concepts](#section11374125415814)
--   [Working Principles](#section189351319134418)
--   [Development Guidelines](#section166302407911)
-    -   [Available APIs](#section1881825119919)
-    -   [How to Develop](#section76371145108)
-    -   [Development Example](#section994427141111)
-
-
-## Basic Concepts<a name="section11374125415814"></a>
+## Basic Concepts
 
 As one of the most widely used programming languages, C++ supports features, such as classes, encapsulation, and overloading. It is an object-oriented programming language developed based on the C language.
 
-## Working Principles<a name="section189351319134418"></a>
+## Working Principles
 
 The compiler supports C++ code identification. The system calls the constructors of global objects to perform initialization operations.
 
-## Development Guidelines<a name="section166302407911"></a>
+## Development Guidelines
 
-### Available APIs<a name="section1881825119919"></a>
+### Available APIs
 
 **Table  1**  APIs supported by C++
 
@@ -41,7 +33,7 @@ The compiler supports C++ code identification. The system calls the constructors
 </tbody>
 </table>
 
-### How to Develop<a name="section76371145108"></a>
+### How to Develop
 
 Before using C++ features, you need to call  **LOS\_CppSystemInit**  to initialize C++ constructors. The initialized constructors are stored in the  **init\_array**  section, and the section range is passed by the variables  **\_\_init\_array\_start\_\_**  and  **\_\_init\_array\_end\_\_**.
 
@@ -70,7 +62,7 @@ Before using C++ features, you need to call  **LOS\_CppSystemInit**  to initiali
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >The  **LOS\_CppSystemInit**  function must be called before a C++ service. When the C library used by the third-party compiler is not musl libc, some classes or APIs \(such as  **std::thread**  and  **std::mutex**\) that are closely related to system resources have compatibility issues and are not recommended to use.
 
-### Development Example<a name="section994427141111"></a>
+### Development Example
 
 ```
 void app_init(void)
