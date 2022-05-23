@@ -39,24 +39,22 @@ on(type: "touch", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            //事件满足业务要求，事件被消费
-            return true;
-        } else {
-            //事件不满足业务要求，事件未被消费
-            return false;
-        }
-    },
-    testOn: function () {
-        console.info("InputMonitorJsTest---start---testOn");
-        inputMonitor.on(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOn");
+callback: function (value) {
+    if (checkEvent(value)) {
+        //事件满足业务要求，事件被消费
+        return true;
+    } else {
+        //事件不满足业务要求，事件未被消费
+        return false;
     }
+},
+testOn: function () {
+    console.info("InputMonitorJsTest---start---testOn");
+    inputMonitor.on(
+        "touch",
+        this.callback
+    );
+    console.info("InputMonitorJsTest---end---testOn");
 }
 ```
 
@@ -78,22 +76,20 @@ on(type: "mouse", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            //事件满足业务要求，事件被消费
-        } else {
-            //事件不满足业务要求，事件未被消费
-        }
-    },
-    testOn: function () {
-        console.info("InputMonitorJsTest---start---testOn");
-        inputMonitor.on(
-            "mouse",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOn");
-    }
+callback: function (value) {
+	if (checkEvent(value)) {
+		//事件满足业务要求，事件被消费
+	} else {
+		//事件不满足业务要求，事件未被消费
+	}
+},
+testOn: function () {
+	console.info("InputMonitorJsTest---start---testOn");
+	inputMonitor.on(
+		"mouse",
+		this.callback
+	);
+	console.info("InputMonitorJsTest---end---testOn");
 }
 ```
 
@@ -118,25 +114,23 @@ off(type: "touch", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            //事件满足业务要求，事件被消费
-            return true;
-        } else {
-            //事件不满足业务要求，事件未被消费
-            return false;
-        }
-    },
-    testOff: function () {
-        console.info("InputMonitorJsTest---start---testOff");
-        inputMonitor.off(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOff");
-    }
-  }
+callback: function (value) {
+	if (checkEvent(value)) {
+		//事件满足业务要求，事件被消费
+		return true;
+	} else {
+		//事件不满足业务要求，事件未被消费
+		return false;
+	}
+},
+testOff: function () {
+	console.info("InputMonitorJsTest---start---testOff");
+	inputMonitor.off(
+		"touch",
+		this.callback
+	);
+	console.info("InputMonitorJsTest---end---testOff");
+}
 ```
 
 off(type: "mouse", receiver?: Callback<MouseEvent>): void
@@ -157,23 +151,21 @@ off(type: "mouse", receiver?: Callback<MouseEvent>): void
 **示例：**
 
 ```js
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            //事件满足业务要求，事件被消费
-        } else {
-            //事件不满足业务要求，事件未被消费
-        }
-    },
-    testOff: function () {
-        console.info("InputMonitorJsTest---start---testOff");
-        inputMonitor.off(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOff");
-    }
-  }
+callback: function (value) {
+	if (checkEvent(value)) {
+		//事件满足业务要求，事件被消费
+	} else {
+		//事件不满足业务要求，事件未被消费
+	}
+},
+testOff: function () {
+	console.info("InputMonitorJsTest---start---testOff");
+	inputMonitor.off(
+		"touch",
+		this.callback
+	);
+	console.info("InputMonitorJsTest---end---testOff");
+}
 ```
 
 
@@ -202,23 +194,21 @@ export default {
   **示例：**
 
 ```js
-export default {
-    callback: function (value) {  //此处为(touchEvent:TouchEvent): Boolean 方法的实现
-        if (checkEvent(value)) {
-            //事件满足业务要求，事件被消费
-            return true;
-        } else {
-            //事件不满足业务要求，事件未被消费
-            return false;
-        }
-    },
-    testOff: function () {
-        console.info("InputMonitorJsTest---start---testOff");
-        inputMonitor.off(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOff");
-    }
+callback: function (value) {  //此处为(touchEvent:TouchEvent): Boolean 方法的实现
+	if (checkEvent(value)) {
+		//事件满足业务要求，事件被消费
+		return true;
+	} else {
+		//事件不满足业务要求，事件未被消费
+		return false;
+	}
+},
+testOff: function () {
+	console.info("InputMonitorJsTest---start---testOff");
+	inputMonitor.off(
+		"touch",
+		this.callback
+	);
+	console.info("InputMonitorJsTest---end---testOff");
 }
 ```
