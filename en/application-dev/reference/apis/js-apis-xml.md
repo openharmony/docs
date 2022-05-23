@@ -1,6 +1,6 @@
 # XML Parsing and Generation
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,10 +10,6 @@
 import xml from '@ohos.xml';
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## XmlSerializer
 
 
@@ -22,6 +18,8 @@ SystemCapability.Utils.Lang
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 A constructor used to create an **XmlSerializer** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -45,6 +43,8 @@ setAttributes(name: string, value: string): void
 
 Sets an attribute.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -66,6 +66,8 @@ addEmptyElement(name: string): void
 
 Adds an empty element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -86,6 +88,8 @@ setDeclaration(): void
 
 Sets a declaration.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```js
@@ -99,6 +103,8 @@ thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 startElement(name: string): void
 
 Writes the start tag based on the given element name.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -122,6 +128,8 @@ endElement(): void
 
 Writes the end tag of the element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```js
@@ -139,6 +147,8 @@ endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/htm
 setNamespace(prefix: string, namespace: string): void
 
 Sets the namespace for an element tag.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -164,6 +174,8 @@ setComment(text: string): void
 
 Sets the comment.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -187,6 +199,8 @@ setCDATA(text: string): void
 
 Sets CDATA attributes.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -207,6 +221,8 @@ thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
 setText(text: string): void
 
 Sets **Text**.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -232,6 +248,8 @@ setDocType(text: string): void
 
 Sets **DocType**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -255,6 +273,8 @@ thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 Creates and returns an **XmlPullParser** object. The **XmlPullParser** object passes two parameters. The first parameter is the memory of the **ArrayBuffer** or **DataView** type, and the second parameter is the file format (UTF-8 by default).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -288,6 +308,8 @@ var that = new xml.XmlPullParser(arrayBuffer);
 parse(option: ParseOptions): void
 
 Parses XML information.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -329,6 +351,8 @@ that.parse(options);
 
 Defines the XML parsing options.
 
+**System capability**: SystemCapability.Utils.Lang
+
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -349,6 +373,8 @@ getColumnNumber(): number
 
 Obtains the column line number, which starts from 1.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -361,6 +387,8 @@ Obtains the column line number, which starts from 1.
 getDepth(): number
 
 Obtains the depth of this element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -375,6 +403,8 @@ getLineNumber(): number
 
 Obtains the current line number, starting from 1.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -387,6 +417,8 @@ Obtains the current line number, starting from 1.
 getName(): string
 
 Obtains the name of this element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -401,6 +433,8 @@ getNamespace(): string
 
 Obtains the namespace of this element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -413,6 +447,8 @@ Obtains the namespace of this element.
 getPrefix(): string
 
 Obtains the prefix of this element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -427,6 +463,8 @@ getText(): string
 
 Obtains the text of the current event.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -439,6 +477,8 @@ Obtains the text of the current event.
 isEmptyElementTag(): boolean
 
 Checks whether the current element is empty.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -453,6 +493,8 @@ isWhitespace(): boolean
 
 Checks whether the current text event contains only whitespace characters.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -466,6 +508,8 @@ getAttributeCount(): number
 
 Obtains the number of attributes for the current start tag.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 | Type| Description|
 | -------- | -------- |
@@ -475,6 +519,8 @@ Obtains the number of attributes for the current start tag.
 ## EventType
 
 Enumerates the events.
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
