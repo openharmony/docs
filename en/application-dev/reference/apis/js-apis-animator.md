@@ -1,7 +1,7 @@
 # Animation<a name="EN-US_TOPIC_0000001127125026"></a>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE:**<br>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import<a name="s0e7b1e85a4274f58a8206e0b065bd80c"></a>
 
