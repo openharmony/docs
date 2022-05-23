@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-> **Note**
+> **NOTE**<br/>
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -423,7 +423,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-featureAbility.md#Want) | Yes  | **Want** parameter for starting the ability.   |
+| want     | [Want](js-apis-application-Want.md) | Yes  | **Want** parameter for starting the ability.   |
 | callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
 
 **Example**
@@ -455,7 +455,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description           |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-featureAbility.md#Want) | Yes  | **Want** parameter for starting the ability.|
+| want   | [Want](js-apis-application-Want.md) | Yes  | **Want** parameter for starting the ability.|
 
 **Return value**
 
