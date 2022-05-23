@@ -75,7 +75,7 @@ The table below describes the APIs of the DAC module. For more details, see API 
 
 The figure below illustrates how to use the APIs.
 
-**Figure 2** Using DAC driver APIs<br/>
+**Figure 2** Using DAC driver APIs
 
 ![](figures/using-DAC-process.png "using-DAC-process.png")
 

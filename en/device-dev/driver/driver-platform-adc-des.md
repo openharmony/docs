@@ -9,7 +9,7 @@ The ADC APIs provide a set of common functions for ADC data transfer, including:
 
 -   Obtaining the analog-to-digital (AD) conversion result
 
-    **Figure 1** ADC physical connection<br/>
+    **Figure 1** ADC physical connection
 	
     ![](figures/ADC_physical_connection.png "ADC_physical_connection")
 
@@ -54,7 +54,7 @@ The ADC APIs provide a set of common functions for ADC data transfer, including:
 
 The figure below illustrates how to use the APIs.
 
- **Figure 2** Using ADC driver APIs<br/>
+ **Figure 2** Using ADC driver APIs
 
 ![](figures/using-ADC-process.png "using-ADC-process.png")
 
