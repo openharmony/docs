@@ -1,6 +1,6 @@
 # FeatureAbility Module (JavaScript)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Constraints
@@ -17,7 +17,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-Starts an ability. This method uses a callback to return the result.
+Starts an ability. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -42,8 +42,9 @@ featureAbility.startAbility(
             type: "",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",,
             uri: ""
         },
     },
@@ -56,7 +57,7 @@ featureAbility.startAbility(
 
 startAbility(parameter: StartAbilityParameter): Promise\<number>
 
-Starts an ability. This method uses a promise to return the result.
+Starts an ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -80,8 +81,9 @@ featureAbility.startAbility(
             type: "MIMETYPE",
 			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.startability",
-            abilityName: "com.example.startability.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     }
@@ -123,7 +125,7 @@ featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability. This method uses a callback to return the execution result when the ability is destroyed.
+Starts an ability. This API uses a callback to return the execution result when the ability is destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -148,8 +150,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:""
         },
     },
@@ -163,7 +166,7 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-Starts an ability. This method uses a promise to return the execution result when the ability is destroyed.
+Starts an ability. This API uses a promise to return the execution result when the ability is destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -193,8 +196,9 @@ featureAbility.startAbilityForResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters:
             {
@@ -219,7 +223,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -245,8 +249,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -267,7 +272,7 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -298,8 +303,9 @@ featureAbility.terminateSelfWithResult(
             type: "MIMETYPE",
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
-            bundleName: "com.example.featureabilitytest",
-            abilityName: "com.example.featureabilitytest.MainAbility",
+            bundleName: "com.example.myapplication",
+            /* In the FA model, abilityName consists of package and ability name. */
+            abilityName: "com.example.entry.secondAbility",
             uri:"",
             parameters: {
                 mykey0: 2222,
@@ -324,7 +330,7 @@ featureAbility.terminateSelfWithResult(
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-Checks whether the main window of this ability has the focus. This method uses a callback to return the result.
+Checks whether the main window of this ability has the focus. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -347,7 +353,7 @@ featureAbility.hasWindowFocus()
 
 hasWindowFocus(): Promise\<boolean>
 
-Checks whether the main window of this ability has the focus. This method uses a promise to return the result.
+Checks whether the main window of this ability has the focus. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -372,7 +378,7 @@ featureAbility.hasWindowFocus().then((data) => {
 
 getWant(callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object sent from this ability. This method uses a callback to return the result.
+Obtains the **Want** object sent from this ability. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -395,7 +401,7 @@ featureAbility.getWant()
 
 getWant(): Promise\<Want>
 
-Obtains the **Want** object sent from this ability. This method uses a promise to return the result.
+Obtains the **Want** object sent from this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -442,7 +448,7 @@ context.getBundleName()
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This method uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -465,7 +471,7 @@ featureAbility.terminateSelf()
 
 terminateSelf(): Promise\<void>
 
-Destroys this Page ability, with the result code and data sent to the caller. This method uses a promise to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -488,7 +494,7 @@ featureAbility.terminateSelf().then((data) => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This method uses a callback to return the result.
+Connects this ability to a specific Service ability. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -557,7 +563,7 @@ var connId = featureAbility.connectAbility(
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-Disconnects this ability from a specific Service ability. This method uses a callback to return the result.
+Disconnects this ability from a specific Service ability. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -604,7 +610,7 @@ var result = featureAbility.disconnectAbility(connId,
 
 disconnectAbility(connection: number): Promise\<void>
 
-Disconnects this ability from a specific Service ability. This method uses a promise to return the result.
+Disconnects this ability from a specific Service ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -656,7 +662,7 @@ featureAbility.disconnectAbility(connId).then((error,data) => {
 
 getWindow(callback: AsyncCallback\<window.Window>): void
 
-Obtains the window corresponding to this ability. This method uses a callback to return the result.
+Obtains the window corresponding to this ability. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -676,7 +682,7 @@ featureAbility.getWindow()
 
 getWindow(): Promise\<window.Window>;
 
-Obtains the window corresponding to this ability. This method uses a promise to return the result.
+Obtains the window corresponding to this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
