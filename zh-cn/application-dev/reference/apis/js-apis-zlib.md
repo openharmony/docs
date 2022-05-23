@@ -63,7 +63,7 @@ var options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
-zlib.zipFile(inFile , unzipDir, options).then((data) => {
+zlib.zipFile(inFile , outFile, options).then((data) => {
     console.log("zipFile result：" + data);
 }).catch((err)=>{
     console.log("catch((err)=>" + err);
