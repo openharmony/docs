@@ -440,7 +440,7 @@ doubleClick(): Promise\<void>
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
-    await buttont.doubleClick()
+    await button.doubleClick()
 }
 ```
 
