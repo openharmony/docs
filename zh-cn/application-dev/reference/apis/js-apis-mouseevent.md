@@ -11,7 +11,7 @@ import MouseEvent from '@ohos.multimodalInput.mouseEvent'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -47,7 +47,7 @@ import Action from '@ohos.multimodalInput.mouseEvent'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -71,7 +71,7 @@ import Button from '@ohos.multimodalInput.mouseEvent'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称    | 参数类型 | 可读 | 可写 | 描述           |
 | ------- | -------- | ---- | ---- | -------------- |
@@ -96,7 +96,7 @@ import Axis from '@ohos.multimodalInput.mouseEvent'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称              | 参数类型 | 可读 | 可写 | 描述         |
 | ----------------- | -------- | ---- | ---- | ------------ |
@@ -116,7 +116,7 @@ import AxisValue from '@ohos.multimodalInput.mouseEvent'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称  | 参数类型 | 可读 | 可写 | 描述         |
 | ----- | -------- | ---- | ---- | ------------ |
