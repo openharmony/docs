@@ -53,7 +53,7 @@ $desc为子系统或模块下参数的描述字符，可以为点分格式进行
 
 系统参数值定义文件后缀名为**".para"**，其格式示例如下：
 
-  
+
 ```
 # This is comment
 const.product.name=OHOS-PRODUCT
@@ -65,7 +65,7 @@ const.test.withblank=My Value
 
 注意：系统参数值不支持注释及换行。
 
-  
+
 ```
 # 不支持
 const.test.withcomment=MyValue # This should be omitted
@@ -90,7 +90,7 @@ Last line."
 
 当前系统参数的访问权限控制通过自主访问控制（Discretionary Access Control）方式管理，访问权限定义文件后缀名为**".para.dac"**，示例如下：
 
-  
+
 ```
 const.product.="root:root:660"
 ```
@@ -106,23 +106,39 @@ UGO规则信息每一位的定义如下图所示：
 
 ### 系统参数定义文件安装方法
 
-.para和.para.dac文件都安装到/etc/param/目录下，GN脚本示例如下：
+.para和.para.dac文件都通过ohos_prebuilt_para模版安装到/etc/param/目录下，GN脚本示例如下：
 
-  
-```
-ohos_prebuilt_etc("ohos.para") {
+
+```go
+import("//base/startup/init_lite/services/etc/param/param_fixer.gni")
+
+ohos_prebuilt_para("ohos.para") {
     source = "//base/startup/init_lite/services/etc/ohos.para"
     part_name = "init"
     module_install_dir = "etc/param"
 }
 
-ohos_prebuilt_etc("ohos.para.dac") {
+ohos_prebuilt_para("ohos.para.dac") {
     source = "//base/startup/init_lite/services/etc/ohos.para.dac"
     part_name = "init"
     module_install_dir = "etc/param"
 }
 ```
 
+ohos_prebuilt_para模版会对para文件进行格式化处理，包括去注释，去空格等操作。该模版还支持通过extra_paras参数扩展编译时参数，示例如下：
+
+```go
+  ohos_prebuilt_para("ohos.para") {
+    source = "//base/startup/init_lite/services/etc/param/ohos.para"
+    part_name = "init"
+    if (target_cpu == "arm64") {
+      extra_paras = [ "const.product.cpu.abilist=arm64-v8a" ]
+    }
+    module_install_dir = "etc/param"
+  }
+```
+
+其中extra_paras值的系统参数值处理方式为：source文件中没有定义该系统参数则添加；source文件中已经定义该参数则覆盖。
 
 ### 系统参数值定义文件的加载顺序
 
@@ -193,7 +209,7 @@ ohos_prebuilt_etc("ohos.para.dac") {
 
 系统属性使用实例
 
-  
+
 ```
 // set && get
 char key1[] = "rw.sys.version";
