@@ -13,7 +13,7 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 
 ## By
 
-UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。
+UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。<br>
 By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[isBefore](#isBefore)和[isAfter](#isAfter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
 ```js
@@ -423,7 +423,7 @@ UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属�
 
 ### UiComponent.click
 
-click(): Promise<void>
+click(): Promise\<void>
 
 控件对象进行点击操作。
 
@@ -441,7 +441,7 @@ async function demo() {
 
 ### UiComponent.doubleClick
 
-doubleClick(): Promise<void>
+doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
 
@@ -459,7 +459,7 @@ async function demo() {
 
 ### UiComponent.longClick
 
-longClick(): Promise<void>
+longClick(): Promise\<void>
 
 控件对象进行长按操作。
 
@@ -477,7 +477,7 @@ async function demo() {
 
 ### UiComponent.getId
 
-getId(): Promise<number>
+getId(): Promise\<number>
 
 获取控件对象的id值。
 
@@ -485,9 +485,9 @@ getId(): Promise<number>
 
 **返回值：**
 
-| 类型            | 说明                            |
-| --------------- | ------------------------------- |
-| Promise<number> | 以Promise形式返回的控件的id值。 |
+| 类型             | 说明                            |
+| ---------------- | ------------------------------- |
+| Promise\<number> | 以Promise形式返回的控件的id值。 |
 
 **示例：**
 
@@ -501,7 +501,7 @@ async function demo() {
 
 ### UiComponent.getKey
 
-getKey(): Promise<string>
+getKey(): Promise\<string>
 
 获取控件对象的key值。
 
@@ -509,9 +509,9 @@ getKey(): Promise<string>
 
 **返回值：**
 
-| 类型            | 说明                           |
-| --------------- | ------------------------------ |
-| Promise<string> | 以Promise形式返回控件的key值。 |
+| 类型             | 说明                           |
+| ---------------- | ------------------------------ |
+| Promise\<string> | 以Promise形式返回控件的key值。 |
 
 **示例：**
 
@@ -525,7 +525,7 @@ async function demo() {
 
 ### UiComponent.getText
 
-getText(): Promise<string>
+getText(): Promise\<string>
 
 获取控件对象的文本信息。
 
@@ -533,9 +533,9 @@ getText(): Promise<string>
 
 **返回值：**
 
-| 类型            | 说明                              |
-| --------------- | --------------------------------- |
-| Promise<string> | 以Promise形式返回控件的文本信息。 |
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<string> | 以Promise形式返回控件的文本信息。 |
 
 **示例：**
 
@@ -549,7 +549,7 @@ async function demo() {
 
 ### UiComponent.getType
 
-getType(): Promise<string>
+getType(): Promise\<string>
 
 获取控件对象的控件类型。
 
@@ -557,9 +557,9 @@ getType(): Promise<string>
 
 **返回值：**
 
-| 类型            | 说明                          |
-| --------------- | ----------------------------- |
-| Promise<string> | 以Promise形式返回控件的类型。 |
+| 类型             | 说明                          |
+| ---------------- | ----------------------------- |
+| Promise\<string> | 以Promise形式返回控件的类型。 |
 
 **示例：**
 
@@ -573,7 +573,7 @@ async function demo() {
 
 ### UiComponent.getBounds<sup>9+</sup>
 
-getBounds(): Promise<Rect>
+getBounds(): Promise\<Rect>
 
 获取控件对象的边框信息。
 
@@ -581,9 +581,9 @@ getBounds(): Promise<Rect>
 
 **返回值：**
 
-| 类型          | 说明                                  |
-| ------------- | ------------------------------------- |
-| Promise<Rect> | 以Promise形式返回控件对象的边框信息。 |
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<Rect> | 以Promise形式返回控件对象的边框信息。 |
 
 **示例：**
 
@@ -597,7 +597,7 @@ async function demo() {
 
 ### UiComponent.isClickable
 
-isClickable(): Promise<bool>
+isClickable(): Promise\<bool>
 
 获取控件对象可点击状态。
 
@@ -605,9 +605,9 @@ isClickable(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                  |
-| ------------- | ------------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象可点击状态。 |
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象可点击状态。 |
 
 **示例：**
 
@@ -626,7 +626,7 @@ async function demo() {
 
 ### UiComponent.isLongClickable<sup>9+</sup>
 
-isLongClickable(): Promise<bool> 
+isLongClickable(): Promise\<bool> 
 
 获取控件对象可长按点击状态。
 
@@ -634,9 +634,9 @@ isLongClickable(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                        |
-| ------------- | ------------------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象能否长按点击状态。 |
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象能否长按点击状态。 |
 
 **示例：**
 
@@ -655,7 +655,7 @@ async function demo() {
 
 ### UiComponent.isChecked<sup>9+</sup>
 
-isLongClickable(): Promise<bool>
+isLongClickable(): Promise\<bool>
 
 获取控件对象被勾选状态。
 
@@ -663,9 +663,9 @@ isLongClickable(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                  |
-| ------------- | ------------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象被勾选状态。 |
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象被勾选状态。 |
 
 **示例：**
 
@@ -684,7 +684,7 @@ async function demo() {
 
 ### UiComponent.isCheckable<sup>9+</sup>
 
-isCheckable(): Promise<bool>
+isCheckable(): Promise\<bool>
 
 获取控件对象能否被勾选的属性。
 
@@ -692,9 +692,9 @@ isCheckable(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                        |
-| ------------- | ------------------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象能否被勾选的属性。 |
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象能否被勾选的属性。 |
 
 **示例：**
 
@@ -713,7 +713,7 @@ async function demo() {
 
 ### UiComponent.isScrollable
 
-isScrollable(): Promise<bool>
+isScrollable(): Promise\<bool>
 
 获取控件对象可滑动状态。
 
@@ -721,9 +721,9 @@ isScrollable(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                  |
-| ------------- | ------------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象可滑动状态。 |
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象可滑动状态。 |
 
 **示例：**
 
@@ -743,7 +743,7 @@ async function demo() {
 
 ### UiComponent.isEnabled
 
-isEnabled(): Promise<bool>
+isEnabled(): Promise\<bool>
 
 获取控件使能状态。
 
@@ -751,9 +751,9 @@ isEnabled(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                            |
-| ------------- | ------------------------------- |
-| Promise<bool> | 以Promise形式返回控件使能状态。 |
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件使能状态。 |
 
 **示例：**
 
@@ -773,7 +773,7 @@ async function demo() {
 
 ### UiComponent.isFocused
 
-isFocused(): Promise<bool>
+isFocused(): Promise\<bool>
 
 判断控件对象是否获焦。
 
@@ -781,9 +781,9 @@ isFocused(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                                |
-| ------------- | ----------------------------------- |
-| Promise<bool> | 以Promise形式返回控件对象是否获焦。 |
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象是否获焦。 |
 
 **示例：**
 
@@ -802,7 +802,7 @@ async function demo() {
 
 ### UiComponent.isSelected
 
-isSelected(): Promise<bool>
+isSelected(): Promise\<bool>
 
 获取控件对象被选中状态。
 
@@ -810,9 +810,9 @@ isSelected(): Promise<bool>
 
 **返回值：**
 
-| 类型          | 说明                 |
-| ------------- | -------------------- |
-| Promise<bool> | 控件对象被选中的状态 |
+| 类型           | 说明                 |
+| -------------- | -------------------- |
+| Promise\<bool> | 控件对象被选中的状态 |
 
 **示例：**
 
@@ -831,7 +831,7 @@ async function demo() {
 
 ### UiComponent.inputText
 
-inputText(text: string): Promise<void>
+inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
 
@@ -855,7 +855,7 @@ async function demo() {
 
 ### UiComponent.clearText<sup>9+</sup>
 
-clearText(): Promise<void>
+clearText(): Promise\<void>
 
 清除控件的文本信息(适用于文本框控件)。
 
@@ -873,7 +873,7 @@ async function demo() {
 
 ### UiComponent.scrollSearch
 
-scrollSearch(by:By): Promise<UiComponent>
+scrollSearch(by:By): Promise\<UiComponent>
 
 在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
 
@@ -881,15 +881,15 @@ scrollSearch(by:By): Promise<UiComponent>
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                   |
-| ------ | ---- | ---- | ---------------------- |
-| by     | By   | 是   | 目标控件的体属性要求。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| by     | By   | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                 | 说明                                  |
-| -------------------- | ------------------------------------- |
-| Promise<UiComponent> | 以Promise形式返回找到的目标控件对象。 |
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
@@ -903,7 +903,7 @@ async function demo() {
 
 ### UiComponent.scrollToTop<sup>9+</sup>
 
-scrollToTop(): Promise<void>
+scrollToTop(): Promise\<void>
 
 在控件上滑动到顶部(适用于List等支持滑动的控件)。
 
@@ -921,7 +921,7 @@ async function demo() {
 
 ### UiComponent.scrollToBottom<sup>9+</sup>
 
-scrollToBottom(): Promise<void>
+scrollToBottom(): Promise\<void>
 
 在控件上滑动到底部(适用于List等支持滑动的控件)。
 
@@ -939,7 +939,7 @@ async function demo() {
 
 ### UiComponent.dragTo<sup>9+</sup>
 
-dragTo(by:By): Promise<void>
+dragTo(by:By): Promise\<void>
 
 将控件拖拽至目标控件处。
 
@@ -991,7 +991,7 @@ async function demo() {
 
 ### UiDriver.delayMs
 
-delayMs(duration: number): Promise<void>
+delayMs(duration: number): Promise\<void>
 
 UiDriver对象在给定的时间内延时。
 
@@ -1014,7 +1014,7 @@ async function demo() {
 
 ### UiDriver.findComponent
 
-findComponent(by: By): Promise<UiComponent>
+findComponent(by: By): Promise\<UiComponent>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找目标控件。
 
@@ -1028,9 +1028,9 @@ findComponent(by: By): Promise<UiComponent>
 
 **返回值：**
 
-| 类型                 | 说明                              |
-| -------------------- | --------------------------------- |
-| Promise<UiComponent> | 以Promise形式返回找到的控件对象。 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
@@ -1043,7 +1043,7 @@ async function demo() {
 
 ### UiDriver.findComponents
 
-findComponents(by: By): Promise<Array<UiComponent>>
+findComponents(by: By): Promise\<Array\<UiComponent>>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
@@ -1057,9 +1057,9 @@ findComponents(by: By): Promise<Array<UiComponent>>
 
 **返回值：**
 
-| 类型                        | 说明                                    |
-| --------------------------- | --------------------------------------- |
-| Promise<Array<UiComponent>> | 以Promise形式返回找到的控件对象的列表。 |
+| 类型                          | 说明                                    |
+| ----------------------------- | --------------------------------------- |
+| Promise\<Array\<UiComponent>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
@@ -1072,7 +1072,7 @@ async function demo() {
 
 ### UiDriver.waitForComponent<sup>9+</sup>
 
-waitForComponent(by: By, time: number): Promise<UiComponent>
+waitForComponent(by: By, time: number): Promise\<UiComponent>
 
 在UiDriver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
@@ -1087,9 +1087,9 @@ waitForComponent(by: By, time: number): Promise<UiComponent>
 
 **返回值：**
 
-| 类型                 | 说明                              |
-| -------------------- | --------------------------------- |
-| Promise<UiComponent> | 以Promise形式返回找到的控件对象。 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
@@ -1102,7 +1102,7 @@ async function demo() {
 
 ### UiDriver.assertComponentExist   
 
-assertComponentExist(by: By): Promise<void>
+assertComponentExist(by: By): Promise\<void>
 
 断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
 
@@ -1125,7 +1125,7 @@ async function demo() {
 
 ### UiDriver.pressBack
 
-pressBack(): Promise<void>
+pressBack(): Promise\<void>
 
 UiDriver对象进行点击BACK键的操作。
 
@@ -1142,7 +1142,7 @@ async function demo() {
 
 ### UiDriver.triggerKey
 
-triggerKey(keyCode: number): Promise<void>
+triggerKey(keyCode: number): Promise\<void>
 
 UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
@@ -1165,7 +1165,7 @@ async function demo() {
 
 ### UiDriver.click
 
-click(x: number, y: number): Promise<void>
+click(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点单击。
 
@@ -1188,7 +1188,7 @@ async function demo() {
 
 ### UiDriver.doubleClick
 
-doubleClick(x: number, y: number): Promise<void>
+doubleClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点双击。
 
@@ -1211,7 +1211,7 @@ async function demo() {
 
 ### UiDriver.longClick
 
-longClick(x: number, y: number): Promise<void>
+longClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
@@ -1219,9 +1219,10 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                          |
-| ------ | ------------- | ---- | --------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| x      | number | 是   | 目标坐标点的横坐标 |
+| y      | number | 是   | 目标坐标点的纵坐标 |
 
 **示例：**
 
@@ -1234,7 +1235,7 @@ async function demo() {
 
 ### UiDriver.swipe
 
-swipe(startx: number, starty: number, endx: number, endy: number): Promise<void>
+swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
 
 UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
 
@@ -1260,7 +1261,7 @@ async function demo() {
 
 ### UiDriver.drag<sup>9+</sup>
 
-drag(startx: number, starty: number, endx: number, endy: number): Promise<void>
+drag(startx: number, starty: number, endx: number, endy: number): Promise\<void>
 
 UiDriver对象采取如下操作：从给出的起始坐标点拖拽至给出的目的坐标点。
 
@@ -1286,7 +1287,7 @@ async function demo() {
 
 ### UiDriver.screenCap
 
-screenCap(savePath: string): Promise<bool>
+screenCap(savePath: string): Promise\<bool>
 
 UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
 
@@ -1297,6 +1298,12 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
 | savePath | string | 是   | 文件保存路径。 |
+
+**返回值：**
+
+| 类型           | 说明                                   |
+| -------------- | -------------------------------------- |
+| Promise\<bool> | 截图操作是否成功完成。成功完成为true。 |
 
 **示例：**
 
