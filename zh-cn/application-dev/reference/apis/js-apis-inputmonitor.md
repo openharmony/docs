@@ -63,7 +63,7 @@ export default {
 
 ## inputMonitor.off
 
-off(type: "touch", receiver: TouchEventReceiver): void
+off(type: "touch", receiver?: TouchEventReceiver): void
 
 停止监听全局输入。
 
