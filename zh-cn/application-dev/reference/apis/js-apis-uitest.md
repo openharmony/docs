@@ -14,24 +14,11 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 ## By
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[isBefore](#isBefore)和[isAfter](#isAfter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#By.isBefore)和[By.isAfter](#By.isAfter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
 ```js
 BY.text('123').type('button')
 ```
-
-### enum MatchPattern
-
-控件属性支持的匹配模式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
-
-| 名称                            | 值   | 说明           |
-| ------------------------------- | ---- | -------------- |
-| <span id="EQUALS"></span>EQUALS | 0    | 等于给定值。   |
-| CONTAINS                        | 1    | 包含给定值。   |
-| STARTS_WITH                     | 2    | 以给定值开始。 |
-| ENDS_WITH                       | 3    | 以给定值结束。 |
 
 ### By.text
 
@@ -43,10 +30,10 @@ text(txt: string, pattern?: MatchPattern): By
 
 **参数：**
 
-| 参数名  | 类型         | 必填 | 说明                                        |
-| ------- | ------------ | ---- | ------------------------------------------- |
-| txt     | string       | 是   | 指定控件文本，用于匹配目标控件文本。        |
-| pattern | MatchPattern | 否   | 指定的文本匹配模式，默认为[EQUALS](#EQUALS) |
+| 参数名  | 类型         | 必填 | 说明                                              |
+| ------- | ------------ | ---- | ------------------------------------------------- |
+| txt     | string       | 是   | 指定控件文本，用于匹配目标控件文本。              |
+| pattern | MatchPattern | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern) |
 
 **返回值：**
 
@@ -351,7 +338,7 @@ checkable(b?: bool): By
 let by = BY.checkable(true) //使用静态构造器BY创建by对象，指定目标控件的能否被勾选状态属性。
 ```
 
-### <span id="isBefore"></span>By.isBefore
+### [By.isBefore](#isBefore)
 
 isBefore(by: By): By
 
@@ -377,7 +364,7 @@ isBefore(by: By): By
 let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
-### <span id="isAfter"></span>By.isAfter
+### [By.isAfter](#isafter)
 
 isAfter(by: By): By
 
@@ -1173,9 +1160,10 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                          |
-| ------ | ------------- | ---- | --------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
@@ -1196,9 +1184,10 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                          |
-| ------ | ------------- | ---- | --------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
@@ -1219,10 +1208,10 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| x      | number | 是   | 目标坐标点的横坐标 |
-| y      | number | 是   | 目标坐标点的纵坐标 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
@@ -1313,3 +1302,18 @@ async function demo() {
     await driver.screenCap('/local/tmp/')
 }
 ```
+
+## [MatchPattern](#matchpattern)
+
+控件属性支持的匹配模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
+
+| 名称        | 值   | 说明           |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | 等于给定值。   |
+| CONTAINS    | 1    | 包含给定值。   |
+| STARTS_WITH | 2    | 从给定值开始。 |
+| ENDS_WITH   | 3    | 以给定值结束。 |
+
+### 
