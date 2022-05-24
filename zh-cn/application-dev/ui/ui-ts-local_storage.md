@@ -4,7 +4,7 @@
 
 ## **LocalStorage**
 
-LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UL的特定部分（如一个Ability的Ul）。
+LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UI的特定部分（如一个Ability的Ul）。
 
 应用程序可以创建多个LocalStorage实例，每个Ul的一部分都可以创建一个LocalStorage实例，即每一个Ability对应一个LocalStorage实例。
 
@@ -14,7 +14,7 @@ LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提
 
 LocalStorage生命周期一般是跟随Ability的生命周期。
 
-LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不好再使用@LocalStorageLink和@LocalStorageProp的默认值
+LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值
 
 ### 属性：
 
@@ -24,7 +24,7 @@ LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageL
 | has         | key : String                    | boolean                               | 返回具有给定名称的属性的true存在于LocalStorage中。           |
 | get         | key : String                    | T or undefined                        | 获取具有给定名称的属性。(如果存在)                           |
 | set         | key : String , newValue : T     | boolean                               | 如果存在具有给定名称的属性，请设置其值并返回true。否则不要设置任何内容并返回false |
-| setOrCreate | key : String , newValue : T     | boolean                               | 如果存在具有给定名称的属性：更新其值并返回true。如果不存在具有给定名称的属性：在LocalStorage中创建具有给定默认值的新属性。默认值必须是T类型。不允许undefined or null 返回true。 |
+| setOrCreate | key : String , newValue？ : T   | boolean                               | 如果存在具有给定名称的属性：更新其值并返回true。如果不存在具有给定名称的属性：在LocalStorage中创建具有给定默认值的新属性。默认值必须是T类型。不允许undefined or null 返回true。 |
 | link        | key ：String                    | ObservedPropertyAbstract \| undefined | 如果存在具有给定键的属性，返回对此属性的双向数据绑定。值更改将从using变量或者组件同步到LocalStorage，并从LocalStorage实例同步到任何变量或组件。如果不存在具有此键的属性，返回undefined，该函数具有其他可选属性，这些参数当前保留在框架内部使用的link/linkAndSet |
 | setAndLink  | key : String , defaultValue : T | ObservedPropertyAbstract              | 如果存在具有给定键的属性，请确定为Link定义的返回值。如果属性不存在，请使用给定的默认类型和值defaultValue创建属性（参考setOrCrtare）,并返回该属性的值（参考link）。默认值必须为T类型。 |
 | prop        | key：String                     | ObservedPropertyAbstract              | 如果存在具有给定键的属性，则返回对此属性的单向数据绑定，表示值更改将从LocalStorage同步到任何变量或组件。属性值为基本类型，该函数具有其他可选参数， |
@@ -58,7 +58,7 @@ export default class MainAbility extends Ability {
     	console.log("[Demo MainAbility onDestroy]")  
 	}    
 	onWindowStageCreate(windowStage) {
-   	 //    Main window is created,set main page for this ability        		                 windowStage.setUlContent(this.context,"pages/index",this.storage)    
+   	 //    Main window is created,set main page for this ability        		             windowStage.setUlContent(this.context,"pages/index",this.storage)    
 	}    
 	onWindowStageDestroy() {
     //    Main window is destroyed,release Ul related resources  
@@ -86,10 +86,10 @@ struct LocalStorageComponent {
     Column(){
       Text(this.simpleVarName.toString())
         .onClick(()=>{
-            this.simpleVarName +=1;
+        	this.simpleVarName +=1;
         })
-        Text(JSON.stringify(this.simpleVarName))
-            .fontSize(50)
+      Text(JSON.stringify(this.simpleVarName))
+      	.fontSize(50)
     }
     .height(500)
     }
@@ -106,14 +106,14 @@ let storage = new LocalStorage({"PropA":47});
 	build() {    
 	Column() {        
 		Text(`Parent from LocalStorage $(this.storLink)`)            				                .onClick(()=>this.storLink+=1)            
-			Child()    
+		Child()    
 	}    
 	}}
 
 
 @Component
 struct Child{    
-@LocalStorageLink1("PropA") storLink : number = 1;    
+@LocalStorageLink("PropA") storLink : number = 1;    
 build() {    
 	Text(`Parent from LocalStorage $(this.storLink)`)        
 		.onClick(()=>this.storLink1+=1)    
