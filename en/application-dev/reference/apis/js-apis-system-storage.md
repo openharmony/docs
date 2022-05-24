@@ -1,6 +1,6 @@
 # Data Storage
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>  **NOTE**<br/>
 >
 > - The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). From API Version 9, you are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
 >
@@ -67,7 +67,7 @@ Sets the value in the cache based on the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the value to set.|
+| key | string | Yes| Key of the data to set.|
 | value | string | Yes| New value to set. The maximum length is 128 bytes.|
 | success | Function | No| Called when **storage.set()** is successful.|
 | fail | Function | No| Called when **storage.set()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|

@@ -1,27 +1,27 @@
-# SDIO<a name="EN-US_TOPIC_0000001160653028"></a>
+# SDIO
 
 ## Overview<a name="section1155271783811"></a>
 
--   Secure Digital Input/Output \(SDIO\) is a peripheral interface evolved from the Secure Digital \(SD\) memory card interface. The SDIO interface is compatible with SD memory cards and can be connected to devices that support the SDIO interface.
--   SDIO is widely used. Currently, many smartphones support SDIO, and many SDIO peripherals are developed for connections to smartphones. Common SDIO peripherals include WLAN, GPS, cameras, and Bluetooth.
--   The SDIO bus has two ends, named host and device. All communication starts when the host sends a command. The device can communicate with the host as long as it can parse the command of the host. An SDIO host can connect to multiple devices, as shown in the figure below.
+Secure Digital Input/Output \(SDIO\) is a peripheral interface evolved from the Secure Digital \(SD\) memory card interface. The SDIO interface is compatible with SD memory cards and can be connected to devices that support the SDIO interface.
 
-    -   CLK signal: clock signal sent from the host to the device
-    -   VDD signal: power signal
-    -   VSS signal: ground signal
-    -   D0-3 signal: four data lines. The DAT1 signal cable is multiplexed as the interrupt line. In 1-bit mode, DAT0 is used to transmit data. In 4-bit mode, DAT0 to DAT3 are used to transmit data.
-    -   CMD signal: used by the host to send commands and the device to respond to commands.
+SDIO is widely used. Currently, many smartphones support SDIO, and many SDIO peripherals are developed for connections to smartphones. Common SDIO peripherals include WLAN, GPS, cameras, and Bluetooth.
 
-    **Figure  1**  Connections between the host and devices in SDIO<a name="fig1185316527498"></a>  
-    
+The SDIO bus has two ends, named host and device. All communication starts when the host sends a command. The device can communicate with the host as long as it can parse the command of the host. An SDIO host can connect to multiple devices, as shown in the figure below.
+- CLK signal: clock signal sent from the host to the device
+- VDD signal: power signal
+- VSS signal: ground signal
+- D0-3 signal: four data lines. The DAT1 signal cable is multiplexed as the interrupt line. In 1-bit mode, DAT0 is used to transmit data. In 4-bit mode, DAT0 to DAT3 are used to transmit data.
+- CMD signal: used by the host to send commands and the device to respond to commands.
 
-    ![](figures/en-us_image_0000001160971556.png)
+**Figure 1**  Connections between the host and devices in SDIO  
 
--   The SDIO interface defines a set of common methods for operating an SDIO device, including opening and closing an SDIO controller, exclusively claiming and releasing the host, enabling and disabling devices, claiming and releasing an SDIO IRQ, reading and writing data based on SDIO, and obtaining and setting common information.
+![](figures/en-us_image_0000001160971556.png)
+
+The SDIO interface defines a set of common methods for operating an SDIO device, including opening and closing an SDIO controller, exclusively claiming and releasing the host, enabling and disabling devices, claiming and releasing an SDIO IRQ, reading and writing data based on SDIO, and obtaining and setting common information.
 
 ## Available APIs<a name="section12601496259"></a>
 
-**Table  1**  APIs available for the SDIO driver
+**Table 1**  APIs available for the SDIO driver
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row1625342317507"><th class="cellrowborder" valign="top" width="21.07%" id="mcps1.2.4.1.1"><p id="p1779183435016"><a name="p1779183435016"></a><a name="p1779183435016"></a>Capability</p>
@@ -141,27 +141,29 @@
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE:**<br>
 >All functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section1878939192515"></a>
 
 ### How to Use<a name="section1490685512255"></a>
 
-[Figure 2](#fig1343742311264)  illustrates the process of using an SDIO.
+The figure below illustrates how to use the APIs.
 
-**Figure  2**  Process of using an SDIO<a name="fig1343742311264"></a>  
+**Figure 2**  Using SDIO driver APIs
+
+  
 
 
-![](figures/en-us_image_0000001206291517.png)
+![](figures/using-SDIO-process.png)
 
 ### Opening an SDIO Controller<a name="section10782428132616"></a>
 
-Before performing SDIO communication, obtain the device handle of an SDIO controller by calling  **SdioOpen**. This function returns the device handle of the SDIO controller with a specified bus number.
+Before performing SDIO communication, obtain the device handle of an SDIO controller by calling **SdioOpen**. This function returns the device handle of the SDIO controller with a specified bus number.
 
 DevHandle SdioOpen\(int16\_t mmcBusNum, struct SdioFunctionConfig \*config\);
 
-**Table  2**  Parameters and return values of SdioOpen
+**Table 2**  Parameters and return values of SdioOpen
 
 <a name="table1036944152712"></a>
 <table><thead align="left"><tr id="row4370114192717"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p737074112720"><a name="p737074112720"></a><a name="p737074112720"></a>Parameter</p>
@@ -219,7 +221,7 @@ After obtaining the device handle of an SDIO controller, exclusively claim the h
 
 void SdioClaimHost\(DevHandle handle\);
 
-**Table  3**  Parameter description of SdioClaimHost
+**Table 3**  Parameter description of SdioClaimHost
 
 <a name="table192822447271"></a>
 <table><thead align="left"><tr id="row192829443279"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1128284452713"><a name="p1128284452713"></a><a name="p1128284452713"></a>Parameter</p>
@@ -248,7 +250,7 @@ Before accessing a register, enable the SDIO device.
 
 int32\_t SdioEnableFunc\(DevHandle handle\);
 
-**Table  4**  Parameters and return values of SdioEnableFunc
+**Table 4**  Parameters and return values of SdioEnableFunc
 
 <a name="table144881047485"></a>
 <table><thead align="left"><tr id="row8487204184815"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1648611415486"><a name="p1648611415486"></a><a name="p1648611415486"></a>Parameter</p>
@@ -297,7 +299,7 @@ Before SDIO communication, claim an SDIO IRQ.
 
 int32\_t SdioClaimIrq\(DevHandle handle, SdioIrqHandler \*handler\);
 
-**Table  5**  Parameters and return values of SdioClaimIrq
+**Table 5**  Parameters and return values of SdioClaimIrq
 
 <a name="table1149014114815"></a>
 <table><thead align="left"><tr id="row114891042488"><th class="cellrowborder" valign="top" width="49.980000000000004%" id="mcps1.2.3.1.1"><p id="p1348864164811"><a name="p1348864164811"></a><a name="p1348864164811"></a>Parameter</p>
@@ -357,13 +359,13 @@ if (ret != 0) {
 
 ### Performing SDIO Communication<a name="section85661522153420"></a>
 
--   Incrementally write a given length of data into the SDIO device.
+- Incrementally write a given length of data into the SDIO device.
 
 The corresponding function is as follows:
 
 int32\_t SdioWriteBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
-**Table  6**  Parameters and return values of SdioWriteBytes
+**Table 6**  Parameters and return values of SdioWriteBytes
 
 <a name="table6887174174111"></a>
 <table><thead align="left"><tr id="row10887144111419"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p181381751164113"><a name="p181381751164113"></a><a name="p181381751164113"></a>Parameter</p>
@@ -423,13 +425,13 @@ if (ret != 0) {
 }
 ```
 
--   Incrementally read a given length of data from the SDIO device.
+- Incrementally read a given length of data from the SDIO device.
 
 The corresponding function is as follows:
 
 int32\_t SdioReadBytes\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
-**Table  7**  Parameters and return values of SdioReadBytes
+**Table 7**  Parameters and return values of SdioReadBytes
 
 <a name="table5783755152110"></a>
 <table><thead align="left"><tr id="row19783355162116"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p635754142212"><a name="p635754142212"></a><a name="p635754142212"></a>Parameter</p>
@@ -489,13 +491,13 @@ if (ret != 0) {
 }
 ```
 
--   Write a given length of data into the fixed address of an SDIO device.
+- Write a given length of data into the fixed address of an SDIO device.
 
     The corresponding function is as follows:
 
     int32\_t SdioWriteBytesToFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
-    **Table  8**  Parameters and return values of SdioWriteBytesToFixedAddr
+   **Table 8**  Parameters and return values of SdioWriteBytesToFixedAddr
 
     <a name="table1982918113010"></a>
     <table><thead align="left"><tr id="row1582911114010"><th class="cellrowborder" valign="top" width="48.43%" id="mcps1.2.3.1.1"><p id="p28301411903"><a name="p28301411903"></a><a name="p28301411903"></a>Parameter</p>
@@ -560,13 +562,13 @@ if (ret != 0) {
     }
     ```
 
--   Read a given length of data from the fixed address of an SDIO device.
+- Read a given length of data from the fixed address of an SDIO device.
 
     The corresponding function is as follows:
 
     int32\_t SdioReadBytesFromFixedAddr\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size, uint32\_t scatterLen\);
 
-    **Table  9**  Parameters and return values of SdioReadBytesFromFixedAddr
+   **Table 9**  Parameters and return values of SdioReadBytesFromFixedAddr
 
     <a name="table2724132220115"></a>
     <table><thead align="left"><tr id="row8724142214115"><th class="cellrowborder" valign="top" width="48.699999999999996%" id="mcps1.2.3.1.1"><p id="p16752055131112"><a name="p16752055131112"></a><a name="p16752055131112"></a>Parameter</p>
@@ -632,13 +634,13 @@ if (ret != 0) {
     ```
 
 
--   Writes a given length of data into the address space of SDIO function 0.
+- Writes a given length of data into the address space of SDIO function 0.
 
 Currently, only 1-byte data can be written. The corresponding function is as follows:
 
 int32\_t SdioWriteBytesToFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
-**Table  10**  Parameters and return values of SdioWriteBytesToFunc0
+**Table 10**  Parameters and return values of SdioWriteBytesToFunc0
 
 <a name="table5339151811112"></a>
 <table><thead align="left"><tr id="row2033991881120"><th class="cellrowborder" valign="top" width="49.94%" id="mcps1.2.3.1.1"><p id="p1116916499117"><a name="p1116916499117"></a><a name="p1116916499117"></a>Parameter</p>
@@ -697,13 +699,13 @@ if (ret != 0) {
 }
 ```
 
--   Reads a given length of data from the address space of SDIO function 0.
+- Reads a given length of data from the address space of SDIO function 0.
 
 Currently, only 1-byte data can be read. The corresponding function is as follows:
 
 int32\_t SdioReadBytesFromFunc0\(DevHandle handle, uint8\_t \*data, uint32\_t addr, uint32\_t size\);
 
-**Table  11**  Parameters and return values of SdioReadBytesFromFunc0
+**Table 11**  Parameters and return values of SdioReadBytesFromFunc0
 
 <a name="table1071931161814"></a>
 <table><thead align="left"><tr id="row771918171819"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p71291418171813"><a name="p71291418171813"></a><a name="p71291418171813"></a>Parameter</p>
@@ -768,7 +770,7 @@ After the SDIO communication, release the SDIO IRQ.
 
 int32\_t SdioReleaseIrq\(DevHandle handle\);
 
-**Table  12**  Parameters and return values of SdioReleaseIrq
+**Table 12**  Parameters and return values of SdioReleaseIrq
 
 <a name="table165006412481"></a>
 <table><thead align="left"><tr id="row15499849482"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1549964114814"><a name="p1549964114814"></a><a name="p1549964114814"></a>Parameter</p>
@@ -817,7 +819,7 @@ After the SDIO communication, disable the SDIO device.
 
 int32\_t SdioDisableFunc\(DevHandle handle\);
 
-**Table  13**  Parameters and return values of SdioDisableFunc
+**Table 13**  Parameters and return values of SdioDisableFunc
 
 <a name="table25012415481"></a>
 <table><thead align="left"><tr id="row1050010474810"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p05002419488"><a name="p05002419488"></a><a name="p05002419488"></a>Parameter</p>
@@ -866,7 +868,7 @@ After the SDIO communication, release the exclusively claimed host.
 
 void SdioReleaseHost\(DevHandle handle\);
 
-**Table  14**  Parameter description of SdioReleaseHost
+**Table 14**  Parameter description of SdioReleaseHost
 
 <a name="table1350214164813"></a>
 <table><thead align="left"><tr id="row6502134194814"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p18501945486"><a name="p18501945486"></a><a name="p18501945486"></a>Parameter</p>
@@ -897,7 +899,7 @@ void SdioClose\(DevHandle handle\);
 
 This function releases the resources requested.
 
-**Table  15**  Parameter description of SdioClose
+**Table 15**  Parameter description of SdioClose
 
 <a name="table950324124815"></a>
 <table><thead align="left"><tr id="row1050213424819"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p18502134194818"><a name="p18502134194818"></a><a name="p18502134194818"></a>Parameter</p>
@@ -1048,4 +1050,3 @@ ENABLE_ERR:
     SdioClose(handle); 
 }
 ```
-
