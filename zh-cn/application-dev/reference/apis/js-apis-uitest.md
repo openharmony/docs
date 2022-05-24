@@ -13,42 +13,27 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 
 ## By
 
-UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。
-By提供的API能力具有以下几个特点:
-	1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id
-	2、控件属性支持多种匹配模式
-	3、支持控件绝对定位，相对定位，可通过isBefore和isAfter等API限定邻近控件特征进行辅助定位
-By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象，例如：BY.text('123').type('button')
+UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。<br>
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#byisbefore)和[By.isAfter](#byisafter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
-### enum MatchPattern
-
-控件属性支持的匹配模式
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
-
-| 名称        | 值   | 说明         |
-| ----------- | ---- | ------------ |
-| EQUALS      | 0    | 等于给定值   |
-| CONTAINS    | 1    | 包含给定值   |
-| STARTS_WITH | 2    | 以给定值开始 |
-| ENDS_WITH   | 3    | 以给定值结束 |
+```js
+BY.text('123').type('button')
+```
 
 ### By.text
 
-text(txt:string,pattern?:MatchPattern):By
+text(txt: string, pattern?: MatchPattern): By
 
 指定目标控件文本属性，支持多种匹配模式，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名  | 类型         | 必填 | 说明                               |
-| ------- | ------------ | ---- | ---------------------------------- |
-| txt     | string       | 是   | 指定控件文本，用于匹配目标控件文本 |
-| pattern | MatchPattern | 否   | 指定的文本匹配模式，默认为EQUALS   |
+| 参数名  | 类型         | 必填 | 说明                                              |
+| ------- | ------------ | ---- | ------------------------------------------------- |
+| txt     | string       | 是   | 指定控件文本，用于匹配目标控件文本。              |
+| pattern | MatchPattern | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern) |
 
 **返回值：**
 
@@ -58,162 +43,150 @@ text(txt:string,pattern?:MatchPattern):By
 
 **示例：**
 
-```
-let by = BY.text('123') //使用静态构造器BY创建by对象，指定目标控件的text属性
+```js
+let by = BY.text('123') //使用静态构造器BY创建by对象，指定目标控件的text属性。
 ```
 
 
 ### By.key
 
-key(key:string):By;
+key(key: string): By
 
 指定目标控件key值属性，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明            |
-| ------ | ------ | ---- | --------------- |
-| key    | string | 是   | 指定控件的Key值 |
+| 参数名 | 类型   | 必填 | 说明              |
+| ------ | ------ | ---- | ----------------- |
+| key    | string | 是   | 指定控件的Key值。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.key('123') //使用静态构造器BY创建by对象，指定目标控件的key值属性
+```js
+let by = BY.key('123') //使用静态构造器BY创建by对象，指定目标控件的key值属性。
 ```
 
 
 ### By.id
 
-id(id:number):By;
+id(id: number): By
 
 指定目标控件id属性，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明         |
-| ------ | ------ | ---- | ------------ |
-| id     | number | 是   | 指定控件id值 |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| id     | number | 是   | 指定控件的id值。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.id(123) //使用静态构造器BY创建by对象，指定目标控件的id属性
+```js
+let by = BY.id(123) //使用静态构造器BY创建by对象，指定目标控件的id属性。
 ```
 
 
 ### By.type
 
-type(tp:string):By;
+type(tp: string): By
 
 指定目标控件的控件类型属性，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明         |
-| ------ | ------ | ---- | ------------ |
-| tp     | string | 是   | 指定控件类型 |
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| tp     | string | 是   | 指定控件类型。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.type('button') //使用静态构造器BY创建by对象，指定目标控件的控件类型属性
+```js
+let by = BY.type('button') //使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
 ```
 
 
 ### By.clickable
 
-clickable(b?:bool):By;
+clickable(b?: bool): By
 
 指定目标控件的可点击状态属性，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                           |
-| ------ | ---- | ---- | ------------------------------ |
-| b      | bool | 否   | 指定控件可点击状态，默认为true |
+| 参数名 | 类型 | 必填 | 说明                             |
+| ------ | ---- | ---- | -------------------------------- |
+| b      | bool | 否   | 指定控件可点击状态，默认为true。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
+```js
+let by = BY.clickable(true) //使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
 ```
-let by = BY.clickable(true) //使用静态构造器BY创建by对象，指定目标控件的可点击状态属性
+
+### By.longClickable<sup>9+</sup>
+
+longClickable(b?: bool): By
+
+指定目标控件的可长按点击状态属性，返回By对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                 |
+| ------ | ---- | ---- | ------------------------------------ |
+| b      | bool | 否   | 指定控件可长按点击状态，默认为true。 |
+
+**返回值：**
+
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
+
+**示例：**
+
+```js
+let by = BY.longClickable(true) //使用静态构造器BY创建by对象，指定目标控件的可长按点击状态属性。
 ```
 
 
 ### By.scrollable
 
-scrollable(b?:bool):By;
+scrollable(b?: bool): By
 
 指定目标控件的可滑动状态属性，返回By对象自身。
-
-**需要权限**：NA
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明                       |
-| ------ | ---- | ---- | -------------------------- |
-| b      | bool | 否   | 控件可滑动状态，默认为true |
-
-**返回值：**
-
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
-
-**示例：**
-
-```
-let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性
-```
-
-### By.enabled
-
-enabled(b?:bool):By;
-
-指定目标控件的使能状态属性，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -221,55 +194,25 @@ enabled(b?:bool):By;
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | ---- | ---- | ---------------------------- |
-| b      | bool | 否   | 指定控件使能状态，默认为true |
+| b      | bool | 否   | 控件可滑动状态，默认为true。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标控件的使能状态属性
-```
-
-### By.focused
-
-focused(b?:bool):By;
-
-指定目标控件的获焦状态属性，返回By对象自身。
-
-**需要权限**：NA
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明                     |
-| ------ | ---- | ---- | ------------------------ |
-| b      | bool | 否   | 控件获焦状态，默认为true |
-
-**返回值：**
-
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
-
-**示例：**
-
-```
-let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标控件的获焦状态属性
+```js
+let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
 ```
 
-### By.selected
+### By.enabled
 
-selected(b?:bool):By;
+enabled(b?: bool): By
 
-指定目标控件的被选中状态属性，返回By对象自身。
-
-**需要权限**：NA
+指定目标控件的使能状态属性，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -277,7 +220,85 @@ selected(b?:bool):By;
 
 | 参数名 | 类型 | 必填 | 说明                           |
 | ------ | ---- | ---- | ------------------------------ |
-| b      | bool | 否   | 指定控件被选中状态，默认为true |
+| b      | bool | 否   | 指定控件使能状态，默认为true。 |
+
+**返回值：**
+
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
+
+**示例：**
+
+```js
+let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
+```
+
+### By.focused
+
+focused(b?: bool): By
+
+指定目标控件的获焦状态属性，返回By对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                       |
+| ------ | ---- | ---- | -------------------------- |
+| b      | bool | 否   | 控件获焦状态，默认为true。 |
+
+**返回值：**
+
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
+
+**示例：**
+
+```js
+let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
+```
+
+### By.selected
+
+selected(b?: bool): By
+
+指定目标控件的被选中状态属性，返回By对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                             |
+| ------ | ---- | ---- | -------------------------------- |
+| b      | bool | 否   | 指定控件被选中状态，默认为true。 |
+
+**返回值：**
+
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
+
+**示例：**
+
+```js
+let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
+```
+
+### By.checked<sup>9+</sup>
+
+checked(b?: bool): By
+
+指定目标控件的被勾选状态属性，返回By对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                              |
+| ------ | ---- | ---- | --------------------------------- |
+| b      | bool | 否   | 指定控件被勾选状态，默认为false。 |
 
 **返回值：**
 
@@ -287,64 +308,86 @@ selected(b?:bool):By;
 
 **示例：**
 
+```js
+let by = BY.checked(true) //使用静态构造器BY创建by对象，指定目标控件的被勾选状态属性
 ```
-let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目标控件的被选中状态属性
+
+### By.checkable<sup>9+</sup>
+
+checkable(b?: bool): By
+
+指定目标控件能否被勾选状态属性，返回By对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                  |
+| ------ | ---- | ---- | ------------------------------------- |
+| b      | bool | 否   | 指定控件能否被勾选状态，默认为false。 |
+
+**返回值：**
+
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
+
+**示例：**
+
+```js
+let by = BY.checkable(true) //使用静态构造器BY创建by对象，指定目标控件的能否被勾选状态属性。
 ```
 
 ### By.isBefore
 
-isBefore(by:By):By;
+isBefore(by: By): By
 
 指定目标控件位于给出的特征属性控件之前，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明           |
-| ------ | ---- | ---- | -------------- |
-| by     | By   | 是   | 特征控件的属性 |
+| 参数名 | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| by     | By   | 是   | 特征控件的属性。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前
+```js
+let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
 ### By.isAfter
 
-isAfter(by:By):By;
+isAfter(by: By): By
 
 指定目标控件位于给出的特征属性控件之后，返回By对象自身。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明           |
-| ------ | ---- | ---- | -------------- |
-| by     | By   | 是   | 特征控件的属性 |
+| 参数名 | 类型 | 必填 | 说明             |
+| ------ | ---- | ---- | ---------------- |
+| by     | By   | 是   | 特征控件的属性。 |
 
 **返回值：**
 
-| 类型 | 说明           |
-| ---- | -------------- |
-| By   | 返回By对象自身 |
+| 类型 | 说明             |
+| ---- | ---------------- |
+| By   | 返回By对象自身。 |
 
 **示例：**
 
-```
-let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后
+```js
+let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
 ```
 
 ## UiComponent
@@ -352,19 +395,30 @@ let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，�
 UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
 该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
+### Rect<sup>9+</sup>
+
+控件的边框信息。
+
+**系统能力**：SystemCapability.Test.UiTest 
+
+| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
+| ------- | -------- | ---- | ---- | ------------------------- |
+| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
+| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
+| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
+| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
+
 ### UiComponent.click
 
-click():Promise<void>;
+click(): Promise\<void>
 
 控件对象进行点击操作。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -374,17 +428,15 @@ async function demo() {
 
 ### UiComponent.doubleClick
 
-doubleClick():Promise<void>;
+doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -394,17 +446,15 @@ async function demo() {
 
 ### UiComponent.longClick
 
-longClick():Promise<void>;
+longClick(): Promise\<void>
 
 控件对象进行长按操作。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -414,23 +464,21 @@ async function demo() {
 
 ### UiComponent.getId
 
-getId():Promise<number>;
+getId(): Promise\<number>
 
 获取控件对象的id值。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型             | 说明                      |
-| ---------------- | ------------------------- |
-| Promise<number>; | 以Promise形式返回控件id值 |
+| 类型             | 说明                            |
+| ---------------- | ------------------------------- |
+| Promise\<number> | 以Promise形式返回的控件的id值。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -440,23 +488,21 @@ async function demo() {
 
 ### UiComponent.getKey
 
-getKey():Promise<string>;
+getKey(): Promise\<string>
 
 获取控件对象的key值。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型             | 说明                       |
-| ---------------- | -------------------------- |
-| Promise<string>; | 以Promise形式返回控件key值 |
+| 类型             | 说明                           |
+| ---------------- | ------------------------------ |
+| Promise\<string> | 以Promise形式返回控件的key值。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -466,23 +512,21 @@ async function demo() {
 
 ### UiComponent.getText
 
-getText():Promise<string>;
+getText(): Promise\<string>
 
 获取控件对象的文本信息。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型             | 说明                            |
-| ---------------- | ------------------------------- |
-| Promise<string>; | 以Promise形式返回控件的文本信息 |
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<string> | 以Promise形式返回控件的文本信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -492,23 +536,21 @@ async function demo() {
 
 ### UiComponent.getType
 
-getType():Promise<string>;
+getType(): Promise\<string>
 
 获取控件对象的控件类型。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型             | 说明                            |
-| ---------------- | ------------------------------- |
-| Promise<string>; | 以Promise形式返回控件对象的类型 |
+| 类型             | 说明                          |
+| ---------------- | ----------------------------- |
+| Promise\<string> | 以Promise形式返回控件的类型。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -516,25 +558,47 @@ async function demo() {
 }
 ```
 
-### UiComponent.isClickable
+### UiComponent.getBounds<sup>9+</sup>
 
-isClickable():Promise<bool>;
+getBounds(): Promise\<Rect>
 
-获取控件对象可点击状态。
-
-**需要权限**：NA
+获取控件对象的边框信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型           | 说明                                |
-| -------------- | ----------------------------------- |
-| Promise<bool>; | 以Promise形式返回控件对象可点击状态 |
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<Rect> | 以Promise形式返回控件对象的边框信息。 |
 
 **示例：**
 
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let rect = await button.getBounds()
+}
 ```
+
+### UiComponent.isClickable
+
+isClickable(): Promise\<bool>
+
+获取控件对象可点击状态。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象可点击状态。 |
+
+**示例：**
+
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -547,25 +611,110 @@ async function demo() {
 }
 ```
 
-### UiComponent.isScrollable
+### UiComponent.isLongClickable<sup>9+</sup>
 
-isScrollable():Promise<bool>;
+isLongClickable(): Promise\<bool> 
 
-获取控件对象可滑动状态。
-
-**需要权限**：NA
+获取控件对象可长按点击状态。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型           | 说明                                |
-| -------------- | ----------------------------------- |
-| Promise<bool>; | 以Promise形式返回控件对象可滑动状态 |
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象能否长按点击状态。 |
 
 **示例：**
 
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    if(await button.isLongClickable()) {
+        console.info('This button can longClick')
+    }
+    else{
+        console.info('This button can not longClick')
+    }
+}
 ```
+
+### UiComponent.isChecked<sup>9+</sup>
+
+isLongClickable(): Promise\<bool>
+
+获取控件对象被勾选状态。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象被勾选状态。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let checkBox = await driver.findComponent(BY.type('Checkbox'))
+    if(await checkBox.isChecked) {
+        console.info('This checkBox is checked')
+    }
+    else{
+        console.info('This checkBox is not checked')
+    }
+}
+```
+
+### UiComponent.isCheckable<sup>9+</sup>
+
+isCheckable(): Promise\<bool>
+
+获取控件对象能否被勾选的属性。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型           | 说明                                        |
+| -------------- | ------------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象能否被勾选的属性。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let checkBox = await driver.findComponent(BY.type('Checkbox'))
+    if(await checkBox.isCheckable) {
+        console.info('This checkBox is checkable')
+    }
+    else{
+        console.info('This checkBox is not checkable')
+    }
+}
+```
+
+### UiComponent.isScrollable
+
+isScrollable(): Promise\<bool>
+
+获取控件对象可滑动状态。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象可滑动状态。 |
+
+**示例：**
+
+```js
 async function demo() {
     let driver = UiDriver.create()
     let scrollBar = await driver.findComponent(BY.scrollable(true))
@@ -581,23 +730,21 @@ async function demo() {
 
 ### UiComponent.isEnabled
 
-isEnabled():Promise<bool>;
+isEnabled(): Promise\<bool>
 
 获取控件使能状态。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型           | 说明                          |
-| -------------- | ----------------------------- |
-| Promise<bool>; | 以Promise形式返回控件使能状态 |
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件使能状态。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -613,23 +760,21 @@ async function demo() {
 
 ### UiComponent.isFocused
 
-isFocused():Promise<bool>;
+isFocused(): Promise\<bool>
 
 判断控件对象是否获焦。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型           | 说明                              |
-| -------------- | --------------------------------- |
-| Promise<bool>; | 以Promise形式返回控件对象是否获焦 |
+| 类型           | 说明                                |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | 以Promise形式返回控件对象是否获焦。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -644,23 +789,21 @@ async function demo() {
 
 ### UiComponent.isSelected
 
-isSelected():Promise<bool>;
+isSelected(): Promise\<bool>
 
 获取控件对象被选中状态。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型           | 说明                                |
-| -------------- | ----------------------------------- |
-| Promise<bool>; | 以Promise形式返回控件对象被选中状态 |
+| 类型           | 说明                 |
+| -------------- | -------------------- |
+| Promise\<bool> | 控件对象被选中的状态 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
@@ -675,37 +818,51 @@ async function demo() {
 
 ### UiComponent.inputText
 
-inputText(text: string):Promise<void>;
+inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                      |
-| ------ | ------ | ---- | ------------------------- |
-| text   | string | 是   | 用于向控件输入的文本信息, |
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| text   | string | 是   | 输入的文本信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
-    let button = await driver.findComponent(BY.type('button'))
-    await button.inputText('next page')
+    let text = await driver.findComponent(BY.text('hello world'))
+    await text.inputText('123')
+}
+```
+
+### UiComponent.clearText<sup>9+</sup>
+
+clearText(): Promise\<void>
+
+清除控件的文本信息(适用于文本框控件)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let text = await driver.findComponent(BY.text('hello world'))
+    await text.clearText()
 }
 ```
 
 ### UiComponent.scrollSearch
 
-scrollSearch(by:By):Promise<UiComponent>;
+scrollSearch(by:By): Promise\<UiComponent>
 
-在控件上滑动查找目标控件(适用于List等控件)。
-
-**需要权限**：NA
+在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -713,21 +870,82 @@ scrollSearch(by:By):Promise<UiComponent>;
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | ---- | ---- | -------------------- |
-| by     | By   | 是   | 目标控件的体属性要求 |
+| by     | By   | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
-| Promise<UiComponent>; | 以Promise形式返回找到的目标控件对象 |
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的目标控件对象。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
-    let scrollBar = await driver.findComponent(BY.scrollable(true))
+    let scrollBar = await driver.findComponent(BY.type('Scroll'))
     let button = await scrollBar.scrollSearch(BY.text('next page'))
+}
+```
+
+### UiComponent.scrollToTop<sup>9+</sup>
+
+scrollToTop(): Promise\<void>
+
+在控件上滑动到顶部(适用于List等支持滑动的控件)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.type('Scroll'))
+    await scrollBar.scrollToTop()
+}
+```
+
+### UiComponent.scrollToBottom<sup>9+</sup>
+
+scrollToBottom(): Promise\<void>
+
+在控件上滑动到底部(适用于List等支持滑动的控件)。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let scrollBar = await driver.findComponent(BY.type('Scroll'))
+    await scrollBar.scrollToBottom()
+}
+```
+
+### UiComponent.dragTo<sup>9+</sup>
+
+dragTo(by:By): Promise\<void>
+
+将控件拖拽至目标控件处。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| by     | By   | 是   | 目标控件的属性要求。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    await button.dragTo(BY.text('hello world'))
+    }
 }
 ```
 
@@ -738,23 +956,21 @@ UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按�
 
 ### UiDriver.create
 
-static create():UiDriver;
+static create(): UiDriver
 
 静态方法，构造一个UiDriver对象，并返回该对象。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型    | 说明                   |
-| ------- | ---------------------- |
-| UiDrive | 返回构造的UiDriver对象 |
+| 类型    | 说明                     |
+| ------- | ------------------------ |
+| UiDrive | 返回构造的UiDriver对象。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
 }
@@ -762,23 +978,21 @@ async function demo() {
 
 ### UiDriver.delayMs
 
-delayMs(duration:number):Promise<void>;
+delayMs(duration: number): Promise\<void>
 
 UiDriver对象在给定的时间内延时。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明       |
-| -------- | ------ | ---- | ---------- |
-| duration | number | 是   | 给定的时间 |
+| 参数名   | 类型   | 必填 | 说明         |
+| -------- | ------ | ---- | ------------ |
+| duration | number | 是   | 给定的时间。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.delayMs(1000)
@@ -787,29 +1001,27 @@ async function demo() {
 
 ### UiDriver.findComponent
 
-findComponent(by:By):Promise<UiComponent>;
+findComponent(by: By): Promise\<UiComponent>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找目标控件。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | ---- | ---- | ------------------ |
-| by     | By   | 是   | 目标控件的属性要求 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| by     | By   | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
-| Promise<UiComponent>; | 以Promise形式返回找到的控件对象 |
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.text('next page'))
@@ -818,54 +1030,80 @@ async function demo() {
 
 ### UiDriver.findComponents
 
-findComponents(by:By):Promise<Array<UiComponent>>;
+findComponents(by: By): Promise\<Array\<UiComponent>>
 
 在UiDriver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | ---- | ---- | ------------------ |
-| by     | By   | 是   | 目标控件的属性要求 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| by     | By   | 是   | 目标控件的属性要求。 |
 
 **返回值：**
 
-| 类型                         | 说明                                  |
-| ---------------------------- | ------------------------------------- |
-| Promise<Array<UiComponent>>; | 以Promise形式返回找到的控件对象的列表 |
+| 类型                          | 说明                                    |
+| ----------------------------- | --------------------------------------- |
+| Promise\<Array\<UiComponent>> | 以Promise形式返回找到的控件对象的列表。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     let buttonList = await driver.findComponents(BY.text('next page'))
 }
 ```
 
-### UiDriver.assertComponentExist   
+### UiDriver.waitForComponent<sup>9+</sup>
 
-assertComponentExist(by:By):Promise<void>;
+waitForComponent(by: By, time: number): Promise\<UiComponent>
 
-断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
-
-**需要权限**：NA
+在UiDriver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明               |
-| ------ | ---- | ---- | ------------------ |
-| by     | By   | 是   | 目标控件的属性要求 |
+| 参数名 | 类型   | 必填 | 说明                             |
+| ------ | ------ | ---- | -------------------------------- |
+| by     | By     | 是   | 目标控件的属性要求。             |
+| time   | number | 是   | 查找目标控件的持续时间。单位ms。 |
+
+**返回值：**
+
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise\<UiComponent> | 以Promise形式返回找到的控件对象。 |
 
 **示例：**
 
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.waitForComponent(BY.text('next page'),500)
+}
 ```
+
+### UiDriver.assertComponentExist   
+
+assertComponentExist(by: By): Promise\<void>
+
+断言API，用于断言当前界面存在满足给出的目标控件属性的控件; 如果控件不存在，该API将抛出JS异常，使当前测试用例失败。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| by     | By   | 是   | 目标控件的属性要求。 |
+
+**示例：**
+
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.assertComponentExist(BY.text('next page'))
@@ -874,17 +1112,15 @@ async function demo() {
 
 ### UiDriver.pressBack
 
-pressBack():Promise<void>;
+pressBack(): Promise\<void>
 
 UiDriver对象进行点击BACK键的操作。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.pressBack()
@@ -893,23 +1129,21 @@ async function demo() {
 
 ### UiDriver.triggerKey
 
-triggerKey(keyCode:number):Promise<void>;
+triggerKey(keyCode: number): Promise\<void>
 
 UiDriver对象采取如下操作：通过key值找到对应键并点击。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明      |
-| ------- | ------ | ---- | --------- |
-| keyCode | number | 是   | 指定key值 |
+| 参数名  | 类型   | 必填 | 说明          |
+| ------- | ------ | ---- | ------------- |
+| keyCode | number | 是   | 指定的key值。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.triggerKey(123)
@@ -918,23 +1152,22 @@ async function demo() {
 
 ### UiDriver.click
 
-click(x:number,y:number):Promise<void>;
+click(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点单击。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                        |
-| ------ | ------------- | ---- | ------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.click(100,100)
@@ -943,23 +1176,22 @@ async function demo() {
 
 ### UiDriver.doubleClick
 
-doubleClick(x:number,y:number):Promise<void>;
+doubleClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点双击。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                        |
-| ------ | ------------- | ---- | ------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.doubleClick(100,100)
@@ -968,23 +1200,22 @@ async function demo() {
 
 ### UiDriver.longClick
 
-longClick(x:number,y:number):Promise<void>;
+longClick(x: number, y: number): Promise\<void>
 
 UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                        |
-| ------ | ------------- | ---- | ------------------------------------------- |
-| x,y    | number,number | 是   | 以(number,number)的形式传入特定点的坐标信息 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.longClick(100,100)
@@ -993,52 +1224,96 @@ async function demo() {
 
 ### UiDriver.swipe
 
-swipe(startx:number,starty:number,endx:number,endy:number):Promise<void>;
+swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
 
 UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
-
-**需要权限**：NA
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名        | 类型          | 必填 | 说明                                        |
-| ------------- | ------------- | ---- | ------------------------------------------- |
-| startx,starty | number,number | 是   | 以(number,number)的形式传入起始点的坐标信息 |
-| endx,endy     | number,number | 是   | 以(number,number)的形式传入目的点的坐标信息 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息。 |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。 |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。 |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。 |
 
 **示例：**
 
-```
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.swipe(100,100,200,200)
 }
 ```
 
-### UiDriver.screenCap
+### UiDriver.drag<sup>9+</sup>
 
-screenCap(savePath:string):Promise<bool>;
+drag(startx: number, starty: number, endx: number, endy: number): Promise\<void>
 
-UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
-
-**需要权限**：NA
+UiDriver对象采取如下操作：从给出的起始坐标点拖拽至给出的目的坐标点。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明         |
-| -------- | ------ | ---- | ------------ |
-| savePath | string | 是   | 文件保存路径 |
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息。 |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。 |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。 |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。 |
 
 **示例：**
 
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.drag(100,100,200,200)
+}
 ```
+
+### UiDriver.screenCap
+
+screenCap(savePath: string): Promise\<bool>
+
+UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明           |
+| -------- | ------ | ---- | -------------- |
+| savePath | string | 是   | 文件保存路径。 |
+
+**返回值：**
+
+| 类型           | 说明                                   |
+| -------------- | -------------------------------------- |
+| Promise\<bool> | 截图操作是否成功完成。成功完成为true。 |
+
+**示例：**
+
+```js
 async function demo() {
     let driver = UiDriver.create()
     await driver.screenCap('/local/tmp/')
 }
 ```
 
+## MatchPattern
+
+控件属性支持的匹配模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
+
+| 名称        | 值   | 说明           |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | 等于给定值。   |
+| CONTAINS    | 1    | 包含给定值。   |
+| STARTS_WITH | 2    | 从给定值开始。 |
+| ENDS_WITH   | 3    | 以给定值结束。 |
+
+### 
