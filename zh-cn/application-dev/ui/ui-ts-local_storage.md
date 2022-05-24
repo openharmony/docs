@@ -44,32 +44,33 @@ LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageL
 
 ### 示例1（在一个Ability创建的LocalStorage）：
 
-```javascript
+```swift
 import Ability from '@ohos.appLication.Ability'
 export default class MainAbility extends Ability {    
-    storage : LocalStorage    
-    onCreate(want) {    
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);    
-        console.log("[Demo MainAbility onCreate]");    
-        globalThis.abilityWant = want;   
-    }   
+  storage : LocalStorage    
+  onCreate(want) {    
+    this.storage = new LocalStorage();
+    this.storage.setOrCreate("storageSimpleProp",121);    
+    console.log("[Demo MainAbility onCreate]");    
+    globalThis.abilityWant = want;   
+  }  
 	onDestroy() {    
-    	console.log("[Demo MainAbility onDestroy]")  
+    console.log("[Demo MainAbility onDestroy]")  
 	}    
 	onWindowStageCreate(windowStage) {
-   	 //    Main window is created,set main page for this ability        		             windowStage.setUlContent(this.context,"pages/index",this.storage)    
+  //    Main window is created,set main page for this ability        		             
+    windowStage.setUlContent(this.context,"pages/index",this.storage)    
 	}    
 	onWindowStageDestroy() {
-    //    Main window is destroyed,release Ul related resources  
+  //    Main window is destroyed,release Ul related resources  
     console.log("[Demo] MainAbility onWindoeStageDestroy")   
 	}    
 	onForeground() {
-    //    Ability has brought to foreground       
+  //    Ability has brought to foreground       
     console.log("[Demo] MainAbility onForeground")   
 	}    
 	onBackground() {
-    //    Ability has back to background       
+  //    Ability has back to background       
     console.log("[Demo] MainAbility onBackground")    
 	}}
 ```
@@ -104,18 +105,19 @@ let storage = new LocalStorage({"PropA":47});
 @Componentstruct ComA {    
 	@LocalStorageLink("PropA") storLink : number = 1;    
 	build() {    
-	Column() {        
-		Text(`Parent from LocalStorage $(this.storLink)`)            				                .onClick(()=>this.storLink+=1)            
-		Child()    
-	}    
+	  Column() {        
+		  Text(`Parent from LocalStorage $(this.storLink)`)            				               
+        .onClick(()=>this.storLink+=1)            
+		  Child()    
+	  }    
 	}}
 
 
 @Component
 struct Child{    
-@LocalStorageLink("PropA") storLink : number = 1;    
-build() {    
-	Text(`Parent from LocalStorage $(this.storLink)`)        
-		.onClick(()=>this.storLink1+=1)    
+  @LocalStorageLink("PropA") storLink : number = 1;    
+  build() {    
+	  Text(`Parent from LocalStorage $(this.storLink)`)        
+		  .onClick(()=>this.storLink1+=1)    
 	}}
 ```
