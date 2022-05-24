@@ -259,6 +259,31 @@ onConfigurationUpdated(config: Configuration): void;
   }
   ```
 
+## Ability.dump
+
+dump(params: Array\<string>): Array\<string>;
+
+指示from命令的参数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | params | Array\<string> | 是 | 指示from命令的参数。| 
+
+**示例：**
+    
+  ```js
+  class myAbility extends Ability {
+      dump(params) {
+          console.log('dump, params:' + JSON.stringify(params));
+      }
+  }
+  ```
+
+
 
 ## Caller
 
