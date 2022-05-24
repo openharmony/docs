@@ -5,9 +5,9 @@ Lightweight storage provides applications with data processing capability and al
 
 > **NOTE**<br/>
 >
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module are no longer maintained since API Version 9. You are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
+> 
 
 
 ## Modules to Import

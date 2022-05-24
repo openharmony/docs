@@ -157,7 +157,7 @@ The following two comment formats are supported:
   */
   ```
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+  > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
   > Multi-line comments cannot be nested.
 
 
@@ -301,7 +301,7 @@ root {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The keyword **delete** cannot be used to delete nodes or attributes in the same HCS file. In an HCS file, you can directly delete unnecessary attributes.
 
 
