@@ -11,7 +11,7 @@
 ## 导入模块
 
 
-```
+```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
@@ -33,20 +33,11 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **示例：** 
 
-```
-export default {
-    data: {
-        deviceIds: Array,
-    },
-    callback: function(ids) {
-        this.deviceIds = ids;
-    },
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        inputDevice.getDeviceIds(this.callback);
-        console.info("InputDeviceJsTest---end---testGetDeviceIds");
-    }
-}
+```js
+// 示例获取设备所有设备id。
+inputDevice.getDeviceIds(function (ids) {
+  // 处理结果
+});
 ```
 
 ## inputDevice.getDeviceIds
@@ -65,18 +56,14 @@ function getDeviceIds(): Promise<Array<number>>
 
 **示例：**
 
-```
-export default {
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        let promise = inputDevice.getDeviceIds();
-        promise.then((data)=> {
-            console.info('GetDeviceIds successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceIds. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+```js
+// 示例获取设备所有设备id。
+let promise = inputDevice.getDeviceIds();
+promise.then((ids)=> {
+    // 处理结果
+}).catch((err)=>{
+    // 处理异常
+});
 ```
 
 
@@ -100,24 +87,11 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **示例：** 
 
-```
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    callback: function(deviceData) {
-        this.InputDeviceData = deviceData;
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        inputDevice.getDevice(1, this.callback);
-        console.info("InputDeviceJsTest---end---testGetDevice");
-    }
-}
+```js
+// 示例获取设备id为1的设备信息。
+inputDevice.getDevice(1, function (deviceData) {
+  // 处理结果
+});
 ```
 
 ## inputDevice.getDevice
@@ -136,25 +110,14 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 **示例：**
 
-```
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        let promise = inputDevice.getDevice(1);
-        promise.then((data)=> {
-            console.info('GetDeviceId successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceId. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+```js
+// 示例获取设备id为1的设备信息。
+let promise = inputDevice.getDevice(1);
+promise.then((data) => {
+  // 处理结果
+}).catch((err) => {
+  // 处理异常
+});
 ```
 
 
@@ -177,21 +140,10 @@ on(type: "change", listener: Callback<DeviceListener>): void
 **示例：**
 
 ```js
-export default {
-    DeviceListener: {
-        type : "NA",
-        deviceId : 0
-    },
-    callback: function(deviceChangedData) {
-        this.DeviceListener = deviceChangedData;
-    },
-    testOn: function () {
-        // 示例监听设备插拔事件
-        console.info("InputDeviceJsTest---start---testOn");
-        inputDevice.on("change", this.callback);
-        console.info("InputDeviceJsTest---end---testOn");
-    }
-}
+// 示例监听设备插拔事件
+inputDevice.on("change", function (deviceChangedData) {
+  // 处理结果
+});
 ```
 
 ## inputDevice.off
@@ -212,21 +164,8 @@ function off(type: "change", listener?: Callback<DeviceListener>): void;
 **示例：**
 
 ```js
-export default {
-    DeviceListener: {
-        type : "NA",
-        deviceId : 0
-    },
-    callback: function(deviceChangedData) {
-        this.DeviceListener = deviceChangedData;
-    },
-    testOff: function () {
-        // 示例监听设备插拔事件
-        console.info("InputDeviceJsTest---start---testOff");
-        inputDevice.off("change", this.callback);
-        console.info("InputDeviceJsTest---end---testOff");
-    }
-}
+// 示例取消监听设备插拔事件
+inputDevice.off("change");
 ```
 
 ## InputDeviceData

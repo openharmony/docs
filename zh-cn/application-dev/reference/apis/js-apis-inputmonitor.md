@@ -39,12 +39,10 @@ on(type: "touch", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-testOn() {
-  inputMonitor.off("touch", (event) => {
-    // 消费触屏事件
-    return false;
-  });
-}
+inputMonitor.off("touch", (event) => {
+  // 消费触屏事件
+  return false;
+});
 ```
 
 on(type: "mouse", receiver: TouchEventReceiver): void
@@ -65,11 +63,9 @@ on(type: "mouse", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-testOn() {
-  inputMonitor.off("mouse", (event) => {
-    // 消费鼠标事件
-  });
-}
+inputMonitor.off("mouse", (event) => {
+  // 消费鼠标事件
+});
 ```
 
 
@@ -93,9 +89,7 @@ off(type: "touch", receiver: TouchEventReceiver): void
   **示例：**
 
 ```js
-testOff() {
-  inputMonitor.off("touch");
-}
+inputMonitor.off("touch");
 ```
 
 off(type: "mouse", receiver?: Callback<MouseEvent>): void
@@ -116,9 +110,7 @@ off(type: "mouse", receiver?: Callback<MouseEvent>): void
 **示例：**
 
 ```js
-testOff() {
-  inputMonitor.off("mouse");
-}
+inputMonitor.off("mouse");
 ```
 
 
@@ -147,11 +139,9 @@ testOff() {
   **示例：**
 
 ```js
-test() {
-  inputMonitor.on("touch", (event) => {
-    // 消费触屏事件
-    return false;
-  });
-  inputMonitor.off("touch");
-}
+inputMonitor.on("touch", (event) => {
+  // 消费触屏事件
+  return false;
+});
+inputMonitor.off("touch");
 ```
