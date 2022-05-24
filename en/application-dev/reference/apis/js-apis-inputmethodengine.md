@@ -732,7 +732,7 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 ### getEditorAttribute
 
-getEditorAttribute(): Promise&lt;EditorAttribute&gt;
+getEditorAttribute(): EditorAttribute
 
 Obtains the attribute of the edit box. This API uses a promise to return the result.
 

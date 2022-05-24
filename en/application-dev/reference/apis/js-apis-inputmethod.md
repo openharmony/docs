@@ -151,7 +151,7 @@ Obtains the list of installed input methods. This API uses an asynchronous callb
 
 ### listInputMethod
 
-listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+listInputMethod(): Array&lt;InputMethodProperty&gt;
 
 Obtains the list of installed input methods. This API uses an asynchronous callback to return the result.
 

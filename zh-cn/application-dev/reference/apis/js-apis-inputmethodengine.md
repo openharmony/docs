@@ -735,7 +735,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 ### getEditorAttribute
 
-getEditorAttribute(): Promise&lt;EditorAttribute&gt;
+getEditorAttribute(): EditorAttribute
 
 获取编辑框属性值。
 
