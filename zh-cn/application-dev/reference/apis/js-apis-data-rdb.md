@@ -1064,7 +1064,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 ### insert
 
-insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
+insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
 向目标表中插入一行数据，结果以callback形式返回。
 
@@ -1073,7 +1073,7 @@ insert(name: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 指定的目标表名。 |
+| table | string | 是 | 指定的目标表名。 |
 | values | [ValuesBucket](#valuesbucket) | 是 | 表示要插入到表中的数据行。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
@@ -1097,7 +1097,7 @@ rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
 
 ### insert
 
-insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
+insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 向目标表中插入一行数据，结果以Promise形式返回。
 
@@ -1106,7 +1106,7 @@ insert(name: string, values: ValuesBucket):Promise&lt;number&gt;
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 指定的目标表名。 |
+| table | string | 是 | 指定的目标表名。 |
 | values | [ValuesBucket](#valuesbucket) | 是 | 表示要插入到表中的数据行。 |
 
 **返回值**：
@@ -1133,7 +1133,7 @@ promise.then(async (ret) => {
 
 ### update
 
-update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
+update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。
 
@@ -1142,8 +1142,8 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates, callback: AsyncCallba
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | 是 | value指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示要插入到表中的数据行。 |
+| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | 表示关系型数据库（RDB）的谓词指定的更新条件。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
 
 **示例：**
@@ -1168,7 +1168,7 @@ rdbStore.update(valueBucket, predicates, function (err, ret) {
 
 ### update
 
-update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
+update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。
 
@@ -1177,8 +1177,8 @@ update(values: ValuesBucket, rdbPredicates: RdbPredicates):Promise&lt;number&gt;
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | 是 | value指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示要插入到表中的数据行。 |
+| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | 表示关系型数据库（RDB）的谓词指定的更新条件。 |
 
 **返回值**：
 | 类型 | 说明 |
@@ -1203,20 +1203,92 @@ promise.then(async (ret) => {
 })
 ```
 
+### update<sup>9+</sup>
+update(table: string, values: ValuesBucket, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-### delete
-
-delete(rdbPredicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
-
-
-根据rdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
+| table | string | 是 | 指定的目标表名。 |
+| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
+| predicates | [DataSharePredicates](#) | 是 | 表示DataShare的谓词指定的更新条件。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Lisa")
+rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
+    if (err) {
+        console.info("Updated failed, err: " + err)
+        return
+    }
+    console.log("Updated row count: " + ret)
+})
+```
+### update<sup>9+</sup>
+
+update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
+
+根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
+| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联 |
+| predicates | [DataSharePredicates](#) | 是 | 表示DataShare的谓词指定的更新条件。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+const valueBucket = {
+    "NAME": "Rose",
+    "AGE": 22,
+    "SALARY": 200.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
+}
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Lisa")
+let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
+promise.then(async (ret) => {
+    console.log("Updated row count: " + ret)
+}).catch((err) => {
+    console.info("Updated failed, err: " + err)
+})
+```
+
+### delete
+
+delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
+
+
+根据RdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
 
 **示例：**
@@ -1235,16 +1307,16 @@ rdbStore.delete(predicates, function (err, rows) {
 
 ### delete
 
-delete(rdbPredicates: RdbPredicates):Promise&lt;number&gt;
+delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
-根据rdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
+根据RdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 | 类型 | 说明 |
@@ -1263,10 +1335,70 @@ promise.then((rows) => {
 })
 ```
 
+### delete<sup>9+</sup>
+
+delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+
+
+根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
+| predicates | [DataSharePredicates](#) | 是 |  DataSharePredicates的实例对象指定的删除条件。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Lisa")
+rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
+    if (err) {
+        console.info("Delete failed, err: " + err)
+        return
+    }
+    console.log("Delete rows: " + rows)
+})
+```
+### delete<sup>9+</sup>
+
+delete(table: string, predicates: DataSharePredicates):Promise&lt;number&gt;
+
+根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
+| predicates | [DataSharePredicates](#) | 是 | DataSharePredicates的实例对象指定的删除条件。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | 指定Promise回调函数。返回受影响的行数。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Lisa")
+let promise = rdbStore.delete("EMPLOYEE", predicates)
+promise.then((rows) => {
+    console.log("Delete rows: " + rows)
+}).catch((err) => {
+    console.info("Delete failed, err: " + err)
+})
+```
 
 ### query
 
-query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定条件查询数据库中的数据，结果以callback形式返回。
 
@@ -1275,7 +1407,7 @@ query(rdbPredicates: RdbPredicates, columns: Array&lt;string&gt;, callback: Asyn
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
@@ -1296,7 +1428,7 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
 
 ### query
 
-query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，结果以Promise形式返回。
 
@@ -1305,7 +1437,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rdbPredicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
+| predicates | [RdbPredicates](#rdbpredicates) | 是 | 表示rdbPredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
@@ -1326,6 +1458,68 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
   })
   ```
 
+### query<sup>9+</sup>
+
+query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+
+根据指定条件查询数据库中的数据，结果以callback形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| predicates | [DataSharePredicates](#) | 是 | 表示DataSharePredicates的实例对象指定的查询条件。 |
+| columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Rose")
+rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
+    if (err) {
+        console.info("Query failed, err: " + err)
+        return
+    }
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+})
+```
+
+### query<sup>9+</sup>
+
+query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+
+根据指定条件查询数据库中的数据，结果以Promise形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| rdbPredicates | [DataSharePredicates](#) | 是 | 表示DataSharePredicates的实例对象指定的查询条件。 |
+| columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+```js
+import dataShare from '@ohos.data.dataShare'
+let predicates = new dataShare.DataSharePredicates()
+predicates.equalTo("NAME", "Rose")
+let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+promise.then((resultSet) => {
+    console.log("resultSet column names:" + resultSet.columnNames)
+    console.log("resultSet column count:" + resultSet.columnCount)
+}).catch((err) => {
+    console.info("Query failed, err: " + err)
+})
+```
 
 ### querySql<sup>8+</sup>
 
