@@ -35,37 +35,23 @@
 | ----------------- | ---------------------------------------- | -------------- | ---------------------------------------- |
 | domStorageAccess  | boolean                                  | false          | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
 | fileAccess        | boolean                                  | false          | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
-| fileFromUrlAccess | boolean                                  | true           | 设置是否允许在一个URL环境中的JS代码访问任意内容，默认未启用。 |
+| fileFromUrlAccess | boolean                                  | true           | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容，默认未启用。 |
 | imageAccess       | boolean                                  | true           | 设置是否允许自动加载图片资源，默认允许。                     |
 | javaScriptProxy   | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -              | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。 <br/> object: 参与注册的对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean。<br/> name: 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。<br/> methodList: 参与注册的应用侧JavaScript对象的方法。<br/> controller: 控制器。 |
 | javaScriptAccess  | boolean                                  | true           | 设置是否允许执行JavaScript脚本，默认允许执行。             |
-| mixedMode         | MixedMode                                | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
+| mixedMode         | [MixedMode](#mixedmode枚举说明)                           | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
 | onlineImageAccess | boolean                                  | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
 | zoomAccess        | boolean                                  | true           | 设置是否支持手势进行缩放，默认允许执行缩放。|
 | overviewModeAccess | boolean                                  | true           | 设置是否使用概览模式加载网页，默认使用该方式。|
-| databaseAccess| boolean                                  | false           | 设置是否开启数据库存储API权限，默认使不开启。|
-| cachemode |  CacheMode | CacheMode.Default| 设置缓存模式。|
+| databaseAccess| boolean                                  | false           | 设置是否开启数据库存储API权限，默认不开启。|
+| cachemode |  [CacheMode](#cachemode枚举说明) | CacheMode.Default| 设置缓存模式。|
 | textZoomAtio |  number | 100 | 设置页面的文本缩放百分比，默认为100%。 |
 | userAgent |  string | - | 设置用户代理。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > 通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
-- <span id="MixedMode">MixedMode枚举说明</span>
 
-  | 名称         | 描述                                 |
-  | ---------- | ---------------------------------- |
-  | All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-  | Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
-  | None       | 不允许加载HTTP和HTTPS混合内容。               |
-
-- <span id="CacheMode">CacheMode枚举说明</span>
-  | 名称         | 描述                                 |
-  | ---------- | ---------------------------------- |
-  | Default    | 加载资源使用不过期的cache，如果没有从网络中获取。 |
-  | None | 加载资源使用cache，如果没有从网络中获取。         |
-  | Online       | 加载资源不使用cache，全部从网络中获取。  |
-  | Only       | 只从cache中加载资源。               |
 ## 事件
 
 不支持通用事件。
@@ -168,7 +154,7 @@ Web组件返回的请求/响应头对象。
 
 ### RenderExitReason枚举说明
 
-onRenderExited接口返回的render进程退出具体原因
+onRenderExited接口返回的渲染进程退出具体原因。
 
 | 名称                         | 描述                           |
 | ---------------------------- | ------------------------------ |
@@ -177,6 +163,22 @@ onRenderExited接口返回的render进程退出具体原因
 | PROCESS_CRASHED              | render进程崩溃退出，如段错误。 |
 | PROCESS_OOM                  | 程序内存不足。                 |
 | PROCESS_EXIT_UNKNOWN         | 其他原因。                     |
+
+### MixedMode枚举说明
+
+  | 名称         | 描述                                 |
+  | ---------- | ---------------------------------- |
+  | All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+  | Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
+  | None       | 不允许加载HTTP和HTTPS混合内容。               |
+
+### CacheMode枚举说明
+  | 名称         | 描述                                 |
+  | ---------- | ---------------------------------- |
+  | Default    | 加载资源使用不过期的cache，如果cache中无该资源则从网络中获取。 |
+  | None | 加载资源使用cache，如果cache中无该资源则从网络中获取。         |
+  | Online       | 加载资源不使用cache，全部从网络中获取。  |
+  | Only       | 只从cache中加载资源。               |
 
 ### FileSelectorResult对象说明
 Web组件返回的弹窗确认或弹窗取消功能对象。
@@ -286,7 +288,7 @@ getHitTest(): HitTestType
   | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
   | Img           | HTML::img标签。             |
   | Map           | 地理地址。                    |
-  | Phonenumber   | 电话号码。                    |
+  | Phone         | 电话号码。                    |
   | Unknown       | 未知内容。                    |
 
 ### loadData
@@ -377,9 +379,9 @@ stop(): void
 
 停止页面加载。
 
-### ClearHistory
+### clearHistory
 
-ClearHistory(): void
+clearHistory(): void
 
 删除所有前进后退记录。
 
@@ -388,6 +390,10 @@ ClearHistory(): void
 getCookieManager() : WebCookie
 
 获取web组件cookie管理对象。
+- 返回值
+  | 参数类型    | 说明        |
+  | ------- | --------- |
+  | WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 ## WebCookie
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 ### setCookie
@@ -401,11 +407,19 @@ setCookie(url: string, value: string) : boolean
   | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
   | url   | string                   | 是    | -    | 要设置的cookie所属的url。                            |
   | value | string | 是    | -    | cookie的值。 |
+- 返回值 
+  | 参数类型    | 说明        |
+  | ------- | --------- |
+  | boolean | 设置cookie是否成功。 |
 
 ### saveCookieSync
 saveCookieSync() : boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法，同步成功返回true，否则返回false。
+- 返回值
+  | 参数类型    | 说明        |
+  | ------- | --------- |
+  | boolean | 同步内存cookie到磁盘操作是否成功。 |
 ## 示例
 
 ```
