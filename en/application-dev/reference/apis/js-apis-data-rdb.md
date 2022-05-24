@@ -31,10 +31,10 @@ Obtains a relational database (RDB) store. This API uses an asynchronous callbac
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
-        console.info("Get RdbStore failed, err: " + err)
+        console.info("Failed to get RdbStore, err: " + err)
         return
     }
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 })
 ```
 ## data_rdb.getRdbStore
@@ -64,9 +64,9 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 const STORE_CONFIG = { name: "RdbTest.db" }
 let promise = data_rdb.getRdbStore(STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 }).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
+    console.log("Failed to get RdbStore, err: " + err)
 })
 ```
 
@@ -94,10 +94,10 @@ Obtains a relational database (RDB) store. This API uses an asynchronous callbac
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
-        console.info("Get RdbStore failed, err: " + err)
+        console.info("Failed to get RdbStore, err: " + err)
         return
     }
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 })
 ```
 
@@ -129,9 +129,9 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 const STORE_CONFIG = { name: "RdbTest.db" }
 let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 }).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
+    console.log("Failed to get RdbStore, err: " + err)
 })
 ```
 
@@ -153,10 +153,10 @@ Deletes an RDB store. This API uses a callback to return the result.
 ```js
 data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
     if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
+        console.info("Failed to delete RdbStore, err: " + err)
         return
     }
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 })
 ```
   ## data_rdb.deleteRdbStore
@@ -181,9 +181,9 @@ Deletes an RDB store. This API uses a promise to return the result.
 ```js
 let promise = data_rdb.deleteRdbStore("RdbTest.db")
 promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
+    console.info("Failed to delete RdbStore, err: " + err)
 })
 ```
 
@@ -206,10 +206,10 @@ Deletes an RDB store. This API uses a callback to return the result.
 ```js
 data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
     if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
+        console.info("Failed to delete RdbStore, err: " + err)
         return
     }
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 })
 ```
 
@@ -236,9 +236,9 @@ Deletes an RDB store. This API uses a promise to return the result.
 ```js
 let promise = data_rdb.deleteRdbStore("RdbTest.db")
 promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
+    console.info("Failed to delete RdbStore, err: " + err)
 })
 ```
 
@@ -1087,7 +1087,7 @@ const valueBucket = {
 }
 rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
     console.log("Insert first done: " + ret)
@@ -1126,7 +1126,7 @@ let promise = rdbStore.insert("EMPLOYEE", valueBucket)
 promise.then(async (ret) => {
     console.log("Insert first done: " + ret)
 }).catch((err) => {
-    console.log("Insert failed, err: " + err)
+    console.log("Failed to insert data, err: " + err)
 })
 ```
 
@@ -1158,7 +1158,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update(valueBucket, predicates, function (err, ret) {
     if (err) {
-        console.info("Updated failed, err: " + err)
+        console.info("Failed to update data, err: " + err)
         return
     }
     console.log("Updated row count: " + ret)
@@ -1199,7 +1199,7 @@ let promise = rdbStore.update(valueBucket, predicates)
 promise.then(async (ret) => {
     console.log("Updated row count: " + ret)
 }).catch((err) => {
-    console.info("Updated failed, err: " + err)
+    console.info("Failed to update data, err: " + err)
 })
 ```
 
@@ -1225,7 +1225,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete(predicates, function (err, rows) {
     if (err) {
-        console.info("Delete failed, err: " + err)
+        console.info("Failed to delete data, err: " + err)
         return
     }
     console.log("Delete rows: " + rows)
@@ -1259,7 +1259,7 @@ let promise = rdbStore.delete(predicates)
 promise.then((rows) => {
     console.log("Delete rows: " + rows)
 }).catch((err) => {
-    console.info("Delete failed, err: " + err)
+    console.info("Failed to delete data, err: " + err)
 })
 ```
 
@@ -1463,10 +1463,10 @@ const valueBucket = {
 }
 rdbStore.insert("test", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
-    console.log("Insert successfully: " + ret)
+    console.log("Inserted data successfully: " + ret)
 })
 rdbStore.commit()
 ```
@@ -1492,10 +1492,10 @@ const valueBucket = {
 
 rdbStore.insert("test", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
-    console.log("Insert successfully: " + ret)
+    console.log("Inserted data successfully: " + ret)
 })
 rdbStore.commit()
 ```
@@ -1522,10 +1522,10 @@ try {
     }
     rdbStore.insert("test", valueBucket, function (err, ret) {
         if (err) {
-            console.info("Insert failed, err: " + err)
+            console.info("Failed to insert data, err: " + err)
             return
         }
-        console.log("Insert successfully: " + ret)
+        console.log("Inserted data successfully: " + ret)
     })
     rdbStore.commit()
 } catch (e) {
@@ -1555,7 +1555,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
         console.info('setDistributedTables failed, err: ' + err)
         return
     }
-    console.info('setDistributedTables successfully.')
+    console.info('setDistributedTables successful.')
 })
   ```
 
@@ -1582,7 +1582,7 @@ Sets a list of distributed tables. This API uses a promise to return the result.
 ```js
 let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
-    console.info("setDistributedTables successfully.")
+    console.info("setDistributedTables successful.")
 }).catch((err) => {
     console.info("setDistributedTables failed, err: " + err)
 })
@@ -1610,7 +1610,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
         console.info('obtainDistributedTableName failed, err: ' + err)
         return
     }
-    console.info('obtainDistributedTableName successfully, tableName=.' + tableName)
+    console.info('obtainDistributedTableName successful, tableName=.' + tableName)
 })
 ```
 
@@ -1638,7 +1638,7 @@ Obtains the distributed table name for a remote device based on the local table 
 ```js
 let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('obtainDistributedTableName successfully, tableName=' + tableName)
+    console.info('obtainDistributedTableName successful, tableName=' + tableName)
 }).catch((err) => {
     console.info('obtainDistributedTableName failed, err: ' + err)
 })
@@ -1737,7 +1737,7 @@ function storeObserver(devices) {
 try {
     rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('register observer failed')
+    console.log('Failed to register observer')
 }
 ```
 
@@ -1767,7 +1767,7 @@ function storeObserver(devices) {
 try {
     rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('unregister observer failed')
+    console.log('Failed to unregister observer')
 }
 ```
 
