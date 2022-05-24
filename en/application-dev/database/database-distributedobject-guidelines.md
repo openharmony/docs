@@ -107,7 +107,7 @@ The following example shows how to implement a distributed data object synchroni
         });
         }
     } 
-
+   
     // To refresh the page in changeCallback, correctly bind (this) to the changeCallback.
     local_object.on("change", this.changeCallback.bind(this));
    ```
@@ -171,7 +171,7 @@ The following example shows how to implement a distributed data object synchroni
        ```js
        local_object.setSessionId("");
        ```
-## Development Example
+## Samples
 
 The following example is provided for you to better understand the development of distributed data objects:
 
@@ -179,4 +179,4 @@ The following example is provided for you to better understand the development o
 
 
 When an event of the Notepad app occurs on a device, such as a note is added, the tile or content of a note is changed, or the event list is cleared, the change will be synchronized to other devices in the trusted network.
- 
+

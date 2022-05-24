@@ -1,6 +1,6 @@
 # DataAbilityPredicates
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,6 +22,7 @@ Creates an **RdbPredicates** object based on a **DataAabilityPredicates** object
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | name | string | Yes| Table name in the RDB store.|
