@@ -338,7 +338,7 @@ checkable(b?: bool): By
 let by = BY.checkable(true) //使用静态构造器BY创建by对象，指定目标控件的能否被勾选状态属性。
 ```
 
-### [By.isBefore](#byisbefore)
+### By.isBefore
 
 isBefore(by: By): By
 
@@ -364,7 +364,7 @@ isBefore(by: By): By
 let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
-### [By.isAfter](#byisafter)
+### By.isAfter
 
 isAfter(by: By): By
 
@@ -1303,7 +1303,7 @@ async function demo() {
 }
 ```
 
-## [MatchPattern](#matchpattern)
+## MatchPattern
 
 控件属性支持的匹配模式。
 
