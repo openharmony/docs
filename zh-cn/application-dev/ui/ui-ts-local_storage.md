@@ -2,7 +2,7 @@
 
 
 
-LocalStorage
+## **LocalStorage**
 
 LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UL的特定部分（如一个Ability的Ul）。
 
@@ -16,7 +16,7 @@ LocalStorage生命周期一般是跟随Ability的生命周期。
 
 LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不好再使用@LocalStorageLink和@LocalStorageProp的默认值
 
-
+### 属性：
 
 | 方法        | 参数                            | 返回值                                | 定义                                                         |
 | ----------- | ------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
@@ -34,15 +34,15 @@ LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageL
 | size        | none                            | number                                | 与Map.size()用法相同                                         |
 | clear       | none                            | boolean                               | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false  |
 
-@LocalStorageLink装饰器
+### @LocalStorageLink装饰器
 
 组件通过使用@LocalStorageLink(key)装饰的状态变量，key值要与创造时值想对应，与LocalStorage建立双向数据绑定，变量类型可以为类对象，字符串，数字，布尔值和这些类型的数组等复杂数据。并且要设置默认值，给定数据类型，其他用法请参考StorageLink
 
-@LocalStorageProp装饰器
+### @LocalStorageProp装饰器
 
 组件通过使用LocalStorageProp(key)装饰的状态变量，key值要与创造时值想对应，与LocalStorage建立单向数据绑定，量类型可以为类对象，字符串，数字，布尔值和这些类型的数组等复杂数据。并且要设置默认值，给定数据类型，其他用法请参考StorageProps
 
-示例1（在一个Ability创建的LocalStorage）：
+### 示例1（在一个Ability创建的LocalStorage）：
 
 ```javascript
 import Ability from '@ohos.appLication.Ability'
@@ -96,7 +96,7 @@ struct LocalStorageComponent {
 }
 ```
 
-实例2（在Entry页面定义LocalStorage）:
+### 示例2（在Entry页面定义LocalStorage）:
 
 ```
 let storage = new LocalStorage({"PropA":47});
