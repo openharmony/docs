@@ -62,7 +62,7 @@ Obtains the value of a data item.
 
 - Example
   ```typescript
-  import featureAbility from '@ohos.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   // Obtain the value of 'settings.screen.brightness' (this data item already exists in the database).
   let brightness = 'settings.screen.brightness';
@@ -97,7 +97,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 - Example
   ```typescript
-  import featureAbility from '@ohos.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync 
      method will update the value of the data item.)
