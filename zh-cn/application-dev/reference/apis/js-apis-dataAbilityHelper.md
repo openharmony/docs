@@ -5,6 +5,13 @@
 
 ## 导入模块
 
+```js
+import dataAbilityHelper from "@ohos.ability.dataAbilityHelper";
+```
+
+## 使用说明
+
+使用前根据具体情况引入如下模块
 ```
 import featureAbility from '@ohos.ability.featureAbility'
 import ohos_data_ability from '@ohos.data.dataability'

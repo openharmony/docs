@@ -10,12 +10,17 @@
 
 ## 导入模块
 
+```
+import MissionSnapshot from "@ohos.application.missionSnapshot";
+```
+## 使用说明
+
+使用前需要提前引入对应模块。
 
 ```
 import { ElementName } from '../bundle/elementName';
 import { image } from '../@ohos.multimedia.image';
 ```
-
 
 ## MissionSnapshot
 

@@ -6,6 +6,11 @@
 
 Extension运行相关信息。
 
+## 导入模块
+
+```js
+import ExtensionRunningInfo from "@ohos.application.extensionRunningInfo";
+```
 
 ## 使用说明
 

@@ -915,6 +915,53 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 });
 ```
 
+## WantAgent.getOperationType
+
+getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
+
+获取WantAgent的操作类型（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
+| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
+| agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
+| callback   | 是   | 否  | AsyncCallback\<number> | 是   | 获取WantAgent的操作类型。 |
+
+**示例：**
+
+```js
+
+```
+
+## WantAgent.getOperationType
+
+getOperationType(agent: WantAgent): Promise\<number>;
+
+获取WantAgent的操作类型（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 可读 | 可写 | 类型      | 必填 | 描述          |
+| ---------- | --- | ---- | --------- | ---- | ------------- |
+| agent      | 是   | 否  | WantAgent | 是   | WantAgent对象。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<number> | 以Promise形式返回获取WantAgent的操作类型。 |
+
+**示例：**
+
+```js
+
+```
+
 
 
 ## WantAgentInfo

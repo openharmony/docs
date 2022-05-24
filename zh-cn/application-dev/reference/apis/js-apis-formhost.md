@@ -591,7 +591,7 @@ SystemCapability.Ability.Form
 
 ## getAllFormsInfo
 
-getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 获取设备上所有应用提供的卡片信息。
 
@@ -619,7 +619,8 @@ SystemCapability.Ability.Form
 
 ## getAllFormsInfo
 
-getAllFormsInfo(): Promise&lt;Array&lt;FormInfo&gt;&gt;;
+getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
+
 
 获取设备上所有应用提供的卡片信息。
 
@@ -645,7 +646,8 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+
 
 获取设备上指定应用程序提供的卡片信息。
 
@@ -674,7 +676,8 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+
 
 获取设备上指定应用程序提供的卡片信息。
 
@@ -704,7 +707,8 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;FormInfo&gt;&gt;;
+getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
+
 
 获取设备上指定应用程序提供的卡片信息。
 
@@ -767,7 +771,7 @@ SystemCapability.Ability.Form
 
 ## deleteInvalidForms
 
-function deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
+deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 根据列表删除应用程序的无效卡片。
 
@@ -800,7 +804,7 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-acquireFormState(want: Want, callback: AsyncCallback&lt;FormStateInfo&gt;): void;
+acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&gt;): void;
 
 获取卡片状态
 
@@ -834,7 +838,7 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
+acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 
 获取卡片状态。
 
