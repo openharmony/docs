@@ -14,7 +14,7 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 ## By
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用以进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#By.isBefore)和[By.isAfter](#By.isAfter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#by.isbefore)和[By.isAfter](#by.isafter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
 ```js
 BY.text('123').type('button')
@@ -338,7 +338,7 @@ checkable(b?: bool): By
 let by = BY.checkable(true) //使用静态构造器BY创建by对象，指定目标控件的能否被勾选状态属性。
 ```
 
-### [By.isBefore](#isBefore)
+### [By.isBefore](#by.isbefore)
 
 isBefore(by: By): By
 
@@ -364,7 +364,7 @@ isBefore(by: By): By
 let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
-### [By.isAfter](#isafter)
+### [By.isAfter](#by.isafter)
 
 isAfter(by: By): By
 
