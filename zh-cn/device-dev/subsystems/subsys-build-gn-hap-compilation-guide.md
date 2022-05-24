@@ -85,251 +85,251 @@ js或ets代码，ace编译后放置在assets/js/default目录下，stage模型�
 1. 将开发完成的应用example放到applications/standard/目录下。
 
 2. 配置gn脚本applications/standard/example/BUILD.gn，FA模型简单示例如下（更多BUILD.gn配置见[gn脚本配置示例](#gn脚本配置示例)）：
-```
-import("//build/ohos.gni") # 引用ohos.gni
+   ```
+   import("//build/ohos.gni") # 引用ohos.gni
 
-ohos_hap("example") {
-  hap_profile = "./src/main/config.json" # config.json
-  js_assets = ["./src/main/js/default"]
-  raw_assets = ["./raw_assets"]
-  resources = ["./src/main/resources"]
-  shared_libraries = [
-    "//third_party/libpng:libpng", # native库
-  ]
-  certificate_profile = "../signature/systemui.p7b" # Cer文件
-  hap_name = "SystemUI-NavigationBar" # 名字
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
-```
+   ohos_hap("example") {
+     hap_profile = "./src/main/config.json" # config.json
+     js_assets = ["./src/main/js/default"]
+     raw_assets = ["./raw_assets"]
+     resources = ["./src/main/resources"]
+     shared_libraries = [
+       "//third_party/libpng:libpng", # native库
+     ]
+     certificate_profile = "../signature/systemui.p7b" # Cer文件
+     hap_name = "SystemUI-NavigationBar" # 名字
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
+   ```
 
 3. 修改applications/standard/hap/ohos.build，示例如下：
-```
-{
-  "subsystem": "applications",
-  "parts": {
-    "prebuilt_hap": {
-      "module_list": [
-        ...
-        "//applications/standard/example:example" # 添加编译目标
-      ]
-    }
-  }
-}
-```
+   ```
+   {
+     "subsystem": "applications",
+     "parts": {
+       "prebuilt_hap": {
+         "module_list": [
+           ...
+           "//applications/standard/example:example" # 添加编译目标
+         ]
+       }
+     }
+   }
+   ```
 
 4. 编译命令：
-```
-# 全量编译
-./build.sh --product-name {product_name}
+   ```
+   # 全量编译
+   ./build.sh --product-name {product_name}
 
-# 单独编译HAP
-./build.sh --product-name {product_name} --build-target applications/standard/example:example
-```
+   # 单独编译HAP
+   ./build.sh --product-name {product_name} --build-target applications/standard/example:example
+   ```
 
 5. 编译产物，FA模型简单例子HAP解压视图如下：
-```
-  Length      Date    Time    Name
----------  ---------- -----   ----
-     1439  2009-01-01 00:00   assets/raw_assets                                 -----> raw_assets
-      354  2009-01-01 00:00   assets/entry/resources.index                      ------> resources
-        1  2009-01-01 00:00   assets/entry/resources/base/media/attributes.key  ------> resources
-        1  2009-01-01 00:00   assets/entry/resources/base/media/constants.key   ------> resources
-        1  2009-01-01 00:00   assets/entry/resources/base/media/contents.key    ------> resources
-     6790  2009-01-01 00:00   assets/entry/resources/base/media/icon.png        ------> resources
-        1  2009-01-01 00:00   assets/entry/resources/base/media/nodes.key       ------> resources
-    11170  2009-01-01 00:00   assets/js/default/app.js                          ------> js_assets
-       48  2009-01-01 00:00   assets/js/default/i18n/en-US.json                 ------> js_assets
-       50  2009-01-01 00:00   assets/js/default/i18n/zh-CN.json                 ------> js_assets
-      224  2009-01-01 00:00   assets/js/default/manifest.json                   ------> js_assets
-    41481  2009-01-01 00:00   assets/js/default/pages/index/index.js            ------> js_assets
-      909  2009-01-01 00:00   config.json                                       ------> hap_profile
-   266248  2009-01-01 00:00   libs/libpng.z.so                                  ------> shared_libraries
-```
+   ```
+     Length      Date    Time    Name
+   ---------  ---------- -----   ----
+        1439  2009-01-01 00:00   assets/raw_assets                                 -----> raw_assets
+         354  2009-01-01 00:00   assets/entry/resources.index                      ------> resources
+           1  2009-01-01 00:00   assets/entry/resources/base/media/attributes.key  ------> resources
+           1  2009-01-01 00:00   assets/entry/resources/base/media/constants.key   ------> resources
+           1  2009-01-01 00:00   assets/entry/resources/base/media/contents.key    ------> resources
+        6790  2009-01-01 00:00   assets/entry/resources/base/media/icon.png        ------> resources
+           1  2009-01-01 00:00   assets/entry/resources/base/media/nodes.key       ------> resources
+       11170  2009-01-01 00:00   assets/js/default/app.js                          ------> js_assets
+          48  2009-01-01 00:00   assets/js/default/i18n/en-US.json                 ------> js_assets
+          50  2009-01-01 00:00   assets/js/default/i18n/zh-CN.json                 ------> js_assets
+         224  2009-01-01 00:00   assets/js/default/manifest.json                   ------> js_assets
+       41481  2009-01-01 00:00   assets/js/default/pages/index/index.js            ------> js_assets
+         909  2009-01-01 00:00   config.json                                       ------> hap_profile
+      266248  2009-01-01 00:00   libs/libpng.z.so                                  ------> shared_libraries
+   ```
 
 ### gn脚本配置示例
-#### FA模型多ability示例
+- FA模型多ability示例
 
-```
-import("//build/ohos.gni")
+   ```
+   import("//build/ohos.gni")
 
-ohos_hap("dataability") {
-  hap_profile = "entry/src/main/config.json"
-  deps = [
-    ":dataability_js_assets",
-    ":dataability_resources",
-  ]
-  certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "dataability"
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
+   ohos_hap("dataability") {
+     hap_profile = "entry/src/main/config.json"
+     deps = [
+       ":dataability_js_assets",
+       ":dataability_resources",
+     ]
+     certificate_profile = "signature/openharmony_sx.p7b"
+     hap_name = "dataability"
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
 
-ohos_js_assets("dataability_js_assets") {
-  ets2abc = true
-  source_dir = "entry/src/main/ets"
-  hap_profile = "entry/src/main/config.json"
-}
+   ohos_js_assets("dataability_js_assets") {
+     ets2abc = true
+     source_dir = "entry/src/main/ets"
+     hap_profile = "entry/src/main/config.json"
+   }
 
-ohos_resources("dataability_resources") {
-  sources = [
-    "entry/src/main/resources",
-  ]
-  hap_profile = "entry/src/main/config.json"
-}
+   ohos_resources("dataability_resources") {
+     sources = [
+       "entry/src/main/resources",
+     ]
+     hap_profile = "entry/src/main/config.json"
+   }
 
-```
+   ```
 
-#### FA模型Js卡片示例
+- FA模型Js卡片示例
 
-```
-import("//build/ohos.gni")
+   ```
+   import("//build/ohos.gni")
+   
+   ohos_hap("FormOfFaJs") {
+     hap_profile = "entry/src/main/config.json"
+     deps = [
+       ":FormOfFaJs_js_assets",
+       ":FormOfFaJs_resources",
+     ]
+     certificate_profile = "signature/openharmony_sx.p7b"
+     hap_name = "FormOfFaJs"
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
+   
+   ohos_js_assets("FormOfFaJs_js_assets") {
+     hap_profile = "entry/src/main/config.json"
+     js2abc = true
+     source_dir = "entry/src/main/js"
+   }
+   
+   ohos_resources("FormOfFaJs_resources") {
+     sources = [
+       "entry/src/main/resources",
+     ]
+     hap_profile = "entry/src/main/config.json"
+   }
+   ```
 
-ohos_hap("FormOfFaJs") {
-  hap_profile = "entry/src/main/config.json"
-  deps = [
-    ":FormOfFaJs_js_assets",
-    ":FormOfFaJs_resources",
-  ]
-  certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "FormOfFaJs"
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
+- FA模型Ets卡片示例
 
-ohos_js_assets("FormOfFaJs_js_assets") {
-  hap_profile = "entry/src/main/config.json"
-  js2abc = true
-  source_dir = "entry/src/main/js"
-}
+   ```
+   import("//build/ohos.gni")
+   
+   ohos_hap("FormOfFaEts") {
+     hap_profile = "entry/src/main/config.json"
+     deps = [
+       ":FormOfFaEts_js_assets",
+       ":FormOfFaEts_form_js_assets",
+       ":FormOfFaEts_resources",
+     ]
+     certificate_profile = "signature/openharmony_sx.p7b"
+     hap_name = "FormOfFaEts"
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
+   
+   ohos_js_assets("FormOfFaEts_js_assets") {
+     hap_profile = "entry/src/main/config.json"
+     ets2abc = true
+     source_dir = "entry/src/main/ets"
+   }
+   
+   ohos_js_assets("FormOfFaEts_form_js_assets") {
+     hap_profile = "entry/src/main/config.json"
+     js2abc = true
+     source_dir = "entry/src/main/js"
+   }
+   
+   ohos_resources("FormOfFaEts_resources") {
+     sources = [
+       "entry/src/main/resources",
+     ]
+     hap_profile = "entry/src/main/config.json"
+   }
+   ```
 
-ohos_resources("FormOfFaJs_resources") {
-  sources = [
-    "entry/src/main/resources",
-  ]
-  hap_profile = "entry/src/main/config.json"
-}
-```
+- Stage模型简单示例
 
-#### FA模型Ets卡片示例
+   ```
+   import("//build/ohos.gni")
+   
+   ohos_hap("actmoduletest") {
+     hap_profile = "entry/src/main/module.json"
+     deps = [
+       ":actmoduletest_js_assets",
+       ":actmoduletest_resources",
+     ]
+     certificate_profile = "signature/openharmony_sx.p7b"
+     hap_name = "actmoduletest"
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
+   
+   ohos_app_scope("actmoduletest_app_profile") {
+     app_profile = "AppScope/app.json"
+     sources = [ "AppScope/resources" ]
+   }
+   
+   ohos_js_assets("actmoduletest_js_assets") {
+     ets2abc = true
+     source_dir = "entry/src/main/ets"
+   }
+   
+   ohos_resources("actmoduletest_resources") {
+     sources = [
+       "entry/src/main/resources",
+     ]
+     deps = [
+       ":actmoduletest_app_profile",
+     ]
+     hap_profile = "entry/src/main/module.json"
+   }
+   ```
 
-```
-import("//build/ohos.gni")
+- Stage模型卡片示例
 
-ohos_hap("FormOfFaEts") {
-  hap_profile = "entry/src/main/config.json"
-  deps = [
-    ":FormOfFaEts_js_assets",
-    ":FormOfFaEts_form_js_assets",
-    ":FormOfFaEts_resources",
-  ]
-  certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "FormOfFaEts"
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
-
-ohos_js_assets("FormOfFaEts_js_assets") {
-  hap_profile = "entry/src/main/config.json"
-  ets2abc = true
-  source_dir = "entry/src/main/ets"
-}
-
-ohos_js_assets("FormOfFaEts_form_js_assets") {
-  hap_profile = "entry/src/main/config.json"
-  js2abc = true
-  source_dir = "entry/src/main/js"
-}
-
-ohos_resources("FormOfFaEts_resources") {
-  sources = [
-    "entry/src/main/resources",
-  ]
-  hap_profile = "entry/src/main/config.json"
-}
-```
-
-#### Stage模型简单示例
-
-```
-import("//build/ohos.gni")
-
-ohos_hap("actmoduletest") {
-  hap_profile = "entry/src/main/module.json"
-  deps = [
-    ":actmoduletest_js_assets",
-    ":actmoduletest_resources",
-  ]
-  certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "actmoduletest"
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
-
-ohos_app_scope("actmoduletest_app_profile") {
-  app_profile = "AppScope/app.json"
-  sources = [ "AppScope/resources" ]
-}
-
-ohos_js_assets("actmoduletest_js_assets") {
-  ets2abc = true
-  source_dir = "entry/src/main/ets"
-}
-
-ohos_resources("actmoduletest_resources") {
-  sources = [
-    "entry/src/main/resources",
-  ]
-  deps = [
-    ":actmoduletest_app_profile",
-  ]
-  hap_profile = "entry/src/main/module.json"
-}
-```
-
-#### Stage模型卡片示例
-
-```
-import("//build/ohos.gni")
-
-ohos_hap("FormOfStageEts") {
-  hap_profile = "entry/src/main/module.json"
-  deps = [
-    ":FormOfStageEts_js_assets",
-    ":FormOfStageEts_form_js_assets",
-    ":FormOfStageEts_resources",
-  ]
-  js_build_mode = "debug"  # 默认release
-  certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "FormOfStageEts"
-  part_name = "prebuilt_hap"
-  subsystem_name = "applications"
-}
-
-ohos_js_assets("FormOfStageEts_js_assets") {
-  hap_profile = "entry/src/main/module.json"
-  ets2abc = true
-  source_dir = "entry/src/main/ets"
-}
-
-ohos_js_assets("FormOfStageEts_form_js_assets") {
-  hap_profile = "entry/src/main/module.json"
-  js2abc = true
-  source_dir = "entry/src/main/js"
-}
-
-ohos_app_scope("FormOfStageEts_app_profile") {
-  app_profile = "AppScope/app.json"
-  sources = [ "AppScope/resources" ]
-}
-
-ohos_resources("FormOfStageEts_resources") {
-  sources = [
-    "entry/src/main/resources",
-  ]
-  deps = [
-    ":FormOfStageEts_app_profile",
-  ]
-  hap_profile = "entry/src/main/module.json"
-}
-```
+   ```
+   import("//build/ohos.gni")
+   
+   ohos_hap("FormOfStageEts") {
+     hap_profile = "entry/src/main/module.json"
+     deps = [
+       ":FormOfStageEts_js_assets",
+       ":FormOfStageEts_form_js_assets",
+       ":FormOfStageEts_resources",
+     ]
+     js_build_mode = "debug"  # 默认release
+     certificate_profile = "signature/openharmony_sx.p7b"
+     hap_name = "FormOfStageEts"
+     part_name = "prebuilt_hap"
+     subsystem_name = "applications"
+   }
+   
+   ohos_js_assets("FormOfStageEts_js_assets") {
+     hap_profile = "entry/src/main/module.json"
+     ets2abc = true
+     source_dir = "entry/src/main/ets"
+   }
+   
+   ohos_js_assets("FormOfStageEts_form_js_assets") {
+     hap_profile = "entry/src/main/module.json"
+     js2abc = true
+     source_dir = "entry/src/main/js"
+   }
+   
+   ohos_app_scope("FormOfStageEts_app_profile") {
+     app_profile = "AppScope/app.json"
+     sources = [ "AppScope/resources" ]
+   }
+   
+   ohos_resources("FormOfStageEts_resources") {
+     sources = [
+       "entry/src/main/resources",
+     ]
+     deps = [
+       ":FormOfStageEts_app_profile",
+     ]
+     hap_profile = "entry/src/main/module.json"
+   }
+   ```
