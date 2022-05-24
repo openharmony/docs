@@ -101,7 +101,7 @@ import Axis from '@ohos.multimodalInput.mouseEvent'
 | 名称              | 参数类型 | 可读 | 可写 | 描述         |
 | ----------------- | -------- | ---- | ---- | ------------ |
 | SCROLL_VERTICAL   | number   | 是   | 否   | 鼠标垂直轴。 |
-| SCROLL_HORIZONTAL | number   | 是   | 否   | 鼠标水平轴   |
+| SCROLL_HORIZONTAL | number   | 是   | 否   | 鼠标水平轴。 |
 | PINCH             | number   | 是   | 否   | 鼠标捏合轴。 |
 
 # AxisValue
@@ -120,5 +120,5 @@ import AxisValue from '@ohos.multimodalInput.mouseEvent'
 
 | 名称  | 参数类型 | 可读 | 可写 | 描述         |
 | ----- | -------- | ---- | ---- | ------------ |
-| axis  | Axis     | 是   | 是   | 鼠标轴类型   |
+| axis  | Axis     | 是   | 是   | 鼠标轴类型。 |
 | value | number   | 是   | 是   | 鼠标轴的值。 |
