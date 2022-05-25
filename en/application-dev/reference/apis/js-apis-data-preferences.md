@@ -3,7 +3,7 @@
 Preferences provide capabilities for processing data in the form of key-value (KV) pairs and supports lightweight data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -35,38 +35,20 @@ Reads a **Preferences** persistence file and loads data to the **Preferences** i
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
+```ts
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    if (err) {
               console.info("Failed to get the preferences")
-              return;
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")
-              })
-          })
-      })
-  }
-  ```
+        return;
+    }
+    console.info("Got preferences successfully.")
+})
+```
 
 
 ## data_preferences.getPreferences
@@ -80,7 +62,7 @@ Reads a **Preferences** persistence file and loads data to the **Preferences** i
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
@@ -89,32 +71,14 @@ Reads a **Preferences** persistence file and loads data to the **Preferences** i
   | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")
-              })
-          })
-      }).catch((err) => {
+```ts
+let promise = data_preferences.getPreferences(this.context, 'mystore')
+promise.then((preferences) => {
+    console.info("Got preferences successfully.")
+}).catch((err) => {
           console.info("Failed to get the preferences")
-      })
-  }
-  ```
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -129,25 +93,20 @@ Once a **Preferences** persistence file is deleted, the **Preferences** instance
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.deletePreferences(this.context, 'mystore', function (err) {
-          if (err) {
+```ts
+data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+    if (err) {
               console.info("Failed to delete data, err: " + err)
-              return
-          }
-          console.info("Data deleted successfully.")
-      })
-  }
-  ```
+        return
+    }
+    console.info("Deleted preferences successfully.")
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -162,7 +121,7 @@ Once a **Preferences** persistence file is deleted, the **Preferences** instance
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
@@ -171,19 +130,14 @@ Once a **Preferences** persistence file is deleted, the **Preferences** instance
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.deletePreferences(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Data deleted successfully.")
-      }).catch((err) => {
-          console.info("Failed to delete data, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.deletePreferences(this.context, 'mystore')
+promise.then(() => {
+    console.info("Deleted preferences successfully.")
+}).catch((err) => {
+          console.info("Failed to delete preferences, err: " + err)
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -199,25 +153,20 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
-          if (err) {
-              console.info("Failed to remove preferences from cache, err: " + err)
-              return
-          }
-          console.info("Removed preferences from cache successfully.")
-      })
-  }
-  ```
+```ts
+data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to remove preferences from cache, err: " + err)
+        return
+    }
+    console.info("Removed preferences from cache successfully.")
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -230,10 +179,10 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-**Parameters**
+Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the application or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
@@ -242,19 +191,14 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Removed preferences from cache successfully.")
-      }).catch((err) => {
-          console.info("Failed to remove preferences from cache, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+promise.then(() => {
+    console.info("Removed preferences from cache successfully.")
+}).catch((err) => {
+    console.info("Failed to remove preferences from cache, err: " + err)
+})
+```
 
 
 ## Preferences
@@ -278,26 +222,15 @@ Obtains the value of a key. If the value is null or a non-default value, the def
   | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.get('startup', 'default', function(err, value) {
-              if (err) {
+```ts
+ preferences.get('startup', 'default', function(err, value) {
+    if (err) {
                   console.info("Failed to get the value of startup, err: " + err)
-                  return
-              }
+        return
+    }
               console.info("The value of startup is " + value)
-          })
-      })
-  }
-  ```
+})
+```
 
 
 ### get
@@ -320,24 +253,14 @@ Obtains the value of a key. If the value is null or a non-default value, the def
   | Promise&lt;ValueType&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseGet = preferences.get('startup', 'default')
-          promiseGet.then((value) => {
-              console.info("The value of startup is " + value)
-          }).catch((err) => {
+```ts
+let promise = preferences.get('startup', 'default')
+promise.then((value) => {
+    console.info("The value of startup is " + value)
+}).catch((err) => {
               console.info("Failed to get the value of startup, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### put
@@ -356,26 +279,15 @@ Puts a new value to this **Preferences** instance and its persistence file. This
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
+```ts
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
                   console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-          })
-      })
-  }
-  ```
+        return
+    }
+    console.info("Put the value of startup successfully.")
+})
+```
 
 
 ### put
@@ -398,24 +310,14 @@ Puts a new value to this **Preferences** instance and its persistence file. This
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promisePut = preferences.put('startup', 'auto')
-          promisePut.then(() => {
-              console.info("Put the value of startup successfully.")
-          }).catch((err) => {
+```ts
+let promise = preferences.put('startup', 'auto')
+promise.then(() => {
+    console.info("Put the value of startup successfully.")
+}).catch((err) => {
               console.info("Failed to put the value of startup, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### has
@@ -438,30 +340,19 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
   | boolean | Returns **true** if the **Preferences** instance contains data with the specified key; returns **false** otherwise.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.has('startup', function (err, isExist) {
-              if (err) {
-                  console.info("Failed to check the key of startup, err: " + err)
-                  return
-              }
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup is not contained.")
-              }
-          })
-      })
-  }
-  ```
+```ts
+preferences.has('startup', function (err, isExist) {
+    if (err) {
+        console.info("Failed to check the key of startup, err: " + err)
+        return
+    }
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup is not contained.")
+    }
+})
+```
 
 
 ### has
@@ -483,28 +374,18 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
   | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseHas = preferences.has('startup')
-          promiseHas.then((isExist) => {
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup is not contained.")
-              }
-          }).catch((err) => {
+```ts
+let promise = preferences.has('startup')
+promise.then((isExist) => {
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup is not contained.")
+    }
+}).catch((err) => {
               console.info("Check the key of startup failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### delete
@@ -522,26 +403,15 @@ Deletes a KV pair of the specified key from this **Preferences** instance. This 
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.delete('startup', function (err) {
-              if (err) {
-                  console.info("Failed to delete startup key, err: " + err)
-                  return
-              }
-              console.info("Deleted startup key successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.delete('startup', function (err) {
+    if (err) {
+        console.info("Failed to delete startup key, err: " + err)
+        return
+    }
+    console.info("Deleted startup key successfully.")
+})
+```
 
 
 ### delete
@@ -563,24 +433,14 @@ Deletes a KV pair of the specified key from this **Preferences** instance. This 
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseDelete = preferences.delete('startup')
-          promiseDelete.then(() => {
-              console.info("Deleted startup key successfully.")
-          }).catch((err) => {
-              console.info("Failed to delete startup key, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.delete('startup')
+promise.then(() => {
+    console.info("Deleted startup key successfully.")
+}).catch((err) => {
+    console.info("Failed to delete startup key, err: " + err)
+})
+```
 
 
 ### flush
@@ -597,26 +457,15 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.flush(function (err) {
-              if (err) {
-                  console.info("Failed to flush data to file, err: " + err)
-                  return
-              }
-              console.info("Flushed data to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.flush(function (err) {
+    if (err) {
+        console.info("Failed to flush data to file, err: " + err)
+        return
+    }
+    console.info("Flushed data to file successfully.")
+})
+```
 
 
 ### flush
@@ -633,24 +482,14 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseFlush = preferences.flush()
-          promiseFlush.then(() => {
-              console.info("Flushed data to file successfully.")
-          }).catch((err) => {
-              console.info("Failed to flush data to file, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.flush()
+promise.then(() => {
+    console.info("Flushed data to file successfully.")
+}).catch((err) => {
+    console.info("Failed to flush data to file, err: " + err)
+})
+```
 
 
 ### clear
@@ -661,32 +500,21 @@ Clears data of this **Preferences** instance. This API uses an asynchronous call
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-**Parameters**
+Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.clear(function (err) {
-              if (err) {
-                  console.info("Failed to clear data, err: " + err)
-                  return
-              }
-              console.info("Cleared to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.clear(function (err) {
+    if (err) {
+        console.info("Failed to clear data, err: " + err)
+        return
+    }
+    console.info("Cleared to file successfully.")
+})
+```
 
 
 ### clear
@@ -703,24 +531,14 @@ Clears data of this **Preferences** instance. This API uses a promise to return 
   | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseClear = preferences.clear()
-          promiseClear.then(() => {
-              console.info("Cleared to file successfully.")
-          }).catch((err) => {
-              console.info("Failed to clear data, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.clear()
+promise.then(() => {
+    console.info("Cleared to file successfully.")
+}).catch((err) => {
+    console.info("Failed to clear data, err: " + err)
+})
+```
 
 
 ### on('change')
@@ -738,37 +556,30 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")    // The observer will be called.
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Failed to put the value of startup, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Failed to flush data to file, err: " + err)
+            return
+        }
+        console.info("Flushed data to file successfully.")    // The observer will be called.
+    })
+})
+```
 
 
 ### off('change')
@@ -786,37 +597,31 @@ Unsubscribes from data changes.
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")    // observer will be called.
-                  preferences.off('change', observer)
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Failed to put the value of startup, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Failed to flush data to file, err: " + err)
+            return
+        }
+        console.info("Flushed data to file successfully.")    // The observer will be called.
+        preferences.off('change', observer)
+    })
+})
+```
 
 ## ValueType
 
