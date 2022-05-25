@@ -54,25 +54,25 @@ export default class MainAbility extends Ability {
     console.log("[Demo MainAbility onCreate]");    
     globalThis.abilityWant = want;   
   }  
-	onDestroy() {    
+  onDestroy() {    
     console.log("[Demo MainAbility onDestroy]")  
-	}    
-	onWindowStageCreate(windowStage) {
-  //    Main window is created,set main page for this ability        		             
+  }    
+  onWindowStageCreate(windowStage) {
+//    Main window is created,set main page for this ability        		             
     windowStage.setUlContent(this.context,"pages/index",this.storage)    
-	}    
-	onWindowStageDestroy() {
-  //    Main window is destroyed,release Ul related resources  
+  }    
+  onWindowStageDestroy() {
+//    Main window is destroyed,release Ul related resources  
     console.log("[Demo] MainAbility onWindoeStageDestroy")   
-	}    
-	onForeground() {
-  //    Ability has brought to foreground       
+  }    
+  onForeground() {
+//    Ability has brought to foreground       
     console.log("[Demo] MainAbility onForeground")   
-	}    
-	onBackground() {
-  //    Ability has back to background       
+  }    
+  onBackground() {
+//    Ability has back to background       
     console.log("[Demo] MainAbility onBackground")    
-	}}
+  }}
 ```
 
 获取页面：
@@ -82,18 +82,18 @@ let storage = LocalStorage.GetShared()
 @Entry(storage)
 @Component
 struct LocalStorageComponent {
-    @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0
-    build() {
+  @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0
+  build() {
     Column(){
       Text(this.simpleVarName.toString())
         .onClick(()=>{
-        	this.simpleVarName +=1;
+          this.simpleVarName +=1;
         })
-      Text(JSON.stringify(this.simpleVarName))
-      	.fontSize(50)
+        Text(JSON.stringify(this.simpleVarName))
+      	  .fontSize(50)
     }
     .height(500)
-    }
+  }
 }
 ```
 
@@ -102,22 +102,24 @@ struct LocalStorageComponent {
 ```
 let storage = new LocalStorage({"PropA":47});
 @Entry(storage)
-@Componentstruct ComA {    
-	@LocalStorageLink("PropA") storLink : number = 1;    
-	build() {    
-	  Column() {        
-		  Text(`Parent from LocalStorage $(this.storLink)`)            				               
-        .onClick(()=>this.storLink+=1)            
-		  Child()    
-	  }    
-	}}
+@Componentstruct 
+struct ComA {    
+  @LocalStorageLink("PropA") storLink : number = 1;    
+  build() {    
+	Column() {        
+	  Text(`Parent from LocalStorage $(this.storLink)`)            				                 .onClick(()=>this.storLink+=1)            
+	  Child()    
+	}    
+  }
+}
 
 
 @Component
 struct Child{    
   @LocalStorageLink("PropA") storLink : number = 1;    
   build() {    
-	  Text(`Parent from LocalStorage $(this.storLink)`)        
-		  .onClick(()=>this.storLink1+=1)    
-	}}
+	Text(`Parent from LocalStorage $(this.storLink)`)        
+	  .onClick(()=>this.storLink1+=1)    
+  }
+}
 ```
