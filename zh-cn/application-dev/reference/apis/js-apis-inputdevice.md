@@ -119,7 +119,7 @@ function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
 
 | 参数                      | 说明                          |
 | ------------------------- | ----------------------------- |
-| Promise<Array&lt;number>> | Promise实例，用于异步获取结果 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于异步获取结果 |
 
 **示例：**
 
