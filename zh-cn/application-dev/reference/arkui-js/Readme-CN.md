@@ -59,6 +59,7 @@
         - [toolbar-item](js-components-basic-toolbar-item.md)
         - [toggle](js-components-basic-toggle.md)
         - [web](js-components-basic-web.md)
+        - [xcomponent](js-components-basic-xcomponent.md)
     - 媒体组件
         - [video](js-components-media-video.md)
     - 画布组件
