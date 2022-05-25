@@ -150,7 +150,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
    var formatResult = numberFormat.format(number);
    ```
 
-3. Access the attributes of the **NumberFormat** object.<br>
+3. Obtain attributes of the **NumberFormat** object.<br>
    The **resolvedOptions** method of NumberFormat returns an object that contains all related attributes and values of the **NumberFormat** object.
      
    ```
@@ -295,7 +295,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    var formatResult = relativeTimeFormat.formatToParts(number, unit);
    ```
 
-4. Access the attributes of the **RelativeTimeFormat** object.<br>
+4. Obtain attributes of the **RelativeTimeFormat** object.<br>
    The **resolvedOptions** method of **RelativeTimeFormat** returns an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
      
    ```
