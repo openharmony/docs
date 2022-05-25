@@ -174,4 +174,4 @@ if (this.subscriber != null) {
 
 The following sample is provided to help you better understand how to use the common event functionality:
 
-- [`CommonEvent`: eTS Common Event (API 7)](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent)
+- [`CommonEvent`: eTS Common Event (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent)
