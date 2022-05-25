@@ -68,10 +68,11 @@ The table below describes the APIs of the pin module. For more details, see API 
 
 ### How to Develop<a name="section9"></a>
 
-The figure below shows the process.
+The figure below illustrates how to use the APIs.
 
- **Figure 2** Process of using the pin module<a name="fig2"></a> 
-![](figures/process-of-using-pin.png "Process of using the pin module")
+ **Figure 2** Using the pin driver APIs 
+ 
+![](figures/using-pin-process.png "Process of using the pin module")
 
 #### Obtaining the Pin Description Handle
 
@@ -122,7 +123,7 @@ int32_t PinSetPull(DevHandle handle, enum PinPullType pullType);
 | pullType   | Pull type to set.        |
 | **Return Value**| **Description**        |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pull type to pull-up.
 
@@ -156,7 +157,7 @@ int32_t PinGetPull(DevHandle handle, enum PinPullType *pullType);
 | pullType   | Pointer to the pull type obtained.|
 | **Return Value**| **Description**          |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pull type of a pin.
 
@@ -189,7 +190,7 @@ int32_t PinSetStrength(DevHandle handle, uint32_t strength);
 | strength   | Pull strength to set.        |
 | **Return Value**| **Description**        |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pull strength of the pin to 2. 
 
@@ -223,7 +224,7 @@ int32_t PinGetStrength(DevHandle handle, uint32_t *strength);
 | strength   | Pointer to the pull strength obtained.|
 | **Return Value**| **Description**          |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pull strength of a pin.
 
@@ -258,7 +259,7 @@ int32_t PinSetFunc(DevHandle handle, const char *funcName);
 | funcName   | Pointer to the pin function to set.      |
 | **Return Value**| **Description**    |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pin function to LSADC_CH1 (ADC channel 1).
 
@@ -291,7 +292,7 @@ int32_t PinGetFunc(DevHandle handle, const char **funcName);
 | funcName   | Pointer to the function name obtained.|
 | **Return Value**| **Description**      |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pin function. 
 
