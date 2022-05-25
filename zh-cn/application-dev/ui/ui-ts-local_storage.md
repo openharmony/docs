@@ -36,11 +36,11 @@ LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageL
 
 ### @LocalStorageLink装饰器
 
-组件通过使用@LocalStorageLink(key)装饰的状态变量，key值要与创造时值想对应，与LocalStorage建立双向数据绑定，变量类型可以为类对象，字符串，数字，布尔值和这些类型的数组等复杂数据。并且要设置默认值，给定数据类型，其他用法请参考StorageLink
+组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值@LocalStorageLink是与LocalStorage建立双向数据绑定，用法请参考StorageLink
 
 ### @LocalStorageProp装饰器
 
-组件通过使用LocalStorageProp(key)装饰的状态变量，key值要与创造时值想对应，与LocalStorage建立单向数据绑定，量类型可以为类对象，字符串，数字，布尔值和这些类型的数组等复杂数据。并且要设置默认值，给定数据类型，其他用法请参考StorageProps
+组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，@LocalStorageProp是与LocalStorage建立单向数据绑定，用法请参考StorageProps
 
 ### 示例1（在一个Ability创建的LocalStorage）：
 
