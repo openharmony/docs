@@ -1,7 +1,6 @@
 # TextInput
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -61,35 +60,6 @@ In addition to universal attributes, the following attributes are supported.
   | InputType.Number | Digit input mode. |
 
 
-### TextInputController<sup>8+</sup>
-
-Implements the controller of the **&lt;TextInput&gt;** component.
-
-| Name | Description |
-| -------- | -------- |
-| caretPosition(value: number):void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
-
-
-### Objects to Import
-
-
-```
-controller: TextInputController = new TextInputController()
-```
-
-
-### controller.createPosition
-
-caretPosition(value: number): void
-
-Sets the cursor in a specified position.
-
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
-
-
 ## Events
 
 | Name | Description |
@@ -102,6 +72,31 @@ Sets the cursor in a specified position.
 | onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
 | onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
 
+### TextInputController<sup>8+</sup>
+
+Implements the controller of the **&lt;TextInput&gt;** component.
+
+
+### Objects to Import
+
+
+```
+controller: TextInputController = new TextInputController()
+```
+
+
+#### caretPosition
+
+caretPosition(value: number): void
+
+Sets the cursor in a specified position.
+
+- Parameters
+    | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
+
+
 
 ## Example
 
@@ -112,7 +107,7 @@ Sets the cursor in a specified position.
 ```
 @Entry
 @Component
-struct TextAreaExample2 {
+struct TextInputExample1 {
   @State text: string = ''
 
   build() {
@@ -147,7 +142,7 @@ struct TextAreaExample2 {
 ```
 @Entry
 @Component
-struct TextInputTest {
+struct TextInputExample2 {
     @State text: string = ''
     controller: TextInputController = new TextInputController()
     build() {

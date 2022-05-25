@@ -1,8 +1,8 @@
 # TextArea
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
 
 
 The **&lt;TextArea&gt;** component provides multi-line text input.
@@ -90,7 +90,7 @@ Sets the position of the caret.
 ```
 @Entry
 @Component
-struct TextAreaExample2 {
+struct TextAreaExample1 {
   @State text: string = ''
   build() {
     Column() {
@@ -126,7 +126,7 @@ struct TextAreaExample2 {
 ```
 @Entry
 @Component
-struct TextAreaTest {
+struct TextAreaExample2 {
     controller: TextAreaController = new TextAreaController()
     build() {
         Column() {
