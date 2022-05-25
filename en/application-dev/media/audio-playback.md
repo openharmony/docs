@@ -101,7 +101,7 @@ async function audioPlayerDemo() {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
         fdPath = fdPath + '' + fdNumber;
-        console.info('open fd sucess fd is' + fdPath);
+        console.info('open fd success fd is' + fdPath);
     }, (err) => {
         console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -141,7 +141,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -187,7 +187,7 @@ export class AudioDemo {
     let nextpath = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/02.mp3';
     await fileIO.open(nextpath).then((fdNumber) => {
       nextFdPath = nextFdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + nextFdPath);
+      console.info('open fd success fd is' + nextFdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -204,7 +204,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -241,7 +241,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
