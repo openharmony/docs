@@ -36,7 +36,7 @@
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
        - [Internationalization](internationalization/Readme-EN.md)
-       - 
+       - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
        - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
