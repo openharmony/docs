@@ -20,8 +20,6 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
 
 ## Setting Up the Ubuntu Development Environment
 
-The setup procedure varies, depending on whether you need a GUI. If you need a GUI, you need to install Visual Studio Code. In this case, follow the instructions in [Setting Up the Ubuntu Development Environment](https://device.harmonyos.com/en/docs/documentation/guide/ide-install-ubuntu-0000001072959308). If you do not need a GUI, perform the steps below:
-
 1. Make sure the Ubuntu shell environment is **bash**.
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
       
