@@ -390,7 +390,7 @@
     - [轻量和小型系统编译构建指导](subsystems/subsys-build-mini-lite.md)
     - [标准系统编译构建指导](subsystems/subsys-build-standard-large.md)
     - [构建系统编码规范和最佳实践指导](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
-    - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guid.md)
+    - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
   - [分布式远程启动](subsystems/subsys-remote-start.md)
   - 图形图像
     - [图形图像概述](subsystems/subsys-graphics-overview.md)
@@ -537,6 +537,11 @@
 
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
+
+- 示例教程
+
+  - [Demo示例](device-demo.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 
 - 参考
   - [常见问题概述](faqs/faqs-overview.md)

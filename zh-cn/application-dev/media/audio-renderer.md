@@ -14,9 +14,15 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 
 在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioRenderer的状态变更。因为针对AudioRenderer的某些操作，仅在音频播放器在固定状态时才能执行。如果应用在音频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
+**图1** 音频渲染状态机
+
+![](figures/audio-renderer-state.png)
+
 ### 异步操作
 
 为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考[音频管理API文档AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8)。
+
+
 
 ## 开发步骤
 

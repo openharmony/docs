@@ -3,29 +3,22 @@
 
 ## 概述
 
-RTC(real-time clock)为操作系统中的实时时钟设备，为操作系统提供精准的实时时间和定时报警功能。当设备下电后，通过外置电池供电，RTC继续记录操作系统时间；设备上电后，RTC提供实时时钟给操作系统，确保断电后系统时间的连续性。
+RTC（real-time clock）为操作系统中的实时时钟设备，为操作系统提供精准的实时时间和定时报警功能。当设备下电后，通过外置电池供电，RTC继续记录操作系统时间；设备上电后，RTC提供实时时钟给操作系统，确保断电后系统时间的连续性。
 
 
 ## 接口说明
 
   **表1** RTC设备API接口功能介绍
 
-| 功能分类 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| RTC句柄操作 | RtcOpen：获取RTC设备驱动句柄<br/>RtcClose：释放RTC设备驱动句柄 | 获取RTC设备驱动句柄 | 
-| RTC时间操作接口 | RtcReadTime | 读RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 | 
-| RtcWriteTime | 写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 | 
-| RTC报警操作接口 | RtcReadAlarm | 读RTC报警时间信息 | 
-| RtcWriteAlarm | 写RTC报警时间信息 | 
-| RtcRegisterAlarmCallback | 注册报警超时回调函数 | 
-| RtcAlarmInterruptEnable | 使能/去使能RTC报警中断 | 
-| RTC配置操作 | RtcGetFreq | 读RTC外接晶振频率 | 
-| RtcSetFreq | 配置RTC外接晶振频率 | 
-| RtcReset | RTC复位 | 
-| 读写用户定义寄存器 | RtcReadReg | 读用户自定义寄存器 | 
-| RtcWriteReg | 写用户自定义寄存器 | 
+| 功能分类 | 接口描述 | 
+| -------- | -------- |
+| RTC句柄操作 | RtcOpen：获取RTC设备驱动句柄<br/>RtcClose：释放RTC设备驱动句柄 |
+| RTC时间操作接口 | RtcReadTime：读RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒<br/>RtcWriteTime：写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
+| RTC报警操作接口 | RtcReadAlarm：读RTC报警时间信息<br/>RtcWriteAlarm：写RTC报警时间信息<br/>RtcRegisterAlarmCallback：注册报警超时回调函数<br/>RtcAlarmInterruptEnable：使能/去使能RTC报警中断 |
+| RTC配置操作 | RtcGetFreq：读RTC外接晶振频率<br/>RtcSetFreq：配置RTC外接晶振频率<br/>RtcReset：RTC复位 |
+| 读写用户定义寄存器 | RtcReadReg：读用户自定义寄存器<br/>RtcWriteReg：写用户自定义寄存器 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
@@ -45,21 +38,21 @@ RTC(real-time clock)为操作系统中的实时时钟设备，为操作系统提
 
 ### 创建RTC设备句柄
 
-RTC驱动加载成功后，驱动开发者使用驱动框架提供的查询接口并调用RTC设备驱动接口。
+RTC驱动加载成功后，使用驱动框架提供的查询接口并调用RTC设备驱动接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 当前操作系统支持一个RTC设备。
 
 DevHandle RtcOpen(void);
 
   **表2** RtcOpen参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| void       | NA                               |
-| **返回值** | **返回值描述**                   |
-| handle     | 操作成功返回&nbsp;&nbsp;指针类型 |
-| NULL       | 操作失败                         |
+| void | NA |
+| **返回值** | **描述** |
+| handle | 操作成功返回&nbsp;&nbsp;指针类型 |
+| NULL | 操作失败 |
 
 
 ```
@@ -81,9 +74,9 @@ void RtcClose(DevHandle handle);
 
   **表3** RtcClose参数描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle   | RTC设备句柄  |
+| handle | RTC设备句柄 |
 
 
 ```
@@ -100,12 +93,12 @@ int32_t RtcRegisterAlarmCallback(DevHandle handle, enum RtcAlarmIndex alarmIndex
 
   **表4** RtcRegisterAlarmCallback参数和返回值描述
 
-| **参数** | **参数描述** | 
+| **参数** | **描述** | 
 | -------- | -------- |
 | handle | RTC设备句柄 | 
 | alarmIndex | 报警索引 | 
 | cb | 定时报警回调函数 | 
-| **返回值** | **返回值描述** | 
+| **返回值** | **描述** | 
 | 0 | 操作成功 | 
 | 负数 | 操作失败 | 
 
@@ -143,11 +136,11 @@ int32_t RtcReadTime(DevHandle handle, struct RtcTime \*time);
 
   **表5** RtcReadTime参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
 | handle     | RTC设备句柄                                             |
 | time       | RTC读取时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
-| **返回值** | **返回值描述**                                          |
+| **返回值** | **描述**                                          |
 | 0          | 操作成功                                                |
 | 负数       | 操作失败                                                |
 
@@ -171,15 +164,15 @@ int32_t RtcWriteTime(DevHandle handle, struct RtcTime \*time);
 
   **表6** RtcWriteTime参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                                           |
-| time       | 写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
-| **返回值** | **返回值描述**                                        |
-| 0          | 操作成功                                              |
-| 负数       | 操作失败                                              |
+| handle | RTC设备句柄 |
+| time | 写RTC时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > RTC起始时间为UTC 1970/01/01 Thursday 00:00:00，年的最大取值按照用户器件手册要求计算配置，星期不用配置。
 
 
@@ -210,14 +203,14 @@ int32_t RtcReadAlarm(DevHandle handle, enum RtcAlarmIndex alarmIndex, struct Rtc
 
   **表7** RtcReadAlarm参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                                             |
-| alarmIndex | 报警索引                                                |
-| time       | RTC报警时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
-| **返回值** | **返回值描述**                                          |
-| 0          | 操作成功                                                |
-| 负数       | 操作失败                                                |
+| handle | RTC设备句柄 |
+| alarmIndex | 报警索引 |
+| time | RTC报警时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数       | 操作失败 |
 
 
 ```
@@ -239,16 +232,16 @@ int32_t RtcWriteAlarm(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct R
 
   **表8** RtcWriteAlarm参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                                             |
-| alarmIndex | 报警索引                                                |
-| time       | RTC报警时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
-| **返回值** | **返回值描述**                                          |
-| 0          | 操作成功                                                |
-| 负数       | 操作失败                                                |
+| handle | RTC设备句柄 |
+| alarmIndex | 报警索引 |
+| time | RTC报警时间信息，包括年、月、星期、日、时、分、秒、毫秒 |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**</br>
 > RTC起始时间为UTC 1970/01/01 Thursday 00:00:00，年的最大取值按照用户器件手册要求计算配置，星期不用配置。
 
 
@@ -279,14 +272,14 @@ int32_t RtcAlarmInterruptEnable(DevHandle handle, enum RtcAlarmIndex alarmIndex,
 
   **表9** RtcAlarmInterruptEnable参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                         |
-| alarmIndex | 报警索引                            |
+| handle     | RTC设备句柄 |
+| alarmIndex | 报警索引 |
 | enable     | RTC报警中断配置，1：使能，0：去使能 |
-| **返回值** | **返回值描述**                      |
-| 0          | 操作成功                            |
-| 负数       | 操作失败                            |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```
@@ -307,13 +300,13 @@ int32_t RtcGetFreq(DevHandle handle, uint32_t \*freq);
 
   **表10** RtcGetFreq参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                       |
-| freq       | RTC的外接晶体振荡频率，单位（HZ） |
-| **返回值** | **返回值描述**                    |
-| 0          | 操作成功                          |
-| 负数       | 操作失败                          |
+| handle | RTC设备句柄 |
+| freq | RTC的外接晶体振荡频率，单位（HZ） |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```
@@ -335,13 +328,13 @@ int32_t RtcSetFreq(DevHandle handle, uint32_t freq);
 
   **表11** RtcSetFreq参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄                       |
-| freq       | RTC的外接晶体振荡频率，单位（HZ） |
-| **返回值** | **返回值描述**                    |
-| 0          | 操作成功                          |
-| 负数       | 操作失败                          |
+| handle | RTC设备句柄 |
+| freq | RTC的外接晶体振荡频率，单位（HZ） |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```
@@ -363,18 +356,18 @@ int32_t RtcReset(DevHandle handle);
 
   **表12** RtcReset参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle     | RTC设备句柄    |
-| **返回值** | **返回值描述** |
-| 0          | 操作成功       |
-| 负数       | 操作失败       |
+| handle     | RTC设备句柄 |
+| **返回值** | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```
 int32_t ret;
 
-/* 复位RTC，复位RTC后各配置寄存器恢复默认值 */
+/* 复位RTC，各配置寄存器恢复默认值 */
 ret = RtcReset(handle);
 if (ret != 0) {
     /* 错误处理 */
@@ -389,14 +382,14 @@ int32_t RtcReadReg(DevHandle handle, uint8_t usrDefIndex, uint8_t \*value);
 
   **表13** RtcReadReg参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle      | RTC设备句柄              |
+| handle      | RTC设备句柄 |
 | usrDefIndex | 用户定义的寄存器对应索引 |
-| value       | 寄存器值                 |
-| **返回值**  | **返回值描述**           |
-| 0           | 操作成功                 |
-| 负数        | 操作失败                 |
+| value       | 寄存器值 |
+| **返回值**  | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```
@@ -419,14 +412,14 @@ int32_t RtcWriteReg(DevHandle handle, uint8_t usrDefIndex, uint8_t value);
 
   **表14** RtcWriteReg参数和返回值描述
 
-| **参数** | **参数描述** |
+| **参数** | **描述** |
 | -------- | -------- |
-| handle      | RTC设备句柄              |
+| handle | RTC设备句柄 |
 | usrDefIndex | 用户定义的寄存器对应索引 |
-| value       | 寄存器值                 |
-| **返回值**  | **返回值描述**           |
-| 0           | 操作成功                 |
-| 负数        | 操作失败                 |
+| value | 寄存器值 |
+| **返回值**  | **描述** |
+| 0 | 操作成功 |
+| 负数 | 操作失败 |
 
 
 ```

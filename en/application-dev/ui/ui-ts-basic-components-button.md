@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action, for example, submitting a form. Buttons are classified as capsule, circle, or normal buttons.
+The **\<Button>** component is usually activated by user clicks to perform a specific action, for example, submitting a form. Buttons are classified as capsule, circle, or normal buttons. For details, see [Button](../reference/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
@@ -76,7 +76,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .borderRadius(20)
   ```
 
-  ![zh-cn_image_0000001190463780](figures/zh-cn_image_0000001190463780.png)
+  ![en-us_image_0000001190463780](figures/en-us_image_0000001190463780.png)
 
 - Set the text style:
   
@@ -90,7 +90,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .fontWeight(800)
   ```
 
-  ![zh-cn_image_0000001189744672](figures/zh-cn_image_0000001189744672.png)
+  ![en-us_image_0000001189744672](figures/en-us_image_0000001189744672.png)
 
 - Set the background color:
   

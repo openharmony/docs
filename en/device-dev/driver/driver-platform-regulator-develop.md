@@ -266,13 +266,13 @@ The regulator module adaptation procedure is as follows:
     
        Input parameters:
     
-       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+      **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
        
        Return value:
        
-       **HDF\_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.)
+      **HDF\_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.)
        
-       **Table 2** HDF\_STATUS
+      **Table 2** HDF\_STATUS
     
        | State              | Description      |
        | ---------------------- | -------------- |
@@ -319,11 +319,11 @@ The regulator module adaptation procedure is as follows:
        }
        ```
     
-    -   **Release** function
+    -  **Release** function
         
          Input parameters:
         
-         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
+        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration.
         
          Return value:
         
@@ -341,8 +341,6 @@ The regulator module adaptation procedure is as follows:
         }
         ```
     
-4. Debug the driver.
+4. (Optional) Debug the driver.
 
-   (Optional) Verify the basic functions of the new driver, for example, whether the test cases are successful after the driver is loaded.
-
-   
+   Verify the basic functions of the new driver, for example, whether the test cases are successful after the driver is loaded.

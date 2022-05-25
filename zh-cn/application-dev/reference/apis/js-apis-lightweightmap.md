@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import LightWeightMap from '@ohos.util.LightWeightMap'  
+import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
 
 ## 系统能力
@@ -475,7 +475,7 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
@@ -502,7 +502,7 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -535,7 +535,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sdfs", 123);
 lightWeightMap.set("dfsghsf", 357);
 lightWeightMap.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -561,8 +561,8 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -609,16 +609,16 @@ lightWeightMap.set("sdfs", 356);
 
 // 使用方法一：
 for (let item of lightWeightMap) { 
-  console.log("key: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("key:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // 使用方法二：
 let iter = lightWeightMap[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

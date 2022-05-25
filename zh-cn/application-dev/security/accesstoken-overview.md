@@ -36,7 +36,7 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
     视频播放类应用要使用多媒体功能，应用必须对用户外部存储的媒体文件信息进行读取和写入，所以应用需要至少申请以下两个权限：
 
-    (1) ohos.permission.READ_MEDIA  允许应用读取用户外部存储中的媒体文件信息。
+    (1) ohos.permission.READ_MEDIA 允许应用读取用户外部存储中的媒体文件信息。
 
     (2) ohos.permission.WRITE_MEDIA 允许应用读写用户外部存储中的媒体文件信息。
 
@@ -44,11 +44,11 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
     摄影美图类应用需要使用到相机功能，那么应用访问相机服务前，需要申请到相机权限：
 
-    (1) ohos.permission.CAMERA  允许应用使用相机拍摄照片和录制视频。
+    (1) ohos.permission.CAMERA 允许应用使用相机拍摄照片和录制视频。
 
 ### 基本原则
 
-在进行权限的申请和使用时，需要满足以下以下基本原则：
+在进行权限的申请和使用时，需要满足以下基本原则：
 
 - 应用申请的权限，都必须有明确、合理的使用场景和功能说明，确保用户能够清晰明了地知道申请权限的目的、场景、用途；禁止诱导、误导用户授权；应用使用权限必须与申请所述一致。
 - 应用权限申请遵循最小化原则，只申请业务功能所必要的权限，禁止申请不必要的权限。
@@ -75,8 +75,7 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 | normal等级       | 普通应用。                             |
 
 默认情况下，应用的APL等级都为normal等级，如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，需要进行以下步骤：
-- 申请应用市场审核并通过。
-- 开发应用安装包时，需要修改应用的profile文件，在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。
+- 开发应用安装包时，需要修改应用的profile文件，在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
 
 ### 权限等级说明
 
@@ -118,7 +117,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 
 - **system_grant**
 
-    system_grant指的是系统授权类型，在该类型的权限许可下，应用被允许访问的数据不会涉及到用户或设备的敏感信息，应用被允许执行的操作不会对系统或者其他应用产生大的不利影响。
+   system_grant指的是系统授权类型，在该类型的权限许可下，应用被允许访问的数据不会涉及到用户或设备的敏感信息，应用被允许执行的操作不会对系统或者其他应用产生大的不利影响。
 
     如果在应用中申请了system_grant权限，那么系统会在用户安装应用时，自动把相应权限授予给应用。应用需要在应用商店的详情页面，向用户展示所申请的system_grant权限列表。
 
@@ -172,8 +171,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 
 **ACL申请方式须知**
 
-* 申请应用市场审核并通过。
-* 开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[配置OpenHarmony应用签名信息](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)。
+* 开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
 
 ## 权限定义列表
 
@@ -186,6 +184,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 | ohos.permission.MANAGE_BLUETOOTH                         | system_basic | system_grant | TRUE    | 允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问。       |
 | ohos.permission.INTERNET                                 | normal       | system_grant | TRUE    | 允许使用Internet网络。                                       |
 | ohos.permission.MODIFY_AUDIO_SETTINGS                    | normal       | system_grant | TRUE    | 允许应用修改音频设置。                                       |
+| ohos.permission.ACCESS_NOTIFICATION_POLICY               | normal       | system_grant | FALSE   | 在本设备上允许应用访问通知策略。                              |
 | ohos.permission.GET_TELEPHONY_STATE                      | system_basic | system_grant | TRUE    | 允许应用读取电话信息。                                       |
 | ohos.permission.REQUIRE_FORM                             | system_basic | system_grant | TRUE    | 允许应用获取Ability Form。                                   |
 | ohos.permission.GET_NETWORK_INFO                         | normal       | system_grant | TRUE    | 允许应用获取数据网络信息。                                   |
@@ -221,6 +220,8 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 | ohos.permission.CLEAN_BACKGROUND_PROCESSES               | normal       | system_grant | TRUE    | 允许应用根据包名清理相关后台进程。                           |
 | ohos.permission.KEEP_BACKGROUND_RUNNING                  | normal       | system_grant | TRUE    | 允许Service Ability在后台持续运行。                          |
 | ohos.permission.UPDATE_CONFIGURATION                     | system_basic | system_grant | TRUE    | 允许更新系统配置。                                           |
+| ohos.permission.UPDATE_SYSTEM                            | system_basic | system_grant | TRUE    | 允许调用升级接口。                                           |
+| ohos.permission.FACTORY_RESET                            | system_basic | system_grant | TRUE    | 允许调用回复出厂接口。                                       |
 | ohos.permission.GRANT_SENSITIVE_PERMISSIONS              | system_core  | system_grant | TRUE    | 允许应用为其他应用授予敏感权限。                             |
 | ohos.permission.REVOKE_SENSITIVE_PERMISSIONS             | system_core  | system_grant | TRUE    | 允许应用撤销给其他应用授予的敏感信息。                       |
 | ohos.permission.GET_SENSITIVE_PERMISSIONS                | system_core  | system_grant | TRUE    | 允许应用读取其他应用的敏感权限的状态。                       |
@@ -244,8 +245,36 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 | ohos.permission.CONTROL_TASK_SYNC_ANIMATOR               | system_core  | system_grant | TRUE    | 允许应用使用同步任务动画。                                   |
 | ohos.permission.INPUT_MONITORING                         | system_core  | system_grant | TRUE    | 允许应用监听输入事件，仅系统签名应用可申请此权限。           |
 | ohos.permission.MANAGE_MISSIONS                          | system_core  | system_grant | TRUE    | 允许用户管理元能力任务栈。                                   |
-| ohos.permission.NOTIFICATION_CONTROLLER                  | system_core  | system_grant | TRUE    | 允许应用管理通知和订阅通知。当前仅支持系统应用申请该权限。   |
-| ohos.permission.CONNECTIVITY_INTERNAL                    | system_basic | system_grant | TRUE    | 允许应用程序获取网络相关的信息或修改网络相关设置。当前仅支持系统应用申请该权限。 |
+| ohos.permission.NOTIFICATION_CONTROLLER                  | system_core  | system_grant | TRUE    | 允许应用管理通知和订阅通知。   |
+| ohos.permission.CONNECTIVITY_INTERNAL                    | system_basic | system_grant | TRUE    | 允许应用程序获取网络相关的信息或修改网络相关设置。 |
+| ohos.permission.SET_ABILITY_CONTROLLER                   | system_basic | system_grant | TRUE    | 允许设置ability组件启动和停止控制权。   |
+| ohos.permission.USE_USER_IDM                             | system_basic | system_grant | FALSE   | 允许应用访问系统身份凭据信息。   |
+| ohos.permission.MANAGE_USER_IDM                          | system_basic | system_grant | FALSE   | 允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。   |
+| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | TRUE    | 允许应用使用生物特征识别能力进行身份认证。   |
+| ohos.permission.ACCESS_USER_AUTH_INTERNAL                | system_basic | system_grant | FALSE   | 允许应用使用系统身份认证能力进行用户身份认证或身份识别。   |
+| ohos.permission.ACCESS_PIN_AUTH                          | system_basic | system_grant | FALSE   | 允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。   |
+| ohos.permission.GET_RUNNING_INFO                         | system_basic | system_grant | TRUE    | 允许应用获取运行态信息。   |
+| ohos.permission.CLEAN_APPLICATION_DATA                   | system_basic | system_grant | TRUE    | 允许应用清理应用数据。   |
+| ohos.permission.RUNNING_STATE_OBSERVER                   | system_basic | system_grant | TRUE    | 允许应用观察应用状态。   |
+| ohos.permission.CAPTURE_SCREEN                           | system_core  | system_grant | TRUE    | 允许应用截取屏幕图像。   |
+| ohos.permission.GET_WIFI_INFO                            | normal       | system_grant | TRUE    | 允许应用获取WLAN信息。   |
+| ohos.permission.GET_WIFI_INFO_INTERNAL                   | system_core  | system_grant | TRUE    | 允许应用获取WLAN信息。  |
+| ohos.permission.SET_WIFI_INFO                            | normal       | system_grant | TRUE    | 允许应用配置WLAN设备。   |
+| ohos.permission.GET_WIFI_PEERS_MAC                       | system_core  | system_grant | TRUE    | 允许应用获取对端WLAN或者蓝牙设备的MAC地址。   |
+| ohos.permission.GET_WIFI_LOCAL_MAC                       | system_basic | system_grant | TRUE    | 允许应用获取本机WLAN或者蓝牙设备的MAC地址。   |
+| ohos.permission.GET_WIFI_CONFIG                          | system_basic | system_grant | TRUE    | 允许应用获取WLAN配置信息。   |
+| ohos.permission.SET_WIFI_CONFIG                          | system_basic | system_grant | TRUE    | 允许应用配置WLAN信息。   |
+| ohos.permission.MANAGE_WIFI_CONNECTION                   | system_core  | system_grant | TRUE    | 允许应用管理WLAN连接。   |
+| ohos.permission.MANAGE_WIFI_HOTSPOT                      | system_core  | system_grant | TRUE    | 允许应用开启或者关闭WLAN热点。   |
+| ohos.permission.GET_ALL_APP_ACCOUNTS                     | system_core  | system_grant | FALSE   | 允许应用获取所有应用账户信息。   |
+| ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用修改安全类系统设置。   |
+| ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许获取所有应用账号信息。  |
+| ohos.permission.MANAGE_ADMIN                             | system_core  | system_grant | TRUE    | 允许应用激活设备管理员应用。   |
+| ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | 允许设备管理员应用设置系统时间。   |
+| ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                      |
+| ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                           |
+| ohos.permission.PERMISSION_USED_STATS                    | system_core  | system_grant | TRUE    | 允许系统应用访问权限使用记录。                           |
+| ohos.permission.NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | 允许应用发送代理通知。                           |
 | ohos.permission.ANSWER_CALL                              | system_basic | user_grant   | TRUE    | 允许应用接听来电。                                           |
 | ohos.permission.READ_CALENDAR                            | normal       | user_grant   | TRUE    | 允许应用读取日历信息。                                       |
 | ohos.permission.READ_CALL_LOG                            | system_basic | user_grant   | TRUE    | 允许应用读取通话记录。                                       |

@@ -314,4 +314,4 @@ export default {
 
 针对Tabs开发，有以下相关实例可供参考：
 
-- [`Tabs`：页签容器（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)
+- [`Tabs`：页签容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)

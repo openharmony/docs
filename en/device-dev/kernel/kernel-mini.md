@@ -1,4 +1,4 @@
-# Kernel for the Mini System<a name="EN-US_TOPIC_0000001124663064"></a>
+# Mini-System Kernel
 
 -   **[Kernel Overview](kernel-mini-overview.md)**  
 
@@ -9,5 +9,4 @@
 -   **[Kernel Debugging](kernel-mini-debug.md)**  
 
 -   **[Appendix](kernel-mini-app.md)**  
-
 

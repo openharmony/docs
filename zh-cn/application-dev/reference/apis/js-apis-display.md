@@ -1,6 +1,6 @@
 # 屏幕属性
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -14,7 +14,7 @@ import display from '@ohos.display';
 
 用于表示显示设备的状态。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -31,7 +31,7 @@ import display from '@ohos.display';
 
 描述display对象的属性。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -56,14 +56,14 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 获取当前默认的display对象。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调返回当前默认的display对象。 |
 
-- 示例
+**示例：**
   ```js
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
@@ -82,15 +82,15 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 获取当前默认的display对象。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                               | 说明                                           |
   | ---------------------------------- | ---------------------------------------------- |
   | Promise&lt;[Display](#display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = display.getDefaultDisplay();
@@ -107,15 +107,15 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                                                 | 必填 | 说明                            |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
   | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
 
-- 示例
+**示例：**
 
   ```js
   display.getAllDisplay((err, data) => {
@@ -133,15 +133,15 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 获取当前所有的display对象。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 返回值
+**返回值：**
 
   | 类型                                            | 说明                                                    |
   | ----------------------------------------------- | ------------------------------------------------------- |
   | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
 
-- 示例
+**示例：**
 
   ```js
   let promise = display.getAllDisplay();
@@ -158,15 +158,15 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
   | callback | Callback&lt;number&gt; | 是 | 回调返回监听到的显示设备的id。 |
 
-- 示例
+**示例：**
   ```js
   var type = "add";
   var callback = (data) => {
@@ -182,15 +182,15 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭监听。
 
-**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
   | callback | Callback&lt;number&gt; | 否 | 回调返回监听到的显示设备的id。 |
 
-- 示例
+**示例：**
   ```js
   var type = "remove";
   display.off(type);

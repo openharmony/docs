@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
@@ -26,7 +26,7 @@ createAtManager(): AtManager
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 ```
 
@@ -57,7 +57,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
@@ -92,7 +92,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
@@ -124,7 +124,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
@@ -159,7 +159,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
@@ -190,7 +190,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
@@ -223,7 +223,7 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 **示例：**
 
-```
+```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let promise = AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");

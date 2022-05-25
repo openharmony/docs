@@ -1,4 +1,4 @@
-# Kernel Startup<a name="EN-US_TOPIC_0000001173040439"></a>
+# Kernel Startup
 
 -   **[Startup in Kernel Mode](kernel-small-start-kernel.md)**  
 

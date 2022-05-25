@@ -24,13 +24,13 @@ push(options: RouterOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | 是 | 跳转页面描述信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | 是 | 跳转页面描述信息。 |
 
 
 **示例：**
-  ```
+  ```js
   // 在当前页面中
   export default {
     pushPage() {
@@ -46,7 +46,7 @@ push(options: RouterOptions): void
     }
   }
   ```
-  ```
+  ```js
   // 在routerpage2页面中
   export default {
     data: {
@@ -72,12 +72,13 @@ replace(options: RouterOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | 是 | 替换页面描述信息。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | 是 | 替换页面描述信息。 |
 
 **示例：**
-  ```
+
+  ```js
   // 在当前页面中
   export default {
     replacePage() {
@@ -91,7 +92,7 @@ replace(options: RouterOptions): void
   }
   ```
 
-  ```
+  ```js
   // 在detail页面中
   export default {
     data: {
@@ -112,12 +113,12 @@ back(options?: RouterOptions ): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
 
 **示例：**
-  ```
+  ```js
   // index页面
   export default {    
     indexPushPage() {        
@@ -128,7 +129,7 @@ back(options?: RouterOptions ): void
   }
   ```
 
-  ```
+  ```js
   // detail页面
   export default {    
     detailPushPage() {        
@@ -139,7 +140,7 @@ back(options?: RouterOptions ): void
   }
   ```
 
-  ```
+  ```js
   // mall页面通过back，将返回detail页面
   export default {    
     mallBackPage() {        
@@ -148,7 +149,7 @@ back(options?: RouterOptions ): void
   }
   ```
 
-  ```
+  ```js
   // detail页面通过back，将返回index页面
   export default {    
     defaultBack() {        
@@ -157,7 +158,7 @@ back(options?: RouterOptions ): void
   }
   ```
 
-  ```
+  ```js
   // 通过back，返回到detail页面
   export default {    
     backToDetail() {        
@@ -175,12 +176,12 @@ clear(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-  ```
+  ```js
   export default {    
     clearPage() {        
       router.clear();    
     }
-  }
+  }js
   ```
 
 ## router.getLength
@@ -190,12 +191,12 @@ getLength(): string
 获取当前在页面栈内的页面数量。
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 页面数量，页面栈支持最大数值是32。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 页面数量，页面栈支持最大数值是32。 |
 
 **示例：**
-  ```
+  ```js
   export default {     
     getLength() {        
       var size = router.getLength();        
@@ -222,14 +223,14 @@ getState(): RouterState
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-  | 名称 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | index | number | 表示当前页面在页面栈中的索引。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;从栈底到栈顶，index从1开始递增。 |
-  | name | string | 表示当前页面的名称，即对应文件名。 |
-  | path | string | 表示当前页面的路径。 |
+| 名称 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| index | number | 表示当前页面在页面栈中的索引。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;从栈底到栈顶，index从1开始递增。 |
+| name | string | 表示当前页面的名称，即对应文件名。 |
+| path | string | 表示当前页面的路径。 |
 
 **示例：**
-  ```
+  ```js
   export default {     
     getState() {        
       var page = router.getState();
@@ -249,13 +250,13 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | options | [EnableAlertOptions](#enablealertoptions) | 是 | 文本弹窗信息描述。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [EnableAlertOptions](#enablealertoptions) | 是 | 文本弹窗信息描述。 |
 
 **示例：**
 
-  ```
+  ```js
   export default {    
     enableAlertBeforeBackPage() {        
       router.enableAlertBeforeBackPage({            
@@ -289,7 +290,7 @@ disableAlertBeforeBackPage(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-  ```
+  ```js
   export default {    
     disableAlertBeforeBackPage() {        
       router.disableAlertBeforeBackPage();    
@@ -314,7 +315,7 @@ getParams(): Object
 **示例：**
 
 - 类Web范示例
-  ```
+  ```js
   // 在当前页面中
   export default {
     pushPage() {
@@ -327,7 +328,7 @@ getParams(): Object
     }
   }
   ```
-  ```
+  ```js
   // 在detail页面中
   export default {
     onInit() {
@@ -338,7 +339,7 @@ getParams(): Object
 
 - 声明式示例
 
-  ```
+  ```ts
   //通过router.push跳转至目标页携带params参数
   import router from '@ohos.router'
   
@@ -384,7 +385,7 @@ getParams(): Object
   }
   ```
 
-  ```
+  ```ts
   //在second页面中接收传递过来的参数
   import router from '@ohos.router'
   
@@ -392,8 +393,8 @@ getParams(): Object
   @Component
   struct Second {
     private content: string = "这是第二页"
-    @State text: string = router.getParams().text
-    @State data: any = router.getParams().data
+    @State text: string = router.getParams()['text']
+    @State data: any = router.getParams()['data']
     @State secondData : string = ''
     
     build() {

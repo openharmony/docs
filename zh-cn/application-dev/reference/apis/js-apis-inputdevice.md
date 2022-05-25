@@ -11,7 +11,7 @@
 ## 导入模块
 
 
-```
+```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
@@ -33,20 +33,11 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **示例：** 
 
-```
-export default {
-    data: {
-        deviceIds: Array,
-    },
-    callback: function(ids) {
-        this.deviceIds = ids;
-    },
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        inputDevice.getDeviceIds(this.callback);
-        console.info("InputDeviceJsTest---end---testGetDeviceIds");
-    }
-}
+```js
+// 示例获取设备所有设备id。
+inputDevice.getDeviceIds(function (ids) {
+  // 处理结果
+});
 ```
 
 ## inputDevice.getDeviceIds
@@ -59,24 +50,20 @@ function getDeviceIds(): Promise<Array<number>>
 
 **返回值：**
 
-| 参数                     | 说明                 |
-| ---------------------- | ------------------ |
-| Promise<Array<number>> | Promise实例，用于异步获取结果 |
+| 参数                   | 说明                            |
+| ---------------------- | ------------------------------- |
+| Promise<Array<number>> | Promise实例，用于异步获取结果。 |
 
 **示例：**
 
-```
-export default {
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        let promise = inputDevice.getDeviceIds();
-        promise.then((data)=> {
-            console.info('GetDeviceIds successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceIds. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+```js
+// 示例获取设备所有设备id。
+let promise = inputDevice.getDeviceIds();
+promise.then((ids)=> {
+    // 处理结果
+}).catch((err)=>{
+    // 处理异常
+});
 ```
 
 
@@ -100,24 +87,11 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **示例：** 
 
-```
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    callback: function(deviceData) {
-        this.InputDeviceData = deviceData;
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        inputDevice.getDevice(1, this.callback);
-        console.info("InputDeviceJsTest---end---testGetDevice");
-    }
-}
+```js
+// 示例获取设备id为1的设备信息。
+inputDevice.getDevice(1, function (deviceData) {
+  // 处理结果
+});
 ```
 
 ## inputDevice.getDevice
@@ -130,34 +104,69 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 **返回值：**
 
-| 参数                       | 说明                 |
-| ------------------------ | ------------------ |
-| Promise<InputDeviceData> | Promise实例，用于异步获取结果 |
+| 参数                     | 说明                            |
+| ------------------------ | ------------------------------- |
+| Promise<InputDeviceData> | Promise实例，用于异步获取结果。 |
 
 **示例：**
 
-```
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        let promise = inputDevice.getDevice(1);
-        promise.then((data)=> {
-            console.info('GetDeviceId successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceId. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+```js
+// 示例获取设备id为1的设备信息。
+let promise = inputDevice.getDevice(1);
+promise.then((data) => {
+  // 处理结果
+}).catch((err) => {
+  // 处理异常
+});
 ```
 
 
+
+## inputDevice.on<sup>9+</sup>
+
+on(type: "change", listener: Callback<DeviceListener>): void
+
+开始监听设备插拔事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数     | 类型                     | 必填 | 说明       |
+| -------- | ------------------------ | ---- | ---------- |
+| type     | string                   | 是   | 监听类型。 |
+| listener | Callback<DeviceListener> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+// 示例监听设备插拔事件
+inputDevice.on("change", function (deviceChangedData) {
+  // 处理结果
+});
+```
+
+## inputDevice.off
+
+function off(type: "change", listener?: Callback<DeviceListener>): void;
+
+停止监听设备插拔事件。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值：**
+
+| 参数     | 类型                     | 必填 | 说明                 |
+| -------- | ------------------------ | ---- | -------------------- |
+| type     | string                   | 是   | 监听类型。           |
+| listener | Callback<DeviceListener> | 否   | 停止监听的回调函数。 |
+
+**示例：**
+
+```js
+// 示例取消监听设备插拔事件
+inputDevice.off("change");
+```
 
 ## InputDeviceData
 
@@ -181,12 +190,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型                      | 说明       |
-| ------ | ------------------------- | -------- |
+| 名称   | 参数类型                  | 说明             |
+| ------ | ------------------------- | ---------------- |
 | source | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis   | [AxisType](axistype)      | 轴的类型     |
-| max    | number                    | 轴上报的最大值  |
-| min    | number                    | 轴上报的最小值  |
+| axis   | [AxisType](axistype)      | 轴的类型。       |
+| max    | number                    | 轴上报的最大值。 |
+| min    | number                    | 轴上报的最小值。 |
 
 
 
@@ -204,3 +213,14 @@ export default {
 | trackball   | string | 表示输入设备是轨迹球。 |
 | touchpad    | string | 表示输入设备是触摸板。 |
 | joystick    | string | 表示输入设备是操纵杆。 |
+
+## DeviceListener
+
+设备插拔事件。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+
+| 名称     | 参数类型 | 说明                                |
+| -------- | -------- | ----------------------------------- |
+| type     | string   | 表示设备插拔类型，取值add和remove。 |
+| deviceId | number   | 表示设备id。                        |

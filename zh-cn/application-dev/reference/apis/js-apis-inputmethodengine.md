@@ -52,13 +52,13 @@ getInputMethodEngine(): InputMethodEngine
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
   | 类型                                    | 说明         |
   | --------------------------------------- | ------------ |
   | [InputMethodEngine](#InputMethodEngine) | 服务端实例。 |
 
-- 示例
+**示例：**
 
   ```js
   var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
@@ -72,13 +72,13 @@ createKeyboardDelegate(): KeyboardDelegate
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
   | 类型                                  | 说明             |
   | ------------------------------------- | ---------------- |
   | [KeyboardDelegate](#KeyboardDelegate) | 客户端监听实例。 |
 
-- 示例
+**示例：**
 
   ```js
   var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
@@ -96,14 +96,14 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
 | callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 是 | 回调返回输入法操作相关实例。 |
 
-- 示例：
+**示例：**
 
   ```js
   InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
@@ -120,7 +120,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                 | 必填 | 说明                     |
   | -------- | -------------------- | ---- | ------------------------ |
@@ -129,7 +129,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 
 
-- 示例：
+**示例：**
 
   ```js
   InputMethodEngine.off('inputStart');
@@ -143,14 +143,14 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
   | callback | void   | 否   | 回调函数。                                                   |
 
-- 示例：
+**示例：**
 
   ```js
   InputMethodEngine.on('keyboardShow', (err) => {
@@ -166,14 +166,14 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型   | 必填 | 说明                                                         |
   | -------- | ------ | ---- | ------------------------------------------------------------ |
   | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
   | callback | void   | 否   | 回调函数。                                                   |
 
-- 示例：
+**示例：**
 
   ```js
   InputMethodEngine.off('keyboardShow');
@@ -192,7 +192,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
@@ -201,7 +201,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 
 
-- 示例：
+**示例：**
 
   ```js
   KeyboardDelegate.on('keyDown', (event) => {
@@ -217,14 +217,14 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                  | 必填 | 说明                                                         |
   | -------- | --------------------- | ---- | ------------------------------------------------------------ |
   | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
   | callback | [KeyEvent](#KeyEvent) | 否   | 回调返回按键信息。                                           |
 
-- 示例：
+**示例：**
 
   ```js
   KeyboardDelegate.off('keyDown');
@@ -238,7 +238,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
   **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型   | 必填 | 说明                                                         |
     | -------- | ------ | ---- | ------------------------------------------------------------ |
@@ -247,7 +247,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 
 
-  - 示例：
+  **示例：**
   
     ```js
     KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
@@ -263,7 +263,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
@@ -271,7 +271,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
     | callback | number | 否 | 回调返回光标信息。 |
 
 
-  - 示例：
+  **示例：**
 
     ```js
     KeyboardDelegate.off('cursorContextChange');
@@ -284,14 +284,14 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型   | 必填 | 说明                                                         |
     | -------- | ------ | ---- | ------------------------------------------------------------ |
     | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
     | callback | number | 是   | 回调返回文本选择信息。                                       |
 
-  - 示例：
+  **示例：**
   
     ```js
     KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
@@ -307,14 +307,14 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
     | type     | string                  | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
     | callback | number | 否 | 回调返回文本选择信息。 |
 
-  - 示例：
+  **示例：**
 
     ```js
     KeyboardDelegate.off('selectionChange');
@@ -329,14 +329,14 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型                            | 必填 | 说明                                                         |
     | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
     | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
     | callback | string | 是 | 回调返回当前文本内容。 |
 
-  - 示例：
+  **示例：**
 
     ```js
     KeyboardDelegate.on('textChange', (text) => {
@@ -352,14 +352,14 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数：
+  **参数：**
 
     | 参数名   | 类型                 | 必填 | 说明                     |
     | -------- | -------------------- | ---- | ------------------------ |
     | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
     | callback | string | 否 | 回调返回当前文本内容。 |
 
-  - 示例：
+  **示例：**
 
     ```js
     KeyboardDelegate.off('textChange');
@@ -377,13 +377,13 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                   | 必填 | 说明     |
   | -------- | ---------------------- | ---- | -------- |
   | callback | AsyncCallback&lt;void> | 否   | 回调函数 |
 
-- 示例
+**示例：**
 
 
 ```js
@@ -399,14 +399,13 @@ hideKeyboard(): Promise&lt;void&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
 
   | 类型             | 说明     |
   | ---------------- | -------- |
   | Promise&lt;void> | 回调函数 |
 
-- 示例
-
+**示例：**
 
 ```js
  KeyboardController.hideKeyboard();
@@ -424,14 +423,15 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
   | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
-- 示例
+**示例：**
+
   ```js
    TextInputClient.getForward(5,(text) =>{
      console.info("text = " + text);
@@ -446,18 +446,20 @@ getForward(length:number): Promise&lt;string&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
 
-- 返回值
+**返回值：**
+
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;string&gt; |  返回文本。                |
 
-- 示例
+**示例：**
+
   ```js
    var text = TextInputClient.getForward(5);
    console.info("text = " + text);
@@ -471,14 +473,15 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
   | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
-- 示例
+**示例：**
+
   ```js
    TextInputClient.getBackward(5,(text)=>{
      console.info("text = " + text);
@@ -493,18 +496,20 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
 
-- 返回值
+**返回值：**
+
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;string&gt; |  返回文本。                |
 
-- 示例
+**示例：**
+
   ```js
    var text = TextInputClient.getBackward(5);
    console.info("text = " + text);
@@ -518,14 +523,15 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
-- 示例
+**示例：**
+
   ```js
   TextInputClient.deleteForward(5,(isSuccess)=>{
     console.info("isSuccess = " + isSuccess);
@@ -539,18 +545,20 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
   
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
     | length | number | 是 | 文本长度。 |
   
-- 返回值  
+**返回值：**  
+
      | 类型                            | 说明                                                         |
      | ------------------------------- | ------------------------------------------------------------ |
      | Promise&lt;boolean&gt; |  操作成功与否。                |
 
-  - 示例
+**示例：**
+
     ```js
      var isSuccess = TextInputClient.deleteForward(5);
      console.info("isSuccess = " + isSuccess);
@@ -564,14 +572,15 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数
+  **参数：**
 
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
     | length | number | 是 | 文本长度。 |
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
-  - 示例
+  **示例：**
+
     ```js
      TextInputClient.deleteBackward(5, (isSuccess)=>{
      console.info("isSuccess = " + isSuccess);
@@ -586,17 +595,18 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | length | number | 是 | 文本长度。 |
 
-- 返回值 
+**返回值：** 
+
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;boolean&gt; |  操作成功与否。                |
 
-- 示例
+**示例：**
 
      ```js
      var isSuccess = TextInputClient.deleteBackward(5);
@@ -610,14 +620,15 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-  - 参数
+  **参数：**
 
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
     | action | number | 是 | 编辑框属性。 |
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
-  - 示例
+  **示例：**
+
     ```js
      TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
@@ -632,17 +643,19 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | action | number | 是 | 编辑框属性。 |
 
-- 返回值
+**返回值：**
+
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;boolean&gt; |  操作成功与否。                |
 
-- 示例
+**示例：**
 
   ```js
   var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
@@ -657,14 +670,15 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
 
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
     | text | string | 是 | 文本。 |
     | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
-- 示例
+**示例：**
+
     ```js
     TextInputClient.insertText("test", (isSuccess)=>{
       console.info("isSuccess = " + isSuccess);
@@ -679,17 +693,19 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | text | string | 是 | 文本。 |
 
-- 返回值    
+**返回值：**  
+  
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;boolean&gt; |  操作成功与否。                |
 
-- 示例
+**示例：**
 
   ```js
   var isSuccess = TextInputClient.insertText("test");
@@ -704,12 +720,14 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 参数
+**参数：**
+
    | 参数名                         | 类型                          | 必填                            | 说明                                                         |
    | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
    | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
 
-- 示例
+**示例：**
+
   ```js
     TextInputClient.getEditorAttribute((EditorAttribute)=>{
     });
@@ -717,18 +735,20 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 ### getEditorAttribute
 
-getEditorAttribute(): Promise&lt;EditorAttribute&gt;
+getEditorAttribute(): EditorAttribute
 
 获取编辑框属性值。
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-- 返回值
+**返回值：**
+
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
 
-- 示例
+**示例：**
+
    ```js
    var EditorAttribute = TextInputClient.getEditorAttribute();
    ```

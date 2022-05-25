@@ -1,6 +1,6 @@
 # Display
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -56,15 +56,14 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 Obtains the default display object.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
-- Example
-
+**Example**
   ```js
   var displayClass = null;
   display.getDefaultDisplay((err, data) => {
@@ -83,15 +82,15 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 Obtains the default display object.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
   | Type                              | Description                                          |
   | ---------------------------------- | ---------------------------------------------- |
   | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
-- Example
+**Example**
 
   ```js
   let promise = display.getDefaultDisplay();
@@ -108,15 +107,15 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 Obtains all the display objects.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
   | Name  | Type                                                | Mandatory| Description                           |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
   | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
-- Example
+**Example**
 
   ```js
   display.getAllDisplay((err, data) => {
@@ -134,15 +133,15 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 Obtains all the display objects.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
   | Type                                           | Description                                                   |
   | ----------------------------------------------- | ------------------------------------------------------- |
   | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return an array containing all the display objects.|
 
-- Example
+**Example**
 
   ```js
   let promise = display.getAllDisplay();
@@ -159,16 +158,15 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 Enables listening.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
-- Example
-
+**Example**
   ```js
   var type = "add";
   var callback = (data) => {
@@ -184,16 +182,15 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 Disables listening.
 
-**System capabilities**: SystemCapability.WindowManager.WindowManager.Core
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
-- Example
-
+**Example**
   ```js
   var type = "remove";
   display.off(type);

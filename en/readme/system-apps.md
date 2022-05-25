@@ -37,20 +37,20 @@ In the OpenHarmony 3.1 Release version, only the code for the Gallery applicatio
 
 **System applications**
 
-applications\_settings
+[applications\_settings](https://gitee.com/openharmony/applications_settings)
 
-applications\_launcher
+[applications\_launcher](https://gitee.com/openharmony/applications_launcher)
 
-applications\_systemui
+[applications\_systemui](https://gitee.com/openharmony/applications_systemui)
 
-applications\_hap
+[applications\_hap](https://gitee.com/openharmony/applications_hap)
 
-applications\_contacts
+[applications\_contacts](https://gitee.com/openharmony/applications_contacts)
 
-applications\_mms
+[applications\_mms](https://gitee.com/openharmony/applications_mms)
 
-applications\_call
+[applications\_call](https://gitee.com/openharmony/applications_call)
 
-applications\_camera
+[applications\_camera](https://gitee.com/openharmony/applications_camera)
 
-applications\_photos
+[applications\_photos](https://gitee.com/openharmony/applications_photos)

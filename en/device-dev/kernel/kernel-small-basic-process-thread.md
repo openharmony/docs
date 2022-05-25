@@ -1,12 +1,4 @@
-# Task<a name="EN-US_TOPIC_0000001078641280"></a>
-
--   [Basic Concepts](#section138411646175417)
--   [Working Principles](#section1381918945512)
--   [Development Guidelines](#section10649727135519)
-    -   [Available APIs](#section78333315555)
-    -   [How to Develop](#section16229657115514)
-    -   [Development Example](#section2809723165612)
-
+# Task
 
 ## Basic Concepts<a name="section138411646175417"></a>
 

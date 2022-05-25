@@ -13,17 +13,6 @@ import bluetooth from '@ohos.bluetooth';
 ```
 
 
-## Required Permissions
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.LOCATION
-
-
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
@@ -202,7 +191,7 @@ let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 
 getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection status of a profile.
+Obtains the connection state of a profile.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -236,6 +225,8 @@ Cancels a paired remote device.
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -979,18 +970,44 @@ Obtains a profile object.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| profileId | [ProfileId](#ProfileId) | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| A2dpSourceProfile or HandsFreeAudioGatewayProfile| Profile object obtained. Only **A2dpSourceProfile** and **HandsFreeAudioGatewayProfile** are supported.|
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [A2dpSourceProfile](#A2dpSourceProfile) or [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile) | Profile object obtained. Only **A2dpSourceProfile** and **HandsFreeAudioGatewayProfile** are supported.|
 
 **Example**
 
 ```js
 let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+```
+
+## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
+
+getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile
+
+Obtains the profile object instance based on **ProfileId**. API version 9 is added with **HidHostProfile**.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name      | Type       | Mandatory  | Description                                   |
+| --------- | --------- | ---- | ------------------------------------- |
+| profileId | [ProfileId](#ProfileId) | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
+
+**Return value**
+
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [A2dpSourceProfile](#A2dpSourceProfile), [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile), or [HidHostProfile](#HidHostProfile) | Profile object obtained. **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, and **HidHostProfile** are supported.|
+
+**Example**
+
+```js
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
 ```
 
 
@@ -1215,17 +1232,22 @@ No value is returned.
 
 **Return value**
 
-|                     |               |
+| Type                 | Description           |
 | ------------------- | ------------- |
-| Type                  | Description            |
-| Array&lt;string&gt; | List of addresses of the connected devices. |
+| Array&lt;string&gt; | Addresses of the connected devices.|
 
+**Example**
+
+```js
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let retArray = a2dpSrc.getConnectionDevices();
+```
 
 ### getDeviceState<sup>8+</sup><a name="getDeviceState"></a>
 
 getDeviceState(device: string): ProfileConnectionState
 
-Obtains the connection status of the profile.
+Obtains the connection state of the profile.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1235,16 +1257,20 @@ Obtains the connection status of the profile.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the target device.|
-|
+| device | string | Yes   | Address of the remote device.|
 
 **Return value**
 
-|                                                   |                         |
+| Type                                             | Description                   |
 | ------------------------------------------------- | ----------------------- |
-| Type                                              | Description                    |
-| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
+**Example**
+
+```js
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+```
 
 ## A2dpSourceProfile
 
@@ -1266,14 +1292,12 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the remote device to connect.|
-|
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1298,14 +1322,12 @@ Disconnects an A2DP connection.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the remote device to disconnect.|
-|
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1315,11 +1337,11 @@ let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### A2dpSourceProfile.on('connectionStateChange')<sup>8+</sup>
+### on('connectionStateChange')<sup>8+</sup>
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the A2DP connection status change events.
+Subscribes to the A2DP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1340,15 +1362,16 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-A2dpSourceProfile.on('connectionStateChange', onReceiveEvent);
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### A2dpSourceProfile.off('connectionStateChange')<sup>8+</sup>
+### off('connectionStateChange')<sup>8+</sup>
 
 off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the A2DP connection status change events.
+Unsubscribes from the A2DP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1357,7 +1380,7 @@ Unsubscribes from the A2DP connection status change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback used to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1369,7 +1392,9 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-A2dpSourceProfile.off('connectionStateChange', onReceiveEvent);
+let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+a2dpSrc.on('connectionStateChange', onReceiveEvent);
+a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
@@ -1377,7 +1402,7 @@ A2dpSourceProfile.off('connectionStateChange', onReceiveEvent);
 
 getPlayingState(device: string): PlayingState
 
-Obtains the playing status of a device.
+Obtains the playing state of a device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1385,14 +1410,13 @@ Obtains the playing status of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the target device.|
+| device | string | Yes   | Address of the remote device.|
 
 **Return value**
 
-|                               |            |
+| Type                           | Description        |
 | ----------------------------- | ---------- |
-| Type | Description |
-| [PlayingState](#PlayingState) | Playing status obtained. |
+| [PlayingState](#PlayingState) | Playing state of the remote device obtained.|
 
 **Example**
 
@@ -1421,15 +1445,13 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the target device.|
-|
+| device | string | Yes   | Address of the remote device.|
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1453,8 +1475,7 @@ Disconnects the HFP connection of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the target device.|
-|
+| device | string | Yes   | Address of the remote device.|
 
 **Return value**
 
@@ -1470,11 +1491,11 @@ let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### HandsFreeAudioGatewayProfile.on('connectionStateChange')<sup>8+</sup>
+### on('connectionStateChange')<sup>8+</sup>
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HFP connection status change events.
+Subscribes to the HFP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1495,15 +1516,16 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-HandsFreeAudioGatewayProfile.on('connectionStateChange', onReceiveEvent);
+let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### HandsFreeAudioGatewayProfile.off('connectionStateChange')<sup>8+</sup>
+### off('connectionStateChange')<sup>8+</sup>
 
 off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HFP connection status change events.
+Unsubscribes from the HFP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1512,7 +1534,7 @@ Unsubscribes from the HFP connection status change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback used to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1524,7 +1546,139 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-HandsFreeAudioGatewayProfile.off('connectionStateChange', onReceiveEvent);
+let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+hfpAg.on('connectionStateChange', onReceiveEvent);
+hfpAg.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## HidHostProfile
+
+Before using a method of **HidHostProfile**, you need to create an instance of this class by using the **getProfile()** method.
+
+
+### connect<sup>9+</sup><a name="connect"></a>
+
+connect(device: string): boolean
+
+Connects to the HidHost service of a device.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the remote device.|
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### disconnect<sup>9+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+Disconnects from the HidHost service of a device.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the remote device.|
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### on('connectionStateChange')<sup>9+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Subscribes to the HidHost connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a HidHost connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change event.                              |
+
+**Return value**
+
+No value is returned.
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+hidHost.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')<sup>9+</sup>
+
+off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Unsubscribes from the HidHost connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                     |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback used to return the HidHost connection state change event.                                     |
+
+**Return value**
+
+No value is returned.
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+hidHost.on('connectionStateChange', onReceiveEvent);
+hidHost.off('connectionStateChange', onReceiveEvent);
 ```
 
 
@@ -1904,7 +2058,7 @@ Subscribes to the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
-| callback | Callback&lt;[CharacteristicWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
 
 **Return value**
 
@@ -2272,7 +2426,7 @@ let ret = device.close();
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
-Obtains all services of the remote BLE device. This method uses an asynchronous callback to return the result.
+Obtains all services of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2314,7 +2468,7 @@ device.getServices(getServices);
 
 getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
-Obtains all services of the remote BLE device. This method uses a promise to return the result.
+Obtains all services of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2347,7 +2501,7 @@ for (let i = 0; i < services.length; i++) {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-Reads the characteristic value of the specific service of the remote BLE device. This method uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2401,7 +2555,7 @@ device.readCharacteristicValue(characteristic, readCcc);
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the remote BLE device. This method uses a promise to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2448,7 +2602,7 @@ device.readCharacteristicValue(characteristic);
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This method uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2492,7 +2646,7 @@ device.readDescriptorValue(descriptor, readDesc);
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This method uses a promise to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2620,7 +2774,7 @@ if (retWriteDesc) {
 
 setBLEMtuSize(mtu: number): boolean
 
-Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This method can be used only after a connection is set up by calling [connect](#connect).
+Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2806,7 +2960,7 @@ device.off('BLEConnectionStateChange');
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the name of the remote BLE device. This method uses an asynchronous callback to return the result.
+Obtains the name of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2838,7 +2992,7 @@ let deviceName = gattClient.getDeviceName((err, data)=> {
 
 getDeviceName(): Promise&lt;string&gt;
 
-Obtains the name of the remote BLE device. This method uses a promise to return the result.
+Obtains the name of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2866,7 +3020,7 @@ let deviceName = gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the received signal strength indication (RSSI) of the remote BLE device. This method uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the received signal strength indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2899,7 +3053,7 @@ let rssi = gattClient.getRssiValue((err, data)=> {
 
 getRssiValue(): Promise&lt;number&gt;
 
-Obtains the RSSI of the remote BLE device. This method uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3436,7 +3590,7 @@ Enumerates the A2DP playing states.
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-Enumerates the Bluetooth profile IDs.
+Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3444,3 +3598,4 @@ Enumerates the Bluetooth profile IDs.
 | -------------------------------- | ------ | --------------- |
 | PROFILE_A2DP_SOURCE              | 0x0001 | A2DP profile.|
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | HFP profile. |
+| PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | Human Interface Device (HID) profile. |

@@ -1,6 +1,6 @@
 # 分布式数据对象
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -10,8 +10,6 @@
 import distributedObject from '@ohos.data.distributedDataObject';
 ```
 
-
-
 ## distributedDataObject.createDistributedObject
 
 createDistributedObject(source: object): DistributedObject
@@ -19,7 +17,7 @@ createDistributedObject(source: object): DistributedObject
 
 创建一个分布式对象。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -46,7 +44,7 @@ genSessionId(): string
 
 随机创建一个sessionId。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **返回值：**
   | 类型 | 说明 |
@@ -70,7 +68,7 @@ setSessionId(sessionId?: string): boolean
 
 设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
 
@@ -103,7 +101,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 监听分布式对象的变更。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -132,7 +130,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 当不再进行数据变更监听时，使用此接口删除对象的变更监听。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -163,7 +161,7 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 
 监听分布式对象的上下线。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -188,7 +186,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
-**系统能力**：SystemCapability.DistributedDataManager.DataObject.DistributedObject。
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |

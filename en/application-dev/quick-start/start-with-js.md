@@ -1,12 +1,12 @@
 # Getting Started with JavaScript in the Traditional Coding Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
+>
 
 
 ## Creating a JavaScript Project
 
-1. Open DevEco Studio, choose **File** &gt; **New** &gt; **Create Project**, select **Empty Ability**, and click **Next**.
+1. In DevEco Studio, if no project is open, click **Create Project**; if a project is already open, choose **File** &gt; **New** &gt; **Create Project**. Then, select **Empty Ability** and click **Next**.
 
    ![en-us_image_0000001223558814](figures/en-us_image_0000001223558814.png)
 
@@ -19,26 +19,27 @@
 
 ## JavaScript Project Files
 
-- **entry** : OpenHarmony project module, which can be built into an ability package (HAP).
-  - **src &gt; main &gt; js** : a collection of JS source code.
-  - **src &gt; main &gt; js &gt; MainAbility** : entry to your application/service.
-  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n** : resources in different languages, for example, UI strings and image paths.
-  - **src &gt; main &gt; js &gt; MainAbility &gt; pages** : pages contained in **MainAbility**.
-  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js** : ability lifecycle file.
-  - **src &gt; main &gt; resources** : a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files.
-  - **src &gt; main &gt; config.json** : module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file.
-  - **build-profile.json5** : module information and build configuration options, including **buildOption target**.
-  - **hvigorfile.js** : module-level compilation and build task script. You can customize related tasks and code implementation.
-- **build-profile.json5** : application-level configuration information, including the signature and product configuration.
-- **hvigorfile.js** : application-level compilation and build task script.
+- **entry**: OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
+  - **src &gt; main &gt; js**: a collection of JS source code.
+  - **src &gt; main &gt; js &gt; MainAbility**: entry to your application/service.
+  - **src &gt; main &gt; js &gt; MainAbility &gt; i18n**: resources in different languages, for example, UI strings and image paths.
+  - **src &gt; main &gt; js &gt; MainAbility &gt; pages**: pages contained in **MainAbility**.
+  - **src &gt; main &gt; js &gt; MainAbility &gt; app.js**: ability lifecycle file.
+  - **src &gt; main &gt; resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files.
+  - **src &gt; main &gt; config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file.
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption target**.
+  - **hvigorfile.js**: module-level compilation and build task script. You can customize related tasks and code implementation.
+- **build-profile.json5**: application-level configuration information, including the signature and product configuration.
+- **hvigorfile.js**: application-level compilation and build task script.
 
 
 ## Building the First Page
 
 1. Use the **Text** component.
+   
    After the project synchronization is complete, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility** &gt; **pages** &gt; **index** in the **Project** window and open the **index.hml** file. You can see that the file contains a **&lt;Text&gt;** component. The sample code in the **index.hml** file is shown below:
 
-   
+
    ```
    <div class="container">
        <text class="title">
@@ -48,9 +49,10 @@
    ```
 
 2. Add a button and bind the **onclick** method to this button.
-   On the default page, add an **&lt;input&gt;** component of the button type to accept user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
 
-   
+   On the default page, add an **&lt;input&gt;** component of the button type to respond to user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
+
+
    ```
    <div class="container">
        <text class="title">
@@ -63,9 +65,10 @@
    ```
 
 3. Set the page style in the **index.css** file.
+
    From the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility** &gt; **pages** &gt; **index**, open the **index.css** file, and set the page styles, such as the width, height, font size, and spacing. The sample code in the **index.css** file is shown below:
 
-   
+
    ```
    .container {
        display: flex;
@@ -96,22 +99,26 @@
    }
    ```
 
-4. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. Below is how the first page looks on the Previewer.
-   
+4. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. 
+
+   Below is how the first page looks on the Previewer.
+
    ![en-us_image_0000001216084724](figures/en-us_image_0000001216084724.png)
 
 
 ## Building the Second Page
 
 1. Create the second page.
-   In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Page**, name the page **second**, and click **Finish**. Below is the structure of the **second** folder:
+   
+   In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Page**, name the page **second**, and click **Finish**. Below, you can see the structure of the **second** folder.
 
-   ![en-us_image_0000001223877210](figures/en-us_image_0000001223877210.png)
+![en-us_image_0000001223877210](figures/en-us_image_0000001223877210.png)
 
 2. Add **&lt;Text&gt;** and **&lt;Button&gt;** components.
+
    Add **&lt;Text&gt;** and **&lt;Button&gt;** components and set their styles, as you do for the first page. The sample code in the **second.hml** file is shown below:
 
-   
+
    ```
    <div class="container">
        <text class="title">
@@ -124,7 +131,7 @@
    ```
 
 3. Set the page style in the **second.css** file. The sample code in the **second.css** file is shown below:
-   
+
    ```
    .container {
        display: flex;
@@ -161,9 +168,10 @@
 You can implement page redirection through the [page router](../ui/ui-js-building-ui-routes.md), which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
+   
    In the **index.js** file of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. The sample code in the **index.js** file is shown below:
 
-   
+
    ```
    import router from '@ohos.router';
    
@@ -177,9 +185,10 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    ```
 
 2. Implement redirection from the second page to the first page.
+
    In the **second.ets** file of the second page, bind the **back** method to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.js** file is shown below:
 
-   
+
    ```
    import router from '@ohos.router';
    

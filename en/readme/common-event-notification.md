@@ -42,4 +42,4 @@ For details, see *CommonEvent Development Guidelines*.
 
 Common Event and Notification
 
-**notification_ces_standard**
+[**notification_ces_standard**](https://gitee.com/openharmony/notification_ces_standard)

@@ -1,9 +1,5 @@
-# ipdebug<a name="EN-US_TOPIC_0000001134006272"></a>
+# ipdebug
 
--   [Command Function](#section10191115553720)
--   [Syntax](#section124061758123713)
--   [Example](#section171837113810)
--   [Output](#section561416467104)
 
 ## Command Function<a name="section10191115553720"></a>
 

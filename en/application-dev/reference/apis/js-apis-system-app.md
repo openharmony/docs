@@ -1,6 +1,6 @@
 # Application Context
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use the new APIs.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -138,7 +138,8 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
   
   export default {
       onCreate() {
-          app.setImageRawDataCacheSize(100) // Set the upper limit of the memory for caching image data before decoding to 100 MB.
+          app.setImageRawDataCacheSize(104857600) 
+          // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
           console.info('Application onCreate')
       },
       onDestroy() {
@@ -168,7 +169,8 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
   
   export default {  
       onCreate() {    
-          app.setImageFileCacheSize(200) // Set the upper limit of the image file cache to 200 MB.  
+          app.setImageFileCacheSize(209715200) 
+          // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
           console.info('Application onCreate')
       },  
       onDestroy() {

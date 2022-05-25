@@ -5,7 +5,7 @@
 
 In the Hardware Driver Foundation \(HDF\), the Watchdog \(also called Watchdog timer\) module uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDF Device Manager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
-**Figure  1**  Independent service mode<a name="fig61584136211"></a>  
+**Figure  1** Independent service mode<a name="fig61584136211"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-15")
 
 ## Available APIs<a name="section1180575010271"></a>
@@ -25,7 +25,7 @@ struct WatchdogMethod {
 };
 ```
 
-**Table  1**  Callbacks for the members in the WatchdogMethod structure
+**Table  1** Callbacks for the members in the WatchdogMethod structure
 
 <a name="table1370451732"></a>
 <table><thead align="left"><tr id="row370511435"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p170681939"><a name="p170681939"></a><a name="p170681939"></a>Callback</p>
@@ -116,33 +116,31 @@ struct WatchdogMethod {
 The Watchdog module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **watchdog\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **watchdog\_config.hcs** file.
 
 3.  Instantiate the Watchdog controller object.
-    -   Initialize  **WatchdogCntlr**.
-    -   Instantiate  **WatchdogMethod**  in the  **WatchdogCntlr**  object.
+    -   Initialize **WatchdogCntlr**.
+    -   Instantiate **WatchdogMethod** in the **WatchdogCntlr** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis).
 
-        >For details, see [Available APIs](#available-apis).
+4.  \(Optional\) Debug the driver.
 
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
+    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the watchdog timer is successfully set.
 
 
 ## Development Example<a name="section1832270347160117"></a>
 
-The following uses  **watchdog\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **watchdog\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   Watchdog driver entry reference
 
@@ -157,11 +155,11 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         HDF_INIT(g_watchdogDriverEntry);// Call HDF_INIT to register the driver entry with the HDF.
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the component attributes in the  **watchdog\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **WatchdogCntlr**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the component attributes in the **watchdog\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **WatchdogCntlr** members at the core layer.
 
-    In this example, there is only one Watchdog controller. If there are multiple Watchdog controllers, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **watchdog\_config**  file.
+    In this example, there is only one Watchdog controller. If there are multiple Watchdog controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **watchdog\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -184,7 +182,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         }
         ```
 
-    -   **watchdog\_config.hcs**  configuration reference
+    -  **watchdog\_config.hcs** configuration reference
 
         ```
         root {
@@ -204,10 +202,10 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         }
         ```
 
-3.  Initialize the  **WatchdogCntlr**  object at the core layer, including initializing the vendor custom structure \(passing parameters and data\), instantiating  **WatchdogMethod**  \(used to call underlying functions of the driver\) in  **WatchdogCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **WatchdogCntlr** object at the core layer, including initializing the vendor custom structure \(passing parameters and data\), instantiating **WatchdogMethod** \(used to call underlying functions of the driver\) in **WatchdogCntlr**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **watchdog\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also passed to the  **WatchdogCntlr**  object at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **watchdog\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the index and the number of pins, are also passed to the **WatchdogCntlr** object at the core layer.
 
         ```
         struct Hi35xxWatchdog {
@@ -228,7 +226,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         };
         ```
 
-    -   Instantiate the callback function structure  **WatchdogMethod**  in  **WatchdogCntlr**. Other members are initialized by using the  **Init**  and  **Bind**  functions.
+    -   Instantiate the callback function structure **WatchdogMethod** in **WatchdogCntlr**. Other members are initialized by using the **Init** and **Bind** functions.
 
         ```
         static struct WatchdogMethod g_method = {
@@ -245,13 +243,13 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
+       **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-        **Table  2**  Input parameters and return values of the Init and Bind functions
+       **Table  2** Input parameters and return values of the Init and Bind functions
 
         <a name="table86931033998"></a>
         <table><thead align="left"><tr id="row10694203319911"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p1669433319918"><a name="p1669433319918"></a><a name="p1669433319918"></a>Status (Value)</p>
@@ -290,7 +288,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Function description:
 
-        Initializes the custom structure object and  **WatchdogCntlr**, and calls the  **WatchdogCntlrAdd**  function at the core layer.
+        Initializes the custom structure object and **WatchdogCntlr**, and calls the **WatchdogCntlrAdd** function at the core layer.
 
         ```
         // Generally, the Init function initializes the members of the Hi35xxWatchdog structure based on the attribute values of the input parameter (HdfDeviceObject).
@@ -328,7 +326,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Input parameters:
 
-        **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
+       **HdfDeviceObject**: device object created by the HDF for each driver. It stores device-related private data and service APIs.
 
         Return values:
 
@@ -336,7 +334,7 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
         ```
         static void Hi35xxWatchdogRelease(struct HdfDeviceObject *device)
@@ -358,6 +356,3 @@ The following uses  **watchdog\_hi35xx.c**  as an example to present the content
         OsalMemFree(hwdt); // Release the memory occupied by the vendor-defined objects.
         }
         ```
-
-
-

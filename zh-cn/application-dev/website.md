@@ -11,7 +11,7 @@
 
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
-    - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
+    - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
 - 开发
@@ -257,9 +257,8 @@
       - [后台代理概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - 后台任务管理
-      - 后台任务
-        - [后台任务概述](background-task-management/background-task-overview.md)
-        - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      - [后台任务概述](background-task-management/background-task-overview.md)
+      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
     - 延迟任务调度
       - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
       - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
@@ -298,7 +297,10 @@
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+    - Native API的相关指导
+      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -558,7 +560,6 @@
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
   - 接口参考
     - Ability框架
-  
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
       - [@ohos.ability.wantConstant (wantConstant)](reference/apis/js-apis-ability-wantConstant.md)
@@ -569,7 +570,6 @@
       - [@ohos.application.appManager (appManager)](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration (Configuration)](reference/apis/js-apis-configuration.md)
       - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-configurationconstant.md)
-      - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](reference/apis/js-apis-application-DataShareExtensionAbility.md)
       - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis/js-apis-formbindingdata.md)
       - [@ohos.application.FormExtension (FormExtension)](reference/apis/js-apis-formextension.md)
@@ -602,88 +602,66 @@
       - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
       - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md)
       - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
-  - 公共事件与通知
-    
-    - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
+    - 公共事件与通知
+      - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
       - [@ohos.notification (Notification模块)](reference/apis/js-apis-notification.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
-    
-  - 应用程序包管理
-    
-    - [@ohos.bundle (Bundle模块)](reference/apis/js-apis-Bundle.md)
+    - 应用程序包管理
+      - [@ohos.bundle (Bundle模块)](reference/apis/js-apis-Bundle.md)
       - [@ohos.bundleState (设备使用信息统计)](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.zlib (Zip模块)](reference/apis/js-apis-zlib.md)
-    
-  - UI界面
-    
-    - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
+    - UI界面
+      - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
-    
-  - 图形图像
-    
-    - [@ohos.display (屏幕属性)](reference/apis/js-apis-display.md)
+    - 图形图像
+      - [@ohos.display (屏幕属性)](reference/apis/js-apis-display.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
       - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
       - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
-    
-  - 媒体
-    
-    - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
+    - 媒体 
+      - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
-    
-  - 资源管理
+    - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    
-  - 资源调度
-    
-    - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
+    - 资源调度
+      - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
       - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
-    
-  - 定制管理
-    
-    - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
+    - 定制管理
+      - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
       - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
-    
-  - 安全
-    
-    - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
+    - 安全
+      - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
-    
-  - 数据管理
-    
-    - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
+    - 数据管理
+      - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
-    
-  - 文件管理
-    
-    - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)
+    - 文件管理
+      - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
       - [@ohos.fileManager (公共文件访问与管理)](reference/apis/js-apis-filemanager.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.storageStatistics (应用空间统计)](reference/apis/js-apis-storage-statistics.md)
       - [@ohos.volumeManager (卷管理)](reference/apis/js-apis-volumemanager.md)
-  
     - 电话服务
-  
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
       - [@ohos.telephony.observer (observer)](reference/apis/js-apis-observer.md)
@@ -691,24 +669,19 @@
       - [@ohos.telephony.sim (SIM卡管理)](reference/apis/js-apis-sim.md)
       - [@ohos.telephony.sms (短信服务)](reference/apis/js-apis-sms.md)
       - [@ohos.telephony.data (蜂窝数据)](reference/apis/js-apis-telephony-data.md)
-  
     - 网络管理
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
-  
     - 通信与连接
-  
       - [@ohos.bluetooth (蓝牙)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi (WLAN)](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext (WLAN)](reference/apis/js-apis-wifiext.md)
-  
     - 系统基础能力
-  
       - [@ohos.accessibility (辅助功能)](reference/apis/js-apis-accessibility.md)
       - [@ohos.faultLogger (故障日志获取)](reference/apis/js-apis-faultLogger.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
@@ -724,9 +697,7 @@
       - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
-  
     - 设备管理
-  
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
       - [@ohos.brightness (屏幕亮度)](reference/apis/js-apis-brightness.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
@@ -744,15 +715,11 @@
       - [@ohos.update (升级)](reference/apis/js-apis-update.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb.md)
       - [@ohos.vibrator (振动)](reference/apis/js-apis-vibrator.md)
-  
     - 帐号管理
-  
       - [@ohos.account.appAccount (应用帐号管理)](reference/apis/js-apis-appAccount.md)
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
-  
     - 语言基础类库
-  
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
       - [@ohos.process (获取进程相关的信息)](reference/apis/js-apis-process.md)
       - [@ohos.uri (URI字符串解析)](reference/apis/js-apis-uri.md)
@@ -774,13 +741,10 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
-  
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
-  
     - 已停止维护的接口
-  
       - [@ohos.bytrace (性能打点)](reference/apis/js-apis-bytrace.md)
       - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)

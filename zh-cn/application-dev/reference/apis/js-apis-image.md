@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import image from '@ohos.multimedia.image';
 ```
 
@@ -66,7 +66,7 @@ image.createPixelMap(Color, opts, (pixelmap) => {
 
  ### 属性
 
-**系统能力： ** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
 | 名称                    | 类型    | 可读 | 可写 | 说明                       |
 | ----------------------- | ------- | ---- | ---- | -------------------------- |
@@ -516,7 +516,7 @@ const imageSourceApi = image.createImageSource(0)
 
 ### 属性
 
-**系统能力： ** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -797,7 +797,7 @@ const imagePackerApi = image.createImagePacker();
 
 ### 属性
 
-**系统能力： ** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
@@ -952,26 +952,26 @@ release(): Promise\<void>
 
 ## image.createImageReceiver<sup>9+</sup>
 
- createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-通过宽、高、图片格式、容量创建imagereceiver实例。
+通过宽、高、图片格式、容量创建ImageReceiver实例。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
-| 名称     | 类型   | 必填 | 说明                                  |
-| -------- | ------ | ---- | ------------------------------------- |
-| width    | number | 是   | imagereceiver将生成的图像的默认宽度。 |
-| height   | number | 是   | imagereceiver将生成的图像的默认高度。 |
-| format   | number | 是   | imagereceiver将生成的图像格式。       |
-| capacity | number | 是   | 同时访问的最大图像数。                |
+| 名称     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| width    | number | 是   | 图像的默认宽度。       |
+| height   | number | 是   | 图像的默认高度。       |
+| format   | number | 是   | 图像格式。             |
+| capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
 
-| 类型          | 说明                                      |
-| ------------- | ----------------------------------------- |
-| ImageReceiver | 如果操作成功，则返回 ImageReceiver 实例。 |
+| 类型                             | 说明                                    |
+| -------------------------------- | --------------------------------------- |
+| [ImageReceiver](#imagereceiver9) | 如果操作成功，则返回ImageReceiver实例。 |
 
 **示例：**
 
@@ -981,31 +981,33 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8)
 
 ## ImageReceiver<sup>9+</sup>
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放 ImageReceiver 实例。在调用各方法前需要先创建 ImageReceiver 实例。
+图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
+
+在调用以下方法前需要先创建ImageReceiver实例。
 
 ### 属性
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
 
-| 名称     | 类型                         | 可读 | 可写 | 说明               |
-| -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [Size](#size)                | 是   | 否   | 图片大小。         |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+| 名称                  | 类型                         | 可读 | 可写 | 说明               |
+| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
+| size<sup>9+</sup>     | [Size](#size)                | 是   | 否   | 图片大小。         |
+| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
+| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
 getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
-用于获取一个surface id并使用callback返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用callback返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                         |
-| -------- | ---------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<string> | 是   | 使用callback返回surface id。 |
+| 名称     | 类型                   | 必填 | 说明                       |
+| -------- | ---------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<string> | 是   | 回调函数，返回surface id。 |
 
 **示例:**
 
@@ -1017,9 +1019,9 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
 getReceivingSurfaceId(): Promise\<string>
 
-用于获取一个surface id并使用promise返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用promise返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
@@ -1039,15 +1041,15 @@ receiver.getReceivingSurfaceId().then( id => {
 
 readLatestImage(callback: AsyncCallback\<Image>): void
 
-从 ImageReceiver读取最新的图片，并使用callback返回结果。
+从ImageReceiver读取最新的图片，并使用callback返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
-| 名称     | 类型                            | 必填 | 说明                   |
-| -------- | ------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback<[Image](#image8)> | 是   | callback返回最新图像。 |
+| 名称     | 类型                            | 必填 | 说明                     |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回最新图像。 |
 
 **示例：**
 
@@ -1059,9 +1061,9 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 readLatestImage(): Promise\<Image>
 
-从 ImageReceiver读取最新的图片，并使用promise返回结果。
+从ImageReceiver读取最新的图片，并使用promise返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
@@ -1080,15 +1082,15 @@ receiver.readLatestImage().then(img => {})
 
 readNextImage(callback: AsyncCallback\<Image>): void
 
-从 ImageReceiver读取下一张图片，并使用callback返回结果。
+从ImageReceiver读取下一张图片，并使用callback返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
-| 名称     | 类型                            | 必填 | 说明                     |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Image](#image8)> | 是   | callback返回下一张图片。 |
+| 名称     | 类型                            | 必填 | 说明                       |
+| -------- | ------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回下一张图片。 |
 
 **示例：**
 
@@ -1100,15 +1102,15 @@ receiver.readNextImage((err, img) => {});
 
 readNextImage(): Promise\<Image>
 
-从 ImageReceiver读取下一张图片，并使用promise返回结果。
+从ImageReceiver读取下一张图片，并使用promise返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
 | 类型                      | 说明                 |
 | ------------------------- | -------------------- |
-| Promise<[Image](#image8)> | 异步返回下一张图片。 |
+| Promise<[Image](#image9)> | 异步返回下一张图片。 |
 
 **示例：**
 
@@ -1118,19 +1120,19 @@ readNextImage(): Promise\<Image>
             })
 ```
 
-### on<sup>9+</sup>
+### on('imageArrival')<sup>9+</sup>
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 接收图片时注册回调。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
 | 名称     | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
-| type     | imageArrival         | 是   | 注册事件的类型，固定为'imageArrival'，接收图片时触发。 |
+| type     | string               | 是   | 注册事件的类型，固定为'imageArrival'，接收图片时触发。 |
 | callback | AsyncCallback\<void> | 是   | 注册的事件回调。                                       |
 
 **示例：**
@@ -1141,17 +1143,17 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 ### release<sup>9+</sup>
 
- release(callback: AsyncCallback\<void>): void
+release(callback: AsyncCallback\<void>): void
 
 释放ImageReceiver实例并使用回调返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明           |
-| -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数，返回操作结果。 |
 
 **示例：**
 
@@ -1165,13 +1167,13 @@ release(): Promise\<void>
 
 释放ImageReceiver实例并使用promise返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
-| 类型           | 说明                    |
-| -------------- | ----------------------- |
-| Promise\<void> | 用promise返回操作结果。 |
+| 类型           | 说明               |
+| -------------- | ------------------ |
+| Promise\<void> | 异步返回操作结果。 |
 
 **示例：**
 
@@ -1182,17 +1184,17 @@ release(): Promise\<void>
 
 ## Image<sup>9+</sup>
 
-提供基本的图像操作，包括获取图像信息、读写图像数据。调用readNextImage和readLatestImage接口时会返回image。
+提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage9)和[readLatestImage](#readlatestimage9)接口时会返回image。
 
 ### 属性
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称     | 类型               | 可读 | 可写 | 说明                         |
-| -------- | ------------------ | ---- | ---- | ---------------------------- |
-| clipRect | [Region](#region8) | 是   | 是   | 设置或获取要裁剪的图像区域。 |
-| size     | [Size](#size)      | 是   | 否   | 图像大小。                   |
-| format   | number             | 是   | 否   | 图像格式。                   |
+| 名称                  | 类型               | 可读 | 可写 | 说明                                               |
+| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
+| clipRect<sup>9+</sup> | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
+| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
 
@@ -1200,14 +1202,14 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 根据图像的组件类型从图像中获取组件缓存并使用callback返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 名称          | 类型                                    | 必填 | 说明                 |
 | ------------- | --------------------------------------- | ---- | -------------------- |
-| componentType | [ComponentType](#componenttype8)        | 是   | 图像的组件类型。     |
-| callback      | AsyncCallback<[Component](#component8)> | 是   | 用于返回组件缓冲区。 |
+| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。     |
+| callback      | AsyncCallback<[Component](#component9)> | 是   | 用于返回组件缓冲区。 |
 
 **示例：**
 
@@ -1219,21 +1221,21 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 getComponent(componentType: ComponentType): Promise\<Component>
 
-根据图像的组件类型从图像中获取组件缓存并使用promise方式返回结果。
+根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 名称          | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype8) | 是   | 图像的组件类型。 |
+| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。 |
 
 **返回值：**
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise<[Component](#component8)> | 用于返回组件缓冲区的promise实例。 |
+| Promise<[Component](#component9)> | 用于返回组件缓冲区的promise实例。 |
 
 **示例：**
 
@@ -1245,9 +1247,11 @@ img.getComponent(4).then(component => { })
 
 release(callback: AsyncCallback\<void>): void
 
-释放当前图像并使用callback返回结果。在接收另一个图像前必须先释放对应资源。
+释放当前图像并使用callback返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.Core
+在接收另一个图像前必须先释放对应资源。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -1265,9 +1269,11 @@ img.release(() =>{ })
 
 release(): Promise\<void>
 
-释放当前图像并使用promise返回结果。在接收另一个图像前必须先释放对应资源。
+释放当前图像并使用Promise方式返回结果。
 
-**系统能力： ** SystemCapability.Multimedia.Image.Core
+在接收另一个图像前必须先释放对应资源。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -1287,7 +1293,7 @@ img.release().then(() =>{
 
 表示图片指定区域内的数据。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1300,7 +1306,7 @@ img.release().then(() =>{
 
 表示图片信息。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
@@ -1310,7 +1316,7 @@ img.release().then(() =>{
 
 表示图片尺寸。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -1319,9 +1325,9 @@ img.release().then(() =>{
 
 ## PixelMapFormat<sup>7+</sup>
 
-枚举，像素格式。
+枚举，图片像素格式。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称      | 默认值 | 描述              |
 | --------- | ------ | ----------------- |
@@ -1331,9 +1337,9 @@ img.release().then(() =>{
 
 ## AlphaType<sup>9+</sup>
 
-枚举，透明度。
+枚举，图像的透明度类型。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称     | 默认值 | 描述                    |
 | -------- | ------ | ----------------------- |
@@ -1344,9 +1350,9 @@ img.release().then(() =>{
 
 ## ScaleMode<sup>9+</sup>
 
-枚举，缩略值。
+枚举，图像的缩放模式。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称            | 默认值 | 描述                                               |
 | --------------- | ------ | -------------------------------------------------- |
@@ -1355,7 +1361,9 @@ img.release().then(() =>{
 
 ## InitializationOptions<sup>8+</sup>
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+PixelMap的初始化选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称                   | 类型                               | 可读 | 可写 | 说明           |
 | ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
@@ -1367,9 +1375,9 @@ img.release().then(() =>{
 
 ## DecodingOptions<sup>7+</sup>
 
-解码设置选项。
+图像解码设置选项。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -1385,7 +1393,7 @@ img.release().then(() =>{
 
 表示区域信息。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称 | 类型          | 可读 | 可写 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -1397,7 +1405,7 @@ img.release().then(() =>{
 
 表示图片打包选项。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | -------------- |
@@ -1408,7 +1416,7 @@ img.release().then(() =>{
 
 表示查询图片属性的索引。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称         | 类型   | 可读 | 可写 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -1419,7 +1427,7 @@ img.release().then(() =>{
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称              | 默认值            | 说明                 |
 | ----------------- | ----------------- | -------------------- |
@@ -1436,18 +1444,18 @@ img.release().then(() =>{
 
 枚举，图片格式。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称         | 默认值 | 描述                  |
-| ------------ | ------ | --------------------- |
-| YCBCR_422_SP | 1000   | YCBCR422 半平面格式。 |
-| JPEG         | 2000   | JPEG编码格式。        |
+| 名称         | 默认值 | 描述                 |
+| ------------ | ------ | -------------------- |
+| YCBCR_422_SP | 1000   | YCBCR422半平面格式。 |
+| JPEG         | 2000   | JPEG编码格式。       |
 
-## ComponentType<sup>8+</sup>
+## ComponentType<sup>9+</sup>
 
 枚举，图像的组件类型。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称  | 默认值 | 描述        |
 | ----- | ------ | ----------- |
@@ -1456,15 +1464,15 @@ img.release().then(() =>{
 | YUV_V | 3      | 色度信息。  |
 | JPEG  | 4      | Jpeg 类型。 |
 
-## Component<sup>8+</sup>
+## Component<sup>9+</sup>
 
 描述图像颜色分量。
 
-**系统能力： ** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称          | 类型                             | 可读 | 可写 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
-| componentType | [ComponentType](#componenttype8) | 是   | 否   | 组件类型。   |
+| componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
 | rowStride     | number                           | 是   | 否   | 行距。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |

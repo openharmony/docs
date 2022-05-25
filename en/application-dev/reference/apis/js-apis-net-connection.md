@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```javascript
+```js
 import connection from '@ohos.net.connection'
 ```
 
@@ -29,7 +29,7 @@ Obtains the default active data network. This API uses an asynchronous callback 
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet(function (error, netHandle) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(netHandle))
@@ -54,7 +54,7 @@ Obtains the default active data network. This API uses a promise to return the r
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     console.log(JSON.stringify(netHandle))
 })
@@ -76,7 +76,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 
 **Example**
 
-```javascript
+```js
 connection.hasDefaultNet(function (error, has) {
     console.log(JSON.stringify(error))
     console.log(has)
@@ -99,7 +99,7 @@ Checks whether the default data network is activated. This API uses a promise to
 
 **Example**
 
-```javascript
+```js
 connection.hasDefaultNet().then(function (has) {
     console.log(has)
 })
@@ -122,7 +122,7 @@ Obtains the list of all active data networks. This API uses an asynchronous call
 
 **Example**
 
-```
+```js
 connection.getAllNets(function (error, nets) {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(nets))
@@ -147,7 +147,7 @@ Obtains the list of all active data networks. This API uses a promise to return 
 
 **Example**
 
-```
+```js
 connection.getAllNets().then(function (nets) {
     console.log(JSON.stringify(nets))
 });
@@ -172,7 +172,7 @@ Obtains connection properties of the network corresponding to given network hand
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getConnectionProperties(netHandle, function (error, info) {
         console.log(JSON.stringify(error))
@@ -205,7 +205,7 @@ Obtains connection properties of the network corresponding to **netHandle**. Thi
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getConnectionProperties(netHandle).then(function (info) {
         console.log(JSON.stringify(info))
@@ -232,7 +232,7 @@ Obtains capability information of the network corresponding to **netHandle**. Th
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getNetCapabilities(netHandle, function (error, info) {
         console.log(JSON.stringify(error))
@@ -265,7 +265,7 @@ Obtains capability information of the network corresponding to **netHandle**. Th
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.getNetCapabilities(netHandle).then(function (info) {
         console.log(JSON.stringify(info))
@@ -291,7 +291,7 @@ Reports connection of the data network. This API uses an asynchronous callback t
 
 **Example**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetConnected(netHandle, function (error) {
         console.log(JSON.stringify(error))
@@ -322,7 +322,7 @@ Reports connection of the data network. This API uses a promise to return the re
 
 **Example**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetConnected(netHandle).then(function () {
         console.log(`report success`)
@@ -349,7 +349,7 @@ Reports disconnection of the data network. This API uses an asynchronous callbac
 
 **Example**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetDisconnected(netHandle, function (error) {
         console.log(JSON.stringify(error))
@@ -380,7 +380,7 @@ Reports disconnection of the data network. This API uses a promise to return the
 
 **Example**
 
-```
+```js
 connection.getDefaultNet().then(function (netHandle) {
     connection.reportNetDisconnected(netHandle).then(function () {
         console.log(`report success`)
@@ -407,7 +407,7 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Example**
 
-```
+```js
 let host = "xxxx";
 connection.getAddressesByName(host, function (error, addresses) {
     console.log(JSON.stringify(error))
@@ -439,7 +439,7 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Example**
 
-```
+```js
 let host = "xxxx";
 connection.getAddressesByName(host).then(function (addresses) {
     console.log(JSON.stringify(addresses))
@@ -469,7 +469,7 @@ Obtains the handle of the network specified by **netSpecifier**.
 
 **Example**
 
-```javascript
+```js
 // Default network
 let netConnection = connection.createNetConnection()
 
@@ -502,7 +502,7 @@ Registers a listener for **netAvailable** events.
 
 **Example**
 
-```javascript
+```js
 netConnection.on('netAvailable', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -525,7 +525,7 @@ Registers a listener for **netCapabilitiesChange** events.
 
 **Example**
 
-```javascript
+```js
 netConnection.on('netCapabilitiesChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -548,7 +548,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 
 **Example**
 
-```javascript
+```js
 netConnection.on('netConnectionPropertiesChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -571,7 +571,7 @@ Registers a listener for **netBlockStatusChange** events.
 
 **Example**
 
-```javascript
+```js
 netConnection.on('netBlockStatusChange', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -594,7 +594,7 @@ Registers a listener for **netLost** events.
 
 **Example**
 
-```javascript
+```js
 let netConnection1 = connection.createNetConnection()
 netConnection1.on('netLost', function (data) {
     console.log(JSON.stringify(data))
@@ -618,7 +618,7 @@ Registers a listener for **netUnavailable** events.
 
 **Example**
 
-```javascript
+```js
 netConnection.on('netUnavailable', function (data) {
     console.log(JSON.stringify(data))
 })
@@ -642,7 +642,7 @@ Registers a listener for network status changes.
 
 **Example**
 
-```javascript
+```js
 netConnection.register(function (error) {
     console.log(JSON.stringify(error))
 })
@@ -664,7 +664,7 @@ Unregisters the listener for network status changes.
 
 **Example**
 
-```javascript
+```js
 netConnection.unregister(function (error) {
     console.log(JSON.stringify(error))
 })
@@ -703,7 +703,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressesByName(host, function (error, addresses) {
@@ -737,7 +737,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressesByName(host).then(function (addresses) {
@@ -765,7 +765,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressByName(host, function (error, address) {
@@ -799,7 +799,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Example**
 
-```javascript
+```js
 connection.getDefaultNet().then(function (netHandle) {
     let host = "xxxx";
     netHandle.getAddressByName(host).then(function (address) {

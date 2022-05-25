@@ -27,9 +27,9 @@
 
   - 全功能执行器：执行器可独立处理一次凭据注册和身份认证请求，即可提供用户认证数据采集、处理、储存及比对能力。
 
-  - 采集器：执行器提供用户认证时的数据采集能力，需要和认证期配合完成用户认证。
+  - 采集器：执行器提供用户认证时的数据采集能力，需要和认证器配合完成用户认证。
 
-  - 认证器：认证器提供用户认证是时数据处理，读取存储凭据模板信息并完成比对。
+  - 认证器：认证器提供用户认证时数据处理能力，读取存储的凭据模板与当前认证信息完成比对。
 
 - 执行器类型
 
@@ -37,15 +37,15 @@
 
 - 用户认证框架公钥 & 执行器公钥
 
-  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架于基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交互各自的公钥，其中：
+  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架与基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交换各自的公钥，其中：
 
-    1）执行器通过用户认证框架公钥校验调度指令的准确性，如锁定一个口令模板，这种情况导致无法使用口令认证能力，属于敏感操作，需要确保指令准确，才可处理。
+    1）执行器通过用户认证框架公钥校验调度指令的准确性，例如一个口令模板被锁定后，相关口令认证能力无法使用。由于口令认证属于敏感操作，此时需要通过校验来确保调度指令的准确性后，方可进行后续解锁操作。
 
     2）执行器公钥可被用户认证框架用于校验认证结果的准确性，同时用于执行器交互认证时的校验交互信息的完整性。
 
 - 口令认证凭据模板
 
-  认证凭据时在用户设置认证凭据时由认证服务产生并存储，每个模板有一个ID。用于索引模板信息文件，再认证时读取模板信息并用于与当次认证过程中产生的认证数据做对比，完成身份认证。
+  认证凭据是在用户设置认证凭据时由认证服务产生并存储，每个模板有一个ID，用于索引模板信息文件，再认证时读取模板信息并用于与当次认证过程中产生的认证数据做对比，完成身份认证。
 
 - 执行器对账
 
@@ -98,9 +98,24 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 ### 开发步骤
 
-以下将基于Face_auth驱动相关介绍，并以Hi3516DV300平台为例，介绍驱动开发的具体步骤。
+以Hi3516DV300平台为例，我们提供了Face_auth驱动DEMO实例，以下是目录结构及各部分功能简介。
 
-1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Face_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现。
+```undefined
+// drivers/peripheral/face_auth
+├── BUILD.gn # 编译脚本
+├── bundle.json # 组件描述文件
+└── hdi_service # Face_auth驱动实现
+    ├── BUILD.gn # 编译脚本
+    ├── include # 头文件
+    └── src
+        ├── executor_impl.cpp # 认证、录入等功能接口实现
+        ├── face_auth_interface_driver.cpp # Face_auth驱动入口
+        └── face_auth_interface_service.cpp # 获取执行器列表接口实现
+```
+
+下面结合DEMO实例介绍驱动开发的具体步骤。
+
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Face_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_driver.cpp)文件。
 
    ```c++
    // 通过自定义的HdfFaceAuthInterfaceHost对象包含ioService对象和真正的HDI Service实现IRemoteObject对象
@@ -191,11 +206,11 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
        .Release = HdfFaceAuthInterfaceDriverRelease,
    };
    
-   // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
+   // 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
    HDF_INIT(g_faceAuthInterfaceDriverEntry);
    ```
 
-2. 实现获取执行器列表接口。
+2. 实现获取执行器列表接口，详细代码参见[face_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -248,7 +263,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
    ```
 
-3. 实现执行器每个功能接口。
+3. 实现执行器每个功能接口，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口
@@ -465,22 +480,5 @@ export default {
         }
     }
 }
-```
-
-## 参考
-
-当前已提供Face_auth驱动DEMO实现，下面是目录结构及各部分功能简介，开发过程和功能代码段描述参见[开发步骤](#开发步骤)。
-
-```undefined
-// drivers/peripheral/face_auth
-├── BUILD.gn # 编译脚本
-├── bundle.json # 组件描述文件
-└── hdi_service # Face_auth驱动实现
-    ├── BUILD.gn # 编译脚本
-    ├── include # 头文件
-    └── src
-        ├── executor_impl.cpp # 认证、录入等功能接口实现
-        ├── face_auth_interface_driver.cpp # Face_auth驱动入口
-        └── face_auth_interface_service.cpp # 获取执行器列表接口实现
 ```
 

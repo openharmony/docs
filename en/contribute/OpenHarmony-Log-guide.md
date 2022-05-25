@@ -189,7 +189,7 @@ The other OS resources refer to resources that are not mentioned in the precedin
 
 **Note:** Before using the HiLog API to print logs, every service domain must apply for a domain ID from the DFX. The domain ID is used to measure and control the quality of a single service log. You can use the domain ID to filter out your own service logs for analysis. Do not use domain IDs of others. For test code, use the domain ID 0xD000F00.
 
-Range of the domain IDs: **0xD000001\-0xD00FFFF**
+Range of the domain IDs: **0xD000001\-0xD0FFFFF**
 
 - **[Recommendation] Use the domain ID allocated to your domain based on a certain layer and module granularity.**
 

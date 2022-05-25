@@ -177,5 +177,5 @@ The following uses a single KV store as an example to describe the development p
    ```
 ## Samples
 The following samples are provided to help you better understand the distributed data development:
-- [`KvStore`: distributed database (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
-- [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
+- [`KvStore`: Distributed Data Management (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
+- [Distributed Data Service](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

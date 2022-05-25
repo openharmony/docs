@@ -9,7 +9,7 @@
 > 为确保运行效果，本文以使用**DevEco Studio V3.0.0.900 Beta3**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)获取下载链接。
 
 
-OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低用户的上手成本并提升用户构建UI界面的效率。
+OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
 
 
 使用低代码开发应用或服务有以下两种开发方式：
@@ -17,12 +17,12 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 - 直接创建一个支持低代码开发的新工程以进行开发。本文以此方式为例进行说明。
 
-- 在已有工程中，创建Visual文件来进行开发。
+- 在已有工程中，创建visual文件来进行开发。
 
 
 ## 创建新工程支持低代码开发
 
-1. 打开**DevEco Studio**，点击**File** &gt; **New** &gt; **Create Project**，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已有一个工程，请点击**File** &gt; **New** &gt; **Create Project**。选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
 
    ![zh-cn_image_0000001233528152](figures/zh-cn_image_0000001233528152.png)
 
@@ -46,47 +46,47 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 构建第一个页面
 
-工程同步完成后，第一个页面已有一个容器、文本（Hello World）显示。为了更详细地了解低代码开发，我们将删除画布原有模板组件，从零开始完成页面的添加、设置。
+工程同步完成后，第一个页面已有一个容器、一段文本（Hello World）显示。为了更详细地了解低代码开发，我们将删除画布原有模板组件，从零开始完成页面的添加、设置。
 
-第一个页面内有一个容器、文本和一个按钮，通过Column、Text和Button组件来实现。其中，Column为沿垂直方向布局的容器组件，具体使用请见[Column](../reference/arkui-ts/ts-container-column.md)。
+第一个页面内有一个容器、一段文本和一个按钮，通过Column、Text和Button组件来实现。其中，Column为沿垂直方向布局的容器组件，具体使用请见[Column](../reference/arkui-ts/ts-container-column.md)。
 
-1. **删除画布原有模板组件。**<a name="delete_origin_content"></a>
+1. 删除画布原有模板组件。<a name="delete_origin_content"></a>
    打开index.visual文件，选中画布中的组件，单击鼠标右键，选择Delete删除画布原有模板组件。操作如下所示：
 
    ![zh-cn_image_0000001233208980](figures/zh-cn_image_0000001233208980.gif)
 
-2. **添加容器，设置Column容器的样式和属性。**<a name="add_container"></a>
+2. 添加容器，设置Column容器的样式和属性。<a name="add_container"></a>
    选中UI Control中的Column组件，将其拖至画布。点击右侧属性样式栏中的图标![zh-cn_image_0000001233048996](figures/zh-cn_image_0000001233048996.png)（General），设置Column组件的高度Height为100%，使其占满屏幕；点击右侧属性样式栏中的图标![zh-cn_image_0000001233368860](figures/zh-cn_image_0000001233368860.png)（Feature），设置Column组件的AlignItems样式为center，使得其子组件在水平轴上居中显示。操作如下所示：
 
    ![zh-cn_image_0000001277488977](figures/zh-cn_image_0000001277488977.gif)
 
-3. **添加文本。**
+3. 添加文本。
    选中UI Control中的Text组件，将其拖至画布，再拖至Column组件的中央区域。点击右侧属性样式栏中的图标![zh-cn_image_0000001277608813](figures/zh-cn_image_0000001277608813.png)（Feature），设置Text组件的Content属性为“this.message”（即“Hello World”）；设置组件的FontSize样式为30fp，使得其文字放大；设置组件的TextAlign样式为center，使得组件文字居中显示。再选中画布上的Text组件，拖动放大。操作如下所示：
 
    ![zh-cn_image_0000001235731706](figures/zh-cn_image_0000001233528156.gif)
 
-4. **添加按钮。**
+4. 添加按钮。
    选中UI Control中的Button组件，将其拖至画布，再拖至Text组件下面。点击右侧属性样式栏中的图标![zh-cn_image_0000001277728577](figures/zh-cn_image_0000001277728577.png)（General），设置Button组件的Height为40vp；点击右侧属性样式栏中的图标![zh-cn_image_0000001277809337](figures/zh-cn_image_0000001277809337.png)（Feature），设置Button组件的Label属性为“Next”；设置Button组件的FontSize样式为25fp，使得其文字放大。操作如下所示：
 
    ![zh-cn_image_0000001235732402](figures/zh-cn_image_0000001233208988.gif)
 
-5. **在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。** 第一个页面效果如下图所示：
+5. 在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。第一个页面效果如下图所示：
 
    ![zh-cn_image_0000001235892798](figures/zh-cn_image_0000001233049004.png)
 
 
 ## 构建第二个页面
 
-1. **创建第二个页面。**
+1. 创建第二个页面。
    在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; Visual**”，命名为“**second**”，单击“**Finish**”，即完成第二个页面的创建。可以看到文件目录结构如下：
 
    ![zh-cn_image_0000001233368868](figures/zh-cn_image_0000001233368868.png)
 
-2. **[删除画布原有模板组件。](#delete_origin_content)**
+2. [删除画布原有模板组件。](#delete_origin_content)
 
-3. **[添加容器，设置Column容器的样式和属性。](#add_container)**
+3. [添加容器，设置Column容器的样式和属性。](#add_container)
 
-4. **添加文本。**
+4. 添加文本。
    
    - 在second.ets文件中，将本页面的message文本内容设置为“Hi there”，示例如下：
      
@@ -109,7 +109,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
         ![zh-cn_image_0000001280255513](figures/zh-cn_image_0000001277608817.gif)
    
-5. **添加按钮。**
+5. 添加按钮。
    选中UI Control中的Button组件，将其拖至画布，再拖至Text组件下面。点击右侧属性样式栏中的图标![zh-cn_image_0000001233528160](figures/zh-cn_image_0000001233528160.png)（General），设置Button组件的Height为40vp；点击右侧属性样式栏中的图标![zh-cn_image_0000001277728597](figures/zh-cn_image_0000001277728597.png)（Feature），设置Button组件的Value属性为“Back”；设置组件的FontSize样式为25fp，使得其文字放大。操作如下所示：
 
    ![zh-cn_image_0000001280383937](figures/zh-cn_image_0000001277809361.gif)
@@ -119,7 +119,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 页面间的导航可以通过页面路由router来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
-1. **第一个页面跳转到第二个页面。**
+1. 第一个页面跳转到第二个页面。
      在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。需同时处理ets文件及visual文件。
    - “**index.ets**”示例如下：
      
@@ -150,7 +150,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
      ![zh-cn_image_0000001235745716](figures/zh-cn_image_0000001233049040.png)
 
-2. **第二个页面返回到第一个页面。**
+2. 第二个页面返回到第一个页面。
    在第二个页面中，返回按钮绑定back方法，点击按钮时返回到第一页。需同时处理ets文件及visual文件。
 
    - “**second.ets**”示例如下：
@@ -180,7 +180,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
       ![zh-cn_image_0000001280385809](figures/zh-cn_image_0000001277489017.png)
 
-3. **打开index.visual或index.ets文件，点击预览器中的** ![zh-cn_image_0000001277608849](figures/zh-cn_image_0000001277608849.png) **按钮进行刷新。** 效果如下图所示：
+3. 打开index.visual或index.ets文件，点击预览器中的 ![zh-cn_image_0000001277608849](figures/zh-cn_image_0000001277608849.png) 按钮进行刷新。效果如下图所示：
 
    ![zh-cn_image_0000001233528192](figures/zh-cn_image_0000001233528192.png)
 

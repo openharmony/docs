@@ -1,9 +1,4 @@
-# LiteIPC<a name="EN-US_TOPIC_0000001123520161"></a>
-
--   [Basic Concepts](#section1980994712918)
--   [Working Principles](#section849811592918)
--   [Development Guidelines](#section17571315171017)
-    -   [Available APIs](#section725022011103)
+# LiteIPC
 
 
 ## Basic Concepts<a name="section1980994712918"></a>

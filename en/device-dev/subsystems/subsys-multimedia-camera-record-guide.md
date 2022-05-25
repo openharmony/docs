@@ -1,4 +1,4 @@
-# Development Guidelines on Video Recording<a name="EN-US_TOPIC_0000001051451869"></a>
+# Video Recording Development<a name="EN-US_TOPIC_0000001051451869"></a>
 
 ## When to Use<a name="section186634310418"></a>
 

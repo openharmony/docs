@@ -1,11 +1,4 @@
-# log<a name="EN-US_TOPIC_0000001133846474"></a>
-
--   [Command Function](#section128219131856)
--   [Syntax](#section3894181710519)
--   [Parameters](#section7693122310515)
--   [Usage](#section1982111281512)
--   [Example](#section176301333259)
--   [Output](#section14354765415)
+# log
 
 ## Command Function<a name="section128219131856"></a>
 

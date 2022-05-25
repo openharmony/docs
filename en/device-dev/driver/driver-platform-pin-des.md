@@ -5,12 +5,12 @@
 
 ### Pin<a name="section2"></a>
 
--   The pin, also called pin controller, manages pin resources of system on a chip (SoC) vendors and provides the pin multiplexing function.
--   The pin module defines a set of common methods for managing pins, including:
+The pin module, also called pin controller, manages pin resources of system on a chip (SoC) vendors and provides the pin multiplexing function.
+The module defines a set of common methods for managing pins, including:
     -   Obtaining or releasing the pin description handle: The kernel compares the pin name passed in with the pin names of each controller in the linked list. If a match is found, a pin description handle is obtained. After the operation on the pin is complete, the pin description handle will be released.
-    -   Setting or obtaining the pull type of a pin: The pull type can be pull-up, pull-down, or floating.
-    -   Setting or obtaining the pull strength of a pin: You can set the pull strength as required.
-    -   Setting or obtaining the functions of a pin to implement pin multiplexing
+-   Setting or obtaining the pull type of a pin: The pull type can be pull-up, pull-down, or floating.
+-   Setting or obtaining the pull strength of a pin: You can set the pull strength as required.
+-   Setting or obtaining the functions of a pin to implement pin multiplexing
 
 ### Basic Concepts<a name="section3"></a>
 Pin, as a software concept, provides APIs for uniformly managing the pins from different SoC vendors, providing the pin multiplexing function, and configuring the electrical features of pins.
@@ -52,7 +52,7 @@ The table below describes the APIs of the pin module. For more details, see API 
 **Table 1** Pin driver APIs
 <a name="table1"></a>
 
-| **API**                                                  | **Description**        |
+| **API**                                                 | **Description**       |
 | ------------------------------------------------------------ | ---------------- |
 | DevHandle PinGet(const char *pinName);                       | Obtains the pin description handle.|
 | void PinPut(DevHandle handle);                               | Releases the pin description handle.|
@@ -68,10 +68,11 @@ The table below describes the APIs of the pin module. For more details, see API 
 
 ### How to Develop<a name="section9"></a>
 
-The figure below shows the process.
+The figure below illustrates how to use the APIs.
 
- **Figure 2** Process of using the pin module<a name="fig2"></a> 
-![](figures/process-of-using-pin.png "Process of using the pin module")
+ **Figure 2** Using the pin driver APIs 
+ 
+![](figures/using-pin-process.png "Process of using the pin module")
 
 #### Obtaining the Pin Description Handle
 
@@ -88,7 +89,7 @@ DevHandle PinGet(const char *pinName);
 | Parameter      | Description               |
 | ---------- | ----------------------- |
 | pinName    | Pointer to the pin name.                 |
-| **Return Value**| **Description**         |
+| **Return Value**| **Description**        |
 | NULL       | Failed to obtain the pin description handle.|
 | handle     | Pin description handle obtained.        |
 
@@ -120,9 +121,9 @@ int32_t PinSetPull(DevHandle handle, enum PinPullType pullType);
 | ---------- | ----------------------- |
 | handle     | Pin description handle.        |
 | pullType   | Pull type to set.        |
-| **Return Value**| **Description**         |
+| **Return Value**| **Description**        |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pull type to pull-up.
 
@@ -154,9 +155,9 @@ int32_t PinGetPull(DevHandle handle, enum PinPullType *pullType);
 | ---------- | ------------------------- |
 | handle     | Pin description handle.          |
 | pullType   | Pointer to the pull type obtained.|
-| **Return Value**| **Description**           |
+| **Return Value**| **Description**          |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pull type of a pin.
 
@@ -187,9 +188,9 @@ int32_t PinSetStrength(DevHandle handle, uint32_t strength);
 | ---------- | ----------------------- |
 | handle     | Pin description handle.           |
 | strength   | Pull strength to set.        |
-| **Return Value**| **Description**         |
+| **Return Value**| **Description**        |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pull strength of the pin to 2. 
 
@@ -221,9 +222,9 @@ int32_t PinGetStrength(DevHandle handle, uint32_t *strength);
 | ---------- | ------------------------- |
 | handle     | Pin description handle.             |
 | strength   | Pointer to the pull strength obtained.|
-| **Return Value**| **Description**           |
+| **Return Value**| **Description**          |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pull strength of a pin.
 
@@ -256,9 +257,9 @@ int32_t PinSetFunc(DevHandle handle, const char *funcName);
 | ---------- | ------------------- |
 | handle     | Pin description handle.       |
 | funcName   | Pointer to the pin function to set.      |
-| **Return Value**| **Description**     |
+| **Return Value**| **Description**    |
 | 0          | The operation is successful.|
-| Negative value      | The operation fails.|
+| Negative value      | The operation failed.|
 
 Example: Set the pin function to LSADC_CH1 (ADC channel 1).
 
@@ -289,9 +290,9 @@ int32_t PinGetFunc(DevHandle handle, const char **funcName);
 | ---------- | --------------------- |
 | handle     | Pin description handle.         |
 | funcName   | Pointer to the function name obtained.|
-| **Return Value**| **Description**       |
+| **Return Value**| **Description**      |
 | 0          | The operation is successful.  |
-| Negative value      | The operation fails.  |
+| Negative value      | The operation failed.  |
 
 Example: Obtain the pin function. 
 

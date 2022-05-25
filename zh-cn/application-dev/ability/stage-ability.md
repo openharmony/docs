@@ -1,6 +1,6 @@
 # Ability开发指导
 ## 场景介绍
-Stage模型是基于API version 9的应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
+Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json和app.json配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
 - 创建Page Ability应用，如视频播放、新闻资讯等，需要通过屏幕进行浏览的应用，以及支持人机交互。
 - 获取Ability的配置信息，如ApplicationInfo、AbilityInfo及HapModuleInfo等。
 - 启动/带参数启动/带返回结果启动/带AccountId启动其他Ability。
@@ -51,16 +51,16 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|void startAbility(want: Want, callback: AsyncCallback<void>)|启动Ability。|
-|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|启动Ability。|
-|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|带AccountId启动Ability。|
-|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|带AccountId启动Ability。|
-|void startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|带返回结果启动Ability。|
-|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|带返回结果启动Ability。|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|带返回结果及AccountId启动Ability。|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|带返回结果及AccountId启动Ability。|
-|void terminateSelf(callback: AsyncCallback<void>)|销毁当前的Page Ability。|
-|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback<void>)|带返回结果销毁当前的Page Ability。|
+|void startAbility(want: Want, callback: AsyncCallback\<void>)|启动Ability。|
+|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>)|启动Ability。|
+|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>)|带AccountId启动Ability。|
+|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|带AccountId启动Ability。|
+|void startAbilityForResult(want: Want, callback: AsyncCallback\<AbilityResult>)|带返回结果启动Ability。|
+|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback\<AbilityResult>)|带返回结果启动Ability。|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>)|带返回结果及AccountId启动Ability。|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|带返回结果及AccountId启动Ability。|
+|void terminateSelf(callback: AsyncCallback\<void>)|销毁当前的Page Ability。|
+|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>)|带返回结果销毁当前的Page Ability。|
 
 ## 开发步骤
 ### 创建Page Ability应用
@@ -100,7 +100,7 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
-            console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
+            console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
 
@@ -189,7 +189,7 @@ var want = {
 context.startAbility(want).then((data) => {
     console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+    console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
 ```
 从DeviceManager获取指定设备的deviceId。具体示例代码如下：
@@ -225,9 +225,9 @@ module.json的修改：
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
 context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
+    console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
+    console.log("Failed to request permission from user with error: " + JSON.stringify(error))
 })
 ```
 在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
@@ -235,9 +235,9 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
 context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
+    console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
+    console.log("Failed to request permission from user with error: " + JSON.stringify(error))
 })
 ```
 
@@ -271,6 +271,56 @@ export default class MainAbility extends Ability { {
 }
 ```
 
+### 通过onNewWant实现指定页面启动Ability
+当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
+
+使用startAbility再次拉起Ability，通过want中的uri参数传递页面信息：
+```ts
+async function reStartAbility() {
+  try {
+    await this.context.startAbility({
+      bundleName: "com.sample.MyApplication",
+      abilityName: "MainAbility",
+      uri: "pages/second"
+    })
+    console.log('start ability succeed')
+  } catch (error) {
+    console.error(`start ability failed with ${error.code}`)
+  }
+}
+```
+
+在Ability的onNewWant回调中获取包含页面信息的want参数：
+```ts
+import Ability from '@ohos.application.Ability'
+
+export default class MainAbility extends Ability {
+  onNewWant(want) {
+    globalThis.newWant = want
+  }
+}
+```
+
+在自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
+```ts
+import router from '@system.router'
+
+@Entry
+@Component
+struct Index {
+  newWant = undefined
+
+  onPageShow() {
+    console.info('Index onPageShow')
+    let newWant = globalThis.newWant
+    if (newWant.hasOwnProperty("uri")) {
+      router.push({ uri: newWant.uri });
+      globalThis.newWant = undefined
+    }
+  }
+}
+```
+
 ## 相关实例
 针对Stage模型Ability开发，有以下相关示例可供参考：
-- [`StageCallAbility`：StageAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
+- [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

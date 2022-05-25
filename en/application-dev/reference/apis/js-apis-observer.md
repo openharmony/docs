@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import observer from '@ohos.telephony.observer'
 ```
 
@@ -30,7 +30,7 @@ Registers an observer for network status change events. This API uses an asynchr
 
 **Example**
 
-```
+```js
 observer.on('networkStateChange', data =>{ 
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
@@ -57,7 +57,7 @@ Registers an observer for network status change events of the SIM card in the sp
 
 **Example**
 
-```
+```js
 observer.on('networkStateChange', {slotId: 0}, data =>{ 
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
@@ -87,7 +87,7 @@ Unregisters the observer for network status change events. This API uses an asyn
 
 **Example**
 
-```
+```js
 let callback = data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 }
@@ -114,7 +114,7 @@ Registers an observer for signal status change events. This API uses an asynchro
 
 **Example**
 
-```
+```js
 observer.on('signalInfoChange', data =>{ 
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
@@ -139,7 +139,7 @@ Registers an observer for signal status change events of the SIM card in the spe
 
 **Example**
 
-```
+```js
 observer.on('signalInfoChange', {slotId: 0}, data =>{ 
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
@@ -167,7 +167,7 @@ Unregisters the observer for signal status change events. This API uses an async
 
 **Example**
 
-```
+```js
 let callback = data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 }
@@ -197,7 +197,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 
 **Example**
 
-```
+```js
 observer.on('callStateChange', value =>{ 
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
@@ -224,7 +224,7 @@ Registers an observer for call status change events. This API uses an asynchrono
 
 **Example**
 
-```
+```js
 observer.on('callStateChange', {slotId: 0}, value =>{ 
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
@@ -254,7 +254,7 @@ Unregisters the observer for call status change events. This API uses an asynchr
 
 **Example**
 
-```
+```js
 let callback = value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 }
@@ -282,7 +282,7 @@ Registers an observer for connection status change events of the cellular data l
 
 **Example**
 
-```
+```js
 observer.on('cellularDataConnectionStateChange', value =>{
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
@@ -307,7 +307,7 @@ Registers an observer for connection status change events of the cellular data l
 
 **Example**
 
-```
+```js
 observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
@@ -335,7 +335,7 @@ Unregisters the observer for connection status change events of the cellular dat
 
 **Example**
 
-```
+```js
 let callback = value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 }
@@ -363,7 +363,7 @@ Registers an observer for the uplink and downlink data flow status change events
 
 **Example**
 
-```
+```js
 observer.on('cellularDataFlowChange', data =>{
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
@@ -388,7 +388,7 @@ Registers an observer for the uplink and downlink data flow status change events
 
 **Example**
 
-```
+```js
 observer.on('cellularDataFlowChange', {slotId: 0}, data =>{
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
@@ -416,7 +416,7 @@ Unregisters the observer for the uplink and downlink data flow status change eve
 
 **Example**
 
-```
+```js
 let callback = data => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 }
@@ -444,7 +444,7 @@ Registers an observer for SIM card status change events. This API uses an asynch
 
 **Example**
 
-```
+```js
 observer.on('simStateChange', data =>{
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
@@ -469,7 +469,7 @@ Registers an observer for status change events of the SIM card in the specified 
 
 **Example**
 
-```
+```js
 observer.on('simStateChange', {slotId: 0}, data =>{
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
@@ -497,7 +497,7 @@ Unregisters the observer for SIM card status change events. This API uses an asy
 
 **Example**
 
-```
+```js
 let callback = data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 }

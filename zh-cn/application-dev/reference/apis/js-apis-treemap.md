@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap'  
+import TreeMap from '@ohos.util.TreeMap';  
 ```
 
 ## 系统能力
@@ -391,7 +391,7 @@ treeMap.set("sdfs", 356);
 let iter = treeMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -418,7 +418,7 @@ treeMap.set("sdfs", 356);
 let iter = treeMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
@@ -451,7 +451,7 @@ let treeMap = new TreeMap();
 treeMap.set("sdfs", 123);
 treeMap.set("dfsghsf", 357);
 treeMap.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -477,8 +477,8 @@ treeMap.set("sdfs", 356);
 let iter = treeMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -505,16 +505,16 @@ treeMap.set("sdfs", 356);
 
 // 使用方法一：
 for (let item of treeMap) { 
-  console.log("key: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("key:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // 使用方法二：
 let iter = treeMap[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

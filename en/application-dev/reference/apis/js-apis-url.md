@@ -1,6 +1,6 @@
 # URL String Parsing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -9,10 +9,6 @@
 ```
 import Url from '@ohos.url' 
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## URLSearchParams
 
@@ -23,11 +19,13 @@ constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearc
 
 Creates a **URLSearchParams** instance.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>-&nbsp;**Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object |
 
 **Example**
 
@@ -46,12 +44,14 @@ append(name: string, value: string): void
 
 Appends a key-value pair into the query string.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key of the key-value pair to append.|
-| value | string | Yes| Value of the key-value pair to append.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key of the key-value pair to append. |
+ | value | string | Yes | Value of the key-value pair to append. |
 
 **Example**
 
@@ -68,11 +68,13 @@ delete(name: string): void
 
 Deletes key-value pairs of the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key of the key-value pairs to delete.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key of the key-value pairs to delete. |
 
 **Example**
 
@@ -89,17 +91,19 @@ getAll(name: string): string[]
 
 Obtains all the key-value pairs based on the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key specified to obtain all key-value pairs.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key specified to obtain all key-value pairs. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string[] | All key-value pairs matching the specified key.|
+ | Type | Description |
+ | -------- | -------- |
+ | string[] | All key-value pairs matching the specified key. |
 
 **Example**
 
@@ -117,11 +121,13 @@ entries(): IterableIterator<[string, string]>
 
 Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
+ | Type | Description |
+ | -------- | -------- |
+ | IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator. |
 
 **Example**
 
@@ -139,20 +145,22 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | callbackfn | function | Yes | Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance. |
+ | thisArg | Object | No | Value to use when the callback is invoked. |
 
 **Table 1** callbackfn parameter description
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | string | Yes| Value that is currently traversed.|
-| key | string | Yes| Key that is currently traversed.|
-| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | value | string | Yes | Value that is currently traversed. |
+ | key | string | Yes | Key that is currently traversed. |
+ | searchParams | Object | Yes | Instance that invokes the **forEach** method. |
 
 **Example**
 
@@ -170,18 +178,20 @@ get(name: string): string | null
 
 Obtains the value of the first key-value pair based on the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key specified to obtain the value.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key specified to obtain the value. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Returns the value of the first key-value pair if obtained.|
-| null | Returns null if no value is obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | string | Returns the value of the first key-value pair if obtained. |
+ | null | Returns null if no value is obtained. |
 
 **Example**
 
@@ -199,17 +209,19 @@ has(name: string): boolean
 
 Checks whether a key has a value.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key specified to search for its value.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key specified to search for its value. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise.|
+ | Type | Description |
+ | -------- | -------- |
+ | boolean | Returns **true** if the value exists; returns **false** otherwise. |
 
 **Example**
 
@@ -226,12 +238,14 @@ set(name: string, value: string): void
 
 Sets the value for a key. If key-value pairs matching the specified key exist, the value of the first key-value pair will be set to the specified value and other key-value pairs will be deleted. Otherwise, the key-value pair will be appended to the query string.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Key of the value to set.|
-| value | string | Yes| Value to set.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | name | string | Yes | Key of the value to set. |
+ | value | string | Yes | Value to set. |
 
 **Example**
 
@@ -246,8 +260,9 @@ paramsObject.set('baz', 3); // Add a third parameter.
 
 sort(): void
 
+Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined.  This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
 
-Sorts all key-value pairs contained in this object based on the Unicode code points of the keys and returns undefined. This method uses a stable sorting algorithm, that is, the relative order between key-value pairs with equal keys is retained.
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -262,14 +277,15 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-
 Obtains an ES6 iterator that contains the keys of all the key-value pairs.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs.|
+ | Type | Description |
+ | -------- | -------- |
+ | IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs. |
 
 **Example**
 
@@ -287,11 +303,13 @@ values(): IterableIterator&lt;string&gt;
 
 Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs.|
+ | Type | Description |
+ | -------- | -------- |
+ | IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs. |
 
 **Example**
 
@@ -307,14 +325,15 @@ for (var value of searchParams.values()) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-
 Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
+ | Type | Description |
+ | -------- | -------- |
+ | IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator. |
 
 **Example**
 
@@ -330,14 +349,15 @@ for (const [name, value] of paramsObject) {
 
 toString(): string
 
-
 Obtains search parameters that are serialized as a string and, if necessary, percent-encodes the characters in the string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | String of serialized search parameters, which is percent-encoded if necessary.|
+ | Type | Description |
+ | -------- | -------- |
+ | string | String of serialized search parameters, which is percent-encoded if necessary. |
 
 **Example**
 
@@ -351,8 +371,9 @@ console.log(params.toString());
 
 ## URL
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -374,15 +395,16 @@ console.log(params.toString());
 
 constructor(url: string, base?: string | URL)
 
-
 Creates a URL.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string&nbsp;\|&nbsp;URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | url | string | Yes | Input object. |
+ | base | string&nbsp;\ |&nbsp;URL | No | Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object |
 
 **Example**
 
@@ -408,11 +430,13 @@ toString(): string
 
 Converts the parsed URL into a string.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Website address in a serialized string.|
+ | Type | Description |
+ | -------- | -------- |
+ | string | Website address in a serialized string. |
 
 **Example**
 
@@ -426,14 +450,15 @@ url.toString()
 
 toJSON(): string
 
-
 Converts the parsed URL into a JSON string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| string | Website address in a serialized string.|
+ | Type | Description |
+ | -------- | -------- |
+ | string | Website address in a serialized string. |
 
 **Example**
 ```js

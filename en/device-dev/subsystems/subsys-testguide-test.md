@@ -1,4 +1,4 @@
-# Test Subsystem
+# Test
 OpenHarmony provides a comprehensive auto-test framework for designing test cases. Detecting defects in the development process can improve code quality.
 
 This document describes how to use the OpenHarmony test framework.
@@ -718,13 +718,13 @@ Before executing test cases, you need to modify the configuration based on the d
 
 Test cases cannot be built on Windows. You need to run the following command to build test cases on Linux:
 ```
-./build.sh --product-name Hi3516DV300 --build-target make_test
+./build.sh --product-name hispark_taurus_standard --build-target make_test
 ```
 >Note:
->- **product-name**: specifies the name of the product to build, for example, **Hi3516DV300**.
+>- **product-name**: specifies the name of the product to build, for example, **hispark_taurus_standard**.
 >- **build-target**: specifies the test case to build. **make_test** indicates all test cases. You can specify the test cases based on requirements.
 
-After the build is complete, the test cases are automatically saved in **out/hi3516dv300/packages/phone/tests**.
+After the build is complete, the test cases are automatically saved in **out/hispark_taurus/packages/phone/tests**.
 
 #### Setting Up the Execution Environment
 1. On Windows, create the **Test** directory in the test framework and then create the **testcase** directory in the **Test** directory.

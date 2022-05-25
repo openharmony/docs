@@ -1,11 +1,5 @@
-# exec<a name="EN-US_TOPIC_0000001179965833"></a>
+# exec
 
--   [Command Function](#section4643204919313)
--   [Syntax](#section6553153635)
--   [Parameters](#section208971157532)
--   [Usage](#section213115219413)
--   [Example](#section13736564418)
--   [Output](#section194005101413)
 
 ## Command Function<a name="section4643204919313"></a>
 

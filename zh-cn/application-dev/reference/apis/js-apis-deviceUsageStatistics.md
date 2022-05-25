@@ -405,7 +405,7 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
 据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，FA使用记录由近及远排序，maxNum最大为1000。
 
@@ -452,7 +452,7 @@ getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleIn
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
 查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
 

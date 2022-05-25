@@ -86,24 +86,6 @@ ability支持单实例和多实例两种启动模式。
   );
 ```
 
-`want`参数也可以使用parameters参数，使用key-value的方式输入。
-
-**示例**
-
-```javascript
-  import featureAbility from '@ohos.ability.featureAbility'
-  featureAbility.startAbility({
-    want:
-    {
-        bundleName: "com.example.myapplication",
-        uri: "",
-        parameters: {
-            abilityName: "com.example.entry.secondAbility"
-        }
-    },
-  },
-  );
-```
 ### 启动远程PageAbility（当前仅对系统应用开放）
 >说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
 
@@ -235,4 +217,4 @@ export default {
 ## 相关实例
 针对PageAbility开发，有以下相关实例可供参考：
 
-- [`DMS`：分布式Demo（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+- [`DMS`：分布式Demo（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)

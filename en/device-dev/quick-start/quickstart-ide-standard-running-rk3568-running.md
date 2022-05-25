@@ -5,7 +5,7 @@
 
 After the image is burnt and the development board is restarted, the system automatically starts. If the following page is displayed on the screen of the development board, the system is running properly.
 
-  **Figure 1** System startup effect
+**Figure 1** System startup effect
 
   ![en-us_image_0000001226762222](figures/en-us_image_0000001226762222.jpg)
 

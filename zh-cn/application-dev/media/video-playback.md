@@ -401,10 +401,6 @@ export class VideoPlayerDemo {
     }
   }
 
-  sleep(time) {
-    for(let t = Date.now(); Date.now() - t <= time;);
-  }
-
   async videoPlayerDemo() {
     let videoPlayer = undefined;
     let surfaceID = 'test' // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接：
@@ -442,23 +438,15 @@ export class VideoPlayerDemo {
     }, this.failureCallback).catch(this.catchCallback);
     // 设置循环播放属性
     videoPlayer.loop = true;
-    // 调用play接口正式开始播放
+    // 调用play接口正式开始循环播放
     await videoPlayer.play().then(() => {
-      console.info('play success');
+      console.info('play success， loop value is ' + videoPlayer.loop);
     }, this.failureCallback).catch(this.catchCallback);
-    // 进度条执行到末尾后，在播放放3秒钟，因为设置了循环播放，所以当进度条执行到末尾后会从头开始播放
-    await videoPlayer.seek(videoPlayer.duration, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
-      console.info('seek duration success');
-    }, this.failureCallback).catch(this.catchCallback);
-    this.sleep(3000);
-    // 释放播放资源
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // 相关对象置undefined
-    videoPlayer = undefined;
-    surfaceID = undefined;
   }
 }
 ```
+
+## 相关实例
+针对视频播放开发，有以下相关实例可供参考：
+
+- [`VideoPlayer`：视频播放（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)

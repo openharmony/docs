@@ -1,20 +1,20 @@
 # 应用上下文使用指导
 
 ## Context概述
-​        context是应用中对象的上下文，提供获取应用程序环境信息的能力。
 
-## Context整体结构介绍
+​        Context是应用中对象的上下文，提供获取应用程序环境信息的能力。
 
-​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型：
+​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型，其中application/BaseContext属于通用的Context基类，里面包含一个属性stageMode，用来区分开发模型是FA还是Stage。
 
-​        **application/BaseContext** 属于一个通用的Context基类，既不属于FA模型也不属于Stage模型，里面只有一个属性stageMode，用来区分开发模型是FA还是Stage。
+​+ FA模型
+只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
 
-​        **FA模型** 只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意context实例所代表的实际含义。
+​+ Stage模型
+除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
 
-​        **Stage模型** 除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext和application/ServiceExtensionContext六种Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
+![context概述.png](C:\Users\jie\Desktop\context概述.png)
 
-
-![contextIntroduction](figures/contextIntroduction.png)
+​        ​        ​        ​        ​        ​        ​        ​        图1 - Context整体类图
 
 ## FA模型的Context详细介绍
 
@@ -22,82 +22,108 @@
 
 ​        FA模型只有一个Context定义。Context中所有的功能都是通过方法来提供的，它提供了一些featureAbility中不存在的方法，相当于featureAbility的一个扩展和补全。
 
-​        d.ts文件如下：
+​**d.ts声明**
 
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/app/context.d.ts
 
-​        应用的使用方式：
+​**示例**
 
 ```javascript
-// 1.引入featureAbility
 import featureAbility from '@ohos.ability.featureAbility'
-
 export default {
   onCreate() {
-    console.log('Application onCreate')
-
-    // 2.获取Context
+    // 获取context并调用相关方法
     let context = featureAbility.getContext();
-
-    // 3.调用对应的方法
-    context.setShowOnLockScreen(false, (data) => {
-      console.log("data: " + JSON.stringify(data));
+    context.getBundleName((data, bundleName)=>{
+      console.info("ability bundleName:" + bundleName)
     });
-  },
-  onActive() {
-    console.log('Application onActive')
+    console.info('Application onCreate')
   },
   onDestroy() {
-    console.log('Application onDestroy')
+    console.info('Application onDestroy')
   },
 }
 ```
 
 ## Stage模型和Context详细介绍
 
-​        Stage模型有6大Context：
+​        Stage模型有如下几类Context：
 
 ### application/Context
 
-**概述**
-
-​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir等，还有应用的一些基本方法：createBundleContext、switchArea等。应用级别的Context也是application/Context这种类型。
-
-**获取方法**
-
-​        需要在AbilityStage、Ability、Extension等组件中通过context.getApplicationContext()拿到。
-
-**示例**
-
-```javascript
-export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    // 获取ApplicationContext
-    let appContext = this.context.getApplicationContext();
-    // 获取路径
-    console.log('filesDir is ' + appContext.filesDir);
-  }
-
-  onDestroy() {
-    console.log('MainAbility onDestroy is called');
-  }
-}
-```
+​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
 
 **d.ts声明**
 
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/Context.d.ts
 
-### application/AbilityStageContext
+### application/ApplicationContext
 
-​ **概述**
+​         application/ApplicationContext是应用级别的Context。和基类Context相比，应用级别的Context中提供了监听进程内组件的生命周期的能力，包括registerAbilityLifecycleCallback和unregisterAbilityLifecycleCallback两种方法。
+
+**获取方法**
+
+​        在Ability中通过context.getApplicationContext()方法获取。
+
+**示例**
+
+```javascript
+import AbilityStage from "@ohos.application.AbilityStage";
+
+var lifecycleid;
+
+export default class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let AbilityLifecycleCallback  =  {
+            onAbilityCreate(ability){
+                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
+            },
+            onAbilityWindowStageCreate(ability){
+                console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
+            },
+            onAbilityWindowStageDestroy(ability){
+                console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
+            },
+            onAbilityDestroy(ability){
+                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
+            },
+            onAbilityForeground(ability){
+                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));             
+            },
+            onAbilityBackground(ability){
+                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));              
+            },
+            onAbilityContinue(ability){
+                console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+            }
+        }
+        // 1.通过context属性获取applicationContext
+        let applicationContext = this.context.getApplicationContext();
+        // 2.通过applicationContext注册监听应用内生命周期
+        lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+        console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
+    }
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
+        console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+        });
+    }
+}
+```
+
+**d.ts声明**
+
+​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ApplicationContext.d.ts
+
+### application/AbilityStageContext
 
 ​        application/AbilityStageContext是Hap包级别的Context。和基类Context相比，Hap包级别的Context中多了HapModuleInfo和Configuration两个信息。
 
 **获取方法**
 
-​        可以直接在AbilityStage中通过context属性拿到。
+​        可以直接在AbilityStage中通过context属性获取。
 
 **示例**
 
@@ -105,7 +131,7 @@ export default class MainAbility extends Ability {
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     // 属性context就是AbilityStageContext类型的
-    console.log('HapModuleInfo is ' + context.currentHapModuleInfo);
+    console.log('HapModuleInfo is ' + this.context.currentHapModuleInfo);
   }
 }
 ```
@@ -116,122 +142,66 @@ export default class MyAbilityStage extends AbilityStage {
 
 ### application/AbilityContext
 
-​ **概述**
-
 ​        Stage模型下，每个Ability中都包含了一个Context属性。
 
 ​        Ability功能主要是处理生命周期，其余操作Ability的方法(如startAbility、connectAbility等)都是在AbilityContext中实现的。
 
 **获取方法**
 
-​        在Ability中通过context属性拿到。
+​        在Ability中通过context属性获取。
 
 **示例**
 
 ```javascript
+import Ability from '@ohos.application.Ability'
+
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    var want = {
-      "bundleName": "com.example.MyApplication",
-      "abilityName": "ServiceExtAbility",
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
     }
-    // 1.这里的Context就是AbilityContext
-    let contxt = this.context;
-    // 2.startAbility
-    contxt.startAbility(want).then((data) => {
-      console.info("startAbility success:" + JSON.stringify(data));
-    }).catch((error) => {
-      console.error("startAbility failed:" + JSON.stringify(error));
-    });
-  }
 
-  onDestroy() {
-    console.log("MainAbility on Destroy is called");
-  }
-}
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate")
+
+        // 在这里获取AbilityContext，打印ability的信息
+        let context = this.context;
+        console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
+
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy")
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground")
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground")
+    }
+};
 ```
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AbilityContext.d.ts
-
-### application/ExtensionContext
-
-​ **概述**
-
-​        和FA模型不同的是，Stage模型把Service从Ability中剥离出来，单独定义了一组通用扩展类Extension用来处理等同的功能。Extension是一个基类，不承担具体业务功能。业务方根据自己的需要去扩展对应的Extension，例如：ServiceAbility扩展为了ServiceExtensionAbility，卡片扩展为了FormExtension。
-
-​        因此新增了一种和Extension匹配的ExtensionContext。ExtensionContext中包含HapModuleInfo和Configuration两个属性。
-
-**获取方法**
-
-​        不会单独使用。
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ExtensionContext.d.ts
-
-### application/ServiceExtensionContext
-
-​ **概述**
-
-​        ServiceExtensionAbility类似于FA模型的ServiceAbility，里面只有生命周期回调相关的处理。
-
-​        操作ServiceExtensionAbility的方法移动到了ServiceExtensionContext中(如startAbility、connectAbility等)。
-
-**获取方法**
-
-​        ServiceExtensionAbility中通过context属性获取。
-
-**示例**
-```javascript
-export default class ServiceExtAbility extends ServiceExtensionAbility {
-  onCreate(want) {
-    console.info("ServiceAbility onCreate**");
-    // 1.这里的Context就是ServiceExtensionContext
-    let contxt = this.context;
-  }
-
-  onRequest(want, startId)  {
-    console.info("ServiceAbility onRequest**");
-  }
-
-  onConnect(want)  {
-    console.info("ServiceAbility onConnect**");
-    return new StubTest("test");
-  }
-
-  onDisconnect(want) {
-    console.info("ServiceAbility onDisconnect**");
-  }
-
-  onDestroy() {
-    console.info("ServiceAbility onDestroy**");
-  }
-}
-
-```
-
-**d.ts声明**
-
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ServiceExtensionContext.d.ts
 
 ### application/FormExtensionContext
 
+卡片业务相关，点下面链接了解。
+
 ​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
 
-**d.ts声明**
+## 常见错误使用方式
 
-​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/FormExtensionContext.d.ts
-
-## 常见问题
-
-**通过globalThis去获取Context**
-
-**结论**
-
-​        FA模型可以通过该方式去获取；Stage模型不可通过该方式去获取，要通过对应组件的属性去获取。
+**错误1：Stage模型通过globalThis去获取Context**
 
 **原因**
 

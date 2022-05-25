@@ -1,6 +1,5 @@
-# Introduction to the Shell<a name="EN-US_TOPIC_0000001179965829"></a>
+# Introduction to the Shell
 
--   [Important Notes](#section12298165312328)
 
 The shell provided by the OpenHarmony kernel supports commonly used debugging commands. You can also add and customize commands to the shell of the OpenHarmony kernel to address your service needs. The common debugging commands include the following:
 
@@ -13,7 +12,7 @@ The shell provided by the OpenHarmony kernel supports commonly used debugging co
     For details about how to add a command, see  [Shell Command Development Guidelines](kernel-small-debug-shell-guide.md)  and  [Shell Command Programming Example](kernel-small-debug-shell-build.md).
 
 
-## Important Notes<a name="section12298165312328"></a>
+## Important Notes
 
 Note the following when using the shell:
 
@@ -30,7 +29,7 @@ Note the following when using the shell:
 
 -   The shell functions do not comply with the POSIX standards and are used only for debugging.
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >![](../public_sys-resources/icon-notice.gif) **NOTICE**<br/> 
     >The shell functions are used for debugging only and can be enabled only in the Debug version \(by enabling the  **LOSCFG\_DEBUG\_VERSION**  configuration item using  **menuconfig**\).
 
 

@@ -5,7 +5,7 @@
 
 编译构建子系统提供了一个基于gn和ninja的编译构建框架。主要提供以下功能：
 
-- 构建不同芯片平台的产品。如：Hi3516DV300平台。
+- 构建不同芯片平台的产品。如：hispark_taurus_standard平台。
 
 - 根据产品配置，按照组件组装并打包产品特性的能力。
 
@@ -89,14 +89,14 @@ OpenHarmony侧的编译构建流程主要包括编译命令行解析，调用gn�
   ./build.sh --product-name {product_name}
   ```
 
-  {product_name}为当前版本支持的平台。比如：Hi3516DV300等。
+  {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
 
   编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
 
 - 编译命令支持选项：
     
   ```
-    --product-name    # 必须  编译的产品名称，如：Hi3516DV300
+    --product-name    # 必须  编译的产品名称，如：hispark_taurus_standard
     --build-target    # 可选  指定编译目标，可以指定多个
     --gn-args         # 可选  gn参数，支持指定多个
     --ccache          # 可选  编译使用ccache，需要本地安装ccache
@@ -211,19 +211,19 @@ OpenHarmony侧的编译构建流程主要包括编译命令行解析，调用gn�
    - test_list：组件中对应模块的测试用例；
 
 2. 将组件添加到产品配置中。
-   在产品的配置中添加组件，产品对应的配置文件：productdefine/common/products/{product-name}.json。
+   在产品的配置中添加组件，产品对应的配置文件：//vendor/{product_company}/{product-name}/config.json。
 
    在产品配置文件中添加 "subsystem_examples:partA"，表示该产品中会编译并打包partA到版本中。
 
 3. 编译。
-     以编译Hi3516DV300为例，编译命令如下：
+     以编译hispark_taurus_standard为例，编译命令如下：
      
    ```
-   ./build.sh --product-name Hi3516DV300 --ccache
+   ./build.sh --product-name hispark_taurus_standard --ccache
    ```
 
 4. 编译输出。
-   编译所生成的文件都归档在out/hi3516dv300/目录下，结果镜像输出在 out/hi3516dv300/packages/phone/images/ 目录下。
+   编译所生成的文件都归档在out/hispark_taurus/目录下，结果镜像输出在 out/hispark_taurus/packages/phone/images/ 目录下。
 
 
 ## 常见问题
@@ -370,7 +370,7 @@ ohos_shared_library("module2") {
 
    ohos.build文件包含两个部分，第一部分subsystem说明了子系统的名称，parts定义了该子系统包含的部件，要添加一个部件，需要把该部件对应的内容添加进parts中去。添加的时候需要指明该部件包含的模块module_list，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test_list中说明，inner_kits与test_list没有也可以不添加。
 
-3. 在productdefine/common/products目录下的产品配置文件（json格式）中添加对应的部件，直接添加到原有部件后即可。
+3. 在//vendor/{product_company}/{product-name}/config.json中添加对应的部件，直接添加到原有部件后即可。
      
    ```
    {
@@ -400,7 +400,7 @@ ohos_shared_library("module2") {
 
    该文件定义了有哪些子系统以及这些子系统所在文件夹路径，添加子系统时需要说明子系统path与name，分别表示子系统路径和子系统名。
 
-4. 在productdefine/common/products目录下的产品配置如Hi3516DV300.json中添加对应的部件，直接添加到原有部件后即可。
+4. 在//vendor/{product_company}/{product-name}目录下的产品配置如product-name是hispark_taurus_standard时，在config.json中添加对应的部件，直接添加到原有部件后即可。
      
    ```
    {
@@ -420,27 +420,32 @@ ohos_shared_library("module2") {
 
 鸿蒙操作系统的配置文件主要有四个。
 
-1. productdefine/common/products目录下的产品名.json文件。
+1. vendor\产品厂商\产品名\config.json
      
    ```
    {
-     "product_name": "Hi3516DV300",
-     "product_company": "hisilicon",
-     "product_device": "hi3516dv300",
-     "version": "2.0",
-     "type": "standard",
-     "parts":{
-       "ace:ace_engine_standard":{},
-       "ace:napi":{},
-       "account:os_account":{},
-       "distributeddatamgr:native_appdatamgr":{},
-       "distributeddatamgr:distributeddatamgr":{},
-       "distributeddatamgr:appdatamgr_jskits":{},
-     }
-   }
+      "product_name": "MyProduct",
+      "version": "3.0",
+      "type": "standard",
+      "target_cpu": "arm",
+      "ohos_version": "OpenHarmony 1.0",
+      "device_company": "MyProductVendor",
+      "board": "MySOC",
+      "enable_ramdisk": true,
+      "subsystems": [
+        {
+          "subsystem": "ace",
+          "components": [
+            { "component": "ace_engine_lite", "features":[""] }
+          ]
+        }，
+        ...
+      ]
+  }
+
    ```
 
-   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的部件。
+   指明了产品名，产品厂商，产品设备，版本，要编译的系统类型，以及产品包含的子系统。
 
 2. build目录下的subsystem_config.json文件。
      

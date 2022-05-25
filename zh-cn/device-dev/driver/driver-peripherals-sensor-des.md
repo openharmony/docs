@@ -5,7 +5,7 @@
 
 ### 功能简介
 
-Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能；Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如图1所示。
+Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能。Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如图1所示。
 
 **图 1**  Sensor驱动模型图
  
@@ -29,13 +29,13 @@ Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供�
 
 Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动为例，介绍整个驱动加载及运行流程：
 
-1. 从device info HCS 的Sensor Host读取Sensor设备管理配置信息。
+1. 从device_info.hcs配置文件的Sensor Host读取Sensor设备管理配置信息。
 2. HDF配置框架从HCB数据库解析Sensor设备管理配置信息，并关联对应设备驱动。
 3. 加载并初始化Sensor设备管理驱动。
 4. Sensor设备管理驱动向HDI发布Sensor基础能力接口。
-5. 从device info HCS 的Sensor Host读取加速度传感器驱动配置信息。
+5. 从device_info.hcs配置文件的Sensor Host读取加速度传感器驱动配置信息。
 6. 加载加速度传感器抽象驱动，调用初始化接口，完成Sensor器件驱动资源分配和数据处理队列创建。
-7. 从accel_xxx_config HCS读取加速度传感器差异化驱动配置和私有化配置信息。
+7. 从accel_xxx_config.hcs配置文件读取加速度传感器差异化驱动配置和私有化配置信息。
 8. 加速度传感器差异化驱动，调用通用配置解析接口，完成器件属性信息解析，器件寄存器解析。
 9. 加速度传感器差异化驱动完成器件探测，并分配加速度传感器配置资源，完成加速度传感器差异化接口注册。
 10. 加速度传感器探测成功之后，加速度传感器差异化驱动通知加速度传感器抽象驱动，注册加速度传感器设备到Sensor设备管理中。
@@ -54,11 +54,11 @@ Sensor驱动模型以标准系统Hi3516DV300产品中的加速度传感器驱动
 
 Sensor驱动模型对外开放的API接口能力如下：
 
-- 提供Sensor HDI（Hardware  Device  Interface）能力接口，简化服务开发。
+- 提供Sensor HDI（Hardware Device Interface）能力接口，简化服务开发。
 - 提供Sensor驱动模型能力接口：
   - 依赖HDF驱动框架实现Sensor器件驱动的注册，加载，去注册，器件探测等能力。
   - 提供同一类型Sensor器件驱动归一接口, 寄存器配置解析操作接口，总线访问抽象接口，平台抽象接口。
-- 提供开发者实现的能力接口：依赖HDF驱动框架的HCS（HDF  Configuration  Source）配置管理，根据同类型Sensor差异化配置，实现Sensor器件参数序列化配置和器件部分操作接口，简化Sensor器件驱动开发。
+- 提供开发者实现的能力接口：依赖HDF驱动框架的HCS（HDF Configuration Source）配置管理，根据同类型Sensor差异化配置，实现Sensor器件参数序列化配置和器件部分操作接口，简化Sensor器件驱动开发。
 
 Sensor驱动模型对外开放的API接口能力的具体实现请参考：
 
@@ -122,14 +122,14 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
      ```c
      /* 注册加速度计传感器入口数据结构体对象 */
      struct HdfDriverEntry g_sensorAccelDevEntry = {
-         .moduleVersion = 1, //加速度计传感器模块版本号
-         .moduleName = "HDF_SENSOR_ACCEL", //加速度计传感器模块名，要与device_info.hcs文件里的加速度计moduleName字段值一样
+         .moduleVersion = 1, // 加速度计传感器模块版本号
+         .moduleName = "HDF_SENSOR_ACCEL", // 加速度计传感器模块名，要与device_info.hcs文件里的加速度计moduleName字段值一样
          .Bind = BindAccelDriver, // 加速度计传感器绑定函数
          .Init = InitAccelDriver, // 加速度计传感器初始化函数
          .Release = ReleaseAccelDriver, // 加速度计传感器资源释放函数
      };
      
-     /* 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出 */
+     /* 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出 */
      HDF_INIT(g_sensorAccelDevEntry);
      ```
 
@@ -523,8 +523,8 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
 驱动开发完成后，在传感器单元测试里面开发自测试用例，验证驱动基本功能。测试环境采用开发者自测试平台。
 
 ```
-static int32_t g_sensorDataFlag = 0; //标识是否上报传感器数据
-static const struct SensorInterface *g_sensorDev = nullptr; //保持获取的传感器接口实例地址
+static int32_t g_sensorDataFlag = 0; // 标识是否上报传感器数据
+static const struct SensorInterface *g_sensorDev = nullptr; // 保持获取的传感器接口实例地址
 
 /* 订阅者注册数据上报函数 */
 static int SensorTestDataCallback(struct SensorEvents *event)

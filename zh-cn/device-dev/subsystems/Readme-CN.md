@@ -4,7 +4,8 @@
     - [轻量和小型系统编译构建指导](subsys-build-mini-lite.md)
     - [标准系统编译构建指导](subsys-build-standard-large.md)
     - [构建系统编码规范与最佳实践](subsys-build-gn-coding-style-and-best-practice.md)
-    - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guid.md)
+    - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guide.md)
+    - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)
@@ -42,10 +43,10 @@
         - [唤醒词识别插件的开发示例](subsys-aiframework-demo-plugin.md)
         - [唤醒词识别配置文件的开发示例](subsys-aiframework-demo-conf.md)
 - 数据管理
-    - [关系型数据库](subsys-data-relational-database.md)
+    - 关系型数据库
       - [关系型数据库概述](subsys-data-relational-database-overview.md)
       - [关系型数据库开发指导](subsys-data-relational-database-guide.md)
-    - [轻量级数据存储](subsys-data-storage.md)
+    - 轻量级数据存储
       - [轻量级数据存储概述](subsys-data-storage-overview.md)
       - [轻量级数据存储开发指导](subsys-data-storage-guide.md)
 - Sensor服务

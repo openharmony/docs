@@ -4,7 +4,7 @@
 
 ## 导入模块
 
-```
+```js
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -56,7 +56,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 **示例：**
 
-```
+```js
 function queryFaultLogCallback(error, value) {
     if (error) {
         console.info('error is ' + error);
@@ -101,7 +101,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 **示例：**
 
-```
+```js
 async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {

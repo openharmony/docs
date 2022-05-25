@@ -35,6 +35,10 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 ![fa-threading-nodel](figures/fa-threading-model.png)
 ## 相关实例
 针对Ability开发，有以下相关实例可供参考：
+
+- [`DistributeCalc`：分布式计算器（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Preset/DistributeCalc)
+- [`DistributeGraffti`：分布式涂鸦（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DistributedGraffiti)
+
 - [分布式调度启动远程FA](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
 - [分布式新闻客户端](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
 - [分布式手写板（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)

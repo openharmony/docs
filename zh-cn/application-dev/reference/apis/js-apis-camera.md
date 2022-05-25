@@ -1016,7 +1016,7 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 | 名称     | 类型                             | 必填 | 说明                                            |
 | :------- | :------------------------------- | :--- | :---------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，即CamerInput错误事件。 |
+| type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
 | callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。                        |
 
 **示例：**
@@ -1363,7 +1363,7 @@ captureSession.addOutput(photoOutput, (err) => {
 
 addOutput\(photoOutput: PhotoOutput\): Promise<void\>
 
-在当前会话中，添加一个PreviewOutput实例，通过Promise获取结果。
+在当前会话中，添加一个PhotoOutput实例，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1566,7 +1566,7 @@ removeOutput(photoOutput: PhotoOutput, callback: AsyncCallback<void\>): void
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要移除的PhotoOutput实例。 |
 | callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
@@ -1593,7 +1593,7 @@ removeOutput(photoOutput: PhotoOutput): Promise<void\>
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要添加的PhotoOutput实例。 |
+| photoOutput | [PhotoOutput](#photooutput) | 是   | 需要移除的PhotoOutput实例。 |
 
 
 **返回值：**
@@ -1623,7 +1623,7 @@ removeOutput(videoOutput: VideoOutput, callback: AsyncCallback<void\>): void
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要移除的VideoOutput实例。 |
 | callback    | AsyncCallback<void\>        | 是   | 回调函数，用于获取结果。    |
 
 **示例：**
@@ -1650,7 +1650,7 @@ removeOutput(videoOutput: VideoOutput): Promise<void\>
 
 | 名称        | 类型                        | 必填 | 说明                        |
 | ----------- | --------------------------- | ---- | --------------------------- |
-| videoOutput | [VideoOutput](#videooutput) | 是   | 需要添加的VideoOutput实例。 |
+| videoOutput | [VideoOutput](#videooutput) | 是   | 需要移除的VideoOutput实例。 |
 
 
 **返回值：**

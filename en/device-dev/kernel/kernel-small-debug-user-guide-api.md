@@ -1,4 +1,4 @@
-# API Description<a name="EN-US_TOPIC_0000001119076262"></a>
+# Available APIs
 
 **Table  1**  Memory debugging module APIs
 

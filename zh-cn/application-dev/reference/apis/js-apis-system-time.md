@@ -1,5 +1,6 @@
 # 设置系统时间
 
+本模块用来设置、获取当前系统时间，设置、获取当前系统日期和设置、获取当前系统时区。
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -22,13 +23,14 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **系统能力：** SystemCapability.Miscservices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | time | number | 是 | 目标时间戳（毫秒）。 |
+  | time | number | 是 | 目标时间戳（ms）。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 |
 
-- 示例：
+**示例：**
   
   ```js
   // time对应的时间为2021-01-20 02:36:25
@@ -53,17 +55,19 @@ setTime(time : number) : Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | time | number | 是 | 目标时间戳（毫秒）。 |
+**参数：**
 
-- 返回值：
-    | 类型 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | time | number | 是 | 目标时间戳（ms）。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 返回的异步回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   // time对应的时间为2021-01-20 02:36:25
@@ -84,13 +88,14 @@ getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getCurrentTime(true, (error, data) => {
@@ -111,17 +116,19 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 以Promise形式返回结果，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getCurrentTime().then((data) => {
@@ -140,13 +147,14 @@ getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自系统启动以来但不包括度睡眠时间经过的时间。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getRealActiveTime(true, (error, data) => {
@@ -167,17 +175,19 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
 
-- 返回值：
-    | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来但不包括度睡眠时间经过的时间。 |
+**返回值：**
 
-- 示例：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
+
+**示例：**
   
   ```js
   systemTime.getCurrentTime().then((data) => {
@@ -196,13 +206,14 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自系统启动以来包括深度睡眠时间经过的毫秒数。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getRealTime(true, (error, data) => {
@@ -223,17 +234,19 @@ getRealTime(): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | isNano | boolean | 否 | 如果是true，返回纳秒数；否则返回毫秒数。 |
 
-- 返回值：
-    | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来包括深度睡眠时间经过的时间。 |
+**返回值：**
 
-- 示例：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | 以Promise形式返回结果，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
+
+**示例：**
   
   ```js
   systemTime.getRealTime().then((data) => {
@@ -254,13 +267,14 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | date | Date | 是 | 目标日期。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 |
 
-- 示例：
+**示例：**
   
   ```js
   var data = new Date("October 13, 2020 11:13:00");
@@ -284,17 +298,19 @@ setDate(date: Date): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | date | Date | 是 | 目标日期。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 返回的异步回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   var data = new Date("October 13, 2020 11:13:00"); 
@@ -314,12 +330,13 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;Date&gt; | 是 | 回调函数，返回当前系统日期。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getDate((error, data) => {
@@ -340,12 +357,13 @@ getDate(): Promise&lt;Date&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Date&gt; | 以Promise形式返回结果，返回当前系统日期。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getDate().then((data) => {
@@ -366,13 +384,14 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | timezone | string | 是 | 系统时区。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.setTimezone('Asia/Shanghai', (error, data) => {       
@@ -395,17 +414,19 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | timezone | string | 是 | 系统时区。 |
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 返回的异步回调函数。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.setTimezone('Asia/Shanghai').then((data) => {        
@@ -424,12 +445,13 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 参数：
-    | 参数名 | 类型 | 必填 | 说明 |
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，返回系统时区。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getTimezone((error, data) => {
@@ -450,12 +472,13 @@ getTimezone(): Promise&lt;string&gt;
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-- 返回值：
-    | 类型 | 说明 |
+**返回值：**
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;string&gt; | 以Promise形式返回结果，返回系统时区。 |
 
-- 示例：
+**示例：**
   
   ```js
   systemTime.getTimezone().then((data) => {

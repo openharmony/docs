@@ -1,10 +1,10 @@
 # Driver Service Management
 
 
-Driver services are objects of capabilities provided by HDF driver devices to external systems and are managed by the HDF in a unified manner. Driver service management involves providing and obtaining driver services.
+Driver services are objects of capabilities provided by HDF driver devices to external systems and are managed by the HDF in a unified manner. Driver service management involves publishing and obtaining driver services.
 
 
-The HDF uses the **policy** field in the configuration file to define policies for drivers to provide services externally. The values this field are as follows:
+The HDF uses the **policy** field in the configuration file to define policies for drivers to publish services externally. The values this field are as follows:
 
 
   
@@ -12,13 +12,13 @@ The HDF uses the **policy** field in the configuration file to define policies f
 typedef enum {
     /* The driver does not provide services. */
     SERVICE_POLICY_NONE = 0,
-    /* The driver provides services only for kernel-mode applications. */
+    /* The driver publishes services only for kernel-mode processes. */
     SERVICE_POLICY_PUBLIC = 1,
-    /* The driver provides services for both kernel- and user-mode applications. */
+    /* The driver publishes services for both kernel- and user-mode processes. */
     SERVICE_POLICY_CAPACITY = 2,
-    /** The driver services are not provided externally but can be subscribed to. */
+    /** The driver services are not published externally but can be subscribed to. */
     SERVICE_POLICY_FRIENDLY = 3,
-    /* The driver private services cannot be provided externally or subscribed to. */
+    /* The driver private services cannot be published externally or subscribed to. */
     SERVICE_POLICY_PRIVATE = 4,
     /** Invalid service policy. */
     SERVICE_POLICY_INVALID

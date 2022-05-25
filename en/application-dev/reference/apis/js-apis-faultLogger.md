@@ -1,10 +1,10 @@
 # Fault Logger
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -15,12 +15,12 @@ Enumerates the fault types.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
-| Name| Default Value| Description|
+| Name | Default Value | Description |
 | -------- | -------- | -------- |
-| NO_SPECIFIC | 0 | No specific fault type.|
-| CPP_CRASH | 2 | C++ program crash.|
-| JS_CRASH | 3 | JS program crash.|
-| APP_FREEZE | 4 | Application freezing.|
+| NO_SPECIFIC | 0 | No specific fault type. |
+| CPP_CRASH | 2 | C++ program crash. |
+| JS_CRASH | 3 | JS program crash. |
+| APP_FREEZE | 4 | Application freezing. |
 
 ## FaultLogInfo
 
@@ -30,20 +30,20 @@ Defines the data structure of the fault log information.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| pid | number | Process ID of the faulty process.|
-| uid | number | User ID of the faulty process.|
-| type | [FaultType](#faulttype) | Fault type.|
-| timestamp | number | Second-level timestamp when the log was generated.|
-| reason | string | Reason for the fault.|
-| module | string | Module on which the fault occurred.|
-| summary | string | Summary of the fault.|
-| fullLog | string | Full log text.|
+| pid | number | Process ID of the faulty process. |
+| uid | number | User ID of the faulty process. |
+| type | [FaultType](#faulttype) | Fault type. |
+| timestamp | number | Second-level timestamp when the log was generated. |
+| reason | string | Reason for the fault. |
+| module | string | Module on which the fault occurred. |
+| summary | string | Summary of the fault. |
+| fullLog | string | Full log text. |
 
 ## faultLogger.querySelfFaultLog
 
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
-Obtains the fault information about the current process. This API uses a callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
+Obtains the fault information about the current process. This API uses an asynchronous callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -51,12 +51,12 @@ Obtains the fault information about the current process. This API uses a callbac
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| faultType | [FaultType](#faulttype) | Yes| Fault type.|
+| faultType | [FaultType](#faulttype) | Yes| Fault type. |
 | callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
 
 **Example**
 
-```
+```js
 function queryFaultLogCallback(error, value) {
     if (error) {
         console.info('error is ' + error);
@@ -91,17 +91,17 @@ Obtains the fault information about the current process. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| faultType | [FaultType](#faulttype) | Yes| Fault type.|
+| faultType | [FaultType](#faulttype) | Yes| Fault type. |
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval.|
+| Promise&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Promise used to return the fault information array. You can obtain the fault information instance in its **then()** method or use **await**.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. |
 
 **Example**
 
-```
+```js
 async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {

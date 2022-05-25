@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```ts
-import ArrayList from '@ohos.util.ArrayList'
+import ArrayList from '@ohos.util.ArrayList';
 ```
 
 ## 系统能力
@@ -332,7 +332,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -363,8 +363,8 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.sort(a, (b => a - b));
-arrayList.sort(a, (b => b - a));
+arrayList.sort((a, b) => a - b);
+arrayList.sort((a, b) => b - a);
 arrayList.sort();
 ```
 
@@ -574,14 +574,14 @@ arrayList.add(4);
 
 // 使用方法一：
 for (let item of arrayList) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

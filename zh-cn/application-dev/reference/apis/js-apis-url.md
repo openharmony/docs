@@ -10,10 +10,6 @@
 import Url from '@ohos.url' 
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## URLSearchParams
 
 
@@ -22,6 +18,8 @@ SystemCapability.Utils.Lang
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
 
 URLSearchParams的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -46,6 +44,8 @@ append(name: string, value: string): void
 
 将新的键值对插入到查询字符串。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -68,6 +68,8 @@ delete(name: string): void
 
 删除指定名称的键值对。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -88,6 +90,8 @@ paramsobject.delete('fod');
 getAll(name: string): string[]
 
 获取指定名称的所有键值对。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -117,6 +121,8 @@ entries(): IterableIterator<[string, string]>
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -138,6 +144,8 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -170,6 +178,8 @@ get(name: string): string | null
 
 获取指定名称对应的第一个值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -199,6 +209,8 @@ has(name: string): boolean
 
 判断一个指定的键名对应的值是否存在。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -226,6 +238,8 @@ set(name: string, value: string): void
 
 将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -246,8 +260,9 @@ paramsObject.set('baz', 3); // Add a third parameter.
 
 sort(): void
 
-
 对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -262,8 +277,9 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-
 返回一个所有键值对的name的ES6迭代器。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -287,6 +303,8 @@ values(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的value的ES6迭代器。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -307,8 +325,9 @@ for (var value of searchParams.values()) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -330,8 +349,9 @@ for (const [name, value] of paramsObject) {
 
 toString(): string
 
-
 返回序列化为字符串的搜索参数，必要时对字符进行百分比编码。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -351,8 +371,9 @@ console.log(params.toString());
 
 ## URL
 
-
 ### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -374,8 +395,9 @@ console.log(params.toString());
 
 constructor(url: string, base?: string | URL)
 
-
 URL的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -408,6 +430,8 @@ toString(): string
 
 将解析过后的URL转化为字符串。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -426,8 +450,9 @@ url.toString()
 
 toJSON(): string
 
-
 将解析过后的URL转化为JSON字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

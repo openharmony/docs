@@ -2,19 +2,20 @@
 
 ## Overview<a name="section5361140416"></a>
 
--   The Inter-Integrated Circuit \(I2C\) is a simple, bidirectional, and synchronous serial bus that uses merely two wires.
--   In an I2C communication, one controller communicates with one or more devices through the serial data line \(SDA\) and serial clock line \(SCL\), as shown in  [Figure 1](#fig1135561232714).
+The Inter-Integrated Circuit \(I2C\) is a simple, bidirectional, and synchronous serial bus that uses merely two wires.
 
--   I2C data transfer must begin with a  **START**  condition and end with a  **STOP**  condition. Data is transmitted byte-by-byte from the most significant bit to the least significant bit.
--   Each I2C node is recognized by a unique address and can serve as either a controller or a device. When the controller needs to communicate with a device, it writes the device address to the bus through broadcast. A device matching this address sends a response to set up a data transfer channel.
+In an I2C communication, one controller communicates with one or more devices through the serial data line \(SDA\) and serial clock line \(SCL\), as shown in  [Figure 1](#fig1135561232714).
 
--   The I2C APIs define a set of common functions for I2C data transfer, including:
+I2C data transfer must begin with a  **START**  condition and end with a  **STOP**  condition. Data is transmitted byte-by-byte from the most significant bit to the least significant bit.
 
-    -   I2C controller management: opening or closing an I2C controller
-    -   I2C message transfer: custom transfer by using a message array
+Each I2C node is recognized by a unique address and can serve as either a controller or a device. When the controller needs to communicate with a device, it writes the device address to the bus through broadcast. A device matching this address sends a response to set up a data transfer channel.
 
-    **Figure  1**  Physical connection diagram for I2C<a name="fig1135561232714"></a>  
-    ![](figures/physical-connection-diagram-for-i2c.png "physical-connection-diagram-for-i2c")
+The I2C APIs define a set of common functions for I2C data transfer, including:
+
+-   I2C controller management: opening or closing an I2C controller
+-   I2C message transfer: custom transfer by using a message array
+
+**Figure  1**  Physical connection diagram for I2C<br/>![](figures/physical-connection-diagram-for-i2c.png "physical-connection-diagram-for-i2c")
 
 
 ## Available APIs<a name="section545869122317"></a>
@@ -52,21 +53,22 @@
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >All functions provided in this document can be called only in kernel mode.
 
 ## Usage Guidelines<a name="section1695201514281"></a>
 
 ### How to Use<a name="section1338373417288"></a>
 
-[Figure 2](#fig183017194234)  illustrates the process of an I2C device.
+The figure below illustrates how to use the APIs.
 
-**Figure  2**  Process of using an I2C device<a name="fig183017194234"></a>  
-![](figures/process-of-using-an-i2c-device.png "process-of-using-an-i2c-device")
+**Figure  2**  Using I2C driver APIs
+
+![](figures/using-i2c-process.png "process-of-using-an-i2c-device")
 
 ### Opening an I2C Controller<a name="section13751110132914"></a>
 
-Call the following function to open an I2C controller:
+Call the **I2cOpen()** function to open an I2C controller.
 
 DevHandle I2cOpen\(int16\_t number\);
 
@@ -117,7 +119,7 @@ if (i2cHandle == NULL) {
 
 ### Performing I2C Communication<a name="section9202183372916"></a>
 
-Use the following function for message transfer:
+Call the **I2cTransfer()** function to transfer messages.
 
 int32\_t I2cTransfer\(DevHandle handle, struct I2cMsg \*msgs, int16\_t count\);
 
@@ -186,15 +188,14 @@ if (ret != 2) {
 }
 ```
 
->![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+>![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
 >-   The device address in the  **I2cMsg**  structure does not contain the read/write flag bit. The read/write information is transferred by the read/write control bit in the member variable  **flags**.
->-   The  **I2cTransfer**  function does not limit the number of message structures, which is determined by the I2C controller.
->-   The  **I2cTransfer**  function does not limit the data length of each message structure, which is determined by the I2C controller.
+>-   The  **I2cTransfer**  function does not limit the number of message structures and the data length of each message structure, which are determined by the I2C controller.
 >-   The  **I2cTransfer**  function may cause the system to sleep and therefore cannot be called in the interrupt context.
 
 ### Closing an I2C Controller<a name="section19481164133018"></a>
 
-Call the following function to close the I2C controller after the communication is complete:
+Call the **I2cClose()** function to close the I2C controller after the communication is complete.
 
 void I2cClose\(DevHandle \*handle\); 
 
@@ -209,11 +210,12 @@ void I2cClose\(DevHandle \*handle\);
 </thead>
 <tbody><tr id="row1926109193116"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p105419317318"><a name="p105419317318"></a><a name="p105419317318"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1213245577"><a name="p1213245577"></a><a name="p1213245577"></a>Handle of an I2C controller.</p>
+<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1213245577"><a name="p1213245577"></a><a name="p1213245577"></a>Handle of the I2C controller to close.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ```
 I2cClose(i2cHandle); /* Close the I2C controller. */
@@ -233,7 +235,7 @@ This example shows a simple register read/write operation on TouchPad on a Hi351
 
 In this example, first we reset Touch IC. \(The development board supplies power to Touch IC by default after being powered on, and this use case does not consider the power supply\). Then, we perform a read/write operation on an internal register to test whether the I2C channel is normal.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE** <br/>
 >The example focuses on I2C device access and verifies the I2C channel. The read and write values of the device register are not concerned. The behavior caused by the read and write operations on the register is determined by the device itself.
 
 Example:

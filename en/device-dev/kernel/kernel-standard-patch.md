@@ -1,4 +1,4 @@
-# Applying Patches on Development Boards<a name="EN-US_TOPIC_0000001081980461"></a>
+# Applying Patches on Development Boards
 
 1.  Apply the HDF patches.
 
@@ -32,7 +32,7 @@
     DEFCONFIG_FILE := $(DEVICE_NAME)_$(BUILD_TYPE)_defconfig
     ```
 
-    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >![](../public_sys-resources/icon-notice.gif) **NOTICE**<br/> 
     >In the OpenHarmony project build process, patches are applied after the code environment of  **kernel/linux/linux-\*.\***  is copied. Before running the OpenHarmony version-level build command, ensure that the source code environment of  **kernel/linux/linux-\*.\***  is available.
     >After the build is complete, the kernel is generated in the kernel directory in the  **out**  directory. Modify the  **config**  file based on the kernel generated, and copy the generated  **.config**  file to the corresponding path in the  **config**  repository. Then, the configuration takes effect.
 

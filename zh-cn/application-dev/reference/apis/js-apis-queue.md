@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import Queue from '@ohos.util.Queue'  
+import Queue from '@ohos.util.Queue';  
 ```
 
 ## 系统能力
@@ -147,7 +147,7 @@ queue.add(4);
 queue.add(5);
 queue.add(4);
 queue.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 
 ```
@@ -175,14 +175,14 @@ queue.add(4);
 
 // 使用方法一：
 for (let item of queue) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // 使用方法二：
 let iter = queue[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

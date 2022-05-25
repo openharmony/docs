@@ -1,10 +1,4 @@
-# Using the CLI<a name="EN-US_TOPIC_0000001119236568"></a>
-
--   [Sample Code](#section13793104782316)
--   [Compilation](#section1676431122320)
--   [Running the mwatch Command](#section1703415132311)
--   [Call Stack Parsing](#section1880675510221)
--   [Running the mrecord Command](#section071022822210)
+# Using the CLI
 
 In addition to calling APIs to check the memory used by user-mode processes, you can run CLI commands to collect memory statistics, check for memory leaks, and check memory integrity.
 
@@ -46,11 +40,11 @@ int main()
 }
 ```
 
-## Compilation<a name="section1676431122320"></a>
+## Compilation
 
-For details, see  [Calling APIs](kernel-small-debug-user-guide-use-api.md#section534302242515).
+For details, see  [Calling APIs](kernel-small-debug-user-guide-use-api.md#compilation).
 
-## Running the mwatch Command<a name="section1703415132311"></a>
+## Running the mwatch Command
 
 ```
 OHOS # ./mem_check --mwatch // Run the task command to obtain the mem_check process PID, which is 4.
@@ -114,7 +108,7 @@ Now using addr2line ...
 ==PID:4== SUMMARY: 0x640 byte(s) leaked in 2 allocation(s).
 ```
 
-## Running the mrecord Command<a name="section071022822210"></a>
+## Running the mrecord Command
 
 1.  Run the user program and specify the path of the file that stores the memory debugging information.
 
@@ -224,6 +218,6 @@ Now using addr2line ...
     ```
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >The preceding information recorded gradually is added to the file specified during initialization. Therefore, running the  **cat**  command can also display the historical information in the file.
 

@@ -1,16 +1,6 @@
-# Mutex<a name="EN-US_TOPIC_0000001123948099"></a>
+# Mutex
 
--   [Basic Concepts](#section1663192064511)
--   [Working Principles](#section115161649726)
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section1426719434114)
-    -   [Example Description](#section896412438910)
-    -   [Sample Code](#section149077554912)
-    -   [Verification](#section2059413981311)
-
-
-## Basic Concepts<a name="section1663192064511"></a>
+## Basic Concepts
 
 A mutual exclusion \(mutex\) is a special binary semaphore used for exclusive access to shared resources.
 
@@ -24,10 +14,10 @@ In a multi-task environment, multiple tasks may access the same shared resources
 
 When non-shared resources are accessed by a task, the mutex is locked. Other tasks will be blocked until the mutex is released by the task. The mutex allows only one task to access the shared resources at a time, ensuring integrity of operations on the shared resources.
 
-**Figure  1**  Mutex working mechanism for mini systems<a name="fig04871041163213"></a>  
+**Figure  1**  Mutex working mechanism for mini systems
 ![](figures/mutex-working-mechanism-for-mini-systems.png "mutex-working-mechanism-for-mini-systems")
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 **Table  1**  APIs of the mutex module
 
@@ -67,7 +57,7 @@ When non-shared resources are accessed by a task, the mutex is locked. Other tas
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical mutex development process is as follows: 
 
@@ -86,15 +76,15 @@ The typical mutex development process is as follows:
 
 4.  Call  **LOS\_MuxDelete**  to delete a mutex.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >-   Two tasks cannot lock the same mutex. If a task attempts to lock a mutex held by another task, the task will be blocked until the mutex is unclocked.
 >-   Mutexes cannot be used in the interrupt service program.
 >-   When using the LiteOS-M kernel, OpenHarmony must ensure real-time task scheduling and avoid long-time task blocking. Therefore, a mutex must be released as soon as possible after use.
 >-   When a mutex is held by a task, the task priority cannot be changed by using APIs such as  **LOS\_TaskPriSet**.
 
-## Development Example<a name="section1426719434114"></a>
+## Development Example
 
-### Example Description<a name="section896412438910"></a>
+### Example Description
 
 This example implements the following:
 
@@ -103,7 +93,7 @@ This example implements the following:
 3.  **Example\_MutexTask1**  requests a mutex in scheduled block mode, and waits for 10 ticks. Because the mutex is still held by  **Example\_MutexTask2**,  **Example\_MutexTask1**  is suspended. After 10 ticks,  **Example\_MutexTask1**  is woken up and attempts to request a mutex in permanent block mode.  **Example\_MutexTask1**  is suspended because the mutex is still held by  **Example\_MutexTask2**.
 4.  After 100 ticks,  **Example\_MutexTask2**  is woken up and releases the mutex, and then  **Example\_MutexTask1**  is woken up.  **Example\_MutexTask1**  acquires the mutex and then releases the mutex. At last, the mutex is deleted.
 
-### Sample Code<a name="section149077554912"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -208,7 +198,7 @@ UINT32 Example_TaskEntry(VOID)
 }
 ```
 
-### Verification<a name="section2059413981311"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

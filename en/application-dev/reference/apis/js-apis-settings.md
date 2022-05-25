@@ -9,7 +9,7 @@ This module provides APIs for setting data items.
 
 ## Modules to Import
 
-```
+```typescript
 import settings from '@ohos.settings';
 ```
 
@@ -34,7 +34,7 @@ Obtains the URI of a data item.
   | string | URI of the data item.|
 
 - Example
-  ```
+  ```typescript
    // Obtain the URI of a data item.
    let urivar = settings.getUriSync('settings.screen.brightness');  
   ```
@@ -61,7 +61,7 @@ Obtains the value of a data item.
   | string | Value of the data item.|
 
 - Example
-  ```
+  ```typescript
   import featureAbility from '@ohos.featureAbility';
 
   // Obtain the value of 'settings.screen.brightness' (this data item already exists in the database).
@@ -96,7 +96,7 @@ If the specified data item exists in the database, the **setValueSync** method u
   | boolean | Result indicating whether the value is set successfully. Returns **true** if the value is set successfully; returns **false** otherwise.|
 
 - Example
-  ```
+  ```typescript
   import featureAbility from '@ohos.featureAbility';
 
   // Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync 

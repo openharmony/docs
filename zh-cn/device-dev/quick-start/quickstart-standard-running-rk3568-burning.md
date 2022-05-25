@@ -1,5 +1,8 @@
 # 烧录
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 如您使用的是master分支2022年5月9日及之后的源码，请使用RKDevTool工具进行烧录，请参考《[HiHope-DAYU200烧录指导](https://gitee.com/hihope_iot/docs/tree/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97)》进行操作。
+> - 当前版本的DevEco Device Tool暂不支持上述日期后的源码烧录，将在下个版本中适配。
 
 在Windows环境下通过以下步骤进行RK3568的烧录：
 

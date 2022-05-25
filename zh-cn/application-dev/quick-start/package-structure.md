@@ -13,7 +13,7 @@
 | 属性名称     | 含义                                                         | 数据类型 | 是否可缺省 |
 | ------------ | ------------------------------------------------------------ | -------- | ---------- |
 | app          | 表示应用的全局配置信息。同一个应用的不同HAP包的app配置必须保持一致。参考[app对象内部结构](#app对象内部结构)。 | 对象     | 否         |
-| deviceConfig | 表示应用在具体设备上的而配置信息。参考[deviceconfig对象内部结构](#deviceconfig对象的内部结构)。 | 对象     | 否         |
+| deviceConfig | 表示应用在具体设备上的配置信息。参考[deviceconfig对象内部结构](#deviceconfig对象的内部结构)。 | 对象     | 否         |
 | module       | 表示HAP包的配置信息。该标签下的配置只对当前HAP包生效。参考[module对象的内部结构](#module对象的内部结构)。 | 对象     | 否         |
 
 config.json示例：
@@ -276,6 +276,7 @@ module示例：
 | moduleName       | 表示当前HAP的名称，最大长度为31。                            | 字符串   | 不可缺省   |
 | moduleType       | 表示当前HAP的类型，包括两种类型：entry和feature。另外，如果表示HAR类型，请设置为har。 | 字符串   | 不可缺省   |
 | installationFree | 表示当前HAP是否支持免安装特性。<br /> true：表示支持免安装特性，且符合免安装约束。<br /> false：表示不支持免安装特性。<br /> 另外还需注意：<br /> 当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。<br /> 当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务 需求配置true或false。 | 布尔值   | 否         |
+| deliveryWithInstall | 表示当前HAP是否支持随应用安装。<br /> true： 支持随应用安装。<br /> false：不支持随应用安装。| 布尔值 | 不可缺省 |
 
 distro示例：
 
@@ -283,7 +284,8 @@ distro示例：
 "distro": {
 	"moduleName": "ohos_entry",
 	"moduleType": "entry",
-	"installationFree": true
+	"installationFree": true,
+    "deliveryWithInstall": true
 }
 ```
 
@@ -373,8 +375,9 @@ metaData示例：
 | srcLanguage      | Ability开发语言的类型。                                      | 字符串     | 取值为java、js或ets                                      |
 | srcPath          | 该标签表示Ability对应的JS组件代码路径                        | 字符串     | 可缺省，缺省值为空。                                     |
 | uriPermission    | 表示该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。运行OHOS的设备不支持此属性。参考表18。 | 对象       | 可缺省，缺省值为空。                                     |
-| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。取值示例：$media:icon。 | 字符串       | 可缺省，缺省值为空。                                     |
-| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。取值示例：$color:red。 | 字符串       | 可缺省，缺省值为空。                                     |
+| startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。该标签仅适用于page类型的ability。取值示例：$media:icon。 | 字符串       | 可缺省，缺省值为空。|
+| startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的ability。取值示例：$color:red。 | 字符串       | 可缺省，缺省值为空。|
+| removeMissionAfterTerminate    | 该标签标识ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的ability。为布尔类型，true表示销毁后移除任务， false表示销毁后不移除任务。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 表18 uriPermission对象的内部结构说明
 
@@ -415,7 +418,8 @@ abilities示例：
         ], 
         "type": "page",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:red"
+        "startWindowBackground": "$color:red",
+        "removeMissionAfterTerminate": true
     },
     {
         "name": ".PlayService",

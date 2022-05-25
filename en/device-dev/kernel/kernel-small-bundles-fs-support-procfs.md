@@ -1,9 +1,4 @@
-# procfs<a name="EN-US_TOPIC_0000001123696719"></a>
-
--   [Basic Concepts](#section146801917174017)
--   [Working Principles](#section479762916408)
--   [Development Guidelines](#section1221174524014)
-    -   [Development Example](#section52016575401)
+# procfs
 
 
 ## Basic Concepts<a name="section146801917174017"></a>

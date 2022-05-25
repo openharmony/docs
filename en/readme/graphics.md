@@ -49,13 +49,13 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-graphic\_surface
+[graphic\_surface](https://gitee.com/openharmony/graphic_surface)
 
-graphic\_ui
+[graphic\_ui](https://gitee.com/openharmony/graphic_ui)
 
-graphic\_wms
+[graphic\_wms](https://gitee.com/openharmony/graphic_wms)
 
-graphic\_utils
+[graphic\_utils](https://gitee.com/openharmony/graphic_utils)
 
 ## Standard System
 
@@ -69,12 +69,12 @@ The following figure shows the architecture of the Graphics subsystem.
 
 The OpenHarmony graphics stack is divided into the following layers:
 
-Interface layer: provides the native development kit (NDK) for the Graphics subsystem, including WebGL, native drawing, and OpenGL command-level drawing.
+Interface layer: provides native APIs for the Graphics subsystem, including WebGL, native drawing, and OpenGL command-level drawing.
 
 Framework layer: consists of the Render Service, Drawing, Animation, Effect, and Display and Memory Management modules.
 | Module                    | Description                                                                                      |
 |------------------------|--------------------------------------------------------------------------------------------|
-| Render Service| Performs UI framework drawing. This module converts the ArkUI component description into drawing tree information and renders the optimal path based on the corresponding rendering policy. It also provides the core underlying mechanism for multi-window smoothness and spatial UI sharing.      |
+| Render Service | Performs UI framework drawing. This module converts the ArkUI component description into drawing tree information and renders the optimal path based on the corresponding rendering policy. It also provides the core underlying mechanism for multi-window smoothness and spatial UI sharing.      |
 | Drawing          | Provides standard internal interfaces in the Graphics subsystem to implement 2D rendering, 3D rendering, and rendering engine management.                                               |
 | Animation        | Provides capabilities related to the animation engine.                                                                              |
 | Effect           | Processes image effects and rendering effects, including cascading and parallel processing of multiple effects, and adding rendering effects and component interaction effects during layout.                              |
@@ -124,8 +124,8 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-- ace_ace_engine
-- aafwk_standard
-- multimedia_media_standard
-- multimedia_camera_standard
-- Window Manager
+- [ace_ace_engine](https://gitee.com/openharmony/ace_ace_engine)
+- [aafwk_standard](https://gitee.com/openharmony/aafwk_standard)
+- [multimedia_media_standard](https://gitee.com/openharmony/multimedia_media_standard)
+- [multimedia_camera_standard](https://gitee.com/openharmony/multimedia_camera_standard)
+- [windowmanager](https://gitee.com/openharmony/windowmanager)

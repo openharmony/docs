@@ -1,6 +1,6 @@
 # Result Set
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -8,7 +8,7 @@
 
 You need to use [RdbStore.query()](js-apis-data-rdb.md#query) to obtain the **resultSet** object.
 
-```
+```js
 import dataRdb from '@ohos.data.rdb';
 let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("AGE", 18)
@@ -17,10 +17,6 @@ promise.then((resultSet) => {
     console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
     console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
 ```
-
-
-
-
 
 ## ResultSet
 
@@ -52,18 +48,18 @@ Obtains the column index based on the column name.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnName | string | Yes| Column name specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Index of the column obtained.|
 
-- Example
-  ```
+**Example**
+  ```js
   resultSet.goToFirstRow()
   const id = resultSet.getLong(resultSet.getColumnIndex("ID"))
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
@@ -80,18 +76,18 @@ Obtains the column name based on the column index.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Column index specified.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Column name obtained.|
 
-- Example
-  ```
+**Example**
+  ```js
   const id = resultSet.getColumnName(0)
   const name = resultSet.getColumnName(1)
   const age = resultSet.getColumnName(2)
@@ -106,18 +102,18 @@ Moves the cursor to the row based on the specified offset.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | offset | number | Yes| Offset relative to the current position.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoto.then((resultSet) {
@@ -137,18 +133,18 @@ Moves the cursor to the specified row in the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | position | number | Yes| Position to which the cursor is to be moved.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygotorow.then((resultSet) {
@@ -169,13 +165,13 @@ Moves the cursor to the first row of the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoFirst.then((resultSet) {
@@ -195,13 +191,13 @@ Moves the cursor to the last row of the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoLast.then((resultSet) {
@@ -221,13 +217,13 @@ Moves the cursor to the next row in the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoNext.then((resultSet) {
@@ -247,13 +243,13 @@ Moves the cursor to the previous row in the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promisequerygoPrev.then((resultSet) {
@@ -273,18 +269,18 @@ Obtains the value in the specified column in the current row as a byte array.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Uint8Array | Value in the specified column as a byte array.|
 
-- Example
-  ```
+**Example**
+  ```js
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"))
   ```
 
@@ -297,18 +293,18 @@ Obtains the value in the specified column in the current row as a string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | string | Value in the specified column as a string.|
 
-- Example
-  ```
+**Example**
+  ```js
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
   ```
 
@@ -321,18 +317,18 @@ Obtains the value in the specified column in the current row as a Long.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Value in the specified column as a Long.|
 
-- Example
-  ```
+**Example**
+  ```js
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"))
   ```
 
@@ -345,18 +341,18 @@ Obtains the value in the specified column in the current row as a double.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | number | Value in the specified column as a double.|
 
-- Example
-  ```
+**Example**
+  ```js
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"))
   ```
 
@@ -369,18 +365,18 @@ Checks whether the value in the specified column of the current row is null.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | Yes| Index of the specified column, starting from 0.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the value is null; returns **false** otherwise.|
 
-- Example
-  ```
+**Example**
+  ```js
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"))
   ```
 
@@ -393,13 +389,13 @@ Closes this result set.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-- Example
-  ```
-  let predicatesclose = new dataRdb.RdbPredicates("EMPLOYEE")
-  let predicatesclose = rdbStore.query(predicatesclose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-  promisequerygoPrev.then((resultSet) {
+**Example**
+  ```js
+  let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
+  let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  promiseClose.then((resultSet) {
       resultSet.close()
   }).catch((err) => {
-      console.log('query failed')
+      console.log('Failed to close resultset')
   })
   ```

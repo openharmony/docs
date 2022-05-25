@@ -1,6 +1,6 @@
 # 结果集
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -25,7 +25,7 @@ promise.then((resultSet) => {
 
 ### 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -46,19 +46,19 @@ getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnName | string | 是 | 表示结果集中指定列的名称。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回指定列的索引。 |
 
-- 示例：
+**示例：**
   ```js
   resultSet.goToFirstRow()
   const id = resultSet.getLong(resultSet.getColumnIndex("ID"))
@@ -74,19 +74,19 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 表示结果集中指定列的索引。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回指定列的名称。 |
 
-- 示例：
+**示例：**
   ```js
   const id = resultSet.getColumnName(0)
   const name = resultSet.getColumnName(1)
@@ -100,19 +100,19 @@ goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | offset | number | 是 | 表示相对于当前位置的偏移量。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -131,19 +131,19 @@ goToRow(position: number): boolean
 
 转到结果集的指定行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | position | number | 是 | 表示要移动到的指定位置。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -163,14 +163,14 @@ goToFirstRow(): boolean
 
 转到结果集的第一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -189,14 +189,14 @@ goToLastRow(): boolean
 
 转到结果集的最后一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -215,14 +215,14 @@ goToNextRow(): boolean
 
 转到结果集的下一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -241,14 +241,14 @@ goToPreviousRow(): boolean
 
 转到结果集的上一行。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果成功移动结果集，则为true；否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
@@ -267,19 +267,19 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 指定的列索引，从0开始。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Uint8Array | 以字节数组的形式返回指定列的值。 |
 
-- 示例：
+**示例：**
   ```js
   const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"))
   ```
@@ -291,19 +291,19 @@ getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 指定的列索引，从0开始。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | string | 以字符串形式返回指定列的值。 |
 
-- 示例：
+**示例：**
   ```js
   const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
   ```
@@ -315,19 +315,19 @@ getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 指定的列索引，从0开始。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 以Long形式返回指定列的值。 |
 
-- 示例：
+**示例：**
   ```js
   const age = resultSet.getLong(resultSet.getColumnIndex("AGE"))
   ```
@@ -339,19 +339,19 @@ getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 指定的列索引，从0开始。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | number | 以double形式返回指定列的值。 |
 
-- 示例：
+**示例：**
   ```js
   const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"))
   ```
@@ -363,19 +363,19 @@ isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 参数：
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | columnIndex | number | 是 | 指定的列索引，从0开始。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果当前行中指定列的值为null，则返回true，否则返回false。 |
 
-- 示例：
+**示例：**
   ```js
   const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"))
   ```
@@ -387,9 +387,9 @@ close(): void
 
 关闭结果集。
 
-**系统能力**：SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-- 示例：
+**示例：**
   ```js
   let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
   let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])

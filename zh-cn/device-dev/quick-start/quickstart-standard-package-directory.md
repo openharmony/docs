@@ -7,6 +7,11 @@
         - [编译](quickstart-standard-running-hi3516-build.md)
         - [烧录](quickstart-standard-running-hi3516-burning.md)
         - [运行](quickstart-standard-running-hi3516-running.md)
+    - Hi3751开发板
+        - [编写“Hello World”程序](quickstart-standard-running-hi3751-create.md)
+        - [编译](quickstart-standard-running-hi3751-build.md)
+        - [烧录](quickstart-standard-running-hi3751-burning.md)
+        - [运行](quickstart-standard-running-hi3751-running.md)
     - RK3568开发板
         - [编写“Hello World”程序](quickstart-standard-running-rk3568-create.md)
         - [编译](quickstart-standard-running-rk3568-build.md)
@@ -19,6 +24,7 @@
 - 附录
     - 开发板介绍
         - [Hi3516开发板介绍](quickstart-standard-board-introduction-hi3516.md)
+        - [Hi3751开发板介绍](quickstart-standard-board-introduction-rk3568.md)
         - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
     - [标准系统快速入门（IDE方式）](quickstart-standard-ide-directory.md)
     - [参考信息](quickstart-standard-reference.md)

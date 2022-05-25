@@ -44,7 +44,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/app_samples/blob/master/README.md).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
 
 ### API References
 

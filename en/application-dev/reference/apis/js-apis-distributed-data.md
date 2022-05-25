@@ -1,12 +1,14 @@
 # Distributed Data Management
 
->![](../../public_sys-resources/icon-note.gif) **NOTE**<br/>
+Distributed data management provides collaboration between databases of different devices for applications. The APIs provided by distributed data management can be used to save data to the distributed database and perform operations such as adding, deleting, modifying, and querying data in the distributed database.
+
+>**NOTE**<br/>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import distributedData from '@ohos.data.distributedData';
 ```
 
@@ -15,7 +17,7 @@ import distributedData from '@ohos.data.distributedData';
 
 createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
-Creates a **KVManager** object to manage key-value (KV) stores. This method uses an asynchronous callback to return the result.
+Creates a **KVManager** object to manage key-value (KV) stores. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -27,7 +29,7 @@ Creates a **KVManager** object to manage key-value (KV) stores. This method uses
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** object created.|
 
 **Example**
-```
+```js
 let kvManager;
 try {
     const kvManagerConfig = {
@@ -54,7 +56,7 @@ try {
 
 createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
-Creates a **KVManager** object to manage KV stores. This method uses a promise to return the result.
+Creates a **KVManager** object to manage KV stores. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -72,7 +74,7 @@ Creates a **KVManager** object to manage KV stores. This method uses a promise t
 
 **Example**
 
-```
+```js
 let kvManager;
 try {
     const kvManagerConfig = {
@@ -129,13 +131,13 @@ Defines the user type.
 
 ## KVManager
 
-Creates a **KVManager** object to obtain KV store information. Before calling any method in **KVManager**, you must use **createKVManager** to create a **KVManager** object.
+Creates a **KVManager** object to obtain KV store information. Before calling any method in **KVManager**, you must use [createKVManager](#distributeddatacreatekvmanager) to create a **KVManager** object.
 
 ### getKVStore
 
 getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
-Creates and obtains a KV store. This method uses an asynchronous callback to return the result.
+Creates and obtains a KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -145,11 +147,11 @@ Creates and obtains a KV store. This method uses an asynchronous callback to ret
 | ----- | ------ | ------ | ------ |
 | storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options | [Options](#options) | Yes | Configuration of the KV store.|
-| callback | AsyncCallback&lt;T&gt;, &lt;T extends KVStore&gt;| Yes | Callback invoked to return the KV store created.|
+| callback | AsyncCallback&lt;T&gt; , &lt;T extends [KVStore](#kvstore)&gt;| Yes | Callback invoked to return the KV store created.|
 
 **Example**
 
-```
+```js
 let kvStore;
 let kvManager;
 try {
@@ -179,7 +181,7 @@ try {
 
 getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-Creates and obtains a KV store. This method uses a promise to return the result.
+Creates and obtains a KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -195,11 +197,11 @@ Creates and obtains a KV store. This method uses a promise to return the result.
 
 | Type                                   | Description       |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt; &lt;T extends KVStore&gt; | Promise used to return the KV store created.|
+| Promise&lt;T&gt; &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store created.|
 
 **Example**
 
-```
+```js
 let kvStore;
 let kvManager;
 try {
@@ -226,7 +228,7 @@ try {
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void
 
-Closes a KV store. This method uses an asynchronous callback to return the result.
+Closes a KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -236,13 +238,13 @@ Closes a KV store. This method uses an asynchronous callback to return the resul
 | Name  | Type             | Mandatory| Description        |
 | ------- | -----------------   | ---- | --------------------------- |
 | appId    | string              | Yes  | Bundle name of the app that invokes the KV store.        |
-| storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed the value of [MAX_STORE_ID_LENGTH](#constants).|
-| kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.     |
+| storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
+| kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.    |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.  |
 
 **Example**
 
-```
+```js
 let kvStore;
 let kvManager;
 const options = {
@@ -272,7 +274,7 @@ const options = {
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;
 
-Closes a KV store. This method uses a promise to return the result.
+Closes a KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -281,18 +283,18 @@ Closes a KV store. This method uses a promise to return the result.
 | Name | Type| Mandatory | Description       |
 | -----  | ------  | ---- | ----------------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.           |
-| storeId | string | Yes  | Unique identifier of the KV store to close. The length cannot exceed the value of [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | kvStore | [KVStore](#kvstore)  | Yes  | KV store to close.       |
 
 **Return value**
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise<void> | Promise used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
+| Promise\<void> | Promise used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
 
 **Example**
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -326,7 +328,7 @@ const options = {
 
 deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a KV store. This method uses an asynchronous callback to return the result.
+Deletes a KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -335,12 +337,12 @@ Deletes a KV store. This method uses an asynchronous callback to return the resu
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
-| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.  |
 
 **Example**
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -369,7 +371,7 @@ try {
 
 deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
-Deletes a KV store. This method uses a promise to return the result.
+Deletes a KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -378,7 +380,7 @@ Deletes a KV store. This method uses a promise to return the result.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
-| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed the value of [MAX_STORE_ID_LENGTH](#constants).|
+| storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 
 
 **Return value**
@@ -389,7 +391,7 @@ Deletes a KV store. This method uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let kvManager;
 let kvStore;
 const options = {
@@ -402,7 +404,7 @@ const options = {
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
-    kvManager.getKVStore('storId', options).then(async (store) => {
+    kvManager.getKVStore('storeId', options).then(async (store) => {
         console.log('getKVStore success');
         kvStore = store;
         await kvManager.deleteKVStore('appId', 'storeId').then(() => {
@@ -423,7 +425,7 @@ try {
 
 getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
-Obtains the IDs of all the KV stores that are created using **getKvStore** and have not been deleted using **deleteKvStore**. This method uses an asynchronous callback to return the result.
+Obtains the IDs of all the KV stores that are created using [getKVStore](#getkvstore) and have not been deleted using [deleteKVStore](#deletekvstore8). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -436,7 +438,7 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 **Example**
 
-```
+```js
 let kvManager;
 try {
     kvManager.getAllKVStoreId('appId', function (err, data) {
@@ -453,7 +455,7 @@ try {
 
 getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
-Obtains the IDs of all the KV stores that are created using **getKvStore** and have not been deleted using **deleteKvStore**. This method uses a promise to return the result.
+Obtains the IDs of all the KV stores that are created using [getKVStore](#getkvstore) and have not been deleted using [deleteKVStore](#deletekvstore8). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -472,7 +474,7 @@ Obtains the IDs of all the KV stores that are created using **getKvStore** and h
 
 **Example**
 
-```
+```js
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
@@ -488,11 +490,11 @@ try {
 ```
 
 
-### on<sup>8+</sup> ###
+### on('distributedDataServiceDie')<sup>8+</sup> ###
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to the **distributedDataServiceDie** events. This method uses a synchronous callback to return the result.
+Subscribes to the **distributedDataServiceDie** events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -500,12 +502,12 @@ Subscribes to the **distributedDataServiceDie** events. This method uses a synch
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | 'distributedDataServiceDie'  | Yes   | Type of events to subscribe to.     |
+| event  | string | Yes   | Name of the event to subscribe to. The value is **distributedDataServiceDie**, which indicates the service status change event.|
 | deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked when the distributed data service is dead.   |
 
 **Example**
 
-```
+```js
 let kvManager;
 try {
     
@@ -520,11 +522,11 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('distributedDataServiceDie')<sup>8+</sup> ###
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the **distributedDataServiceDie** events. This method uses a synchronous callback to return the result.
+Unsubscribes from the **distributedDataServiceDie** events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -532,13 +534,13 @@ Unsubscribes from the **distributedDataServiceDie** events. This method uses a s
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | 'distributedDataServiceDie'  | Yes   | Type of events to unsubscribe from.     |
+| event  | string | Yes   | Name of the event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates the service status change event.|
 | deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return the **distributedDataServiceDie** events.   |
 
 
 **Example**
 
-```
+```js
 let kvManager;
 try {
     console.log('KVManagerOff');
@@ -563,7 +565,7 @@ Provides KV store configuration.
 | createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.    |
 | encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.    |
 | backup  | boolean | No|Whether to back up database files. By default, database files are backed up.     |
-| autoSync  | boolean | No|Whether to automatically synchronize database files. By default, database files are not automatically synchronized.    |
+| autoSync  | boolean | No|Whether to automatically synchronize database files. By default, database files are not automatically synchronized.<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
 | securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set. |
 | schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.|
@@ -621,7 +623,7 @@ Defines a database schema. When creating or opening a KV store, you can create a
 
 | Name | Type| Description                   |
 | ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | JSON root object. |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | JSON root object.|
 | indexes<sup>8+</sup>  | Array\<string> | String array in JSON format. |
 | mode<sup>8+</sup>  | number | Schema mode. |
 | skip<sup>8+</sup>  | number |  Size of a skip of the schema. |
@@ -674,7 +676,6 @@ Appends a child node to this **FieldNode**.
 | -----  | ------  | ----  | ----------------------- |
 | child  | [FieldNode](#fieldnode8) | Yes   | Child node to append.  |
 
-
 **Return value**
 
 | Type         | Description           |
@@ -683,7 +684,7 @@ Appends a child node to this **FieldNode**.
 
 **Example**
 
-```
+```js
 import ddm from '@ohos.data.distributedData';
 try {
     let node = new ddm.FieldNode("root");
@@ -725,7 +726,7 @@ Obtains the number of rows in the result set.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -758,7 +759,7 @@ Obtains the current data read position (position from which data is read) in the
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -792,7 +793,7 @@ Moves the data read position to the first row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -826,7 +827,7 @@ Moves the data read position to the last row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -860,7 +861,7 @@ Moves the data read position to the next row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -894,7 +895,7 @@ Moves the data read position to the previous row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -934,7 +935,7 @@ Moves the data read position with the specified offset from the current position
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -974,7 +975,7 @@ Moves the data read position from 0 to an absolute position.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1008,7 +1009,7 @@ Checks whether the data read position is the first row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1042,7 +1043,7 @@ Checks whether the data read position is the last row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1075,7 +1076,7 @@ Checks whether the data read position is before the first row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1109,7 +1110,7 @@ Checks whether the data read position is after the last row.
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1139,11 +1140,11 @@ Obtains a KV pair.
 
 | Type   | Description      |
 | ------  | -------   |
-| Entry   |KV pair obtained.|
+| [Entry](#entry) |KV pair obtained.|
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -1194,7 +1195,7 @@ Resets the **Query** object that contains common query options.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.equalTo("key", "value");
@@ -1210,7 +1211,7 @@ try {
 
 ### equalTo<sup>8+</sup> ###
 
-equalTo(field: string, value: number|string|boolean): Query;
+equalTo(field: string, value: number|string|boolean): Query
 
 Creates a **Query** object to match the specified field whose value is equal to the specified value.
 
@@ -1221,17 +1222,17 @@ Creates a **Query** object to match the specified field whose value is equal to 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object created.|
+| [Query](#query8) |**Query** object reset.|
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.equalTo("field", "value");
@@ -1256,7 +1257,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| value  | number/string/boolean  | Yes   | Value specified.|
+| value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1266,7 +1267,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1301,7 +1302,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.greaterThan("field", "value");
@@ -1336,7 +1337,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.lessThan("field", "value");
@@ -1371,7 +1372,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.greaterThanOrEqualTo("field", "value");
@@ -1406,7 +1407,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.lessThanOrEqualTo("field", "value");
@@ -1441,7 +1442,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.isNull("field");
@@ -1477,7 +1478,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.inNumber("field", [0, 1]);
@@ -1512,7 +1513,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.inString("field", ['test1', 'test2']);
@@ -1547,7 +1548,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notInNumber("field", [0, 1]);
@@ -1582,7 +1583,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notInString("field", ['test1', 'test2']);
@@ -1617,7 +1618,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.like("field", "value");
@@ -1652,7 +1653,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.unlike("field", "value");
@@ -1680,7 +1681,7 @@ Creates a **Query** object with the AND condition.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value1");
@@ -1710,7 +1711,7 @@ Creates a **Query** object with the OR condition.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value1");
@@ -1746,7 +1747,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1781,7 +1782,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1817,7 +1818,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
@@ -1852,7 +1853,7 @@ Creates a **Query** object with a specified field that is not null.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.isNotNull("field");
@@ -1880,7 +1881,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.beginGroup();
@@ -1910,7 +1911,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.beginGroup();
@@ -1946,7 +1947,7 @@ Creates a **Query** object with a specified key prefix.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.prefixKey("$.name");
@@ -1981,7 +1982,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.setSuggestIndex("$.name");
@@ -2017,7 +2018,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     query.deviceId("deviceId");
@@ -2044,7 +2045,7 @@ Obtains the query statement of this **Query** object.
 
 **Example**
 
-```
+```js
 try {
     let query = new distributedData.Query();
     let sql1 = query.getSqlLike();
@@ -2065,7 +2066,7 @@ Provides methods to manage data in a KV store, for example, adding or deleting d
 
 put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Adds a KV pair of the specified type to this KV store. This method uses an asynchronous callback to return the result.
+Adds a KV pair of the specified type to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2075,11 +2076,11 @@ Adds a KV pair of the specified type to this KV store. This method uses an async
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result.  |
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2101,7 +2102,7 @@ try {
 
 put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
 
-Adds a KV pair of the specified type to this KV store. This method uses a promise to return the result.
+Adds a KV pair of the specified type to this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2120,7 +2121,7 @@ Adds a KV pair of the specified type to this KV store. This method uses a promis
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2140,7 +2141,7 @@ try {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a KV pair from this KV store. This method uses an asynchronous callback to return the result.
+Deletes a KV pair from this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2149,11 +2150,11 @@ Deletes a KV pair from this KV store. This method uses an asynchronous callback 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
+| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2182,7 +2183,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from this KV store. This method uses a promise to return the result.
+Deletes a KV pair from this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2200,7 +2201,7 @@ Deletes a KV pair from this KV store. This method uses a promise to return the r
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2221,11 +2222,11 @@ try {
 ```
 
 
-### on
+### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This method uses a synchronous callback to return the result.
+Subscribes to data changes of the specified type. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2233,13 +2234,13 @@ Subscribes to data changes of the specified type. This method uses a synchronous
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | Yes   |Type of the events.       |
+| event  |string  | Yes   |Name of the event to subscribe to. The value is **dataChange**, which indicates the data change event.      |
 | type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return the result.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the result.|
 
 **Example**
 
-```
+```js
 let kvStore;
 kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
     console.log("dataChange callback call data: " + JSON.stringify(data));
@@ -2247,11 +2248,11 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 ```
 
 
-### on
+### on('syncComplete')
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization completion events. This method uses a synchronous callback to return the result.
+Subscribes to data synchronization completion events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2259,23 +2260,23 @@ Subscribes to data synchronization completion events. This method uses a synchro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'syncComplete' | Yes   |Type of the events.       |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback invoked to return the result.    |
+| event  |string | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.      |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return the result.    |
 
 **Example**
 
-```
+```js
 let kvStore;
 kvStore.on('syncComplete', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
-### off<sup>8+</sup>
+### off('dataChange')<sup>8+</sup>
 
 off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change events. This method uses a synchronous callback to return the result.
+Unsubscribes from data change events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2283,18 +2284,18 @@ Unsubscribes from data change events. This method uses a synchronous callback to
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |'dataChange'  | Yes   |Type of the events.       |
+| event  |string  | Yes   |Name of the event to unsubscribe from. The value is **dataChange**, which indicates the data change event.      |
 | observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the result.|
 
 **Example**
 
-```
+```js
 let kvStore;
 kvStore.on('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 kvStore.off('dataChange', function (data) {
-    console.log("syncComplete callback call data: " + data);
+    console.log("callback call data: " + data);
 });
 ```
 
@@ -2303,7 +2304,7 @@ kvStore.off('dataChange', function (data) {
 
 putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
-Inserts KV pairs in batches to this KV store. This method uses an asynchronous callback to return the result.
+Inserts KV pairs in batches to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2312,11 +2313,11 @@ Inserts KV pairs in batches to this KV store. This method uses an asynchronous c
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
-| callback |Asyncallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
+| callback |Asyncallback&lt;void&gt; |Yes    |Callback used to return the result.|
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2350,7 +2351,7 @@ try {
 
 putBatch(entries: Entry[]): Promise&lt;void&gt;
 
-Inserts KV pairs in batches to this KV store. This method uses a promise to return the result.
+Inserts KV pairs in batches to this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2368,7 +2369,7 @@ Inserts KV pairs in batches to this KV store. This method uses a promise to retu
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2405,7 +2406,7 @@ try {
 
 deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Deletes KV pairs in batches from this KV store. This method uses an asynchronous callback to return the result.
+Deletes KV pairs in batches from this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2414,11 +2415,11 @@ Deletes KV pairs in batches from this KV store. This method uses an asynchronous
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keys  |string[] | Yes   |KV pairs to delete in batches. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2452,7 +2453,7 @@ try {
 
 deleteBatch(keys: string[]): Promise&lt;void&gt;
 
-Deletes KV pairs in batches from this KV store. This method uses a promise to return the result.
+Deletes KV pairs in batches from this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2470,7 +2471,7 @@ Deletes KV pairs in batches from this KV store. This method uses a promise to re
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -2508,7 +2509,7 @@ try {
 
 startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
-Starts the transaction in this KV store. This method uses an asynchronous callback to return the result.
+Starts the transaction in this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2516,11 +2517,11 @@ Starts the transaction in this KV store. This method uses an asynchronous callba
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 function putBatchString(len, prefix) {
     let entries = [];
@@ -2560,7 +2561,7 @@ try {
 
 startTransaction(): Promise&lt;void&gt;
 
-Starts the transaction in this KV store. This method uses a promise to return the result.
+Starts the transaction in this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2572,7 +2573,7 @@ Starts the transaction in this KV store. This method uses a promise to return th
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var count = 0;
@@ -2595,7 +2596,7 @@ try {
 
 commit(callback: AsyncCallback&lt;void&gt;): void
 
-Commits the transaction in this KV store. This method uses an asynchronous callback to return the result.
+Commits the transaction in this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2603,11 +2604,11 @@ Commits the transaction in this KV store. This method uses an asynchronous callb
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.commit(function (err,data) {
@@ -2627,7 +2628,7 @@ try {
 
 commit(): Promise&lt;void&gt;
 
-Commits the transaction in this KV store. This method uses a promise to return the result.
+Commits the transaction in this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2639,7 +2640,7 @@ Commits the transaction in this KV store. This method uses a promise to return t
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.commit().then(async (err) => {
@@ -2657,7 +2658,7 @@ try {
 
 rollback(callback: AsyncCallback&lt;void&gt;): void
 
-Rolls back the transaction in this KV store. This method uses an asynchronous callback to return the result.
+Rolls back the transaction in this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2665,11 +2666,11 @@ Rolls back the transaction in this KV store. This method uses an asynchronous ca
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.rollback(function (err,data) {
@@ -2689,7 +2690,7 @@ try {
 
 rollback(): Promise&lt;void&gt;
 
-Rolls back the transaction in this KV store. This method uses a promise to return the result.
+Rolls back the transaction in this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2701,7 +2702,7 @@ Rolls back the transaction in this KV store. This method uses a promise to retur
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.rollback().then(async (err) => {
@@ -2719,7 +2720,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization, which can be enabled or disable. This method uses an asynchronous callback to return the result.
+Sets data synchronization, which can be enabled or disable. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2728,11 +2729,11 @@ Sets data synchronization, which can be enabled or disable. This method uses an 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | Yes   |Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.enableSync(true, function (err,data) {
@@ -2752,7 +2753,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Enables or disables data synchronization. This method uses a promise to return the result.
+Enables or disables data synchronization. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2770,7 +2771,7 @@ Enables or disables data synchronization. This method uses a promise to return t
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.enableSync(true).then((err) => {
@@ -2788,7 +2789,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Sets the data synchronization range. This method uses an asynchronous callback to return the result.
+Sets the data synchronization range. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2798,11 +2799,11 @@ Sets the data synchronization range. This method uses an asynchronous callback t
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | Yes   |Synchronization labels set for the local device. |
 | remoteSupportLabels  |string[] | Yes   |Synchronization labels set for remote devices. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const localLabels = ['A', 'B'];
@@ -2820,7 +2821,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;
 
-Sets the data synchronization range. This method uses a promise to return the result.
+Sets the data synchronization range. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2840,7 +2841,7 @@ Sets the data synchronization range. This method uses a promise to return the re
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const localLabels = ['A', 'B'];
@@ -2902,7 +2903,7 @@ Defines the value in a KV pair.
 | Name | Type  |Readable  |Writable  | Description                   |
 | ----- | -------   | -----| ------|------------------------ |
 | type | [ValueType](#value)   | Yes |  Yes|Type of the value.  |
-| value | Uint8Array / string / number / boolean| Yes |  Yes|Value of the KV pair stored in the KV store.  |
+| value | Uint8Array \| string \| number \| boolean| Yes |  Yes|Value of the KV pair stored in the KV store.  |
 
 ## ValueType
 
@@ -2921,9 +2922,10 @@ These value types can be used only by internal applications.
 | BOOLEAN   |4 |Boolean. |
 | DOUBLE   |5 |Double (double-precision floating point). |
 
+
 ## SingleKVStore
 
-Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use **getKVStore** to obtain a **SingleKVStore** object.
+Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** object.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2931,7 +2933,7 @@ Provides methods to query and synchronize data in a single KV store. This class 
 
 get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | number&gt;): void
 
-Obtains the value of a specified key. This method uses an asynchronous callback to return the result.
+Obtains the value of a specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2944,7 +2946,7 @@ Obtains the value of a specified key. This method uses an asynchronous callback 
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2969,7 +2971,7 @@ try {
 
 get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
-Obtains the value of a specified key. This method uses a promise to return the result.
+Obtains the value of a specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2988,7 +2990,7 @@ Obtains the value of a specified key. This method uses a promise to return the r
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -3012,7 +3014,7 @@ try {
 
 getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified key prefix. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified key prefix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3025,7 +3027,7 @@ Obtains the KV pairs that match the specified key prefix. This method uses an as
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3058,7 +3060,7 @@ try {
 
 getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified key prefix. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified key prefix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3076,7 +3078,7 @@ Obtains the KV pairs that match the specified key prefix. This method uses a pro
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3116,7 +3118,7 @@ try {
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3129,7 +3131,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -3167,7 +3169,7 @@ try {
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified **Query** object. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3185,7 +3187,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-```
+```js
 try {
     var arr = new Uint8Array([21,31]);
     let entries = [];
@@ -3224,7 +3226,7 @@ try {
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the result set with the specified key prefix from this single KV store. This method uses an asynchronous callback to return the result.
+Obtains the result set with the specified key prefix from this single KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3237,7 +3239,7 @@ Obtains the result set with the specified key prefix from this single KV store. 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3273,7 +3275,7 @@ try {
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the result set with the specified key prefix from this single KV store. This method uses a promise to return the result.
+Obtains the result set with the specified key prefix from this single KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3291,7 +3293,7 @@ Obtains the result set with the specified key prefix from this single KV store. 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3333,7 +3335,7 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3346,7 +3348,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3381,7 +3383,7 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses a promise to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3399,7 +3401,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -3437,7 +3439,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3446,11 +3448,11 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the execution result.            |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.            |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet = null;
@@ -3471,7 +3473,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3489,7 +3491,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet = null;
@@ -3508,7 +3510,7 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of results that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the number of results that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3521,7 +3523,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3554,7 +3556,7 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object. This method uses a promise to return the result.
+Obtains the number of results that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3572,7 +3574,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -3609,7 +3611,7 @@ try {
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes data of a device. This method uses an asynchronous callback to return the result.
+Deletes data of a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3622,7 +3624,7 @@ Deletes data of a device. This method uses an asynchronous callback to return th
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3651,7 +3653,7 @@ try {
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
-Deletes data of a device. This method uses a promise to return the result.
+Deletes data of a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3669,7 +3671,7 @@ Deletes data of a device. This method uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -3696,11 +3698,11 @@ try {
 ```
 
 
-### on<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup> ###
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization completion events. This method uses a synchronous callback to return the result.
+Subscribes to the synchronization completion events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3708,12 +3710,12 @@ Subscribes to the synchronization completion events. This method uses a synchron
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |'syncComplete'   | Yes   |Event triggered when the synchronization is complete.   |
+| event  |string   | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.   |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback used to return the synchronization result.   |
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
@@ -3732,11 +3734,11 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup> ###
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization completion events. This method uses a synchronous callback to return the result.
+Unsubscribes from the synchronization completion events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3744,12 +3746,12 @@ Unsubscribes from the synchronization completion events. This method uses a sync
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |'syncComplete'   | Yes   |Event triggered when the synchronization is complete.   |
+| event  |string   | Yes   |Name of the event to unsubscribe from. The value is **syncComplete**, which indicates the synchronization complete event.   |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const func = function (data) {
@@ -3768,6 +3770,7 @@ try {
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Manually triggers KV store synchronization synchronously.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -3782,7 +3785,7 @@ Manually triggers KV store synchronization synchronously.
 
 **Example**
 
-```
+```js
 let kvStore;
 kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 ```
@@ -3791,7 +3794,7 @@ kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay of database synchronization. This method uses an asynchronous callback to return the result.
+Sets the default delay of database synchronization. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3804,7 +3807,7 @@ Sets the default delay of database synchronization. This method uses an asynchro
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const defaultAllowedDelayMs = 500;
@@ -3821,7 +3824,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay of database synchronization. This method uses a promise to return the result.
+Sets the default delay of database synchronization. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3840,7 +3843,7 @@ Sets the default delay of database synchronization. This method uses a promise t
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const defaultAllowedDelayMs = 500;
@@ -3859,7 +3862,7 @@ try {
 
 getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
-Obtains the security level of this KV store. This method uses an asynchronous callback to return the result.
+Obtains the security level of this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3871,7 +3874,7 @@ Obtains the security level of this KV store. This method uses an asynchronous ca
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.getSecurityLevel(function (err,data) {
@@ -3887,7 +3890,7 @@ try {
 
 getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
-Obtains the security level of this KV store. This method uses a promise to return the result.
+Obtains the security level of this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3899,7 +3902,7 @@ Obtains the security level of this KV store. This method uses a promise to retur
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     kvStore.getSecurityLevel().then((data) => {
@@ -3915,7 +3918,7 @@ try {
 
 ## DeviceKVStore<sup>8+</sup> ##
 
-Provides methods to manage distributed data by device in the distributed system. This class inherits from **KvStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use **getKVStore** to obtain a **DeviceKVStore** object.
+Provides methods to manage distributed data by device in the distributed system. This class inherits from **KVStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkvstore) to obtain a **DeviceKVStore** object.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -3923,9 +3926,9 @@ Provides methods to manage distributed data by device in the distributed system.
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
-Obtains the string value that matches the specified key for a device. This method uses an asynchronous callback to return the result.
+Obtains the string value that matches the specified key for a device. This API uses an asynchronous callback to return the result.
 
-**System capability**:  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
+**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **Parameters**
 
@@ -3937,7 +3940,7 @@ Obtains the string value that matches the specified key for a device. This metho
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3958,7 +3961,7 @@ try{
 
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
-Obtains the string value that matches the specified key for a device. This method uses a promise to return the result.
+Obtains the string value that matches the specified key for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -3973,11 +3976,11 @@ Obtains the string value that matches the specified key for a device. This metho
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;boolean/string/number/Uint8Array&gt; |Promise used to return the value obtained.|
+|Promise&lt;boolean\|string\|number\|Uint8Array&gt; |Promise used to return the value obtained.|
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -4002,7 +4005,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified key prefix for a device. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified key prefix for a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4016,7 +4019,7 @@ Obtains the KV pairs that match the specified key prefix for a device. This meth
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4050,7 +4053,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified key prefix for a device. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified key prefix for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4069,7 +4072,7 @@ Obtains the KV pairs that match the specified key prefix for a device. This meth
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4109,7 +4112,7 @@ try {
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4122,7 +4125,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4162,7 +4165,7 @@ try {
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified **Query** object. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4180,7 +4183,7 @@ Obtains the KV pairs that match the specified **Query** object. This method uses
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4220,7 +4223,7 @@ try {
 
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4234,7 +4237,7 @@ Obtains the KV pairs that match the specified **Query** object for a device. Thi
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4274,7 +4277,7 @@ try {
 
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified **Query** object for a device. This method uses a promise to return the result.
+Obtains the KV pairs that match the specified **Query** object for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4293,7 +4296,7 @@ Obtains the KV pairs that match the specified **Query** object for a device. Thi
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
@@ -4334,7 +4337,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This method uses an asynchronous callback to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4348,7 +4351,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4369,7 +4372,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This method uses a promise to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4388,7 +4391,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4413,7 +4416,7 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4426,7 +4429,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4465,7 +4468,7 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This method uses a promise to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4483,7 +4486,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4529,7 +4532,7 @@ try {
 
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4543,7 +4546,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4581,7 +4584,7 @@ try {
 
 getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This method uses a promise to return the result.
+Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4600,7 +4603,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let resultSet;
@@ -4647,7 +4650,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4660,7 +4663,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     console.log('CloseResultSet success');
@@ -4682,7 +4685,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4700,7 +4703,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This method
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     console.log('CloseResultSet success');
@@ -4720,7 +4723,7 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the number of results that matches the specified **Query** object. This method uses an asynchronous callback to return the result.
+Obtains the number of results that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4733,7 +4736,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4767,7 +4770,7 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object. This method uses a promise to return the result.
+Obtains the number of results that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4785,7 +4788,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4823,7 +4826,7 @@ try {
 
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of results that matches the specified **Query** object for a device. This method uses an asynchronous callback to return the result.
+Obtains the number of results that matches the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4837,7 +4840,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4870,7 +4873,7 @@ try {
 
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object for a device. This method uses a promise to return the result.
+Obtains the number of results that matches the specified **Query** object for a device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4889,7 +4892,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     let entries = [];
@@ -4926,7 +4929,7 @@ try {
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes data of a device from this KV store. This method uses an asynchronous callback to return the result.
+Removes data of a device from this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4939,7 +4942,7 @@ Removes data of a device from this KV store. This method uses an asynchronous ca
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -4968,7 +4971,7 @@ try {
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
-Removes data of a device from this KV store. This method uses a promise to return the result.
+Removes data of a device from this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4986,7 +4989,7 @@ Removes data of a device from this KV store. This method uses a promise to retur
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -5018,6 +5021,7 @@ try {
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Manually triggers KV store synchronization synchronously.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -5032,7 +5036,7 @@ Manually triggers KV store synchronization synchronously.
 
 **Example**
 
-```
+```js
 let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
@@ -5051,11 +5055,11 @@ try {
 }
 ```
 
-### on<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup> ###
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization completion events. This method uses a synchronous callback to return the result.
+Subscribes to the synchronization completion events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5063,12 +5067,12 @@ Subscribes to the synchronization completion events. This method uses a synchron
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event    |'syncComplete'      | Yes   |Event triggered when the synchronization is complete.|
-| syncCallback            |Callback<Array&lt;<[string, number]&gt; | Yes   |Callback used to return the synchronization result. |
+| event    |string      | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.|
+| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback used to return the synchronization result. |
 
 **Example**
 
-```
+```js
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
@@ -5086,11 +5090,11 @@ try {
 ```
 
 
-### off<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup> ###
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization completion events. This method uses a synchronous callback to return the result.
+Unsubscribes from the synchronization completion events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5098,12 +5102,12 @@ Unsubscribes from the synchronization completion events. This method uses a sync
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event         |'syncComplete'                           | Yes   |Event triggered when the synchronization is complete.|
+| event         |string                           | Yes   |Name of the event to unsubscribe from. The value is **syncComplete**, which indicates the synchronization complete event.|
 | syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
 
 **Example**
 
-```
+```js
 let kvStore;
 try {
     const func = function (data) {

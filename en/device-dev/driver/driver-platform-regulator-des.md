@@ -42,7 +42,8 @@ The regulator module is divided into the following layers:
 - The core layer provides the capabilities of binding, initializing, and releasing devices.
 - The adaptation layer implements other functions.
 
-![](../public_sys-resources/icon-note.gif)NOTE<br/>The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
 
 **Figure 1** Unified service mode
 
@@ -84,11 +85,11 @@ Regulators are used to:
 
 During the OS startup process, the driver management module loads the regulator driver based on the configuration file. Then, the regulator driver detects the regulator devices and initializes the driver.
 
-The figure below illustrates the process of using a regulator.
+The figure below illustrates how to use the APIs.
 
-**Figure 2** Process of using a regulator 
+**Figure 2** Using regulator driver APIs
 
-![](figures/process-of-using-regulator.png)
+![](figures/using-regulator-process.png)
 
 #### Opening a Regulator Device Handle
 
@@ -105,7 +106,7 @@ DevHandle RegulatorOpen(const char *name);
 | name       | Name of the target regulator.            |
 | **Return Value**| **Description**               |
 | handle     | The regulator device handle is returned if the operation is successful.|
-| NULL       | The operation fails.                     |
+| NULL       | The operation failed.                     |
 
 
 
@@ -155,7 +156,7 @@ int32_t RegulatorEnable(DevHandle handle);
 | handle     | Device handle of the target regulator.|
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 
 
@@ -184,7 +185,7 @@ int32_t RegulatorDisable(DevHandle handle);
 | handle     | Device handle of the target regulator.|
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;
@@ -212,7 +213,7 @@ int32_t RegulatorForceDisable(DevHandle handle);
 | handle     | Device handle of the target regulator.|
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;
@@ -241,7 +242,7 @@ int32_t RegulatorSetVoltage(DevHandle handle, uint32_t minUv, uint32_t maxUv);
 | maxUv      | Maximum voltage to set.         |
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;
@@ -272,7 +273,7 @@ int32_t RegulatorGetVoltage(DevHandle handle, uint32_t *voltage);
 | *voltage   | Pointer to the regulator voltage information.         |
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;
@@ -302,7 +303,7 @@ int32_t RegulatorSetCurrent(DevHandle handle, uint32_t minUa, uint32_t maxUa);
 | maxUa      | Maximum current to set.         |
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;
@@ -332,7 +333,7 @@ int32_t RegulatorGetCurrent(DevHandle handle, uint32_t *regCurrent);
 | *regCurrent | Pointer to the regulator current information.         |
 | **Return Value** | **Description**   |
 | 0           | The operation is successful.         |
-| Negative value       | The operation fails.         |
+| Negative value       | The operation failed.         |
 
 ```
 int32_t ret;
@@ -361,7 +362,7 @@ int32_t RegulatorGetStatus(DevHandle handle, uint32_t *status);
 | *status    | Pointer to the regulator status information.         |
 | **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
-| Negative value      | The operation fails.         |
+| Negative value      | The operation failed.         |
 
 ```
 int32_t ret;

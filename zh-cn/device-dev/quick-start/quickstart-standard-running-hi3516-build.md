@@ -45,4 +45,4 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 5. 编译结束后，出现“build success”字样，说明构建成功。
 
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-   > 编译结果文件及编译日志文件获取路径：out/hi3516dv300。
+   > 编译结果文件及编译日志文件获取路径：out/hispark_taurus。

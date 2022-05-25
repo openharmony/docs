@@ -1,4 +1,4 @@
-# Building a Standard System<a name="EN-US_TOPIC_0000001076490572"></a>
+# Building the Standard System<a name="EN-US_TOPIC_0000001076490572"></a>
 
 ## Overview<a name="section17466112012244"></a>
 
@@ -87,7 +87,7 @@ The process to build OpenHarmony is as follows:
     ./build.sh --product-name {product_name}
     ```
 
-    **product\_name**  indicates the product supported by the current distribution, for example, Hi3516D V300.
+    **product\_name**  indicates the product supported by the current distribution, for example, hispark_taurus_standard.
 
     The image generated after build is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
@@ -207,20 +207,20 @@ The process to build OpenHarmony is as follows:
 
 2.  Add the module to the product configuration file.
 
-    Add the module to the product configuration file  **productdefine/common/products/\{product-name\}.json**.
+    Add the module to the product configuration file  **//vendor/{product_company}/{product-name}/config.json。**.
 
     Add "subsystem\_examples:partA" to the product configuration file.  **partA**  will be built and packaged into the distribution.
 
 3.  Build the module.
 
-    For example, run the following command to build Hi3516D V300:
+    For example, run the following command to build hispark_taurus_standard:
 
     ```
-    ./build.sh --product-name Hi3516DV300 --ccache
+    ./build.sh --product-name hispark_taurus_standard --ccache
     ```
 
 4.  Obtain the build result.
 
-    Files generated during the build process are stored in the  **out/hi3516dv300/**  directory, and the generated image is stored in the  **out/hi3516dv300/packages/phone/images/**  directory.
+    Files generated during the build process are stored in the  **out/hispark_taurus/**  directory, and the generated image is stored in the  **out/hispark_taurus/packages/phone/images/**  directory.
 
 

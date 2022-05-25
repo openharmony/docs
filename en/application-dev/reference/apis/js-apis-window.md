@@ -1,8 +1,10 @@
 # Window
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+The **Window** module provides basic capabilities for managing windows, including creating and destroying windows and setting serial port attributes.
+
+> **NOTE**<br/>
+> 
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 
 ## Modules to Import
 
@@ -10,7 +12,7 @@
 import window from '@ohos.window';
 ```
 
-## WindowType<sup>7+</sup><a name="windowtype"></a>
+## WindowType<sup>7+</sup>
 
 Enumerates the window types.
 
@@ -21,7 +23,7 @@ Enumerates the window types.
 | TYPE_APP          | 0      | Application subwindow.  |
 | TYPE_SYSTEM_ALERT | 1      | System alert window.|
 
-## AvoidAreaType<sup>7+</sup><a name="avoidareatype"></a>
+## AvoidAreaType<sup>7+</sup>
 
 Enumerates the types of the area where the window cannot be displayed.
 
@@ -32,7 +34,7 @@ Enumerates the types of the area where the window cannot be displayed.
 | TYPE_SYSTEM | 0      | Default area of the system.|
 | TYPE_CUTOUT | 1      | Notch.  |
 
-## WindowMode<sup>7+</sup><a name="windowmode"></a>
+## WindowMode<sup>7+</sup>
 
 Enumerates the window modes of an application.
 
@@ -48,7 +50,7 @@ This is a system API and cannot be called by third-party applications.
 | SECONDARY  | 4      | The application is displayed in the secondary window in split-screen mode.  |
 | FLOATING   | 5      | The application is displayed in a floating window.|
 
-## SystemBarProperties<a name="systembarproperties"></a>
+## SystemBarProperties
 
 Describes the properties of the status bar and navigation bar.
 
@@ -63,7 +65,7 @@ Describes the properties of the status bar and navigation bar.
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
-## SystemBarRegionTint<sup>8+</sup><a name="systembartegiontint"></a>
+## SystemBarRegionTint<sup>8+</sup>
 
 Describes the callback for a single system bar.
 
@@ -73,13 +75,13 @@ This is a system API and cannot be called by third-party applications.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the navigation bar and status bar are supported.|
+| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
 | region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
 | backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
 | contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
 
-## SystemBarTintState<sup>8+</sup><a name="systembartintstate"></a>
+## SystemBarTintState<sup>8+</sup>
 
 Describes the callback for the current system bar.
 
@@ -87,14 +89,14 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Type                                          | Readable| Writable| Description                      |
-| ---------- | -------------------------------------------------- | ---- | ---- | -------------------------- |
-| displayId  | number                                             | Yes  | No  | ID of the current physical screen.          |
-| regionTint | Array<[SystemBarRegionTint](#systembartegiontint)> | Yes  | Yes  | All system bar information changed.|
+| Name      | Type                                           | Readable| Writable| Description                      |
+| ---------- | --------------------------------------------------- | ---- | ---- | -------------------------- |
+| displayId  | number                                              | Yes  | No  | ID of the current physical screen.          |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information changed.|
 
-## Rect<sup>7+</sup><a name="rect"></a>
+## Rect<sup>7+</sup>
 
-Describes a rectangle.
+Describes the rectangular area of the window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -105,7 +107,7 @@ Describes a rectangle.
 | width  | number   | Yes  | Yes  | Width of the rectangle.  |
 | height | number   | Yes  | Yes  | Height of the rectangle.  |
 
-## AvoidArea<sup>7+</sup><a name="avoidarea"></a>
+## AvoidArea<sup>7+</sup>
 
 Describes the area where the window cannot be displayed.
 
@@ -118,7 +120,7 @@ Describes the area where the window cannot be displayed.
 | rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
 | bottomRect | [Rect](#rect) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
-## Size<sup>7+</sup><a name="size"></a>
+## Size<sup>7+</sup>
 
 Describes the window size.
 
@@ -129,28 +131,27 @@ Describes the window size.
 | width  | number   | Yes  | Yes  | Window width.|
 | height | number   | Yes  | Yes  | Window height.|
 
-## WindowProperties<a name="windowproperties"></a>
+## WindowProperties
 
 Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                           | Type                 | Readable| Writable| Description                                                        |
-| ------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>         | [Rect](#rect)             | Yes  | Yes  | Window size.                                                  |
-| type<sup>7+</sup>               | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                                  |
-| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is **false**.                                     |
-| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**.                             |
-| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**.                                |
-| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**.                                |
-| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| dimBehindValue<sup>7+</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
-| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| Name                           | Type                 | Readable| Writable| Description                                        |
+| ------------------------------- | ------------------------- | ---- | ---- | -------------------------------------------- |
+| windowRect<sup>7+</sup>         | [Rect](#rect)             | Yes  | Yes  | Window size.                                  |
+| type<sup>7+</sup>               | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                  |
+| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is **false**.                     |
+| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**.             |
+| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**.                |
+| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**.                |
+| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. |
+| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**.                 |
+| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**.                     |
+| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**.               |
+| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**.                 |
 
-## ColorSpace<sup>8+</sup><a name="colorspace"></a>
+## ColorSpace<sup>8+</sup>
 
 Describes the color gamut mode.
 
@@ -171,15 +172,15 @@ This API is discarded since API version 8. You are advised to use [window.create
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                      |
-  | -------- | -------------------------------------- | ---- | -------------------------- |
-  | id       | string                                 | Yes  | Window ID.                  |
-  | type     | [WindowType](#windowtype)              | Yes  | Window type.                |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
+| Name  | Type                                  | Mandatory| Description                      |
+| -------- | -------------------------------------- | ---- | -------------------------- |
+| id       | string                                 | Yes  | Window ID.                  |
+| type     | [WindowType](#windowtype)              | Yes  | Window type.                |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -204,20 +205,20 @@ This API is discarded since API version 8. You are advised to use [window.create
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type                     | Mandatory| Description      |
-  | ------ | ------------------------- | ---- | ---------- |
-  | id     | string                    | Yes  | Window ID.  |
-  | type   | [WindowType](#windowtype) | Yes  | Window type.|
+| Name| Type                     | Mandatory| Description      |
+| ------ | ------------------------- | ---- | ---------- |
+| id     | string                    | Yes  | Window ID.  |
+| type   | [WindowType](#windowtype) | Yes  | Window type.|
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                             |
-  | -------------------------------- | ------------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+| Type                            | Description                                             |
+| -------------------------------- | ------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -236,20 +237,20 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses an asynchronous callback to return the result.
 
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md), starting from API version 9. This API uses an asynchronous callback to return the result.
+Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses an asynchronous callback to return the result. It is valid since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                                        |
-  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
-  | id       | string                                 | Yes  | Window ID.                                                    |
-  | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                                      |
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
+| id       | string                                 | Yes  | Window ID.                                                    |
+| type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                                      |
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -270,25 +271,25 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses a promise to return the result.
 
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md), starting from API version 9. This API uses a promise to return the result.
+Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses a promise to return the result. It is valid since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type                     | Mandatory| Description                                                        |
-  | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
-  | id     | string                    | Yes  | Window ID.                                                    |
-  | type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
+| Name| Type                     | Mandatory| Description                                                        |
+| ------ | ------------------------- | ---- | ------------------------------------------------------------ |
+| ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
+| id     | string                    | Yes  | Window ID.                                                    |
+| type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                           |
-  | -------------------------------- | ----------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
+| Type                            | Description                                           |
+| -------------------------------- | ----------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -309,14 +310,14 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                        |
-  | -------- | -------------------------------------- | ---- | ---------------------------- |
-  | id       | string                                 | Yes  | Window ID.                    |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found.|
+| Name  | Type                                  | Mandatory| Description                        |
+| -------- | -------------------------------------- | ---- | ---------------------------- |
+| id       | string                                 | Yes  | Window ID.                    |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -338,19 +339,19 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description    |
-  | ------ | ------ | ---- | -------- |
-  | id     | string | Yes  | Window ID.|
+| Name| Type  | Mandatory| Description    |
+| ------ | ------ | ---- | -------- |
+| id     | string | Yes  | Window ID.|
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                           |
-  | -------------------------------- | ----------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the window found.|
+| Type                            | Description                                           |
+| -------------------------------- | ----------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window found.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -369,15 +370,17 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
+This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                  |
-  | -------- | -------------------------------------- | ---- | -------------------------------------- |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.|
+| Name  | Type                                  | Mandatory| Description                                  |
+| -------- | -------------------------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.|
 
-- Example
+**Example**
 
   ```js
   var windowClass = null;
@@ -397,15 +400,17 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the top window of the current application. This API uses a promise to return the result.
 
+This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                                     |
-  | -------------------------------- | --------------------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
+| Type                            | Description                                                     |
+| -------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -426,14 +431,14 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                                        |
-  | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
 
-- Example
+**Example**
 
   ```js
   var windowClass = null;
@@ -455,19 +460,19 @@ Obtains the top window of the current application. This API uses a promise to re
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type   | Mandatory| Description                                                        |
-  | ------ | ------- | ---- | ------------------------------------------------------------ |
-  | ctx    | Context | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| ctx    | Context | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                                     |
-  | -------------------------------- | --------------------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
+| Type                            | Description                                                     |
+| -------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
 
-- Example
+**Example**
 
   ```js
    var windowClass = null;
@@ -490,14 +495,14 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                                     | Mandatory| Description                                                        |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the information.                                      |
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at **systemBarTintChange**, indicating the property change event of the status bar and navigation bar.|
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```js
   var type = 'systemBarTintChange';
@@ -510,20 +515,20 @@ This is a system API and cannot be called by third-party applications.
 
 off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
-Disables listening for the properties changes of the status bar and navigation bar.
+Disables listening for properties changes of the status bar and navigation bar.
 
 This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                                     | Mandatory| Description                                                        |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                                    | Yes  | Listening type.<br>Set it to **systemBarTintChange**, which indicates listening for properties changes of the status bar and navigation bar.|
-  | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the information.                                      |
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at **systemBarTintChange**, indicating the property change event of the status bar and navigation bar.|
+| callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```js
   var type = 'systemBarTintChange';
@@ -544,13 +549,13 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   windowClass.hide((err, data) => {
@@ -572,13 +577,13 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.hide();
@@ -597,13 +602,13 @@ Shows this window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   windowClass.show((err, data) => {
@@ -623,13 +628,13 @@ Shows this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.show();
@@ -648,13 +653,13 @@ Destroys this window. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   windowClass.destroy((err, data) => {
@@ -674,13 +679,13 @@ Destroys this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.destroy();
@@ -695,19 +700,19 @@ Destroys this window. This API uses a promise to return the result.
 
 moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
-Moves the position of this window. This API uses an asynchronous callback to return the result.
+Moves this window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                                   |
-  | -------- | ------------------------- | ---- | --------------------------------------- |
-  | x        | number                    | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
-  | y        | number                    | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                             |
+| Name  | Type                     | Mandatory| Description                                   |
+| -------- | ------------------------- | ---- | --------------------------------------- |
+| x        | number                    | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
+| y        | number                    | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                             |
 
-- Example
+**Example**
 
   ```js
   windowClass.moveTo(300, 300, (err, data)=>{
@@ -724,24 +729,24 @@ Moves the position of this window. This API uses an asynchronous callback to ret
 
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
-Moves the position of this window. This API uses a promise to return the result.
+Moves this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description                                   |
-  | ------ | ------ | ---- | --------------------------------------- |
-  | x      | number | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
-  | y      | number | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
+| Name| Type  | Mandatory| Description                                   |
+| ------ | ------ | ---- | --------------------------------------- |
+| x      | number | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
+| y      | number | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.moveTo(300, 300);
@@ -760,15 +765,15 @@ Changes the size of this window. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description            |
-  | -------- | ------------------------- | ---- | ---------------- |
-  | width    | number                    | Yes  | New width of the window.|
-  | height   | number                    | Yes  | New height of the window.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
+| Name  | Type                     | Mandatory| Description            |
+| -------- | ------------------------- | ---- | ---------------- |
+| width    | number                    | Yes  | New width of the window.|
+| height   | number                    | Yes  | New height of the window.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
 
-- Example
+**Example**
 
   ```js
   windowClass.resetSize(500, 1000, (err, data) => {
@@ -788,20 +793,20 @@ Changes the size of this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description            |
-  | ------ | ------ | ---- | ---------------- |
-  | width  | number | Yes  | New width of the window.|
-  | height | number | Yes  | New height of the window.|
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| width  | number | Yes  | New width of the window.|
+| height | number | Yes  | New height of the window.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.resetSize(500, 1000);
@@ -822,14 +827,14 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | type     | [WindowType](#windowtype) | Yes  | Window type.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| type     | [WindowType](#windowtype) | Yes  | Window type.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var type = window.TYPE_APP;
@@ -852,19 +857,19 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type                     | Mandatory| Description      |
-  | ------ | ------------------------- | ---- | ---------- |
-  | type   | [WindowType](#windowtype) | Yes  | Window type.|
+| Name| Type                     | Mandatory| Description      |
+| ------ | ------------------------- | ---- | ---------- |
+| type   | [WindowType](#windowtype) | Yes  | Window type.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
    var type = window.TYPE_APP;
@@ -884,13 +889,13 @@ Obtains the properties of this window. This API uses an asynchronous callback to
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                                      | Mandatory| Description              |
-  | -------- | ---------------------------------------------------------- | ---- | ------------------ |
-  | callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | Yes  | Callback used to return the window properties.|
+| Name  | Type                                                      | Mandatory| Description              |
+| -------- | ---------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback&lt;[WindowProperties](#windowproperties)&gt; | Yes  | Callback used to return the window properties.|
 
-- Example
+**Example**
 
   ```js
   windowClass.getProperties((err, data) => {
@@ -910,13 +915,13 @@ Obtains the properties of this window. This API uses a promise to return the res
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                                                | Description                                 |
-  | ---------------------------------------------------- | ------------------------------------- |
-  | Promise&lt;[WindowProperties](#windowproperties)&gt; | Promise used to return the window properties.|
+| Type                                                | Description                                 |
+| ---------------------------------------------------- | ------------------------------------- |
+| Promise&lt;[WindowProperties](#windowproperties)&gt; | Promise used to return the window properties.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.getProperties();
@@ -935,14 +940,14 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                        | Mandatory| Description                                                        |
-  | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
-  | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                                  |
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                                  |
 
-- Example
+**Example**
 
   ```js
   var type = window.AvoidAreaType.TYPE_SYSTEM;
@@ -963,19 +968,19 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type                           | Mandatory| Description                                                        |
-  | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
+| Name| Type                           | Mandatory| Description                                                        |
+| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch.|
 
-- Return value
+**Return value**
 
-  | Type                                  | Description                                         |
-  | -------------------------------------- | --------------------------------------------- |
-  | Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise used to return the area.|
+| Type                                  | Description                                         |
+| -------------------------------------- | --------------------------------------------- |
+| Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise used to return the area.|
 
-- Example
+**Example**
 
   ```js
    let promise = windowClass.getAvoidArea();
@@ -994,14 +999,14 @@ Sets whether to enable the full-screen mode for this window. This API uses an as
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name      | Type                     | Mandatory| Description                                          |
-  | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-  | isFullScreen | boolean                   | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden.|
-  | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                    |
+| Name      | Type                     | Mandatory| Description                                          |
+| ------------ | ------------------------- | ---- | ---------------------------------------------- |
+| isFullScreen | boolean                   | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden.|
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                    |
 
-- Example
+**Example**
 
   ```js
   var isFullScreen = true;
@@ -1022,19 +1027,19 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name      | Type   | Mandatory| Description                                          |
-  | ------------ | ------- | ---- | ---------------------------------------------- |
-  | isFullScreen | boolean | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden.|
+| Name      | Type   | Mandatory| Description                                          |
+| ------------ | ------- | ---- | ---------------------------------------------- |
+| isFullScreen | boolean | Yes  | Whether to enable the full-screen mode, in which the status bar and navigation bar are hidden.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isFullScreen = true;
@@ -1050,18 +1055,18 @@ Sets whether to enable the full-screen mode for this window. This API uses a pro
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether the window layout is in full-screen mode. This API uses an asynchronous callback to return the result.
+Sets whether to enable the full-screen mode for the window layout. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name            | Type                     | Mandatory| Description                                                        |
-  | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-  | isLayoutFullScreen | boolean                   | Yes  | Whether the window layout is in full-screen mode, in which the status bar and navigation bar are displayed.|
-  | callback           | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
+| Name            | Type                     | Mandatory| Description                                                        |
+| ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean                   | Yes  | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed.|
+| callback           | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
 
-- Example
+**Example**
 
   ```js
   var isLayoutFullScreen= true;
@@ -1078,23 +1083,23 @@ Sets whether the window layout is in full-screen mode. This API uses an asynchro
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether the window layout is in full-screen mode. This API uses a promise to return the result.
+Sets whether to enable the full-screen mode for the window layout. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name            | Type   | Mandatory| Description                                                        |
-  | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-  | isLayoutFullScreen | boolean | Yes  | Whether the window layout is in full-screen mode, in which the status bar and navigation bar are displayed.|
+| Name            | Type   | Mandatory| Description                                                        |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean | Yes  | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isLayoutFullScreen = true;
@@ -1114,14 +1119,14 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                                                        |
-  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | names    | Array                     | Yes  | Whether to display the status bar and navigation bar. For example, to display the status bar and navigation bar, set this parameter to **["status", "navigation"]**. By default, they are not displayed.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| names    | Array                     | Yes  | Whether to display the status bar and navigation bar. For example, to display the status bar and navigation bar, set this parameter to **["status", "navigation"]**. By default, they are not displayed.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
 
-- Example
+**Example**
 
   ```js
   var names = ["status", "navigation"];
@@ -1142,19 +1147,19 @@ Sets whether to display the status bar and navigation bar in this window. This A
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type | Mandatory| Description                                                        |
-  | ------ | ----- | ---- | ------------------------------------------------------------ |
-  | names  | Array | Yes  | Whether to display the status bar and navigation bar. For example, to display the status bar and navigation bar, set this parameter to **["status", "navigation"]**. By default, they are not displayed.|
+| Name| Type | Mandatory| Description                                                        |
+| ------ | ----- | ---- | ------------------------------------------------------------ |
+| names  | Array | Yes  | Whether to display the status bar and navigation bar. For example, to display the status bar and navigation bar, set this parameter to **["status", "navigation"]**. By default, they are not displayed.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var names = ["status", "navigation"];
@@ -1174,14 +1179,14 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name             | Type                                       | Mandatory| Description                |
-  | ------------------- | ------------------------------------------- | ---- | -------------------- |
-  | SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
-  | callback            | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the execution result.          |
+| Name             | Type                                       | Mandatory| Description                |
+| ------------------- | ------------------------------------------- | ---- | -------------------- |
+| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
+| callback            | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the execution result.          |
 
-- Example
+**Example**
 
   ```js
   var SystemBarProperties={
@@ -1211,19 +1216,19 @@ Sets the properties of the status bar and navigation bar in this window. This AP
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name             | Type                                       | Mandatory| Description                |
-  | ------------------- | ------------------------------------------- | ---- | -------------------- |
-  | SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
+| Name             | Type                                       | Mandatory| Description                |
+| ------------------- | ------------------------------------------- | ---- | -------------------- |
+| SystemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var SystemBarProperties={
@@ -1252,14 +1257,14 @@ Loads content to this window. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                |
-  | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
 
-- Example
+**Example**
 
   ```js
   windowClass.loadContent("pages/page2/page2", (err, data) => {
@@ -1279,19 +1284,19 @@ Loads content to this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description                |
-  | ------ | ------ | ---- | -------------------- |
-  | path   | string | Yes  | Path of the page from which the content will be loaded.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| path   | string | Yes  | Path of the page from which the content will be loaded.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let promise = windowClass.loadContent("pages/page2/page2");
@@ -1310,13 +1315,13 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                        | Mandatory| Description                            |
-  | -------- | ---------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the window is displayed.|
+| Name  | Type                        | Mandatory| Description                            |
+| -------- | ---------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the window is displayed.|
 
-- Example
+**Example**
 
   ```js
   windowClass.isShowing((err, data) => {
@@ -1336,13 +1341,13 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                  | Description                                                 |
-  | ---------------------- | ----------------------------------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the window is displayed.|
+| Type                  | Description                                                 |
+| ---------------------- | ----------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the window is displayed.|
 
-- Example
+**Example**
 
   ```js
   let promise = windowClass.isShowing();
@@ -1361,14 +1366,14 @@ Enables listening for window size changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                         | Mandatory| Description                                                        |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                      |
+| Name  | Type                         | Mandatory| Description                                                    |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | Yes  | Type of event to listen for. The value is fixed at **windowSizeChange**, indicating the window size change event.|
+| callback | Callback&lt;[Size](#size)&gt; | Yes  | Callback used to return the information.                                  |
 
-- Example
+**Example**
 
   ```js
   var type = 'windowSizeChange';
@@ -1385,16 +1390,16 @@ Disables listening for window size changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                         | Mandatory| Description                                                        |
-  | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                        | Yes  | Listening type.<br>Set it to **windowSizeChange<sup>7+</sup>**, which indicates listening for window size changes.|
-  | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                      |
+| Name  | Type                         | Mandatory| Description                                                    |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | Yes  | Type of event to listen for. The value is fixed at **windowSizeChange**, indicating the window size change event.|
+| callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the information.                                  |
 
-- Example
+**Example**
 
-  ```
+  ```js
   var type = 'windowSizeChange';
   windowClass.off(type);
   ```
@@ -1407,14 +1412,14 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                   | Mandatory| Description                                                        |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                  | Yes  | Type of event to listen for. The value is fixed at **systemAvoidAreaChange**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```js
   var type = 'systemAvoidAreaChange';
@@ -1431,16 +1436,16 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                   | Mandatory| Description                                                        |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                                  | Yes  | Listening type.<br>Set it to **systemAvoidAreaChange**, which indicates listening for changes to the area where the window cannot be displayed.|
-  | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the information.                                      |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                  | Yes  | Type of event to listen for. The value is fixed at **systemAvoidAreaChange**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
-  ```
+  ```js
   var type = 'systemAvoidAreaChange';
   windowClass.off(type);
   ```
@@ -1451,18 +1456,16 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 Enables listening for keyboard height changes.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type              | Mandatory| Description                                                        |
-  | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string             | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callbacknumber&gt; | Yes  | Callback used to return the information.                                      |
+| Name  | Type              | Mandatory| Description                                                        |
+| -------- | ------------------ | ---- | ------------------------------------------------------------ |
+| type     | string             | Yes  | Type of event to listen for. The value is fixed at **keyboardHeightChange**, indicating the keyboard height change event.|
+| callback | Callbacknumber&gt; | Yes  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```js
   var type = 'keyboardHeightChange';
@@ -1477,20 +1480,18 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 Disables listening for keyboard height changes.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                  | Mandatory| Description                                                        |
-  | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                 | Yes  | Listening type.<br>Set it to **keyboardHeightChange**, which indicates listening for keyboard height changes.|
-  | callback | Callback&lt;number&gt; | No  | Callback used to return the information.                                      |
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | Yes  | Type of event to listen for. The value is fixed at **keyboardHeightChange**, indicating the keyboard height change event.|
+| callback | Callback&lt;number&gt; | No  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
-  ```
+  ```js
   var type = 'keyboardHeightChange';
   windowClass.off(type);
   ```
@@ -1503,13 +1504,13 @@ Checks whether this window supports the wide color gamut mode. This API uses an 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                        | Mandatory| Description                            |
-  | -------- | ---------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the wide color gamut mode is supported.|
+| Name  | Type                        | Mandatory| Description                            |
+| -------- | ---------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return whether the wide color gamut mode is supported.|
 
-- Example
+**Example**
 
   ```js
   windowClass.isSupportWideGamut((err, data) => {
@@ -1529,15 +1530,15 @@ Checks whether this window supports the wide color gamut mode. This API uses a p
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                  | Description                                                        |
-  | ---------------------- | ------------------------------------------------------------ |
-  | Promise&lt;boolean&gt; | Promise used to return whether the wide color gamut mode is supported.|
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return whether the wide color gamut mode is supported.|
 
-- Example
+**Example**
 
-  ```
+  ```js
   let promise = windowClass.isSupportWideGamut();
   promise.then((data)=> {
       console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data))
@@ -1554,14 +1555,14 @@ Sets this window to the wide or default color gamut mode. This API uses an async
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name    | Type                     | Mandatory| Description        |
-  | ---------- | ------------------------- | ---- | ------------ |
-  | colorSpace | [ColorSpace](#colorspace) | Yes  | Color gamut mode.|
-  | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.  |
+| Name    | Type                     | Mandatory| Description        |
+| ---------- | ------------------------- | ---- | ------------ |
+| colorSpace | [ColorSpace](#colorspace) | Yes  | Color gamut mode.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.  |
 
-- Example
+**Example**
 
   ```js
   windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err, data) => {
@@ -1581,19 +1582,19 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name    | Type                     | Mandatory| Description        |
-  | ---------- | ------------------------- | ---- | ------------ |
-  | colorSpace | [ColorSpace](#colorspace) | Yes  | Color gamut mode.|
+| Name    | Type                     | Mandatory| Description        |
+| ---------- | ------------------------- | ---- | ------------ |
+| colorSpace | [ColorSpace](#colorspace) | Yes  | Color gamut mode.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
@@ -1612,13 +1613,13 @@ Obtains the color gamut mode of this window. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                          | Mandatory| Description                      |
-  | -------- | ---------------------------------------------- | ---- | -------------------------- |
-  | callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes  | Callback used to return the color gamut mode obtained.|
+| Name  | Type                                          | Mandatory| Description                      |
+| -------- | ---------------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes  | Callback used to return the color gamut mode obtained.|
 
-- Example
+**Example**
 
   ```js
   windowClass.getColorSpace((err, data) => {
@@ -1638,13 +1639,13 @@ Obtains the color gamut mode of this window. This API uses a promise to return t
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                                    | Description                                     |
-  | ---------------------------------------- | ----------------------------------------- |
-  | Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the color gamut mode obtained.|
+| Type                                    | Description                                     |
+| ---------------------------------------- | ----------------------------------------- |
+| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the color gamut mode obtained.|
 
-- Example
+**Example**
 
   ```js
   let promise = windowClass.getColorSpace();
@@ -1661,18 +1662,16 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the background color for this window. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                                                        |
-  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | color    | string                    | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| color    | string                    | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
 
-- Example
+**Example**
 
   ```js
   var color = '#00ff33';
@@ -1691,23 +1690,21 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 Sets the background color for this window. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description                                                        |
-  | ------ | ------ | ---- | ------------------------------------------------------------ |
-  | color  | string | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| color  | string | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var color = '#00ff33';
@@ -1725,18 +1722,16 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name    | Type                     | Mandatory| Description                                |
-  | ---------- | ------------------------- | ---- | ------------------------------------ |
-  | brightness | number                    | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
-  | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                          |
+| Name    | Type                     | Mandatory| Description                                |
+| ---------- | ------------------------- | ---- | ------------------------------------ |
+| brightness | number                    | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                          |
 
-- Example
+**Example**
 
   ```js
   var brightness = 1;
@@ -1755,23 +1750,21 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name    | Type  | Mandatory| Description                                |
-  | ---------- | ------ | ---- | ------------------------------------ |
-  | brightness | number | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
+| Name    | Type  | Mandatory| Description                                |
+| ---------- | ------ | ---- | ------------------------------------ |
+| brightness | number | Yes  | Brightness to set, which ranges from 0 to 1. The value **1** indicates the brightest.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var brightness = 1;
@@ -1783,86 +1776,22 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-### setDimBehind<sup>7+</sup>
-
-setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
-
-Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-- Parameters
-
-  | Name        | Type                     | Mandatory| Description                                              |
-  | -------------- | ------------------------- | ---- | -------------------------------------------------- |
-  | dimBehindValue | number                    | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
-  | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                        |
-
-- Example
-
-  ```js
-  windowClass.setDimBehind(0.5, (err, data) => {
-      if (err.code) {
-          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
-  });
-  ```
-
-### setDimBehind<sup>7+</sup>
-
-setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
-
-Sets the dimness of the window that is not on top. This API uses a promise to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-- Parameters
-
-  | Name        | Type  | Mandatory| Description                                              |
-  | -------------- | ------ | ---- | -------------------------------------------------- |
-  | dimBehindValue | number | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
-
-- Return value
-
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
-
-- Example
-
-  ```js
-  let promise = windowClass.setDimBehind(0.5);
-  promise.then((data)=> {
-      console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
-  }).catch((err)=>{
-      console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
 ### setFocusable<sup>7+</sup>
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether this window can gain focus. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name     | Type                     | Mandatory| Description                        |
-  | ----------- | ------------------------- | ---- | ---------------------------- |
-  | isFocusable | boolean                   | Yes  | Whether the window can gain focus.|
-  | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                  |
+| Name     | Type                     | Mandatory| Description                        |
+| ----------- | ------------------------- | ---- | ---------------------------- |
+| isFocusable | boolean                   | Yes  | Whether the window can gain focus.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                  |
 
-- Example
+**Example**
 
   ```js
   var isFocusable= true;
@@ -1881,23 +1810,21 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 Sets whether this window can gain focus. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name     | Type   | Mandatory| Description                        |
-  | ----------- | ------- | ---- | ---------------------------- |
-  | isFocusable | boolean | Yes  | Whether the window can gain focus.|
+| Name     | Type   | Mandatory| Description                        |
+| ----------- | ------- | ---- | ---------------------------- |
+| isFocusable | boolean | Yes  | Whether the window can gain focus.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isFocusable= true;
@@ -1915,18 +1842,16 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 Sets whether to keep the screen always on. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name        | Type                     | Mandatory| Description                    |
-  | -------------- | ------------------------- | ---- | ------------------------ |
-  | isKeepScreenOn | boolean                   | Yes  | Whether to keep the screen always on.|
-  | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.              |
+| Name        | Type                     | Mandatory| Description                    |
+| -------------- | ------------------------- | ---- | ------------------------ |
+| isKeepScreenOn | boolean                   | Yes  | Whether to keep the screen always on.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.              |
 
-- Example
+**Example**
 
   ```js
   var isKeepScreenOn = true;
@@ -1945,23 +1870,21 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 Sets whether to keep the screen always on. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name        | Type   | Mandatory| Description                    |
-  | -------------- | ------- | ---- | ------------------------ |
-  | isKeepScreenOn | boolean | Yes  | Whether to keep the screen always on.|
+| Name        | Type   | Mandatory| Description                    |
+| -------------- | ------- | ---- | ------------------------ |
+| isKeepScreenOn | boolean | Yes  | Whether to keep the screen always on.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isKeepScreenOn= true;
@@ -1973,86 +1896,22 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-### setOutsideTouchable<sup>7+</sup>
-
-setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-- Parameters
-
-  | Name   | Type                     | Mandatory| Description            |
-  | --------- | ------------------------- | ---- | ---------------- |
-  | touchable | boolean                   | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
-  | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
-
-- Example
-
-  ```js
-  windowClass.setOutsideTouchable(true, (err, data) => {
-      if (err.code) {
-          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
-  })
-  ```
-
-### setOutsideTouchable<sup>7+</sup>
-
-setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
-
-Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-- Parameters
-
-  | Name   | Type   | Mandatory| Description            |
-  | --------- | ------- | ---- | ---------------- |
-  | touchable | boolean | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
-
-- Return value
-
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
-
-- Example
-
-  ```js
-  let promise = windowClass.setOutsideTouchable(true);
-  promise.then((data)=> {
-      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
-  }).catch((err)=>{
-      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
 ### setPrivacyMode<sup>7+</sup>
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name       | Type                     | Mandatory| Description                |
-  | ------------- | ------------------------- | ---- | -------------------- |
-  | isPrivacyMode | boolean                   | Yes  | Whether the window is in privacy mode.|
-  | callback      | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
+| Name       | Type                     | Mandatory| Description                |
+| ------------- | ------------------------- | ---- | -------------------- |
+| isPrivacyMode | boolean                   | Yes  | Whether the window is in privacy mode.|
+| callback      | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
 
-- Example
+**Example**
 
   ```js
   var isPrivacyMode = true;
@@ -2072,23 +1931,21 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 Sets whether this window is in privacy mode. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name       | Type   | Mandatory| Description                |
-  | ------------- | ------- | ---- | -------------------- |
-  | isPrivacyMode | boolean | Yes  | Whether the window is in privacy mode.|
+| Name       | Type   | Mandatory| Description                |
+| ------------- | ------- | ---- | -------------------- |
+| isPrivacyMode | boolean | Yes  | Whether the window is in privacy mode.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isPrivacyMode = true;
@@ -2106,18 +1963,16 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether this window is touchable. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name     | Type                     | Mandatory| Description                |
-  | ----------- | ------------------------- | ---- | -------------------- |
-  | isTouchable | boolean                   | Yes  | Whether the window is touchable.|
-  | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
+| Name     | Type                     | Mandatory| Description                |
+| ----------- | ------------------------- | ---- | -------------------- |
+| isTouchable | boolean                   | Yes  | Whether the window is touchable.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
 
-- Example
+**Example**
 
   ```js
   var isTouchable = true;
@@ -2137,23 +1992,21 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 Sets whether this window is touchable. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name     | Type   | Mandatory| Description                |
-  | ----------- | ------- | ---- | -------------------- |
-  | isTouchable | boolean | Yes  | Whether the window is touchable.|
+| Name     | Type   | Mandatory| Description                |
+| ----------- | ------- | ---- | -------------------- |
+| isTouchable | boolean | Yes  | Whether the window is touchable.|
 
-- Return value
+**Return value**
 
-  | Type               | Description                                           |
-  | ------------------- | ----------------------------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   var isTouchable = true;
@@ -2165,7 +2018,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
   });
   ```
 
-## WindowStageEventType<sup>9+</sup><a name="windowstageeventtype9"></a>
+## WindowStageEventType<sup>9+</sup>
 
 Describes the lifecycle of a window stage.
 
@@ -2190,13 +2043,13 @@ Obtains the main window of this window stage. This API uses a promise to return 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                                      |
-  | -------------------------------- | ---------------------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
+| Type                            | Description                                                      |
+| -------------------------------- | ---------------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2222,13 +2075,13 @@ Obtains the main window of this window stage. This API uses an asynchronous call
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                   |
-  | -------- | -------------------------------------- | ---- | --------------------------------------- |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
+| Name  | Type                                  | Mandatory| Description                                   |
+| -------- | -------------------------------------- | ---- | --------------------------------------- |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2255,19 +2108,19 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name| Type  | Mandatory| Description          |
-  | ------ | ------ | ---- | -------------- |
-  | name   | String | Yes  | Name of the subwindow.|
+| Name| Type  | Mandatory| Description          |
+| ------ | ------ | ---- | -------------- |
+| name   | String | Yes  | Name of the subwindow.|
 
-- Return value
+**Return value**
 
-  | Type                            | Description                                             |
-  | -------------------------------- | ------------------------------------------------- |
-  | Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
+| Type                            | Description                                             |
+| -------------------------------- | ------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2293,14 +2146,14 @@ Creates a subwindow for this window stage. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                          |
-  | -------- | -------------------------------------- | ---- | ------------------------------ |
-  | name     | String                                 | Yes  | Name of the subwindow.                |
-  | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
+| Name  | Type                                  | Mandatory| Description                          |
+| -------- | -------------------------------------- | ---- | ------------------------------ |
+| name     | String                                 | Yes  | Name of the subwindow.                |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2328,13 +2181,13 @@ Obtains all the subwindows of this window stage. This API uses a promise to retu
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Return value
+**Return value**
 
-  | Type                                         | Description                                                        |
-  | --------------------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
+| Type                                         | Description                                                        |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2360,13 +2213,13 @@ Obtains all the subwindows of this window stage. This API uses an asynchronous c
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                               | Mandatory| Description                                       |
-  | -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
+| Name  | Type                                               | Mandatory| Description                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2391,16 +2244,16 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Loads content to this window stage. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value 'windowSizeChange'
+**System capability**: SystemCapability.WindowManager.WindowManager.Coretype with the value **windowSizeChange**
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                |
-  | -------- | ------------------------- | ---- | -------------------- |
-  | path     | string                    | Yes  | Path of the page from which the content will be loaded.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
+| Name  | Type                     | Mandatory| Description                |
+| -------- | ------------------------- | ---- | -------------------- |
+| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.          |
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2425,14 +2278,14 @@ Enables listening for window stage lifecycle changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                                        | Mandatory| Description                                                        |
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
-  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the information.                                      |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at **windowStageEvent**, indicating the window stage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
@@ -2454,14 +2307,14 @@ Disables listening for window stage lifecycle changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                                                        | Mandatory| Description                                                        |
-  | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-  | type     | string                                                       | Yes  | Listening type.<br>Set it to **windowStageEvent**, which indicates listening for window stage lifecycle changes.|
-  | callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the information.                                      |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at **windowStageEvent**, indicating the window stage lifecycle change event.|
+| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the information.                                      |
 
-- Example
+**Example**
 
   ```ts
   class myAbility extends Ability {
