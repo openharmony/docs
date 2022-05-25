@@ -30,7 +30,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称   | 参数类型 | 默认值   | 描述                                                         |
 | ------ | -------- | -------- | ------------------------------------------------------------ |
-| format | string   | 'hhmmss' | 设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”等。<br>支持的时间格式化字符串：<br>- yyyy：年份。<br/>- mm：英文月份简写。（需要对比差异）<br/>- mmm：英文月份简写。<br/>- mmmm：英文月份全称。<br/>- dd：英文星期简写。<br/>- ddd：英文星期简写。<br/>- dddd：英文星期全称。<br/>- HH：24小时制。<br/>- hh：12小时制。<br/>- MM/mm：分钟。<br/>- SS/ss：秒。 |
+| format | string   | 'hhmmss' | 设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”等。<br>支持的时间格式化字符串：<br>- yyyy：年份。<br/>- mm：英文月份简写。<br/>- mmm：英文月份简写。<br/>- mmmm：英文月份全称。<br/>- dd：英文星期简写。<br/>- ddd：英文星期简写。<br/>- dddd：英文星期全称。<br/>- HH：24小时制。<br/>- hh：12小时制。<br/>- MM/mm：分钟。<br/>- SS/ss：秒。 |
 
 ## 事件
 
