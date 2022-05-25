@@ -58,19 +58,15 @@ export default class MainAbility extends Ability {
     console.log("[Demo MainAbility onDestroy]")  
   }    
   onWindowStageCreate(windowStage) {
-//    Main window is created,set main page for this ability        		             
     windowStage.setUlContent(this.context,"pages/index",this.storage)    
   }    
   onWindowStageDestroy() {
-//    Main window is destroyed,release Ul related resources  
     console.log("[Demo] MainAbility onWindoeStageDestroy")   
   }    
   onForeground() {
-//    Ability has brought to foreground       
     console.log("[Demo] MainAbility onForeground")   
   }    
   onBackground() {
-//    Ability has back to background       
     console.log("[Demo] MainAbility onBackground")    
   }
 }
