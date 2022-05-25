@@ -92,7 +92,7 @@ Image(src: string | PixelMap | Resource)
 
 ### 图片加载
 
-加载并显示不同类型的图片，并设置图片的缩放类型。
+加载显示不同类型的图片，并设置图片的缩放类型。
 
 ```ts
 @Entry
@@ -161,8 +161,6 @@ struct ImageExample1 {
 ![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
 
 ### 设置属性
-
-添加xxx属性，
 
 ```ts
 @Entry
