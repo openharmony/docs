@@ -2,13 +2,13 @@
 
 
 
-## **LocalStorage**
+# **LocalStorage**
 
-LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UI的特定部分（如一个Ability的Ul）。
+LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UI的特定部分（如一个Ability的UI）。
 
-应用程序可以创建多个LocalStorage实例，每个Ul的一部分都可以创建一个LocalStorage实例，即每一个Ability对应一个LocalStorage实例。
+应用程序可以创建多个LocalStorage实例，每一个Ability对应一个LocalStorage实例。
 
-在有@Entry的顶级所有@Component中，最多可以分配一个LocalStorage实例。另外它的所有后代组件都将继承对此存储对象的访问权。
+在有@Entry的所有@Component中，最多可以分配一个LocalStorage实例。另外它的所有子组件都将继承对此存储对象的访问权。
 
 @Component最多可以访问一个LocalStorage实例，一个LocalStorage对象可以分配给多个@Component。
 
