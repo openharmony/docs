@@ -208,7 +208,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 
 ## Determining the Singular-Plural Type
 
-According to grammars in certain languages, the singular or plural form of a noun depends on the number prior to the noun. [PluralRules](../reference/apis/js-apis-intl.md) APIs are used to determine the singular-plural type for a specific locale.
+Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singular-plural type for a specific locale. According to the grammar of certain languages, the singular or plural form of a noun depends on its preceding number.
 
 
 ### Available APIs
@@ -287,7 +287,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```
 
 3. Obtain each part of the relative time format.<br>
-   Opon obtaining each part of the relative time format, customize the relative time formatting result.
+   Upon obtaining each part of the relative time format, customize the relative time formatting result.
      
    ```
    var number = 2;
