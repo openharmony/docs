@@ -69,7 +69,7 @@
 | onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>url：页面的URL地址。</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：新的加载进度，取值范围为0到100的整数。</p> |
 | onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页document标题更改时触发该回调。<br/>title：document标题内容。</p> |
-| onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。<br/>url：访问的URL。<br/>isRefreshed：true表示该页面是被重新加载的，false表示该页面是新加载的。</p> |
+| onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。<br/>url：访问的url。<br/>isRefreshed：true表示该页面是被重新加载的，false表示该页面是新加载的。</p> |
 | onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#renderexitreason枚举说明) }) => void) | <p>应用渲染进程异常退出时触发该回调。<br/>renderExitReason：渲染进程进程异常退出的具体原因。</p> |
 | onFileSelectorShow(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>result：用于通知Web组件文件选择的结果。<br/>fileSelector：文件选择器的相关信息。</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>data：url的相关信息。</p> |
@@ -158,9 +158,9 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称                         | 描述                           |
 | ---------------------------- | ------------------------------ |
-| PROCESS_ABNORMAL_TERMINATION | render进程退出，非0返回。      |
-| PROCESS_WAS_KILLED           | 收到SIGKILL，或被手动杀死。    |
-| PROCESS_CRASHED              | render进程崩溃退出，如段错误。 |
+| PROCESS_ABNORMAL_TERMINATION | 渲染进程异常退出。      |
+| PROCESS_WAS_KILLED           | 收到SIGKILL，或被手动终止。    |
+| PROCESS_CRASHED              | 渲染进程崩溃退出，如段错误。 |
 | PROCESS_OOM                  | 程序内存不足。                 |
 | PROCESS_EXIT_UNKNOWN         | 其他原因。                     |
 
@@ -175,13 +175,13 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 ### CacheMode枚举说明
   | 名称         | 描述                                 |
   | ---------- | ---------------------------------- |
-  | Default    | 加载资源使用不过期的cache，如果cache中无该资源则从网络中获取。 |
+  | Default    | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
   | None | 加载资源使用cache，如果cache中无该资源则从网络中获取。         |
   | Online       | 加载资源不使用cache，全部从网络中获取。  |
   | Only       | 只从cache中加载资源。               |
 
 ### FileSelectorResult对象说明
-通知Web组件文件选择结果的对象。
+通知Web组件的文件选择结果。
 
 - 接口
 
@@ -386,7 +386,7 @@ clearHistory(): void
 
 ### getCookieManager
 
-getCookieManager() : WebCookie
+getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
 - 返回值
@@ -396,7 +396,7 @@ getCookieManager() : WebCookie
 ## WebCookie
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 ### setCookie
-setCookie(url: string, value: string) : boolean
+setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
 
@@ -412,9 +412,9 @@ setCookie(url: string, value: string) : boolean
   | boolean | 设置cookie是否成功。 |
 
 ### saveCookieSync
-saveCookieSync() : boolean
+saveCookieSync(): boolean
 
-将当前存在内存中的cookie同步到磁盘中，该方法为同步方法，同步成功返回true，否则返回false。
+将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
 - 返回值
   | 参数类型    | 说明        |
   | ------- | --------- |
