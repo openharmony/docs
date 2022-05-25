@@ -31,7 +31,7 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
    ```
 
 2. Obtain the string representing a **Locale** object.<br>
-   Call the **toString** method to obtain the string representing a **Locale** object, including the language, region, and other options.
+   Call the **toString** method to obtain the string representing a **Locale** object, which includes the language, region, and other options.
      
    ```
    var localeStr = localeObj.toString();
@@ -86,7 +86,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 2. Format the date and time.<br>
-   Use the **format** method of **DateTimeFormat** to format a **Date** object. A string is returned as the formatting result.
+   Use the **format** method of **DateTimeFormat** to format a **Date** object. This method returns a string representing the formatting result.
      
    ```
    Date date = new Date();
@@ -94,7 +94,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 3. Format a period.<br>
-   Use the **formatRange** method of **DateTimeFormat** to format a period. This method requires the input of two **Date** objects, which respectively indicate the start date and end date of a period. A string is returned as the formatting result.
+   Use the **formatRange** method of **DateTimeFormat** to format a period. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
      
    ```
    Date startDate = new Date();
@@ -128,7 +128,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
 ### How to Develop
 
 1. Instantiate a **NumberFormat** object.<br>
-   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **NumberFormat** object. In the code below, **intl** is the name of the imported module.
 
    
    ```
@@ -160,7 +160,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
 
 ## String Sorting
 
-Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on a specific locale. Users in different regions have different requirements for string sorting.
+Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on a specific locale. Users in different regions have different preferences for string sorting.
 
 
 ### Available APIs
@@ -176,7 +176,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 ### How to Develop
 
 1. Instantiate a **Collator** object.<br>
-   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **Collator** object. In the code below, **intl** is the name of the imported module.
 
    
    ```
@@ -223,7 +223,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 ### How to Develop
 
 1. Instantiate a **PluralRules** object.<br>
-   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **PluralRules** object. In the code below, **intl** is the name of the imported module.
 
    
    ```
@@ -264,7 +264,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 ### How to Develop
 
 1. Instantiate a **RelativeTimeFormat** object.<br>
-   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **RelativeTimeFormat** object. In the code below, **intl** is the name of the imported module.
 
    
    ```
@@ -278,7 +278,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```
 
 2. Format the relative time.<br>
-   Use the **format** method of **RelativeTimeFormat** to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. A string is returned as the formatting result.
+   Use the **format** method of **RelativeTimeFormat** to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
      
    ```
    var number = 2;
@@ -287,7 +287,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```
 
 3. Obtain each part of the relative time format.<br>
-   On obtaining each part of the relative time format, customize the relative time formatting result.
+   Opon obtaining each part of the relative time format, customize the relative time formatting result.
      
    ```
    var number = 2;
