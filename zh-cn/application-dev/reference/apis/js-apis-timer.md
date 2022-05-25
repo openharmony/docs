@@ -3,6 +3,13 @@
 
 ## setTimeout
 
+## 导入模块
+
+
+```
+import Time from '@ohos.Time';
+```
+
 setTimeout(handler[,delay[,…args]]): number
 
 设置一个定时器，该定时器在定时器到期后执行一个函数。
@@ -20,7 +27,7 @@ setTimeout(handler[,delay[,…args]]): number
   | number | timeout定时器的ID。 |
 
 - 示例
-  ```
+  ```js
   export default {    
     setTimeOut() {        
       var timeoutID = setTimeout(function() {            
@@ -43,7 +50,7 @@ clearTimeout(timeoutID: number): void
   | timeoutID | number | 是 | 要取消定时器的ID，&nbsp;是由setTimeout()返回的。 |
 
 - 示例
-  ```
+  ```js
   export default {    
     clearTimeOut() {        
       var timeoutID = setTimeout(function() {            
@@ -74,7 +81,7 @@ setInterval(handler[, delay[, ...args]]): number
   | number | intervalID重复定时器的ID。 |
 
 - 示例
-  ```
+  ```js
   export default {    
     setInterval() {        
       var intervalID = setInterval(function() {            
@@ -97,7 +104,7 @@ clearInterval(intervalID: number): void
   | intervalID | number | 是 | 要取消的重复定时器的ID，是由&nbsp;setInterval()&nbsp;返回的。 |
 
 - 示例
-  ```
+  ```js
   export default {    
     clearInterval() {        
       var intervalID = setInterval(function() {
@@ -107,3 +114,4 @@ clearInterval(intervalID: number): void
     }
   }
   ```
+
