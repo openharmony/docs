@@ -1,6 +1,6 @@
 # Vibrator
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note:**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,14 +23,14 @@ Triggers vibration with a specific duration. This API uses a promise to return t
 
 
 **Parameters**
-| Name     | Type    | Mandatory  | Description          |
-| -------- | ------ | ---- | ------------ |
-| duration | number | Yes   | Vibration duration.|
+ | Name    | Type   | Mandatory | Description         |
+ | -------- | ------ | ---- | ------------ |
+ | duration | number | Yes  | Vibration duration. |
 
 **Return value**
-| Type                 | Description         |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
+ | Type                | Description        |
+ | ------------------- | ----------- |
+ | Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully. |
 
 
 **Example**
@@ -54,10 +54,10 @@ Triggers vibration with a specific duration. This API uses an asynchronous callb
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
-| Name     | Type                       | Mandatory  | Description                     |
-| -------- | ------------------------- | ---- | ----------------------- |
-| duration | number                    | Yes   | Vibration duration.           |
-| callback | AsyncCallback&lt;void&gt; | No   | Callback used to indicate whether the vibration is triggered successfully.|
+ | Name    | Type                      | Mandatory | Description                    |
+ | -------- | ------------------------- | ---- | ----------------------- |
+ | duration | number                   | Yes  | Vibration duration.          |
+ | callback | AsyncCallback&lt;void&gt; | No  | Callback used to indicate whether the vibration is triggered successfully. |
 
 **Example**
   ```
@@ -82,14 +82,14 @@ Triggers vibration with a specific effect. This API uses a promise to return the
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
-| Name     | Type                   | Mandatory  | Description           |
-| -------- | --------------------- | ---- | ------------- |
-| effectId | [EffectId](#effectid) | Yes   | String that indicates the vibration effect.|
+ | Name    | Type                  | Mandatory | Description          |
+ | -------- | --------------------- | ---- | ------------- |
+ | effectId | [EffectId](#effectid) | Yes  | String that indicates the vibration effect. |
 
 **Return value**
-| Type                 | Description         |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully.|
+ | Type                | Description        |
+ | ------------------- | ----------- |
+ | Promise&lt;void&gt; | Promise used to indicate whether the vibration is triggered successfully. |
 
 **Example**
   ```
@@ -112,10 +112,10 @@ Triggers vibration with a specific effect. This API uses an asynchronous callbac
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
-| Name     | Type                       | Mandatory  | Description                     |
-| -------- | ------------------------- | ---- | ----------------------- |
-| effectId | [EffectId](#effectid)     | Yes   | String that indicates the vibration effect.          |
-| callback | AsyncCallback&lt;void&gt; | No   | Callback used to indicate whether the vibration is triggered successfully.|
+ | Name    | Type                      | Mandatory | Description                    |
+ | -------- | ------------------------- | ---- | ----------------------- |
+ | effectId | [EffectId](#effectid)    | Yes  | String that indicates the vibration effect.         |
+ | callback | AsyncCallback&lt;void&gt; | No  | Callback used to indicate whether the vibration is triggered successfully. |
 
 **Example**
   ```
@@ -140,14 +140,14 @@ Stops the vibration based on the specified **stopMode**. This API uses a promise
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
-| Name     | Type                                   | Mandatory  | Description             |
-| -------- | ------------------------------------- | ---- | --------------- |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes   | Vibration mode to stop.|
+ | Name     | Type                                  | Mandatory | Description |
+ | -------- | ------------------------------------- | ---- | --------------- |
+ | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Vibration mode to stop. |
 
 **Return value**
-| Type                 | Description         |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | Promise used to indicate whether the vibration is stopped successfully.|
+ | Type                | Description |
+ | ------------------- | ----------- |
+ | Promise&lt;void&gt; | Promise used to indicate whether the vibration is stopped successfully. |
 
 **Example**
   ```
@@ -170,10 +170,10 @@ Stops the vibration based on the specified **stopMode**. This API uses an asynch
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
-| Name     | Type                                   | Mandatory  | Description                     |
-| -------- | ------------------------------------- | ---- | ----------------------- |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes   | Vibration mode to stop.        |
-| callback | AsyncCallback&lt;void&gt;             | No   | Callback used to indicate whether the vibration is stopped successfully.|
+ | Name | Type | Mandatory | Description |
+ | -------- | ------------------------------------- | ---- | ----------------------- |
+ | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes | Vibration mode to stop. |
+ | callback | AsyncCallback&lt;void&gt; | No | Callback used to indicate whether the vibration is stopped successfully. |
 
 **Example**
   ```
@@ -193,9 +193,9 @@ Describes the vibration effect.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name                | Default Value                 | Description             |
-| ------------------ | -------------------- | --------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
+ | Name               | Default Value        | Description                                                     |
+ | ------------------ | -------------------- | --------------------------------------------------------------- |
+ | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer. |
 
 
 ## VibratorStopMode
@@ -204,7 +204,7 @@ Describes the vibration mode to stop.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name                       | Default Value     | Description                                      |
-| ------------------------- | -------- | ---------------------------------------- |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | The vibration to stop is in **duration** mode. This vibration is triggered with the parameter **duration** of the **number** type.|
-| VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode. This vibration is triggered with the parameter **effectId** of the **EffectId** type.|
+ | Name | Default Value | Description |
+ | ------------------------- | -------- | ---------------------------------------- |
+ | VIBRATOR_STOP_MODE_TIME  | "time"  | The vibration to stop is in **duration** mode. This vibration is triggered with the parameter **duration** of the **number** type. |
+ | VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode. This vibration is triggered with the parameter **effectId** of the **EffectId** type. |
