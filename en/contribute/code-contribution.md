@@ -5,9 +5,7 @@
 ### Design Specifications
 
 -   [OpenHarmony API Governance Charter](../design/OpenHarmony-API-governance.md)
-
 -   [OpenHarmony Security Design Specifications](OpenHarmony-security-design-guide.md)
-
 -   [OpenHarmony Security Design Specifications](OpenHarmony-security-design-guide.md)
 
 ### Code Style

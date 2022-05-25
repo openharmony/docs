@@ -129,9 +129,9 @@ repo forall -c 'git lfs pull'
 | Hi3516 mini system solution - LiteOS (binary)| 3.1 Release  | [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz.sha256)|
 | Hi3516 mini system solution - Linux (binary) | 3.1 Release  | [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz.sha256)|
 | Standard system SDK package (macOS)                   | 3.1 Release  | [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk-mac.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk-mac.tar.gz.sha256)|
-| Standard system SDK package (Windows/Linux)         | 3.1 Release  | [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk.tar.gz)| [Download]((https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk.tar.gz.sha256)|
+| Standard system SDK package (Windows/Linux)         | 3.1 Release  | [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/ohos-sdk.tar.gz.sha256) |
 | Standard system SDK package                         | 3.2 Canary   | Loaded only by using HUAWEI DevEco Studio| NA |
-| Compiler toolchain                     | -            | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/)| -                                                            |
+| Compiler toolchain                     | NA          | [Download](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/)| NA                                                          |
 
 
 
