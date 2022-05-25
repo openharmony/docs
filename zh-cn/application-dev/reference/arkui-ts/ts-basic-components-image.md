@@ -10,7 +10,7 @@
 
 使用网络图片时，需要在config.json（FA模型）或者module.json5（Stage模型）对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
 
-```json
+```
 "abilities": [
   {
     ...
