@@ -29,7 +29,6 @@ For details, see  [Contribution Process](contribution-process.md).
 ## Security Issue Disclosure<a name="en-us_topic_0000001051566732_section725624119448"></a>
 
 -   [Security Issue Handling and Release Processes](https://gitee.com/openharmony/security/blob/master/en/security-process/README.md)
-
 -   [OpenHarmony Security Vulnerability Notice](https://gitee.com/openharmony/security/blob/master/en/security-process/security-disclosure.md)
 
 

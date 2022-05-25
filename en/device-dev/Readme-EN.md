@@ -43,10 +43,10 @@
     - [Mini- and Small-System Devices](guide/device-lite.md)	
     - [Standard-System Devices](guide/device-standard.md)
 - Debugging
-  - [Test](subsystems/subsys-testguide-test.md)	
+  - [Test Case Development](subsystems/subsys-testguide-test.md)	
   - [R&D Tools](subsystems/subsys-toolchain.md)
 - XTS Certification	
-  - [XTS](subsystems/subsys-xts-guide.md)	
+  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
