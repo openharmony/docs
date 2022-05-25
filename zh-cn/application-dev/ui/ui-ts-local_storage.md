@@ -4,19 +4,21 @@
 
 # **LocalStorage**
 
-LocalStorage是框架的TS类。其目的是为可变和非可变状态属性提供存储，这些属性是构建应用程序UI的特定部分（如一个Ability的UI）。
+LocalStorage和AppStorage类似，都是为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的特定部分（如一个Ability的UI）。
 
-应用程序可以创建多个LocalStorage实例，每一个Ability对应一个LocalStorage实例。
+### 特点：
 
-在有@Entry的所有@Component中，最多可以分配一个LocalStorage实例。另外它的所有子组件都将继承对此存储对象的访问权。
+一个应用程序可以创建多个LocalStorage实例，应用程序的每一个Ability对应一个LocalStorage实例。
 
-@Component最多可以访问一个LocalStorage实例，一个LocalStorage对象可以分配给多个@Component。
+在有@Entry的所有子代@Component中，最多可以分配一个LocalStorage实例。另外它的所有子组件都将继承对此存储对象的访问权。
 
-LocalStorage生命周期一般是跟随Ability的生命周期。
+一个@Component最多可以访问一个LocalStorage实例，一个LocalStorage对象可以分配给多个@Component。
 
-LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值
+LocalStorage的生命周期一般是跟随其关联的Ability。
 
-### 属性：
+LocalStorage定义时没有给定默认值时，那么可以使用组件内@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
+
+### LocalStorage接口：
 
 | 方法        | 参数                            | 返回值                                | 定义                                                         |
 | ----------- | ------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
@@ -36,11 +38,11 @@ LocalStorage定义时没有给定默认值时，那么可以使用@LocalStorageL
 
 ### @LocalStorageLink装饰器
 
-组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值@LocalStorageLink是与LocalStorage建立双向数据绑定，用法请参考StorageLink
+组件通过使用@LocalStorageLink(key)装饰的状态变量（key值为LocalStorage中的属性键值），与LocalStorage建立双向数据绑定，当创建包含@LocalStorageLink的状态变量的组件时，该状态变量的值将会使用LocalStorage中的值进行初始化。（如果LocalStorage中未定义初始值，将使用@LocalStorageLink定义的初始值）。在UI组件中对@LocalStorageLink的状态变量所做的更改将同步到LocalStorage中，并从LocalStorage同步到Ability下的组件中。
 
 ### @LocalStorageProp装饰器
 
-组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，@LocalStorageProp是与LocalStorage建立单向数据绑定，用法请参考StorageProps
+组件通过使用LocalStorageProp(key)装饰的状态变量（key值为LocalStorage中的属性键值），与LocalStorage建立单向数据绑定，当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
 ### 示例1（在一个Ability创建的LocalStorage）：
 
