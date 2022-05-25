@@ -889,10 +889,10 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct("NAME")
 let promise = rdbStore.query(predicates, ["NAME"])
 promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
-    console.log("query err.")
+    console.log("Query err.")
 })
 ```
 
@@ -1420,8 +1420,8 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
         console.info("Query failed, err: " + err)
         return
     }
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
@@ -1451,8 +1451,8 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
   predicates.equalTo("NAME", "Rose")
   let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
   promise.then((resultSet) => {
-      console.log("resultSet column names:" + resultSet.columnNames)
-      console.log("resultSet column count:" + resultSet.columnCount)
+      console.log("ResultSet column names: " + resultSet.columnNames)
+      console.log("ResultSet column count: " + resultSet.columnCount)
   }).catch((err) => {
       console.info("Query failed, err: " + err)
   })
@@ -1483,14 +1483,14 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
         console.info("Query failed, err: " + err)
         return
     }
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
 ### query<sup>9+</sup>
 
-query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，结果以Promise形式返回。
 
@@ -1499,7 +1499,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rdbPredicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的查询条件。 |
+| predicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
@@ -1514,8 +1514,8 @@ let predicates = new dataShare.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
     console.info("Query failed, err: " + err)
 })
@@ -1543,8 +1543,8 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
         console.info("Query failed, err: " + err)
         return
     }
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
@@ -1572,8 +1572,8 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 ```js
 let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
 promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
+    console.log("ResultSet column names: " + resultSet.columnNames)
+    console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
     console.info("Query failed, err: " + err)
 })
@@ -1600,10 +1600,10 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
     if (err) {
-        console.info("executeSql failed, err: " + err)
+        console.info("ExecuteSql failed, err: " + err)
         return
     }
-    console.info('create table done.')
+    console.info('Create table done.')
 })
 ```
 
@@ -1632,7 +1632,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
 promise.then(() => {
-    console.info('create table done.')
+    console.info('Create table done.')
 }).catch((err) => {
     console.info("ExecuteSql failed, err: " + err)
 })
@@ -1746,10 +1746,10 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 ```js
 rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
     if (err) {
-        console.info('setDistributedTables failed, err: ' + err)
+        console.info('SetDistributedTables failed, err: ' + err)
         return
     }
-    console.info('setDistributedTables successfully.')
+    console.info('SetDistributedTables successfully.')
 })
   ```
 
@@ -1776,9 +1776,9 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 ```js
 let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
-    console.info("setDistributedTables successfully.")
+    console.info("SetDistributedTables successfully.")
 }).catch((err) => {
-    console.info("setDistributedTables failed, err: " + err)
+    console.info("SetDistributedTables failed, err: " + err)
 })
 ```
 
@@ -1801,10 +1801,10 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 ```js
 rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.info('obtainDistributedTableName failed, err: ' + err)
+        console.info('ObtainDistributedTableName failed, err: ' + err)
         return
     }
-    console.info('obtainDistributedTableName successfully, tableName=.' + tableName)
+    console.info('ObtainDistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1832,9 +1832,9 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 ```js
 let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('obtainDistributedTableName successfully, tableName=' + tableName)
+    console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
 }).catch((err) => {
-    console.info('obtainDistributedTableName failed, err: ' + err)
+    console.info('ObtainDistributedTableName failed, err: ' + err)
 })
 ```
 
@@ -1859,10 +1859,10 @@ let predicates = new rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(['12345678abcde'])
 rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
-        console.log('sync failed, err: ' + err)
+        console.log('Sync failed, err: ' + err)
         return
     }
-    console.log('sync done.')
+    console.log('Sync done.')
     for (let i = 0; i < result.length; i++) {
         console.log('device=' + result[i][0] + ' status=' + result[i][1])
     }
@@ -1896,12 +1896,12 @@ let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(['12345678abcde'])
 let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
 promise.then((result) =>{
-    console.log('sync done.')
+    console.log('Sync done.')
     for (let i = 0; i < result.length; i++) {
         console.log('device=' + result[i][0] + ' status=' + result[i][1])
     }
 }).catch((err) => {
-    console.log('sync failed')
+    console.log('Sync failed')
 })
 ```
 
@@ -1931,7 +1931,7 @@ function storeObserver(devices) {
 try {
     rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('register observer failed')
+    console.log('Register observer failed')
 }
 ```
 
@@ -1961,7 +1961,7 @@ function storeObserver(devices) {
 try {
     rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('unregister observer failed')
+    console.log('Unregister observer failed')
 }
 ```
 
