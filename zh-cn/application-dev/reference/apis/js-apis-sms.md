@@ -12,7 +12,7 @@ import sms from '@ohos.telephony.sms';
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用callback方式作为异步方法。
 
@@ -40,7 +40,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
 根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用Promise方式作为异步方法。
 
@@ -110,7 +110,7 @@ sms.sendMessage(options);
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
+getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 获取发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
 
@@ -133,7 +133,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(\): Promise<number\>
+getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
 获取发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
 
@@ -143,7 +143,7 @@ getDefaultSmsSlotId\(\): Promise<number\>
 
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
-| Promise<number> | 以Promise形式返回发送短信的默认SIM卡：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **示例：**
 
