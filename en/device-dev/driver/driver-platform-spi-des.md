@@ -2,46 +2,46 @@
 
 ## Overview<a name="section193356154511"></a>
 
--   Serial Peripheral Interface \(SPI\) is a serial bus specification used for high-speed, full-duplex, and synchronous communication.
--   SPI is developed by Motorola. It is commonly used for communication with flash memory, real-time clocks, sensors, and analog-to-digital \(A/D\) converters.
--   SPI works in controller/device mode. Generally, there is one SPI controller that controls one or more SPI devices. They are connected via four wires:
-    -   SCLK: clock signals output from the SPI controller
-    -   MOSI: data output from the SPI controller and input into an SPI device
-    -   MISO: data output from an SPI device and input into the SPI controller
-    -   CS: signals enabled by an SPI device and controlled by the SPI controller
+Serial Peripheral Interface \(SPI\) is a serial bus specification used for high-speed, full-duplex, and synchronous communication.
+SPI is developed by Motorola. It is commonly used for communication with flash memory, real-time clocks, sensors, and analog-to-digital \(A/D\) converters.
+SPI works in controller/device mode. Generally, there is one SPI controller that controls one or more SPI devices. They are connected via four wires:
+-   SCLK: clock signals output from the SPI controller
+-   MOSI: data output from the SPI controller and input into an SPI device
+-   MISO: data output from an SPI device and input into the SPI controller
+-   CS: signals enabled by an SPI device and controlled by the SPI controller
 
 
--   [Figure 1](#fig89085710359)  shows the connection between one SPI controller and two SPI devices \(device A and device B\). In this figure, device A and device B share three pins \(SCLK, MISO, and MOSI\) of the controller. CS0 of device A and CS1 of device B are connected to CS0 and CS1 of the controller, respectively.
+[Figure 1](#fig89085710359)  shows the connection between one SPI controller and two SPI devices \(device A and device B\). In this figure, device A and device B share three pins \(SCLK, MISO, and MOSI\) of the controller. CS0 of device A and CS1 of device B are connected to CS0 and CS1 of the controller, respectively.
 
-**Figure  1**  SPI controller/device connection<a name="fig89085710359"></a>  
+**Figure  1** SPI controller/device connection<a name="fig89085710359"></a>  
 ![](figures/spi-controller-device-connection.png "spi-controller-device-connection")
 
--   SPI communication is usually initiated by the SPI controller and is operated as follows:
+SPI communication is usually initiated by the SPI controller and is operated as follows:
 
 1.  A single SPI device is selected at a time via the CS to communicate with the SPI controller.
 2.  Clock signals are provided for the selected SPI device via the SCLK.
 3.  The SPI controller sends data to SPI devices via the MOSI, and receives data from SPI devices via the MISO.
 
 -   SPI can work in one of the following four modes, equivalent to one of the four possible states for Clock Polarity \(CPOL\) and Clock Phase \(CPHA\):
-    -   If both CPOL and CPHA are  **0**, the clock signal level is low in the idle state and data is sampled on the first clock edge.
-    -   If CPOL is  **0**  and CPHA is  **1**, the clock signal level is low in the idle state and data is sampled on the second clock edge.
-    -   If CPOL is  **1**  and CPHA is  **0**, the clock signal level is high in the idle state and data is sampled on the first clock edge.
-    -   If both CPOL and CPHA are  **1**, the clock signal level is high in the idle state and data is sampled on the second clock edge.
+    -   If both CPOL and CPHA are **0**, the clock signal level is low in the idle state and data is sampled on the first clock edge.
+    -   If CPOL is **0** and CPHA is **1**, the clock signal level is low in the idle state and data is sampled on the second clock edge.
+    -   If CPOL is **1** and CPHA is **0**, the clock signal level is high in the idle state and data is sampled on the first clock edge.
+    -   If both CPOL and CPHA are **1**, the clock signal level is high in the idle state and data is sampled on the second clock edge.
 
 
 -   SPI defines a set of common functions for operating an SPI device, including those for:
     -   Obtaining and releasing the handle of an SPI device.
     -   Reading or writing data of a specified length from or into an SPI device.
-    -   Customizing data reading or writing via  **SpiMsg**.
+    -   Customizing data reading or writing via **SpiMsg**.
     -   Obtaining and setting SPI device configuration parameters.
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >Currently, these functions are only applicable in the communication initiated by the SPI controller.
 
 ## Available APIs<a name="section1325964832615"></a>
 
-**Table  1**  APIs for the SPI driver
+**Table  1** APIs for the SPI driver
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" align="left" valign="top" width="20.857914208579142%" id="mcps1.2.4.1.1"><p id="p641050105320"><a name="p641050105320"></a><a name="p641050105320"></a><strong id="b17365506414"><a name="b17365506414"></a><a name="b17365506414"></a>Capability</strong></p>
@@ -104,18 +104,18 @@
 
 ### How to Use<a name="section32846814820"></a>
 
-[Figure 2](#fig1586912310348)  shows the process of using an SPI device.
+The figure below illustrates how to use the APIs.
 
-**Figure  2**  Process of using an SPI device<a name="fig1586912310348"></a>  
-![](figures/process-of-using-an-spi-device.png "process-of-using-an-spi-device")
+**Figure  2** Using SPI driver APIs<a name="fig1586912310348"></a>  
+![](figures/using-spi-process.png "process-of-using-an-spi-device")
 
 ### Obtaining an SPI Device Handle<a name="section1927265711481"></a>
 
-Before performing SPI communication, obtain an SPI device handle by calling  **SpiOpen**. This function returns an SPI device handle with a specified bus number and CS number.
+Before performing SPI communication, obtain an SPI device handle by calling **SpiOpen**. This function returns an SPI device handle with a specified bus number and CS number.
 
 DevHandle SpiOpen\(const struct SpiDevInfo \*info\);
 
-**Table  2**  Description of SpiOpen
+**Table  2** Description of SpiOpen
 
 <a name="table7603619123820"></a>
 <table><tbody><tr id="row1060351914386"><td class="cellrowborder" valign="top" width="50%"><p id="p14603181917382"><a name="p14603181917382"></a><a name="p14603181917382"></a><strong id="b139290298482"><a name="b139290298482"></a><a name="b139290298482"></a>Parameter</strong></p>
@@ -146,7 +146,7 @@ DevHandle SpiOpen\(const struct SpiDevInfo \*info\);
 </tbody>
 </table>
 
-The following example shows how to obtain an SPI device handle based on the assumption that both the bus number and CS number of the SPI device are  **0**.
+The following example shows how to obtain an SPI device handle based on the assumption that both the bus number and CS number of the SPI device are **0**.
 
 ```
 struct SpiDevInfo spiDevinfo;       /* SPI device descriptor */
@@ -168,7 +168,7 @@ After obtaining the SPI device handle, obtain the SPI device configuration param
 
 int32\_t SpiGetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 
-**Table  3**  Description of SpiGetCfg
+**Table  3** Description of SpiGetCfg
 
 <a name="table14209152141313"></a>
 <table><tbody><tr id="row1420918529133"><td class="cellrowborder" valign="top" width="50%"><p id="p42091852141314"><a name="p42091852141314"></a><a name="p42091852141314"></a><strong id="b6279123012486"><a name="b6279123012486"></a><a name="b6279123012486"></a>Parameter</strong></p>
@@ -219,7 +219,7 @@ After obtaining the SPI device handle, set SPI device configuration parameters b
 
 int32\_t SpiSetCfg\(DevHandle handle, struct SpiCfg \*cfg\);
 
-**Table  4**  Description of SpiSetCfg
+**Table  4** Description of SpiSetCfg
 
 <a name="table219052945210"></a>
 <table><tbody><tr id="row14191192918522"><td class="cellrowborder" valign="top" width="50%"><p id="p17424155016529"><a name="p17424155016529"></a><a name="p17424155016529"></a><strong id="b11281163011480"><a name="b11281163011480"></a><a name="b11281163011480"></a>Parameter</strong></p>
@@ -276,7 +276,7 @@ To write data into an SPI device only once, call the following function:
 
 int32\_t SpiWrite\(DevHandle handle, uint8\_t \*buf, uint32\_t len\);
 
-**Table  5**  Description of SpiWrite
+**Table  5** Description of SpiWrite
 
 <a name="table1018490043"></a>
 <table><tbody><tr id="row31848013417"><td class="cellrowborder" valign="top" width="50%"><p id="p1415816132411"><a name="p1415816132411"></a><a name="p1415816132411"></a><strong id="b42810303484"><a name="b42810303484"></a><a name="b42810303484"></a>Parameter</strong></p>
@@ -333,7 +333,7 @@ To read data from an SPI device only once, call the following function:
 
 int32\_t SpiRead\(DevHandle handle, uint8\_t \*buf, uint32\_t len\);
 
-**Table  6**  Description of SpiRead
+**Table  6** Description of SpiRead
 
 <a name="table0265191412124"></a>
 <table><tbody><tr id="row42651914141213"><td class="cellrowborder" valign="top" width="50%"><p id="p1483184123"><a name="p1483184123"></a><a name="p1483184123"></a><strong id="b528223019480"><a name="b528223019480"></a><a name="b528223019480"></a>Parameter</strong></p>
@@ -390,7 +390,7 @@ To launch a custom transfer, call the following function:
 
 int32\_t SpiTransfer\(DevHandle handle, struct SpiMsg \*msgs, uint32\_t count\);
 
-**Table  7**  Description of SpiTransfer
+**Table  7** Description of SpiTransfer
 
 <a name="table1934414174212"></a>
 <table><tbody><tr id="row1134415176216"><td class="cellrowborder" valign="top" width="50%"><p id="p13295152320217"><a name="p13295152320217"></a><a name="p13295152320217"></a><strong id="b1628393012482"><a name="b1628393012482"></a><a name="b1628393012482"></a>Parameter</strong></p>
@@ -457,7 +457,7 @@ void SpiClose\(DevHandle handle\);
 
 This function will release the resources previously obtained.
 
-**Table  8**  Description of SpiClose
+**Table  8** Description of SpiClose
 
 <a name="table72517953115"></a>
 <table><tbody><tr id="row1525793312"><td class="cellrowborder" valign="top" width="50%"><p id="p115402031153111"><a name="p115402031153111"></a><a name="p115402031153111"></a><strong id="b1728493044820"><a name="b1728493044820"></a><a name="b1728493044820"></a>Parameter</strong></p>
@@ -546,4 +546,3 @@ err:
     SpiClose(spiHandle);
 }
 ```
-

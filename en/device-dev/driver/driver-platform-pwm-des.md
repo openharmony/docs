@@ -48,11 +48,11 @@ Pulse width modulation (PWM) is a technology that digitally encodes analog signa
 
 ### How to Use
 
-The figure below shows the general process of using the PWM.
+The figure below illustrates how to use the APIs.
 
-  **Figure 1** Process of using the PWM module
+**Figure 1** Using the PWM driver APIs
 
-![](figures/process-of-using-PWM.png)
+![](figures/using-PWM-process.png)
 
 
 ### Opening a PWM Device Handle
@@ -71,7 +71,7 @@ DevHandle PwmOpen(uint32_t num);
 | num        | PWM device number.            |
 | **Return Value** | **Description**         |
 | handle     | Handle of the PWM device obtained.|
-| NULL       | The operation fails.               |
+| NULL       | The operation failed.             |
 
 Example: Open the device handle of PWM device 0.
 
@@ -126,7 +126,7 @@ int32_t PwmEnable(DevHandle handle);
 | handle     | PWM device handle.   |
 | **Return Value** | **Description** |
 | 0          | The operation is successful.      |
-| Negative number      | The operation fails.      |
+| Negative number      | The operation failed.    |
 
 
 ```
@@ -156,7 +156,7 @@ int32_t PwmDisable(DevHandle handle);
 | handle     | PWM device handle.   |
 | **Return Value** | **Description** |
 | 0          | The operation is successful.      |
-| Negative number      | The operation fails.      |
+| Negative number      | The operation failed.     |
 
 
 ```
@@ -187,7 +187,7 @@ int32_t PwmSetPeriod(DevHandle handle, uint32_t period);
 | period     | PWM period to set, in ns.|
 | **Return Value**| **Description**           |
 | 0          | The operation is successful.                |
-| Negative number      | The operation fails.                |
+| Negative number      | The operation failed.              |
 
 
 ```
@@ -218,7 +218,7 @@ int32_t PwmSetDuty(DevHandle handle, uint32_t duty);
 | duty       | Time that the signal is in the ON state, in ns.|
 | **Return Value**| **Description**               |
 | 0          | The operation is successful.                    |
-| Negative number      | The operation fails.                    |
+| Negative number      | The operation failed.                  |
 
 
 ```
@@ -249,7 +249,7 @@ int32_t PwmSetPolarity(DevHandle handle, uint8_t polarity);
 | polarity   | Polarity to set, which can be **PWM\_NORMAL\_POLARITY** or **PWM\_INVERTED\_POLARITY**.|
 | **Return Value**| **Description**      |
 | 0          | The operation is successful.           |
-| Negative number      | The operation fails.           |
+| Negative number      | The operation failed.          |
 
 
 ```
@@ -280,7 +280,7 @@ int32_t PwmSetConfig(DevHandle handle, struct PwmConfig *config);
 | \*config   | Pointer to PWM parameters.      |
 | **Return Value**| **Description** |
 | 0          | The operation is successful.      |
-| Negative number      | The operation fails.      |
+| Negative number      | The operation failed.    |
 
 
 ```
@@ -317,7 +317,7 @@ int32_t PwmGetConfig(DevHandle handle, struct PwmConfig *config);
 | \*config   | Pointer to PWM parameters.      |
 | **Return Value**| **Description** |
 | 0          | The operation is successful.      |
-| Negative number      | The operation fails.      |
+| Negative number      | The operation failed.    |
 
 
 ```

@@ -2,24 +2,24 @@
 
 ## When to Use
 
-The Distributed Data Service (DDS) implements synchronization of application data across user devices. When data is added, deleted, or modified for an application on a device, the same application on another device can obtain the updated data. The DDS applies to the distributed gallery, messages, Contacts, and file manager.
+The Distributed Data Service (DDS) implements synchronization of application data across user devices. When data is added, deleted, or modified for an application on a device, the same application on another device can obtain the updated data. The DDS applies to the distributed gallery, messages, contacts, and file manager.
 
 
 ## Available APIs
 
 The table below describes the APIs provided by the OpenHarmony DDS module.
 
-**Table  1**  APIs provided by the DDS
+**Table 1** APIs provided by the DDS
 
 | Category                  | API                                                    | Description                                           |
 | -------------------------- | ------------------------------------------------------------ | ----------------------------------------------- |
 | Creating a distributed database        | createKVManager(config:&nbsp;KVManagerConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;KVManager&gt;):&nbsp;void<br>createKVManager(config:&nbsp;KVManagerConfig):&nbsp;Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
-| Obtaining a distributed KV store | getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options,&nbsp;callback:&nbsp;AsyncCallback&lt;T&gt;):&nbsp;void<br>getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options):&nbsp;Promise&lt;T&gt; | Obtains the KV store with the specified **Options** and **storeId**.|
-| Managing data in a distributed KV store| put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br>put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean):&nbsp;Promise&lt;void> | Inserts or updates data.                              |
+| Obtaining a distributed KV store        | getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options,&nbsp;callback:&nbsp;AsyncCallback&lt;T&gt;):&nbsp;void<br>getKVStore&lt;T&nbsp;extends&nbsp;KVStore&gt;(storeId:&nbsp;string,&nbsp;options:&nbsp;Options):&nbsp;Promise&lt;T&gt; | Obtains the KV store with the specified **Options** and **storeId**.|
+| Managing data in a distributed KV store| put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br>put(key:&nbsp;string,&nbsp;value:&nbsp;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;boolean):&nbsp;Promise&lt;void> | Inserts and updates data.                               |
 | Managing data in a distributed KV store| delete(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br>delete(key:&nbsp;string):&nbsp;Promise&lt;void> | Deletes data.                                     |
 | Managing data in a distributed KV store| get(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number&gt;):&nbsp;void<br>get(key:&nbsp;string):&nbsp;Promise&lt;Uint8Array&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;number> | Queries data.                                     |
 | Subscribing to changes in the distributed data      | on(event:&nbsp;'dataChange',&nbsp;type:&nbsp;SubscribeType,&nbsp;observer:&nbsp;Callback&lt;ChangeNotification&gt;):&nbsp;void<br>on(event:&nbsp;'syncComplete',&nbsp;syncCallback:&nbsp;Callback&lt;Array&lt;[string,&nbsp;number]&gt;&gt;):&nbsp;void | Subscribes to data changes in the KV store.                       |
-| Synchronizing data across devices        | sync(deviceIdList:&nbsp;string[],&nbsp;mode:&nbsp;SyncMode,&nbsp;allowedDelayMs?:&nbsp;number):&nbsp;void | Triggers database synchronization in manual mode.                 |
+| Synchronizing data across devices          | sync(deviceIdList:&nbsp;string[],&nbsp;mode:&nbsp;SyncMode,&nbsp;allowedDelayMs?:&nbsp;number):&nbsp;void | Triggers database synchronization in manual mode.                 |
 
 
 
@@ -63,7 +63,7 @@ The following uses a single KV store as an example to describe the development p
 
 3. Create and obtain a single KV store.
    1. Declare the ID of the single KV store to create.
-   2. Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** if a synchronization is required.
+   2. Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** when a synchronization is required.
 
    The sample code is as follows:
    ```js
@@ -159,7 +159,7 @@ The following uses a single KV store as an example to describe the development p
    deviceManager.createDeviceManager("bundleName", (err, value) => {
        if (!err) {
            devManager = value;
-           // get deviceIds
+           // Obtain deviceIds.
            let deviceIds = [];
            if (devManager != null) {
                var devices = devManager.getTrustedDeviceListSync();
@@ -177,5 +177,5 @@ The following uses a single KV store as an example to describe the development p
    ```
 ## Samples
 The following samples are provided to help you better understand the distributed data development:
-- [`KvStore`: distributed database (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
-- [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
+- [`KvStore`: Distributed Data Management (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
+- [Distributed Data Service](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
