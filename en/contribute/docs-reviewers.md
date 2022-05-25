@@ -5,8 +5,8 @@
 
 | Feature      | Docs Reviewers                                               |
 | ------------ | ------------------------------------------------------------ |
-| Getting Started| [@duangavin123](https://gitee.com/duangavin123)              |
-| Source Code Acquisition| [@duangavin123](https://gitee.com/duangavin123)              |
+| Getting Started| [@duangavin123](https://gitee.com/duangavin123_admin)              |
+| Source Code Acquisition| [@duangavin123](https://gitee.com/duangavin123_admin)              |
 | Kernel| [@Austin23](https://gitee.com/Austin23)                      |
 | Driver| [@Qianchenya](https://gitee.com/Qianchenya)                  |
 | Device Development Guidelines| [@Austin23](https://gitee.com/Austin23)                      |
