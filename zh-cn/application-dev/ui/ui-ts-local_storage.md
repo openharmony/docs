@@ -107,8 +107,8 @@ let storage = new LocalStorage({"PropA":47});
 struct ComA {    
   @LocalStorageLink("PropA") storLink : number = 1;    
   build() {    
-	  Column() {        
-	    Text(`Parent from LocalStorage $(this.storLink)`)            				                 
+	Column() {        
+	  Text(`Parent from LocalStorage $(this.storLink)`)            				                 
         .onClick(()=>this.storLink+=1)            
 	    Child()    
  	  }    
@@ -120,8 +120,8 @@ struct ComA {
 struct Child{    
   @LocalStorageLink("PropA") storLink : number = 1;    
   build() {    
-	  Text(`Parent from LocalStorage $(this.storLink)`)        
-	    .onClick(()=>this.storLink1+=1)    
+	Text(`Parent from LocalStorage $(this.storLink)`)        
+	  .onClick(()=>this.storLink1+=1)    
   }
 }
 ```
