@@ -45,4 +45,4 @@ Go to the root directory of the source code in the Ubuntu environment and perfor
 5. Check the build result. If "build success" is displayed, the building is successful.
 
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
-   > The build result and log files are stored in **out/hi3516dv300**.
+   > The build result and log files are stored in **out/hispark_taurus**.

@@ -7,9 +7,9 @@
 
   Error: Opening COMxx: Access denied is displayed after clicking Burn and selecting a serial port.
 
-  **Figure 1** Failed to open the serial port
+    **Figure 1** Failed to open the serial port
 
-  ![en-us_image_0000001226634728](figures/en-us_image_0000001226634728.png)
+    ![en-us_image_0000001226634728](figures/en-us_image_0000001226634728.png)
 
 - **Possible Causes**
 
@@ -42,9 +42,9 @@
 
   The file image cannot be obtained after clicking Burn and selecting a serial port.
 
-  **Figure 5** Failed to obtain the file image due to network disconnection
+    **Figure 5** Failed to obtain the file image due to network disconnection
 
-  ![en-us_image_0000001271234757](figures/en-us_image_0000001271234757.png)
+    ![en-us_image_0000001271234757](figures/en-us_image_0000001271234757.png)
 
 - **Possible Causes**
 
@@ -125,12 +125,15 @@
 1. Obtain the U-Boot file.
 
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
-   >
-   > The U-Boot file can be obtained from the following path:  device\hisilicon\hispark_taurus\sdk_liteos\uboot\out\boot\u-boot-hi3516dv300.bin.
+   > The U-Boot file of the two boards can be obtained from the following paths, respectively.
+   > 
+   > Hi3516D V300: device\hisilicon\hispark_taurus\sdk_liteos\uboot\out\boot\u-boot-hi3516dv300.bin
+   > 
+   > Hi3518E V300: device\hisilicon\hispark_aries\sdk_liteos\uboot\out\boot\u-boot-hi3518ev300.bin
 
 2. Burn the U-Boot file by following the procedures for burning a U-Boot file over USB.
 
-   Select the U-Boot files of corresponding development boards for burning by referring to [Burning to Hi3516D V300](https://device.harmonyos.com/en/docs/documentation/guide/ide-hi3516-upload-0000001052148681).
+   Select the U-Boot files of corresponding development boards for burning by referring to [Burning to Hi3516D V300](https://device.harmonyos.com/en/docs/documentation/guide/ide-hi3516-upload-0000001052148681)/[Burning to Hi3518E V300](https://device.harmonyos.com/en/docs/documentation/guide/ide-hi3518-upload-0000001057313128#section93591711580).
 
 3. Log in to the serial port after the burning is complete.
 

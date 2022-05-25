@@ -247,7 +247,7 @@ To build such an app, we can create a page that has a flexible layout with two r
 
 ## Signing and Packaging<a name="section10601181101516"></a>
 
-After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Signing and Packaging Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768)).
+After finishing writing the app code, you need to sign and package the app before running it on a real device. For details, see  [Signing and Packaging Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-debugging-and-running-0000001263040487#section17660437768).
 
 ## Running on the Real Device<a name="section092721731511"></a>
 

@@ -1,114 +1,101 @@
 # TextInput
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-The **&lt;TextInput&gt;** component provides single-line text input.
+提供单行文本输入组件。
 
 
-## Required Permissions
+## 权限列表
 
-None
-
-
-## Child Components
-
-None
+无
 
 
-## APIs
+## 子组件
+
+无
+
+
+## 接口
 
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
+- 参数
+  | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
+  | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
+  | placeholder             | string                                   | 否    | -    | 无输入时的提示文本。      |
+  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 
-## Attributes
+## 属性
 
-In addition to universal attributes, the following attributes are supported.
+除支持通用属性外，还支持以下属性：
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| type | InputType | InputType.Normal | Input box type. |
-| placeholderColor | Color | - | Placeholder color. |
-| placeholderFont | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
-| enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
-| caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
-| maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| 名称                       | 参数类型                                     | 默认值               | 描述                                       |
+| ------------------------ | ---------------------------------------- | ----------------- | ---------------------------------------- |
+| type                     | InputType                                | InputType.Normal  | 设置输入框类型。                                 |
+| placeholderColor         | Color                                    | -                 | 设置placeholder颜色。                         |
+| placeholderFont          | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| enterKeyType             | EnterKeyType                             | EnterKeyType.Done | 设置输入法回车键类型。                              |
+| caretColor               | Color                                    | -                 | 设置输入框光标颜色。                               |
+| maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
-- EnterKeyType enums
-    | Name | Description |
-  | -------- | -------- |
-  | EnterKeyType.Go | The Enter key is labeled "Go." |
-  | EnterKeyType.Search | The Enter key is labeled "Search." |
-  | EnterKeyType.Send | The Enter key is labeled "Send." |
-  | EnterKeyType.Next | The Enter key is labeled "Next." |
-  | EnterKeyType.Done | The Enter key is labeled "Done." |
+- EnterKeyType枚举说明
+  | 名称                  | 描述        |
+  | ------------------- | --------- |
+  | EnterKeyType.Go     | 显示Go文本。   |
+  | EnterKeyType.Search | 显示为搜索样式。  |
+  | EnterKeyType.Send   | 显示为发送样式。  |
+  | EnterKeyType.Next   | 显示为下一个样式。 |
+  | EnterKeyType.Done   | 标准样式。     |
 
-- InputType enums
-    | Name | Description |
-  | -------- | -------- |
-  | InputType.Normal | Normal input mode. |
-  | InputType.Password | Password input mode. |
-  | InputType.Email | Email address input mode. |
-  | InputType.Number | Digit input mode. |
+- InputType枚举说明
+  | 名称                 | 描述            |
+  | ------------------ | ------------- |
+  | InputType.Normal   | 基本输入模式。       |
+  | InputType.Password | 密码输入模式。       |
+  | InputType.Email    | e-mail地址输入模式。 |
+  | InputType.Number   | 纯数字输入模式。      |
 
+
+## 事件
+
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。                            |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。          |
+| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | 输入状态变化时，触发回调。                            |
+| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | 输入状态变化时，触发回调。                            |
+| onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发回调。<br/>value：复制的文本内容。 |
+| onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 |
+| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 |
 
 ### TextInputController<sup>8+</sup>
 
-Implements the controller of the **&lt;TextInput&gt;** component.
+TextInput组件的控制器。
 
-| Name | Description |
-| -------- | -------- |
-| caretPosition(value: number):void | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
-
-
-### Objects to Import
-
-
+#### 导入对象
 ```
 controller: TextInputController = new TextInputController()
 ```
+#### caretPosition
+
+caretPosition(value:&nbsp;number): void
+
+设置光标移动到指定位置。
+- 参数
+
+  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+  | ----- | ------ | ---- | ---- | ---------------------------------------- |
+  | value | number | 是    | -    | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
 
 
-### controller.createPosition
-
-caretPosition(value: number): void
-
-Sets the cursor in a specified position.
-
-- Parameters
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
+## 示例
 
 
-## Events
-
-| Name | Description |
-| -------- | -------- |
-| onChange(value: string) =&gt; void | Triggered when the input changes. |
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
-| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | Triggered when the input status changes. |
-| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | Triggered when the input status changes. |
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
-
-
-## Example
-
-
-### Single-line Text Input
-
+### 单行文本输入
 
 ```
 @Entry
@@ -139,11 +126,10 @@ struct TextInputExample1 {
 ```
 
 
-![en-us_image_0000001212378402](figures/en-us_image_0000001212378402.gif)
+![zh-cn_image_0000001252769643](figures/zh-cn_image_0000001252769643.gif)
 
 
-### Setting the Input Cursor
-
+### 设置光标
 
 ```
 @Entry
@@ -163,4 +149,4 @@ struct TextInputExample2 {
 }
 ```
 
-![en-us_image_0000001212058468](figures/en-us_image_0000001212058468.png)
+![zh-cn_image_0000001208256092](figures/zh-cn_image_0000001208256092.png)

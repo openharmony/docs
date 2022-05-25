@@ -54,7 +54,7 @@ You can use the Bootloader provided by the chipset vendor or open-source U-Boot 
 Debug the  **init**  process, start shell, and run a simple program in the user space to check whether the kernel porting is successful. Below is the OS image structure of the OpenHarmony  [small system](../quick-start/quickstart-lite-overview.md)  and the Linux user-space program startup process.
 
 **Figure  1**  OS image structure and user-space program startup process based on the Linux kernel<a name="fig91631652715"></a>  
-![](figure/os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel.png "os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel")
+![](figures/os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel.png "os-image-structure-and-user-space-program-startup-process-based-on-the-linux-kernel")
 
 Based on the preceding process, the recommended verification procedure is as follows:
 
@@ -91,12 +91,12 @@ Based on the preceding process, the recommended verification procedure is as fol
     If the init startup log contains the version number, the init program is started properly:
 
     **Figure  2**  Log indicating that the init process is started properly<a name="fig1111661083719"></a>  
-    ![](figure/log-indicating-that-the-init-process-is-started-properly.png "log-indicating-that-the-init-process-is-started-properly")
+    ![](figures/log-indicating-that-the-init-process-is-started-properly.png "log-indicating-that-the-init-process-is-started-properly")
 
     After entering the shell, run the  **ls**  command. The following figure shows the information printed over the serial port.
 
     **Figure  3**  Information printed after the ls command is executed in the shell<a name="fig64571257103717"></a>  
-    ![](figure/information-printed-after-the-ls-command-is-executed-in-the-shell.png "information-printed-after-the-ls-command-is-executed-in-the-shell")
+    ![](figures/information-printed-after-the-ls-command-is-executed-in-the-shell.png "information-printed-after-the-ls-command-is-executed-in-the-shell")
 
 3.  Configure the NFS.
 

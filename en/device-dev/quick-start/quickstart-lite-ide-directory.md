@@ -1,7 +1,7 @@
 ## Getting Started with Mini and Small Systems (IDE Mode)
 - [Mini and Small System Overview](quickstart-ide-lite-overview.md)
-    - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
+    - Setting Up Environments for the Mini and Small Systems
+        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
         - [Obtaining Source Code](quickstart-ide-lite-sourcecode-acquire.md)
     - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
     - Running a Hello World Program
