@@ -1406,7 +1406,7 @@ The trustlist validation ensures that the user ID contains only letters, digits,
 **\[Compliant Code Example]** (Using a Secure XML Library)
 
 ```java
-public static void buidlXML(FileWriter writer, User user) throws IOException {
+public static void  buildXML(FileWriter writer, User user) throws IOException {
     Document userDoc = DocumentHelper.createDocument();
     Element userElem = userDoc.addElement("user");
     Element idElem = userElem.addElement("id");
