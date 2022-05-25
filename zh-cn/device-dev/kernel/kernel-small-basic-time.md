@@ -51,7 +51,7 @@ OpenHarmony LiteOS-A内核的时间管理提供下面几种功能，接口详细
 
 前置条件：
 
-- 配置好LOSCFG_BASE_CORE_TICK_PER_SECOND，即系统每秒的Tick数。
+- 配置好LOSCFG_BASE_CORE_TICK_PER_SECOND，即系统每秒的Tick数，范围(0, 1000]。
 
 - 配置好OS_SYS_CLOCK 系统时钟频率，单位：Hz。
 
