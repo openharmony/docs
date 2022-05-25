@@ -32,8 +32,8 @@
   - [Sensor](subsystems/subsys-sensor.md)
   - [USB](subsystems/subsys-usbservice.md)
   - [Application Framework](subsystems/subsys-application-framework.md)
-  - [OTA Upgrade](subsystems/subsys-ota-guide.md)
-  - [Telephony Service](subsystems/subsys-tel.md)
+  - [OTA Update](subsystems/subsys-ota-guide.md)
+  - [Telephony](subsystems/subsys-tel.md)
   - [Security](subsystems/subsys-security.md)
   - [Startup](subsystems/subsys-boot.md)
   - [DFX](subsystems/subsys-dfx.md)
@@ -43,16 +43,15 @@
   - [Mini- and Small-System Devices](guide/device-lite.md)	
   - [Standard-System Devices](guide/device-standard.md)
 - Debugging
-  - [Test](subsystems/subsys-testguide-test.md)	
+  - [Test Case Development](subsystems/subsys-testguide-test.md)	
   - [R&D Tools](subsystems/subsys-toolchain.md)
 - XTS Certification	
-  - [XTS](subsystems/subsys-xts-guide.md)	
+  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 
 - Hands-On Tutorials	
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md) 
   - [Codelabs](https://gitee.com/openharmony/codelabs)  
 - References
   - [FAQs](faqs/Readme-EN.md)

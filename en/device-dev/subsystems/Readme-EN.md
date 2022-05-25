@@ -80,7 +80,7 @@
   - [syspara Module](subsys-boot-syspara.md)
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
-- [Test](subsys-testguide-test.md)
+- [Test Case Development](subsys-testguide-test.md)
 - DFX
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
@@ -95,8 +95,9 @@
     - [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
   - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
+  - [FaultLogger Development](subsys-dfx-faultlogger.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc\_std](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
-- [XTS](subsys-xts-guide.md)
+- [XTS Test Case Development](subsys-xts-guide.md)
