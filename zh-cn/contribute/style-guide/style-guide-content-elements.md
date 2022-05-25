@@ -149,8 +149,8 @@
 - 链接到其他站点：\[示例](www.example.com)
 
   | **正例** | **反例** |
-| -------- | -------- |
-| 请参见\[OpenHarmony开源项目](https://gitee.com/openharmony) | OpenHarmony开源项目请参见https://gitee.com/openharmony |
+  | -------- | -------- |
+  | 请参见\[OpenHarmony开源项目](https://gitee.com/openharmony) | OpenHarmony开源项目请参见https://gitee.com/openharmony |
 
 
 ## 术语及缩略语
@@ -307,7 +307,7 @@
 
 | 正例 | 反例 |
 | -------- | -------- |
-| 在index.js文件中实现页面跳转。 | 在`index.js`文件中实现页面跳转。 |
+| 在`index.js`文件中实现页面跳转。 | 在index.js文件中实现页面跳转。 |
 
 
 ### 代码块
