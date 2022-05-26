@@ -76,7 +76,7 @@ isNfcOpen(): boolean
 
 getNfcState(): NfcState
 
-查询NFC是否打开。
+查询NFC状态。
 
 **系统能力**：SystemCapability.Communication.NFC
 
