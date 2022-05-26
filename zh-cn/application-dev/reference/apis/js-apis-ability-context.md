@@ -5,6 +5,12 @@
 
 Ability的上下文环境，继承自Context。
 
+# 导入模块
+
+```js
+import Ability from '@ohos.application.Ability'
+```
+
 ## 使用说明
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 ```js

@@ -7,6 +7,11 @@
 
 AbilityStage的上下文环境，继承自[Context](js-apis-application-context.md)。
 
+## 导入模块
+
+```js
+import AbilityStage from '@ohos.application.AbilityStage';
+```
 
 ## 使用说明
 

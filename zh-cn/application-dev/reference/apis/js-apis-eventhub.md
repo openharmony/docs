@@ -8,6 +8,12 @@
 事件中心，提供订阅、取消订阅、触发事件能力。
 
 
+## 导入模块
+
+```js
+import Ability from '@ohos.application.Ability'
+```
+
 ## 使用说明
 
 

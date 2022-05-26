@@ -5,6 +5,12 @@
 
 FormExtension的上下文环境，提供FormExtension具有的能力和接口，继承自ExtensionContext。
 
+## 导入模块
+
+```js
+import FormExtension from "@ohos.application.FormExtension";
+```
+
 ## FormExtensionContext.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void

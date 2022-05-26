@@ -6,6 +6,12 @@
 >
 > API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
+# 导入模块
+
+```js
+import AbilityManager from '@ohos.application.abilityManager'
+```
+
 ## AbilityState
 
 Ability的状态信息。
