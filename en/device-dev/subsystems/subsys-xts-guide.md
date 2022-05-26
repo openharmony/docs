@@ -1,4 +1,4 @@
-# XTS<a name="EN-US_TOPIC_0000001126156429"></a>
+# XTS Test Case Development<a name="EN-US_TOPIC_0000001126156429"></a>
 
 ## Introduction<a name="section465982318513"></a>
 
@@ -332,7 +332,7 @@ The HCTest framework is used to support test cases developed with the C language
 
     Test suites are built along with version build. The ACTS is built together with the debug version.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](../public_sys-resources/icon-note.gif) **NOTE**
     >The ACTS build middleware is a static library, which will be linked to the image.
 
 
@@ -506,6 +506,7 @@ The test cases are developed with the JavaScript language and must meet the prog
 **Table  5** 
 
 <a name="table13980103565212"></a>
+
 <table><thead align="left"><tr id="row1098093545218"><th class="cellrowborder" valign="top" width="17.92179217921792%" id="mcps1.2.4.1.1"><p id="p49811235135214"><a name="p49811235135214"></a><a name="p49811235135214"></a>Syntax</p>
 </th>
 <th class="cellrowborder" valign="top" width="68.88688868886888%" id="mcps1.2.4.1.2"><p id="p898183565220"><a name="p898183565220"></a><a name="p898183565220"></a>Description</p>

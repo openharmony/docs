@@ -35,6 +35,7 @@
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
        - [Internationalization](internationalization/Readme-EN.md)
+       - [Native APIs](napi/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
@@ -43,6 +44,11 @@
 - API References
     - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
-    - [APIs](reference/apis/Readme-EN.md)
+    - APIs
+      - [JS (eTS Incldued) APIs](reference/apis/Readme-EN.md)
+      - Native APIs
+        -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
+        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - Contribution
     - [How to Contribute](../contribute/documentation-contribution.md)
+

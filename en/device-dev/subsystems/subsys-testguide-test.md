@@ -1,4 +1,4 @@
-# Test
+# Test Case Development
 OpenHarmony provides a comprehensive auto-test framework for designing test cases. Detecting defects in the development process can improve code quality.
 
 This document describes how to use the OpenHarmony test framework.

@@ -35,7 +35,7 @@
             - [Burning](quick-start/quickstart-lite-steps-hi3861-burn.md)
             - [Networking](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
             - [Debugging and Verification](quick-start/quickstart-lite-steps-hi3861-debug.md)
-            - [Running](quick-start/quickstart-lite-steps-hi3816-running.md)
+            - [Running](quick-start/quickstart-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
             - [Setting Up the Hi3516 Development Board Environment](quick-start/quickstart-lite-steps-hi3516-setting.md)
             - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
@@ -131,7 +131,7 @@
       - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
       - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
     - Driver Porting
-      - [Overview](porting/porting-smallchip-driver-overview.md)
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
       - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
       - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
 
@@ -357,22 +357,22 @@
       - [UART](driver/driver-platform-uart-develop.md)
       - [WatchDog](driver/driver-platform-watchdog-develop.md)
     - Platform Driver Usage
-      - [ADC](driver-platform-adc-des.md)
-      - [DAC](driver-platform-dac-des.md)
-      - [GPIO](driver-platform-gpio-des.md)
-      - [HDMI](driver-platform-hdmi-des.md)
-      - [I2C](driver-platform-i2c-des.md)
-      - [I3C](driver-platform-i3c-des.md)
-      - [MIPI CSI](driver-platform-mipicsi-des.md)
-      - [MIPI DSI](driver-platform-mipidsi-des.md)
-      - [PIN](driver-platform-pin-des.md)
-      - [PWM](driver-platform-pwm-des.md)
-      - [Regulator](driver-platform-regulator-des.md)
-      - [RTC](driver-platform-rtc-des.md)
-      - [SDIO](driver-platform-sdio-des.md)
-      - [SPI](driver-platform-spi-des.md)
-      - [UART](driver-platform-uart-des.md)
-      - [WatchDog](driver-platform-watchdog-des.md)
+      - [ADC](driver/driver-platform-adc-des.md)
+      - [DAC](driver/driver-platform-dac-des.md)
+      - [GPIO](driver/driver-platform-gpio-des.md)
+      - [HDMI](driver/driver-platform-hdmi-des.md)
+      - [I2C](driver/driver-platform-i2c-des.md)
+      - [I3C](driver/driver-platform-i3c-des.md)
+      - [MIPI CSI](driver/driver-platform-mipicsi-des.md)
+      - [MIPI DSI](driver/driver-platform-mipidsi-des.md)
+      - [PIN](driver/driver-platform-pin-des.md)
+      - [PWM](driver/driver-platform-pwm-des.md)
+      - [Regulator](driver/driver-platform-regulator-des.md)
+      - [RTC](driver/driver-platform-rtc-des.md)
+      - [SDIO](driver/driver-platform-sdio-des.md)
+      - [SPI](driver/driver-platform-spi-des.md)
+      - [UART](driver/driver-platform-uart-des.md)
+      - [WatchDog](driver/driver-platform-watchdog-des.md)
     - Peripheral Driver Usage
       - [LCD](driver/driver-peripherals-lcd-des.md)
       - [Touchscreen](driver/driver-peripherals-touch-des.md)
@@ -477,6 +477,7 @@
       - [HiSysEvent Tool Usage](subsystems/subsys-dfx-hisysevent-tool.md)
     - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
+    - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -517,7 +518,7 @@
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
 - Debugging
 
-  - [Test](subsystems/subsys-testguide-test.md)
+  - [Test Case Development](subsystems/subsys-testguide-test.md)
   - Debugging Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
