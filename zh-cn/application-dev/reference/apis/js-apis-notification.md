@@ -684,7 +684,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 function subscribeCallback(err) {
 	console.info("==========================>subscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -719,7 +719,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 function subscribeCallback(err) {
 	console.info("==========================>subscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -748,7 +748,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 **示例：**
 
 ```js
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -782,7 +782,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 function unsubscribeCallback(err) {
 	console.info("==========================>unsubscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -810,7 +810,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 **示例：**
 
 ```js
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -1176,7 +1176,7 @@ var bundle = {
 var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
-Notification.displayBadge(bundle, notificationSlot).then(() => {
+Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("==========================>setSlotByBundleCallback=======================>");
 });
 ```
@@ -1263,7 +1263,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 **示例：**
 
 ```js
-function getSlotNumByBundle(err, data) {
+function getSlotNumByBundleCallback(err, data) {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
 }
 var bundle = {
@@ -1391,6 +1391,8 @@ remove(hashCode: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
+var hashCode = 'hashCode'
+
 function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
@@ -1417,6 +1419,8 @@ remove(hashCode: string): Promise\<void\>
 **示例：**
 
 ```js
+var hashCode = 'hashCode'
+
 Notification.remove(hashCode).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
@@ -2182,11 +2186,11 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```javascript
-function requestEnabledNotificationCallback() {
+function requestEnableNotificationCallback() {
     console.log('------------- requestEnabledNotification --------------');
 };
 
-Notification.requestEnabledNotification(requestEnabledNotificationCallback);
+Notification.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
 
@@ -2285,7 +2289,7 @@ function isDistributedEnabledCallback() {
     console.log('----------- isDistributedEnabled ------------');
 };
 
-Notification.enableDistributed(isDistributedEnabledCallback);
+Notification.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
 
@@ -2404,7 +2408,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 
-Notification.enableDistributedByBundle(bundle, isDistributedEnabledByBundleCallback);
+Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
 
@@ -2534,7 +2538,7 @@ let notificationRequest = {
     }
 }
 
-Notification.publishAsBundle(notificationRequest, representativeBundle, userId, publishCallback);
+Notification.publishAsBundle(notificationRequest, representativeBundle, userId, publishAsBundleCallback);
 ```
 
 ## Notification.publishAsBundle<sup>9+</sup>
@@ -2609,7 +2613,7 @@ let representativeBundle = "com.example.demo"
 // 接收通知的用户ID
 let userId = 100
 
-Notification.cancelAsBundle(0, representativeBundle, userId, publishCallback);
+Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
 ## Notification.cancelAsBundle<sup>9+</sup>
@@ -2676,12 +2680,12 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringfy(data1));
+            console.log('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringfy(err));
+            console.error('===> getWant failed because' + JSON.stringify(err));
         });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringfy(req.wantAgent));
+    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
 var subscriber = {
@@ -2916,14 +2920,10 @@ function subscribeCallback(err) {
     }
 };
 
-function onEnabledNotificationChangedCallback(err, callbackData) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("bundle: ", callbackData.bundle);
-        console.info("uid: ", callbackData.uid);
-        console.info("enable: ", callbackData.enable);
-    }
+function onEnabledNotificationChangedCallback(callbackData) {
+    console.info("bundle: ", callbackData.bundle);
+    console.info("uid: ", callbackData.uid);
+    console.info("enable: ", callbackData.enable);
 };
 
 var subscriber = {
@@ -3212,7 +3212,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。                                   |
 | lightColor           | 是  | 是  | number                | 否   | 通知灯颜色。                                 |
 | vibrationValues      | 是  | 是  | Array\<number\>       | 否   | 通知振动样式。                               |
-| enabled              | 是  | 否  | boolean               | 否   | 此通知插槽中的启停状态。                      |
+| enabled<sup>9+</sup> | 是  | 否  | boolean               | 否   | 此通知插槽中的启停状态。                      |
 
 
 ## NotificationSorting
