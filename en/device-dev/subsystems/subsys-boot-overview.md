@@ -7,7 +7,7 @@ The following figure shows the context structure of the Startup subsystem.
 
   **Figure 1** Context structure of the Startup subsystem
 
-  ![context-structure-of-the-startup-subsystem](figure/context-structure-of-the-startup-subsystem)
+  ![context-structure-of-the-startup-subsystem](figure/context-structure-of-the-Startup-subsystem.png)
 
 When the system is powered on, the kernel loads and starts services and applications as follows:
 
