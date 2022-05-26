@@ -130,7 +130,7 @@ build() {
     let a: number = 1 // invalid: variable declaration not allowed
     Column() {
         Text('Hello ${this.myName.toUpperCase()}') // ok.
-        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array varible in place
+        ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array variable in place
     }
     buildSpecial()  // invalid: no function calls
     Text(this.calcTextValue()) // this function call is ok.

@@ -540,11 +540,11 @@ int result = reallyReallyLongVariableName1 +    // Good: 加号留在行末
 
 表达式换行后，注意保持合理对齐，或者4空格缩进。参考下面例子
 ```c
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // OK: 4空格缩进
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // OK: 4空格缩进
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // OK: 保持对齐
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // OK: 保持对齐
 ```
 
 ## <a name="c2-10"></a>变量赋值

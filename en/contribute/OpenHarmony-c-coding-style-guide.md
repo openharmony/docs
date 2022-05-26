@@ -577,11 +577,11 @@ int result = reallyReallyLongVariableName1 +    // Good: The plus sign is placed
 After an expression is wrapped, ensure that the lines are properly aligned or indented by 4 spaces. Example:
 
 ```c
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // OK: indented with 4 spaces
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // OK: indented with 4 spaces
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // OK: aligned
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // OK: aligned
 ```
 
 ## <a name="c2-10"></a>Variable Assignment

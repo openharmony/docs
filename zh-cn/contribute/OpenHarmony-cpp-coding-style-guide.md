@@ -428,11 +428,11 @@ int result = reallyReallyLongVariableName1 +    // Good
 表达式换行后，注意保持合理对齐，或者4空格缩进。参考下面例子
 
 ```cpp
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // Good: 4空格缩进
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // Good: 4空格缩进
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // Good: 保持对齐
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // Good: 保持对齐
 ```
 ## <a name="c3-10"></a> 变量赋值
 
