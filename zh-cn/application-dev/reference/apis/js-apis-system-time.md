@@ -201,7 +201,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(isNano?: boolean, callback: AsyncCallback<number>): void;
+getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
 
@@ -229,7 +229,7 @@ getRealTime(isNano?: boolean, callback: AsyncCallback<number>): void;
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(isNano?: boolean): Promise<number>;
+getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise形式返回结果。
 
