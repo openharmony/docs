@@ -79,7 +79,7 @@ kernel_version = "3.0.0"                --- Kernel version, which corresponds to
 
 ![hb env](figures/bes2600_hb_env.png)
 
-Before running the `hb build` command, complete the LiteOS-M kernel adaptation. For details, see [Kernel Porting](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D).
+Before running the `hb build` command, complete the LiteOS-M kernel adaptation. For details, see [Kernel Porting](https://gitee.com/openharmony/docs/blob/master/en/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D).
 
 ## Kernel Porting
 
