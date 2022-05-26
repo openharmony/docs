@@ -226,7 +226,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -235,11 +235,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;
@@ -287,7 +287,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -296,11 +296,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;

@@ -919,7 +919,7 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
-获取WantAgent的操作类型（callback形式）。
+获取一个WantAgent的OperationType信息（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -928,19 +928,59 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | 名称       | 可读 | 可写 | 类型                     | 必填 | 描述                                    |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | 是   | 否  | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | 是   | 否  | AsyncCallback\<number> | 是   | 获取WantAgent的操作类型。 |
+| callback   | 是   | 否  | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **示例：**
 
 ```js
+import WantAgent from '@ohos.wantAgent';
 
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent, (OperationType) => {
+    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+})
 ```
 
 ## WantAgent.getOperationType
 
 getOperationType(agent: WantAgent): Promise\<number>;
 
-获取WantAgent的操作类型（Promise形式）。
+获取一个WantAgent的OperationType信息（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -954,12 +994,54 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number> | 以Promise形式返回获取WantAgent的操作类型。 |
+| Promise\<number> | 以Promise形式返回获取optionType的结果。 |
 
 **示例：**
 
 ```js
+import WantAgent from '@ohos.wantAgent';
 
+//wantAgent对象
+var wantAgent;
+
+//WantAgentInfo对象
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent).then((OperationType) => {
+    console.log('getOperationType success, OperationType: ' + OperationType);
+}).catch((err) => {
+    console.log('getOperationType fail, err: ' + err);
+})
 ```
 
 

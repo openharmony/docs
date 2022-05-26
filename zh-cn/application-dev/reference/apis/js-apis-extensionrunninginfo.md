@@ -9,7 +9,7 @@ Extension运行相关信息。
 ## 导入模块
 
 ```js
-import ExtensionRunningInfo from "@ohos.application.extensionRunningInfo";
+import abilitymanager from '@ohos.application.abilityManager';
 ```
 
 ## 使用说明
