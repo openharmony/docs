@@ -2,7 +2,7 @@
 
 This development guide describes how to use i18n APIs that are defined in ECMA 402.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > In the code snippets in this document, **intl** refers to the name of the imported module.
 
 ## Setting Locale Information
