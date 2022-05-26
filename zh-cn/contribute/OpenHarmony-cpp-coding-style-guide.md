@@ -417,7 +417,7 @@ default:                // Bad: default 未缩进
 // 假设下面第一行已经不满足行宽要求
 ```cpp
 if ((currentValue > threshold) &&  // Good：换行后，逻辑操作符放在行尾
-    someConditionsion) {
+    someCondition) {
     DoSomething();
     ...
 }
