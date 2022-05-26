@@ -589,7 +589,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | deviceAddress | string | 只读 | 设备MAC地址。 |
 | primaryDeviceType | string | 只读 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | 只读 | 设备状态。 |
-| groupCapabilities | number | 只读 | 群组能力。 |
+| groupCapabilitys | number | 只读 | 群组能力。 |
 
 ## P2pDeviceStatus<sup>8+</sup>
 
