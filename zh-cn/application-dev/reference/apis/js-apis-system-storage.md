@@ -68,7 +68,7 @@ set(Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 要修改的存储值的索引。 |
-| value | string | 是 | 新值。最大长度128。 |
+| value | string | 是 | 新值。长度需小于128字节。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数，data为错误信息，code为错误码。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
