@@ -19,8 +19,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，必须小于80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，必须小于8192字节。 |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，需小于80字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，需小于8192字节。 |
 
 
 ## data_preferences.getPreferences
@@ -266,14 +266,14 @@ promise.then((value) => {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-返回含有所有键值的JS的Object对象。
+返回含有所有键值的Object对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。 |
+  | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回含有所有键值的Object对象。 |
 
 **示例：**
 ```ts
@@ -293,19 +293,19 @@ preferences.get.getAll(function (err, value) {
 
 getAll(): Promise&lt;Object&gt;
 
-返回含有所有键值的JS的Object对象。
+返回含有所有键值的Object对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Object&gt; | Promise实例，用于异步获取结果。 |
+  | Promise&lt;Object&gt; | Promise对象。返回含有所有键值的Object对象。 |
 
 **示例：**
 ```ts
 let promise = preferences.getAll()
-promise.then((value) => {、
+promise.then((value) => {
     let keys = Object.keys(value)
     console.info('getAll keys = ' + keys)
     console.info("getAll object = " + JSON.stringify(value))
