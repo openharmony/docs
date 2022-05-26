@@ -47,6 +47,8 @@
 | --------- | ------ | --------------------------- |
 | type      | string | 当前事件的类型，比如click、longpress等。 |
 | timestamp | number | 该事件触发时的时间戳。                 |
+| deviceId<sup>6+</sup> | number | 触发该事件的设备ID信息。|
+| target<sup>6+</sup> | [Target](#target对象6) | 触发该事件的目标对象。|
 
 **表2** TouchEvent对象属性列表(继承BaseEvent)
 
@@ -83,18 +85,19 @@
 
 **表8** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
 
-| 属性        | 类型     | 说明               |
-| --------- | ------ | ---------------- |
-| type      | string | 事件名称。            |
-| globalX   | number | 距离屏幕左上角坐标原点横向距离。 |
-| globalY   | number | 距离屏幕左上角坐标原点纵向距离。 |
-| timestamp | number | 时间戳。             |
+| 属性         | 类型         | 说明                             |
+| ------------ | ------------ | -------------------------------- |
+| type         | string       | 事件名称。                       |
+| globalX      | number       | 距离屏幕左上角坐标原点横向距离。 |
+| globalY      | number       | 距离屏幕左上角坐标原点纵向距离。 |
+| timestamp    | number       | 时间戳。                         |
+| dataTransfer<sup>9+</sup> | [DataTransfer](#datatransfer对象9) | 用于传输数据。               |
 
-## 事件对象
+## Target对象<sup>6+</sup>
 
 当组件触发事件后，事件回调函数默认会收到一个事件对象，通过该事件对象可以获取相应的信息。
 
-**target对象：**
+
 
 | 属性                   | 类型     | 说明                                       |
 | -------------------- | ------ | ---------------------------------------- |
@@ -119,3 +122,148 @@ export default {
   }
 }
 ```
+
+## DataTransfer对象<sup>9+</sup>
+
+在拖拽操作的过程中，可以通过dataTransfer对象来传输数据，以便在拖拽操作结束的时候对数据进行其他操作。
+
+### setData<sup>9+</sup>
+
+setData(key: string, value: object): boolean
+
+设置给定key关联的数据。如果没有与该key关联的数据，则将其添加到末尾。如果该key关联的数据已经存在，则在相同位置替换现有数据。
+
+- 参数：
+
+	| 参数名 | 参数类型 | 必填 | 描述                    |
+	| ------ | -------- | ---- | ----------------------- |
+	| key    | string   | 是   | 数据建值。   |
+	| value  | object   | 是   | 要存储的数据。 |
+
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| boolean  | 执行结果，true表示成功，false表示失败。  |
+
+- 示例：
+
+	```js
+	// setData的value参数，可以是基本数据类型。
+	dragStart(e) {
+		var isSetOk = e.dataTransfer.setData('name', 1);
+	},
+	// setData的value参数，也可以是对象类型。
+	dragStart(e) {
+		var person = new Object();
+		person.name = "tom";
+		person.age = 21;
+		var isSetOk = e.dataTransfer.setData('person', person);
+	}
+	```
+### getData<sup>9+</sup>
+
+getData(key: string): object
+
+获取给定key关联的数据，如果没有与该key关联的数据，则返回空字符串。
+
+- 参数：
+
+	| 参数名 | 参数类型 | 必填 | 描述                       |
+	| ------ | -------- | ---- | -------------------------- |
+	| key    | string   | 是   | 数据建值。 |
+
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| object | 获取的数据。  |
+
+- 示例：
+
+	```js
+	dragStart(e) {
+		var person = new Object();
+		person.name = "tom";
+		person.age = 21;
+		e.dataTransfer.setData('person', person);
+	},
+	dragEnd(e){
+		var person = e.dataTransfer.getData('person');
+	},
+	```
+
+### clearData<sup>9+</sup>
+
+clearData(key?: string): boolean
+
+删除给定key关联的数据。如果没有与该key关联的数据，则该方法不会产生任何效果。
+如果key为空，则删除所有数据。
+- 参数：
+
+	| 参数名 | 参数类型 | 必填 | 描述                                       |
+	| ------ | -------- | ---- | ------------------------------------------ |
+	| key    | string   | 否   | 数据建值。 |
+
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| boolean  | 执行结果，true表示成功，false表示失败。  |
+
+- 示例：
+
+	```js
+	dragEnd(e) {
+		var isSuccess = e.dataTransfer.clearData('name');
+	}
+	```
+
+### setDragImage<sup>9+</sup>
+
+setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
+
+用于设置自定义的拖动图像。
+
+- 参数：
+
+	| 参数名 | 参数类型 | 必填 | 描述                                                         |
+	| -------- | -------- | ---- | ------------------------------------------------------------ |
+	| pixelmap | PixelMap | 是   | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
+	| offsetX  | number   | 是   | 相对于图片的横向偏移量。                                       |
+	| offsetY  | number   | 是   | 相对于图片的纵向偏移量 。                                      |
+
+- 返回值：
+	| 类型 | 说明 |
+	| ------ | -------- | 
+	| bool  | 执行结果，true表示成功，false表示失败。  |
+
+- 示例：
+
+	```js
+	createPixelMap() {
+		let color = new ArrayBuffer(4*96*96);
+		var buffer = new Uint8Array(color);
+		for (var i = 0; i < buffer.length; i++) {
+			buffer[i] = (i + 1) % 255;
+		}
+		let opts = {
+			alphaType:0,
+			editable:true,
+			pixelFormat:4,
+			scaleMode:1,
+			size:{height:96,width:96}
+		}
+		const promise = image.createPixelMap(color,opts);
+		promise.then((data)=> {
+			console.error('-create pixmap has info message:' + JSON.stringify(data));
+			this.pixelMap = data;
+			this.pixelMapReader = data;
+		})
+	},
+
+	onInit() {
+		this.createPixelMap
+	},
+
+	dragStart(e) {
+		e.dataTransfer.setDragImage(this.pixelMapReader, 50, 50);
+	}
+	```
