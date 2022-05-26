@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```js
-import Context from "@ohos.app.context";
+import featureAbility from '@ohos.ability.featureAbility'
 ```
 
 ## 使用说明

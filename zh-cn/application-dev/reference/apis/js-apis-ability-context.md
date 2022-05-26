@@ -8,7 +8,7 @@ Ability的上下文环境，继承自Context。
 ## 导入模块
 
 ```js
-import AbilityContext from '@ohos.application.abilityContext'
+import Ability from '@ohos.application.Ability'
 ```
 ## 使用说明
 

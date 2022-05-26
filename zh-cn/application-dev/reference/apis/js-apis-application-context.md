@@ -6,11 +6,7 @@
 
 提供开发者运行代码的上下文环境，包括应用信息、ResourceManager等信息。
 
-## 导入模块
 
-```js
-import Context from "@ohos.application.context";
-```
 ## 使用说明
 
 

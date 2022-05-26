@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import EventHub from "@ohos.application.eventHub";
+import Ability from '@ohos.application.Ability'
 ```
 
 ## 使用说明

@@ -34,7 +34,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
   ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
+      console.log('startAbility result:' + JSON.stringify(err));
   })  
   ```
 
@@ -58,9 +58,9 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
   ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest().then((flag) => {
-      console.log('success:' + JSON.stringfy(flag));
+      console.log('success:' + JSON.stringify(flag));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
