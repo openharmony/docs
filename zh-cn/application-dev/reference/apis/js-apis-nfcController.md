@@ -118,7 +118,8 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
   | type | string | 是 | 固定填"nfcStateChange"字符串 |
 | callback | Callback&lt;NfcState&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。 |
   
-- 示例
+**示例**
+
   ```js
   import nfcController from '@ohos.nfcController';
   
