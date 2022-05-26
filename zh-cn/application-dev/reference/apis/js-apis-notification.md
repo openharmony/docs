@@ -185,7 +185,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 ## Notification.cancel
 
-cancel(id：number, label?: string): Promise\<void\>
+cancel(id: number, label?: string): Promise\<void\>
 
 取消与指定id相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
 
@@ -2900,6 +2900,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
 | wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
 | extras    | 是  | 是  | { [key: string]: any }                          | 否   | 按钮扩展信息。              |
+| userInput | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 否  | 用户输入信息。              |
 
 
 ## NotificationBasicContent
