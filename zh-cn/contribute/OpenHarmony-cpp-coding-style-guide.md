@@ -2178,12 +2178,12 @@ class LockGuard {
 public:
     LockGuard(const LockType& lockType): lock_(lockType)
     {
-        lock_.Aquire();
+        lock_.Acquire();
     }
     
     ~LockGuard()
     {
-        lock_.Relase();
+        lock_.Release();
     }
     
 private:
