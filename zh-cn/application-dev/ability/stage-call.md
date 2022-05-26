@@ -1,6 +1,6 @@
 # Call调用开发指导
 ## 场景介绍
-Ability Call调用是Ability能力的扩展，它为Ability提供一种能够被外部调用的能力。使Ability既能被拉起到前台展示UI，也支持Ability在后台被创建并运行。应用开发者可通过Call调用，使用IPC通信实现不同Ability之间的数据共享。Call调用的场景主要包括：
+Ability Call调用是Ability能力的扩展，它为Ability提供一种能够被外部调用的能力，使Ability既能被拉起到前台展示UI，也支持Ability在后台被创建并运行。应用开发者可通过Call调用，使用IPC通信实现不同Ability之间的数据共享。Call调用的场景主要包括：
 - 创建Callee被调用端。
 - 访问Callee被调用端。
 
@@ -35,7 +35,7 @@ Callee被调用端，需要实现指定方法的数据接收回调函数、数�
 
 |Json字段|字段说明|
 |:------|:------|
-|"launchType"|Ability的启动模式，设置为"singleton"类型 |
+|"launchType"|Ability的启动模式，设置为"singleton"类型。 |
 
 Ability配置标签示例如下：
 ```json
@@ -49,11 +49,11 @@ Ability配置标签示例如下：
     "visible": true
 }]
 ```
-2. 导入Ability模块
+2. 导入Ability模块。
 ```
 import Ability from '@ohos.application.Ability'
 ```
-3. 定义约定的序列化数据
+3. 定义约定的序列化数据。
 
   调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。具体示例代码如下：
 ```ts
@@ -79,7 +79,7 @@ export default class MySequenceable {
     }
 }
 ```
-4. 实现Callee.on监听及Callee.off解除监听
+4. 实现Callee.on监听及Callee.off解除监听。
 
   被调用端Callee的监听函数注册时机, 取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'CalleeSortMethod'监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
 ```ts
@@ -119,11 +119,11 @@ export default class CalleeAbility extends Ability {
 ```
 
 ### 访问Callee被调用端
-1. 导入Ability模块
+1. 导入Ability模块。
 ```
 import Ability from '@ohos.application.Ability'
 ```
-2. 获取Caller通信接口
+2. 获取Caller通信接口。
 
   Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过`this.context`获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际需要做相应处理。具体示例代码如下：
 ```ts
@@ -146,7 +146,7 @@ async onButtonGetCaller() {
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
-在跨设备场景下，需指定对端设备deviceId。具体示例代码如下：
+  在跨设备场景下，需指定对端设备deviceId。具体示例代码如下：
 ```ts
 let TAG = '[MainAbility] '
 var caller = undefined
@@ -170,7 +170,7 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
-从DeviceManager获取指定设备的deviceId，getTrustedDeviceListSync接口仅对系统应用开放。具体示例代码如下：
+  从DeviceManager获取指定设备的deviceId，getTrustedDeviceListSync接口仅对系统应用开放。具体示例代码如下：
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
@@ -188,7 +188,7 @@ function getRemoteDeviceId() {
     }
 }
 ```
-在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
+  在跨设备场景下，需要向用户申请数据同步的权限。具体示例代码如下：
 ```ts
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
@@ -200,7 +200,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 3. 发送约定序列化数据
 
-向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。具体示例代码如下：
+  向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。具体示例代码如下：
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 async onButtonCall() {
@@ -213,7 +213,7 @@ async onButtonCall() {
 }
 ```
 
-如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据`originMsg`，并将'CallSendMsg'方法处理完毕的数据赋值给`backMsg`。具体示例代码如下：
+  如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据`originMsg`，并将'CallSendMsg'方法处理完毕的数据赋值给`backMsg`。具体示例代码如下：
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 originMsg: string = ''
@@ -235,7 +235,7 @@ async onButtonCallWithResult(originMsg, backMsg) {
 ```
 4. 释放Caller通信接口
 
-Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
+  Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
 ```ts
 try {
     this.caller.release()
