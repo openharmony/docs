@@ -2,6 +2,9 @@
 
 This development guide describes how to use i18n APIs that are defined in ECMA 402.
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> In the code snippets in this document, **intl** refers to the name of the imported module.
+
 ## Setting Locale Information
 
 Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize locale information.
@@ -21,7 +24,7 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
 ### How to Develop
 
 1. Instantiate a **Locale** object.<br>
-   Create a **Locale** object by using the **Locale** constructor. This method receives a string representing the locale and an optional [Attributes](../reference/apis/js-apis-intl.md) list. In the code below, **intl** is the name of the imported module.
+   Create a **Locale** object by using the **Locale** constructor. This method receives a string representing the locale and an optional [Attributes](../reference/apis/js-apis-intl.md) list. 
 
    
    ```
@@ -71,7 +74,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
 ### How to Develop
 
 1. Instantiate a **DateTimeFormat** object.<br>
-   Use the default constructor of **DateTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **DateTimeFormat** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **DateTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **DateTimeFormat** object.
 
    
    ```
@@ -86,7 +89,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 2. Format the date and time.<br>
-   Use the **format** method of **DateTimeFormat** to format a **Date** object. This method returns a string representing the formatting result.
+   Call the **format** method to format a **Date** object. This method returns a string representing the formatting result.
      
    ```
    Date date = new Date();
@@ -94,7 +97,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 3. Format a period.<br>
-   Use the **formatRange** method of **DateTimeFormat** to format a period. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
+   Call the **formatRange** method to format a period. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
      
    ```
    Date startDate = new Date();
@@ -103,7 +106,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 4. Obtain attributes of the **DateTimeFormat** object.<br>
-   The **resolvedOptions** method of **DateTimeFormat** returns an object that contains all related attributes and values of the **DateTimeFormat** object.
+   Call the **resolvedOptions** method to obtain attributes of the **DateTimeFormat** object. This method will return an array that contains all attributes and values of the object.
      
    ```
    var options = dateTimeFormat.resolvedOptions();
@@ -122,13 +125,13 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
 | ohos.intl | constructor()<sup>8+</sup> | Creates a **NumberFormat** object. | 
 | ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: NumberOptions) | Creates a **NumberFormat** object and sets the locale and other formatting-related attributes. | 
 | ohos.intl | format(number: number): string | Calculates the number based on the locale and other formatting-related attributes of the **NumberFormat** object. | 
-| ohos.intl | resolvedOptions(): NumberOptions | Obtains the attributes of the **NumberFormat** object. | 
+| ohos.intl | resolvedOptions(): NumberOptions | Obtains attributes of the **NumberFormat** object. | 
 
 
 ### How to Develop
 
 1. Instantiate a **NumberFormat** object.<br>
-   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **NumberFormat** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **NumberFormat** object.
 
    
    ```
@@ -143,7 +146,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
    ```
 
 2. Format a number.<br>
-   Use the **format** method of **NumberFormat** to format a number. A string is returned as the formatting result.
+   Call the **format** method to format a number. A string is returned as the formatting result.
      
    ```
    var number = 1234.5678
@@ -151,7 +154,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
    ```
 
 3. Obtain attributes of the **NumberFormat** object.<br>
-   The **resolvedOptions** method of NumberFormat returns an object that contains all related attributes and values of the **NumberFormat** object.
+   Call the **resolvedOptions** method to obtain attributes of the **NumberFormat** object. This method will return an array that contains all attributes and values of the object.
      
    ```
    var options = numberFormat.resolvedOptions();
@@ -170,13 +173,13 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 | ohos.intl | constructor()<sup>8+</sup> | Creates a **Collator** object. | 
 | ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: CollatorOptions)<sup>8+</sup> | Creates a **Collator** object and sets the locale and other related attributes. | 
 | ohos.intl | compare(first: string, second: string): number<sup>8+</sup> | Calculates the comparison result of two strings based on the locale and other attributes of the **Collator** object. | 
-| ohos.intl | resolvedOptions(): CollatorOptions<sup>8+</sup> | Obtains the attributes of the **Collator** object. | 
+| ohos.intl | resolvedOptions(): CollatorOptions<sup>8+</sup> | Obtains attributes of the **Collator** object. | 
 
 
 ### How to Develop
 
 1. Instantiate a **Collator** object.<br>
-   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **Collator** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **Collator** object.
 
    
    ```
@@ -190,7 +193,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
    ```
 
 2. Compare two strings.<br>
-   Use the **compare** method of **Collator** to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths.
+   Call the **compare** method to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths.
      
    ```
    var str1 = "first string";
@@ -199,7 +202,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
    ```
 
 3. Obtain attributes of the **Collator** object.<br>
-   The **resolvedOptions** method of **Collator** returns an object that contains all related attributes and values of the **Collator** object.
+   Call the **resolvedOptions** method to obtain attributes of the **Collator** object. This method will return an array that contains all attributes and values of the object.
      
    ```
    var options = collator.resolvedOptions();
@@ -223,7 +226,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
 ### How to Develop
 
 1. Instantiate a **PluralRules** object.<br>
-   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **PluralRules** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **PluralRules** object.
 
    
    ```
@@ -236,8 +239,8 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
    var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"};
    ```
 
-2. Determine the singular or plural category.<br>
-   Use the **select** method of **PluralRules** to determine the singular-plural type for an input number. This method returns a string as the category of the input number, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
+2. Determine the singular-plural type.<br>
+   Call the **select** method to determine the singular-plural type of an input number. This method will return a string representing the singular-plural type, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
      
    ```
    var number = 1234.5678
@@ -258,13 +261,13 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 | ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)<sup>8+</sup> | Creates a **RelativeTimeFormat** object and sets the locale and other formatting-related attributes. | 
 | ohos.intl | format(value: number, unit: string): string<sup>8+</sup> | Calculates the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
 | ohos.intl | formatToParts(value: number, unit: string): Array&lt;object&gt;<sup>8+</sup> | Returns each part of the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
-| ohos.intl | resolvedOptions(): RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains the attributes of the **RelativeTimeFormat** object. | 
+| ohos.intl | resolvedOptions(): RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains attributes of the **RelativeTimeFormat** object. | 
 
 
 ### How to Develop
 
 1. Instantiate a **RelativeTimeFormat** object.<br>
-   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **RelativeTimeFormat** object. In the code below, **intl** is the name of the imported module.
+   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **RelativeTimeFormat** object.
 
    
    ```
@@ -278,7 +281,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```
 
 2. Format the relative time.<br>
-   Use the **format** method of **RelativeTimeFormat** to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
+   Call the **format** method to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
      
    ```
    var number = 2;
@@ -296,7 +299,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```
 
 4. Obtain attributes of the **RelativeTimeFormat** object.<br>
-   The **resolvedOptions** method of **RelativeTimeFormat** returns an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
+   Call the **resolvedOptions** method to obtain attributes of the **RelativeTimeFormat** object. This method will return an array that contains all attributes and values of the object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
      
    ```
    var options = numberFormat.resolvedOptions();
