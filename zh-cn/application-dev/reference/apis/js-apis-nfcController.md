@@ -74,17 +74,17 @@ isNfcOpen(): boolean
 
 ## controller.getNfcState
 
-getNfcState(): boolean
+getNfcState(): NfcState
 
-查询NFC是否打开。
+查询NFC状态。
 
 **系统能力**：SystemCapability.Communication.NFC
 
 **返回值：**
 
-| **类型** | **说明**                            |
-| -------- | ----------------------------------- |
-| boolean  | true:NFC打开，&nbsp;false:NFC关闭。 |
+| **类型** | **说明**               |
+| -------- | ---------------------- |
+| NfcState | 详细请见NfcState枚举值 |
 
 ## controller.on('nfcStateChange')
 
