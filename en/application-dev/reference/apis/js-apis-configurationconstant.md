@@ -36,7 +36,7 @@ ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
 
 ## ConfigurationConstant.Direction<sup>9+</sup>
 
-The value is obtained through the **ConfigurationConstant.Direction** API.
+You can obtain the value of this constant by calling the **ConfigurationConstant.Direction** API.
 
 **Example**
 
