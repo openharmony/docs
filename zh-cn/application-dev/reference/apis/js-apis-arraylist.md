@@ -3,6 +3,14 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会根据实际需要动态调整容量，每次扩容增加50%。
+
+ArrayList和[Vector](js-apis-vector.md)相似，都是基于数组实现。它们都可以动态调整容量，但Vector每次扩容增加1倍。
+
+ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
+
+**推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
+
 ## 导入模块
 
 ```ts
