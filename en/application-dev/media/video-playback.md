@@ -82,7 +82,7 @@ export class VideoPlayerDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -211,7 +211,7 @@ export class VideoPlayerDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -299,7 +299,7 @@ export class VideoPlayerDemo {
     let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -341,7 +341,7 @@ export class VideoPlayerDemo {
     fdPath = 'fd://'
     await fileIO.open(nextPath).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -409,7 +409,7 @@ export class VideoPlayerDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
