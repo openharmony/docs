@@ -43,6 +43,12 @@
   - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
   - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
+  - application/[AbilityManager (AbilityManager)](js-apis-abilityManager.md)
+  - application/[Context (Context)](js-apis-applicationContext.md)
+  - application/[ExtensionAbilityContext (ExtensionAbilityContext)](js-apis-extension-ability-context.md)
+  - application/[ExtensionAbilityInfo (ExtensionAbilityInfo)](js-apis-extensionAbilityInfo.md)
+  - application/[ServiceExtAbilityContext (ServiceExtAbilityContext)](js-apis-serviceExtAbilityContext.md)
+
 - 公共事件与通知
 
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -55,6 +61,14 @@
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
+  - bundle/[AbilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
+  - bundle/[ApplicationInfo (ApplicationInfo)](js-apis-bundle-ApplicationInfo.md)
+  - bundle/[BundleInfo (BundleInfo)](js-apis-bundle-BundleInfo.md)
+  - bundle/[CustomizeData (CustomizeData)](js-apis-bundle-CustomizeData.md)
+  - bundle/[ExtensionAbilityInfo (ExtensionAbilityInfo)](js-apis-bundle-ExtensionAbilityInfo.md)
+  - bundle/[HapModuleInfo (HapModuleInfo)](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[Metadata (Metadata)](js-apis-bundle-Metadata.md)
+  - bundle/[ModuleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)
@@ -76,6 +90,7 @@
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
 - 资源管理
+
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
@@ -120,6 +135,7 @@
   - [@ohos.telephony.sms (短信服务)](js-apis-sms.md)
   - [@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
 - 网络管理
+
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
@@ -223,3 +239,13 @@
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
   - [console (日志打印)](js-apis-logs.md)
+
+- Native API
+        - [结构体](native-apis/annotated.md)
+        - [头文件](native-apis/files.md)
+        - [MyProject](native-apis/index.md)
+        - [头文件和结构体](native-apis/total.md)
+        - [未导出符号列表](native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [标准库](native-lib/third_party_libc/musl.md)
+        - [libuv](native-lib/third_party_libuv/libuv.md)
+        - [Node_API](native-lib/third_party_napi/napi.md)
