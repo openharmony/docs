@@ -71,7 +71,7 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| hceCmd   | string                  | 是   | 订阅的事件类型                               |
+| type     | string                  | 是   | 固定填"hceCmd"字符串                         |
 | callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据数组 |
 
 ### sendResponse
