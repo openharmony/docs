@@ -612,26 +612,26 @@
     - [HPM Part参考](hpm-part/hpm-part-reference.md)
 - 设备开发示例
 
-  - [轻量和小型系统设备](guide/device-lite.md)
-    - [WLAN连接类产品](guide/device-wlan.md)
+  - 轻量和小型系统设备
+    - WLAN连接类产品
       - [LED外设控制](guide/device-wlan-led-control.md)
       - [集成三方SDK](guide/device-wlan-sdk.md)
-    - [无屏摄像头类产品](guide/device-iotcamera.md)
-      - [摄像头控制](guide/device-iotcamera-control.md)
+    - 无屏摄像头类产品
+      - 摄像头控制
         - [概述](guide/device-iotcamera-control-overview.md)
-        - [示例开发](guide/device-iotcamera-control-demo.md)
+        - 示例开发
           - [拍照开发指导](guide/device-iotcamera-control-demo-photodevguide.md)
           - [录像开发指导](guide/device-iotcamera-control-demo-videodevguide.md)
         - [应用实例](guide/device-iotcamera-control-example.md)
-    - [带屏摄像头类产品](guide/device-camera.md)
-      - [屏幕和摄像头控制](guide/device-camera-control.md)
+    - 带屏摄像头类产品
+      - 屏幕和摄像头控制
         - [概述](guide/device-camera-control-overview.md)
-        - [示例开发](guide/device-camera-control-demo.md)
+        - 示例开发
           - [拍照开发指导](guide/device-camera-control-demo-photoguide.md)
           - [录像开发指导](guide/device-camera-control-demo-videoguide.md)
           - [预览开发指导](guide/device-camera-control-demo-previewguide.md)
         - [应用实例](guide/device-camera-control-example.md)
-      - [视觉应用开发](guide/device-camera-visual.md)
+      - 视觉应用开发
         - [概述](guide/device-camera-visual-overview.md)
         - [开发准备](guide/device-camera-visual-prepare.md)
         - [添加页面](guide/device-camera-visual-addpage.md)
@@ -640,7 +640,7 @@
         - [调试打包](guide/device-camera-visual-debug.md)
         - [真机运行](guide/device-camera-visual-run.md)
         - [常见问题](guide/device-camera-visual-faqs.md)
-  - [标准系统设备](guide/device-standard.md)
+  - 标准系统设备
     - [时钟应用开发指导](guide/device-clock-guide.md)
     - [平台驱动开发示例](guide/device-driver-demo.md)
     - [外设驱动开发示例](guide/device-outerdriver-demo.md)
