@@ -378,7 +378,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
               deviceId: ""
           }).then((obj) => {
               caller = obj;
-              console.log('Caller GetCaller Get ' + call);
+              console.log('Caller GetCaller Get ' + caller);
           }).catch((e) => {
               console.log('Caller GetCaller error ' + e);
           });

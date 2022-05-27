@@ -29,7 +29,6 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 //getWantAgent回调
 function getWantAgentCallback(err, data) {
@@ -58,9 +57,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -92,7 +91,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //WantAgentInfo对象
 var wantAgentInfo = {
@@ -117,9 +116,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -148,7 +147,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -185,9 +184,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -225,7 +224,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -253,9 +252,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -289,7 +288,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -326,9 +325,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -366,7 +365,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -394,9 +393,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -430,7 +429,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -467,9 +466,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -507,7 +506,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -535,9 +534,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -571,7 +570,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -608,9 +607,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -648,7 +647,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -676,9 +675,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -713,7 +712,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent;
@@ -750,9 +749,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -790,7 +789,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent1;
@@ -829,9 +828,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -870,7 +869,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 //wantAgent对象
 var wantAgent1;
@@ -899,9 +898,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -961,7 +960,7 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
@@ -1027,7 +1026,7 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
