@@ -15,6 +15,9 @@ missionManager模块提供系统任务管理能力，开发者可以对系统任
 import missionManager from '@ohos.application.missionManager'
 ```
 
+## 权限列表
+
+ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.registerMissionListener
 
@@ -143,6 +146,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   ```js
   import missionManager from '@ohos.application.missionManager'
 
+  var allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
   missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
   	console.log("getMissionInfo is called, error.code = " + error.code)
   	console.log("mission.missionId = " + mission.missionId);
@@ -181,7 +185,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var mission = missionManager.getMissionInfo("", id).catch(function (err){
+  var mission = missionManager.getMissionInfo("", 10).catch(function (err){
       console.log(err);
   });
   ```

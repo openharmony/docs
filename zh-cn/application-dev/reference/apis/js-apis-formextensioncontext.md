@@ -8,7 +8,7 @@ FormExtension的上下文环境，提供FormExtension具有的能力和接口，
 ## 导入模块
 
 ```js
-import FormExtensionContext from '@ohos.application.formExtensionContext';
+import FormExtension from '@ohos.application.FormExtension';
 ```
 
 ## FormExtensionContext.updateForm

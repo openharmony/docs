@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import MissionSnapshot from "@ohos.application.missionSnapshot";
+import abilitymanager from '@ohos.application.abilityManager';
 ```
 ## 使用说明
 

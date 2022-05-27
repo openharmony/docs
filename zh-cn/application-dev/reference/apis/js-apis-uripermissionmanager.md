@@ -11,7 +11,7 @@ Uri权限管理。
 
   
 ```
-import uriPermissionManager from '@ohos.application.uriPermissionManager';
+import UriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
 

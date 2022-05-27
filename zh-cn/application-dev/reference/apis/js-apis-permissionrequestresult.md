@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import PermissionRequestResult from '@ohos.application.permissionRequestResult'
+import Ability from '@ohos.application.Ability'
 ```
 
 ## 属性
