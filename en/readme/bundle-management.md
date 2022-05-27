@@ -177,6 +177,6 @@ bm get -u
 
 Bundle Management Subsystem
 
-**appexecfwk_standard**
+[**appexecfwk_standard**](https://gitee.com/openharmony/appexecfwk_standard)
 
-developtools_packing_tool
+[developtools_packing_tool](https://gitee.com/openharmony/developtools_packing_tool)
