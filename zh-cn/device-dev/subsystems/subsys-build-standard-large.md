@@ -418,7 +418,7 @@ ohos_shared_library("module2") {
 
 **配置文件说明**
 
-鸿蒙操作系统的配置文件主要有四个。
+OpenHarmony的配置文件主要有四个。
 
 1. vendor\产品厂商\产品名\config.json
      
