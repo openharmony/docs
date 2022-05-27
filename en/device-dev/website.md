@@ -740,7 +740,7 @@
       - [Vibrator](driver/driver-peripherals-vibrator-des.md)
 
       - [Light](driver/driver-peripherals-light-des.md)
-
+  - Compilation and Building
     - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
