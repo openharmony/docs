@@ -121,6 +121,8 @@ Sets the system language.
 
 **System capability**: SystemCapability.Global.I18n
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name     | Type    | Description   |
 | -------- | ------ | ----- |
@@ -145,6 +147,8 @@ Obtains the list of system languages.
 
 **System capability**: SystemCapability.Global.I18n
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Return Value**
 | Type                 | Description          |
 | ------------------- | ------------ |
@@ -163,6 +167,8 @@ getSystemCountries(language: string): Array&lt;string&gt;
 Obtains the list of countries and regions supported for the specified language.
 
 **System capability**: SystemCapability.Global.I18n
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name     | Type    | Description   |
@@ -209,6 +215,8 @@ Sets the system region.
 
 **System capability**: SystemCapability.Global.I18n
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name   | Type    | Description   |
 | ------ | ------ | ----- |
@@ -221,7 +229,7 @@ Sets the system region.
 
 **Example**
   ```
-  i18n.setSystemRegion();
+  i18n.setSystemRegion('CN');
   ```
 
 
@@ -254,6 +262,8 @@ Sets the system locale.
 
 **System capability**: SystemCapability.Global.I18n
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name   | Type    | Description             |
 | ------ | ------ | --------------- |
@@ -277,6 +287,8 @@ isSuggested(language: string, region?: string): boolean
 Checks whether the system language matches the specified region.
 
 **System capability**: SystemCapability.Global.I18n
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name     | Type    | Mandatory  | Description           |
@@ -338,7 +350,7 @@ Sets the date for this **Calendar** object.
 
 **Example**
   ```
-  var calendar = I18n.getCalendar("en-US", "gregory");
+  var calendar = i18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
@@ -385,7 +397,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 **Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // Set time to 2021.10.1 08:00:00
   ```
 
 
@@ -445,7 +457,7 @@ Obtains the start day of a week for this **Calendar** object.
 
 **Example**
   ```
-  var calendar = I18n.getCalendar("en-US", "gregory");
+  var calendar = i18n.getCalendar("en-US", "gregory");
   calendar.getFirstDayOfWeek();
   ```
 
@@ -531,7 +543,7 @@ Obtains the value of the specified field in the **Calendar** object.
 **Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // Set time to 2021.10.1 08:00:00
   calendar.get("hour_of_day"); // 8
   ```
 
@@ -582,7 +594,7 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 **Example**
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // Set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
   var date = new Date(2011, 11, 6, 9, 0, 0);
   calendar.isWeekend(date); // true
@@ -712,7 +724,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 
 **Example**
   ```
-  I18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
 
 
@@ -736,7 +748,7 @@ Creates an **IndexUtil** object.
 
 **Example**
   ```
-  var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
+  var indexUtil= i18n.getInstance("zh-CN");
   ```
 
 
@@ -831,7 +843,7 @@ Checks whether the input character string is composed of digits.
 
 **Example**
   ```
-  var isdigit = Character.isDigit("1"); // Return true.
+  var isdigit = i18n.Character.isDigit("1"); // Return true.
   ```
 
 
@@ -855,7 +867,7 @@ Checks whether the input character is a space.
 
 **Example**
   ```
-  var isspacechar = Character.isSpaceChar("a"); // Return false.
+  var isspacechar = i18n.Character.isSpaceChar("a"); // Return false.
   ```
 
 
@@ -879,7 +891,7 @@ Checks whether the input character is a white space.
 
 **Example**
   ```
-  var iswhitespace = Character.isWhitespace("a"); // Return false.
+  var iswhitespace = i18n.Character.isWhitespace("a"); // Return false.
   ```
 
 
@@ -903,7 +915,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 **Example**
   ```
-  var isrtl = Character.isRTL("a"); // Return false.
+  var isrtl = i18n.Character.isRTL("a"); // Return false.
   ```
 
 
@@ -927,7 +939,7 @@ Checks whether the input character is an ideographic character.
 
 **Example**
   ```
-  var isideograph = Character.isIdeograph("a"); // Return false.
+  var isideograph = i18n.Character.isIdeograph("a"); // Return false.
   ```
 
 
@@ -951,7 +963,7 @@ Checks whether the input character is a letter.
 
 **Example**
   ```
-  var isletter = Character.isLetter("a"); // Return true.
+  var isletter = i18n.Character.isLetter("a"); // Return true.
   ```
 
 
@@ -975,7 +987,7 @@ Checks whether the input character is a lowercase letter.
 
 **Example**
   ```
-  var islowercase = Character.isLowerCase("a"); // Return true.
+  var islowercase = i18n.Character.isLowerCase("a"); // Return true.
   ```
 
 
@@ -999,7 +1011,7 @@ Checks whether the input character is an uppercase letter.
 
 **Example**
   ```
-  var isuppercase = Character.isUpperCase("a"); // Return false.
+  var isuppercase = i18n.Character.isUpperCase("a"); // Return false.
   ```
 
 
@@ -1023,7 +1035,7 @@ Obtains the type of the input character string.
 
 **Example**
   ```
-  var type = Character.getType("a");
+  var type = i18n.Character.getType("a");
   ```
 
 
@@ -1047,7 +1059,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 **Example**
   ```
-  i18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   ```
 
 
@@ -1069,7 +1081,7 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   ```
 
@@ -1089,7 +1101,7 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.getLineBreakText(); // Apple is my favorite fruit.
   ```
@@ -1110,7 +1122,7 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   breakIter.current(); // 0
   ```
@@ -1131,7 +1143,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   breakIter.first(); // 0
   ```
@@ -1152,7 +1164,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.last(); // 27
   ```
@@ -1178,7 +1190,7 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
   iterator.next(); // 6
@@ -1201,7 +1213,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
   iterator.next(3); // 12
@@ -1229,7 +1241,7 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.following(0); // 6
   iterator.following(100); // -1
@@ -1257,7 +1269,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 
 **Example**
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.isBoundary(0); // true;
   iterator.isBoundary(5); // false;
@@ -1306,7 +1318,7 @@ Sets the 24-hour clock.
 **Example**
   ```
   // Set the system time to the 24-hour clock.
-  var success = I18n.set24HourClock(true);
+  var success = i18n.set24HourClock(true);
   ```
 
 

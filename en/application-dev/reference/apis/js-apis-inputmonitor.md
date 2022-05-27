@@ -1,7 +1,7 @@
 # Input Monitor
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
@@ -15,7 +15,7 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ```
 
 
-## Required Permissions
+## Permissions
 
 ohos.permission.INPUT_MONITORING
 
@@ -63,7 +63,7 @@ export default {
 
 ## inputMonitor.off
 
-off(type: "touch", receiver: TouchEventReceiver): void
+off(type: "touch", receiver?: TouchEventReceiver): void
 
 Stops listening for global input events.
 
@@ -109,7 +109,7 @@ Represents the class of the callback used to return the touch event. The value *
 
 ### (touchEvent: TouchEvent): Boolean
 
-Represents the callback used to return the touch event. You need to define the name of the callback function in the correct format. Ensure that the input parameter is of the TouchEvent type, and the return value is of the Boolean type.
+Represents the callback used to return the touch event. You need to define the name of the callback function in the correct format. Ensure that the input parameter is of the **TouchEvent** type, and the return value is of the **Boolean** type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
