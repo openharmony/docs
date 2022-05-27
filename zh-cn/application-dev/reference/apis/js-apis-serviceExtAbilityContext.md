@@ -407,8 +407,8 @@ disconnectAbility(connection: number): Promise<void>
 ```js
 var connection = 111;
 this.context.disconnectAbility(connection).then(() => {
-  console.log('disconnect success')
+  console.log('disconnected successfully')
 }).catch((err) => {
-  console.log('disconnect filed')
+  console.log('disconnected failed')
 })
 ```
