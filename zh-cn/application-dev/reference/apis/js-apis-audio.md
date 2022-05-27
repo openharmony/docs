@@ -465,8 +465,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 
 枚举，中断事件返回类型。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
-
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
 | 名称           | 默认值 | 描述               |
@@ -526,8 +524,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 
 音频监听事件传入的参数。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
-
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
 | 名称            | 类型                        | 必填 | 说明                                                         |
@@ -539,8 +535,6 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 ## InterruptAction
 
 音频打断/获取焦点事件的回调方法。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
 
@@ -615,11 +609,11 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                            | 默认值 | 描述                                                         |
-| :------------------------------ | :----- | :----------------------------------------------------------- |
-| SOURCE_TYPE_INVALID             | -1     | 无效的音频源。                                               |
-| SOURCE_TYPE_MIC                 | 0      | Mic音频源。                                                  |
-| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。<br/>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| 名称                            | 默认值 | 描述                   |
+| :------------------------------ | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID             | -1     | 无效的音频源。         |
+| SOURCE_TYPE_MIC                 | 0      | Mic音频源。            |
+| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -1603,8 +1597,6 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 取消订阅音频设备连接变化事件。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1627,8 +1619,6 @@ audioManager.off('deviceChange', (deviceChanged) => {
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -1665,8 +1655,6 @@ this.audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 取消监听音频打断事件（删除监听事件，取消打断）
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
