@@ -154,10 +154,10 @@ For details about how to develop a touchscreen driver, see  [Touchscreen Develop
 
 The WLAN driver is divided into two parts. One of the parts manages WLAN devices, and the other part manages WLAN traffic.
 
-**Figure  1**  OpenHarmony WLAN driver architecture<a name="fig155920160203"></a>  
+**Figure 1**  OpenHarmony WLAN driver architecture<a name="fig155920160203"></a>  
 
 
-![](figures/hdf_wifi.png)
+![](figure/hdf_wifi.png)
 
 As shown in  [Figure 1](#fig155920160203), the part on the left manages WLAN devices, and the part on the right manages WLAN traffic. The HDF WLAN framework abstracts these two parts. The porting process of the driver can be considered as the implementation of the APIs required by the two parts. These APIs are described as follows:
 

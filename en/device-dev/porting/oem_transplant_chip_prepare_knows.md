@@ -70,7 +70,7 @@ vendor                       # Product solution vendor
 
 The  **device**  directory of OpenHarmony is the adaptation directory for the basic SoC. You can skip the porting process and directly develop system applications if complete SoC adaptation code is already available in the directory. If there is no corresponding SoC porting implementation in the directory, complete the porting process by following the instructions provided in this document. The following figure shows the process of porting OpenHarmony to a third-party SoC.
 
-**Figure  1**  Key steps for SoC porting<a name="fig24801925498"></a>  
+**Figure 1**  Key steps for SoC porting<a name="fig24801925498"></a>  
 ![](figure/key-steps-for-soc-porting.png "key-steps-for-soc-porting")
 
 ## Porting Specifications<a name="section187870185219"></a>

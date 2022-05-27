@@ -222,8 +222,8 @@ The following steps show how to configure and modify the toolchains for cross-co
 
     The following screen is displayed after a successful login to the OS.
 
-    **Figure  1**  Successful startup of OpenHarmony<a name="fig13279524162418"></a>  
-    ![](figures/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
+    **Figure 1**  Successful startup of OpenHarmony<a name="fig13279524162418"></a>  
+    ![](figure/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
 
 2.  Mount the  **nfs**  directory and put the executable file  **cctest**  into the  **test**  directory \(listed in  [Table 2](#table1452412391911)\) to the  **nfs**  directory.
 3.  Perform the test cases.

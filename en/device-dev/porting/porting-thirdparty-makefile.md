@@ -118,7 +118,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
     After step 2 is complete, a static library file and test case are generated in the  **out**  directory of the yxml library.
 
-    **Table  2**  Directory structure of compiled files
+    **Table 2**  Directory structure of compiled files
 
     <a name="table3271115435618"></a>
     <table><thead align="left"><tr id="row1273454185610"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p3273154185616"><a name="p3273154185616"></a><a name="p3273154185616"></a>Directory</p>
@@ -145,7 +145,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 The test procedure for the yxml library is similar to that for the double-conversion library. For details, see the procedure described in  [Porting a Library Built Using CMake](porting-thirdparty-cmake.md#section6686144293611). The following describes how to use the test cases of the yxml library.
 
-**Table  3**  Directory structure of the test directory
+**Table 3**  Directory structure of the test directory
 
 <a name="table115941423164318"></a>
 <table><thead align="left"><tr id="row1059515236433"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p55950233437"><a name="p55950233437"></a><a name="p55950233437"></a>Directory</p>
