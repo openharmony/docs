@@ -465,8 +465,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
 
-本接口在Openharmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
-
 **需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts、SystemCapability.Applications.ContactsData
@@ -494,8 +492,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 选择联系人，使用Promise方式作为异步方法。
-
-本接口在Openharmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2115,7 +2111,6 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 | labelName  | string   | 是   | 是   | 会话发起协议（SIP）地址类型名称。 |
 | sipAddress | string   | 是   | 是   | 会话发起协议（SIP）地址。         |
 | labelId    | number   | 是   | 是   | 会话发起协议（SIP）地址类型。     |
-
 
 **对象创建示例：**
 
