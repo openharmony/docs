@@ -235,22 +235,22 @@ Example:
     describe("AppInfoTest", function () {
         beforeAll(function() {
             // Set a setup function, which will be called before all test cases.
-             console.info('beforeAll caled')
+             console.info('beforeAll called')
         })
         
         afterAll(function() {
              // Set a teardown function, which will be called after all test cases.
-             console.info('afterAll caled')
+             console.info('afterAll called')
         })
         
         beforeEach(function() {
             // Set a setup function, which will be called before each test case.
-             console.info('beforeEach caled')
+             console.info('beforeEach called')
         })
         
         afterEach(function() {
             // Set a teardown function, which will be called after each test case.
-             console.info('afterEach caled')
+             console.info('afterEach called')
         })
     
         /*
@@ -284,22 +284,22 @@ Example:
     	describe("AppInfoTest", function () {
     	    beforeAll(function() {
     	        // Set a setup function, which will be called before all test cases.
-    	         console.info('beforeAll caled')
+    	         console.info('beforeAll called')
     	    })
     	    
     	    afterAll(function() {
     	         // Set a teardown function, which will be called after all test cases.
-    	         console.info('afterAll caled')
+    	         console.info('afterAll called')
     	    })
     	    
     	    beforeEach(function() {
     	        // Set a setup function, which will be called before each test case.
-    	         console.info('beforeEach caled')
+    	         console.info('beforeEach called')
     	    })
     	    
     	    afterEach(function() {
     	        // Set a teardown function, which will be called after each test case.
-    	         console.info('afterEach caled')
+    	         console.info('afterEach called')
     	    })
     	```
     4. Add implementation of the test cases.
