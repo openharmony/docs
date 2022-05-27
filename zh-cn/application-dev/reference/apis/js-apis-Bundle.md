@@ -952,7 +952,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-以异步方法根据给定的包名查询指定应用程序是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -990,7 +990,7 @@ bundle.isApplicationEnabled(bundleName)
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的包名查询指定应用程序是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 
