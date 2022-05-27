@@ -213,7 +213,7 @@ onConfigurationUpdated(config: Configuration): void;
 **示例：**
     
   ```js
-  class MyFormExtension extends MyFormExtension {
+  class MyFormExtension extends FormExtension {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
       }
@@ -237,7 +237,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
     
   ```js
-  class MyFormExtension extends MyFormExtension {
+  class MyFormExtension extends FormExtension {
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);
       }

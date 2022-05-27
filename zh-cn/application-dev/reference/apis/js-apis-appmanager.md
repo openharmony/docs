@@ -82,7 +82,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
 **示例：**
     
   ```js
-        app.isRamConstrainedDevicePromise().then((data) => {
+        app.isRamConstrainedDevice().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
@@ -106,7 +106,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 **示例：**
     
   ```js
-        app.isRamConstrainedDevicePromise((err, data) => {
+        app.isRamConstrainedDevice((err, data) => {
             console.log('startAbility result failed:' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
@@ -175,7 +175,7 @@ getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 **示例：**
     
   ```js
-        app.GetProcessRunningInfos().then((data) => {
+        app.getProcessRunningInfos().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
@@ -199,7 +199,7 @@ getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): voi
 **示例：**
     
   ```js
-        app.GetProcessRunningInfos((err, data) => {
+        app.getProcessRunningInfos((err, data) => {
             console.log('startAbility result failed :' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
