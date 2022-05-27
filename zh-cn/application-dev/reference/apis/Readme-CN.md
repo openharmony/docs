@@ -33,7 +33,7 @@
   - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](js-apis-application-abilityDelegatorArgs.md)
   - application/[abilityMonitor (AbilityMonitor)](js-apis-application-abilityMonitor.md)
   - application/[AbilityRunningInfo (AbilityRunningInfo)](js-apis-abilityrunninginfo.md)
-  - application/[AbilityStageContext (AbilityStageContext)](js-apis-abilitystagecontext.md)
+  - application/[AbilityStageContext (AbilityStageContext)](js-apis-abilityStageContext.md)
   - application/[Context (Context)](js-apis-application-context.md)
   - application/[ExtensionContext (ExtensionContext)](js-apis-extension-context.md)
   - application/[ExtensionRunningInfo (ExtensionRunningInfo)](js-apis-extensionrunninginfo.md)
