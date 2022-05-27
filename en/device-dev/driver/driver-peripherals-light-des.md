@@ -180,9 +180,9 @@ The light driver model provides APIs to obtain information about all the lights 
        drvData->lightNum = parser->GetElemNum(light, "lightType");
        ....
        for (i = 0; i < drvData->lightNum; ++i) {
-       /* Obtains the light type information. */
-       ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
+            /* Obtains the light type information. */
+            ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
+            CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
        }
    
        for (i = 0; i < drvData->lightNum; ++i) {
@@ -261,13 +261,13 @@ The light driver model provides APIs to obtain information about all the lights 
            /* Create a timer. */
            if (OsalTimerCreate(&drvData->timer, drvData->info[lightType]->onTime,
                LightTimerEntry, (uintptr_t)lightType) != HDF_SUCCESS) {
-           HDF_LOGE("%s: create light timer fail!", __func__);
-           return HDF_FAILURE;
+                HDF_LOGE("%s: create light timer fail!", __func__);
+                return HDF_FAILURE;
            }
            /* Start the periodic timer. */
            if (OsalTimerStartLoop(&drvData->timer) != HDF_SUCCESS) {
-           HDF_LOGE("%s: start light timer fail!", __func__);
-           return HDF_FAILURE;
+                HDF_LOGE("%s: start light timer fail!", __func__);
+                return HDF_FAILURE;
            }
        }
        return HDF_SUCCESS;

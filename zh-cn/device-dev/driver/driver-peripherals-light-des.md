@@ -180,9 +180,9 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
        drvData->lightNum = parser->GetElemNum(light, "lightType");
        ....
        for (i = 0; i < drvData->lightNum; ++i) {
-       /* 获取灯的类型 */
-       ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
+            /* 获取灯的类型 */
+            ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
+            CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
        }
    
        for (i = 0; i < drvData->lightNum; ++i) {
@@ -261,13 +261,13 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
            /* 创建定时器 */
            if (OsalTimerCreate(&drvData->timer, drvData->info[lightType]->onTime,
                LightTimerEntry, (uintptr_t)lightType) != HDF_SUCCESS) {
-           HDF_LOGE("%s: create light timer fail!", __func__);
-           return HDF_FAILURE;
+                HDF_LOGE("%s: create light timer fail!", __func__);
+                return HDF_FAILURE;
            }
            /* 启动周期定时器 */
            if (OsalTimerStartLoop(&drvData->timer) != HDF_SUCCESS) {
-           HDF_LOGE("%s: start light timer fail!", __func__);
-           return HDF_FAILURE;
+                HDF_LOGE("%s: start light timer fail!", __func__);
+                return HDF_FAILURE;
            }
        }
        return HDF_SUCCESS;
