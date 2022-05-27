@@ -9,10 +9,10 @@ Basic adaptation consists of the following steps:
 1.  Modify the code in the  **startup.S**  and corresponding link configuration files.
 2.  Initialize the serial port and register the handler function for the tick interrupt response in the  **main.c**  file
 
-**Figure  1**  Startup process<a name="fig10838105524917"></a>  
+**Figure 1**  Startup process<a name="fig10838105524917"></a>  
 
 
-![](figures/startup-process.png)
+![](figure/startup-process.png)
 
 In the  **startup.S**  file, you must ensure that the entry function \(for example,  **reset\_vector**\) of the interrupt vector table is stored in the RAM start address specified by the link configuration files. The link configuration files of IAR, Keil, and GCC projects are  **xxx.icf**,  **xxx.sct**, and  **xxx.ld**, respectively. The startup file provided by the vendor does not need to be modified if the  **startup.S**  file has initialized the system clock and returned to the  **main**  function. Otherwise, the preceding functions need to be implemented.
 
@@ -31,7 +31,7 @@ You can define configuration items in the  **device/xxxx/target\_config.h**  fil
 
 The following table shows some typical configuration items:
 
-**Table  1**  Typical configuration items
+**Table 1**  Typical configuration items
 
 <a name="table1343954214199"></a>
 

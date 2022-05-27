@@ -9,8 +9,8 @@ After the minimum system is ported, you can port the board-level system by:
 3.  Implementing the XTS
 4.  Verifying service functions
 
-**Figure  1**  Process for board-level driver adaptation<a name="fig14619153362215"></a>  
-![process-for-board-level-driver-adaptation](figures/process-for-board-level-driver-adaptation.png)
+**Figure 1**  Process for board-level driver adaptation<a name="fig14619153362215"></a>  
+![process-for-board-level-driver-adaptation](figure/process-for-board-level-driver-adaptation.png)
 
 ## Board-Level Directory Specifications<a name="section6204129143013"></a>
 

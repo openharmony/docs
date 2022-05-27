@@ -73,13 +73,13 @@ kernel_version = "3.0.0"                --- Kernel version, which corresponds to
 
    Run the `hb set` command, enter the project root directory, and press `Enter`. The `hb` command traverses all `config.json` files in the `//vendor/<product_company>/<product_name>` directory and provides product compilation options. In the `config.json` file, `product_name` indicates the product name, `device_company` and `board` are used to locate the `//device/board/<device_company>/<board>` directory and find the matching `<any_dir_name>/config.gni` file. If multiple file matches are found, it indicates that the board has been adapted to multiple kernels. In this case, `kernel_type` and `kernel_version` in the `config.json` file can be used to uniquely match the `config.gni` file and thereby determine the board with which kernel needs to be compiled and adapted. If the information shown below is displayed, the `hb set` configuration is correct.
 
-   ![hb set](figures/bes2600_hb_set.png)
+   ![hb set](figure/bes2600_hb_set.png)
 
 ​		You can run the `hb env` command to view the selected precompilation environment variables.
 
-![hb env](figures/bes2600_hb_env.png)
+![hb env](figure/bes2600_hb_env.png)
 
-Before running the `hb build` command, complete the LiteOS-M kernel adaptation. For details, see [Kernel Porting](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D).
+Before running the `hb build` command, complete the LiteOS-M kernel adaptation. For details, see [Kernel Porting](https://gitee.com/openharmony/docs/blob/master/en/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D).
 
 ## Kernel Porting
 
@@ -263,7 +263,7 @@ In this example, the configuration file of `defconfig` is saved in `$(PRODUCT_PA
 
 When the configuration is complete, run the `make menuconfig` command in the `kernel/liteos_m` directory to select `SoC Series`/`SoC`/`Board`.
 
-![board make menuconfig](figures/bes2600_board_make_menuconfig.png)
+![board make menuconfig](figure/bes2600_board_make_menuconfig.png)
 
 The result is automatically saved in `$(PRODUCT_PATH)/kernel_configs/debug.config` and will be exported when `make menuconfig` is executed.
 
@@ -432,7 +432,7 @@ static int32_t FsDriverInit(struct HdfDeviceObject *object)
 
 In the mini system, adapting the C library is a complex process. For details, see *Solution to Smooth Switchover Between musl and newlib for LiteOS-M Kernel*. The toolchain uses the `newlib` C library of the [gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.arm.com%2F-%2Fmedia%2FFiles%2Fdownloads%2Fgnu-rm%2F10.3-2021.10%2Fgcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2). In light of this, the `newlib` C library is used for system porting. Select `newlib` in `make menuconfig` of the kernel, as shown below.
 
-![image-20211212191013553](figures/bes2600_newlib_make_menuconfig.png)
+![image-20211212191013553](figure/bes2600_newlib_make_menuconfig.png)
 
 #### malloc Adaptation
 

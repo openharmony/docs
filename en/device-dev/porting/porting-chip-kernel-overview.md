@@ -14,9 +14,9 @@ The kernel used by module chips is LiteOS Cortex-M, which consists of four modul
 -   **Kernel**: stores hardware-related code in the  **arch**  directory and other code. The implementation of kernel function sets \(such as task and sem\), for example, task context switching and atomic operations, depends on the hardware-related code in the  **arch**  directory.
 -   **Utils**: functions as a basic code block where other modules rely.
 
-**Figure  1**  Architecture of the LiteOS Cortex-M kernel<a name="fig10838105524917"></a>  
+**Figure 1**  Architecture of the LiteOS Cortex-M kernel<a name="fig10838105524917"></a>  
 
-<img src="figures/architecture-of-the-liteos-cortex-m-kernel.png" style="zoom:75%;" />
+<img src="figure/architecture-of-the-liteos-cortex-m-kernel.png" style="zoom:75%;" />
 
 The directory structure of the kernel is described as follows:
 

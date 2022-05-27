@@ -2,7 +2,7 @@
 
 This document provides guidance on how to port the Linux and LiteOS Cortex-A kernels on the OpenHarmony  [small system](../quick-start/quickstart-lite-overview.md)  to a development board. It is intended for developers with experience in developing embedded systems. Before following instructions in this document, it is recommended that you familiarize yourself with  [OpenHarmony](../../OpenHarmony-Overview.md), including its technical architecture, directory structure, kernel subsystem, and driver subsystem. The following table lists the development boards that have been adapted to the small system.
 
-**Table  1**  Development boards compatible with the OpenHarmony small system
+**Table 1**  Development boards compatible with the OpenHarmony small system
 
 <a name="table1839174685713"></a>
 <table><thead align="left"><tr id="row1540164617570"><th class="cellrowborder" valign="top" width="14.18858114188581%" id="mcps1.2.8.1.1"><p id="p2400466575"><a name="p2400466575"></a><a name="p2400466575"></a>Development Board</p>
@@ -56,9 +56,10 @@ This document provides guidance on how to port the Linux and LiteOS Cortex-A ker
 
 In addition to the aforementioned development boards, LiteOS Cortex-A and Linux 4.19 can be ported to development boards that meet the requirements described in the table below.
 
-**Table  2**  Requirements for porting OpenHarmony small system kernels
+**Table 2**  Requirements for porting OpenHarmony small system kernels
 
 <a name="table1447964818426"></a>
+
 <table><thead align="left"><tr id="row114791148154215"><th class="cellrowborder" valign="top" width="10.54%" id="mcps1.2.6.1.1"><p id="p10479134834218"><a name="p10479134834218"></a><a name="p10479134834218"></a>Kernel</p>
 </th>
 <th class="cellrowborder" valign="top" width="24.529999999999998%" id="mcps1.2.6.1.2"><p id="p64791548164211"><a name="p64791548164211"></a><a name="p64791548164211"></a>Supported Architecture</p>

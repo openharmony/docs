@@ -18,7 +18,7 @@ The LiteOS Cortex-A initialization process consists of seven steps:
 
 1.  Add the  **target\_config.h**  file and compile the macros  **DDR\_MEM\_ADDR**  and  **DDR\_MEM\_SIZE**, which indicate the start address and length of the board memory, respectively. The prelinker script  **board.ld.S**  creates the linker script  **board.ld**  based on the two macros.
 2.  Define  **g\_archMmuInitMapping**, the global array of MMU mappings, to specify the memory segment attributes and the virtual-to-physical address mappings. The memory mapping will be established based on this array during kernel startup.
-3.  If there are multiple cores, define  **struct SmpOps**, the handle to the slave core operation function. The  **SmpOps-\>SmpCpuOn**  function needs to implement the feature of waking up a slave core. Then, define the  **SmpRegFunc**  function and call the  **LOS\_SmpOpsSet**  interface to register the handle. The registration process is completed by starting the framework using  **LOS\_MODULE\_INIT\(SmpRegFunc, LOS\_INIT\_LEVEL\_EARLIEST\)**.
+3.  If there are multiple cores, define  **struct SmpOps**, the handle to the secondary core operation function. The  **SmpOps-\>SmpCpuOn**  function needs to implement the feature of waking up a secondary core. Then, define the  **SmpRegFunc**  function and call the  **LOS\_SmpOpsSet**  interface to register the handle. The registration process is completed by starting the framework using  **LOS\_MODULE\_INIT\(SmpRegFunc, LOS\_INIT\_LEVEL\_EARLIEST\)**.
 4.  Create a kernel image based on the linker script  **board.ld**.
 5.  Perform operations such as initialization of the interrupt vector table and MMU page table are performed in the assembly files:  **reset\_vector\_up.S**  and  **reset\_vector\_mp.S**, from which a single-core CPU and a multi-core CPU start, respectively.
 6.  Enable the assembly code in  **reset\_vector.S**  to jump to the  **main**  function of the C programming language to initialize the hardware clock, software timer, memory, and tasks. This process depends on the feature macro configuration in  **target\_config.h**. Then, create the  **SystemInit**  task to be implemented in the board code, with  **OsSchedStart\(\)**  enabled for task scheduling.
@@ -26,8 +26,8 @@ The LiteOS Cortex-A initialization process consists of seven steps:
 
 The figure below shows the overall initialization process.
 
-**Figure  1**  Overall initialization process<a name="fig68283211926"></a>  
-![](figures/overall-initialization-process.png "overall-initialization-process")
+**Figure 1**  Overall initialization process<a name="fig68283211926"></a>  
+![](figure/overall-initialization-process.png "overall-initialization-process")
 
 As can be seen from preceding figure, kernel basic adaptation involves the following parts:
 
@@ -107,18 +107,18 @@ As can be seen from preceding figure, kernel basic adaptation involves the follo
 
 -   Implementing the  **SystemInit**  function to initialize services in the user space. Figure 2 shows a typical initialization scenario.
 
-    **Figure  2**  Service startup process<a name="fig1919217914418"></a>  
-    ![](figures/service-startup-process.png "service-startup-process")
+    **Figure 2**  Service startup process<a name="fig1919217914418"></a>  
+    ![](figure/service-startup-process.png "service-startup-process")
 
 -   Implementing the  **main**  function for basic kernel initialization and initialization of services in the board kernel space.  [Figure 3](#fig32611728133919)  shows the initialization process, where the kernel startup framework takes the lead in the initialization process. The light blue part in the figure indicates the phase in which external modules can be registered and started in the startup framework.
 
     >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
     >Modules at the same layer cannot depend on each other.
 
-    **Figure  3**  Kernel startup framework<a name="fig32611728133919"></a>  
-    ![](figures/kernel-startup-framework.jpg "kernel-startup-framework")
+    **Figure 3**  Kernel startup framework<a name="fig32611728133919"></a>  
+    ![](figure/kernel-startup-framework.jpg "kernel-startup-framework")
 
-    **Table  2**  Startup framework layers
+    **Table 2**  Startup framework layers
 
     <a name="table38544719428"></a>
     <table><thead align="left"><tr id="row286134714423"><th class="cellrowborder" valign="top" width="34.089999999999996%" id="mcps1.2.3.1.1"><p id="p886164717423"><a name="p886164717423"></a><a name="p886164717423"></a>Layer</p>

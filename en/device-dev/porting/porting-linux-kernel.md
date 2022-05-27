@@ -12,7 +12,7 @@ For easy description, we divide the OpenHarmony architecture into two parts:
 
 OpenHarmony = Kernel mode layer + User mode layer
 
-![](figures/technical-architecture.png)
+![](figure/technical-architecture.png)
 
 The kernel mode layer is the OpenHarmony kernel layer \(purple part in the figure\). It consists of the kernel, such as Linux Kernel and LiteOS, and features, such as Hardware Driver Foundation \(HDF\), running in the kernel mode.
 
@@ -35,7 +35,7 @@ Therefore, the OpenHarmony kernel mode layer includes the following:
 -   OpenHarmony basic kernel-mode code
 -   OpenHarmony kernel-mode features, such as HDF
 
-![](figures/openharmony_kernel.png)
+![](figure/openharmony_kernel.png)
 
 The standard LTS Linux kernel and third-party SoC chip platform code constitute the basis of a third-party Linux kernel. The OpenHarmony kernel mode layer can be composed of either of the following:
 
@@ -175,7 +175,7 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
 
     The configuration \(in  **Device Drivers**  \>  **HDF driver framework support**\) is as follows:
 
-    ![](figures/menuconfig.png)
+    ![](figure/menuconfig.png)
 
 
 ### Building the Image<a name="section1681965561911"></a>
