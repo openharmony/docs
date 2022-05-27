@@ -36,9 +36,9 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
                parameters: {}
            }
        ],
-       operationType: OperationType.START_ABILITY,
+       operationType: wantAgent.OperationType.START_ABILITY,
        requestCode: 0,
-       wantAgentFlags:[WantAgentFlags.CONSTANT_FLAG]
+       wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    }
    ```
 
@@ -55,9 +55,9 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
                parameters: {}
            }
        ],
-       operationType: OperationType.SEND_COMMON_EVENT,
+       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
        requestCode: 0,
-       wantAgentFlags:[WantAgentFlags.CONSTANT_FLAG]
+       wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    }
    ```
 
