@@ -182,7 +182,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
   ![zh-cn_image_0000001218739568](figures/zh-cn_image_0000001218739568.png)
 
-- FlexAlign. SpaceBetween:  ，Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素与行首对齐，最后一个元素与行尾对齐。
+- FlexAlign.SpaceBetween:  Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素与行首对齐，最后一个元素与行尾对齐。
 
   ```
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
@@ -197,7 +197,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
   ![zh-cn_image_0000001263019461](figures/zh-cn_image_0000001263019461.png)
 
-- FlexAlign. SpaceAround:  Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
+- FlexAlign.SpaceAround:  Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
 
   ```
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
@@ -212,7 +212,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
   ![zh-cn_image_0000001263339461](figures/zh-cn_image_0000001263339461.png)
 
-- FlexAlign. SpaceEvenly:  Flex主轴方向元素等间距布局， 相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
+- FlexAlign.SpaceEvenly:  Flex主轴方向元素等间距布局， 相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
   ```
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
@@ -292,7 +292,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
   ![zh-cn_image_0000001218579610](figures/zh-cn_image_0000001218579610.png)
 
-- ItemAlign. Stretch：交叉轴方向拉伸填充，在未设置尺寸时，拉伸到容器尺寸。
+- ItemAlign.Stretch：交叉轴方向拉伸填充，在未设置尺寸时，拉伸到容器尺寸。
 
   ```
   Flex({ alignItems: ItemAlign.Stretch }) {  
@@ -333,11 +333,11 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.End: 右对齐。
 
-- FlexAlign. SpaceBetween:  flex items之间的距离相等，与main start、main end两端对齐。
+- FlexAlign.SpaceBetween:  flex items之间的距离相等，与main start、main end两端对齐。
 
-- FlexAlign. SpaceAround:  flex items之间的距离相等，flex items与main start、main end之间的距离等于flex items之间距离的一半。
+- FlexAlign.SpaceAround:  flex items之间的距离相等，flex items与main start、main end之间的距离等于flex items之间距离的一半。
 
-- FlexAlign. SpaceEvenly:  flex items之间的距离相等，flex items与main start、main end之间的距离等于flex items之间的距离。
+- FlexAlign.SpaceEvenly:  flex items之间的距离相等，flex items与main start、main end之间的距离等于flex items之间的距离。
 
 
 ## 场景示例

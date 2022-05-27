@@ -6,7 +6,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 ## Available APIs<a name="section1633115419401"></a>
 
-**Table  1**  Native IPC APIs
+**Table  1** Native IPC APIs
 
 <a name="table178849240013"></a>
 <table><thead align="left"><tr id="row6884924608"><th class="cellrowborder" valign="top" width="14.12141214121412%" id="mcps1.2.4.1.1"><p id="p98846241706"><a name="p98846241706"></a><a name="p98846241706"></a>Class/Interface</p>
@@ -44,9 +44,9 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 **Using Native APIs**
 
-1.  Define the IPC interface  **ITestAbility**.
+1.  Define the IPC interface **ITestAbility**.
 
-    **ITestAbility**  inherits the IPC base class  **IRemoteBroker**  and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
+    **ITestAbility** inherits the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
 
     ```
     class ITestAbility : public IRemoteBroker {
@@ -58,9 +58,9 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     };
     ```
 
-2.  Define and implement service provider  **TestAbilityStub**.
+2.  Define and implement service provider **TestAbilityStub**.
 
-    This class is related to the IPC framework and needs to inherit  **IRemoteStub<ITestAbility\>**. You need to override  **OnRemoteRequest**  on the stub to receive requests from the proxy.
+    This class is related to the IPC framework and needs to inherit **IRemoteStub<ITestAbility\>**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
 
     ```
     class TestAbilityStub : public IRemoteStub<ITestAbility> {
@@ -85,7 +85,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     }
     ```
 
-3.  Define the  **TestAbility**  class that implements functions for the stub.
+3.  Define the **TestAbility** class that implements functions for the stub.
 
     ```
     class TestAbility : public TestAbilityStub {
@@ -98,9 +98,9 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     }
     ```
 
-4.  Define and implement  **TestAbilityProxy**.
+4.  Define and implement **TestAbilityProxy**.
 
-    This class is implemented on the proxy and inherits  **IRemoteProxy<ITestAbility\>**. You can call  **SendRequest**  to send a request to the stub and expose the capabilities provided by the stub.
+    This class is implemented on the proxy and inherits **IRemoteProxy<ITestAbility\>**. You can call **SendRequest** to send a request to the stub and expose the capabilities provided by the stub.
 
     ```
     class TestAbilityProxy : public IRemoteProxy<ITestAbility> {
@@ -128,7 +128,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 5.  Register and start an SA.
 
-    Call  **AddSystemAbility**  to register the  **TestAbilityStub**  instance of the SA with  **SystemAbilityManager**. The registration parameters vary depending on whether the  **SystemAbilityManager**  resides on the same device as the SA.
+    Call **AddSystemAbility** to register the **TestAbilityStub** instance of the SA with **SystemAbilityManager**. The registration parameters vary depending on whether the **SystemAbilityManager** resides on the same device as the SA.
 
     ```
     // Register the TestAbilityStub instance with the SystemAbilityManager on the same device as the SA.
@@ -144,7 +144,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 6.  Obtain the SA.
 
-    Call the  **GetSystemAbility**  function of the  **SystemAbilityManager**  class to obtain the  **IRemoteObject**  for the SA, and create a  **TestAbilityProxy**  instance.
+    Call the **GetSystemAbility** function of the **SystemAbilityManager** class to obtain the **IRemoteObject** for the SA, and create a **TestAbilityProxy** instance.
 
     ```
     // Obtain the proxy of the SA registered on the local device.

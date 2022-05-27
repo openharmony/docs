@@ -7,14 +7,14 @@
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
     - Getting Started
-        - [Preparations](start-overview.md)
+        - [Preparations](quick-start/start-overview.md)
         - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
         - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
         - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
         - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
     - Development Fundamentals
-        - [Application Development Package Structure (FA Model)](quick-start/package-structure.md)
-        - [Application Development Package Structure (Stage Model)](quick-start/module-structure.md)
+        - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
+        - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
         - [Resource File Categories](quick-start/basic-resource-file-categories.md)
         - [SysCap](quick-start/syscap.md)
 - Development
@@ -36,8 +36,8 @@
        - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
        - [DFX](dfx/Readme-EN.md)
        - [Internationalization](internationalization/Readme-EN.md)
-       - 
-       - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
+       - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+       - [Using Native APIs in Application Projects](napi/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials

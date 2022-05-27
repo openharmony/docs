@@ -1,4 +1,4 @@
-# Startup and Recovery
+# Startup
 
 
 ## System Startup Interrupted Due to "parse failed!" Error

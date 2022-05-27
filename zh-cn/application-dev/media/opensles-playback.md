@@ -77,7 +77,7 @@
 
     
 
-6. 打开音频文件，注册 **BuqqerQueueCallback** 回调
+6. 打开音频文件，注册 **BufferQueueCallback** 回调
 
     ```c++
     FILE *wavFile_ = nullptr;

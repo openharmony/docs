@@ -1,10 +1,10 @@
 # Setting Up the Windows+Ubuntu Hybrid Development Environment
 
 
-In embedded development, Windows-based tools, such as Visual Studio Code, are widely used in code editing. Yet, as the source code of most development boards, such as Hi3861 and Hi3516, cannot be built in Windows, these development boards require the Ubuntu build environment.
+In embedded development, Windows-based tools, such as Visual Studio Code, are widely used in code editing. Yet, as the source code of most development boards, such as Hi3861 and Hi3516, cannot be built in Windows, these development boards require the Ubuntu development environment.
 
 
-In the Windows+Ubuntu hybrid build environment, you can enjoy the benefits of both DevEco Device Tool for Windows and DevEco Device Tool for Ubuntu (where Visual Studio Code is optional).
+In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits of both DevEco Device Tool for Windows and DevEco Device Tool for Ubuntu (where Visual Studio Code is optional).
 
 
 ## System Requirements
@@ -18,9 +18,7 @@ In the Windows+Ubuntu hybrid build environment, you can enjoy the benefits of bo
 - DevEco Device Tool: 3.0 Release
 
 
-## Setting Up the Ubuntu Build Environment
-
-The setup procedure varies, depending on whether you need a GUI. If you need a GUI, you need to install Visual Studio Code. In this case, follow the instructions in [Setting Up the Ubuntu Development Environment](https://device.harmonyos.com/en/docs/documentation/guide/ide-install-ubuntu-0000001072959308). If you do not need a GUI, perform the steps below:
+## Setting Up the Ubuntu Development Environment
 
 1. Make sure the Ubuntu shell environment is **bash**.
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
@@ -43,26 +41,26 @@ The setup procedure varies, depending on whether you need a GUI. If you need a G
 
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
 
-   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.400.zip** to the actual software package name.
+   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.401.zip** to the actual software package name.
       
        ```
-       unzip devicetool-linux-tool-3.0.0.400.zip
+       unzip devicetool-linux-tool-3.0.0.401.zip
        ```
 
-   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.400.sh** to the actual installation file name.
+   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.401.sh** to the actual installation file name.
       
        ```
-       chmod u+x devicetool-linux-tool-3.0.0.400.sh
+       chmod u+x devicetool-linux-tool-3.0.0.401.sh
        ```
 
-4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.400.sh** indicates the installation file name.
+4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.401.sh** indicates the installation file name.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
 
    
    ```
-   sudo ./devicetool-linux-tool-3.0.0.400.sh
+   sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
 
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
@@ -91,14 +89,14 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
    1. On the **VSCode installation confirm** page, select **Install VScode 1.62.2 automatically** and click **Next**.
 
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
        > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
 
        ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
 
    2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
 
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
        > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
 
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
@@ -116,14 +114,14 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
    ![en-us_image_0000001225760456](figures/en-us_image_0000001225760456.png)
 
 
-## Configuring Windows to Remotely Access the Ubuntu Build Environment
+## Configuring Windows to Remotely Access the Ubuntu Development Environment
 
 
 ### Installing the SSH Service and Obtaining the IP Address for Remote Access
 
 1. In Ubuntu, open the Terminal tool and run the following command to install the SSH service:
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
 
    

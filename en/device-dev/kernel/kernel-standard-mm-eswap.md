@@ -1,4 +1,4 @@
-# Enhanced SWAP
+# Enhanced Swap
 
 
 ## Basic Concepts
@@ -11,7 +11,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 ### Enabling ESwap
 1. Enable related configuration items and dependencies.
 
-	To enable ESwap, you need to enable the corresponding configuration items and dependencies during kernel compilation. The configuration items related to ESwap are as follows:
+	To enable ESwap, you must enable the corresponding configuration items and dependencies during kernel compilation. The configuration items related to ESwap are as follows:
 
 	```
 	CONFIG_HYPERHOLD=y
@@ -41,13 +41,13 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	```Bash
 	// Run the dd command to create the hpdisk file for ESwap. In this example, the file size is 512 MB. Set the file size based on service requirements.
 	dd if=/dev/random of=/data/hpdisk bs=4096 count=131072
-	// Associate the hpdisk file created with the ESwap device.
+	// Associate the hpdisk file with the ESwap device.
 	losetup /dev/block/loop6 hpdisk
 	```
 
 3. Configure ESwap.
 
-	Bind the device created in 2 as the ESwap device.
+	Bind the device created in step 2 as the ESwap device.
 
 	```Bash
 	echo /dev/block/loop6 > /proc/sys/kernel/hyperhold/device
@@ -56,11 +56,11 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	By default, ESwap encrypts the data swapped out. If the ESwap device created in step 2 supports inline encryption, you can disable the ESwap software encryption function.
 
 	```Bash
-	// Check whether hardware-based encryption is supported and enabled. If not, do not perform this operation.
+	// Check whether hardware-based encryption is supported and enabled. If yes, disable software encryption. Otherwise, do not perform this operation.
 	echo 0 > /proc/sys/kernel/hyperhold/soft_crypt
 	```
 
-	> ![icon-caution.gif](../public_sys-resources/icon-caution.gif)**CAUTION**<br/>
+	> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
 	> For security purposes, all swapped content must be encrypted. If the ESwap device created does not support inline encryption or the inline encryption macro is not enabled during compilation, ESwap cannot be enabled after software encryption is disabled.
 
 4. Enable ESwap.
@@ -72,8 +72,8 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	```
 
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
-> Enable ESwap before zram is enabled. If ESwap is not used, you can enable zram only. If a device does not have the storage device for swap-out or have the corresponding storage partition created, you can enable ZRAM to reclaim memory using **zswapd**.
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> Enable ESwap before zram is enabled. If ESwap is not used, you can enable zram only. If a device does not have the storage device for swap-out or have the corresponding storage partition created, you can enable zram to reclaim memory using **zswapd**.
 
 ### Enabling zram
 
@@ -88,7 +88,7 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo 512M > /sys/block/zram0/disksize
 	```
 
-	> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
+	> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 	> The parameters and functions of **/sys/block/zram0/group** are as follows:
 	>
 	> - **disable**: disables the function.
@@ -115,11 +115,11 @@ Enhanced Swap (ESwap) allows a custom partition to serve as a swap partition and
 	echo force_disable > /proc/sys/kernel/hyperhold/enable
 	```
 
-	> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
+	> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
 	> The difference of the two commands is as follows:
 	>
-	> - **disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to read-only mode.
-	> - **force_disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to read-only mode and disable ESwap until all data in the ESWAP partition is read.
+	> - **disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to **readonly** mode.
+	> - **force_disable**: If there is no data in the ESwap partition, disable ESwap. Otherwise, changes ESwap to **readonly** mode and disable ESwap until all data in the ESWAP partition is read.
 
 2. Disable zram and zram group.
 
@@ -143,7 +143,7 @@ ESwap provides APIs to control swap-in and swap-out policies and record the curr
 |          | [stat](#stat) | Checks the real-time status of ESwap.|
 |          | [zswapd_vmstat_show](#zswapd_vmstat_show) | Records events during the zswapd running.|
 
-> ![icon-caution.gif](../public_sys-resources/icon-caution.gif)**CAUTION**<br/>
+> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
 > Only **avail_buffers** proactively wakes up zswapd because the buffer waterline is adjusted. Other control APIs do not proactively wake up zswapd, but their configuration takes effect only after zswapd is woken up.
 
 The APIs are described as follows:

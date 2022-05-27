@@ -69,15 +69,15 @@ The table below describes the APIs of the DAC module. For more details, see API 
 | :------------------------------------------------------------| :------------ |
 | DevHandle DacOpen(uint32_t number)                           | Opens a DAC device. |
 | void DacClose(DevHandle handle)                              | Closes a DAC device. |
-| int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val) | Sets the target DA value. |
+| int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val) | Sets a target DA value. |
 
 ### How to Develop
 
-The figure below illustrates the process of using a DAC device.
+The figure below illustrates how to use the APIs.
 
-**Figure 2** Process of using a DAC device
- 
-![](figures/process-of-using-DAC.png "Process of using a DAC")
+**Figure 2** Using DAC driver APIs
+
+![](figures/using-DAC-process.png "using-DAC-process.png")
 
 #### Opening a DAC Device
 
@@ -111,7 +111,7 @@ if (dacHandle == NULL) {
 }
 ```
 
-#### Setting the Target DA Value
+#### Setting a Target DA Value
 
 ```
 int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);

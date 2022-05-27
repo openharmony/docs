@@ -1,8 +1,8 @@
 # Wallpaper
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 
 
 ## Modules to Import
@@ -21,8 +21,8 @@ Defines the wallpaper type.
 
 | Name | Description |
 | -------- | -------- |
-| WALLPAPER_LOCKSCREEN | Lock&nbsp;screen&nbsp;wallpaper. |
-| WALLPAPER_SYSTEM | Home&nbsp;screen&nbsp;wallpaper. |
+| WALLPAPER_LOCKSCREEN | Lock screen wallpaper. |
+| WALLPAPER_SYSTEM | Home screen wallpaper. |
 
 
 ## wallpaper.getColors
@@ -36,12 +36,12 @@ Obtains the main color information of the wallpaper of a specified type.
 - Parameters
     | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
-  | callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;main&nbsp;color&nbsp;information&nbsp;of&nbsp;the&nbsp;wallpaper. |
+  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+  | callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Yes | Callback used to return the main color information of the wallpaper. |
 
 - Example
   
-  ```
+  ```js
   wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
       if (error) {
           console.error(`failed to getColors because: ` + JSON.stringify(error));
@@ -60,25 +60,27 @@ Obtains the main color information of the wallpaper of a specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
+**Parameters**
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;main&nbsp;color&nbsp;information&nbsp;of&nbsp;the&nbsp;wallpaper. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
-- Example
-  
-  ```
-  wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to getColors.`);
-  }).catch((error) => {
-      console.error(`failed to getColors because: ` + JSON.stringify(error));
-  });
-  ```
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Promise used to return the main color information of the wallpaper. |
+
+**Example**
+
+```js
+wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+    console.log(`success to getColors.`);
+}).catch((error) => {
+    console.error(`failed to getColors because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.getId
@@ -89,23 +91,24 @@ Obtains the ID of the wallpaper of the specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;wallpaper&nbsp;ID.&nbsp;If&nbsp;the&nbsp;wallpaper&nbsp;of&nbsp;the&nbsp;specified&nbsp;type&nbsp;is&nbsp;configured,&nbsp;a&nbsp;number&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;**-1**&nbsp;is&nbsp;returned.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;-1&nbsp;to&nbsp;2^31-1. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
-      if (error) {
-          console.error(`failed to getId because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to getId: ` + JSON.stringify(data));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1. |
+
+**Example**
+
+```js
+wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+    if (error) {
+        console.error(`failed to getId because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to getId: ` + JSON.stringify(data));
+});
+```
 
 
 ## wallpaper.getId
@@ -116,26 +119,27 @@ Obtains the ID of the wallpaper of the specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**Parameters**
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;wallpaper&nbsp;ID.&nbsp;If&nbsp;this&nbsp;type&nbsp;of&nbsp;wallpaper&nbsp;is&nbsp;configured,&nbsp;a&nbsp;number&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;**-1**&nbsp;is&nbsp;returned.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;-1&nbsp;to&nbsp;2^31-1. |
+**Return value**
 
-- Example
-  
-  ```
-  wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to getId: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getId because: ` + JSON.stringify(error));
-  });
-  ```
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the wallpaper ID. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1. |
+
+**Example**
+
+```js
+wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+    console.log(`success to getId: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to getId because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.getMinHeight
@@ -146,22 +150,23 @@ Obtains the minimum height of the wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;minimum&nbsp;wallpaper&nbsp;height,&nbsp;in&nbsp;pixels.&nbsp;If&nbsp;the&nbsp;return&nbsp;value&nbsp;is&nbsp;**0**,&nbsp;no&nbsp;wallpaper&nbsp;is&nbsp;set.&nbsp;In&nbsp;this&nbsp;case,&nbsp;the&nbsp;default&nbsp;height&nbsp;should&nbsp;be&nbsp;used&nbsp;instead. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.getMinHeight((error, data) => {
-      if (error) {
-          console.error(`failed to getMinHeight because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to getMinHeight: ` + JSON.stringify(data));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead. |
+
+**Example**
+
+```js
+wallpaper.getMinHeight((error, data) => {
+    if (error) {
+        console.error(`failed to getMinHeight because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to getMinHeight: ` + JSON.stringify(data));
+});
+```
 
 
 ## wallpaper.getMinHeight
@@ -172,21 +177,21 @@ Obtains the minimum height of the wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**Return value**
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;minimum&nbsp;wallpaper&nbsp;height,&nbsp;in&nbsp;pixels.&nbsp;If&nbsp;the&nbsp;return&nbsp;value&nbsp;is&nbsp;**0**,&nbsp;no&nbsp;wallpaper&nbsp;is&nbsp;set.&nbsp;In&nbsp;this&nbsp;case,&nbsp;the&nbsp;default&nbsp;height&nbsp;should&nbsp;be&nbsp;used&nbsp;instead. |
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead. |
 
-- Example
-  
-  ```
-  wallpaper.getMinHeight().then((data) => {
-      console.log(`success to getMinHeight: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getMinHeight because: ` + JSON.stringify(error));
-  });
-  ```
+**Example**
+
+```js
+wallpaper.getMinHeight().then((data) => {
+    console.log(`success to getMinHeight: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to getMinHeight because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.getMinWidth
@@ -197,23 +202,23 @@ Obtains the minimum width of the wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**Parameters**
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;minimum&nbsp;wallpaper&nbsp;width,&nbsp;in&nbsp;pixels.&nbsp;If&nbsp;the&nbsp;return&nbsp;value&nbsp;is&nbsp;**0**,&nbsp;no&nbsp;wallpaper&nbsp;is&nbsp;set.&nbsp;In&nbsp;this&nbsp;case,&nbsp;the&nbsp;default&nbsp;width&nbsp;should&nbsp;be&nbsp;used&nbsp;instead. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead. |
 
-- Example
-  
-  ```
-  wallpaper.getMinWidth((error, data) => {
-      if (error) {
-          console.error(`failed to getMinWidth because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to getMinWidth: ` + JSON.stringify(data));
-  });
-  ```
+**Example**
+
+```js
+wallpaper.getMinWidth((error, data) => {
+    if (error) {
+        console.error(`failed to getMinWidth because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to getMinWidth: ` + JSON.stringify(data));
+});
+```
 
 
 ## wallpaper.getMinWidth
@@ -224,20 +229,21 @@ Obtains the minimum width of the wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promised&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;minimum&nbsp;wallpaper&nbsp;width,&nbsp;in&nbsp;pixels.&nbsp;If&nbsp;the&nbsp;return&nbsp;value&nbsp;is&nbsp;**0**,&nbsp;no&nbsp;wallpaper&nbsp;is&nbsp;set.&nbsp;In&nbsp;this&nbsp;case,&nbsp;the&nbsp;default&nbsp;width&nbsp;should&nbsp;be&nbsp;used&nbsp;instead. |
+**Return value**
 
-- Example
-  
-  ```
-  wallpaper.getMinWidth().then((data) => {
-      console.log(`success to getMinWidth: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getMinWidth because: ` + JSON.stringify(error));
-  });
-  ```
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promised used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead. |
+
+**Example**
+
+```js
+wallpaper.getMinWidth().then((data) => {
+    console.log(`success to getMinWidth: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to getMinWidth because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.isChangePermitted
@@ -248,22 +254,23 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;queried&nbsp;result.&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;it&nbsp;is&nbsp;allowed;&nbsp;returns&nbsp;**false**&nbsp;otherwise. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.isChangePermitted((error, data) => {
-      if (error) {
-          console.error(`failed to isChangePermitted because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to isChangePermitted: ` + JSON.stringify(data));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the queried result. Returns **true** if it is allowed; returns **false** otherwise. |
+
+**Example**
+
+```js
+wallpaper.isChangePermitted((error, data) => {
+    if (error) {
+        console.error(`failed to isChangePermitted because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to isChangePermitted: ` + JSON.stringify(data));
+});
+```
 
 
 ## wallpaper.isChangePermitted
@@ -274,20 +281,21 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;whether&nbsp;to&nbsp;allow&nbsp;the&nbsp;application&nbsp;to&nbsp;change&nbsp;the&nbsp;wallpaper&nbsp;for&nbsp;the&nbsp;current&nbsp;user.&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;it&nbsp;is&nbsp;allowed;&nbsp;returns&nbsp;**false**&nbsp;otherwise. |
+**Return value**
 
-- Example
-  
-  ```
-  wallpaper.isChangePermitted().then((data) => {
-      console.log(`success to isChangePermitted: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to isChangePermitted because: ` + JSON.stringify(error));
-  });
-  ```
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether to allow the application to change the wallpaper for the current user. Returns **true** if it is allowed; returns **false** otherwise. |
+
+**Example**
+
+```js
+wallpaper.isChangePermitted().then((data) => {
+    console.log(`success to isChangePermitted: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to isChangePermitted because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.isOperationAllowed
@@ -298,22 +306,23 @@ Checks whether the user is allowed to set wallpapers.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;whether&nbsp;the&nbsp;user&nbsp;is&nbsp;allowed&nbsp;to&nbsp;set&nbsp;wallpapers.&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;it&nbsp;is&nbsp;allowed;&nbsp;returns&nbsp;**false**&nbsp;otherwise. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.isOperationAllowed((error, data) => {
-      if (error) {
-          console.error(`failed to isOperationAllowed because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to isOperationAllowed: ` + JSON.stringify(data));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return whether the user is allowed to set wallpapers. Returns **true** if it is allowed; returns **false** otherwise. |
+
+**Example**
+
+```js
+wallpaper.isOperationAllowed((error, data) => {
+    if (error) {
+        console.error(`failed to isOperationAllowed because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to isOperationAllowed: ` + JSON.stringify(data));
+});
+```
 
 
 ## wallpaper.isOperationAllowed
@@ -324,20 +333,21 @@ Checks whether the user is allowed to set wallpapers.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;whether&nbsp;the&nbsp;user&nbsp;is&nbsp;allowed&nbsp;to&nbsp;set&nbsp;wallpapers.&nbsp;Returns&nbsp;**true**&nbsp;if&nbsp;it&nbsp;is&nbsp;allowed;&nbsp;returns&nbsp;**false**&nbsp;otherwise. |
+**Return value**
 
-- Example
-  
-  ```
-  wallpaper.isOperationAllowed().then((data) => {
-      console.log(`success to isOperationAllowed: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to isOperationAllowed because: ` + JSON.stringify(error));
-  });
-  ```
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the user is allowed to set wallpapers. Returns **true** if it is allowed; returns **false** otherwise. |
+
+**Example**
+
+```js
+wallpaper.isOperationAllowed().then((data) => {
+    console.log(`success to isOperationAllowed: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to isOperationAllowed because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.reset
@@ -350,23 +360,24 @@ Removes a wallpaper of the specified type and restores the default one.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;result&nbsp;of&nbsp;removal&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
-      if (error) {
-          console.error(`failed to reset because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to reset.`);
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the result of removal is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+    if (error) {
+        console.error(`failed to reset because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to reset.`);
+});
+```
 
 
 ## wallpaper.reset
@@ -379,25 +390,27 @@ Removes a wallpaper of the specified type and restores the default one.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
+**Parameters**
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;result&nbsp;of&nbsp;removal&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
-- Example
-  
-  ```
-  wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to reset.`);
-  }).catch((error) => {
-      console.error(`failed to reset because: ` + JSON.stringify(error));
-  });
-  ```
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the result of removal is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+    console.log(`success to reset.`);
+}).catch((error) => {
+    console.error(`failed to reset because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.setWallpaper
@@ -410,47 +423,48 @@ Sets a specified source as the wallpaper of a specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\| [PixelMap](js-apis-image.md#pixelmap7) | Yes | Uri&nbsp;path&nbsp;of&nbsp;the&nbsp;JPEG&nbsp;or&nbsp;PNG&nbsp;file,&nbsp;or&nbsp;bitmap&nbsp;of&nbsp;the&nbsp;PNG&nbsp;file. |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
-  | callback | AsyncCallback&lt;void&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;setting&nbsp;result&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+**Parameters**
 
-- Example
-  
-  ```
-  //The source type is string.
-  let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {   
-      if (error) {        
-          console.error(`failed to setWallpaper because: ` + JSON.stringify(error));       
-          return;   
-      }    
-      console.log(`success to setWallpaper.`);
-  });
-  
-  //The source type is image.PixelMap.
-  import image from '@ohos.multimedia.image';
-  let imageSource = image.createImageSource("file://" + wallpaperPath);
-  let opts = {
-      "desiredSize": {
-          "height": 3648,
-          "width": 2736
-      }
-  };
-  imageSource.createPixelMap(opts).then((pixelMap) => {      
-      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
-          if (error) {       
-              console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-              return;
-          }    
-          console.log(`success to setWallpaper.`);
-      });
-  }).catch((error) => {       
-      console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI path of the JPEG or PNG file, or bitmap of the PNG file. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+// The source type is string.
+let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {   
+    if (error) {        
+        console.error(`failed to setWallpaper because: ` + JSON.stringify(error));       
+        return;   
+    }    
+    console.log(`success to setWallpaper.`);
+});
+
+// The source type is image.PixelMap.
+import image from '@ohos.multimedia.image';
+let imageSource = image.createImageSource("file://" + wallpaperPath);
+let opts = {
+    "desiredSize": {
+        "height": 3648,
+        "width": 2736
+    }
+};
+imageSource.createPixelMap(opts).then((pixelMap) => {      
+    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
+        if (error) {       
+            console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+            return;
+        }    
+        console.log(`success to setWallpaper.`);
+    });
+}).catch((error) => {       
+    console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.setWallpaper
@@ -463,47 +477,49 @@ Sets a specified source as the wallpaper of a specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | source | string&nbsp;\|&nbsp;[PixelMap](js-apis-image.md#pixelmap7) | Yes | Uri&nbsp;path&nbsp;of&nbsp;the&nbsp;JPEG&nbsp;or&nbsp;PNG&nbsp;file,&nbsp;or&nbsp;bitmap&nbsp;of&nbsp;the&nbsp;PNG&nbsp;file. |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
+**Parameters**
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;setting&nbsp;result&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI path of the JPEG or PNG file, or bitmap of the PNG file. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
-- Example
-  
-  ```
-  //The source type is string.
-  let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to setWallpaper.`);
-  }).catch((error) => {
-      console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-  });
-  
-  //The source type is image.PixelMap.
-  import image from '@ohos.multimedia.image';
-  let imageSource = image.createImageSource("file://" + wallpaperPath);
-  let opts = {
-      "desiredSize": {
-          "height": 3648,
-          "width": 2736
-      }
-  };
-  imageSource.createPixelMap(opts).then((pixelMap) => {      
-      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-          console.log(`success to setWallpaper.`);
-      }).catch((error) => {
-          console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-      });
-  }).catch((error) => {       
-      console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
-  });
-  ```
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+// The source type is string.
+let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+    console.log(`success to setWallpaper.`);
+}).catch((error) => {
+    console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+});
+
+// The source type is image.PixelMap.
+import image from '@ohos.multimedia.image';
+let imageSource = image.createImageSource("file://" + wallpaperPath);
+let opts = {
+    "desiredSize": {
+        "height": 3648,
+        "width": 2736
+    }
+};
+imageSource.createPixelMap(opts).then((pixelMap) => {      
+    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+        console.log(`success to setWallpaper.`);
+    }).catch((error) => {
+        console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+    });
+}).catch((error) => {       
+    console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
+});
+```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -511,27 +527,28 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 Obtains the wallpaper of the specified type.
 
-**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;file&nbsp;descriptor&nbsp;ID&nbsp;to&nbsp;the&nbsp;wallpaper&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+**Parameters**
 
-- Example
-  
-  ```
-  wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
-      if (error) {
-          console.error(`failed to getFile because: ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`success to getFile: ` + JSON.stringify(data));
-  });
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+    if (error) {
+        console.error(`failed to getFile because: ` + JSON.stringify(error));
+        return;
+    }
+    console.log(`success to getFile: ` + JSON.stringify(data));
+});
+```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -543,25 +560,27 @@ Obtains the wallpaper of the specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper&nbsp;type. |
+**Parameters**
 
-- Return values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful,&nbsp;the&nbsp;file&nbsp;descriptor&nbsp;ID&nbsp;to&nbsp;the&nbsp;wallpaper&nbsp;is&nbsp;returned.&nbsp;Otherwise,&nbsp;error&nbsp;information&nbsp;is&nbsp;returned. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
 
-- Example
-  
-  ```
-  wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to getFile: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getFile because: ` + JSON.stringify(error));
-  });
-  ```
+**Return value**
+
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned. |
+
+**Example**
+
+```js
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+    console.log(`success to getFile: ` + JSON.stringify(data));
+}).catch((error) => {
+    console.error(`failed to getFile because: ` + JSON.stringify(error));
+});
+```
 
 
 ## wallpaper.on('colorChange')
@@ -572,20 +591,21 @@ Subscribes to the wallpaper color change event.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Type&nbsp;of&nbsp;the&nbsp;event&nbsp;to&nbsp;subscribe&nbsp;to.&nbsp;The&nbsp;value&nbsp;**colorChange**&nbsp;indicates&nbsp;subscribing&nbsp;to&nbsp;the&nbsp;wallpaper&nbsp;color&nbsp;change&nbsp;event. |
-  | callback | function | Yes | Callback&nbsp;triggered&nbsp;when&nbsp;the&nbsp;wallpaper&nbsp;color&nbsp;changes.&nbsp;The&nbsp;wallpaper&nbsp;type&nbsp;and&nbsp;main&nbsp;colors&nbsp;are&nbsp;returned.<br/>-&nbsp;colors<br/>&nbsp;&nbsp;Main&nbsp;color&nbsp;information&nbsp;of&nbsp;the&nbsp;wallpaper.&nbsp;For&nbsp;details,&nbsp;see&nbsp;[RgbaColor](#rgbacolor).<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;Wallpaper&nbsp;type. |
+**Parameters**
 
-- Example
-  
-  ```
-  let listener = (colors, wallpaperType) => {
-      console.log(`wallpaper color changed.`);
-  };
-  wallpaper.on('colorChange', listener);
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| type | string | Yes | Type of the event to subscribe to. The value **colorChange** indicates subscribing to the wallpaper color change event. |
+| callback | function | Yes | Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br/>- colors<br/>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br/>- wallpaperType<br/>  Wallpaper type. |
+
+**Example**
+
+```js
+let listener = (colors, wallpaperType) => {
+    console.log(`wallpaper color changed.`);
+};
+wallpaper.on('colorChange', listener);
+```
 
 
 ## wallpaper.off('colorChange')
@@ -596,24 +616,25 @@ Unsubscribes from the wallpaper color change event.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes | Type&nbsp;of&nbsp;the&nbsp;event&nbsp;to&nbsp;unsubscribe&nbsp;from.&nbsp;The&nbsp;value&nbsp;**colorChange**&nbsp;indicates&nbsp;unsubscribing&nbsp;from&nbsp;the&nbsp;wallpaper&nbsp;color&nbsp;change&nbsp;event. |
-  | callback | function | No | &nbsp;&nbsp;Callback&nbsp;for&nbsp;the&nbsp;wallpaper&nbsp;color&nbsp;change&nbsp;event.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;specified,&nbsp;all&nbsp;callbacks&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;wallpaper&nbsp;color&nbsp;change&nbsp;event&nbsp;are&nbsp;invoked.<br/>-&nbsp;colors<br/>&nbsp;&nbsp;Main&nbsp;color&nbsp;information&nbsp;of&nbsp;the&nbsp;wallpaper.&nbsp;For&nbsp;details,&nbsp;see&nbsp;[RgbaColor](#rgbacolor).<br/>-&nbsp;wallpaperType<br/>&nbsp;&nbsp;Wallpaper&nbsp;type. |
+**Parameters**
 
-- Example
-  
-  ```
-  let listener = (colors, wallpaperType) => {
-      console.log(`wallpaper color changed.`);
-  };
-  wallpaper.on('colorChange', listener);
-  // Unsubscribe from the listener.
-  wallpaper.off('colorChange', listener);
-  //Unsubscribe from all subscriptions of the colorChange type.
-  wallpaper.off('colorChange');
-  ```
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| type | string | Yes | Type of the event to unsubscribe from. The value **colorChange** indicates unsubscribing from the wallpaper color change event. |
+| callback | function | No |   Callback for the wallpaper color change event. If this parameter is not specified, all callbacks corresponding to the wallpaper color change event are invoked.<br/>- colors<br/>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br/>- wallpaperType<br/>  Wallpaper type. |
+
+**Example**
+
+```js
+let listener = (colors, wallpaperType) => {
+    console.log(`wallpaper color changed.`);
+};
+wallpaper.on('colorChange', listener);
+// Unsubscribe from the listener.
+wallpaper.off('colorChange', listener);
+//Unsubscribe from all subscriptions of the colorChange type.
+wallpaper.off('colorChange');
+```
 
 
 ## RgbaColor
@@ -622,7 +643,7 @@ Unsubscribes from the wallpaper color change event.
 
 | Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| red | number | Yes | Yes | Red&nbsp;color.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;255. |
-| green | number | Yes | Yes | Green&nbsp;color.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;255. |
-| blue | number | Yes | Yes | Blue&nbsp;color.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;255. |
-| alpha | number | Yes | Yes | Alpha&nbsp;value.&nbsp;The&nbsp;value&nbsp;ranges&nbsp;from&nbsp;0&nbsp;to&nbsp;255. |
+| red | number | Yes | Yes | Red color. The value ranges from 0 to 255. |
+| green | number | Yes | Yes | Green color. The value ranges from 0 to 255. |
+| blue | number | Yes | Yes | Blue color. The value ranges from 0 to 255. |
+| alpha | number | Yes | Yes | Alpha value. The value ranges from 0 to 255. |

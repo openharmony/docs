@@ -104,12 +104,12 @@ The real-time clock \(RTC\) driver provides precise real time for the operating 
 
 During the OS startup, the HDF loads the RTC driver based on the configuration file. The RTC driver detects the RTC component and initializes the driver.
 
-[Figure 1](#fig1610020107333)  illustrates the process of using an RTC device.
+The figure below illustrates how to use the APIs.
 
-**Figure  1** Process of using an RTC device<a name="fig1610020107333"></a>  
-![](figures/process-of-using-an-rtc-device.png "process-of-using-an-rtc-device")
+**Figure  1** Process of using an RTC device  
+![](figures/using-rtc-process.png "process-of-using-an-rtc-device")
 
-### Creating an RTC Device Handle<a name="section1131212144310"></a>
+### Opening the RTC Device Handle<a name="section1131212144310"></a>
 
 After the RTC driver is loaded, you can use the API provided by the HDF and call APIs of the RTC driver.
 
@@ -138,16 +138,17 @@ DevHandle RtcOpen\(void\);
 </tr>
 <tr id="row2808192935615"><td class="cellrowborder" valign="top" width="21.45%"><p id="p380852915567"><a name="p380852915567"></a><a name="p380852915567"></a>handle</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.55%"><p id="p26881319114110"><a name="p26881319114110"></a><a name="p26881319114110"></a>Returns the  if the operation is successful.</p>
+<td class="cellrowborder" valign="top" width="78.55%"><p id="p26881319114110"><a name="p26881319114110"></a><a name="p26881319114110"></a>The operation is successful.</p>
 </td>
 </tr>
 <tr id="row4808142945615"><td class="cellrowborder" valign="top" width="21.45%"><p id="p188084291561"><a name="p188084291561"></a><a name="p188084291561"></a>NULL</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.55%"><p id="p780852912566"><a name="p780852912566"></a><a name="p780852912566"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.55%"><p id="p780852912566"><a name="p780852912566"></a><a name="p780852912566"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 ```
 DevHandle  handle = NULL;
@@ -161,7 +162,7 @@ if (handle  == NULL) {
 
 ### Releasing the RTC Device Handle<a name="section10744117144314"></a>
 
-You can call the following function to release the RTC device handle, thereby releasing resources of the device:
+You can call **RtcClose()** function to release the RTC device handle, thereby releasing resources of the device.
 
 void RtcClose\(DevHandle handle\);
 
@@ -186,7 +187,7 @@ void RtcClose\(DevHandle handle\);
 RtcClose(handle);
 ```
 
-### Registering RtcAlarmCallback<a name="section14839440184320"></a>
+### Registering RtcAlarmCallback
 
 After the OS is started, call the following function to register **RtcAlarmCallback**, which will be invoked when an alarm is generated at the specified time:
 
@@ -228,7 +229,7 @@ int32\_t RtcRegisterAlarmCallback\(DevHandle handle, enum RtcAlarmIndex alarmInd
 </tr>
 <tr id="row1241081213303"><td class="cellrowborder" valign="top" width="21.36%" headers="mcps1.2.3.1.1 "><p id="p1123362173010"><a name="p1123362173010"></a><a name="p1123362173010"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.64%" headers="mcps1.2.3.1.2 "><p id="p1723362153010"><a name="p1723362153010"></a><a name="p1723362153010"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.64%" headers="mcps1.2.3.1.2 "><p id="p1723362153010"><a name="p1723362153010"></a><a name="p1723362153010"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -257,11 +258,11 @@ if (ret != 0) {
 }
 ```
 
-### Performing RTC-related Operations<a name="section161927578433"></a>
+### Performing RTC-related Operations
 
 -   Reading RTC time
 
-Call the following function to read time information from the RTC driver, including the year, month, the day of the week, day, hour, minute, second, and millisecond:
+Call the **RtcReadTime()** function to read time information from the RTC driver, including the year, month, the day of the week, day, hour, minute, second, and millisecond.
 
 int32\_t RtcReadTime\(DevHandle handle, struct RtcTime \*time\);
 
@@ -295,7 +296,7 @@ int32\_t RtcReadTime\(DevHandle handle, struct RtcTime \*time\);
 </tr>
 <tr id="row15393184519323"><td class="cellrowborder" valign="top" width="21.45%"><p id="p13521182309"><a name="p13521182309"></a><a name="p13521182309"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.55%"><p id="p1035216186309"><a name="p1035216186309"></a><a name="p1035216186309"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.55%"><p id="p1035216186309"><a name="p1035216186309"></a><a name="p1035216186309"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -314,7 +315,7 @@ if (ret != 0) {
 
 -   Setting RTC time
 
-Call the following function to set the RTC time:
+Call the **RtcWriteTime()** function to set the RTC time.
 
 int32\_t RtcWriteTime\(DevHandle handle, struct RtcTime \*time\);
 
@@ -348,7 +349,7 @@ int32\_t RtcWriteTime\(DevHandle handle, struct RtcTime \*time\);
 </tr>
 <tr id="row024153123616"><td class="cellrowborder" valign="top" width="21.54%"><p id="p5602191619300"><a name="p5602191619300"></a><a name="p5602191619300"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.46%"><p id="p12602131643015"><a name="p12602131643015"></a><a name="p12602131643015"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.46%"><p id="p12602131643015"><a name="p12602131643015"></a><a name="p12602131643015"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -378,7 +379,7 @@ if (ret != 0) {
 
 -   Reading the RTC alarm time
 
-Call the following function to read the alarm time:
+Call the **RtcReadAlarm()** function to read the alarm time.
 
 int32\_t RtcReadAlarm\(DevHandle handle, enum RtcAlarmIndex alarmIndex, struct RtcTime \*time\);
 
@@ -417,7 +418,7 @@ int32\_t RtcReadAlarm\(DevHandle handle, enum RtcAlarmIndex alarmIndex, struct R
 </tr>
 <tr id="row016911915461"><td class="cellrowborder" valign="top" width="21.54%"><p id="p6833213133013"><a name="p6833213133013"></a><a name="p6833213133013"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.46%"><p id="p168341213143015"><a name="p168341213143015"></a><a name="p168341213143015"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.46%"><p id="p168341213143015"><a name="p168341213143015"></a><a name="p168341213143015"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -436,7 +437,7 @@ if (ret != 0) {
 
 -   Setting RTC alarm time
 
-Call the following function to set the RTC alarm time based on the alarm index:
+Call the **RtcWriteAlarm()** function to set the RTC alarm time based on the alarm index.
 
 int32\_t RtcWriteAlarm\(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct RtcTime \*time\);
 
@@ -475,7 +476,7 @@ int32\_t RtcWriteAlarm\(DevHandle handle, enum RtcAlarmIndex  alarmIndex, struct
 </tr>
 <tr id="row1686918225483"><td class="cellrowborder" valign="top" width="21.62%"><p id="p16246181033012"><a name="p16246181033012"></a><a name="p16246181033012"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p3246111019309"><a name="p3246111019309"></a><a name="p3246111019309"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p3246111019309"><a name="p3246111019309"></a><a name="p3246111019309"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -505,7 +506,7 @@ if (ret != 0) {
 
 -   Enabling or disabling alarm interrupts
 
-Before performing alarm operations, use the following function to enable alarm interrupts, so that **RtcAlarmCallback** will be called when the alarm is not generated upon a timeout:
+Before performing alarm operations, use the **RtcAlarmInterruptEnable()** function to enable alarm interrupts, so that **RtcAlarmCallback** will be called when the alarm is not generated upon a timeout.
 
 int32\_t RtcAlarmInterruptEnable\(DevHandle handle, enum RtcAlarmIndex alarmIndex, uint8\_t enable\);
 
@@ -544,7 +545,7 @@ int32\_t RtcAlarmInterruptEnable\(DevHandle handle, enum RtcAlarmIndex alarmInde
 </tr>
 <tr id="row2347115321514"><td class="cellrowborder" valign="top" width="21.36%"><p id="p324855163018"><a name="p324855163018"></a><a name="p324855163018"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.64%"><p id="p7248857302"><a name="p7248857302"></a><a name="p7248857302"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.64%"><p id="p7248857302"><a name="p7248857302"></a><a name="p7248857302"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -562,7 +563,7 @@ if (ret != 0) {
 
 -   Reading RTC external frequency
 
-Call the following function to read the frequency of the external crystal oscillator connected to the RTC driver:
+Call the **RtcGetFreq()** function to read the frequency of the external crystal oscillator connected to the RTC driver.
 
 int32\_t RtcGetFreq\(DevHandle handle, uint32\_t \*freq\);
 
@@ -596,7 +597,7 @@ int32\_t RtcGetFreq\(DevHandle handle, uint32\_t \*freq\);
 </tr>
 <tr id="row135892261811"><td class="cellrowborder" valign="top" width="21.36%"><p id="p152692538292"><a name="p152692538292"></a><a name="p152692538292"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.64%"><p id="p327015313294"><a name="p327015313294"></a><a name="p327015313294"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.64%"><p id="p327015313294"><a name="p327015313294"></a><a name="p327015313294"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -615,7 +616,7 @@ if (ret != 0) {
 
 -   Setting the frequency of the external crystal oscillator connected to the RTC driver
 
-Call the following function to set the frequency of the external crystal oscillator connected to the RTC driver:
+Call the **RtcSetFreq()** function to set the frequency of the external crystal oscillator connected to the RTC driver.
 
 int32\_t RtcSetFreq\(DevHandle handle, uint32\_t freq\);
 
@@ -649,7 +650,7 @@ int32\_t RtcSetFreq\(DevHandle handle, uint32\_t freq\);
 </tr>
 <tr id="row10702194313201"><td class="cellrowborder" valign="top" width="21.36%"><p id="p165182216306"><a name="p165182216306"></a><a name="p165182216306"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.64%"><p id="p651815219302"><a name="p651815219302"></a><a name="p651815219302"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.64%"><p id="p651815219302"><a name="p651815219302"></a><a name="p651815219302"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -668,7 +669,7 @@ if (ret != 0) {
 
 -   Resetting the RTC driver
 
-Call the following function to perform a reset on the RTC driver \(after the reset, the registers are restored to the default values\):
+Call the **RtcReset()** function to perform a reset on the RTC driver \(after the reset, the registers are restored to the default values\).
 
 int32\_t RtcReset\(DevHandle handle\);
 
@@ -697,7 +698,7 @@ int32\_t RtcReset\(DevHandle handle\);
 </tr>
 <tr id="row16990133152516"><td class="cellrowborder" valign="top" width="21.36%"><p id="p17536173573015"><a name="p17536173573015"></a><a name="p17536173573015"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.64%"><p id="p1153623503014"><a name="p1153623503014"></a><a name="p1153623503014"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.64%"><p id="p1153623503014"><a name="p1153623503014"></a><a name="p1153623503014"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -715,7 +716,7 @@ if (ret != 0) {
 
 -   Reading the configuration of a custom RTC register
 
-Call the following function to read the configuration of a custom RTC register based on the register index \(one index corresponds to one byte of the configuration value\):
+Call the **RtcReadReg()** function to read the configuration of a custom RTC register based on the register index \(one index corresponds to one byte of the configuration value\):
 
 int32\_t RtcReadReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t \*value\);
 
@@ -754,7 +755,7 @@ int32\_t RtcReadReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t \*value\);
 </tr>
 <tr id="row1424719410333"><td class="cellrowborder" valign="top" width="21.62%"><p id="p112477417335"><a name="p112477417335"></a><a name="p112477417335"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p7247547338"><a name="p7247547338"></a><a name="p7247547338"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p7247547338"><a name="p7247547338"></a><a name="p7247547338"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>
@@ -774,7 +775,7 @@ if (ret != 0) {
 
 -   Setting the configuration of a custom RTC register
 
-Call the following function to configure a register based on the specified register index \(one index corresponds to one byte of the configuration value\):
+Call the **RtcWriteReg()** function to configure a register based on the specified register index \(one index corresponds to one byte of the configuration value\).
 
 int32\_t RtcWriteReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t value\);
 
@@ -813,7 +814,7 @@ int32\_t RtcWriteReg\(DevHandle handle, uint8\_t usrDefIndex, uint8\_t value\);
 </tr>
 <tr id="row127231848123615"><td class="cellrowborder" valign="top" width="21.62%"><p id="p197231148173613"><a name="p197231148173613"></a><a name="p197231148173613"></a>Negative value</p>
 </td>
-<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p16723134823618"><a name="p16723134823618"></a><a name="p16723134823618"></a>The operation fails.</p>
+<td class="cellrowborder" valign="top" width="78.38000000000001%"><p id="p16723134823618"><a name="p16723134823618"></a><a name="p16723134823618"></a>The operation failed.</p>
 </td>
 </tr>
 </tbody>

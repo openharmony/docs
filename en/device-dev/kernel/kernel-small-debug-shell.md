@@ -1,4 +1,4 @@
-# Shell<a name="EN-US_TOPIC_0000001179845911"></a>
+# Shell
 
 -   **[Introduction to the Shell](kernel-small-debug-shell-overview.md)**  
 

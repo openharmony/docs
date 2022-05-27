@@ -1,11 +1,4 @@
-# kill<a name="EN-US_TOPIC_0000001179965835"></a>
-
--   [Command Function](#section366714216619)
--   [Syntax](#section8833164614615)
--   [Parameters](#section12809111019453)
--   [Usage](#section15935131220717)
--   [Example](#section79281818476)
--   [Output](#section12742311179)
+# kill
 
 ## Command Function<a name="section366714216619"></a>
 

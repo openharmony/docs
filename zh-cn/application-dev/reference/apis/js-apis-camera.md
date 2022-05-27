@@ -1016,7 +1016,7 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 | 名称     | 类型                             | 必填 | 说明                                            |
 | :------- | :------------------------------- | :--- | :---------------------------------------------- |
-| type     | string                           | 是   | 监听事件，固定为'error'，即CamerInput错误事件。 |
+| type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
 | callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。                        |
 
 **示例：**
@@ -1363,7 +1363,7 @@ captureSession.addOutput(photoOutput, (err) => {
 
 addOutput\(photoOutput: PhotoOutput\): Promise<void\>
 
-在当前会话中，添加一个PreviewOutput实例，通过Promise获取结果。
+在当前会话中，添加一个PhotoOutput实例，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

@@ -65,7 +65,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 ### 操作步骤
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > Master主干为开发分支，开发者可通过Master主干获取最新特性。发布版本代码相对比较稳定，开发者可基于发布版本代码进行商用功能开发。
 
 - **OpenHarmony主干代码获取**
@@ -190,14 +190,14 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | Hi3861解决方案（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz.sha256) |
 | Hi3516解决方案-LiteOS（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz.sha256) |
 | Hi3516解决方案-Linux（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz.sha256) |
-| RELEASE-NOTES | 3.1 Release | [站点](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-Release.md) | - |
+| RELEASE-NOTES | 3.1 Release | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.1-release.md) | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) | - |
 
 
 ## 获取方式4：从github镜像仓库获取
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 镜像仓库每日23:00（UTC +8:00）同步。
 
 方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。

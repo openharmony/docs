@@ -6,7 +6,7 @@ Use the camera module APIs to capture frames \(photographing\).
 
 ## Available APIs<a name="en-us_topic_0000001052170554_section56549532016"></a>
 
-**Table  1**  APIs for photographing
+**Table 1**  APIs for photographing
 
 <a name="en-us_topic_0000001052170554_table2069447114914"></a>
 <table><thead align="left"><tr id="en-us_topic_0000001052170554_row4903852104914"><th class="cellrowborder" valign="top" width="18.811881188118814%" id="mcps1.2.4.1.1"><p id="en-us_topic_0000001052170554_p2903252174918"><a name="en-us_topic_0000001052170554_p2903252174918"></a><a name="en-us_topic_0000001052170554_p2903252174918"></a>Class</p>

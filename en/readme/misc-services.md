@@ -4,7 +4,7 @@
 
 The Misc services subsystem provides APIs for setting the system time.
 
-**Figure  1**  Subsystem architecture<a name="fig664210516252"></a>  
+**Figure 1**  Subsystem architecture<a name="fig664210516252"></a>  
 ![](figures/subsystem-architecture.png "subsystem-architecture")
 
 ## Directory Structure<a name="section161941989596"></a>
@@ -18,5 +18,5 @@ The Misc services subsystem provides APIs for setting the system time.
 
 **Misc services subsystem**
 
-miscservices\_time
+[miscservices\_time](https://gitee.com/openharmony/miscservices_time)
 

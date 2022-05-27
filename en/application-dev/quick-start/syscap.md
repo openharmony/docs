@@ -1,4 +1,4 @@
-# SysCap Usage Guidelines
+# SysCap
 
 ## Overview
 

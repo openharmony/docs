@@ -11,7 +11,7 @@
 
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
-    - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
+    - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
 - 开发
@@ -257,9 +257,8 @@
       - [后台代理概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     - 后台任务管理
-      - 后台任务
-        - [后台任务概述](background-task-management/background-task-overview.md)
-        - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      - [后台任务概述](background-task-management/background-task-overview.md)
+      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
     - 延迟任务调度
       - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
       - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
@@ -298,7 +297,10 @@
       - [Intl开发指导](internationalization/intl-guidelines.md)
       - [I18n开发指导](internationalization/i18n-guidelines.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+    - Native API的相关指导
+      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程

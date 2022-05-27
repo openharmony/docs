@@ -1,4 +1,4 @@
-# Basic Kernel<a name="EN-US_TOPIC_0000001123091601"></a>
+# Basic Kernel
 
 -   **[Interrupt and Exception Handling](kernel-small-basic-interrupt.md)**  
 

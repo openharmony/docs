@@ -1,6 +1,6 @@
 # HiDebug
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 You can run the hidebug command to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
@@ -17,6 +17,8 @@ import hidebug from '@ohos.hidebug';
 getNativeHeapSize(): bigint
 
 Obtains the total size of the native heap memory.
+
+This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -39,6 +41,8 @@ getNativeHeapAllocatedSize(): bigint
 
 Obtains the size of the allocated native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
@@ -59,6 +63,8 @@ Obtains the size of the allocated native heap memory.
 getNativeHeapFreeSize(): bigint
 
 Obtains the size of the free native heap memory.
+
+This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 

@@ -103,10 +103,10 @@ The UART interface defines a set of common functions for operating a UART port, 
 
 ### How to Use<a name="section1858116395510"></a>
 
-[Figure 3](#fig99673244388)  shows the process of using a UART device.
+The figure below illustrates how to use the APIs.
 
-**Figure  3** Process of using a UART device<a name="fig99673244388"></a>  
-![](figures/process-of-using-a-uart-device.png "process-of-using-a-uart-device")
+**Figure  3** Using UART driver APIs<a name="fig99673244388"></a>  
+![](figures/using-uart-process.png "process-of-using-a-uart-device")
 
 ### Obtaining a UART Device Handle<a name="section124512065617"></a>
 

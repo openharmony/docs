@@ -1,4 +1,4 @@
-# Kernel for the Standard System
+# Standard-System Kernel 
 
 
 - **[Linux Kernel Overview](kernel-standard-overview.md)**

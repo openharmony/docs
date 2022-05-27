@@ -1,8 +1,5 @@
-# Typical Memory Problems<a name="EN-US_TOPIC_0000001085042644"></a>
+# Typical Memory Problems
 
--   [Use After Free \(UAF\)](#section4427132815445)
--   [Double Free](#section827194818458)
--   [Heap Memory Node Corrupted](#section1763741216461)
 
 ## Use After Free \(UAF\)<a name="section4427132815445"></a>
 

@@ -14,4 +14,5 @@
 
 - **[Debugging and Verification](quickstart-lite-steps-hi3861-debug.md)**
 
-- **[Running](quickstart-lite-steps-hi3816-running.md)**
+- **[Running](quickstart-lite-steps-hi3861-running.md)**
+

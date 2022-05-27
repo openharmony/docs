@@ -1,12 +1,5 @@
 # HiSysEvent Listening<a name="EN-US_TOPIC_0000001185655868"></a>
 
--   [Overview](#section315316685112)
-    -   [Introduction](#section123181433335224)
-        -   [Constraints](#section123181433375224)
--   [Development Guidelines](#section315316685113)
-    -   [Available APIs](#section0342191810519)
-    -   [Development Example](#section123181432175110)
-
 ## Overview<a name="section315316685112"></a>
 
 ### Introduction<a name="section123181433335224"></a>

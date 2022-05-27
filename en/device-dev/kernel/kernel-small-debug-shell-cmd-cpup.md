@@ -1,11 +1,5 @@
-# cpup<a name="EN-US_TOPIC_0000001133846470"></a>
+# cpup
 
--   [Command Function](#section1842161614217)
--   [Syntax](#section5629527427)
--   [Parameters](#section133651361023)
--   [Usage](#section156611948521)
--   [Example](#section68501605319)
--   [Output](#section19871522144219)
 
 ## Command Function<a name="section1842161614217"></a>
 

@@ -1,4 +1,4 @@
-# Graphics<a name="EN-US_TOPIC_0000001051770388"></a>
+# Graphics Overview<a name="EN-US_TOPIC_0000001051770388"></a>
 
 The OpenHarmony graphics subsystem provides you with basic UI and container components, including buttons, images, labels, lists, animators, scroll views, swipe views, fonts, clock, charts, canvas, sliders, and layouts. In addition, this subsystem provides the Design for X \(DFX\) capability to capture screenshots and export the component tree. It also implements features such as component rendering, animation, and input event distribution.
 

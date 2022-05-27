@@ -6,6 +6,11 @@
 
 Extension的上下文环境，继承自Context。
 
+## 导入模块
+
+```js
+import ExtensionContext from "@ohos.application.extensionContext";
+```
 
 ## 属性
 

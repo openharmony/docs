@@ -1,6 +1,6 @@
 # URI String Parsing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,14 +10,11 @@
 import uri from '@ohos.uri'  
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## URI
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -37,6 +34,8 @@ SystemCapability.Utils.Lang
 constructor(uri: string)
 
 A constructor used to create a URI instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -59,6 +58,8 @@ new uri.URI('http://username:password@host:8080'); // Output 'http://username:pa
 
 toString(): string
 
+**System capability**: SystemCapability.Utils.Lang
+
 Obtains the query string applicable to this URL.
 
 **Return value**
@@ -80,6 +81,8 @@ url.toString()
 equals(other: URI): boolean
 
 Checks whether this URI is the same as another URI object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -107,6 +110,8 @@ checkIsAbsolute(): boolean
 
 Checks whether this URI is an absolute URI (whether the scheme component is defined).
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type.| Description|
@@ -126,6 +131,8 @@ uriInstance.checkIsAbsolute();
 normalize(): URI
 
 Normalizes the path of this URI.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 

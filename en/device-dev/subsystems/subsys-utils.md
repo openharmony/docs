@@ -2,7 +2,7 @@
 
 -   **[Utils Overview](subsys-utils-overview.md)**  
 
--   **[Utils Development Guidelines](subsys-utils-guide.md)**  
+-   **[Utils Development](subsys-utils-guide.md)**  
 
 -   **[Utils FAQ](subsys-utils-faqs.md)**  
 

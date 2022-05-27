@@ -1,10 +1,4 @@
-# System Call<a name="EN-US_TOPIC_0000001123520159"></a>
-
--   [Basic Concepts](#section889710401734)
--   [Working Principles](#section195177541314)
--   [Development Guidelines](#section193492047135419)
-    -   [How to Develop](#section7165741122210)
-    -   [Development Example](#section107131418224)
+# System Call
 
 
 ## Basic Concepts<a name="section889710401734"></a>

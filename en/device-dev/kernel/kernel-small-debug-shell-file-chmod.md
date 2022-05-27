@@ -1,11 +1,4 @@
-# chmod<a name="EN-US_TOPIC_0000001179845927"></a>
-
--   [Command Function](#section13992936121418)
--   [Syntax](#section63342439147)
--   [Parameter Description](#section894414671411)
--   [Usage](#section182415221419)
--   [Example](#section8518195718147)
--   [Output](#section127391818158)
+# chmod
 
 ## Command Function<a name="section13992936121418"></a>
 

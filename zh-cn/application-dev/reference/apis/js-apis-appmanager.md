@@ -160,7 +160,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
 
@@ -184,7 +184,7 @@ getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
 
 获取有关运行进程的信息。
 

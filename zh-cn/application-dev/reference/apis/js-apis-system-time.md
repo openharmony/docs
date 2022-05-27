@@ -1,6 +1,7 @@
 # 设置系统时间
 
 本模块用来设置、获取当前系统时间，设置、获取当前系统日期和设置、获取当前系统时区。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -200,7 +201,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(callback: AsyncCallback&lt;number&gt;): void
+getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
 
@@ -228,7 +229,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(): Promise&lt;number&gt;
+getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise形式返回结果。
 

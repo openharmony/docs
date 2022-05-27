@@ -1,14 +1,7 @@
-# CPUP<a name="EN-US_TOPIC_0000001123188477"></a>
-
--   [Basic Concepts](#section17683419227)
--   [Working Principles](#section593718536227)
--   [Development Guidelines](#section11284210152311)
-    -   [Available APIs](#section3745151592312)
-    -   [How to Develop](#section122901429182316)
-    -   [Development Example](#section1765785212310)
+# Process Debugging
 
 
-## Basic Concepts<a name="section17683419227"></a>
+## Basic Concepts
 
 The central processing unit percent \(CPUP\) includes the system CPUP, process CPUP, task CPUP, and interrupt CPUP. With the system CPUP, you can determine whether the current system load exceeds the designed specifications. With the CPUP of each task/process/interrupt, you can determine whether their CPU usage meets expectations of the design.
 

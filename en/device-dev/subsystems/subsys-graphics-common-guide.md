@@ -1,4 +1,4 @@
-# Development Guidelines on Common Components<a name="EN-US_TOPIC_0000001052170409"></a>
+# Common Component Development<a name="EN-US_TOPIC_0000001052170409"></a>
 
 Common components inherit from the base class  **UIView**. Child components cannot be added to common components, such as buttons, images, and labels.
 

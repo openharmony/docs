@@ -1,11 +1,4 @@
-# Software Timer<a name="EN-US_TOPIC_0000001078575728"></a>
-
--   [Basic Concepts](#section4118241563)
--   [Working Principles](#section31079397569)
--   [Development Guidelines](#section18576131520577)
-    -   [Available APIs](#section3138019145719)
-    -   [How to Develop](#section1344817403575)
-    -   [Development Example](#section114416313585)
+# Software Timer
 
 
 ## Basic Concepts<a name="section4118241563"></a>

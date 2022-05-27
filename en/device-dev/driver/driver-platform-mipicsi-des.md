@@ -59,12 +59,11 @@ The figure below shows a simplified CSI. The D-PHY transmits data by using one p
 
 ### How to Use<a name="section2.1_MIPI_CSIDes"></a>
 
-The figure below shows the process of using a MIPI CSI device.
+The figure below illustrates how to use the APIs.
 
-**Figure 2** MIPI CSI usage process<a name="fig2_MIPI_CSIDes"></a> 
+**Figure 2** Using MIPI CSI driver APIs 
 
-
-![](figures/process-of-using-MIPI-CSI.png)
+![](figures/using-MIPI-CSI-process.png)
 
 ### Opening the MIPI CSI Controller Operation Handle<a name="section2.2_MIPI_CSIDes"></a>
 

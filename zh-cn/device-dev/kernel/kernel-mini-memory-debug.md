@@ -6,6 +6,6 @@
 
 - **[内存信息统计](kernel-mini-memory-debug-mes.md)**
 
-- **[内存泄漏检测](kernel-mini-imemory-debug-det.md)**
+- **[内存泄漏检测](kernel-mini-memory-debug-det.md)**
 
 - **[踩内存检测](kernel-mini-memory-debug-cet.md)**

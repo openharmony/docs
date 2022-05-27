@@ -1,11 +1,5 @@
-# mount<a name="EN-US_TOPIC_0000001134006264"></a>
+# mount
 
--   [Command Function](#section11631837182)
--   [Syntax](#section1697638111820)
--   [Parameters](#section1650151221819)
--   [Usage](#section124541520171912)
--   [Example](#section7424625171917)
--   [Output](#section14757018116)
 
 ## Command Function<a name="section11631837182"></a>
 

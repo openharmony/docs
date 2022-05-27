@@ -1,4 +1,4 @@
-# Basic Data Structure<a name="EN-US_TOPIC_0000001078876282"></a>
+# Basic Data Structure
 
 -   **[Doubly Linked List](kernel-small-apx-dll.md)**  
 
