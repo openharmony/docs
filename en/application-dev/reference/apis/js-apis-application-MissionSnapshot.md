@@ -1,7 +1,7 @@
 # MissionSnapshot
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -21,7 +21,7 @@ import { image } from '../@ohos.multimedia.image';
 
 Describes the mission snapshot.
 
-  | Name| Type| Readable| Writable| Description|
+| Name | Type | Readable | Writable | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | Yes| Yes| Information that matches an ability.|
-| snapshot | [image.PixelMap](js-apis-image.md) | Yes| Yes| Snapshot of the mission.|
+| ability | ElementName | Yes | Yes | Information that matches an ability. |
+| snapshot | [image.PixelMap](js-apis-image.md) | Yes| Yes| Snapshot of the mission. |

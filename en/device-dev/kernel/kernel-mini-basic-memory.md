@@ -1,4 +1,4 @@
-# Memory Management<a name="EN-US_TOPIC_0000001078876454"></a>
+# Memory Management
 
 -   **[Basic Concepts](kernel-mini-basic-memory-basic.md)**  
 

@@ -4,7 +4,7 @@
 
 In the Hardware Driver Foundation \(HDF\) framework, the MultiMedia Card \(MMC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
-**Figure  1**  Independent service mode<a name="fig19517114132810"></a>  
+**Figure  1** Independent service mode<a name="fig19517114132810"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -31,7 +31,7 @@ struct MmcCntlrOps {
 };
 ```
 
-**Table  1**  Callbacks for the members in the MmcCntlrOps structure
+**Table  1** Callbacks for the members in the MmcCntlrOps structure
 
 <a name="table99129433019"></a>
 <table><thead align="left"><tr id="row1891214163012"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p79129483017"><a name="p79129483017"></a><a name="p79129483017"></a>Callback</p>
@@ -196,33 +196,30 @@ struct MmcCntlrOps {
 The MMC module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF framework.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF framework.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **mmc\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **mmc\_config.hcs** file.
 
 3.  Instantiate the MMC controller object.
-    -   Initialize  **MmcCntlr**.
-    -   Instantiate  **MmcCntlrOps**  in the  **MmcCntlr**  object.
+    -   Initialize **MmcCntlr**.
+    -   Instantiate **MmcCntlrOps** in the **MmcCntlr** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis). 
 
-        >For details, see [Available APIs](#available-apis). 
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify basic functions, for example, verify the information returned after the mount operation and whether the device starts successfully.
+4.  \(Optional\) Debug the driver.
+    For new drivers, verify basic functions, for example, verify the information returned after the mount operation and whether the device starts successfully.
 
 
 ## Development Example<a name="section1220893490162704"></a>
 
-The following uses  **himci.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **himci.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF framework, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF framework, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   MMC driver entry reference
 
@@ -237,11 +234,11 @@ The following uses  **himci.c**  as an example to present the contents that need
         HDF_INIT(g_mmcDriverEntry);  // Call HDF_INIT to register the driver entry with the HDF framework.
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **mmc\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **MmcCntlr**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **mmc\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **MmcCntlr** members at the core layer.
 
-    If there are multiple devices, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **mmc\_config**  file.
+    If there are multiple devices, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **mmc\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    - **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -281,7 +278,7 @@ The following uses  **himci.c**  as an example to present the contents that need
         }
         ```
 
-    -   **mmc\_config.hcs**  configuration reference
+    - **mmc\_config.hcs** configuration reference
 
         ```
         root {
@@ -334,10 +331,10 @@ The following uses  **himci.c**  as an example to present the contents that need
         }
         ```
 
-3.  Initialize the  **MmcCntlr**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **MmcCntlrOps**  \(used to call underlying functions of the driver\) in  **MmcCntlr**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **MmcCntlr** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **MmcCntlrOps** \(used to call underlying functions of the driver\) in **MmcCntlr**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **mmc\_config.hcs**  file are read by the HDF, and the structure members are initialized through  **DeviceResourceIface**. Some important values are also transferred to the objects at the core layer.
+        To the driver, the custom structure carries parameters and data. The values in the **mmc\_config.hcs** file are read by the HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values are also transferred to the objects at the core layer.
 
         ```
         struct HimciHost {
@@ -389,7 +386,7 @@ The following uses  **himci.c**  as an example to present the contents that need
         };
         ```
 
-    -   Instantiate the callback function structure  **MmcCntlrOps**  in  **MmcCntlr**. Other members are initialized by using the  **Bind**  function.
+    -   Instantiate the callback function structure **MmcCntlrOps** in **MmcCntlr**. Other members are initialized by using the **Bind** function.
 
         ```
         static struct MmcCntlrOps g_himciHostOps = {
@@ -415,11 +412,11 @@ The following uses  **himci.c**  as an example to present the contents that need
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+      **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
         <a name="table1428218958162704"></a>
         <table><thead align="left"><tr id="row1723943104162704"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry136979408162704p0"><a name="entry136979408162704p0"></a><a name="entry136979408162704p0"></a>Status (Value)</p>
@@ -463,7 +460,7 @@ The following uses  **himci.c**  as an example to present the contents that need
 
         Function description:
 
-        Initializes the custom structure  **HimciHost**  object and  **MmcCntlr**, and calls the  **MmcCntlrAdd**  function at the core layer.  **MmcCntlr**,  **HimciHost**, and  **HdfDeviceObject**  assign values with each other so that other functions can be converted successfully.
+        Initializes the custom structure **HimciHost** object and **MmcCntlr**, and calls the **MmcCntlrAdd** function at the core layer. **MmcCntlr**, **HimciHost**, and **HdfDeviceObject** assign values with each other so that other functions can be converted successfully.
 
         ```
         static int32_t HimciMmcBind(struct HdfDeviceObject *obj)
@@ -501,7 +498,7 @@ The following uses  **himci.c**  as an example to present the contents that need
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+      **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -531,7 +528,7 @@ The following uses  **himci.c**  as an example to present the contents that need
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+      **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -539,7 +536,7 @@ The following uses  **himci.c**  as an example to present the contents that need
 
         Function description:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF framework fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF framework fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
 
         ```
         static void HimciMmcRelease(struct HdfDeviceObject *obj)
@@ -551,6 +548,3 @@ The following uses  **himci.c**  as an example to present the contents that need
             HimciDeleteHost((struct HimciHost *)cntlr->priv);// Memory release function customized by the vendor. A forced conversion from MmcCntlr to HimciHost is involved in the process.
         }
         ```
-
-
-

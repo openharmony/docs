@@ -2,7 +2,7 @@
 - Getting Started with Mini and Small Systems (IDE Mode, Recommended)
     - [Mini and Small System Overview](quickstart-ide-lite-overview.md)
     - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
+        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-lite-env-setup-win-ubuntu.md)
         - [Obtaining Source Code](quickstart-ide-lite-sourcecode-acquire.md)
     - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
     - Running a Hello World Program
@@ -33,7 +33,7 @@
             - [Burning](quickstart-lite-steps-hi3861-burn.md)
             - [Networking](quickstart-lite-steps-hi3861-netconfig.md)
             - [Debugging and Verification](quickstart-lite-steps-hi3861-debug.md)
-            - [Running](quickstart-lite-steps-hi3816-running.md)
+            - [Running](quickstart-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
             - [Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)
             - [Writing a Hello World Program](quickstart-lite-steps-hi3516-application-framework.md)
@@ -52,7 +52,7 @@
 - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quickstart-ide-standard-overview.md)
     - Environment Preparation
-        - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
+        - [Setting Up the Windows+Ubuntu Hybrid Development Environment](quickstart-ide-standard-env-setup-win-ubuntu.md)
         - [Obtaining Source Code](quickstart-ide-standard-sourcecode-acquire.md)
     - [Creating a Source Code Project](quickstart-ide-standard-create-project.md)
     - Running a Hello World Program

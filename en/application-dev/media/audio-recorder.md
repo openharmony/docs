@@ -30,35 +30,35 @@ export class AudioRecorderDemo {
 
   // Set the callbacks related to audio recording.
   setCallBack(audioRecorder) {
-    audioRecorder.on('prepare', () => {              					       	// Set the 'prepare' event callback.
+    audioRecorder.on('prepare', () => {              					       	// Set the prepare event callback.
       console.log('prepare success');
-      audioRecorder.start();                                         			// Call the start API to start recording and trigger the 'start' event callback.
+      audioRecorder.start();                                         			// Call the start API to start recording and trigger the start event callback.
     });
-    audioRecorder.on('start', () => {    		     						   	// Set the 'start' event callback.
+    audioRecorder.on('start', () => {    		     						   	// Set the start event callback.
       console.log('audio recorder start success');
-      audioRecorder.pause();                                         			// Call the pause API to pause recording and trigger the 'pause' event callback.
+      audioRecorder.pause();                                         			// Call the pause API to pause recording and trigger the pause event callback.
     });
-    audioRecorder.on('pause', () => {    		     							// Set the 'pause' event callback.
+    audioRecorder.on('pause', () => {    		     							// Set the pause event callback.
       console.log('audio recorder pause success');
-      audioRecorder.resume();                                        			// Call the resume API to resume recording and trigger the 'resume' event callback.
+      audioRecorder.resume();                                        			// Call the resume API to resume recording and trigger the resume event callback.
     });
-    audioRecorder.on('resume', () => {    		     							// Set the 'resume' event callback.
+    audioRecorder.on('resume', () => {    		     							// Set the resume event callback.
       console.log('audio recorder resume success');
-      audioRecorder.stop();                                          			// Call the stop API to stop recording and trigger the 'stop' event callback.
+      audioRecorder.stop();                                          			// Call the stop API to stop recording and trigger the stop event callback.
     });
-    audioRecorder.on('stop', () => {    		     							// Set the 'stop' event callback.
+    audioRecorder.on('stop', () => {    		     							// Set the stop event callback.
       console.log('audio recorder stop success');
-      audioRecorder.reset();                                         			// Call the reset API to reset the recorder and trigger the 'reset' event callback.
+      audioRecorder.reset();                                         			// Call the reset API to reset the recorder and trigger the reset event callback.
     });
-    audioRecorder.on('reset', () => {    		     							// Set the 'reset' event callback.
+    audioRecorder.on('reset', () => {    		     							// Set the reset event callback.
       console.log('audio recorder reset success');
-      audioRecorder.release();                                       			// Call the release API to release resources and trigger the 'release' event callback.
+      audioRecorder.release();                                       			// Call the release API to release resources and trigger the release event callback.
     });
-    audioRecorder.on('release', () => {    		     							// Set the 'release' event callback.
+    audioRecorder.on('release', () => {    		     							// Set the release event callback.
       console.log('audio recorder release success');
       audioRecorder = undefined;
     });
-    audioRecorder.on('error', (error) => {             							// Set the 'error' event callback.
+    audioRecorder.on('error', (error) => {             							// Set the error event callback.
       console.info(`audio error called, errName is ${error.name}`);
       console.info(`audio error called, errCode is ${error.code}`);
       console.info(`audio error called, errMessage is ${error.message}`);
@@ -103,7 +103,7 @@ export class AudioRecorderDemo {
       audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
       fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
     }
-    audioRecorder.prepare(audioRecorderConfig); 			// Call the prepare method to trigger the 'prepare' event callback.
+    audioRecorder.prepare(audioRecorderConfig); 			// Call the prepare method to trigger the prepare event callback.
   }
 }
 ```
@@ -120,23 +120,23 @@ export class AudioRecorderDemo {
 
   // Set the callbacks related to audio recording.
   setCallBack(audioRecorder) {
-    audioRecorder.on('prepare', () => {              					       // Set the 'prepare' event callback.
+    audioRecorder.on('prepare', () => {              					       // Set the prepare event callback.
       console.log('prepare success');
-      audioRecorder.start();                                         			// Call the start API to start recording and trigger the 'start' event callback.
+      audioRecorder.start();                                         			// Call the start API to start recording and trigger the start event callback.
     });
-    audioRecorder.on('start', () => {    		     							// Set the 'start' event callback.
+    audioRecorder.on('start', () => {    		     							// Set the start event callback.
       console.log('audio recorder start success');
-      audioRecorder.stop();                                          			// Call the stop API to stop recording and trigger the 'stop' event callback.
+      audioRecorder.stop();                                          			// Call the stop API to stop recording and trigger the stop event callback.
     });
-    audioRecorder.on('stop', () => {    		     							// Set the 'stop' event callback.
+    audioRecorder.on('stop', () => {    		     							// Set the stop event callback.
       console.log('audio recorder stop success');
-      audioRecorder.release();                                       			// Call the release API to release resources and trigger the 'release' event callback.
+      audioRecorder.release();                                       			// Call the release API to release resources and trigger the release event callback.
     });
-    audioRecorder.on('release', () => {    		     							// Set the 'release' event callback.
+    audioRecorder.on('release', () => {    		     							// Set the release event callback.
       console.log('audio recorder release success');
       audioRecorder = undefined;
     });
-    audioRecorder.on('error', (error) => {             							// Set the 'error' event callback.
+    audioRecorder.on('error', (error) => {             							// Set the error event callback.
       console.info(`audio error called, errName is ${error.name}`);
       console.info(`audio error called, errCode is ${error.code}`);
       console.info(`audio error called, errMessage is ${error.message}`);
@@ -181,7 +181,7 @@ export class AudioRecorderDemo {
       audioEncoderMime : media.CodecMimeType.AUDIO_AAC,
       fileFormat : media.ContainerFormatType.CFT_MPEG_4A,
     }
-    audioRecorder.prepare(audioRecorderConfig); 			// Call the prepare method to trigger the 'prepare' event callback.
+    audioRecorder.prepare(audioRecorderConfig); 			// Call the prepare method to trigger the prepare event callback.
   }
 }
 ```
@@ -190,6 +190,7 @@ export class AudioRecorderDemo {
 
 The following samples are provided to help you better understand how to develop audio recording:
 
-- [`Recorder`: Recorder (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
-- [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code15884933169" tempcmdid="code15884933169">Recorder</idp:inline>: Recorder (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
+- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code563211231612" tempcmdid="code563211231612">JsRecorder</idp:inline>: Recorder (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JSRecorder)
+- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code7932192919168" tempcmdid="code7932192919168">eTsAudioPlayer</idp:inline>: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

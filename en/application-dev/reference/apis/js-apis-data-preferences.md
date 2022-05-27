@@ -1,9 +1,9 @@
 # Preferences
 
-Preferences provide capabilities for processing key-value (KV) data for applications and supports lightweight data persistence, modification, and query. Data is stored in KV pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
+Preferences provide capabilities for processing data in the form of key-value (KV) pairs and supports lightweight data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,7 +27,7 @@ import data_preferences from '@ohos.data.preferences';
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
-Reads a preference persistence file and loads data to the **Preferences** instance for data operations. This API uses an asynchronous callback to return the result.
+Reads a **Preferences** persistence file and loads data to the **Preferences** instance for data operations. This API uses an asynchronous callback to return the result.
 
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -35,86 +35,50 @@ Reads a preference persistence file and loads data to the **Preferences** instan
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
+```ts
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    if (err) {
               console.info("Failed to get the preferences")
-              return;
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")
-              })
-          })
-      })
-  }
-  ```
+        return;
+    }
+    console.info("Got preferences successfully.")
+})
+```
 
 
 ## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
-Reads a preference persistence file and loads data to the **Preferences** instance for data operations. This API uses a promise to return the result.
+Reads a **Preferences** persistence file and loads data to the **Preferences** instance for data operations. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the execution result.|
+  | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")
-              })
-          })
-      }).catch((err) => {
+```ts
+let promise = data_preferences.getPreferences(this.context, 'mystore')
+promise.then((preferences) => {
+    console.info("Got preferences successfully.")
+}).catch((err) => {
           console.info("Failed to get the preferences")
-      })
-  }
-  ```
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -122,32 +86,27 @@ Reads a preference persistence file and loads data to the **Preferences** instan
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes a **Preferences** singleton instance, the persistence file and backup file, and corrupted files from the memory.
-Once a preference persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the execution result.
+Once a **Preferences** persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.deletePreferences(this.context, 'mystore', function (err) {
-          if (err) {
+```ts
+data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+    if (err) {
               console.info("Failed to delete data, err: " + err)
-              return
-          }
-          console.info("Deleted data successfully.")
-      })
-  }
-  ```
+        return
+    }
+    console.info("Deleted preferences successfully.")
+})
+```
 
 
 ## data_preferences.deletePreferences
@@ -155,35 +114,30 @@ Once a preference persistence file is deleted, the **Preferences** instance cann
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes a **Preferences** singleton instance, the persistence file and backup file, and corrupted files from the memory.
-Once a preference persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the execution result.
+Once a **Preferences** persistence file is deleted, the **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.deletePreferences(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Deleted data successfully.")
-      }).catch((err) => {
-          console.info("Failed to delete data, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.deletePreferences(this.context, 'mystore')
+promise.then(() => {
+    console.info("Deleted preferences successfully.")
+}).catch((err) => {
+          console.info("Failed to delete preferences, err: " + err)
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -192,32 +146,27 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 Removes a **Preferences** singleton instance from the memory.
 
-When a **Preferences** singleton instance is removed, this instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the execution result.
+When a **Preferences** singleton instance is removed, this instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
-          if (err) {
-              console.info("Failed to remove preferences from cache, err: " + err)
-              return
-          }
-          console.info("Removed preferences from cache successfully.")
-      })
-  }
-  ```
+```ts
+data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to remove preferences from cache, err: " + err)
+        return
+    }
+    console.info("Removed preferences from cache successfully.")
+})
+```
 
 
 ## data_preferences.removePreferencesFromCache
@@ -230,31 +179,26 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-**Parameters**
+Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-Context.md) | Yes| Context of the app or functionality.|
+  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
   | name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
-      promise.then(() => {
-          console.info("Removed preferences from cache successfully.")
-      }).catch((err) => {
-          console.info("Failed to remove preferences from cache, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+promise.then(() => {
+    console.info("Removed preferences from cache successfully.")
+}).catch((err) => {
+    console.info("Failed to remove preferences from cache, err: " + err)
+})
+```
 
 
 ## Preferences
@@ -275,29 +219,18 @@ Obtains the value of a key. If the value is null or a non-default value, the def
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to obtain. It cannot be empty.|
   | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Get the preferences failed, err: " + err)
-              return
-          }
-          preferences.get('startup', 'default', function(err, value) {
-              if (err) {
-                  console.info("Get the value of startup failed, err: " + err)
-                  return
-              }
+```ts
+ preferences.get('startup', 'default', function(err, value) {
+    if (err) {
+                  console.info("Failed to get the value of startup, err: " + err)
+        return
+    }
               console.info("The value of startup is " + value)
-          })
-      })
-  }
-  ```
+})
+```
 
 
 ### get
@@ -308,7 +241,7 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-- **Parameters**
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to obtain. It cannot be empty.|
@@ -317,34 +250,24 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;ValueType&gt; | Promise used to return the execution result.|
+  | Promise&lt;ValueType&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseGet = preferences.get('startup', 'default')
-          promiseGet.then((value) => {
-              console.info("The value of startup is " + value)
-          }).catch((err) => {
+```ts
+let promise = preferences.get('startup', 'default')
+promise.then((value) => {
+    console.info("The value of startup is " + value)
+}).catch((err) => {
               console.info("Failed to get the value of startup, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### put
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Obtains a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses an asynchronous callback to return the execution result.
+Puts a new value to this **Preferences** instance and its persistence file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -353,36 +276,25 @@ Obtains a **Preferences** instance, writes data to the **Preferences** instance,
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data. It cannot be empty.|
   | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
+```ts
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
                   console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-          })
-      })
-  }
-  ```
+        return
+    }
+    console.info("Put the value of startup successfully.")
+})
+```
 
 
 ### put
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Obtains a **Preferences** instance, writes data to the **Preferences** instance, and saves the data to the file using **flush()** or **flushSync()**. This API uses a promise to return the execution result.
+Puts a new value to this **Preferences** instance and its persistence file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -395,34 +307,24 @@ Obtains a **Preferences** instance, writes data to the **Preferences** instance,
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promisePut = preferences.put('startup', 'auto')
-          promisePut.then(() => {
-              console.info("Put the value of startup successfully.")
-          }).catch((err) => {
+```ts
+let promise = preferences.put('startup', 'auto')
+promise.then(() => {
+    console.info("Put the value of startup successfully.")
+}).catch((err) => {
               console.info("Failed to put the value of startup, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### has
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
-Checks whether the **Preferences** instance contains data with a given key. This API uses an asynchronous callback to return the result.
+Checks whether this **Preferences** instance contains data with a given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -430,7 +332,7 @@ Checks whether the **Preferences** instance contains data with a given key. This
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to check. It cannot be empty.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Return value**
   | Type| Description|
@@ -438,37 +340,26 @@ Checks whether the **Preferences** instance contains data with a given key. This
   | boolean | Returns **true** if the **Preferences** instance contains data with the specified key; returns **false** otherwise.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.has('startup', function (err, isExist) {
-              if (err) {
-                  console.info("Failed to check the key of startup, err: " + err)
-                  return
-              }
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup is not contained.")
-              }
-          })
-      })
-  }
-  ```
+```ts
+preferences.has('startup', function (err, isExist) {
+    if (err) {
+        console.info("Failed to check the key of startup, err: " + err)
+        return
+    }
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup is not contained.")
+    }
+})
+```
 
 
 ### has
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether the **Preferences** instance contains data with a given key. This API uses a promise to return the result.
+Checks whether this **Preferences** instance contains data with a given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -480,38 +371,28 @@ Checks whether the **Preferences** instance contains data with a given key. This
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the execution result.|
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseHas = preferences.has('startup')
-          promiseHas.then((isExist) => {
-              if (isExist) {
-                  console.info("The key of startup is contained.")
-              } else {
-                  console.info("The key of startup is not contained.")
-              }
-          }).catch((err) => {
+```ts
+let promise = preferences.has('startup')
+promise.then((isExist) => {
+    if (isExist) {
+        console.info("The key of startup is contained.")
+    } else {
+        console.info("The key of startup is not contained.")
+    }
+}).catch((err) => {
               console.info("Check the key of startup failed, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Get the preferences failed, err: " + err)
-      })
-  }
-  ```
+})
+```
 
 
 ### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the KV pair of the specified key from this **Preferences** instance. This API uses an asynchronous callback to return the result.
+Deletes a KV pair of the specified key from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -519,36 +400,25 @@ Deletes the KV pair of the specified key from this **Preferences** instance. Thi
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.delete('startup', function (err) {
-              if (err) {
-                  console.info("Failed to delete startup key, err: " + err)
-                  return
-              }
-              console.info("Deleted startup key successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.delete('startup', function (err) {
+    if (err) {
+        console.info("Failed to delete startup key, err: " + err)
+        return
+    }
+    console.info("Deleted startup key successfully.")
+})
+```
 
 
 ### delete
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes the KV pair of the specified key from this **Preferences** instance. This API uses a promise to return the result.
+Deletes a KV pair of the specified key from this **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -560,97 +430,66 @@ Deletes the KV pair of the specified key from this **Preferences** instance. Thi
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseDelete = preferences.delete('startup')
-          promiseDelete.then(() => {
-              console.info("Deleted startup key successfully.")
-          }).catch((err) => {
-              console.info("Failed to delete startup key, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.delete('startup')
+promise.then(() => {
+    console.info("Deleted startup key successfully.")
+}).catch((err) => {
+    console.info("Failed to delete startup key, err: " + err)
+})
+```
 
 
 ### flush
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the modification to this **Preferences** instance and synchronizes the modification to the preference persistence file. This API uses an asynchronous callback to return the result.
+Saves the modification to this **Preferences** instance and synchronizes the modification to the **Preferences** persistence file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.flush(function (err) {
-              if (err) {
-                  console.info("Failed to flush data to file, err: " + err)
-                  return
-              }
-              console.info("Flushed data to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.flush(function (err) {
+    if (err) {
+        console.info("Failed to flush data to file, err: " + err)
+        return
+    }
+    console.info("Flushed data to file successfully.")
+})
+```
 
 
 ### flush
 
 flush(): Promise&lt;void&gt;
 
-Saves the modification to this **Preferences** instance and synchronizes the modification to the preference persistence file. This API uses a promise to return the result.
+Saves the modification to this **Preferences** instance and synchronizes the modification to the **Preferences** persistence file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseFlush = preferences.flush()
-          promiseFlush.then(() => {
-              console.info("Flushed data to file successfully.")
-          }).catch((err) => {
-              console.info("Failed to flush data to file, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.flush()
+promise.then(() => {
+    console.info("Flushed data to file successfully.")
+}).catch((err) => {
+    console.info("Failed to flush data to file, err: " + err)
+})
+```
 
 
 ### clear
@@ -661,32 +500,21 @@ Clears data of this **Preferences** instance. This API uses an asynchronous call
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-**Parameters**
+Parameters
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.clear(function (err) {
-              if (err) {
-                  console.info("Failed to clear data, err: " + err)
-                  return
-              }
-              console.info("Cleared to file successfully.")
-          })
-      })
-  }
-  ```
+```ts
+preferences.clear(function (err) {
+    if (err) {
+        console.info("Failed to clear data, err: " + err)
+        return
+    }
+    console.info("Cleared to file successfully.")
+})
+```
 
 
 ### clear
@@ -700,27 +528,17 @@ Clears data of this **Preferences** instance. This API uses a promise to return 
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the execution result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      let promise = data_preferences.getPreferences(this.context, 'mystore')
-      promise.then((preferences) => {
-          let promiseClear = preferences.clear()
-          promiseClear.then(() => {
-              console.info("Cleared to file successfully.")
-          }).catch((err) => {
-              console.info("Failed to clear data, err: " + err)
-          })
-      }).catch((err) => {
-          console.info("Failed to get the preferences, err: " + err)
-      })
-  }
-  ```
+```ts
+let promise = preferences.clear()
+promise.then(() => {
+    console.info("Cleared to file successfully.")
+}).catch((err) => {
+    console.info("Failed to clear data, err: " + err)
+})
+```
 
 
 ### on('change')
@@ -738,37 +556,30 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-  
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed data to file successfully.")    // The observer will be called.
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Failed to put the value of startup, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Failed to flush data to file, err: " + err)
+            return
+        }
+        console.info("Flushed data to file successfully.")    // The observer will be called.
+    })
+})
+```
 
 
 ### off('change')
@@ -786,37 +597,31 @@ Unsubscribes from data changes.
   | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
 
 **Example**
-  ```ts
-  import Ability from '@ohos.application.Ability'
-  import data_preferences from '@ohos.data.preferences'
-  export default class MainAbility extends Ability {
-      var observer = function (key) {
-          console.info("The key of " + key + " changed.")
-      }
-      data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
-          if (err) {
-              console.info("Failed to get the preferences, err: " + err)
-              return
-          }
-          preferences.on('change', observer)
-          preferences.put('startup', 'auto', function (err) {
-              if (err) {
-                  console.info("Failed to put the value of startup, err: " + err)
-                  return
-              }
-              console.info("Put the value of startup successfully.")
-              preferences.flush(function (err) {
-                  if (err) {
-                      console.info("Failed to flush data to file, err: " + err)
-                      return
-                  }
-                  console.info("Flushed to file successfully.")    // observer will be called.
-                  preferences.off('change', observer)
-              })
-          })  
-      })
-  }
-  ```
+```ts
+var observer = function (key) {
+    console.info("The key of " + key + " changed.")
+}
+
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
+    if (err) {
+        console.info("Failed to put the value of startup, err: " + err)
+        return
+    }
+    console.info("Put the value of startup successfully.")
+
+    preferences.flush(function (err) {
+        if (err) {
+            console.info("Failed to flush data to file, err: " + err)
+            return
+        }
+        console.info("Flushed data to file successfully.")    // The observer will be called.
+        preferences.off('change', observer)
+    })
+})
+```
 
 ## ValueType
 

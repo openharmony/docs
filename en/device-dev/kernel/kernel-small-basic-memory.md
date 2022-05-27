@@ -1,4 +1,4 @@
-# Memory Management<a name="EN-US_TOPIC_0000001123695259"></a>
+# Memory Management
 
 -   **[Heap Memory Management](kernel-small-basic-memory-heap.md)**  
 

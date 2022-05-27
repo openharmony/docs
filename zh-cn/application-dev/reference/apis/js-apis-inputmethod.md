@@ -50,6 +50,7 @@ getInputMethodController(): InputMethodController
   ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
+
 ## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
 
 getInputMethodSetting(): InputMethodSetting
@@ -147,7 +148,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 ### listInputMethod
 
-listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+listInputMethod(): Array&lt;InputMethodProperty&gt;
 
 查询已安装的输入法列表。
 

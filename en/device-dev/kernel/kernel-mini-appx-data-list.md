@@ -1,15 +1,7 @@
-# Doubly Linked List<a name="EN-US_TOPIC_0000001078588390"></a>
-
--   [Basic Concepts](#section1990715203418)
--   [Available APIs](#section848334511411)
--   [How to Develop](#section01781261552)
--   [Development Example](#section67569495514)
-    -   [Example Description](#section48761994551)
-    -   [Sample Code](#section1280202685519)
-    -   [Verification](#section5811249105512)
+# Doubly Linked List
 
 
-## Basic Concepts<a name="section1990715203418"></a>
+## Basic Concepts
 
 A doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains a pointer to the previous node and a pointer to the next node in the sequence of nodes. The pointer head is unique.
 
@@ -109,7 +101,7 @@ The doubly linked list module provides the following APIs. For more details abou
 </tbody>
 </table>
 
-## How to Develop<a name="section01781261552"></a>
+## How to Develop
 
 The typical development process of the doubly linked list is as follows:
 
@@ -136,7 +128,7 @@ This example implements the following:
 3.  Delete a node.
 4.  Check whether the operation is performed successfully.
 
-### Sample Code<a name="section1280202685519"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -178,7 +170,7 @@ static UINT32 ListSample(VOID)
 }
 ```
 
-### Verification<a name="section5811249105512"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

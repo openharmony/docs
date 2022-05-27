@@ -12,20 +12,20 @@ If an error occurs in any of the preceding processes, the client will receive a 
 
 The WebSocket connection function is mainly implemented by the WebSocket module. To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| createWebSocket() | Creates a WebSocket connection.|
-| connect() | Establishes a WebSocket connection to a given URL.|
-| send() | Sends data through the WebSocket connection.|
-| close() | Closes a WebSocket connection.|
-| on(type:&nbsp;'open') | Enables listening for **open** events of a WebSocket connection.|
-| off(type:&nbsp;'open') | Disables listening for **open** events of a WebSocket connection.|
-| on(type:&nbsp;'message') | Enables listening for **message** events of a WebSocket connection.|
-| off(type:&nbsp;'message') | Disables listening for **message** events of a WebSocket connection.|
-| on(type:&nbsp;'close') | Enables listening for **close** events of a WebSocket connection.|
-| off(type:&nbsp;'close') | Disables listening for **close** events of a WebSocket connection.|
-| on(type:&nbsp;'error') | Enables listening for **error** events of a WebSocket connection.|
-| off(type:&nbsp;'error') | Disables listening for **error** events of a WebSocket connection.|
+| createWebSocket() | Creates a WebSocket connection. |
+| connect() | Establishes a WebSocket connection to a given URL. |
+| send() | Sends data through the WebSocket connection. |
+| close() | Closes a WebSocket connection. |
+| on(type:&nbsp;'open') | Enables listening for **open** events of a WebSocket connection. |
+| off(type:&nbsp;'open') | Disables listening for **open** events of a WebSocket connection. |
+| on(type:&nbsp;'message') | Enables listening for **message** events of a WebSocket connection. |
+| off(type:&nbsp;'message') | Disables listening for **message** events of a WebSocket connection. |
+| on(type:&nbsp;'close') | Enables listening for **close** events of a WebSocket connection. |
+| off(type:&nbsp;'close') | Disables listening for **close** events of a WebSocket connection. |
+| on(type:&nbsp;'error') | Enables listening for **error** events of a WebSocket connection. |
+| off(type:&nbsp;'error') | Disables listening for **error** events of a WebSocket connection. |
 
 
 ## How to Develop

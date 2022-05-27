@@ -185,7 +185,7 @@ Notification.cancel(0, "label", cancelCallback)
 
 ## Notification.cancel
 
-cancel(id：number, label?: string): Promise\<void\>
+cancel(id: number, label?: string): Promise\<void\>
 
 取消与指定id相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
 
@@ -2614,7 +2614,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId, publishCallback);
 
 ## Notification.cancelAsBundle<sup>9+</sup>
 
-cancelAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
+cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
 发布代理通知（Promise形式）。
 
@@ -3212,6 +3212,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。                                   |
 | lightColor           | 是  | 是  | number                | 否   | 通知灯颜色。                                 |
 | vibrationValues      | 是  | 是  | Array\<number\>       | 否   | 通知振动样式。                               |
+| enabled              | 是  | 否  | boolean               | 否   | 此通知插槽中的启停状态。                      |
 
 
 ## NotificationSorting

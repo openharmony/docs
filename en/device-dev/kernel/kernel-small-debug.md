@@ -1,4 +1,4 @@
-# Debugging and Tools<a name="EN-US_TOPIC_0000001078652838"></a>
+# Debugging and Tools
 
 -   **[Shell](kernel-small-debug-shell.md)**  
 
@@ -8,7 +8,7 @@
 
 -   **[LMS](kernel-small-memory-lms.md)**  
 
--   **[Process Commissioning](kernel-small-debug-process.md)**  
+-   **[Process Debugging](kernel-small-debug-process.md)**  
 
 -   **[Kernel-Mode Memory Debugging](kernel-small-debug-memory.md)**  
 

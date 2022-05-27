@@ -6,7 +6,7 @@
 
 口令认证是端侧设备不可或缺的一部分，为设备提供一种用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。用户注册口令后，口令认证模块就可为设备提供密码解锁的功能，保证设备的安全使用。口令识别的整体架构如图1。
 
-基于HDF（Hardware Driver Foundation）驱动框架开发的pin_auth驱动，pin_auth驱动模型屏蔽硬件差异，为上层用户IAM子系统基础框架和口令认证SA提供稳定的口令认证基础能力，包括口令认证执行器列表查询、执行器信息查询、指定模板防暴信息查询、用户认证和执行器间的模板信息对账，以及口令的录入、认证、删除。
+基于HDF（Hardware Driver Foundation）驱动框架开发的Pin_auth驱动，Pin_auth驱动模型屏蔽硬件差异，为上层用户IAM子系统基础框架和口令认证SA提供稳定的口令认证基础能力，包括口令认证执行器列表查询、执行器信息查询、指定模板防暴信息查询、用户认证和执行器间的模板信息对账，以及口令的录入、认证、删除。
 
 **图1** 口令认证架构图
 
@@ -27,9 +27,9 @@
 
   - ​    全功能执行器：执行器可独立处理一次凭据注册和身份认证请求，即可提供用户认证数据采集、处理、储存及比对能力。
 
-  - ​    采集器：执行器提供用户认证时的数据采集能力，需要和认证期配合完成用户认证。
+  - ​    采集器：执行器提供用户认证时的数据采集能力，需要和认证器配合完成用户认证。
 
-  - ​    认证器：认证器提供用户认证是时数据处理，读取存储凭据模板信息并完成比对。
+  - ​    认证器：认证器提供用户认证时的数据处理能力，读取存储的凭据模板与当前认证信息完成对比。
 
 - 执行器类型
 
@@ -37,16 +37,16 @@
 
 - 用户认证框架公钥 & 执行器公钥
 
-  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架于基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交互各自的公钥，其中：
+  用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架与基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交换各自的公钥，其中：
 
-    - 执行器通过用户认证框架公钥校验调度指令的准确性，如锁定一个口令模板，这种情况导致无法使用口令认证功能，属于敏感操作，需要确保指令准确，才可处理。
+    - 执行器通过用户认证框架公钥校验调度指令的准确性。
 
     - 执行器公钥可被用户认证框架用于校验认证结果的准确性，同时用于执行器交互认证时的校验交互信息的完整性。
 
 
 - 口令认证凭据模板
 
-  认证凭据是在用户设置认证凭据时由认证服务产生并存储，每个模板有一个ID。用于索引模板信息文件，再认证时读取模板信息并用于与当次认证过程中产生的认证数据做对比，完成身份认证。
+  认证凭据是在用户设置认证凭据时由认证服务产生并存储，每个模板有一个ID，用于索引模板信息文件，再认证时读取模板信息并用于与当次认证过程中产生的认证数据做对比，完成身份认证。
 
 - 执行器对账
 
@@ -76,13 +76,13 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 | GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。                                             |
 | GetExecutorInfo(ExecutorInfo& info)                          | 获取执行器信息。                                             |
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定templateId的模板信息。                               |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& frameworkPublicKey,<br/>        const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>const std::vector<uint8_t>& frameworkPublicKey,<br/>const std::vector<uint8_t>&  extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的template 列表用于对账。 |
 | OnSetData(uint64_t scheduleId, uint64_t authSubType, <br/>const std::vector<uint8_t> &data) | 用于回调传pin码认证的子类型和脱敏数据。                      |
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | pin码录入操作。                                              |
-| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证操作。                                              |
+| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 录入pin码。                                              |
+| Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | pin码认证。                                              |
 | Delete(uint64_t templateId)                                  | 删除pin码模板。                                              |
 | Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定操作。                                 |
-| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | pin码预留接口。                                              |
+| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>const sptr<IExecutorCallback>& callbackObj) | 预留接口。                                              |
 
 **表2** 回调函数介绍
 
@@ -262,7 +262,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        ScheduleMap scheduleMap_;
    };
    
-   // 获取执行器列表实现，创建执行器 （仅作示例）
+   // 获取执行器列表实现，创建执行器（仅作示例）
    int32_t PinAuthInterfaceService::GetExecutorList(std::vector<sptr<IExecutor>> &executorList)
    {
        IAM_LOGI("start");
@@ -340,7 +340,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        return HDF_SUCCESS;
    }
    
-   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口,将公钥信息保持，template 列表用于和本地的template做对账
+   // 实现执行器注册成功后，获取用户认证框架的公钥信息、获取用户认证框架的template 列表接口，将公钥信息保存，template列表用于和本地的template做对账
    int32_t ExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
        const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
    {
@@ -395,7 +395,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
        return HDF_SUCCESS;
    }
    
-   //实现回调数据获取的接口
+   // 实现回调数据获取的接口
    int32_t ExecutorImpl::OnSetData(uint64_t scheduleId, uint64_t authSubType, const std::vector<uint8_t> &data)
    {
        IAM_LOGI("start");
@@ -524,57 +524,9 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
    
 
 ### 调测验证
-驱动开发完成后，通过[用户认证 API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，基于RK3568平台验证。认证和取消功能验证的JS测试代码如下：
+驱动开发完成后，可基于RK3568平台验证, 通过设备的设置和锁屏功能验证口令认证功能是否正常，测试步骤如下：
 
-```js
-// API version 8
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-let auth = new userIAM_userAuth.UserAuth();
-
-export default {
-    getVersion() {
-        console.info("start get version");
-        let version = this.auth.getVersion();
-        console.info("auth version = " + version);
-    },
-
-    startAuth() {
-        console.info("start auth");
-        this.auth.auth(null, userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.AuthTrustLevel.ATL3, {
-            onResult: (result, extraInfo) => {
-                try {
-                    console.info("auth onResult result = " + result);
-                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == 'SUCCESS') {
-                        // 此处添加认证成功逻辑
-                    }  else {
-                        // 此处添加认证失败逻辑
-                    }
-                } catch (e) {
-                    console.info("auth onResult error = " + e);
-                }
-            }
-        });
-    },
-
-    cancelAuth() {
-        console.info("start cancel auth");
-        // contextId通过auth接口获取
-        let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.AuthTrustLevel.ATL3, {
-            onResult: (result, extraInfo) => {
-                console.info("auth onResult result = " + result);
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                console.info("auth onAcquireInfo module = " + module);
-            }
-        });
-        let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-            console.info("cancel auth success");
-        } else {
-            console.error("cancel auth fail");
-        }
-    }
-}
-```
+1.  点击设备的 “ 设置 > 生物识别和密码 > 锁屏密码" 后，录入锁屏密码。
+2.  按设备电源键进行锁屏，再次按设备的电源键进行解锁，输入锁屏密码进行解锁验证，至此就完成了口令的录入和认证功能。
+3.  进入设置中的生物识别和密码，点击关闭锁屏密码或者更改锁屏密码，来验证口令的删除和更新功能是否正常。
+4.  在步骤1完成后，进行步骤2的输入锁屏密码时，输入错误密码达到一定的次数来验证，防暴力破解能力是否正常（例如：连续输入5次错误密码，设备将被冻结60s）。

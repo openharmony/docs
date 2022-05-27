@@ -210,6 +210,7 @@ Form需要在应用配置文件config.json中进行配置。
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
            // 由开发人员自行实现，将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
+           // storeFormInfo 接口未在此处实现，具体实现请参考：相关实例 章节中的 FormAbility FA模型卡片 实例
            storeFormInfo(formId, formName, tempFlag, want);
 
            let obj = {
@@ -225,9 +226,11 @@ Form需要在应用配置文件config.json中进行配置。
 
 ```javascript
        onDestroy(formId) {
-           // 删除卡片实例数据
-           deleteFormInfo(formId);
            console.log('FormAbility onDestroy');
+
+           // 由开发人员自行实现，删除之前持久化的卡片实例数据
+           // deleteFormInfo 接口未在此处实现，具体实现请参考：相关实例 章节中的 FormAbility FA模型卡片 实例
+           deleteFormInfo(formId);
        }
 ```
 

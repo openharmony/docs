@@ -1,4 +1,4 @@
-# Supported File Systems<a name="EN-US_TOPIC_0000001124888127"></a>
+# Supported File Systems
 
 -   **[FAT](kernel-small-bundles-fs-support-fat.md)**  
 

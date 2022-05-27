@@ -1,7 +1,7 @@
 # StaticSubscriberExtensionAbility
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -20,9 +20,9 @@ Callback of the common event of a static subscriber.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name | Type | Mandatory | Description | 
   | -------- | -------- | -------- | -------- |
-  | event | CommonEventData | Yes| Callback of the common event of a static subscriber.| 
+  | event | CommonEventData | Yes | Callback of the common event of a static subscriber. | 
 
 **Example**
     

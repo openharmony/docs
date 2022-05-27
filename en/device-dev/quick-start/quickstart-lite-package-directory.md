@@ -1,6 +1,6 @@
 ## Getting Started with Mini and Small Systems (Installation Package Mode)
 - [Mini and Small System Overview](quickstart-lite-overview.md)
-- [Environment Preparation](quickstart-lite-env-setup.md)
+- [Setting Up Environments for the Mini and Small Systems](quickstart-lite-env-setup.md)
 - Running a Hello World Program
     - Hi3861 Development Board
         - [Setting Up the Hi3861 Development Board Environment](quickstart-lite-steps-hi3861-setting.md)

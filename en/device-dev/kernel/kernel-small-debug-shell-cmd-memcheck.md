@@ -1,11 +1,4 @@
-# memcheck<a name="EN-US_TOPIC_0000001134006252"></a>
-
--   [Command Function](#section191633812516)
--   [Syntax](#section428816435510)
--   [Parameters](#section1939943304411)
--   [Usage](#section228914491951)
--   [Example](#section17373205314515)
--   [Output](#section13406205385413)
+# memcheck
 
 ## Command Function<a name="section191633812516"></a>
 

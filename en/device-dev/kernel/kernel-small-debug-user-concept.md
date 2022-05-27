@@ -1,4 +1,4 @@
-# Basic Concepts<a name="EN-US_TOPIC_0000001085171134"></a>
+# Basic Concepts
 
 The musl libc library of the debug version provides maintenance and test methods, such as memory leak check, heap memory statistics, memory corruption check, and backtrace, to improve the efficiency of locating memory problems in user space.
 

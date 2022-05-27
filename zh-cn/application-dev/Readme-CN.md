@@ -14,9 +14,10 @@
         - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
-        - [应用包结构说明(Stage模型)](quick-start/module-structure.md)
+        - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
         - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
+        - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)
@@ -37,7 +38,7 @@
        - [DFX](dfx/Readme-CN.md)
        - [国际化](internationalization/Readme-CN.md)
        - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+       - [Native API的相关指导](napi/Readme-CN.md)
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程

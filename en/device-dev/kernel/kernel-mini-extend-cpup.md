@@ -1,32 +1,22 @@
-# CPUP<a name="EN-US_TOPIC_0000001123948073"></a>
+# CPUP
 
--   [Basic Concepts](#section1275484221216)
--   [Working Principles](#section96644177124)
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section51413507517)
-    -   [Sample Code](#section17617965523)
-    -   [Verification](#section1968771515188)
-
-
-## Basic Concepts<a name="section1275484221216"></a>
+## Basic Concepts
 
 The central processing unit percent \(CPUP\) includes the system CPUP and task CPUP.
 
-The system CPUP is the CPU usage of the system within a period of time. It reflects the CPU load and the system running status \(idle or busy\) in the given period of time. The valid range of the system CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the system runs with full load.
+The system CPUP is the CPU usage of the system within a period of time. It reflects the CPU load and the system running status \(idle or busy\) in the given period of time. The valid range of the system CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value **100** indicates that the system runs with full load.
 
-Task CPUP refers to the CPU usage of a single task. It reflects the task status, busy or idle, in a period of time. The valid range of task CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value  **100**  indicates that the task is being executed for the given period of time.
+Task CPUP refers to the CPU usage of a single task. It reflects the task status, busy or idle, in a period of time. The valid range of task CPUP is 0 to 100 in percentage. The precision can be adjusted through configuration. The value **100** indicates that the task is being executed for the given period of time.
 
 With the system CPUP, you can determine whether the current system load exceeds the designed specifications.
 
 With the CPUP of each task, you can determine whether the CPU usage of each task meets expectations of the design.
 
-## Working Principles<a name="section96644177124"></a>
+## Working Principles
 
 The OpenHarmony LiteOS-M CPUP records the system CPU usage on a task basis. When task switching occurs, the task start time and task switch-out or exit time are recorded. Each time when a task exits, the system accumulates the CPU time used by the task.
 
-You can configure this function in  **target\_config.h**.
+You can configure this function in **target\_config.h**.
 
 The OpenHarmony LiteOS-M provides the following types of CPUP information:
 
@@ -41,7 +31,7 @@ Task CPUP = Total running time of the task/Total running time of the system
 
 ## Available APIs<a name="section158501652121514"></a>
 
-**Table  1**  Functions
+**Table 1** Functions
 
 <a name="table18293928155615"></a>
 <table><thead align="left"><tr id="row129362875613"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p19444103765618"><a name="p19444103765618"></a><a name="p19444103765618"></a>Function</p>
@@ -91,28 +81,28 @@ Task CPUP = Total running time of the task/Total running time of the system
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical CPUP development process is as follows:
 
-1.  Call  **LOS\_SysCpuUsage**  to obtain the system CPUP.
-2.  Call  **LOS\_HistorySysCpuUsage**  to obtain the historical CPUP of the system.
-3.  Call  **LOS\_TaskCpuUsage**  to obtain the CPUP of a specified task.
+1.  Call **LOS\_SysCpuUsage** to obtain the system CPUP.
+2.  Call **LOS\_HistorySysCpuUsage** to obtain the historical CPUP of the system.
+3.  Call **LOS\_TaskCpuUsage** to obtain the CPUP of a specified task.
     -   If the task has been created, disable interrupt, obtain the CPUP, and then enable interrupt.
     -   If the task is not created, return an error code.
 
-4.  Call  **LOS\_HistoryTaskCpuUsage**  to obtain the historical CPUP of a specified task.
+4.  Call **LOS\_HistoryTaskCpuUsage** to obtain the historical CPUP of a specified task.
     -   If the task has been created, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
     -   If the task is not created, return an error code.
 
-5.  Call  **LOS\_AllCpuUsage**  to obtain the CPUP of all tasks.
+5.  Call **LOS\_AllCpuUsage** to obtain the CPUP of all tasks.
     -   If the CPUP is initialized, disable interrupt, obtain the CPUP in different modes, and then enable interrupt.
     -   If CPUP is not initialized or has invalid input parameters, return an error code.
 
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
-### Example Description<a name="section51413507517"></a>
+### Example Description
 
 This example implements the following:
 
@@ -122,11 +112,11 @@ This example implements the following:
 4.  Obtain the CPUP of the created test task.
 5.  Obtain the CPUP of the created test task in different modes.
 
-### Sample Code<a name="section17617965523"></a>
+### Sample Code
 
 Prerequisites
 
-In  **target\_config.h**, the  **LOSCFG\_BASE\_CORE\_CPUP**  parameter is enabled.
+In **target\_config.h**, the **LOSCFG\_BASE\_CORE\_CPUP** parameter is enabled.
 
 The sample code is as follows:
 
@@ -180,7 +170,7 @@ UINT32 ItCpupTest(VOID)
 }
 ```
 
-### Verification<a name="section1968771515188"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

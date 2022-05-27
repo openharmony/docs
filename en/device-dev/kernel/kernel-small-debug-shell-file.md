@@ -1,4 +1,4 @@
-# File Commands<a name="EN-US_TOPIC_0000001179845925"></a>
+# File Commands
 
 -   **[cat](kernel-small-debug-shell-file-cat.md)**  
 

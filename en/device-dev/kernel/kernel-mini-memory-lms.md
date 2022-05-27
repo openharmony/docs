@@ -1,16 +1,6 @@
-# LMS<a name="EN-US_TOPIC_0000001184872992"></a>
+# LMS
 
--   [Basic Concepts](#section7605453104815)
--   [Working Principles](#section8495832174910)
--   [Available APIs](#section05501853194918)
--   [Development Guidelines](#section177357243510)
-    -   [How to Develop](#section125863345112)
-    -   [Development Example](#section812115715313)
-    -   [Sample Code](#section614842310538)
-    -   [Verification](#section980212293548)
-
-
-## Basic Concepts<a name="section7605453104815"></a>
+## Basic Concepts
 
 Lite Memory Sanitizer \(LMS\) is a tool used to detect memory errors on a real-time basis. LMS can detect buffer overflow, Use-After-Free \(UAF\), and double free errors in real time, and notify the operating system immediately. Together with locating methods such as Backtrace, LMS can locate the code line that causes the memory error. It greatly improves the efficiency of locating memory errors.
 
@@ -21,7 +11,7 @@ The LMS module of the OpenHarmony LiteOS-M kernel provides the following functio
 -   Checks the memory when bounds-checking functions are called \(enabled by default\).
 -   Checks the memory when libc frequently accessed functions, including  **memset**,  **memcpy**,  **memmove**,  **strcat**,  **strcpy**,  **strncat**  and  **strncpy**, are called.
 
-## Working Principles<a name="section8495832174910"></a>
+## Working Principles
 
 LMS uses shadow memory mapping to mark the system memory state. There are three states:  **Accessible**,  **RedZone**, and  **Freed**. The shadow memory is located in the tail of the memory pool.
 
@@ -30,7 +20,7 @@ LMS uses shadow memory mapping to mark the system memory state. There are three 
 -   During code compilation, a function is inserted before the read/write instructions in the code to check the address validity. The tool checks the state value of the shadow memory that accesses the memory. If the shadow memory is in the  **RedZone**  statue, an overflow error will be reported. If the shadow memory is in the  **Freed**  state, a UAF error will be reported.
 -   When memory is released, the tool checks the state value of the shadow memory at the released address. If the shadow memory is in the  **RedZone**  state, a double free error will be reported.
 
-## Available APIs<a name="section05501853194918"></a>
+## Available APIs
 
 The LMS module of the OpenHarmony LiteOS-M kernel provides the following APIs. For more details about the APIs, see the  [API](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/lms/los_lms.h)  reference.
 
@@ -76,9 +66,9 @@ The LMS module of the OpenHarmony LiteOS-M kernel provides the following APIs. F
 </tbody>
 </table>
 
-## Development Guidelines<a name="section177357243510"></a>
+## Development Guidelines
 
-### How to Develop<a name="section125863345112"></a>
+### How to Develop
 
 The typical process for enabling LMS is as follows:
 
@@ -173,7 +163,7 @@ The typical process for enabling LMS is as follows:
 
 3.  Recompile the code and check the serial port output. The memory problem detected will be displayed.
 
-### Development Example<a name="section812115715313"></a>
+### Development Example
 
 This example implements the following:
 
@@ -181,7 +171,7 @@ This example implements the following:
 2.  Construct a buffer overflow error and a UAF error.
 3.  Add "-fsanitize=kernel-address", execute the compilation, and check the output.
 
-### Sample Code<a name="section614842310538"></a>
+### Sample Code
 
 The code is as follows:
 
@@ -240,7 +230,7 @@ UINT32 Example_Lms_test(VOID){
 }
 ```
 
-### Verification<a name="section980212293548"></a>
+### Verification
 
 The output is as follows:
 

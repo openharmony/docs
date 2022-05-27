@@ -3,6 +3,13 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
+
+LightWeightMap依据泛型定义，采用轻量级结构，集合中key值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的key值及value值。
+
+LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集合，LightWeightMap占用内存更小。
+
+**推荐使用场景：** 当需要存取key-value键值对时，推荐使用占用内存更小的LightWeightMap。
 
 ## 导入模块
 

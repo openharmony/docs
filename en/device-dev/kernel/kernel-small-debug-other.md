@@ -1,4 +1,4 @@
-# Other Kernel Debugging Methods<a name="EN-US_TOPIC_0000001173169005"></a>
+# Other Kernel Debugging Methods
 
 -   **[Dying Gasp](kernel-small-debug-trace-other-lastwords.md)**  
 

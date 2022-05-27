@@ -1,4 +1,4 @@
-# Process Management<a name="EN-US_TOPIC_0000001173298177"></a>
+# Process Management
 
 -   **[Process](kernel-small-basic-process-process.md)**  
 

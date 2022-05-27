@@ -37,10 +37,11 @@ After the project synchronization is complete, a low-code directory structure is
 
 ![en-us_image_0000001223558810](figures/en-us_image_0000001223558810.png)
 
-- **entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages &gt; index &gt; index.js** : defines logical relationships, such as data and events, used on low-code pages. For details, see [JavaScript](../ui/js-framework-syntax-js.md). If multiple low-code development pages are created, a page folder and the corresponding **.js** file will be created for each of these pages.
+- **entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages &gt; index &gt; index.js**: defines logical relationships, such as data and events, used on low-code pages. For details, see [JavaScript](../ui/js-framework-syntax-js.md). If multiple low-code development pages are created, a page folder and the corresponding **.js** file will be created for each of these pages.
+  
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>To avoid build errors when using the low-code development page, make sure the directory where the corresponding **.js** file is located does not contain **.hml** or **.css** files. For example, in the preceding example, no **.hml** or **.css** file is allowed in **js** &gt; **MainAbility** &gt; **pages** &gt; **index**.
   >
-- **entry &gt; src &gt; main &gt; supervisual &gt; MainAbility &gt; pages &gt; index &gt; index.visual** : stores the data model of the low-code development page. You can double-click the file to open the low-code development page. If multiple low-code development pages are created, a page folder and the corresponding **.visual** file will be created for each of these pages.
+- **entry &gt; src &gt; main &gt; supervisual &gt; MainAbility &gt; pages &gt; index &gt; index.visual**: stores the data model of the low-code development page. You can double-click the file to open the low-code development page. If multiple low-code development pages are created, a page folder and the corresponding **.visual** file will be created for each of these pages.
 
 
 ## Building the First Page

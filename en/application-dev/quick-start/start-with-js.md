@@ -19,7 +19,7 @@
 
 ## JavaScript Project Files
 
-- **entry** : OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
+- **entry**: OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
   - **src &gt; main &gt; js**: a collection of JS source code.
   - **src &gt; main &gt; js &gt; MainAbility**: entry to your application/service.
   - **src &gt; main &gt; js &gt; MainAbility &gt; i18n**: resources in different languages, for example, UI strings and image paths.
@@ -50,7 +50,7 @@
 
 2. Add a button and bind the **onclick** method to this button.
 
-   On the default page, add an **&lt;input&gt;** component of the button type to accept user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
+   On the default page, add an **&lt;input&gt;** component of the button type to respond to user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
 
 
    ```

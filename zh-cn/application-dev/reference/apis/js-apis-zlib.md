@@ -36,17 +36,14 @@ zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
 import zlib from '@ohos.zlib'
 var inFile = "/xxx/filename.xxx";
 var outFile = "/xxx/xxx.zip";
-var options = {};
-options.level = zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION;
-options.memLevel = zlib.MemLevel.MEM_LEVEL_DEFAULT;
-options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY;
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    if (data == zlib.ErrorCode.ERROR_CODE_OK) {
-        console.log("zipFile OK");
-    } else {
-        console.log("zipFile NG");
-    }
+    console.log("zipFile result：" + data);
 }).catch((err)=>{
     console.log("catch((err)=>" + err);
 });
@@ -60,17 +57,14 @@ zlib.zipFile(inFile, outFile, options).then((data) => {
 import zlib from '@ohos.zlib'
 var inFile = "/xxx/xxx";
 var outFile = "/xxx/xxx.zip";
-var options = {};
-options.level = zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION;
-options.memLevel = zlib.MemLevel.MEM_LEVEL_DEFAULT;
-options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY;
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
 
-zlib.zipFile(inFile , unzipDir, options).then((data) => {
-    if (data == zlib.ErrorCode.ERROR_CODE_OK) {
-        console.log("zipFile OK");
-    } else {
-        console.log("zipFile NG");
-    }
+zlib.zipFile(inFile , outFile, options).then((data) => {
+    console.log("zipFile result：" + data);
 }).catch((err)=>{
     console.log("catch((err)=>" + err);
 });
@@ -106,17 +100,13 @@ import zlib from '@ohos.zlib'
 var inFile = "/xx/xxx.zip";
 var outFile = "/xxx";
 
-var options = {};
-options.level = zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION;
-options.memLevel = zlib.MemLevel.MEM_LEVEL_DEFAULT;
-options.strategy = zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY;
-
+let options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    if (data == zlib.ErrorCode.ERROR_CODE_OK) {
-        console.log("unzipFile OK");
-    } else {
-        console.log("unzipFile NG");
-    }
+    console.log("unzipFile result：" + data);
 }).catch((err)=>{
     console.log("catch((err)=>" + err);
 })

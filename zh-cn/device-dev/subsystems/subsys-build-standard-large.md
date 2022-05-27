@@ -5,7 +5,7 @@
 
 编译构建子系统提供了一个基于gn和ninja的编译构建框架。主要提供以下功能：
 
-- 构建不同芯片平台的产品。如：Hi3516DV300平台。
+- 构建不同芯片平台的产品。如：hispark_taurus_standard平台。
 
 - 根据产品配置，按照组件组装并打包产品特性的能力。
 
@@ -89,14 +89,14 @@ OpenHarmony侧的编译构建流程主要包括编译命令行解析，调用gn�
   ./build.sh --product-name {product_name}
   ```
 
-  {product_name}为当前版本支持的平台。比如：Hi3516DV300等。
+  {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
 
   编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
 
 - 编译命令支持选项：
     
   ```
-    --product-name    # 必须  编译的产品名称，如：Hi3516DV300
+    --product-name    # 必须  编译的产品名称，如：hispark_taurus_standard
     --build-target    # 可选  指定编译目标，可以指定多个
     --gn-args         # 可选  gn参数，支持指定多个
     --ccache          # 可选  编译使用ccache，需要本地安装ccache
@@ -400,7 +400,7 @@ ohos_shared_library("module2") {
 
    该文件定义了有哪些子系统以及这些子系统所在文件夹路径，添加子系统时需要说明子系统path与name，分别表示子系统路径和子系统名。
 
-4. 在//vendor/{product_company}/{product-name}目录下的产品配置如product-name是Hi3516DV300时，在config.json中添加对应的部件，直接添加到原有部件后即可。
+4. 在//vendor/{product_company}/{product-name}目录下的产品配置如product-name是hispark_taurus_standard时，在config.json中添加对应的部件，直接添加到原有部件后即可。
      
    ```
    {
@@ -418,7 +418,7 @@ ohos_shared_library("module2") {
 
 **配置文件说明**
 
-鸿蒙操作系统的配置文件主要有四个。
+OpenHarmony的配置文件主要有四个。
 
 1. vendor\产品厂商\产品名\config.json
      

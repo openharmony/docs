@@ -19,7 +19,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    .
    ```
 
-3. 在built-in下选择Hi3516DV300并回车。
+3. 在hisilicon下选择hispark_taurus_standard并回车。
 
 4. 执行编译。
 

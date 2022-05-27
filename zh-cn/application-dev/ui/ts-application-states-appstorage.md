@@ -29,9 +29,6 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 | Clear | void | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，则返回false。 |
 | IsMutable | key:&nbsp;string | boolean | 返回此属性是否存在并且是否可以改变。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 当前接口当前仅可以处理基础类型数据，对于修改object中某一个值尚未支持。
-
 
 ## AppStorage与组件同步
 

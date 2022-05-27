@@ -4,7 +4,7 @@
 
 In the Hardware Driver Foundation \(HDF\) framework, the real-time clock \(RTC\) uses the independent service mode for API adaptation. In this mode, each device independently publishes a device service to handle external access requests. After receiving an access request from an API, the device manager extracts the parameters in the request to call the internal method of the target device. In the independent service mode, the service management capabilities of the HDFDeviceManager can be directly used. However, you need to configure a device node for each device, which increases the memory usage.
 
-**Figure  1**  Independent service mode<a name="fig6742142611299"></a>  
+**Figure  1** Independent service mode<a name="fig6742142611299"></a>  
 ![](figures/independent-service-mode.png "independent-service-mode-11")
 
 ## Available APIs<a name="section752964871810"></a>
@@ -27,7 +27,7 @@ struct RtcMethod {
 };
 ```
 
-**Table  1**  Callbacks for the members in the RtcMethod structure
+**Table  1** Callbacks for the members in the RtcMethod structure
 
 <a name="table12929217311"></a>
 <table><thead align="left"><tr id="row293621203111"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p15932212314"><a name="p15932212314"></a><a name="p15932212314"></a>Callback</p>
@@ -183,33 +183,31 @@ struct RtcMethod {
 The RTC module adaptation involves the following steps:
 
 1.  Instantiate the driver entry.
-    -   Instantiate the  **HdfDriverEntry**  structure.
-    -   Call  **HDF\_INIT**  to register the  **HdfDriverEntry**  instance with the HDF.
+    -   Instantiate the **HdfDriverEntry** structure.
+    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
 2.  Configure attribute files.
-    -   Add the  **deviceNode**  information to the  **device\_info.hcs**  file.
-    -   \(Optional\) Add the  **rtc\_config.hcs**  file.
+    -   Add the **deviceNode** information to the **device\_info.hcs** file.
+    -   \(Optional\) Add the **rtc\_config.hcs** file.
 
 3.  Instantiate the RTC controller object.
-    -   Initialize  **RtcHost**.
-    -   Instantiate  **RtcMethod**  in the  **RtcHost**  object.
+    -   Initialize **RtcHost**.
+    -   Instantiate **RtcMethod** in the **RtcHost** object.
 
-        >![](../public_sys-resources/icon-note.gif) **NOTE** 
+        For details, see [Available APIs](#available-apis).
+        
+4.  \(Optional\) Debug the driver.
 
-        >For details, see [Available APIs](#available-apis).
-
-
-4.  Debug the driver.
-    -   \(Optional\) For new drivers, verify the basic functions, such as the RTC control status and response to interrupts.
+    For new drivers, verify the basic functions, such as the RTC control status and response to interrupts.
 
 
 ## Development Example<a name="section1594883301142407"></a>
 
-The following uses  **rtc\_hi35xx.c**  as an example to present the contents that need to be provided by the vendor to implement device functions.
+The following uses **rtc\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the  **HdfDriverEntry**  type \(defined in  **hdf\_device\_desc.h**\), and the value of  **moduleName**  must be the same as that in  **device\_info.hcs**. In the HDF, the start address of each  **HdfDriverEntry**  object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-    Generally, HDF calls the  **Bind**  function and then the  **Init**  function to load a driver. If  **Init**  fails to be called, HDF calls  **Release**  to release driver resources and exit.
+    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exit.
 
     -   RTC driver entry reference
 
@@ -225,11 +223,11 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
         HDF_INIT(g_rtcDriverEntry);
         ```
 
-2.  Add the  **deviceNode**  information to the  **device\_info.hcs**  file and configure the device attributes in the  **rtc\_config.hcs**  file. The  **deviceNode**  information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the  **RtcHost**  members at the core layer.
+2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **rtc\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **RtcHost** members at the core layer.
 
-    In this example, there is only one RTC controller. If there are multiple RTC controllers, you need to add the  **deviceNode**  information to the  **device\_info**  file and add the corresponding device attributes to the  **rtc\_config**  file.
+    In this example, there is only one RTC controller. If there are multiple RTC controllers, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **rtc\_config** file.
 
-    -   **device\_info.hcs**  configuration reference
+    -  **device\_info.hcs** configuration reference
 
         ```
         root {
@@ -250,7 +248,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-    -   **rtc\_config.hcs**  configuration reference
+    -  **rtc\_config.hcs** configuration reference
 
         ```
         root {
@@ -274,10 +272,10 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
         }
         ```
 
-3.  Initialize the  **RtcHost**  object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating  **RtcMethod**  \(used to call underlying functions of the driver\) in  **RtcHost**, and implementing the  **HdfDriverEntry**  member functions \(**Bind**,  **Init**, and  **Release**\).
+3.  Initialize the **RtcHost** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **RtcMethod** \(used to call underlying functions of the driver\) in **RtcHost**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
     -   Custom structure reference
 
-        To the driver, the custom structure carries parameters and data. The values in the  **rtc\_config.hcs**  file are read by HDF, and the structure members are initialized through  **DeviceResourceIface**.
+        To the driver, the custom structure carries parameters and data. The values in the **rtc\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**.
 
         ```
         struct RtcConfigInfo {
@@ -303,7 +301,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
         };
         ```
 
-    -   Instantiate the callback function structure  **RtcMethod**  in  **RtcHost**. Other members are initialized by using the  **Init**  function.
+    -   Instantiate the callback function structure **RtcMethod** in **RtcHost**. Other members are initialized by using the **Init** function.
 
         ```
         // Example in rtc_hi35xx.c: instantiate the hook.
@@ -326,13 +324,13 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see  **HDF\_STATUS**  in the  **//drivers/framework/include/utils/hdf\_base.h**  file.\)
+        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
 
-        **Table  2**  Input parameters and return values of the Bind function
+       **Table  2** Input parameters and return values of the Bind function
 
         <a name="table14285177465"></a>
         <table><thead align="left"><tr id="row6280177461"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p528181764613"><a name="p528181764613"></a><a name="p528181764613"></a>Status (Value)</p>
@@ -376,7 +374,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Associates the  **HdfDeviceObject**  object and  **RtcHost**.
+        Associates the **HdfDeviceObject** object and **RtcHost**.
 
         ```
         static int32_t HiRtcBind(struct HdfDeviceObject *device)
@@ -395,7 +393,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
@@ -403,7 +401,7 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         Function description:
 
-        Initializes the custom structure object and  **RtcHost**.
+        Initializes the custom structure object and **RtcHost**.
 
         ```
         static int32_t HiRtcInit(struct HdfDeviceObject *device)
@@ -437,15 +435,15 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
 
         Input parameters:
 
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
         Return values:
 
         –
 
-        **Function description**:
+       **Function description**:
 
-        Releases the memory and deletes the controller. This function assigns a value to the  **Release**  API in the driver entry structure. When the HDF fails to call the  **Init**  function to initialize the driver, the  **Release**  function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the  **Init**  or  **Bind**  function has the corresponding value assignment operations.
+        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** or **Bind** function has the corresponding value assignment operations.
 
         ```
         static void HiRtcRelease(struct HdfDeviceObject *device)
@@ -463,6 +461,3 @@ The following uses  **rtc\_hi35xx.c**  as an example to present the contents tha
             RtcHostDestroy(host); // Release RtcHost.
         }
         ```
-
-
-

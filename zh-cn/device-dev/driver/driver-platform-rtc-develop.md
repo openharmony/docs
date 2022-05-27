@@ -3,7 +3,7 @@
 
 ## 概述
 
-RTC(real-time clock)为操作系统中的实时时钟设备，在HDF框架中，RTC的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
+RTC（real-time clock）为操作系统中的实时时钟设备。在HDF框架中，RTC的接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
   **图1** RTC独立服务模式结构图
 
@@ -35,17 +35,17 @@ struct RtcMethod {
 
 | 函数 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| ReadTime | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;; | time:&nbsp;结构体指针,传出的时间值; | HDF_STATUS相关状态 | 读RTC时间信息 | 
-| WriteTime | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;time:&nbsp;结构体指针,时间传入值; | 无 | HDF_STATUS相关状态 | 写RTC时间信息（包括毫秒~年） | 
-| ReadAlarm | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;alarmIndex:&nbsp;枚举值，闹钟报警索引&nbsp;; | time:&nbsp;结构体指针,传出的时间值; | HDF_STATUS相关状态 | 读RTC报警时间信息 | 
-| WriteAlarm | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;alarmIndex:&nbsp;枚举值，闹钟报警索引&nbsp;;time:&nbsp;结构体指针,时间传入值; | 无 | HDF_STATUS相关状态 | 写RTC报警时间信息 | 
-| RegisterAlarmCallback | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;alarmIndex:&nbsp;枚举值，闹钟报警索引&nbsp;;cb：函数指针,回调函数; | 无 | HDF_STATUS相关状态 | 注册报警超时回调函数 | 
-| AlarmInterruptEnable | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;alarmIndex:&nbsp;枚举值，闹钟报警索引&nbsp;;enable:&nbsp;布尔值，控制报警; | 无 | HDF_STATUS相关状态 | 使能/去使能RTC报警中断 | 
-| GetFreq | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;; | freq:&nbsp;uint32_t指针,传出的频率值; | HDF_STATUS相关状态 | 读RTC外接晶振频率 | 
-| SetFreq | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;freq:&nbsp;uint32_t，频率传入值; | 无 | HDF_STATUS相关状态 | 配置RTC外接晶振频率 | 
-| Reset | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;; | 无 | HDF_STATUS相关状态 | RTC复位 | 
-| ReadReg | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;usrDefIndex:&nbsp;结构体,用户自定义寄存器索引; | value:&nbsp;uint8_t指针,传出的寄存器值; | HDF_STATUS相关状态 | 按照用户定义的寄存器索引，读取对应的寄存器配置，一个索引对应一字节的配置值 | 
-| WriteReg | host:&nbsp;结构体指针,核心层RTC控制器&nbsp;;usrDefIndex:&nbsp;结构体,用户自定义寄存器索引;value:&nbsp;uint8_t,寄存器传入值; | 无 | HDF_STATUS相关状态 | 按照用户定义的寄存器索引，设置对应的寄存器配置，一个索引对应一字节的配置值 | 
+| ReadTime | host：结构体指针，核心层RTC控制器 | time：结构体指针，传出的时间值 | HDF_STATUS相关状态 | 读RTC时间信息 | 
+| WriteTime | host：结构体指针，核心层RTC控制器<br>time：结构体指针，时间传入值 | 无 | HDF_STATUS相关状态 | 写RTC时间信息（包括毫秒~年） | 
+| ReadAlarm | host：结构体指针，核心层RTC控制器<br>alarmIndex：枚举值，闹钟报警索引 | time：结构体指针，传出的时间值 | HDF_STATUS相关状态 | 读RTC报警时间信息 | 
+| WriteAlarm | host：结构体指针，核心层RTC控制器<br>alarmIndex：枚举值，闹钟报警索引<br>time：结构体指针，时间传入值 | 无 | HDF_STATUS相关状态 | 写RTC报警时间信息 | 
+| RegisterAlarmCallback | host：结构体指针，核心层RTC控制器<br>alarmIndex：枚举值，闹钟报警索引<br>cb：函数指针，回调函数 | 无 | HDF_STATUS相关状态 | 注册报警超时回调函数 | 
+| AlarmInterruptEnable | host：结构体指针，核心层RTC控制器<br>alarmIndex：枚举值，闹钟报警索引<br>enable：布尔值，控制报警 | 无 | HDF_STATUS相关状态 | 使能/去使能RTC报警中断 | 
+| GetFreq | host：结构体指针，核心层RTC控制器 | freq：uint32_t指针，传出的频率值 | HDF_STATUS相关状态 | 读RTC外接晶振频率 | 
+| SetFreq | host：结构体指针，核心层RTC控制器<br>freq：uint32_t，频率传入值 | 无 | HDF_STATUS相关状态 | 配置RTC外接晶振频率 | 
+| Reset | host：结构体指针，核心层RTC控制器 | 无 | HDF_STATUS相关状态 | RTC复位 | 
+| ReadReg | host：结构体指针，核心层RTC控制器<br>usrDefIndex：结构体，用户自定义寄存器索引 | value：uint8_t指针，传出的寄存器值 | HDF_STATUS相关状态 | 按照用户定义的寄存器索引，读取对应的寄存器配置，一个索引对应一字节的配置值 | 
+| WriteReg | host：结构体指针，核心层RTC控制器<br>usrDefIndex：结构体，用户自定义寄存器索引<br>value：uint8_t，寄存器传入值 | 无 | HDF_STATUS相关状态 | 按照用户定义的寄存器索引，设置对应的寄存器配置，一个索引对应一字节的配置值 | 
 
 
 ## 开发步骤
@@ -63,7 +63,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 3. **实例化RTC控制器对象：**
    - 初始化RtcHost成员。
    - 实例化RtcHost成员RtcMethod。
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 实例化RtcHost成员RtcMethod，其定义和成员说明见[接口说明](#接口说明)。
 
 4. **驱动调试：**
@@ -82,10 +82,10 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
    ```
    struct HdfDriverEntry g_rtcDriverEntry = {
      .moduleVersion = 1,
-     .Bind = HiRtcBind,               //见Bind参考
-     .Init = HiRtcInit,               //见Init参考
-     .Release = HiRtcRelease,         //见Release参考
-     .moduleName = "HDF_PLATFORM_RTC",//【必要】且与 HCS 里面的名字匹配
+     .Bind = HiRtcBind,               // 见Bind参考
+     .Init = HiRtcInit,               // 见Init参考
+     .Release = HiRtcRelease,         // 见Release参考
+     .moduleName = "HDF_PLATFORM_RTC",// 【必要】且与 HCS 里面的名字匹配
    };
    //调用HDF_INIT将驱动入口注册到HDF框架中
    HDF_INIT(g_rtcDriverEntry);
@@ -102,12 +102,12 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
          platform :: host {
            device_rtc :: device {
              device0 :: deviceNode {
-               policy = 1;                              //2:用户态可见,1:内核态可见,0:不需要发布服务
-               priority = 30;                           //优先级越大，值越小
-               permission = 0644;                       //驱动创建设备节点权限
-               moduleName = "HDF_PLATFORM_RTC";         //【必要】用于指定驱动名称，需要与驱动Entry中的moduleName一致
-               serviceName = "HDF_PLATFORM_RTC";        //【必要】驱动对外发布服务的名称，必须唯一
-               deviceMatchAttr = "hisilicon_hi35xx_rtc";//【必要】需要与设备hcs文件中的 match_attr 匹配
+               policy = 1;                              // 2:用户态可见,1:内核态可见,0:不需要发布服务
+               priority = 30;                           // 值越小，优先级越高
+               permission = 0644;                       // 驱动创建设备节点权限
+               moduleName = "HDF_PLATFORM_RTC";         // 【必要】用于指定驱动名称，需要与驱动Entry中的moduleName一致
+               serviceName = "HDF_PLATFORM_RTC";        // 【必要】驱动对外发布服务的名称，必须唯一
+               deviceMatchAttr = "hisilicon_hi35xx_rtc";// 【必要】需要与设备hcs文件中的 match_attr 匹配
              }
            }
          }
@@ -115,7 +115,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
      }
      ```
    
-   - rtc_config.hcs 配置参考。
+   - rtc_config.hcs配置参考。
    
        
      ```
@@ -123,10 +123,10 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
        platform {
          rtc_config {
            controller_0x12080000 {
-             match_attr = "hisilicon_hi35xx_rtc";//【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-             rtcSpiBaseAddr = 0x12080000;        //地址映射相关
-             regAddrLength = 0x100;              //地址映射相关
-             irq = 37;                           //中断号
+             match_attr = "hisilicon_hi35xx_rtc";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+             rtcSpiBaseAddr = 0x12080000;        // 地址映射相关
+             regAddrLength = 0x100;              // 地址映射相关
+             irq = 37;                           // 中断号
              supportAnaCtrl = false;
              supportLock = false;
              anaCtrlAddr = 0xff;
@@ -148,17 +148,17 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         
       ```
       struct RtcConfigInfo {
-        uint32_t           spiBaseAddr;    //地址映射相关
-        volatile void      *remapBaseAddr; //地址映射相关
-        uint16_t           regAddrLength;  //地址映射相关
-        uint8_t            supportAnaCtrl; //是否支持anactrl
-        uint8_t            supportLock;    //是否支持锁
-        uint8_t            irq;            //中断号
-        uint8_t            alarmIndex;     //闹钟索引
-        uint8_t            anaCtrlAddr;    //anactrl地址
-        struct RtcLockAddr lockAddr;       //锁地址
-        RtcAlarmCallback   cb;             //回调函数
-        struct OsalMutex   mutex;          //互斥锁
+        uint32_t           spiBaseAddr;    // 地址映射相关
+        volatile void      *remapBaseAddr; // 地址映射相关
+        uint16_t           regAddrLength;  // 地址映射相关
+        uint8_t            supportAnaCtrl; // 是否支持anactrl
+        uint8_t            supportLock;    // 是否支持锁
+        uint8_t            irq;            // 中断号
+        uint8_t            alarmIndex;     // 闹钟索引
+        uint8_t            anaCtrlAddr;    // anactrl地址
+        struct RtcLockAddr lockAddr;       // 锁地址
+        RtcAlarmCallback   cb;             // 回调函数
+        struct OsalMutex   mutex;          // 互斥锁
       };
       
       // RtcHost是核心层控制器结构体，其中的成员在Init函数中会被赋值
@@ -173,7 +173,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
         
       ```
-      // rtc_hi35xx.c 中的示例：钩子函数的填充
+      // rtc_hi35xx.c中的示例：钩子函数的填充
       static struct RtcMethod g_method = {
           .ReadTime   = HiRtcReadTime,
           .WriteTime  = HiRtcWriteTime,
@@ -193,13 +193,13 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
-      HDF_STATUS相关状态  （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
-        **表2** Bind 函数入参及返回值对照表
+        **表2** HDF_STATUS返回值描述
       
       | 状态(值) | 问题描述 | 
       | -------- | -------- |
@@ -219,11 +219,11 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       static int32_t HiRtcBind(struct HdfDeviceObject *device)
       {
         struct RtcHost *host = NULL;  
-        host = RtcHostCreate(device);    //实际是申请内存并挂接device: host->device = device;
-                                         //使HdfDeviceObject与RtcHost可以相互转化的前提
+        host = RtcHostCreate(device);    // 实际是申请内存并挂接device: host->device = device;
+                                         // 使HdfDeviceObject与RtcHost可以相互转化的前提
         ...
-        device->service = &host->service;//使HdfDeviceObject与RtcHost可以相互转化的前提
-                                         //方便后续通过调用RtcHostFromDevice 实现全局性质的host 使用
+        device->service = &host->service;// 使HdfDeviceObject与RtcHost可以相互转化的前提
+                                         // 方便后续通过调用RtcHostFromDevice 实现全局性质的host 使用
         return HDF_SUCCESS;
       }
       ```
@@ -232,7 +232,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -249,23 +249,23 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
         struct RtcHost *host = NULL;
         struct RtcConfigInfo *rtcInfo = NULL;
         ...
-        host = RtcHostFromDevice(device);//这里有HdfDeviceObject到RtcHost的强制转化
+        host = RtcHostFromDevice(device);// 这里有HdfDeviceObject到RtcHost的强制转化
         rtcInfo = OsalMemCalloc(sizeof(*rtcInfo));
         ...
-        //HiRtcConfigData 会从设备配置树中读取属性填充rtcInfo 的supportAnaCtrl, supportLock, spiBaseAddr, regAddrLength, irq
-        //为HiRtcSwInit 和HiRtcSwInit 提供参数，...函数内部处理失败后内存释放等操作
+        // HiRtcConfigData 会从设备配置树中读取属性填充rtcInfo 的supportAnaCtrl, supportLock, spiBaseAddr, regAddrLength, irq
+        // 为HiRtcSwInit和HiRtcSwInit提供参数，...函数内部处理失败后内存释放等操作
         if (HiRtcConfigData(rtcInfo, device->property) != 0) {
           ...
         }
-        if (HiRtcSwInit(rtcInfo) != 0) {//地址映射以及中断注册相关
+        if (HiRtcSwInit(rtcInfo) != 0) {// 地址映射以及中断注册相关
           ...
         }
-        if (HiRtcHwInit(rtcInfo) != 0) {//初始化anaCtrl 和 lockAddr 相关内容
+        if (HiRtcHwInit(rtcInfo) != 0) {// 初始化anaCtrl 和 lockAddr 相关内容
           ...
         }
       
         host->method = &g_method;//RtcMethod的实例化对象的挂载
-        host->data = rtcInfo;    //使RtcConfigInfo与RtcHost可以相互转化的前提
+        host->data = rtcInfo;    // 使RtcConfigInfo与RtcHost可以相互转化的前提
         HDF_LOGI("Hdf dev service:%s init success!", HdfDeviceGetServiceName(device));
         return HDF_SUCCESS;
       }
@@ -274,7 +274,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       入参：
 
-      HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -282,7 +282,7 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
 
       函数说明：
 
-      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口， 当HDF框架调用Init函数初始化驱动失败时，可以调用 Release 释放驱动资源。所有强制转换获取相应对象的操作前提是在Init或Bind函数中具备对应赋值的操作。
+      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。所有强制转换获取相应对象的操作前提是在Init或Bind函数中具备对应赋值的操作。
 
         
       ```
@@ -291,13 +291,13 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           struct RtcHost *host = NULL;
           struct RtcConfigInfo *rtcInfo = NULL;
           ...
-          host = RtcHostFromDevice(device);            //这里有HdfDeviceObject到RtcHost的强制转化
-          rtcInfo = (struct RtcConfigInfo *)host->data;//这里有RtcHost到RtcConfigInfo的强制转化
+          host = RtcHostFromDevice(device);            // 这里有HdfDeviceObject到RtcHost的强制转化
+          rtcInfo = (struct RtcConfigInfo *)host->data;// 这里有RtcHost到RtcConfigInfo的强制转化
           if (rtcInfo != NULL) {
               HiRtcSwExit(rtcInfo);
-              OsalMemFree(rtcInfo);                    //释放RtcConfigInfo
+              OsalMemFree(rtcInfo);                    // 释放RtcConfigInfo
               host->data = NULL;
           }
-          RtcHostDestroy(host);                        //释放RtcHost
+          RtcHostDestroy(host);                        // 释放RtcHost
       }
       ```

@@ -78,7 +78,7 @@ struct TouchExample {
           }
           console.info(this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
           + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\ncomponent globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\nwidth:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
           + event.target.area.width + '\nheight:' + event.target.area.height)
         })
       Text(this.text)

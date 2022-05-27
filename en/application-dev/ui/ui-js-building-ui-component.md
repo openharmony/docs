@@ -11,11 +11,26 @@ You can also customize a new component through proper combination of components 
 
 Components can be classified into the following types based on their functions.
 
-  | Type | Components | 
+| Type | Components |
 | -------- | -------- |
-| Container | badge, dialog, div, form, list, list-item, list-item-group, panel, popup, refresh, stack, stepper, stepper-item, swiper, tabs, tab-bar, tab-content | 
-| Basic | button, chart, divider, image, image-animator, input, label, marquee, menu, option, picker, picker-view, piece, progress, qrcode, rating, richtext, search, select, slider, span, switch, text, textarea, toolbar, toolbar-item, toggle | 
-| Media | video | 
-| Canvas | canvas | 
-| Grid | grid-container, grid-row, grid-col | 
+| Container | badge, dialog, div, form, list, list-item, list-item-group, panel, popup, refresh, stack, stepper, stepper-item, swiper, tabs, tab-bar, tab-content |
+| Basic | button, chart, divider, image, image-animator, input, label, marquee, menu, option, picker, picker-view, piece, progress, qrcode, rating, richtext, search, select, slider, span, switch, text, textarea, toolbar, toolbar-item, toggle |
+| Media | video |
+| Canvas | canvas |
+| Grid | grid-container, grid-row, grid-col |
 | SVG | svg, rect, circle, ellipse, path, line, polyline, polygon, text, tspan, textPath, animate, animateMotion, animateTransform |
+## Samples
+
+The following samples are provided to help you better understand how to develop components: 
+
+- [`JsPanel`: Content Display Panel (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel)
+- [`Popup`: JavaScript Bubble (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Popup)
+- [`RefreshContainer`: Refresh Container (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/RefreshContainer)
+- [`JSComponments`:  JavaScript Bubble (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JSComponments)
+- [`JsUserRegistration`: User Registration (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsUserRegistration)
+- [`ECG`: Heart Rate Detection (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/ECG)
+
+- [`Badge`: Badge (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
+- [`JsVideo`: JsVideo (API 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo)
+- [Rating (JavaScript)](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+- [Simple Video Player](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

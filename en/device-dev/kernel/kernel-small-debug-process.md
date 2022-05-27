@@ -1,4 +1,4 @@
-# Process Commissioning<a name="EN-US_TOPIC_0000001173350145"></a>
+# Process Debugging
 
 -   **[CPUP](kernel-small-debug-process-cpu.md)**  
 

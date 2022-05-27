@@ -1,19 +1,4 @@
-# Event<a name="EN-US_TOPIC_0000001078753124"></a>
-
--   [Basic Concepts](#section122115620816)
--   [Working Principles](#section94611116593)
-    -   [Event Control Block](#section1161415384467)
-    -   [Working Principles](#section187761153144617)
-
--   [Development Guidelines](#section44744471891)
-    -   [Available APIs](#section172373513919)
-    -   [How to Develop](#section1118215161013)
-
--   [Development Example](#section5837165132911)
-    -   [Example Description](#section128221510145718)
-    -   [Sample Code](#section71507479577)
-    -   [Verification](#section16570171645813)
-
+# Event
 
 ## Basic Concepts<a name="section122115620816"></a>
 

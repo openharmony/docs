@@ -89,8 +89,8 @@ USB驱动模型Device侧开放的API接口功能，参考USB Device驱动模型�
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
 | const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br/>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br/>\*descriptor); | 创建Usb设备 | 
-| int&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br/>\*fnDevice); | 删除Usb设备 | 
-| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br/>\*udcName); | 获取Usb设备 | 
+| int&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br/>\*fnDevice); | 删除USB设备 | 
+| const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br/>\*udcName); | 获取USB设备 | 
 
   **表4** usbfn_interface.h
 
@@ -182,37 +182,37 @@ root {
                 "host_acm_table"
             ];
             host_acm_table {
-                //驱动模块名，该字段的值必须和驱动入口结构的moduleName一致
+                // 驱动模块名，该字段的值必须和驱动入口结构的moduleName一致
                 moduleName = "usbhost_acm";
-                //驱动对外发布服务的名称，必须唯一
+                // 驱动对外发布服务的名称，必须唯一
                 serviceName = "usbhost_acm_pnp_service";
-                //驱动私有数据匹配关键字
+                // 驱动私有数据匹配关键字
                 deviceMatchAttr = "usbhost_acm_pnp_matchAttr";
-                //从该字段开始（包含该字段）之后数据长度，以byte为单位
+                // 从该字段开始（包含该字段）之后数据长度，以byte为单位
                 length = 21;
-                //USB驱动匹配规则vendorId+productId+interfaceSubClass+interfaceProtocol+interfaceNumber
+                // USB驱动匹配规则vendorId+productId+interfaceSubClass+interfaceProtocol+interfaceNumber
                 matchFlag = 0x0303;
-                //厂商编号
+                // 厂商编号
                 vendorId = 0x12D1;
-                //产品编号
+                // 产品编号
                 productId = 0x5000;
-                //设备出厂编号，低16位
+                // 设备出厂编号，低16位
                 bcdDeviceLow = 0x0000;
-                //设备出厂编号，高16位
+                // 设备出厂编号，高16位
                  bcdDeviceHigh = 0x0000;
-                //USB分配的设备类代码
+                // USB分配的设备类代码
                 deviceClass = 0;
-                //USB分配的子类代码
+                // USB分配的子类代码
                 deviceSubClass = 0;
-                //USB分配的设备协议代码
+                // USB分配的设备协议代码
                 deviceProtocol = 0;
-                //接口类型，根据实际需要可填写多个
+                // 接口类型，根据实际需要可填写多个
                 interfaceClass = [0];
-                //接口子类型，根据实际需要可填写多个
+                // 接口子类型，根据实际需要可填写多个
                 interfaceSubClass = [2, 0];
-                //接口所遵循的协议，根据实际需要可填写多个    
+                // 接口所遵循的协议，根据实际需要可填写多个    
                 interfaceProtocol = [1, 2];
-                //接口的编号，根据实际需要可填写多个
+                // 接口的编号，根据实际需要可填写多个
                 interfaceNumber = [2, 3];
             }
         }
@@ -291,7 +291,7 @@ static struct UsbInterface *GetUsbInterfaceById(const struct AcmDevice *acm,
 {
     struct UsbInterface *tmpIf = NULL;
     tmpIf = (struct UsbInterface *)UsbClaimInterface(acm->session, acm->busNum, 
-            acm->devAddr, interfaceIndex);    //获取UsbInterface接口对象
+            acm->devAddr, interfaceIndex);    // 获取UsbInterface接口对象
     return tmpIf;
 }
 ...
@@ -315,7 +315,7 @@ static struct UsbPipeInfo *EnumePipe(const struct AcmDevice *acm,
 
     for (i = 0;  i <= info->pipeNum; i++) {
         struct UsbPipeInfo p;
-        ret = UsbGetPipeInfo(interfaceHandle, info->curAltSetting, i, &p);//获取指定索引为i的pipeInfo信息
+        ret = UsbGetPipeInfo(interfaceHandle, info->curAltSetting, i, &p);// 获取指定索引为i的pipeInfo信息
         if (ret < 0) {
             continue;
         }
@@ -413,7 +413,7 @@ static int AcmAllocReadRequests(struct AcmDevice *acm)
     int ret;
     struct UsbRequestParams readParams;
     for (int i = 0; i < ACM_NR; i++) {
-        acm->readReq[i] = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), 0, acm->readSize);    //分配待发送的readReq IO Request对象
+        acm->readReq[i] = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), 0, acm->readSize);    // 分配待发送的readReq IO Request对象
         if (!acm->readReq[i]) {
             HDF_LOGE("readReq request failed");
             goto error;
@@ -428,7 +428,7 @@ static int AcmAllocReadRequests(struct AcmDevice *acm)
         readParams.dataReq.numIsoPackets = 0;
         readParams.dataReq.direction = (acm->dataInPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & 0x1;
         readParams.dataReq.length = acm->readSize;
-        ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParams);    //填充待发送的readReq对象
+        ret = UsbFillRequest(acm->readReq[i], InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), &readParams);    // 填充待发送的readReq对象
         if (HDF_SUCCESS != ret) {
             HDF_LOGE("%s: UsbFillRequest failed, ret=%d n", __func__, ret);
             goto error;
@@ -445,7 +445,7 @@ static int AcmAllocNotifyRequest(struct AcmDevice *acm)
 {
     int ret;
     struct UsbRequestParams intParams = {};
-    acm->notifyReq = UsbAllocRequest(InterfaceIdToHandle(acm, acm->intPipe->interfaceId), 0, acm->intSize);    //分配待发送的中断IO Request对象
+    acm->notifyReq = UsbAllocRequest(InterfaceIdToHandle(acm, acm->intPipe->interfaceId), 0, acm->intSize);    // 分配待发送的中断IO Request对象
     if (!acm->notifyReq) {
         HDF_LOGE("notifyReq request failed");
         return HDF_ERR_MALLOC_FAIL;
@@ -460,7 +460,7 @@ static int AcmAllocNotifyRequest(struct AcmDevice *acm)
     intParams.dataReq.numIsoPackets = 0;
     intParams.dataReq.direction = (acm->intPipe->pipeDirection >> USB_PIPE_DIR_OFFSET) & DIRECTION_MASK;
     intParams.dataReq.length = acm->intSize;
-    ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParams);    //填充预先分配的中断IO Request
+    ret = UsbFillRequest(acm->notifyReq, InterfaceIdToHandle(acm, acm->intPipe->interfaceId), &intParams);    // 填充预先分配的中断IO Request
     if (HDF_SUCCESS != ret) {
         HDF_LOGE("%s: UsbFillRequest failed, ret=%d n", __func__, ret);
         goto error;
@@ -489,14 +489,14 @@ static void AcmReleaseInterfaces(struct AcmDevice *acm)
 static int32_t AcmClaimInterfaces(struct AcmDevice *acm)
 {
     for (int i = 0; i < acm->interfaceCnt; i++) {
-        acm->iface[i] = GetUsbInterfaceById((const struct AcmDevice *)acm, acm->interfaceIndex[i]);    //获取UsbInterface接口对象
+        acm->iface[i] = GetUsbInterfaceById((const struct AcmDevice *)acm, acm->interfaceIndex[i]);    // 获取UsbInterface接口对象
         if (acm->iface[i] == NULL) {
             HDF_LOGE("%s: interface%d is null", __func__, acm->interfaceIndex[i]);
             goto error;
         }
     }
 
-    acm->ctrIface = GetUsbInterfaceById((const struct AcmDevice *)acm, USB_CTRL_INTERFACE_ID);    //获取控制接口对应的UsbInterface接口对象
+    acm->ctrIface = GetUsbInterfaceById((const struct AcmDevice *)acm, USB_CTRL_INTERFACE_ID);    // 获取控制接口对应的UsbInterface接口对象
     if (acm->ctrIface == NULL) {
         HDF_LOGE("%s: GetUsbInterfaceById null", __func__);
         goto error;
@@ -527,7 +527,7 @@ static int32_t AcmOpenInterfaces(struct AcmDevice *acm)
 {
     for (int i = 0; i < acm->interfaceCnt; i++) {
         if (acm->iface[i]) {
-            acm->devHandle[i] = UsbOpenInterface(acm->iface[i]);    //打开获取到的UsbInterface接口对象
+            acm->devHandle[i] = UsbOpenInterface(acm->iface[i]);    // 打开获取到的UsbInterface接口对象
             if (acm->devHandle[i] == NULL) {
                 HDF_LOGE("%s: UsbOpenInterface null", __func__);
                 goto error;
@@ -549,25 +549,25 @@ error:
 
 static int32_t AcmGetPipes(struct AcmDevice *acm)
 {
-    acm->dataInPipe = GetPipe(acm, USB_PIPE_TYPE_BULK, USB_PIPE_DIRECTION_IN);//获取dataInPipe的pipeInfo信息
+    acm->dataInPipe = GetPipe(acm, USB_PIPE_TYPE_BULK, USB_PIPE_DIRECTION_IN);// 获取dataInPipe的pipeInfo信息
     if (acm->dataInPipe == NULL) {
         HDF_LOGE("dataInPipe is NULL");
         goto error;
     }
 
-    acm->dataOutPipe = GetPipe(acm, USB_PIPE_TYPE_BULK, USB_PIPE_DIRECTION_OUT);//获取dataOutPipe的pipeInfo信息
+    acm->dataOutPipe = GetPipe(acm, USB_PIPE_TYPE_BULK, USB_PIPE_DIRECTION_OUT);// 获取dataOutPipe的pipeInfo信息
     if (acm->dataOutPipe == NULL) {
         HDF_LOGE("dataOutPipe is NULL");
         goto error;
     }
 
-    acm->ctrPipe = EnumePipe(acm, acm->ctrIface->info.interfaceIndex, USB_PIPE_TYPE_CONTROL, USB_PIPE_DIRECTION_OUT);    //获取控制pipe的pipeInfo信息
+    acm->ctrPipe = EnumePipe(acm, acm->ctrIface->info.interfaceIndex, USB_PIPE_TYPE_CONTROL, USB_PIPE_DIRECTION_OUT);    // 获取控制pipe的pipeInfo信息
     if (acm->ctrPipe == NULL) {
         HDF_LOGE("ctrPipe is NULL");
         goto error;
     }
 
-    acm->intPipe = GetPipe(acm, USB_PIPE_TYPE_INTERRUPT, USB_PIPE_DIRECTION_IN);//获取中断pipe的pipeInfo信息
+    acm->intPipe = GetPipe(acm, USB_PIPE_TYPE_INTERRUPT, USB_PIPE_DIRECTION_IN);// 获取中断pipe的pipeInfo信息
     if (acm->intPipe == NULL) {
         HDF_LOGE("intPipe is NULL");
         goto error;
@@ -616,13 +616,13 @@ static int32_t AcmAllocRequests(struct AcmDevice *acm)
         }
     }
 
-    ret = AcmAllocNotifyRequest(acm);    //分配并填充中断IO Request对象
+    ret = AcmAllocNotifyRequest(acm);    // 分配并填充中断IO Request对象
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s:%d AcmAllocNotifyRequest failed", __func__, __LINE__);
         goto error_alloc_int_req;
     }
 
-    ret = AcmAllocReadRequests(acm);    //分配并填充readReq IO Request对象
+    ret = AcmAllocReadRequests(acm);    // 分配并填充readReq IO Request对象
     if (ret) {
         HDF_LOGE("%s:%d AcmAllocReadRequests failed", __func__, __LINE__);
         goto error_alloc_read_req;
@@ -649,7 +649,7 @@ static int32_t AcmInit(struct AcmDevice *acm)
         return HDF_SUCCESS;
     }
 
-    ret = UsbInitHostSdk(NULL);    //初始化Host DDK
+    ret = UsbInitHostSdk(NULL);    // 初始化Host DDK
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: UsbInitHostSdk failed", __func__);
         return HDF_ERR_IO;
@@ -777,7 +777,7 @@ static void UsbSerialDriverRelease(struct HdfDeviceObject *device)
 
 struct HdfDriverEntry g_usbSerialDriverEntry = {
     .moduleVersion = 1,
-    .moduleName    = "usbhost_acm",    //驱动模块名称，必须与hcs文件中配置的名称一致
+    .moduleName    = "usbhost_acm",    // 驱动模块名称，必须与hcs文件中配置的名称一致
     .Bind          = UsbSerialDriverBind,
     .Init          = UsbSerialDriverInit,
     .Release       = UsbSerialDriverRelease,
@@ -799,38 +799,38 @@ root {
             idTableList = [
                 "host_acm_rawapi_table"
             ];
-            host_acm_rawapi_table {    //驱动配置匹配表信息
-                //驱动模块名，该字段的值必须和驱动入口结构的moduleName一致
+            host_acm_rawapi_table {    // 驱动配置匹配表信息
+                // 驱动模块名，该字段的值必须和驱动入口结构的moduleName一致
                 moduleName = "usbhost_acm_rawapi";
-                //驱动对外发布服务的名称，必须唯一
+                // 驱动对外发布服务的名称，必须唯一
                 serviceName = "usbhost_acm_rawapi_service";
-                //驱动私有数据匹配关键字
+                // 驱动私有数据匹配关键字
                 deviceMatchAttr = "usbhost_acm_rawapi_matchAttr";
-                //从该字段开始（包含该字段）之后数据长度，以byte为单位
+                // 从该字段开始（包含该字段）之后数据长度，以byte为单位
                 length = 21;
-                //USB驱动匹配规则vendorId+productId+interfaceSubClass+interfaceProtocol+interfaceNumber
+                // USB驱动匹配规则vendorId+productId+interfaceSubClass+interfaceProtocol+interfaceNumber
                 matchFlag = 0x0303;
-                //厂商编号
+                // 厂商编号
                 vendorId = 0x12D1;
-                //产品编号
+                // 产品编号
                 productId = 0x5000;
-                //设备出厂编号，低16位
+                // 设备出厂编号，低16位
                 bcdDeviceLow = 0x0000;
-                //设备出厂编号，高16位
+                // 设备出厂编号，高16位
                 bcdDeviceHigh = 0x0000;
-                //USB分配的设备类代码
+                // USB分配的设备类代码
                 deviceClass = 0;
-                //USB分配的子类代码
+                // USB分配的子类代码
                 deviceSubClass = 0;
-                //USB分配的设备协议代码
+                // USB分配的设备协议代码
                 deviceProtocol = 0;
-                //接口类型，根据实际需要可填写多个
+                // 接口类型，根据实际需要可填写多个
                 interfaceClass = [0];
-                //接口子类型，根据实际需要可填写多个
+                // 接口子类型，根据实际需要可填写多个
                 interfaceSubClass = [2, 0];
-                //接口所遵循的协议，根据实际需要可填写多个
+                // 接口所遵循的协议，根据实际需要可填写多个
                 interfaceProtocol = [1, 2];
-                //接口的编号，根据实际需要可填写多个
+                // 接口的编号，根据实际需要可填写多个
                 interfaceNumber = [2, 3];
             }
         }
@@ -1224,7 +1224,7 @@ HDF_INIT(g_usbSerialRawDriverEntry);
 
 ### Device DDK API驱动开发
 
-USB ACM设备核心代码路径为drivers\peripheral\usb\gadget\function\acm\cdcacm.c，其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
+USB ACM设备核心代码路径为drivers\peripheral\usb\gadget\function\acm\cdcacm.c。其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
 
   
 ```

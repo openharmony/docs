@@ -1,9 +1,9 @@
-# Appendix<a name="EN-US_TOPIC_0000001123948061"></a>
+# Appendix
 
--   **[Kernel Coding Specification](kernel-mini-appx-code.md)**  
+- **[Kernel Coding Specification](kernel-mini-appx-code.md)**
 
--   **[Basic Data Structure](kernel-mini-appx-data.md)**  
+- **[Doubly Linked List](kernel-mini-appx-data-list.md)**  
 
--   **[Standard Libraries](kernel-mini-appx-lib.md)**  
+- **[Standard Libraries](kernel-mini-appx-lib.md)**
 
 

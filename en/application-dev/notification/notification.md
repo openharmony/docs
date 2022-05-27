@@ -133,7 +133,7 @@ var subscriber = {
 
 ##### Enabling Notification
 
-Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application can use **Notification.requestEnableNotification** to prompt the user to enable the feature.
+Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application calls **Notification.requestEnableNotification** to prompt the user to enable the feature.
 
 ```js
 Notification.requestEnableNotification() .then((data) => {
@@ -262,4 +262,4 @@ Notification.cancel(1, "label", cancelCallback)
 
 The following sample is provided to help you better understand how to develop notification functions:
 
-[`Notification`: EtsNotification (API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
+[`Notification`: EtsNotification (API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)

@@ -3,25 +3,35 @@
 
 ## 概述
 
-WLAN是基于HDF（Hardware Driver Foundation）驱动框架开发的模块，该模块可实现跨操作系统迁移，自适应器件差异，模块化拼装编译等功能。各WLAN厂商驱动开发人员可根据WLAN模块提供的向下统一接口适配各自的驱动代码，实现如下能力：建立/关闭WLAN热点、扫描、关联WLAN热点等；对HDI层向上提供能力如下：设置MAC地址、设置发射功率、获取设备的MAC地址等。WLAN模块框架图如下：
+WLAN是基于HDF（Hardware Driver Foundation）驱动框架开发的模块，可实现跨操作系统迁移，自适应器件差异，模块化拼装编译等功能。各WLAN厂商驱动开发人员可根据WLAN模块提供的向下统一接口适配各自的驱动代码，实现如下能力：建立/关闭WLAN热点、扫描、关联WLAN热点等；对HDI层向上提供能力如下：设置MAC地址、设置发射功率、获取设备的MAC地址等。WLAN模块框架图如下：
 
   **图1** WLAN框架
 
   ![image](figures/WLAN框架.png "WLAN框架")
 
   **图2** WLAN Driver框架
+
   ![zh-cn_image_0000001300092359](figures/zh-cn_image_0000001300092359.png)
 
-1.WLAN Message：该部件为每个服务单独提供业务接口，每个服务也可依赖其他服务形成组合业务接口，此模块支持在用户态、内核态和MCU环境运行，实现组件间的充分解耦。
-2.WLAN Configuration Core：WLAN相关的配置文件进行解析。
-3.AP：AP为WLAN终端提供外部接入入口的设备。
-4.STA：STA为接入WLAN系统的终端。
-5.Mac80211：定义底层驱动相关的MAC层接口。
-6.Bus：该驱动模块向上提供统一的总线抽象接口。通过向下调用Platform层提供的SDIO接口和封装适配USB、PCIE接口，屏蔽不同内核的差异；通过对不同类型的总线操作进行统一封装，屏蔽不同芯片差异，能够对不同芯片厂商提供完备的总线驱动能力，不同厂商共用此模块接口，从而使厂商的开发更为便捷和统一。
-7.NetDevice：用于建立专属网络设备，屏蔽不同OS的差异，对WiFi驱动提供统一接口，提供统一的HDF NetDevice数据结构，及其统一管理、注册、去注册能力；对接轻设备及富设备上的Linux的网络设备层。
-8.NetBuf：该部件为WLAN驱动提供Linux或者LiteOS原生的网络数据缓冲的统一数据结构的封装以及对网络数据的操作接口的封装。
-9.FlowCtl：流控模块。
-10.HCC-CFG：WLAN相关参数配置其中包括板级配置、驱动配置、Module配置。
+1. WLAN Message：该部件为每个服务单独提供业务接口，每个服务也可依赖其他服务形成组合业务接口，此模块支持在用户态、内核态和MCU环境运行，实现组件间的充分解耦。
+
+2. WLAN Configuration Core：WLAN相关的配置文件进行解析。
+
+3. AP：AP为WLAN终端提供外部接入入口的设备。
+
+4. STA：STA为接入WLAN系统的终端。
+
+5. Mac80211：定义底层驱动相关的MAC层接口。
+
+6. Bus：该驱动模块向上提供统一的总线抽象接口。通过向下调用Platform层提供的SDIO接口和封装适配USB、PCIE接口，屏蔽不同内核的差异；通过对不同类型的总线操作进行统一封装，屏蔽不同芯片差异，能够对不同芯片厂商提供完备的总线驱动能力，不同厂商共用此模块接口，从而使厂商的开发更为便捷和统一。
+
+7. NetDevice：用于建立专属网络设备，屏蔽不同OS的差异，对WiFi驱动提供统一接口，提供统一的HDF NetDevice数据结构，及其统一管理、注册、去注册能力；对接轻设备及富设备上的Linux的网络设备层。
+
+8. NetBuf：该部件为WLAN驱动提供Linux或者LiteOS原生的网络数据缓冲的统一数据结构的封装以及对网络数据的操作接口的封装。
+
+9. FlowCtl：流控模块。
+
+10. HCC-CFG：WLAN相关参数配置其中包括板级配置、驱动配置、Module配置。
 
 ### WLAN驱动接口架构
 
@@ -33,7 +43,7 @@ WLAN模块有三部分对外开放的API接口，如下图所示：
 
 3. 提供给各厂商实现的能力接口。
 
-  **图2** WLAN模块开放能力分布图
+  **图3** WLAN模块开放能力分布图
 
   ![image](figures/WLAN模块开放能力分布图.png "WLAN模块开放能力分布图")
 
@@ -111,9 +121,9 @@ WLAN驱动模块对HDI层提供的能力接口，主要功能有：创建/销毁
 WLAN驱动基于HDF框架和PLATFORM框架开发，不区分OS和芯片平台，为不同厂商的WLAN模组提供统一的驱动模型，各WLAN模组厂商根据如下指导适配WLAN驱动框架。
 
 
-1. 通过wifi_config.hcs文件，配置硬件参数：module(不同feature)，芯片等。
+1. 通过wifi_config.hcs文件，配置硬件参数：module（不同feature）、芯片等。
 
-2. 解析配置文件， 生成全量配置的结构体对象。
+2. 解析配置文件，生成全量配置的结构体对象。
 
 3. Module初始化，创建Module。
 
@@ -124,7 +134,7 @@ WLAN驱动基于HDF框架和PLATFORM框架开发，不区分OS和芯片平台，
 6. 上层wpa业务挂接。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 以上驱动框架适配步骤一部分已经提供（详细见开发实例），待开发人员实现的部分有：1、根据硬件，修改配置参数；2、适配挂接chip；3、测试自验证。
 
 
@@ -142,7 +152,7 @@ hisi :& deviceList {
         powers {
             power0 {
                 powerSeqDelay = 0;  /* 电源序列延时 */
-                powerType = 1;      /* 电源类型：0--总是打开;1--GPIO */
+                powerType = 1;      /* 电源类型：0--总是打开；1--GPIO */
                 gpioId = 1;         /* GPIO管脚号 */
                 activeLevel=1;      /* 有效电平：0--低；1--高 */
             }
@@ -184,7 +194,7 @@ root {
 }
 ```
 
-  2、适配挂接WLAN芯片的初始化和去初始化、WLAN芯片驱动的初始化和去初始化
+  2、适配挂接WLAN芯片的初始化和去初始化、WLAN芯片驱动的初始化和去初始化。
 
 ```
 /* WLAN初始化挂接流程 */
@@ -400,7 +410,7 @@ int32_t Hi3881Deinit(struct HdfChipDriver *chipDriver, struct NetDevice *netDevi
 }
 ```
 
-  3、在芯片侧初始化过程中调用netdev的init和add接口进行初始化netdev，并挂接netdev的一些函数指针
+  3、在芯片侧初始化过程中调用netdev的init和add接口进行初始化netdev，并挂接netdev的一些函数指针。
 
 ```
 hi_s32 wal_init_drv_wlan_netdev(nl80211_iftype_uint8 type, wal_phy_mode mode, hi_char* ifname, hi_u32* len)
@@ -408,7 +418,7 @@ hi_s32 wal_init_drv_wlan_netdev(nl80211_iftype_uint8 type, wal_phy_mode mode, hi
     oal_net_device_stru *netdev          = HI_NULL;
 
     ......
-    /* 初始化网络设备，获取对应的实例。*/
+    /* 初始化网络设备，获取对应的实例 */
     netdev = NetDeviceInit(ifname, *len, LITE_OS);
     oal_wireless_dev *wdev = (oal_wireless_dev *)oal_mem_alloc(OAL_MEM_POOL_ID_LOCAL, sizeof(oal_wireless_dev));
     ret = wal_init_netif(type, netdev, wdev);
@@ -417,7 +427,7 @@ hi_s32 wal_init_drv_wlan_netdev(nl80211_iftype_uint8 type, wal_phy_mode mode, hi
 
     return HI_SUCCESS;
 }
-/* 挂接netdev的一些函数指针,详细挂接函数{@link NetDeviceInterFace} */
+/* 挂接netdev的一些函数指针，详细挂接函数{@link NetDeviceInterFace} */
 oal_net_device_ops_stru g_wal_net_dev_ops =
 {
     .getStats          = wal_netdev_get_stats,

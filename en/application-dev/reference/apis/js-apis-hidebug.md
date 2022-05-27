@@ -1,6 +1,6 @@
 # HiDebug
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 You can run the hidebug command to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
@@ -18,9 +18,11 @@ getNativeHeapSize(): bigint
 
 Obtains the total size of the native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**Return Value**
+**Return value**
 
 | Type  | Description                       |
 | ------ | --------------------------- |
@@ -39,10 +41,12 @@ getNativeHeapAllocatedSize(): bigint
 
 Obtains the size of the allocated native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-**Return Value**
+**Return value**
 | Type  | Description                             |
 | ------ | --------------------------------- |
 | bigint | Size of the allocated native heap memory.|
@@ -60,10 +64,12 @@ getNativeHeapFreeSize(): bigint
 
 Obtains the size of the free native heap memory.
 
+This API is defined but not implemented in OpenHarmony 3.1 Release.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-**Return Value**
+**Return value**
 | Type  | Description                           |
 | ------ | ------------------------------- |
 | bigint | Size of the free native heap memory.|
@@ -84,7 +90,7 @@ Obtains the PSS of this process.
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-**Return Value**
+**Return value**
 | Type  | Description                     |
 | ------ | ------------------------- |
 | bigint | PSS of the process.|
@@ -105,7 +111,7 @@ Obtains the size of the shared dirty memory of this process.
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 
-**Return Value**
+**Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
 | bigint | Size of the shared dirty memory of the process.|
@@ -116,6 +122,47 @@ Obtains the size of the shared dirty memory of this process.
   let sharedDirty = hidebug.getSharedDirty();
   ```
 
+## hidebug.getPrivateDirty<sup>9+<sup>
+
+getPrivateDirty(): bigint
+
+Obtains the size of the private dirty memory of this process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+
+**Return value**
+| Type  | Description                      |
+| ------ | -------------------------- |
+| bigint | Size of the private dirty memory of the process.|
+
+
+**Example**
+  ```js
+  let privateDirty = hidebug.getPrivateDirty();
+  ```
+
+## hidebug.getCpuUsage<sup>9+<sup>
+
+getCpuUsage(): number
+
+Obtains the CPU usage of this process.
+
+For example, if the CPU usage is **50%**, **0.5** is returned.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+
+**Return value**
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | CPU usage of the process.|
+
+
+**Example**
+  ```js
+  let cpuUsage = hidebug.getCpuUsage();
+  ```
 
 ## hidebug.startProfiling
 
@@ -135,9 +182,9 @@ Starts the profiling method. `startProfiling()` and `stopProfiling()` are called
 
 ```js
 hidebug.startProfiling("cpuprofiler-20220216");
-// Code block
+// code block
 // ...
-// Code block
+// code block
 hidebug.stopProfiling();
 ```
 
@@ -147,7 +194,7 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-Stops the profiling method. `stopProfiling()` and `startProfiling()` are called in pairs. `stopProfiling()` always occurs after `startProfiling()`; that is, calling the functions in the following sequences is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the following sequences is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -155,9 +202,9 @@ Stops the profiling method. `stopProfiling()` and `startProfiling()` are called 
 
 ```js
 hidebug.startProfiling("cpuprofiler-20220216");
-// Code block
+// code block
 // ...
-// Code block
+// code block
 hidebug.stopProfiling();
 ```
 
@@ -165,13 +212,13 @@ hidebug.stopProfiling();
 
 dumpHeapData(filename : string) : void
 
-Exports the heap data.
+Exports data from the specified heap file.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name  | Type  | Mandatory | Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the app based on the specified `filename`.|
 
@@ -179,4 +226,32 @@ Exports the heap data.
 
 ```js
 hidebug.dumpHeapData("heap-20220216");
+```
+
+## hidebug.getServiceDump<sup>9+<sup>
+
+getServiceDump(serviceid : number) : string
+
+Obtains information on the specified system service.
+
+This is a system API and cannot be called by third-party applications.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| serviceid | number | Yes  | ID of the system service. |
+
+**Return value**
+| Type  | Description                      |
+| ------ | -------------------------- |
+| string | Absolute path of the file that contains the service information to dump. |
+
+**Example**
+
+```js
+let serviceId = 10;
+let pathName = hidebug.getServiceDump(serviceId);
 ```

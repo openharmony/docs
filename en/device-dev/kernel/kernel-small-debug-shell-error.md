@@ -1,4 +1,4 @@
-# User-Mode Exception Information<a name="EN-US_TOPIC_0000001134006276"></a>
+# User-Mode Exception Information
 
 During the running of the user mode, the following system exception may occur:
 

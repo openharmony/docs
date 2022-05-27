@@ -1,19 +1,6 @@
-# Software Timer<a name="EN-US_TOPIC_0000001123771893"></a>
+# Software Timer
 
--   [Basic Concepts](#section13256164145219)
--   [Working Principles](#section070665816719)
-    -   [Timer States](#section115453813506)
-    -   [Timer Modes](#section137521353175010)
-
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section3741753191918)
-    -   [Sample Code](#section20760101182016)
-    -   [Verification](#section11244112818172)
-
-
-## Basic Concepts<a name="section13256164145219"></a>
+## Basic Concepts
 
 The software timer is a software-simulated timer based on system tick interrupts. When the preset tick counter value has elapsed, the user-defined callback will be invoked. The timing precision is related to the cycle of the system tick clock.
 
@@ -28,9 +15,9 @@ The software timer supports the following functions:
 -   Deleting a software timer
 -   Obtaining the number of remaining ticks of a software timer
 
-## Working Principles<a name="section070665816719"></a>
+## Working Principles
 
-The software timer is a system resource. When modules are initialized, a contiguous section of memory is allocated for software timers. The maximum number of timers supported by the system is configured by the  **LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT**  macro in  **los\_config.h**.
+The software timer is a system resource. When modules are initialized, a contiguous section of memory is allocated for software timers. The maximum number of timers supported by the system is configured by the **LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT** macro in **los\_config.h**.
 
 Software timers use a queue and a task resource of the system. The software timers are triggered based on the First In First Out \(FIFO\) rule. A timer with a shorter value is always closer to the queue head than a timer with a longer value, and is preferentially triggered.
 
@@ -40,7 +27,7 @@ When a tick interrupt occurs, the tick interrupt handler scans the global timing
 
 When the tick interrupt handling function is complete, the software timer task \(with the highest priority\) is woken up. In this task, the timeout callback function for the recorded timer is called.
 
-### Timer States<a name="section115453813506"></a>
+### Timer States
 
 -   OS\_SWTMR\_STATUS\_UNUSED
 
@@ -49,12 +36,12 @@ When the tick interrupt handling function is complete, the software timer task \
 
 -   OS\_SWTMR\_STATUS\_CREATED
 
-    The timer is created but not started or the timer is stopped. When  **LOS\_SwtmrCreate**  is called for a timer that is not in use or  **LOS\_SwtmrStop**  is called for a newly started timer, the timer changes to this state.
+    The timer is created but not started or the timer is stopped. When **LOS\_SwtmrCreate** is called for a timer that is not in use or **LOS\_SwtmrStop** is called for a newly started timer, the timer changes to this state.
 
 
 -   OS\_SWTMR\_STATUS\_TICKING
 
-    The timer is running \(counting\). When  **LOS\_SwtmrStart**  is called for a newly created timer, the timer enters this state.
+    The timer is running \(counting\). When **LOS\_SwtmrStart** is called for a newly created timer, the timer enters this state.
 
 
 ### Timer Modes<a name="section137521353175010"></a>
@@ -65,11 +52,11 @@ The OpenHarmony LiteOS-M kernel provides three types of software timers:
 -   Periodic timer: This type of timer periodically triggers timer events until it is manually stopped.
 -   One-shot timer deleted by calling an API
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 The following table describes APIs available for the OpenHarmony LiteOS-M software timer module. For more details about the APIs, see the API reference.
 
-**Table  1**  Software timer APIs
+**Table 1** Software timer APIs
 
 <a name="table14277123518139"></a>
 <table><thead align="left"><tr id="row152771935131315"><th class="cellrowborder" valign="top" width="17.77177717771777%" id="mcps1.2.4.1.1"><p id="p1127733591316"><a name="p1127733591316"></a><a name="p1127733591316"></a>Function</p>
@@ -114,46 +101,46 @@ The following table describes APIs available for the OpenHarmony LiteOS-M softwa
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical development process of software timers is as follows:
 
 1.  Configure the software timer.
-    -   Check that  **LOSCFG\_BASE\_CORE\_SWTMR**  and  **LOSCFG\_BASE\_IPC\_QUEUE**  are set to  **1**.
-    -   Configure  **LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT**  \(maximum number of software timers supported by the system\).
-    -   Configure  **OS\_SWTMR\_HANDLE\_QUEUE\_SIZE**  \(maximum length of the software timer queue\).
+    -   Check that **LOSCFG\_BASE\_CORE\_SWTMR** and **LOSCFG\_BASE\_IPC\_QUEUE** are set to **1**.
+    -   Configure **LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT** \(maximum number of software timers supported by the system\).
+    -   Configure **OS\_SWTMR\_HANDLE\_QUEUE\_SIZE** \(maximum length of the software timer queue\).
 
-2.  Call  **LOS\_SwtmrCreate**  to create a software timer.
+2.  Call **LOS\_SwtmrCreate** to create a software timer.
     -   Create a software timer with the specified timing duration, timeout handling function, and triggering mode.
     -   Return the function execution result \(success or failure\).
 
-3.  Call  **LOS\_SwtmrStart**  to start the software timer.
-4.  Call  **LOS\_SwtmrTimeGet**  to obtain the remaining number of ticks of the software timer.
-5.  Call  **LOS\_SwtmrStop**  to stop the software timer.
-6.  Call  **LOS\_SwtmrDelete**  to delete the software timer.
+3.  Call **LOS\_SwtmrStart** to start the software timer.
+4.  Call **LOS\_SwtmrTimeGet** to obtain the remaining number of ticks of the software timer.
+5.  Call **LOS\_SwtmrStop** to stop the software timer.
+6.  Call **LOS\_SwtmrDelete** to delete the software timer.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br/> 
 >-   Avoid too many operations in the callback function of the software timer. Do not use APIs or perform operations that may cause task suspension or blocking.
->-   The software timers use a queue and a task resource of the system. The priority of the software timer tasks is set to  **0**  and cannot be changed.
+>-   The software timers use a queue and a task resource of the system. The priority of the software timer tasks is set to **0** and cannot be changed.
 >-   The number of software timer resources that can be configured in the system is the total number of software timer resources available to the entire system, not the number of software timer resources available to users. For example, if the system software timer occupies one more resource, the number of software timer resources available to users decreases by one.
 >-   If a one-shot software timer is created, the system automatically deletes the timer and reclaims resources after the timer times out and the callback function is executed.
->-   For a one-shot software timer that will not be automatically deleted after expiration, you need to call  **LOS\_SwtmrDelete**  to delete it and reclaim the timer resource to prevent resource leakage.
+>-   For a one-shot software timer that will not be automatically deleted after expiration, you need to call **LOS\_SwtmrDelete** to delete it and reclaim the timer resource to prevent resource leakage.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
-### Example Description<a name="section3741753191918"></a>
+### Example Description
 
 The following programming example demonstrates how to:
 
 1.  Create, start, delete, pause, and restart a software timer.
 2.  Use a one-shot software timer and a periodic software timer
 
-### Sample Code<a name="section20760101182016"></a>
+### Sample Code
 
 Prerequisites
 
--   In  **los\_config.h**,  **LOSCFG\_BASE\_CORE\_SWTMR**  is enabled.
--   In  **los\_config.h**,  **LOSCFG\_BASE\_CORE\_SWTMR\_ALIGN**  is disabled. The sample code does not involve timer alignment.
+-   In **los\_config.h**, **LOSCFG\_BASE\_CORE\_SWTMR** is enabled.
+-   In **los\_config.h**, **LOSCFG\_BASE\_CORE\_SWTMR\_ALIGN** is disabled. The sample code does not involve timer alignment.
 -   The maximum number of software timers supported by the system \(**LOSCFG\_BASE\_CORE\_SWTMR\_LIMIT**\) is configured.
 -   The maximum length of the software timer queue \(OS\_SWTMR\_HANDLE\_QUEUE\_SIZE\) is configured.
 
@@ -250,7 +237,7 @@ UINT32 Example_TaskEntry(VOID)
 }
 ```
 
-### Verification<a name="section11244112818172"></a>
+### Verification
 
 The output is as follows:
 
@@ -260,7 +247,7 @@ start Timer1 success
 tickCount=798
 stop Timer1 success
 g_timerCount1=1, tick_last1=1208
-delete Timer1 sucess
+delete Timer1 success
 start Timer2
 g_timerCount2=1 tick_last2=1313
 g_timerCount2=2 tick_last2=1413

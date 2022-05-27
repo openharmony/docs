@@ -113,6 +113,7 @@
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
+  - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
 - 电话服务
 
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -132,6 +133,9 @@
 
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
+  - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
+  - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
+  - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
   - [@ohos.wifi (WLAN)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN)](js-apis-wifiext.md)

@@ -50,17 +50,17 @@ Based on the attributes of the pins, interfaces on the touchscreens can be class
 
 The interfaces shown in the figure are described as follows:
 
-1.  **Power interfaces**
+-   **Power interfaces**
     -   LDO\_1P8: 1.8 V digital circuits
     -   LDO\_3P3: 3.3 V analog circuits
 
         Generally, the touchscreen driver IC is separated from the LCD driver IC. In this case, the touchscreen driver IC requires both 1.8 V and 3.3 V power supplies. Nowadays, the touchscreen driver IC and LCD driver IC can be integrated. Therefore, the touchscreen, requires only the 1.8 V power supply, and the 3.3 V power required internally is supplied by the LCD VSP power \(typical value: 5.5 V\) in the driver IC.
 
-2.  **I/O control interfaces**
+-   **I/O control interfaces**
     -   RESET: reset pin, which is used to reset the driver IC on the host when suspending or resuming the system.
     -   INT: interrupt pin, which needs to be set to the input direction and pull-up status during driver initialization. After detecting an external touch signal, the driver triggers the interrupt by operating the interrupt pin. The driver reads the touch reporting data in the ISR function.
 
-3.  **Communications interfaces**
+-   **Communications interfaces**
     -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](driver-platform-i2c-des.md#section5361140416).
     -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#section193356154511).
 
@@ -88,7 +88,7 @@ Perform the following steps:
 
 1.  Add the touchscreen driver-related descriptions.
 
-    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see [How to Develop](driver-hdf-development.md#how-to-develop).
+    Currently, the input driver is developed based on the HDF and is loaded and started by the HDF. Register the driver information, such as whether to load the driver and the loading priority in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see [How to Develop](driver-hdf-development.md).
 
 2.  Complete the board-level configuration and private data configuration of the touchscreen.
 
@@ -105,7 +105,7 @@ This example describes how to develop the touchscreen driver.
 
 ### Adding the Touchscreen Driver-related Description<a name="section18249155619195"></a>
 
-The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see  [Driver Development](driver-hdf-development.md).
+The information about modules of the input driver model is shown as follows and enables the HDF to load the modules in sequence. For details, see [Driver Development](driver-hdf-development.md).
 
 ```
 input :: host {

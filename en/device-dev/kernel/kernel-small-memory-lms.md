@@ -1,21 +1,4 @@
-# LMS<a name="EN-US_TOPIC_0000001184876236"></a>
-
--   [Basic Concepts](#section531482192018)
--   [Working Principles](#section5125124532010)
--   [Available APIs](#section17747184017458)
-    -   [Kernel Mode](#section104473014465)
-    -   [User Mode](#section58151229172811)
-
--   [Development Guidelines](#section10302175017543)
-    -   [Kernel-mode Development Process](#section04021008552)
-
--   [Kernel-mode Development Example](#section112034213583)
--   [Kernel-mode Sample Code](#section10348549155812)
-    -   [Kernel-mode Verification](#section61719481795)
-    -   [User-mode Development Process](#section1425821711114)
-    -   [User-mode Development Example](#section3470546163)
-    -   [User-Mode Sample Code](#section183253286161)
-    -   [User-mode Verification](#section5665123516214)
+# LMS
 
 
 ## Basic Concepts<a name="section531482192018"></a>

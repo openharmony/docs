@@ -1,9 +1,4 @@
-# JFFS2<a name="EN-US_TOPIC_0000001123521625"></a>
-
--   [Basic Concepts](#section11411110155919)
--   [Working Principles](#section23911025195913)
--   [Development Guidelines](#section179711119014)
-
+# JFFS2
 ## Basic Concepts<a name="section11411110155919"></a>
 
 Journalling Flash File System Version 2 \(JFFS2\) is a log-structured file system designed for Memory Technology Devices \(MTDs\).

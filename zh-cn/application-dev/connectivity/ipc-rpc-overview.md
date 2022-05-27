@@ -14,4 +14,4 @@ IPC（Inter-Process Communication）与RPC（Remote Procedure Call）机制用�
 
 ## 相关模块
 
-分布式任务调度子系统
+[分布式任务调度子系统](https://gitee.com/openharmony/distributedschedule_dms_fwk)

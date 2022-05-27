@@ -1,7 +1,5 @@
-# Signal<a name="EN-US_TOPIC_0000001078912742"></a>
+# Signal
 
--   [Basic Concepts](#section172788254307)
--   [Working Principles](#section1249693812301)
 
 ## Basic Concepts<a name="section172788254307"></a>
 

@@ -1,6 +1,6 @@
 # Media Library Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -208,7 +208,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
+    media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
         if (fileAsset != undefined) {
             console.info('createAsset successfully, message = ' + err);
         } else {
@@ -250,7 +250,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
+    media.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
         console.info("createAsset successfully:"+ JSON.stringify(asset));
     }).catch(function(err){
         console.info("createAsset failed with error:"+ err);
@@ -720,29 +720,29 @@ Provides APIs for encapsulating file asset attributes.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
-| Name                      | Type                     | Readable | Writable | Description                                                   |
+| Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| id                        | number                   | Yes   | No   | File asset ID.                                           |
-| uri                       | string                   | Yes   | No   | File asset URI, for example, dataability:///media/image/2.         |
-| mimeType                  | string                   | Yes   | No   | Extended file attributes.                                           |
-| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes   | No   | Media type.                                               |
-| displayName               | string                   | Yes   | Yes   | Display file name, including the file name extension.                                 |
-| title                     | string                   | Yes   | Yes   | Title in the file.                                               |
-| relativePath<sup>8+</sup> | string                   | Yes   | Yes   | Relative public directory of the file.                                       |
-| parent<sup>8+</sup>       | number                   | Yes   | No   | Parent directory ID.                                               |
-| size                      | number                   | Yes   | No   | File size, in bytes.                                 |
-| dateAdded                 | number                   | Yes   | No   | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)         |
-| dateModified              | number                   | Yes   | No   | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)         |
-| dateTaken                 | number                   | Yes   | No   | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)         |
-| artist<sup>8+</sup>       | string                   | Yes   | No   | Artist of the file.                                                   |
-| audioAlbum<sup>8+</sup>   | string                   | Yes   | No   | Audio album.                                                   |
-| width                     | number                   | Yes   | No   | Image width, in pixels.                                 |
-| height                    | number                   | Yes   | No   | Image height, in pixels.                                 |
-| orientation               | number                   | Yes   | Yes   | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees). |
-| duration<sup>8+</sup>     | number                   | Yes   | No   | Duration, in seconds.                                   |
-| albumId                   | number                   | Yes   | No   | ID of the album to which the file belongs.                                   |
-| albumUri<sup>8+</sup>     | string                   | Yes   | No   | URI of the album to which the file belongs.                                      |
-| albumName                 | string                   | Yes   | No   | Name of the album to which the file belongs.                                     |
+| id                        | number                   | Yes  | No  | File asset ID.                                          |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, dataability:///media/image/2.        |
+| mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
+| mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
+| displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
+| title                     | string                   | Yes  | Yes  | Title in the file.                                              |
+| relativePath<sup>8+</sup> | string                   | Yes  | Yes  | Relative public directory of the file.                                      |
+| parent<sup>8+</sup>       | number                   | Yes  | No  | Parent directory ID.                                              |
+| size                      | number                   | Yes  | No  | File size, in bytes.                                |
+| dateAdded                 | number                   | Yes  | No  | Date when the file was added. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateModified              | number                   | Yes  | No  | Date when the file was modified. (The value is the number of seconds elapsed since the Epoch time.)        |
+| dateTaken                 | number                   | Yes  | No  | Date when the file (photo) was taken. (The value is the number of seconds elapsed since the Epoch time.)        |
+| artist<sup>8+</sup>       | string                   | Yes  | No  | Artist of the file.                                                  |
+| audioAlbum<sup>8+</sup>   | string                   | Yes  | No  | Audio album.                                                  |
+| width                     | number                   | Yes  | No  | Image width, in pixels.                                |
+| height                    | number                   | Yes  | No  | Image height, in pixels.                                |
+| orientation               | number                   | Yes  | Yes  | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).|
+| duration<sup>8+</sup>     | number                   | Yes  | No  | Duration, in seconds.                                  |
+| albumId                   | number                   | Yes  | No  | ID of the album to which the file belongs.                                  |
+| albumUri<sup>8+</sup>     | string                   | Yes  | No  | URI of the album to which the file belongs.                                     |
+| albumName                 | string                   | Yes  | No  | Name of the album to which the file belongs.                                    |
 
 
 ### isDirectory<sup>8+</sup>
@@ -757,9 +757,9 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 **Parameters**
 
-| Parameter       | Type                           | Mandatory   | Description                  |
+| Name     | Type                          | Mandatory  | Description                 |
 | -------- | ---------------------------- | ---- | ------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes    | Callback used to return whether the file asset is a directory. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return whether the file asset is a directory.|
 
 **Example**
 

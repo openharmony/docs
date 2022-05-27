@@ -1,19 +1,12 @@
-# CMSIS Support<a name="EN-US_TOPIC_0000001124074753"></a>
+# CMSIS Support
 
--   [Basic Concepts](#section131091144111615)
--   [Development Guidelines](#section57653573161)
-    -   [Available APIs](#section1795910417173)
-    -   [How to Develop](#section48301225131720)
-    -   [Development Example](#section524434761713)
-
-
-## Basic Concepts<a name="section131091144111615"></a>
+## Basic Concepts
 
 The Cortex Microcontroller Software Interface Standard \([CMSIS](https://developer.arm.com/tools-and-software/embedded/cmsis)\) is a vendor-independent hardware abstraction layer for microcontrollers based on Arm Cortex processors. Of the CMSIS components, the Real Time Operating System \(RTOS\) defines a set of universal and standardized APIs to reduce the dependency of application developers on specific RTOS and facilitate software porting and reuse. The CMSIS provides CMSIS-RTOS v1 and CMSIS-RTOS v2. The OpenHarmony LiteOS-M supports only the implementation of CMSIS-RTOS v2.
 
-## Development Guidelines<a name="section57653573161"></a>
+## Development Guidelines
 
-### Available APIs<a name="section1795910417173"></a>
+### Available APIs
 
 The following table describes CMSIS-RTOS v2 APIs. For more details about the APIs, see the API reference.
 
@@ -102,7 +95,7 @@ The following table describes CMSIS-RTOS v2 APIs. For more details about the API
 |  | osMessageQueuePut | Puts the message into the queue or times out if the queue is full.|
 |  | osMessageQueueReset | Initialized the message queue to the empty state (not implemented yet).|
 
-### How to Develop<a name="section48301225131720"></a>
+### How to Develop
 
 The CMSIS-RTOS v2 component can be provided as a library \(shown in the figure\) or source code. By adding the CMSIS-RTOS v2 component \(typically configuration files\), you can implement RTOS capabilities on CMSIS-based applications. You only need to include the  **cmsis\_os2.h**  header file. RTOS APIs can then be called to process RTOS kernel-related events. You do not need to recompile the source code when the kernel is replaced.
 
@@ -110,7 +103,7 @@ The RTOS object control block definition needs to be called for static object al
 
 ![](figures/how-to-develop.png)
 
-### Development Example<a name="section524434761713"></a>
+### Development Example
 
 ```
 #include ...

@@ -24,7 +24,7 @@ In Ubuntu:
    sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. Specifically:
    > 
    > - Python 3.8 or a later version is required. This section uses Python 3.8 as an example.
@@ -51,7 +51,7 @@ In Ubuntu:
 
 To remotely access the Ubuntu environment through Windows to perform operations such as burning, you need to install DevEco Device Tool on both Windows and Ubuntu.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > DevEco Device Tool is a one-stop integrated development environment (IDE) provided for developers of OpenHarmony-powered smart devices. It allows code editing, compiling, burning, and debugging. This document describes how to use DevEco Device Tool to remotely connect to the Ubuntu environment for burning and running.
 
 
@@ -62,7 +62,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 2. Decompress the DevEco Device Tool package, double-click the installer, and then click **Next**.
 
 3. Set the installation path of DevEco Device Tool and click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > If you have installed DevEco Device Tool 3.0 Beta2 or earlier, the earlier version will be uninstalled before you install a new version. If the following error message is displayed during the uninstallation, click **Ignore** to continue the installation. This error does not affect the installation of the new version.
    > 
    > ![en-us_image_0000001239275843](figures/en-us_image_0000001239275843.png)
@@ -76,7 +76,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
        ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
    2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
        > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
 
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
@@ -115,24 +115,24 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 2. Download the [DevEco Device Tool 3.0 Release Linux version](https://device.harmonyos.com/cn/ide#download).
 
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
-   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.400.zip** to the actual software package name.
+   1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.401.zip** to the actual software package name.
       
        ```
-       unzip devicetool-linux-tool-3.0.0.400.zip
+       unzip devicetool-linux-tool-3.0.0.401.zip
        ```
-   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.400.sh** to the actual installation file name.
+   2. Open the folder of the decompressed software package and run the following command to grant the execute permission on the installation file. In the command, change **devicetool-linux-tool-3.0.0.401.sh** to the actual installation file name.
       
        ```
-       chmod u+x devicetool-linux-tool-3.0.0.400.sh
+       chmod u+x devicetool-linux-tool-3.0.0.401.sh
        ```
 
-4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.400.sh** indicates the installation file name.
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.401.sh** indicates the installation file name.
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
 
    
    ```
-   sudo ./devicetool-linux-tool-3.0.0.400.sh
+   sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
 
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
@@ -140,13 +140,13 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
 
 
-## Configuring Windows to Remotely Access the Ubuntu Build Environment
+## Configuring Windows to Remotely Access the Ubuntu Development Environment
 
 
 ### Installing the SSH Service and Obtaining the IP Address for Remote Access
 
 1. In Ubuntu, open the Terminal tool and run the following command to install the SSH service:
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
 
    
@@ -269,7 +269,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 ### Obtaining Source Code
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 - **Obtaining OpenHarmony master code**
@@ -310,7 +310,7 @@ bash build/prebuilts_download.sh
 hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the following steps: For details about the functions of the OpenHarmony compilation and building module, see [Compilation and Building Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-build.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > To install a proxy, see [Configuring the Proxy](../quick-start/quickstart-standard-reference.md#section6204129143012).
 
 
@@ -357,7 +357,7 @@ hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the fo
    ```
 
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
+> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
 > - Run the following command to uninstall hb:
 >    
 >   ```

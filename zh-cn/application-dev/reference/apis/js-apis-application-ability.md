@@ -143,7 +143,7 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
 
 onForeground(): void;
 
-Ability生命周期回调，当应用处于前台时触发。
+Ability生命周期回调，当应用从后台转到前台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -162,7 +162,7 @@ Ability生命周期回调，当应用处于前台时触发。
 
 onBackground(): void;
 
-Ability生命周期回调，当应用处于后台时触发。
+Ability生命周期回调，当应用从前台转到后台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -258,6 +258,31 @@ onConfigurationUpdated(config: Configuration): void;
       }
   }
   ```
+
+## Ability.dump
+
+dump(params: Array\<string>): Array\<string>;
+
+指示from命令的参数。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | params | Array\<string> | 是 | 指示from命令的参数。| 
+
+**示例：**
+    
+  ```js
+  class myAbility extends Ability {
+      dump(params) {
+          console.log('dump, params:' + JSON.stringify(params));
+      }
+  }
+  ```
+
 
 
 ## Caller

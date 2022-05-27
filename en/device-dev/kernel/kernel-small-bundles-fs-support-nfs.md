@@ -1,8 +1,5 @@
-# NFS<a name="EN-US_TOPIC_0000001078704660"></a>
+# NFS
 
--   [Basic Concepts](#section195414101464)
--   [Working Principles](#section165621321194618)
--   [Development Guidelines](#section7454935184611)
 
 ## Basic Concepts<a name="section195414101464"></a>
 

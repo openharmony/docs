@@ -1,6 +1,6 @@
 # Page Routing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call the APIs in **onInit** and **onReady** when the page is still in the rendering phase.
@@ -24,13 +24,13 @@ Navigates to a specified page in the application.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Page routing parameters.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Page routing parameters.|
 
 
 **Example**
-  ```
+  ```js
   // Current page
   export default {
     pushPage() {
@@ -46,7 +46,7 @@ Navigates to a specified page in the application.
     }
   }
   ```
-  ```
+  ```js
   // routerpage2 page
   export default {
     data: {
@@ -72,12 +72,13 @@ Replaces the current page with another one in the application and destroys the c
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Description of the new page.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Description of the new page.|
 
 **Example**
-  ```
+
+  ```js
   // Current page
   export default {
     replacePage() {
@@ -91,7 +92,7 @@ Replaces the current page with another one in the application and destroys the c
   }
   ```
 
-  ```
+  ```js
   // detail page
   export default {
     data: {
@@ -112,12 +113,12 @@ Returns to the previous page or a specified page.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
 
 **Example**
-  ```
+  ```js
   // index page
   export default {    
     indexPushPage() {        
@@ -128,7 +129,7 @@ Returns to the previous page or a specified page.
   }
   ```
 
-  ```
+  ```js
   // detail page
   export default {    
     detailPushPage() {        
@@ -139,7 +140,7 @@ Returns to the previous page or a specified page.
   }
   ```
 
-  ```
+  ```js
   // Navigate from the mall page to the detail page through router.back().
   export default {    
     mallBackPage() {        
@@ -148,7 +149,7 @@ Returns to the previous page or a specified page.
   }
   ```
 
-  ```
+  ```js
   // Navigate from the detail page to the index page through router.back().
   export default {    
     defaultBack() {        
@@ -157,7 +158,7 @@ Returns to the previous page or a specified page.
   }
   ```
 
-  ```
+  ```js
   // Return to the detail page through router.back().
   export default {    
     backToDetail() {        
@@ -175,12 +176,12 @@ Clears all historical pages in the stack and retains only the current page at th
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
-  ```
+  ```js
   export default {    
     clearPage() {        
       router.clear();    
     }
-  }
+  }js
   ```
 
 ## router.getLength
@@ -190,12 +191,12 @@ getLength(): string
 Obtains the number of pages in the current stack.
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | string | Number of pages in the stack. The maximum value is **32**.|
+| Type| Description|
+| -------- | -------- |
+| string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
-  ```
+  ```js
   export default {     
     getLength() {        
       var size = router.getLength();        
@@ -222,14 +223,14 @@ Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | index | number | Index of the current page in the stack.<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br>>&nbsp;The index starts from 1 from the bottom to the top of the stack.|
-  | name | string | Name of the current page, that is, the file name.|
-  | path | string | Path of the current page.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| index | number | Index of the current page in the stack.<br>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br>>&nbsp;The index starts from 1 from the bottom to the top of the stack.|
+| name | string | Name of the current page, that is, the file name.|
+| path | string | Path of the current page.|
 
 **Example**
-  ```
+  ```js
   export default {     
     getState() {        
       var page = router.getState();
@@ -249,13 +250,13 @@ Enables the display of a confirm dialog box before returning to the previous pag
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | options | [EnableAlertOptions](#enablealertoptions) | Yes| Description of the dialog box.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [EnableAlertOptions](#enablealertoptions) | Yes| Description of the dialog box.|
 
 **Example**
 
-  ```
+  ```js
   export default {    
     enableAlertBeforeBackPage() {        
       router.enableAlertBeforeBackPage({            
@@ -289,7 +290,7 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
-  ```
+  ```js
   export default {    
     disableAlertBeforeBackPage() {        
       router.disableAlertBeforeBackPage();    
@@ -314,7 +315,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 **Example**
 
 - Web-like example
-  ```
+  ```js
   // Current page
   export default {
     pushPage() {
@@ -327,7 +328,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
     }
   }
   ```
-  ```
+  ```js
   // detail page
   export default {
     onInit() {
@@ -338,7 +339,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 - Declarative example
 
-  ```
+  ```ts
   // Navigate to the target page through router.push with the params parameter carried.
   import router from '@ohos.router'
   
@@ -384,7 +385,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
   }
   ```
 
-  ```
+  ```ts
   // Receive the transferred parameters on the second page.
   import router from '@ohos.router'
   
@@ -392,8 +393,8 @@ Obtains the parameters passed from the page that initiates redirection to the cu
   @Component
   struct Second {
     private content: string = "This is the second page."
-    @State text: string = router.getParams().text
-    @State data: any = router.getParams().data
+    @State text: string = router.getParams()['text']
+    @State data: any = router.getParams()['data']
     @State secondData : string = ''
     
     build() {

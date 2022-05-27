@@ -19,8 +19,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，大小为8192字节。 |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，需小于80字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，需小于8192字节。 |
 
 
 ## data_preferences.getPreferences
@@ -223,7 +223,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **示例：**
 ```ts
- preferences.get('startup', 'default', function(err, value) {
+preferences.get('startup', 'default', function(err, value) {
     if (err) {
         console.info("Get value of startup failed, err: " + err)
         return
@@ -262,6 +262,57 @@ promise.then((value) => {
 })
 ```
 
+### getAll
+
+getAll(callback: AsyncCallback&lt;Object&gt;): void;
+
+返回含有所有键值的Object对象。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回含有所有键值的Object对象。 |
+
+**示例：**
+```ts
+preferences.get.getAll(function (err, value) {
+    if (err) {
+        console.info("getAll failed, err: " + err)
+        return
+    }
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+});
+```
+
+
+### getAll
+
+getAll(): Promise&lt;Object&gt;
+
+返回含有所有键值的Object对象。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Object&gt; | Promise对象。返回含有所有键值的Object对象。 |
+
+**示例：**
+```ts
+let promise = preferences.getAll()
+promise.then((value) => {
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+}).catch((err) => {
+    console.info("getAll failed, err: " + err)
+})
+```
 
 ### put
 
@@ -322,7 +373,7 @@ promise.then(() => {
 
 ### has
 
-has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
+has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查存储对象是否包含名为给定key的存储键值对，该方法使用callback方式作为异步方法。
 
@@ -332,12 +383,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要检查的存储key名称，不能为空。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。 |
-
-**返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | true表示存在，false表示不存在。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
 ```ts
@@ -371,7 +417,7 @@ has(key: string): Promise&lt;boolean&gt;
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
 ```ts
@@ -550,10 +596,10 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | type | string | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 回调对象实例。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 |  事件类型，固定值'change'，表示数据变更。 |
+  | callback | Callback&lt;{ key : string }&gt;  | 是| 回调对象实例。 |
 
 **示例：**
 ```ts
@@ -584,17 +630,17 @@ preferences.put('startup', 'auto', function (err) {
 
 ### off('change')
 
-off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 当不再进行订阅数据变更时，使用此接口取消订阅。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-  | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | type | string | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 需要取消的回调对象实例。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 事件类型，固定值'change'，表示数据变更。 |
+  | callback | Callback&lt;{ key : string }&gt;  | 否| 需要取消的回调对象实例，不填则全部取消。 |
 
 **示例：**
 ```ts

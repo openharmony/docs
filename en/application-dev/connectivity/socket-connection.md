@@ -10,26 +10,26 @@ Your application can transmit data through Socket connections. Currently, the TC
 
 The Socket connection function is mainly implemented by the Socket module. The following table describes the related APIs.
 
-| API| Description|
+| API| Description |
 | -------- | -------- |
-| constructUDPSocketInstance() | Creates a **UDPSocket** object.|
-| constructTCPSocketInstance() | Creates a **TCPSocket** object.|
-| bind() | Binds the IP address and port number.|
+| constructUDPSocketInstance() | Creates a **UDPSocket** object. |
+| constructTCPSocketInstance() | Creates a **TCPSocket** object. |
+| bind() | Binds the IP address and port number. |
 | send() | Sends data.|
-| close() | Closes a Socket connection.|
-| getState() | Obtains the Socket connection status.|
-| connect() | Connects to the specified IP address and port. This function is supported only for TCP.|
-| getRemoteAddress() | Obtains the peer address of the Socket connection. This function is supported only for TCP. The **connect** API must have been called before you use this API.|
-| on(type:&nbsp;'message') | Enables listening for **message** events of the Socket connection.|
-| off(type:&nbsp;'message') | Disables listening for **message** events of the Socket connection.|
-| on(type:&nbsp;'close') | Enables listening for **close** events of the Socket connection.|
-| off(type:&nbsp;'close') | Disables listening for **close** events of the Socket connection.|
-| on(type:&nbsp;'error') | Enables listening for **error** events of the Socket connection.|
-| off(type:&nbsp;'error') | Disables listening for **error** events of the Socket connection.|
+| close() | Closes a Socket connection. |
+| getState() | Obtains the Socket connection status. |
+| connect() | Connects to the specified IP address and port. This function is supported only for TCP. |
+| getRemoteAddress() | Obtains the peer address of the Socket connection. This function is supported only for TCP. The **connect** API must have been called before you use this API. |
+| on(type:&nbsp;'message') | Enables listening for **message** events of the Socket connection. |
+| off(type:&nbsp;'message') | Disables listening for **message** events of the Socket connection. |
+| on(type:&nbsp;'close') | Enables listening for **close** events of the Socket connection. |
+| off(type:&nbsp;'close') | Disables listening for **close** events of the Socket connection. |
+| on(type:&nbsp;'error') | Enables listening for **error** events of the Socket connection. |
+| off(type:&nbsp;'error') | Disables listening for **error** events of the Socket connection. |
 | on(type:&nbsp;'listening') | Enables listening for **listening** events of the UDPSocket connection. |
 | off(type:&nbsp;'listening') | Disables listening for **listening** events of the UDPSocket connection. |
 | on(type:&nbsp;'connect') | Enables listening for **connect** events of the TCPSocket connection. |
-| off(type:&nbsp;'connect') | Disables listening for **connect** events of the TCPSocket connection.|
+| off(type:&nbsp;'connect') | Disables listening for **connect** events of the TCPSocket connection. |
 
 
 ## How to Develop
@@ -122,3 +122,7 @@ The implementation is similar for UDPSocket and TCPSocket. The following uses th
        tcp.off('close');
    }, 30 * 1000);
    ```
+
+## Samples
+The following sample is provided to help you better understand how to develop the socket connection feature:
+- [`Socket`: Socket Connection (eTS) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Network/Socket)

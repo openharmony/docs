@@ -1,19 +1,6 @@
-# Semaphore<a name="EN-US_TOPIC_0000001123948077"></a>
+# Semaphore
 
--   [Basic Concepts](#section716754913479)
--   [Working Principles](#section1794010261861)
-    -   [Semaphore control block](#section11372149164815)
-    -   [Working Principles](#section139726510491)
-
--   [Available APIs](#section158501652121514)
--   [How to Develop](#section783435801510)
--   [Development Example](#section460018317164)
-    -   [Example Description](#section22061718111412)
-    -   [Sample Code](#section1775922321416)
-    -   [Verification](#section160404016213)
-
-
-## Basic Concepts<a name="section716754913479"></a>
+## Basic Concepts
 
 Semaphore is a mechanism for implementing communication between tasks. It implements synchronization between tasks or exclusive access to shared resources.
 
@@ -27,9 +14,9 @@ The usage of the counter value varies with the function of the semaphore.
 -   If the semaphore is used as a mutex, the counter value indicates the number of units of the shared resources available and its initial value cannot be  **0**. The semaphore must be acquired before the shared resource is used, and released after the resource is used. When all shared resources are used, the semaphore counter is reduced to  **0**  and the tasks that need to obtain the semaphores will be blocked. This ensures exclusive access to shared resources. In addition, when the number of shared resources is  **1**, a binary semaphore \(similar to the mutex mechanism\) is recommended.
 -   If the semaphore is used for synchronization, the initial semaphore counter value is  **0**. When a task fails to acquire the semaphore, it will be blocked and enters Ready or Running state only when the semaphore is released. In this way, task synchronization is implemented.
 
-## Working Principles<a name="section1794010261861"></a>
+## Working Principles
 
-### Semaphore control block<a name="section11372149164815"></a>
+### Semaphore control block
 
 ```
 /**
@@ -44,7 +31,7 @@ typedef struct {
 } LosSemCB;
 ```
 
-### Working Principles<a name="section139726510491"></a>
+### Working Principles
 
 Initializing semaphores: Request memory for the semaphores configured \(the number of semaphores can be configured in the  **LOSCFG\_BASE\_IPC\_SEM\_LIMIT**  macro by users\), set all semaphores to the unused state, and add them to the linked list for unused semaphores.
 
@@ -61,7 +48,7 @@ A semaphore can also be used to limit the number of tasks that can access the sh
 **Figure  1**  Semaphore working mechanism for mini systems<a name="fig467314634214"></a>  
 ![](figures/semaphore-working-mechanism-for-mini-systems.png "semaphore-working-mechanism-for-mini-systems")
 
-## Available APIs<a name="section158501652121514"></a>
+## Available APIs
 
 <a name="table1078714915105"></a>
 <table><thead align="left"><tr id="row1280518971010"><th class="cellrowborder" valign="top" width="20.1%" id="mcps1.1.4.1.1"><p id="p1380510912104"><a name="p1380510912104"></a><a name="p1380510912104"></a>Function</p>
@@ -104,7 +91,7 @@ A semaphore can also be used to limit the number of tasks that can access the sh
 </tbody>
 </table>
 
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 1.  Call  **LOS\_SemCreate**  to create a semaphore. To create a binary semaphore, call  **LOS\_BinarySemCreate**.
 2.  Call  **LOS\_SemPend**  to request a semaphore.
@@ -114,9 +101,9 @@ A semaphore can also be used to limit the number of tasks that can access the sh
 >![](../public_sys-resources/icon-note.gif) **NOTE:** 
 >As interrupts cannot be blocked, semaphores cannot be requested in block mode for interrupts.
 
-## Development Example<a name="section460018317164"></a>
+## Development Example
 
-### Example Description<a name="section22061718111412"></a>
+### Example Description
 
 This example implements the following:
 
@@ -126,7 +113,7 @@ This example implements the following:
 4.  After 20 ticks,  **ExampleSemTask2**  is woken up and releases the semaphore.  **ExampleSemTask1**  acquires the semaphore and is scheduled to run. When  **ExampleSemTask1**  is complete, it releases the semaphore.
 5.  Task  **ExampleSem**  is woken up after 400 ticks and deletes the semaphore.
 
-### Sample Code<a name="section1775922321416"></a>
+### Sample Code
 
 The sample code is as follows:
 
@@ -243,7 +230,7 @@ UINT32 ExampleSem(VOID)
 }
 ```
 
-### Verification<a name="section160404016213"></a>
+### Verification
 
 The development is successful if the return result is as follows:
 

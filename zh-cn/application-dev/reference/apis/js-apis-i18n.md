@@ -121,6 +121,8 @@ setSystemLanguage(language: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
+**系统API**: 该接口为系统接口，三方应用不支持调用。
+
 **参数：** 
 | 参数名      | 类型     | 说明    |
 | -------- | ------ | ----- |
@@ -145,6 +147,8 @@ getSystemLanguages(): Array&lt;string&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
+**系统API**: 该接口为系统接口，三方应用不支持调用。
+
 **返回值：** 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
@@ -163,6 +167,8 @@ getSystemCountries(language: string): Array&lt;string&gt;
 获取针对输入语言系统支持的区域列表。
 
 **系统能力**：SystemCapability.Global.I18n
+
+**系统API**: 该接口为系统接口，三方应用不支持调用。
 
 **参数：** 
 | 参数名      | 类型     | 说明    |
@@ -209,6 +215,8 @@ setSystemRegion(region: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
+**系统API**: 该接口为系统接口，三方应用不支持调用。
+
 **参数：** 
 | 参数名    | 类型     | 说明    |
 | ------ | ------ | ----- |
@@ -221,7 +229,7 @@ setSystemRegion(region: string): boolean
 
 **示例：** 
   ```
-  i18n.setSystemRegion();
+  i18n.setSystemRegion('CN');
   ```
 
 
@@ -254,6 +262,8 @@ setSystemLocale(locale: string): boolean
 
 **系统能力**：SystemCapability.Global.I18n
 
+**系统API**: 该接口为系统接口，三方应用不支持调用。
+
 **参数：** 
 | 参数名    | 类型     | 说明              |
 | ------ | ------ | --------------- |
@@ -277,6 +287,8 @@ isSuggested(language: string, region?: string): boolean
 判断当前语言和区域是否匹配。
 
 **系统能力**：SystemCapability.Global.I18n
+
+**系统API**: 该接口为系统接口，三方应用不支持调用。
 
 **参数：** 
 | 参数名      | 类型     | 必填   | 说明            |
@@ -338,7 +350,7 @@ setTime(date: Date): void
 
 **示例：** 
   ```
-  var calendar = I18n.getCalendar("en-US", "gregory");
+  var calendar = i18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
@@ -359,7 +371,7 @@ setTime(time: number): void
 
 **示例：** 
   ```
-  var calendar = I18n.getCalendar("en-US", "gregory");
+  var calendar = i18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
 
@@ -385,7 +397,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 **示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   ```
 
 
@@ -445,7 +457,7 @@ getFirstDayOfWeek(): number
 
 **示例：** 
   ```
-  var calendar = I18n.getCalendar("en-US", "gregory");
+  var calendar = i18n.getCalendar("en-US", "gregory");
   calendar.getFirstDayOfWeek();
   ```
 
@@ -531,7 +543,7 @@ get(field: string): number
 **示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   calendar.get("hour_of_day"); // 8
   ```
 
@@ -582,7 +594,7 @@ isWeekend(date?: Date): boolean
 **示例：** 
   ```
   var calendar = i18n.getCalendar("zh-Hans");
-  calendar.setTime(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
   var date = new Date(2011, 11, 6, 9, 0, 0);
   calendar.isWeekend(date); // true
@@ -712,7 +724,7 @@ unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string,
 
 **示例：** 
   ```
-  I18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
 
 
@@ -736,7 +748,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：** 
   ```
-  var indexUtil= i18n.IndexUtil.getInstance("zh-CN");
+  var indexUtil= i18n.getInstance("zh-CN");
   ```
 
 
@@ -831,7 +843,7 @@ isDigit(char: string): boolean
 
 **示例：** 
   ```
-  var isdigit = Character.isDigit("1");  // 返回true
+  var isdigit = i18n.Character.isDigit("1");  // 返回true
   ```
 
 
@@ -855,7 +867,7 @@ isSpaceChar(char: string): boolean
 
 **示例：** 
   ```
-  var isspacechar = Character.isSpaceChar("a");  // 返回false
+  var isspacechar = i18n.Character.isSpaceChar("a");  // 返回false
   ```
 
 
@@ -879,7 +891,7 @@ isWhitespace(char: string): boolean
 
 **示例：** 
   ```
-  var iswhitespace = Character.isWhitespace("a");  // 返回false
+  var iswhitespace = i18n.Character.isWhitespace("a");  // 返回false
   ```
 
 
@@ -903,7 +915,7 @@ isRTL(char: string): boolean
 
 **示例：** 
   ```
-  var isrtl = Character.isRTL("a");  // 返回false
+  var isrtl = i18n.Character.isRTL("a");  // 返回false
   ```
 
 
@@ -927,7 +939,7 @@ isIdeograph(char: string): boolean
 
 **示例：** 
   ```
-  var isideograph = Character.isIdeograph("a");  // 返回false
+  var isideograph = i18n.Character.isIdeograph("a");  // 返回false
   ```
 
 
@@ -951,7 +963,7 @@ isLetter(char: string): boolean
 
 **示例：** 
   ```
-  var isletter = Character.isLetter("a");  // 返回true
+  var isletter = i18n.Character.isLetter("a");  // 返回true
   ```
 
 
@@ -975,7 +987,7 @@ isLowerCase(char: string): boolean
 
 **示例：** 
   ```
-  var islowercase = Character.isLowerCase("a");  // 返回true
+  var islowercase = i18n.Character.isLowerCase("a");  // 返回true
   ```
 
 
@@ -999,7 +1011,7 @@ isUpperCase(char: string): boolean
 
 **示例：** 
   ```
-  var isuppercase = Character.isUpperCase("a");  // 返回false
+  var isuppercase = i18n.Character.isUpperCase("a");  // 返回false
   ```
 
 
@@ -1023,7 +1035,7 @@ getType(char: string): string
 
 **示例：** 
   ```
-  var type = Character.getType("a");
+  var type = i18n.Character.getType("a");
   ```
 
 
@@ -1047,7 +1059,7 @@ getLineInstance(locale: string): BreakIterator
 
 **示例：** 
   ```
-  i18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   ```
 
 
@@ -1069,7 +1081,7 @@ setLineBreakText(text: string): void
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   ```
 
@@ -1089,7 +1101,7 @@ getLineBreakText(): string
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.getLineBreakText(); // Apple is my favorite fruit.
   ```
@@ -1110,7 +1122,7 @@ current(): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   breakIter.current(); // 0
   ```
@@ -1131,7 +1143,7 @@ first(): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   breakIter.first(); // 0
   ```
@@ -1152,7 +1164,7 @@ last(): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.last(); // 27
   ```
@@ -1178,7 +1190,7 @@ next(index?: number): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
   iterator.next(); // 6
@@ -1201,7 +1213,7 @@ previous(): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
   iterator.next(3); // 12
@@ -1229,7 +1241,7 @@ following(offset: number): number
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.following(0); // 6
   iterator.following(100); // -1
@@ -1257,7 +1269,7 @@ isBoundary(offset: number): boolean
 
 **示例：** 
   ```
-  iterator = I18n.getLineInstance("en");
+  var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.isBoundary(0); // true;
   iterator.isBoundary(5); // false;
@@ -1306,7 +1318,7 @@ set24HourClock(option: boolean): boolean
 **示例：** 
   ```
   // 将系统时间设置为24小时制
-  var success = I18n.set24HourClock(true);
+  var success = i18n.set24HourClock(true);
   ```
 
 
@@ -1403,6 +1415,25 @@ getFirstPreferredLanguage(): string
 **示例：** 
   ```
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  ```
+
+
+## i18n.getAppPreferredLanguage<sup>9+</sup>
+
+getAppPreferredLanguage(): string
+
+获取应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型     | 说明             |
+| ------ | -------------- |
+| string | 应用的偏好语言。 |
+
+**示例：** 
+  ```
+  var appPreferredLanguage = i18n.getAppPreferredLanguage();
   ```
 
 

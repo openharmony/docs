@@ -60,7 +60,7 @@ JS UI开发框架源代码在/foundation/ace下，目录结构如下图所示：
 
 在工程目录中：i18n下存放多语言的json文件；pages文件夹下存放多个页面，每个页面由hml、css和js文件组成。
 
--   **main \> js \> default \> i18n \> en-US.json：**此文件定义了在英文模式下页面显示的变量内容。同理，zh-CN.json中定义了中文模式下的页面内容。
+-  **main \> js \> default \> i18n \> en-US.json** ：此文件定义了在英文模式下页面显示的变量内容。同理，zh-CN.json中定义了中文模式下的页面内容。
 
     ```
     {
@@ -71,7 +71,7 @@ JS UI开发框架源代码在/foundation/ace下，目录结构如下图所示：
     }
     ```
 
--   **main \> js \> default \> pages \> index \> index.hml：**此文件定义了index页面的布局、index页面中用到的组件，以及这些组件的层级关系。例如：index.hml文件中包含了一个text组件，内容为“Hello World”文本。
+-  **main \> js \> default \> pages \> index \> index.hml** ：此文件定义了index页面的布局、index页面中用到的组件，以及这些组件的层级关系。例如：index.hml文件中包含了一个text组件，内容为“Hello World”文本。
 
     ```
     <div class ="container">
@@ -81,7 +81,7 @@ JS UI开发框架源代码在/foundation/ace下，目录结构如下图所示：
     </div>
     ```
 
--   **main \> js \> default \> pages \> index \> index.css：**此文件定义了index页面的样式。例如：index.css文件定义了“container”和“title”的样式。
+- **main \> js \> default \> pages \> index \> index.css** ：此文件定义了index页面的样式。例如：index.css文件定义了“container”和“title”的样式。
 
     ```
     .container {
@@ -94,7 +94,7 @@ JS UI开发框架源代码在/foundation/ace下，目录结构如下图所示：
     }
     ```
 
--   **main \> js \> default \> pages \> index \> index.js：**此文件定义了index页面的业务逻辑，比如数据绑定、事件处理等。例如：变量“title”赋值为字符串“World”。
+-  **main \> js \> default \> pages \> index \> index.js** ：此文件定义了index页面的业务逻辑，比如数据绑定、事件处理等。例如：变量“title”赋值为字符串“World”。
 
     ```
     export default {
