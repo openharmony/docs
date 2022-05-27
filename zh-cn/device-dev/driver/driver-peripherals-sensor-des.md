@@ -56,8 +56,8 @@ Sensor驱动模型对外开放的API接口能力如下：
 
 - 提供Sensor HDI（Hardware Device Interface）能力接口，简化服务开发。
 - 提供Sensor驱动模型能力接口：
-  - 依赖HDF驱动框架实现Sensor器件驱动的注册，加载，去注册，器件探测等能力。
-  - 提供同一类型Sensor器件驱动归一接口, 寄存器配置解析操作接口，总线访问抽象接口，平台抽象接口。
+  - 依赖HDF驱动框架实现Sensor器件驱动的注册、加载、去注册、器件探测等能力。
+  - 提供同一类型Sensor器件驱动归一接口、寄存器配置解析操作接口、总线访问抽象接口、平台抽象接口。
 - 提供开发者实现的能力接口：依赖HDF驱动框架的HCS（HDF Configuration Source）配置管理，根据同类型Sensor差异化配置，实现Sensor器件参数序列化配置和器件部分操作接口，简化Sensor器件驱动开发。
 
 Sensor驱动模型对外开放的API接口能力的具体实现请参考：
@@ -173,7 +173,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
      
          return HDF_SUCCESS;
      }
-     /* 提供给差异化驱动的初始化接口，完成加速度器件基本配置信息解析（加速度信息，加速度总线配置，加速度器件探测寄存器配置），器件探测，器件寄存器解析 */
+     /* 提供给差异化驱动的初始化接口，完成加速度器件基本配置信息解析（加速度信息、加速度总线配置、加速度器件探测寄存器配置）、器件探测、器件寄存器解析 */
      static int32_t InitAccelAfterDetected(struct SensorCfgData *config)
      {
          struct SensorDeviceInfo deviceInfo;
