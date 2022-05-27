@@ -5,7 +5,7 @@
 >
 > - 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 需要在config.json对应的"abilities"中设置"*configChanges*"属性为"orientation"
+> - 需要在config.json对应的"abilities"中设置"configChanges"属性为"orientation"
 >   ```
 >   "abilities": [
 >     {
@@ -78,3 +78,58 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 在attached组件生命周期回调后，可以调用上述组件方法。
+
+## 示例
+
+```
+<!-- xxx.hml -->
+<div class="container">
+  <video id='videoId' src='/common/myDeram.mp4' muted='false' autoplay='false'
+         controls='true' onprepared='preparedCallback' onstart='startCallback'
+         onpaues='pauesCallback' onfinish='finishCallback' onerror='errorCallback'
+         onseeking='seekingCallback' onseeked='seekedCallback' 
+         ontimeupdate='timeupdateCallback'
+         style="object-fit:fit; width:80%; height:400px;"
+         onclick="change_start_pause">
+   </video>
+</div>
+```
+
+```
+/* xxx.css */
+.container {
+  justify-content: center;
+  align-items: center;
+}
+```
+
+```
+// xxx.js
+export default {
+  data: {
+    event:'',
+    seekingtime:'',
+    timeupdatetime:'',
+    seekedtime:'',
+    isStart: true,
+    duration: '',
+  },
+  preparedCallback:function(e){ this.event = '视频连接成功'; this.duration = e.duration;},
+  startCallback:function(){ this.event = '视频开始播放';},
+  pauseCallback:function(){ this.event = '视频暂停播放'; },
+  finishCallback:function(){ this.event = '视频播放结束';},
+  errorCallback:function(){ this.event = '视频播放错误';},
+  seekingCallback:function(e){ this.seekingtime = e.currenttime; },
+  timeupdateCallback:function(e){ this.timeupdatetime = e.currenttime;},
+  change_start_pause: function() {
+    if(this.isStart) {
+      this.$element('videoId').pause();
+      this.isStart = false;
+    } else {
+      this.$element('videoId').start();
+      this.isStart = true; 
+    }
+  },
+}
+```
+
