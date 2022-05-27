@@ -106,7 +106,7 @@ zh-cn/device-dev/subsystems/subsys-toolchain-hiperf.md @Austin23
 zh-cn/device-dev/subsystems/subsys-xts-guide.md @Austin23
 
 zh-cn/application-dev/ability/ @RayShih
-zh-cn/application-dev/ui/ @HelloCrease @kukixi
+zh-cn/application-dev/ui/ @HelloCrease
 zh-cn/application-dev/notification/ @RayShih
 zh-cn/application-dev/windowmanager/ @ge-yafang
 zh-cn/application-dev/webgl/ @ge-yafang
@@ -135,8 +135,8 @@ zh-cn/application-dev/device/vibrator-overview.md @HelloCrease
 zh-cn/application-dev/device/vibrator-guidelines.md @HelloCrease
 zh-cn/application-dev/device/sample-server-overview.md @HelloCrease
 zh-cn/application-dev/device/sample-server-guidelines.md @HelloCrease
-zh-cn/application-dev/reference/arkui-js/ @HelloCrease @kukixi
-zh-cn/application-dev/reference/arkui-ts/ @HelloCrease @kukixi
+zh-cn/application-dev/reference/arkui-js/ @HelloCrease
+zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
 zh-cn/application-dev/reference/native-apis @RayShih
 zh-cn/application-dev/reference/native-lib @RayShih
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @RayShih
@@ -189,10 +189,10 @@ zh-cn/application-dev/reference/apis/js-apis-eventhub.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-Bundle.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease @kukixi
-zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease @kukixi
-zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease @kukixi
-zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @kukixi
+zh-cn/application-dev/reference/apis/js-apis-animator.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-display.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
