@@ -22,7 +22,7 @@
     | 名称        | 参数类型                                      | 必填 | 描述                                                         |
     | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
     | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-    | type        | string                                        | 是   | 用于指定XComponent组件类型，可选值为：<br/>-surface：组件内容单独送显，直接合成到屏幕。<br/>-component：组件内容与其他组件合成后统一送显。<br/>component类型在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+    | type        | string                                        | 是   | 用于指定XComponent组件类型，可选值为：<br/>-surface：组件内容单独送显，直接合成到屏幕。<br/>-component：组件内容与其他组件合成后统一送显。|
     | libraryname | string                                        | 否   | 应用Native层编译输出动态库名称。                             |
     | controller  | [XComponentController](#XComponentController) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法。               |
 
