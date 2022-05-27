@@ -383,12 +383,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要检查的存储key名称，不能为空。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。 |
-
-**返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | true表示存在，false表示不存在。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
 ```ts
@@ -422,7 +417,7 @@ has(key: string): Promise&lt;boolean&gt;
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise实例，用于异步处理。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
 ```ts
