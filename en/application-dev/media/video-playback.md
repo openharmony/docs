@@ -76,13 +76,13 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -97,7 +97,7 @@ export class VideoPlayerDemo {
         console.info('createVideoPlayer fail!');
       }
     }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source URL for the player.
+    // Set the playback source for the player.
     videoPlayer.url = fdPath;
 
     // Set the surface ID to display the video image.
@@ -134,19 +134,19 @@ export class VideoPlayerDemo {
       this.printfDescription(arrayDescription[i]);
     }
 
-    // Seek to the 50s position. For details about the input parameters, see the interface document.
+    // Seek to the 50s position. For details about the input parameters, see the API document.
     let seekTime = 50000;
     await videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
       console.info('seek success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // Set the volume. For details about the input parameters, see the interface document.
+    // Set the volume. For details about the input parameters, see the API document.
     let volume = 0.5;
     await videoPlayer.setVolume(volume).then(() => {
       console.info('setVolume success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // Set the playback speed. For details about the input parameters, see the interface document.
+    // Set the playback speed. For details about the input parameters, see the API document.
     let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
     await videoPlayer.setSpeed(speed).then(() => {
       console.info('setSpeed success');
@@ -205,13 +205,13 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -292,14 +292,14 @@ export class VideoPlayerDemo {
 
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -341,7 +341,7 @@ export class VideoPlayerDemo {
     fdPath = 'fd://'
     await fileIO.open(nextPath).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -350,7 +350,7 @@ export class VideoPlayerDemo {
     // Set the second video playback source.
     videoPlayer.url = fdPath;
 
-    // Call the prepare interface to prepare for playback.
+    // Call the prepare API to prepare for playback.
     await videoPlayer.prepare().then(() => {
       console.info('prepare success');
     }, this.failureCallback).catch(this.catchCallback);
@@ -401,19 +401,15 @@ export class VideoPlayerDemo {
     }
   }
 
-  sleep(time) {
-    for(let t = Date.now(); Date.now() - t <= time;);
-  }
-
   async videoPlayerDemo() {
     let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent interface. For details about the document link, see the method of creating the XComponent.
+    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -442,23 +438,15 @@ export class VideoPlayerDemo {
     }, this.failureCallback).catch(this.catchCallback);
     // Set the loop playback attribute.
     videoPlayer.loop = true;
-    // Call the play API to start playback.
+    // Call the play API to start loop playback.
     await videoPlayer.play().then(() => {
       console.info('play success');
     }, this.failureCallback).catch(this.catchCallback);
-    // After the progress bar reaches the end, the playback continues for 3 seconds and then starts from the beginning, since loop playback is configured.
-    await videoPlayer.seek(videoPlayer.duration, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
-      console.info('seek duration success');
-    }, this.failureCallback).catch(this.catchCallback);
-    this.sleep(3000);
-    // Release playback resources.
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the related instances to undefined.
-    videoPlayer = undefined;
-    surfaceID = undefined;
   }
 }
 ```
+
+## Samples
+The following samples are provided to help you better understand how to develop video playback:
+
+- [`VideoPlayer`: Video Playback (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)
