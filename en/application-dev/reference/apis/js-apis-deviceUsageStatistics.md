@@ -1,8 +1,7 @@
 # Device Usage Statistics
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -406,7 +405,7 @@ Queries events of this application based on the specified start time and end tim
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
+getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;
 
 Obtains the number of FA usage records specified by **maxNum**. This API uses a promise to return the records sorted by time (most recent first).
 
@@ -453,7 +452,7 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses a 
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
 Obtains the number of FA usage records specified by **maxNum**. This API uses an asynchronous callback to return the records sorted by time (most recent first).
 
