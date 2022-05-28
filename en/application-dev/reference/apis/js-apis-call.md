@@ -1,6 +1,10 @@
 # Call
 
->**NOTE**
+The call module provides call management functions, including making calls, redirecting to the dial screen, obtaining the call status, and formatting phone numbers.
+
+To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
+
+>**NOTE**<br>
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -15,7 +19,7 @@ import call from '@ohos.telephony.call';
 
 dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
-Initiates a call. This API uses an asynchronous callback to return the execution result.
+Initiates a call. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.PLACE\_CALL (a system permission)
 
@@ -23,9 +27,9 @@ Initiates a call. This API uses an asynchronous callback to return the execution
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                             |
-| ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                                       |
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
 | callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
@@ -41,7 +45,7 @@ call.dial("138xxxxxxxx", (err, data) => {
 
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
-Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the execution result.
+Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.PLACE\_CALL (a system permission)
 
@@ -49,10 +53,10 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                             |
-| ----------- | ---------------------------- | ---- | ------------------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                                       |
-| options     | DialOptions                  | Yes  | Call options defined in [DialOptions](#dialoptions).      |
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
 | callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
@@ -70,7 +74,7 @@ call.dial("138xxxxxxxx", {
 
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
-Initiates a call. You can set call options as needed. This API uses a promise to return the execution result.
+Initiates a call. You can set call options as needed. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.PLACE\_CALL (a system permission)
 
@@ -78,16 +82,16 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Parameters**
 
-| Name     | Type       | Mandatory| Description                                       |
-| ----------- | ----------- | ---- | ------------------------------------------- |
-| phoneNumber | string      | Yes  | Phone number.                                 |
-| options     | DialOptions | Yes  | Call options defined in [DialOptions](#dialoptions).|
+| Name     | Type                       | Mandatory| Description                                  |
+| ----------- | --------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                      | Yes  | Phone number.                            |
+| options     | [DialOptions](#dialoptions) | Yes  | Call option, which indicates whether the call is a voice call or video call.|
 
-**Return Value**
+**Return value**
 
-| Type                  | Description                             |
-| ---------------------- | --------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
 
 **Example**
 
@@ -107,8 +111,6 @@ promise.then(data => {
 makeCall(phoneNumber: string, callback: AsyncCallback\<void\>): void
 
 Launches the call screen and displays the dialed number. This API uses an asynchronous callback to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -134,8 +136,6 @@ makeCall(phoneNumber: string): Promise\<void\>
 
 Launches the call screen and displays the dialed number. This API uses a promise to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -144,7 +144,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 | ----------- | ------ | ---- | ---------- |
 | phoneNumber | string | Yes  | Phone number.|
 
-**Return Value**
+**Return value**
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
@@ -173,7 +173,7 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
 
 **Example**
 
@@ -192,7 +192,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
@@ -241,10 +241,10 @@ Obtains the call status. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-**Return Value**
+**Return value**
 
-| Type                                  | Description                                     |
-| -------------------------------------- | ----------------------------------------- |
+| Type                                  | Description                                   |
+| -------------------------------------- | --------------------------------------- |
 | Promise&lt;[CallState](#callstate)&gt; | Promise used to return the result.|
 
 **Example**
@@ -262,11 +262,11 @@ promise.then(data => {
 
 hasVoiceCapability(): boolean
 
-Checks whether a device supports voice calls. This API works in synchronous mode.
+Checks whether a device supports voice calls.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-**Return Value**
+**Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
@@ -281,7 +281,7 @@ console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 
 isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
-Checks whether the call number of the SIM card in the specified slot is an emergency number. This API uses an asynchronous callback to return the result.
+Checks whether the called number is an emergency number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -290,7 +290,7 @@ Checks whether the call number of the SIM card in the specified slot is an emerg
 | Name     | Type                        | Mandatory| Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | Yes  | Phone number.                                                  |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Example**
 
@@ -305,17 +305,17 @@ call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
 
 isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, callback: AsyncCallback<boolean\>\): void
 
-Checks whether the call number of the SIM card in the specified slot is an emergency number. This API uses an asynchronous callback to return the result.
+Checks whether the called number is an emergency number based on the phone number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                                        |
-| ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                       | Yes  | Phone number.                                                  |
-| options     | EmergencyNumberOptions       | Yes  | Emergency number options defined in [EmergencyNumberOptions](#emergencynumberoptions7).|
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| Name     | Type                                              | Mandatory| Description                                                       |
+| ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
+| phoneNumber | string                                             | Yes  | Phone number.                                                 |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.        |
+| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Example**
 
@@ -330,18 +330,18 @@ call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
 
 isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\): Promise<boolean\>
 
-Checks whether the call number of the SIM card in the specified slot is an emergency number. This API uses a promise to return the result.
+Checks whether the called number is an emergency number based on the phone number. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                  | Mandatory| Description                                                        |
-| ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                 | Yes  | Phone number.                                                  |
-| options     | EmergencyNumberOptions | Yes  | Emergency number options defined in [EmergencyNumberOptions](#emergencynumberoptions7).|
+| Name     | Type                                              | Mandatory| Description          |
+| ----------- | -------------------------------------------------- | ---- | -------------- |
+| phoneNumber | string                                             | Yes  | Phone number.    |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.|
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
@@ -362,7 +362,9 @@ promise.then(data => {
 
 formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback<string\>\): void
 
-Formats a phone number based on the specified ISO country code. This API uses an asynchronous callback to return the result.
+Formats a phone number. This API uses an asynchronous callback to return the result.
+
+A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -381,22 +383,23 @@ call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
 });
 ```
 
-
 ## call.formatPhoneNumber<sup>7+</sup>
 
 formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: AsyncCallback<string\>\): void
 
 Formats a phone number based on specified formatting options. This API uses an asynchronous callback to return the result.
 
+A formatted phone number is a standard numeric string, for example, 555 0100.
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                                        |
-| ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                      | Yes  | Phone number.                                                  |
-| options     | NumberFormatOptions         | Yes  | Number formatting options defined in [NumberFormatOptions](#numberformatoptions7).|
-| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                        |
+| Name     | Type                                        | Mandatory| Description                                |
+| ----------- | -------------------------------------------- | ---- | ------------------------------------ |
+| phoneNumber | string                                       | Yes  | Phone number.                          |
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.              |
+| callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -415,16 +418,18 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 Formats a phone number based on specified formatting options. This API uses a promise to return the result.
 
+A formatted phone number is a standard numeric string, for example, 555 0100.
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                                                        |
-| ----------- | ------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string              | Yes  | Phone number.                                                  |
-| options     | NumberFormatOptions | Yes  | Number formatting options defined in [NumberFormatOptions](#numberformatoptions7).|
+| Name     | Type                                        | Mandatory| Description                  |
+| ----------- | -------------------------------------------- | ---- | ---------------------- |
+| phoneNumber | string                                       | Yes  | Phone number.            |
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
@@ -450,8 +455,6 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 Converts a phone number into the E.164 format. This API uses an asynchronous callback to return the result.
 
 The phone number must match the specified country code. For example, for a China phone number, the country code must be **CN**. Otherwise, **null** will be returned.
-
-All country codes are supported.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -493,7 +496,7 @@ All country codes are supported.
 | phoneNumber | string | Yes  | Phone number.                              |
 | countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
@@ -541,9 +544,9 @@ Provides an option for determining whether a number is an emergency number for t
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type  | Mandatory| Description                                      |
-| ------ | ------ | ---- | ------------------------------------------ |
-| slotId | number | No  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Name| Type  | Mandatory| Description                                          |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 ## NumberFormatOptions<sup>7+</sup>
 
