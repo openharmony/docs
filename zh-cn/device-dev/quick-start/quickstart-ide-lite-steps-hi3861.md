@@ -12,4 +12,4 @@
 
 - **[调试验证](quickstart-ide-lite-steps-hi3861-debug.md)**
 
-- **[运行](quickstart-ide-lite-steps-hi3816-running.md)**
+- **[运行](quickstart-ide-lite-steps-hi3861-running.md)**
