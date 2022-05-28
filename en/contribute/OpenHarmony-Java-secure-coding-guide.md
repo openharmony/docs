@@ -803,10 +803,10 @@ public class DeserializeExample implements Serializable {
 
     //Deserialize external data
     ObjectInputStream ois2= new ObjectInputStream(fis);
-    PersionInfo myPerson = (PersionInfo) ois2.readObject();
+    PersonInfo myPerson = (PersonInfo) ois2.readObject();
 ```
 
-In this noncompliant code example, when the object of the deserialization operation is the serialization result of the **DeserializeExample** object constructed by the attacker, an error will be reported when the `PersionInfo myPerson = (PersionInfo) ois2.readObject()` statement is executed, but the attack code in the `readObject()` method of the **DeserializeExample** object is executed.
+In this noncompliant code example, when the object of the deserialization operation is the serialization result of the **DeserializeExample** object constructed by the attacker, an error will be reported when the `PersonInfo myPerson = (PersonInfo) ois2.readObject()` statement is executed, but the attack code in the `readObject()` method of the **DeserializeExample** object is executed.
 
 **\[Compliant Code Example]** (Trustlist Validation)
 
@@ -822,7 +822,7 @@ public final class SecureObjectInputStream extends ObjectInputStream {
 
     protected Class<?> resolveClass(ObjectStreamClass desc)
         throws IOException, ClassNotFoundException {
-        if (!desc.getName().equals("com.xxxx.PersionInfo")) {//Trustlist validation
+        if (!desc.getName().equals("com.xxxx.PersonInfo")) {//Trustlist validation
             throw new ClassNotFoundException(desc.getName() + " not find");
         }
         return super.resolveClass(desc);
@@ -870,7 +870,7 @@ public final class HWObjectInputStream extends ObjectInputStream {
 (3) Set a trustlist in the policy file.
 
 ```
-permission java.io.SerializablePermission "com.xxxx.PersionInfo";
+permission java.io.SerializablePermission "com.xxxx.PersonInfo";
 
 ```
 
