@@ -90,7 +90,7 @@ abilitymanager.updateConfiguration(config).then(() => {
 
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
-通过修改配置来更新配置（callback形式）。
+获取Ability运行相关信息（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -114,7 +114,7 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
-通过修改配置来更新配置（Promise形式）。
+获取Ability运行相关信息（Promise形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -140,7 +140,7 @@ abilitymanager.getAbilityRunningInfos().then((data) => {
 
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
-获取关于运行扩展的信息（callback形式）。
+获取关于运行扩展能力的信息（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -167,7 +167,7 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
-获取关于运行扩展的信息（Promise形式）。
+获取关于运行扩展能力的信息（Promise形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
