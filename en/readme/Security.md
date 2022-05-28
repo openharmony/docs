@@ -5,7 +5,7 @@
 
 The security subsystem provides system, data, and application security capabilities to protect system and user data of OpenHarmony.
 
-It implemens application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) key management, and data transfer management.
+It implements application integrity verification, application permission management, device authentication, OpenHarmony Universal KeyStore (HUKS) key management, and data transfer management.
 
 ## Architecture<a name="section342962219551"></a>
 
