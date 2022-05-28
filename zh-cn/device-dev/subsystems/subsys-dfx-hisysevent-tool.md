@@ -52,9 +52,9 @@ hisysevent -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
 
   
 ```
-# hisysevent -r -t "TAG" -c PREFIX   {"domain_":"ACE","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
-# hisysevent -r -t "TAw{0,1}" -c REGULAR {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ACE","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
-# hisysevent -r -t "TAw+" -c REGULAR    {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ACE","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
+# hisysevent -r -t "TAG" -c PREFIX   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
+# hisysevent -r -t "TAw{0,1}" -c REGULAR {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
+# hisysevent -r -t "TAw+" -c REGULAR    {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
 ```
 
 - 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
