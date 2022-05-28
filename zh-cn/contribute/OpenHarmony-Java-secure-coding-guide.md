@@ -1414,7 +1414,7 @@ private void createXMLStream(BufferedOutputStream outStream, User user)
 **【正例】**（使用安全的XML库）
 
 ```java
-public static void buidlXML(FileWriter writer, User user) throws IOException {
+public static void  buildXML(FileWriter writer, User user) throws IOException {
     Document userDoc = DocumentHelper.createDocument();
     Element userElem = userDoc.addElement("user");
     Element idElem = userElem.addElement("id");
