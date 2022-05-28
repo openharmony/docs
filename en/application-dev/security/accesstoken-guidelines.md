@@ -4,13 +4,13 @@
 
 In this example, the app requires the **ohos.permission.PERMISSION1** and **ohos.permission.PERMISSION2** permissions to implement core functions.
 
-- The ability privilege level (APL) of the app is normal.
-- The level of **ohos.permission.PERMISSION1** is normal, and the authorization mode is system_grant.
-- The level of **ohos.permission.PERMISSION2** is system_basic, and the authorization mode is user_grant.
+- The ability privilege level (APL) of the app is **normal**.
+- The level of **ohos.permission.PERMISSION1** is **normal**, and the authorization mode is **system_grant**.
+- The level of **ohos.permission.PERMISSION2** is **system_basic**, and the authorization mode is **user_grant**.
 
-> **Precautions**
+> **NOTICE**
 >
-> In this scenario, the required permissions include a user_grant permission. You can check whether the caller has the required permission through permission verification.
+> In this scenario, the required permissions include a **user_grant** permission. You can check whether the caller has the required permission through permission verification.
 >
 > If the permission verification result indicates that the app has not obtained that permission, dynamic user authorization is required.
 >
@@ -20,7 +20,7 @@ The table below lists only the API used in this guide. For more information, see
 
 | API                                                      | Description                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | Verifies whether an app has the specified permission. This API uses a promise to return the result.|
+| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | Verifies whether an app has the specified permission. This API uses a promise to return the result. |
 
 ## Declaring Permissions
 
@@ -33,10 +33,10 @@ Declare the permissions required by the app one by one in the **config.json** fi
 | Field     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
 | name      | Name of the permission.                                                  |
-| reason    | Reason for requesting the permission. This field is mandatory for a user_grant permission.|
-| usedScene | Scenario of the permission. This field is mandatory for a user_grant permission.|
-| abilities | Abilities that use the permission. The value is an array.              |
-| when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background).|
+| reason    | Reason for requesting the permission. This field is mandatory for a user_grant permission. |
+| usedScene | Scenario of the permission. This field is mandatory for a user_grant permission. |
+| abilities | Abilities that use the permission. The value is an array. |
+| when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background). |
 
 **Example**
 
@@ -70,7 +70,7 @@ Declare the permissions required by the app one by one in the **config.json** fi
 ```
 ## Declaring the ACL
 
-The permission level of **ohos.permission.PERMISSION2** is system_basic, which is higher than the app's APL. In this case, use the ACL.
+The permission level of **ohos.permission.PERMISSION2** is **system_basic**, which is higher than the app's APL. In this case, use the ACL.
 
 In addition to declaring all the permissions in the **config.json** file, you must declare the permissions whose levels are higher than the app's APL in the app's profile. In this example, declare the permission under the **acls** field:
 ```json
