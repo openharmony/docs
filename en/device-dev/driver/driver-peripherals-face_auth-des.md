@@ -6,7 +6,7 @@
 
 Facial authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. It uses biometric recognition technologies to identify individuals based on facial characteristics. A camera is used to collect images or video streams that contain human faces, and automatically detect, track, and recognize human faces. Facial authentication is also called facial recognition or face recognition. The figure below shows the architecture of facial authentication.
 
-The face authentication driver (Face_auth) driver is developed based on the Hardware Driver Foundation (HDF) driver framework. It shields hardware differences and provides stable facial authentication capabilities for the user IAM framework (UserIAM) and Face_auth service. The facial authentication capabilities include obtaining facial recognition executor list, executor information, and template information by template ID, comparing face image template information of the executor and that of UserIAM, enrolling or deleting face templates, and performing facial authentication.
+The face authentication driver (Face_auth) driver is developed based on the Hardware Driver Foundation (HDF) driver framework. It shields hardware differences and provides stable facial authentication capabilities for the user authentication framework (User_auth) and Face_auth service. The facial authentication capabilities include obtaining facial recognition executor list, executor information, and template information by template ID, comparing face image template information of the executor and that of User_auth, enrolling or deleting face templates, and performing facial authentication.
 
 **Figure 1** Facial authentication architecture
 
@@ -14,10 +14,10 @@ The face authentication driver (Face_auth) driver is developed based on the Hard
 
 ### Basic Concepts
 
-The identity authentication consists of UserIAM and basic authentication services (including PIN authentication and facial authentication). It supports basic functions such as setting and deleting user credentials and performing authentication. The system supports user identity authentication and provides data collection, processing, storage, and comparison capabilities.
+The identity authentication consists of User_auth and basic authentication services (including PIN authentication and facial authentication). It supports basic functions such as setting and deleting user credentials and performing authentication. The system supports user identity authentication and provides data collection, processing, storage, and comparison capabilities.
 - Executor
 
-  The executor collects, processes, stores, and compares data for authentication. Each authentication service provides the executor capabilities, which are scheduled by UserIAM to implement basic capabilities.
+  The executor collects, processes, stores, and compares data for authentication. Each authentication service provides the executor capabilities, which are scheduled by User_auth to implement basic capabilities.
 
 - Executor security level
 
@@ -35,13 +35,13 @@ The identity authentication consists of UserIAM and basic authentication service
 
   The authentication algorithm varies depending on the authentication mode and device used. Different executor types are defined based on the supported algorithm type or the device in use.
 
-- UserIAM public key & executor public key
+- User_auth public key & executor public key
 
-  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between UserIAM and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with UserIAM.
+  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between User_auth and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with User_auth.
 
-    The executor uses the UserIAM public key to verify scheduling instructions. For example, if a face image template is locked, the related facial authentication capability cannot be used. The instruction for unlocking the face image template must be verified before being executed.
+    The executor uses the User_auth public key to verify scheduling instructions. For example, if a face image template is locked, the related facial authentication capability cannot be used. The instruction for unlocking the face image template must be verified before being executed.
 
-    UserIAM uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
+    User_auth uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
 
 - Facial authentication credential template
 
@@ -49,11 +49,11 @@ The identity authentication consists of UserIAM and basic authentication service
 
 - Data verification by the executor
 
-  UserIAM manages the mappings between user identities and credential IDs in a unified manner. When connecting to UserIAM, the executor obtains the template ID list from UserIAM and updates its template ID list based on the template ID list obtained.
+  User_auth manages the mappings between user identities and credential IDs in a unified manner. When connecting to User_auth, the executor obtains the template ID list from User_auth and updates its template ID list based on the template ID list obtained.
 
 ### Working Principles
 
-The Face_auth driver provides basic facial authentication capabilities for the UserIAM and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
 You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** Face_auth service and Face_auth driver interaction
@@ -70,7 +70,7 @@ You can develop drivers to call Hardware Device Interface (HDI) APIs based on th
 
 ### When to Use
 
-The Face_auth driver provides basic facial authentication capabilities for the UserIAM and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
 
 ### Available APIs
 
@@ -81,7 +81,7 @@ The Face_auth driver provides basic facial authentication capabilities for the U
 | GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | Obtains the executor list.                                            |
 | GetExecutorInfo(ExecutorInfo& info)                          | Obtain the executor information, including the executor type, executor role, authentication type, security level, and executor public key.|
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | Obtains information about a face image template based on the specified template ID.                              |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | Obtains the public key and template ID list from UserIAM after the executor is registered successfully.|
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
 | Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Enrolls a face image template.                                              |
 | Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | Performs facial authentication.                                              |
 | Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Performs face identification.                                              |
@@ -285,7 +285,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // After the executor is successfully registered, obtain the public key and template ID list from UserIAM and save the public key. The executor compares its template ID list with the template ID list obtained and updates its template ID list.
+   // After the executor is successfully registered, obtain the public key and template ID list from User_auth and save the public key. The executor compares its template ID list with the template ID list obtained and updates its template ID list.
    int32_t OnRegisterFinish(const std::vector<uint64_t>& templateIdList,
        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo)
    {
