@@ -428,11 +428,11 @@ int result = reallyReallyLongVariableName1 +    // Good
 After an expression is wrapped, ensure that the lines are aligned appropriately or indented with 4 spaces. See the following example.
 
 ```cpp
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // Good: indented with 4 spaces
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // Good: indented with 4 spaces
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // Good: The lines are aligned.
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // Good: The lines are aligned.
 ```
 ## <a name="c3-10"></a> Variable Assignment
 
