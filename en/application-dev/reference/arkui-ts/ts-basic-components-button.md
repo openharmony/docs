@@ -50,7 +50,7 @@ Supported
 | stateEffect | boolean | true | Whether to enable the state switchover effect. When the state is set to **false**, the state switchover effect is disabled. |
 
 
-ButtonType enums
+**ButtonType** enums
 | Name | Description |
 | -------- | -------- |
 | Capsule | Capsule-type button (the round corner is half of the height by default). |
