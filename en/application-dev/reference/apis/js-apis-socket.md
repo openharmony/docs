@@ -110,6 +110,8 @@ send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
 
 Sends data over a UDPSocket connection. This API uses an asynchronous callback to return the result.
 
+Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
+
 **Required permission**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -147,6 +149,8 @@ udp.send({
 send\(options: UDPSendOptions\): Promise<void\>
 
 Sends data over a UDPSocket connection. This API uses a promise to return the result.
+
+Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
 
 **Required permission**: ohos.permission.INTERNET
 

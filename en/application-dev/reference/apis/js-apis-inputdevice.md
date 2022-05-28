@@ -4,7 +4,7 @@
 The input device management module is used to listen for the connection, disconnection, and updates of input devices and display information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -59,7 +59,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 **Return value**
 
-| Name                    | Description                |
+| Parameter                    | Description                |
 | ---------------------- | ------------------ |
 | Promise<Array<number>> | Promise used to return the result.|
 
@@ -130,7 +130,7 @@ Obtains the information about an input device. This API uses a promise to return
 
 **Return value**
 
-| Name                      | Description                |
+| Parameter                      | Description                |
 | ------------------------ | ------------------ |
 | Promise<InputDeviceData> | Promise used to return the result.|
 
@@ -165,11 +165,18 @@ Defines the information about an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name     | Type                                  | Description                                      |
-| ------- | -------------------------------------- | ---------------------------------------- |
-| id      | number                                 | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes.       |
-| name    | string                                 | Name of the input device.                                |
-| sources | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| Name      | Type                              | Description                                                        |
+| ---------- | -------------------------------------- | ------------------------------------------------------------ |
+| id         | number                                 | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| name       | string                                 | Name of the input device.                                            |
+| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                                          |
+| bus        | number                                 | Bus type of the input device.                                        |
+| product    | number                                 | Product information of the input device.                                        |
+| vendor     | number                                 | Vendor information of the input device.                                        |
+| version    | number                                 | Version information of the input device.                                        |
+| phys       | string                                 | Physical address of the input device.                                        |
+| uniq       | string                                 | Unique ID of the input device.                                        |
 
 ## AxisType
 
