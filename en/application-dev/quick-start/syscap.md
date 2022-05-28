@@ -1,20 +1,20 @@
-# SysCap
+# SysCap Usage Guidelines
 
 ## Overview
 
 ### System Capabilities and APIs
 
-SysCap is short for System Capability. It refers to each independent feature in the operating system, such as Bluetooth, Wi-Fi, NFC, and camera. Each system capability corresponds to multiple APIs. These APIs are bound together and their availability depends on the support on the target device. They can also be provided together with the IDE for association.
+SysCap is short for System Capability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each system capability corresponds to a set of bound APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in the IDE for association.
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
 
 
-### Supported Capability Set, Association Capability Set, and Required Capability Set
+### Supported Capability Set, Associated Capability Set, and Required Capability Set
 
-The supported capability set, association capability set, and required capability set are collections of system capabilities.
+The supported capability set, associated capability set, and required capability set are collections of system capabilities.
 The supported capability set covers the device capabilities, and the required capability set covers the application capabilities. If the capability set required by application A is a subset of the capability set supported by device N, application A can be distributed to device N for installation and running. Otherwise, application A cannot be distributed.
-The association capability set covers the system capabilities of APIs that can be associated by the IDE during application development.
+The associated capability set covers the system capabilities of associated APIs that the IDE offers during application development.
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
 
@@ -22,7 +22,7 @@ The association capability set covers the system capabilities of APIs that can b
 
 ### Devices and Supported Capability Sets
 
-Each device provides a capability set according to its hardware capability.
+Each device provides a capability set that matches its hardware capability.
 The SDK classifies devices into general devices and custom devices. The general devices' supported capability set is defined by OpenHarmony, and the custom devices' is defined by device vendors.
 
 ![image-20220326064955505](figures/image-20220326064955505.png)
@@ -31,7 +31,7 @@ The SDK classifies devices into general devices and custom devices. The general 
 
 ### Mapping Between Devices and SDK Capabilities
 
-The SDK provides full APIs for the IDE. The IDE identifies the supported capability set based on the devices supported by the project, filters the APIs contained in the capability set, and provides the supported APIs for association (to autocomplete input).
+The SDK provides a full set of APIs for the IDE. The IDE identifies the supported capability set based on the devices supported by the project, filters the APIs contained in the capability set, and provides the supported APIs for association (to autocomplete input).
 
 ![image-20220326065043006](figures/image-20220326065043006.png)
 
@@ -41,7 +41,7 @@ The SDK provides full APIs for the IDE. The IDE identifies the supported capabil
 
 ### Importing the PCID
 
-DevEco Studio allows PCID imports for projects. After the imported PCID file is decoded, the output SysCap is written into the **syscap.json** file.
+DevEco Studio allows Product Compatibility ID (PCID) imports for projects. After the imported PCID file is decoded, the SysCap is output and written into the **syscap.json** file.
 
 Right-click the project directory and choose **Import Product Compatibility ID** from the shortcut menu to upload the PCID file and import it to the **syscap.json** file.
 
@@ -49,21 +49,22 @@ Right-click the project directory and choose **Import Product Compatibility ID**
 
 
 
-### Configuring the Association Capability Set and Required Capability Set
+### Configuring the Associated Capability Set and Required Capability Set
 
-The IDE automatically configures the association capability set and required capability set based on the settings supported by the created project. You can modify the capability sets when necessary.
-For the association capability set, you can use more APIs in the IDE by adding more system capabilities. Note that these APIs may not be supported on the device. Therefore, you need to check whether these APIs are supported before using them.
+The IDE automatically configures the associated capability set and required capability set based on the settings supported by the created project. You can modify the capability sets when necessary.
+You can add APIs to the associated capability set in the IDE by adding system capabilities. However, note that these APIs may not be supported on the device. Therefore, check whether these APIs are supported before using them.
 Exercise caution when modifying the required capability set. Incorrect modifications may cause the application to unable to be distributed to the target device.
 
 ```
 /* syscap.json */
 {
 	devices: {
-		general: [            /* Each general device corresponds to a SysCap capability set. Multiple general devices can be configured.*/
+		general: [            /* General devices. Each general device supports a SysCap set. Multiple general devices can be configured. */
+			"default",
 			"car,
 			...
 		],
-		custom: [             /* Vendor-defined device*/
+		custom: [             /* Custom devices. */
 			{
 				"Custom device": [
 					"SystemCapability.Communication.SoftBus.Core",
@@ -73,13 +74,13 @@ Exercise caution when modifying the required capability set. Incorrect modificat
 			...
 		]
 	},
-	development: {             /* The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the association capability set.*/
+	development: {             /* The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated capability set. */
 		addedSysCaps: [
 			"SystemCapability.Location.Location.Lite",
 			...
 		]
 	},
-	production: {              /* Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices.*/
+	production: {              /* Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices. */
 		addedSysCaps: [],      // Intersection of SysCap sets supported by devices configured in devices. It is the required capability set with addedSysCaps set and removedSysCaps set.
 		removedSysCaps: []     // When the required capability set is a capability subset of a device, the application can be distributed to the device.
 	}
@@ -98,7 +99,7 @@ By default, the association capability set and required system capability set of
 
 ### Cross-Device Application Development
 
-By default, the association capability set of the application is the union of multiple devices' supported capability sets. The capability sets must be the intersection.
+By default, the associated capability set of the application is the union of multiple devices' supported capability sets. The capability sets must be the intersection.
 
 ![image-20220326065201867](figures/image-20220326065201867.png)
 
@@ -106,17 +107,17 @@ By default, the association capability set of the application is the union of mu
 
 ### Checking Whether an API Is Available
 
-To check whether a project supports a specific SysCap, you can use **canIUse**.
+Use **canIUse** if you want to check whether a project supports a specific SysCap.
 
 ```
 if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-	console.log("The application supports SystemCapability.ArkUI.ArkUI.Full.");
+	console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
 } else {
-	Console.log("The application does not support SystemCapability.ArkUI.ArkUI.Full".);
+	Console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
 }
 ```
 
-You can import a module. If the current device does not support the module, the import result is **undefined**. When using an API, you need to check whether the API is available.
+You can import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
 
 ```
 import geolocation from '@ohos.geolocation';
@@ -126,7 +127,7 @@ if (geolocation) {
 		console.log(location.latitude, location.longitude);
 	});
 } else {
-	Console.log('The device does not support location information.');
+	Console.log('This device does not support location information.');
 }
 ```
 
@@ -143,7 +144,7 @@ const authenticator = userAuth.getAuthenticator();
 const result = authenticator.checkAbility('FACE_ONLY', 'S1');
 
 if (result == authenticator.CheckAvailabilityResult.AUTH_NOT_SUPPORT) {
-	Console.log('The device does not support facial recognition.');
+	Console.log('This device does not support facial recognition.');
 }
 // If an unsupported API is forcibly called, an error message is returned, but no syntax error occurs.
 authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
@@ -155,24 +156,24 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 ```
 
 
-### How Are the SysCap Differences Between Devices Generated
+### How Do SysCap Differences Arise Between Devices
 
-The SysCap of devices varies according to the component combination assembled by the product solution vendor. The following figure shows the overall process.
+The SysCap of devices varies according to the component combination defined by the product solution vendor. The following figure shows the overall process.
 
 ![image-20220326072448840](figures/image-20220326072448840.png)
 
 1. A set of OpenHarmony source code consists of optional and mandatory components. Different components have different system capabilities. In other words, different components represent different SysCaps.
 
-2. In a normalized released SDK, the mapping exists between APIs and SysCap.
+2. In a normalized released SDK, APIs are mapped to SysCap sets.
 
 3. Product solution vendors can assemble components based on hardware capabilities and product requirements.
 
-4. The components configured for a product can be OpenHarmony components or private components developed by a third party. Because there is mapping between components and SysCap, the SysCap set of the product can be obtained after all components are assembled.
+4. The components configured for a product can be OpenHarmony components or proprietary components developed by a third party. Since there is mapping between components and SysCap, the SysCap set of the product can be obtained after all components are assembled.
 
-5. The SysCap set is encoded to generate the PCID. You can import the PCID to the IDE and decode it into SysCap. During development, compatibility processing is performed on the SysCap differences of devices.
+5. The SysCap set is encoded to generate the PCID. You can import the PCID to the IDE and decode it into SysCap. During development, compatibility processing is performed to mitigate the SysCap differences of devices.
 
-6. System parameters deployed on devices contain the SysCap set. The system provides native interfaces and application interfaces for components and applications in the system to check whether a SysCap set is available.
+6. System parameters deployed on devices contain the SysCap set. The system provides native interfaces and application interfaces for components and applications to check whether a SysCap set is available.
 
-7. During application development, the SysCap required by the application is encoded into the Required Product Compatibility ID (RPCID) and written into the application installation package. During application installation, the package manager decodes the RPCID to obtain the SysCap required by the application and compares it with the SysCap of the device. If the SysCap required by the application is met, the application is successfully installed.
+7. During application development, the SysCap required by the application is encoded into the Required Product Compatibility ID (RPCID) and written into the application installation package. During application installation, the package manager decodes the RPCID to obtain the SysCap required by the application and compares it with the SysCap of the device. If the SysCap required by the application is met, the application can be installed.
 
-8. When an application is running, the **canIUse** API can be used to query the SysCap of a device to ensure compatibility on different devices.
+8. When an application is running, the **canIUse** API can be used to query whether the SysCap is compatible with the device.
