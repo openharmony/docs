@@ -380,23 +380,23 @@
 
     - 窗口管理
 
-      * 窗口
+      - 窗口
 
-        *  [窗口开发概述](windowmanager/window-overview.md)
+        -  [窗口开发概述](windowmanager/window-overview.md)
 
-        *  [窗口开发指导](windowmanager/window-guidelines.md)
+        -  [窗口开发指导](windowmanager/window-guidelines.md)
 
-      * 屏幕属性
+      - 屏幕属性
 
-        * [屏幕属性开发概述](windowmanager/display-overview.md)
+        - [屏幕属性开发概述](windowmanager/display-overview.md)
 
-        * [屏幕属性开发指导](windowmanager/display-guidelines.md)
+        - [屏幕属性开发指导](windowmanager/display-guidelines.md)
 
-      * 屏幕截图
+      - 屏幕截图
 
-        * [屏幕截图开发概述](windowmanager/screenshot-overview.md)
+        - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
 
-        * [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+        - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
 
       
 
@@ -474,7 +474,6 @@
 
         - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
 
-    - 电话服务
 
     - 数据管理
 
@@ -590,6 +589,18 @@
       - [Intl开发指导](internationalization/intl-guidelines.md)
 
       - [I18n开发指导](internationalization/i18n-guidelines.md)
+
+      
+
+    - Native API的相关指导
+
+
+      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+
+      - [drawing开发指导](napi/drawing-guidelines.md)
+
+      - [rawfile开发指导](napi/rawfile-guidelines.md)
+
 
 - 工具
 
@@ -1106,7 +1117,7 @@
 
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考
+  - 接口参考(JS及eTS API参考)
     - Ability框架
 
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
@@ -1157,49 +1168,49 @@
 
       - [@ohos.wantAgent (WantAgent模块)](reference/apis/js-apis-wantAgent.md)
 
-      - ability/[dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
+      - [dataAbilityHelper (DataAbilityHelper模块)](reference/apis/js-apis-dataAbilityHelper.md)
 
-      - app/[context (Context模块)](reference/apis/js-apis-Context.md)
+      - [context (Context模块)](reference/apis/js-apis-Context.md)
 
-      - application/[AbilityContext (AbilityContext)](reference/apis/js-apis-ability-context.md)
+      - [AbilityContext (AbilityContext)](reference/apis/js-apis-ability-context.md)
 
-      - application/[abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
+      - [abilityDelegator (AbilityDelegator)](reference/apis/js-apis-application-abilityDelegator.md)
 
-      - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
+      - [abilityDelegatorArgs (AbilityDelegatorArgs)](reference/apis/js-apis-application-abilityDelegatorArgs.md)
 
-      - application/[abilityMonitor (AbilityMonitor)](reference/apis/js-apis-application-abilityMonitor.md)
+      - [abilityMonitor (AbilityMonitor)](reference/apis/js-apis-application-abilityMonitor.md)
 
-      - application/[AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
+      - [AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
 
-      - application/[AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
+      - [AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
 
-      - application/[Context (Context)](reference/apis/js-apis-application-context.md)
+      - [Context (Context)](reference/apis/js-apis-application-context.md)
 
-      - application/[ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
+      - [ExtensionContext (ExtensionContext)](reference/apis/js-apis-extension-context.md)
 
-      - application/[ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
+      - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
 
-      - application/[FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
+      - [FormExtensionContext (FormExtensionContext)](reference/apis/js-apis-formextensioncontext.md)
 
-      - application/[MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
+      - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
 
-      - application/[PermissionRequestResult (PermissionRequestResult)](reference/apis/js-apis-permissionrequestresult.md)
+      - [PermissionRequestResult (PermissionRequestResult)](reference/apis/js-apis-permissionrequestresult.md)
 
-      - application/[ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
+      - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
 
-      - application/[ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md)
+      - [ServiceExtensionContext (ServiceExtensionContext)](reference/apis/js-apis-service-extension-context.md)
 
-      - application/[shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
+      - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
 
-      - application/[AbilityManager (AbilityManager)](reference/apis/js-apis-abilityManager.md)
+      - [AbilityManager (AbilityManager)](reference/apis/js-apis-abilityManager.md)
 
-      - application/[Context (Context)](reference/apis/js-apis-applicationContext.md)
+      - [Context (Context)](reference/apis/js-apis-applicationContext.md)
 
-      - application/[ExtensionAbilityContext (ExtensionAbilityContext)](reference/apis/js-apis-extension-ability-context.md)
+      - [ExtensionAbilityContext (ExtensionAbilityContext)](reference/apis/js-apis-extension-ability-context.md)
 
-      - application/[ExtensionAbilityInfo (ExtensionAbilityInfo)](reference/apis/js-apis-extensionAbilityInfo.md)
+      - [ExtensionAbilityInfo (ExtensionAbilityInfo)](reference/apis/js-apis-extensionAbilityInfo.md)
 
-      - application/[ServiceExtAbilityContext (ServiceExtAbilityContext)](reference/apis/js-apis-serviceExtAbilityContext.md)
+      - [ServiceExtAbilityContext (ServiceExtAbilityContext)](reference/apis/js-apis-serviceExtAbilityContext.md)
 
     - 公共事件与通知
 
@@ -1211,7 +1222,7 @@
 
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
 
-      - application/[EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
+      - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
 
     - 应用程序包管理
 
@@ -1221,21 +1232,21 @@
 
       - [@ohos.zlib (Zip模块)](reference/apis/js-apis-zlib.md)
 
-      - bundle/[AbilityInfo (AbilityInfo)](reference/apis/js-apis-bundle-AbilityInfo.md)
+      - [AbilityInfo (AbilityInfo)](reference/apis/js-apis-bundle-AbilityInfo.md)
 
-      - bundle/[ApplicationInfo (ApplicationInfo)](reference/apis/js-apis-bundle-ApplicationInfo.md)
+      - [ApplicationInfo (ApplicationInfo)](reference/apis/js-apis-bundle-ApplicationInfo.md)
 
-      - bundle/[BundleInfo (BundleInfo)](reference/apis/js-apis-bundle-BundleInfo.md)
+      - [BundleInfo (BundleInfo)](reference/apis/js-apis-bundle-BundleInfo.md)
 
-      - bundle/[CustomizeData (CustomizeData)](reference/apis/js-apis-bundle-CustomizeData.md)
+      - [CustomizeData (CustomizeData)](reference/apis/js-apis-bundle-CustomizeData.md)
 
-      - bundle/[ExtensionAbilityInfo (ExtensionAbilityInfo)](reference/apis/js-apis-bundle-ExtensionAbilityInfo.md)
+      - [ExtensionAbilityInfo (ExtensionAbilityInfo)](reference/apis/js-apis-bundle-ExtensionAbilityInfo.md)
 
-      - bundle/[HapModuleInfo (HapModuleInfo)](reference/apis/js-apis-bundle-HapModuleInfo.md)
+      - [HapModuleInfo (HapModuleInfo)](reference/apis/js-apis-bundle-HapModuleInfo.md)
 
-      - bundle/[Metadata (Metadata)](reference/apis/js-apis-bundle-Metadata.md)
+      - [Metadata (Metadata)](reference/apis/js-apis-bundle-Metadata.md)
 
-      - bundle/[ModuleInfo (ModuleInfo)](reference/apis/js-apis-bundle-ModuleInfo.md)
+      - [ModuleInfo (ModuleInfo)](reference/apis/js-apis-bundle-ModuleInfo.md)
 
     - UI界面
 
@@ -1313,7 +1324,7 @@
 
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
 
-      - data/rdb/[resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
+      - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
 
     - 文件管理
 
@@ -1542,3 +1553,44 @@
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
 
       - [console (日志打印)](reference/apis/js-apis-logs.md)
+
+
+  - 接口参考(Native API)
+    - OpenHarmony Native API
+
+      - MyProject
+        - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
+        - [Native_Bundle](reference/native-apis/_native___bundle.md)
+        - [HiLog](_hi_log.md)
+        - [NativeWindow](reference/native-apis/_native_window.md)
+        - [Drawing](_drawing.md)
+        - [Rawfile](rawfile.md)
+
+      - 头文件
+        - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
+        - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
+        - [drawing_canvas.h](reference/native-apis/drawing__canvas_8h.md)
+        - [drawing_color.h](reference/native-apis/drawing__color_8h.md)
+        - [drawing_font_collection.h](reference/native-apis/drawing__font__collection_8h.md)
+        - [drawing_path.h](reference/native-apis/drawing__path_8h.md)
+        - [drawing_pen.h](reference/native-apis/drawing__pen_8h.md)
+        - [drawing_text_declaration.h](reference/native-apis/drawing__text__declaration_8h.md)
+        - [drawing_text_typography.h](reference/native-apis/drawing__text__typography_8h.md)
+        - [drawing_types.h](reference/native-apis/drawing__types_8h.md)
+        - [external_window.h](reference/native-apis/external__window_8h.md)
+        - [log.h](reference/native-apis/log_8h.md)
+        - [native_interface_bundle.h](reference/native-apis/native__interface__bundle_8h.md)
+        - [native_interface_xcomponent.h](reference/native-apis/native__interface__xcomponent_8h.md)
+        - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
+        - [raw_file.h](reference/native-apis/raw__file_8h.md)
+
+      - 结构体
+        - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+        - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
+        - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
+        - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+        - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+
+    - [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+
+    - [Node_API](reference/native-lib/third_party_napi/napi.md)
