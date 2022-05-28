@@ -96,7 +96,7 @@ HiSysEvent类，具体的API详见接口文档 。
 | static&nbsp;const&nbsp;std::string&nbsp;AAFWK | 元能力子系统 | 
 | static&nbsp;const&nbsp;std::string&nbsp;APPEXECFWK | 用户程序框架子系统 | 
 | static&nbsp;const&nbsp;std::string&nbsp;ACCOUNT | 账号子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ACE | ACE子系统 | 
+| static&nbsp;const&nbsp;std::string&nbsp;ARKUI | ARKUI子系统 | 
 | static&nbsp;const&nbsp;std::string&nbsp;AI | AI业务子系统 | 
 | static&nbsp;const&nbsp;std::string&nbsp;BARRIER_FREE | 无障碍软件服务子系统 | 
 | static&nbsp;const&nbsp;std::string&nbsp;BIOMETRICS | 生物特征识别服务子系统 | 
