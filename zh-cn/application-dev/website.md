@@ -558,7 +558,7 @@
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
-  - 接口参考
+  - 接口参考（JS及eTS API参考）
     - Ability框架
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -767,3 +767,37 @@
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)
+  - 接口参考(Native API)
+    - OpenHarmony Native API
+      - MyProject
+        - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
+        - [Native_Bundle](reference/native-apis/_native___bundle.md)
+        - [HiLog](_hi_log.md)
+        - [NativeWindow](reference/native-apis/_native_window.md)
+        - [Drawing](_drawing.md)
+        - [Rawfile](rawfile.md)
+      - 头文件
+        - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
+        - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
+        - [drawing_canvas.h](reference/native-apis/drawing__canvas_8h.md)
+        - [drawing_color.h](reference/native-apis/drawing__color_8h.md)
+        - [drawing_font_collection.h](reference/native-apis/drawing__font__collection_8h.md)
+        - [drawing_path.h](reference/native-apis/drawing__path_8h.md)
+        - [drawing_pen.h](reference/native-apis/drawing__pen_8h.md)
+        - [drawing_text_declaration.h](reference/native-apis/drawing__text__declaration_8h.md)
+        - [drawing_text_typography.h](reference/native-apis/drawing__text__typography_8h.md)
+        - [drawing_types.h](reference/native-apis/drawing__types_8h.md)
+        - [external_window.h](reference/native-apis/external__window_8h.md)
+        - [log.h](reference/native-apis/log_8h.md)
+        - [native_interface_bundle.h](reference/native-apis/native__interface__bundle_8h.md)
+        - [native_interface_xcomponent.h](reference/native-apis/native__interface__xcomponent_8h.md)
+        - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
+        - [raw_file.h](reference/native-apis/raw__file_8h.md)
+      - 结构体
+        - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+        - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
+        - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
+        - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+        - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+    - [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+    - [Node_API](reference/native-lib/third_party_napi/napi.md)
