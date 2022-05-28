@@ -287,7 +287,6 @@ getHitTest(): HitTestType
   | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
   | Img           | HTML::img标签。             |
   | Map           | 地理地址。                    |
-  | Phone         | 电话号码。                    |
   | Unknown       | 未知内容。                    |
 
 ### loadData

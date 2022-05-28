@@ -180,11 +180,11 @@ export default {
 
 ## AxisType
 
-轴类型，本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+输入设备的轴类型，为'Null'。
 
 ## AxisRange
 
-输入设备的轴信息
+输入设备的轴信息。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -199,7 +199,7 @@ export default {
 
 ## SourceType
 
-定义这个轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的源就是鼠标。
+定义轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的源就是鼠标。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
