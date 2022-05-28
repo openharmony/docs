@@ -11,7 +11,7 @@
             - [烧录](quickstart-ide-lite-steps-hi3861-burn.md)
             - [联网](quickstart-ide-lite-steps-hi3861-netconfig.md)
             - [调试验证](quickstart-ide-lite-steps-hi3861-debug.md)
-            - [运行](quickstart-ide-lite-steps-hi3816-running.md)
+            - [运行](quickstart-ide-lite-steps-hi3861-running.md)
         - Hi3516开发板
             - [编写“Hello World”程序](quickstart-ide-lite-steps-hi3516-application-framework.md)
             - [编译](quickstart-ide-lite-steps-hi3516-building.md)
