@@ -205,7 +205,7 @@ try {
 
 ## parameter.set
 
-set(key: string, value: string): Promise&lt;string&gt;
+set(key: string, value: string): Promise&lt;void&gt;
 
 设置系统属性Key对应的值。
 
@@ -222,7 +222,7 @@ set(key: string, value: string): Promise&lt;string&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise示例，用于异步获取结果。 |
+| Promise&lt;void&gt; | Promise示例，用于异步获取结果。 |
 
 **示例：**
 
