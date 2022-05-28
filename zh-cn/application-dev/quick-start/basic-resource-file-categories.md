@@ -43,7 +43,8 @@ resources
 - 限定词的连接方式：语言、文字、国家或地区之间采用下划线（_）连接，移动国家码和移动网络码之间也采用下划线（_）连接，除此之外的其他限定词之间均采用中划线（-）连接。例如：**zh_Hant_CN**、**zh_CN-car-ldpi**。
 
 - 限定词的取值范围：每类限定词的取值必须符合限定词取值要求表中的条件，否则，将无法匹配目录中的资源文件。
-    **表2** 限定词取值要求
+
+**表2** 限定词取值要求
 
 | 限定词类型       | 含义与取值说明                                  |
 | ----------- | ---------------------------------------- |
@@ -52,7 +53,7 @@ resources
 | 文字          | 表示设备使用的文字类型，由1个大写字母（首字母）和3个小写字母组成。例如：Hans表示简体中文，Hant表示繁体中文。<br/>详细取值范围，请查阅**ISO&nbsp;15924**（ISO制定的文字编码标准）。 |
 | 国家或地区       | 表示用户所在的国家或地区，由2~3个大写字母或者3个数字组成。例如：CN表示中国，GB表示英国。<br/>详细取值范围，请查阅**ISO&nbsp;3166-1**（ISO制定的国家和地区编码标准）。 |
 | 横竖屏         | 表示设备的屏幕方向，取值如下：<br/>-&nbsp;vertical：竖屏<br/>-&nbsp;horizontal：横屏 |
-| 设备类型        | 表示设备的类型，取值如下：<br/>-&nbsp;phone：手机<br/>-&nbsp;tablet：平板<br/>-&nbsp;car：车机<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴 |
+| 设备类型        | 表示设备的类型，取值如下：<br/>-&nbsp;car：车机<br/>-&nbsp;tv：智慧屏<br/>-&nbsp;wearable：智能穿戴 |
 | 颜色模式        | 表示设备的颜色模式，取值如下：<br/>-&nbsp;dark：深色模式<br/>-&nbsp;light：浅色模式 |
 | 屏幕密度        | 表示设备的屏幕密度（单位为dpi），取值如下：<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(0,&nbsp;120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,&nbsp;160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,&nbsp;240]的设备。<br/>-&nbsp;xldpi：表示特大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,&nbsp;320]的设备。<br/>-&nbsp;xxldpi：表示超大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320,&nbsp;480]的设备。<br/>-&nbsp;xxxldpi：表示超特大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 |
 
@@ -68,7 +69,7 @@ resources
 base目录与限定词目录下面可以创建资源组目录（包括element、media、animation、layout、graphic、profile），用于存放特定类型的资源文件，详见资源组目录说明。
 
 
-  **表3** **资源组目录说明**
+  **表3** 资源组目录说明
 
 | 资源组目录     | 目录说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
