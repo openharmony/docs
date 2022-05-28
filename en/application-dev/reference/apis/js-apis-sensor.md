@@ -1,6 +1,6 @@
 # Sensor
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -2357,9 +2357,9 @@ Describes the orientation sensor data. It extends from [Response](#response).
 
 | Name   | Type  | Readable  | Writable  | Description                      |
 | ----- | ------ | ---- | ---- | ------------------------ |
-| alpha | number | Yes   | Yes   | Rotation angle of the device around the z-axis, in rad.|
-| beta  | number | Yes   | Yes   | Rotation angle of the device around the x-axis, in rad. |
-| gamma | number | Yes   | Yes   | Rotation angle of the device around the y-axis, in rad. |
+| alpha | number | Yes   | Yes   | Rotation angle of the device around the z-axis, in degrees.|
+| beta  | number | Yes   | Yes   | Rotation angle of the device around the x-axis, in degrees. |
+| gamma | number | Yes   | Yes   | Rotation angle of the device around the y-axis, in degrees. |
 
 
 ## RotationVectorResponse
