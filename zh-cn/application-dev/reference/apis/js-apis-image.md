@@ -856,7 +856,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 	.catch(error => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
@@ -879,7 +879,7 @@ let packOpts = { format:["image/jpeg"], quality:98 }
 imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
 
@@ -1192,7 +1192,7 @@ release(): Promise\<void>
 
 | 名称                  | 类型               | 可读 | 可写 | 说明                                               |
 | --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
+| clipRect<sup>9+</sup> | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
 | format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
@@ -1300,7 +1300,7 @@ img.release().then(() =>{
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
 | stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                    |
-| region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
+| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
 
 ## ImageInfo
 
@@ -1385,11 +1385,11 @@ PixelMap的初始化选项。
 | rotate             | number                             | 是   | 是   | 旋转角度。       |
 | editable           | boolean                            | 是   | 是   | 是否可编辑。     |
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
-| desiredRegion      | [Region](#region8)                 | 是   | 是   | 解码区域。       |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | numer                              | 是   | 是   | 解码图片序号     |
 
-## Region<sup>8+</sup>
+## Region<sup>7+</sup>
 
 表示区域信息。
 
