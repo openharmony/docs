@@ -12,9 +12,11 @@
 ​+ Stage模型
 除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
 
-![context概述.png](C:\Users\jie\Desktop\context概述.png)
+图1 - Context整体类图
 
-​        ​        ​        ​        ​        ​        ​        ​        图1 - Context整体类图
+![context概述.png](figures/contextIntroduction.png)
+
+
 
 ## FA模型的Context详细介绍
 
@@ -197,7 +199,7 @@ export default class MainAbility extends Ability {
 
 卡片业务相关，点下面链接了解。
 
-​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
+​        [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md)
 
 ## 常见错误使用方式
 
