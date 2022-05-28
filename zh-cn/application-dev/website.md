@@ -1182,7 +1182,7 @@
 
       - [AbilityRunningInfo (AbilityRunningInfo)](reference/apis/js-apis-abilityrunninginfo.md)
 
-      - [AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilitystagecontext.md)
+      - [AbilityStageContext (AbilityStageContext)](reference/apis/js-apis-abilityStageContext.md)
 
       - [Context (Context)](reference/apis/js-apis-application-context.md)
 
