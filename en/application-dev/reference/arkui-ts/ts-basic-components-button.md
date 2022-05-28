@@ -1,8 +1,7 @@
 # Button
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -57,7 +56,7 @@ Supported
   | Circle | Circle button. |
   | Normal | Normal button (without rounded corners by default). |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - The rounded corner of a button is set by using [Border](ts-universal-attributes-border.md). (The rounded corner cannot be set by using a border API.)
 > - When the button type is **Capsule**, the **borderRadius** settings do not take effect, and the rounded corner of the button is always half of the button height. 
 > - When the button type is **Circle**, the value of **borderRadius** is used as the button radius. If **borderRadius** is not set, the button radius is half of the width or height, whichever is smaller. 
