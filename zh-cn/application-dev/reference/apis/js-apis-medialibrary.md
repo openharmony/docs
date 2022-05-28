@@ -2214,7 +2214,7 @@ async function example() {
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
 | selectionArgs           | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order<sup>8+</sup>      | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| order     | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
 | uri<sup>8+</sup>        | string              | 是   | 是   | 否   | 文件URI                                                      |
 | networkId<sup>8+</sup>  | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
 | extendArgs<sup>8+</sup> | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
