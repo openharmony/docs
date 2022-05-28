@@ -43,12 +43,17 @@
   - [UART](driver-platform-uart-des.md)
   - [Watchdog](driver-platform-watchdog-des.md)
 - Peripheral Driver Usage
-  - [LCD](driver-peripherals-lcd-des.md)
-  - [Touchscreen](driver-peripherals-touch-des.md)
-  - [Sensor](driver-peripherals-sensor-des.md)
-  - [WLAN](driver-peripherals-external-des.md)
   - [Audio](driver-peripherals-audio-des.md)
-  - [USB](driver-peripherals-usb-des.md)
   - [Camera](driver-peripherals-camera-des.md)
-  - [Vibrator](driver-peripherals-vibrator-des.md)
+  - [Face_auth](driver-peripherals-face_auth-des.md)
+  - [LCD](driver-peripherals-lcd-des.md)
   - [Light](driver-peripherals-light-des.md)
+  - [Pin_auth](driver-peripherals-pinauth-des.md)
+  - [Sensor](driver-peripherals-sensor-des.md)
+  - [Touchscreen](driver-peripherals-touch-des.md)
+  - [USB](driver-peripherals-usb-des.md)
+  - [User_auth](driver-peripherals-user-auth-des.md)
+  - [Vibrator](driver-peripherals-vibrator-des.md)
+  - [WLAN](driver-peripherals-external-des.md)
+  
+  
