@@ -6,18 +6,18 @@
 
 Personal Identification Number (PIN) authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. After a user registers a PIN, the PIN authentication (Pin_auth) module unlocks the device only when a correct PIN is entered. The figure below shows the architecture of PIN authentication.
 
-The Pin_auth driver is developed based on the Hardware Driver Foundation (HDF). The Pin_auth driver model shields hardware differences and provides stable PIN authentication capabilities for the user IAM framework (UserIAM) and PIN authentication system ability (SA). The PIN authentication capabilities include obtaining the PIN authentication executor list, executor information, and anti-brute force information of the specified template, comparing the template ID list of the executor and that of UserIAM, enrolling or deleting PINs, and performing PIN authentication.
+The Pin_auth driver is developed based on the Hardware Driver Foundation (HDF). The Pin_auth driver model shields hardware differences and provides stable PIN authentication capabilities for the user User_auth framework (User_auth) and PIN authentication system ability (SA). The PIN authentication capabilities include obtaining the PIN authentication executor list, executor information, and anti-brute force information of the specified template, comparing the template ID list of the executor and that of User_auth, enrolling or deleting PINs, and performing PIN authentication.
 
 **Figure 1** PIN authentication architecture
 
 ![image](figures/pin_auth_architecture.png "PIN authentication architecture")
 
 ### Basic Concepts
-The identity authentication consists of UserIAM and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials and performing authentication.
+The identity authentication consists of User_auth and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials and performing authentication.
 
 - Executor
 
-  The executor collects, processes, stores, and compares data for authentication. Each authentication service provides the executor capabilities, which are scheduled by UserIAM to implement basic capabilities.
+  The executor collects, processes, stores, and compares data for authentication. Each authentication service provides the executor capabilities, which are scheduled by User_auth to implement basic capabilities.
 
 - Executor security level
 
@@ -35,13 +35,13 @@ The identity authentication consists of UserIAM and basic authentication service
 
   The authentication algorithm varies depending on the authentication mode and device used. Different executor types are defined based on the supported algorithm type or the device in use.
 
-- UserIAM public key & executor public key
+- User_auth public key & executor public key
 
-  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between UserIAM and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with UserIAM.
+  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between User_auth and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with User_auth.
 
-    - The executor uses the UserIAM public key to verify scheduling instructions.
+    - The executor uses the User_auth public key to verify scheduling instructions.
 
-    - UserIAM uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
+    - User_auth uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
 
 
 - PIN authentication credential template
@@ -50,22 +50,22 @@ The identity authentication consists of UserIAM and basic authentication service
 
 - Data verification by the executor
 
-  UserIAM manages the mappings between user identities and credential IDs in a unified manner. When connecting to UserIAM, the executor obtains the template ID list from UserIAM and updates its template ID list based on the template ID list obtained.
+  User_auth manages the mappings between user identities and credential IDs in a unified manner. When connecting to User_auth, the executor obtains the template ID list from User_auth and updates its template ID list based on the template ID list obtained.
 
 ### Working Principles
 
-The Pin_auth driver provides basic PIN authentication capabilities for the upper-layer UserIAM and Pin_auth service to ensure successful PIN authentication. You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
+The Pin_auth driver provides basic PIN authentication capabilities for the upper-layer User_auth and Pin_auth service to ensure successful PIN authentication. You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** Pin_auth service and pin_auth driver APIs
 
-![image](figures/pin_auth_service_and_driver_interaction.png "interaction between the pin_auth service and driver")
+![image](figures/pin_auth_service_and_driver_interaction.png "interaction between the Pin_auth service and driver")
 
 ### Constraints
 PIN authentication must be implemented in a TEE, and the confidential information, such as PINs and credentials, must be stored in a TEE.
 ## Development Guidelines
 
 ### When to Use
-The Pin_auth driver provides basic PIN authentication capabilities for the UserIAM and Pin_auth service to ensure successful PIN authentication.
+The Pin_auth driver provides basic PIN authentication capabilities for the User_auth and Pin_auth service to ensure successful PIN authentication.
 
 ### Available APIs
 
@@ -76,7 +76,7 @@ The Pin_auth driver provides basic PIN authentication capabilities for the UserI
 | GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | Obtains the executor list.                                            |
 | GetExecutorInfo(ExecutorInfo& info)                          | Obtains information about an executor.                                            |
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | Obtains information about a template.                              |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>const std::vector<uint8_t>& frameworkPublicKey,<br>const std::vector<uint8_t>&  extraInfo) | Obtains the public key and template ID list from UserIAM after the executor is registered successfully.|
+| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>const std::vector<uint8_t>& frameworkPublicKey,<br>const std::vector<uint8_t>&  extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
 | OnSetData(uint64_t scheduleId, uint64_t authSubType, <br>const std::vector<uint8_t> &data) | Called to return the subtype and anonymized data of PIN authentication.                     |
 | Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>const sptr<IExecutorCallback>& callbackObj) | Enrolls a PIN.                                             |
 | Authenticate(uint64_t scheduleId, uint64_t templateId, const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | Starts PIN authentication.                                             |
@@ -340,7 +340,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // After the executor is successfully registered, obtain the public key and template ID list from UserIAM and save the public key obtained. The executor compares its template ID list with the template ID list obtained and updates its template ID list.
+   // After the executor is successfully registered, obtain the public key and template ID list from User_auth and save the public key obtained. The executor compares its template ID list with the template ID list obtained and updates its template ID list.
    int32_t ExecutorImpl::OnRegisterFinish(const std::vector<uint64_t> &templateIdList,
        const std::vector<uint8_t> &frameworkPublicKey, const std::vector<uint8_t> &extraInfo)
    {
@@ -526,7 +526,8 @@ The development procedure is as follows:
 ### Verification
 Verify whether PIN authentication can be successfully performed on the RK3568 platform as follows:
 
-1. Set a PIN.<br/>
+1. Set a PIN.
+
     Touch **Settings** > **Biometrics & passwords** > **Password**, and enter your password.
     
 2. Verify PIN authentication.
