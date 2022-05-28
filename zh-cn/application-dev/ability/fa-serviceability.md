@@ -94,7 +94,7 @@ let promise = featureAbility.startAbility(
 - 如果Service尚未运行，则系统会先调用onStart()来初始化Service，再回调Service的onCommand()方法来启动Service。
 - 如果Service正在运行，则系统会直接回调Service的onCommand()方法来启动Service。
 
-启动远端设备Service的代码示例如下，getRemoteDeviceId()方法详见————[连接远程Service](#连接远程service当前仅对系统应用开放)：
+启动远端设备Service的代码示例如下，getRemoteDeviceId()方法详见[连接远程Service](#连接远程service当前仅对系统应用开放)：
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
