@@ -437,13 +437,13 @@ var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
 保存媒体资源，以异步方法获取保存成功的URI，使用callback形式返回结果。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -473,13 +473,13 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
   ```
 
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 保存媒体资源，以异步方法获取保存成功的URI，使用Promise形式返回结果。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -512,13 +512,13 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -554,13 +554,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -594,13 +594,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -639,13 +639,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
   ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -674,13 +674,13 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
   ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2218,11 +2218,11 @@ async function example() {
 | width  | number | 是    | 是    | 宽（单位：像素） |
 | height | number | 是    | 是    | 高（单位：像素） |
 
-## MediaAssetOption
+## MediaAssetOption<sup>(deprecated)</sup>
 
 媒体资源选项。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2233,11 +2233,11 @@ async function example() {
 | mimeType     | string | 是    | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
 | relativePath | string | 否    | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
-## MediaSelectOption
+## MediaSelectOption<sup>(deprecated)</sup>
 
 媒体资源类型选项。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
+> **说明**： 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
