@@ -37,7 +37,7 @@
        - [DFX](dfx/Readme-EN.md)
        - [Internationalization](internationalization/Readme-EN.md)
        - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
-       - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
+       - [Using Native APIs in Application Projects](napi/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials

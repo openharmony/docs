@@ -1525,22 +1525,22 @@ createPath2D(path: Path2D, cmds: string): Path2D
 
 ### drawImage
 
-drawImage(image: Image, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 进行图像绘制。
 
 - 参数
-  | 参数      | 类型     | 描述                                       |
-  | ------- | ------ | ---------------------------------------- |
-  | image   | Image  | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md)。 |
-  | sx      | number | 裁切源图像时距离源图像左上角的x坐标值。                     |
-  | sy      | number | 裁切源图像时距离源图像左上角的y坐标值。                     |
-  | sWidth  | number | 裁切源图像时需要裁切的宽度。                           |
-  | sHeight | number | 裁切源图像时需要裁切的高度。                           |
-  | dx      | number | 绘制区域左上角在x轴的位置。                           |
-  | dy      | number | 绘制区域左上角在y&nbsp;轴的位置。                     |
-  | dWidth  | number | 绘制区域的宽度。                                 |
-  | dHeight | number | 绘制区域的高度。                                 |
+  | 参数 | 类型 | 描述 |
+  | -------- | -------- | -------- |
+  | image | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
+  | sx | number | 裁切源图像时距离源图像左上角的x坐标值。 |
+  | sy | number | 裁切源图像时距离源图像左上角的y坐标值。 |
+  | sWidth | number | 裁切源图像时需要裁切的宽度。 |
+  | sHeight | number | 裁切源图像时需要裁切的高度。 |
+  | dx | number | 绘制区域左上角在x轴的位置。 |
+  | dy | number | 绘制区域左上角在y&nbsp;轴的位置。 |
+  | dWidth | number | 绘制区域的宽度。 |
+  | dHeight | number | 绘制区域的高度。 |
 
 - 示例
   ```
@@ -1835,6 +1835,47 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
   ```
 
   ![zh-cn_image_0000001214463283](figures/zh-cn_image_0000001214463283.png)
+
+### getPixelMap<sup>9+</sup>
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+获取用当前canvas指定区域内的像素创建的PixelMap对象。
+
+- 参数
+
+  | 参数 | 类型   | 描述                        |
+  | ---- | ------ | --------------------------- |
+  | sx   | number | 指定区域的左上角x坐标。 |
+  | sy   | number | 指定区域的左上角y坐标。 |
+  | sw   | number | 指定区域的宽度。        |
+  | sh   | number | 指定区域的高度。        |
+
+- 返回值
+
+  | 类型     | 说明                                 |
+  | -------- | ------------------------------------ |
+  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 返回包含指定区域像素的PixelMap对象。 |
+
+- 示例
+
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas id="canvasId" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const test = this.$element('canvasId')
+      const ctx = test.getContext('2d');
+      var pixelMap = ctx.getPixelMap(0, 0, 280, 300);
+    }
+  }
+  ```
 
 ### setLineDash
 

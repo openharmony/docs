@@ -180,7 +180,7 @@ interface LocalDateTime：时间信息实例
    }
    ```
 
-   html页面：
+   HML页面：
    ```
    <div class="container">
        <button type="text" value="publishReminder" onclick="startTimer"></button>

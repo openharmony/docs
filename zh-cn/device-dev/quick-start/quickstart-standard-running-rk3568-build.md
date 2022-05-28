@@ -19,7 +19,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    .
    ```
 
-3. 在built-in下选择rk3568并回车。
+3. 在hihope下选择rk3568并回车。
 
 4. 执行编译。
 

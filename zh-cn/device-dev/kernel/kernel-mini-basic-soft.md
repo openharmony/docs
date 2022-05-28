@@ -234,7 +234,7 @@ start Timer1 success
 tickCount=798
 stop Timer1 success
 g_timerCount1=1, tick_last1=1208
-delete Timer1 sucess
+delete Timer1 success
 start Timer2
 g_timerCount2=1 tick_last2=1313
 g_timerCount2=2 tick_last2=1413

@@ -3,6 +3,13 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+LinkedList底层通过双向链表实现，双向链表的每个节点都包含对前一个元素和后一个元素的引用。当需要查询元素时，可以从头遍历，也可以从尾部遍历，插入、删除效率高，查询效率低。LinkedList允许元素为null。
+
+LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
+
+LinkedList和[ArrayList](js-apis-arraylist.md)相比，存取数据的效率不如ArrayList。
+
+**推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
 ## 导入模块
 

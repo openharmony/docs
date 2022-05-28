@@ -126,55 +126,55 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
 
 10. 运行 hidumper --net 命令获取网络信息。
      
-   ```
-   hidumper --net
-   ```
+    ```
+    hidumper --net
+    ```
 
 11. 运行 hidumper --storage 命令获取存储相关信息。
      
-   ```
-   hidumper --storage
-   ```
+    ```
+    hidumper --storage
+    ```
 
 12. 运行 hidumper -p 命令获取进程信息，包括进程、线程的列表和信息。
      
-   ```
-   hidumper -p
-   ```
+    ```
+    hidumper -p
+    ```
 
 13. 运行 hidumper -p 1024 命令获取pid为1024的进程信息。
      
-   ```
-   hidumper -p 1024
-   ```
+    ```
+    hidumper -p 1024
+    ```
 
 14. 运行 hidumper  --cpuusage [pid] 命令获取CPU的使用信息。如果指定了进程的pid，则只获取该进程的CPU使用信息。
      
-   ```
-   hidumper --cpuusage
-   hidumper --cpuusage 1024
-   ```
+    ```
+    hidumper --cpuusage
+    hidumper --cpuusage 1024
+    ```
 
 15. 运行 hidumper --cpufreq 命令获取每一个CPU核实际运行的频率。
      
-   ```
-   hidumper --cpufreq
-   ```
+    ```
+    hidumper --cpufreq
+    ```
 
 16. 运行 hidumper --mem [pid] 命令获取全部的内存使用信息。如果指定进程的pid，只获取该进程的内存使用情况。
      
-   ```
-   hidumper --mem [pid]
-   ```
+    ```
+    hidumper --mem [pid]
+    ```
 
 17. 运行 hidumper --zip 命令压缩信息数据到/data/dumper目录下。
      
-   ```
-   hidumper --zip
-   ```
+    ```
+    hidumper --zip
+    ```
 
 18. 运行 hidumper -t timeout 命令设置超时时间，单位：秒。默认值是30s。如果设置为0表示无超时限制。
      
-   ```
-   hidumper -t [timeout]
-   ```
+    ```
+    hidumper -t [timeout]
+    ```

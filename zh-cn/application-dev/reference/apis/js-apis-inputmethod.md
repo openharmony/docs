@@ -50,6 +50,7 @@ getInputMethodController(): InputMethodController
   ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
+
 ## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
 
 getInputMethodSetting(): InputMethodSetting

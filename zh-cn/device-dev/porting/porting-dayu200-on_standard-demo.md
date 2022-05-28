@@ -1908,9 +1908,9 @@ dayu200平台默认支持GT5688这颗TP IC。
 
 1、 Makefile文件： drivers\adapter\khdf\linux\model\input\Makefile
 
-2、 drivers\adapter\khdf\linux\hcs\device_info\device_info.hcs
+2、 vendor\hihope\rk3568\hdf_config\khdf\device_info\device_info.hcs
 
-3、 drivers\adapter\khdf\linux\hcs\input\input_config.hcs
+3、 vendor\hihope\rk3568\hdf_config\khdf\input\input_config.hcs
 
 4、 drivers\framework\model\input\driver\touchscreen
 

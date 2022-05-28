@@ -569,7 +569,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp, (error, result) => {
 
 ## enterpriseDeviceManager.getEnterpriseInfo
 
-getDeviceSettingsManager(admin: Want): Promise&lt;EnterpriseInfo&gt;
+getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 Obtains the enterprise information of a device administrator application. This API uses a promise to return the result.
 

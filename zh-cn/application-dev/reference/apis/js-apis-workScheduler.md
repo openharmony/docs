@@ -291,6 +291,8 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | repeatCycleTime | number                            | 否   | 循环间隔                         |
 | repeatCount     | number                            | 否   | 循环次数                         |
 | isPersisted     | boolean                           | 否   | 是否持久化保存工作               |
+| isDeepIdle      | boolean                           | 否   | 是否要求设备进入空闲状态         |
+| idleWaitTime    | number                            | 否   | 空闲等待时间                     |
 
 ## NetworkType
 触发工作的网络类型。

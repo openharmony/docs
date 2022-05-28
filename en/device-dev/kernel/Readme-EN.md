@@ -27,7 +27,7 @@
         - Kernel Debugging
             - [Memory Debugging](kernel-mini-memory-debug.md)
                 - [Memory Information Statistics](kernel-mini-memory-debug-mes.md)
-                - [Memory Leak Check](kernel-mini-imemory-debug-det.md)
+                - [Memory Leak Check](kernel-mini-memory-debug-det.md)
                 - [Memory Corruption Check](kernel-mini-memory-debug-cet.md)
             - [Exception Debugging](kernel-mini-memory-exception.md)
             - [Trace](kernel-mini-memory-trace.md)
@@ -181,4 +181,3 @@
           - [Task Scheduling](kernel-standard-sched.md)
             - [Related Thread Group](kernel-standard-sched-rtg.md)
             - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  
-  

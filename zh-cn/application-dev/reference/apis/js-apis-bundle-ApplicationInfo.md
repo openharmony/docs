@@ -38,4 +38,4 @@
 | removable<sup>8+</sup>     | boolean                                                      | 是   | 否   | 应用程序是否可以被移除                     |
 | accessTokenId<sup>8+</sup> | number                                                       | 是   | 否   | 应用程序的accessTokenId                    |
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid                              |
-| entityType<sup>9+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型                         |
+| entityType<sup>8+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型                         |

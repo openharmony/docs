@@ -3,6 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Stack基于数组的数据结构实现，特点是先进后出，只能在一端进行数据的插入和删除。
+
+Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能在一端删除，另一端插入，而Stack都在一端操作。
+
+**推荐使用场景：** 一般符合先进先出的场景可以使用Stack。
 
 ## 导入模块
 

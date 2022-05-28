@@ -161,7 +161,7 @@ BUILD.gn是subsystem构建的唯一入口。
 
    init相关进程代码在//base/startup/init_lite目录下，该进程是系统第一个进程，无其它依赖。
 
-   初始化配置文件具体的开发指导请参考 [init启动引导组件](../subsystems/subsys-boot-init.md)。
+   初始化配置文件具体的开发指导请参考 [init启动子系统概述](../subsystems/subsys-boot-overview.md)。
 
 
 ## HDF驱动移植

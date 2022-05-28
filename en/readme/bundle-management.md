@@ -88,7 +88,7 @@ This command can be run with different options to achieve different purposes. Th
 | bm uninstall -h | Displays the commands supported by **uninstall**.|
 | bm uninstall -n <bundle-name> | Uninstalls an application based on the specified bundle name.|
 | bm uninstall -n <bundle-name> -u <user-id>| Uninstalls an application based on the specified bundle name and user.|
-| bm uninstall -n <bundle-name> -m <moudle-name> | Uninstalls a specific module of an application based on the specified bundle name.|
+| bm uninstall -n <bundle-name> -m <module-name> | Uninstalls a specific module of an application based on the specified bundle name.|
 
 * Example
 ```Bash
@@ -177,6 +177,6 @@ bm get -u
 
 Bundle Management Subsystem
 
-**appexecfwk_standard**
+[**appexecfwk_standard**](https://gitee.com/openharmony/appexecfwk_standard)
 
-developtools_packing_tool
+[developtools_packing_tool](https://gitee.com/openharmony/developtools_packing_tool)

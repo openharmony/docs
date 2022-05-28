@@ -7,16 +7,16 @@
 
 ## 接口说明
 
-| 接口名                                                       | 描述             |
+| 接口名                                                       | 描述        |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 生成密钥         |
-| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 生成密钥         |
-| function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 导出公钥         |
-| function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 导出公钥         |
-| function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void; | 查询密钥是否存在 |
-| function isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>; | 查询密钥是否存在 |
-| function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | 删除密钥         |
-| function deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | 删除密钥         |
+| generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback&lt;HuksResult&gt;) : void| 生成密钥         |
+| generateKey(keyAlias: string, options: HuksOptions) : Promise&lt;HuksResult&gt;| 生成密钥         |
+| exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback&lt;HuksResult&gt;) : void| 导出公钥         |
+| exportKey(keyAlias: string, options: HuksOptions) : Promise&lt;HuksResult&gt;| 导出公钥         |
+| isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback&lt;boolean&gt;) : void | 查询密钥是否存在 |
+| isKeyExist(keyAlias: string, options: HuksOptions) : Promise&lt;boolean> | 查询密钥是否存在 |
+| deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback&lt;HuksResult&gt;) : void| 删除密钥         |
+| deleteKey(keyAlias: string, options: HuksOptions) : Promise&lt;HuksResult&gt;| 删除密钥         |
 
 ## 开发步骤
 

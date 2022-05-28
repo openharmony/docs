@@ -3,6 +3,15 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
+
+LightWeightSet依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
+
+集合中value值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的value值。
+
+LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet的占用内存更小。
+
+**推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
 ## 导入模块
 

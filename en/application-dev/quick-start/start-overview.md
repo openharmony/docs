@@ -47,4 +47,4 @@ This document provides a Page ability instance with two pages. For more informat
 
 2. Install DevEco Studio and configure the development environment. For details, see [Configuring the OpenHarmony SDK](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
 
-When you are done, follow the instructions in [Getting Started with eTS in the Traditional Coding Approach](start-with-ets.md),[Getting Started with eTS in the Low-Code Approach](start-with-ets-low-code.md), [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md), and [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md).
+When you are done, follow the instructions in [Getting Started with eTS in the Traditional Coding Approach](start-with-ets.md), [Getting Started with eTS in the Low-Code Approach](start-with-ets-low-code.md), [Getting Started with JavaScript in the Traditional Coding Approach](start-with-js.md), and [Getting Started with JavaScript in the Low-Code Approach](start-with-js-low-code.md).

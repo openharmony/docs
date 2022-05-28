@@ -24,7 +24,7 @@ GPIO接口定义了操作GPIO管脚的标准方法集合，包括：
 | -------- | -------- |
 | GPIO读写 | -&nbsp;GpioRead：读管脚电平值<br/>-&nbsp;GpioWrite：写管脚电平值 | 
 | GPIO配置 | -&nbsp;GpioSetDir：设置管脚方向<br/>-&nbsp;GpioGetDir：获取管脚方向 | 
-| GPIO中断设置 | -&nbsp;GpioSetIrq：设置管脚对应的中断服务函数<br/>-&nbsp;GpioUnSetIrq：取消管脚对应的中断服务函数<br/>-&nbsp;GpioEnableIrq：使能管脚中断<br/>-&nbsp;GpioDisableIrq：禁止管脚中断 | 
+| GPIO中断设置 | -&nbsp;GpioSetIrq：设置管脚对应的中断服务函数<br/>-&nbsp;GpioUnsetIrq：取消管脚对应的中断服务函数<br/>-&nbsp;GpioEnableIrq：使能管脚中断<br/>-&nbsp;GpioDisableIrq：禁止管脚中断 | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的所有接口，仅限内核态使用，不支持在用户态使用。
@@ -159,13 +159,14 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
 
   当不再需要响应中断服务函数时，使用如下函数取消中断设置：
 
-  int32_t GpioUnSetIrq(uint16_t gpio);
+  int32_t GpioUnsetIrq(uint16_t gpio, void \*arg);
 
-    **表6** GpioUnSetIrq参数和返回值描述
+    **表6** GpioUnsetIrq参数和返回值描述
   
   | **参数** | **参数描述** | 
   | -------- | -------- |
   | gpio | GPIO管脚号 | 
+  | arg  | GPIO中断数据 | 
   | **返回值** | **返回值描述** | 
   | 0 | 取消成功 | 
   | 负数 | 取消失败 | 
@@ -233,7 +234,7 @@ GPIO标准API通过GPIO管脚号来操作指定管脚，使用GPIO的一般流�
   }
   
   /* 取消3号GPIO管脚中断服务程序 */
-  ret = GpioUnSetIrq(3);
+  ret = GpioUnsetIrq(3, NULL);
   if (ret != 0) {
       HDF_LOGE("GpioUnSetIrq: failed, ret %d\n", ret);
       return;
@@ -315,7 +316,7 @@ static int32_t TestCaseGpioIrqEdge(void)
         OsalMDelay(200); /* wait for irq trigger */
         timeout += 200;
     }
-    (void)GpioUnSetIrq(gpio);
+    (void)GpioUnsetIrq(gpio, NULL);
     return (g_irqCnt > 0) ? HDF_SUCCESS : HDF_FAILURE;
 }
 ```

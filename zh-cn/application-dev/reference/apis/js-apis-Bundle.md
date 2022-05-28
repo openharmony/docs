@@ -493,6 +493,74 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 })
 ```
 
+## bundle.getBundleArchiveInfo
+
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>
+
+以异步方法获取有关HAP包中包含的应用程序包的信息，使用Promise形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称         | 类型     | 必填   | 描述           |
+| ---------- | ------ | ---- | ------------ |
+| hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。 |
+
+**返回值：**
+| 类型             | 说明                                     |
+| -------------- | -------------------------------------- |
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 返回值为Promise对象，Promise中包含有关hap包中包含的应用程序的信息。 |
+
+**示例：**
+
+```js
+let hapFilePath = "/data/xxx/test.hap";
+let bundleFlags = 0;
+bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getBundleArchiveInfo
+
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+
+以异步方法获取有关HAP包中包含的应用程序包的信息，使用callback形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称         | 类型     | 必填   | 描述           |
+| ---------- | ------ | ---- | ------------ |
+| hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。|
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。|
+
+**示例：**
+
+```js
+let hapFilePath = "/data/xxx/test.hap";
+let bundleFlags = 0;
+bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+
 ## bundle.getAbilityInfo
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
@@ -884,7 +952,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-以异步方法根据给定的包名查询指定应用程序是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -922,7 +990,7 @@ bundle.isApplicationEnabled(bundleName)
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的包名查询指定应用程序是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 

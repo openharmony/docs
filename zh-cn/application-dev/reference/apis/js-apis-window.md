@@ -146,6 +146,7 @@ import window from '@ohos.window';
 | focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。                 |
 | touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。                 |
 | brightness                      | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。  |
+| dimBehindValue<sup>(deprecated)</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持|
 | isKeepScreenOn                  | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。                  |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | 是   | 是   | 隐私模式，默认为false。                      |
 | isRoundCorner<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。                |
@@ -1776,6 +1777,72 @@ setBrightness(brightness: number): Promise&lt;void&gt;
   });
   ```
 
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
+
+窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback方式作为异步方法。
+
+> **说明：** 从API version 9开始废弃。
+> 
+> 从 API version 7开始支持。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+  | 参数名         | 类型                      | 必填 | 说明                                               |
+  | -------------- | ------------------------- | ---- | -------------------------------------------------- |
+  | dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
+  | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                         |
+
+**示例：**
+
+  ```js
+  windowClass.setDimBehind(0.5, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
+  });
+  ```
+
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
+
+窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise方式作为异步方法。
+
+> **说明：** 从API version 9开始废弃。
+> 
+> 从 API version 7开始支持。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+  | 参数名         | 类型   | 必填 | 说明                                               |
+  | -------------- | ------ | ---- | -------------------------------------------------- |
+  | dimBehindValue | number | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
+
+**返回值：**
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+**示例：**
+
+  ```js
+  let promise = windowClass.setDimBehind(0.5);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
 ### setFocusable<sup>7+</sup>
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -1861,6 +1928,72 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
           return;
       }
       console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置是否允许可点击子窗口以外的区域，使用callback方式作为异步方法。
+
+> **说明：** 从API version 9开始废弃。
+> 
+> 从 API version 7开始支持。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+  | 参数名    | 类型                      | 必填 | 说明             |
+  | --------- | ------------------------- | ---- | ---------------- |
+  | touchable | boolean                   | 是   | 设置是否可点击。 |
+  | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**示例：**
+
+  ```js
+  windowClass.setOutsideTouchable(true, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  })
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
+
+设置是否允许可点击子窗口以外的区域，使用Promise方式作为异步方法。
+
+> **说明：** 从API version 9开始废弃。
+> 
+> 从 API version 7开始支持。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+  | 参数名    | 类型    | 必填 | 说明             |
+  | --------- | ------- | ---- | ---------------- |
+  | touchable | boolean | 是   | 设置是否可点击。 |
+
+**返回值：**
+
+  | 类型                | 说明                                            |
+  | ------------------- | ----------------------------------------------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果，返回当前函数执行的结果。 |
+
+**示例：**
+
+  ```js
+  let promise = windowClass.setOutsideTouchable(true);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
   });
   ```
 

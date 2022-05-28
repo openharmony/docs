@@ -171,7 +171,7 @@ try {
 ```
 
 
-## parameter.set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
+## parameter.set
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -183,8 +183,8 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统属性Key。 |
-| def | string | 是 | 默认值。 |
+| key | string | 是 | 待设置的系统属性Key。 |
+| value | string | 是 | 待设置的系统属性值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
@@ -203,9 +203,9 @@ try {
 ```
 
 
-## parameter.set(key: string, def?: string)
+## parameter.set
 
-set(key: string, def?: string): Promise&lt;string&gt;
+set(key: string, value: string): Promise&lt;string&gt;
 
 设置系统属性Key对应的值。
 
@@ -215,8 +215,8 @@ set(key: string, def?: string): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统属性Key。 |
-| def | string | 否 | 默认值。 |
+| key | string | 是 | 待待设置的系统属性Key。 |
+| value| string | 否 | 待设置的系统属性值。 |
 
 **返回值：**
 

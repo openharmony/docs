@@ -8,7 +8,7 @@ Ability的上下文环境，继承自Context。
 ## 导入模块
 
 ```js
-import AbilityContext from '@ohos.application.abilityContext'
+import Ability from '@ohos.application.Ability'
 ```
 ## 使用说明
 
@@ -378,7 +378,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
               deviceId: ""
           }).then((obj) => {
               caller = obj;
-              console.log('Caller GetCaller Get ' + call);
+              console.log('Caller GetCaller Get ' + caller);
           }).catch((e) => {
               console.log('Caller GetCaller error ' + e);
           });

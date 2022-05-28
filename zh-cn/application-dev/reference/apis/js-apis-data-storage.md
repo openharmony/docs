@@ -22,8 +22,8 @@ import dataStorage from '@ohos.data.storage';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，大小为80字节。 |
-| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，大小为8192字节。 |
+| MAX_KEY_LENGTH | string | 是 | 否 | key的最大长度限制，需小于80字节。 |
+| MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，需小于8192字节。 |
 
 
 ## dataStorage.getStorageSync

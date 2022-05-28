@@ -299,3 +299,5 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 | ohos.permission.WRITE_MEDIA                              | normal       | user_grant   | TRUE    | 允许应用读写用户外部存储中的媒体文件信息。                   |
 | ohos.permission.ACTIVITY_MOTION                          | normal       | user_grant   | TRUE    | 允许应用读取用户当前的运动状态。                             |
 | ohos.permission.READ_HEALTH_DATA                         | normal       | user_grant   | TRUE    | 允许应用读取用户的健康数据。                                 |
+| ohos.permission.GET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用查询默认应用。    |
+| ohos.permission.SET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用设置、重置默认应用。    |
