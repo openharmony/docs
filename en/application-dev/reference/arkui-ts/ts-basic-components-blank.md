@@ -34,7 +34,7 @@ Blank(min?:  Length)
 | -------- | -------- | -------- | -------- |
 | color | Color | 0x00000000 | Color to fill the blank. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > Universal attribute methods are not supported.
 
 
