@@ -852,7 +852,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 	.catch(error => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
@@ -875,7 +875,7 @@ let packOpts = { format:["image/jpeg"], quality:98 }
 imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
 
