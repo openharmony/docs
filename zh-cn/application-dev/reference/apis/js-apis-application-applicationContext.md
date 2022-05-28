@@ -36,14 +36,6 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 | ------ | ------------------------------ |
 | number | 返回的此次注册监听生命周期的id（每次注册该id会自增+1，当超过监听上限数量2^63-1时，返回-1）|
 
-**示例：**
-
-  ```js
-  let applicationContext = this.context.getApplicationContext();
-  console.log("stage applicationContext: " + JSON.stringify(applicationContext));
-  let lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
-  console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));
-  ```
 
 ## ApplicationContext.unregisterAbilityLifecycleCallback
 
@@ -63,9 +55,47 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 **示例：**
 
   ```js
-  let applicationContext = this.context.getApplicationContext();
-  console.log("stage applicationContext: " + JSON.stringify(applicationContext));
-  applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
-      console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
-  });
+  import AbilityStage from "@ohos.application.AbilityStage";
+
+  var lifecycleid;
+
+  export default class MyAbilityStage extends AbilityStage {
+      onCreate() {
+          console.log("MyAbilityStage onCreate")
+          let AbilityLifecycleCallback  =  {
+              onAbilityCreate(ability){
+                  console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
+              },
+              onAbilityWindowStageCreate(ability){
+                  console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
+              },
+              onAbilityWindowStageDestroy(ability){
+                  console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
+              },
+              onAbilityDestroy(ability){
+                  console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
+              },
+              onAbilityForeground(ability){
+                  console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));             
+              },
+              onAbilityBackground(ability){
+                  console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));              
+              },
+              onAbilityContinue(ability){
+                  console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+              }
+          }
+          // 1.通过context属性获取applicationContext
+          let applicationContext = this.context.getApplicationContext();
+          // 2.通过applicationContext注册监听应用内生命周期
+          lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+          console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
+      }
+      onDestroy() {
+          let applicationContext = this.context.getApplicationContext();
+          applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
+          console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+          });
+      }
+  }
   ```
