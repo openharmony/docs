@@ -5,8 +5,8 @@
 HiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by HiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
 
 ## Available APIs
- 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
+
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference](../reference/apis/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 

@@ -97,7 +97,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Verification<a name="section1949121910344"></a>
 
-For details about the compilation and burning processes, see  [Building Source Code](../quick-start/quickstart-lite-steps-hi3861-connection.md#section191121332125319)  and  [Burning Images](../quick-start/quickstart-lite-steps-hi3861-connection.md#section3288165814218)  in the  _Getting Started with Hi3861_.
+For details about the compilation and burning processes, see [Building](../quick-start/quickstart-lite-steps-hi3861-building.md) and [Burning](../quick-start/quickstart-lite-steps-hi3861-burn.md) in the  _Getting Started with Hi3861_.
 
 After the preceding two steps are complete, press the  **RST**  button to reset the module. If the LED blinks periodically as expected, the verification is passed.
 

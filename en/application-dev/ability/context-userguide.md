@@ -213,17 +213,9 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
 ```
 
-**d.ts statement**
-
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ServiceExtensionContext.d.ts
-
 ### application/FormExtensionContext
 
-For details, see [FormExtensionContext](/en/application-dev/reference/apis/js-apis-formextensioncontext.md)
-
-**d.ts statement**
-
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/FormExtensionContext.d.ts
+For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
 
 ## FAQs
 
