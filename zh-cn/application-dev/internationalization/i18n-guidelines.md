@@ -195,7 +195,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
 
    
    ```
-   var phoneNumberFormat = new i18n.PhoneNubmerFormat("CN", {type: "E164"});
+   var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. 判断电话号码格式是否正确。<br>
