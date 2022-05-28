@@ -4,7 +4,7 @@
 
 The following figure shows the context structure of the Startup subsystem.
 
-![](figure/The-following-figure-shows-the-context-structure-of-the-Startup-subsystem.png)
+![](figure/context-structure-of-the-Startup-subsystem.png)
 
 Upon completion of system power-on and kernel loading, system services and applications are started as follows:
 
