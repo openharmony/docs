@@ -381,8 +381,8 @@
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [USB](driver/driver-peripherals-usb-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
-      - [Vibrator](driver-peripherals-vibrator-des.md)
-      - [Light](driver-peripherals-light-des.md)
+      - [Vibrator](driver/driver-peripherals-vibrator-des.md)
+      - [Light](driver/driver-peripherals-light-des.md)
   - Compilation and Building
     - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)
