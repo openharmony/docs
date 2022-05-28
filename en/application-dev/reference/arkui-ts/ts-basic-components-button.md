@@ -36,10 +36,10 @@ Supported
 
   **Table 2** value parameters
 
-| Name | Type | Mandatory | Default Value | Description |
-| -------- | -------- | -------- | -------- | -------- |
-| label | string | No | - | Button text. |
-| options | Object | No | - | For details, see the **options** parameters. |
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | label | string | No | - | Button text. |
+  | options | Object | No | - | For details, see the **options** parameters. |
 
 
 ## Attributes
@@ -49,12 +49,13 @@ Supported
 | type | ButtonType | Capsule | Button type. |
 | stateEffect | boolean | true | Whether to enable the state switchover effect. When the state is set to **false**, the state switchover effect is disabled. |
 
-- ButtonType enums
-    | Name | Description |
-  | -------- | -------- |
-  | Capsule | Capsule-type button (the round corner is half of the height by default). |
-  | Circle | Circle button. |
-  | Normal | Normal button (without rounded corners by default). |
+
+ButtonType enums
+| Name | Description |
+| -------- | -------- |
+| Capsule | Capsule-type button (the round corner is half of the height by default). |
+| Circle | Circle button. |
+| Normal | Normal button (without rounded corners by default). |
 
 > **NOTE**
 > - The rounded corner of a button is set by using [Border](ts-universal-attributes-border.md). (The rounded corner cannot be set by using a border API.)
