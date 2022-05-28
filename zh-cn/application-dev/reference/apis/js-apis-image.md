@@ -957,7 +957,7 @@ release(): Promise\<void>
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
 | stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                     |
-| region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
+| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
 
 ## ImageInfo
 
