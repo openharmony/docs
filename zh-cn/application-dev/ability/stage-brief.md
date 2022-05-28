@@ -38,7 +38,7 @@
 -  **ExtensionAbility**：基于场景的服务扩展能力统称，系统定义了多种基于场景的ExtensionAbility类，它们持有各自的ExtensionContext;
 -  **WindowStage**：本地窗口管理器；
 -  **Window**：窗口 管理器管理的基本单元，持有一个ArkUI引擎实例；
-- **Ark UI Page**：Ark声明式UI展示。
+-  **ArkUI Page**：方舟开发框架页面。
 
 
 ### 生命周期

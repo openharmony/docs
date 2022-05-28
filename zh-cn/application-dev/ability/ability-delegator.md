@@ -1,7 +1,7 @@
 # 测试框架使用指导
 
 ## 概述
-Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。
+Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过Delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。
 
 ## 约束与限制
 
