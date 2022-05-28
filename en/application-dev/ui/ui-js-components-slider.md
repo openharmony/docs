@@ -93,10 +93,10 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 ![en-us_image_0000001276003517](figures/en-us_image_0000001276003517.gif)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
-> Set the **mode** attribute to specify the slider style, which takes effect only on mobile phones and tablets. It can be set to:
-> 
+> Set the **mode** attribute to specify the slider style. It can be set to:
+>
 > - **outset**: The slider is on the sliding bar.
-> 
+>
 > - **inset**: The slider is inside the sliding bar.
 
 
