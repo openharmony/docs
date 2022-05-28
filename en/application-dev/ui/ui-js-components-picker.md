@@ -79,8 +79,7 @@ export default {
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 > - When setting the value range of a common selector, you must use the data binding mode.
-> 
-> - The **lunarswitch** attribute of the date selector is only supported on phones and tablets.
+>
 
 
 ## Setting the Time Format
@@ -118,7 +117,7 @@ Set the **hours** attribute to specify the time format used by the time selector
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
 > - When **hours** is set to **12**, the time is displayed in 12-hour format and distinguished by a.m. and p.m.
-> 
+>
 > - When **hours** is set to **24**, the time is displayed in 24-hour format.
 
 
