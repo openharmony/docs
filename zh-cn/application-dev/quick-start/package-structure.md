@@ -232,7 +232,7 @@ module对象包含HAP包的配置信息，内部结构说明参见表11。
 | distroFilter    | 表示应用的分发规则。<br /> 该标签用于定义HAP包对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。参考表29。 | 对象       | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
 | reqCapabilities | 表示运行应用程序所需的设备能力                               | 字符串数组 | 可缺省，缺省为空                                             |
 | commonEvents    | 静态广播，参考表35。                                         | 对象数组   | 可缺省，缺省为空                                             |
-| allowClassMap   | HAP的元信息。标记值为true或false。如果标记值为true，则hap使用OpenHarmony框架提供的Java对象代理机制。默认值为false。 | 布尔值     | 不可缺省，缺省值为false                                      |
+| allowClassMap   | HAP的元信息。标记值为true或false。如果标记值为true，则hap使用OpenHarmony框架提供的Java对象代理机制。默认值为false。 | 布尔值     | 可缺省，缺省值为false                                        |
 | entryTheme      | 此标签表示OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串     | 可缺省，缺省值为空                                           |
 
 module示例：
@@ -346,12 +346,12 @@ metaData示例：
 | 属性名称         | 含义                                                         | 数据类型   | 是否可缺省                                               |
 | ---------------- | ------------------------------------------------------------ | ---------- | -------------------------------------------------------- |
 | process          | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。运行OHOS的设备不支持此属性。 | 字符串     | 可缺省，缺省值为空。                                     |
-| name             | 表示Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如“com.example.myapplication.MainAbility”；也可采用“.”开头的类名方式表示，如“.MainAbility”。<br /> Ability的名称，需在一个应用的范围内保证唯一。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。<br /> 说明：在使用DevEco Studio新建项目时，默认生成首个Ability的配置，包括生成“MainAbility.java”文件，及“config.json”中“MainAbility”的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127。 | 字符串     | 否                                                       |
+| name             | 表示Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如“com.example.myapplication.MainAbility”；也可采用“.”开头的类名方式表示，如“.MainAbility”。<br /> Ability的名称，需在一个应用的范围内保证唯一。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。<br /> 说明：在使用DevEco Studio新建项目时，默认生成首个Ability的配置，及“config.json”中“MainAbility”的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127。 | 字符串     | 否                                                       |
 | description      | 表示对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | icon             | 表示Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br /> 说明：应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。 | 字符串     | 可缺省，缺省值为空。                                     |
 | label            | 表示Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含 “action.system.home”，entities取值中包含“entity.system.home”，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br /> 说明： 应用的“icon”和“label”是用户可感知配置项，需要区别于当前所有已有的应用“icon”或“label”（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255。 | 字符串     | 可缺省，缺省值为空。                                     |
 | uri              | 表示Ability的统一资源标识符。该标签最大长度为255。           | 字符串     | 可缺省，对于data类型的Ability不可缺省。                  |
-| launchType       | 表示Ability的启动模式，支持“standard”和“singleton”两种模式：<br />standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“singleton”。                             |
+| launchType       | 表示Ability的启动模式，支持“standard”和“singleton”两种模式：<br />standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“singleton”。                            |
 | visible          | 表示Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | permissions      | 表示其他应用的Ability调用此Ability时需要申请的权限。通常采用反向域名格式，取值可以是系统预定义的权限，也可以是开发者自定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | skills           | 表示Ability能够接收的want的特征。                            | 对象数组   | 可缺省，缺省值为空。                                     |
@@ -370,7 +370,7 @@ metaData示例：
 | supportPipMode   | 表示Ability是否支持用户进入PIP模式（用于在页面最上层悬浮小窗口，俗称“画中画”，常见于视频播放等场景）。该标签仅适用于page类型的Ability。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | formsEnabled     | 表示Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br />true：支持卡片能力。<br />false：不支持卡片能力。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
 | forms            | 表示服务卡片的属性。该标签仅当formsEnabled为“true”时，才能生效。参考表27。 | 对象数组   | 可缺省，缺省值为空。                                     |
-| srcLanguage      | Ability开发语言的类型。                                      | 字符串     | 取值为java、js或ets                                      |
+| srcLanguage      | Ability开发语言的类型。                                      | 字符串     | 取值为js或ets                                            |
 | srcPath          | 该标签表示Ability对应的JS组件代码路径                        | 字符串     | 可缺省，缺省值为空。                                     |
 | uriPermission    | 表示该Ability有权访问的应用程序数据。此属性由模式和路径子属性组成。此属性仅对类型提供者的能力有效。运行OHOS的设备不支持此属性。参考表18。 | 对象       | 可缺省，缺省值为空。                                     |
 
@@ -581,12 +581,10 @@ shortcuts示例：
 | name                | 表示卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                       |
 | description         | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。       |
 | isDefault           | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br />true：默认卡片。<br />false：非默认卡片。 | 布尔值     | 否                       |
-| type                | 表示卡片的类型。取值范围如下：<br />Java：Java卡片。<br />JS：JS卡片。 | 字符串     | 否                       |
+| type                | 表示卡片的类型。取值范围如下：<br />JS：JS卡片。             | 字符串     | 否                       |
 | colorMode           | 表示卡片的主题样式，取值范围如下：<br />auto：自适应。<br />dark：深色主题。<br />light：浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。 |
 | supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 否                       |
 | defaultDimension    | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                       |
-| landscapeLayouts    | 表示卡片外观规格对应的横向布局文件，与supportDimensions中的规格一一对应。仅当卡片类型为Java卡片时，需要配置该标签。 | 字符串数组 | 否                       |
-| portraitLayouts     | 表示卡片外观规格对应的竖向布局文件，与supportDimensions中的规格一一对应。仅当卡片类型为Java卡片时，需要配置该标签。 | 字符串数组 | 否                       |
 | updateEnabled       | 表示卡片是否支持周期性刷新，取值范围：<br />true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br />false：表示不支持周期性刷新。 | 布尔类型   | 否                       |
 | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
 | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
@@ -626,9 +624,9 @@ forms示例：
         ]
     },
     {
-        "name": "Form_Java",
-        "description": "It's Java Form",
-        "type": "Java",
+        "name": "Form_Js",
+        "description": "It's JS Form",
+        "type": "Js",
         "colorMode": "auto",
         "isDefault": false,
         "updateEnabled": true,
