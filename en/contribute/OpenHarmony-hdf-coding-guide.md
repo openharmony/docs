@@ -190,7 +190,7 @@ root {
 
 [Description] The HDF places the same type of devices in the same host. You can develop and deploy the driver functionalities of the host by layer, so that one driver has multiple nodes. The following figure shows the HDF driver model.
 
-![HDFDriverModel.png]( ../device-dev/driver/figures/HDFDriverModel.png)
+![HDFDriverModel.png](../device-dev/driver/figures/HDF-driver-model.png)
 
 Place devices of the same type in the same host. When adding a device, check whether the host of the same type already exists. If such a host already exists, configure the device in the host. Do not configure the same host again. A device belongs to only one driver. Therefore, do not configure the same device in different hosts.
 
