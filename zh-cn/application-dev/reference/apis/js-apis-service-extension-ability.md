@@ -126,7 +126,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
       constructor(des) {
           super(des);
       }
-      onRemoteRequest(code, data, reply, option) {
+      onConnect(code, data, reply, option) {
       }
   }
   class ServiceExt extends ServiceExtension {
