@@ -40,7 +40,7 @@ HiSysEvent类，具体的API详见接口文档 。
 | static const std::string AAFWK | 元能力子系统 |
 | static const std::string APPEXECFWK | 用户程序框架子系统 |
 | static const std::string ACCOUNT | 账号子系统 |
-| static const std::string ACE | ACE子系统 |
+| static const std::string ArkUI | ArkUI子系统 |
 | static const std::string AI | AI业务子系统 |
 | static const std::string BARRIER_FREE | 无障碍软件服务子系统 |
 | static const std::string BIOMETRICS | 生物特征识别服务子系统 |
