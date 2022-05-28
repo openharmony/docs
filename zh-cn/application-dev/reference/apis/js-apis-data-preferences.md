@@ -262,6 +262,56 @@ promise.then((value) => {
 })
 ```
 
+### getAll
+
+getAll(callback: AsyncCallback&lt;Object&gt;): void;
+
+返回含有所有键值的Object对象。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回含有所有键值的Object对象。 |
+
+**示例：**
+```ts
+preferences.get.getAll(function (err, value) {
+    if (err) {
+        console.info("getAll failed, err: " + err)
+        return
+    }
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+});
+```
+
+### getAll
+
+getAll(): Promise&lt;Object&gt;
+
+返回含有所有键值的Object对象。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Object&gt; | Promise对象。返回含有所有键值的Object对象。 |
+
+**示例：**
+```ts
+let promise = preferences.getAll()
+promise.then((value) => {
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+}).catch((err) => {
+    console.info("getAll failed, err: " + err)
+})
+```
 
 ### put
 
@@ -288,7 +338,6 @@ preferences.put('startup', 'auto', function (err) {
     console.info("Put value of startup successfully.")
 })
 ```
-
 
 ### put
 
