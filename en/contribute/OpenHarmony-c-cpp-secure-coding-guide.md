@@ -1167,7 +1167,7 @@ int Fun()
 
     // msg is saved to the global queue, and the freed body member may be used.
     if (!InsertMsgToQueue(msg)) {
-        delete msg->body;         // The memory to which the bbodyb points may be freed again.
+        delete msg->body;         // The memory to which the body points may be freed again.
         delete msg;
         return -1;
     }
