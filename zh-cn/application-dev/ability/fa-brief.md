@@ -9,13 +9,6 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 - DataAbility也是没有UI的Ability，提供其他Ability进行数据的增删查服务，在后台运行。
 - FormAbility是卡片Ability，是一种界面展示形式。
 
-## 应用包结构
-**应用包结构如下图所示：**
-
-![fa-package-info](figures/fa-package-info.png)
-
-应用包结构的配置请参见[应用包结构配置文件的说明](../quick-start/package-structure.md)。
-
 ## 生命周期
 
 在所有Ability中，PageAbility因为具有界面，也是应用的交互入口，因此生命周期更加复杂。
