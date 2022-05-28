@@ -9,7 +9,7 @@ During system startup, the error message "[Init] InitReadCfg, parse failed! plea
 
   **Figure 1** Error information
 
-  ![en-us_image_0000001200053087](figures/en-us_image_0000001200053087.png)
+  ![en-us_image_0000001200053087](figures/error-information.png)
 
 **Possible Cause**
 
@@ -57,85 +57,3 @@ Permission verification has been enabled for **SetParameter** and **GetParameter
 
 No action is required.
 
-
-## ueventd Service Failed to Obtain a Socket upon Startup
-
-**Symptom**
-
-After the ueventd service is started, the error message "Failed to get uevent socket, try to create" is displayed, and the error information as shown in the following figure is logged.
-
-  **Figure 2** Failure to obtain a socket
-
-  ![ueventd_socket](figures/ueventd_socket.png)
-
-**Possible Cause**
-
-The ueventd service is started on demand. Upon startup, it first needs to check the environment variables for **fd** of the socket created by the init process. The preceding error information will be displayed if the ueventd service fails to obtain environment variables. The possible causes are as follows:
-1. No socket has been configured for the ueventd service in the **.cfg** file. As a result, the init process does not create a socket for the ueventd service, and no socket ID is present in environment variables.
-2. If a socket has been configured for the ueventd service in the **.cfg** file, it is probable that the ueventd service is also configured in another **.cfg** file but no socket is designated for it.
-
-**Solution**
-
-For case 1, configure a socket for the ueventd service in the **.cfg** file. For details, see [Development Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-init.md#development-guidelines).
-
-For case 2, check all **.cfg** files for any duplicate ueventd service and delete it. Retain only one ueventd service with valid configuration.
-
-
-## ueventd Service Exits Because of a Socket Polling Timeout
-
-**Symptom**
-
-After the ueventd service is started for a period of time, the error message "poll ueventd socket timeout, ueventd exit" is displayed and the ueventd service automatically exits.
-
-**Possible Causes**
-
-The ueventd service is started on demand. When a uevent is reported, the init process receives a socket message and starts the ueventd service to process the message. After processing the message, the ueventd service polls the corresponding socket handle for 30s. If a new socket message is reported within this period of time, the ueventd service continues to process the message. After processing the message, the ueventd service polls the socket handle for 30s once again. If no new socket message is reported within this period of time, the ueventd service exits and returns the socket to the init process for polling. In this case, the preceding error message is displayed.
-
-**Solution**
-
-This is a normal phenomenon and no action is required.
-
-
-## Service with the ondemand Attribute Failed to Start Because of a Configuration Parsing Error
-
-**Symptom**
-
-The service configuration in JSON format cannot be correctly parsed, and the error message "Service is invalid which has both critical and ondemand attribute" is displayed. When the service is started, the error message "Cannot find service" is displayed.
-
-**Possible Cause**
-
-The service configuration is not in the JSON format. This can result in a **.cfg** file parsing error, leading to a service parsing failure. For a service configured with the **ondemand** attribute, the **critical** attribute is set to **1**, or the first value in the **critical** attribute array is set to **1**. When the **ondemand** attribute is configured, the service is started on demand by default. The service exits when it is idle. However, when the **critical** attribute is configured, the service is regarded as a critical system service and is not allowed to exit. Therefore, a conflict occurs if both attributes are configured the same service.
-
-**Solution**
-
-Check whether the service needs to be started on demand. If not, do not configure the **ondemand** attribute. If yes, do not configure the **critical** attribute along with the **ondemand** attribute. To limit the number of times that a critical service exits abnormally, set the first value in the **critical** attribute array to **0** and then add a limitation on the exit times. For example, **"critical": [0, 15, 5]** means that, if a service exits for more than 15 times within 5s, the service will not be started and the system will not be restarted.
-
-
-## Parallel Startup Is Not Effective for Services Configured with the ondemand Attribute
-
-**Symptom**
-
-Services configured with the **ondemand** attribute are not started in the parallel startup phase, regardless of whether **start-mode** is set to **boot**, **normal**, or the default value.
-
-**Possible Cause**
-
-Services configured with the **ondemand** attribute are started only when the startup conditions are met. Therefore, parallel startup is not effective for these services.
-
-**Solution**
-
-If you want to add a service to parallel startup, do not configure the **ondemand** attribute for it.
-
-
-## SA Services Cannot Be Started on Demand
-
-**Symptom**
-
-When an SA service is configured with the **ondemand** attribute, the samgr process does not start the SA service after the SA client sends a request.
-
-**Possible Cause**
-
-At the initial implementation of on-demand startup, **SystemAbilityManager::CheckSystemAbility(int32_t systemAbilityId)** is used for all SA services. To distinguish SA services that are started on demand, **LoadSystemAbility(int32_t systemAbilityId, const sptr& callback)** provided by the samgr process is added. If an SA service is not started on demand, it is probable that the original API is used by mistake.
-
-**Solution**
-
-Use **LoadSystemAbility(int32_t systemAbilityId, const sptr& callback)** for any SA service that needs to be started on demand.

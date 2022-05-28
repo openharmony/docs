@@ -71,7 +71,7 @@
 
 1.  Obtain the U-Boot file.
 
-    >![](public_sys-resources/icon-notice.gif) **NOTICE:** 
+    >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
     >The U-Boot file of the two boards can be obtained from the following paths, respectively.
     >Hi3516D V300:  **device\\hisilicon\\hispark\_taurus\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3516dv300.bin**
     >Hi3518E V300:  **device\\hisilicon\\hispark\_aries\\sdk\_liteos\\uboot\\out\\boot\\u-boot-hi3518ev300.bin**

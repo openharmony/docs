@@ -1,6 +1,6 @@
 # Use Case<a name="EN-US_TOPIC_0000001055686082"></a>
 
--   For details about the development board, compilation, burning, and image running, see  [Hi3518 Development Board](../quick-start/quickstart-lite-introduction-hi3518.md#section14815247616). A compilation result file of sample code is stored in  **out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample**. You can copy the file to a TF card, or modify the compilation script of  **camera\_sample**  to copy the result to  **rootfs.img**.
+-   For details about the development board, compilation, burning, and image running, see  [Hi3518 Development Board](../quick-start/quickstart-lite-overview.md). A compilation result file of sample code is stored in  **out/ipcamera\_hi3518ev300/dev\_tools/bin/camera\_sample**. You can copy the file to a TF card, or modify the compilation script of  **camera\_sample**  to copy the result to  **rootfs.img**.
 
     Modify  **output\_dir**  in  **applications/sample/camera/media/BUILD.gn**.
 

@@ -24,7 +24,7 @@ The download steps for other resources are the same as those in the mainline ver
 
 - [Mini System SoC Porting Guide](porting-minichip.md)
   - Porting Preparations
-    - [Before You Start](porting-chip-prepare-knows.md)
+    - [Before You Start](oem_transplant_chip_prepare_knows.md)
     - [Building Adaptation Process](porting-chip-prepare-process.md)
   - Kernel Porting
     - [Overview](porting-chip-kernel-overview.md)
