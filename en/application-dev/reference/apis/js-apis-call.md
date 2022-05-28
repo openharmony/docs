@@ -311,10 +311,10 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 **Parameters**
 
-| Name     | Type                                              | Mandatory| Description                                                        |
-| ----------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| phoneNumber | string                                             | Yes  | Phone number.                                                  |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number.                                              |
+| Name     | Type                                              | Mandatory| Description                                                       |
+| ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
+| phoneNumber | string                                             | Yes  | Phone number.                                                 |
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.        |
 | callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Example**
@@ -339,7 +339,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 | Name     | Type                                              | Mandatory| Description          |
 | ----------- | -------------------------------------------------- | ---- | -------------- |
 | phoneNumber | string                                             | Yes  | Phone number.    |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number.|
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.|
 
 **Return value**
 
@@ -398,7 +398,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | Name     | Type                                        | Mandatory| Description                                |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                                       | Yes  | Phone number.                          |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code.              |
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.              |
 | callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result.|
 
 **Example**
@@ -427,7 +427,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | Name     | Type                                        | Mandatory| Description                  |
 | ----------- | -------------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                       | Yes  | Phone number.            |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting options, for example, country code.|
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.|
 
 **Return value**
 
