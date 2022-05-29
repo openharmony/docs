@@ -335,13 +335,13 @@ if(ret == osOK)
 }
 ```
 
-In `sys_init`, you need to initialize the Openharmony system components.
+In `sys_init`, you need to initialize the OpenHarmony system components.
 
 ```
 ...
 DeviceManagerStart();           --- Initialize HDF.
 
-OHOS_SystemInit();              --- Initialize Openharmony system components.
+OHOS_SystemInit();              --- Initialize OpenHarmony system components.
 ....
 ```
 
@@ -471,7 +471,7 @@ The compilation option entry of the subsystem is in the `config.json` file of th
 
 ### LWIP component
 
-The source code of the lwIP component is stored in `//third_party/lwip`. The kernel in Openharmony is customized in `//kernel/liteos_m/components/net/lwip-2.1`, including the redefinition of some interfaces and structures.
+The source code of the lwIP component is stored in `//third_party/lwip`. The kernel in OpenHarmony is customized in `//kernel/liteos_m/components/net/lwip-2.1`, including the redefinition of some interfaces and structures.
 
 For details about the porting process, see [lwIP Module Adaptation](https://gitee.com/openharmony/docs/blob/master/en/device-dev/porting/porting-chip-board-lwip.md).
 
