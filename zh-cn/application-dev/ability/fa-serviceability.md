@@ -231,7 +231,7 @@ import prompt from '@system.prompt'
 let mRemote;
 function onConnectCallback(element, remote){
     console.log('onConnectRemoteService onConnectDone element: ' + element);
-    console.log('onConnectRemotelService onConnectDone remote: ' + remote);
+    console.log('onConnectRemoteService onConnectDone remote: ' + remote);
     mRemote = remote;
     if (mRemote == null) {
       prompt.showToast({
