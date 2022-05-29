@@ -65,7 +65,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        for (let i = 0;i < dataView.byteLength; ++i) {
            str += String.fromCharCode(dataView.getUint8(i))
        }
-       console.log("on connect recevied:" + str)
+       console.log("on connect received:" + str)
    });
    tcp.on('connect', () => {
        console.log("on connect")

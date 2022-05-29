@@ -1584,7 +1584,7 @@ promise.then((resultSet) => {
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，结果以callbck形式返回。
+执行包含指定参数但不返回值的SQL语句，结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1732,7 +1732,7 @@ try {
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置分布式列表，结果以callbck形式返回。
+设置分布式列表，结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1786,7 +1786,7 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callbck形式返回。
+根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1842,7 +1842,7 @@ promise.then((tableName) => {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 结果以callbck形式返回。
+在设备之间同步数据, 结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1939,7 +1939,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 结果以callbck形式返回。
+从数据库中删除指定类型的指定观察者, 结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
