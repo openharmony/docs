@@ -240,7 +240,7 @@ module示例：
 ```json
 "module": {
 	"mainAbility": "MainAbility",
-	"package": "com.example.myapplication.rntry",
+	"package": "com.example.myapplication.entry",
 	"name": ".MyOHOSAbilityPackage",
 	"description": "$string:description_application",
 	"supportModes": [
