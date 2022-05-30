@@ -266,14 +266,14 @@ promise.then((value) => {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains the **Object** instance that contains all values.
+Obtains the **Object** instance that contains all KV pairs.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the **Object** instance that contains all values.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the **Object** instance that contains all KV pairs. |
 
 **Example**
 ```ts
@@ -292,14 +292,14 @@ preferences.get.getAll(function (err, value) {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains the **Object** instance that contains all values.
+Obtains the **Object** instance that contains all KV pairs.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Object&gt; | Promise used to return the **Object** instance that contains all values.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Object&gt; | Promise used to return the **Object** instance that contains all KV pairs. |
 
 **Example**
 ```ts
