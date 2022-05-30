@@ -45,7 +45,8 @@ inputDevice.on("change", (data)=>{
             isPhysicalKeyboardExist = false;
         }
     });
-}); // 根据isPhysicalKeyboardExist的值决定ruan'jian'pan
+});
+// 根据isPhysicalKeyboardExist的值决定软键盘是否弹出。
 ```
 
 ## inputDevice.off<sup>9+</sup>
