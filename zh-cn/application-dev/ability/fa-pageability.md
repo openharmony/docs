@@ -143,34 +143,34 @@ ability支持单实例和多实例两种启动模式。
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
   async function RequestPermission() {
-  console.info('RequestPermission begin');
-  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  let bundleFlag = 0;
-  let tokenID = undefined;
-  let userID = 100;
-  let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
-  tokenID = appInfo.accessTokenId;
-  let atManager = abilityAccessCtrl.createAtManager();
-  let requestPermissions: Array<string> = [];
-  for (let i = 0;i < array.length; i++) {
-      let result = await atManager.verifyAccessToken(tokenID, array[i]);
-      console.info("verifyAccessToken result:" + JSON.stringify(result));
-      if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-          requestPermissions.push(array[i]);
+      console.info('RequestPermission begin');
+      let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+      let bundleFlag = 0;
+      let tokenID = undefined;
+      let userID = 100;
+      let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+      tokenID = appInfo.accessTokenId;
+      let atManager = abilityAccessCtrl.createAtManager();
+      let requestPermissions: Array<string> = [];
+      for (let i = 0;i < array.length; i++) {
+          let result = await atManager.verifyAccessToken(tokenID, array[i]);
+          console.info("verifyAccessToken result:" + JSON.stringify(result));
+          if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+              requestPermissions.push(array[i]);
+          }
       }
-  }
-  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
-  if (requestPermissions.length == 0 || requestPermissions == []) {
-      return;
-  }
-  let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
-      console.info("data:" + JSON.stringify(data));
-      console.info("data requestCode:" + data.requestCode);
-      console.info("data permissions:" + data.permissions);
-      console.info("data authResults:" + data.authResults);
-  });
-  console.info('RequestPermission end');
+      console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+      if (requestPermissions.length == 0 || requestPermissions == []) {
+          return;
+      }
+      let context = featureAbility.getContext();
+      context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+          console.info("data:" + JSON.stringify(data));
+          console.info("data requestCode:" + data.requestCode);
+          console.info("data permissions:" + data.permissions);
+          console.info("data authResults:" + data.authResults);
+      });
+      console.info('RequestPermission end');
   }
 ```
 
