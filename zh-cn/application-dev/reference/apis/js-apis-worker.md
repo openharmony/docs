@@ -50,7 +50,7 @@ Worker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的url，路径规范：若DevEco新建工程在pages同级下没有workers目录，需要新建workers目录，将脚本文件放入workers目录。 |
+| scriptURL | string                          | 是   | Worker执行脚本的url，路径规范：若DevEco Studio新建工程在pages同级下没有workers目录，需要新建workers目录，将脚本文件放入workers目录。 |
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **返回值：**
