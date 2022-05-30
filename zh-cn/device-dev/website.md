@@ -11,13 +11,13 @@
 
           - [获取源码](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
 
-      - [创建源码工程](quick-start/quickstart-ide-lite-create-project.md)
+      - [导入源码工程](quick-start/quickstart-ide-lite-create-project.md)
 
       - 运行“Hello World”
 
           - Hi3861开发板
 
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-application-framework.md)
+              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
 
               - [编译](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
 
@@ -31,7 +31,7 @@
 
           - Hi3516开发板
 
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-application-framework.md)
+              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
 
               - [编译](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
 
@@ -57,7 +57,7 @@
 
               - [安装Hi3861开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
 
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
+              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
 
               - [编译](quick-start/quickstart-lite-steps-hi3861-building.md)
 
@@ -73,7 +73,7 @@
 
               - [安装Hi3516开发板环境](quick-start/quickstart-lite-steps-hi3516-setting.md)
 
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
+              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
 
               - [编译](quick-start/quickstart-lite-steps-hi3516-building.md)
 
@@ -99,6 +99,8 @@
 
           - [参考信息](quick-start/quickstart-lite-reference.md)
 
+          - [使用HiTool烧录代码](quick-start/quickstart-lite-hitool.md)
+
   - 标准系统快速入门（IDE方式，推荐）
 
       - [标准系统入门概述](quick-start/quickstart-ide-standard-overview.md)
@@ -109,7 +111,7 @@
 
           - [获取源码](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
 
-      - [创建源码工程](quick-start/quickstart-ide-standard-create-project.md)
+      - [导入源码工程](quick-start/quickstart-ide-standard-create-project.md)
 
       - 运行“Hello World”
 
@@ -149,7 +151,7 @@
 
           - Hi3516开发板
 
-              - [编写“Hello World”程序](quick-start/quickstart-standard-running-hi3516-create.md)
+              - [编写“Hello World”程序](quick-start/quickstart-std-3516-create.md)
 
               - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
 
@@ -184,6 +186,9 @@
               - [RK3568开发板介绍](quick-start/quickstart-standard-board-introduction-rk3568.md)
 
           - [参考信息](quick-start/quickstart-standard-reference.md)
+
+          - [使用HiTool烧录代码](quick-start/quickstart-standard-hitool.md)
+
   - [获取源码](get-code/sourcecode-acquire.md)
 - 兼容性与安全 
   - [隐私保护](security/security-privacy-protection.md)
@@ -655,7 +660,7 @@
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程
-  - [Demo示例](device-demo.md)
+  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 - 参考  
 
