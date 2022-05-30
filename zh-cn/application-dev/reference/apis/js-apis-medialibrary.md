@@ -2237,11 +2237,11 @@ async function example() {
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 
-| 名称           | 类型     | 必填   | 描述                                       |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| src          | string | 是    | 应用本地文件绝对路径。                               |
-| mimeType     | string | 是    | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
-| relativePath | string | 否    | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
+| 名称         | 类型   | 必填 | 描述                                                         |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| src          | string | 是   | 本地文件应用沙箱路径。                                       |
+| mimeType     | string | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
+| relativePath | string | 否   | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
 ## MediaSelectOption<sup>(deprecated)</sup>
 

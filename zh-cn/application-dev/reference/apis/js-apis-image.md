@@ -470,7 +470,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持本地绝对路径。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。 |
 
 **返回值：**
 
@@ -481,7 +481,8 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource('/data/local/tmp/test.jpg')
+let path = this.context.getApplicationContext().fileDirs + "test.jpg";
+const imageSourceApi = image.createImageSource(path);
 ```
 
 ## image.createImageSource<sup>7+</sup>
