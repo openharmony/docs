@@ -590,7 +590,9 @@
 
       - [I18n开发指导](internationalization/i18n-guidelines.md)
 
-      
+    
+    - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
+
 
     - Native API的相关指导
 
