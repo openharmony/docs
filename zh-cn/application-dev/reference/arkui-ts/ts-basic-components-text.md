@@ -35,7 +35,7 @@ Text(content?: string)
 | textOverflow | {overflow:&nbsp;TextOverflow} | {overflow:&nbsp;TextOverflow.Clip} | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
 | maxLines | number | Infinity | 设置文本的最大行数。 |
 | lineHeight | Length | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
+| decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color: Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
 | baselineOffset | Length | - | 设置文本基线的偏移量。 |
 | textCase | TextCase | TextCase.Normal | 设置文本大小写。 |
 
@@ -69,7 +69,7 @@ Text(content?: string)
   | UpperCase | 文本采用全大写。 | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 不支持Text内同时存在文本内容和Span子组件。（如果同时存在，只显示Span内的内容)。
+> 不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
 
 
 ## 示例
