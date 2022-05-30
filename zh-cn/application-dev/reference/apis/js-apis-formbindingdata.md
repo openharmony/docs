@@ -38,12 +38,20 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
-  let obj = {
-      "temperature": "21°",
-      "formImages": {"image": fd}
-  };
-  let formBindingDataObj = formBindingData.createFormBindingData(obj);
+  import featureAbility from '@ohos.ability.featureAbility';
+  import fileio from '@ohos.fileio';
+  let context=featureAbility.getContext();
+  context.getOrCreateLocalDir((err,data)=>{
+      let path=data+"/xxx.jpg";
+      let fd = fileio.openSync(path);
+      let obj = {
+          "temperature": "21°",
+          "formImages": {"image": fd}
+      };
+      let formBindingDataObj = formBindingData.createFormBindingData(obj);
+  })
+
+  
   ```
 
 ## 属性

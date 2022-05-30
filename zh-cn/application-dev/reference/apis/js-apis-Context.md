@@ -97,8 +97,8 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
-	context.verifyPermission("com.example.permission", datainfo.uid);
+bundle.getBundleInfo('com.context.test', 1, (err,datainfo) =>{
+	context.verifyPermission("com.example.permission", {uid:datainfo.uid});
 });
 ```
 
@@ -153,7 +153,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-var Permission = context.PermissionOptions(1,1);
+var Permission = {pid:1};
 context.verifyPermission('com.context.permission',Permission).then((data) => {
     console.info("======================>verifyPermissionCallback====================>");
     console.info("====>data====>" + JSON.stringify(data));

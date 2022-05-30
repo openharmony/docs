@@ -7,6 +7,12 @@
 ServiceExtension的上下文环境，提供ServiceExtension具有的能力和接口，继承自ExtensionContext。
 
 
+## 导入模块
+
+```
+import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+```
+
 ## startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
@@ -25,13 +31,18 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
-  };
-  this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+  class MainAbility extends ExtensionContext {
+      onWindowStageCreate(windowStage) {
+          let want = {
+              "bundleName": "com.example.myapp",
+              "abilityName": "com.example.myapp.MyAbility"};
+          this.context.startAbility(want, (err) => {
+          console.log('startAbility result:' + JSON.stringify(err));
+          });
+      }
+  }
+
   ```
 
 
@@ -58,15 +69,22 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
-  };
-  this.context.startAbility(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+        onWindowStageCreate(windowStage) {
+            let want = {
+            "bundleName": "com.example.myapp",
+            "abilityName": "com.example.myapp.MyAbility"
+            };
+        this.context.startAbility(want).then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+        }
+    }
+
+  
   ```
 
 
@@ -87,9 +105,16 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+        class MainAbility extends ExtensionContext {
+            onWindowStageCreate(windowStage) {
+            this.context.terminateSelf((err) => {
+              console.log('terminateSelf result:' + JSON.stringify(err));
+            });
+            }
+        }
+  
+
   ```
 
 
@@ -110,11 +135,17 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      this.context.terminateSelf().then((data) => {
+        console.log('success:' + JSON.stringify(data));
+      }).catch((error) => {
+        console.log('failed:' + JSON.stringify(error));
+      });
+    }
+}
+
   ```
 
 
@@ -173,9 +204,18 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  this.context.disconnectAbility(connection, (err) => { // connection为connectAbility中的返回值
-      console.log('terminateSelf result:' + JSON.stringfy(err));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      let connection=1
+      this.context.disconnectAbility(connection, (err) => { 
+        // connection为connectAbility中的返回值
+        console.log('terminateSelf result:' + JSON.stringify(err));
+      });
+    }
+  }
+
+
   ```
 
 
@@ -202,11 +242,18 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+  class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      let connection=1
+      this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
+      console.log('success:' + JSON.stringify(data));
+      }).catch((error) => {
+      console.log('failed:' + JSON.stringify(error));
+      });
+    }
+  }
+
   ```
 
 

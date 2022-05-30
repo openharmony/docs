@@ -44,7 +44,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",,
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     },
@@ -139,7 +139,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
    {
@@ -157,7 +157,7 @@ featureAbility.startAbilityForResult(
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringfy(err) + "data: " + JSON.stringfy(data))
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
     }
 )
 ```
@@ -185,7 +185,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
     {
@@ -291,7 +291,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.terminateSelfWithResult(
     {
@@ -343,7 +343,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus()
 ```
 
@@ -391,7 +391,7 @@ getWant(callback: AsyncCallback\<Want>): void
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant()
 ```
 
@@ -414,7 +414,7 @@ getWant(): Promise\<Want>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
 	console.info("==========================>getWantCallBack=======================>");
 });
@@ -437,7 +437,7 @@ getContext(): Context
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 context.getBundleName()
 ```
@@ -461,7 +461,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf()
 ```
 
@@ -484,7 +484,7 @@ terminateSelf(): Promise\<void>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
     console.info("==========================>terminateSelfCallBack=======================>");
 });

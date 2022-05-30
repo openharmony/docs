@@ -36,9 +36,11 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
     
-  ```
+  ```js
+  import WantConstant from '@ohos.ability.wantConstant';
+  let accessTokenId =1
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  UriPermissionManager.verifyUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId, (result) => {
+  UriPermissionManager.verifyUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId, (result) => {
       console.log("result.code = " + result.code)
   }) // accessTokenId开发者通过包管理接口自行获取
   ```
@@ -70,7 +72,9 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
     
-  ```
+  ```js
+  import WantConstant from '@ohos.ability.wantConstant';
+  let accessTokenId =1
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
   UriPermissionManager.verifyUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
   .then((data) => {
