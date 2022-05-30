@@ -33,11 +33,11 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 **示例：** 
 
 ```js
-let isPhysicalKeyboardExist = false;
-inputDevice.on("change", (data)=>{
+let isPhysicalKeyboardExist = true;
+inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
     inputDevice.getKeyboardType(data.deviceId, (ret) => {
-       console.log("The keyboard type of the device is: " + ret);
+        console.log("The keyboard type of the device is: " + ret);
         if (ret == 2 && data.type == 'add') {
             // 监听物理键盘已连接。
             isPhysicalKeyboardExist = true;
@@ -77,6 +77,7 @@ inputDevice.off("change", this.listener);
 
 // 取消所有监听
 inputDevice.off("change");
+// 取消监听后，软键盘默认都弹出
 ```
 
 ## inputDevice.getDeviceIds
