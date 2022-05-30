@@ -27,4 +27,4 @@
 
    ![zh-cn_image_0000001265665157](figures/zh-cn_image_0000001265665157.png)
 
-   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3861V100开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3861-upload-0000001051668683)。
+   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3861V100开发板烧录](quickstart-ide-lite-steps-hi3861-burn.md)。
