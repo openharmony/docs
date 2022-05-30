@@ -1,8 +1,8 @@
-# drawing开发指导
+# Drawing开发指导
 
 ## 场景介绍
 
-native drawing模块提供了一系列的接口用于基本图形和字体的绘制。常见的应用场景举例：
+Native Drawing模块提供了一系列的接口用于基本图形和字体的绘制。常见的应用场景举例：
 * 2D图形绘制。
 * 文本绘制和显示。
 
@@ -35,7 +35,7 @@ native drawing模块提供了一系列的接口用于基本图形和字体的绘
 
 ## 2D图形绘制开发步骤
 
-以下步骤描述了在**OpenHarmony**如何使用 **native drawing** 模块的画布画笔绘制一个基本的2D图形：
+以下步骤描述了在**OpenHarmony**如何使用 **Native Drawing** 模块的画布画笔绘制一个基本的2D图形：
 
 1. **创建Bitmap实例**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapCreate** 接口创建一个Bitmap实例 **cBitmap**，并使用 **OH_Drawing_BitmapBuild** 指定其长宽大小和像素格式。
 
@@ -140,7 +140,7 @@ native drawing模块提供了一系列的接口用于基本图形和字体的绘
 
 ## 文本绘制显示开发步骤
 
-以下步骤描述了在OpenHarmony中，如何使用**native drawing**模块的文字显示功能：
+以下步骤描述了在OpenHarmony中，如何使用**Native Drawing**模块的文字显示功能：
 1. **创建画布和bitmap实例**。
 
     ```c++
