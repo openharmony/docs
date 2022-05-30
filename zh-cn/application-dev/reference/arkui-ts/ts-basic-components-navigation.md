@@ -28,11 +28,11 @@ Navigation()
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| title | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 页面标题。 |
+| title | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | - | 页面标题。 |
 | subtitle | string | - | 页面副标题。 |
-| menus | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 页面右上角菜单。 |
+| menus | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | - | 页面右上角菜单。 |
 | titleMode | NavigationTitleMode | NavigationTitleMode.Free | 页面标题栏显示模式。 |
-| toolBar | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。 |
+| toolBar | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | - | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。 |
 | hideToolBar | boolean | false | 设置隐藏/显示工具栏：<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar | boolean | false | 隐藏标题栏。 |
 | hideBackButton | boolean | false | 隐藏返回键。 |
