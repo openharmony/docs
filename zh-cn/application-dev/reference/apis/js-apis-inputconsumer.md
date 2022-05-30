@@ -18,9 +18,9 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## inputConsumer.on
 
-on(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): void
+on(type: "key", keyOptions: KeyOptions, callback: Callback<KeyOptions>): void
 
-开始监听组合按键事件, 当满足条件的组合按键输入事件发生时，将KeyOption回调到入参callback表示的回调函数上。
+开始监听组合按键事件, 当满足条件的组合按键输入事件发生时，将keyOptions回调到入参callback表示的回调函数上。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -29,24 +29,24 @@ on(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): void
 | 参数 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听输入事件类型，只支持“key”。 | 
-| keyOption | [KeyOption](#keyoption) | 是 | 组合键选项，用来指定组合键输入时应该符合的条件。 | 
-| callback | Callback&lt;KeyOption&gt; | 是 | 回调函数。当满足条件的按键输入产生时，回调到此函数，以传入的keyOption为入参。 | 
+| keyOptions | [keyOptions](#keyOptions) | 是 | 组合键选项，用来指定组合键输入时应该符合的条件。 | 
+| callback | KeyOptions | 是 | 回调函数。当满足条件的按键输入产生时，回调到此函数，以传入的KeyOptions为入参。 | 
 
 **示例：** 
 
 ```
-let keyOption = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
-let callback = function(keyOption) {
-    console.info("preKeys: " + keyOption.preKeys, "finalKey: " + keyOption.finalKey, 
-                 "isFinalKeyDown: " + keyOption.isFinalKeyDown, "finalKeyDownDuration: " + keyOption.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey, 
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
-inputConsumer.on('key', keyOption, callback);
+inputConsumer.on('key', keyOptions, callback);
 ```
 
 
 ## inputConsumer.off
 
-off(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): void
+off(type: "key", keyOptions: KeyOptions, callback?: Callback<KeyOptions>): void
 
 停止监听组合按键事件。
 
@@ -57,18 +57,18 @@ off(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): voi
 | 参数 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听输入事件类型，只支持“key”。 | 
-| keyOption | [KeyOption](#keyoption) | 是 | 开始监听时传入的KeyOption。 | 
-| callback | Callback&lt;KeyOption&gt; | 是 | 开始监听时与KeyOption一同传入的回调函数&nbsp;。 | 
+| keyOptions | [keyOptions](#keyOptions) | 是 | 开始监听时传入的keyOptions。 | 
+| callback | Callback<KeyOptions> | 是 | 开始监听时与KeyOption一同传入的回调函数&nbsp;。 | 
 
 **示例：** 
 
 ```
-let keyOption = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
-let callback = function(keyOption) {
-    console.info("preKeys: " + keyOption.preKeys, "finalKey: " + keyOption.finalKey, 
-                 "isFinalKeyDown: " + keyOption.isFinalKeyDown, "finalKeyDownDuration: " + keyOption.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey, 
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
-inputConsumer.off('key', keyOption, callback);
+inputConsumer.off('key', keyOptions, callback);
 ```
 
 
