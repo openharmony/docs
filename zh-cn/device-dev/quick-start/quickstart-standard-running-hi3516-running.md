@@ -52,7 +52,6 @@
 
 ![zh-cn_image_0000001226602398](figures/zh-cn_image_0000001226602398.png)
 
-
 ## 下一步
 
 恭喜！您已经完成了OpenHarmony标准系统的快速入门，接下来可[开发一个小示例](../guide/device-clock-guide.md)，进一步熟悉OpenHarmony的开发。

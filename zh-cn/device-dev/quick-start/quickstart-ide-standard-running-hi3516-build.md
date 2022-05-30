@@ -8,6 +8,7 @@
 2. 在toolchain页签中，DevEco Device Tool会自动检测依赖的编译工具链是否完备，如果提示部分工具缺失，可点击**SetUp**按钮，自动安装所需工具链。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   >
    > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
 
    ![zh-cn_image_0000001227277128](figures/zh-cn_image_0000001227277128.png)
@@ -28,4 +29,4 @@
 
    ![zh-cn_image_0000001221012766](figures/zh-cn_image_0000001221012766.png)
 
-   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681)。
+   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](quickstart-ide-standard-running-hi3516-burning.md)。

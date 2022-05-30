@@ -6,15 +6,15 @@
 
 1. 保持Windows工作台和WLAN模组的连接状态，在DevEco  Device Tool最下方，点击“DevEco:Serial Monitor”按钮。
 
-     **图1** 打开DevEco  Device Tool串口终端示意图
+     **图1** 打开DevEco  Device Tool串口终端示意图  
 
-     ![zh-cn_image_0000001227114644](figures/zh-cn_image_0000001227114644.png)
+   ![zh-cn_image_0000001227114644](figures/zh-cn_image_0000001227114644.png)
 
 2. 复位Hi3861 WLAN模组，终端界面显示“ready to OS start”，则启动成功。
 
      **图2** Hi3861 WLAN模组复位成功示意图
-
-     ![zh-cn_image_0000001226794704](figures/zh-cn_image_0000001226794704.png)
+  
+   ![zh-cn_image_0000001226794704](figures/zh-cn_image_0000001226794704.png)
 
 3. 在串口终端中，依次执行如下AT命令，启动STA模式，连接指定AP热点，并开启DHCP功能。
 
@@ -39,6 +39,6 @@
    AT+PING=X.X.X.X                         # 检查模组与网关的联通性，其中X.X.X.X需替换为实际的网关地址
    ```
 
-     **图3** Hi3861 WLAN模组联网成功示意图
+     **图3** Hi3861 WLAN模组联网成功示意图  
 
-     ![zh-cn_image_0000001226954648](figures/zh-cn_image_0000001226954648.png)
+   ![zh-cn_image_0000001226954648](figures/zh-cn_image_0000001226954648.png)
