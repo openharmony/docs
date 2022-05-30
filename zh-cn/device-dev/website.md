@@ -10,14 +10,14 @@
     - [导入源码工程](quick-start/quickstart-ide-lite-create-project.md)
     - 运行“Hello World”
         - Hi3861开发板
-            - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
             - [编译](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
             - [烧录](quick-start/quickstart-ide-lite-steps-hi3861-burn.md)
             - [联网](quick-start/quickstart-ide-lite-steps-hi3861-netconfig.md)
             - [调试验证](quick-start/quickstart-ide-lite-steps-hi3861-debug.md)
             - [运行](quick-start/quickstart-ide-lite-steps-hi3861-running.md)
         - Hi3516开发板
-            - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
             - [编译](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
             - [烧录](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
             - [运行](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
@@ -30,7 +30,7 @@
     - 运行“Hello World”
         - Hi3861开发板
             - [安装Hi3861开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
-            - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
+            - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
             - [编译](quick-start/quickstart-lite-steps-hi3861-building.md)
             - [烧录](quick-start/quickstart-lite-steps-hi3861-burn.md)
             - [联网](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
@@ -38,7 +38,7 @@
             - [运行](quick-start/quickstart-lite-steps-hi3861-running.md)
         - Hi3516开发板
             - [安装Hi3516开发板环境](quick-start/quickstart-lite-steps-hi3516-setting.md)
-            - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
+            - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
             - [编译](quick-start/quickstart-lite-steps-hi3516-building.md)
             - [烧录](quick-start/quickstart-lite-steps-hi3516-burn.md)
             - [运行](quick-start/quickstart-lite-steps-hi3516-running.md)
