@@ -1,4 +1,6 @@
-# Action
+# 按键输入事件
+
+
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -6,29 +8,20 @@
 ## 导入模块
 
 ```ts
-import {Action} from '@ohos.multimodalInput.keyEvent';
+import {Action,Key,KeyEvent} from '@ohos.multimodalInput.keyEvent';
 ```
 
-## 属性
+# Action
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | CANCEL | number | 是 | 否 | 取消 |
-| DOWN | number | 是 | 否 | 按钮按下 |
-| UP | number | 是 | 否 | 按钮抬起 |
-
+| DOWN | number | 是 | 否 | 按下按钮 |
+| UP | number | 是 | 否 | 抬起按钮 |
 
 # Key
-
-## 导入模块
-
-```ts
-import {Key} from '@ohos.multimodalInput.mouseEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -39,14 +32,6 @@ import {Key} from '@ohos.multimodalInput.mouseEvent';
 | deviceId | number | 是 | 否 | 按键所属设备 |
 
 # KeyEvent
-
-## 导入模块
-
-```ts
-import {KeyEvent} from '@ohos.multimodalInput.mouseEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 

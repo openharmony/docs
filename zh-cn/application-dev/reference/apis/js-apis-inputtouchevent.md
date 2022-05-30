@@ -1,4 +1,6 @@
-# Action
+# 触摸输入事件
+
+
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -6,10 +8,10 @@
 ## 导入模块
 
 ```ts
-import {Action} from '@ohos.multimodalInput.ToucEvent';
+import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput.ToucEvent';
 ```
 
-## 属性
+# Action
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -20,16 +22,7 @@ import {Action} from '@ohos.multimodalInput.ToucEvent';
 | MOVE | number | 是 | 否 | 触摸移动 |
 | UP | number | 是 | 否 | 触摸抬起 |
 
-
 # ToolType
-
-## 导入模块
-
-```ts
-import {ToolType} from '@ohos.multimodalInput.ToucEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -44,16 +37,7 @@ import {ToolType} from '@ohos.multimodalInput.ToucEvent';
 | MOUSE | number | 是 | 否 | 鼠标 |
 | LENS | number | 是 | 否 | 透镜 |
 
-
 # SourceType 
-
-## 导入模块
-
-```ts
-import {SourceType} from '@ohos.multimodalInput.ToucEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -63,16 +47,7 @@ import {SourceType} from '@ohos.multimodalInput.ToucEvent';
 | PEN | number | 是 | 否 | 手写笔 |
 | TOUCH_PAD | number | 是 | 否 | 触摸板 |
 
-
 # Touch
-
-## 导入模块
-
-```ts
-import {Touch} from '@ohos.multimodalInput.ToucEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -97,16 +72,7 @@ import {Touch} from '@ohos.multimodalInput.ToucEvent';
 | rawY | number | 是 | 否 | 输入设备上的y坐标 |
 | toolType | number | 是 | 否 | 工具类型 |
 
-
 # TouchEvent
-
-## 导入模块
-
-```ts
-import {TouchEvent} from '@ohos.multimodalInput.ToucEvent';
-```
-
-## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
