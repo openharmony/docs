@@ -508,7 +508,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称         | 类型     | 必填   | 描述           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
 
 **返回值：**
 | 类型             | 说明                                     |
@@ -543,8 +543,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称         | 类型     | 必填   | 描述           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。|
-| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。|
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于等于0。|
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回HAP包中包含的应用程序包的信息。|
 
 **示例：**
 
