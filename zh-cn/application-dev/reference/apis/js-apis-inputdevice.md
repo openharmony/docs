@@ -28,19 +28,19 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 | 参数     | 类型                                              | 必填 | 说明                 |
 | -------- | ------------------------------------------------- | ---- | -------------------- |
 | type     | string                                            | 是   | 输入设备的事件类型   |
-| listener | Callback&lt;[DeviceListener](#devicelistener)&gt; | 是   | 可上报的输入设备事件 |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 是   | 可上报的输入设备事件 |
 
 **示例：** 
 
 ```js
-inputDevice.on("change", (callback)=>{
-    console.log("type: " + callback.type + ", deviceId: " + callback.deviceId);
+inputDevice.on("change", (data)=>{
+    console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 });
 ```
 
 ## inputDevice.off<sup>9+</sup>
 
-on(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
+off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 
 取消监听设备的热插拔事件。
 
@@ -51,11 +51,19 @@ on(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 | 参数     | 类型                                              | 必填 | 说明                 |
 | -------- | ------------------------------------------------- | ---- | -------------------- |
 | type     | string                                            | 是   | 输入设备的事件类型   |
-| listener | Callback&lt;[DeviceListener](#devicelistener)&gt; | 否   | 可上报的输入设备事件 |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 否   | 可上报的输入设备事件 |
 
 **示例：** 
 
 ```js
+listener: function(data) {
+    console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+}
+
+// 单独取消listener的监听。
+inputDevice.off("change", this.listener);
+
+// 取消所有监听
 inputDevice.off("change");
 ```
 
@@ -266,7 +274,7 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 | 名称     | 参数类型                    | 说明                                                         |
 | -------- | --------------------------- | ------------------------------------------------------------ |
-| type     | [ChangedType](#changedtype) | 表示输入设备插入或者移除。                                   |
+| type     | [ChangeType](#changetype) | 表示输入设备插入或者移除。                                   |
 | deviceId | number                      | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
 
 ## InputDeviceData
