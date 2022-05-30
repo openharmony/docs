@@ -47,4 +47,4 @@
 
 ## 下一步学习
 
-恭喜您，已完成Hi3516的快速上手！建议您下一步进入[带屏摄像头类产品开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/guide/device-camera.md)的学习 。
+恭喜您，已完成Hi3516的快速上手！建议您下一步进入[带屏摄像头类产品开发](../guide/device-camera-control-overview.md)的学习 。
