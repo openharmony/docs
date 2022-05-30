@@ -1,7 +1,7 @@
 # Gauge
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ None
 Gauge(value:{value: number, min?: number, max?: number})
 
 - Parameter
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Current data value. |
   | min | number | No | 0 | Minimum value of the current data segment. |
