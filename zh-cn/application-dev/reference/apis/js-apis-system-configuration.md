@@ -17,7 +17,7 @@ import configuration from '@system.configuration';
 
 ## configuration.getLocale
 
-getLocale(): LocaleResponse
+static getLocale(): LocaleResponse
 
 获取应用当前的语言和地区。默认与系统的语言和地区同步。
 
