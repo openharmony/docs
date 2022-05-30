@@ -60,7 +60,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 功能描述 | 
 | -------- | -------- |
-| onChange(callback: (value: boolen) =&gt; void) | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> value的true表示显示，false表示隐藏。|  
+| onChange(callback: (value: boolean) =&gt; void) | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> value的true表示显示，false表示隐藏。|  
 
 
 ## 示例
