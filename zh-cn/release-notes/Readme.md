@@ -1,5 +1,6 @@
 # OpenHarmony Release Notes
 ## OpenHarmony 3.x Releases
+-   [OpenHarmony v3.2 Beta1 (2022-05-31)](OpenHarmony-v3.2-beta1.md)
 -   [OpenHarmony v3.1 Release (2022-03-30)](OpenHarmony-v3.1-release.md)
 -   [OpenHarmony v3.1 Beta (2021-12-31)](OpenHarmony-v3.1-beta.md)
 -   [OpenHarmony v3.0.3 LTS (2022-04-08)](OpenHarmony-v3.0.3-LTS.md)
