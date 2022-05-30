@@ -39,9 +39,10 @@ inputDevice.on("change", (data)=>{
     inputDevice.getKeyboardType(data.deviceId, (ret) => {
        console.log("The keyboard type of the device is: " + ret);
         if (ret == 2 && data.type == 'add') {
-            // 热插的是键盘。
+            // 监听物理键盘已连接。
             isPhysicalKeyboardExist = true;
         } else if (ret == 2 && data.type == 'remove') {
+            // 监听物理键盘已duan。
             isPhysicalKeyboardExist = false;
         }
     });
