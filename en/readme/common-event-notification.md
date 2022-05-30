@@ -14,7 +14,7 @@ Each application can subscribe to common events as required. After your applicat
 
 ### Architecture
 
-![](figures/cesfwk_architecture_diagram.png "CES Architecture")
+![](figures/cesfwk_architecture_diagram.png)
 
 ## Directory Structure
 
