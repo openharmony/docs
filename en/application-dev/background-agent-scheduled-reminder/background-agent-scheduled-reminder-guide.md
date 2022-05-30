@@ -8,7 +8,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **reminderAgent**  encapsulates the methods for publishing and canceling reminders.
 
-**Table  1**  Major APIs in reminderAgent
+**Table 1**  Major APIs in reminderAgent
 
 <a name="table1731550155318"></a>
 <table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="57.38999999999999%" id="mcps1.2.3.1.1"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>API</p>
@@ -59,7 +59,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ActionButtonType**  enumerates types of buttons displayed in a reminder notification.
 
-**Table  2**  ActionButtonType enumeration
+**Table 2**  ActionButtonType enumeration
 
 <a name="table8534712161513"></a>
 <table><thead align="left"><tr id="row14540181231510"><th class="cellrowborder" valign="top" width="38.190000000000005%" id="mcps1.2.3.1.1"><p id="p1454718124159"><a name="p1454718124159"></a><a name="p1454718124159"></a>Name</p>
@@ -78,7 +78,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ReminderType**  enumerates the reminder types.
 
-**Table  3**  ReminderType enumeration
+**Table 3**  ReminderType enumeration
 
 <a name="table486010552014"></a>
 <table><thead align="left"><tr id="row2866856201"><th class="cellrowborder" valign="top" width="39.06%" id="mcps1.2.3.1.1"><p id="p986695162012"><a name="p986695162012"></a><a name="p986695162012"></a>Name</p>
@@ -107,7 +107,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ActionButton**  defines a button displayed in the reminder notification.
 
-**Table  4**  ActionButton instance
+**Table 4**  ActionButton instance
 
 <a name="table880311117225"></a>
 <table><thead align="left"><tr id="row1480321118225"><th class="cellrowborder" valign="top" width="23.630000000000003%" id="mcps1.2.5.1.1"><p id="p1180321117222"><a name="p1180321117222"></a><a name="p1180321117222"></a>Name</p>
@@ -143,7 +143,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **WantAgent**  sets the package and ability that are redirected to when the reminder notification is clicked.
 
-**Table  5**  WantAgent instance
+**Table 5**  WantAgent instance
 
 <a name="table9490856350"></a>
 <table><thead align="left"><tr id="row84962056352"><th class="cellrowborder" valign="top" width="23.917608239176083%" id="mcps1.2.5.1.1"><p id="p1849612519352"><a name="p1849612519352"></a><a name="p1849612519352"></a>Name</p>
@@ -179,7 +179,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **MaxScreenWantAgent**  sets the name of the target package and ability to start automatically when the reminder arrives and the device is not in use. If the device is in use, a notification will be displayed.
 
-**Table  6**  MaxScreenWantAgent instance
+**Table 6**  MaxScreenWantAgent instance
 
 <a name="table191319843714"></a>
 <table><thead align="left"><tr id="row9131814374"><th class="cellrowborder" valign="top" width="24.44%" id="mcps1.2.5.1.1"><p id="p0131810372"><a name="p0131810372"></a><a name="p0131810372"></a>Name</p>
@@ -215,7 +215,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 **ReminderRequest**  defines the reminder to publish.
 
-**Table  7**  ReminderRequest instance
+**Table 7**  ReminderRequest instance
 
 <a name="table121851239193814"></a>
 <table><thead align="left"><tr id="row1019153914389"><th class="cellrowborder" valign="top" width="24.94%" id="mcps1.2.5.1.1"><p id="p712019463387"><a name="p712019463387"></a><a name="p712019463387"></a>Name</p>
@@ -342,7 +342,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.2.5.1.3 "><p id="p41151626144814"><a name="p41151626144814"></a><a name="p41151626144814"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.480000000000004%" headers="mcps1.2.5.1.4 "><p id="p193705238459"><a name="p193705238459"></a><a name="p193705238459"></a>Type of the slot used by the reminder</p>
+<td class="cellrowborder" valign="top" width="50.480000000000004%" headers="mcps1.2.5.1.4 "><p id="p193705238459"><a name="p193705238459"></a><a name="p193705238459"></a>Type of the slot used by the reminder.</p>
 </td>
 </tr>
 </tbody>
@@ -352,7 +352,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 
 For the application to run properly, if both **repeatMonths** and **repeatDays** are not specified, the earliest reminder time must be later than the current time.
 
-**Table  8**  ReminderRequestCalendar instance
+**Table 8**  ReminderRequestCalendar instance
 
 <a name="table19307315135210"></a>
 
@@ -398,7 +398,7 @@ For the application to run properly, if both **repeatMonths** and **repeatDays**
 
 **ReminderRequestAlarm**  extends  **ReminderRequest**  and defines a reminder for the alarm clock.
 
-**Table  9**  ReminderRequestAlarm instance
+**Table 9**  ReminderRequestAlarm instance
 
 <a name="table187631616124414"></a>
 <table><thead align="left"><tr id="row87697166445"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p6561172104414"><a name="p6561172104414"></a><a name="p6561172104414"></a>Name</p>
@@ -443,7 +443,7 @@ For the application to run properly, if both **repeatMonths** and **repeatDays**
 
 **ReminderRequestTimer**  extends  **ReminderRequest**  and defines a reminder for a scheduled timer.
 
-**Table  10**  ReminderRequestTimer instance
+**Table 10**  ReminderRequestTimer instance
 
 <a name="table7213172015507"></a>
 <table><thead align="left"><tr id="row72131520155017"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p6603124145017"><a name="p6603124145017"></a><a name="p6603124145017"></a>Name</p>
@@ -470,7 +470,7 @@ For the application to run properly, if both **repeatMonths** and **repeatDays**
 
 **LocalDateTime**  defines a  **LocalDateTime**  instance.
 
-**Table  11**  LocalDateTime instance
+**Table 11**  LocalDateTime instance
 
 <a name="table16133167515"></a>
 <table><thead align="left"><tr id="row161321615517"><th class="cellrowborder" valign="top" width="25%" id="mcps1.2.5.1.1"><p id="p5894111825115"><a name="p5894111825115"></a><a name="p5894111825115"></a>Name</p>
@@ -542,7 +542,7 @@ For the application to run properly, if both **repeatMonths** and **repeatDays**
 
 ## How to Develop<a name="section4207112818418"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:**
+>**NOTE**<br>
 >To publish a reminder, your application needs to apply for the  **ohos.permission.PUBLISH\_AGENT\_REMINDER**  permission.
 
 Publish a 10-second countdown reminder.
@@ -593,7 +593,7 @@ Publish a 10-second countdown reminder.
     }
     ```
 
-    HTML page code:
+    HML page code:
 
     ```
     <div class="container">
