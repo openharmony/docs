@@ -145,6 +145,9 @@
 
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
+  - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
+  - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
+  - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
   - [@ohos.wifi (WLAN)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN)](js-apis-wifiext.md)
