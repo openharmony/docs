@@ -70,7 +70,7 @@ Before using the Docker environment, perform the following operations:
 1.  Install Docker. For details, see  [Install Docker Engine](https://docs.docker.com/engine/install/).
 2.  Obtain the OpenHarmony source code. For details, see  [Source Code Acquisition](sourcecode-acquire.md).
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](../public_sys-resources/icon-note.gif) **NOTE**<br>
     >You do not need to obtain the source code for the HPM-based Docker environment.
 
 
@@ -114,7 +114,7 @@ hb set
 **Figure  1**  Setting page<a name="fig7947145854013"></a>  
 ![](figure/setting-page.png "setting-page")
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >The mapping between the development board and the building GUI:
 >
 >-   Hi3861: wifiiot\_hispark\_pegasus@hisilicon
@@ -161,7 +161,7 @@ Run the following script to start building for standard-system devices \(referen
 Files generated during building are stored in the  **out/{device_name}/**  directory, and the generated image is stored in the  **out/{device_name}/packages/phone/images/**  directory.
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >You can exit Docker by simply running the  **exit**  command.
 
 ## HPM-based Docker Environment<a name="section485713518337"></a>
