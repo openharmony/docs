@@ -6,7 +6,6 @@
 在完成Hi3516DV300的烧录后，还需要设置BootLoader引导程序，才能运行OpenHarmony系统。
 
 1. 在Hi3516DV300任务中，点击Configure bootloader（Boot OS）进行配置即可。
-
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > DevEco Device Tool针对Hi3516DV300开发板的BootLoader设置进行了适配，无需开发者手动修改。
 

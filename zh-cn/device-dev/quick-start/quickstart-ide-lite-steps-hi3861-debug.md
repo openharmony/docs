@@ -59,7 +59,6 @@ Call Stack end***
    ```
 
 3. 根据以上调用栈信息，可以定位WadRecvCB函数中出现了异常。
-
    ![zh-cn_image_0000001226634668](figures/zh-cn_image_0000001226634668.png)
 
 4. 完成代码排查及修改。

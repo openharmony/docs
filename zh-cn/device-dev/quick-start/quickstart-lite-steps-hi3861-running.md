@@ -16,4 +16,4 @@ wifi init success!
 
 ## 下一步学习
 
-恭喜，您已完成Hi3861 WLAN模组快速上手！建议您下一步进入[WLAN产品开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/guide/device-wlan.md)的学习 。
+恭喜，您已完成Hi3861 WLAN模组快速上手！建议您下一步进入[WLAN产品开发](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/guide/device-wlan.md)的学习  。
