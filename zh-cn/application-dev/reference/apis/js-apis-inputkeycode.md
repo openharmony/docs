@@ -327,7 +327,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_SPORT | number | 是 | 否 | 运动按键 |
 | KEYCODE_SHOP | number | 是 | 否 | 商城键 |
 | KEYCODE_ALTERASE | number | 是 | 否 | 交替键 |
-| KEYCODE_SWITCHVIDEOMODE | number | 是 | 在可用视频之间循环输出（监视器/LCD/TV输出/等）|
+| KEYCODE_SWITCHVIDEOMODE | number | 是 | 否 | 在可用视频之间循环输出（监视器/LCD/TV输出/等）|
 | KEYCODE_BATTERY | number | 是 | 否 | 电池按键 |
 | KEYCODE_BLUETOOTH | number | 是 | 否 | 蓝牙按键 |
 | KEYCODE_WLAN | number | 是 | 否 | 无线局域网 |
