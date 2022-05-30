@@ -82,7 +82,7 @@
     ```c++
     FILE *wavFile_ = nullptr;
     
-    static void BuqqerQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
+    static void BufferQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
     {
         FILE *wavFile = (FILE *)pContext;
         if (!feof(wavFile)) {
@@ -98,7 +98,7 @@
     
     //wavFile_ 需要设置为用户想要播放的文件描述符
     wavFile_ = fopen(path, "rb");
-    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BuqqerQueueCallback, wavFile_);
+    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
     
