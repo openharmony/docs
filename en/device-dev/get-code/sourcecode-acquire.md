@@ -54,7 +54,7 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 ### How to Use<a name="section429012478331"></a>
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 -   **Obtaining OpenHarmony master code**
@@ -301,7 +301,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.2 "><p id="p146331255172318"><a name="p146331255172318"></a><a name="p146331255172318"></a>3.1 Release</p>
 </td>
-<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/tree/OpenHarmony-3.1-Release/zh-cn/release-notes/OpenHarmony-v3.1-Release.md" target="_blank" rel="noopener noreferrer">Download</a></p>
+<td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.3 "><p id="p18800131862419"><a name="p18800131862419"></a><a name="p18800131862419"></a><a href="https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v3.1-release.md" target="_blank" rel="noopener noreferrer">Download</a></p>
 </td>
 <td class="cellrowborder" valign="top" width="25%" headers="mcps1.2.5.1.4 "><p id="p8633855132314"><a name="p8633855132314"></a><a name="p8633855132314"></a>-</p>
 </td>
@@ -329,7 +329,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
->![](../public_sys-resources/icon-note.gif) **NOTE**
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
