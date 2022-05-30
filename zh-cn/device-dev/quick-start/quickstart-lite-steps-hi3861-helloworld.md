@@ -39,7 +39,7 @@
 3. 编写用于将业务构建成静态库的BUILD.gn文件。
    新建./applications/sample/wifi-iot/app/my_first_app下的BUILD.gn文件，并完成如下配置。
 
-   如[ERROR:Invalid link:zh-cn_topic_0000001226794672.xml#xref7209204195912,link:#li5479332115116](#li5479332115116)所述，BUILD.gn文件由三部分内容（目标、源文件、头文件路径）构成，需由开发者完成填写。
+   如步骤1所述，BUILD.gn文件由三部分内容（目标、源文件、头文件路径）构成，需由开发者完成填写。
 
      
    ```
