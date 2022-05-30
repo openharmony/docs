@@ -28,4 +28,4 @@
 
    ![zh-cn_image_0000001222361042](figures/zh-cn_image_0000001222361042.png)
 
-   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[RK3568开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-rk3568-upload-0000001239220669)。
+   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[RK3568开发板烧录](quickstart-standard-running-rk3568-burning.md)。

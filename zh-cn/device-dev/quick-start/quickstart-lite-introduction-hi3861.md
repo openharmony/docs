@@ -5,14 +5,14 @@
 
 Hi3861开发板是一片大约2cm\*5cm大小的开发板，是一款高度集成的2.4GHz WLAN SoC芯片，集成IEEE 802.11b/g/n基带和RF（Radio Frequency）电路。支持OpenHarmony，并配套提供开放、易用的开发和调试运行环境。
 
-  **图1** Hi3861开发板外观图
+  **图1** Hi3861开发板外观图  
 
   ![zh-cn_image_0000001271474569](figures/zh-cn_image_0000001271474569.png)
 
 另外，Hi3861开发板还可以通过与Hi3861底板连接，扩充自身的外设能力，底板如下图所示。
 
-  **图2** Hi3861底板外观图
-  
+  **图2** Hi3861底板外观图  
+
 ![zh-cn_image_0000001226954632](figures/zh-cn_image_0000001226954632.png)
 
 - RF电路包括功率放大器PA（Power Amplifier）、低噪声放大器LNA（Low Noise Amplifier）、RF Balun、天线开关以及电源管理等模块；支持20MHz标准带宽和5MHz/10MHz窄带宽，提供最大72.2Mbit/s物理层速率。
@@ -23,9 +23,9 @@ Hi3861开发板是一片大约2cm\*5cm大小的开发板，是一款高度集成
 
 - Hi3861芯片适用于智能家电等物联网智能终端领域。
 
-    **图3** Hi3861功能框图
-    
-  ![zh-cn_image_0000001226794688](figures/zh-cn_image_0000001226794688.png)
+  **图3** Hi3861功能框图  
+
+![zh-cn_image_0000001226794688](figures/zh-cn_image_0000001226794688.png)
 
 
 ## 资源和约束
@@ -39,7 +39,7 @@ Hi3861开发板资源十分有限，整板共2MB FLASH，352KB RAM。在编写�
 
 | 规格类型 | 规格清单 | 
 | -------- | -------- |
-| 通用规格 | -&nbsp;1×1&nbsp;2.4GHz频段（ch1～ch14）<br/>-&nbsp;PHY支持IEEE&nbsp;802.11b/g/n<br/>-&nbsp;MAC支持IEEE802.11&nbsp;d/e/h/i/k/v/w<br/>-&nbsp;内置PA和LNA，集成TX/RX&nbsp;Switch、Balun等<br/>-&nbsp;支持STA和AP形态，作为AP时最大支持6&nbsp;个STA接入<br/>-&nbsp;支持WFA&nbsp;WPA/WPA2&nbsp;personal、WPS2.0<br/>-&nbsp;支持与BT/BLE芯片共存的2/3/4&nbsp;线PTA方案<br/>-&nbsp;电源电压输入范围：2.3V～3.6V<br/>-&nbsp;IO电源电压支持1.8V和3.3V<br/>-&nbsp;支持RF自校准方案<br/>-&nbsp;低功耗：<br/>&nbsp;&nbsp;-&nbsp;Ultra&nbsp;Deep&nbsp;Sleep模式：5μA \@3.3V<br/>&nbsp;&nbsp;-&nbsp;DTIM1：1.5mA \@3.3V<br/>&nbsp;&nbsp;-&nbsp;DTIM3：0.8mA \@3.3V | 
+| 通用规格 | -&nbsp;1×1&nbsp;2.4GHz频段（ch1～ch14）<br/>-&nbsp;PHY支持IEEE&nbsp;802.11b/g/n<br/>-&nbsp;MAC支持IEEE802.11&nbsp;d/e/h/i/k/v/w<br/>-&nbsp;内置PA和LNA，集成TX/RX&nbsp;Switch、Balun等<br/>-&nbsp;支持STA和AP形态，作为AP时最大支持6&nbsp;个STA接入<br/>-&nbsp;支持WFA&nbsp;WPA/WPA2&nbsp;personal、WPS2.0<br/>-&nbsp;支持与BT/BLE芯片共存的2/3/4&nbsp;线PTA方案<br/>-&nbsp;电源电压输入范围：2.3V～3.6V<br/>-&nbsp;IO电源电压支持1.8V和3.3V<br/>-&nbsp;支持RF自校准方案<br/>-&nbsp;低功耗：<br/>&nbsp;&nbsp;-&nbsp;Ultra&nbsp;Deep&nbsp;Sleep模式：5μA&nbsp;\@3.3V<br/>&nbsp;&nbsp;-&nbsp;DTIM1：1.5mA&nbsp;\@3.3V<br/>&nbsp;&nbsp;-&nbsp;DTIM3：0.8mA&nbsp;\@3.3V | 
 | PHY特性 | -&nbsp;支持IEEE802.11b/g/n单天线所有的数据速率<br/>-&nbsp;支持最大速率：72.2Mbps\@HT20&nbsp;MCS7<br/>-&nbsp;支持标准20MHz带宽和5M/10M窄带宽<br/>-&nbsp;支持STBC<br/>-&nbsp;支持Short-GI | 
 | MAC特性 | -&nbsp;支持A-MPDU，A-MSDU<br/>-&nbsp;支持Blk-ACK<br/>-&nbsp;支持QoS，满足不同业务服务质量需求 | 
 | CPU子系统 | -&nbsp;高性能&nbsp;32bit微处理器，最大工作频率160MHz<br/>-&nbsp;内嵌SRAM&nbsp;352KB、ROM&nbsp;288KB<br/>-&nbsp;内嵌&nbsp;2MB&nbsp;Flash | 

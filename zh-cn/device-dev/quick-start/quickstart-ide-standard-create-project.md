@@ -1,12 +1,12 @@
-# 创建源码工程
+# 导入源码工程
 
 
-在完成[搭建Windows+Ubuntu混合开发环境](../quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)和[获取源码](../quick-start/quickstart-ide-standard-sourcecode-acquire.md)后，您需要在Windows环境中按照如下步骤创建源码工程。
+在完成[搭建Windows+Ubuntu混合开发环境](../quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)和[获取源码](../quick-start/quickstart-ide-standard-sourcecode-acquire.md)后，您需要在Windows环境中按照如下步骤导入源码工程，之后方可在DevEco Device Tool中进行后续的操作。
 
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
-   ![zh-cn_image_0000001171426014](figures/zh-cn_image_0000001171426014.png)
+   ![zh-cn_image_0000001278358765](figures/zh-cn_image_0000001278358765.png)
 
 2. 选择要导入的源码目录，点击**Import**打开。
 
@@ -15,9 +15,9 @@
 
    ![zh-cn_image_0000001271562277](figures/zh-cn_image_0000001271562277.png)
 
-3. 如果您打开的目录不是DevEco Device Tool工程，则会出现如下提示框，点击**Import**。
+3. 首次导入时，会出现如下提示框，点击**Import**。
 
-   ![zh-cn_image_0000001135394334](figures/zh-cn_image_0000001135394334.png)
+   ![zh-cn_image_0000001314277321](figures/zh-cn_image_0000001314277321.png)
 
 4. 在Select Project type界面，选择**Import from OpenHarmony Source**。
 
@@ -28,8 +28,6 @@
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > - Hi3516DV300开发板Product选择“Hi3516DV300”。
    > 
-   > - Hi3751V350开发板Product选择“Hi3751V350”。
-   >
    > - RK3568开发板Product选择“rk3568”。
 
    ![zh-cn_image_0000001271448821](figures/zh-cn_image_0000001271448821.png)

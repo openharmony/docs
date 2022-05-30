@@ -19,9 +19,9 @@ applications/sample/hello
 ├── bundle.json
 build
 └── subsystem_config.json
-vendor/hisilicon
-└── Hi3516DV300
-    └── config.json
+productdefine/common
+└── products
+    └── Hi3516DV300.json
 ```
 
 
@@ -31,7 +31,6 @@ vendor/hisilicon
 
 
 1. 创建目录，编写业务代码。
-
    新建applications/sample/hello/src/helloworld.c目录及文件，代码如下所示，用户可以自定义修改打印内容（例如：修改World为OHOS）。其中helloworld.h包含字符串打印函数HelloPrint的声明。当前应用程序可支持标准C及C++的代码开发。
 
      
@@ -76,7 +75,6 @@ vendor/hisilicon
    ```
 
 2. 新建编译组织文件。
-
    1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示：
          
        ```
@@ -138,7 +136,6 @@ vendor/hisilicon
        bundle.json文件包含两个部分，第一部分描述该部件所属子系统的信息，第二部分component则定义该部件构建相关配置。添加的时候需要指明该部件包含的模块sub_component，假如有提供给其它部件的接口，需要在inner_kits中说明，假如有测试用例，需要在test中说明，inner_kits与test没有也可以不添加。
 
 3. 修改子系统配置文件。
-
    在build/subsystem_config.json中添加新建的子系统的配置。
 
      
@@ -150,8 +147,7 @@ vendor/hisilicon
    ```
 
 4. 修改产品配置文件。
-
-   在vendor\hisilicon\Hi3516DV300\config.json中添加对应的hello部件，直接添加到原有部件后即可。
+   在productdefine\common\products\Hi3516DV300.json中添加对应的hello部件，直接添加到原有部件后即可。
 
      
    ```
