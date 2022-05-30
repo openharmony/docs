@@ -48,9 +48,9 @@
     - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
     - 接口
-      -   [JS（含eTS） API参考](reference/apis/Readme-CN.md)
+      -   [JS及TS API参考](reference/apis/Readme-CN.md)
       -   Native API
-          -   [OpenHarmony Native API](reference/native-apis/Readme-CN.md)
+          -   [Native API参考](reference/native-apis/Readme-CN.md)
           -   [标准库](reference/native-lib/third_party_libc/musl.md)
           -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - 贡献
