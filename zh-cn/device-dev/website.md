@@ -151,7 +151,7 @@
 
           - Hi3516开发板
 
-              - [编写“Hello World”程序](quick-start/quickstart-standard-running-hi3516-create.md)
+              - [编写“Hello World”程序](quick-start/quickstart-std-3516-create.md)
 
               - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
 
