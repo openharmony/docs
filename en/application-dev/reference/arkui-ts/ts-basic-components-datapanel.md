@@ -1,7 +1,7 @@
 # DataPanel
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ None
 DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | values | number[] | Yes | - | Value list. A maximum of nine values are supported. | 
   | max | number | No | 100 | - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br/>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion. | 
@@ -31,7 +31,7 @@ DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
 
 
 - DataPanelType enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Line | Line data panel. | 
   | Circle | Circle data panel. |
