@@ -10,8 +10,7 @@
 
 2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
 
-3. 安装git客户端和git-lfs。
-
+3. 安装git客户端和git-lfs。（上述工具已在搭建环境章节安装。如已安装，请忽略）
      更新软件源：
      
    ```
@@ -48,7 +47,7 @@
 
 - **OpenHarmony主干代码获取**
 
-    方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+  方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
     
   ```
   repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
@@ -66,11 +65,10 @@
   ```
 
 - **OpenHarmony发布分支代码获取**
-
   OpenHarmony各个版本发布分支的源码获取方式请参考[Release-Notes](../../release-notes/Readme.md)。
 
 
-## 执行prebuilts
+### 执行prebuilts
 
   在源码根目录下执行prebuilts脚本，安装编译器及二进制工具。
   

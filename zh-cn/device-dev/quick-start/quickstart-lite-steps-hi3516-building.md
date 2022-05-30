@@ -1,7 +1,7 @@
 # 编译
 
 
-OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-lite-reference.md)。
+OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-lite-reference.md#使用buildsh脚本编译源码)。
 
 
 请进入源码根目录，执行如下命令进行编译：
@@ -21,6 +21,10 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
 3. 在hisilicon下选择ipcamera_hispark_taurus并回车。
 
+     **图1** Hi3516编译设置图例  
+
+   ![zh-cn_image_0000001317198053](figures/zh-cn_image_0000001317198053.png)
+
 4. 执行编译。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -37,12 +41,8 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    hb build -f
    ```
 
-     
-     **图1** Hi3516编译设置图例
+5. 编译结束后，出现“build success”字样，则证明构建成功。
 
-     ![zh-cn_image_0000001271594749](figures/zh-cn_image_0000001271594749.png)
-
-5. 编译结束后，出现“build success”字样，说明构建成功。
    > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
    > 烧录相关文件获取路径：
    > 

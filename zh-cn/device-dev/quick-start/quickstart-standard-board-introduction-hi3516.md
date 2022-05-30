@@ -5,9 +5,9 @@
 
 Hi3516DV300作为新一代行业专用Smart HD IP摄像机SOC，集成新一代ISP（Image Signal Processor）、H.265视频压缩编码器以及高性能NNIE引擎，具备低码率、高画质、低功耗等特点，并具备强劲的智能处理和分析能力。
 
-  **图1** Hi3516单板正面外观图
+  **图1** Hi3516单板正面外观图  
 
-  ![zh-cn_image_0000001226922318](figures/zh-cn_image_0000001226922318.png)
+![zh-cn_image_0000001226922318](figures/zh-cn_image_0000001226922318.png)
 
 
 ## 开发板规格
