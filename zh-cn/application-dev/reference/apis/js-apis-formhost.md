@@ -823,9 +823,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want, (error, data) => {
       if (error.code) {
@@ -862,9 +867,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want).then((data) => {
       console.log('formHost acquireFormState, data:' + JSON.stringify(data));
