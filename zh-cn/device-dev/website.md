@@ -663,7 +663,7 @@
 
   - [环境搭建常见问题](faqs/faqs-environment-setup.md)
 
-  - [编译构建子系统常见问题](faqs/faqs-building.md)
+  - [编译构建常见问题](faqs/faqs-building.md)
 
   - [烧录常见问题](faqs/faqs-burning.md)
 
