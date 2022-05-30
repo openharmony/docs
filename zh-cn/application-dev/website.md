@@ -299,8 +299,8 @@
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - Native API的相关指导
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-      - [drawing开发指导](napi/drawing-guidelines.md)
-      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [Rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -558,7 +558,7 @@
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
-  - 接口参考（JS及eTS API参考）
+  - 接口参考（JS及TS API参考）
     - Ability框架
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
