@@ -1,10 +1,10 @@
-# rawfile开发指导
+# Rawfile开发指导
 
  
 
 ## 场景介绍
 
-开发者可以通过本指导了解在OpenHarmony应用中，如何使用rawfile native接口操作rawfile目录和文件。功能包括遍历、打开、搜索、读取和关闭rawfile。
+开发者可以通过本指导了解在OpenHarmony应用中，如何使用Rawfile Native接口操作Rawfile目录和文件。功能包括遍历、打开、搜索、读取和关闭Rawfile。
 
 ## 接口说明
 
