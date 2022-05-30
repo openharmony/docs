@@ -47,7 +47,7 @@
     - 接口
       - [JS及TS API参考](reference/apis/Readme-CN.md)
       - Native API
-        -   [OpenHarmony Native API](reference/native-apis/Readme-CN.md)
+        -   [Native API参考](reference/native-apis/Readme-CN.md)
         -   [标准库](reference/native-lib/third_party_libc/musl.md)
         -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - 贡献
