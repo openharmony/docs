@@ -12,7 +12,7 @@ import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions): Promise\<PixelMap>
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 通过属性创建PixelMap，通过Promise返回结果。
 
@@ -41,7 +41,7 @@ image.createPixelMap(Color, opts)
 
 ## image.createPixelMap<sup>8+</sup>
 
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions, callback: AsyncCallback\<PixelMap>): void
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过属性创建PixelMap，通过回调函数返回结果。
 
@@ -801,7 +801,7 @@ const imagePackerApi = image.createImagePacker();
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<ArrayBuffer>>): void
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
 图片压缩或重新打包，使用callback形式返回结果。
 
@@ -813,7 +813,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Arra
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
 | option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                     |
-| callback | AsyncCallback<Array\<ArrayBuffer>> | 是   | 获取图片打包回调，返回打包后数据。 |
+| callback | AsyncCallback\<ArrayBuffer> | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
 
@@ -824,7 +824,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -841,7 +841,7 @@ packing(source: ImageSource, option: PackingOption): Promise<Array\<ArrayBuffer>
 
 | 类型                         | 说明                                          |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -852,7 +852,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 	.catch(error => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
@@ -875,9 +875,9 @@ let packOpts = { format:["image/jpeg"], quality:98 }
 imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
-packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -894,7 +894,7 @@ packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
 
 | 类型                         | 说明                                          |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -957,7 +957,7 @@ release(): Promise\<void>
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
 | stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                     |
-| region | [Region](#region8) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
+| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
 
 ## ImageInfo
 

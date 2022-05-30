@@ -1841,19 +1841,13 @@ promise.then(function (value) {
 
 提供音频渲染的相关接口。在调用AudioRenderer的接口前，需要先通过[createAudioRenderer](#audiocreateaudiorenderer8)创建实例。
 
+### 属性
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-### state<sup>8+</sup>
-
-只读 state: AudioState 
-
-定义当前渲染器的状态。
-
-**参数：**
 
 | 名称  | 参数型                     | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
+| state<sup>8+</sup> | [AudioState](#audiostate8) | 是   | 否   | 音频渲染器的状态。 |
 
 **示例：**
 
@@ -2656,17 +2650,13 @@ audioRenderer.on('stateChange', (state) => {
 
 提供音频采集的相关接口。在调用AudioCapturer的接口前，需要先通过[createAudioCapturer](#audiocreateaudiocapturer8)创建实例。
 
-### state<sup>8+</sup>
-
-只读 state: AudioState
-
-定义当前采集器状态。
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 | 名称  | 参数型                     | 可读 | 可写 | 说明             |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
-| state | [AudioState](#audiostate8) | Yes  | No   | 音频采集器状态。 |
+| state<sup>8+</sup> | [AudioState](#audiostate8) | 是  | 否   | 音频采集器状态。 |
 
 **示例：**
 
