@@ -157,7 +157,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
   ```js
   this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"},
+      {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"},
       (error, result) => {
           console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
           console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
@@ -189,7 +189,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
     windowMode: 0,
   };
   this.context.startAbilityForResult(
-      {deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options,
+      {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options,
       (error, result) => {
           console.log("startAbilityForResult AsyncCallback is called, error.code = " + error.code)
           console.log("startAbilityForResult AsyncCallback is called, result.resultCode = " + result.resultCode)
@@ -226,7 +226,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
   var options = {
     windowMode: 0,
   };
-  this.context.startAbilityForResult({deviceId: "", bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options).then((result) => {
+  this.context.startAbilityForResult({bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo2"}, options).then((result) => {
       console.log("startAbilityForResult Promise.resolve is called, result.resultCode = " + result.resultCode)
   }, (error) => {
       console.log("startAbilityForResult Promise.Reject is called, error.code = " + error.code)
