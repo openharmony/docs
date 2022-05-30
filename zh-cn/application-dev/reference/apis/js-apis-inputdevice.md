@@ -33,9 +33,19 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 **示例：** 
 
 ```js
+let isPhysicalKeyboardExist = false;
 inputDevice.on("change", (data)=>{
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
-});
+    inputDevice.getKeyboardType(data.deviceId, (ret) => {
+       console.log("The keyboard type of the device is: " + ret);
+        if (ret == 2 && data.type == 'add') {
+            // 热插的是键盘。
+            isPhysicalKeyboardExist = true;
+        } else if (ret == 2 && data.type == 'remove') {
+            isPhysicalKeyboardExist = false;
+        }
+    });
+}); // 根据isPhysicalKeyboardExist的值决定ruan'jian'pan
 ```
 
 ## inputDevice.off<sup>9+</sup>
