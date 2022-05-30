@@ -30,9 +30,11 @@ constructor(initializingProperties?: Object)
 
 创建一个新的LocalStorage对象，对对象进行初始化。
 
-| 参数名                 | 类型   | 返回值 | 必填 | 参数描述                                                     |
-| ---------------------- | ------ | ------ | :--: | ------------------------------------------------------------ |
-| initializingProperties | Object | N/A    |  否  | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
+| 参数名                 | 类型   | 返回值 | 必填 | 默认值 | 参数描述                                                     |
+| ---------------------- | ------ | ------ | :--: | ------ | ------------------------------------------------------------ |
+| initializingProperties | Object | N/A    |  否  | -      | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
+
+
 
 ### Has
 
@@ -62,9 +64,9 @@ get<T>(propName: string): T
 
 #### 参数：
 
-| 参数名   | 类型   | 必填 | 默认值 | 参数描述          |
-| -------- | ------ | :--: | ------ | ----------------- |
-| propName | string |  是  | -      | 传入对应的key值。 |
+| 参数名   | 类型   | 必填 | 默认值 | 参数描述            |
+| -------- | ------ | :--: | ------ | ------------------- |
+| propName | string |  是  | -      | 要获取对应的key值。 |
 
 #### 返回值：
 
@@ -72,11 +74,13 @@ get<T>(propName: string): T
 | -------------- | ------------------ |
 | T or undefined | 返回获得后的结果。 |
 
+
+
 ### Set
 
  set<T>(propName: string, newValue: T): boolean
 
-存储value值。
+存储对象值。
 
 #### 参数：
 
@@ -91,11 +95,13 @@ get<T>(propName: string): T
 | ------- | ----------------------------------------------------- |
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
+
+
 ### SetOrCreate
 
  setOrCreate<T>(propName: string, newValue: T): boolean
 
-创建或更新setOrCreate内部的值
+创建或更新setOrCreate内部的值。
 
 #### 参数：
 
@@ -109,6 +115,8 @@ get<T>(propName: string): T
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined or null 返回true。 |
+
+
 
 ### Link
 
@@ -127,6 +135,8 @@ get<T>(propName: string): T
 | 类型 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
 | T    | 如果存在具有给定键的属性，返回到此属性的双向绑定，该双向绑定意味着变量或者组件对数据的更改将同步到LocalStorage，然后通过LocalStorage实例同步到任何变量或组件。如果不存在给定键的属性，返回undefined。 |
+
+
 
 ### SetAndLink
 
@@ -149,6 +159,8 @@ get<T>(propName: string): T
 
  注：Link接口链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-states-link.md
 
+
+
 ### Prop
 
 prop<T>(propName: string, propUser?: T, subscribersName?: string): T
@@ -166,6 +178,8 @@ prop<T>(propName: string, propUser?: T, subscribersName?: string): T
 | 类型  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
 | @Prop | 如果存在具有给定键的属性，返回此属性的单向数据绑定。该单向绑定意味着只能通过LocalStorage将属性的更改同步到变量或组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态变量。如果此键的属性不存在则返回undefined。 |
+
+
 
 ### SetAndProp
 
@@ -186,9 +200,9 @@ setAndProp<T>(propName: string, defaultValue: T, propUser?: T, subscribersName?:
 | ----- | ------------------------------------------------------------ |
 | @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
-
-
 注：Prop接口链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-states-prop.md
+
+
 
 ### Delete
 
@@ -208,6 +222,8 @@ delete(propName: string): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
 
+
+
 ### Keys
 
 keys(): IterableIterator<string>
@@ -226,6 +242,8 @@ keys(): IterableIterator<string>
 | ------------- | ---------------------------- |
 | array<string> | 返回包含所有键的字符串数组。 |
 
+
+
 ### Size
 
 size(): number
@@ -243,6 +261,8 @@ size(): number
 | 类型   | 描述                   |
 | ------ | ---------------------- |
 | number | 与Map.size()用法相同。 |
+
+
 
 ### Clear
 
