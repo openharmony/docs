@@ -55,7 +55,7 @@ controller: SearchController = new SearchController()
 ```
 #### caretPosition
 
-creatPosition(value: number): viod
+creatPosition(value: number): void
 
 设置输入光标的位置。
 
