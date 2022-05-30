@@ -302,7 +302,7 @@ static int32_t TestCaseGpioIrqEdge(void)
     ret = GpioEnableIrq(gpio);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: enable irq fail! ret:%d\n", __func__, ret);
-        (void)GpioUnSetIrq(gpio);
+        (void)GpioUnsetIrq(gpio, NULL);
         return ret;
     }
 
