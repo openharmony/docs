@@ -6,7 +6,7 @@ hiTraceMeter是开发者用于追踪进程轨迹，度量程序执行性能的�
 
 - **hiTraceMeter Tag**
 
-  跟踪数据使用类别分类，称作hiTraceMeter Tag或hiTraceMeter Category，一般每个软件子系统对应一个Tag，该Tag在打点API中以类别TAg参数传入。hiTraceMeter命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。
+  跟踪数据使用类别分类，称作hiTraceMeter Tag或hiTraceMeter Category，一般每个软件子系统对应一个Tag，该Tag在打点API中以类别Tag参数传入。hiTraceMeter命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。
 
 ## 运作机制
 
