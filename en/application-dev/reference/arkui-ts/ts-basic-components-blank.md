@@ -1,7 +1,7 @@
 # Blank
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -34,8 +34,8 @@ Blank(min?:  Length)
 | -------- | -------- | -------- | -------- |
 | color | Color | 0x00000000 | Color to fill the blank. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - Universal attribute methods are not supported.
+> **NOTE**<br>
+> Universal attribute methods are not supported.
 
 
 ## Example
