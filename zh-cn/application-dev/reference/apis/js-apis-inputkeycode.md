@@ -345,7 +345,3 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_BTN_7 | number | 是 | 否 | 按键7 |
 | KEYCODE_BTN_8 | number | 是 | 否 | 按键8 |
 | KEYCODE_BTN_9 | number | 是 | 否 | 按键9 |
-
-
-
-
