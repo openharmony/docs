@@ -1,6 +1,6 @@
 # Preferences
 
-Preferences provide capabilities for processing data in the form of key-value (KV) pairs and supports lightweight data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type.
+Preferences provide capabilities for processing data in the form of key-value (KV) pairs and support lightweight data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
 > **NOTE**<br/>
@@ -19,8 +19,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | Yes| No| Maximum length of a key. It is 80 bytes.|
-| MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It is 8192 bytes.|
+| MAX_KEY_LENGTH | string | Yes| No| Maximum length of a key. It must be less than 80 bytes.|
+| MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It must be less than 8192 bytes.|
 
 
 ## data_preferences.getPreferences
@@ -262,6 +262,56 @@ promise.then((value) => {
 })
 ```
 
+### getAll
+
+getAll(callback: AsyncCallback&lt;Object&gt;): void;
+
+Obtains the **Object** instance that contains all values.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+Parameters
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the **Object** instance that contains all values.|
+
+**Example**
+```ts
+preferences.get.getAll(function (err, value) {
+    if (err) {
+        console.info("getAll failed, err: " + err)
+        return
+    }
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+});
+```
+
+### getAll
+
+getAll(): Promise&lt;Object&gt;
+
+Obtains the **Object** instance that contains all values.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Return value**
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;Object&gt; | Promise used to return the **Object** instance that contains all values.|
+
+**Example**
+```ts
+let promise = preferences.getAll()
+promise.then((value) => {
+    let keys = Object.keys(value)
+    console.info('getAll keys = ' + keys)
+    console.info("getAll object = " + JSON.stringify(value))
+}).catch((err) => {
+    console.info("getAll failed, err: " + err)
+})
+```
 
 ### put
 
@@ -288,7 +338,6 @@ preferences.put('startup', 'auto', function (err) {
     console.info("Put the value of startup successfully.")
 })
 ```
-
 
 ### put
 
@@ -322,7 +371,7 @@ promise.then(() => {
 
 ### has
 
-has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
+has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this **Preferences** instance contains data with a given key. This API uses an asynchronous callback to return the result.
 
@@ -332,12 +381,8 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data to check. It cannot be empty.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
 
-**Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the **Preferences** instance contains data with the specified key; returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -371,7 +416,7 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -550,10 +595,10 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
+  | Name| Type|Mandatory| Description|
+  | -------- | -------- | -------- |-------- |
+  | type | string | Yes| Event type. The value **change** indicates data change events.|
+  | callback | Callback&lt;{ key : string }&gt; | Yes| Callback used to return data changes.|
 
 **Example**
 ```ts
@@ -584,17 +629,17 @@ preferences.put('startup', 'auto', function (err) {
 
 ### off('change')
 
-off(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
+off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;{ key : string }&gt; | Callback used to return data changes.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- |-------- |
+  | type | string| Yes| Event type. The value **change** indicates data change events.|
+  | callback | Callback&lt;{ key : string }&gt; | No| Callback used to return data changes. If this parameter is left empty, all callbacks for data changes will be canceled.|
 
 **Example**
 ```ts

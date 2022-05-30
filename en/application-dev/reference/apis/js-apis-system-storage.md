@@ -68,7 +68,7 @@ Sets the value in the cache based on the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the data to set.|
-| value | string | Yes| New value to set. The maximum length is 128 bytes.|
+| value | string | Yes| New value to set. The length must be less than 128 bytes.|
 | success | Function | No| Called when **storage.set()** is successful.|
 | fail | Function | No| Called when **storage.set()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
 | complete | Function | No| Called when **storage.set()** is complete.|
