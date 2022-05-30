@@ -77,7 +77,7 @@
     - [搭建标准系统环境](quick-start/quickstart-standard-env-setup.md)
     - 运行“Hello World”
         - Hi3516开发板
-            - [编写“Hello World”程序](quick-start/quickstart-standard-running-hi3516-create.md)
+            - [编写“Hello World”程序](quick-start/quickstart-std-3516-create.md)
             - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
             - [烧录](quick-start/quickstart-standard-running-hi3516-burning.md)
             - [运行](quick-start/quickstart-standard-running-hi3516-running.md)
