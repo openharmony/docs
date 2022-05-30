@@ -53,7 +53,9 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 内容包括：
 -   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
 -   [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
--   [接口参考](reference/apis/Readme-CN.md)
+-   接口参考
+    -  [JS及TS API参考](reference/apis/js-apis-DataUriUtils.md)
+    -  [Native API参考](reference/native-apis/_o_h___native_x_component.md)
 
 
 ### Readme
