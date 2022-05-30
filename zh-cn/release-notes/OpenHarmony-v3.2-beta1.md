@@ -65,7 +65,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
 
 3. 安装[git客户端](https://gitee.com/link?target=https%3A%2F%2Fgit-scm.com%2Fbook%2Fzh%2Fv2%2F%25E8%25B5%25B7%25E6%25AD%25A5-%25E5%25AE%2589%25E8%25A3%2585-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
-     
+   
    ```
    git config --global user.name "yourname"
    git config --global user.email "your-email-address"
@@ -73,7 +73,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
    ```
 
 4. 安装码云repo工具，可以执行如下命令。
-     
+   
    ```
    curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中chmod a+x /usr/local/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
@@ -86,7 +86,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-  
+
 ```
 repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta1 --no-repo-verify
 repo sync -c
@@ -97,7 +97,7 @@ repo forall -c 'git lfs pull'
 
 通过repo + https 下载。
 
-  
+
 ```
 repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta1 --no-repo-verify
 repo sync -c
@@ -107,12 +107,7 @@ repo forall -c 'git lfs pull'
 
 ### 从镜像站点获取
 
-**表2** 获取源码路径
-
-  | 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
+*待补充*
 
 
 ## 更新说明
@@ -122,7 +117,7 @@ repo forall -c 'git lfs pull'
 
 ### 特性变更
 
-**表3** 版本特性变更表
+**表2** 版本特性变更表
 
   | 子系统名称 | 标准系统 | 轻量、小型系统 | 
 | -------- | -------- | -------- |
@@ -155,29 +150,14 @@ repo forall -c 'git lfs pull'
 | 应用 | 图库应用支持图片编辑、动效能力。<br/>主要涉及如下需求：<br/>I58ZQ3&nbsp;【图库】图片编辑<br/>I58ZQ1&nbsp;【图库】动效<br/>I58ZQ4&nbsp;【联系人】基础能力-2D能力 | NA | 
 
 
-### API变更--马家骏
+### API变更
 
-
-API变更请参考：**（马家骏）**
-
-
-_JS API 差异报告_
-
-
-_Native API差异报告_
-
-
-_Changelog_
+*待补充*
 
 
 ### 仓库变更
 
-  **表2** 组件仓库优化
-
-| 子系统 | OpenHarmony&nbsp;3.1&nbsp;Release | OpenHarmony&nbsp;3.2&nbsp;Beta1及以后 | 优化方式 | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
+*待补充*
 
 
 ### 芯片及开发板适配
@@ -220,19 +200,9 @@ _Changelog_
 
 ## 修复缺陷列表
 
-**表4** 修复缺陷ISSUE列表
-
-  | ISSUE单 | 问题描述 | 
-| -------- | -------- |
-|  |  | 
-|  |  | 
+*待补充*
 
 
 ## 遗留缺陷列表
 
-**表6** 遗留缺陷列表
-
-  | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
+*待补充*
