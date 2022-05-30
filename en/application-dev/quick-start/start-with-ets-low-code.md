@@ -62,7 +62,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
 3. Add a **Text** component.
 
-   Drag the **Text** component from the **UI Control** area to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277608813](figures/en-us_image_0000001277608813.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hello World**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
+   Drag the **Text** component from the **UI Control** area to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277608813](figures/en-us_image_0000001277608813.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hello World**), set **FontSize** to **30fp**, and set **TextAlign** to **Center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
 
    ![en-us_image_0000001235731706](figures/en-us_image_0000001235731706.gif)
 
@@ -109,7 +109,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
         }
       }
       ```
-   - Drag the **Text** component to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277488985](figures/en-us_image_0000001277488985.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hi there**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
+   - Drag the **Text** component to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277488985](figures/en-us_image_0000001277488985.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hi there**), set **FontSize** to **30fp**, and set **TextAlign** to **Center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
 
       ![en-us_image_0000001280255513](figures/en-us_image_0000001280255513.gif)
 
