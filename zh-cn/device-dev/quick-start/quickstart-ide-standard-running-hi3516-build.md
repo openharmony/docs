@@ -29,4 +29,4 @@
 
    ![zh-cn_image_0000001221012766](figures/zh-cn_image_0000001221012766.png)
 
-   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](https://device.harmonyos.com/cn/docs/documentation/guide/ide-hi3516-upload-0000001052148681)。
+   编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](quickstart-ide-standard-running-hi3516-burning.md)。
