@@ -1,4 +1,4 @@
-# 编译构建子系统常见问题<a name="ZH-CN_TOPIC_0000001215530845"></a>
+# 编译构建常见问题<a name="ZH-CN_TOPIC_0000001215530845"></a>
 
 -   [轻量和小型系统](#section78686441462)
     -   [编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”](#section67961431372)
