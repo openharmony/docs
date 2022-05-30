@@ -4,7 +4,7 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
-
+    -   [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)      
     -   [OpenHarmony v3.1 Release (2022-03-30)](release-notes/OpenHarmony-v3.1-release.md)       
     -   [OpenHarmony v3.1 Beta (2021-12-31)](release-notes/OpenHarmony-v3.1-beta.md)
     -   [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
