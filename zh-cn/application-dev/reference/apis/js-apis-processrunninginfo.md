@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import ProcessRunningInfo from '@ohos.application.processRunningInfo'
+import appManager from '@ohos.application.appManager'
 ```
 
 ## 使用说明

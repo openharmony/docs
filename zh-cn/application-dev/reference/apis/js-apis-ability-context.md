@@ -404,10 +404,12 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 **示例：**
     
-  ```
-  this.context.requestPermissionsFromUser(permissions,(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
+  ```js
+       var permissions=['com.example.permission']
+       this.context.requestPermissionsFromUser(permissions,(result) => {
+       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
+  
   ```
 
 
@@ -433,12 +435,14 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 **示例：**
     
-  ```
-  this.context.requestPermissionsFromUser(permissions).then((data) => {
+  ```js
+   var permissions=['com.example.permission']
+       this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
+
   ```
 
 

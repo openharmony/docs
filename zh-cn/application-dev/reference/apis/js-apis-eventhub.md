@@ -22,6 +22,9 @@ import Ability from '@ohos.application.Ability'
 ```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
+    func1(){
+        console.log("func1 is called");
+    }
     onForeground() {
         this.context.eventHub.on("123", this.func1);
     }
