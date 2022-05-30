@@ -7,6 +7,12 @@
 进程运行信息。
 
 
+## 导入模块
+
+```js
+import appManager from '@ohos.application.appManager'
+```
+
 ## 使用说明
 
 

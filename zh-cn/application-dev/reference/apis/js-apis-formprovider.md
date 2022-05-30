@@ -80,7 +80,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;void&gt;): void;
 
 更新指定的卡片。
 
@@ -111,7 +111,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;;
 
 更新指定的卡片，以promise方式返回。
 

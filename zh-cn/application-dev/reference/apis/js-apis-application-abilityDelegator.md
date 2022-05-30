@@ -719,7 +719,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err, data) => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
+executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
 
 指定超时时间，并执行指定的shell命令（promise形式）
 

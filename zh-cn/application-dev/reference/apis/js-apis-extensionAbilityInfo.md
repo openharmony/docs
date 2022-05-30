@@ -4,6 +4,13 @@
 >
 > 本模块首批接口从API version 9开始支持。API 9当前为Canary版本，仅供使用，不保证接口可稳定调用。
 
+## 导入模块
+
+```js
+import bundle from "@ohos.bundle";
+```
+
+
 ## AbilityInfo
 
 Ability信息
