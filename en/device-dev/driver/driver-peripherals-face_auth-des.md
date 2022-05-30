@@ -53,7 +53,7 @@ The identity authentication consists of User_auth and basic authentication servi
 
 ### Working Principles
 
-The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth framework and Face_auth service to ensure successful facial authentication.
 You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** Face_auth service and Face_auth driver interaction
@@ -70,7 +70,7 @@ You can develop drivers to call Hardware Device Interface (HDI) APIs based on th
 
 ### When to Use
 
-The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth framework and Face_auth service to ensure successful facial authentication.
 
 ### Available APIs
 
