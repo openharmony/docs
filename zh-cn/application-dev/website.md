@@ -1376,6 +1376,12 @@
 
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
 
+      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
+
+      - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
+
+      - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
+
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
 
       - [@ohos.wifi (WLAN)](reference/apis/js-apis-wifi.md)
