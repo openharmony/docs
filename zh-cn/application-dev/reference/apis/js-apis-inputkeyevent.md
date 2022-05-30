@@ -11,7 +11,7 @@
 import {Action,Key,KeyEvent} from '@ohos.multimodalInput.keyEvent';
 ```
 
-# Action
+## Action
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -21,7 +21,7 @@ import {Action,Key,KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | DOWN | number | 是 | 否 | 按下按钮 |
 | UP | number | 是 | 否 | 抬起按钮 |
 
-# Key
+## Key
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -31,7 +31,7 @@ import {Action,Key,KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | pressedTime | number | 是 | 否 | 按下时间 |
 | deviceId | number | 是 | 否 | 按键所属设备 |
 
-# KeyEvent
+## KeyEvent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 

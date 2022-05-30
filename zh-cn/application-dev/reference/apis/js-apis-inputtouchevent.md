@@ -11,7 +11,7 @@
 import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput.ToucEvent';
 ```
 
-# Action
+## Action
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -22,7 +22,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | MOVE | number | 是 | 否 | 触摸移动 |
 | UP | number | 是 | 否 | 触摸抬起 |
 
-# ToolType
+## ToolType
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -37,7 +37,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | MOUSE | number | 是 | 否 | 鼠标 |
 | LENS | number | 是 | 否 | 透镜 |
 
-# SourceType 
+## SourceType 
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -47,7 +47,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | PEN | number | 是 | 否 | 手写笔 |
 | TOUCH_PAD | number | 是 | 否 | 触摸板 |
 
-# Touch
+## Touch
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
@@ -72,7 +72,7 @@ import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput
 | rawY | number | 是 | 否 | 输入设备上的y坐标 |
 | toolType | number | 是 | 否 | 工具类型 |
 
-# TouchEvent
+## TouchEvent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
