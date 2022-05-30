@@ -7,7 +7,7 @@
     - 准备轻量与小型系统环境
         - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-lite-env-setup-win-ubuntu.md)
         - [获取源码](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
-    - [创建源码工程](quick-start/quickstart-ide-lite-create-project.md)
+    - [导入源码工程](quick-start/quickstart-ide-lite-create-project.md)
     - 运行“Hello World”
         - Hi3861开发板
             - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-application-framework.md)
@@ -51,12 +51,13 @@
             - [Hi3861开发板介绍](quick-start/quickstart-lite-introduction-hi3861.md)
             - [Hi3516开发板介绍](quick-start/quickstart-lite-introduction-hi3516.md)
         - [参考信息](quick-start/quickstart-lite-reference.md)
+        - [使用HiTool烧录代码](quick-start/quickstart-lite-hitool.md)
   - 标准系统快速入门（IDE方式，推荐）
     - [标准系统入门概述](quick-start/quickstart-ide-standard-overview.md)
     - 准备标准系统环境
         - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)
         - [获取源码](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
-    - [创建源码工程](quick-start/quickstart-ide-standard-create-project.md)
+    - [导入源码工程](quick-start/quickstart-ide-standard-create-project.md)
     - 运行“Hello World”
         - Hi3516开发板
             - [编写“Hello World”程序](quick-start/quickstart-ide-standard-running-hi3516-create.md)
@@ -94,6 +95,8 @@
             - [Hi3516开发板介绍](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [RK3568开发板介绍](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [参考信息](quickstart-standard-reference.md)
+        - [使用HiTool烧录代码](quick-start/quickstart-standard-hitool.md)
+ 
   - [获取源码](get-code/sourcecode-acquire.md)
 
 - 兼容性与安全
@@ -543,7 +546,7 @@
 
 - 示例教程
 
-  - [Demo示例](device-demo.md)
+  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 
 - 参考
