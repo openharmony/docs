@@ -1,6 +1,6 @@
 # LoadingProgress
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<LoadingProgress>** component is used to display the loading progress.
@@ -21,8 +21,8 @@ Creates a **LoadingProgress** instance.
 
 ## Attributes
 
-| Name  | Type  | Default Value | Description                              |
-| ----- | ----- | ------------- | ---------------------------------------- |
+| Name  | Type  | Default Value | Description                                   |
+| ----- | ----- | ------------- | --------------------------------------------- |
 | color | Color | -             | Foreground color of the loading progress bar. |
 
 ## Example
@@ -41,4 +41,4 @@ struct LoadingProgressExample {
 }
 ```
 
-![zh-cn_image_0000001198839004](figures/loadingProgress.png)
+![en-us_image_0000001198839004](figures/loadingProgress.png)
