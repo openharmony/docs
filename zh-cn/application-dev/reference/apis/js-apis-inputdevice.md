@@ -42,7 +42,7 @@ inputDevice.on("change", (data)=>{
             // 监听物理键盘已连接。
             isPhysicalKeyboardExist = true;
         } else if (ret == 2 && data.type == 'remove') {
-            // 监听物理键盘已duan。
+            // 监听物理键盘已断
             isPhysicalKeyboardExist = false;
         }
     });
