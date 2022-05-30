@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegator from '@ohos.application.abilityDelegator'
 ```
 
 
@@ -747,7 +747,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
+executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 指定超时时间，并执行指定的shell命令（promise形式）
 

@@ -12,17 +12,17 @@ To implement grid layout, the declarative paradigm provides the [GridContainer](
 
 ## Grid System
 
-The grid system works in terms of columns, margins, and gutters.
+The grid system works in terms of gutter, margin, and column.
 
 
 ![en-us_image_0000001217236574](figures/en-us_image_0000001217236574.png)
 
 
-1. Gutters:
+1. Gutter:
    Spacing between elements. You can define different clutter values for different device sizes as part of the overall grid layout specifications. For better results, make sure the gutter is not greater than the margin.
-2. Margins:
+2. Margin:
    Spacing around an item in the grid container. You can define different margin values for different device sizes as part of the overall grid layout specifications.
-3. Columns:
+3. Column:
    Main tool for positioning items in the grid layout. The grid container is divided into various numbers of columns based on the device size. The width per column is calculated based on the total number of columns while respecting the margin and clutter specifications.
 
 

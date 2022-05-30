@@ -1,6 +1,6 @@
-# MIPI DSI<a name="EN-US_TOPIC_0000001160971534"></a>
+# MIPI DSI
 
-## Overview<a name="section16806142183217"></a>
+## Overview
 
 The Display Serial Interface \(DSI\) is a specification stipulated by the Mobile Industry Processor Interface \(MIPI\) Alliance, aiming to reduce the cost of display controllers in a mobile device. It defines a serial bus and communication protocol among the host, the source of image data, and the target device. In this way, the DSI can send pixel data or commands to peripherals \(usually LCDs or similar display devices\) in serial mode, or reads information such as status and pixel from the peripherals.
 
@@ -11,7 +11,7 @@ MIPI DSI is capable of working in both high speed \(HS\) mode and low power \(LP
     ![](figures/dsi-transmitting-and-receiving-interface.png "dsi-transmitting-and-receiving-interface")
 
 
-## Available APIs<a name="section12720125432316"></a>
+## Available APIs
 
 **Table  1** APIs for MIPI DSI
 
@@ -75,17 +75,17 @@ MIPI DSI is capable of working in both high speed \(HS\) mode and low power \(LP
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
->All functions described in this document can be called only in kernel space.
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br> All functions described in this document can be called only in kernel space.
 
-## Usage Guidelines<a name="section037231715335"></a>
+## Usage Guidelines
 
-### How to Use<a name="section49299119344"></a>
+### How to Use
 
-[Figure 2](#fig129103491241) shows the process of using a MIPI DSI device.
+The figure below illustrates how to use the APIs.
 
-**Figure  2** Process of using a MIPI DSI device<a name="fig129103491241"></a>  
-![](figures/process-of-using-a-mipi-dsi-device.png)
+**Figure  2** Using MIPI DSI driver APIs
+
+ ![](figures/using-mipi-dsi-process.png)
 
 ### Obtaining a MIPI DSI Device Handle<a name="section5126155683811"></a>
 

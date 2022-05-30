@@ -17,7 +17,7 @@ import tag from '@ohos.nfc.tag';
 
 getNfcATag(tagInfo: TagInfo): NfcATag
 
-获取NFC A类型Tag对象
+获取NFC A类型Tag对象，通过该对象访问NfcA技术类型的Tag。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -33,7 +33,7 @@ getNfcATag(tagInfo: TagInfo): NfcATag
 
 getNfcBTag(tagInfo: TagInfo): NfcBTag
 
-获取NFC B类型Tag对象
+获取NFC B类型Tag对象，通过该对象访问NfcB技术类型的Tag。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -49,7 +49,7 @@ getNfcBTag(tagInfo: TagInfo): NfcBTag
 
 getNfcFTag(tagInfo: TagInfo): NfcFTag
 
-获取NFC F类型Tag对象
+获取NFC F类型Tag对象，通过该对象访问NfcF技术类型的Tag。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -65,13 +65,13 @@ getNfcFTag(tagInfo: TagInfo): NfcFTag
 
 getNfcVTag(tagInfo: TagInfo): NfcVTag
 
-获取NFC V类型Tag对象
+获取NFC V类型Tag对象，通过该对象访问NfcV技术类型的Tag。
 
 **需要权限**：ohos.permission.NFC_TAG
 
 **系统能力**：SystemCapability.Communication.NFC
 
-返回值：
+**返回值：**
 
 | **类型** | **说明**         |
 | -------- | ---------------- |

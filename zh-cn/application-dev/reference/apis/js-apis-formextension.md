@@ -219,3 +219,27 @@ onConfigurationUpdated(config: Configuration): void;
       }
   }
   ```
+
+  ## FormExtension.onAcquireFormState
+
+onAcquireFormState?(want: Want): formInfo.FormState;
+
+返回formInfo#FormState对象。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md) | 否 | 返回formInfo#FormState对象。 | 
+
+**示例：**
+    
+  ```js
+  class MyFormExtension extends MyFormExtension {
+      onAcquireFormState(want) {
+          console.log('FormExtension onAcquireFormState, want:' + want);
+      }
+  }
+  ```

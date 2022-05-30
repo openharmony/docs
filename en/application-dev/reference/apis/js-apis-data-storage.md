@@ -3,7 +3,7 @@
 Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -30,7 +30,7 @@ import dataStorage from '@ohos.data.storage';
 
 getStorageSync(path: string): Storage
 
-Reads a file and loads the data to the **Storage** instance in synchronous mode.
+Reads the specified file and load its data to the **Storage** instance for data operations.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -67,7 +67,7 @@ Reads a file and loads the data to the **Storage** instance in synchronous mode.
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
-Reads a file and loads the data to the **Storage** instance. This API uses an asynchronous callback to return the execution result.
+Reads the specified file and loads its data to the **Storage** instance for data operations. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -105,7 +105,7 @@ Reads a file and loads the data to the **Storage** instance. This API uses an as
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
-Reads a file and loads the data to the **Storage** instance. This API uses a promise to return the execution result.
+Reads the specified file and loads its data to the **Storage** instance for data operations. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -146,7 +146,7 @@ Reads a file and loads the data to the **Storage** instance. This API uses a pro
 
 deleteStorageSync(path: string): void
 
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a synchronous mode.
+Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -165,7 +165,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the execution result.
+Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -191,7 +191,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
-Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the execution result.
+Deletes the singleton **Storage** instance of a file from the memory, and deletes the specified file, its backup file, and damaged files. After the specified files are deleted, the **Storage** instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -222,8 +222,6 @@ removeStorageFromCacheSync(path: string): void
 
 Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -241,9 +239,7 @@ This API uses a synchronous mode.
 
 removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
-
-This API uses an asynchronous callback to return the result.
+Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -269,9 +265,7 @@ This API uses an asynchronous callback to return the result.
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
-Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur.
-
-This API uses a promise to return the result.
+Removes the singleton **Storage** instance of a file from the cache. The removed instance cannot be used for data operations. Otherwise, data inconsistency will occur. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -307,8 +301,6 @@ getSync(key: string, defValue: ValueType): ValueType
 
 Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -333,9 +325,7 @@ This API uses a synchronous mode.
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
-
-This API uses an asynchronous callback to return the result.
+Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -362,9 +352,7 @@ This API uses an asynchronous callback to return the result.
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
-
-This API uses a promise to return the result.
+Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -397,8 +385,6 @@ putSync(key: string, value: ValueType): void
 
 Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -417,9 +403,7 @@ This API uses a synchronous mode.
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
-
-This API uses an asynchronous callback to return the result.
+Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -446,9 +430,7 @@ This API uses an asynchronous callback to return the result.
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**.
-
-This API uses a promise to return the result.
+Obtains the **Storage** instance corresponding to the specified file, writes data to the **Storage** instance using a **Storage** API, and saves the modification using **flush()** or **flushSync()**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -480,8 +462,6 @@ hasSync(key: string): boolean
 
 Checks whether the storage object contains data with a given key.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -507,9 +487,7 @@ This API uses a synchronous mode.
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): boolean
 
-Checks whether the storage object contains data with a given key.
-
-This API uses an asynchronous callback to return the result.
+Checks whether the storage object contains data with a given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -542,9 +520,7 @@ This API uses an asynchronous callback to return the result.
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether the storage object contains data with a given key.
-
-This API uses a promise to return the result.
+Checks whether the storage object contains data with a given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -577,8 +553,6 @@ deleteSync(key: string): void
 
 Deletes data with the specified key from this storage object.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -592,13 +566,11 @@ This API uses a synchronous mode.
   ```
 
 
-### deletej
+### delete
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes data with the specified key from this storage object.
-
-This API uses an asynchronous callback to return the result.
+Deletes data with the specified key from this storage object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -624,9 +596,7 @@ This API uses an asynchronous callback to return the result.
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes data with the specified key from this storage object.
-
-This API uses a promise to return the result.
+Deletes data with the specified key from this storage object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -657,8 +627,6 @@ flushSync(): void
 
 Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Example**
@@ -671,9 +639,7 @@ This API uses a synchronous mode.
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
-
-This API uses an asynchronous callback to return the result.
+Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -698,9 +664,7 @@ This API uses an asynchronous callback to return the result.
 
 flush(): Promise&lt;void&gt;
 
-Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file.
-
-This API uses a promise to return the result.
+Saves the modification of this object to the **Storage** instance and synchronizes the modification to the file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -726,8 +690,6 @@ clearSync(): void
 
 Clears this **Storage** object.
 
-This API uses a synchronous mode.
-
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Example**
@@ -740,9 +702,7 @@ This API uses a synchronous mode.
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-Clears this **Storage** object.
-
-This API uses an asynchronous callback to return the result.
+Clears this **Storage** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -767,9 +727,7 @@ This API uses an asynchronous callback to return the result.
 
 clear(): Promise&lt;void&gt;
 
-Clears this **Storage** object.
-
-This API uses a promise to return the result.
+Clears this **Storage** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 

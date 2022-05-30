@@ -33,7 +33,7 @@
             - [Burning](quickstart-lite-steps-hi3861-burn.md)
             - [Networking](quickstart-lite-steps-hi3861-netconfig.md)
             - [Debugging and Verification](quickstart-lite-steps-hi3861-debug.md)
-            - [Running](quickstart-lite-steps-hi3816-running.md)
+            - [Running](quickstart-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
             - [Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)
             - [Writing a Hello World Program](quickstart-lite-steps-hi3516-application-framework.md)

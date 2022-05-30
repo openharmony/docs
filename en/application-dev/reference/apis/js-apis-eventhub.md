@@ -1,6 +1,6 @@
 # EventHub
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -34,10 +34,10 @@ Subscribes to an event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description | 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name. | 
-  | callback | Function | Yes| Callback invoked when the event is triggered. | 
+ | Name | Type | Mandatory | Description | 
+ | -------- | -------- | -------- | -------- |
+ | event | string | Yes | Event name. | 
+ | callback | Function | Yes | Callback invoked when the event is triggered. | 
 
 **Example**
     
@@ -72,10 +72,10 @@ Unsubscribes from an event. If **callback** is specified, this API unsubscribes 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name. | 
-  | callback | Function | No | Callback for the event. If **callback** is unspecified, all callbacks of the event are unsubscribed. | 
+ | Name | Type | Mandatory | Description | 
+ | -------- | -------- | -------- | -------- |
+ | event | string | Yes | Event name. | 
+ | callback | Function | No | Callback for the event. If **callback** is unspecified, all callbacks of the event are unsubscribed. | 
 
 **Example**
     
@@ -110,10 +110,10 @@ Triggers an event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name. | 
-  | ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered. | 
+ | Name | Type | Mandatory | Description | 
+ | -------- | -------- | -------- | -------- |
+ | event | string | Yes | Event name. | 
+ | ...args | Object[] | Yes | Variable parameters, which are passed to the callback when the event is triggered. | 
 
 **Example**
     

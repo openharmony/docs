@@ -46,7 +46,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 1.  Define the IPC interface **ITestAbility**.
 
-   **ITestAbility** inherits the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
+    **ITestAbility** inherits the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
 
     ```
     class ITestAbility : public IRemoteBroker {

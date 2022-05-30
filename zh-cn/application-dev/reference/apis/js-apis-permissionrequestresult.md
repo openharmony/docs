@@ -6,6 +6,11 @@
 
 权限请求结果。
 
+## 导入模块
+
+```js
+import PermissionRequestResult from '@ohos.application.permissionRequestResult'
+```
 
 ## 属性
 

@@ -74,7 +74,7 @@ isNfcOpen(): boolean
 
 ## controller.getNfcState
 
-isNfcOpen(): boolean
+getNfcState(): boolean
 
 查询NFC是否打开。
 
@@ -88,13 +88,13 @@ isNfcOpen(): boolean
 
 ## controller.on('nfcStateChange')
 
-on(type: "notify", callback: Callback&lt;NfcState&gt;): void
+on(type: "nfcStateChange", callback: Callback&lt;NfcState&gt;): void
 
 注册NFC开关状态事件。
 
 **系统能力**：SystemCapability.Communication.NFC
 
-- **参数**
+**参数**
   
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
@@ -111,15 +111,16 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 
 **系统能力**：SystemCapability.Communication.NFC
 
-- **参数**
+**参数**
   
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"nfcStateChange"字符串 |
 | callback | Callback&lt;NfcState&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。 |
   
-- 示例
-  ```
+**示例**
+
+  ```js
   import nfcController from '@ohos.nfcController';
   
   var NFC_STATE_NOTIFY = "nfcStateChange";

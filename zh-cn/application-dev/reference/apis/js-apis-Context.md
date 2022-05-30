@@ -6,9 +6,10 @@
 ## 导入模块
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
-import bundle from '@ohos.bundle'
+import Context from "@ohos.app.context";
 ```
+
+## 使用说明
 
 Context对象是在featureAbility中创建实例，并通过featureAbility的getContext()接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
 

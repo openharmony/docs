@@ -1,13 +1,13 @@
 # Creating a Simple Page
 
 
-In this section, we will develop an infographic food details page, by building custom components through the container components &lt;Stack&gt; and &lt;Flex&gt; as well as basic components &lt;Image&gt; and &lt;Text&gt;.
+In this section, we will develop an infographic food details page, by building custom components through the container components **\<Stack>** and **\<Flex>** as well as basic components **\<Image>** and **\<Text>**.
 
 
 ## Building the Stack Layout
 
 1. Create a food name.
-     Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the &lt;Text&gt; component in the braces of the &lt;Stack&gt; component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A &lt;Stack&gt; component consists of one or more child components. The latter child component overwrites the former one.
+   Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the **\<Text>** component in the braces of the **\<Stack>** component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A **\<Stack>** component consists of one or more child components. The latter child component overwrites the former one.
 
    ```
    @Entry
@@ -26,7 +26,7 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
 
 2. Display food pictures.
-     Create an &lt;Image&gt; component and specify a URL for it. The &lt;Image&gt; and &lt;Text&gt; components are mandatory. To display the &lt;Text&gt; component above the &lt;Image&gt; component, you need to declare the &lt;Image&gt; component first. Image resources are stored in the rawfile folder in resources. When referencing the resources in the rawfile folder, use the `"$rawfile('filename')"`  format, where filename indicates the relative path of the file in the rawfile folder. Currently, `$rawfile` only allows the &lt;Image&gt; component to reference image resources.
+   Create an **\<Image>** component and specify a URL for it. The **\<Image>** and **\<Text>** components are mandatory. To display the **\<Text>** component above the **\<Image>** component, you need to declare the **\<Image>** component first. Image resources are stored in the **rawfile** folder in **resources**. When referencing the resources in the **rawfile** folder, use the `"$rawfile('filename')"` format, where filename indicates the relative path of the file in the **rawfile** folder. Currently, `$rawfile` only allows the **\<Image>** component to reference image resources.
 
    ```
    @Entry
@@ -137,9 +137,9 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001222967772](figures/en-us_image_0000001222967772.png)
 
-7. Adjust the left and bottom margin of the &lt;Text&gt; component. Margin is a shorthand attribute. You can specify the margins of the four edges in a unified manner or separately. The configuration method is as follows:
-   1. When the parameter is set to Length, the outer margins of the four edges are specified. For example, **margin(20)** indicates that the outer margins of the top, right, bottom, and left edges are all 20.
-   2. **{top?: Length, right?: Length, bottom?: Length, left?:Length}** specifies the margins of the four edges. For example, **margin({ left: 26, bottom: 17.4 })** indicates that the left margin is 26 and the bottom margin is 17.4.
+7. Adjust the left and bottom margin of the **\<Text>** component. **Margin** is a shorthand attribute. You can specify the margins of the four edges in a unified manner or separately. The configuration method is as follows:
+   1. To set the margins of the four edges in a unified manner, use the **Margin(Length)** format. For example, **margin(20)** indicates that the outer margins of the top, right, bottom, and left edges are all 20.
+   2. To set the margins of the four edges separately, use the **{top?: Length, right?: Length, bottom?: Length, left?:Length}** format. For example, **margin({ left: 26, bottom: 17.4 })** indicates that the left margin is 26 and the bottom margin is 17.4.
 
 
    ```
@@ -163,7 +163,8 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001222967776](figures/en-us_image_0000001222967776.png)
 
-8. Adjust the structure between components and semanticize component names. Create the FoodDetail page entry component, create a column in **FoodDetail**, and set the alignment to **alignItems(HorizontalAlign.Center)**. Change the name of the MyComponent component to FoodImageDisplay, which is a child component of the FoodDetail component.
+8. Adjust the structure between components and semanticize component names. Create the FoodDetail page entry component, create a column in **FoodDetail**, and set the alignment to **alignItems(HorizontalAlign.Center)**. Change the name of the **MyComponent** component to **FoodImageDisplay**, which is a child component of the **FoodDetail** component.
+   
    A column is a container component whose child components are vertically arranged. It is a linear layout in essence. Therefore, only the alignment in the cross axis direction can be set.
 
 
@@ -239,10 +240,11 @@ You can use the Flex layout to build a food composition table. In this way you d
    ```
 
 2. Create a Flex component to display two food composition categories in the tomato: Calories and Nutrition.
-   Calories contains information about calories. Nutrition contains information about protein, fat, carbohydrates, and vitamin C.
-
-   Create the Calories class. Create a Flex component and set its height to 280, and the top, right, and left margins to 30. The Flex component contains three Text child components, which represent the category name (Calories), content name (Calories), and contain value (17 kcal), respectively. By default, child components in the Flex component are arranged horizontally.
-
+   
+Calories contains information about calories. Nutrition contains information about protein, fat, carbohydrates, and vitamin C.
+   
+Create the Calories class. Create a Flex component and set its height to 280, and the top, right, and left margins to 30. The Flex component contains three Text child components, which represent the category name (Calories), content name (Calories), and contain value (17 kcal), respectively. By default, child components in the Flex component are arranged horizontally.
+   
    In the following example, code of FoodImageDisplay is omitted, and only code of ContentTable is provided.
 
 
@@ -279,7 +281,7 @@ You can use the Flex layout to build a food composition table. In this way you d
 
    ![en-us_image_0000001267767869](figures/en-us_image_0000001267767869.png)
 
-3. Adjust the layout and set the proportion (layoutWeight) of each part. Set the proportion of the category name to 1, and the total proportion of content name and content value to **2**. The content name and content value are in a same Flex, and the content name occupies all remaining space flexGrow(1).
+3. Adjust the layout and set the proportion (layoutWeight) of each part. Set the proportion of the category name to **1**, and the total proportion of content name and content value to **2**. The content name and content value are in a same Flex, and the content name occupies all remaining space flexGrow(1).
 
    ```
    @Component
@@ -336,6 +338,7 @@ You can use the Flex layout to build a food composition table. In this way you d
    ![en-us_image_0000001267607901](figures/en-us_image_0000001267607901.png)
 
 4. Create the **Nutrient** class in a similar process. Nutrition consists of four parts: Protein, Fat, Carbohydrates, and VitaminC. The names of the last three parts are omitted in the table and represented by spaces.
+   
    Set **FlexDirection.Column**, **FlexAlign.SpaceBetween**, and **ItemAlign.Start**.
 
 
@@ -467,7 +470,7 @@ You can use the Flex layout to build a food composition table. In this way you d
    }
    ```
 
-   When the IngredientItem API is called in the build method of ContentTable, this needs to be used to invoke the method in the scope of the component to distinguish the global method call.
+When the  ` IngredientItem` API is called in the build method of ContentTable,  ` this `  needs to be used to invoke the method in the scope of the component to distinguish the global method call.
 
 
    ```
@@ -488,7 +491,7 @@ You can use the Flex layout to build a food composition table. In this way you d
    }
    ```
 
-   The overall code of the ContentTable component is as follows:
+The overall code of the ContentTable component is as follows:
 
 
    ```
@@ -537,6 +540,6 @@ You can use the Flex layout to build a food composition table. In this way you d
    }
    ```
 
-   ![en-us_image_0000001222807792](figures/en-us_image_0000001222807792.png)
+![en-us_image_0000001222807792](figures/en-us_image_0000001222807792.png)
 
 You've learned how to build a simple food details page. Read on to learn how to define the page layout and connection.

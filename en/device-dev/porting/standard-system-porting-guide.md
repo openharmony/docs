@@ -8,11 +8,11 @@ This document uses the process of porting a development board named  **MyProduct
 
 ### Defining a Product<a name="section145mcpsimp"></a>
 
-Create a config.json file in the directory with the name "//vendor/MyProductVendor/{product_name}. This file is used to describe the SoC used by the product and the required subsystems. configure the file as follows:
+Create a **config.json** file in the directory **//vendor/MyProductVendor/*{product_name}***. This file is used to describe the SoC used by the product and the required subsystems.
 
-//vendor/MyProductVendor/MyProduct/config.json
+For example, if **product_name** is **MyProduct**, configure the **//vendor/MyProductVendor/MyProduct/config.json** file as follows:
 
-  
+
 ```
 {
     "product_name": "MyProduct",
@@ -39,29 +39,29 @@ Create a config.json file in the directory with the name "//vendor/MyProductVend
 
 The main configurations are as follows:
 
-product_name：The product name.Required
+**product_name**: product name. This parameter is required.
 
-version：version.Required
+**version**: version. This parameter is required.
 
-type：Configured at the system level,  select from (mini, small, standard).Required
+**type**: system level, which can be **mini**, **small**, or **standard**. This parameter is required.
 
-target_cpu ：The CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc..).Required
+**target_cpu**: CPU type of the device (depending on the actual situation, the target_cpu here may also be arm64, riscv, x86, etc..). This parameter is required.
 
-ohos_version：Operating system version.Optional
+**ohos_version**: operating system version. This parameter is optional.
 
-device_company：device manufacturer name.Required
+**device_company**: device manufacturer name. This parameter is required.
 
-board：Board name.Required
+**board**: board name. This parameter is required.
 
-enable_ramdisk：Whether to start ramdisk.Required
+**enable_ramdisk**: whether to enable the RAM disk. This parameter is required.
 
-kernel_type and kernel_version: kernel_type with kernel_version is fixed in the standard and does not need to be written.Optional
+**kernel_type** and **kernel_version**: fixed in the standard system. They are optional.
 
-subsystems:The subsystem that the system needs to be enabled. Subsystems can simply understand a piece of function that is built independently.  Required
+**subsystems**: subsystem to enable. A subsystem can be treated as an independently built functional block. This parameter is required.
 
-product_company：Not reflected in the configuration, but in the directory name, the next directory of the vendor is product_company, build.gn script can still be accessed.
+**product_company**: device manufacturer name. It is not set in the configuration, but in the directory name, next to the vendor name. It can be accessed from **build.gn script**.
 
-You can find available subsystems in  **//build/subsystem\_config.json**. You can also customize subsystems.
+You can find predefined subsystems in **//build/subsystem\_config.json**. You can also customize subsystems.
 
 You are advised to copy the configuration file of Hi3516D V300 and delete the  **hisilicon\_products**  subsystem, which is used to compile the kernel for Hi3516D V300.
 

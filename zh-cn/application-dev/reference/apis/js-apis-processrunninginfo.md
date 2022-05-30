@@ -6,6 +6,11 @@
 
 进程运行信息。
 
+## 导入模块
+
+```js
+import ProcessRunningInfo from '@ohos.application.processRunningInfo'
+```
 
 ## 使用说明
 

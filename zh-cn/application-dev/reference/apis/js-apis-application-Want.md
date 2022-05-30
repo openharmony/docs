@@ -28,4 +28,4 @@ import Want from '@ohos.application.Want';
 | action      | 只读     | string               | 否   | 表示action选项描述。                           |
 | parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
-| moduleName<sup>9</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。同一应用的不同hap的组件可能重名，仅通过BundleName和AbilityName无法区分时，可以通过设置moduleName加以区分，以匹配到指定的Ability。 |                              |
+| moduleName<sup>9+</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。同一应用的不同hap的组件可能重名，仅通过BundleName和AbilityName无法区分时，可以通过设置moduleName加以区分，以匹配到指定的Ability。 |                              |

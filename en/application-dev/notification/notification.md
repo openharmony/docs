@@ -262,4 +262,4 @@ Notification.cancel(1, "label", cancelCallback)
 
 The following sample is provided to help you better understand how to develop notification functions:
 
-[`Notification`: EtsNotification (API 7)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
+[`Notification`: EtsNotification (API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)

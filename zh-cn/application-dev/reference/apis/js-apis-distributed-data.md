@@ -3,6 +3,7 @@
 分布式数据管理为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式数据各个接口，应用程序可将数据保存到分布式数据库中，并可对分布式数据库中的数据进行增/删/改/查等各项操作。
 
 >**说明：** 
+>
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -19,7 +20,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -58,7 +59,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 创建一个KVManager对象实例，用于管理数据库对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -139,7 +140,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback:
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -183,7 +184,7 @@ getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&
 
 通过指定Options和storeId，创建并获取KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -230,7 +231,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 
 通过storeId的值关闭指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -276,7 +277,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 
 通过storeId的值关闭指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -330,7 +331,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 
 通过storeId的值删除指定的KVStore数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -373,7 +374,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 通过storeId的值删除指定的KVStore数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -427,14 +428,14 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
 获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | 是    | 所调用数据库方的包名。     |
-| callback | AsyncCallback&lt;void&gt; | 是   |回调函数，返回所有创建的 KvStore 数据库的 storeId。 |
+| callback | AsyncCallback&lt;void&gt; | 是   |回调函数，返回所有创建的KvStore数据库的storeId。 |
 
 **示例：**
 
@@ -457,7 +458,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 获取所有通过[getKVStore](#getkvstore)方法创建的且没有调用[deleteKVStore](#deletekvstore8)方法删除的KVStore数据库的storeId，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -470,7 +471,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
 | 类型          | 说明            |
 | ------------- | -------------- |
-| Promise&lt;string[]&gt;| Promise实例，返回所有创建的 KvStore 数据库的 storeId。 |
+| Promise&lt;string[]&gt;| Promise实例，返回所有创建的KvStore数据库的storeId。 |
 
 **示例：**
 
@@ -593,11 +594,11 @@ try {
 | 名称  | 默认值 | 说明                    |
 | ---   | ----  | ----------------------- |
 | NO_LEVEL  | 0 | 表示数据库不设置安全级别。   |
-| S0  | 1 | 表示数据库的安全级别为公共级别安全。  |
-| S1  | 2 | 表示数据库的安全级别为低级别安全，当数据泄露时会产生较低影响。  |
-| S2  | 3 | 表示数据库的安全级别为中级别安全，当数据泄露时会产生较大影响。  |
-| S3  | 5 | 表示数据库的安全级别为高级别安全，当数据泄露时会产生重大影响。  |
-| S4  | 6 | 表示数据库的安全级别为关键级别安全，当数据泄露时会产生严重影响。  |
+| S0  | 1 | 表示数据库的安全级别为公共级别。  |
+| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。  |
+| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。  |
+| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。  |
+| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。  |
 
 
 ## Constants
@@ -610,14 +611,14 @@ KVStore常量。
 | ---   | ----  | ----------------------- |
 | MAX_KEY_LENGTH  | 1024 | 数据库中Key允许最大长度，单位字节。   |
 | MAX_VALUE_LENGTH  | 4194303 | 数据库中Value允许的最大长度，单位字节。  |
-| MAX_KEY_LENGTH_DEVICE  | 896 | 最大设备坐标密钥长度。  |
+| MAX_KEY_LENGTH_DEVICE  | 896 | 最大设备坐标密钥长度，单位字节。 |
 | MAX_STORE_ID_LENGTH  | 128 | 数据库标识符允许的最大长度，单位字节。  |
-| MAX_QUERY_LENGTH  | 512000 | 最大查询长度。  |
-| MAX_BATCH_SIZE  | 128 | 最大批处理操作大小。  |
+| MAX_QUERY_LENGTH  | 512000 | 最大查询长度，单位字节。 |
+| MAX_BATCH_SIZE  | 128 | 最大批处理操作数量。 |
 
 ## Schema<sup>8+</sup> ##
 
-表示数据库模式，可以在创建或打开数据库时创建 Schema 对象并将它们放入 Options 中。
+表示数据库模式，可以在创建或打开数据库时创建Schema对象并将它们放入[Options](#options)中。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -646,7 +647,7 @@ constructor()
 | ---   | ----  | ----------------------- |
 | nullable<sup>8+</sup>  | boolean | 表示数据库字段是否可以为空。   |
 | default<sup>8+</sup>  | string | 表示Fieldnode的默认值。 |
-| type<sup>8+</sup>  | number | 表示值。 |
+| type<sup>8+</sup>  | number | 表示指定节点对应数据类型的值。 |
 
 ### constructor<sup>8+</sup> ###
 
@@ -666,7 +667,7 @@ constructor(name: string)
 
 appendChild(child: FieldNode): boolean
 
-向这个 FieldNode 添加一个子节点。
+在当前 FieldNode 中添加一个子节点。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -680,7 +681,7 @@ appendChild(child: FieldNode): boolean
 
 | 类型          | 说明            |
 | ------------- | -------------- |
-| boolean |如果子节点成功添加到这个FieldNode，则返回 true；否则返回 false。 |
+| boolean |如果子节点成功添加到FieldNode，则返回 true，否则返回false。 |
 
 **示例：**
 
@@ -707,7 +708,7 @@ try {
 
 ## KvStoreResultSet<sup>8+</sup> ##
 
-提供获取KVStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KVStore 构建一个KVStore 实例。
+提供获取KVStore数据库结果集的方法，提供查询和移动数据读取位置的方法，在调用KvStoreResultSet的方法前，需要先通过KVStore构建一个KVStore实例。
 
 
 ### getCount<sup>8+</sup> ###
@@ -716,7 +717,7 @@ getCount(): number
 
 获取结果集中的行数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -731,15 +732,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed:ed: ' + err);
     });
     const count = resultSet.getCount();
-    console.log("GetCount " + count);
+    console.log("getCount succeed:" + count);
 } catch (e) {
-    console.log("GetCount fail " + e);
+    console.log("getCount failed: " + e);
 }
 ```
 
@@ -749,7 +750,7 @@ getPosition(): number
 
 获取结果集中当前的读取位置。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -764,15 +765,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed:ed: ' + err);
     });
     const position = resultSet.getPosition();
-    console.log("getPosition " + position);
+    console.log("getPosition succeed:" + position);
 } catch (e) {
-    console.log("GetPosition fail " + e);
+    console.log("getPosition failed: " + e);
 }
 ```
 
@@ -783,13 +784,13 @@ moveToFirst(): boolean
 
 将读取位置移动到第一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -798,15 +799,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToFirst();
-    console.log("moveToFirst " + moved);
+    const moved1 = resultSet.moveToFirst();
+    console.log("moveToFirst succeed: " + moved1);
 } catch (e) {
-    console.log("MoveToFirst fail " + e);
+    console.log("moveToFirst failed " + e);
 }
 ```
 
@@ -817,13 +818,13 @@ moveToLast(): boolean
 
 将读取位置移动到最后一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -832,15 +833,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToLast();
-    console.log("moveToLast " + moved);
+    const moved2 = resultSet.moveToLast();
+    console.log("moveToLast succeed:" + moved2);
 } catch (e) {
-    console.log("moveToLast fail " + e);
+    console.log("moveToLast failed: " + e);
 }
 ```
 
@@ -851,13 +852,13 @@ moveToNext(): boolean
 
 将读取位置移动到下一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -866,15 +867,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToNext();
-    console.log("moveToNext " + moved);
+    const moved3 = resultSet.moveToNext();
+    console.log("moveToNext succeed: " + moved3);
 } catch (e) {
-    console.log("moveToNext fail " + e);
+    console.log("moveToNext failed: " + e);
 }
 ```
 
@@ -885,13 +886,13 @@ moveToPrevious(): boolean
 
 将读取位置移动到上一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -900,15 +901,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToPrevious();
-    console.log("moveToPrevious " + moved);
+    const moved4 = resultSet.moveToPrevious();
+    console.log("moveToPrevious succeed:" + moved4);
 } catch (e) {
-    console.log("moveToPrevious fail " + e);
+    console.log("moveToPrevious failed: " + e);
 }
 ```
 
@@ -919,7 +920,7 @@ move(offset: number): boolean
 
 将读取位置移动到当前位置的相对偏移量。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -931,7 +932,7 @@ move(offset: number): boolean
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -940,15 +941,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.move();
-    console.log("move " + moved);
+    const moved5 = resultSet.move();
+    console.log("move succeed:" + moved5);
 } catch (e) {
-    console.log("move fail " + e);
+    console.log("move failed: " + e);
 }
 ```
 
@@ -959,7 +960,7 @@ moveToPosition(position: number): boolean
 
 将读取位置从 0 移动到绝对位置。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -971,7 +972,7 @@ moveToPosition(position: number): boolean
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果操作成功则返回true，否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -980,15 +981,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToPosition();
-    console.log("moveToPosition " + moved);
+    const moved6 = resultSet.moveToPosition();
+    console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
-    console.log("moveToPosition fail " + e);
+    console.log("moveToPosition failed: " + e);
 }
 ```
 
@@ -999,13 +1000,13 @@ isFirst(): boolean
 
 检查读取位置是否为第一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果读取位置是第一行，则返回 true；否则返回 false。   |
+| boolean |如果操作成功则返回true，否则返回false。   |
 
 **示例：**
 
@@ -1014,15 +1015,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isFirst();
-    console.log("isFirst " + moved);
+    const isfirst = resultSet.isFirst();
+    console.log("Check isFirst succeed:" + isfirst);
 } catch (e) {
-    console.log("isFirst fail " + e);
+    console.log("Check isFirst failed: " + e);
 }
 ```
 
@@ -1033,13 +1034,13 @@ isLast(): boolean
 
 检查读取位置是否为最后一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果读取位置是最后一行，则返回 true；否则返回 false。   |
+| boolean |如果读取位置是最后一行，则返回 true，否则返回false。   |
 
 **示例：**
 
@@ -1048,15 +1049,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isLast();
-    console.log("isLast " + moved);
+    const islast = resultSet.isLast();
+    console.log("Check isLast succeed: " + islast);
 } catch (e) {
-    console.log("isLast fail " + e);
+    console.log("Check isLast failed: " + e);
 }
 ```
 
@@ -1066,13 +1067,13 @@ isBeforeFirst(): boolean
 
 检查读取位置是否在第一行之前。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果读取位置在第一行之前，则返回 true；否则返回 false。  |
+| boolean |如果读取位置在第一行之前，则返回 true，否则返回false。  |
 
 **示例：**
 
@@ -1081,15 +1082,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isBeforeFirst();
-    console.log("isBeforeFirst " + moved);
+    const isbeforefirst = resultSet.isBeforeFirst();
+    console.log("Check isBeforeFirst succeed: " + isbeforefirst);
 } catch (e) {
-    console.log("isBeforeFirst fail " + e);
+    console.log("Check isBeforeFirst failed: " + e);
 }
 ```
 
@@ -1100,13 +1101,13 @@ isAfterLast(): boolean
 
 检查读取位置是否在最后一行之后。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------  | --------------    |
-| boolean |如果读取位置在最后一行之后，则返回 true；否则返回 false。  |
+| boolean |如果读取位置在最后一行之后，则返回 true，否则返回false。  |
 
 **示例：**
 
@@ -1115,15 +1116,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isAfterLast();
-    console.log("isAfterLast " + moved);
+    const isafterlast = resultSet.isAfterLast();
+    console.log("Check isAfterLast succeed:" + isafterlast);
 } catch (e) {
-    console.log("isAfterLast fail " + e);
+    console.log("Check isAfterLast failed: " + e);
 }
 ```
 
@@ -1134,7 +1135,7 @@ getEntry(): Entry
 
 获取键值对。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -1149,16 +1150,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToNext();
     const entry  = resultSet.getEntry();
-    console.log("getEntry " + JSON.stringify(entry));
+    console.log("getEntry succeed:" + JSON.stringify(entry));
 } catch (e) {
-    console.log("getEntry fail " + e);
+    console.log("getEntry failed: " + e);
 }
 ```
 
@@ -1167,7 +1167,7 @@ try {
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 ### constructor<sup>8+</sup> ###
 
@@ -1175,7 +1175,7 @@ constructor()
 
 用于创建Schema实例的构造函数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 
 ### reset<sup>8+</sup> ###
@@ -1184,14 +1184,14 @@ reset(): Query
 
 公共查询重置。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 
 **返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#query8) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的Query对象。|
 
 **示例：**
 
@@ -1215,20 +1215,20 @@ equalTo(field: string, value: number|string|boolean): Query
 
 构造一个Query对象来查询具有指定字段的条目，其值等于指定的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填  | 说明                    | 
+| 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#query8) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的Query对象。|
 
 **示例：**
 
@@ -1250,20 +1250,20 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 构造一个Query对象以查询具有指定字段且值不等于指定值的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#query8) |返回重置的 Query 对象。|
+| [Query](#query8) |返回重置的Query对象。|
 
 **示例：**
 
@@ -1285,13 +1285,13 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 构造一个Query对象以查询具有大于指定值的指定字段的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1320,13 +1320,13 @@ lessThan(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有小于指定值的指定字段的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1355,13 +1355,13 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有指定字段且值大于或等于指定值的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1390,13 +1390,13 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 构造一个Query对象以查询具有指定字段且值小于或等于指定值的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1426,13 +1426,13 @@ isNull(field: string): Query
 构造一个Query对象以查询具有值为null的指定字段的条目。
 
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1461,13 +1461,13 @@ inNumber(field: string, valueList: number[]): Query
 构造一个Query对象以查询具有指定字段的条目，其值在指定的值列表中。
 
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
 **返回值：**
@@ -1496,13 +1496,13 @@ inString(field: string, valueList: string[]): Query
 
 构造一个Query对象以查询具有指定字段的条目，其值在指定的字符串值列表中。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
 **返回值：**
@@ -1531,13 +1531,13 @@ notInNumber(field: string, valueList: number[]): Query
 
 构造一个Query对象以查询具有指定字段的条目，该字段的值不在指定的值列表中。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
 **返回值：**
@@ -1566,13 +1566,13 @@ notInString(field: string, valueList: string[]): Query
 
 构造一个Query对象以查询具有指定字段且值不在指定字符串值列表中的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
 **返回值：**
@@ -1601,14 +1601,14 @@ like(field: string, value: string): Query
 
 构造一个Query对象以查询具有与指定字符串值相似的指定字段的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
-| valueList  | string  | 是    | 表示指定的字符串值。|
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
+| value  | string  | 是    | 表示指定的字符串值。|
 
 **返回值：**
 
@@ -1636,14 +1636,14 @@ unlike(field: string, value: string): Query
 
 构造一个Query对象以查询具有与指定字符串值不相似的指定字段的条目。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
-| valueList  | string  | 是    | 表示指定的字符串值。|
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
+| value  | string  | 是    | 表示指定的字符串值。|
 
 **返回值：**
 
@@ -1671,7 +1671,7 @@ and(): Query
 
 构造一个带有与条件的查询对象。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -1701,7 +1701,7 @@ or(): Query
 
 构造一个带有或条件的Query对象。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -1731,13 +1731,13 @@ orderByAsc(field: string): Query
 
 构造一个Query对象，将查询结果按升序排序。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1766,13 +1766,13 @@ orderByDesc(field: string): Query
 
 构造一个Query对象，将查询结果按降序排序。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，必须以$开头， 并且不能包含' ^ '。  |
+| fieId  | string  | 是    |表示指定字段，且不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1801,7 +1801,7 @@ limit(total: number, offset: number): Query
 
 构造一个Query对象来指定结果的数量和开始位置。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -1837,7 +1837,7 @@ isNotNull(field: string): Query
 
 使用不为空的指定字段创建查询条件。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -1871,7 +1871,7 @@ beginGroup(): Query
 
 创建一个带有左括号的查询条件组。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -1901,7 +1901,7 @@ endGroup(): Query
 
 创建一个带有右括号的查询条件组。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -1931,7 +1931,7 @@ prefixKey(prefix: string): Query
 
 创建具有指定键前缀的查询条件。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -1966,7 +1966,7 @@ setSuggestIndex(index: string): Query
 
 设置一个指定的索引，将优先用于查询。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2001,13 +2001,13 @@ deviceId(deviceId:string):Query
 
 添加设备ID作为key的前缀。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| deviceId | string  | 是    |指示查询的设备 ID。   |
+| deviceId | string  | 是    |指示查询的设备ID。   |
 
 
 **返回值：**
@@ -2035,13 +2035,13 @@ getSqlLike():string
 
 获取指定Query对象的查询语句。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
 | 类型    | 说明       |
 | ------  | -------   |
-| [Query](#query8) |返回查询对象。|
+| string |返回一个字段列中包含对应子串的结果。|
 
 **示例：**
 
@@ -2058,9 +2058,7 @@ try {
 
 ## KVStore
 
-KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅同步完成的方法。在调用KVStore的方法前，需要先通过getKVStore构建一个KVStore实例。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+KVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅数据同步完成的方法。在调用KVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个KVStore实例。
 
 ### put
 
@@ -2068,7 +2066,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 添加指定类型键值对到数据库，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2104,7 +2102,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 添加指定类型键值对到数据库，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2143,7 +2141,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除指定键值的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2185,7 +2183,7 @@ delete(key: string): Promise&lt;void&gt;
 
 从数据库中删除指定键值的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2228,7 +2226,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 
 订阅指定类型的数据变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2254,7 +2252,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2278,7 +2276,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 取消订阅数据变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2306,7 +2304,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 批量插入键值对到KVStore数据库中，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2353,7 +2351,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 批量插入键值对到KVStore数据库中，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2408,7 +2406,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 批量删除KVStore数据库中的键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2455,7 +2453,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 批量删除KVStore数据库中的键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2511,7 +2509,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 启动KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2563,7 +2561,7 @@ startTransaction(): Promise&lt;void&gt;
 
 启动KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -2598,7 +2596,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 提交KVStore数据库中的事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2630,7 +2628,7 @@ commit(): Promise&lt;void&gt;
 
 提交KVStore数据库中的事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -2660,7 +2658,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 在KVStore数据库中回滚事务，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2692,7 +2690,7 @@ rollback(): Promise&lt;void&gt;
 
 在KVStore数据库中回滚事务，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -2722,13 +2720,13 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设定是否开启同步，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | 是    |指定是否开启同步，ture表示开启同步，false表示不启用同步。  |
+| enabled  |boolean | 是    |设定是否开启同步，true表示开启同步，false表示不启用同步。  |
 | callback  |AsyncCallback&lt;void&gt; | 是    |回调函数。  |
 
 **示例：**
@@ -2755,13 +2753,13 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 设定是否开启同步，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| enabled  |boolean | 是    |指定是否开启同步，ture表示开启同步，false表示不启用同步。  |
+| enabled  |boolean | 是    |设定是否开启同步，true表示开启同步，false表示不启用同步。  |
 
 **返回值：**
 
@@ -2791,7 +2789,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 
 设置同步范围标签，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2823,7 +2821,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 
 设置同步范围标签，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2896,14 +2894,14 @@ try {
 
 ## Value
 
-存储在数据库中的对象。
+存储在数据库中的值对象。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 
 | 名称  | 参数类型   |可读   |可写   | 说明                    |
 | ----- | -------   | -----| ------|------------------------ |
 | type | [ValueType](#value)   | 是  |  是 |值类型。   |
-| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值对象。   |
+| value | Uint8Array \| string \| number \| boolean| 是  |  是 |值。   |
 
 ## ValueType
 
@@ -2924,9 +2922,7 @@ try {
 
 ## SingleKVStore
 
-单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用 SingleKVStore 的方法前，需要先通过 [getKVStore](#getkvstore) 构建一个 SingleKVStore 实例。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+单版本分布式数据库，继承自KVStore，提供查询数据和同步数据的方法。在调用SingleKVStore的方法前，需要先通过 [getKVStore](#getkvstore) 构建一个SingleKVStore实例。
 
 ### get
 
@@ -2934,7 +2930,7 @@ get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | numb
 
 获取指定键的值，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -2972,7 +2968,7 @@ get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
 获取指定键的值，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3015,7 +3011,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取匹配指定键前缀的所有键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3061,7 +3057,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取匹配指定键前缀的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3117,9 +3113,9 @@ try {
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3221,13 +3217,13 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a> ###
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-从 KvStore 数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
+从KvStore数据库中获取具有指定前缀的结果集，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3257,7 +3253,7 @@ try {
     kvStore.putBatch(entries, async function (err, data) {
         console.log('GetResultSet putBatch success');
         await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
-            console.log('GetResultSet getResultSet success');
+            console.log('GetResultSet getResultSet succeed.');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('GetResultSet closeResultSet success');
@@ -3274,9 +3270,9 @@ try {
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-从 KVStore 数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
+从KVStore数据库中获取具有指定前缀的结果集，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3314,10 +3310,10 @@ try {
         console.log('PutBatch putBatch fail ' + JSON.stringify(err));
     });
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('GetResult getResultSet success');
+        console.log('GetResult getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('GetResult closeResultSet success');
@@ -3334,16 +3330,16 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | 是    |表示查询对象。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定 Query 对象匹配的 KvStoreResultSet 对象。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Query对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
 
@@ -3368,7 +3364,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         await kvStore.getResultSet(query, async function (err, result) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
             resultSet = result;
         });
     });
@@ -3382,9 +3378,9 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+获取与指定Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3424,10 +3420,10 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet(query).then((result) => {
-        console.log(' getResultSet success');
+        console.log(' getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSet e ' + e);
@@ -3438,16 +3434,16 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+关闭由[SingleKvStore.getResultSet](#singlekvstore_getresultset)返回的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
-| callback  |AsyncCallback&lt;void&gt;   | 是    |回调函数，获取由 getResultSet 返回的 KvStoreResultSet 对象。             |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的KvStoreResultSet对象。             |
+| callback  |AsyncCallback&lt;void&gt;   | 是    |回调函数。             |
 
 **示例：**
 
@@ -3472,15 +3468,15 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+关闭由[SingleKvStore.getResultSet](#singlekvstore_getresultset)返回的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的 KvStoreResultSet 对象。             |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | 是    |表示要关闭的KvStoreResultSet对象。             |
 
 **返回值：**
 
@@ -3509,16 +3505,16 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | 是    |表示查询对象。         |
-| callback  |AsyncCallback&lt;number&gt;   | 是    |回调函数，获取与指定 Query 对象匹配的结果数。         |
+| callback  |AsyncCallback&lt;number&gt;   | 是    |回调函数，获取与指定Query对象匹配的结果数。         |
 
 **示例：**
 
@@ -3542,7 +3538,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         await kvStore.getResultSize(query, async function (err, resultSize) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -3555,9 +3551,9 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+获取与指定Query对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3596,9 +3592,9 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -3612,7 +3608,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3654,7 +3650,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3703,7 +3699,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3739,7 +3735,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3768,18 +3764,18 @@ try {
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-在手动模式下，触发数据库同步，此方法为同步方法。
+在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
-| mode  |[SyncMode](#syncmode)   | 是   |同步类型。    |
+| mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
 | allowedDelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
@@ -3793,9 +3789,9 @@ kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置允许数据库同步的默认延迟，并通过callback方式返回，此方法为异步方法。
+设置数据库同步允许的默认延迟，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3823,9 +3819,9 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-设置允许数据库同步的默认延迟，并通过Promise方式返回，此方法为异步方法。
+设置数据库同步允许的默认延迟，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3863,7 +3859,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
 获取数据库的安全级别，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -3891,7 +3887,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
 获取数据库的安全级别，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **返回值：**
 
@@ -3919,22 +3915,20 @@ try {
 
 在分布式系统中按设备管理分布式数据，继承自KVStore，提供查询数据和同步数据的方法。在调用DeviceKVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个DeviceKVStore实例。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
-
 ### get<sup>8+</sup> ###
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
-获取与指定设备 ID 和 key 匹配的 String 值，并通过callback方式返回，此方法为异步方法。
+获取与指定设备ID和key匹配的string值，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**   SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**   SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
-| key       |string  | 是    |表示要查询 key 值的键。    |
+| key       |string  | 是    |表示要查询key值的键。    |
 | callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | 是    |回调函数，返回匹配给定条件的字符串值。    |
 
 **示例：**
@@ -3960,16 +3954,16 @@ try{
 
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
-获取与指定设备 ID 和 key 匹配的 String 值，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备ID和key匹配的string值，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
-| key       |string  | 是    |表示要查询 key 值的键。    |
+| key       |string  | 是    |表示要查询key值的键。    |
 
 **返回值：**
 
@@ -4004,9 +3998,9 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
+获取与指定设备ID和key前缀匹配的所有键值对，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4052,9 +4046,9 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
-获取与指定设备 ID 和 key 前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备ID和key前缀匹配的所有键值对，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4111,16 +4105,16 @@ try {
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的键值对列表。    |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定Query对象匹配的键值对列表。    |
 
 **示例：**
 
@@ -4164,9 +4158,9 @@ try {
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;
 
-获取与指定 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
+获取与指定Query对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4222,9 +4216,9 @@ try {
 
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
+获取与指定设备ID和Query对象匹配的键值对列表，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4232,7 +4226,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |键值对所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的键值对列表。    |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | 是    |回调函数，返回与指定Query对象匹配的键值对列表。    |
 
 **示例：**
 
@@ -4276,9 +4270,9 @@ try {
 
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
-获取与指定设备 ID 和 Query 对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备ID和Query对象匹配的键值对列表，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4332,13 +4326,13 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a> ###
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-获取与指定设备 ID 和　key 前缀匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+获取与指定设备ID和key前缀匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4346,7 +4340,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvS
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
 | keyPrefix |string  | 是    |表示要匹配的键前缀。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回 KvStoreResultSet 对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4355,7 +4349,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
         await kvStore.closeResultSet(resultSet, function (err, data) {
             console.log('closeResultSet success');
@@ -4371,9 +4365,9 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-获取与指定设备 ID 和 key 前缀匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备ID和key前缀匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4395,10 +4389,10 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('closeResultSet success');
@@ -4415,16 +4409,16 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定Query对象匹配的KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4450,7 +4444,7 @@ try {
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
         await kvStore.getResultSet(query, async function (err, result) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
             resultSet = result;
             await kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
@@ -4467,9 +4461,9 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-获取与指定 Query 对象匹配的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+获取与指定Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4511,10 +4505,10 @@ try {
     query.prefixKey("batch_test");
     console.log("GetResultSet " + query.getSqlLike());
     kvStore.getResultSet(query).then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('closeResultSet success');
@@ -4533,7 +4527,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4541,7 +4535,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreR
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query  |[Query](#query8)  | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定 Query 对象匹配的 KvStoreResultSet 对象。    |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | 是  |回调函数，返回与指定Query对象匹配的KvStoreResultSet对象。    |
 
 **示例：**
 
@@ -4566,7 +4560,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
             resultSet = result;
             await kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
@@ -4585,7 +4579,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4626,10 +4620,10 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet('localDeviceId', query).then((result) => {
-        console.log('GetResultSet getResultSet success');
+        console.log('GetResultSet getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+        console.log('GetResultSet getResultSet failed: ' + JSON.stringify(err));
     });
     query.deviceId('localDeviceId');
     console.log("GetResultSet " + query.getSqlLike());
@@ -4649,15 +4643,15 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过callback方式返回，此方法为异步方法。
+关闭由[DeviceKVStore.getResultSet](#devicekvstore_getresultset)返回的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
+| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 | callback   |AsyncCallback&lt;void&gt;                 | 是    |回调函数。    |
 
 **示例：**
@@ -4684,15 +4678,15 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-关闭由 getResultSet 返回的 KvStoreResultSet 对象，并通过Promise方式返回，此方法为异步方法。
+关闭由[DeviceKVStore.getResultSet](#devicekvstore_getresultset)返回的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的 KvStoreResultSet 对象。   |
+| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 
 **返回值：**
 
@@ -4722,16 +4716,16 @@ try {
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
-获取与指定 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+获取与指定Query对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的结果数。    |
+| callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定Query对象匹配的结果数。    |
 
 **示例：**
 
@@ -4756,7 +4750,7 @@ try {
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
         await kvStore.getResultSize(query, async function (err, resultSize) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -4769,9 +4763,9 @@ try {
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
-获取与指定 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+获取与指定Query对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4811,9 +4805,9 @@ try {
     query.prefixKey("batch_test");
     query.deviceId('localDeviceId');
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -4825,9 +4819,9 @@ try {
 
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
-获取与指定设备 ID 和 Query 对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
+获取与指定设备ID和Query对象匹配的结果数，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4835,7 +4829,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | 是    |KvStoreResultSet对象所属的设备ID。    |
 | query     |[Query](#query8)       | 是    |表示查询对象。    |
-| callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定 Query 对象匹配的结果数。    |
+| callback  |AsyncCallback&lt;number&gt;  | 是    |回调函数，返回与指定Query对象匹配的结果数。    |
 
 **示例：**
 
@@ -4859,7 +4853,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
-            console.log('getResultSet success');
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -4872,9 +4866,9 @@ try {
 
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
-获取与指定设备 ID 和 Query 对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
+获取与指定设备ID和Query对象匹配的结果数，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4914,9 +4908,9 @@ try {
     var query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -4930,7 +4924,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 从当前数据库中删除指定设备的数据，并通过callback方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -4972,7 +4966,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 从当前数据库中删除指定设备的数据，并通过Promise方式返回，此方法为异步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -5019,18 +5013,18 @@ try {
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-在手动模式下，触发数据库同步，此方法为同步方法。
+在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
-| mode            |[SyncMode](#syncmode)  | 是    |表示同步方式，PUSH、PULL或PUSH_PULL。  |
+| mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
 | allowedDelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
@@ -5060,7 +5054,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 
 订阅同步完成事件回调通知，该方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -5095,7 +5089,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知，该方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
 
@@ -5122,7 +5116,7 @@ try {
 
 ## SyncMode
 
-用于指定同步模式。
+同步模式枚举。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.DistributedDataManager.KVStore.Core。
 

@@ -6,7 +6,11 @@
 
 Ability运行相关信息。
 
+## 导入模块
 
+```js
+import AbilityRunningInfo from '@ohos.application.abilityRunningInfo';
+```
 ## 使用说明
 
 

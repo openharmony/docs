@@ -79,7 +79,7 @@ struct GestureSettingsExample {
       TapGesture()
         .onAction((event: GestureEvent) => {
           this.value = 'priorityGesture onAction' + '\ncomponent globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\nwidth:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
           + event.target.area.width + '\nheight:' + event.target.area.height
         }), GestureMask.IgnoreInternal
       )

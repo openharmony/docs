@@ -550,7 +550,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp, (error, result) => {
 
 ## enterpriseDeviceManager.getEnterpriseInfo
 
-getDeviceSettingsManager(admin: Want): Promise&lt;EnterpriseInfo&gt;
+getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 获取设备管理员应用的企业信息，使用Promise形式返回设备管理员应用的企业信息。
 

@@ -19,7 +19,7 @@ The System Ability Manager (SAMGR) subsystem implements the system service frame
 ├── safwk                       # System ability framework
 ├── samgr                       # System ability manager
 ├── safwk_lite                  # Lightweight foundation process
-├── samgr_lite                  # Lightweight system ability manager
+└── samgr_lite                  # Lightweight system ability manager
 ```
 
 ## Repositories Involved<a name="section1371113476307"></a>

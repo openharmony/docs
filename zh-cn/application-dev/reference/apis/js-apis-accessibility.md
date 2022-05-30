@@ -266,6 +266,26 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | endIndex | number | 是 | 是 | 画面显示条目的结束序号。 |
 | itemCount | number | 是 | 是 | 条目总数。 |
 
+### 方法
+
+#### constructor
+
+constructor(jsonObject)
+
+构造函数。
+
+- 参数：
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | jsonObject | string | 是 | 创建对象所需要的 JSON 格式字符串。 |
+
+- 示例
+
+  ```typescript
+  let eventInfo = new accessibility.EventInfo({"type":"click","bundleName":"com.example.MyApplication","triggerAction":"click"})
+  ```
+
 ## EventType
 
 无障碍事件类型。
@@ -310,15 +330,9 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | -------- | -------- |
 | add | 添加窗口的窗口变化事件。 |
 | remove | 一个窗口被删除的窗口变化事件。 |
-| title | 窗口标题已更改的窗口变化事件。 |
 | bounds | 窗口边界已更改的窗口变化事件。 |
-| layer | 窗口层级发生变化的窗口变化事件。 |
 | active | 窗口变为活动或不活动的窗口变化事件。 |
 | focus | 窗口焦点发生变化的窗口变化事件。 |
-| accessibilityFocus | 窗口无障碍焦点发生变化的窗口更改事件。 |
-| parent | 父窗口已更改的窗口变化事件。 |
-| children | 子窗口已更改的窗口变化事件。 |
-| pip | 窗口进入或退出画中画（PIP）模式的窗口变化事件。 |
 
 ## accessibility.getAbilityLists
 

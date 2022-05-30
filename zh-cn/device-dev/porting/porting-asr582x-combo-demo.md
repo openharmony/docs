@@ -469,13 +469,13 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 子系统的编译选项入口在相应产品config.json下，以下以`//vendor/asrmicro/wifi_demo/config.json`为例。
 
-### LWIP组件
+### lwIP组件
 
-lwip组件的源码在`//third_party/lwip`，Openharmony在kernel中做了定制化，`//kernel/liteos_m/components/net/lwip-2.1`，包括一些接口的重定义，结构体的重定义等。
+lwIP组件的源码在`//third_party/lwip`，OpenHarmony在kernel中做了定制化，`//kernel/liteos_m/components/net/lwip-2.1`，包括一些接口的重定义，结构体的重定义等。
 
 移植过程可参考：[lwIP组件适配](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-chip-board-lwip.md)
 
-本案例在config.json中设置lwip的路径如下：
+本案例在config.json中设置lwIP的路径如下：
 
    ```
    "subsystem": "kernel",
@@ -489,7 +489,7 @@ lwip组件的源码在`//third_party/lwip`，Openharmony在kernel中做了定制
    ]
    ```
 
-另外，需在内核编译配置文件kernel_config/debug.config中，打开编译lwIP的开关
+另外，需在内核编译配置文件kernel_config/debug.config中，打开编译lwIP的开关，如下：
 
 ```
 LOSCFG_NET_LWIP=y
@@ -581,7 +581,7 @@ xts组件的适配，以`//vendor/asrmicro/xts_demo/config.json`为例，需要�
 
 dsoftbus组件提供了设备间的发现连接、组网和传输能力，本方案以Wi-Fi设备间的软总线能力为例。
 
-依赖组件：LWIP组件、security组件、wifi_lite组件。
+依赖组件：lwIP组件、security组件、wifi_lite组件。
 
 前置条件：设备需先连接路由，所有的组网设备需在同一局域网中。
 
@@ -622,7 +622,7 @@ dsoftbus组件的启动接口可参考`//vendor/asrmicro/wifi_demo/tests/dsoftbu
 InitSoftBusServer();
 ```
 
-dsoftbus组件的运行需至少预留80KB RAM，如资源不够，可对其它地方进行剪裁，例如LWIP组件，可修改
+dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它地方进行剪裁。例如，可在以下文件修改lwIP组件：
 `//kernel_liteos_m/blob/master/components/net/lwip-2.1/porting/include/lwip/lwipopts.h`：
 
 ```
@@ -670,7 +670,7 @@ void HandleReceiveDeviceId(AuthManager *auth, uint8_t *data)
 }
 ```
 
-在正确配置并编译烧录后，设备使用wifi_open指令连接路由，连接成功后，设备会自动进行组网，如下为组网成功截图：
+在正确配置并编译烧录后，设备使用wifi_open指令连接路由，连接成功后，设备会自动进行组网。如下为组网成功截图：
 
 ![dsoftbus_join_LNN](figures/asr582x_dsoftbus_join_LNN.png)
 

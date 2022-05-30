@@ -58,10 +58,10 @@ import window from '@ohos.window';
 
 | 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如"\#00FF00"或"\#FF00FF00"。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。                                   |
 | statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。                                             |
-| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如"\#00FF00"或"\#FF00FF00"。 |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
@@ -78,7 +78,7 @@ import window from '@ohos.window';
 | type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
 | isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。                                         |
 | region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。                                     |
-| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为16进制RGB或ARGB颜色，例如"\#00FF00"或"\#FF00FF00"。 |
+| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如"\#00FF00"或"\#FF00FF00"。 |
 | contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -706,11 +706,11 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                      | 必填 | 说明                                    |
-| -------- | ------------------------- | ---- | --------------------------------------- |
-| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移。 |
-| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                              |
+| 参数名   | 类型                      | 必填 | 说明                                              |
+| -------- | ------------------------- | ---- | ------------------------------------------------- |
+| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
+| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                        |
 
 **示例：** 
 
@@ -735,10 +735,10 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                                    |
-| ------ | ------ | ---- | --------------------------------------- |
-| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移。 |
-| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移。 |
+| 参数名 | 类型   | 必填 | 说明                                              |
+| ------ | ------ | ---- | ------------------------------------------------- |
+| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
+| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
 
 **返回值：** 
 
@@ -767,11 +767,11 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 **参数：** 
 
-| 参数名   | 类型                      | 必填 | 说明             |
-| -------- | ------------------------- | ---- | ---------------- |
-| width    | number                    | 是   | 目标窗口的宽度。 |
-| height   | number                    | 是   | 目标窗口的高度。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+| 参数名   | 类型                      | 必填 | 说明                       |
+| -------- | ------------------------- | ---- | -------------------------- |
+| width    | number                    | 是   | 目标窗口的宽度，单位为px。 |
+| height   | number                    | 是   | 目标窗口的高度，单位为px。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                 |
 
 **示例：** 
 
@@ -795,10 +795,10 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| width  | number | 是   | 目标窗口的宽度。 |
-| height | number | 是   | 目标窗口的高度。 |
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| width  | number | 是   | 目标窗口的宽度，单位为px。 |
+| height | number | 是   | 目标窗口的高度，单位为px。 |
 
 **返回值：** 
 
@@ -1601,7 +1601,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
   promise.then((data)=> {
       console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
-      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+      console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -1624,10 +1624,10 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
   ```js
   windowClass.getColorSpace((err, data) => {
       if (err.code) {
-          console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
+          console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
+      console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data))
   })
   ```
 
@@ -1652,7 +1652,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
   promise.then((data)=> {
       console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
   }).catch((err)=>{
-      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+      console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -1668,7 +1668,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如"#00FF00"或"#FF00FF00"。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：** 
@@ -1696,7 +1696,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为16进制颜色，例如"#00FF00"或"#FF00FF00"。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如"#00FF00"或"#FF00FF00"。 |
 
 **返回值：** 
 
@@ -1848,7 +1848,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名         | 类型                      | 必填 | 说明                     |
 | -------------- | ------------------------- | ---- | ------------------------ |
-| isKeepScreenOn | boolean                   | 是   | 是否设置为屏幕常亮状态。 |
+| isKeepScreenOn | boolean                   | 是   | 设置屏幕是否为常亮状态。 |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。               |
 
 **示例：** 
@@ -1876,7 +1876,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 | 参数名         | 类型    | 必填 | 说明                     |
 | -------------- | ------- | ---- | ------------------------ |
-| isKeepScreenOn | boolean | 是   | 是否设置为屏幕常亮状态。 |
+| isKeepScreenOn | boolean | 是   | 设置屏幕是否为常亮状态。 |
 
 **返回值：** 
 

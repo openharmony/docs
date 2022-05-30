@@ -5,10 +5,11 @@
 An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
 
 The ADC APIs provide a set of common functions for ADC data transfer, including:
--   Opening or closing an ADC device
+- Opening or closing an ADC device
+
 -   Obtaining the analog-to-digital (AD) conversion result
 
-    **Figure 1** ADC physical connection<a name="fig1"></a>
+    **Figure 1** ADC physical connection
 	
     ![](figures/ADC_physical_connection.png "ADC_physical_connection")
 
@@ -51,11 +52,11 @@ The ADC APIs provide a set of common functions for ADC data transfer, including:
 
 ### How to Use<a name="section4"></a>
 
-[Figure 2](#fig2) shows how an ADC device works.
+The figure below illustrates how to use the APIs.
 
- **Figure 2** How ADC works<a name="fig2"></a>
- 
-![](figures/ADC_flowchart.png "ADC_flowchart")
+ **Figure 2** Using ADC driver APIs
+
+![](figures/using-ADC-process.png "using-ADC-process.png")
 
 ### Opening an ADC Device<a name="section5"></a>
 

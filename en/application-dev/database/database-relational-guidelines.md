@@ -116,8 +116,8 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](../public_sys-resources/icon-notice.gif) **NOTICE**<br/>
-> After a result set is used, you must call the **close()** method to close it explicitly.**
+> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
+> After a result set is used, you must call the **close()** method to close it explicitly.
 
 **Table 7** APIs for using the result set
 
@@ -306,3 +306,8 @@ You can obtain the distributed table name for a remote device based on the local
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
+## Samples
+The following samples are provided for you to better understand the RDB development:
+- [`Rdb`: eTS RDB (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
+- [`DistributedRdb`: eTS Distributed Relational Database (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
+- [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)

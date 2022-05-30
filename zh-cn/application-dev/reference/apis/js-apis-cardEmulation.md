@@ -21,14 +21,15 @@ isSupported(feature: number): boolean
 
 **系统能力**：SystemCapability.Communication.NFC
 
-- 返回值：
+**返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:支持该类型卡模拟，&nbsp;false:不支持该类型卡模拟。 |
 
 ## HceService
 
-管理HCE卡模拟。在调用HceService的接口前，需要先通过getHceService创建实例。
+管理HCE卡模拟。在调用HceService的接口前，需要先通过new cardEmulation.HceService()创建实例。
 
 ### startHCE
 
@@ -91,7 +92,7 @@ sendResponse(responseApdu: number[]): void;
 
 **示例：**
 
-```
+```js
 var hceService = new cardEmulation.HceService();
 hceService.startHCE([
     "F0010203040506", "A0000000041010"

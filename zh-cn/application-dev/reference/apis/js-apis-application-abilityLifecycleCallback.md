@@ -6,6 +6,12 @@
 
 应用上下文ApplicationContext的生命周期监听方法的回调类，里面提供了onAbilityCreate、onAbilityWindowStageCreate、onAbilityWindowStageDestroy等方法。
 
+## 导入模块
+
+```js
+import AbilityLifecycleCallback from "@ohos.application.abilityLifecycleCallback";
+```
+
 
 ## AbilityLifecycleCallback.onAbilityCreate
 

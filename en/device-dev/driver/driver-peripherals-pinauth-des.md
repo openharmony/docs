@@ -4,16 +4,16 @@
 
 ### Function
 
-Personal Identification Number (PIN) authentication provides user authentication capabilities and applies to identity authentication scenarios, such as device unlocking, payment, and app logins. After a user registers a PIN, the PIN authentication (pin_auth) module unlocks the device only when a correct PIN is entered. The figure below shows the architecture of PIN authentication.
+Personal Identification Number (PIN) authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. After a user registers a PIN, the PIN authentication (pin_auth) module unlocks the device only when a correct PIN is entered. The figure below shows the architecture of PIN authentication.
 
-The pin_auth driver is developed based on the Hardware Driver Foundation (HDF). The pin_auth driver model shields hardware differences and provides stable PIN authentication capabilities for the user IAM framework(UserIAM) and PIN authentication system ability (SA). The PIN authentication capabilities include obtaining the PIN authentication executor list, executor information, anti-brute force information of the specified template, comparing the template list of the executor and that of UserIAM, enrolling or deleting PINs, and performing PIN authentication.
+The pin_auth driver is developed based on the Hardware Driver Foundation (HDF). The pin_auth driver model shields hardware differences and provides stable PIN authentication capabilities for the user IAM framework(UserIAM) and PIN authentication system ability (SA). The PIN authentication capabilities include obtaining the PIN authentication executor list, executor information, and anti-brute force information of the specified template, comparing the template list of the executor and that of UserIAM, enrolling or deleting PINs, and performing PIN authentication.
 
 **Figure 1** PIN authentication architecture
 
 ![image](figures/pin_auth_architecture.png "PIN authentication architecture")
 
 ### Basic Concepts
-The identity authentication consists of UserIAM and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials, deletion, and performing authentication.
+The identity authentication consists of UserIAM and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials, and performing authentication.
 
 - Executor
 
@@ -37,7 +37,7 @@ The identity authentication consists of UserIAM and basic authentication service
 
 - UserIAM public key & executor public key
 
-  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between UserIAM and basic authentication services. Public keys need to be exchanged when the executor provided by a basic authentication service interworks with UserIAM.
+  To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between UserIAM and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with UserIAM.
 
     - The executor uses the UserIAM public key to verify the scheduling instruction.
 
@@ -50,7 +50,7 @@ The identity authentication consists of UserIAM and basic authentication service
 
 - Data verification by the executor
 
-  UserIAM manages the mappings between user identities and credential IDs in a unified manner. When connecting to UserIAM, the executor obtains the template ID list from UserIAM, compares its template ID list with the template ID list obtained, and updates its template ID list accordingly.
+  UserIAM manages the mappings between user identities and credential IDs in a unified manner. When connecting to UserIAM, the executor obtains the template ID list from UserIAM, and updates its template ID list based on the obtained template ID list.
 
 ### Working Principles
 
@@ -65,7 +65,7 @@ PIN authentication must be implemented in a TEE, and the confidential informatio
 ## Development Guidelines
 
 ### When to Use
-The pin_auth driver provides basic capabilities of PIN authentication for the UserIAM and pin_auth service to ensure successful PIN authentication.
+The pin_auth driver provides basic PIN authentication capabilities for the UserIAM and pin_auth service to ensure successful PIN authentication.
 
 ### Available APIs
 
@@ -499,7 +499,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // Cancel the operation of the specified scheduleId.
+   // Cancel the operation based on the specified scheduleId.
    int32_t ExecutorImpl::Cancel(uint64_t scheduleId)
    {
        IAM_LOGI("start");

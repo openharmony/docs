@@ -2,7 +2,7 @@
 
 Distributed data management provides collaboration between databases of different devices for applications. The APIs provided by distributed data management can be used to save data to the distributed database and perform operations such as adding, deleting, modifying, and querying data in the distributed database.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE**<br/>
+>**NOTE**<br/>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -2922,6 +2922,7 @@ These value types can be used only by internal applications.
 | BOOLEAN   |4 |Boolean. |
 | DOUBLE   |5 |Double (double-precision floating point). |
 
+
 ## SingleKVStore
 
 Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** object.
@@ -3447,7 +3448,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API us
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the execution result.            |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.            |
 
 **Example**
 

@@ -7,11 +7,11 @@ Generally, a general-purpose input/output \(GPIO\) controller manages all GPIO p
 
 The GPIO APIs define a set of standard functions for performing operations on GPIO pins, including:
 
--   Setting the pin direction, which can be input or output \(High impedance is not supported currently.\)
+-   Setting the pin direction, which can be input or output \(high impedance is not supported currently\)
 
 -   Reading and writing level values, which can be low or high
 -   Setting an interrupt service routine \(ISR\) function and interrupt trigger mode for a pin
--   Enabling or disabling a pin interrupt
+-   Enabling or disabling interrupts for a pin
 
 ## Available APIs<a name="section589913442203"></a>
 
@@ -64,16 +64,17 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 </tr>
 <tr id="row396907112117"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p109694717216"><a name="p109694717216"></a><a name="p109694717216"></a>GpioEnableIrq</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2969473216"><a name="p2969473216"></a><a name="p2969473216"></a>Enables a GPIO interrupt.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2969473216"><a name="p2969473216"></a><a name="p2969473216"></a>Enables GPIO interrupts for a pin.</p>
 </td>
 </tr>
 <tr id="row14969117152113"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18969157182116"><a name="p18969157182116"></a><a name="p18969157182116"></a>GpioDisableIrq</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19690710214"><a name="p19690710214"></a><a name="p19690710214"></a>Disables a GPIO interrupt.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19690710214"><a name="p19690710214"></a><a name="p19690710214"></a>Disables GPIO interrupts for a pin.</p>
 </td>
 </tr>
 </tbody>
 </table>
+
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
 >All functions provided in this document can be called only in kernel mode.
@@ -82,22 +83,27 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 ### How to Use<a name="section103477714216"></a>
 
-The GPIO APIs use the GPIO pin number to specify a pin. [Figure 1](#fig16151101653713)  shows the general process of using a GPIO.
+The GPIO APIs use the GPIO pin number to specify a pin. The figure below illustrates how to use the APIs.
 
-**Figure  1** Process of using a GPIO<a name="fig16151101653713"></a>  
-![](figures/process-of-using-a-gpio.png "process-of-using-a-gpio")
+**Figure  1** Using GPIO driver APIs
+ 
+![](figures/using-gpio-process.png "using-gpio-process.png")
 
-### Determining a GPIO Pin Number<a name="section370083272117"></a>
+### Determining the GPIO Pin Number<a name="section370083272117"></a>
 
-The method for converting GPIO pin numbers varies according to the GPIO controller model, parameters, and controller driver of different system on chips \(SoCs\).
+The method for converting GPIO pin numbers varies depending on the GPIO controller model, parameters, and controller driver of different system on chips \(SoCs\).
 
--   Hi3516DV300
+- Hi3516DV300
 
-    A controller manages 12 groups of GPIO pins. Each group contains 8 GPIO pins.
+  A controller manages 12 groups of GPIO pins. Each group contains 8 GPIO pins.
 
-    GPIO pin number = GPIO group index \(0–11\) x Number of GPIO pins in each group \(8\) + Offset in the group
+  GPIO pin number = GPIO group index x Number of GPIO pins in each group + Offset in the group
 
-    Example: GPIO number of GPIO10\_3 = 10 x 8 + 3 = 83
+  The group index ranges from 0 to 11. 
+
+  Example: 
+
+  GPIO pin number of GPIO10\_3 = 10 x 8 + 3 = 83
 
 -   Hi3518EV300
 
@@ -105,14 +111,18 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
     GPIO pin number = GPIO group index \(0–9\) x Number of GPIO pins in each group \(10\) + Offset in the group
 
-    Example: GPIO pin number of GPIO7\_3 = 7 x 10 + 3 = 73
+    The group index ranges from 0 to 9.
+    
+    Example: 
+    
+    GPIO pin number of GPIO7\_3 = 7 x 10 + 3 = 73
 
 
 ### Using APIs to Operate GPIO Pins<a name="section13604050132118"></a>
 
 -   Set the direction for a GPIO pin.
 
-    Before performing read/write operations on a GPIO pin, call the following function to set the direction:
+    Before performing read/write operations on a GPIO pin, call **GpioSetDir**() to set the direction.
 
     int32\_t GpioSetDir\(uint16\_t gpio, uint16\_t dir\);
 
@@ -141,12 +151,12 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row205931212123817"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p18312151463"><a name="p18312151463"></a><a name="p18312151463"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103124517618"><a name="p103124517618"></a><a name="p103124517618"></a>Succeeded in setting the direction for a GPIO pin.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103124517618"><a name="p103124517618"></a><a name="p103124517618"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row75931212153818"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p23121951261"><a name="p23121951261"></a><a name="p23121951261"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p153121553610"><a name="p153121553610"></a><a name="p153121553610"></a>Failed to set the direction for a GPIO pin.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p153121553610"><a name="p153121553610"></a><a name="p153121553610"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
@@ -155,7 +165,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
 -   Read or write the level value for a GPIO pin.
 
-    To read the level value of a GPIO pin, call the following function:
+    Call **GpioRead**() to read the level value of a GPIO pin.
 
     int32\_t GpioRead\(uint16\_t gpio, uint16\_t \*val\);
 
@@ -184,23 +194,24 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row3348184311486"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1934854315487"><a name="p1934854315487"></a><a name="p1934854315487"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103481943114814"><a name="p103481943114814"></a><a name="p103481943114814"></a>Succeeded in reading the level value.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103481943114814"><a name="p103481943114814"></a><a name="p103481943114814"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row23485436482"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1134834310486"><a name="p1134834310486"></a><a name="p1134834310486"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p93491343144815"><a name="p93491343144815"></a><a name="p93491343144815"></a>Failed to read the level value.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p93491343144815"><a name="p93491343144815"></a><a name="p93491343144815"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
     </table>
-
-    To write the level value for a GPIO pin, call the following function:
-
+   
+   
+    Call **GpioWrite()** to write the level value for a GPIO pin.
+   
     int32\_t GpioWrite\(uint16\_t gpio, uint16\_t val\);
-
+   
    **Table  4** Description of GpioWrite
-
+   
     <a name="table1214911207520"></a>
     <table><tbody><tr id="row6149720175218"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p18149132005216"><a name="p18149132005216"></a><a name="p18149132005216"></a><strong id="b19864427181615"><a name="b19864427181615"></a><a name="b19864427181615"></a>Parameter</strong></p>
     </td>
@@ -224,19 +235,19 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row111503202526"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p171501320205216"><a name="p171501320205216"></a><a name="p171501320205216"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p15150102017522"><a name="p15150102017522"></a><a name="p15150102017522"></a>Succeeded in writing the level value.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p15150102017522"><a name="p15150102017522"></a><a name="p15150102017522"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row1615002018528"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p15150182045212"><a name="p15150182045212"></a><a name="p15150182045212"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p13150320105212"><a name="p13150320105212"></a><a name="p13150320105212"></a>Failed to write the level value.</p>
+    <td class="cellrowborder" valign="top" width="51.88%"><p id="p13150320105212"><a name="p13150320105212"></a><a name="p13150320105212"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
     </table>
-
+   
     Example:
-
+   
     ```
     int32_t ret;
     uint16_t val;
@@ -265,7 +276,7 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
 -   Set the ISR function for a GPIO pin.
 
-    To set the ISR function for a GPIO pin, call the following function:
+    Call **GpioSetIrq()** to set the ISR function for a GPIO pin.
 
     int32\_t GpioSetIrq\(uint16\_t gpio, uint16\_t mode, GpioIrqFunc func, void \*arg\);
 
@@ -304,21 +315,21 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row12299632125817"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1180511189465"><a name="p1180511189465"></a><a name="p1180511189465"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p180521812465"><a name="p180521812465"></a><a name="p180521812465"></a>Succeeded in setting the ISR function for a GPIO pin.</p>
+    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p180521812465"><a name="p180521812465"></a><a name="p180521812465"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row029833235815"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1080591814468"><a name="p1080591814468"></a><a name="p1080591814468"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p18805141884611"><a name="p18805141884611"></a><a name="p18805141884611"></a>Failed to set the ISR function for a GPIO pin.</p>
+    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p18805141884611"><a name="p18805141884611"></a><a name="p18805141884611"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-    >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+    >![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
     >Only one ISR function can be set for a GPIO pin at a time. If **GpioSetIrq** is called repeatedly, the previous IRS function will be replaced.
 
-    If the ISR function is no longer required, call the following function to cancel the setting:
+    If the ISR function is no longer required, call **GpioUnSetIrq()** to cancel the setting.
 
     int32\_t GpioUnSetIrq\(uint16\_t gpio\);
 
@@ -342,18 +353,18 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row357318466439"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1573164616438"><a name="p1573164616438"></a><a name="p1573164616438"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p857384614319"><a name="p857384614319"></a><a name="p857384614319"></a>Succeeded in canceling the ISR function.</p>
+    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p857384614319"><a name="p857384614319"></a><a name="p857384614319"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row18573124610433"><td class="cellrowborder" valign="top" width="48.54%"><p id="p165731146134311"><a name="p165731146134311"></a><a name="p165731146134311"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p6573164613437"><a name="p6573164613437"></a><a name="p6573164613437"></a>Failed to cancel the ISR function.</p>
+    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p6573164613437"><a name="p6573164613437"></a><a name="p6573164613437"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-    After the ISR function is set, call the following function to enable a GPIO interrupt:
+    After the ISR function is set, call **GpioEnableIrq()** to enable interrupts.
 
     int32\_t GpioEnableIrq\(uint16\_t gpio\);
 
@@ -377,21 +388,21 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row154188171403"><td class="cellrowborder" valign="top" width="50%"><p id="p1866610292563"><a name="p1866610292563"></a><a name="p1866610292563"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p13666182975613"><a name="p13666182975613"></a><a name="p13666182975613"></a>Succeeded in enabling a GPIO interrupt.</p>
+    <td class="cellrowborder" valign="top" width="50%"><p id="p13666182975613"><a name="p13666182975613"></a><a name="p13666182975613"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row1041891720012"><td class="cellrowborder" valign="top" width="50%"><p id="p766642911562"><a name="p766642911562"></a><a name="p766642911562"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1566652995613"><a name="p1566652995613"></a><a name="p1566652995613"></a>Failed to enable a GPIO interrupt.</p>
+    <td class="cellrowborder" valign="top" width="50%"><p id="p1566652995613"><a name="p1566652995613"></a><a name="p1566652995613"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
     </table>
 
-    >![](../public_sys-resources/icon-caution.gif) **CAUTION:** 
+    >![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
     >The configured ISR function can be responded only after the GPIO interrupt is enabled.
 
-    Use the following function to disable the GPIO interrupt:
+    Call **GpioDisableIrq()** to disable interrupts.
 
     int32\_t GpioDisableIrq\(uint16\_t gpio\);
 
@@ -415,12 +426,12 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
     </tr>
     <tr id="row156694410112"><td class="cellrowborder" valign="top" width="50%"><p id="p14669141214"><a name="p14669141214"></a><a name="p14669141214"></a>0</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1266934818"><a name="p1266934818"></a><a name="p1266934818"></a>Succeeded in disabling a GPIO interrupt.</p>
+    <td class="cellrowborder" valign="top" width="50%"><p id="p1266934818"><a name="p1266934818"></a><a name="p1266934818"></a>The operation is successful.</p>
     </td>
     </tr>
     <tr id="row176691543117"><td class="cellrowborder" valign="top" width="50%"><p id="p7669941716"><a name="p7669941716"></a><a name="p7669941716"></a>Negative value</p>
     </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p4669164219"><a name="p4669164219"></a><a name="p4669164219"></a>Failed to disable a GPIO interrupt.</p>
+    <td class="cellrowborder" valign="top" width="50%"><p id="p4669164219"><a name="p4669164219"></a><a name="p4669164219"></a>The operation failed.</p>
     </td>
     </tr>
     </tbody>
@@ -470,11 +481,15 @@ The method for converting GPIO pin numbers varies according to the GPIO controll
 
 ## Usage Example<a name="section25941262111"></a>
 
-In this example, we test the interrupt trigger of a GPIO pin as follows: Set the ISR function for the pin, set the trigger mode to rising edge and failing edge, write high and low levels to the pin alternately to generate level fluctuation, and observe the execution of the ISR function.
+The procedure is as follows:
 
-Select an idle GPIO pin. This example uses a Hi3516D V300 development board and GPIO pin GPIO10\_3, which is numbered GPIO83.
+1. Select an idle GPIO pin. 
 
-You can select an idle GPIO pin based on the development board and schematic diagram.
+   This example uses pin GPIO10\_3 on a Hi3516D V300 development board as an example. The pin number is 83. You can select an idle GPIO pin as required.
+
+2. Set the ISR function for the pin, with the trigger mode of rising edge and failing edge.
+
+3. Write high and low levels to the pin alternately, and observe the execution of the ISR function.
 
 ```
 #include "gpio_if.h"

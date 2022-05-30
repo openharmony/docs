@@ -5,6 +5,7 @@
     - [标准系统编译构建指导](subsys-build-standard-large.md)
     - [构建系统编码规范与最佳实践](subsys-build-gn-coding-style-and-best-practice.md)
     - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guide.md)
+    - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)

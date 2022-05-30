@@ -401,10 +401,6 @@ export class VideoPlayerDemo {
     }
   }
 
-  sleep(time) {
-    for(let t = Date.now(); Date.now() - t <= time;);
-  }
-
   async videoPlayerDemo() {
     let videoPlayer = undefined;
     let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
@@ -442,27 +438,15 @@ export class VideoPlayerDemo {
     }, this.failureCallback).catch(this.catchCallback);
     // Set the loop playback attribute.
     videoPlayer.loop = true;
-    // Call the play API to start playback.
+    // Call the play API to start loop playback.
     await videoPlayer.play().then(() => {
-      console.info('play success');
+      console.info('play success, loop value is ' + videoPlayer.loop);
     }, this.failureCallback).catch(this.catchCallback);
-    // After the progress bar reaches the end, the playback continues for 3 seconds and then starts from the beginning, since loop playback is configured.
-    await videoPlayer.seek(videoPlayer.duration, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
-      console.info('seek duration success');
-    }, this.failureCallback).catch(this.catchCallback);
-    this.sleep(3000);
-    // Release playback resources.
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the related instances to undefined.
-    videoPlayer = undefined;
-    surfaceID = undefined;
   }
 }
 ```
 
 ## Samples
 The following samples are provided to help you better understand how to develop video playback:
+
 - [`VideoPlayer`: Video Playback (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)

@@ -14,9 +14,9 @@
 -   **[Telephony](subsys-tel.md)**
 -   **[Security](subsys-security.md)**  
 -   **[Startup](subsys-boot.md)**  
--   **[Test](subsys-testguide-test.md)**  
+-   **[Test Case Development](subsys-testguide-test.md)**  
 -   **[DFX](subsys-dfx.md)**  
 -   **[R&D Tools](subsys-toolchain.md)**  
--   **[XTS](subsys-xts-guide.md)**  
+-   **[XTS Test Case Development](subsys-xts-guide.md)**  
 
 

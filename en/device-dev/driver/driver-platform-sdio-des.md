@@ -1,4 +1,4 @@
-# SDIO<a name="EN-US_TOPIC_0000001160653028"></a>
+# SDIO
 
 ## Overview<a name="section1155271783811"></a>
 
@@ -13,8 +13,7 @@ The SDIO bus has two ends, named host and device. All communication starts when 
 - D0-3 signal: four data lines. The DAT1 signal cable is multiplexed as the interrupt line. In 1-bit mode, DAT0 is used to transmit data. In 4-bit mode, DAT0 to DAT3 are used to transmit data.
 - CMD signal: used by the host to send commands and the device to respond to commands.
 
-**Figure 1**  Connections between the host and devices in SDIO<a name="fig1185316527498"></a>  
-    
+**Figure 1**  Connections between the host and devices in SDIO  
 
 ![](figures/en-us_image_0000001160971556.png)
 
@@ -149,12 +148,14 @@ The SDIO interface defines a set of common methods for operating an SDIO device,
 
 ### How to Use<a name="section1490685512255"></a>
 
-[Figure 2](#fig1343742311264)  illustrates the process of using an SDIO.
+The figure below illustrates how to use the APIs.
 
-**Figure 2**  Process of using an SDIO<a name="fig1343742311264"></a>  
+**Figure 2**  Using SDIO driver APIs
+
+  
 
 
-![](figures/en-us_image_0000001206291517.png)
+![](figures/using-SDIO-process.png)
 
 ### Opening an SDIO Controller<a name="section10782428132616"></a>
 

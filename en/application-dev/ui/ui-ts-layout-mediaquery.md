@@ -15,11 +15,11 @@ Invoke the **mediaquery** API to set the media query condition and the callback,
 
 First, import the mediaquery module, as shown below:
 ```
-  import mediaquery from '@ohos.mediaquery'
+import mediaquery from '@ohos.mediaquery'
 ```
 Then, use the **matchMediaSync** API to set the media query condition and save the returned listener, as shown below:
 ```
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
+listener = mediaquery.matchMediaSync('(orientation: landscape)')
 ```
 Finally, register the callback using the saved listener, and change the page layout or implement service logic in the callback. When the media query condition is matched, the callback is triggered. The sample code is as follows:
 ```
@@ -39,13 +39,13 @@ listener.on('change', onPortrait)
 ```
 Examples are as follows:
 
-screen and (round-screen: true) // The query is valid when the device screen is round.
+ ` screen and (round-screen: true) `  // The query is valid when the device screen is round.
 
-(max-height: 800) // The query is valid when the height does not exceed 800.
+ ` (max-height: 800) `  // The query is valid when the height does not exceed 800.
 
-(height &lt;= 800)  // The query is valid when the height does not exceed 800.
+ ` (height &lt;= 800) `   // The query is valid when the height does not exceed 800.
 
-screen and (device-type: tv) or (resolution &lt; 2) // The query is valid only when all media features are true.
+ ` screen and (device-type: tv) or (resolution &lt; 2) `  // The query is valid only when all media features are true.
 
 ###  media-type
 

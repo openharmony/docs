@@ -77,10 +77,10 @@ A watchdog, also called a watchdog timer, is a hardware timing device. If an err
 
 ### How to Use<a name="section10181195910815"></a>
 
-[Figure 1](#fig430533913392)  illustrates the process of using a watchdog.
+The figure below illustrates how to use the APIs.
 
-**Figure  1** Process of using a watchdog<a name="fig430533913392"></a>  
-![](figures/process-of-using-a-watchdog.png "process-of-using-a-watchdog")
+**Figure  1** Using watchdog driver APIs  
+![](figures/using-watchdog-process.png "process-of-using-a-watchdog")
 
 ### Opening a Watchdog<a name="section66089201107"></a>
 

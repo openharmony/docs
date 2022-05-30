@@ -61,19 +61,19 @@ The process to build OpenHarmony is as follows:
 ### Directory Structure<a name="section109065332264"></a>
 
 ```
-/build                               # Primary directory
-├── config                        # Build configuration items
+/build                           # Primary directory
+├── config                       # Build configuration items
 ├── core
 │   └── gn                       # Build entry BUILD.gn configuration
-├── loader                        # Loader of module configuration, which also generates a template for the module
-├── ohos                          # Configuration of the process for building and packaging OpenHarmony
+├── loader                       # Loader of module configuration, which also generates a template for the module
+├── ohos                         # Configuration of the process for building and packaging OpenHarmony
 │   ├── kits                     # Build and packaging templates and processing flow for kits
 │   ├── ndk                      # NDK template and processing flow
 │   ├── notice                   # Notice template and processing flow
 │   ├── packages                 # Distribution packaging template and processing flow
 │   ├── sa_profile               # SA template and processing flow
 │   ├── sdk                      # SDK template and processing flow, which contains the module configuration in the SDK
-│   └── testfwk                   # Processing flow related to the test
+│   └── testfwk                  # Processing flow related to the test
 ├── scripts                      # Build-related Python script
 ├── templates                    # C/C++ build templates
 └── toolchain                    # Toolchain configuration
@@ -207,7 +207,7 @@ The process to build OpenHarmony is as follows:
 
 2.  Add the module to the product configuration file.
 
-    Add the module to the product configuration file  **//vendor/{product_company}/{product-name}/config.json。**.
+    Add the module to the product configuration file  **//vendor/{product_company}/{product-name}/config.json**.
 
     Add "subsystem\_examples:partA" to the product configuration file.  **partA**  will be built and packaged into the distribution.
 

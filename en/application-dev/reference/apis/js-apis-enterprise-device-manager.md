@@ -1,7 +1,6 @@
 # Enterprise Device Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -28,12 +27,12 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| admin    | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.              |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes  | Enterprise information of the device administrator application.|
-| type | [AdminType](#AdminType) | Yes| Type of the device administrator to activate.|
-| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
+ | type | [AdminType](#AdminType) | Yes | Type of the device administrator to activate. |
+ | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -71,17 +70,17 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name        | Type                                          | Mandatory| Description                    |
-| -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.          |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | Yes  | Enterprise information of the device administrator application.|
-| type           | [AdminType](#AdminType)                        | Yes  | Type of the device administrator to activate.    |
+ | Name | Type | Mandatory | Description |
+ | -------------- | ---------------------------------------------- | ---- | ------------------------ |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
+ | type | [AdminType](#AdminType) | Yes | Type of the device administrator to activate. |
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+ | Type | Description |
+ | ----------------- | --------------------------- |
+ | Promise\<boolean> | Promise used to return the result. |
 
 **Example**
 
@@ -118,10 +117,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                          |
-| -------- | ---------------------------------------------- | ---- | ------------------------------ |
-| admin    | [Want](js-apis-application-Want.md) | Yes  | Device common administrator application.            |
-| callback | AsyncCallback\<boolean>                        | Yes  | Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | -------- | ---------------------------------------------- | ---- | ------------------------------ |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
+ | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -157,15 +156,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name| Type                                          | Mandatory| Description              |
-| ------ | ---------------------------------------------- | ---- | ------------------ |
-| admin  | [Want](js-apis-application-Want.md) | Yes  | Device common administrator application.|
+ | Name | Type | Mandatory | Description |
+ | ------ | ---------------------------------------------- | ---- | ------------------ |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+ | Type | Description |
+ | ----------------- | --------------------------- |
+ | Promise\<boolean> | Promise used to return the result. |
 
 **Example**
 
@@ -193,10 +192,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                          |
-| ---------- | ----------------------- | ---- | ------------------------------ |
-| bundleName | String                  | Yes  | Bundle name of a device super administrator application.      |
-| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | ---------- | ----------------------- | ---- | ------------------------------ |
+ | bundleName | String | Yes | Bundle name of a device super administrator application. |
+ | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -223,15 +222,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                    |
-| ---------- | ------ | ---- | ------------------------ |
-| bundleName | String | Yes  | Bundle name of a device super administrator application.|
+ | Name | Type | Mandatory | Description |
+ | ---------- | ------ | ---- | ------------------------ |
+ | bundleName | String | Yes | Bundle name of a device super administrator application. |
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+ | Type | Description |
+ | ----------------- | --------------------------- |
+ | Promise\<boolean> | Promise used to return the result. |
 
 **Example**
 
@@ -256,10 +255,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                            |
-| -------- | ---------------------------------------------- | ---- | -------------------------------- |
-| admin    | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.                  |
-| callback | AsyncCallback\<boolean>                        | Yes  | Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | -------- | ---------------------------------------------- | ---- | -------------------------------- |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -291,15 +290,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name| Type                                          | Mandatory| Description          |
-| ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.|
+ | Name | Type | Mandatory | Description |
+ | ------ | ---------------------------------------------- | ---- | -------------- |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
 
 **Return value**
 
-| Type             | Description                           |
-| ----------------- | ------------------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+ | Type | Description |
+ | ----------------- | ------------------------------- |
+ | Promise\<boolean> | Promise used to return the result. |
 
 **Example**
 
@@ -327,10 +326,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                            |
-| ---------- | ----------------------- | ---- | -------------------------------- |
-| bundleName | String                  | Yes  | Bundle name of a device super administrator application. |
-| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | ---------- | ----------------------- | ---- | -------------------------------- |
+ | bundleName | String | Yes | Bundle name of a device super administrator application. |
+ | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -359,15 +358,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description              |
-| ---------- | ------ | ---- | ------------------ |
-| bundleName | String | Yes  | Bundle name of a device super administrator application.|
+ | Name | Type | Mandatory | Description |
+ | ---------- | ------ | ---- | ------------------ |
+ | bundleName | String | Yes | Bundle name of a device super administrator application. |
 
 **Return value**
 
-| Type             | Description                           |
-| ----------------- | ------------------------------- |
-| Promise\<boolean> | Promise used to return the result.|
+ | Type | Description |
+ | ----------------- | ------------------------------- |
+ | Promise\<boolean> | Promise used to return the result. |
 
 **Example**
 
@@ -392,9 +391,9 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback<DeviceSettingsManager&gt; | Yes  | Callback used to return the **DeviceSettingsManager** object obtained.|
+ | Name | Type | Mandatory | Description |
+ | -------- | -------- | -------- | -------- |
+ | callback | AsyncCallback<DeviceSettingsManager&gt; | Yes | Callback used to return the **DeviceSettingsManager** object obtained. |
 
 **Example**
 
@@ -431,9 +430,9 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;DeviceSettingsManager&gt; | Promise used to return the **DeviceSettingsManager** object obtained.|
+ | Type | Description |
+ | -------- | -------- |
+ | Promise&lt;DeviceSettingsManager&gt; | Promise used to return the **DeviceSettingsManager** object obtained. |
 
 **Example**
 
@@ -465,11 +464,11 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name        | Type                                          | Mandatory| Description                                |
-| -------------- | ---------------------------------------------- | ---- | ------------------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.                      |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | Yes  | Enterprise information of the device administrator application.            |
-| callback       | AsyncCallback\<boolean&gt;                     | Yes  | Callback used to return the result.|
+ | Name | Type | Mandatory | Description |
+ | -------------- | ---------------------------------------------- | ---- | ------------------------------------ |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
+ | callback | AsyncCallback\<boolean&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -503,16 +502,16 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name        | Type                                          | Mandatory| Description                    |
-| -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.          |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | Yes  | Enterprise information of the device administrator application.|
+ | Name | Type | Mandatory | Description |
+ | -------------- | ---------------------------------------------- | ---- | ------------------------ |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
 
 **Return value**
 
-| Type              | Description                               |
-| ------------------ | ----------------------------------- |
-| Promise\<boolean>; | Callback used to return the result.|
+ | Type | Description |
+ | ------------------ | ----------------------------------- |
+ | Promise\<boolean>; | Callback used to return the result. |
 
 **Example**
 
@@ -545,10 +544,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name  | Type                                                  | Mandatory| Description                                    |
-| -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| admin    | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.                          |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Yes  | Callback used to return the enterprise information of the device administrator application.|
+ | Name | Type  | Mandatory | Description |
+ | -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+ | callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Yes | Callback used to return the enterprise information of the device administrator application. |
 
 **Example**
 
@@ -570,7 +569,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp, (error, result) => {
 
 ## enterpriseDeviceManager.getEnterpriseInfo
 
-getDeviceSettingsManager(admin: Want): Promise&lt;EnterpriseInfo&gt;
+getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 Obtains the enterprise information of a device administrator application. This API uses a promise to return the result.
 
@@ -580,15 +579,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
-| Name| Type                                          | Mandatory| Description          |
-| ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-application-Want.md) | Yes  | Device administrator application.|
+ | Name | Type | Mandatory | Description |
+ | ------ | ---------------------------------------------- | ---- | -------------- |
+ | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
 
 **Return value**
 
-| Type                                            | Description                                       |
-| ------------------------------------------------ | ------------------------------------------- |
-| Promise&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Promise used to return the enterprise information of the device administrator application.|
+ | Type | Description |
+ | ------------------------------------------------ | ------------------------------------------- |
+ | Promise&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Promise used to return the enterprise information of the device administrator application. |
 
 **Example**
 
@@ -613,10 +612,10 @@ Describes the enterprise information of a device administrator application.
 
 SystemCapability.Customation.EnterpriseDeviceManager
 
-| Name       | Readable/Writable| Type  | Mandatory| Description                              |
-| ----------- | -------- | ------ | ---- | ---------------------------------- |
-| name        | Read only    | string | Yes  | Name of the enterprise to which the device administrator application belongs.|
-| description | Read only    | string | Yes  | Description of the enterprise to which the device administrator application belongs.|
+ | Name | Readable/Writable | Type | Mandatory | Description |
+ | ----------- | -------- | ------ | ---- | ---------------------------------- |
+ | name | Read only | string | Yes | Name of the enterprise to which the device administrator application belongs. |
+ | description | Read only | string | Yes | Description of the enterprise to which the device administrator application belongs. |
 
 
 ## AdminType
@@ -627,7 +626,7 @@ Enumerates the administrator types of the device administrator application.
 
 SystemCapability.Customation.EnterpriseDeviceManager
 
-| Name| Default Value| Description|
-| -------- | -------- | -------- |
-| ADMIN_TYPE_NORMAL | 0x00 | Common administrator.|
-| ADMIN_TYPE_SUPER | 0x01 | Super administrator.|
+ | Name | Default Value | Description |
+ | -------- | -------- | -------- |
+ | ADMIN_TYPE_NORMAL | 0x00 | Common administrator. |
+ | ADMIN_TYPE_SUPER | 0x01 | Super administrator. |
