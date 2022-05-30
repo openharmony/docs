@@ -65,7 +65,7 @@ The implementation is similar for UDPSocket and TCPSocket. The following uses th
        for (let i = 0;i < dataView.byteLength; ++i) {
            str += String.fromCharCode(dataView.getUint8(i))
        }
-       console.log("on connect recevied:" + str)
+       console.log("on connect received:" + str)
    });
    tcp.on('connect', () => {
        console.log("on connect")
