@@ -1,11 +1,5 @@
 # HiSysEvent打点指导<a name="ZH-CN_TOPIC_0000001231373947"></a>
 
--   [概述](#section77571101789)
-    -   [功能简介](#section123133332175224)
-        -   [约束与限制](#section123181432175224)
--   [开发指导](#section314416685113)
-    -   [接口说明](#section13480315886)
-    -   [开发实例](#section112771171317)
 
 ## 概述<a name="section77571101789"></a>
 
@@ -40,7 +34,7 @@ HiSysEvent类，具体的API详见接口文档 。
 | static const std::string AAFWK | 元能力子系统 |
 | static const std::string APPEXECFWK | 用户程序框架子系统 |
 | static const std::string ACCOUNT | 账号子系统 |
-| static const std::string ACE | ACE子系统 |
+| static const std::string ArkUI | ArkUI子系统 |
 | static const std::string AI | AI业务子系统 |
 | static const std::string BARRIER_FREE | 无障碍软件服务子系统 |
 | static const std::string BIOMETRICS | 生物特征识别服务子系统 |
