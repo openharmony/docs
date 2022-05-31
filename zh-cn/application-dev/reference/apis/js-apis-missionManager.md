@@ -709,4 +709,4 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 | want | [Want](js-apis-application-Want.md) | 是 | 是 | 表示任务的Want信息。 | 
 | label | string | 是 | 是 | 表示任务的标签。 | 
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 | 
-| continuable | boolean | 是 | 是 | 表示任务是否可以继续。 | 
+| continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 | 
