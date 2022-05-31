@@ -146,16 +146,6 @@ repo forall -c 'git lfs pull'
 | 应用 | 图库应用支持图片编辑、动效能力。<br/>主要涉及如下需求：<br/>I58ZQ3&nbsp;【图库】图片编辑<br/>I58ZQ1&nbsp;【图库】动效<br/>I58ZQ4&nbsp;【联系人】基础能力-2D能力 | NA | 
 
 
-### API变更
-
-*待补充*
-
-
-### 仓库变更
-
-*待补充*
-
-
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
@@ -163,7 +153,7 @@ repo forall -c 'git lfs pull'
 
 ### Samples
 
-**表2 **新增Samples
+**表2** 新增Samples
 
   | 子系统 | 名称 | 简介 | 开发语言 | 
 | -------- | -------- | -------- | -------- |
