@@ -2646,6 +2646,123 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 });
 ```
 
+### Notification.enableNotificationSlot <sup>9+</sup>
+
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback<void>): void
+
+设定指定类型的渠道使能状态（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                   |
+| -------- | ----------------------------- | ---- | ---------------------- |
+| bundle   | [BundleOption](#bundleoption) | 是   | 指定包信息。           |
+| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
+| enable   | boolean                       | 是   | 使能状态。             |
+| callback | AsyncCallback\<void\>         | 是   | 设定渠道使能回调函数。 |
+
+**示例：**
+
+```js
+//enableNotificationSlot
+function enableSlotCallback(err) {
+    console.log('===================>enableSlotCallback==================>');
+};
+
+Notification.enableNotificationSlot(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true,
+    enableSlotCallback);
+```
+
+### Notification.enableNotificationSlot <sup>9+</sup>
+
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise<void> 
+
+设定指定类型的渠道使能状态（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。   |
+| type   | [SlotType](#slottype)         | 是   | 指定渠道类型。 |
+| enable | boolean                       | 是   | 使能状态。     |
+
+**示例：**
+
+```js
+//enableNotificationSlot
+Notification.enableNotificationSlot(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true).then(() => {
+        console.log('====================>enableNotificationSlot====================>');
+    });
+```
+
+### Notification.isNotificationSlotEnabled <sup>9+</sup>
+
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback<boolean>): void
+
+获取指定类型的渠道使能状态（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                   |
+| -------- | ----------------------------- | ---- | ---------------------- |
+| bundle   | [BundleOption](#bundleoption) | 是   | 指定包信息。           |
+| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
+| callback | AsyncCallback\<void\>         | 是   | 设定渠道使能回调函数。 |
+
+**示例：**
+
+```js
+//isNotificationSlotEnabled
+function getEnableSlotCallback(err, data) {
+    console.log('===================>getEnableSlotCallback==================');
+};
+
+Notification.isNotificationSlotEnabled(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    getEnableSlotCallback);
+```
+
+### Notification.isNotificationSlotEnabled <sup>9+</sup>
+
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean>  
+
+获取指定类型的渠道使能状态（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。   |
+| type   | [SlotType](#slottype)         | 是   | 指定渠道类型。 |
+
+**示例：**
+
+```js
+//isNotificationSlotEnabled
+Notification.isNotificationSlotEnabled(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true).then((data) => {
+      console.log('====================>isNotificationSlotEnabled====================>');
+    });
+```
+
 ## NotificationSubscriber
 
 ### onConsume
