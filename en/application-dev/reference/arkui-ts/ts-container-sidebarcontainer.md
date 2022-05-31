@@ -1,6 +1,6 @@
 # SideBarContainer
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -39,9 +39,10 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | true | Whether to display the sidebar.|
 | controlButton | ButtonStyle                                                | - | Attributes of the sidebar control button.|
 | showControlButton | boolean | true | Whether to display the sidebar control button.|
-| sideBarWidth | number | 200 | Width of the sidebar.|
-| minSideBarWidth | number | 200 | Minimum width of the sidebar.|
-| maxSideBarWidth | number | 280 | Maximum width of the sidebar.|
+| sideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 200 | Width of the sidebar.|
+| minSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 200 | Minimum width of the sidebar.|
+| maxSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 280 | Maximum width of the sidebar.|
+| autoHide<sup>9+</sup> | boolean | true | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.|
 
 - ButtonStyle
   | Name| Type| Mandatory| Default Value| Description|
@@ -59,7 +60,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: boolen) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p> The value **true** means that the sidebar is shown, and **false** means that the sidebar is hidden.|
+| onChange(callback: (value: boolean) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p>The value **true** means that the sidebar is shown, and **false** means the opposite. |
 
 
 ## Example
