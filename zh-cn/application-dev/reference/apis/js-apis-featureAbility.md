@@ -918,7 +918,6 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | want                | 只读   | [Want](js-apis-application-Want.md)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
 | abilityStartSetting | 只读   | {[key: string]: any} | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
-                                  |
 
 ## flags说明
 

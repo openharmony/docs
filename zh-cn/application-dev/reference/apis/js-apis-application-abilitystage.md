@@ -92,6 +92,8 @@ onConfigurationUpdated(config: Configuration): void;
   ```
 ## AbilityStage.context
 
+context: AbilityStageContext;
+
 指示有关上下文的配置信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
