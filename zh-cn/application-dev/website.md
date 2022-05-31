@@ -299,6 +299,8 @@
 
             - [应用程序的数据存储](ui/ts-application-states-appstorage.md)
 
+            - [Ability数据存储](ui/ui-ts-local-storage)
+
             - [持久化数据管理](ui/ts-application-states-apis-persistentstorage.md)
 
             - [环境变量](ui/ts-application-states-apis-environment.md)
@@ -1477,13 +1479,13 @@
 
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
 
-      - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-inputkeycode.md)
+      - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
 
-      - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-inputkeyevent.md)
+      - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
 
-      - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-inputmouseevent.md)
+      - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
 
-      - [@ohos.multimodalInput.ToucEvent (触摸输入事件)](reference/apis/js-apis-inputtouchevent.md)
+      - [@ohos.multimodalInput.ToucEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
 
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
 
