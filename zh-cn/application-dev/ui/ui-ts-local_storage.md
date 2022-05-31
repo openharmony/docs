@@ -1,6 +1,6 @@
-# LocalStorage
+# Ability数据存储
 
-   ![icon-note.gif](https://gitee.com/BoJiang4702/docs/raw/master/zh-cn/application-dev/reference/arkui-ts/public_sys-resources/icon-note.gif) **说明：** 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
+> 说明： 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版>本。 
 
 LocalStorage是应用程序中的存储单元，生命周期跟随其关联的Ability。LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。
 
@@ -18,7 +18,7 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定，当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
-​    ![icon-note.gif](https://gitee.com/BoJiang4702/docs/raw/master/zh-cn/application-dev/reference/arkui-ts/public_sys-resources/icon-note.gif) **说明：** 创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
+> 说明：创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和>@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和>@LocalStorageProp的默认值。
 
 ## LocalStorage接口
 
@@ -26,7 +26,7 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 constructor(initializingProperties?: Object)
 
-创建一个新的LocalStorage对象，对对象进行初始化。
+创建一个新的LocalStorage对象，并进行初始化。
 
 | 参数名                 | 类型   | 返回值 | 必填 | 默认值 | 参数描述                                                     |
 | ---------------------- | ------ | ------ | :--: | ------ | ------------------------------------------------------------ |
@@ -48,9 +48,9 @@ has(propName: string): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 返回判断后属性值是否存在，如果存在，返回true，反之则为false。 |
+| 类型    | 描述                       |
+| ------- | -------------------------- |
+| boolean | 返回属性的属性值是否存在。 |
 
 
 
@@ -68,9 +68,9 @@ get<T>(propName: string): T
 
 **返回值：**
 
-| 类型           | 描述                                                  |
-| -------------- | ----------------------------------------------------- |
-| T \| undefined | 当对应的keyvalue存在时，返回值。不存在返回undefined。 |
+| 类型           | 描述                                            |
+| -------------- | ----------------------------------------------- |
+| T \| undefined | 当keyvalue存在时，返回值。不存在返回undefined。 |
 
 
 
@@ -103,10 +103,10 @@ get<T>(propName: string): T
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 默认值 | 参数描述                    |
-| -------- | ------ | :--: | ------ | --------------------------- |
-| propName | string |  是  | -      | 传入要更新或者创建的key值。 |
-| newValue | T      |  是  | -      | 传入要更新或创建的value值。 |
+| 参数名   | 类型   | 必填 | 默认值 | 参数描述                |
+| -------- | ------ | :--: | ------ | ----------------------- |
+| propName | string |  是  | -      | 要更新或者创建的key值。 |
+| newValue | T      |  是  | -      | 要更新或创建的value值。 |
 
 **返回值：**
 
@@ -144,10 +144,10 @@ get<T>(propName: string): T
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 默认值 | 参数描述                |
-| ------------ | ------ | :--: | ------ | ----------------------- |
-| propName     | string |  是  | -      | 传入要进行创建的key值。 |
-| defaultValue | T      |  是  | -      | 要进行设置的默认值。    |
+| 参数名       | 类型   | 必填 | 默认值 | 参数描述             |
+| ------------ | ------ | :--: | ------ | -------------------- |
+| propName     | string |  是  | -      | 要进行创建的key值。  |
+| defaultValue | T      |  是  | -      | 要进行设置的默认值。 |
 
 **返回值：**
 
@@ -165,9 +165,9 @@ prop<T>(propName: string): T
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 默认值 | 参数描述                    |
-| -------- | ------ | :--: | ------ | --------------------------- |
-| propName | string |  是  | -      | 传入要单向数据绑定的key值。 |
+| 参数名   | 类型   | 必填 | 默认值 | 参数描述                |
+| -------- | ------ | :--: | ------ | ----------------------- |
+| propName | string |  是  | -      | 要单向数据绑定的key值。 |
 
 **返回值：**
 
