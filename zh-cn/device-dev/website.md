@@ -544,7 +544,7 @@
 - 参考
   - [常见问题概述](faqs/faqs-overview.md)
   - [环境搭建常见问题](faqs/faqs-environment-setup.md)
-  - [编译构建子系统常见问题](faqs/faqs-building.md)
+  - [编译构建常见问题](faqs/faqs-building.md)
   - [烧录常见问题](faqs/faqs-burning.md)
   - [内核常见问题](faqs/faqs-kernel.md)
   - [移植常见问题](faqs/faqs-porting.md)

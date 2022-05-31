@@ -532,7 +532,7 @@
 - References
   - [FAQs Overview](faqs/faqs-overview.md)
   - [Environment Setup](faqs/faqs-environment-setup.md)
-  - [Compilation and Building Subsystem](faqs/faqs-building.md)
+  - [Compilation and Building](faqs/faqs-building.md)
   - [Burning](faqs/faqs-burning.md)
   - [Kernel](faqs/faqs-kernel.md)
   - [Porting](faqs/faqs-porting.md)
