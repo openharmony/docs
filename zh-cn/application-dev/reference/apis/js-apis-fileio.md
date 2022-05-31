@@ -3,7 +3,13 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-该模块提供文件存储相关的常用功能：向应用程序提供用于IO的JS接口，包括用于管理文件的基本文件接口，用于管理目录的基本目录接口，用于获取文件信息的统计接口，用于流式读写文件的流式接口。
+该模块提供文件存储相关的常用功能，向应用程序提供用于IO的JS接口，包括:
+
+- 用于管理文件的基本文件接口
+- 用于管理目录的基本目录接口
+- 用于获取文件信息的统计接口
+- 用于流式读写文件的流式接口
+
 
 ## 导入模块
 
@@ -1082,7 +1088,7 @@ chmodSync(path: string, mode: number): void
 
 fstat(fd: number): Promise&lt;Stat&gt;
 
-以异步方法基于文件描述符获取文件状态信息，使用promise形式返回结果。
+以异步方法基于文件描述符获取文件信息，使用promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1110,7 +1116,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
-以异步方法基于文件描述符获取文件状态信息，使用callback形式返回结果。
+以异步方法基于文件描述符获取文件信息，使用callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1118,7 +1124,7 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
   | 参数名      | 类型                                 | 必填   | 说明               |
   | -------- | ---------------------------------- | ---- | ---------------- |
   | fd       | number                             | 是    | 待获取文件的文件描述符。     |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件状态信息之后的回调。 |
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件信息之后的回调。 |
 
 **示例：**
   ```js
@@ -1133,7 +1139,7 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 fstatSync(fd: number): Stat
 
-以同步方法基于文件描述符获取文件状态信息。
+以同步方法基于文件描述符获取文件信息。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1392,14 +1398,14 @@ readTextSync(filePath: string, options?: {
 
 lstat(path: string): Promise&lt;Stat&gt;
 
-以异步方法获取链接状态信息，使用promise形式返回结果。
+以异步方法获取链接信息，使用promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接状态。 |
+| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
 
 **返回值：**
   | 类型                           | 说明         |
@@ -1420,15 +1426,15 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
-以异步方法获取链接状态信息，使用callback形式返回结果。
+以异步方法获取链接信息，使用callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名   | 类型                               | 必填 | 说明                                   |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
-| path     | string                             | 是   | 目标文件的应用沙箱路径，指向链接状态。 |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取链接状态信息之后的回调。       |
+| path     | string                             | 是   | 目标文件的应用沙箱路径，指向链接。 |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取链接信息之后的回调。       |
 
 **示例：**
   ```js
@@ -1442,14 +1448,14 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 lstatSync(path:string): Stat
 
-以同步方法获取链接状态信息。
+以同步方法获取链接信息。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接状态。 |
+| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
 
 **返回值：**
   | 类型            | 说明         |
