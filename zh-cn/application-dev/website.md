@@ -299,7 +299,7 @@
 
             - [应用程序的数据存储](ui/ts-application-states-appstorage.md)
 
-            - [Ability数据存储](ui/ui-ts-local-storage)
+            - [Ability数据存储](ui/ui-ts-local-storage.md)
 
             - [持久化数据管理](ui/ts-application-states-apis-persistentstorage.md)
 
