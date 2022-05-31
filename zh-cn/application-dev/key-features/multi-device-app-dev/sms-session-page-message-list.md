@@ -9,7 +9,7 @@
 - 如何在默认设备和平板上自适应布局。
 
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001224250574](figures/zh-cn_image_0000001224250574.jpg) | ![zh-cn_image_0000001225809618](figures/zh-cn_image_0000001225809618.png) | 
 
@@ -18,7 +18,7 @@
 
 先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-border.md)）。
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001313844881](figures/zh-cn_image_0000001313844881.png) | ![zh-cn_image_0000001313724825](figures/zh-cn_image_0000001313724825.png) | 
 
@@ -50,7 +50,7 @@ struct MessageBubble {
 
 [Stack组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001313604829](figures/zh-cn_image_0000001313604829.png) | ![zh-cn_image_0000001313523845](figures/zh-cn_image_0000001313523845.png) | 
 
@@ -88,7 +88,7 @@ struct MessageBubble {
 
 接下来我们在消息气泡下方加上时间显示，如下图所示，一个消息气泡自定义组件就基本完成了。
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001266163748](figures/zh-cn_image_0000001266163748.png) | ![zh-cn_image_0000001265685020](figures/zh-cn_image_0000001265685020.png) | 
 
@@ -136,7 +136,7 @@ struct MessageBubble {
 
 发送出的消息和接收到的消息的消息气泡结构基本一致，可以通过增加一个标志位，让两种消息共用MessageBubble这个自定义组件，代码如下所示。将这个标志位设置true，可以查看接收消息的效果。
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001265844904](figures/zh-cn_image_0000001265844904.png) | ![zh-cn_image_0000001266004832](figures/zh-cn_image_0000001266004832.png) | 
 
@@ -226,14 +226,14 @@ const globalMessageList:any[] = [
 
 栅格中仅包含我们自定义的消息气泡组件，该组件在各类型设备上的参数配置如下，可以通过[useSizeType属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-grid.md)设置消息气泡在不同场景下的尺寸和偏移值。
 
-  | SizeType类型 | 设备宽度(vp) | 设备总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 | 
+| SizeType类型 | 设备宽度(vp) | 设备总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | XS | [0,&nbsp;320) | 2 | 2 | 0 | 0 | 
 | SM | [320,&nbsp;600) | 4 | 4 | 0 | 0 | 
 | MD | [600,&nbsp;840) | 8 | 6 | 0 | 2 | 
 | LG | [840,&nbsp;+∞) | 12 | 8 | 0 | 4 | 
 
-  | 默认设备 | 平板 | 
+| 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001313844889](figures/zh-cn_image_0000001313844889.png) | ![zh-cn_image_0000001313724829](figures/zh-cn_image_0000001313724829.png) | 
 
