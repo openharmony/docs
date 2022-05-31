@@ -77,7 +77,7 @@ struct DacMethod {
 
 | 函数成员 | 入参                                                         | 出参 | 返回值             | 功能           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ | -------------- |
-| write    | device：结构体指针，核心层DAC控制器<br>channel：uint32_t，传入的通道号<br>val：uint32_t，要传入的数据 | 无   | HDF_STATUS相关状态 | 写入DA的目标值 |
+| write    | device：结构体指针，核心层DAC控制器<br>channel：uint32_t，传入的通道号<br>val：uint32_t，要传入的数据 | 无   | HDF_STATUS相关状态 | 写入DA的数模转换目标值 |
 | start    | device：结构体指针，核心层DAC控制器                        | 无   | HDF_STATUS相关状态 | 开启DAC设备    |
 | stop     | device：结构体指针，核心层DAC控制器                        | 无   | HDF_STATUS相关状态 | 关闭DAC设备    |
 
@@ -415,7 +415,7 @@ DAC模块适配包含以下四个步骤：
             struct DeviceResourceIface *drsOps = NULL;
             // 通过实例入口获取设备资源
             drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
-            // 入参指判空
+            // 判断返回值和返回值的成员函数是否为空
             if (drsOps == NULL || drsOps->GetUint32 == NULL) {
                 // 指针为空
                 HDF_LOGE("%s: invalid drs ops fail!", __func__);
