@@ -56,7 +56,7 @@
 
 Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提供稳定的口令认证的基础能力，保证口令认证的功能可以正常运行。开发者可基于HDF框架对不同芯片进行各自驱动的开发以及HDI层接口的调用。
 
-**图1** Pin_auth服务和pin_auth驱动接口
+**图2** Pin_auth服务和pin_auth驱动接口
 
 ![image](figures/pin_auth服务与驱动交互.png "pin_auth服务与驱动交互")
 
@@ -212,7 +212,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
 
    
    
-1. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_service.cpp)文件。
+2. 完成获取执行器列表接口实现，详细代码参见[pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -285,7 +285,7 @@ Pin_auth驱动的主要工作是为上层用户认证框架和Pin_auth服务提�
    
    
    
-1. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/executor_impl.cpp)文件。
+3. 完成执行器每个功能接口实现，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口（仅作示例）
