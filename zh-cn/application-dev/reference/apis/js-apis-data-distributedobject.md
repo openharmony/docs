@@ -31,7 +31,7 @@ createDistributedObject(source: object): DistributedObject
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   // 创建对象，对象包含4个属性类型，string,number,boolean和Object
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
@@ -53,7 +53,7 @@ genSessionId(): string
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var sessionId = distributedObject.genSessionId();
   ```
 
@@ -85,7 +85,7 @@ setSessionId(sessionId?: string): boolean
 **示例：**
 
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   //g_object加入分布式组网
@@ -111,7 +111,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   g_object.on("change", function (sessionId, changeData) {
@@ -136,22 +136,22 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的变更回调，若不设置则删除该对象所有的变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   g_object.on("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  //删除变更回调changeCallback
+  //删除数据变更回调changeCallback
   g_object.off("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  //删除所有的变更回调
+  //删除所有的数据变更回调
   g_object.off("change");
   ```
 
@@ -171,10 +171,10 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  g_object.on("status", function (sessionId, networkid, status) {
+  g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });
   ```
@@ -197,7 +197,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 **示例：**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'  
+  import distributedObject from '@ohos.data.distributedDataObject'; 
   g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });

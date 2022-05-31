@@ -10,7 +10,7 @@
 
 **图1** 用户认证功能整体框架
 
-<img src="figures/用户认证功能整体框架图.png" alt="image" title="用户认证功能整体框架图" style="zoom:67%;" />
+![image](figures/用户认证功能整体框架图.png "用户认证功能整体框架图")
 
 ### 基本概念
 用户认证框架与各个基础认证服务（包含口令认证、人脸识别等）组成的身份认证系统，支持用户认证凭据设置、删除、认证等基础功能。
@@ -83,7 +83,7 @@ User_auth驱动主要工作是屏蔽不同安全器件和安全环境的差异�
 
 **图2** User_auth服务和User_auth驱动交互
 
-<img src="figures/用户认证服务和userauth驱动接口.png" alt="image" title="用户认证服务和userauth驱动接口" style="zoom:67%;" />
+![image](figures/用户认证服务和userauth驱动接口.png "用户认证服务和userauth驱动接口")
 
 ### 约束与限制
 

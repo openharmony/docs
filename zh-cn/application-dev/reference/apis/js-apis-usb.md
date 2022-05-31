@@ -159,7 +159,6 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
   });
   ```
 
-
 ## usb.claimInterface
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
@@ -244,18 +243,18 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
   console.log(`setConfiguration = ${ret}`);
   ```
 
-
 ## usb.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 设置设备接口。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数。
+需要调用[usb.getDevices](#usbgetdevices)获取设备列表以及interfaces；调用[usb.requestRight](#usbrequestright)获取设备请求权限；调用[usb.connectDevice](#usbconnectdevice)得到devicepipe作为参数；调用[usb.claimInterface](#usbclaiminterface)注册通信接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
@@ -271,7 +270,6 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
   let ret = usb.setInterface(devicepipe, interfaces);
   console.log(`setInterface = ${ret}`);
   ```
-
 
 ## usb.getRawDescriptor
 
@@ -289,9 +287,9 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
   | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Uint8Array | 返回获取的原始数据。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Uint8Array | 返回获取的原始数据；失败返回undefined。 |
 
 **示例：**
   ```js
@@ -318,7 +316,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回设备对应的文件描述符。 |
+| number | 返回设备对应的文件描述符；失败返回-1。 |
 
 **示例：**
   ```js

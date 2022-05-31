@@ -417,7 +417,7 @@ Example:
 // Assume that the first line exceeds the length limit.
 ```cpp
 if (currentValue > threshold &&  // Good: After the line break, the logical-AND operators are placed at the end of the line.
-    someConditionsion) {
+    someCondition) {
     DoSomething();
     ...
 }

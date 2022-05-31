@@ -1185,12 +1185,12 @@ finishCommonEvent(callback: AsyncCallback\<void\>): void
 var subscriber; //创建成功的订阅者对象
 
 //结束当前有序公共事件的回调
-function finishCommonEventCallback() {
+function finishCommonEventCallback(err) {
   if (err.code) {
-        console.error("finishCommonEvent failed " + JSON.stringify(err));
-    } else {
-        console.info("FinishCommonEvent");
-    }
+    console.error("finishCommonEvent failed " + JSON.stringify(err));
+} else {
+    console.info("FinishCommonEvent");
+}
 }
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
