@@ -90,11 +90,6 @@ repo forall -c 'git lfs pull'
 ```
 
 
-### 从镜像站点获取
-
-*待补充*
-
-
 ## 更新说明
 
 本版本在OpenHarmony 3.1 Release的基础上有如下变更。
@@ -132,11 +127,3 @@ API变更
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
 
 
-## 修复缺陷列表
-
-*待补充*
-
-
-## 遗留缺陷列表
-
-*待补充*
