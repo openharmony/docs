@@ -32,6 +32,14 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     创建Data的代码示例如下：
 
    ```javascript
+    import dataAbility from '@ohos.data.dataAbility'
+    import dataRdb from '@ohos.data.rdb'
+
+    const TABLE_NAME = 'book'
+    const STORE_CONFIG = { name: 'book.db' }
+    const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
+    let rdbStore: dataRdb.RdbStore = undefined
+
     export default {
     onInitialized(abilityInfo) {
         console.info('DataAbility onInitialized, abilityInfo:' + abilityInfo.bundleName)
@@ -50,7 +58,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
         for (let i = 0;i < valueBuckets.length; i++) {
             console.info('DataAbility batch insert i=' + i)
             if (i < valueBuckets.length - 1) {
-                rdbStore.insert(TABLE_NAME, valueBuckets[i], (num: number) => {
+                rdbStore.insert(TABLE_NAME, valueBuckets[i], (err: any, num: number) => {
                     console.info('DataAbility batch insert ret=' + num)
                 })
             } else {
@@ -118,6 +126,10 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
    工具接口类对象DataAbilityHelper相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-dataAbilityHelper.md)。
    ```js
    // 作为参数传递的Uri,与config中定义的Uri的区别是多了一个"/",是因为作为参数传递的uri中,在第二个与第三个"/"中间,存在一个DeviceID的参数
+   import featureAbility from '@ohos.ability.featureAbility'
+   import ohos_data_ability from '@ohos.data.dataAbility'
+   import ohos_data_rdb from '@ohos.data.rdb'
+
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar
@@ -137,7 +149,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     urivar,
     valuesBucket,
     (error, data) => {
-        expect(typeof(data)).assertEqual("number")
+        console.log("DAHelper insert result: " + data)
     }
    );
    ```
@@ -156,7 +168,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     urivar,
     da,
     (error, data) => {
-        expect(typeof(data)).assertEqual("number")
+        console.log("DAHelper delete result: " + data)
     }
    );
    ```
@@ -176,7 +188,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     valuesBucket,
     da,
     (error, data) => {
-        expect(typeof(data)).assertEqual("number")
+        console.log("DAHelper update result: " + data)
     }
    );
    ```
@@ -197,7 +209,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     valArray,
     da,
     (error, data) => {
-        expect(typeof(data)).assertEqual("object")
+        console.log("DAHelper query result: " + data)
     }
    );
    ```
@@ -217,7 +229,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     urivar,
     cars,
     (error, data) => {
-        expect(typeof(data)).assertEqual("number")
+        console.log("DAHelper batchInsert result: " + data)
     }
    );
    ```
@@ -241,12 +253,12 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
             valuesBucket: {"executeBatch" : "value1",},
             predicates: da,
             expectedCount:0,
-            PredicatesBackReferences: {},
+            predicatesBackReferences: null,
             interrupted:true,
         }
     ],
     (error, data) => {
-        expect(typeof(data)).assertEqual("object")
+        console.log("DAHelper executeBatch result: " + data)
     }
    );
    ```
@@ -265,7 +277,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
             },
             predicates: da,
             expectedCount:0,
-            PredicatesBackReferences: {},
+            predicatesBackReferences: null,
             interrupted:true,
         }
     ]
