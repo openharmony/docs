@@ -112,7 +112,7 @@
                 - [@Link](ts-component-states-link.md)
             - 管理应用程序的状态
                 - [应用程序的数据存储](ts-application-states-appstorage.md)
-                - [Ability数据存储](ui-ts-local_storage)
+                - [Ability数据存储](ui-ts-local-storage)
                 - [持久化数据管理](ts-application-states-apis-persistentstorage.md)
                 - [环境变量](ts-application-states-apis-environment.md)
             - 其他类目的状态管理

@@ -18,7 +18,7 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定，当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
-> 说明：创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和>@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和>@LocalStorageProp的默认值。
+> 说明：创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和>@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
 
 ## LocalStorage接口
 
@@ -28,9 +28,9 @@ constructor(initializingProperties?: Object)
 
 创建一个新的LocalStorage对象，并进行初始化。
 
-| 参数名                 | 类型   | 返回值 | 必填 | 默认值 | 参数描述                                                     |
-| ---------------------- | ------ | ------ | :--: | ------ | ------------------------------------------------------------ |
-| initializingProperties | Object | N/A    |  否  | -      | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
+| 参数名                 | 类型   | 必填 | 默认值 | 参数描述                                                     |
+| ---------------------- | ------ | :--: | ------ | ------------------------------------------------------------ |
+| initializingProperties | Object |  否  | -      | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
 
 
 
