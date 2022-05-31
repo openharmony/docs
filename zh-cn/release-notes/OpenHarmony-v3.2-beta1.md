@@ -105,10 +105,6 @@ repo forall -c 'git lfs pull'
 ```
 
 
-### 从镜像站点获取
-
-*待补充*
-
 
 ## 更新说明
 
@@ -196,13 +192,3 @@ repo forall -c 'git lfs pull'
 | 全球化 | International | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS | 
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
-
-
-## 修复缺陷列表
-
-*待补充*
-
-
-## 遗留缺陷列表
-
-*待补充*
