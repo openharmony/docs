@@ -1,11 +1,16 @@
 # ExtensionRunningInfo
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides extension running information.
 
+## Modules to Import
+
+```js
+import abilitymanager from '@ohos.application.abilityManager';
+```
 
 ## Usage
 
@@ -14,8 +19,9 @@ The extension running information is obtained through an **abilityManager** inst
 
 
 
-```
+```js
 import abilitymanager from '@ohos.application.abilityManager';
+let upperLimit=1
 abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });

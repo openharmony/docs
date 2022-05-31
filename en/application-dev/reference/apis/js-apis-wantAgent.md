@@ -29,7 +29,6 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
 
 // getWantAgent callback
 function getWantAgentCallback(err, data) {
@@ -58,9 +57,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -92,7 +91,7 @@ Obtains a **WantAgent** object. This API uses a promise to return the result.
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgentInfo object
 var wantAgentInfo = {
@@ -117,9 +116,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -148,7 +147,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -185,9 +184,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -225,7 +224,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -253,9 +252,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -289,7 +288,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -326,9 +325,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -366,7 +365,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -394,9 +393,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -430,7 +429,7 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -467,9 +466,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -507,7 +506,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -535,9 +534,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -571,7 +570,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -608,9 +607,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -648,7 +647,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -676,9 +675,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -713,7 +712,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent;
@@ -750,15 +749,15 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 // trigger callback
-function triggerCallback(err, data) {
+function triggerCallback(data) {
 	console.info("==========================>triggerCallback=======================>");
 }
 
@@ -783,14 +782,14 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 | Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | Yes  | No | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                          |
+| otherAgent | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
 | callback   | Yes  | No | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent1;
@@ -829,9 +828,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
@@ -858,7 +857,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 | Name      | Readable| Writable| Type     | Mandatory| Description         |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | Yes  | No | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object.|
+| otherAgent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
@@ -870,7 +869,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 
 ```js
 import WantAgent from '@ohos.wantAgent';
-import { OperationType, WantAgentFlags } from '@ohos.wantagent';
+
 
 // WantAgent object
 var wantAgent1;
@@ -899,9 +898,9 @@ var wantAgentInfo = {
             }
         }
     ],
-    operationType: OperationType.START_ABILITIES,
+    operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
-    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }
 
 WantAgent.getWantAgent(wantAgentInfo).then((data) => {
@@ -913,6 +912,135 @@ WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 	console.info("==========================>equalCallback=======================>");
 });
+```
+
+## WantAgent.getOperationType
+
+getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
+
+Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
+| ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
+| agent      | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| callback   | Yes  | No | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
+
+**Example**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+
+// WantAgent object
+var wantAgent;
+
+// WantAgentInfo object
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: WantAgent.OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent, (OperationType) => {
+    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+})
+```
+
+## WantAgent.getOperationType
+
+getOperationType(agent: WantAgent): Promise\<number>;
+
+Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Readable| Writable| Type     | Mandatory| Description         |
+| ---------- | --- | ---- | --------- | ---- | ------------- |
+| agent      | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return the operation type.|
+
+**Example**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+
+// WantAgent object
+var wantAgent;
+
+// WantAgentInfo object
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    operationType: WantAgent.OperationType.START_ABILITIES,
+    requestCode: 0,
+    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent).then((OperationType) => {
+    console.log('getOperationType success, OperationType: ' + OperationType);
+}).catch((err) => {
+    console.log('getOperationType fail, err: ' + err);
+})
 ```
 
 
