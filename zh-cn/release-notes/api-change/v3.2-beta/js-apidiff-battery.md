@@ -32,8 +32,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，电源服务
 | ohos.power | DevicePowerMode | MODE_PERFORMANCE | 新增 |
 | ohos.power | DevicePowerMode | MODE_POWER_SAVE | 新增 |
 | ohos.power | DevicePowerMode | MODE_NORMAL = 600 | 新增 |
-| ohos.power | power | function setPowerMode(mode: DevicePowerMode, callback: AsyncCallback<void>): void;<br>function setPowerMode(mode: DevicePowerMode): Promise<void>; | 新增 |
-| ohos.power | power | function getPowerMode(callback: AsyncCallback<DevicePowerMode>): void;<br>function getPowerMode(): Promise<DevicePowerMode>; | 新增 |
-| ohos.power | power | function suspendDevice(): void; | 新增 |
-| ohos.power | power | function wakeupDevice(detail: string): void; | 新增 |
+| ohos.power | power | setPowerMode(mode: DevicePowerMode, callback: AsyncCallback\<void>): void;<br>setPowerMode(mode: DevicePowerMode): Promise\<void>; | 新增 |
+| ohos.power | power | getPowerMode(callback: AsyncCallback\<DevicePowerMode>): void;<br>getPowerMode(): Promise\<DevicePowerMode>; | 新增 |
+| ohos.power | power | suspendDevice(): void; | 新增 |
+| ohos.power | power | wakeupDevice(detail: string): void; | 新增 |
 

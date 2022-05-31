@@ -6,8 +6,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，多模输入
 
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
-| ohos.multimodalInput.inputDevice | inputDevice | function getKeyboardType(deviceId: number, callback: AsyncCallback<KeyboardType>): void;<br>function getKeyboardType(deviceId: number): Promise<KeyboardType>; | 新增 |
-| ohos.multimodalInput.inputDevice | inputDevice | function supportKeys(deviceId: number, keys: Array<KeyCode>, callback: Callback<Array<boolean>>): void;<br>function supportKeys(deviceId: number, keys: Array<KeyCode>): Promise<Array<boolean>>; | 新增 |
+| ohos.multimodalInput.inputDevice | inputDevice | function getKeyboardType(deviceId: number, callback: AsyncCallback\<KeyboardType>): void;<br>function getKeyboardType(deviceId: number): Promise\<KeyboardType>; | 新增 |
+| ohos.multimodalInput.inputDevice | inputDevice | function supportKeys(deviceId: number, keys: Array\<KeyCode>, callback: Callback\<Array\<boolean>>): void;<br>function supportKeys(deviceId: number, keys: Array\<KeyCode>): Promise\<Array\<boolean>>; | 新增 |
 | ohos.multimodalInput.inputDevice | InputDeviceData | uniq: string; | 新增 |
 | ohos.multimodalInput.inputDevice | InputDeviceData | phys: string; | 新增 |
 | ohos.multimodalInput.inputDevice | InputDeviceData | version: number; | 新增 |
@@ -17,8 +17,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，多模输入
 | ohos.multimodalInput.inputDevice | AxisRange | resolution: number; | 新增 |
 | ohos.multimodalInput.inputDevice | AxisRange | flat: number; | 新增 |
 | ohos.multimodalInput.inputDevice | AxisRange | fuzz: number; | 新增 |
-| ohos.multimodalInput.inputDevice | inputDevice | function off(type: "change", listener?: Callback<DeviceListener>): void; | 新增 |
-| ohos.multimodalInput.inputDevice | inputDevice | function on(type: "change", listener: Callback<DeviceListener>): void; | 新增 |
+| ohos.multimodalInput.inputDevice | inputDevice | function off(type: "change", listener?: Callback\<DeviceListener>): void; | 新增 |
+| ohos.multimodalInput.inputDevice | inputDevice | function on(type: "change", listener: Callback\<DeviceListener>): void; | 新增 |
 | ohos.multimodalInput.inputDevice | DeviceListener | deviceId: number; | 新增 |
 | ohos.multimodalInput.inputDevice | DeviceListener | type: ChangedType; | 新增 |
 | ohos.multimodalInput.inputDevice | KeyboardType | REMOTE_CONTROL = 5 | 新增 |

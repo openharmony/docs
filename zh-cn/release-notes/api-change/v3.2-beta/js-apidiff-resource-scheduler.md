@@ -6,8 +6,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，资源调度
 
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
-| ohos.bundleState | bundleState | function getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback<Array<BundleActiveModuleInfo>>): void;<br>function getRecentlyUsedModules(maxNum?: number): Promise<Array<BundleActiveModuleInfo>>; | 新增 |
-| ohos.bundleState | BundleActiveModuleInfo | formRecords: Array<BundleActiveFormInfo>; | 新增 |
+| ohos.bundleState | bundleState | getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback\<Array\<BundleActiveModuleInfo>>): void;<br>getRecentlyUsedModules(maxNum?: number): Promise\<Array\<BundleActiveModuleInfo>>; | 新增 |
+| ohos.bundleState | BundleActiveModuleInfo | formRecords: Array\<BundleActiveFormInfo>; | 新增 |
 | ohos.bundleState | BundleActiveModuleInfo | lastModuleUsedTime: number; | 新增 |
 | ohos.bundleState | BundleActiveModuleInfo | launchedCount: number; | 新增 |
 | ohos.bundleState | BundleActiveModuleInfo | abilityIconId?: number; | 新增 |
@@ -41,12 +41,12 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，资源调度
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_WIFI | 新增 |
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_MOBILE | 新增 |
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_ANY = 0 | 新增 |
-| ohos.workScheduler | workScheduler | function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;<br>function isLastWorkTimeOut(workId: number): Promise<boolean>; | 新增 |
-| ohos.workScheduler | workScheduler | function stopAndClearWorks(): boolean; | 新增 |
-| ohos.workScheduler | workScheduler | function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;<br>function obtainAllWorks(): Promise<Array<WorkInfo>>; | 新增 |
-| ohos.workScheduler | workScheduler | function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;<br>function getWorkStatus(workId: number): Promise<WorkInfo>; | 新增 |
-| ohos.workScheduler | workScheduler | function stopWork(work: WorkInfo, needCancel?: boolean): boolean; | 新增 |
-| ohos.workScheduler | workScheduler | function startWork(work: WorkInfo): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean;<br>isLastWorkTimeOut(workId: number): Promise\<boolean>; | 新增 |
+| ohos.workScheduler | workScheduler | stopAndClearWorks(): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>;<br>obtainAllWorks(): Promise\<Array\<WorkInfo>>; | 新增 |
+| ohos.workScheduler | workScheduler | getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void;<br>getWorkStatus(workId: number): Promise\<WorkInfo>; | 新增 |
+| ohos.workScheduler | workScheduler | stopWork(work: WorkInfo, needCancel?: boolean): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | startWork(work: WorkInfo): boolean; | 新增 |
 | ohos.workScheduler | WorkInfo | idleWaitTime?: number; | 新增 |
 | ohos.workScheduler | WorkInfo | isDeepIdle?: boolean; | 新增 |
 | ohos.workScheduler | WorkInfo | repeatCount?: number; | 新增 |

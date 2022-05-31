@@ -22,10 +22,10 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，Web子系统
 | web | WebCookie | isFileURICookieAllowed(): boolean; | 新增 |
 | web | WebCookie | isThirdPartyCookieAllowed(): boolean; | 新增 |
 | web | WebCookie | isCookieAllowed(): boolean; | 新增 |
-| web | FileSelectorResult | handleFileList(fileList: Array<string>): void; | 新增 |
+| web | FileSelectorResult | handleFileList(fileList: Array\<string>): void; | 新增 |
 | web | FileSelectorResult | constructor(); | 新增 |
 | web | FileSelectorParam | isCapture(): boolean; | 新增 |
-| web | FileSelectorParam | getAcceptType(): Array<string>; | 新增 |
+| web | FileSelectorParam | getAcceptType(): Array\<string>; | 新增 |
 | web | FileSelectorParam | getMode(): FileSelectorMode; | 新增 |
 | web | FileSelectorParam | getTitle(): string; | 新增 |
 | web | FileSelectorParam | constructor(); | 新增 |
