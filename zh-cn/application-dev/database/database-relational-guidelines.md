@@ -158,7 +158,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callbck形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。  |
+| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。 |
 | RdbStore | obtainDistributedTableName(device: string, table: string): Promise<string>; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。 |
 
 **在设备之间同步数据**
@@ -184,7 +184,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callbck形式返回。。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
 
 
 ## 开发步骤
