@@ -10,6 +10,14 @@
 import resourceManager from '@ohos.resourceManager';
 ```
 
+## 使用说明
+
+从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其接口，无需再导入包。
+
+```
+this.context.resourceManager;
+```
+
 ## resourceManager.getResourceManager
 
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
@@ -793,4 +801,406 @@ release()
           }
       });
   });
+  ```
+
+### getStringByName<sup>9+</sup>
+
+getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源名称对应的字符串，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resName  | string                      | 是   | 资源名称        |
+| callback | AsyncCallback&lt;string&gt; | 是   | 异步回调，用于返回获取的字符串 |
+
+**示例：**
+  ```
+  resourceManager.getStringByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let string = value;
+      }
+  });
+  ```
+
+### getStringByName<sup>9+</sup>
+
+getStringByName(resName: string): Promise&lt;string&gt;
+
+用户获取指定资源名称对应的字符串，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+| 参数名   | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是   | 资源名称 |
+
+**返回值：**
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| Promise&lt;string&gt; | 资源名称对应的字符串 |
+
+**示例：**
+  ```
+  resourceManager.getStringByName("test").then(value => {
+      let string = value;
+  }).catch(error => {
+      console.log("getStringByName promise error is " + error);
+  });
+  ```
+
+### getStringArrayByName<sup>9+</sup>
+
+getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+用户获取指定资源名称对应的字符串数组，使用callback形式返回字符串数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| resName  | string                                   | 是    | 资源名称             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+
+**示例：** 
+  ```
+  resourceManager.getStringArrayByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let strArray = value;
+      }
+  });
+  ```
+
+### getStringArrayByName<sup>9+</sup>
+
+getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
+
+用户获取指定资源名称对应的字符串数组，使用Promise形式返回字符串数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| resName | string | 是   | 资源名称 |
+
+**返回值：** 
+| 类型                                 | 说明            |
+| ---------------------------------- | ------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
+
+**示例：** 
+  ```
+  resourceManager.getStringArrayByName("test").then(value => {
+      let strArray = value;
+  }).catch(error => {
+      console.log("getStringArrayByName promise error is " + error);
+  });
+  ```
+
+### getMediaByName<sup>9+</sup>
+
+getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resName  | string                          | 是    | 资源名称              |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+**示例：** 
+  ```
+  resourceManager.getMediaByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMediaByName<sup>9+</sup>
+
+getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源名称对应的媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| -----   | ------ | ---- | ----- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：** 
+| 类型                        | 说明             |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
+
+**示例：** 
+  ```
+  resourceManager.getMediaByName("test").then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMediaByName promise error is " + error);
+  });
+  ```
+
+### getMediaBase64ByName<sup>9+</sup>
+
+getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源名称对应的图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resName  | string                      | 是    | 资源名称                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+**示例：** 
+  ```
+  resourceManager.getMediaBase64ByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMediaBase64ByName<sup>9+</sup>
+
+getMediaBase64ByName(resName: string): Promise&lt;string&gt;
+
+用户获取指定资源名称对应的图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| resName | string | 是   | 资源名称 |
+
+**返回值：** 
+| 类型                    | 说明                   |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
+
+**示例：** 
+  ```
+  resourceManager.getMediaByName("test").then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMediaBase64ByName promise error is " + error);
+  });
+  ```
+
+### getPluralStringByName<sup>9+</sup>
+
+getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+根据传入的数量值，获取资源名称对应的字符串资源，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名      | 类型                          | 必填   | 说明                              |
+| -------- | --------------------------- | ---- | ------------------------------- |
+| resName  | string                      | 是    | 资源名称                           |
+| num      | number                      | 是    | 数量值                             |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据传入的数量值获取资源名称对应的字符串资源 |
+
+**示例：** 
+  ```
+  resourceManager.getPluralStringByName("test", 1, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let str = value;
+      }
+  });
+  ```
+
+### getPluralStringByName<sup>9+</sup>
+
+getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
+
+根据传入的数量值，获取资源名称对应的字符串资源，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| resName | string | 是    | 资源名称 |
+| num     | number | 是    | 数量值   |
+
+**返回值：** 
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
+
+**示例：** 
+  ```
+  resourceManager.getPluralStringByName("test", 1).then(value => {
+      let str = value;
+  }).catch(error => {
+      console.log("getPluralStringByName promise error is " + error);
+  });
+  ```
+
+### getStringSync<sup>9+</sup>
+
+getStringSync(resId: number): string
+
+用户获取指定资源ID对应的字符串，使用同步方式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| string | 资源ID值对应的字符串 |
+
+**示例：** 
+  ```
+  resourceManager.getStringSync($r('app.string.test').id);
+  ```
+
+### getStringByNameSync<sup>9+</sup>
+
+getStringByNameSync(resName: string): string
+
+用户获取指定资源名称对应的字符串，使用同步方式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| string | 资源名称对应的字符串 |
+
+**示例：** 
+  ```
+  resourceManager.getStringByNameSync("test");
+  ```
+
+ ### getBoolean<sup>9+</sup>
+
+getBoolean(resId: number): boolean
+
+使用同步方式，返回获取指定资源ID对应的布尔结果。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| boolean | 资源ID值对应的布尔结果 |
+
+**示例：** 
+  ```
+  resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  ```
+
+### getBooleanByName<sup>9+</sup>
+
+getBooleanByName(resName: string): boolean
+
+使用同步方式，返回获取指定资源名称对应的布尔结果
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| resName | string | 是   | 资源名称 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| boolean | 资源名称对应的布尔结果 |
+
+**示例：** 
+  ```
+  resourceManager.getBooleanByName("boolean_test");
+  ```
+
+ ### getNumber<sup>9+</sup>
+
+getNumber(resId: number): number
+
+用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回资源对应的数值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| number | 资源ID值对应的数值 |
+
+**示例：** 
+  ```
+  resourceManager.getNumber($r('app.integer.integer_test').id);
+  resourceManager.getNumber($r('app.float.float_test').id);
+  ```
+
+### getNumberByName<sup>9+</sup>
+
+getNumberByName(resName: string): number
+
+用户获取指定资源名称对应的integer数值或者float数值，使用同步方式资源对应的数值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：** 
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| number | 资源名称对应的数值 |
+
+**示例：** 
+  ```
+  resourceManager.getNumberByName("integer_test");
+  resourceManager.getNumberByName("float_test");
   ```
