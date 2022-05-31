@@ -39,3 +39,4 @@
 | accessTokenId<sup>8+</sup> | number                                                       | 是   | 否   | 应用程序的accessTokenId                    |
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid                              |
 | entityType<sup>8+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型                         |
+| fingerprint<sup>9+</sup>   | string                                                       | 是   | 否   | 应用程序的签名证书指纹信息，即开发者申请的签名证书的sha256值    |

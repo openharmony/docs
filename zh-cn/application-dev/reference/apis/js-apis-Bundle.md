@@ -1611,6 +1611,7 @@ bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, receiver)
 | GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | 获取仅包括系统应用的ability信息 |
 | GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | 获取包括被禁用的ability信息   |
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | 获取包括被禁用的应用信息        |
+| GET_APPLICATION_INFO_WITH_CERTIFICATE_FINGERPRINT <sup>9+</sup> | 0x00000400 | 获取包括应用申请的签名证书的指纹信息        |
 | GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | 获取应用所有的信息           |
 
 ## BundleOptions
