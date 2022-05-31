@@ -2031,6 +2031,8 @@ try {
 
 描述订阅类型。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 | 名称      | 默认值 | 说明 |
