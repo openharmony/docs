@@ -1,6 +1,6 @@
 # Ability数据存储
 
-> **说明：**该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
+> **说明：** 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
 
 LocalStorage是应用程序中的存储单元，生命周期跟随其关联的Ability。LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。
 
@@ -18,7 +18,7 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定，当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
-> **说明：**创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
+> **说明：** 创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
 
 ## LocalStorage接口
 
@@ -36,7 +36,7 @@ constructor(initializingProperties?: Object)
 
 
 
-### Has
+### has
 
 has(propName: string): boolean
 
@@ -56,7 +56,7 @@ has(propName: string): boolean
 
 
 
-### Get
+### get
 
 get<T>(propName: string): T
 
@@ -76,7 +76,7 @@ get<T>(propName: string): T
 
 
 
-### Set
+### set
 
  set<T>(propName: string, newValue: T): boolean
 
@@ -97,7 +97,7 @@ get<T>(propName: string): T
 
 
 
-### SetOrCreate
+### setOrCreate
 
  setOrCreate<T>(propName: string, newValue: T): boolean
 
@@ -118,7 +118,7 @@ get<T>(propName: string): T
 
 
 
-### Link
+### link
 
  link<T>(propName: string): T
 
@@ -138,7 +138,7 @@ get<T>(propName: string): T
 
 
 
-### SetAndLink
+### setAndLink
 
  setAndLink<T>(propName: string, defaultValue: T): T
 
@@ -159,7 +159,7 @@ get<T>(propName: string): T
 
 
 
-### Prop
+### prop
 
 prop<T>(propName: string): T
 
@@ -179,11 +179,11 @@ prop<T>(propName: string): T
 
 
 
-### SetAndProp
+### setAndProp
 
 setAndProp<T>(propName: string, defaultValue: T): T
 
-与Prop接口类似，存在localStorage的单向数据绑定prop值
+与Prop接口类似，存在localStorage的单向数据绑定prop值。
 
 **参数：**
 
@@ -200,11 +200,11 @@ setAndProp<T>(propName: string, defaultValue: T): T
 
 
 
-### Delete
+### delete
 
 delete(propName: string): boolean
 
-删除key指定的键值对
+删除key指定的键值对。
 
 **参数：**
 
@@ -220,11 +220,11 @@ delete(propName: string): boolean
 
 
 
-### Keys
+### keys
 
 keys(): IterableIterator<string>
 
-查找所有键
+查找所有键。
 
 **返回值：**
 
@@ -234,11 +234,11 @@ keys(): IterableIterator<string>
 
 
 
-### Size
+### size
 
 size(): number
 
-存在的键值对的个数
+存在的键值对的个数。
 
 **返回值：**
 
@@ -252,7 +252,7 @@ size(): number
 
 clear(): boolean
 
-删除所有的属性
+删除所有的属性。
 
 **返回值：**
 
