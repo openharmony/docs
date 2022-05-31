@@ -215,8 +215,8 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待待设置的系统属性Key。 |
-| value| string | 否 | 待设置的系统属性值。 |
+| key | string | 是 | 待设置的系统属性Key。 |
+| value| string | 是 | 待设置的系统属性值。 |
 
 **返回值：**
 
