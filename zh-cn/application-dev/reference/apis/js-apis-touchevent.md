@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput.ToucEvent';
+import {Action,ToolType,SourceType,Touch,TouchEvent} from '@ohos.multimodalInput.touchEvent';
 ```
 
 ## Action
