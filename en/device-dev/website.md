@@ -315,7 +315,7 @@
 
                 - [Dynamic Loading](kernel/kernel-mini-extend-dynamic-loading.md)
 
-                - [File System](kernel/kernel-mini-extend-file.md)
+                - File System
 
                     - [FAT](kernel/kernel-mini-extend-file-fat.md)
 
@@ -323,7 +323,7 @@
 
             - Kernel Debugging
 
-                - [Memory Debugging](kernel/kernel-mini-memory-debug.md)
+                - Memory Debugging
 
                     - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
 
@@ -625,11 +625,11 @@
 
             - [Compiling and Building the Linux Kernel](kernel/kernel-standard-build.md)
 
-            - [Enhanced Kernel Features](kernel/kernel-standard-enhanced-features.md)
+            - Enhanced Kernel Features
 
               - [Enhanced Swap](kernel/kernel-standard-mm-eswap.md)
 
-              - [Task Scheduling](kernel/kernel-standard-sched.md)
+              - Task Scheduling
 
                 - [Related Thread Group](kernel/kernel-standard-sched-rtg.md)
 
