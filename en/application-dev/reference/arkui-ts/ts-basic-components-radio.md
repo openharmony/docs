@@ -1,6 +1,6 @@
 # Radio
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -24,22 +24,22 @@ Radio(options: {value: string, group: string})
 - Parameters
   | Name| Type| Mandatory| Default Value| Description| 
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes| - | Value of the current radio button.|
-  | group | string | Yes| - | Name of the group to which the radio button belongs. Only one radio button in a given group can be selected at a time.|
+  | value | string | Yes | - | Value of the current radio button. |
+  | group | string | Yes | - | Name of the group to which the radio button belongs. Only one radio button in a given group can be selected at a time. |
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description| 
+| Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| checked | boolean | false | Whether the radio button is selected.| 
+| checked | boolean | false | Whether the radio button is selected. | 
 
 
 ## Events
 
-| Name| Description| 
+| Name | Description | 
 | -------- | -------- |
-| onChange(callback: (value: boolean) => void) | Triggered when the selected state of the radio button changes.<br> -The value **true** means that the radio button is selected.<br> -The value **false** means that the radio button is not selected.| 
+| onChange(callback: (value: boolean) => void) | Triggered when the selected state of the radio button changes.<br> -The value **true** means that the radio button is selected.<br> -The value **false** means that the radio button is not selected. | 
 
 
 ## Example
