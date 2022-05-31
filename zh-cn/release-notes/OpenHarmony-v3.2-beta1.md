@@ -50,7 +50,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta1 | NA | 
-| SDK | Ohos_sdk&nbsp;3.2&nbsp;Beta1（API&nbsp;Version&nbsp;9） | NA | 
+| SDK | Ohos_sdk_full&nbsp;3.2.2.5 (API&nbsp;Version&nbsp;9 Beta1) | NA | 
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.2&nbsp;Beta1&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 | 
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.2&nbsp;Beta1 | OpenHarmony智能设备集成开发环境推荐使用 | 
 
@@ -104,10 +104,6 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
-
-### 从镜像站点获取
-
-*待补充*
 
 
 ## 更新说明
@@ -196,13 +192,3 @@ repo forall -c 'git lfs pull'
 | 全球化 | International | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS | 
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
-
-
-## 修复缺陷列表
-
-*待补充*
-
-
-## 遗留缺陷列表
-
-*待补充*
