@@ -124,6 +124,7 @@ zh-cn/application-dev/napi/rawfile_guidelines.md @HelloCrease
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @RayShih
 zh-cn/application-dev/work-scheduler/ @HelloCrease
+zh-cn/application-dev/internationalization/ @HelloCrease
 zh-cn/application-dev/device/usb-overview.md @ge-yafang
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang
 zh-cn/application-dev/device/device-location-overview.md @sun-yue14
@@ -275,6 +276,7 @@ zh-cn/application-dev/reference/apis/js-apis-inputmonitor.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-power.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-sensor.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-system-sensor.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-update.md @HelloCrease
@@ -311,6 +313,10 @@ zh-cn/application-dev/quick-start/start-with-ets.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-low-code.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-js.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-js-low-code.md @ge-yafang
+zh-cn/application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md @ge-yafang
 zh-cn/application-dev/quick-start/package-structure.md @RayShih
 zh-cn/application-dev/quick-start/basic-resource-file-categories.md @RayShih
 zh-cn/application-dev/quick-start/syscap.md @RayShih
+zh-cn/application-dev/napi/napi-guidelines.md @RayShih
+zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang
+zh-cn/application-dev/napi/rawfile-guidelines.md @HelloCrease
