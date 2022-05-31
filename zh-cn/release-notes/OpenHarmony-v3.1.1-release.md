@@ -35,7 +35,7 @@
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.1&nbsp;Release | NA | 
-| SDK | Ohos_sdk&nbsp;3.1.1&nbsp;Release&nbsp;(API&nbsp;Version&nbsp;8) | NA | 
+| SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | NA | 
 | HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 | 
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 | 
 
@@ -90,11 +90,6 @@ repo forall -c 'git lfs pull'
 ```
 
 
-### 从镜像站点获取
-
-*待补充*
-
-
 ## 更新说明
 
 本版本在OpenHarmony 3.1 Release的基础上有如下变更。
@@ -132,11 +127,3 @@ API变更
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
 
 
-## 修复缺陷列表
-
-*待补充*
-
-
-## 遗留缺陷列表
-
-*待补充*
