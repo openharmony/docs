@@ -1734,6 +1734,8 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 设置分布式列表，结果以callback形式返回。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1759,6 +1761,8 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
 设置分布式列表，结果以Promise形式返回。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1788,6 +1792,8 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1814,6 +1820,8 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1843,6 +1851,8 @@ promise.then((tableName) => {
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
 在设备之间同步数据, 结果以callback形式返回。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1875,6 +1885,8 @@ rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
 在设备之间同步数据，结果以Promise形式返回。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1911,6 +1923,8 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1940,6 +1954,8 @@ try {
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
 从数据库中删除指定类型的指定观察者, 结果以callback形式返回。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
