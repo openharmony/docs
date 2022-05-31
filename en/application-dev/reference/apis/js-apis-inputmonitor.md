@@ -1,7 +1,7 @@
 # Input Monitor
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
@@ -10,7 +10,7 @@
 ## Modules to Import
 
 
-```
+```js
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ```
 
@@ -24,82 +24,95 @@ ohos.permission.INPUT_MONITORING
 
 on(type: "touch", receiver: TouchEventReceiver): void
 
-Starts listening for global input events.
+Enables listening for global touch events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
   **Parameters**
-| Name      | Type                                      | Mandatory  | Description                  |
-| -------- | ---------------------------------------- | ---- | -------------------- |
-| type     | string                                   | Yes   | Type of the input event. Currently, only **touch** events are supported.|
-| receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return the touch event.         |
+| Name    | Type                                     | Mandatory| Description                           |
+| -------- | ----------------------------------------- | ---- | ------------------------------- |
+| type     | string                                    | Yes  | Type of the input event to listen for. The value is **touch**.|
+| receiver | [TouchEventReceiver](#toucheventreceiver) | Yes  | Callback used to return the touch event.         |
 
   **Example**
 
+```js
+inputMonitor.off("touch", (event) => {
+  // A touch event is consumed.
+  return false;
+});
 ```
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            // The event meets the service requirement and is consumed.
-            return true;
-        } else {
-            // The event does not meet the service requirement and is not consumed.
-            return false;
-        }
-    },
-    testOn: function () {
-        console.info("InputMonitorJsTest---start---testOn");
-        inputMonitor.on(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOn");
-    }
-}
+
+on(type: "mouse", receiver:Callback<MouseEvent>):void
+
+Enables listening for global mouse events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **Parameters**
+
+| Name    | Type                | Mandatory| Description                           |
+| -------- | -------------------- | ---- | ------------------------------- |
+| type     | string               | Yes  | Type of the input event to listen for. The value is **mouse**.|
+| receiver | Callback<MouseEvent> | Yes  | Callback used to return the mouse event.         |
+
+  **Example**
+
+```js
+inputMonitor.off("mouse", (event) => {
+  // A mouse event is consumed.
+});
 ```
+
 
 
 ## inputMonitor.off
 
-off(type: "touch", receiver: TouchEventReceiver): void
+off(type: "touch", receiver?:TouchEventReceiver):void
 
-Stops listening for global input events.
+Enables listening for global touch events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
   **Parameters**
-| Name      | Type                                      | Mandatory  | Description                  |
-| -------- | ---------------------------------------- | ---- | -------------------- |
-| type     | string                                   | Yes   | Type of the input event. Currently, only **touch** events are supported.|
-| receiver | [TouchEventReceiver](#toucheventreceiver) | No   | Callback used to return the touch event.         |
+| Name    | Type                                     | Mandatory| Description                           |
+| -------- | ----------------------------------------- | ---- | ------------------------------- |
+| type     | string                                    | Yes  | Type of the input event to listen for. The value is **touch**.|
+| receiver | [TouchEventReceiver](#toucheventreceiver) | No  | Callback used to return the touch event.         |
 
   **Example**
 
+```js
+inputMonitor.off("touch");
 ```
-export default {
-    callback: function (value) {
-        if (checkEvent(value)) {
-            // The event meets the service requirement and is consumed.
-            return true;
-        } else {
-            // The event does not meet the service requirement and is not consumed.
-            return false;
-        }
-    },
-    testOff: function () {
-        console.info("InputMonitorJsTest---start---testOff");
-        inputMonitor.off(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOff");
-    }
-  }
+
+off(type: "mouse", receiver?:Callback<MouseEvent>):void
+
+Stops listening for global mouse events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **Parameters**
+
+| Name    | Type                | Mandatory| Description                           |
+| -------- | -------------------- | ---- | ------------------------------- |
+| type     | string               | Yes  | Type of the input event to listen for. The value is **mouse**.|
+| receiver | Callback<MouseEvent> | No  | Callback used to return the mouse event.         |
+
+**Example**
+
+```js
+inputMonitor.off("mouse");
 ```
+
 
 
 ## TouchEventReceiver
@@ -109,7 +122,7 @@ Represents the class of the callback used to return the touch event. The value *
 
 ### (touchEvent: TouchEvent): Boolean
 
-Represents the callback used to return the touch event. You need to define the name of the callback function in the correct format. Ensure that the input parameter is of the TouchEvent type, and the return value is of the Boolean type.
+Represents the callback used to return the touch event. You need to define the name of the callback function in the correct format. Ensure that the input parameter is of the **TouchEvent** type, and the return value is of the **Boolean** type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
@@ -125,24 +138,10 @@ Represents the callback used to return the touch event. You need to define the n
 
   **Example**
 
-```
-export default {
-    callback: function (value) {  // Implementation of the (touchEvent:TouchEvent): Boolean API.
-        if (checkEvent(value)) {
-            // The event meets the service requirement and is consumed.
-            return true;
-        } else {
-            // The event does not meet the service requirement and is not consumed.
-            return false;
-        }
-    },
-    testOff: function () {
-        console.info("InputMonitorJsTest---start---testOff");
-        inputMonitor.off(
-            "touch",
-            this.callback
-        );
-        console.info("InputMonitorJsTest---end---testOff");
-    }
-}
+```js
+inputMonitor.on("touch", (event) => {
+  // A touch event is consumed.
+  return false;
+});
+inputMonitor.off("touch");
 ```
