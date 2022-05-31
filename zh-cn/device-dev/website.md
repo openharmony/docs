@@ -294,11 +294,11 @@
         - [C++支持](kernel/kernel-mini-extend-support.md)
         - [CPU占用率](kernel/kernel-mini-extend-cpup.md)
         - [动态加载](kernel/kernel-mini-extend-dynamic-loading.md)
-        - [文件系统](kernel/kernel-mini-extend-file.md)
+        - 文件系统
           - [FAT](kernel/kernel-mini-extend-file-fat.md)
           - [LittleFS](kernel/kernel-mini-extend-file-lit.md)
       - 内核调测
-        - [内存调测](kernel/kernel-mini-memory-debug.md)
+        - 内存调测
           - [内存信息统计](kernel/kernel-mini-memory-debug-mes.md)
           - [内存泄漏检测](kernel/kernel-mini-memory-debug-det.md)
           - [踩内存检测](kernel/kernel-mini-memory-debug-cet.md)
@@ -343,7 +343,7 @@
         - [动态加载与链接](kernel/kernel-small-bundles-linking.md)
         - [虚拟动态共享库](kernel/kernel-small-bundles-share.md)
         - [轻量级进程间通信](kernel/kernel-small-bundles-ipc.md)
-        - [文件系统](kernel/kernel-small-bundles-fs.md)
+        - 文件系统
           - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
           - 支持的文件系统
             - [FAT](kernel/kernel-small-bundles-fs-support-fat.md)
@@ -449,9 +449,9 @@
       - [Linux内核概述](kernel/kernel-standard-overview.md)
       - [OpenHarmony开发板Patch使用指导](kernel/kernel-standard-patch.md)
       - [Linux内核编译与构建指导](kernel/kernel-standard-build.md)
-      - [内核增强特性](kernel/kernel-standard-enhanced-features.md)
+      - 内核增强特性
         - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
-        - [任务调度](kernel/kernel-standard-sched.md)
+        - 任务调度
           - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
           - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   - 驱动
