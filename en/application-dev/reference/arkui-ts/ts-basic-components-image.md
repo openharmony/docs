@@ -1,7 +1,7 @@
 # Image
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ None
 Image(value: {uri: string | PixelMap})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | uri | string | Yes | - | Image URI. Both local and Internal URIs are supported. | 
 
@@ -41,7 +41,7 @@ Image(value: {uri: string | PixelMap})
 | syncLoad<sup>8+</sup> | boolean | false | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 - ImageFit enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Cover | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. | 
   | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. | 
@@ -50,7 +50,7 @@ Image(value: {uri: string | PixelMap})
   | ScaleDown | The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size. | 
 
 - ImageInterpolation enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | None | Interpolation image data is not used. | 
   | High | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed. | 
@@ -58,7 +58,7 @@ Image(value: {uri: string | PixelMap})
   | Low | The interpolation image data is used at the low level. | 
 
 - ImageRenderMode enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Original | The image is rendered based on the original image, including the color. | 
   | Template | The image is rendered as a template image, and its color is ignored. | 
@@ -66,7 +66,7 @@ Image(value: {uri: string | PixelMap})
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned. | 
 | onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | An exception occurs during image loading. | 

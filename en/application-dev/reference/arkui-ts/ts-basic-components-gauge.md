@@ -1,11 +1,11 @@
 # Gauge
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Data gauge chart widget, which is used to display data in a ring chart.
+This component is used to create a data gauge chart widget that displays data in a ring chart.
 
 
 ## Required Permissions
@@ -22,8 +22,8 @@ None
 
 Gauge(value:{value: number, min?: number, max?: number})
 
-- Parameter
-    | Name | Type | Mandatory | Default Value | Description |
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Current data value. |
   | min | number | No | 0 | Minimum value of the current data segment. |
@@ -35,9 +35,9 @@ Gauge(value:{value: number, min?: number, max?: number})
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | value | number | 0 | Sets the value of the current data chart. |
-| startAngle | Angle | -150 | Set the start angle. Clock 0 indicates 0 degree, and the clockwise direction indicates the positive angle. |
+| startAngle | Angle | -150 | Sets the start angle. Clock 0 indicates 0 degree, and the clockwise direction indicates the positive angle. |
 | endAngle | Angle | 150 | Sets the end angle position. The clock 0 point is 0 degree, and the clockwise direction is the positive angle. |
-| colors | Color \| Array&lt;ColorStop&gt; | - | Set the color of the chart. You can set the pure color or segmental gradient color. |
+| colors | Color \| Array&lt;ColorStop&gt; | - | Sets the color of the chart. You can set the pure color or segmental gradient color. |
 | strokeWidth | Length | - | Sets the ring thickness of a ring chart. |
 
 

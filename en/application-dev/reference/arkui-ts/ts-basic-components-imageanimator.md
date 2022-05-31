@@ -1,7 +1,7 @@
 # ImageAnimator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -37,7 +37,7 @@ ImageAnimator()
 | iterations | number | 1 | No | By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
 - AnimationStatus enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Initial | The animation is in the initial state. | 
   | Running | The animation is being played. | 
@@ -53,8 +53,8 @@ ImageAnimator()
 
 ## Events
 
-  | Name | Description | 
-| -------- | -------- | -------- |
+| Name | Description | 
+| -------- | -------- |
 | onStart() =&gt; void | Triggered when the animation starts to play. | 
 | onPause() =&gt; void | Triggered when the animation playback is paused. | 
 | onRepeat() =&gt; void | Triggered when the animation playback is repeated. | 
