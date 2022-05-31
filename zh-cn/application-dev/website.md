@@ -590,9 +590,6 @@
 
       - [I18n开发指导](internationalization/i18n-guidelines.md)
 
-    
-    - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-
 
     - Native API的相关指导
 
@@ -1155,6 +1152,8 @@
       - [@ohos.application.formInfo (FormInfo)](reference/apis/js-apis-formInfo.md)
 
       - [@ohos.application.missionManager (missionManager)](reference/apis/js-apis-missionManager.md)
+      
+      - [@ohos.application.missioninfo (missioninfo)](reference/apis/js-apis-application-missionInfo.md)
 
       - [@ohos.application.formProvider (FormProvider)](reference/apis/js-apis-formprovider.md)
 
