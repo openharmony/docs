@@ -24,7 +24,7 @@ Polygon(value:{options?: {width: Length, height: Length}})
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | 否 | - | 见见options参数说明。 |
+  | options | Object | 否 | - | 见options参数说明。 |
 
 - options参数说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
