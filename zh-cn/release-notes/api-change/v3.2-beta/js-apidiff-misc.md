@@ -1,0 +1,33 @@
+# 杂散软件服务子系统JS API变更
+
+OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，杂散软件服务子系统的API变更如下:
+
+## 接口变更
+
+| 模块名 | 方法/事件名 | 方法/属性/枚举/常量 | 变更类型 |
+|---|---|---|---|
+| ohos.screenLock | sendScreenLockEvent | function sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback<boolean>): void;<br>function sendScreenLockEvent(event: String, parameter: number): Promise<boolean>; | 新增 |
+| ohos.screenLock | off_changeUser | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_endSleep | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_beginSleep | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_screenlockEnabled | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_beginExitAnimation | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_unlockScreen | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_endScreenOff | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_beginScreenOff | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_endScreenOn | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_beginScreenOn | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_endWakeUp | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | off_beginWakeUp | function off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_screenlockEnabled | function on(type: 'screenlockEnabled', callback: Callback<boolean>): void; | 新增 |
+| ohos.screenLock | on_changeUser | function on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<number>): void; | 新增 |
+| ohos.screenLock | on_endSleep | function on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<number>): void; | 新增 |
+| ohos.screenLock | on_beginSleep | function on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback<number>): void; | 新增 |
+| ohos.screenLock | on_beginExitAnimation | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_unlockScreen | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_endScreenOff | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_beginScreenOff | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_endScreenOn | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_beginScreenOn | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_endWakeUp | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
+| ohos.screenLock | on_beginWakeUp | function on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback<void>): void; | 新增 |
