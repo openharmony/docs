@@ -27,6 +27,7 @@ zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23
 zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23
 zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23
 zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23
+zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
