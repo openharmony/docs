@@ -38,9 +38,9 @@
 在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者定义资源时确定。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 可以查看[声明式开发范式资源访问](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-application-resource-access.md)，了解资源访问的更多细节。
+> - 可以查看[声明式开发范式资源访问](../../ui/ts-application-resource-access.md)，了解资源访问的更多细节。
 > 
-> - 类Web开发范式的资源文件路径及资源限定词的使用与声明式范式不同，详情请参考[类Web开发范式资源限定与访问](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/js-framework-resource-restriction.md)及[类Web开发范式文件组织](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/js-framework-file.md)。
+> - 类Web开发范式的资源文件路径及资源限定词的使用与声明式范式不同，详情请参考[类Web开发范式资源限定与访问](../../ui/js-framework-resource-restriction.md)及[类Web开发范式文件组织](../../ui/js-framework-file.md)。
 
 
 ### 示例
@@ -137,7 +137,7 @@ struct Index {
 
 在开发过程中，分层参数的用法与资源限定词基本一致。开发者可以通过"$r('sys.type.resource_id')"的形式引用系统资源。sys代表是系统资源；type代表资源类型，值可以取color、float、string和media；resource_id代表资源id。
 
-可以访问本文"[资源](OHOS_资源分层设计表_V1.0.01.xlsm)"，获取OHOS上支持的系统资源ID及其在不同配置下的取值。也可以访问[OpenHarmony/resources代码仓](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources)，了解OpenHarmony系统中预置的分层参数资源，可以发现这里目录结构与工程中的resources目录类似，也是通过资源限定词匹配不同的设备或设备状态。
+可以访问本文"[资源](resource.md)"，获取OHOS上支持的系统资源ID及其在不同配置下的取值。也可以访问[OpenHarmony/resources代码仓](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources)，了解OpenHarmony系统中预置的分层参数资源，可以发现这里目录结构与工程中的resources目录类似，也是通过资源限定词匹配不同的设备或设备状态。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 仅声明式开发范式支持使用分层参数，类Web开发范式不支持。

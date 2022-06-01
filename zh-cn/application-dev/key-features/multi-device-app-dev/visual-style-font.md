@@ -13,4 +13,4 @@
 ![zh-cn_image_0000001292686089](figures/zh-cn_image_0000001292686089.png)
 
 
-关于OpenHarmony默认提供的字体相关分层参数，详见：[资源](OHOS_资源分层设计表_V1.0.01.xlsm)
+关于OpenHarmony默认提供的字体相关分层参数，详见：[资源](resource.md)

@@ -16,11 +16,11 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 请访问[栅格布局](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-ts-layout-grid-container.md)，了解栅格布局更详细的介绍。
+> - 请访问[栅格布局](../../ui/ui-ts-layout-grid-container.md)，了解栅格布局更详细的介绍。
 > 
-> - 声明式开发范式，请访问[GridContainer组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridcontainer.md)及[栅格设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-grid.md)，了解栅格布局的详细用法。
+> - 声明式开发范式，请访问[GridContainer组件](../../reference/arkui-ts/ts-container-gridcontainer.md)及[栅格设置](../../reference/arkui-ts/ts-universal-attributes-grid.md)，了解栅格布局的详细用法。
 > 
-> - 类Web开发范式，通过[grid-container](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-grid-container.md)、 [grid-row](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-grid-row.md)、[grid-col](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-grid-col.md)组件来实现栅格布局，请访问相应的链接了解其详细用法。
+> - 类Web开发范式，通过[grid-container](../../reference/arkui-js/js-components-grid-container.md)、 [grid-row](../../reference/arkui-js/js-components-grid-row.md)、[grid-col](../../reference/arkui-js/js-components-grid-col.md)组件来实现栅格布局，请访问相应的链接了解其详细用法。
 
 
 ## 示例：

@@ -45,7 +45,7 @@ HAP是OpenHarmony的安装包，一个HAP在工程目录中对应一个Module，
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - Module是开发者开发的相对独立的功能模块，由代码、资源、第三方库及应用配置文件组成，属于IDE开发视图的概念。Module分为entry、feature及har三种类型，相应的可以编译生成entry类型的HAP包、feature类型的HAP包，以及HAR包。
 > 
-> - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/package-structure.md)。
+> - 如果需要了解应用程序包结构更多详情，可以查看[包结构说明](../..//quick-start/package-structure.md)。
 
 
 ### 方舟开发框架
@@ -68,7 +68,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 声明式开发范式占用内存更少，**更推荐开发者选用声明式开发范式来搭建应用UI界面**。
 > 
-> - 可以查看[方舟开发框架概述](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkui-overview.md)，了解方舟开发框架更多详情。
+> - 可以查看[方舟开发框架概述](../../ui/arkui-overview.md)，了解方舟开发框架更多详情。
 
 
 ### 部署模型
@@ -112,7 +112,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 部署模型A对应的代码工程结构抽象后一般如下所示：
 
-  
+
 ```
 /application
 ├── common                  # 可选。公共特性目录, har类型的module
@@ -125,7 +125,7 @@ OpenHarmony提供了方舟开发框架（简称：ArkUI），提供开发者进�
 
 部署模型B对应的代码工程结构抽象后一般如下所示：
 
-  
+
 ```
 /application
 ├── common                  # 可选。公共特性目录, har类型的module

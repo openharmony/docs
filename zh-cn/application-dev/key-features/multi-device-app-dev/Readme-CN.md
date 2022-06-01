@@ -25,6 +25,7 @@
         - [图标](visual-style-icon.md)
     - [多态控件](design-polymorphic-components.md)
     - [设计自检表](design-checklist.md)
+    - [资源](resource.md)
 - [IDE使用](ide-usage.md)
 - 一多能力的页面开发介绍
     - 布局能力

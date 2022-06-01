@@ -4,7 +4,7 @@
 均分能力是指容器组件尺寸发生变化时，增加或减小的空间均匀分配给容器组件内所有空白区域。它常用于内容数量固定、均分显示的场景，比如工具栏、底部菜单栏等。
 
 
-均分能力通常通过使用 **Flex均分布局**（[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly）实现，即子元素在Flex主轴方向等间距布局，相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
+均分能力通常通过使用 **Flex均分布局**（[Flex组件](../../reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly）实现，即子元素在Flex主轴方向等间距布局，相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
