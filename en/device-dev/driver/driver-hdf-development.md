@@ -6,7 +6,8 @@
 The Hardware Driver Foundation (HDF) is designed upon a component-based driver model. This model enables refined driver management and streamlines driver development and deployment. In the HDF, the same type of device drivers are placed in a host. You can develop and deploy the drivers separately. One driver can have multiple nodes.
 
 The figure below shows the HDF driver model.
- **Figure 1** HDF driver model
+
+**Figure 1** HDF driver model
 
   ![](figures/hdf-driver-model.png)
 
