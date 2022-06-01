@@ -68,7 +68,7 @@ function queryFaultLogCallback(error, value) {
             console.info("Log pid: " + value[i].pid);
             console.info("Log uid: " + value[i].uid);
             console.info("Log type: " + value[i].type);
-            console.info("Log ts: " + value[i].ts);
+            console.info("Log timestamp: " + value[i].timestamp);
             console.info("Log reason: " + value[i].reason);
             console.info("Log module: " + value[i].module);
             console.info("Log summary: " + value[i].summary);
@@ -112,7 +112,7 @@ async function getLog() {
 	    console.info("Log pid: " + value[i].pid);
 	    console.info("Log uid: " + value[i].uid);
 	    console.info("Log type: " + value[i].type);
-	    console.info("Log ts: " + value[i].ts);
+	    console.info("Log timestamp: " + value[i].timestamp);
 	    console.info("Log reason: " + value[i].reason);
 	    console.info("Log module: " + value[i].module);
 	    console.info("Log summary: " + value[i].summary);
