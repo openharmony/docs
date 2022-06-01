@@ -225,10 +225,19 @@
         - [Access Control Overview](security/accesstoken-overview.md)
         - [Access Control Development](security/accesstoken-guidelines.md)
     - Connectivity
+      - Network Management
+        - [Network Management Overview](connectivity/net-mgmt-overview.md)
+        - [HTTP Data Request](connectivity/http-request.md)
+        - [WebSocket Connection](connectivity/websocket-connection.md)
+        - [Socket Connection](connectivity/socket-connection.md)
       - IPC & RPC
         - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
         - [IPC & RPC Development Guidelines](connectivity/ipc-rpc-development-guideline.md)
         - [Subscribing to State Changes of a Remote Object](connectivity/subscribe-remote-state.md)
+    - Telephony
+      - [Telephony Service Overview](telephony/telephony-overview.md)
+      - [Redirecting to the Dial Screen](telephony/jumping-to-the-dial-screen.md)
+      - [Obtaining Current Cellular Network Signal Information](telephony/cellular-network-signal-info.md)
     - Data Management
       - Distributed Data Service
         - [Distributed Data Service Overview](database/database-mdds-overview.md)

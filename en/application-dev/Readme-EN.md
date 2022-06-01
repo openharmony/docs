@@ -28,6 +28,7 @@
        - [Security](security/Readme-EN.md)
        - [Connectivity](connectivity/Readme-EN.md)
        - [Data Management](database/Readme-EN.md)
+       - [Telephony](telephony/Readme-EN.md)
        - [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
        - [Background Task Management](background-task-management/Readme-EN.md)
        - [Work Scheduler](work-scheduler/Readme-EN.md)
