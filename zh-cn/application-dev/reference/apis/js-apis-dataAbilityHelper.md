@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```js
-import dataAbilityHelper from "@ohos.ability.dataAbilityHelper";
+import featureAbility from "@ohos.ability.featureAbility";
 ```
 
 ## 使用说明
@@ -14,7 +14,7 @@ import dataAbilityHelper from "@ohos.ability.dataAbilityHelper";
 使用前根据具体情况引入如下模块
 ```
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
@@ -506,7 +506,7 @@ const valueBucket = {
     "name": "rose",
     "age": 22,
     "salary": 200.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
@@ -548,7 +548,7 @@ const valueBucket = {
     "name": "rose1",
     "age": 221,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
@@ -581,9 +581,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
     cars,
@@ -620,9 +620,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
     cars
@@ -689,6 +689,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<num
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -730,7 +731,7 @@ const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.update(
@@ -776,7 +777,7 @@ const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.update(

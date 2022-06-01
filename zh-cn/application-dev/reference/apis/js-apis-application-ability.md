@@ -3,13 +3,10 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 Ability模块，提供对Ability生命周期、上下文环境等调用管理。
-
 
 ## 导入模块
 
-  
 ```
 import Ability from '@ohos.application.Ability';
 ```
@@ -200,11 +197,12 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 **示例：**
     
   ```js
+  import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
-          return true;
+          return AbilityConstant.OnContinueResult.AGREE;
       }
   }
   ```
@@ -279,6 +277,7 @@ dump(params: Array\<string>): Array\<string>;
   class myAbility extends Ability {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
+          return ["params"]
       }
   }
   ```
@@ -316,6 +315,9 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -386,6 +388,9 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -534,6 +539,9 @@ on(method: string, callback: CaleeCallBack): void;
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;

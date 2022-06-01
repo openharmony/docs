@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import EventHub from "@ohos.application.eventHub";
+import Ability from '@ohos.application.Ability'
 ```
 
 ## 使用说明
@@ -22,6 +22,9 @@ import EventHub from "@ohos.application.eventHub";
 ```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
+    func1(){
+        console.log("func1 is called");
+    }
     onForeground() {
         this.context.eventHub.on("123", this.func1);
     }

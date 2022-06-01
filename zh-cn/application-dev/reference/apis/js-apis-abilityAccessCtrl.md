@@ -95,7 +95,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 ```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let permissionFlag = 1;
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -193,6 +194,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 ```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
+let permissionFlag = 1;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });

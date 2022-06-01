@@ -32,7 +32,7 @@ getId(uri: string): number
 **示例：**
 
 ```js
-dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
+dataUriUtils.getId("com.example.dataUriUtils/1221")
 ```
 
 

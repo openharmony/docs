@@ -8,7 +8,7 @@ FormExtension的上下文环境，提供FormExtension具有的能力和接口，
 ## 导入模块
 
 ```js
-import FormExtensionContext from '@ohos.application.formExtensionContext';
+import FormExtension from '@ohos.application.FormExtension';
 ```
 
 ## FormExtensionContext.updateForm
@@ -30,10 +30,18 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData, cal
 **示例：**
 
   ```js
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-  this.context.updateForm(formId, obj2, (data)=>{
-      console.log('FormExtension context updateForm, data:' + data);
-  });
+  import formBindingData from '@ohos.application.formBindingData'
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2, (data)=>{
+              console.log('FormExtension context updateForm, data:' + data);
+          });
+      }
+  }
+
+
   ```
 
 ## FormExtensionContext.updateForm
@@ -59,11 +67,18 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 **示例：**
 
-  ```
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-  this.context.updateForm(formId, obj2)
-      .then((data)=>{
-          console.log('FormExtension context updateForm, data:' + data);
-      }).catch((error) => {
-      console.error('Operation updateForm failed. Cause: ' + error);});
+  ```js
+  import formBindingData from '@ohos.application.formBindingData'
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2)
+              .then((data)=>{
+                  console.log('FormExtension context updateForm, data:' + data);
+              }).catch((error) => {
+              console.error('Operation updateForm failed. Cause: ' + error);});
+      }
+  }
+
   ```

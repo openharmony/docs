@@ -8,7 +8,7 @@ Ability的上下文环境，继承自Context。
 ## 导入模块
 
 ```js
-import AbilityContext from '@ohos.application.abilityContext'
+import Ability from '@ohos.application.Ability'
 ```
 ## 使用说明
 
@@ -378,7 +378,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
               deviceId: ""
           }).then((obj) => {
               caller = obj;
-              console.log('Caller GetCaller Get ' + call);
+              console.log('Caller GetCaller Get ' + caller);
           }).catch((e) => {
               console.log('Caller GetCaller error ' + e);
           });
@@ -404,10 +404,12 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 **示例：**
     
-  ```
-  this.context.requestPermissionsFromUser(permissions,(result) => {
-      console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
+  ```js
+       var permissions=['com.example.permission']
+       this.context.requestPermissionsFromUser(permissions,(result) => {
+       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
+  
   ```
 
 
@@ -433,12 +435,14 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 **示例：**
     
-  ```
-  this.context.requestPermissionsFromUser(permissions).then((data) => {
+  ```js
+   var permissions=['com.example.permission']
+       this.context.requestPermissionsFromUser(permissions).then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
+
   ```
 
 

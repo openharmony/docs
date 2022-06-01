@@ -226,7 +226,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -235,11 +235,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;
@@ -287,7 +287,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -296,11 +296,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;
@@ -401,6 +401,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 **示例**：
 
 ```js
+        import rpc from '@ohos.rpc'
         function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -422,8 +423,10 @@ connectAbility(request: Want, options:ConnectOptions): number
             },
         );
 
-        particleAbility.disconnectAbility(connId).then((error,data)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code + " data: " + data);
+        particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
         });
     
 
@@ -447,6 +450,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 **示例**：
 
 ```js
+import rpc from '@ohos.rpc'
  function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -467,11 +471,11 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
                 onFailed: onFailedCallback,
             },
         );
-        var result = particleAbility.disconnectAbility(connId,
-            (error,data) => {
-                console.log('particleAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
-            },
-        );
+        var result =  particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
+        });
 
 ```
 
@@ -493,6 +497,7 @@ disconnectAbility(connection: number): Promise\<void>;
 **示例**：
 
 ```js
+import rpc from '@ohos.rpc'
 function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -514,8 +519,10 @@ function onConnectCallback(element, remote){
             },
         );
 
-        particleAbility.disconnectAbility(connId).then((error,data)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code + " data: " + data);
+         particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
         });
 
 ```
