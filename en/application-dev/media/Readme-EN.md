@@ -8,13 +8,15 @@
     -   [Audio Rendering Development](audio-renderer.md)
     -   [Audio Capture Development](audio-capturer.md)
     -   [OpenSL ES Audio Playback Development](opensles-playback.md)
+    -   [OpenSL ES Audio Recording Development](opensles-capture.md)
+       
 -   Video
-
     - [Video Playback Development](video-playback.md)
-
     - [Video Recording Development](video-recorder.md)
-
+     
 - Image
-
   - [Image Development](image.md)
+   
+- Camera
+   - [Camera Development](camera.md)
 
