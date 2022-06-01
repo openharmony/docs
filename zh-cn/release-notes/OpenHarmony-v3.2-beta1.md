@@ -170,7 +170,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | 安全基础能力 | 新增OpenHarmony跨设备之间的同帐号互信认证能力。<br/>主要涉及如下需求：<br/>I58ZNS&nbsp;支持登录帐号的OpenHarmony设备之间执行同帐号互信认证<br/>I58ZNR&nbsp;支持OpenHarmony设备（登出帐号或被移除帐号后）移除本设备帐号认证凭据<br/>I58ZNP&nbsp;支持OpenHarmony设备导入/移除跨（同厂商或OEM厂商）帐号互信记录<br/>I58ZNT&nbsp;支持OpenHarmony设备（登录帐号或被绑定到帐号后）导入本设备帐号认证凭据（非对称凭据） | NA | 
 | 应用 | 图库应用支持图片编辑、动效能力。<br/>主要涉及如下需求：<br/>I58ZQ3&nbsp;【图库】图片编辑<br/>I58ZQ1&nbsp;【图库】动效<br/>I58ZQ4&nbsp;【联系人】基础能力-2D能力 | NA | 
 
-API变更请参考：
+### API变更
 
 
 _[API差异报告](api-change/v3.2-beta/readme.md)_
