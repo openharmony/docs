@@ -1610,7 +1610,7 @@
       - [console (日志打印)](reference/apis/js-apis-logs.md)
 
 
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
 
       - MyProject
