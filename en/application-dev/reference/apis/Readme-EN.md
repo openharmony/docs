@@ -43,6 +43,10 @@
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
+  - application/[AbilityManager (AbilityManager)](js-apis-abilityManager.md)
+  - application/[ExtensionAbilityContext (ExtensionAbilityContext)](js-apis-extension-ability-context.md)
+  - application/[ExtensionAbilityInfo (ExtensionAbilityInfo)](js-apis-extensionAbilityInfo.md)
+  - application/[ServiceExtAbilityContext (ServiceExtAbilityContext)](js-apis-serviceExtAbilityContext.md)
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)
