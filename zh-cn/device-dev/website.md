@@ -606,8 +606,6 @@
     - [HiDumper开发指导](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
     - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
-    - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hiperf使用指导](subsystems/subsys-toolchain-hiperf.md)
 - 专题
   - HPM Part
     - [HPM Part介绍](hpm-part/hpm-part-about.md)
