@@ -176,7 +176,7 @@
       - Kernel Debugging
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
-          - [Memory Leak Check](kernel/kernel-mini-imemory-debug-det.md)
+          - [Memory Leak Check](kernel/kernel-mini-memory-debug-det.md)
           - [Memory Corruption Check](kernel/kernel-mini-memory-debug-cet.md)
         - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
         - [Trace](kernel/kernel-mini-memory-trace.md)
