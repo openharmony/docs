@@ -835,11 +835,6 @@
     - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
     - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
-  - R&D Tools
-    - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
-    - [hiperf](subsystems/subsys-toolchain-hiperf.md)
-
 - Featured Topics
   - HPM Part
     
