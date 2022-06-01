@@ -366,17 +366,12 @@
 
       - [公共事件与通知概述](notification/notification-brief.md)
 
-      - 公共事件
+      - [公共事件开发指导](notification/common-event.md)
 
-        - [公共事件开发指导](notification/common-event.md)
+      - [通知开发指导](notification/notification.md)
 
-      - 通知
+      - [调试助手使用指导](notification/assistant-guidelines.md)
 
-        - [通知开发指导](notification/notification.md)
-
-      - 调试工具
-
-        - [调试助手使用指导](notification/assistant-guidelines.md)
 
     - 窗口管理
 
@@ -596,9 +591,9 @@
 
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
 
-      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
 
-      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      - [Rawfile开发指导](napi/rawfile-guidelines.md)
 
 
 - 工具
@@ -1116,7 +1111,7 @@
 
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考(JS及eTS API参考)
+  - 接口参考（JS及TS API）
     - Ability框架
 
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
@@ -1562,7 +1557,7 @@
       - [console (日志打印)](reference/apis/js-apis-logs.md)
 
 
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
 
       - MyProject
