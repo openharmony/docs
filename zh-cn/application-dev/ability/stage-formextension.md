@@ -8,12 +8,9 @@
 
 卡片的基本概念：
 
-- 卡片提供方
-  提供卡片显示内容原子化服务，控制卡片的显示内容、控件布局以及控件点击事件。
-- 卡片使用方
-  显示卡片内容的宿主应用，控制卡片在宿主中展示的位置。
-- 卡片管理服务
-  用于管理系统中所添加卡片的常驻代理服务，包括卡片对象的管理与使用，以及卡片周期性刷新等。
+- 卡片提供方：提供卡片显示内容原子化服务，控制卡片的显示内容、控件布局以及控件点击事件。
+- 卡片使用方：显示卡片内容的宿主应用，控制卡片在宿主中展示的位置。
+- 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，包括卡片对象的管理与使用，以及卡片周期性刷新等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 卡片使用方和提供方不要求常驻运行，在需要添加/删除/请求更新卡片时，卡片管理服务会拉起卡片提供方获取卡片信息。
@@ -33,7 +30,7 @@ Stage卡片开发，即基于[Stage模型](stage-brief.md)的卡片提供方开�
 
 ## 接口说明
 
-FormExtension功能如下：FormExtension类，拥有context属性，具体的API详见[接口文档](../reference/apis/js-apis-formextension.md)。
+FormExtension类拥有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-formextension.md)。
 
 **表1** FormExtension API接口功能介绍
 
@@ -47,7 +44,7 @@ FormExtension功能如下：FormExtension类，拥有context属性，具体的AP
 | onDestroy(formId: string): void                              | 卡片提供方接收销毁卡片的通知接口。           |
 | onConfigurationUpdated(config: Configuration): void;         | 当系统配置更新时调用。                       |
 
-FormExtension类拥有context属性，context属性为FormExtensionContext类，具体的API详见[接口文档](../reference/apis/js-apis-formextensioncontext.md)。
+FormExtension类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-formextensioncontext.md)。
 
 **表2** FormExtensionContext API接口功能介绍
 
@@ -56,7 +53,7 @@ FormExtension类拥有context属性，context属性为FormExtensionContext类，
 | updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | 回调形式主动更新卡片。    |
 | updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Promise形式主动更新卡片。 |
 
-FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formprovider.md)。
+FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-formprovider.md)。
 
 **表3** FormProvider API接口功能介绍
 
@@ -132,22 +129,20 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
 
 ### 配置卡片配置文件
 
-Form需要在应用配置文件module.json中进行配置。
-
-- extensionAbility模块，内部字段结构说明：
+- 卡片需要在应用配置文件module.json5中的extensionAbilities标签下，配置ExtensionAbility相关信息，内部字段结构说明：
 
   | 属性名称    | 含义                                                         | 数据类型   | 是否可缺省           |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
-  | name        | 表示extensionAbility的名字。该标签不可缺省。                 | 字符串     | 否                   |
-  | srcEntrance | 表示extensionAbility所对应的JS的代码路径。该标签不可缺省。   | 字符串     | 否                   |
-  | description | 表示extensionAbility的描述。可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。 | 字符串     | 可缺省，缺省值为空。 |
-  | icon        | 表示extensionAbility的图标资源文件的索引。                   | 字符串     | 可缺省，缺省值为空。 |
-  | label       | 表示extensionAbility的标签信息，即extensionAbility对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。 | 字符串     | 可缺省，缺省值为空。 |
-  | type        | 表示extensionAbility的类型。取值form、service等              | 字符串     | 否                   |
+  | name        | 表示ExtensionAbility的名字，该标签不可缺省。                 | 字符串     | 否                   |
+  | srcEntrance | 表示ExtensionAbility所对应的生命周期代码的路径，该标签不可缺省。 | 字符串     | 否                   |
+  | description | 表示ExtensionAbility的描述。可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。 | 字符串     | 可缺省，缺省值为空。 |
+  | icon        | 表示ExtensionAbility的图标资源文件的索引。                   | 字符串     | 可缺省，缺省值为空。 |
+  | label       | 表示ExtensionAbility的标签信息，即ExtensionAbility对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。 | 字符串     | 可缺省，缺省值为空。 |
+  | type        | 表示ExtensionAbility的类型，对于当前FormExtensionAbility的开发，需要将其配置为form。 | 字符串     | 否                   |
   | permissions | 表示其他应用的Ability调用此Ability时需要申请的权限。         | 字符串数组 | 可缺省，缺省值为空。 |
-  | metadata    | 表示extensionAbility的元信息。用于描述extensionAbility的配置信息。 | 对象       | 可缺省，缺省值为空   |
+  | metadata    | 表示ExtensionAbility的元信息，用于描述ExtensionAbility的配置信息。 | 对象       | 可缺省，缺省值为空   |
 
-  对于FormExtensionAbility来说，type需要配置为form，并且需要填写metadata元信息，用于配置卡片的具体信息。
+  对于FormExtensionAbility来说，需要填写metadata元信息标签，其中键名称为固定字符串"ohos.extension.form"，资源为卡片的具体配置信息的索引。
 
   配置示例如下：
 
@@ -165,13 +160,13 @@ Form需要在应用配置文件module.json中进行配置。
   }]
      ```
 
-- 卡片profile模块。在 FormExtensionAbility 的元信息中，需要使用 ohos.extension.form 指定的资源文件的路径，如使用  $profile:form_config 指定开发视图的 resources/base/profile/ 目录下的 form_config.json 作为卡片profile配置文件。
+- 卡片的具体配置信息。在上述 FormExtensionAbility 的元信息中，指定了的卡片具体配置信息的资源索引，如使用  $profile:form_config 指定开发视图的 resources/base/profile/ 目录下的 form_config.json 作为卡片profile配置文件。
 
   内部字段结构说明：
   
   | 属性名称            | 含义                                                         | 数据类型   | 是否可缺省               |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
-  | name                | 表示卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                       |
+  | name                | 表示卡片的类名，字符串最大长度为127字节。                    | 字符串     | 否                       |
   | description         | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。       |
   | src                 | 表示卡片对应的UI代码的完整路径。                             | 字符串     | 否                       |
   | window              | 用于定义与显示窗口相关的配置。                               | 对象       | 可缺省                   |
@@ -183,7 +178,7 @@ Form需要在应用配置文件module.json中进行配置。
   | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |
   | updateDuration      | 表示卡片定时刷新的更新周期，单位为30分钟，取值为自然数。<br />当取值为0时，表示该参数不生效。<br />当取值为正整数N时，表示刷新周期为30*N分钟。 | 数值       | 可缺省，缺省值为“0”。    |
   | formConfigAbility   | 表示卡片的配置跳转链接，采用URI格式。                        | 字符串     | 可缺省，缺省值为空。     |
-  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知                           | 字符串     | 可缺省，缺省值为空。     |
+  | formVisibleNotify   | 标识是否允许卡片使用卡片可见性通知。                         | 字符串     | 可缺省，缺省值为空。     |
   | metaData            | 表示卡片的自定义信息，包含customizeData数组标签。            | 对象       | 可缺省，缺省值为空。     |
 
      配置示例如下：
