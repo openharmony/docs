@@ -1,11 +1,16 @@
 # PermissionRequestResult
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides the permission request result.
 
+## Modules to Import
+
+```js
+import Ability from '@ohos.application.Ability'
+```
 
 ## Attributes
 

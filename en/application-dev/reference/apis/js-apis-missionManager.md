@@ -1,20 +1,20 @@
 # missionManager
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 missionManager provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
-
 ## Modules to Import
-
 
 ```
 import missionManager from '@ohos.application.missionManager'
 ```
 
+## Required Permissions
+
+ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.registerMissionListener
 
@@ -40,10 +40,11 @@ Registers a listener to observe the mission status.
 
   ```js
   var listener =  {
-  	onMissionCreated: this.onMissionCreatedCallback,
-  	onMissionDestroyed: this.onMissionDestroyedCallback,
-  	onMissionSnapshotChanged: this.onMissionSnapshotChangedCallback,
-  	onMissionMovedToFront: this.onMissionMovedToFrontCallback
+  	onMissionCreated: function(mission){"--------onMissionCreated-------"},
+  	onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
+  	onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
+  	onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
+  	onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
@@ -70,10 +71,11 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
   ```js
   var listener =  {
-    onMissionCreated: this.onMissionCreatedCallback,
-    onMissionDestroyed: this.onMissionDestroyedCallback,
-    onMissionSnapshotChanged: this.onMissionSnapshotChangedCallback,
-    onMissionMovedToFront: this.onMissionMovedToFrontCallback
+  	onMissionCreated: function(mission){"--------onMissionCreated-------"},
+  	onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
+  	onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
+  	onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
+  	onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
@@ -108,17 +110,18 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
   ```js
   var listener =  {
-      onMissionCreated: this.onMissionCreatedCallback,
-      onMissionDestroyed: this.onMissionDestroyedCallback,
-      onMissionSnapshotChanged: this.onMissionSnapshotChangedCallback,
-      onMissionMovedToFront: this.onMissionMovedToFrontCallback
-    };
-    console.log("registerMissionListener")
-    var listenerid = missionManager.registerMissionListener(listener);
+      onMissionCreated: function(mission){"--------onMissionCreated-------"},
+      onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
+      onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
+      onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
+      onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
+      };
+      console.log("registerMissionListener")
+      var listenerid = missionManager.registerMissionListener(listener);
 
-    missionManager.unregisterMissionListener(listenerid).catch(function (err){
-      console.log(err);
-    });
+      missionManager.unregisterMissionListener(listenerid).catch(function (err){
+        console.log(err);
+      });
   ```
 
 
@@ -143,15 +146,16 @@ Obtains the information about a given mission. This API uses an asynchronous cal
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
-  	console.log("getMissionInfo is called, error.code = " + error.code)
-  	console.log("mission.missionId = " + mission.missionId);
-  	console.log("mission.runningState = " + mission.runningState);
-  	console.log("mission.lockedState = " + mission.lockedState);
-  	console.log("mission.timestamp = " + mission.timestamp);
-  	console.log("mission.label = " + mission.label);
-  	console.log("mission.iconPath = " + mission.iconPath);
-  });
+  var allMissions=missionManager.getMissionInfos("",10).catch(function(err){console.log(err);});
+      missionManager.getMissionInfo("", allMissions[0].missionId, (error, mission) => {
+        console.log("getMissionInfo is called, error.code = " + error.code)
+        console.log("mission.missionId = " + mission.missionId);
+        console.log("mission.runningState = " + mission.runningState);
+        console.log("mission.lockedState = " + mission.lockedState);
+        console.log("mission.timestamp = " + mission.timestamp);
+        console.log("mission.label = " + mission.label);
+        console.log("mission.iconPath = " + mission.iconPath);
+      });
   ```
 
 
@@ -181,7 +185,7 @@ Obtains the information about a given mission. This API uses a promise to return
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var mission = missionManager.getMissionInfo("", id).catch(function (err){
+  var mission = missionManager.getMissionInfo("", 10).catch(function (err){
       console.log(err);
   });
   ```
@@ -309,15 +313,17 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
-    console.log(err);
-  });
-  console.log("size = " + allMissions.length);
-  console.log("missions = " + JSON.stringify(allMissions));
-  var id = allMissions[0].missionId;
-  var snapshot = missionManager.getMissionSnapShot("", id).catch(function (err){
-    console.log(err);
-  });
+  var allMissions;
+  missionManager.getMissionInfos("",10).then(function(res){
+    allMissions=res;
+    }).catch(function(err){console.log(err);});
+    console.log("size = " + allMissions.length);
+    console.log("missions = " + JSON.stringify(allMissions));
+    var id = allMissions[0].missionId;
+
+    var snapshot = missionManager.getMissionSnapShot("", id).catch(function (err){
+        console.log(err);
+    });
   ```
 
 
@@ -378,10 +384,10 @@ Locks a given mission. This API uses a promise to return the result.
 
   ```js
   import missionManager from '@ohos.application.missionManager'
-
-  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
-    console.log(err);
-  });
+  var allMissions;
+  missionManager.getMissionInfos("",10).then(function(res){
+    allMissions=res;
+  }).catch(function(err){console.log(err);});
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
@@ -450,9 +456,10 @@ Unlocks a given mission. This API uses a promise to return the result.
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
-    console.log(err);
-  });
+  var allMissions;
+  missionManager.getMissionInfos("",10).then(function(res){
+    allMissions=res;
+  }).catch(function(err){console.log(err);});
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
@@ -524,9 +531,10 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
-    console.log(err);
-  });
+  var allMissions;
+  missionManager.getMissionInfos("",10).then(function(res){
+    allMissions=res;
+  }).catch(function(err){console.log(err);});
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;
@@ -673,9 +681,10 @@ Switches a given mission to the foreground, with the startup parameters for the 
   ```js
   import missionManager from '@ohos.application.missionManager'
 
-  var allMissions = missionManager.getMissionInfos("", 10).catch(function (err){
-    console.log(err);
-  });
+  var allMissions;
+  missionManager.getMissionInfos("",10).then(function(res){
+    allMissions=res;
+  }).catch(function(err){console.log(err);});
   console.log("size = " + allMissions.length);
   console.log("missions = " + JSON.stringify(allMissions));
   var id = allMissions[0].missionId;

@@ -6,6 +6,11 @@
 
 Implements the context of an ability stage. This module is inherited from [Context](js-apis-application-context.md).
 
+## Modules to Import
+
+```js
+import AbilityStage from '@ohos.application.AbilityStage';
+```
 
 ## Usage
 
@@ -28,7 +33,7 @@ class MyAbilityStage extends AbilityStage {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type | Readable | Writable | Description | 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | HapModuleInfo | Yes | No | **ModuleInfo** object corresponding to the **AbilityStage**. | 
-| config | [Configuration](js-apis-configuration.md) | Yes| No| Configuration for the environment where the application is running. | 
+| currentHapModuleInfo | HapModuleInfo | Yes| No| **ModuleInfo** object corresponding to the **AbilityStage**.| 
+| config | [Configuration](js-apis-configuration.md) | Yes| No| Configuration for the environment where the application is running.| 
