@@ -7,9 +7,9 @@
 占比能力通常有两种实现方式：
 
 
-- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-types.md#%E9%95%BF%E5%BA%A6%E7%B1%BB%E5%9E%8B)。
+- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](../../ui/ts-types.md#长度类型)。
 
-- 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)。
+- 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)。
   - 当父容器尺寸确定时，其子组件按照开发者配置的权重比例分配父容器中主轴方向的空间。
   - 仅当父容器是Row、Colomn或者Flex时，layoutWeight属性才会生效。
   - 设置layoutWeight属性后，组件本身的尺寸会失效。比如同时设置了.width('40%')和.layoutWeight(1)，那么只有.layoutWeight(1)会生效。
@@ -19,7 +19,7 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不再展开介绍。
+> 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](../../reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统)中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不再展开介绍。
 
 
 ## 示例：

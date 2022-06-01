@@ -24,4 +24,4 @@ OpenHarmony采用蓝色作为系统的默认主色调。根据人因研究，对
 OpenHarmony后续将支持深色模式、浅色模式，及不同主题切换能力。
 
 
-关于OpenHarmony默认提供的色彩相关分层参数，详见：[资源](OHOS_资源分层设计表_V1.0.01.xlsm)
+关于OpenHarmony默认提供的色彩相关分层参数，详见：[资源](resource.md)

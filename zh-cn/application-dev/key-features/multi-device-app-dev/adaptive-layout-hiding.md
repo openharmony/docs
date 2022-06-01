@@ -7,7 +7,7 @@
 隐藏能力通过设置**布局优先级**（displayPriority属性）来控制显隐，当布局主轴方向剩余尺寸不足以满足全部元素时，按照布局优先级大小，从小到大依次隐藏，直到容器能够完整显示剩余元素。具有相同布局优先级的元素将同时显示或者隐藏。
 
 
-可以访问[布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
+可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
 
 
 ## 示例：

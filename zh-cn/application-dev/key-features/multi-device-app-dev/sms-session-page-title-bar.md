@@ -20,7 +20,7 @@
 - alignItems: ItemAlign.Start：子组件在Flex容器交叉轴（水平方向）上首部对齐。
 
 
-可以查看[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)及[Text组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-text.md)了解这两个组件各个属性的含义及详细用法。
+可以查看[Flex组件](../../reference/arkui-ts/ts-container-flex.md)及[Text组件](../../reference/arkui-ts/ts-basic-components-text.md)了解这两个组件各个属性的含义及详细用法。
 
 
   | 默认设备 | 平板 | 
@@ -28,7 +28,7 @@
 | ![zh-cn_image_0000001246816566](figures/zh-cn_image_0000001246816566.png) | ![zh-cn_image_0000001292777537](figures/zh-cn_image_0000001292777537.png) | 
 
 
-  
+
 ```
 @Component
  struct TopArea {
@@ -43,7 +43,7 @@
 ```
 
 
-接下来我们通过width属性和height属性设置四个图标的宽高（详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)），并将它们与联系人姓名和电话以及Blank组件一起放到Flex父容器中。为了便于查看效果，对顶部标题栏设置了淡蓝色的背景色。
+接下来我们通过width属性和height属性设置四个图标的宽高（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)），并将它们与联系人姓名和电话以及Blank组件一起放到Flex父容器中。为了便于查看效果，对顶部标题栏设置了淡蓝色的背景色。
 
 
   | 默认设备 | 平板 | 
@@ -51,7 +51,7 @@
 | ![zh-cn_image_0000001292777233](figures/zh-cn_image_0000001292777233.png) | ![zh-cn_image_0000001246497370](figures/zh-cn_image_0000001246497370.png) | 
 
 
-  
+
 ```
 @Component
  struct TopArea {
@@ -84,7 +84,7 @@
 ```
 
 
-当前标题栏中子组件的布局同预期还有些差异，接下来通过margin属性，设置各个元素的左右间距（详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)）。如下图所示，最终顶部工具栏在默认设备和平板上都可以达到预期显示效果。
+当前标题栏中子组件的布局同预期还有些差异，接下来通过margin属性，设置各个元素的左右间距（详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)）。如下图所示，最终顶部工具栏在默认设备和平板上都可以达到预期显示效果。
 
 
   | 默认设备 | 平板 | 
@@ -92,7 +92,7 @@
 | ![zh-cn_image_0000001293015965](figures/zh-cn_image_0000001293015965.png) | ![zh-cn_image_0000001246656958](figures/zh-cn_image_0000001246656958.png) | 
 
 
-  
+
 ```
 @Component
  struct TopArea {

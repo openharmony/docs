@@ -7,9 +7,9 @@
 延伸能力通常有两种实现方式：
 
 
-- 通过[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)实现。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)实现。
 
-- 通过[Scroll组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md)配合[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)或[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)实现。
+- 通过[Scroll组件](../../reference/arkui-ts/ts-container-scroll.md)配合[Row组件](../../reference/arkui-ts/ts-container-row.md)或[Column组件](../../reference/arkui-ts/ts-container-column.md)实现。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
