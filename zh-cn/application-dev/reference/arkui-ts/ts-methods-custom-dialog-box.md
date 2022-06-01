@@ -21,7 +21,8 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
   | alignment | DialogAlignment | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
   | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | customStyle | boolean | 否 | false | 弹窗容器样式是否自定义。 |
-
+  | gridCount<sup>8+</sup> | number | 否 | - | 弹窗宽度占栅格宽度的个数。 |
+  
 - DialogAlignment枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
