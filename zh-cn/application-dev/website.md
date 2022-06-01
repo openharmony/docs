@@ -1388,11 +1388,11 @@
 
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
 
-      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
+      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
 
-      - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
+      - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
 
-      - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
+      - [@ohos.nfc.tag (标准NFC-Tag)](reference/apis/js-apis-nfcTag.md)
 
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
 
@@ -1579,10 +1579,10 @@
       - MyProject
         - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
         - [Native_Bundle](reference/native-apis/_native___bundle.md)
-        - [HiLog](_hi_log.md)
+        - [HiLog](reference/native-apis/_hi_log.md)
         - [NativeWindow](reference/native-apis/_native_window.md)
-        - [Drawing](_drawing.md)
-        - [Rawfile](rawfile.md)
+        - [Drawing](reference/native-apis/_drawing.md)
+        - [Rawfile](reference/native-apis/rawfile.md)
 
       - 头文件
         - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
