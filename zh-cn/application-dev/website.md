@@ -624,8 +624,8 @@
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - Native API的相关指导
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-      - [drawing开发指导](napi/drawing-guidelines.md)
-      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [Rawfile开发指导](napi/rawfile-guidelines.md)
 
 
 - 工具
@@ -1147,7 +1147,7 @@
 
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考（JS及TS API参考）
+  - 接口参考（JS及TS API）
 
     - Ability框架
 
@@ -1610,16 +1610,16 @@
       - [console (日志打印)](reference/apis/js-apis-logs.md)
 
 
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
 
       - MyProject
         - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
         - [Native_Bundle](reference/native-apis/_native___bundle.md)
-        - [HiLog](_hi_log.md)
+        - [HiLog](reference/native-apis/_hi_log.md)
         - [NativeWindow](reference/native-apis/_native_window.md)
-        - [Drawing](_drawing.md)
-        - [Rawfile](rawfile.md)
+        - [Drawing](reference/native-apis/_drawing.md)
+        - [Rawfile](reference/native-apis/rawfile.md)
 
       - 头文件
         - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
