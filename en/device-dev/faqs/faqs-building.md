@@ -91,18 +91,20 @@
 - **Possible Causes**
   
   Crypto is not installed in Python3.
-  
+
 - **Solution**
-  
-    1. Run the following command to query the Python version:
-       
+
+  1. Run the following command to query the Python version:
+        
       ```
       python3 --version
       ```
   2. Ensure that Python 3.7 or later is installed, and then run the following command to install pycryptodome:
-     
+        
       ```
       sudo pip3 install pycryptodome
+      ```
+
 
 ### "xx.sh : xx unexpected operator" Displayed During the Build Process
 
@@ -149,7 +151,7 @@
   
     a) Download the installation package from [PyPI](https://pypi.org/project/six/#files).
   
-       ![en-us_image_0000001251276115](figures/en-us_image_0000001251276115.png)
+      ![en-us_image_0000001251276115](figures/en-us_image_0000001251276115.png)
   
      b) Save the source code to the Linux server and run the **pip3 install six-1.14.0-py2.py3-none-any.whl** command to install **six**.
   
