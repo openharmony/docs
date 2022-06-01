@@ -68,6 +68,8 @@ setSessionId(sessionId?: string): boolean
 
 设置同步的sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
 
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
@@ -136,7 +138,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 
 **示例：**

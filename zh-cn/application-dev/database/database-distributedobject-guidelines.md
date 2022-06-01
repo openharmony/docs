@@ -62,11 +62,38 @@
 以一次分布式数据对象同步为例，说明开发步骤。
 
 1. 准备工作，导入@ohos.data.distributedDataObject模块到开发环境。
-   ```js
-   import distributedObject from '@ohos.data.distributedDataObject'
-   ```
+   ```js   
+   import distributedObject from '@ohos.data.distributedDataObject';   
+   ```   
+2. 请求权限。需要在`config.json`里面进行配置请求权限，示例代码如下：
+    ```
+     {
+       "module": {
+           "reqPermissions": [
+               {
+                  "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+               }
+           ]
+       }
+     }
+    ```	 
+    这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
+    ```js
+    import featureAbility from '@ohos.ability.featureAbility';
+	
+    function grantPermission() {
+        console.info('grantPermission');
+        let context = featureAbility.getContext();
+        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+            console.info(`result.requestCode=${result.requestCode}`)
+    
+        })
+        console.info('end grantPermission');
+    }
+    grantPermission();
+    ```
 
-2. 获取分布式数据对象实例。
+3. 获取分布式数据对象实例。
 
    以下为创建分布式数据对象的代码示例：
    ```js
@@ -76,7 +103,7 @@
    ```
 
 
-3. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
+4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
    
    以下为加入同步组网的代码示例:
 
@@ -93,7 +120,7 @@
    //收到status上线后remote_object同步数据，即name变成jack,age是18
    ```
    
-4. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
+5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
 
    以下为监听对象数据变更的代码示例。
    
@@ -112,7 +139,7 @@
     local_object.on("change", this.changeCallback.bind(this));
    ```
    
-5. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
+6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    以下为修改分布式数据对象属性的代码示例：
    ```js
@@ -132,13 +159,13 @@
    local_object.parent.mother = "mom";
    ```
 
-6. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
+7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
    
    以下为访问对象的代码示例：
    ```js
    console.info("name " + local_object["name"]); 
    ```
-7. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
+8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
 
    以下为取消监听数据变更的代码示例：
    ```js
@@ -147,7 +174,7 @@
    //删除所有的变更回调
    local_object.off("change"); 
    ```
-8. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
+9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
    以下为访问对象的代码示例：
    ```js
     function statusCallback(sessionId, networkId, status) {
@@ -156,7 +183,7 @@
    
     local_object.on("status", this.statusCallback);
    ```
-9. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
+10. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
    
     以下为取消监听数据变更的代码示例：
    ```js
@@ -165,7 +192,7 @@
    //删除所有的上下线回调
    local_object.off("status");
    ```
-10. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
+11. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
 
      以下为退出同步组网的代码示例：
        ```js
