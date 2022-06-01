@@ -184,12 +184,9 @@
   - 基础功能开发
     - 公共事件与通知
       - [公共事件与通知概述](notification/notification-brief.md)
-      - 公共事件
-        - [公共事件开发指导](notification/common-event.md)
-      - 通知
-        - [通知开发指导](notification/notification.md)
-      - 调试工具
-        - [调试助手使用指导](notification/assistant-guidelines.md)
+      - [公共事件开发指导](notification/common-event.md)
+      - [通知开发指导](notification/notification.md)
+      - [调试助手使用指导](notification/assistant-guidelines.md)
     - 窗口管理
       - 窗口
         - [窗口开发概述](windowmanager/window-overview.md)
@@ -559,7 +556,7 @@
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
-  - 接口参考（JS及TS API参考）
+  - 接口参考（JS及TS API）
     - Ability框架
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -773,7 +770,7 @@
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
       - MyProject
         - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
