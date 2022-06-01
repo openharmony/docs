@@ -698,7 +698,7 @@ When the build is complete, the test cases are automatically saved in **out/hisp
 	```
 2. Select the product.
 
-    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **Hi3516DV300**.
+    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **hispark_taurus_standard**.
 
 3. Execute test cases.
 
@@ -738,7 +738,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 2. Select the product.
 
-    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **Hi3516DV300**.
+    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **hispark_taurus_standard**.
 
 3. Execute test cases.
 
