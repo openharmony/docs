@@ -1,7 +1,7 @@
 # PluginComponent
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 > 
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
@@ -27,12 +27,12 @@ PluginComponent(value: { template: PluginComponentTemplate, data: any })
 Creates a **PluginComponent** to display the UI provided by an external application.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | {<br/>template: PluginComponentTemplate,<br/>data: KVObject<br/>} | Yes | - | **template**: template of the **PluginComponent**, which is bound to the component defined by the provider.<br/>**data**: data passed to the **PluginComponent** provider. |
 
 - PluginComponentTemplate parameters
-    | Name | Type | Description | 
+  | Name | Type | Description | 
   | -------- | -------- | -------- |
   | source | string | Component template name. | 
   | ability | string | Name of the provider ability. | 
@@ -40,7 +40,7 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onComplete(callback: () =&gt; void) | Triggered when the component loading is complete. | 
 | onError(callback: (info: { errcode: number, msg: string }) =&gt; void) | Triggered when an error occurs during component loading.<br/>**errcode**: error code.<br/>**msg**: error information. | 
@@ -72,20 +72,20 @@ Used by the component provider to send the component and data to the component c
 
 
 - Parameters
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | param | PushParameters | Yes | Information about the component consumer. For details, see description of PushParameters. |
   | callback | AsyncCallback&lt;void&gt; | Yes | Asynchronous callback used to return the result. |
 
 - Description of PushParameters
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | want | Want | Yes | Ability information of the component consumer. |
   | name | string | Yes | Component name. |
   | data | KVObject | No | Component data value. |
   | extraData | KVObject | No | Additional data value. |
 
-- Example
+- Example<br>
   For details, see [APIs Called by Component Consumers](#apis-called-by-component-consumers).
 
 
@@ -96,32 +96,32 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 Used by the component consumer to request the component from the component provider.
 
 - Parameters
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | param | RequestParameters | Yes | Information about the component request. For details, see  description of RequestParameters. |
   | callback | AsyncCallback<RequestCallbackParameters \| void&gt; |  | Asynchronous callback used to return the requested data. |
 
 - Description of RequestParameters
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | want | Want     | Yes | Ability information of the component provider. |
   | name | string | Yes | Name of the requested component. |
   | data | KVObject | Yes | Additional data. |
 
 - Description of RequestCallbackParameters
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | componentTemplate | PluginComponentTemplate | Component template. |
   | data | KVObject | Component data. |
   | extraData | KVObject | Additional data. |
 
 - Description of KVObject
-    | Name | Type | Description | 
+  | Name | Type | Description | 
   | -------- | -------- | -------- |
   | key | number \| string \| boolean \| Array \| KVObject | **KVObject** uses **key** and **value** to store data. **key** is of the string type, and **value** can be of the number, string, boolean, array type or another **KVObject**. | 
 
 
-- Example
+- Example<br>
   For details, see [APIs Called by Component Consumers](#apis-called-by-component-consumers).
 
 
@@ -132,25 +132,25 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback): v
 Listens for events of the request type and returns the requested data, or listens for events of the push type and receives the data pushed by the provider.
 
 - Parameters
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | eventType | string | Yes | Type of the event to listen for. The options are **"push"** and **"request"**.<br/>**"push"**: The component provider pushes data to the component consumer.<br/>**"request"**: The component consumer proactively requests data from the component provider. |
   | callback | OnPushEventCallback \| OnRequestEventCallback | Yes | Callback used to return the result. For details, see description of callback. |
 
 - Description of callback
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | OnRequestEventCallback | (source: Want,<br/>name: string,<br/>data: KVObject ) =>RequestEventResult | Callback for the data request event.<br/>**source**: ability information of the component requester.<br/>**name**: name of the requested component.<br/>**data**: additional data.<br/>Return value: request data and result. |
   | OnPushEventCallback | (source: Want,<br/>template: PluginComponentTemplate,<br/>data: KVObject,<br/>extraData: KVObject<br/>) =&gt; void | Callback used to receive the data pushed by the component provider.<br/>**source**: ability information of the component provider.<br/>**template**: component template.<br/>**data**: component update data.<br/>**extraData**: additional data. |
 
 - Description of RequestEventResult
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | template | string | Component name. |
   | data | KVObject | Component data. |
   | extraData | KVObject | Additional data. |
 
-- Example
+- Example<br>
   For details, see [APIs Called by Component Consumers](#apis-called-by-component-consumers).
 
 
