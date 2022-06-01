@@ -144,18 +144,18 @@
   **six** is not installed.
 
 - **Solution**
-  
+
   Method 1: Run the **pip3 install six** command to install **six** online.
-  
+
   Method 2: Install **six** offline.
-  
-    a) Download the installation package from [PyPI](https://pypi.org/project/six/#files).
-  
-      ![en-us_image_0000001251276115](figures/en-us_image_0000001251276115.png)
-  
-     b) Save the source code to the Linux server and run the **pip3 install six-1.14.0-py2.py3-none-any.whl** command to install **six**.
-  
-  After the preceding installation is complete, rebuild an environment.
+
+  Download the installation package from [PyPI](https://pypi.org/project/six/#files).
+
+  ![en-us_image_0000001251276115](figures/en-us_image_0000001251276115.png)
+
+  Save the source code to the Linux server and run the **pip3 install six-1.14.0-py2.py3-none-any.whl** command to install **six**.
+
+After the preceding installation is complete, rebuild an environment.
 
 
 ### "cannot find -lgcc" Displayed During the Build Process
