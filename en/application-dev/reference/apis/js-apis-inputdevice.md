@@ -181,7 +181,7 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void;
 
-Obtains information about an input device. This API uses an asynchronous callback to return the result.
+Checks whether an input device supports the specified key codes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -206,7 +206,7 @@ inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;;
 
-Obtains information about an input device. This API uses a promise to return the result.
+Checks whether an input device supports the specified key codes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -260,7 +260,7 @@ inputDevice.getKeyboardType(1, (ret)=>{
 
 getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;;
 
-Query the keyboard type of an input device. This API uses a promise to return the result.
+Obtains the keyboard type of an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
