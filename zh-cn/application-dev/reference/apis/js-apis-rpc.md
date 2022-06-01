@@ -81,11 +81,6 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
           console.log("server is died");
       }
   }
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server is died");
-      }
-  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
@@ -122,11 +117,6 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```
-  class MyDeathRecipient {
-      onRemoteDied() {
-          console.log("server is died");
-      }
-  }
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server is died");
@@ -1613,7 +1603,7 @@ readCharArray(): number[]
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray(['a', 'b', 'c']);
+  let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = data.readCharArray();
   console.log("RpcClient: readCharArray is " + array);
@@ -3530,7 +3520,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  let ret: boolean = proxy.sendRequest(1, data, reply, option);
+  let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
   if (ret) {
       console.log("sendRequest got result");
       let msg = reply.readString();
