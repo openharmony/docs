@@ -29,7 +29,7 @@ init(curve?: Curve): Object
   | -------- | -------- | -------- | -------- | -------- |
   | curve | Curve | 否 | Linear | 曲线对象。 | 
 
-- 返回值
+- 返回值<br>
   曲线对象Object。
 
 
@@ -41,13 +41,13 @@ steps(count: number, end: boolean): Object
 构造阶梯曲线对象。
 
 
-- 参数：
+- 参数
   | 参数名 | 类型 | 必填 | 默认值 | 说明 | 
   | -------- | -------- | -------- | -------- | -------- |
   | count | number | 是 | - | 阶梯的数量，需要为正整数。 | 
   | end | boolean | 否 | true | 在每个间隔的起点或是终点发生阶跃变化&nbsp;，默认值为true，即在终点发生阶跃变化。 | 
 
-- 返回值
+- 返回值<br>
   曲线对象Object。
 
 
@@ -67,7 +67,7 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): Object
   | x2 | number | 是 | 确定贝塞尔曲线第二点横坐标。 | 
   | y2 | number | 是 | 确定贝塞尔曲线第二点纵坐标。 | 
 
-- 返回值
+- 返回值<br>
   曲线对象Object。
 
 
@@ -87,7 +87,7 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): Obje
   | stiffness | number | 是 | 刚度。 | 
   | damping | number | 是 | 阻尼。 | 
 
-- 返回值
+- 返回值<br>
   曲线对象Object。
 
 
