@@ -10,7 +10,7 @@
 import inputMethod from '@ohos.inputMethod';
 ```
 
-## inputMethod<sup>8+</sup>
+## inputMethod<sup>6+</sup>
 
 常量值。
 
@@ -21,7 +21,7 @@ import inputMethod from '@ohos.inputMethod';
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
 
 
-## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
+## InputMethodProperty<sup>6+</sup><a name="InputMethodProperty"></a>
 
 输入法应用属性。
 
@@ -50,7 +50,8 @@ getInputMethodController(): InputMethodController
   ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
-## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
+
+## inputMethod.getInputMethodSetting<sup>6+</sup><a name="getInputMethodSetting"></a>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -60,9 +61,9 @@ getInputMethodSetting(): InputMethodSetting
 
 **返回值：**
 
-  | 类型                                      | 说明                         |
-  | ----------------------------------------- | ---------------------------- |
-  | [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
+| 类型                                      | 说明                         |
+| ----------------------------------------- | ---------------------------- |
+| [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
 
 
 **示例：**
@@ -84,9 +85,9 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
 
 **示例：**
 
@@ -106,9 +107,9 @@ stopInput(): Promise&lt;boolean&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
 
 **示例：**
 
@@ -118,7 +119,7 @@ stopInput(): Promise&lt;boolean&gt;
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>6+</sup><a name="InputMethodSetting"></a>
 
 下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
@@ -131,9 +132,9 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 **参数：**
-  | 参数名   | 类型                                               | 必填 | 说明                   |
-  | -------- | -------------------------------------------------- | ---- | ---------------------- |
-  | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
+| 参数名   | 类型                                               | 必填 | 说明                   |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
   ```js
@@ -154,9 +155,9 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 **返回值：**
-  | 类型                                                        | 说明                   |
-  | ----------------------------------------------------------- | ---------------------- |
-  | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
+| 类型                                                        | 说明                   |
+| ----------------------------------------------------------- | ---------------------- |
+| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
 **示例：**
   ```js
