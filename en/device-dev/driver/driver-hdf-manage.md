@@ -48,12 +48,12 @@ The HCS has two structures: attribute and node.
 
 An attribute is the minimum, independent configuration unit. The syntax is as follows:
 
-
+  
 ```
   attribute_name = value;
 ```
 
-- **attribute_name** is a case-sensitive string of letters, digits, and underscores (_) and must start with a letter or underscore (_).
+- **attribute_name** is a case-sensitive string of letters, digits, and underscores (\_) and must start with a letter or underscore (_).
 
 - The **value** can be in any of the following formats:
 
@@ -67,7 +67,7 @@ An attribute is the minimum, independent configuration unit. The syntax is as fo
 
 A node is a set of attributes. The syntax is as follows:
 
-
+  
 ```
   node_name {
       module = "sample";
@@ -75,7 +75,7 @@ A node is a set of attributes. The syntax is as follows:
   }
 ```
 
-- **node_name** is a case-sensitive string of letters, digits, and underscores (_) and must start with a letter or underscore (_).
+- **node_name** is a case-sensitive string of letters, digits, and underscores (\_) and must start with a letter or underscore (_).
 
 - No semicolon (;) is required after the curly brace ({) or (}).
 
@@ -109,7 +109,7 @@ A string is enclosed in double quotation marks ("").
 
 An array can hold either integers or strings, but not a mixture of them. The mixed use of **uint32_t** and **uint64_t** in an integer array will cause typecasting to **uint64**. The following is an example of an integer array and a string array:
 
-
+  
 ```
 attr_foo = [0x01, 0x02, 0x03, 0x04];
 attr_bar = ["hello", "world"];
@@ -126,7 +126,7 @@ Boolean data type is a form of data with only two possible values: **true** and 
 
 The keyword **include** is used to import other HCS files. The syntax is as follows:
 
-
+  
 ```
 #include "foo.hcs"
 #include "../bar.hcs"
@@ -143,14 +143,14 @@ The following two comment formats are supported:
 
 - Single-line comment
 
-  
+    
   ```
   // comment
   ```
 
 - Multi-line comment
 
-  
+    
   ```
   /*
   comment
@@ -165,15 +165,14 @@ The following two comment formats are supported:
 
 You can reference the content of a node to modify the content of another node. The syntax is as follows:
 
-
+  
 ```
  node :& source_node
 ```
 
 In this statement, the content of **node** is referenced to modify the content of **source_node**. 
-
+  
 Example:
-
 ```
 root {
     module = "sample";
@@ -197,7 +196,7 @@ root {
 
 The configuration tree generated is as follows:
 
-
+  
 ```
 root {
     module = "sample";
@@ -223,7 +222,7 @@ In this example, the value of **bar.attr** is changed to **foo** by referencing 
 
 You can replicate a node to define a node with similar content. The syntax is as follows:
 
-
+  
 ```
  node : source_node
 ```
@@ -231,8 +230,7 @@ You can replicate a node to define a node with similar content. The syntax is as
 This statement replicates the attributes of the **source_node** node to define **node**. 
 
 Example:
-
-
+  
 ```
 root {
 	module = "sample";
@@ -247,7 +245,7 @@ root {
 
 The configuration tree generated is as follows:
 
-
+  
 ```
 root {
     module = "sample";
@@ -263,7 +261,7 @@ root {
 
 In this example, the **bar** node contains **attr_0** and **attr_1** attributes, and the modification of the **attr_0** attribute in the **bar** node does not affect the **foo** node.
 
-You do not need to specify the path of the **foo** node if the **foo** node and the **bar** node are of the same level. Otherwise, specify the absolute path of **foo**. For details, see [Reference Modification](referencemodification).
+You do not need to specify the path of the **foo** node if the **foo** node and the **bar** node are of the same level. Otherwise, specify the absolute path of **foo**. For details, see [Reference Modification](#reference-modification).
 
 
 ### Delete
@@ -271,8 +269,7 @@ You do not need to specify the path of the **foo** node if the **foo** node and 
 You can use the keyword **delete** to delete unnecessary nodes or attributes from the base configuration tree imported by using the **include** keyword. The following example includes the configuration in **sample2.hcs** to **sample1.hcs** and deletes the **attribute2** attribute and the **foo_2** node. 
 
 Example:
-
-
+  
 ```
 // sample2.hcs
 root {
@@ -294,7 +291,7 @@ root {
 
 The configuration tree generated is as follows:
 
-
+  
 ```
 root {
     attr_1 = 0x1;
@@ -309,7 +306,7 @@ root {
 
 You can associate an attribute and a node so that the node can be quickly located when the attribute is read during configuration parsing. The syntax is as follows:
 
-
+  
 ```
  attribute = &node;
 ```
@@ -317,8 +314,7 @@ You can associate an attribute and a node so that the node can be quickly locate
 In this statement, the value of **attribute** is a referenced to the node. During code parsing, you can quickly locate the node based on this **attribute**. 
 
 Example:
-
-
+  
 ```
 node1 {
     attributes;
@@ -328,9 +324,9 @@ node2 {
 }
 ```
 
-Or
+or
 
-
+  
 ```
 node2 {
     node1 {
@@ -348,8 +344,7 @@ The template is used to generate nodes with consistent syntax, thereby facilitat
 If a node is defined using the keyword **template**, its child nodes inherit from the node configuration through the double colon operator (::). The child nodes can modify or add but cannot delete attributes in **template**. The attributes not defined in the child nodes will use the attributes defined in **template** as the default values.
 
 Example:
-
-
+  
 ```
 root {
     module = "sample";
@@ -369,7 +364,7 @@ root {
 
 The configuration tree generated is as follows:
 
-
+  
 ```
 root {
     module = "sample";
@@ -396,7 +391,7 @@ The HC-GEN tool checks the HCS configuration syntax and converts HCS source file
 
 HC-GEN options:
 
-
+  
 ```
 Usage: hc-gen [Options] [File]
 options:
@@ -415,28 +410,28 @@ options:
 
 Generate a .c or .h configuration file.
 
-
+  
 ```
 hc-gen -o [OutputCFileName] -t [SourceHcsFileName]
 ```
 
 Generate an HCB file.
 
-
+  
 ```
 hc-gen -o [OutputHcbFileName] -b [SourceHcsFileName]
 ```
 
 Generate a macro definition file.
 
-
+  
 ```
 hc-gen -o [OutputMacroFileName] -m [SourceHcsFileName]
 ```
 
 Decompile an HCB file to an HCS file.
 
-
+  
 ```
 hc-gen -o [OutputHcsFileName] -d [SourceHcbFileName]
 ```
