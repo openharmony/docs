@@ -42,7 +42,7 @@ hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 
 ## LogLevel
 
-Log level.
+Enumerates the log levels.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
