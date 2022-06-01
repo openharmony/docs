@@ -1147,7 +1147,7 @@
 
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考（JS及TS API参考）
+  - 接口参考（JS及TS API）
 
     - Ability框架
 
