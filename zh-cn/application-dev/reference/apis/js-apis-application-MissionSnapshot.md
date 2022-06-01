@@ -4,10 +4,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 任务对应的任务快照。
-
-
 ## 导入模块
 
 ```
@@ -18,10 +15,9 @@ import abilitymanager from '@ohos.application.abilityManager';
 使用前需要提前引入对应模块。
 
 ```
-import { ElementName } from '../bundle/elementName';
-import { image } from '../@ohos.multimedia.image';
+import ElementName from '@ohos.bundle';
+import image from '@ohos.multimedia.image';
 ```
-
 ## MissionSnapshot
 
 表示任务对应的任务快照的枚举。

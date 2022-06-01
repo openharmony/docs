@@ -860,7 +860,7 @@ async function demo() {
 
 ### UiComponent.scrollSearch
 
-scrollSearch(by:By): Promise\<UiComponent>
+scrollSearch(by: By): Promise\<UiComponent>
 
 在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
 
@@ -926,7 +926,7 @@ async function demo() {
 
 ### UiComponent.dragTo<sup>9+</sup>
 
-dragTo(by:By): Promise\<void>
+dragTo(target: UiComponent): Promise\<void>
 
 将控件拖拽至目标控件处。
 
@@ -934,9 +934,9 @@ dragTo(by:By): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                 |
-| ------ | ---- | ---- | -------------------- |
-| by     | By   | 是   | 目标控件的属性要求。 |
+| 参数名 | 类型        | 必填 | 说明       |
+| ------ | ----------- | ---- | ---------- |
+| target | UiComponent | 是   | 目标控件。 |
 
 **示例：**
 
@@ -944,7 +944,8 @@ dragTo(by:By): Promise\<void>
 async function demo() {
     let driver = UiDriver.create()
     let button = await driver.findComponent(BY.type('button'))
-    await button.dragTo(BY.text('hello world'))
+    let text = await driver.findComponent(BY.text('hello world'))
+    await button.dragTo(text)
     }
 }
 ```

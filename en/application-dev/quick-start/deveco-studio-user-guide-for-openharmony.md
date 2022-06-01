@@ -10,7 +10,7 @@ DevEco Studio is a one-stop, distributed platform developed based on the Intelli
 - A wide range of device project templates
 - Efficient code editing
 - Visualized UI development
-- Bidirectional and instsant UI preview
+- Bidirectional and instant UI preview
 - High-performing compilation tool Hvigor
 - Support for application development based on the device Syscap capability set
 - Automatic application signature mechanism

@@ -148,6 +148,7 @@
             - [@Link](ui/ts-component-states-link.md)
           - 管理应用程序的状态
             - [应用程序的数据存储](ui/ts-application-states-appstorage.md)
+            - [Ability数据存储](ui/ui-ts-local-storage)
             - [持久化数据管理](ui/ts-application-states-apis-persistentstorage.md)
             - [环境变量](ui/ts-application-states-apis-environment.md)
           - 其他类目的状态管理
@@ -183,12 +184,9 @@
   - 基础功能开发
     - 公共事件与通知
       - [公共事件与通知概述](notification/notification-brief.md)
-      - 公共事件
-        - [公共事件开发指导](notification/common-event.md)
-      - 通知
-        - [通知开发指导](notification/notification.md)
-      - 调试工具
-        - [调试助手使用指导](notification/assistant-guidelines.md)
+      - [公共事件开发指导](notification/common-event.md)
+      - [通知开发指导](notification/notification.md)
+      - [调试助手使用指导](notification/assistant-guidelines.md)
     - 窗口管理
       - 窗口
         - [窗口开发概述](windowmanager/window-overview.md)
@@ -299,8 +297,8 @@
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - Native API的相关指导
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-      - [drawing开发指导](napi/drawing-guidelines.md)
-      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [Rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -558,7 +556,7 @@
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
-  - 接口参考（JS及eTS API参考）
+  - 接口参考（JS及TS API）
     - Ability框架
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -707,6 +705,11 @@
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
       - [@ohos.multimodalInput.inputEventClient (注入按键)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
+      - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
+      - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
+      - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
+      - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
+      - [@ohos.multimodalInput.ToucEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
@@ -767,15 +770,15 @@
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
       - MyProject
         - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
         - [Native_Bundle](reference/native-apis/_native___bundle.md)
-        - [HiLog](_hi_log.md)
+        - [HiLog](reference/native-apis/_hi_log.md)
         - [NativeWindow](reference/native-apis/_native_window.md)
-        - [Drawing](_drawing.md)
-        - [Rawfile](rawfile.md)
+        - [Drawing](reference/native-apis/_drawing.md)
+        - [Rawfile](reference/native-apis/rawfile.md)
       - 头文件
         - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
         - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)

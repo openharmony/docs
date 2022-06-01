@@ -36,6 +36,9 @@
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
 - [国际化](internationalization/international-overview.md)
+- [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
+- [Native API的相关指导](napi/napi-guidelines.md)
+
 
 ### 工具
 
@@ -51,6 +54,8 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
 
 内容包括：
--   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/js-components-common-attributes.md)
--   [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-universal-events-click.md)
--   [接口参考](reference/apis/js-apis-DataUriUtils.md)
+-   [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
+-   接口参考（Native API）
+    -   [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)
+    -   [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+    -   [Node_API](reference/native-lib/third_party_napi/napi.md)

@@ -757,7 +757,7 @@ var wantAgentInfo = {
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
 //trigger回调
-function triggerCallback(err, data) {
+function triggerCallback(data) {
 	console.info("==========================>triggerCallback=======================>");
 }
 

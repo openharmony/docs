@@ -50,7 +50,7 @@ Hi3516DV300支持USB烧录、网口烧录和串口烧录三种方式，本文采
    > 
    > - VirtualBox：在Ubuntu设置的USB设备选项中将启动USB控制器的勾去掉。
 
-2. 根据[Hi3516DV300/Hi3518EV300开发板串口驱动安装指导](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fcn%2Fdocs%2Fdocumentation%2Fguide%2Fhi3516_hi3518-drivers-0000001050743695)、[Hi3516DV300/Hi3518EV300开发板USB驱动安装指导](https://device.harmonyos.com/cn/docs/documentation/guide/usb_driver-0000001058690393)安装USB驱动及USB转串口的驱动。若您的设备中已安装此驱动，请忽略该步骤。
+2. 根据[Hi3516DV300开发板串口驱动安装指导](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fcn%2Fdocs%2Fdocumentation%2Fguide%2Fhi3516_hi3518-drivers-0000001050743695)、[Hi3516DV300开发板USB驱动安装指导](https://device.harmonyos.com/cn/docs/documentation/guide/usb_driver-0000001058690393)安装USB驱动及USB转串口的驱动。若您的设备中已安装此驱动，请忽略该步骤。
 
 3. 在DevEco Device Tool中，选择REMOTE DEVELOPMENT &gt; Local PC，查看远程计算机（Ubuntu开发环境）与本地计算机（Windows开发环境）的连接状态。
 

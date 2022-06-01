@@ -29,14 +29,14 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
   ```
   resourceManager.getResourceManager((error, mgr) => {
       if (error != null) {
-          console.log("error occurs" + error);
+          console.log("error is " + error);
           return; 
       }
       mgr.getString(0x1000000, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -82,13 +82,13 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   resourceManager.getResourceManager().then(mgr => {
       mgr.getString(0x1000000, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   }).catch(error => {
-      console.log(error);
+      console.log("error is " + error);
   });
   ```
 
@@ -182,8 +182,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
   ```
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
-          console.log(value.direction);
-          console.log(value.locale);
+          let direction = value.direction;
+          let locale = value.locale;
       });
   });
   ```
@@ -205,8 +205,8 @@ resourceManager.getResourceManager((error, mgr) => {
   ```
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
-          console.log(value.screenDensity);
-          console.log(value.deviceType);
+          let screenDensity = value.screenDensity;
+          let deviceType = value.deviceType;
       });
   });
   ```
@@ -252,9 +252,9 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -283,9 +283,9 @@ getString(resId: number): Promise&lt;string&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then(value => {
-          console.log(value);
+          let str = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getstring promise error is " + error);
       });
   });
   ```
@@ -310,9 +310,9 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let strArray = value;
           }
       });
   });
@@ -341,9 +341,9 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then(value => {
-          console.log(value);
+          let strArray = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getStringArray promise error is " + error);
       });
   });
   ```
@@ -368,9 +368,9 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let media = value;
           }
       });
   });
@@ -399,9 +399,9 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then(value => {
-          console.log(value);
+          let media = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getMedia promise error is " + error);
       });
   });
   ```
@@ -426,9 +426,9 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let media = value;
           }
       });
   });
@@ -457,9 +457,9 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then(value => {
-          console.log(value);
+          let media = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getMediaBase64 promise error is " + error);
       });
   });
   ```
@@ -483,9 +483,10 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let direction = value.direction;
+              let locale = value.locale;
           }
       });
   });
@@ -509,9 +510,10 @@ getConfiguration(): Promise&lt;Configuration&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration().then(value => {
-          console.log(value);
+          let direction = value.direction;
+          let locale = value.locale;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getConfiguration promise error is " + error);
       });
   });
   ```
@@ -535,9 +537,10 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let screenDensity = value.screenDensity;
+              let deviceType = value.deviceType;
           }
       });
   });
@@ -561,9 +564,10 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability().then(value => {
-          console.log(value);
+          let screenDensity = value.screenDensity;
+          let deviceType = value.deviceType;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getDeviceCapability promise error is " + error);
       });
   });
   ```
@@ -589,9 +593,9 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -621,9 +625,9 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
-          console.log(value);
+          let str = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getPluralString promise error is " + error);
       });
   });
   ```
@@ -647,9 +651,9 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let rawFile = value;
           }
       });
   });
@@ -677,9 +681,9 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml").then(value => {
-          console.log(value);
+          let rawFile = value;
       }).catch(error => {
-          console.log("getrawfile promise " + error);
+          console.log("getRawFile promise error is " + error);
       });
   });
   ```
@@ -703,7 +707,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
               let fd = value.fd;
               let offset = value.offset;
@@ -739,7 +743,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
           let offset = value.offset;
           let length = value.length;
       }).catch(error => {
-          console.log("getRawFileDescriptor promise " + error);
+          console.log("getRawFileDescriptor promise error is " + error);
       });
   });
   ```
@@ -763,7 +767,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           }
       });
   });
@@ -791,9 +795,9 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml").then(value => {
-          console.log(value);
+          let result = value;
       }).catch(error => {
-          console.log("closeRawFileDescriptor promise " + error);
+          console.log("closeRawFileDescriptor promise error is " + error);
       });
   });
   ```
@@ -811,7 +815,7 @@ release()
   resourceManager.getResourceManager((error, mgr) => {
       mgr.release((error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           }
       });
   });

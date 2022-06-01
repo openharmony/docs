@@ -311,7 +311,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.notifyVisibleForms(formId, (error, data) => {
       if (error.code) {
           console.log('formHost notifyVisibleForms, error:' + JSON.stringify(error));
@@ -344,7 +344,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.notifyVisibleForms(formId).then(() => {
       console.log('formHost notifyVisibleForms success');
   }).catch((error) => {
@@ -372,7 +372,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.notifyInvisibleForms(formId, (error, data) => {
       if (error.code) {
           console.log('formHost notifyInvisibleForms, error:' + JSON.stringify(error));
@@ -405,7 +405,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.notifyInvisibleForms(formId).then(() => {
       console.log('formHost notifyInvisibleForms success');
   }).catch((error) => {
@@ -433,7 +433,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.enableFormsUpdate(formId, (error, data) => {
       if (error.code) {
           console.log('formHost enableFormsUpdate, error:' + JSON.stringify(error));
@@ -466,7 +466,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.enableFormsUpdate(formId).then(() => {
       console.log('formHost enableFormsUpdate success');
   }).catch((error) => {
@@ -494,7 +494,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.disableFormsUpdate(formId, (error, data) => {
       if (error.code) {
           console.log('formHost disableFormsUpdate, error:' + JSON.stringify(error));
@@ -527,7 +527,7 @@ SystemCapability.Ability.Form
 **示例：**
 
   ```js
-  var formId = "12400633174999288";
+  var formId = ["12400633174999288"];
   formHost.disableFormsUpdate(formId).then(() => {
       console.log('formHost disableFormsUpdate success');
   }).catch((error) => {
@@ -823,9 +823,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want, (error, data) => {
       if (error.code) {
@@ -862,9 +867,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want).then((data) => {
       console.log('formHost acquireFormState, data:' + JSON.stringify(data));

@@ -46,6 +46,7 @@ onCreate(want: Want): formBindingData.FormBindingData
 **示例：**
 
   ```js
+  import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onCreate(want) {
           console.log('FormExtension onCreate, want:' + want.abilityName);
@@ -100,6 +101,7 @@ onUpdate(formId: string): void
 **示例：**
 
   ```js
+  import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -130,6 +132,7 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
 **示例：**
 
   ```js
+    import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
@@ -237,9 +240,11 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
     
   ```js
+  import fromInfo from '@ohos.application.fromInfo'
   class MyFormExtension extends FormExtension {
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);
+          return fromInfo.FormState.UNKNOWN;
       }
   }
   ```

@@ -702,7 +702,7 @@ format(number: string): string
 
 ### unitConvert<sup>8+</sup>
 
-unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
@@ -825,7 +825,7 @@ getIndex(text: string): string
 
 ### isDigit<sup>8+</sup>
 
-isDigit(char: string): boolean
+static isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
@@ -849,7 +849,7 @@ isDigit(char: string): boolean
 
 ### isSpaceChar<sup>8+</sup>
 
-isSpaceChar(char: string): boolean
+static isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
@@ -873,7 +873,7 @@ isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>8+</sup>
 
-isWhitespace(char: string): boolean
+static isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
@@ -897,7 +897,7 @@ isWhitespace(char: string): boolean
 
 ### isRTL<sup>8+</sup>
 
-isRTL(char: string): boolean
+static isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
@@ -921,7 +921,7 @@ isRTL(char: string): boolean
 
 ### isIdeograph<sup>8+</sup>
 
-isIdeograph(char: string): boolean
+static isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
@@ -945,7 +945,7 @@ isIdeograph(char: string): boolean
 
 ### isLetter<sup>8+</sup>
 
-isLetter(char: string): boolean
+static isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
@@ -969,7 +969,7 @@ isLetter(char: string): boolean
 
 ### isLowerCase<sup>8+</sup>
 
-isLowerCase(char: string): boolean
+static isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
@@ -993,7 +993,7 @@ isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>8+</sup>
 
-isUpperCase(char: string): boolean
+static isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
@@ -1017,7 +1017,7 @@ isUpperCase(char: string): boolean
 
 ### getType<sup>8+</sup>
 
-getType(char: string): string
+static getType(char: string): string
 
 获取输入字符串的一般类别值。
 
@@ -1124,7 +1124,7 @@ current(): number
   ```
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  breakIter.current(); // 0
+  iterator.current(); // 0
   ```
 
 
@@ -1145,7 +1145,7 @@ first(): number
   ```
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  breakIter.first(); // 0
+  iterator.first(); // 0
   ```
 
 

@@ -6,12 +6,14 @@
 
 提供开发者运行代码的上下文环境，包括应用信息、ResourceManager等信息。
 
+## 导入模块
+```
+import AbilityContext from '@ohos.application.Ability';
+```
 
 ## 使用说明
 
-
 通过AbilityContext等继承实现。
-
 
 ## 属性
 
@@ -55,8 +57,14 @@ createBundleContext(bundleName: string): Context;
 **示例：**
     
   ```js
-  let test = "com.example.test";
-  let context = this.context.createBundleContext(test);
+  import AbilityContext from '@ohos.application.Ability'
+      class MainAbility extends AbilityContext {
+          onWindowStageCreate(windowStage) {
+              let test = "com.example.test";
+              let context = this.context.createBundleContext(test);
+      }
+}
+
   ```
 
 

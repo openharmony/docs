@@ -45,7 +45,7 @@ inputMonitor.off("touch", (event) => {
 });
 ```
 
-on(type: "mouse", receiver: TouchEventReceiver): void
+on(type: "mouse", receiver:Callback<MouseEvent>):void
 
 开始监听全局鼠标事件。
 
@@ -72,7 +72,7 @@ inputMonitor.off("mouse", (event) => {
 
 ## inputMonitor.off
 
-off(type: "touch", receiver: TouchEventReceiver): void
+off(type: "touch", receiver?:TouchEventReceiver):void
 
 开始监听全局触屏事件。
 
@@ -92,7 +92,7 @@ off(type: "touch", receiver: TouchEventReceiver): void
 inputMonitor.off("touch");
 ```
 
-off(type: "mouse", receiver?: Callback<MouseEvent>): void
+off(type: "mouse", receiver?:Callback<MouseEvent>):void
 
 停止监听全局鼠标事件。
 

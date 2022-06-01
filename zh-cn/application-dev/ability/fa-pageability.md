@@ -102,16 +102,16 @@ ability支持单实例和多实例两种启动模式。
   console.info('onStartRemoteAbility begin');
   let params;
   let wantValue = {
-    bundleName: 'ohos.samples.etsDemo',
-    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
-    deviceId: getRemoteDeviceId(),
-    parameters: params
+      bundleName: 'ohos.samples.etsDemo',
+      abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+      deviceId: getRemoteDeviceId(),
+      parameters: params
   };
   console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
   featureAbility.startAbility({
-    want: wantValue
+      want: wantValue
   }).then((data) => {
-    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+      console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
   });
   console.info('onStartRemoteAbility end');
   }
@@ -123,17 +123,17 @@ ability支持单实例和多实例两种启动模式。
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   let dmClass;
   function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        let list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+      if (typeof dmClass === 'object' && dmClass != null) {
+          let list = dmClass.getTrustedDeviceListSync();
+          if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
             console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
-        }
-        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
-        return list[0].deviceId;
-    } else {
-        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
-    }
+          }
+          console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+          return list[0].deviceId;
+      } else {
+          console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+      }
   }
 ```
 
@@ -143,35 +143,34 @@ ability支持单实例和多实例两种启动模式。
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
   async function RequestPermission() {
-  console.info('RequestPermission begin');
-  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  let bundleFlag = 0;
-  let tokenID = undefined;
-  let userID = 100;
-  let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
-  tokenID = appInfo.accessTokenId;
-  let atManager = abilityAccessCtrl.createAtManager();
-  let requestPermissions: Array<string> = [];
-  for (let i = 0;i < array.length; i++) {
-    let result = await atManager.verifyAccessToken(tokenID, array[i]);
-    console.info("verifyAccessToken result:" + JSON.stringify(result));
-    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-    } else {
-      requestPermissions.push(array[i]);
-    }
-  }
-  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
-  if (requestPermissions.length == 0 || requestPermissions == []) {
-    return;
-  }
-  let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
-    console.info("data:" + JSON.stringify(data));
-    console.info("data requestCode:" + data.requestCode);
-    console.info("data permissions:" + data.permissions);
-    console.info("data authResults:" + data.authResults);
-  });
-  console.info('RequestPermission end');
+      console.info('RequestPermission begin');
+      let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+      let bundleFlag = 0;
+      let tokenID = undefined;
+      let userID = 100;
+      let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+      tokenID = appInfo.accessTokenId;
+      let atManager = abilityAccessCtrl.createAtManager();
+      let requestPermissions: Array<string> = [];
+      for (let i = 0;i < array.length; i++) {
+          let result = await atManager.verifyAccessToken(tokenID, array[i]);
+          console.info("verifyAccessToken result:" + JSON.stringify(result));
+          if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+              requestPermissions.push(array[i]);
+          }
+      }
+      console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+      if (requestPermissions.length == 0 || requestPermissions == []) {
+          return;
+      }
+      let context = featureAbility.getContext();
+      context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+          console.info("data:" + JSON.stringify(data));
+          console.info("data requestCode:" + data.requestCode);
+          console.info("data permissions:" + data.permissions);
+          console.info("data authResults:" + data.authResults);
+      });
+      console.info('RequestPermission end');
   }
 ```
 

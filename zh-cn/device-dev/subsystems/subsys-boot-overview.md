@@ -149,6 +149,7 @@
   | root        | /dev/ram0（Hi3516DV00)、root=PARTUUID=614e0000-0000 rw（rk3568）                                                    | kernel加载的启动设备。 |
   | rootfstype  | ext4                                                         | 根文件系统类型。 |
   | default_boot_device | soc/10100000.himci.eMMC | （建议配置信息）默认启动设备，在启动第一阶段会根据这个参数创建required设备的软链接。 |
+  | ohos.required_mount.xxx | /dev/block/platform/soc/10100000.himci.eMMC/by-name/xxx@/usr@ext4@ro,barrier=1@wait,required |  现支持从cmdline中读取fstab信息，获取失败的情况下，会继续尝试从fstab.required文件中读取 |
 
 - init挂载required分区
 
@@ -179,7 +180,7 @@
 
     - 与default_boot_device匹配关系
 
-      内核将bootargs信息写入/proc/cmdline，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。
+      内核将bootargs信息写入/proc/cmdline，其中就包含了default_boot_device，这个值是内核当中约定好的系统启动必要的主设备目录。以ohos.required_mount.为前缀的内容则是系统启动必要的分区挂载信息，其内容与fstab.required文件内容应当是一致的。另外，分区挂载信息中的块设备节点就是default_boot_device目录中by-name下软链接指向的设备节点。例如，default_boot_device的值为soc/10100000.himci.eMMC，那么ohos.required_mount.system的值就包含了/dev/block/platform/soc/10100000.himci.eMMC/by-name/system这个指向system设备节点的软链接路径。
 
       在创建块设备节点的过程中，会有一个将设备路径与default_boot_device的值匹配的操作，匹配成功后，会在/dev/block/by-name目录下创建指向真实块设备节点的软链接，以此在访问设备节点的过程中实现芯片平台无关化。
 

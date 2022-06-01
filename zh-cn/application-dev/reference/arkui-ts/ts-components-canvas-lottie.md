@@ -531,7 +531,7 @@ removeEventListener&lt;T = any&gt;(name: AnimationEventName, callback?: Animatio
   | 参数       | 类型                              | 必填   | 描述                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | name     | AnimationEventName              | 是    | 指定动画事件类型，Lottie内置动画事件类型AnimationEventName：<br/>'enterFrame'、'loopComplete'、'complete'、'segmentStart'、'destroy'、'config_ready'、'data_ready'、'DOMLoaded'、'error'、'data_failed'、'loaded_images' |
-  | callback | AnimationEventCallback&lt;T&gt; | 是    | 用户自定义回调函数；缺省为空时,&nbsp;删除此事件的所有回调函数。      |
+  | callback | AnimationEventCallback&lt;T&gt; | 否    | 用户自定义回调函数；缺省为空时，删除此事件的所有回调函数。      |
 
 - 示例
   ```

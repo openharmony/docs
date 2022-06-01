@@ -19,8 +19,9 @@ import abilitymanager from '@ohos.application.abilityManager';
 
 
 
-```
+```js
 import abilitymanager from '@ohos.application.abilityManager';
+let upperLimit=1
 abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });

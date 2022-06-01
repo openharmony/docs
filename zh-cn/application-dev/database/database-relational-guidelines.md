@@ -141,6 +141,8 @@
 
 ### 设置分布式列表
 
+>**注意：**  在使用RdbStore的setDistributedTables、obtainDistributedTableName、sync、on、off接口时，需要请求相应的权限：ohos.permission.DISTRIBUTED_DATASYNC。
+
 **设置分布式列表**
 
 **表8** 设置分布式列表
@@ -184,7 +186,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
 
 
 ## 开发步骤
@@ -242,24 +244,37 @@
    ```
 
 4. 设置分布式同步表。
-   1. 数据库调用接口设置分布式同步列表。
-   2. 判断是否设置成功。
+   
+    1.权限配置文件中增加以下配置：
+    ```js
+    "requestPermissions": 
+        {
+            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+        }
+    ```
+    2. 获取应用权限。
+    3. 数据库调用接口设置分布式同步列表。
+    4. 判断是否设置成功。
 
    示例代码如下：
 
-   ```js
-   let promise = rdbStore.setDistributedTables(["test"])
-   promise.then(() => {
-       console.info("setDistributedTables success.")
-   }).catch((err) => {
-       console.info("setDistributedTables failed.")
-   })
-   ```
+    ```js
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+        console.info(`result.requestCode=${result.requestCode}`)
+    })
+    let promise = rdbStore.setDistributedTables(["test"])
+    promise.then(() => {
+        console.info("setDistributedTables success.")
+    }).catch((err) => {
+        console.info("setDistributedTables failed.")
+    })
+    ```
 
- 5. 分布式数据同步。
+5. 分布式数据同步。
     1. 构造用于同步分布式表的谓词对象，指定组网内的远程设备。
     2. 调用同步数据的接口 。
-    3. 判断是否数据同步成功。
+    3. 判断数据同步是否成功。
 
     示例代码如下：
 

@@ -1,7 +1,7 @@
 # Navigation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -39,27 +39,27 @@ Creates a component that can automatically display the navigation bar, title, an
 | hideBackButton | boolean | false | Whether to hide the back button. |
 
 - NavigationMenuItem attributes
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | string | Yes | - | Text of an option on the menu bar. |
   | icon | string | No | - | Icon path of an option on the menu bar. |
   | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
 
 - Object attributes
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | string | Yes | - | Text of an option on the toolbar. |
   | icon | string | No | - | Icon path of an option on the toolbar. |
   | action | () =&gt; void | No | - | Callback invoked when an option is selected. |
 
 - NavigationTitleMode enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Free | When the content is a scrollable component, the title shrinks as the content scrolls up (the subtitle fades out with its size remaining unchanged) and restores as the content scrolls down. |
   | Mini | The mode is fixed at mini mode (icon + main title and subtitle). |
   | Full | The mode is fixed at full mode (main title and subtitle). |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  > **NOTE**
   > Currently, only the scrollable component **&lt;List&gt;** is supported.
 
 

@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用要执行对实时性要求不高的任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、热等统一决策调度时间。
+应用要执行对实时性要求不高的任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。
 
 
 ## 接口说明
@@ -115,7 +115,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
     workScheduler.getWorkStatus(50, (err, res) => {
       if (err) {
-        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+        console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
       } else {
         for (let item in res) {
           console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
@@ -131,7 +131,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
     }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
     })
 
 
@@ -141,7 +141,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
     workScheduler.obtainAllWorks((err, res) =>{
       if (err) {
-        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
+        console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
       } else {
         console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
       }
@@ -152,7 +152,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
     workScheduler.obtainAllWorks().then((res) => {
       console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
     }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
     })
 
 **停止并清除任务**
@@ -166,7 +166,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
     workScheduler.isLastWorkTimeOut(500, (err, res) =>{
       if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
       } else {
         console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       }
@@ -179,6 +179,6 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       })
       .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
       });
     })
