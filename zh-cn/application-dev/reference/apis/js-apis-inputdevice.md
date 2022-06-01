@@ -38,10 +38,10 @@ inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
     inputDevice.getKeyboardType(data.deviceId, (ret) => {
         console.log("The keyboard type of the device is: " + ret);
-        if (ret == 2 && data.type == 'add') {
+        if (ret == KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
             // 监听物理键盘已连接。
             isPhysicalKeyboardExist = true;
-        } else if (ret == 2 && data.type == 'remove') {
+        } else if (ret == KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
             // 监听物理键盘已断开。
             isPhysicalKeyboardExist = false;
         }
