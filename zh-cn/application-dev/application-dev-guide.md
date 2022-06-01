@@ -53,9 +53,8 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
 
 内容包括：
--   接口参考
-    -  [JS及TS API参考](reference/apis/js-apis-DataUriUtils.md)
-    -  Native API
-        -   [Native API参考](reference/native-apis/_o_h___native_x_component.md)
-        -   [Native API标准库](reference/native-lib/third_party_libc/musl.md)
-        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+-   [接口参考(JS及TS API)](reference/apis/js-apis-DataUriUtils.md)
+-   接口参考(Native API)
+    -   [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)
+    -   [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+    -   [Node_API](reference/native-lib/third_party_napi/napi.md)
