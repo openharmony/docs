@@ -460,6 +460,15 @@
 
     - 网络与连接
 
+      - 网络管理
+
+        - [网络管理开发概述](connectivity/net-mgmt-overview.md)
+
+        - [HTTP数据请求](connectivity/http-request.md)
+
+        - [WebSocket连接](connectivity/websocket-connection.md)
+
+        - [Socket连接](connectivity/socket-connection.md)
 
       - IPC与RPC通信
 
@@ -469,6 +478,13 @@
 
         - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
 
+    - 电话服务
+
+      - [电话服务开发概述](telephony/telephony-overview.md)
+
+      - [跳转拨号界面](telephony/jumping-to-the-dial-screen.md)
+
+      - [获取当前蜂窝网络信号信息](telephony/cellular-network-signal-info.md)
 
     - 数据管理
 
