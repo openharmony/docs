@@ -276,7 +276,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------------- | ---- | --------------------------------------- |
 | bundleName  | string        | 是    | 包名                                      |
 | bundleFlags | number        | 是    | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| options     | [BundleOptions](#BundleOptions) | 否    | 包含userid。                               |
+| options     | [BundleOptions](#bundleoptions) | 否    | 包含userid。                               |
 
 **返回值：**
 
@@ -359,7 +359,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | -------------------------- | ---- | --------------------------------------- |
 | bundleName  | string                     | 是    | 包名                                      |
 | bundleFlags | number                     | 是    | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
-| options     | [BundleOptions](#BundleOptions)              | 是    | 包含userid。                               |
+| options     | [BundleOptions](#bundleoptions)              | 是    | 包含userid。                               |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
 **示例：**
@@ -508,7 +508,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称         | 类型     | 必填   | 描述           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
 
 **返回值：**
 | 类型             | 说明                                     |
@@ -543,8 +543,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称         | 类型     | 必填   | 描述           |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | 是    | HAP存放路径。路径应指向当前应用程序的数据目录的相对目录。 |
-| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。 |
-| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于0。 |
+| bundleFlags | number | 是    | 用于指定要返回的BundleInfo对象中包含信息的标记。默认值：0，取值范围：大于等于0。 |
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回HAP包中包含的应用程序包的信息。 |
 
 **示例：**
 
@@ -716,7 +716,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-以异步方法根据给定的意图查询ability是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -757,7 +757,7 @@ bundle.isAbilityEnabled(Info)
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的意图查询ability是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -794,7 +794,7 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-以异步方法根据给定的意图查询指定应用程序是否已经启用，使用Promise形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -832,7 +832,7 @@ bundle.isApplicationEnabled(bundleName)
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的意图查询指定应用程序是否已经启用，使用callback形式返回结果。
+以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
 
 **需要权限：**
 
