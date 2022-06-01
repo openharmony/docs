@@ -8,7 +8,7 @@ The following exemplifies how to run the first program on the development board.
 
 The complete code directory is as follows:
 
-  
+
 ```
 applications/sample/hello
 │── BUILD.gn
@@ -34,7 +34,7 @@ Perform the steps below in the source code directory:
 
    Create the **applications/sample/hello/src/helloworld.c** directory and file whose code is shown in the following example. You can customize the content to be printed. For example, you can change **World** to **OHOS**. Declare the string printing function **HelloPrint** in the **helloworld.h** file. You can use either C or C++ to develop a program.
 
-     
+   
    ```
    #include <stdio.h>
    #include "helloworld.h"
@@ -55,7 +55,7 @@ Perform the steps below in the source code directory:
 
    Add the header file **applications/sample/hello/include/helloworld.h**. The sample code is as follows:
 
-     
+   
    ```
    #ifndef HELLOWORLD_H
    #define HELLOWORLD_H
@@ -78,7 +78,7 @@ Perform the steps below in the source code directory:
 2. Create a build file.
 
    1. Create the **applications/sample/hello/BUILD.gn** file. The file content is as follows:
-         
+      
        ```
        import("//build/ohos.gni") # Import the build template.
        ohos_executable("helloworld") {# Executable module.
@@ -99,7 +99,7 @@ Perform the steps below in the source code directory:
        }
        ```
    2. Create the **applications/sample/hello/bundle.json** file and add the description of the **sample** component. The content is as follows:
-         
+      
        ```
        {
            "name": "@ohos/hello",
@@ -141,7 +141,7 @@ Perform the steps below in the source code directory:
 
    Add the configuration of the new subsystem to the **build/subsystem_config.json** file.
 
-     
+   
    ```
    "sample": {
        "path": "applications/sample/hello",
@@ -151,9 +151,9 @@ Perform the steps below in the source code directory:
 
 4. Modify the product configuration file.
 
-   In the vendor\hisilicon\Hi3516DV300\config.json file, add the hello part after the existing part.
+   In the **vendor\hisilicon\Hi3516DV300\config.json** file, add the **hello** part after the existing part.
 
-     
+   
    ```
        "usb:usb_manager_native":{},
        "applications:prebuilt_hap":{},
