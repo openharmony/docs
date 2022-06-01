@@ -828,18 +828,18 @@ The following configuration items are defined in the `config.gni` file:
 
 | Item                                    | Description                    |
 | ------------------------------------------ | ------------------------ |
-| dsoftbus_standard_feature_disc_ble         | Whether to enable BLE discovery.     |
-| dsoftbus_standard_feature_disc_coap        | Whether to enable CoAP discovery.    |
-| dsoftbus_standard_feature_conn_tcp         | Whether to enable TCP connection.     |
-| dsoftbus_standard_feature_conn_br          | Whether to enable BR connection.      |
-| dsoftbus_standard_feature_conn_ble         | Whether to enable BLE connection.     |
-| dsoftbus_standard_feature_conn_p2p         | Whether to enable P2P connection.     |
-| dsoftbus_standard_feature_trans_udp        | Whether to enable UDP transmission.     |
-| dsoftbus_standard_feature_trans_udp_stream | Whether to enable the UDP transport stream.   |
-| dsoftbus_standard_feature_trans_udp_file   | Whether to enable UDP file transfer. |
-| dsoftbus_standard_feature_ip_auth          | Whether to enable transmission channel authentication.|
-| dsoftbus_standard_feature_auth_account     | Whether to enable account-based authentication.|
-| dsoftbus_standard_feature_qos              | Whether to enable QoS.         |
+| dsoftbus_feature_disc_ble         | Whether to enable BLE discovery.     |
+| dsoftbus_feature_disc_coap        | Whether to enable CoAP discovery.    |
+| dsoftbus_feature_conn_tcp         | Whether to enable TCP connection.     |
+| dsoftbus_feature_conn_br          | Whether to enable BR connection.      |
+| dsoftbus_feature_conn_ble         | Whether to enable BLE connection.     |
+| dsoftbus_feature_conn_p2p         | Whether to enable P2P connection.     |
+| dsoftbus_feature_trans_udp        | Whether to enable UDP transmission.     |
+| dsoftbus_feature_trans_udp_stream | Whether to enable the UDP transport stream.   |
+| dsoftbus_feature_trans_udp_file   | Whether to enable UDP file transfer. |
+| dsoftbus_feature_ip_auth          | Whether to enable transmission channel authentication.|
+| dsoftbus_feature_auth_account     | Whether to enable account-based authentication.|
+| dsoftbus_feature_qos              | Whether to enable QoS.         |
 
 The following configuration items are defined in the `softbus_config_adapter.c` file:
 
