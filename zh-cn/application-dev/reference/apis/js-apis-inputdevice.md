@@ -33,14 +33,26 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 **示例：** 
 
 ```js
-inputDevice.on("change", (callback)=>{
-    console.log("type: " + callback.type + ", deviceId: " + callback.deviceId);
+let isPhysicalKeyboardExist = true;
+inputDevice.on("change", (data) => {
+  console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+  inputDevice.getKeyboardType(data.deviceId, (ret) => {
+    console.log("The keyboard type of the device is: " + ret);
+    if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+      // 监听物理键盘已连接。
+      isPhysicalKeyboardExist = true;
+    } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
+      // 监听物理键盘已断开。
+      isPhysicalKeyboardExist = false;
+    }
+  });
 });
+// 根据isPhysicalKeyboardExist的值决定软键盘是否弹出。
 ```
 
 ## inputDevice.off<sup>9+</sup>
 
-on(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
+off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 
 取消监听设备的热插拔事件。
 
@@ -56,7 +68,16 @@ on(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 **示例：** 
 
 ```js
+listener: function(data) {
+  console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+}
+
+// 单独取消listener的监听。
+inputDevice.off("change", this.listener);
+
+// 取消所有监听
 inputDevice.off("change");
+// 取消监听后，软键盘默认都弹出
 ```
 
 ## inputDevice.getDeviceIds
