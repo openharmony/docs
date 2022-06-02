@@ -3,6 +3,7 @@
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module will be deprecated and are not recommended for use. An exception will be thrown if any of the APIs is called.
+
 ## Modules to Import
 
 ```js
@@ -19,15 +20,15 @@ Chooses a file of the specified type using the file manager. This API uses a pro
 
 - Parameters
 
- | Name| Type | Mandatory | Description |
- | ------ | ------ | ---- | ---------------------------- |
- | type | string[] | No | Type of the file to choose. |
+| Name| Type | Mandatory | Description |
+| ------ | ------ | ---- | ---------------------------- |
+| type | string[] | No | Type of the file to choose. |
 
 - Return value
 
- | Type | Description |
- | --------------------- | -------------- |
- | Promise&lt;string&gt; | Promise used to return the result. An error code is returned. |
+| Type | Description |
+| --------------------- | -------------- |
+| Promise&lt;string&gt; | Promise used to return the result. An error code is returned. |
 
 - Example
 
@@ -44,9 +45,9 @@ Chooses a file using the file manager. This API uses an asynchronous callback to
 
 - Parameters
 
- | Name | Type | Mandatory | Description |
- | -------- | --------------------------- | ---- | ---------------------------- |
- | callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. An error code is returned. |
+| Name | Type | Mandatory | Description |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. An error code is returned. |
 
 - Example
 
@@ -65,10 +66,10 @@ Chooses a file of the specified type using the file manager. This API uses an as
 
 - Parameters
 
- | Name | Type | Mandatory | Description |
- | -------- | --------------------------- | ---- | ---------------------------- |
- | type | string[] | No | Type of the file to choose. |
- | callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. An error code is returned. |
+| Name | Type | Mandatory | Description |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| type | string[] | No | Type of the file to choose. |
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. An error code is returned. |
 
 - Example
 
@@ -88,16 +89,16 @@ Opens a file. This API uses a promise to return the result.
 
 - Parameters
 
- | Name | Type | Mandatory | Description |
- | ---- | ------ | ---- | ---------------------------- |
- | uri | string | Yes | URI of the file to open. |
- | type | string | Yes | Type of the file to open. |
+| Name | Type | Mandatory | Description |
+| ---- | ------ | ---- | ---------------------------- |
+| uri | string | Yes | URI of the file to open. |
+| type | string | Yes | Type of the file to open. |
 
 - Return value
 
- | Type | Description |
- | --------------------- | ------------ |
- | Promise&lt;void&gt; | Promise used to return the result. An error code is returned. |
+| Type | Description |
+| --------------------- | ------------ |
+| Promise&lt;void&gt; | Promise used to return the result. An error code is returned. |
 
 - Example
 
@@ -115,11 +116,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 - Parameters
 
- | Name | Type | Mandatory | Description |
- | -------- | --------------------------- | ---- | ---------------------------- |
- | uri | string | Yes | URI of the file to open. |
- | type | string | Yes | Type of the file to open. |
- | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. An error code is returned. |
+| Name | Type | Mandatory | Description |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| uri | string | Yes | URI of the file to open. |
+| type | string | Yes | Type of the file to open. |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. An error code is returned. |
 
 - Example
 
