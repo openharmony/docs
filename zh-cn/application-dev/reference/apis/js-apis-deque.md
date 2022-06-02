@@ -17,13 +17,11 @@ Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能
 import Deque from '@ohos.util.Deque'; 
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## Deque
 
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -34,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 Deque的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -46,6 +46,8 @@ let deque = new Deque();
 insertFront(element: T): void
 
 在deque头部插入元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -71,6 +73,8 @@ insertEnd(element: T): void
 
 在deque尾部插入元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -94,6 +98,8 @@ deque.insertEnd(false);
 has(element: T): boolean
 
 判断此Deque中是否含有该指定元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -122,6 +128,8 @@ popFirst(): T
 
 删除并返回双端队列的首元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -145,6 +153,8 @@ let result = deque.popFirst();
 popLast(): T
 
 删除并返回双端队列的尾元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -170,6 +180,8 @@ forEach(callbackfn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Deque实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -205,6 +217,8 @@ getFirst(): T
 
 获取Deque实例中的头元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -228,6 +242,8 @@ getLast(): T
 
 获取Deque实例中的尾元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -249,8 +265,9 @@ let result = deque.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
