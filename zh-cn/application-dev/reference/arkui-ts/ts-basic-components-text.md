@@ -84,7 +84,8 @@ Text(content?: string)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample1 {
@@ -122,7 +123,8 @@ struct TextExample1 {
 
 ![zh-cn_image_0000001219864155](figures/zh-cn_image_0000001219864155.gif)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample2 {

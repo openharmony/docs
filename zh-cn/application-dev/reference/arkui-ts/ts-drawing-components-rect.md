@@ -49,7 +49,8 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RectExample {

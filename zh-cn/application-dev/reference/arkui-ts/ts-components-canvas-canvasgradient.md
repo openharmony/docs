@@ -20,8 +20,9 @@ addColorStop(offset: number, color: string): void
   | color | string | 是 | 'ffffff' | 设置渐变的颜色。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Page45 {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

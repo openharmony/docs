@@ -29,7 +29,8 @@ show(options?: DatePickerDialogOptions)
 ## 示例
 
 ### 日期滑动选择器（显示农历）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerDialogExample01 {
@@ -62,7 +63,8 @@ struct DatePickerDialogExample01 {
 }
 ```
 ### 日期滑动选择器（不显示农历）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerDialogExample02 {

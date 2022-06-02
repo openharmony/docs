@@ -34,7 +34,8 @@
 
 示例功能通过一个Button控制第二个Button的出现和消失，并通过transition配置第二个Button出现和消失的过场动画。
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TransitionExample {

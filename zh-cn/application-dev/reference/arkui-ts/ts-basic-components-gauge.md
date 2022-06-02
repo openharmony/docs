@@ -44,7 +44,8 @@ Gauge(value:{value: number, min?: number, max?: number})
 ## 示例
 
   
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GaugeExample {

@@ -46,7 +46,8 @@ Select(options: Array\<SelectOption\>)
 
 ##  示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SelectExample {

@@ -58,7 +58,8 @@ Badge(value: {value: string, position?: BadgePosition, style?: BadgeStyle})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct BadgeExample {

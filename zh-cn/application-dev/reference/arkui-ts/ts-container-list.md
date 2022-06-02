@@ -72,7 +72,8 @@ List(value:{space?: number, initialIndex?: number})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ListExample {

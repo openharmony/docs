@@ -44,7 +44,8 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 ## 示例
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MarqueeExample {

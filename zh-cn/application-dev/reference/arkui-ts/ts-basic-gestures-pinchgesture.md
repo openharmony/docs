@@ -39,7 +39,8 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PinchGestureExample {

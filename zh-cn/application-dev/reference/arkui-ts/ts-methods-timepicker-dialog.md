@@ -27,7 +27,8 @@ show(options?: TimePickerDialogOptions)
 ## 示例
 
 ### 时间滑动选择器（24小时制）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample01 {
@@ -55,7 +56,8 @@ struct TimePickerDialogExample01 {
 }
 ```
 ### 时间滑动选择器（12小时制）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample02 {

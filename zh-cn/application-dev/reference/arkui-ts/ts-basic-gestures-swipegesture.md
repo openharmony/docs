@@ -44,7 +44,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 ![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374661.png)
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SwipeGestureExample {

@@ -37,7 +37,8 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LongPressGestureExample {

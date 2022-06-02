@@ -54,7 +54,8 @@ TimePicker(options?: TimePickerOptions)
 
 ### 时间选择器
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerExample {

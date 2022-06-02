@@ -57,7 +57,8 @@ DatePicker(options?: DatePickerOptions)
 
 ### 日期选择器（显示农历）
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerExample01 {
@@ -84,7 +85,8 @@ struct DatePickerExample01 {
 
 ### 日期选择器（不显示农历）
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerExample02 {

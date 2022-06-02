@@ -51,7 +51,8 @@ destroy(name: string): void
   | name | string | 是    | 被指定的动画名，同loadAnimation接口参数name,&nbsp;缺省时销毁所有动画。 |
 
 - 示例
-  ```
+  ```ts
+  // xxx.ets
   import lottie from '@ohos/lottieETS'
 
   @Entry
@@ -130,7 +131,7 @@ play(name: string): void
   | name | string | 是    | 被指定的动画名,&nbsp;同loadAnimation接口参数name，缺省时播放所有动画。 |
 
 - 示例
-  ```
+  ```ts
   lottie.play(this.animateName)
   ```
 
@@ -147,7 +148,7 @@ pause(name: string): void
   | name | string | 是    | 被指定的动画名，同loadAnimation接口入参name，缺省时暂停所有动画。 |
 
 - 示例
-  ```
+  ```ts
   lottie.pause(this.animateName)
   ```
 
@@ -164,7 +165,7 @@ togglePause(name: string): void
   | name | string | 是    | 被指定的动画名，同loadAnimation接口参数name，缺省时停止所有动画。 |
 
 - 示例
-  ```
+  ```ts
   lottie.togglePause(this.animateName)
   ```
 
@@ -181,7 +182,7 @@ stop(name: string): void
   | name | string | 是    | 被指定的动画名，同loadAnimation接口参数name，缺省时停止所有动画。 |
 
 - 示例
-  ```
+  ```ts
   lottie.stop(this.animateName)
   ```
 
@@ -199,7 +200,7 @@ setSpeed(speed: number, name: string): void
   | name  | string | 是    | 被指定的动画，同loadAnimation接口参数name，缺省时停止所有动画。 |
 
 - 示例
-  ```
+  ```ts
   lottie.setSpeed(5, this.animateName)
   ```
 
@@ -217,7 +218,7 @@ setDirection(direction: AnimationDirection, name: string): void
   | name      | string             | 是    | 被指定的动画名，同loadAnimation接口参数name，缺省时设置所有动画方向。 |
 
 - 示例
-  ```
+  ```ts
   lottie.setDirection(-1, this.animateName)
   ```
 
@@ -262,7 +263,7 @@ play(name?: string): void
   | name | string | 否    | 被指定的动画名，缺省默认为空。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.play()
   ```
 
@@ -279,7 +280,7 @@ destroy(name?: string): void
   | name | string | 否    | 被指定的动画名，缺省默认为空。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.destroy()
   ```
 
@@ -296,7 +297,7 @@ pause(name?: string): void
   | name | string | 否    | 被指定的动画名，缺省默认为空。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.pause()
   ```
 
@@ -313,7 +314,7 @@ togglePause(name?: string): void
   | name | string | 否    | 被指定的动画名，缺省默认为空。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.togglePause()
   ```
 
@@ -330,7 +331,7 @@ stop(name?: string): void
   | name | string | 否    | 被指定的动画名，缺省默认为空。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.stop()
   ```
 
@@ -347,7 +348,7 @@ setSpeed(speed: number): void
   | speed | number | 是    | 值为浮点类型,&nbsp;speed&gt;0正向播放,&nbsp;speed&lt;0反向播放,&nbsp;speed=0暂停播放,&nbsp;speed=1.0&nbsp;\|&nbsp;-1.0正常速度播放。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.setSpeed(5);
   ```
 
@@ -364,7 +365,7 @@ setDirection(direction: AnimationDirection): void
   | direction | AnimationDirection | 是    | 1为正向，-1为反向;&nbsp;当设置为反向时，从当前播放进度开始回播直到首帧，loop值为true时可无限倒放；speed&lt;0叠加时也是倒放。<br/>AnimationDirection：1&nbsp;\|&nbsp;-1。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.setDirection(-1)
   ```
 
@@ -383,7 +384,7 @@ goToAndStop(value: number, isFrame?: boolean): void
   | name    | string  | 否    | 被指定的动画名，缺省默认为空。                          |
 
 - 示例
-  ```
+  ```ts
   // 按帧号控制
   this.animateItem.goToAndStop(25, true)
   // 按时间进度控制
@@ -405,7 +406,7 @@ goToAndPlay(value: number, isFrame: boolean, name?: string): void
   | name    | string  | 否    | 被指定的动画名，缺省默认为空。                          |
 
 - 示例
-  ```
+  ```ts
   // 按帧号控制
   this.animateItem.goToAndPlay(25, true)
   // 按时间进度控制
@@ -426,7 +427,7 @@ playSegments(segments: AnimationSegment | AnimationSegment[], forceFlag: boolean
   | forceFlag | boolean                                  | 是    | true：即时生效播放，false：延迟到下轮循环播放再生效           |
 
 - 示例
-  ```
+  ```ts
   // 指定播放片段
   this.animateItem.playSegments([10, 20], false)
   // 指定播放片段列表
@@ -446,7 +447,7 @@ resetSegments(forceFlag: boolean): void
   | forceFlag | boolean | 是    | true：即时生效播放，false：延迟到下轮循环播放再生效 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.resetSegments(true)
   ```
 
@@ -458,7 +459,7 @@ resize(): void
 刷新动画布局。
 
 - 示例
-  ```
+  ```ts
   this.animateItem.resize()
   ```
 
@@ -475,7 +476,7 @@ setSubframe(useSubFrame: boolean): void
   | useSubFrames | boolean | 是    | currentFrame属性默认显示浮点数，该接口参数将影响currentFrame属性的精度。<br/>true：属性currentFrame显示浮点。<br/>false：属性currentFrame去浮点数显示整数。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.setSubframe(false)
   ```
 
@@ -492,7 +493,7 @@ getDuration(inFrames?: boolean): void
   | inFrames | boolean | 否    | true：获取帧数，&nbsp;false：获取时间(单位ms)，缺省默认false。 |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.getDuration(true)
   ```
 
@@ -510,7 +511,7 @@ addEventListener&lt;T = any&gt;(name: AnimationEventName, callback: AnimationEve
   | callback | AnimationEventCallback&lt;T&gt; | 是    | 用户自定义回调函数                                |
 
 - 示例
-  ```
+  ```ts
   private callbackItem: any = function() {
       console.log("grunt loopComplete")
   }
@@ -531,10 +532,10 @@ removeEventListener&lt;T = any&gt;(name: AnimationEventName, callback?: Animatio
   | 参数       | 类型                              | 必填   | 描述                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | name     | AnimationEventName              | 是    | 指定动画事件类型，Lottie内置动画事件类型AnimationEventName：<br/>'enterFrame'、'loopComplete'、'complete'、'segmentStart'、'destroy'、'config_ready'、'data_ready'、'DOMLoaded'、'error'、'data_failed'、'loaded_images' |
-  | callback | AnimationEventCallback&lt;T&gt; | 否    | 用户自定义回调函数；缺省为空时，删除此事件的所有回调函数。      |
+  | callback | AnimationEventCallback&lt;T&gt; | 否    | 用户自定义回调函数；缺省为空时，删除此事件的所有回调函数。            |
 
 - 示例
-  ```
+  ```ts
   this.animateItem.removeEventListener('loopComplete', this.animateName)
   ```
 
@@ -552,7 +553,7 @@ triggerEvent&lt;T = any&gt;(name: AnimationEventName, args: T): void
   | args | any                | 是    | 用户自定义回调参数 |
 
 - 示例
-  ```
+  ```ts
   private triggerCallBack: any = function(item) {
       console.log("trigger loopComplete, name:" + item.name)
   }

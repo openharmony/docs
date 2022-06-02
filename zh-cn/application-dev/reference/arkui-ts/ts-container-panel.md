@@ -62,7 +62,8 @@ Panel(value:{show：boolean})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PanelExample {

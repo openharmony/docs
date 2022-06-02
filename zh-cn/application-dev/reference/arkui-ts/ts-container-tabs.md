@@ -86,7 +86,8 @@ changeIndex(value: number): void
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabsExample {

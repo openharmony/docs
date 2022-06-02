@@ -49,7 +49,8 @@ RichText\(content:string\)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RichTextExample {

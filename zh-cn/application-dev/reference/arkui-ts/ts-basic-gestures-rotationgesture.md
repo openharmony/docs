@@ -37,7 +37,8 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RotationGestureExample {

@@ -31,7 +31,8 @@
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PositionExample {
@@ -64,7 +65,8 @@ struct PositionExample {
 
 ![zh-cn_image_0000001174264368](figures/zh-cn_image_0000001174264368.gif)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PositionExample2 {

@@ -42,7 +42,8 @@ show(options: {&nbsp;paramObject1})
 ## 示例
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ActionSheetExapmle {

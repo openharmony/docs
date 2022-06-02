@@ -51,7 +51,8 @@ GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridContainerExample {

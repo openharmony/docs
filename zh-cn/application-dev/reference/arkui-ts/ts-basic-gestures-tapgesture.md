@@ -29,7 +29,8 @@ TapGesture(options?: { count?: number, fingers?: number })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TapGestureExample {

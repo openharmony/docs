@@ -74,7 +74,8 @@ reset()
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextTimerExample {

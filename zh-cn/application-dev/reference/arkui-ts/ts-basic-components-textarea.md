@@ -85,7 +85,8 @@ caretPosition(value: number): void
 
 ### 多行文本输入
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample1 {
@@ -120,7 +121,8 @@ struct TextAreaExample1 {
 
 ### 设置光标
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample2 {

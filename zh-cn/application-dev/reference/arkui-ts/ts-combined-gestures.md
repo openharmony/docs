@@ -36,7 +36,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GestureGroupExample {

@@ -45,7 +45,8 @@ Stepper(value?: { index?: number })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StepperExample {

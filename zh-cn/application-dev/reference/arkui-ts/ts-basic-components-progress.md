@@ -52,7 +52,8 @@ Progress(value: {value: number, total?: number, type?: ProgressType})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {

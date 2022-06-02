@@ -19,8 +19,9 @@ addPath(path: Object): void
   | path | Object | 是 | null | 需要添加到当前路径的路径对象 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct AddPath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -56,8 +57,9 @@ closePath(): void
 将路径的当前点移回到路径的起点，当前点到起点间画一条直线。如果形状已经闭合或只有一个点，则此功能不执行任何操作。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct ClosePath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -100,8 +102,9 @@ moveTo(x: number, y: number): void
   | y | number | 是 | 0 | 目标点Y轴坐标 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct MoveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -144,8 +147,9 @@ lineTo(x: number, y: number): void
   | y | number | 是 | 0 | 目标点Y轴坐标 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct LineTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -193,8 +197,9 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   | y | number | 是 | 0 | 路径结束时的y坐标值。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct BezierCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -236,8 +241,9 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
   | y | number | 是 | 0 | 路径结束时的y坐标值。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct QuadraticCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -282,8 +288,9 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   | anticlockwise | boolean | 否 | false | 是否逆时针绘制圆弧。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Arc {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -325,8 +332,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   | radius | number | 是 | 0 | 圆弧的圆半径值。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct ArcTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -372,8 +380,9 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   | anticlockwise | number | 否 | 0 | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -415,8 +424,9 @@ rect(x: number, y: number, width: number, height: number): void
   | height | number | 是 | 0 | 指定矩形的高度。 | 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

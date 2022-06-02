@@ -70,7 +70,8 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SliderExample {

@@ -48,7 +48,8 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RefreshExample {

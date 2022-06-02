@@ -135,7 +135,8 @@ scroller.scrollToIndex(value: number): void
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ScrollExample {

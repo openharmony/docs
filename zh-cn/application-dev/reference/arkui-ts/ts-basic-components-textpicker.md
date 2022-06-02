@@ -46,7 +46,8 @@ TextPicker(value: {range: string[], selected?: number})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextPickerExample {

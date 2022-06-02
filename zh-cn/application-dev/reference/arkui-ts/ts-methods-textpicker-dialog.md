@@ -33,7 +33,8 @@ show(options: TextPickerDialogOptions)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextPickerDialogExample {

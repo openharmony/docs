@@ -49,7 +49,8 @@ ScrollBar(value: ScrollBarOptions)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ScrollBarExample {

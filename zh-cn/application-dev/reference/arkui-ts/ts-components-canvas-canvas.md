@@ -36,7 +36,8 @@ Canvas(context: CanvasRenderingContext2D)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {

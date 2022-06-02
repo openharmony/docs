@@ -50,7 +50,8 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ToggleExample {

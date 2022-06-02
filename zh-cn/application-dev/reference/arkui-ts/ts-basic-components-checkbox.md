@@ -41,7 +41,8 @@ Checkbox( name?: string,  group?: string )
  
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CheckboxExample {

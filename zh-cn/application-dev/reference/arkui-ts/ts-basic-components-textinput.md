@@ -97,7 +97,8 @@ caretPosition(value:&nbsp;number): void
 
 ### 单行文本输入
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample1 {
@@ -131,7 +132,8 @@ struct TextInputExample1 {
 
 ### 设置光标
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample2 {

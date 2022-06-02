@@ -43,7 +43,8 @@ GridItem()
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridItemExample {

@@ -38,7 +38,8 @@ TabContent()
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabContentExample  {

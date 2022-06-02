@@ -57,7 +57,8 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct IdExample {

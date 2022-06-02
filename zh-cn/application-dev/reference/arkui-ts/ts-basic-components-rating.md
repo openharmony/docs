@@ -46,7 +46,8 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RatingExample {

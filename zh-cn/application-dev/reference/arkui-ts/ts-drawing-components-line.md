@@ -45,7 +45,8 @@ Line(options?: {width: Length, height: Length})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineExample {

@@ -3,7 +3,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
+>
 > - 本组件均为系统接口，三方应用不支持调用。
 
 
@@ -27,23 +27,23 @@ PluginComponent(value: { template: PluginComponentTemplate, data: any })
 创建插件组件，用于显示外部应用提供的UI。
 
 - 参数
-    | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | {<br/>template:&nbsp;PluginComponentTemplate,<br/>data:&nbsp;KVObject<br/>} | 是 | - | template:&nbsp;&nbsp;组件模板，用于跟提供者定义的组件绑定。<br/>data:&nbsp;传给插件组件提供者使用的数据。 |
+    | 参数名   | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+    | ----- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+    | value | {<br/>template:&nbsp;PluginComponentTemplate,<br/>data:&nbsp;KVObject<br/>} | 是    | -    | template:&nbsp;&nbsp;组件模板，用于跟提供者定义的组件绑定。<br/>data:&nbsp;传给插件组件提供者使用的数据。 |
 
 - PluginComponentTemplate类型说明
-    | 参数 | 类型 | 描述 | 
-  | -------- | -------- | -------- |
-  | source | string | 组件模板名。 | 
-  | ability | string | 提供者Ability的abilityname。 | 
+    | 参数      | 类型     | 描述                      |
+    | ------- | ------ | ----------------------- |
+    | source  | string | 组件模板名。                  |
+    | ability | string | 提供者Ability的abilityname。 |
 
 
 ## 事件
 
-  | 名称 | 功能描述 | 
-| -------- | -------- |
-| onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 组件加载完成回调。 | 
-| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 | 
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 组件加载完成回调。                                |
+| onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void) | 组件加载错误回调。<br/>errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
 
 
 ## PluginComponentManager
@@ -67,18 +67,18 @@ push(param: PushParameters, callback: AsyncCallback&lt;void&gt;): void
 
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | param | PushParameters | 是 | 组件使用者的详细信息，详见PushParameters参数说明。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 此次接口调用的异步回调。 |
+    | 参数名      | 类型                        | 必填   | 说明                               |
+    | -------- | ------------------------- | ---- | -------------------------------- |
+    | param    | PushParameters            | 是    | 组件使用者的详细信息，详见PushParameters参数说明。 |
+    | callback | AsyncCallback&lt;void&gt; | 是    | 此次接口调用的异步回调。                     |
 
 - PushParameters参数说明
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want | Want | 是 | 组件使用者Ability信息。 |
-  | name | string | 是 | 组件名称。 |
-  | data | KVObject | 否 | 组件数据值。 |
-  | extraData | KVObject | 否 | 附加数据值。 |
+    | 参数名       | 类型       | 必填   | 说明              |
+    | --------- | -------- | ---- | --------------- |
+    | want      | Want     | 是    | 组件使用者Ability信息。 |
+    | name      | string   | 是    | 组件名称。           |
+    | data      | KVObject | 否    | 组件数据值。          |
+    | extraData | KVObject | 否    | 附加数据值。          |
 
 - 示例
   见[组件使用者调用接口](#组件使用者调用接口)示例。
@@ -91,29 +91,29 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 组件使用者向组件提供者主动请求组件。
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | param | RequestParameters | 是 | 组件模板的详细请求信息，详见RequestParameters参数说明。 |
-  | callback | AsyncCallback<RequestCallbackParameters&nbsp;\|&nbsp;void&gt; | 是 | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
+    | 参数名      | 类型                                       | 必填   | 说明                                   |
+    | -------- | ---------------------------------------- | ---- | ------------------------------------ |
+    | param    | RequestParameters                        | 是    | 组件模板的详细请求信息，详见RequestParameters参数说明。 |
+    | callback | AsyncCallback<RequestCallbackParameters&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。  |
 
 - RequestParameters参数说明
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | want | Want | 是 | 组件提供者Ability信息。 |
-  | name | string | 是 | 请求组件名称。 |
-  | data | KVObject | 是 | 附加数据。 |
+    | 参数名  | 类型       | 必填   | 说明              |
+    | ---- | -------- | ---- | --------------- |
+    | want | Want     | 是    | 组件提供者Ability信息。 |
+    | name | string   | 是    | 请求组件名称。         |
+    | data | KVObject | 是    | 附加数据。           |
 
 - RequestCallbackParameters说明
-    | 名称 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | componentTemplate | PluginComponentTemplate | 组件模板。 |
-  | data | KVObject | 组件数据。 |
-  | extraData | KVObject | 附加数据。 |
+    | 名称                | 类型                      | 说明    |
+    | ----------------- | ----------------------- | ----- |
+    | componentTemplate | PluginComponentTemplate | 组件模板。 |
+    | data              | KVObject                | 组件数据。 |
+    | extraData         | KVObject                | 附加数据。 |
 
 - KVObject类型说明
-    | 参数 | 类型 | 说明 | 
-  | -------- | -------- | -------- |
-  | key | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;Array&nbsp;\|&nbsp;KVObject | KVObject用[key，value]来存储数据，key是string类型的，value可以是number，string，boolean，数组或者另外的一个KVObject。 | 
+    | 参数   | 类型                                       | 说明                                       |
+    | ---- | ---------------------------------------- | ---------------------------------------- |
+    | key  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;boolean&nbsp;\|&nbsp;Array&nbsp;\|&nbsp;KVObject | KVObject用[key，value]来存储数据，key是string类型的，value可以是number，string，boolean，数组或者另外的一个KVObject。 |
 
 
 - 示例
@@ -127,23 +127,23 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback): v
 提供者监听"request"类型的事件，给使用者返回通过request接口主动请求的数据；使用者监听"push"类型的事件，接收提供者通过push接口主动推送的数据。
 
 - 参数
-    | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | eventType | string | 是 | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。 |
-  | callback | OnPushEventCallback&nbsp;\|&nbsp;OnRequestEventCallback | 是 | 见callback事件说明。 |
+    | 参数名       | 类型                                       | 必填   | 说明                                       |
+    | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
+    | eventType | string                                   | 是    | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。 |
+    | callback  | OnPushEventCallback&nbsp;\|&nbsp;OnRequestEventCallback | 是    | 见callback事件说明。                           |
 
 - callback事件说明
-    | 参数名 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | OnRequestEventCallback | (source:&nbsp;Want,<br/>name:&nbsp;string,<br/>data:&nbsp;KVObject&nbsp;)&nbsp;=>RequestEventResult | 数据请求事件的回调。<br/>source:&nbsp;组件请求方Ability信息。<br/>name:&nbsp;请求组件名称。<br/>data:&nbsp;附加数据。<br/>返回值：&nbsp;请求数据结果。 |
-  | OnPushEventCallback | (source:&nbsp;Want,<br/>template:&nbsp;PluginComponentTemplate,<br/>data:&nbsp;KVObject,<br/>extraData:&nbsp;KVObject<br/>)&nbsp;=&gt;&nbsp;void | 接收提供者主动推送的数据。<br/>source:&nbsp;组件提供者Ability信息。<br/>template:&nbsp;组件模板。<br/>data:&nbsp;组件更新数据。<br/>extraData:&nbsp;附加数据。 |
+    | 参数名                    | 类型                                       | 说明                                       |
+    | ---------------------- | ---------------------------------------- | ---------------------------------------- |
+    | OnRequestEventCallback | (source:&nbsp;Want,<br/>name:&nbsp;string,<br/>data:&nbsp;KVObject&nbsp;)&nbsp;=>RequestEventResult | 数据请求事件的回调。<br/>source:&nbsp;组件请求方Ability信息。<br/>name:&nbsp;请求组件名称。<br/>data:&nbsp;附加数据。<br/>返回值：&nbsp;请求数据结果。 |
+    | OnPushEventCallback    | (source:&nbsp;Want,<br/>template:&nbsp;PluginComponentTemplate,<br/>data:&nbsp;KVObject,<br/>extraData:&nbsp;KVObject<br/>)&nbsp;=&gt;&nbsp;void | 接收提供者主动推送的数据。<br/>source:&nbsp;组件提供者Ability信息。<br/>template:&nbsp;组件模板。<br/>data:&nbsp;组件更新数据。<br/>extraData:&nbsp;附加数据。 |
 
 - RequestEventResult类型说明
-    | 参数 | 类型 | 说明 |
-  | -------- | -------- | -------- |
-  | template | string | 组件名称。 |
-  | data | KVObject | 组件数据。 |
-  | extraData | KVObjec | 附加数据。 |
+    | 参数        | 类型       | 说明    |
+    | --------- | -------- | ----- |
+    | template  | string   | 组件名称。 |
+    | data      | KVObject | 组件数据。 |
+    | extraData | KVObjec  | 附加数据。 |
 
 - 示例
   见[组件使用者调用接口](#组件使用者调用接口)示例。
