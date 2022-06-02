@@ -5,7 +5,6 @@ The call module provides call management functions, including making calls, redi
 To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
 
 >**NOTE**<br>
->
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,10 +26,10 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                   |
+| Name     | Type                        | Mandatory| Description                             |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| phoneNumber | string                       | Yes  | Phone number.                           |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
@@ -53,11 +52,11 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                   |
+| Name     | Type                        | Mandatory| Description                             |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
+| phoneNumber | string                       | Yes  | Phone number.                           |
 | options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
@@ -82,16 +81,16 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                  |
+| Name     | Type                       | Mandatory| Description                            |
 | ----------- | --------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                      | Yes  | Phone number.                            |
+| phoneNumber | string                      | Yes  | Phone number.                          |
 | options     | [DialOptions](#dialoptions) | Yes  | Call option, which indicates whether the call is a voice call or video call.|
 
 **Return value**
 
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
+| Type                   | Description                                                       |
+| ---------------------- | ---------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
