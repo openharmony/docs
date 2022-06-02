@@ -4,7 +4,7 @@
 
 ## 导入模块
 
-```
+```js
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -56,7 +56,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 **示例：**
 
-```
+```js
 function queryFaultLogCallback(error, value) {
     if (error) {
         console.info('error is ' + error);
@@ -68,7 +68,7 @@ function queryFaultLogCallback(error, value) {
             console.info("Log pid: " + value[i].pid);
             console.info("Log uid: " + value[i].uid);
             console.info("Log type: " + value[i].type);
-            console.info("Log ts: " + value[i].ts);
+            console.info("Log timestamp: " + value[i].timestamp);
             console.info("Log reason: " + value[i].reason);
             console.info("Log module: " + value[i].module);
             console.info("Log summary: " + value[i].summary);
@@ -101,7 +101,7 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 **示例：**
 
-```
+```js
 async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
@@ -112,7 +112,7 @@ async function getLog() {
 	    console.info("Log pid: " + value[i].pid);
 	    console.info("Log uid: " + value[i].uid);
 	    console.info("Log type: " + value[i].type);
-	    console.info("Log ts: " + value[i].ts);
+	    console.info("Log timestamp: " + value[i].timestamp);
 	    console.info("Log reason: " + value[i].reason);
 	    console.info("Log module: " + value[i].module);
 	    console.info("Log summary: " + value[i].summary);
