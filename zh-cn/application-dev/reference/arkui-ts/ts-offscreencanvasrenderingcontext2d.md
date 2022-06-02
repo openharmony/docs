@@ -1795,18 +1795,18 @@ translate(x: number, y: number): void
 
 ### drawImage
 
-drawImage(image: ImageBitmap, dx: number, dy: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
-drawImage(image: ImageBitmap, dx: number, dy: number, dWidth: number, dHeight: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dWidth: number, dHeight: number): void
 
-drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 进行图像绘制。
 
 - 参数
   | 参数      | 类型                                       | 必填   | 默认值  | 描述                   |
   | ------- | ---------------------------------------- | ---- | ---- | -------------------- |
-  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图片资源，请参考ImageBitmap。 |
+  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../apis/js-apis-image.md#pixelmap7)| 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
   | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。 |
   | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。 |
   | sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。       |
@@ -1871,6 +1871,18 @@ createImageData(imageData: ImageData): Object
   | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
   | imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null | 被复制的ImageData对象。 |
 
+### getPixelMap
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+以当前canvas指定区域内的像素创建[PixelMap](../apis/js-apis-image.md#pixelmap7)对象。
+- 参数
+  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | sx | number | 是 | 0 | 需要输出的区域的左上角x坐标。 | 
+  | sy | number | 是 | 0 | 需要输出的区域的左上角y坐标。 | 
+  | sw | number | 是 | 0 | 需要输出的区域的宽度。 | 
+  | sh | number | 是 | 0 | 需要输出的区域的高度。 | 
 
 ### getImageData
 
