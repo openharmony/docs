@@ -124,6 +124,7 @@
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
+  - [@ohos.securityLabel](js-apis-securityLabel.md)
 
 - Telephony Service
 
