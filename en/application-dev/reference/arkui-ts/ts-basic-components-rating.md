@@ -1,7 +1,7 @@
 # Rating
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ None
 Rating(options?: { rating: number, indicator?: boolean })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | rating | number | Yes | 0 | Value to rate. | 
   | indicator | boolean | No | false | Used only as an indicator and cannot be operated. | 
@@ -31,7 +31,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
 | stars | number | 5 | Total number of stars. | 
 | stepSize | number | 0.5 | Step of an operation. | 
@@ -40,7 +40,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes. | 
 
