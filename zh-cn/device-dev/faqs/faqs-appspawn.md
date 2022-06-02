@@ -19,7 +19,7 @@
 
 **现象描述**
 
-通过 aa start -d 12345 -a $name -b $package -C 拉起应用失败。
+通过 aa start -d 12345 -a \$name -b \$package -C 拉起应用失败。
 
 **可能原因**
 
