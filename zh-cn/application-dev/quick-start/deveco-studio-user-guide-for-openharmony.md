@@ -4,7 +4,7 @@
 
 HUAWEI DevEco Studio For OpenHarmony（以下简称DevEco Studio）是基于IntelliJ IDEA Community开源版本打造，面向OpenHarmony全场景多设备的一站式集成开发环境（IDE），为开发者提供工程模板创建、开发、编译、调试、发布等E2E的OpenHarmony应用/服务开发。
 
-[DevEco Studio 3.0 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) 作为支撑Openharmony应用和服务开发的IDE，具有以下能力特点：
+[DevEco Studio 3.0 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) 作为支撑OpenHarmony应用和服务开发的IDE，具有以下能力特点：
 
 - 支持一站式的信息获取平台
 - 提供多设备工程模板
