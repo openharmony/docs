@@ -19,7 +19,10 @@
 
 **现象描述**
 
-通过 aa start -d 12345 -a \$name -b \$package -C 拉起应用失败。
+通过冷启动命令拉起应用失败。
+  ```
+  aa start -d 12345 -a $name -b $package -C 
+  ```
 
 **可能原因**
 
