@@ -366,17 +366,12 @@
 
       - [公共事件与通知概述](notification/notification-brief.md)
 
-      - 公共事件
+      - [公共事件开发指导](notification/common-event.md)
 
-        - [公共事件开发指导](notification/common-event.md)
+      - [通知开发指导](notification/notification.md)
 
-      - 通知
+      - [调试助手使用指导](notification/assistant-guidelines.md)
 
-        - [通知开发指导](notification/notification.md)
-
-      - 调试工具
-
-        - [调试助手使用指导](notification/assistant-guidelines.md)
 
     - 窗口管理
 
@@ -465,6 +460,15 @@
 
     - 网络与连接
 
+      - 网络管理
+
+        - [网络管理开发概述](connectivity/net-mgmt-overview.md)
+
+        - [HTTP数据请求](connectivity/http-request.md)
+
+        - [WebSocket连接](connectivity/websocket-connection.md)
+
+        - [Socket连接](connectivity/socket-connection.md)
 
       - IPC与RPC通信
 
@@ -474,6 +478,13 @@
 
         - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
 
+    - 电话服务
+
+      - [电话服务开发概述](telephony/telephony-overview.md)
+
+      - [跳转拨号界面](telephony/jumping-to-the-dial-screen.md)
+
+      - [获取当前蜂窝网络信号信息](telephony/cellular-network-signal-info.md)
 
     - 数据管理
 
@@ -596,9 +607,9 @@
 
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
 
-      - [drawing开发指导](napi/drawing-guidelines.md)
+      - [Drawing开发指导](napi/drawing-guidelines.md)
 
-      - [rawfile开发指导](napi/rawfile-guidelines.md)
+      - [Rawfile开发指导](napi/rawfile-guidelines.md)
 
 
 - 工具
@@ -1116,7 +1127,7 @@
 
     - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考(JS及eTS API参考)
+  - 接口参考（JS及TS API）
     - Ability框架
 
       - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
@@ -1377,11 +1388,11 @@
 
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
 
-      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
+      - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
 
-      - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
+      - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
 
-      - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
+      - [@ohos.nfc.tag (标准NFC-Tag)](reference/apis/js-apis-nfcTag.md)
 
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
 
@@ -1562,16 +1573,16 @@
       - [console (日志打印)](reference/apis/js-apis-logs.md)
 
 
-  - 接口参考(Native API)
+  - 接口参考（Native API）
     - OpenHarmony Native API
 
       - MyProject
         - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
         - [Native_Bundle](reference/native-apis/_native___bundle.md)
-        - [HiLog](_hi_log.md)
+        - [HiLog](reference/native-apis/_hi_log.md)
         - [NativeWindow](reference/native-apis/_native_window.md)
-        - [Drawing](_drawing.md)
-        - [Rawfile](rawfile.md)
+        - [Drawing](reference/native-apis/_drawing.md)
+        - [Rawfile](reference/native-apis/rawfile.md)
 
       - 头文件
         - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
