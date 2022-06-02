@@ -1,6 +1,6 @@
 # 绑定手势方法
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -18,15 +18,15 @@
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | gesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势识别。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。 |
-| priorityGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;默认情况下，子组件优先于父组件识别手势，当父组件配置priorityGesture时，父组件优先于子组件进行识别。 |
-| parallelGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
+| priorityGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;默认情况下，子组件优先于父组件识别手势，当父组件配置priorityGesture时，父组件优先于子组件进行识别。 |
+| parallelGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
 
 
 - GestureMask枚举说明
   | 名称 | 描述 | 
   | -------- | -------- |
   | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 | 
-  | IgnoreInternal | 屏蔽子组件的手势，仅当前容器的手势进行识别。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;子组件上系统内置的手势不会被屏蔽，如子组件为List组件时，内置的滑动手势仍然会触发。 | 
+  | IgnoreInternal | 屏蔽子组件的手势，仅当前容器的手势进行识别。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;子组件上系统内置的手势不会被屏蔽，如子组件为List组件时，内置的滑动手势仍然会触发。 | 
 
 
 - GestureType

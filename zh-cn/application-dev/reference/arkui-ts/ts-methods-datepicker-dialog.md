@@ -1,6 +1,6 @@
 # 日期滑动选择器弹窗
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 根据指定范围的Date创建可以选择日期的滑动选择器，展示在弹窗上。

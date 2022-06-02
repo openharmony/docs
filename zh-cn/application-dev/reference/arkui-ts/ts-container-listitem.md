@@ -1,6 +1,6 @@
 # ListItem
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -28,7 +28,7 @@ ListItem()
 | -------- | -------- | -------- | -------- |
 | sticky | Sticky | Sticky.None | 设置ListItem吸顶效果，参见Sticky枚举描述。 |
 | editable | boolean | false | 当前ListItem元素是否可编辑，进入编辑模式后可删除。 |
-| selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
+| selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
 
 - Sticky枚举说明
   | 名称 | 描述 | 

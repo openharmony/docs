@@ -1,6 +1,6 @@
 # Button
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -55,7 +55,7 @@
   | Circle | 圆形按钮。 | 
   | Normal | 普通按钮（默认不带圆角）。 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > - 按钮圆角通过[通用属性borderRadius设置](ts-universal-attributes-border.md)（不支持通过border接口设置圆角）。
 > - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
 > - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。

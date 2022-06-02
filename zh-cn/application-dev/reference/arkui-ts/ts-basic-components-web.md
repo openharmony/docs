@@ -1,6 +1,6 @@
 # Web
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
+> **说明：** 
 >该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 提供具有网页显示能力的Web组件。
@@ -24,7 +24,7 @@
     | controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**说明：**
+> **说明：**
 >
 > - 不支持转场动画；
 > - 不支持多实例；
@@ -48,7 +48,7 @@
 | textZoomAtio       | number                                   | 100               | 设置页面的文本缩放百分比，默认为100%。                    |
 | userAgent          | string                                   | -                 | 设置用户代理。                                  |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > 通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
 

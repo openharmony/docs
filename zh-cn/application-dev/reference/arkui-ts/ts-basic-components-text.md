@@ -1,6 +1,6 @@
 # Text
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -78,7 +78,7 @@ Text(content?: string)
   | LocalDevice | 支持设备内复制粘贴。 |
   | CrossDevice | 支持跨设备复制粘贴。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
 
 

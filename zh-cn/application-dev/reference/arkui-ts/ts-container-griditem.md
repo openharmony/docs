@@ -1,6 +1,6 @@
 # GridItem
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -31,7 +31,7 @@ GridItem()
 | columnStart | number | - | 用于指定当前元素起始列号。 |
 | columnEnd | number | - | 用于指定当前元素终点列号。 |
 | forceRebuild | boolean | false | 用于设置在触发组件build时是否重新创建此节点。 |
-| selectable<sup>8+</sup> | boolean | true | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。 |
+| selectable<sup>8+</sup> | boolean | true | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。 |
 
 
 ## 事件

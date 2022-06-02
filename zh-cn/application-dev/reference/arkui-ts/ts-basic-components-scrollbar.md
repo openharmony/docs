@@ -1,6 +1,6 @@
 # ScrollBar
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -28,7 +28,7 @@ ScrollBar(value: ScrollBarOptions)
   | direction | ScrollBarDirection | 否 | ScrollBarDirection.Vertical | 滚动条的方向，控制可滚动组件对应方向的滚动。 |
   | state | BarState | 否 | BarState.Auto | 滚动条状态。 |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  >  **说明：**
   > ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
   > 
   > 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。

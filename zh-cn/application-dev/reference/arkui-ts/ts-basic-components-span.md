@@ -1,6 +1,6 @@
 # Span
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -41,7 +41,7 @@ Span(content: string)
 
 通用事件仅支持点击事件。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
 
 

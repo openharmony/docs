@@ -1,6 +1,6 @@
 # SwipeGesture
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -38,7 +38,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 - GestureEvent对象中与Swipe手势相关的属性
   | 参数名 | 类型 | 说明 | 
   | -------- | -------- | -------- |
-  | angle | number | 滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 | 
+  | angle | number | 滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 | 
   | speed | number | 滑动手势的速度，是所有手指滑动的平均速度，单位为VP/秒。 | 
 
 ![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374661.png)

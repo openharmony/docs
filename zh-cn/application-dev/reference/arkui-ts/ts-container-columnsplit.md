@@ -1,6 +1,6 @@
 # ColumnSplit
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -28,7 +28,7 @@ ColumnSplit()
 | -------- | -------- | -------- |
 | resizeable | boolean | 分割线是否可拖拽，默认为false。 | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
 
 
