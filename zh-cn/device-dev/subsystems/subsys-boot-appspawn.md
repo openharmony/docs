@@ -49,7 +49,8 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
 ### 功能简介<a name="section56901555911"></a>
 
 - 安全控制
-  <br>&emsp;支持为app设置SELinux标签。
+
+  支持为app设置SELinux标签。
 
   SELinux标签接口代码如下：
     ```c++
@@ -76,7 +77,8 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
     ```
 
 - 冷启动
-  <br>&emsp;支持通过aa命令冷启动应用。
+
+  支持通过aa命令冷启动应用。
 
     ```
     param set appspawn.cold.boot true // 打开冷启动开关
@@ -86,7 +88,8 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
     ```
 
 - 应用沙盒
-  <br>&emsp;应用独立运行于自身沙盒环境。
+
+  应用独立运行于自身沙盒环境。
 
   沙盒配置项：
     1. 应用沙盒的配置入口，在json中配置。
@@ -145,8 +148,8 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
 
 #### 开发实例<a name="section56901555915"></a>
 
-<br>&emsp;接口使用参考：
-  ```
+接口使用参考：
+  ```c++
     std::shared_ptr<AppSpawn::ClientSocket> clientSocket = std::make_unique<AppSpawn::ClientSocket>("AppSpawn");
     if (clientSocket == nullptr) {
         return -1;
