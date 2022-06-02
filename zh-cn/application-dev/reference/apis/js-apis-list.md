@@ -3,6 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+List底层通过单向链表实现，每个节点有一个指向后一个元素的引用。当需要查询元素时，必须从头遍历，插入、删除效率高，查询效率低。List允许元素为null。
+
+List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
+
+**推荐使用场景：** 当需要频繁的插入删除时，推荐使用List高效操作。
 
 ## 导入模块
 
@@ -10,15 +15,12 @@
 import List from '@ohos.util.List';  
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 
 ## List
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 List的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 
 **示例：**
@@ -44,6 +48,8 @@ let list = new List();
 add(element: T): boolean
 
 在List尾部插入元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -75,6 +81,8 @@ insert(element: T, index: number): void
 
 在长度范围内任意位置插入指定元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -96,6 +104,8 @@ list.insert(true, 2);
 has(element: T): boolean
 
 判断此List中是否含有该指定元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -123,6 +133,8 @@ let result1 = list.has("Ahfbrgrbgnutfodgorrogorg");
 get(index: number): T
 
 根据下标获取List中的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -156,6 +168,8 @@ getLastIndexOf(element: T): number
 
 查找指定元素最后一次出现的下标值，查找失败返回-1。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -187,6 +201,8 @@ let result = list.getLastIndexOf(2);
 getIndexOf(element: T): number
 
 查找指定元素第一次出现的下标值，查找失败返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -220,6 +236,8 @@ let result = list.getIndexOf(2);
 equal(obj: Object): boolean
 
 比较指定对象与此List是否相等。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -256,6 +274,8 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，返回元素后将其删除。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -286,6 +306,8 @@ remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -315,6 +337,8 @@ replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) 
 thisArg?: Object): void
 
 用户操作List中的元素,用操作后的元素替换原元素并返回操作后的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -354,6 +378,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历List实例对象上的元素以及元素对应的下标。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -389,6 +415,8 @@ sort(comparator: (firstValue: T, secondValue: T) => number): void
 
 对List中的元素进行一个排序操作。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -419,6 +447,8 @@ list.sort((a, b) => b - a);
 getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 根据下标截取List中的一段元素，并返回这一段List实例，包括起始值但不包括终止值。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -452,6 +482,8 @@ clear(): void
 
 清除List中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -468,6 +500,8 @@ list.clear();
 set(index: number, element: T): T
 
 将此 List 中指定位置的元素替换为指定元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -500,6 +534,8 @@ convertToArray(): Array&lt;T&gt;
 
 把当前List实例转换成数组，并返回转换后的数组。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -522,6 +558,8 @@ let result = list.convertToArray();
 isEmpty(): boolean
 
 判断该List是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -546,6 +584,8 @@ getFirst(): T
 
 获取List实例中的第一个元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -569,6 +609,8 @@ getLast(): T
 
 获取List实例中的最后一个元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -590,8 +632,9 @@ let result = list.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

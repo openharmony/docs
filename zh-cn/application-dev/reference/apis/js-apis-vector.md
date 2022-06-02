@@ -3,6 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Vector是一种线性数据结构，底层基于数组实现。当Vector的内存用尽时，会自动分配更大的连续内存区，将原先的元素复制到新的内存区，并释放旧的内存区。使用Vector能够高效快速地访问元素。
+
+Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，但Vector提供了更多操作数组的接口。它们都可以动态调整容量，但Vector每次扩容增加1倍，ArrayList只扩容0.5倍。
+
+**推荐使用场景：** 当数据量大时，一般使用Vector来存取数据。
 
 ## 导入模块
 
@@ -10,15 +15,12 @@
 import Vector from '@ohos.util.Vector';  
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 
 ## Vector
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 Vector的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -43,6 +47,8 @@ let vector = new Vector();
 add(element: T): boolean
 
 在Vector中尾部插入元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -74,6 +80,8 @@ insert(element: T, index: number): void
 
 在长度范围内任意插入指定元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -96,6 +104,8 @@ has(element: T): boolean
 
 判断此Vector中是否含有该指定元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -115,13 +125,15 @@ let vector = new Vector();
 let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-``` 
+```
 
 ### getIndexOf
 
 getIndexOf(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -155,6 +167,8 @@ getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -187,6 +201,8 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，返回元素后将其删除。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -217,6 +233,8 @@ remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -246,6 +264,8 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 从一段范围内删除元素，包括起始值但不包括终止值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -272,6 +292,8 @@ replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&g
 thisArg?: Object): void
 
 用户操作Vector中的元素，用操作后的元素替换原元素并返回操作后的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -311,6 +333,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历Vector实例对象上的元素以及元素对应的下标。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -346,6 +370,8 @@ sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 对Vector中的元素进行一个排序操作。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -377,6 +403,8 @@ vector.sort();
 subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
 根据下标截取Vector中的一段元素，并返回这一段vector实例，包括起始值但不包括终止值。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -411,6 +439,8 @@ clear(): void
 
 清除Vector中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 ```ts
@@ -427,6 +457,8 @@ vector.clear();
 clone(): Vector&lt;T&gt;
 
 克隆一个与Vector相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -451,6 +483,8 @@ getCapacity(): number
 
 获取当前实例的容量大小。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -473,6 +507,8 @@ let result = vector.getCapacity();
 convertToArray(): Array&lt;T&gt;
 
 把当前Vector实例转换成数组，并返回转换后的数组。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -497,6 +533,8 @@ isEmpty(): boolean
 
 判断该Vector是否为空。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -519,6 +557,8 @@ let result = vector.isEmpty();
 increaseCapacityTo(newCapacity: number): void
 
 如果传入的新容量大于或等于Vector中的元素个数，将容量变更为新容量。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -544,6 +584,8 @@ trimToCurrentLength(): void
 
 把容量限制为当前的length大小。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -560,6 +602,8 @@ vector.trimToCurrentLength();
 toString(): string
 
 用","将Vector实例中的元素按顺序拼接成字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -583,6 +627,8 @@ let result = vector.toSting();
 copyToArray(array: Array&lt;T&gt;): void
 
 将Vector实例中的元素按照下标复制到指定数组。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -608,6 +654,8 @@ getFirstElement(): T
 
 获取实例中的第一个元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -631,6 +679,8 @@ getLastElement(): T
 
 获取Vector实例中的最后一个元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -653,6 +703,8 @@ let result = vector.getLastElement();
 getLastIndexFrom(element: T, index: number): number
 
 从指定索引向后搜索，返回该元素的下标索引。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -685,6 +737,8 @@ getIndexFrom(element: T, index: number): number
 
 从指定索引向前搜索，返回该元素的下标索引。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -716,6 +770,8 @@ setLength(newSize: number): void
 
 设置Vector实例的元素个数。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -739,6 +795,8 @@ vector.setLength(2);
 get(index: number): T 
 
 根据下标值获取Vector实例中的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -768,6 +826,8 @@ set(index: number, element: T): T
 
 将此Vector中指定位置的元素替换为指定元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -796,8 +856,9 @@ set(index: number, element: T): T
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 | 类型 | 说明 |

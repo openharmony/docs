@@ -3,6 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Stack基于数组的数据结构实现，特点是先进后出，只能在一端进行数据的插入和删除。
+
+Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能在一端删除，另一端插入，而Stack都在一端操作。
+
+**推荐使用场景：** 一般符合先进后出的场景可以使用Stack。
 
 ## 导入模块
 
@@ -10,15 +15,14 @@
 import Stack from '@ohos.util.Stack';  
 ```
 
-## 系统能力
 
-SystemCapability.Utils.Lang
 
 
 ## Stack
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,6 +34,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 Stack的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -43,6 +49,8 @@ let stack = new Stack();
 push(item: T): T
 
 在栈顶插入元素，并返回该元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -74,6 +82,8 @@ pop(): T
 
 删除栈顶元素并返回该删除元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -98,6 +108,8 @@ peek(): T
 
 获取并返回栈顶元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -120,6 +132,8 @@ let result = stack.peek();
 locate(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -150,6 +164,8 @@ forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -185,6 +201,8 @@ isEmpty(): boolean
 
 判断该栈是否为空。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -206,8 +224,9 @@ let result = stack.isEmpty();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
