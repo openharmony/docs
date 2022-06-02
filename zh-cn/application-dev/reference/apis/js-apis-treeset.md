@@ -15,14 +15,11 @@ TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放�
 import TreeSet from '@ohos.util.TreeSet';  
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## TreeSet
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -34,6 +31,8 @@ SystemCapability.Utils.Lang
 constructor(comparator?:(firstValue: T, secondValue: T) => boolean)
 
 TreeSet的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -54,6 +53,8 @@ isEmpty(): boolean
 
 判断该容器是否为空。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -73,6 +74,8 @@ let result = treeSet.isEmpty();
 has(value: T): boolean
 
 判断此容器中是否含有该指定元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -102,6 +105,8 @@ getFirstValue(): T
 
 获取容器中排序第一的数据。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -124,6 +129,8 @@ getLastValue(): T
 
 获取容器中排序最后的数据。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -145,6 +152,8 @@ let result = treeSet.getLastValue();
 add(value: T): boolean
 
 向容器中添加一组数据。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -171,6 +180,8 @@ let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 remove(value: T): boolean
 
 删除指定的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -199,6 +210,8 @@ let result = treeSet.remove("sdfs");
 getLowerValue(key: T): T
 
 获取容器中比传入元素排序靠前一位的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -229,6 +242,8 @@ getHigherValue(key: T): T
 
 获取容器中比传入元素排序靠后一位的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -258,6 +273,8 @@ popFirst(): T
 
 删除容器中排序最前的数据。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -279,6 +296,8 @@ let result = treeSet.popFirst();
 popLast(): T
 
 删除容器中排序最后的数据。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -302,6 +321,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -317,6 +338,8 @@ treeSet.clear();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -344,6 +367,8 @@ while(temp != undefined) {
 forEach(callbackfn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -377,6 +402,8 @@ entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -403,8 +430,9 @@ while(temp != undefined) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
