@@ -17,14 +17,11 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 import HashMap from '@ohos.util.HashMap'; 
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## HashMap
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -36,6 +33,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 HashMap的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -49,6 +48,8 @@ let hashMap = new HashMap();
 isEmpty(): boolean
 
 判断该HashMap是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -69,6 +70,8 @@ let result = hashMap.isEmpty();
 hasKey(key: K): boolean
 
 判断此HashMap中是否含有该指定key。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -98,6 +101,8 @@ hasValue(value: V): boolean
 
 判断此HashMap中是否含有该指定value。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -125,6 +130,8 @@ let result1 = hashMap.hasValue(123);
 get(key: K): V
 
 获取指定key所对应的value。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -154,6 +161,8 @@ setAll(map: HashMap<K, V>): void
 
 将一个HashMap中的所有元素组添加到另一个hashMap中。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -176,6 +185,8 @@ hashMap.setAll(newHashMap);
 set(key: K, value: V): Object
 
 向HashMap中添加一组数据。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -203,6 +214,8 @@ let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 remove(key: K): V
 
 删除指定key所对应元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -232,6 +245,8 @@ clear(): void
 
 清除HashMap中的所有元素,并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -247,6 +262,8 @@ hashMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 返回包含此映射中包含的键名的新迭代器对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -275,6 +292,8 @@ values(): IterableIterator&lt;V&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -301,6 +320,8 @@ while(temp != undefined) {
 replace(key: K, newValue: V): boolean
 
 对HashMap中一组数据进行更新（替换）。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -329,6 +350,8 @@ let result = hashMap.replace("sdfs", 357);
 forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -362,6 +385,8 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -389,6 +414,8 @@ while(temp != undefined) {
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
