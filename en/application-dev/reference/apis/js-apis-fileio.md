@@ -1,14 +1,9 @@
 # File Management
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-This module provides common file storage functions. It provides the following JavaScript I/O APIs, including:
-
-- Basic APIs for file management
-- Basic APIs for directory management
-- Statistical APIs for obtaining file information
-- Stream APIs for reading and writing files
+This module provides file storage functions. It provides JS I/O APIs, including basic file management APIs, basic directory management APIs, statistical APIs for obtaining file information, and streaming APIs for reading and writing files.
 
 ## Modules to Import
 
@@ -19,11 +14,11 @@ import fileio from '@ohos.fileio';
 
 ## Guidelines
 
-Before using this module to perform operations on a file or directory, obtain the absolute path of the file or directory. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
+Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
 
-Absolute file or directory path = Application directory + File name or directory name
+Application sandbox path of a file or directory = Application directory + File name or directory name
 
-For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the absolute path of the file is as follows:
+For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the application sandbox path of the file is as follows:
 
 ```js
 let path = dir + "/xxx.txt";
@@ -48,9 +43,9 @@ Asynchronously obtains file information. This API uses a promise to return the r
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the target file.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
 
 **Return value**
 
@@ -77,10 +72,10 @@ Asynchronously obtains file information. This API uses a callback to return the 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                                | Mandatory  | Description             |
-  | -------- | ---------------------------------- | ---- | --------------- |
-  | path     | string                             | Yes   | Absolute path of the target file.    |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked to return the file information obtained.|
+| Name  | Type                              | Mandatory| Description                          |
+| -------- | ---------------------------------- | ---- | ------------------------------ |
+| path     | string                             | Yes  | Application sandbox path of the target file.    |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the file information obtained.|
 
 **Example**
   ```js
@@ -99,9 +94,9 @@ Synchronously obtains file information.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the target file.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
 
 
 **Return value**
@@ -125,9 +120,9 @@ Asynchronously opens a directory. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description           |
-  | ---- | ------ | ---- | ------------- |
-  | path | string | Yes   | Absolute path of the directory to open.|
+| Name| Type  | Mandatory| Description                          |
+| ------ | ------ | ---- | ------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory to open.|
 
 **Return value**
   | Type                        | Description      |
@@ -154,10 +149,10 @@ Asynchronously opens a directory. This API uses a callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                              | Mandatory  | Description            |
-  | -------- | -------------------------------- | ---- | -------------- |
-  | path     | string                           | Yes   | Absolute path of the directory to open. |
-  | callback | AsyncCallback&lt;[Dir](#dir)&gt; | Yes   | Callback invoked when the directory is open asynchronously.|
+| Name  | Type                            | Mandatory| Description                          |
+| -------- | -------------------------------- | ---- | ------------------------------ |
+| path     | string                           | Yes  | Application sandbox path of the directory to open.|
+| callback | AsyncCallback&lt;[Dir](#dir)&gt; | Yes  | Callback invoked when the directory is open asynchronously.  |
 
 **Example**
   ```js
@@ -179,9 +174,9 @@ Synchronously opens a directory.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description           |
-  | ---- | ------ | ---- | ------------- |
-  | path | string | Yes   | Absolute path of the directory to open.|
+| Name| Type  | Mandatory| Description                          |
+| ------ | ------ | ---- | ------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory to open.|
 
 **Return value**
   | Type         | Description      |
@@ -206,10 +201,10 @@ Asynchronously checks whether the current process can access a file. This API us
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                             |
-  | mode | number | No   | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 **Return value**
   | Type                 | Description                          |
@@ -235,11 +230,11 @@ Asynchronously checks whether the current process can access a file. This API us
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description                                      |
-  | -------- | ------------------------- | ---- | ---------------------------------------- |
-  | path     | string                    | Yes   | Absolute path of the target file.                             |
-  | mode     | number                    | No   | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is asynchronously checked.                  |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the target file.                                  |
+| mode     | number                    | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously checked.                |
 
 **Example**
   ```js
@@ -258,10 +253,10 @@ Synchronously checks whether the current process can access the specified file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                             |
-  | mode | number | No   | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 **Example**
   ```js
@@ -472,10 +467,10 @@ Asynchronously creates a directory. This API uses a promise to return the result
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the directory to create.                             |
-  | mode | number | No   | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory to create.                                  |
+| mode   | number | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
   | Type                 | Description                          |
@@ -501,11 +496,11 @@ Asynchronously creates a directory. This API uses a callback to return the resul
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description                                      |
-  | -------- | ------------------------- | ---- | ---------------------------------------- |
-  | path     | string                    | Yes   | Absolute path of the directory to create.                             |
-  | mode     | number                    | No   | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the directory is created asynchronously.                        |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the directory to create.                                  |
+| mode     | number                    | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is created asynchronously.                            |
 
 **Example**
   ```js
@@ -524,10 +519,10 @@ Synchronously creates a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the directory to create.                             |
-  | mode | number | No   | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the directory to create.                                  |
+| mode   | number | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Example**
   ```js
@@ -544,11 +539,11 @@ Asynchronously opens a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name  | Type    | Mandatory  | Description                                      |
-  | ----- | ------ | ---- | ---------------------------------------- |
-  | path  | string | Yes   | Absolute path of the target file.                             |
-  | flags | number | No   | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode  | number | No   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+| mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
   | Type                   | Description         |
@@ -574,12 +569,12 @@ Asynchronously opens a file. This API uses a callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                             | Mandatory  | Description                                      |
-  | -------- | ------------------------------- | ---- | ---------------------------------------- |
-  | path     | string                          | Yes   | Absolute path of the target file.                             |
-  | flags    | number                          | Yes   | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode     | number                          | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes   | Callback invoked when the file is open asynchronously.                            |
+| Name  | Type                           | Mandatory| Description                                                        |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                          | Yes  | Application sandbox path of the target file.                                  |
+| flags    | number                          | Yes  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+| mode     | number                          | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| callback | AsyncCallback&nbsp;&lt;void&gt; | Yes  | Callback invoked when the file is open asynchronously.                                    |
 
 **Example**
   ```js
@@ -598,11 +593,11 @@ Synchronously opens a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name  | Type    | Mandatory  | Description                                      |
-  | ----- | ------ | ---- | ---------------------------------------- |
-  | path  | string | Yes   | Absolute path of the target file.                             |
-  | flags | number | No   | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br/>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
-  | mode  | number | No   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.<br>The file permissions on newly created files are affected by umask, which is set as the process starts. Currently, the modification of umask is not open.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| flags  | number | No  | Option for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>-&nbsp;**0o0**: Open the file in read-only mode.<br>-&nbsp;**0o1**: Open the file in write-only mode.<br>-&nbsp;**0o2**: Open the file in read/write mode.<br>In addition, you can specify the following options, separated using a bitwise OR operator (&#124;). By default, no additional option is specified.<br>-&nbsp;**0o100**: If the file does not exist, create it. If you use this option, you must also specify **mode**.<br>-&nbsp;**0o200**: If **0o100** is added and the file already exists, throw an exception.<br>-&nbsp;**0o1000**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>-&nbsp;**0o2000**: Open the file in append mode. New data will be appended to the file (added to the end of the file).<br>-&nbsp;**0o4000**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>-&nbsp;**0o200000**: If **path** points to a directory, throw an exception.<br><br>-&nbsp;**0o400000**: If **path** points to a symbolic link, throw an exception.<br>-&nbsp;**0o4010000**: Open the file in synchronous I/O mode.|
+| mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.<br>The file permissions on newly created files are affected by umask, which is set as the process starts. Currently, the modification of umask is not open.|
 
 **Return value**
   | Type    | Description         |
@@ -727,9 +722,9 @@ Asynchronously deletes a directory. This API uses a promise to return the result
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the directory to delete.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the directory to delete.|
 
 **Return value**
   | Type                 | Description                          |
@@ -755,10 +750,10 @@ Asynchronously deletes a directory. This API uses a callback to return the resul
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description          |
-  | -------- | ------------------------- | ---- | ------------ |
-  | path     | string                    | Yes   | Absolute path of the directory to delete. |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the directory is deleted asynchronously.|
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| path     | string                    | Yes  | Application sandbox path of the directory to delete.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is deleted asynchronously.  |
 
 **Example**
   ```js
@@ -778,9 +773,9 @@ Synchronously deletes a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the directory to delete.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the directory to delete.|
 
 **Example**
   ```js
@@ -797,9 +792,9 @@ Asynchronously deletes a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the file to delete.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the file to delete.|
 
 **Return value**
   | Type                 | Description                          |
@@ -825,10 +820,10 @@ Asynchronously deletes a file. This API uses a callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description          |
-  | -------- | ------------------------- | ---- | ------------ |
-  | path     | string                    | Yes   | Absolute path of the file to delete. |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is deleted asynchronously.|
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| path     | string                    | Yes  | Application sandbox path of the file to delete.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is deleted asynchronously.  |
 
 **Example**
   ```js
@@ -847,9 +842,9 @@ Synchronously deletes a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the file to delete.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the file to delete.|
 
 **Example**
   ```js
@@ -966,10 +961,10 @@ Asynchronously calculates the hash value of a file. This API uses a promise to r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name      | Type    | Mandatory  | Description                                      |
-  | --------- | ------ | ---- | ---------------------------------------- |
-  | path      | string | Yes   | Absolute path of the target file.                          |
-  | algorithm | string | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
+| Name   | Type  | Mandatory| Description                                                        |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| path      | string | Yes  | Application sandbox path of the target file.                            |
+| algorithm | string | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
 
 **Return value**
   | Type                   | Description                        |
@@ -995,11 +990,11 @@ Asynchronously calculates the hash value of a file. This API uses a callback to 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name      | Type                         | Mandatory  | Description                                      |
-  | --------- | --------------------------- | ---- | ---------------------------------------- |
-  | path      | string                      | Yes   | Absolute path of the target file.                          |
-  | algorithm | string                      | Yes   | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
-  | callback  | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+| Name   | Type                       | Mandatory| Description                                                        |
+| --------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| path      | string                      | Yes  | Application sandbox path of the target file.                            |
+| algorithm | string                      | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
+| callback  | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Example**
   ```js
@@ -1020,10 +1015,10 @@ Asynchronously changes the file permissions based on its path. This API uses a p
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                           |
-  | mode | number | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                              |
+| mode   | number | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
   | Type                 | Description                          |
@@ -1049,11 +1044,11 @@ Asynchronously changes the file permissions based on its path. This API uses a c
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description                                      |
-  | -------- | ------------------------- | ---- | ---------------------------------------- |
-  | path     | string                    | Yes   | Absolute path of the target file.                           |
-  | mode     | number                    | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file permissions are changed asynchronously.                          |
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the target file.                              |
+| mode     | number                    | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file permissions are changed asynchronously.                                |
 
 **Example**
   ```js
@@ -1072,10 +1067,10 @@ Synchronously changes the file permissions based on its path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                           |
-  | mode | number | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                              |
+| mode   | number | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Example**
   ```js
@@ -1087,7 +1082,7 @@ Synchronously changes the file permissions based on its path.
 
 fstat(fd: number): Promise&lt;Stat&gt;
 
-Asynchronously obtains file status information based on the file descriptor. This API uses a promise to return the result.
+Asynchronously obtains file information based on the file descriptor. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1099,7 +1094,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 **Return value**
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file status information obtained.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
 
 **Example**
   ```js
@@ -1115,7 +1110,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 
 fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
-Asynchronously obtains file status information based on the file descriptor. This API uses a callback to return the result.
+Asynchronously obtains file information based on the file descriptor. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1123,7 +1118,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
   | Name     | Type                                | Mandatory  | Description              |
   | -------- | ---------------------------------- | ---- | ---------------- |
   | fd       | number                             | Yes   | File descriptor of the target file.    |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked when the file status information is obtained asynchronously.|
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked to return the file information obtained.|
 
 **Example**
   ```js
@@ -1138,7 +1133,7 @@ Asynchronously obtains file status information based on the file descriptor. Thi
 
 fstatSync(fd: number): Stat
 
-Synchronously obtains file status information based on the file descriptor.
+Synchronously obtains file information based on the file descriptor.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1241,10 +1236,10 @@ Asynchronously truncates a file based on its path. This API uses a promise to re
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description              |
-  | ---- | ------ | ---- | ---------------- |
-  | path | string | Yes   | Absolute path of the file to truncate.     |
-  | len  | number | Yes   | File length, in bytes, after truncation.|
+| Name| Type  | Mandatory| Description                            |
+| ------ | ------ | ---- | -------------------------------- |
+| path   | string | Yes  | Application sandbox path of the file to truncate.      |
+| len    | number | Yes  | File length, in bytes, after truncation.|
 
 **Return value**
   | Type                 | Description                          |
@@ -1270,11 +1265,11 @@ Asynchronously truncates a file based on its path. This API uses a callback to r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description              |
-  | -------- | ------------------------- | ---- | ---------------- |
-  | path     | string                    | Yes   | Absolute path of the file to truncate.     |
-  | len      | number                    | Yes   | File length, in bytes, after truncation.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is truncated asynchronously. |
+| Name  | Type                     | Mandatory| Description                            |
+| -------- | ------------------------- | ---- | -------------------------------- |
+| path     | string                    | Yes  | Application sandbox path of the file to truncate.      |
+| len      | number                    | Yes  | File length, in bytes, after truncation.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is truncated asynchronously.  |
 
 **Example**
   ```js
@@ -1293,10 +1288,10 @@ Synchronously truncates a file based on the file path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description              |
-  | ---- | ------ | ---- | ---------------- |
-  | path | string | Yes   | Absolute path of the file to truncate.     |
-  | len  | number | No   | File length, in bytes, after truncation.|
+| Name| Type  | Mandatory| Description                            |
+| ------ | ------ | ---- | -------------------------------- |
+| path   | string | Yes  | Application sandbox path of the file to be truncate.      |
+| len    | number | No  | File length, in bytes, after truncation.|
 
 **Example**
   ```js
@@ -1317,10 +1312,10 @@ Asynchronously reads the text of a file. This API uses a promise to return the r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type    | Mandatory  | Description                                      |
-  | -------- | ------ | ---- | ---------------------------------------- |
-  | filePath | string | Yes   | Absolute path of the file to read.                             |
-  | options  | Object | No   | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | Yes  | Application sandbox path of the file to read.                                  |
+| options  | Object | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
   | Type                   | Description        |
@@ -1350,11 +1345,11 @@ Asynchronously reads the text of a file. This API uses a callback to return the 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                         | Mandatory  | Description                                      |
-  | -------- | --------------------------- | ---- | ---------------------------------------- |
-  | filePath | string                      | Yes   | Absolute path of the file to read.                             |
-  | options  | Object                      | No   | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
-  | callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked when the file is read asynchronously.                      |
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| filePath | string                      | Yes  | Application sandbox path of the file to read.                                  |
+| options  | Object                      | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked when the file is read asynchronously.                        |
 
 **Example**
   ```js
@@ -1377,10 +1372,10 @@ Synchronously reads the text of a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type    | Mandatory  | Description                                      |
-  | -------- | ------ | ---- | ---------------------------------------- |
-  | filePath | string | Yes   | Absolute path of the file to read.                             |
-  | options  | Object | No   | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filePath | string | Yes  | Application sandbox path of the file to be read.                                  |
+| options  | Object | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
   | Type  | Description                |
@@ -1397,19 +1392,19 @@ Synchronously reads the text of a file.
 
 lstat(path: string): Promise&lt;Stat&gt;
 
-Asynchronously obtains link status information. This API uses a promise to return the result.
+Asynchronously obtains link information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description               |
-  | ---- | ------ | ---- | ----------------- |
-  | path | string | Yes   | Absolute path of the target file, pointing to the link status.|
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file, pointing to the link.|
 
 **Return value**
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link status obtained.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link information obtained.|
 
 **Example**
   ```js
@@ -1425,15 +1420,15 @@ Asynchronously obtains link status information. This API uses a promise to retur
 
 lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
-Asynchronously obtains link status information. This API uses a callback to return the result.
+Asynchronously obtains link information. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                                | Mandatory  | Description               |
-  | -------- | ---------------------------------- | ---- | ----------------- |
-  | path     | string                             | Yes   | Absolute path of the target file, pointing to the link status.|
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked when the link status information is obtained asynchronously. |
+| Name  | Type                              | Mandatory| Description                                  |
+| -------- | ---------------------------------- | ---- | -------------------------------------- |
+| path     | string                             | Yes  | Application sandbox path of the target file, pointing to the link.|
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the link information obtained.      |
 
 **Example**
   ```js
@@ -1447,19 +1442,19 @@ Asynchronously obtains link status information. This API uses a callback to retu
 
 lstatSync(path:string): Stat
 
-Synchronously obtains link status information.
+Synchronously obtains the link information.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description               |
-  | ---- | ------ | ---- | ----------------- |
-  | path | string | Yes   | Absolute path of the target file, pointing to the link status.|
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file, pointing to the link.|
 
 **Return value**
   | Type           | Description        |
   | ------------- | ---------- |
-  | [Stat](#stat) | Link status obtained.|
+  | [Stat](#stat) | Link information obtained.|
 
 **Example**
   ```js
@@ -1541,10 +1536,10 @@ Asynchronously renames a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type  | Mandatory| Description                    |
-  | ------- | ------ | ---- | ------------------------ |
-  | oldPath | string | Yes  | Absolute path of the file to rename.|
-  | newPath | String | Yes  | Absolute path of the file renamed.  |
+| Name | Type  | Mandatory| Description                        |
+| ------- | ------ | ---- | ---------------------------- |
+| oldPath | string | Yes  | Application sandbox path of the file to rename.|
+| newPath | String | Yes  | Application sandbox path of the file renamed.  |
 
 **Return value**
   | Type                 | Description                          |
@@ -1570,11 +1565,11 @@ Asynchronously renames a file. This API uses a callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description           |
-  | -------- | ------------------------- | ---- | ------------- |
-  | oldPath  | string                    | Yes   | Absolute path of the file to rename. |
-  | newPath  | String                    | Yes   | Absolute path of the file renamed.  |
-  | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is asynchronously renamed.|
+| Name  | Type                     | Mandatory| Description                        |
+| -------- | ------------------------- | ---- | ---------------------------- |
+| oldPath  | string                    | Yes  | Application sandbox path of the file to rename.|
+| newPath  | String                    | Yes  | Application sandbox path of the file renamed. |
+| Callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously renamed.  |
 
 **Example**
   ```js
@@ -1592,10 +1587,10 @@ Synchronously renames a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name    | Type    | Mandatory  | Description          |
-  | ------- | ------ | ---- | ------------ |
-  | oldPath | string | Yes   | Absolute path of the file to rename.|
-  | newPath | String | Yes   | Absolute path of the file renamed. |
+| Name | Type  | Mandatory| Description                        |
+| ------- | ------ | ---- | ---------------------------- |
+| oldPath | string | Yes  | Application sandbox path of the file to rename.|
+| newPath | String | Yes  | Application sandbox path of the file renamed.  |
 
 **Example**
   ```js
@@ -1750,10 +1745,10 @@ Asynchronously creates a symbolic link based on a path. This API uses a promise 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name    | Type    | Mandatory  | Description          |
-  | ------- | ------ | ---- | ------------ |
-  | target  | string | Yes   | Absolute path of the symbolic link.  |
-  | srcPath | string | Yes   | Absolute path of the referenced file or directory contained in the symbolic link.|
+| Name | Type  | Mandatory| Description                        |
+| ------- | ------ | ---- | ---------------------------- |
+| target  | string | Yes  | Application sandbox path of the symbolic link.    |
+| srcPath | string | Yes  | Application sandbox path of the referenced file or directory contained in the symbolic link.|
 
 **Return value**
   | Type                 | Description                          |
@@ -1779,11 +1774,11 @@ Asynchronously creates a symbolic link based on a path. This API uses a callback
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description              |
-  | -------- | ------------------------- | ---- | ---------------- |
-  | target   | string                    | Yes   | Absolute path of the symbolic link.      |
-  | srcPath  | string                    | Yes   | Absolute path of the referenced file or directory contained in the symbolic link.    |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the symbolic link is created asynchronously.|
+| Name  | Type                     | Mandatory| Description                            |
+| -------- | ------------------------- | ---- | -------------------------------- |
+| target   | string                    | Yes  | Application sandbox path of the symbolic link.        |
+| srcPath  | string                    | Yes  | Application sandbox path of the referenced file or directory contained in the symbolic link.    |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the symbolic link is created asynchronously.|
 
 **Example**
   ```js
@@ -1802,10 +1797,10 @@ Synchronously creates a symbolic link based on a specified path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name    | Type    | Mandatory  | Description          |
-  | ------- | ------ | ---- | ------------ |
-  | target  | string | Yes   | Absolute path of the symbolic link.  |
-  | srcPath | string | Yes   | Absolute path of the referenced file or directory contained in the symbolic link.|
+| Name | Type  | Mandatory| Description                        |
+| ------- | ------ | ---- | ---------------------------- |
+| target  | string | Yes  | Application sandbox path of the symbolic link.    |
+| srcPath | string | Yes  | Application sandbox path the referenced file or directory contained in the symbolic link.|
 
 **Example**
   ```js
@@ -1822,11 +1817,11 @@ Asynchronously changes the file owner based on its path. This API uses a promise
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description             |
-  | ---- | ------ | ---- | --------------- |
-  | path | string | Yes   | Absolute path of the target file.    |
-  | uid  | number | Yes   | New user ID (UID). |
-  | gid  | number | Yes   | New group ID (GID).|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
+| uid    | number | Yes  | New user ID (UID).       |
+| gid    | number | Yes  | New group ID (GID).      |
 
 **Return value**
   | Type                 | Description                          |
@@ -1853,12 +1848,12 @@ Asynchronously changes the file owner based on its path. This API uses a callbac
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description             |
-  | -------- | ------------------------- | ---- | --------------- |
-  | path     | string                    | Yes   | Absolute path of the target file.    |
-  | uid      | number                    | Yes   | New UID.         |
-  | gid      | number                    | Yes   | New GID.         |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file owner is changed asynchronously.|
+| Name  | Type                     | Mandatory| Description                          |
+| -------- | ------------------------- | ---- | ------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the target file.    |
+| uid      | number                    | Yes  | New UID.                     |
+| gid      | number                    | Yes  | New GID.                     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file owner is changed asynchronously.|
 
 **Example**
   ```js
@@ -1878,11 +1873,11 @@ Synchronously changes the file owner based on its path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the target file.|
-  | uid  | number | Yes   | New UID.     |
-  | gid  | number | Yes   | New GID.     |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
+| uid    | number | Yes  | New UID.                 |
+| gid    | number | Yes  | New GID.                 |
 
 **Example**
   ```js
@@ -2046,10 +2041,10 @@ Asynchronously opens a stream based on the file path. This API uses a promise to
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                             |
-  | mode | string | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| mode   | string | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
   | Type                               | Description       |
@@ -2075,11 +2070,11 @@ Asynchronously opens a stream based on the file path. This API uses a callback t
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                                     | Mandatory  | Description                                      |
-  | -------- | --------------------------------------- | ---- | ---------------------------------------- |
-  | path     | string                                  | Yes   | Absolute path of the target file.                             |
-  | mode     | string                                  | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&lt;[Stream](#stream7)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                                  | Yes  | Application sandbox path of the target file.                                  |
+| mode     | string                                  | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| callback | AsyncCallback&lt;[Stream](#stream7)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
 
 **Example**
   ```js
@@ -2098,10 +2093,10 @@ Synchronously opens a stream based on the file path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path | string | Yes   | Absolute path of the target file.                             |
-  | mode | string | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the target file.                                  |
+| mode   | string | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
   | Name               | Description       |
@@ -2278,11 +2273,11 @@ Asynchronously changes the file owner based on the file path, changes the owner 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the target file.|
-  | uid  | number | Yes   | New UID.     |
-  | gid  | number | Yes   | New GID.     |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
+| uid    | number | Yes  | New UID.                 |
+| gid    | number | Yes  | New GID.                 |
 
 **Return value**
   | Type                 | Description                          |
@@ -2309,12 +2304,12 @@ Asynchronously changes the file owner based on the file path, changes the owner 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                       | Mandatory  | Description             |
-  | -------- | ------------------------- | ---- | --------------- |
-  | path     | string                    | Yes   | Absolute path of the target file.    |
-  | uid      | number                    | Yes   | New UID.         |
-  | gid      | number                    | Yes   | New GID.         |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file owner is changed asynchronously.|
+| Name  | Type                     | Mandatory| Description                          |
+| -------- | ------------------------- | ---- | ------------------------------ |
+| path     | string                    | Yes  | Application sandbox path of the target file.    |
+| uid      | number                    | Yes  | New UID.                     |
+| gid      | number                    | Yes  | New GID.                     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file owner is changed asynchronously.|
 
 **Example**
   ```js
@@ -2334,11 +2329,11 @@ Synchronously changes the file owner based on the file path and changes the owne
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name | Type    | Mandatory  | Description         |
-  | ---- | ------ | ---- | ----------- |
-  | path | string | Yes   | Absolute path of the target file.|
-  | uid  | number | Yes   | New UID.     |
-  | gid  | number | Yes   | New GID.     |
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| path   | string | Yes  | Application sandbox path of the target file.|
+| uid    | number | Yes  | New UID.                 |
+| gid    | number | Yes  | New GID.                 |
 
 **Example**
   ```js
@@ -2356,11 +2351,11 @@ Asynchronously listens for the changes of a file or directory. This API uses a c
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
-  | Name     | Type                               | Mandatory  | Description                                      |
-  | -------- | --------------------------------- | ---- | ---------------------------------------- |
-  | filename | string                            | Yes   | Absolute path of the target file.                             |
-  | events   | Number                            | Yes   | -&nbsp;**1**: The file or directory is renamed.<br>-&nbsp;**2**: The file or directory is modified.<br>-&nbsp;**3**: The file or directory is modified and renamed.|
-  | callback | AsyncCallback&lt;number&nbsp;&gt; | Yes   | Called each time a change is detected.                        |
+| Name  | Type                             | Mandatory| Description                                                        |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| filename | string                            | Yes  | Application sandbox path of the target file.                                  |
+| events   | Number                            | Yes  | -&nbsp;**1**: The file or directory is renamed.<br>-&nbsp;**2**: The file or directory is modified.<br>-&nbsp;**3**: The file or directory is modified and renamed.|
+| callback | AsyncCallback&lt;number&nbsp;&gt; | Yes  | Called each time a change is detected.                            |
 
 **Return value**
   | Name                 | Description        |
