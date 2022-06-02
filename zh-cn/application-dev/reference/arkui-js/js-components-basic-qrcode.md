@@ -1,7 +1,7 @@
 # qrcode
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 生成并显示二维码。
 
@@ -19,26 +19,26 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| value | string | - | 是 | 用来生成二维码的内容。 |
-| type | string | rect | 否 | 二维码类型。可能选项有：<br/>-&nbsp;rect：矩形二维码。<br/>-&nbsp;circle：圆形二维码。 |
+| 名称    | 类型     | 默认值  | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
+| value | string | -    | 是    | 用来生成二维码的内容。                              |
+| type  | string | rect | 否    | 二维码类型。可能选项有：<br/>-&nbsp;rect：矩形二维码。<br/>-&nbsp;circle：圆形二维码。 |
 
 
 ## 样式
 
 除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| color | &lt;color&gt; | \#000000 | 否 | 二维码颜色。 |
-| background-color | &lt;color&gt; | \#ffffff | 否 | 二维码背景颜色。 |
+| 名称               | 类型            | 默认值      | 必填   | 描述       |
+| ---------------- | ------------- | -------- | ---- | -------- |
+| color            | &lt;color&gt; | \#000000 | 否    | 二维码颜色。   |
+| background-color | &lt;color&gt; | \#ffffff | 否    | 二维码背景颜色。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - width和height不一致时，取二者较小值作为二维码的边长。且最终生成的二维码居中显示。
+>  **说明：**
+>  - width和height不一致时，取二者较小值作为二维码的边长。且最终生成的二维码居中显示。
 >
-> 
-> - width和height只设置一个时，取设置的值作为二维码的边长。都不设置时，使用200px作为默认边长。
+>
+>  - width和height只设置一个时，取设置的值作为二维码的边长。都不设置时，使用200px作为默认边长。
 >
 
 
@@ -53,7 +53,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
@@ -71,7 +71,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -90,7 +90,7 @@ select{
 }
 ```
 
-```
+```js
 /* index.js */
 export default {
   data: {

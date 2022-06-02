@@ -1,7 +1,7 @@
 # OffscreenCanvas对象
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 可以离屏渲染的canvas对象。
@@ -9,9 +9,9 @@
 
 ## 属性
 
-| 属性 | 类型 | 描述 |
-| -------- | -------- | -------- |
-| width | number | offscreen&nbsp;canvas对象的宽度。 |
+| 属性     | 类型     | 描述                          |
+| ------ | ------ | --------------------------- |
+| width  | number | offscreen&nbsp;canvas对象的宽度。 |
 | height | number | offscreen&nbsp;canvas对象的高度。 |
 
 
@@ -24,16 +24,16 @@ getContext(type: string, options?: CanvasRenderingContext2DSettings): OffscreenC
 
 获取offscreen canvas绘图上下文，返回值为2D绘制对象。
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 描述 |
-  | -------- | -------- | -------- | -------- |
-  | contextId | string | 是 | 仅支持&nbsp;'2d'。 |
-  | options | [CanvasRenderingContext2DSettings](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 否 | 用于在离屏画布上进行绘制矩形、文本、图片等。 |
+**参数：** 
+| 参数名       | 参数类型                                     | 必填   | 描述                     |
+| --------- | ---------------------------------------- | ---- | ---------------------- |
+| contextId | string                                   | 是    | 仅支持&nbsp;'2d'。         |
+| options   | [CanvasRenderingContext2DSettings](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 否    | 用于在离屏画布上进行绘制矩形、文本、图片等。 |
 
-- 返回值
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
+**返回值：**  
+| 类型                                       | 说明                          |
+| ---------------------------------------- | --------------------------- |
+| [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
 
 
 ### toDataURL
@@ -42,16 +42,16 @@ toDataURL(type?: string, quality?:number):
 
 生成一个包含图片展示的URL。
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 描述 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 否 | 可选参数，用于指定图像格式，默认格式为image/png。 |
-  | quality | number | 否 | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
+**参数：**  
+| 参数名     | 参数类型   | 必填   | 描述                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| type    | string | 否    | 可选参数，用于指定图像格式，默认格式为image/png。            |
+| quality | number | 否    | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
 
-- 返回值
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | string | 图像的URL地址。 |
+**返回值：**  
+| 类型     | 说明        |
+| ------ | --------- |
+| string | 图像的URL地址。 |
 
 
 ### transferToImageBitmap
@@ -60,22 +60,22 @@ transferToImageBitmap(): ImageBitmap
 
 在离屏画布最近渲染的图像上创建一个ImageBitmap对象。
 
-- 返回值
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | [ImageBitmap](../arkui-js/js-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
+**返回值：**  
+| 类型                                       | 说明              |
+| ---------------------------------------- | --------------- |
+| [ImageBitmap](../arkui-js/js-components-canvas-imagebitmap.md) | 存储离屏画布上渲染的像素数据。 |
 
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvasId" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
 </div>
 ```
 
-```
+```js
 //xxx.js
 export default {
   onShow() {
@@ -93,3 +93,4 @@ export default {
   }
 }
 ```
+

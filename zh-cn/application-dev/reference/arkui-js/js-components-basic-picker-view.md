@@ -1,7 +1,7 @@
 # picker-view
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 嵌入页面的滑动选择器。
 
@@ -23,7 +23,7 @@
 
 | 名称              | 类型     | 默认值  | 必填   | 描述                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
-| range           | Array  | -    | 否    | 设置文本选择器的取值范围。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：["15",&nbsp;"20",&nbsp;"25"]。 |
+| range           | Array  | -    | 否    | 设置文本选择器的取值范围。<br/>使用时需要使用数据绑定的方式`range ={{data}}`，js中声明相应变量`data：["15","20","25"]`。 |
 | selected        | string | 0    | 否    | 设置文本选择器的默认选择值，该值需要为range的索引。             |
 | indicatorprefix | string | -    | 否    | 文本选择器选定值增加的前缀字段。                         |
 | indicatorsuffix | string | -    | 否    | 文本选择器选定值增加的后缀字段。                         |
@@ -34,7 +34,7 @@
 | ------------- | ------- | ----------------------------------- | ---- | ---------------------------------------- |
 | containsecond | boolean | false                               | 否    | 时间选择器是否包含秒。                              |
 | selected      | string  | 当前时间                                | 否    | 设置时间选择器的默认取值，格式为&nbsp;HH:mm；<br/>当包含秒时，格式为HH:mm:ss。 |
-| hours         | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
+| hours         | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
 
 日期选择器：type=date
 
@@ -51,7 +51,7 @@
 | 名称                 | 类型      | 默认值                                 | 必填   | 描述                                       |
 | ------------------ | ------- | ----------------------------------- | ---- | ---------------------------------------- |
 | selected           | string  | 当前日期时间                              | 否    | 设置日期时间选择器的默认取值，格式有两种，为月日时分MM-DD-HH-mm或者年月日时分YYYY-MM-DD-HH-mm，不设置年时，默认使用当前年，该取值表示选择器弹窗时弹窗界面的默认选择值。 |
-| hours              | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
+| hours              | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
 | lunar<sup>5+</sup> | boolean | false                               | 否    | 设置日期时间选择器弹窗界面是否为农历展示。                    |
 | lunarswitch        | boolean | false                               | 否    | 设置日期时间选择器是否显示农历开关，显示农历开关时，可以在弹窗界面展现农历的开关由于公历和农历切换。在设置显示农历时，开关状态为开，当设置不显示农历时，开关状态为关。 |
 
@@ -60,7 +60,7 @@
 | 名称       | 类型      | 默认值       | 必填   | 描述                                       |
 | -------- | ------- | --------- | ---- | ---------------------------------------- |
 | columns  | number  | -         | 是    | 设置多列文本选择器的列数。                            |
-| range    | 二维Array | -         | 否    | 设置多列文本选择器的选择值，该值为二维数组。长度表示多少列，数组的每项表示每列的数据，如&nbsp;&nbsp;[["a","b"],&nbsp;["c","d"]]。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：[["a","b"],&nbsp;["c","d"]]。 |
+| range    | 二维Array | -         | 否    | 设置多列文本选择器的选择值，该值为二维数组。长度表示多少列，数组的每项表示每列的数据，如&nbsp;&nbsp;[["a","b"],&nbsp;["c","d"]]。<br/>使用时需要使用数据绑定的方式`range ={{data}}`，js中声明相应变量`data：["15","20","25"]`。 |
 | selected | Array   | [0,0,0,…] | 否    | 设置多列文本选择器的默认值，每一列被选中项对应的索引构成的数组，该取值表示选择器弹窗时弹窗界面的默认选择值。 |
 
 
@@ -121,7 +121,7 @@ type=multi-text：
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container" @swipe="handleSwipe">
   <text class="title">
@@ -131,7 +131,7 @@ type=multi-text：
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -153,7 +153,7 @@ type=multi-text：
 }
 ```
 
-```
+```js
 /* xxx.js */
 export default {
   data: {

@@ -1,6 +1,6 @@
 # rating
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 评分条，表示用户使用感受的衡量标准条。
@@ -41,7 +41,7 @@
 | height | &lt;length&gt;\|&lt;percentage&gt; | 24px<br/>12px（不可操作） | 否 | 默认值是在未设置自定义资源和评分星数时，使用5个星和默认资源下的高度值。 |
 | rtl-flip | boolean | true | 否 | 在RTL文字方向下是否自动翻转图源。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > star-background，star-secondary，star-foreground三个星级图源必须全部设置，否则默认的星级颜色为灰色，以此提示图源设置错误。
 
 
@@ -61,7 +61,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating numstars="5" rating="5" @change="changeRating" id="rating">
@@ -69,7 +69,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   display: flex;
@@ -81,7 +81,7 @@ rating {
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

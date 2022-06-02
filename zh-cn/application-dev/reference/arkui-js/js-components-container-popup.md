@@ -1,6 +1,6 @@
 # popup
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 气泡指示。在点击绑定的控件后会弹出相应的气泡提示来引导用户进行操作。
@@ -27,7 +27,7 @@
 | clickable<sup>5+</sup> | boolean | true | 否 | popup是否使用点击弹窗，当设置为false时，只支持方法调用显示。 |
 | arrowoffset<sup>5+</sup> | &lt;length&gt; | 0 | 否 | popup箭头在弹窗处的偏移，默认居中，正值按照语言方向进行偏移，负值相反。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 不支持focusable属性。
 
@@ -40,7 +40,7 @@
 | -------- | -------- | -------- | -------- | -------- |
 | mask-color | &lt;color&gt; | - | 否 | 遮罩层的颜色，默认值为全透明。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 不支持position相关样式。
 
@@ -63,7 +63,7 @@
 | show<sup>5+</sup> | - | 弹出气泡提示。 |
 | hide<sup>5+</sup> | - | 取消气泡提示。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 1. popup气泡弹窗属性、样式均不支持动态更新。
 > 
 > 2. popup气泡弹窗的margin样式是相对于target元素进行生效的，如popup在target元素下方，此时只生效margin-top样式，popup在target元素左上方，此时只生效margin-bottom和margin-right样式。
@@ -75,7 +75,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text id="text">Click to show the pop-up</text>
@@ -88,7 +88,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -108,7 +108,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt'
 export default {

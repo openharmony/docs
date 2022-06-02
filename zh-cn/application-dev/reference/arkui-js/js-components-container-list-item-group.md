@@ -1,6 +1,6 @@
 # list-item-group
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 &lt;[list](../arkui-js/js-components-container-list.md)&gt;的子组件，用来展示分组，宽度默认充满list组件。
@@ -28,7 +28,7 @@
 | ---- | ------ | ------- | ---- | ---------------------------------------- |
 | type | string | default | 否    | list-item-group类型，同一list支持多种type的list-item-group，相同type的list-item-group需要确保渲染后的视图布局也完全相同，当type固定时，使用show属性代替if属性，确保视图布局不变。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 通用属性中的id用来标识一个group。list中相关的函数的入参以及事件的信息皆以此标识一个唯一的group。
 
@@ -61,7 +61,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <list style="width: 100%;" id="mylist">
@@ -93,7 +93,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -121,7 +121,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

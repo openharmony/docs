@@ -1,7 +1,7 @@
 # animateTransform
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 transform动效，支持的组件范围：
@@ -30,7 +30,7 @@ transform动效，支持的组件范围：
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="back_container">
@@ -71,7 +71,7 @@ transform动效，支持的组件范围：
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -96,7 +96,7 @@ transform动效，支持的组件范围：
 动画叠加
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="back_container">
@@ -131,7 +131,7 @@ transform动效，支持的组件范围：
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -155,7 +155,7 @@ transform动效，支持的组件范围：
 涉及组件示例
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="back_container">
@@ -202,7 +202,7 @@ transform动效，支持的组件范围：
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;

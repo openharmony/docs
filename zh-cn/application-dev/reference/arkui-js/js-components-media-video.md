@@ -1,7 +1,7 @@
 # video
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
@@ -76,12 +76,12 @@
 | pause | - | 请求暂停播放视频。 |
 | setCurrentTime | {&nbsp;currenttime:&nbsp;value&nbsp;} | 指定视频播放的进度位置，单位为s。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 在attached组件生命周期回调后，可以调用上述组件方法。
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <video id='videoId' src='/common/myDeram.mp4' muted='false' autoplay='false'
@@ -95,7 +95,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   justify-content: center;
@@ -103,7 +103,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

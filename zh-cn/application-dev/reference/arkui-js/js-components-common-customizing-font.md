@@ -1,7 +1,7 @@
 # 自定义字体样式
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 font-face用于定义字体样式。应用可以在style中定义font-face来指定相应的字体名和字体资源，然后在font-family样式中引用该字体。
 
@@ -38,7 +38,8 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
 **示例：**
 
 页面布局：
-```
+```html
+<!-- xxx.hml -->
 <div>    
   <text class="demo-text">测试自定义字体</text>  
 </div>
@@ -46,7 +47,7 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
 
 页面样式：
 
-```
+```css
 @font-face {
   font-family: HWfont;
   src: url("/common/HWfont.ttf");

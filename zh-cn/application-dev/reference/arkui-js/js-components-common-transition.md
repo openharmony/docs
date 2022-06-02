@@ -1,24 +1,24 @@
 # 转场样式
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 共享元素转场
 
 
 ### 属性
 
-| 名称 | 类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| shareid | string | 无 | 进行共享元素转场时使用，若不配置，则转场样式不生效。共享元素转场当前支持的组件：list-item、image、text、button、label。 |
+| 名称      | 类型     | 默认值  | 描述                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| shareid | string | 无    | 进行共享元素转场时使用，若不配置，则转场样式不生效。共享元素转场当前支持的组件：list-item、image、text、button、label。 |
 
 
 ### 样式
 
-| 名称 | 类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| shared-transition-effect | string | exchange | 配置共享元素转场时的入场样式。<br/>-&nbsp;exchange（默认值）：源页面元素移动到目的页元素位置，并进行适当缩放。<br/>-&nbsp;static：目的页元素位置不变，用户可配置透明度动画。当前仅跳转目标页配置的static效果生效。 |
-| shared-transition-name | string | - | 转场时，目的页配置的样式优先生效。该样式用于配置共享元素的动画效果，一个由@keyframes定义的动画序列，支持transform和透明度动画。若共享元素效果与自定义的动画冲突，以自定义动画为准。 |
+| 名称                                | 类型     | 默认值      | 描述                                       |
+| --------------------------------- | ------ | -------- | ---------------------------------------- |
+| shared-transition-effect          | string | exchange | 配置共享元素转场时的入场样式。<br/>-&nbsp;exchange（默认值）：源页面元素移动到目的页元素位置，并进行适当缩放。<br/>-&nbsp;static：目的页元素位置不变，用户可配置透明度动画。当前仅跳转目标页配置的static效果生效。 |
+| shared-transition-name            | string | -        | 转场时，目的页配置的样式优先生效。该样式用于配置共享元素的动画效果，一个由@keyframes定义的动画序列，支持transform和透明度动画。若共享元素效果与自定义的动画冲突，以自定义动画为准。 |
 | shared-transition-timing-function | string | friction | 转场时，目的页配置的样式优先生效。该属性定义了共享元素转场时的差值曲线。若不配置，默认使用friction曲线。 |
 
 
@@ -42,7 +42,7 @@
 
 PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage”。
 
-```
+```html
 <!-- PageA -->
 <!-- xxx.hml -->
 <div>
@@ -55,7 +55,7 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router';
 export default {
@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -79,7 +79,7 @@ export default {
 }
 ```
 
-```
+```html
 <!-- PageB -->
 <!-- xxx.hml -->
 <div>
@@ -87,7 +87,7 @@ export default {
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router';
 export default {
@@ -97,7 +97,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -112,22 +112,22 @@ export default {
 
 ## 卡片转场样式
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 卡片转场无法和其他转场(包括共享元素转场和自定义转场)共同使用。
+>  **说明：**
+>  卡片转场无法和其他转场(包括共享元素转场和自定义转场)共同使用。
 
 
 ### 样式
 
-| 名称 | 类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| transition-effect | string | - | 用于配置当前页面中的某个组件在卡片转场过程中是否进行转场动效，当前支持如下配置：<br/>-&nbsp;unfold：配置这个属性的组件，如在卡片的上方，则向上移动一个卡片的高度，如在卡片的下方，则向下移动一个卡片的高度。<br/>-&nbsp;none：转场过程中没有动效。 |
+| 名称                | 类型     | 默认值  | 描述                                       |
+| ----------------- | ------ | ---- | ---------------------------------------- |
+| transition-effect | string | -    | 用于配置当前页面中的某个组件在卡片转场过程中是否进行转场动效，当前支持如下配置：<br/>-&nbsp;unfold：配置这个属性的组件，如在卡片的上方，则向上移动一个卡片的高度，如在卡片的下方，则向下移动一个卡片的高度。<br/>-&nbsp;none：转场过程中没有动效。 |
 
 
 ### 示例
 
 source_page包含顶部内容以及卡片列表，点击卡片可以跳转到target_page。
 
-```
+```html
 <!-- source_page -->
 <!-- xxx.hml -->
 <div class="container">
@@ -142,7 +142,7 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
 </div>
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router'
 export default {
@@ -161,7 +161,7 @@ export default {
 }
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -181,7 +181,7 @@ export default {
 }
 ```
 
-```
+```html
 <!-- target_page -->
 <!-- xxx.hml -->
 <div class="container">
@@ -191,7 +191,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -214,12 +214,12 @@ export default {
 
 ### 样式
 
-| 名称 | 类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| transition-enter | string | - | 与@keyframes配套使用，支持transform和透明度动画，详见[动画样式 表 @keyframes属性说明](../arkui-js/js-components-common-animation.md)。 |
-| transition-exit | string | - | 与\@keyframes配套使用，支持transform和透明度动画，详见[动画样式 表 @keyframes属性说明](../arkui-js/js-components-common-animation.md)。 |
-| transition-duration | string | 跟随设备默认的页面转场时间 | 支持的单位为[s(秒)\|ms(毫秒)&nbsp;]，默认单位为ms，未配置时使用系统默认值。 |
-| transition-timing-function | string | friction | 描述转场动画执行的速度曲线，用于使转场更为平滑。详细参数见[动画样式](../arkui-js/js-components-common-animation.md)中“animation-timing-function”有效值说明。 |
+| 名称                         | 类型     | 默认值           | 描述                                       |
+| -------------------------- | ------ | ------------- | ---------------------------------------- |
+| transition-enter           | string | -             | 与@keyframes配套使用，支持transform和透明度动画，详见[动画样式 表 @keyframes属性说明](../arkui-js/js-components-common-animation.md)。 |
+| transition-exit            | string | -             | 与\@keyframes配套使用，支持transform和透明度动画，详见[动画样式 表 @keyframes属性说明](../arkui-js/js-components-common-animation.md)。 |
+| transition-duration        | string | 跟随设备默认的页面转场时间 | 支持的单位为[s(秒)\|ms(毫秒)&nbsp;]，默认单位为ms，未配置时使用系统默认值。 |
+| transition-timing-function | string | friction      | 描述转场动画执行的速度曲线，用于使转场更为平滑。详细参数见[动画样式](../arkui-js/js-components-common-animation.md)中“animation-timing-function”有效值说明。 |
 
 
 ### 注意事项
@@ -242,7 +242,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
 
 1. Page1
 
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
        <text>index</text>
@@ -250,12 +250,12 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    </div>
    ```
 
-   ```
-   <!-- xxx.js -->
+   ```css
+   // xxx.js
    import router from '@system.router';
    export default {
        data: {
-   
+
        },
        jump() {
            router.push({
@@ -265,8 +265,8 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
 
-   ```
-   <!-- xxx.css -->
+   ```css
+   /* xxx.css */
    .container {
        flex-direction: column;
        justify-content: center;
@@ -283,13 +283,13 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
        transition-duration: 5s;
        transition-timing-function: friction;
    }
-   
+
    @keyframes go_page {
        from {
            opacity: 0;
            transform: translate(0px) rotate(60deg) scale(1.0);
        }
-   
+
        to {
            opacity: 1;
            transform: translate(100px) rotate(360deg) scale(1.0);
@@ -300,7 +300,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
            opacity: 1;
            transform: translate(200px) rotate(60deg) scale(2);
        }
-   
+
        to {
            opacity: 0;
            transform: translate(200px) rotate(360deg) scale(2);
@@ -308,11 +308,10 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
 
-   
 
 2. Page2
 
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
        <text>transition</text>
@@ -320,12 +319,12 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    </div
    ```
 
-   ```
-   <!-- xxx.js -->
+   ```js
+   // xxx.js
    import router from '@system.router';
    export default {
        data: {
-   
+
        },
        jumpBack() {
            router.back()
@@ -333,8 +332,8 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
    }
    ```
 
-   ```
-   <!-- xxx.css -->
+   ```css
+   /* xxx.css */
    .container {
        flex-direction: column;
        justify-content: center;
@@ -342,7 +341,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
        width: 100%;
        height: 100%;
    }
-   
+
    .move_page {
        width: 100px;
        height: 100px;
@@ -352,7 +351,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
        transition-duration: 5s;
        transition-timing-function: ease;
    }
-   
+
    @keyframes go_page {
        from {
            opacity: 0;
@@ -363,7 +362,7 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
            transform:translate(100px) rotate(180deg) scale(2.0);
        }
    }
-   
+
    @keyframes exit_page {
        from {
            opacity: 1;
@@ -375,5 +374,5 @@ Page1有一个不透明盒子，点击盒子会跳转到Page2，当点击Page2�
        }
    }
    ```
-   
+
    ![transition](figures/transition.gif)

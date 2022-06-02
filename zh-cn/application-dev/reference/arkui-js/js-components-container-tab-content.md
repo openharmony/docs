@@ -1,6 +1,6 @@
 # tab-content
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 &lt;[tabs](../arkui-js/js-components-container-tabs.md)&gt;的子组件，用来展示tab的内容区，高度默认充满tabs剩余空间，子组件排列方式为横向排列，当作为容器组件的子元素时在主轴方向需要设置tab-content的确定长度，否则无法显示。
