@@ -71,7 +71,7 @@
 | onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页document标题更改时触发该回调。<br/>title：document标题内容。</p> |
 | onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。<br/>url：访问的url。<br/>isRefreshed：true表示该页面是被重新加载的，false表示该页面是新加载的。</p> |
 | onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#renderexitreason枚举说明) }) => void) | <p>应用渲染进程异常退出时触发该回调。<br/>renderExitReason：渲染进程进程异常退出的具体原因。</p> |
-| onFileSelectorShow(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>result：用于通知Web组件文件选择的结果。<br/>fileSelector：文件选择器的相关信息。</p> |
+| onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>result：用于通知Web组件文件选择的结果。<br/>fileSelector：文件选择器的相关信息。</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>data：url的相关信息。</p> |
 
 ### ConsoleMessage对象说明
