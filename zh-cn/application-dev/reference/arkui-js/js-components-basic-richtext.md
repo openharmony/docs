@@ -1,7 +1,7 @@
 # richtext
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > - 该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
@@ -33,7 +33,7 @@
 | start | - | 开始加载时触发。 |
 | complete | - | 加载完成时触发。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > - 不支持focus、blur、key事件。
 > 
 > - 不支持无障碍事件。
@@ -52,14 +52,14 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div style="flex-direction: column;width: 100%;">
   <richtext @start="onLoadStart" @complete="onLoadEnd">{{content}}</richtext>
 </div>
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

@@ -1,7 +1,7 @@
 # dialog
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 自定义弹窗容器。
 
@@ -19,13 +19,13 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| dragable<sup>7+</sup> | boolean | false | 否 | 设置对话框是否支持拖拽。 |
+| 名称                    | 类型      | 默认值   | 必填   | 描述           |
+| --------------------- | ------- | ----- | ---- | ------------ |
+| dragable<sup>7+</sup> | boolean | false | 否    | 设置对话框是否支持拖拽。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
-> - 弹窗类组件不支持focusable、click-effect属性。
+>  弹窗类组件不支持focusable、click-effect属性。
 
 
 ## 样式
@@ -37,29 +37,29 @@
 
 不支持[通用事件](../arkui-js/js-components-common-events.md)，仅支持如下事件：
 
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| cancel | - | 用户点击非dialog区域触发取消弹窗时触发的事件。 |
-| show<sup>7+</sup> | - | 对话框弹出时触发该事件。 |
-| close<sup>7+</sup> | - | 对话框关闭时触发该事件。 |
+| 名称                 | 参数   | 描述                         |
+| ------------------ | ---- | -------------------------- |
+| cancel             | -    | 用户点击非dialog区域触发取消弹窗时触发的事件。 |
+| show<sup>7+</sup>  | -    | 对话框弹出时触发该事件。               |
+| close<sup>7+</sup> | -    | 对话框关闭时触发该事件。               |
 
 
 ## 方法
 
 不支持[通用方法](../arkui-js/js-components-common-methods.md)，仅支持如下方法。
 
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| show | - | 弹出对话框。 |
-| close | - | 关闭对话框。 |
+| 名称    | 参数   | 描述     |
+| ----- | ---- | ------ |
+| show  | -    | 弹出对话框。 |
+| close | -    | 关闭对话框。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> dialog属性、样式均不支持动态更新。
+>  **说明：**
+>  dialog属性、样式均不支持动态更新。
 
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <div class="btn-div">
@@ -79,7 +79,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -128,7 +128,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

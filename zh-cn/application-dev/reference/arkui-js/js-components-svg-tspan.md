@@ -3,12 +3,12 @@
 添加文本样式。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 文本的展示内容需要写在元素标签内，可嵌套子元素标签tspan分段。
-> 
-> - 文本分段，只支持被父元素标签svg嵌套。
+>  **说明：**
+>  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - 文本的展示内容需要写在元素标签内，可嵌套子元素标签tspan分段。
+>
+>  - 文本分段，只支持被父元素标签svg嵌套。
 
 ## 权限列表
 
@@ -23,37 +23,25 @@
 支持以下表格中的属性。
 
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| id | string | - | 否 | 组件的唯一标识。 |
-| x | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置组件左上角x轴坐标。 |
-| y | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置组件左上角y轴坐标。作为textpath子组件时失效。 |
-| dx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置文本x轴偏移。 |
-| dy | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置文本y轴偏移。作为textpath子组件时失效。 |
-| rotate | number | 0 | 否 | 字体以左下角为圆心旋转角度，正数顺时针，负数逆时针。 |
-| font-size | &lt;length&gt; | 30px | 否 | 设置文本的尺寸。 |
-| fill | &lt;color&gt; | black | 否 | 字体填充颜色。 |
-| opacity | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
-| fill-opacity | number | 1.0 | 否 | 字体填充透明度。 |
-| stroke | &lt;color&gt; | black | 否 | 绘制字体边框并指定颜色。 |
-| stroke-width | number | 1px | 否 | 字体边框宽度。 |
-| stroke-opacity | number | 1.0 | 否 | 字体边框透明度。 |
-
+| 名称             | 类型                                 | 默认值   | 必填   | 描述                                       |
+| -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
+| id             | string                             | -     | 否    | 组件的唯一标识。                                 |
+| x              | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置组件左上角x轴坐标。                             |
+| y              | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置组件左上角y轴坐标。作为textpath子组件时失效。            |
+| dx             | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置文本x轴偏移。                                |
+| dy             | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置文本y轴偏移。作为textpath子组件时失效。               |
+| rotate         | number                             | 0     | 否    | 字体以左下角为圆心旋转角度，正数顺时针，负数逆时针。               |
+| font-size      | &lt;length&gt;                     | 30px  | 否    | 设置文本的尺寸。                                 |
+| fill           | &lt;color&gt;                      | black | 否    | 字体填充颜色。                                  |
+| opacity        | number                             | 1     | 否    | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
+| fill-opacity   | number                             | 1.0   | 否    | 字体填充透明度。                                 |
+| stroke         | &lt;color&gt;                      | black | 否    | 绘制字体边框并指定颜色。                             |
+| stroke-width   | number                             | 1px   | 否    | 字体边框宽度。                                  |
+| stroke-opacity | number                             | 1.0   | 否    | 字体边框透明度。                                 |
 
 ## 示例
 
-```
-/* xxx.css */
-.container {    
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 1000px;
-    width: 1080px;
-}
-```
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg >
@@ -73,22 +61,22 @@
 </div>
 ```
 
-![zh-cn_image_0000001127125196](figures/zh-cn_image_0000001127125196.png)
-
-属性动画示例
-
-```
+```css
 /* xxx.css */
-.container {
+.container {    
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 3000px;
+    height: 1000px;
     width: 1080px;
 }
 ```
 
-```
+![zh-cn_image_0000001127125196](figures/zh-cn_image_0000001127125196.png)
+
+属性动画示例
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -111,9 +99,20 @@
 </div>
 ```
 
+```css
+/* xxx.css */
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 3000px;
+    width: 1080px;
+}
+```
+
 ![zh-cn_image_0000001127285008](figures/zh-cn_image_0000001127285008.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -130,7 +129,7 @@
 
 ![zh-cn_image_0000001127125198](figures/zh-cn_image_0000001127125198.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -146,7 +145,7 @@
 
 ![zh-cn_image_0000001173164863](figures/zh-cn_image_0000001173164863.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>

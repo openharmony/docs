@@ -1,6 +1,6 @@
 # stepper-item
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 步骤导航器子组件，作为步骤导航器某一个步骤的内容展示组件。
@@ -47,7 +47,7 @@
 | text-decoration | string | none | 否 | 文本修饰，可选值为：<br/>-&nbsp;underline:&nbsp;文本下划线修饰。<br/>-&nbsp;line-through:&nbsp;穿过文本的修饰线。<br/>-&nbsp;none:&nbsp;标准文本。 |
 | font-family | string | sans-serif | 否 | 字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > - 不支持长宽样式，宽和父容器stepper一样，高是父容器stepper减去底部导航按钮的高度。
 > 
 > - 不支持posit样式。

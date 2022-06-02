@@ -1,6 +1,6 @@
 # refresh
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 下拉刷新容器。
@@ -56,7 +56,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <refresh refreshing="{{fresh}}" onrefresh="refresh">
@@ -71,7 +71,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -104,7 +104,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

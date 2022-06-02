@@ -1,6 +1,6 @@
 # 挂载卸载事件
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -11,15 +11,16 @@
 
 ## 事件
 
-| 名称 | 支持冒泡 | 功能描述 | 
-| -------- | -------- | -------- | 
-| onAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件挂载显示时触发此回调。 | 
-| onDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 组件卸载消失时触发此回调。 | 
+| 名称                                       | 支持冒泡 | 功能描述          |
+| ---------------------------------------- | ---- | ------------- |
+| onAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否    | 组件挂载显示时触发此回调。 |
+| onDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否    | 组件卸载消失时触发此回调。 |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 import prompt from '@system.prompt'
 
 @Entry

@@ -1,6 +1,6 @@
 # list-item
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 &lt;[list](../arkui-js/js-components-container-list.md)&gt;的子组件，用来展示列表具体item。由于父元素list组件的align-items默认样式为stretch，该组件宽度默认充满list组件。设置父元素list组件的align-items样式为非stretch来生效自定义宽度。

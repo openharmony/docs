@@ -1,7 +1,7 @@
 # animate
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 设置svg组件的属性动画。
@@ -38,7 +38,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="400" height="400">
@@ -54,7 +54,7 @@
 ![zh-cn_image_0000001173324703](figures/zh-cn_image_0000001173324703.gif)
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="400" height="400">
@@ -70,7 +70,7 @@
 ![zh-cn_image_0000001167662852](figures/zh-cn_image_0000001167662852.gif)
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="400" height="400">
@@ -85,7 +85,7 @@
 ![zh-cn_image_0000001127284938](figures/zh-cn_image_0000001127284938.gif)
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" width="600" height="600">

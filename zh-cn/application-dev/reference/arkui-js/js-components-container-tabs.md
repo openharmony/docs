@@ -1,7 +1,7 @@
 # tabs
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 tab页签容器。
 
@@ -19,10 +19,10 @@ tab页签容器。
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| index | number | 0 | 否 | 当前处于激活态的tab索引。 |
-| vertical | boolean | false | 否 | 是否为纵向的tab，默认为false，可选值为：<br/>-&nbsp;false：tabbar和tabcontent上下排列。<br/>-&nbsp;true：tabbar和tabcontent左右排列。 |
+| 名称       | 类型      | 默认值   | 必填   | 描述                                       |
+| -------- | ------- | ----- | ---- | ---------------------------------------- |
+| index    | number  | 0     | 否    | 当前处于激活态的tab索引。                           |
+| vertical | boolean | false | 否    | 是否为纵向的tab，默认为false，可选值为：<br/>-&nbsp;false：tabbar和tabcontent上下排列。<br/>-&nbsp;true：tabbar和tabcontent左右排列。 |
 
 
 ## 样式
@@ -34,14 +34,14 @@ tab页签容器。
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| change | {&nbsp;index:&nbsp;indexValue&nbsp;} | tab页签切换后触发。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;动态修改index值不会触发该回调。 |
+| 名称     | 参数                                   | 描述                            |
+| ------ | ------------------------------------ | ----------------------------- |
+| change | {&nbsp;index:&nbsp;indexValue&nbsp;} | tab页签切换后触发，动态修改index值不会触发该回调。 |
 
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs class = "tabs" index="0" vertical="false" onchange="change">
@@ -65,7 +65,7 @@ tab页签容器。
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -99,7 +99,7 @@ tab页签容器。
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   change: function(e) {

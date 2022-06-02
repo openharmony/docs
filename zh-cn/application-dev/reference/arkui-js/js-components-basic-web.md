@@ -38,7 +38,7 @@ web组件不跟随转场动画。一个页面仅支持一个web组件。
 | reload      | - | 重新加载页面。 |
 
 ## 示例
-```
+```html
 <!-- xxx.hml -->
 <div style="height: 500px; width: 500px; flex-direction: column;">
     <button onclick="reloadWeb">click to reload</button>
@@ -46,7 +46,7 @@ web组件不跟随转场动画。一个页面仅支持一个web组件。
 </div>
 ```
 
-```
+```js
 // xxx.js
 export default {
     reloadWeb() {

@@ -1,6 +1,6 @@
 # Web
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
+> **说明：** 
 >该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 提供具有网页显示能力的Web组件。
@@ -24,31 +24,31 @@
     | controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**说明：**
+> **说明：**
 >
 > - 不支持转场动画；
 > - 不支持多实例；
 > - 仅支持本地音视频播放。
 
 ## 属性
-| 名称                | 参数类型                                     | 默认值            | 描述                                       |
-| ----------------- | ---------------------------------------- | -------------- | ---------------------------------------- |
-| domStorageAccess  | boolean                                  | false          | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
-| fileAccess        | boolean                                  | false          | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
-| fileFromUrlAccess | boolean                                  | true           | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容，默认未启用。 |
-| imageAccess       | boolean                                  | true           | 设置是否允许自动加载图片资源，默认允许。                     |
-| javaScriptProxy   | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -              | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。 <br/> object: 参与注册的对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean。<br/> name: 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。<br/> methodList: 参与注册的应用侧JavaScript对象的方法。<br/> controller: 控制器。 |
-| javaScriptAccess  | boolean                                  | true           | 设置是否允许执行JavaScript脚本，默认允许执行。             |
-| mixedMode         | [MixedMode](#mixedmode枚举说明)                           | MixedMode.None | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
-| onlineImageAccess | boolean                                  | true           | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
-| zoomAccess        | boolean                                  | true           | 设置是否支持手势进行缩放，默认允许执行缩放。|
-| overviewModeAccess | boolean                                  | true           | 设置是否使用概览模式加载网页，默认使用该方式。|
-| databaseAccess| boolean                                  | false           | 设置是否开启数据库存储API权限，默认不开启。|
-| cacheMode |  [CacheMode](#cachemode枚举说明) | CacheMode.Default| 设置缓存模式。|
-| textZoomAtio |  number | 100 | 设置页面的文本缩放百分比，默认为100%。 |
-| userAgent |  string | - | 设置用户代理。 |
+| 名称                 | 参数类型                                     | 默认值               | 描述                                       |
+| ------------------ | ---------------------------------------- | ----------------- | ---------------------------------------- |
+| domStorageAccess   | boolean                                  | false             | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
+| fileAccess         | boolean                                  | false             | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
+| fileFromUrlAccess  | boolean                                  | true              | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容，默认未启用。 |
+| imageAccess        | boolean                                  | true              | 设置是否允许自动加载图片资源，默认允许。                     |
+| javaScriptProxy    | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -                 | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。 <br/> object: 参与注册的对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean。<br/> name: 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。<br/> methodList: 参与注册的应用侧JavaScript对象的方法。<br/> controller: 控制器。 |
+| javaScriptAccess   | boolean                                  | true              | 设置是否允许执行JavaScript脚本，默认允许执行。             |
+| mixedMode          | [MixedMode](#mixedmode枚举说明)              | MixedMode.None    | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
+| onlineImageAccess  | boolean                                  | true              | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
+| zoomAccess         | boolean                                  | true              | 设置是否支持手势进行缩放，默认允许执行缩放。                   |
+| overviewModeAccess | boolean                                  | true              | 设置是否使用概览模式加载网页，默认使用该方式。                  |
+| databaseAccess     | boolean                                  | false             | 设置是否开启数据库存储API权限，默认不开启。                  |
+| cacheMode          | [CacheMode](#cachemode枚举说明)              | CacheMode.Default | 设置缓存模式。                                  |
+| textZoomAtio       | number                                   | 100               | 设置页面的文本缩放百分比，默认为100%。                    |
+| userAgent          | string                                   | -                 | 设置用户代理。                                  |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > 通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
 
@@ -56,8 +56,8 @@
 
 不支持通用事件。
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
 | onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页触发alert()告警弹窗时触发回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（只有确认场景），并且根据用户的确认操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>刷新或关闭场景下，在即将离开当前页面时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用confirm()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
@@ -65,8 +65,8 @@
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>网页的下载任务开始时触发该回调。<br />url：文件下载的URL。<br />userAgent：下载的用户代理（UA）名称。<br />contentDisposition：服务器返回的 Content-Disposition响应头，可能为空。<br />mimetype：服务器返回内容媒体类型（MIME）信息。<br />contentLength：服务器返回文件的长度。</p> |
 | onErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), error: [WebResourceError](#webresourceerror对象说明) }) => void) | <p>网页加载遇到错误时触发该回调。<br/>出于性能考虑，建议此回调中尽量执行简单逻辑。<br/>request：网页请求的封装信息。<br/>error：网页加载资源错误的封装信息 。</p> |
 | onHttpErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), response: [WebResourceResponse](#webresourceresponse对象说明) }) => void) | <p>网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。<br/>request：网页请求的封装信息。<br/>response：网页响应的封装信息</p> |
-| onPageBegin(callback: (event?: { url: string }) => void)     | <p>网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。<br/>url：页面的URL地址。</p> |
-| onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>url：页面的URL地址。</p> |
+| onPageBegin(callback: (event?: { url: string }) => void) | <p>网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。<br/>url：页面的URL地址。</p> |
+| onPageEnd(callback: (event?: { url: string }) => void) | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>url：页面的URL地址。</p> |
 | onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>newProgress：新的加载进度，取值范围为0到100的整数。</p> |
 | onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页document标题更改时触发该回调。<br/>title：document标题内容。</p> |
 | onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。<br/>url：访问的url。<br/>isRefreshed：true表示该页面是被重新加载的，false表示该页面是新加载的。</p> |
@@ -156,56 +156,56 @@ Web组件返回的请求/响应头对象。
 
 onRenderExited接口返回的渲染进程退出的具体原因。
 
-| 名称                         | 描述                           |
-| ---------------------------- | ------------------------------ |
-| ProcessAbnormalTermination | 渲染进程异常退出。      |
-| ProcessWasKilled           | 收到SIGKILL，或被手动终止。    |
-| ProcessCrashed              | 渲染进程崩溃退出，如段错误。 |
-| ProcessOom                  | 程序内存不足。                 |
-| ProcessExitUnknown         | 其他原因。                     |
+| 名称                         | 描述                |
+| -------------------------- | ----------------- |
+| ProcessAbnormalTermination | 渲染进程异常退出。         |
+| ProcessWasKilled           | 收到SIGKILL，或被手动终止。 |
+| ProcessCrashed             | 渲染进程崩溃退出，如段错误。    |
+| ProcessOom                 | 程序内存不足。           |
+| ProcessExitUnknown         | 其他原因。             |
 
 ### MixedMode枚举说明
 
-  | 名称         | 描述                                 |
-  | ---------- | ---------------------------------- |
-  | All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-  | Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
-  | None       | 不允许加载HTTP和HTTPS混合内容。               |
+| 名称         | 描述                                 |
+| ---------- | ---------------------------------- |
+| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
+| None       | 不允许加载HTTP和HTTPS混合内容。               |
 
 ### CacheMode枚举说明
-  | 名称         | 描述                                 |
-  | ---------- | ---------------------------------- |
-  | Default    | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-  | None | 加载资源使用cache，如果cache中无该资源则从网络中获取。         |
-  | Online       | 加载资源不使用cache，全部从网络中获取。  |
-  | Only       | 只从cache中加载资源。               |
+| 名称      | 描述                                   |
+| ------- | ------------------------------------ |
+| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
+| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
+| Online  | 加载资源不使用cache，全部从网络中获取。               |
+| Only    | 只从cache中加载资源。                        |
 
 ### FileSelectorResult对象说明
 通知Web组件的文件选择结果。
 
 - 接口
 
-  | 接口名称                                       | 功能描述                                                     |
-  | ---------------------------------------------- | ------------------------------------------------------------ |
+  | 接口名称                                     | 功能描述                                   |
+  | ---------------------------------------- | -------------------------------------- |
   | handleFileList(fileList: Array\<string>): void | 通知Web组件进行文件选择操作。fileList: 需要进行操作的文件列表。 |
 
 ### FileSelectorParam对象说明
 - 接口
 
-  | 接口名称                                     | 功能描述               |
-  | ---------------------------------------- | ------------------ |
-  | getTitle(): string               | 获取文件选择器标题。      |
-  | getMode(): FileSelectorMode                | 获取文件选择器的模式。        |
-  | getAcceptType(): Array\<string\>              | 获取文件过滤类型。          |
-  | isCapture(): boolean            | 获取是否调用多媒体能力。         |
-  
+  | 接口名称                             | 功能描述         |
+  | -------------------------------- | ------------ |
+  | getTitle(): string               | 获取文件选择器标题。   |
+  | getMode(): FileSelectorMode      | 获取文件选择器的模式。  |
+  | getAcceptType(): Array\<string\> | 获取文件过滤类型。    |
+  | isCapture(): boolean             | 获取是否调用多媒体能力。 |
+
 ### FileSelectorMode枚举说明
-| 名称                         | 描述                           |
-| ---------------------------- | ------------------------------ |
-| FileOpenMode | 打开上传单个文件。     |
-| FileOpenMultipleMode           | 打开上传多个文件。    |
-| FileOpenFolderMode              | 打开上传文件夹模式。 |
-| FileSaveMode                  | 文件保存模式。                 |
+| 名称                   | 描述         |
+| -------------------- | ---------- |
+| FileOpenMode         | 打开上传单个文件。  |
+| FileOpenMultipleMode | 打开上传多个文件。  |
+| FileOpenFolderMode   | 打开上传文件夹模式。 |
+| FileSaveMode         | 文件保存模式。    |
 
 ## WebController
 
@@ -389,8 +389,8 @@ getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
 - 返回值
-  | 参数类型    | 说明        |
-  | ------- | --------- |
+  | 参数类型      | 说明                                       |
+  | --------- | ---------------------------------------- |
   | WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 ## WebCookie
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
@@ -401,13 +401,13 @@ setCookie(url: string, value: string): boolean
 
 - 参数说明
 
-  | 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
-  | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
-  | url   | string                   | 是    | -    | 要设置的cookie所属的url。                            |
-  | value | string | 是    | -    | cookie的值。 |
+  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+  | ----- | ------ | ---- | ---- | ----------------- |
+  | url   | string | 是    | -    | 要设置的cookie所属的url。 |
+  | value | string | 是    | -    | cookie的值。         |
 - 返回值 
-  | 参数类型    | 说明        |
-  | ------- | --------- |
+  | 参数类型    | 说明            |
+  | ------- | ------------- |
   | boolean | 设置cookie是否成功。 |
 
 ### saveCookieSync
@@ -415,12 +415,12 @@ saveCookieSync(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
 - 返回值
-  | 参数类型    | 说明        |
-  | ------- | --------- |
+  | 参数类型    | 说明                   |
+  | ------- | -------------------- |
   | boolean | 同步内存cookie到磁盘操作是否成功。 |
 ## 示例
 
-```
+```ts
 // webComponent.ets
 @Entry
 @Component
@@ -442,7 +442,7 @@ struct WebComponent {
   }
 }
 ```
-```
+```html
 <!-- index.html -->
 <!DOCTYPE html>
 <html>

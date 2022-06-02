@@ -1,7 +1,7 @@
 # piece
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 一种块状的入口，可包含图片和文本。常用于展示收件人，例如：邮件收件人或信息收件人。
 
@@ -15,28 +15,28 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| content | string | - | 是 | 操作块文本内容。 |
-| closable | boolean | false | 否 | 设置当前操作块是否显示删除图标，当显示删除图标时，点击删除图标会触发close事件。 |
-| icon | string | - | 否 | 操作块删除图标的url，支持本地路径。 |
+| 名称       | 类型      | 默认值   | 必填   | 描述                                       |
+| -------- | ------- | ----- | ---- | ---------------------------------------- |
+| content  | string  | -     | 是    | 操作块文本内容。                                 |
+| closable | boolean | false | 否    | 设置当前操作块是否显示删除图标，当显示删除图标时，点击删除图标会触发close事件。 |
+| icon     | string  | -     | 否    | 操作块删除图标的url，支持本地路径。                      |
 
 
 ## 样式
 
 支持[通用样式](../arkui-js/js-components-common-styles.md)。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 文本和图片默认在整个piece组件中居中。
+>  **说明：**
+>  文本和图片默认在整个piece组件中居中。
 
 
 ## 事件
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称 | 参数 | 描述 |
-| -------- | -------- | -------- |
-| close | - | 当piece组件点击删除图标触发，此时可以通过渲染属性if删除该组件。 |
+| 名称    | 参数   | 描述                                  |
+| ----- | ---- | ----------------------------------- |
+| close | -    | 当piece组件点击删除图标触发，此时可以通过渲染属性if删除该组件。 |
 
 ## 方法
 
@@ -45,7 +45,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container" >
   <piece if="{{first}}" content="example"></piece>
@@ -53,7 +53,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -63,7 +63,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

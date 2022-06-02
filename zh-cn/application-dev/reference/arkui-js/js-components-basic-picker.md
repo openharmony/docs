@@ -1,7 +1,7 @@
 # picker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。
 
@@ -31,7 +31,7 @@
 
 | 名称       | 类型     | 默认值  | 必填   | 描述                                       |
 | -------- | ------ | ---- | ---- | ---------------------------------------- |
-| range    | Array  | -    | 否    | 设置普通选择器的取值范围，如["15",&nbsp;"20",&nbsp;"25"]。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：["15",&nbsp;"20",&nbsp;"25"]。 |
+| range    | Array  | -    | 否    | 设置普通选择器的取值范围，如["15",&nbsp;"20",&nbsp;"25"]。<br/>使用时需要使用数据绑定的方式`range ={{data}}`，js中声明相应变量`data：["15","20","25"]`。 |
 | selected | string | 0    | 否    | 设置普通选择器弹窗的默认取值，取值需要是&nbsp;range&nbsp;的索引值，该取值表示选择器弹窗界面的默认选择值。 |
 | value    | string | -    | 否    | 设置普通选择器的值。                               |
 
@@ -47,7 +47,7 @@
 | selected           | string       | 当前日期       | 否    | 设置日期选择器弹窗的默认取值，格式为&nbsp;YYYY-MM-DD，该取值表示选择器弹窗界面的默认选择值。 |
 | value              | string       | -          | 是    | 设置日期选择器的值。                               |
 | lunar<sup>5+</sup> | boolean      | false      | 否    | 设置日期选择器弹窗界面是否为农历展示。                      |
-| lunarswitch        | boolean      | false      | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>> 当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
+| lunarswitch        | boolean      | false      | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
 
 ### 时间选择器
@@ -59,7 +59,7 @@
 | containsecond | boolean | false                               | 否    | 设置时间选择器是否包含秒。                            |
 | selected      | string  | 当前时间                                | 否    | 设置时间选择器弹窗的默认取值，格式为&nbsp;HH:mm；当包含秒时，格式为HH:mm:ss，<br/>该取值表示选择器弹窗界面的默认选择值。 |
 | value         | string  | -                                   | 否    | 设置时间选择器的值。                               |
-| hours         | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
+| hours         | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
 
 
 ### 日期时间选择器
@@ -70,9 +70,9 @@
 | ------------------ | ------- | ----------------------------------- | ---- | ---------------------------------------- |
 | selected           | string  | 当前日期时间                              | 否    | 设置日期时间选择器弹窗的默认取值，有两种可选格式。<br/>-&nbsp;月日时分：MM-DD-HH-mm<br/>-&nbsp;年月日时分：YYYY-MM-DD-HH-mm<br/>不设置年时，默认使用当前年，该取值表示选择器弹窗界面的默认选择值。 |
 | value              | string  | -                                   | 是    | 设置日期时间选择器的值。                             |
-| hours              | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>&nbsp;&nbsp;>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>&nbsp;&nbsp;>&nbsp;默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。<sup>5+</sup> |
+| hours              | number  | 24<sup>1-4</sup><br/>-<sup>5+</sup> | 否    | 设置日期时间选择器采用的时间格式，可选值：<br/>-&nbsp;12：按照12小时制显示，用上午和下午进行区分；<br/>-&nbsp;24：按照24小时制显示。<br/>从API Version 5开始，默认值会依据系统当前所选地区和语言选择当地习惯的小时制(12小时制或24小时制)。 |
 | lunar<sup>5+</sup> | boolean | false                               | 否    | 设置日期时间选择器弹窗界面是否为农历展示。                    |
-| lunarswitch        | boolean | false                               | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
+| lunarswitch        | boolean | false                               | 否    | 设置日期选择器是否显示农历开关。当值为true时，显示农历开关，点击农历开关可切换公历和农历。当值为false时，不显示农历开关。<br/>当lunarswitch=true且lunar=true时，开关按钮处于被选中状态。 |
 
 
 ### 多列文本选择器
@@ -82,7 +82,7 @@
 | 名称       | 类型      | 默认值       | 必填   | 描述                                       |
 | -------- | ------- | --------- | ---- | ---------------------------------------- |
 | columns  | number  | -         | 是    | 设置多列文本选择器的列数。                            |
-| range    | 二维Array | -         | 否    | 设置多列文本选择器的选择项，其中range&nbsp;为二维数组。长度表示多少列，数组的每项表示每列的数据，如&nbsp;&nbsp;[["a","b"],&nbsp;["c","d"]]。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;使用时需要使用数据绑定的方式，如range&nbsp;=&nbsp;{{data}}，js中声明相应变量：data：[["a","b"],&nbsp;["c","d"]]。 |
+| range    | 二维Array | -         | 否    | 设置多列文本选择器的选择项，其中range&nbsp;为二维数组。长度表示多少列，数组的每项表示每列的数据，如&nbsp;&nbsp;[["a","b"],&nbsp;["c","d"]]。<br/>使用时需要使用数据绑定的方式`range ={{data}}`，js中声明相应变量`data：["15","20","25"]`。 |
 | selected | Array   | [0,0,0,…] | 否    | 设置多列文本选择器弹窗的默认值，每一列被选中项对应的索引构成的数组，该取值表示选择器弹窗界面的默认选择值。 |
 | value    | Array   | -         | 否    | 设置多列文本选择器的值，每一列被选中项对应的值构成的数组。            |
 
@@ -95,7 +95,7 @@
 | -------------------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | text-color                 | &lt;color&gt;              | -          | 否    | 选择器的文本颜色。                                |
 | font-size                  | &lt;length&gt;             | -          | 否    | 选择器的文本尺寸。                                |
-| allow-scale                | boolean                    | true       | 否    | 选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| allow-scale                | boolean                    | true       | 否    | 选择器的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
 | letter-spacing             | &lt;length&gt;             | 0          | 否    | 选择器的字符间距。见[text组件的letter-spacing样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
 | text-decoration            | string                     | -          | 否    | 选择器的文本修饰。见[text组件的text-decoration样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
 | font-style                 | string                     | normal     | 否    | 选择器的字体样式。见[text组件的font-style样式属性](../arkui-js/js-components-basic-text.md#样式)。 |
@@ -122,7 +122,7 @@
 
 | 名称     | 参数                                       | 描述                                       |
 | ------ | ---------------------------------------- | ---------------------------------------- |
-| change | {&nbsp;year:&nbsp;year,&nbsp;month:&nbsp;month,&nbsp;day:&nbsp;day&nbsp;} | 日期选择器选择值后点击弹窗中的确认按钮时触发该事件。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;month值范围为：&nbsp;0（1月）~11（12月）。<sup>5+</sup> |
+| change | {&nbsp;year:&nbsp;year,&nbsp;month:&nbsp;month,&nbsp;day:&nbsp;day&nbsp;} | 日期选择器选择值后点击弹窗中的确认按钮时触发该事件。<br/>从API Version 5开始，month值范围为：&nbsp;0（1月）~11（12月）。 |
 | cancel | -                                        | 用户点击弹窗中的取消按钮时触发该事件。                      |
 
 
@@ -162,7 +162,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <select @change="selectChange">
@@ -187,7 +187,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {    
   flex-direction: column;
@@ -214,7 +214,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 import router from '@system.router';
 import prompt from '@system.prompt';

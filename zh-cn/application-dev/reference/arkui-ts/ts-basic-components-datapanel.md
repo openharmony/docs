@@ -34,7 +34,8 @@ DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DataPanelExample {
