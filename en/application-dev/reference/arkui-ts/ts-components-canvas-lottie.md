@@ -557,7 +557,7 @@ Removes an event listener.
     | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | name | AnimationEventName | Yes | Animation event type. The available options are as follows:<br/>'enterFrame', 'loopComplete', 'complete', 'segmentStart', 'destroy', 'config_ready', 'data_ready', 'DOMLoaded', 'error', 'data_failed', 'loaded_images' |
-  | callback | AnimationEventCallback&lt;T&gt; | Yes | Custom callback. By default, the value is null, meaning that all callbacks of the event will be removed. |
+  | callback | AnimationEventCallback&lt;T&gt; | No | Custom callback. By default, the value is null, meaning that all callbacks of the event will be removed. |
 
 - Example
   
