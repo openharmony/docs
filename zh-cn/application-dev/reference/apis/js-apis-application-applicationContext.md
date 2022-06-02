@@ -6,6 +6,11 @@
 
 提供开发者应用级别的的上下文，提供注册及取消注册应用内组件生命周期的监听接口。
 
+## 导入模块
+
+```
+import Ability from '@ohos.application.Ability';
+```
 
 ## 使用说明
 
