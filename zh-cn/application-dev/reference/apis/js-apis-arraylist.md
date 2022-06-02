@@ -17,13 +17,11 @@ ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问
 import ArrayList from '@ohos.util.ArrayList';
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## ArrayList
 
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,6 +33,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 ArrayList的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -48,6 +48,8 @@ let arrayList = new ArrayList();
 add(element: T): boolean
 
 在ArrayList尾部插入元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -79,6 +81,8 @@ insert(element: T, index: number): void
 
 在长度范围内任意位置插入指定元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -100,6 +104,8 @@ arrayList.insert(true, 2);
 has(element: T): boolean
 
 判断此ArrayList中是否含有该指定元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -127,6 +133,8 @@ let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 getIndexOf(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -160,6 +168,8 @@ getLastIndexOf(element: T): number
 
 返回指定元素最后一次出现时的下标值，查找失败返回-1。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -192,6 +202,8 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，返回元素后将其删除。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -222,6 +234,8 @@ remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -251,6 +265,8 @@ removeByRange(fromIndex: number, toIndex: number): void
 
 从一段范围内删除元素，包括起始值但不包括终止值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -277,6 +293,8 @@ replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt
 thisArg?: Object): void
 
 用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -316,6 +334,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -350,6 +370,8 @@ sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
 对ArrayList中的元素排序。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -381,6 +403,8 @@ arrayList.sort();
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
 根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -414,6 +438,8 @@ clear(): void
 
 清除ArrayList中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -430,6 +456,8 @@ arrayList.clear();
 clone(): ArrayList&lt;T&gt; 
 
 克隆一个与ArrayList相同的实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 
 **返回值：**
@@ -455,6 +483,8 @@ getCapacity(): number
 
 获取当前实例的容量大小。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -477,6 +507,8 @@ let result = arrayList.getCapacity();
 convertToArray(): Array&lt;T&gt;
 
 把当前ArrayList实例转换成数组，并返回转换后的数组。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -501,6 +533,8 @@ isEmpty(): boolean
 
 判断该ArrayList是否为空。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -523,6 +557,8 @@ let result = arrayList.isEmpty();
 increaseCapacityTo(newCapacity: number): void
 
 如果传入的新容量大于或等于ArrayList中的元素个数，将容量变更为新容量。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -548,6 +584,8 @@ trimToCurrentLength(): void
 
 把容量限制为当前的length大小。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -564,6 +602,8 @@ arrayList.trimToCurrentLength();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
