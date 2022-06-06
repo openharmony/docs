@@ -24,7 +24,7 @@
 **表2** 分布式数据对象sessionId创建接口
 | 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId |
+| ohos.data.distributedDataObject| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId。 |
 
 ### 设置分布式数据对象sessionId
 
@@ -55,7 +55,23 @@
 | DistributedDataObject| on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }>): void | 订阅数据对象上下线。 |
 | DistributedDataObject| off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }>): void | 注销订阅。 |
 
+### 保存和撤回已保存的数据对象
 
+保存数据对象：数据对象保存成功后，当应用存在时不会释放对象数据；当应用退出后，重新进入应用时，恢复保存在设备上的数据。
+
+撤回保存的数据对象：如果该对象保存在本地设备，那么将删除所有受信任设备上所保存的数据；如果对象保存在其他设备，那么将删除本地设备上的数据。
+
+有以下几种情况时，保存的数据将会被释放：
+
+- 存储时间超过24小时。
+- 应用卸载。
+- 成功恢复数据之后。
+
+**表6** 分布式数据对象保存和撤回保存接口
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| DistributedDataObject | save(deviceId: string): Promise&lt;SaveSuccessResponse&gt; | 保存数据对象。 |
+| DistributedDataObject| revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt; | 撤回已保存的数据对象。 |
 
 ## 开发步骤
 
@@ -183,16 +199,41 @@
    
     local_object.on("status", this.statusCallback);
    ```
-10. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
-   
+
+10. 保存和撤回已保存的数据对象。
+       ```js
+        // 保存数据对象
+        local_object.save("local", (result, data)=>{
+            console.log("save callback");
+            console.info("save sessionId " + data.sessionId);
+            console.info("save version " + data.version);
+            console.info("save deviceId " + data.deviceId);
+        });
+        // 撤回保存的数据对象
+        local_object.revokeSave((result, data) =>{
+        console.log("revokeSave callback");
+        console.info("revokeSave sessionId " + data.sessionId);
+        });
+       ```
+11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
+
     以下为取消监听数据变更的代码示例：
-   ```js
-   //删除上下线回调statusCallback
-   local_object.off("status", statusCallback);
-   //删除所有的上下线回调
-   local_object.off("status");
-   ```
-11. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
+       ```js
+       // 保存数据对象
+       g_object.save("local", (result)=>{
+         console.log("save callback");
+         console.info("save sessionId " + result.sessionId);
+         console.info("save version " + result.version);
+         console.info("save deviceId " + result.deviceId);
+       });
+
+       // 撤回保存的数据对象
+       g_object.revokeSave((result, data) =>{
+       console.log("revokeSave callback");
+       });
+
+       ```
+12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
 
      以下为退出同步组网的代码示例：
        ```js
