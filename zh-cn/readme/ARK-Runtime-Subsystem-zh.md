@@ -51,7 +51,7 @@ JS Runtime主要由四个子系统组成：
 
 - ArkCompiler JS Runtime的主要设计目标，是为OpenHarmony操作系统提供JavaScript/TypeScript应用程序执行引擎，而不是作为浏览器中的JavaScript执行引擎。
 
-- 为了提升应用的执行性能和安全性，ArkCompiler JS Runtime选择将JaveScript/TypeScript程序预先静态编译为方舟字节码（带上静态类型信息），从而减少运行时的编译和类型信息收集开销。另外出于安全性和性能的考虑，ArkCompiler JS Runtime选择不支持eval和只支持strict模式的代码。
+- 为了提升应用的执行性能和安全性，ArkCompiler JS Runtime选择将JavaScript/TypeScript程序预先静态编译为方舟字节码（带上静态类型信息），从而减少运行时的编译和类型信息收集开销。另外出于安全性和性能的考虑，ArkCompiler JS Runtime选择不支持eval和只支持strict模式的代码。
 
 - 原生支持TypeScript：目前业界通用的执行方式是把TS转化为JS，再通过JS运行时来执行。ArkJS规划在ts2abc编译TS源码时，会推导分析TS的类型信息并传递给ArkCompiler JS运行时。运行时直接利用类型信息静态生成内联缓存（inline caching)从而加速字节码执行。另外，ArkJS规划中的TSAOT \(Ahead-of-Time\) Compiler，可以利用ts2abc传递的类型信息，直接编译生成高质量的机器码，使得应用可以直接以机器码形式运行，提升运行性能。
 
