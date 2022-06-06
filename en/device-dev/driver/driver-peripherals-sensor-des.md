@@ -575,7 +575,7 @@ HWTEST_F(HdfSensorTest,TestAccelDriver_001, TestSize.Level0)
     }
     /* Print the obtained sensor list. */
     for (int i = 0; i < count; i++) {
-        printf("get sensoriId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
+        printf("get sensorId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
     }
     ret = g_sensorDev->Enable(accelSensorId);
     EXPECT_EQ(0, ret);
