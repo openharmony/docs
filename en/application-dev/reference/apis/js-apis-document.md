@@ -3,6 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 - The APIs of this module will be deprecated and are not recommended for use. An exception will be thrown if any of the APIs is called.
+
 ## Modules to Import
 
 ```js
