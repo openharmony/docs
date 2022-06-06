@@ -3,6 +3,11 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+Queue的特点是先进先出，在尾部增加元素，在头部删除元素。根据循环队列的数据结构实现。
+
+Queue和[Deque](js-apis-deque.md)相比，Queue只能在一端删除一端增加，Deque可以两端增删。
+
+**推荐使用场景：** 一般符合先进先出的场景可以使用Queue。
 
 ## 导入模块
 
@@ -10,15 +15,12 @@
 import Queue from '@ohos.util.Queue';  
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 
 ## Queue
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 Queue的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -43,6 +47,8 @@ let queue = new Queue();
 add(element: T): boolean
 
 在队列尾部插入元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -75,6 +81,8 @@ pop(): T
 
 删除头元素并返回该删除元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -99,6 +107,8 @@ getFirst(): T
 
 获取队列的头元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 类型 | 说明 |
@@ -122,6 +132,8 @@ forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -156,8 +168,9 @@ queue.forEach((value, index) => {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

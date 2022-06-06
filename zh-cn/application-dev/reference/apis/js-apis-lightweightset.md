@@ -3,6 +3,15 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
+
+LightWeightSet依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
+
+集合中value值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的value值。
+
+LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet的占用内存更小。
+
+**推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
 ## 导入模块
 
@@ -10,14 +19,13 @@
 import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
 
-## 系统能力
 
-SystemCapability.Utils.Lang
 
 ## LightWeightSet
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -29,6 +37,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 LightWeightSet的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -42,6 +52,8 @@ let lightWeightSet = new LightWeightSet();
 isEmpty(): boolean
 
 判断该容器是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -61,6 +73,8 @@ let result = lightWeightSet.isEmpty();
 add(obj: T): boolean
 
 向此容器中添加数据。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -88,6 +102,8 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 将另一个容器中的所有元素组添加到当前容器中。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -111,6 +127,8 @@ let result = lightWeightSet.addAll(set);
 hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 判断此容器中是否含有该指定set中的所有元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -142,6 +160,8 @@ has(key: T): boolean
 
 判断此容器中是否含有该指定key。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -169,6 +189,8 @@ result = lightWeightSet.has(123);
 equal(obj: Object): boolean
 
 判断此容器中是否含有该指定obj同类型的对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -199,6 +221,8 @@ increaseCapacityTo(minimumCapacity: number): void
 
 将当前容器扩容至可以容纳指定数量元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -218,6 +242,8 @@ lightWeightSet.increaseCapacityTo(10);
 getIndexOf(key: T): number
 
 获取指定key所对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -247,6 +273,8 @@ remove(key: T): T
 
 删除并返回指定key对应的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -274,6 +302,8 @@ let result = lightWeightSet.remove("sdfs");
 removeAt(index: number): boolean
 
 删除指定下标所对应的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -303,6 +333,8 @@ getValueAt(index: number): T
 
 获取此容器中指定下标对应的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -331,6 +363,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -346,6 +380,8 @@ lightWeightSet.clear();
 toString(): String
 
 获取包含容器中所有键和值的字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -369,6 +405,8 @@ toArray(): Array&lt;T&gt;
 
 获取包含此容器中所有对象的数组。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -390,6 +428,8 @@ let result = lightWeightSet.toArray();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -417,6 +457,8 @@ while(index < lightWeightSet.length) {
 forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -450,6 +492,8 @@ entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -476,6 +520,8 @@ while(index < lightWeightSet.length) {
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
