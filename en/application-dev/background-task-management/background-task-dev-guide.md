@@ -41,7 +41,7 @@ If a service needs to be continued when the application or service module is run
     backgroundTaskManager.getRemainingDelayTime(id).then( res => {
         console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
     });
     ```
 
@@ -74,7 +74,7 @@ console.info("The actualDelayTime is: " + time);
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
     console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch( err => {
-    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
 });
 
 // Cancel the suspension delay.
@@ -187,7 +187,7 @@ For details about how to use the Service ability in the FA model, see [Service A
 
 If an application does not need to interact with a continuous task in the background, you can use **startAbility()** to start the Service ability. In the **onStart** callback of the Service ability, call **startBackgroundRunning()** to declare that the Service ability needs to run in the background for a long time. After the task execution is complete, call **stopBackgroundRunning()** to release resources.
 
-If an application needs to interact with a continuous task in the background (for example, an application related to music playback), you can use **connectAbility()** to start and connect to the Service ability. After obtaining the proxy of the Service ability, the application can communicate with the Service ability and control the application and cancellation of continuous tasks.
+If an application needs to interact with a continuous task in the background (for example, an application related to music playback), you can use **connectAbility()** to start and connect to the Service ability. After obtaining the proxy of the Service ability, the application can communicate with the Service ability and control the request and cancellation of continuous tasks.
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -284,3 +284,9 @@ export default {
     }
 };
 ```
+
+## Samples
+
+The following sample is provided to help you better understand how to develop background task management:
+
+- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code1035211243011" tempcmdid="code1035211243011">BackgroundTaskManager</idp:inline>: Background Task Management (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)
