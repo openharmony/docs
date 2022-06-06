@@ -19,19 +19,19 @@ import AbilityContext from '@ohos.application.Ability';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+  | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| resourceManager | ResourceManager | 是 | 否 | ResourceManager对象。 | 
-| applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 | 
-| cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。 | 
-| tempDir | string | 是 | 否 | 应用的临时文件路径。 | 
-| filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。 | 
-| databaseDir | string | 是 | 否 | 获取本地数据存储路径。 | 
-| storageDir | string | 是 | 否 | 获取轻量级数据存储路径。 | 
-| bundleCodeDir | string | 是 | 否 | 应用安装路径。 | 
-| distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 | 
-| eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。| 
-| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。| 
+| resourceManager | ResourceManager | 是 | 否 | ResourceManager对象。 |
+| applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
+| cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。 |
+| tempDir | string | 是 | 否 | 应用的临时文件路径。 |
+| filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。 |
+| databaseDir | string | 是 | 否 | 获取本地数据存储路径。 |
+| storageDir | string | 是 | 否 | 获取轻量级数据存储路径。 |
+| bundleCodeDir | string | 是 | 否 | 应用安装路径。 |
+| distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 |
+| eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。|
+| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。|
 
 
 ## Context.createBundleContext
@@ -44,24 +44,94 @@ createBundleContext(bundleName: string): Context;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用bundle名。 | 
+  | bundleName | string | 是 | 应用bundle名。 |
 
 **返回值：**
 
-  | 类型 | 说明 | 
+  | 类型 | 说明 |
   | -------- | -------- |
-  | Context | 对应创建应用的上下文context。 | 
+  | Context | 对应创建应用的上下文context。 |
 
 **示例：**
-    
+
   ```js
   import AbilityContext from '@ohos.application.Ability'
       class MainAbility extends AbilityContext {
           onWindowStageCreate(windowStage) {
               let test = "com.example.test";
               let context = this.context.createBundleContext(test);
+      }
+}
+
+  ```
+
+
+## Context.createModuleContext
+
+createModuleContext(moduleName: string): Context;
+
+创建指定hap上下文。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | moduleName | string | 是 | 应用内hap名。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Context | 对应创建hap的上下文context。 |
+
+**示例：**
+
+  ```js
+  import AbilityContext from '@ohos.application.Ability'
+      class MainAbility extends AbilityContext {
+          onWindowStageCreate(windowStage) {
+              let moduleName = "module";
+              let context = this.context.createModuleContext(moduleName);
+      }
+}
+
+  ```
+
+
+## Context.createModuleContext
+
+createModuleContext(bundleName: string, moduleName: string): Context;
+
+创建指定应用上下文。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | 是 | 应用bundle名。 |
+  | moduleName | string | 是 | 应用内hap名。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Context | 对应创建应用内hap的上下文context。 |
+
+**示例：**
+
+  ```js
+  import AbilityContext from '@ohos.application.Ability'
+      class MainAbility extends AbilityContext {
+          onWindowStageCreate(windowStage) {
+              let bundleName = "com.example.bundle";
+              let moduleName = "module";
+              let context = this.context.createModuleContext(bundleName, moduleName);
       }
 }
 
@@ -83,7 +153,7 @@ getApplicationContext(): ApplicationContext;
 | ApplicationContext | 当前ApplicationContext对象信息。 |
 
 **示例：**
-    
+
   ```js
   // 必选项。
   let applicationContext = this.context.getApplicationContext();
