@@ -43,7 +43,7 @@
 ```json
 {
     "module" : {
-        "requesetPermissions":[
+        "requestPermissions":[
            {
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
