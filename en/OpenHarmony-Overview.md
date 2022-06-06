@@ -197,7 +197,7 @@ For details about how to contribute, see  [How to Contribute](contribute/how-to-
 
 OpenHarmony complies with Apache License Version 2.0. For details, see the LICENSE in each repository.
 
-OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](contribute/third-party-open-source-software-and-license-notice.md).
+OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](https://gitee.com/openharmony/docs/blob/master/en/contribute/third-party-open-source-software-and-license-notice.md).
 
 ## Contact Info<a name="section61728335424"></a>
 
