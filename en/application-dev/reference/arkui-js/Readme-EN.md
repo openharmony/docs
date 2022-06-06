@@ -101,6 +101,7 @@
 
 -   Custom Components
     -   [Basic Usage](js-components-custom-basic-usage.md)
+    -   [Style Inheritance](js-components-custom-style.md)
     -   [Custom Events](js-components-custom-events.md)
     -   [props](js-components-custom-props.md)
     -   [Event Parameter](js-components-custom-event-parameter.md)
