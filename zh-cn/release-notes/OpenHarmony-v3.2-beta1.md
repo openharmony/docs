@@ -86,25 +86,50 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+  ```
+  repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta1 --no-repo-verify
+  repo sync -c
+  repo forall -c 'git lfs pull'
+  ```
 
-```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta1 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+  ```
+  repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-3.2-Beta1 --no-repo-verify
+  repo sync -c
+  repo forall -c 'git lfs pull'
+  ```
 
 **方式二**
 
 通过repo + https 下载。
 
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+  ```
+  repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta1 --no-repo-verify
+  repo sync -c
+  repo forall -c 'git lfs pull'
+  ```
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+  ```
+  repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-3.2-Beta1 --no-repo-verify
+  repo sync -c
+  repo forall -c 'git lfs pull'
+  ```
 
-```
-repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta1 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+### 从镜像站点获取
 
+**表2** 获取源码路径
 
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制）        | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz.sha256) |
+| Hi3861轻量系统解决方案（二进制）        | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-Linux（二进制）  | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256) |
+| 标准系统SDK包（Mac）                    | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/ohos-sdk-mac.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/ohos-sdk-mac.tar.gz.sha256) |
+| 标准系统SDK包（Windows\Linux）          | 3.2 Beta1  | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/ohos-sdk.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/ohos-sdk.tar.gz.sha256) |
 
 ## 更新说明
 
@@ -145,6 +170,10 @@ repo forall -c 'git lfs pull'
 | 安全基础能力 | 新增OpenHarmony跨设备之间的同帐号互信认证能力。<br/>主要涉及如下需求：<br/>I58ZNS&nbsp;支持登录帐号的OpenHarmony设备之间执行同帐号互信认证<br/>I58ZNR&nbsp;支持OpenHarmony设备（登出帐号或被移除帐号后）移除本设备帐号认证凭据<br/>I58ZNP&nbsp;支持OpenHarmony设备导入/移除跨（同厂商或OEM厂商）帐号互信记录<br/>I58ZNT&nbsp;支持OpenHarmony设备（登录帐号或被绑定到帐号后）导入本设备帐号认证凭据（非对称凭据） | NA | 
 | 应用 | 图库应用支持图片编辑、动效能力。<br/>主要涉及如下需求：<br/>I58ZQ3&nbsp;【图库】图片编辑<br/>I58ZQ1&nbsp;【图库】动效<br/>I58ZQ4&nbsp;【联系人】基础能力-2D能力 | NA | 
 
+### API变更
+
+
+_[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ### 芯片及开发板适配
 
@@ -182,3 +211,22 @@ repo forall -c 'git lfs pull'
 | 全球化 | International | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS | 
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+
+## 修复缺陷列表
+
+**表6** 修复缺陷ISSUE列表
+
+| ISSUE单                                                      | 问题描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [I4NRS5](https://gitee.com/openharmony/kernel_linux_5.10/issues/I4NRS5) | 【内核子系统】存在cve漏洞                                    |
+
+
+## 遗留缺陷列表
+
+**表7** 遗留缺陷列表
+
+| ISSUE                                                        | 问题描述                                                   | 影响                                                         | 计划解决日期 |
+| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------ |
+| [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 | 影响开发者体验                                               | 2022-06-15   |
+| [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | 使用API 9的hdc_std连接设备小概率断连                       | 存在低概率断连（几率小于1/30）。可通过重启IDE或者hdc_std恢复。 | 2022-06-30   |
+| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | 【RK3568】相机连续多次录像出现黑屏                         | 影响开发者体验                                               | 2022-06-15   |
