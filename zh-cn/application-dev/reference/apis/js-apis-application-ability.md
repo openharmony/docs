@@ -210,7 +210,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 ## Ability.onNewWant
 
-onNewWant(want: Want): void;
+onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 当ability的启动模式设置为单例时回调会被调用。
 
@@ -221,13 +221,17 @@ onNewWant(want: Want): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
+  | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
   ```js
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          if (launchParams.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+              console.log('onNewWant, launchReason is continuation');
+          }
       }
   }
   ```
