@@ -68,7 +68,7 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括检测认证�
            try {
                console.info("auth onResult result = " + result);
                console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-               if (result == 'SUCCESS') {
+               if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                    // 此处添加认证成功逻辑
                }  else {
                    // 此处添加认证失败逻辑

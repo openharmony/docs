@@ -50,7 +50,7 @@ export default {
                 try {
                     console.info("auth onResult result = " + result);
                     console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == 'SUCCESS') {
+                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                         // 此处添加认证成功逻辑
                     }  else {
                         // 此处添加认证失败逻辑
@@ -97,7 +97,7 @@ export default {
             }
         });
         let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
+        if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
             console.info("cancel auth success");
         } else {
             console.error("cancel auth fail");
@@ -443,7 +443,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
           try {
               console.info("auth onResult result = " + result);
               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == SUCCESS) {
+              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                   // 此处添加认证成功逻辑
               }  else {
                   // 此处添加认证失败逻辑
@@ -492,7 +492,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
           try {
               console.info("auth onResult result = " + result);
               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == SUCCESS) {
+              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                   // 此处添加认证成功逻辑
               }  else {
                   // 此处添加认证失败逻辑
