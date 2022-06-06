@@ -2,8 +2,9 @@
 
 >  **NOTE**<br/>
 >
-> The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). 
+> - The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md).
 >
+> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
