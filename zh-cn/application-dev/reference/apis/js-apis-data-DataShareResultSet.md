@@ -1,6 +1,6 @@
 # DataShareResultSet
 
-**结果集(DataShareResultSet)** 是为了提供通过查询数据库生成的结果集的访问方法，可以根据提供的行数，查询相应的值，也可以查询指定数据类型的值。
+**结果集(DataShareResultSet)**可提供访问由查询数据库生成的结果集的相关方法，根据提供的行数，查询相应的值，也可查询指定数据类型的值。
 
 >**说明：** 
 >
@@ -31,7 +31,7 @@ await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
     }
 });
 
-let columns = ["*"]；
+let columns = ["*"];
 let da = new dataShare.DataSharePredicates();
 let resultSet;
 da.equalTo("name", "ZhangSan");
@@ -45,20 +45,22 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 
 ## 属性
 
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
 | 名称        | 参数类型      | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |
 | rowCount    | number        | 是   | 结果集中的行数。         |
-| isClosed    | boolean       | 是   | 标志当前结果集是否关闭。 |
+| isClosed    | boolean       | 是   | 标识当前结果集是否关闭。 |
 
 ## goToFirstRow
 
 goToFirstRow(): boolean
 
-该接口用于转到结果集的第一行。
+转到结果集的第一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -69,8 +71,6 @@ goToFirstRow(): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let isGoTOFirstRow = resultSet.goToFirstRow();
 console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 ```
@@ -79,9 +79,9 @@ console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 
 goToLastRow(): boolean
 
-该接口用于转到结果集的最后一行。
+转到结果集的最后一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -92,8 +92,6 @@ goToLastRow(): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let isGoToLastRow = resultSet.goToLastRow();
 console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 ```
@@ -102,9 +100,9 @@ console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 
 goToNextRow(): boolean
 
-该接口用于转到结果集的下一行。
+转到结果集的下一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -115,8 +113,6 @@ goToNextRow(): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let isGoToNextRow = resultSet.goToNextRow();
 console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 ```
@@ -125,9 +121,9 @@ console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 
 goToPreviousRow(): boolean
 
-该接口用于转到结果集的上一行。
+转到结果集的上一行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -138,8 +134,6 @@ goToPreviousRow(): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let isGoToPreviousRow = resultSet.goToPreviousRow();
 console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 ```
@@ -148,9 +142,9 @@ console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 
 goTo(offset:number): boolean
 
-该接口用于向前或向后转至结果集的指定行，相对于其当前位置偏移。
+向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -167,8 +161,6 @@ goTo(offset:number): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let goToNum = 1;
 let isGoTo = resultSet.goTo(goToNum);
 console.info('resultSet.goTo: ' + isGoTo);
@@ -178,9 +170,9 @@ console.info('resultSet.goTo: ' + isGoTo);
 
 goToRow(position: number): boolean
 
-该接口用于转到结果集的指定行。
+转到结果集的指定行。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -197,8 +189,6 @@ goToRow(position: number): boolean
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let goToRowNum = 2
 let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
@@ -208,9 +198,9 @@ console.info('resultSet.goToRow: ' + isGoToRow);
 
 getBlob(columnIndex: number): Uint8Array
 
-该接口用于以字节数组的形式获取当前行中指定列的值。
+以字节数组的形式获取当前行中指定列的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -227,8 +217,6 @@ getBlob(columnIndex: number): Uint8Array
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getBlob = resultSet.getBlob(columnIndex);
@@ -239,9 +227,9 @@ console.info('resultSet.getBlob: ' + getBlob);
 
 getString(columnIndex: number): *string*
 
-该接口用于以字符串形式获取当前行中指定列的值。
+以字符串形式获取当前行中指定列的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -258,8 +246,6 @@ getString(columnIndex: number): *string*
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getString = resultSet.getString(columnIndex);
@@ -268,11 +254,11 @@ console.info('resultSet.getString: ' + getString);
 
 ## getLong
 
-getLong(columnIndex: number): *number*
+getLong(columnIndex: number): number
 
-该接口用于以Long形式获取当前行中指定列的值。
+以长整数值形式获取当前行中指定列的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -284,13 +270,11 @@ getLong(columnIndex: number): *number*
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 以Long形式返回指定列的值。 |
+| number | 以长整数值形式返回指定列的值。 |
 
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getLong = resultSet.getLong(columnIndex);
@@ -299,11 +283,11 @@ console.info('resultSet.getLong: ' + getLong);
 
 ## getDouble
 
-getDouble(columnIndex: number): *number*
+getDouble(columnIndex: number): number
 
-该接口用于以double形式获取当前行中指定列的值。
+以值类型为双浮点数形式获取当前行中指定列的值。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -315,13 +299,11 @@ getDouble(columnIndex: number): *number*
 
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
-| number | 以double形式返回指定列的值。 |
+| number | 值类型为双浮点数形式返回指定列的值。 |
 
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getDouble = resultSet.getDouble(columnIndex);
@@ -332,9 +314,9 @@ console.info('resultSet.getDouble: ' + getDouble);
 
 close(): void
 
-该接口用于关闭结果集。
+关闭结果集。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **示例：**
 
@@ -344,11 +326,11 @@ resultSet.close();
 
 ## getColumnIndex
 
-getColumnIndex(columnName: string): *number*
+getColumnIndex(columnName: string): number
 
-该接口用于根据指定的列名获取列索引。
+根据指定的列名获取列索引。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -365,8 +347,6 @@ getColumnIndex(columnName: string): *number*
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let ColumnName = "name"
 let getColumnIndex = resultSet.getColumnIndex(ColumnName)
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
@@ -376,9 +356,9 @@ console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 
 getColumnName(columnIndex: number): *string*
 
-该接口用于根据指定的列索引获取列名。
+根据指定的列索引获取列名。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -395,8 +375,6 @@ getColumnName(columnIndex: number): *string*
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1
 let getColumnName = resultSet.getColumnName(columnIndex)
 console.info('resultSet.getColumnName: ' + getColumnName);
@@ -406,9 +384,9 @@ console.info('resultSet.getColumnName: ' + getColumnName);
 
 getDataType(columnIndex: number): DataType
 
-该接口用于获取指定列的数据类型。
+指定列索引获取该列的数据类型。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -425,8 +403,6 @@ getDataType(columnIndex: number): DataType
 **示例：**
 
 ```ts
-// Refer to the instructions for the method of obtaining resultSet
-let resultSet;
 let columnIndex = 1;
 let getDataType = resultSet.getDataType(columnIndex);
 console.info('resultSet.getDataType: ' + getDataType);
@@ -434,16 +410,16 @@ console.info('resultSet.getDataType: ' + getDataType);
 
 ## DataType
 
-该类型用于用于表示数据类型。
+用于表示数据类型。
 
-只能被内部应用使用。
+只能被系统应用使用。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 | 名称        | 默认值 | 说明                 |
 | ----------- | ------ | -------------------- |
 | TYPE_NULL   | 0      | 表示值类型为空。     |
-| TYPE_LONG   | 1      | 表示值类型为Long。   |
-| TYPE_DOUBLE | 2      | 表示值类型为Double。 |
-| TYPE_STRING | 3      | 表示值类型为String。 |
-| TYPE_BLOB   | 4      | 表示值类型为Blob。   |
+| TYPE_LONG   | 1      | 表示值类型为长整数值。   |
+| TYPE_DOUBLE | 2      | 表示值类型为双浮点数。 |
+| TYPE_STRING | 3      | 表示值类型为字符串。 |
+| TYPE_BLOB   | 4      | 表示值类型为字节数组。 |

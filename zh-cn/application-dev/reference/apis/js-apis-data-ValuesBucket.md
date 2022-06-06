@@ -1,6 +1,6 @@
 # ValuesBucket
 
-**数据集(ValuesBucket) **是用户通过DataShare进行插入的数据集合，通过DataShare的insert方法可以进行插入对应的数据集，update方法可以对已经插入的数据集进行修改，数据集以键-值对的形式进行传输。
+**数据集(ValuesBucket) **是开发者向数据库插入的数据集合，数据集以键-值对的形式进行传输。
 
 >**说明：**
 >
@@ -16,13 +16,13 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 ## ValueType
 
-该类型用于表示允许的数据字段类型。
+该类型用于表示数据库允许的数据字段类型。
 
 | 名称    | 说明                 |
 | ------- | -------------------- |
-| number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符串。 |
-| boolean | 表示值类型为布尔值。 |
+| number  | 表示字段类型为数字。   |
+| string  | 表示字段类型为字符串。 |
+| boolean | 表示字段类型为布尔值。 |
 
 ## ValuesBucket
 
@@ -30,5 +30,5 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 | 名称          | 参数类型                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| [key: string] | [ValueType](#valuetype) \| Uint8Array \| null | 是   | 键的类型为字符串型；值的类型可以为数字，字符串，布尔值，无符号整型8位数组，空值。 |
+| [key: string] | [ValueType](#valuetype)(number/string/boolean) \| Uint8Array \| null | 是   | 键的类型为字符串型；值的类型可以为数字，字符串，布尔值，无符号整型8位数组，空值。 |
 
