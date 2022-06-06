@@ -22,19 +22,19 @@ import window from '@ohos.window';
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | 表示应用子窗口。   |
 | TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
-| TYPE_INPUT_METHOD | 2      | 表示输入法窗口。 |
-| TYPE_STATUS_BAR   | 3      | 表示状态栏窗口。 |
-| TYPE_PANEL        | 4      | 表示通知栏。 |
-| TYPE_KEYGUARD     | 5      | 表示锁屏。 |
-| TYPE_VOLUME_OVERLAY | 6      | 表示音量条。 |
-| TYPE_NAVIGATION_BAR | 7      | 表示导航栏窗口。 |
-| TYPE_FLOAT | 8      | 表示悬浮窗。 |
-| TYPE_WALLPAPER | 9      | 表示壁纸。 |
-| TYPE_DESKTOP | 10      | 表示桌面。 |
-| TYPE_LAUNCHER_RECENT | 11      | 表示多任务中心。 |
-| TYPE_LAUNCHER_DOCK | 12      | 表示桌面Dock栏。 |
-| TYPE_VOICE_INTERACTION | 13      | 表示智慧语音。 |
-| TYPE_POINTER | 14      | 表示鼠标。 |
+| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。 |
+| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。 |
+| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。 |
+| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。 |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。 |
+| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。 |
+| TYPE_FLOAT<sup>9+</sup> | 8      | 表示悬浮窗。 |
+| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。 |
+| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。 |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。 |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。 |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。 |
+| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。 |
 
 ## AvoidAreaType<sup>7+</sup>
 
