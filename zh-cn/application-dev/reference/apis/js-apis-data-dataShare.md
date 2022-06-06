@@ -1,6 +1,6 @@
 # DataShare
 
-**DataShare** 用于应用管理其自身数据，也提供了其他应用共享以及管理其数据的方法，支持同个设备上应用之间的数据共享。
+**DataShare**用于应用管理其自身数据，同时支持同个设备上不同应用间的数据共享。
 
 >**说明：** 
 >
@@ -18,9 +18,8 @@ import dataShare from '@ohos.data.dataShare'
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
-createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
 
-创建DataShare工具类，创建helper对象时将连接服务端，与服务端取得连接后或超时后将返回helper实例，此方法为异步方法。在与服务端取得连接后可使用DataShare工具类提供的方法访问或管理服务端的数据，若未连接上服务端，调用工具类提供的方法时将返回error code。
+创建DataShare工具类，创建helper对象时将连接服务端，与服务端取得连接后或超时后将返回helper实例，此方法为异步方法。在与服务端取得连接后可使用DataShare工具类提供的方法访问或管理服务端的数据，若未连接上服务端，调用工具类提供的方法时将返回error code（callback形式）。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -46,6 +45,41 @@ dataShare.createDataShareHelper(this.context, dseUri, (err, data) => {
         let dataShareHelper = data;
     }
 });
+```
+
+## dataShare.createDataShareHelper
+
+createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
+
+创建DataShare工具类，创建helper对象时将连接服务端，与服务端取得连接后或超时后将返回helper实例，此方法为异步方法。在与服务端取得连接后可使用DataShare工具类提供的方法访问或管理服务端的数据，若未连接上服务端，调用工具类提供的方法时将返回error code（Promise形式）。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名  | 参数类型                                          | 必填 | 说明                     |
+| ------- | ------------------------------------------------- | ---- | ------------------------ |
+| context | [Context](js-apis-application-context.md#context) | 是   | 应用的上下文环境。       |
+| uri     | string                                            | 是   | 指示要打开的文件的路径。 |
+
+**返回值：**
+
+| 类型                               | 说明                                |
+| ---------------------------------- | ----------------------------------- |
+| Promise&lt;&lt;DataShareHelper&gt; | 返回创建的DataShareHelper对象实例。 |
+
+**示例：**
+
+```ts
+import dataShare from '@ohos.data.dataShare'
+
+let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
+dataShare.createDataShareHelper(this.context, dseUri).then((data) => {
+    console.info("createDataShareHelper end, data : " + data);
+    let dataShareHelper = data;
+}).catch((err) => {
+	console.info("createDataShareHelper fail, error message : " + err); 
+})
 ```
 
 ## DataShareHelper
