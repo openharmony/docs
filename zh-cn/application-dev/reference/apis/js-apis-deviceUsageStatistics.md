@@ -496,6 +496,136 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
     });
   ```
 
+## bundleState.queryBundleActiveEventStates<sup>9+</sup>
+
+queryBundleActiveEventStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveEventState&gt;&gt;
+
+通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，使用Promise形式返回。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | begin | number | 是 | 起始时间。|
+  | end | number | 是 | 结束时间。|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。|
+
+**示例**：
+
+  ```js
+    bundleState.queryBundleActiveEventStates(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise success.');
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise result ' + JSON.stringify(res));
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise failed, because: ' + err.code);
+    });
+  ```
+
+## bundleState.queryBundleActiveEventStates<sup>9+</sup>
+
+queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void
+
+通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，使用Callback形式返回。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | begin | number | 是 | 起始时间。|
+  | end | number | 是 | 结束时间。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。|
+
+**示例**：
+
+  ```js
+    bundleState.queryBundleActiveEventStates(0, 20000000000000, (err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback success.');
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback result ' + JSON.stringify(res));
+        }
+    });
+  ```
+
+## bundleState.queryAppNotificationNumber<sup>9+</sup>
+
+queryAppNotificationNumber(begin: number, end: number): Promise&lt;Array&lt;BundleActiveEventState&gt;&gt;
+
+通过指定起始和结束时间查询所有应用的通知次数信息，使用Promise形式返回。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | begin | number | 是 | 起始时间。|
+  | end | number | 是 | 结束时间。|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。|
+
+**示例**：
+
+  ```js
+    bundleState.queryAppNotificationNumber(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise success.');
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise result ' + JSON.stringify(res));
+    }).catch( err=> {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise failed, because: ' + err.code);
+    });
+  ```
+
+## bundleState.queryAppNotificationNumber<sup>9+</sup>
+
+queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void
+
+通过指定起始和结束时间查询所有应用的通知次数信息，使用Callback形式返回。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | begin | number | 是 | 起始时间。|
+  | end | number | 是 | 结束时间。|
+  | callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是 | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。|
+
+**示例**：
+
+  ```js
+    bundleState.queryAppNotificationNumber(0, 20000000000000, (err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumberCallBack callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumberCallBack callback success.');
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumberCallBack callback result ' + JSON.stringify(res));
+        }
+    });
+  ```
+
 ## BundleActiveModuleInfo<sup>9+</sup>
 FA的使用信息的属性集合。
 
@@ -590,6 +720,18 @@ merge(toMerge: BundleStateInfo): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是 | 不同应用的使用时长统计信息。|
+
+## BundleActiveEventState<sup>9+</sup>
+
+提供通知、系统事件的统计信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 通知应用包名或者系统事件名。|
+| eventId | number | 是 | 通知、系统事件类型。|
+| count | number | 是 | 应用通知次数或者系统事件触发次数。|
 
 ## IntervalType
 
