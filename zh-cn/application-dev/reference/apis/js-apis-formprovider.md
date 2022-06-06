@@ -145,21 +145,19 @@ SystemCapability.Ability.Form
   });
   ```
 
-## getFormsInfo
+## getFormsInfo<sup>9+</sup>
 
 getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 获取设备上当前应用程序的卡片信息。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -172,22 +170,20 @@ formProvider.getFormsInfo((error, data) => {
     }
 });
 ```
-## getFormsInfo
+## getFormsInfo<sup>9+</sup>
 
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 获取设备上当前应用程序的卡片信息。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | filter | formInfo.FormInfoFilter | 是 | 过滤卡片信息 |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
 
 **示例：**
 
@@ -204,15 +200,13 @@ formProvider.getFormsInfo(filter, (error, data) => {
 });
 ```
 
-## getFormsInfo
+## getFormsInfo<sup>9+</sup>
 
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 获取设备上当前应用程序的卡片信息。
 
-**系统能力：**
-
-SystemCapability.Ability.Form
+**系统能力：** SystemCapability.Ability.Form
 
 **参数：**
 
@@ -224,7 +218,7 @@ SystemCapability.Ability.Form
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise实例，用于获取异步返回查询到的卡片信息 |
+| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise实例，用于获取异步返回查询到的卡片信息。 |
 
 **示例：**
 
