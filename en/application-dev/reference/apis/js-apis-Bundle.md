@@ -493,6 +493,74 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 })
 ```
 
+## bundle.getBundleArchiveInfo
+
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>
+
+Obtains information about the bundles contained in a HAP file. This API uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name        | Type    | Mandatory  | Description          |
+| ---------- | ------ | ---- | ------------ |
+| hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
+
+**Return value**
+| Type            | Description                                    |
+| -------------- | -------------------------------------- |
+| Promise\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Promise used to return the information about the bundles.|
+
+**Example**
+
+```js
+let hapFilePath = "/data/xxx/test.hap";
+let bundleFlags = 0;
+bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
+.then((data) => {
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## bundle.getBundleArchiveInfo
+
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+
+Obtains information about the bundles contained in a HAP file. This API uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name        | Type    | Mandatory  | Description          |
+| ---------- | ------ | ---- | ------------ |
+| hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles. |
+
+**Example**
+
+```js
+let hapFilePath = "/data/xxx/test.hap";
+let bundleFlags = 0;
+bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+})
+```
+
+
 ## bundle.getAbilityInfo
 
 getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
@@ -1233,7 +1301,7 @@ SystemCapability.BundleManager.BundleFramework
 **Return value**
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md). |
+| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md).|
 
 **Example**
 
@@ -1268,7 +1336,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | bundleName  | string                                   | Yes   | Bundle name based on which the pixel map is to obtain.                         |
 | abilityName | string                                   | Yes   | Ability name based on which the pixel map is to obtain.                        |
-| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md). |
+| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md).|
 
 **Example**
 
@@ -1309,7 +1377,7 @@ SystemCapability.BundleManager.BundleFramework
 **Return value**
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md). |
+| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md).|
 
 **Example**
 
@@ -1346,7 +1414,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                                   | Yes   | Bundle name based on which the pixel map is to obtain.                         |
 | moduleName  | string                                   | Yes   | Module name based on which the pixel map is to obtain.                         |
 | abilityName | string                                   | Yes   | Ability name based on which the pixel map is to obtain.                        |
-| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md). |
+| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md).|
 
 **Example**
 
