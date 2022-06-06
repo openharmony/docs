@@ -232,3 +232,116 @@ formProvider.getFormsInfo(filter).then((data) => {
     console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
 });
 ```
+
+## requestPublishForm<sup>9+</sup>
+
+requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+
+请求发布一张卡片到使用方。
+
+**系统能力：**
+
+SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型                                                                    | 必填 | 说明             |
+| ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
+| want | [Want](js-apis-application-Want.md)                           | 是   | abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 用于创建卡片的数据 |
+| callback | AsyncCallback&lt;string&gt; | 是 | callback形式返回卡片标识 |
+
+**示例：**
+
+  ```js
+  import formBindingData from '@ohos.application.formBindingData';
+  var want = {
+      abilityName: "FormAbility",
+      parameters: {
+          "ohos.extra.param.key.form_dimension": 2,
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.module_name": "entry"
+      }
+  };
+  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  formProvider.requestPublishForm(want, obj, (error, data) => {
+      if (error.code) {
+          console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+      } else {
+          console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      }
+  });
+  ```
+
+## requestPublishForm<sup>9+</sup>
+
+requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+
+请求发布一张卡片到使用方。
+
+**系统能力：**
+
+SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| want     | [Want](js-apis-application-Want.md) | 是   | abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| callback | AsyncCallback&lt;string&gt;         | 是   | callback形式返回卡片标识                                     |
+
+**示例：**
+
+  ```js
+  var want = {
+      abilityName: "FormAbility",
+      parameters: {
+          "ohos.extra.param.key.form_dimension": 2,
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.module_name": "entry"
+      }
+  };
+  formProvider.requestPublishForm(want, (error, data) => {
+      if (error.code) {
+          console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+      } else {
+          console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      }
+  });
+  ```
+
+## requestPublishForm<sup>9+</sup>
+
+requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData): Promise&lt;string&gt;;
+
+请求发布一张卡片到使用方。
+
+**系统能力：**
+
+SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名          | 类型                                                         | 必填 | 说明                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want            | [Want](js-apis-application-Want.md)                          | 是   | abilityName: 目标卡片ability<br/>parameters:<br/>"ohos.extra.param.key.form_dimension"<br/>"ohos.extra.param.key.form_name"<br/>"ohos.extra.param.key.module_name" |
+| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 用于创建卡片的数据                                           |
+| callback        | AsyncCallback&lt;string&gt;                                  | 是   | callback形式返回卡片标识                                     |
+
+**示例：**
+
+  ```js
+  var want = {
+      abilityName: "FormAbility",
+      parameters: {
+          "ohos.extra.param.key.form_dimension": 2,
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.module_name": "entry"
+      }
+  };
+  formProvider.requestPublishForm(want).then((data) => {
+      console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+  });
+  ```
