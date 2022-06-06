@@ -301,4 +301,4 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 | ohos.permission.READ_HEALTH_DATA                         | normal       | user_grant   | TRUE    | 允许应用读取用户的健康数据。                                 |
 | ohos.permission.GET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用查询默认应用。    |
 | ohos.permission.SET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用设置、重置默认应用。    |
-| ohos.permission.MANAGE_DISPOSED_APP_STATUS                  | system_core  | system_grant | TRUE    | 允许设置和查询应用的处置状态。    |
+| ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | 允许设置和查询应用的处置状态。    |
