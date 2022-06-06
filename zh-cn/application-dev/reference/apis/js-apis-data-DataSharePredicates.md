@@ -13,7 +13,6 @@
 import DataSharePredicates from '@ohos.data.DataSharePredicates';
 ```
 
-
 ## equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
@@ -22,7 +21,7 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -52,7 +51,7 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -80,7 +79,7 @@ beginWrap(): DataSharePredicates
 
 该接口用于向谓词添加左括号。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -106,7 +105,7 @@ endWrap(): DataSharePredicates
 
 该接口用于向谓词添加右括号。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -134,7 +133,7 @@ or(): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -159,7 +158,7 @@ and(): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -182,7 +181,7 @@ contains(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配数据类型为String且value包含指定值的字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -210,7 +209,7 @@ beginsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配数据类型为String且值以指定字符串开头的字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -238,7 +237,7 @@ endsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配数据类型为String且值以指定字符串结尾的字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -268,7 +267,7 @@ isNull(field: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -297,7 +296,7 @@ isNotNull(field: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -326,7 +325,7 @@ like(field: string, value: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -356,7 +355,7 @@ unlike(field: string, value: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -384,7 +383,7 @@ glob(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词匹配数据类型为string的指定字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -412,7 +411,7 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于将谓词配置为匹配数据类型为ValueType且value在指定范围内的指定字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -441,7 +440,7 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配数据类型为ValueType且value超出给定范围的指定字段。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -472,7 +471,7 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -502,7 +501,7 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -532,7 +531,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -562,7 +561,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -586,13 +585,13 @@ dataSharePredicates.lessThanOrEqualTo("AGE", 50)
 
 ## orderByAsc
 
-orderByAsc(field: *string*): DataSharePredicates
+orderByAsc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按升序排序的列。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -615,13 +614,13 @@ dataSharePredicates.orderByAsc("AGE")
 
 ## orderByDesc
 
-orderByDesc(field: *string*): DataSharePredicates
+orderByDesc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按降序排序的列。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -648,7 +647,7 @@ distinct(): DataSharePredicates
 
 该接口用于配置谓词以过滤重复记录并仅保留其中一个。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -671,7 +670,7 @@ limit(total: number, offset: number): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -699,7 +698,7 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
 该接口用于配置谓词按指定列分组查询结果。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -726,7 +725,7 @@ indexedBy(field: string): DataSharePredicates
 
 该接口用于配置谓词以指定索引列。目前仅RDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -755,7 +754,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -785,7 +784,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -813,7 +812,7 @@ prefixKey(prefix: string): DataSharePredicates
 
 该接口用于配置谓词以匹配键前缀的指定字段。目前仅KVDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -840,7 +839,7 @@ inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配键在给定范围内的指定字段。目前仅KVDB支持该谓词。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 

@@ -22,7 +22,7 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 创建DataShare工具类，创建helper对象时将连接服务端，与服务端取得连接后或超时后将返回helper实例，此方法为异步方法。在与服务端取得连接后可使用DataShare工具类提供的方法访问或管理服务端的数据，若未连接上服务端，调用工具类提供的方法时将返回error code。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -56,7 +56,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开URI所指定的远程路径中的文件（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -69,7 +69,6 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt", (err, data) => {
@@ -88,7 +87,7 @@ openFile(uri: string, mode: string): Promise&lt;number&gt;
 
 打开URI所指定的远程路径中的文件（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -106,7 +105,6 @@ openFile(uri: string, mode: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt").then((data) => {
@@ -123,7 +121,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 注册观察者以订阅给定uri指定的数据callback通知。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接受到callback通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -136,7 +134,6 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.on("dataChange", uri, onCallback);
@@ -152,7 +149,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 注消观察者以停止观察给定uri指定的数据callback通知。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -165,7 +162,6 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.off("dataChange", uri, offCallback);
@@ -181,7 +177,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 通知已注册的观察者uri指定的数据资源的更改（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -193,7 +189,6 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
@@ -207,7 +202,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 通知已注册的观察者uri指定的数据资源的更改（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -224,7 +219,6 @@ notifyChange(uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShare.createDataShareHelper(this.context, uri, (err, data) => {
@@ -245,7 +239,7 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取URI所指定的数据的MIME类型（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -257,7 +251,6 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri, (err, data)=>{
@@ -276,7 +269,7 @@ getType(uri: string): Promise&lt;string&gt;
 
 获取URI所指定数据的MIME类型（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -293,7 +286,6 @@ getType(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri).then((data) => {
@@ -309,7 +301,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 
 获取支持的文件的MIME类型（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -322,7 +314,6 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
@@ -343,7 +334,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt
 
 获取支持的文件的MIME类型（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -361,7 +352,6 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
@@ -378,7 +368,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将给定的DataShare uri转换为规范化uri（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -390,7 +380,6 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
@@ -408,7 +397,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 将给定的DataShare uri转换为规范化uri（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -425,7 +414,6 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
@@ -441,7 +429,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将由normalizeUri（uri）生成的规范化uri转换为非规范化uri（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -453,7 +441,6 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
@@ -471,7 +458,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 将由normalizeUri（uri）生成的规范化uri转换为非规范化uri（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -488,7 +475,6 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
@@ -504,7 +490,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 将单条数据记录插入数据库（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -517,7 +503,6 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
@@ -541,7 +526,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 将单条数据记录插入数据库（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -559,7 +544,6 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
@@ -581,7 +565,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 将批量数据插入数据库（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -594,7 +578,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
@@ -615,7 +598,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 将批量数据插入数据库（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -633,7 +616,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
@@ -652,7 +634,7 @@ delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;
 
 从数据库中删除一条或多条数据记录（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -665,7 +647,6 @@ delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
@@ -685,7 +666,7 @@ delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 
 从数据库中删除一条或多条数据记录（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -703,7 +684,6 @@ delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
@@ -721,7 +701,7 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callba
 
 更新数据库中的数据记录（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -735,7 +715,6 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callba
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
@@ -761,7 +740,7 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 
 更新数据库中的数据记录（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -780,7 +759,6 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
@@ -804,7 +782,7 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 
 查询数据库中的数据（callback形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -818,7 +796,6 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"]；
@@ -841,7 +818,7 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 
 查询数据库中的数据（Promise形式）。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
@@ -860,7 +837,6 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 **示例：**
 
 ```ts
-// Refer to the createDataShareHelper for the method of obtaining dataShareHelper
 let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"]；
