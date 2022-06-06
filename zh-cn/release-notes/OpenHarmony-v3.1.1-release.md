@@ -89,6 +89,21 @@ repo sync -c
 repo forall -c 'git lfs pull'
 ```
 
+### 从镜像站点获取
+
+**表2** 获取源码路径
+
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 全量代码（标准、轻量和小型系统）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz.sha256) |
+| Hi3516标准系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256) |
+| Hi3861轻量系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-Linux（二进制）  | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
+| 标准系统SDK包（Mac）                    | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统SDK包（Windows\Linux）          | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256) |
+
 
 ## 更新说明
 
@@ -115,8 +130,7 @@ repo forall -c 'git lfs pull'
 | 启动恢复 | 实现兼容\@system.device&nbsp;API接口能力。<br/>主要涉及如下需求：<br/>I56GBS&nbsp;支持\@system.device相关API | NA | 
 | 应用 | 联系人支持第三方应用调用系统通话能力，提供用户基础通信能力。<br/>主要涉及如下需求：<br/>I58ZQ4&nbsp;联系人支持第三方应用调用系统通话能力 | NA | 
 
-API变更
-
+### API变更
 
 3.1.1 Release对比3.1 Release API接口无变更。
 
@@ -126,4 +140,23 @@ API变更
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
 
+## 修复缺陷列表
 
+**表6** 修复缺陷ISSUE列表
+
+| ISSUE单                                                      | 问题描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | 本地编译构建Hi3516开发板版本镜像                             |
+| [I4WDD3](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4WDD3) | 【RK3568】录像后无法查看视频                                 |
+| [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB)   | 【Hi3516烧录】标准系统Hi3516镜像无法通过IDE烧录              |
+
+
+## 遗留缺陷列表
+
+**表7** 遗留缺陷列表
+
+| ISSUE                                                        | 问题描述                                                   | 影响                                              | 计划解决日期 |
+| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------- | ------------ |
+| [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 | 影响开发者体验。                                  | 2022-06-15   |
+| [I58GFY](https://gitee.com/openharmony/communication_wifi/issues/I58GFY) | 【RK3568】 2.4G/5G频段WPA+TKIP/AES加密方式均连接失败       | TP-Link AX50型号路由器无法正常连接WiFi。          | 2022-06-30   |
+| [I59P32](https://gitee.com/openharmony/device_manager/issues/I59P32) | 【RK3568】设备信任周期超期后无法重新PIN码认证              | 长时间不输入PIN码导致超时后触发，重启设备可恢复。 | 2022-06-15   |
