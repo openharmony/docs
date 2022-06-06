@@ -16,7 +16,7 @@ The related modules are described as follows:
 
 -   View: provides application components, including **UIView**, **UIViewGroup**, **UIButton**, **UILabel**, **UILabelButton**, **UIList**, and **UISlider**.
 -   Animator: defines functions for customizing animations.
--   Layout: lays out components, including **Flexlayout**, **GridLayout**, and **ListLayout**.
+-   Layout: lays out components, including **FlexLayout**, **GridLayout**, and **ListLayout**.
 -   Transform: rotates, translates, or scales images.
 -   Event: processes basic events, including click, press, drag, and long press events.
 -   Rendering engine: performs rendering and drawing operations.
