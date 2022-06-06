@@ -1,7 +1,9 @@
 # statfs
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+This module provides information related to the file system. It provides JS APIs to obtain the total number of bytes and the number of idle bytes of the file system.
 
 ## Modules to Import
 
@@ -11,11 +13,11 @@ import statfs from '@ohos.statfs';
 
 ## Guidelines
 
-Before using this module to perform operations on a file or directory, obtain the absolute path of the file or directory. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
+Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
 
-Absolute file or directory path = Application directory + File name or directory name
+Application sandbox path of a file or directory = Application directory + File name or directory name
 
-For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the absolute path of the file is as follows:
+For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the application sandbox path of the file is as follows:
 
 ```js
 let path = dir + "xxx.txt";
@@ -25,7 +27,7 @@ let path = dir + "xxx.txt";
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This method uses a promise to return the result.
+Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -56,7 +58,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This method uses a callback to return the result.
+Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -79,7 +81,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This method uses a promise to return the result.
+Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -110,7 +112,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This method uses a callback to return the result.
+Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

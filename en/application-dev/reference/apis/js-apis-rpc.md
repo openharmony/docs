@@ -1,7 +1,7 @@
 # RPC
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,12 +26,12 @@ Creates a **MessageParcel** object. This method is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | MessageParcel | **MessageParcel** object created.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -47,7 +47,7 @@ Reclaims the **MessageParcel** object that is no longer used.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
   let reply = rpc.MessageParcel.create();
@@ -63,22 +63,36 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | Yes| Remote object to serialize and write to the **MessageParcel** object.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let data = rpc.MessageParcel.create();
@@ -95,17 +109,31 @@ Reads the remote object from this **MessageParcel** object. You can use this met
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | Remote object obtained.|
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let data = rpc.MessageParcel.create();
@@ -123,17 +151,17 @@ Writes an interface token to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | string | Yes| Interface token to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -150,12 +178,12 @@ Reads the interface token from this **MessageParcel** object. The interface toke
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Interface token obtained.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -176,12 +204,12 @@ Obtains the data size of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Size of the **MessageParcel** object obtained, in bytes.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -198,12 +226,12 @@ Obtains the capacity of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** capacity obtained, in bytes.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -220,17 +248,17 @@ Sets the size of data contained in this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Data size to set, in bytes.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -247,17 +275,17 @@ Sets the storage capacity of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Storage capacity to set, in bytes.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -274,12 +302,12 @@ Obtains the writable capacity of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** writable capacity obtained, in bytes.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -300,12 +328,12 @@ Obtains the readable capacity of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | **MessageParcel** object readable capacity, in bytes.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -326,12 +354,12 @@ Obtains the read position of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Current read position of the **MessageParcel** object.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -348,12 +376,12 @@ Obtains the write position of this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Current write position of the **MessageParcel** object.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -371,17 +399,17 @@ Moves the read pointer to the specified position.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | pos | number | Yes| Position from which data is to read.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the read position changes; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -403,17 +431,17 @@ Moves the write pointer to the specified position.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | pos | number | Yes| Position from which data is to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the write position changes; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -433,17 +461,17 @@ Writes a Byte value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Byte value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -460,12 +488,12 @@ Reads the Byte value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Byte value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -484,17 +512,17 @@ Writes a Short int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Short int value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -511,12 +539,12 @@ Reads the Short int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Short int value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -535,17 +563,17 @@ Writes an Int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Int value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -562,12 +590,12 @@ Reads the Int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Int value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -586,17 +614,17 @@ Writes a Long int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Long int value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -613,18 +641,18 @@ Reads the Long int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Long int value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
   console.log("RpcClient: writeLong is " + result);
-  let ret = data.readlong();
+  let ret = data.readLong();
   console.log("RpcClient: readLong is " + ret);
   ```
 
@@ -637,17 +665,17 @@ Writes a Float value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Float value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -664,12 +692,12 @@ Reads the Float value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Float value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -688,17 +716,17 @@ Writes a Double value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Double value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -715,12 +743,12 @@ Reads the Double value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Double value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -739,17 +767,17 @@ Writes a Boolean value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | boolean | Yes| Boolean value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -766,12 +794,12 @@ Reads the Boolean value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Boolean value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -790,21 +818,21 @@ Writes a Char value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | number | Yes| Char value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeChar('a');
+  let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   ```
 
@@ -817,16 +845,16 @@ Reads the Char value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Char value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeChar('a');
+  let result = data.writeChar(97);
   console.log("RpcClient: writeChar is " + result);
   let ret = data.readChar();
   console.log("RpcClient: readChar is " + ret);
@@ -841,17 +869,17 @@ Writes a String value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | string | Yes| String value to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -868,12 +896,12 @@ Reads the String value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | String value read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -892,23 +920,25 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | val | [Sequenceable](#sequenceable) | Yes| Sequenceable object to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -936,23 +966,25 @@ Reads member variables from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | [Sequenceable](#sequenceable) | Yes| Object that reads member variables from the **MessageParcel** object.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -983,21 +1015,21 @@ Writes a ByteArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | byteArray | number[] | Yes| ByteArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let ByteArrayVar = new Int8Array([1, 2, 3, 4, 5]);
+  let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
   console.log("RpcClient: writeByteArray is " + result);
   ```
@@ -1011,16 +1043,16 @@ Reads the ByteArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| ByteArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let ByteArrayVar = new Int8Array([1, 2, 3, 4, 5]);
+  let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
   console.log("RpcClient: writeByteArray is " + result);
   let array = new Array(5);
@@ -1036,16 +1068,16 @@ Reads the ByteArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | ByteArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let ByteArrayVar = new Int8Array([1, 2, 3, 4, 5]);
+  let ByteArrayVar = [1, 2, 3, 4, 5];
   let result = data.writeByteArray(ByteArrayVar);
   console.log("RpcClient: writeByteArray is " + result);
   let array = data.readByteArray();
@@ -1061,17 +1093,17 @@ Writes a ShortArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | shortArray | number[] | Yes| ShortArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1088,12 +1120,12 @@ Reads a ShortArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| ShortArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1112,12 +1144,12 @@ Reads the ShortArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | ShortArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1136,17 +1168,17 @@ Writes an IntArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | intArray | number[] | Yes| IntArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1163,12 +1195,12 @@ Reads an IntArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| IntArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1187,12 +1219,12 @@ Reads the IntArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | IntArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1211,17 +1243,17 @@ Writes a LongArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | longArray | number[] | Yes| LongArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1238,12 +1270,12 @@ Reads a LongArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| LongArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1262,12 +1294,12 @@ Reads the LongArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | LongArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1286,17 +1318,17 @@ Writes a FloatArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | floatArray | number[] | Yes| FloatArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1313,13 +1345,13 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| FloatArray to read.|
 
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1338,12 +1370,12 @@ Reads the FloatArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | FloatArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1362,17 +1394,17 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | doubleArray | number[] | Yes| DoubleArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1389,12 +1421,12 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| DoubleArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1413,12 +1445,12 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | DoubleArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1437,17 +1469,17 @@ Writes a BooleanArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | booleanArray | boolean[] | Yes| BooleanArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1464,12 +1496,12 @@ Reads a BooleanArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | boolean[] | Yes| BooleanArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1488,7 +1520,7 @@ Reads the BooleanArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean[] | BooleanArray read.|
@@ -1511,21 +1543,21 @@ Writes a CharArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | charArray | number[] | Yes| CharArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray(['a', 'b', 'c']);
+  let result = data.writeCharArray([97, 98, 88]);
   console.log("RpcClient: writeCharArray is " + result);
   ```
 
@@ -1538,16 +1570,16 @@ Reads a CharArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | Yes| CharArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray(['a', 'b', 'c']);
+  let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = new Array(3);
   data.readCharArray(array);
@@ -1562,16 +1594,16 @@ Reads the CharArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | CharArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
-  let result = data.writeCharArray(['a', 'b', 'c']);
+  let result = data.writeCharArray([97, 98, 99]);
   console.log("RpcClient: writeCharArray is " + result);
   let array = data.readCharArray();
   console.log("RpcClient: readCharArray is " + array);
@@ -1586,17 +1618,17 @@ Writes a StringArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | stringArray | string[] | Yes| StringArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1613,12 +1645,12 @@ Reads a StringArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | string[] | Yes| StringArray to read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1637,12 +1669,12 @@ Reads the StringArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string[] | StringArray read.|
 
-- Example
+**Example**
 
   ```
   let data = rpc.MessageParcel.create();
@@ -1661,12 +1693,26 @@ Writes information to this **MessageParcel** object indicating that no exception
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
       onRemoteRequest(code, data, reply, option) {
           if (code === 1) {
@@ -1690,7 +1736,7 @@ Reads the exception information from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -1745,23 +1791,25 @@ Writes a SequenceableArray to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | Yes| SequenceableArray to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -1792,18 +1840,20 @@ Reads a SequenceableArray from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | Yes| SequenceableArray to read.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -1836,23 +1886,40 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | objectArray | IRemoteObject[] | Yes| Array of **IRemoteObject** objects to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** if the operation fails or if the **IRemoteObject** array is null.|
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.attachLocalInterface(this, descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
       }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
@@ -1870,18 +1937,35 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | objects | IRemoteObject[] | Yes| **IRemoteObject** array to read.|
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.attachLocalInterface(this, descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
       }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
@@ -1900,18 +1984,35 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | IRemoteObject[] | **IRemoteObject** object array obtained.|
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.attachLocalInterface(this, descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
       }
   }
   let a = [new TestRemoteObject("testObject1"), new TestRemoteObject("testObject2"), new TestRemoteObject("testObject3")];
@@ -1931,12 +2032,12 @@ Closes a file descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to close.|
 
-- Example
+**Example**
 
   ```
   import fileio from '@ohos.fileio';
@@ -1954,17 +2055,17 @@ Duplicates a file descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to duplicate.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | New file descriptor.|
 
-- Example
+**Example**
 
   ```
   import fileio from '@ohos.fileio';
@@ -1982,12 +2083,12 @@ Checks whether this **MessageParcel** object contains a file descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the **MessageParcel** object contains a file descriptor; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   import fileio from '@ohos.fileio';
@@ -2010,17 +2111,17 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | fd | number | Yes| File descriptor to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   import fileio from '@ohos.fileio';
@@ -2040,12 +2141,12 @@ Reads the file descriptor from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | File descriptor read.|
 
-- Example
+**Example**
 
   ```
   import fileio from '@ohos.fileio';
@@ -2066,17 +2167,17 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | Yes| Anonymous shared object to write.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let parcel = new rpc.MessageParcel();
@@ -2094,12 +2195,12 @@ Reads the anonymous shared object from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | Ashmem | Anonymous share object obtained.|
 
-- Example
+**Example**
 
   ```
   let parcel = new rpc.MessageParcel();
@@ -2119,12 +2220,12 @@ Obtains the maximum amount of raw data that can be held by this **MessageParcel*
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | 128 MB, which is the maximum amount of raw data that can be held by this **MessageParcel** object.|
 
-- Example
+**Example**
 
   ```
   let parcel = new rpc.MessageParcel();
@@ -2141,22 +2242,22 @@ Writes raw data to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | rawData | number[] | Yes| Raw data to write.|
   | size | number | Yes| Size of the raw data, in bytes.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let parcel = new rpc.MessageParcel();
-  let arr = new Int8Array([1, 2, 3, 4, 5]);
+  let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
   console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
   ```
@@ -2170,21 +2271,21 @@ Reads raw data from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Size of the raw data to read.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | Raw data obtained, in bytes.|
 
-- Example
+**Example**
 
   ```
   let parcel = new rpc.MessageParcel();
-  let arr = new Int8Array([1, 2, 3, 4, 5]);
+  let arr = [1, 2, 3, 4, 5];
   let isWriteSuccess = parcel.writeRawData(arr, arr.length);
   console.log("RpcTest: parcel write raw data result is : " + isWriteSuccess);
   let result = parcel.readRawData(5);
@@ -2204,23 +2305,25 @@ Marshals the sequenceable object into a **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataOut | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -2251,23 +2354,25 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | dataIn | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class MySequenceable {
-      constructor(num, string) {
+      num: number;
+      str: string;
+      constructor(num, str) {
           this.num = num;
-          this.str = string;
+          this.str = str;
       }
       marshalling(messageParcel) {
           messageParcel.writeInt(this.num);
@@ -2303,12 +2408,12 @@ Obtains a proxy or remote object. This method must be implemented by its derived
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | Returns the [RemoteObject](#ashmem8) if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
-- Example
+**Example**
 
   ```
   class TestAbility extends rpc.RemoteObject {
@@ -2318,10 +2423,11 @@ Obtains a proxy or remote object. This method must be implemented by its derived
   }
   ```
 
-- Example
+**Example**
 
   ```
   class TestProxy {
+      remote: rpc.RemoteObject;
       constructor(remote) {
           this.remote = remote;
       }
@@ -2345,7 +2451,7 @@ Called to perform subsequent operations when a death notification of the remote 
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
   class MyDeathRecipient {
@@ -2383,28 +2489,29 @@ Obtains the interface.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | **IRemoteBroker** object bound to the specified interface descriptor.|
 
 
-### sendRequest
+### sendRequest<sup>(deprecated)</sup>
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
+> **NOTE**<br/>
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8).
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -2412,11 +2519,32 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt;<sup>7</sup><br>Promise&lt;SendRequestResult&gt;<sup>8+</sup> | Promise used to return the result. The value **0** will be returned if the request is sent successfully. Otherwise, an error code will be returned.<sup>7</sup><br>Promise used to return the **sendRequestResult** object.<sup>8+</sup> |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+
+### sendRequest<sup>8+</sup>
+
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+    | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
+  | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
+  | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
+
+**Return value**
+    | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 ### sendRequest<sup>8+</sup>
 
@@ -2426,7 +2554,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -2444,13 +2572,13 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to add.|
   | flags | number | Yes| Flag of the death notification.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
@@ -2464,13 +2592,13 @@ Removes the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to remove.|
   | flags | number | Yes| Flag of the death notification.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
@@ -2484,7 +2612,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
@@ -2498,7 +2626,7 @@ Checks whether this object is dead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
@@ -2521,18 +2649,18 @@ Provides methods to implement **IRemoteObject**.
 
 
 
-### sendRequest
+### sendRequest<sup>(deprecated)</sup>
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
+> **NOTE**<br/>
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-2).
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -2540,12 +2668,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt;<sup>7</sup><br>Promise&lt;SendRequestResult&gt;<sup>8+</sup> | Promise used to return the result. The value **0** will be returned if the request is sent successfully. Otherwise, an error code will be returned.<sup>7</sup><br>Promise used to return the **sendRequestResult** object.<sup>8+</sup> |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example:<sup>7</sup>
+
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2572,25 +2701,41 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequest(1, data, reply, option)
-      .then(function(errCode) {
-          if (errCode === 0) {
-              console.log("sendRequest got result");
-              let msg = reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendRequest failed, errCode: " + errCode);
-          }
-      }).catch(function(e) {
-          console.log("RPCTest: sendRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+  let ret: boolean = proxy.sendRequest(1, data, reply, option);
+  if (ret) {
+      console.log("sendRequest got result");
+      let msg = reply.readString();
+      console.log("RPCTest: reply msg: " + msg);
+  } else {
+      console.log("RPCTest: sendRequest failed");
+  }
+  console.log("RPCTest: sendRequest ends, reclaim parcel");
+  data.reclaim();
+  reply.reclaim();
   ```
 
-- Example:<sup>8+</sup>
+### sendRequest<sup>8+</sup>
+
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+    | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
+  | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
+  | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
+
+**Return value**
+    | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2645,7 +2790,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -2654,7 +2799,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
   | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes| Callback for receiving the sending result.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2706,17 +2851,17 @@ Obtains the **LocalInterface** object of an interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | interface | string | Yes| Interface descriptor.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2751,18 +2896,18 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to add.|
   | flags | number | Yes| Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2802,18 +2947,18 @@ Removes the callback used to receive death notifications of the remote object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | Yes| Callback to remove.|
   | flags | number | Yes| Flag of the death notification. This parameter is reserved. It is set to **0**.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the callback is removed successfully; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2854,12 +2999,12 @@ Obtains the interface descriptor of this proxy object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2894,12 +3039,12 @@ Checks whether the **RemoteObject** is dead.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   import FA from "@ohos.ability.featureAbility";
@@ -2948,7 +3093,7 @@ A constructor used to create a **MessageOption** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | syncFlags | number | No| Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
@@ -2963,7 +3108,7 @@ Obtains the call flag, which can be synchronous or asynchronous.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Call mode obtained.|
@@ -2977,7 +3122,7 @@ Sets the call flag, which can be synchronous or asynchronous.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | flags | number | Yes| Call flag to set.|
@@ -2991,7 +3136,7 @@ Obtains the maximum wait time for this RPC call.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Maximum wait time obtained.|
@@ -3005,7 +3150,7 @@ Sets the maximum wait time for this RPC call.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | waitTime | number | Yes| Maximum wait time to set.|
@@ -3024,12 +3169,12 @@ Obtains the system capability manager.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | System capability manager obtained.|
 
-- Example
+**Example**
 
   ```
   let samgr = rpc.IPCSkeleton.getContextObject();
@@ -3045,12 +3190,12 @@ Obtains the PID of the caller. This method is invoked by the **RemoteObject** ob
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | PID of the caller.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3071,12 +3216,12 @@ Obtains the UID of the caller. This method is invoked by the **RemoteObject** ob
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | UID of the caller.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3088,7 +3233,7 @@ Obtains the UID of the caller. This method is invoked by the **RemoteObject** ob
   }
   ```
 
-### getCallingTokenId
+### getCallingTokenId<sup>8+</sup>
 
 static getCallingTokenId(): number;
 
@@ -3096,13 +3241,13 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-Return value
+* Return value
 
     | Type  | Description                 |
   | ------ | --------------------- |
   | number | Token ID of the caller obtained.|
 
-Example
+* Example
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3115,7 +3260,7 @@ Example
   ```
 
 
-### getCalligDeviceID
+### getCallingDeviceID
 
 static getCallingDeviceID(): string
 
@@ -3123,17 +3268,17 @@ Obtains the ID of the device hosting the caller's process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Device ID obtained.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
       onRemoteRequest(code, data, reply, option) {
-          let callerDeviceID = rpc.IPCSkeleton.getCalligDeviceID();
+          let callerDeviceID = rpc.IPCSkeleton.getCallingDeviceID();
           console.log("RpcServer: callerDeviceID is: " + callerDeviceID);
           return true;
       }
@@ -3149,12 +3294,12 @@ Obtains the local device ID.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Local device ID obtained.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3175,12 +3320,12 @@ Checks whether the remote process is a process of the local device.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3201,21 +3346,40 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | Yes| **RemoteProxy** specified. |
 
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | Returns **0** if the operation is successful; returns an error code if the input object is null or a **RemoteObject**, or if the operation fails.|
 
-- Example
+**Example**
 
   ```
-  let remoteObject = new rpc.RemoteObject("aaa", 3);
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let remoteObject = new TestRemoteObject("aaa");
   let ret = rpc.IPCSkeleton.flushCommands(remoteObject);
   console.log("RpcServer: flushCommands result: " + ret);
   ```
@@ -3229,12 +3393,12 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | String containing the UID and PID of the remote user.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3255,17 +3419,17 @@ Restores the UID and PID of the remote user. It is usually called when the UID a
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | identity | string | Yes| String containing the remote user UID and PID, which are returned by **resetCallingIdentity**.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   class Stub extends rpc.RemoteObject {
@@ -3297,23 +3461,24 @@ A constructor used to create a **RemoteObject** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
 
-### sendRequest
+### sendRequest<sup>(deprecated)</sup>
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean;<sup>7</sup>
+> **NOTE**<br/>
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-4).
 
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;<sup>8+</sup>
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -3321,18 +3486,32 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
   | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt;<sup>7</sup><br>Promise&lt;SendRequestResult&gt;<sup>8+</sup> | Promise used to return the result. The value **0** will be returned if the request is sent successfully. Otherwise, an error code will be returned.<sup>7</sup><br>Promise used to return the **sendRequestResult** object.<sup>8+</sup> |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
-- Example<sup>7</sup>
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3341,31 +3520,62 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option)
-      .then(function(errCode) {
-          if (errCode === 0) {
-              console.log("sendRequest got result");
-              let msg = reply.readString();
-              console.log("RPCTest: reply msg: " + msg);
-          } else {
-              console.log("RPCTest: sendRequest failed, errCode: " + errCode);
-          }
-      }).catch(function(e) {
-          console.log("RPCTest: sendRequest got exception: " + e.message);
-      }).finally (() => {
-          console.log("RPCTest: sendRequest ends, reclaim parcel");
-          data.reclaim();
-          reply.reclaim();
-      });
+  let ret: boolean = testRemoteObject.sendRequest(1, data, reply, option);
+  if (ret) {
+      console.log("sendRequest got result");
+      let msg = reply.readString();
+      console.log("RPCTest: reply msg: " + msg);
+  } else {
+      console.log("RPCTest: sendRequest failed");
+  }
+  console.log("RPCTest: sendRequest ends, reclaim parcel");
+  data.reclaim();
+  reply.reclaim();
   ```
 
 
-- Example<sup>8+</sup>
+### sendRequest<sup>8+</sup>
+
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+
+**System capability**: SystemCapability.Communication.IPC.Core
+
+**Parameters**
+    | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object holding the data to send.|
+  | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object that receives the response.|
+  | options | [MessageOption](#messageoption) | Yes| Request sending mode, which can be synchronous (default) or asynchronous.|
+
+**Return value**
+    | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+
+
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3402,7 +3612,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
@@ -3412,12 +3622,26 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | Yes| Callback for receiving the sending result.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   function sendRequestCallback(result) {
@@ -3451,7 +3675,7 @@ Provides a response to **sendRequest()**. The server processes the request and r
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | code | number | Yes| Service request code sent by the remote end.|
@@ -3459,18 +3683,32 @@ Provides a response to **sendRequest()**. The server processes the request and r
   | reply | [MessageParcel](#messageparcel) | Yes| **MessageParcel** object carrying the result.|
   | option | [MessageOption](#messageoption) | Yes| Whether the operation is synchronous or asynchronous.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
 
       onRemoteRequest(code, data, reply, option) {
@@ -3494,18 +3732,32 @@ Obtains the UID of the remote process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | UID of the remote process obtained.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3521,18 +3773,32 @@ Obtains the PID of the remote process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | PID of the remote process obtained.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3548,23 +3814,37 @@ Checks whether the remote object corresponding to the specified interface descri
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | descriptor | string | Yes| Interface descriptor.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | IRemoteBroker | Returns the remote object if a match is found; returns **Null** otherwise.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3580,18 +3860,32 @@ Obtains the interface descriptor.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | string | Interface descriptor obtained.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3608,20 +3902,37 @@ Binds an interface descriptor to an **IRemoteBroker** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | localInterface | IRemoteBroker | Yes| **IRemoteBroker** object.|
   | descriptor | string | Yes| Interface descriptor.|
 
 
-- Example
+**Example**
 
   ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server is died");
+      }
+  }
   class TestRemoteObject extends rpc.RemoteObject {
       constructor(descriptor) {
           super(descriptor);
           this.attachLocalInterface(this, descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      asObject(): rpc.IRemoteObject {
+          return this;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
@@ -3652,19 +3963,19 @@ Creates an **Ashmem** object with the specified name and size.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | name | string | Yes| Name of the **Ashmem** object to create.|
   | size | number | Yes| Size (in bytes) of the **Ashmem** object to create.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | Ashmem | Returns the **Ashmem** object if it is created successfully; returns null otherwise.|
 
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3681,18 +3992,18 @@ Creates an **Ashmem** object by copying the file descriptor (FD) of an existing 
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | Yes| Existing **Ashmem** object.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | Ashmem | **Ashmem** object created.|
 
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3710,7 +4021,7 @@ Closes this **Ashmem** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3726,7 +4037,7 @@ Deletes the mappings for the specified address range of this **Ashmem** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3742,12 +4053,12 @@ Obtains the memory size of this **Ashmem** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number | **Ashmem** size obtained.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3764,21 +4075,21 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
-    | Name| Type| Mandatory| Description|
+**Parameters**
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | mapType | number | Yes| Protection level of the memory region to which the shared file is mapped.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
+  let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
   console.log("RpcTest: map ashmem result is  : " + mapReadAndWrite);
   ```
 
@@ -3791,12 +4102,12 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3813,12 +4124,12 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
@@ -3835,21 +4146,21 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | protectionType | number | Yes| Protection type to set.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
-  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
+  let result = ashmem.setProtection(ashmem.PROT_READ);
   console.log("RpcTest: Ashmem setProtection result is : " + result);
   ```
 
@@ -3862,23 +4173,23 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
+**Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | buf | number[] | Yes| Data to write.|
   | size | number | Yes| Size of the data to write.|
   | offset | number | Yes| Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** is the data is written successfully; returns **false** otherwise.|
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
-  var ByteArrayVar = new Int8Array([1, 2, 3, 4, 5]);
+  var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   ```
@@ -3892,23 +4203,23 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-- Parameters
-    | Name| Type| Mandatory| Description|
+**Parameters**
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Size of the data to read.|
   | offset | number | Yes| Start position of the data to read in the memory region associated with this **Ashmem** object.|
 
-- Return value
+**Return value**
     | Type| Description|
   | -------- | -------- |
   | number[] | Data read.|
 
 
-- Example
+**Example**
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
-  var ByteArrayVar = new Int8Array([1, 2, 3, 4, 5]);
+  var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);

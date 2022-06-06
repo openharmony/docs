@@ -1,9 +1,12 @@
 # App Storage Statistics
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - API version 9 is a canary release for trial use. The APIs of this version may be unstable.
+> - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+> - The APIs of this module are system APIs and cannot be called by third-party applications.
+
+This module provides functions to obtain storage statistics, including the space of built-in and plug-in memory cards, statistics of application data by type, and application data.
 
 ## Modules to Import
 
@@ -130,7 +133,7 @@ Asynchronously obtains the available space of the specified volume. This API use
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Asynchronously obtains app information. This API uses a promise to return the result.
+Asynchronously obtains application information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -138,13 +141,13 @@ Asynchronously obtains app information. This API uses a promise to return the re
 
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
-  | packageName | string | Yes  | Bundle name of the app.|
+  | packageName | string | Yes  | Bundle name of the application.|
   
 - Return value
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the app information.|
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the application data obtained.|
 
 - Example
 
@@ -161,7 +164,7 @@ Asynchronously obtains app information. This API uses a promise to return the re
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Asynchronously obtains app information. This API uses a callback to return the result.
+Asynchronously obtains application information. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -169,8 +172,8 @@ Asynchronously obtains app information. This API uses a callback to return the r
 
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | packageName | string | Yes  | Bundle name of the app.|
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the app information.|
+  | packageName | string | Yes  | Bundle name of the application.|
+  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback used to return the application information obtained.|
   
 - Example
 
@@ -186,10 +189,10 @@ Asynchronously obtains app information. This API uses a callback to return the r
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-### Attributes
+### Attribute
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
-| appSize<sup>9+</sup>   | number | Size of the app.   |
-| cacheSize<sup>9+</sup> | number | Cache size of the app.  |
-| dataSize<sup>9+</sup>  | number | Total data size of the app.|
+| appSize<sup>9+</sup>   | number | Size of the application.   |
+| cacheSize<sup>9+</sup> | number | Cache size of the application.  |
+| dataSize<sup>9+</sup>  | number | Total data size of the application.|
