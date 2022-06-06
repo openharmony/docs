@@ -1,12 +1,15 @@
 # Ability
 
-> **NOTE**<br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 Manages the ability lifecycle and context.
 
+
 ## Modules to Import
 
+  
 ```
 import Ability from '@ohos.application.Ability';
 ```
@@ -197,12 +200,11 @@ Called to save data during the ability migration preparation process.
 **Example**
     
   ```js
-  import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
-          return AbilityConstant.OnContinueResult.AGREE;
+          return true;
       }
   }
   ```
@@ -257,32 +259,6 @@ Called when the configuration of the environment where the ability is running is
   }
   ```
 
-## Ability.dump
-
-dump(params: Array\<string>): Array\<string>;
-
-Called when the client information is dumped.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | Yes| Parameters in the form of a command.| 
-
-**Example**
-    
-  ```js
-  class myAbility extends Ability {
-      dump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
-      }
-  }
-  ```
-
-
 
 ## Caller
 
@@ -315,9 +291,6 @@ Sends sequenceable data to the target ability.
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // Custom sequenceable data structure
-      name:""
-      str:""
-      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -388,9 +361,6 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
-      name:""
-      str:""
-      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -539,9 +509,6 @@ Registers a caller notification callback, which is invoked when the target abili
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
-      name:""
-      str:""
-      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
