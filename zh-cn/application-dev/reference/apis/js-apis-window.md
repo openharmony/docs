@@ -2471,3 +2471,29 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
       }
   }
   ```
+
+### setShowOnLockScreen('showOnLockScreen')<sup>9+</sup>
+
+setShowOnLockScreen(showOnLockScreen: boolean): void
+
+设置应用显示在锁屏之上。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| showOnLockScreen | boolean | 是   | 是否设置应用显示在锁屏之上。 |
+
+**示例：** 
+
+```ts
+class myAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        console.log('onWindowStageCreate');
+        windowStage.setShowOnLockScreen(true);
+    }
+}
+```
+

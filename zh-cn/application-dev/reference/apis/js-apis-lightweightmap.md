@@ -17,14 +17,13 @@ LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集�
 import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
 
-## 系统能力
 
-SystemCapability.Utils.Lang
 
 ## LightWeightMap
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -36,6 +35,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 LightWeightMap的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -49,6 +50,8 @@ let lightWeightMap = new LightWeightMap();
 isEmpty(): boolean
 
 判断该LightWeightMap是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -69,6 +72,8 @@ let result = lightWeightMap.isEmpty();
 hasAll(map: LightWeightMap<K, V>): boolean
 
 判断此LightWeightMap中是否含有该指定map中的所有元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -100,6 +105,8 @@ hasKey(key: K): boolean;
 
 判断此LightWeightMap中是否含有该指定key。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -129,6 +136,8 @@ hasValue(value: V): boolean
 
 判断此LightWeightMap中是否含有该指定value。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -157,6 +166,8 @@ increaseCapacityTo(minimumCapacity: number): void
 
 将当前LightWeightMap扩容至可以容纳指定数量元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -176,6 +187,8 @@ lightWeightMap.increaseCapacityTo(10);
 get(key: K): V
 
 获取指定key所对应的value。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -205,6 +218,8 @@ getIndexOfKey(key: K): number
 
 查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -232,6 +247,8 @@ let result = lightWeightMap.getIndexOfKey("sdfs");
 getIndexOfValue(value: V): number
 
 查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -261,6 +278,8 @@ getKeyAt(index: number): K
 
 查找指定下标的元素键值对中key值，否则返回undefined。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -289,6 +308,8 @@ setAll(map: LightWeightMap<K, V>): void
 
 将一个LightWeightMap中的所有元素组添加到另一个lightWeightMap中。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -310,6 +331,8 @@ lightWeightMap.setAll(map);
 set(key: K, value: V): Object
 
 向LightWeightMap中添加一组数据。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -337,6 +360,8 @@ let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 remove(key: K): V
 
 删除并返回指定key映射的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -366,6 +391,8 @@ removeAt(index: number): boolean
 
 删除指定下标对应的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -393,6 +420,8 @@ let result = lightWeightMap.removeAt(1);
 setValueAt(index: number, newValue: V): boolean
 
 替换指定下标对应键值对中的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -423,6 +452,8 @@ getValueAt(index: number): V
 
 获取指定下标对应键值对中的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -451,6 +482,8 @@ clear(): void
 
 清除LightWeightMap中的所有元素,并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -466,6 +499,8 @@ lightWeightMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -494,6 +529,8 @@ values(): IterableIterator&lt;V&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -520,6 +557,8 @@ while(temp != undefined) {
 forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -553,6 +592,8 @@ entries(): IterableIterator<[K, V]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -580,6 +621,8 @@ toString(): String
 
 将此映射中包含的键值对拼接成字符串，并返回字符串类型。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
   | 类型 | 说明 |
@@ -600,6 +643,8 @@ toString(): String
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

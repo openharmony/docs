@@ -1,6 +1,6 @@
 # Menu控制
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -12,29 +12,30 @@
 ## 属性
 
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| bindMenu | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
-| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](../../ui/ts-types.md)<br>responseType:&nbsp;ResponseType | - | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。 |
+| 名称                           | 参数类型                                     | 默认值  | 描述                                 |
+| ---------------------------- | ---------------------------------------- | ---- | ---------------------------------- |
+| bindMenu                     | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -    | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
+| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](../../ui/ts-types.md)<br>responseType:&nbsp;ResponseType | -    | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。  |
 
 
 - MenuItem
-  | 名称 | 类型 | 描述 |
-  | -------- | -------- | -------- |
-  | value | string | 菜单项文本。 |
+  | 名称     | 类型                      | 描述          |
+  | ------ | ----------------------- | ----------- |
+  | value  | string                  | 菜单项文本。      |
   | action | ()&nbsp;=&gt;&nbsp;void | 点击菜单项的事件回调。 |
 
 - ResponseType<sup>8+</sup>
-  | 参数值 | 描述 |
-  | -------- | -------- |
-  | LongPress | 通过长按触发菜单弹出。    |
+  | 参数值        | 描述            |
+  | ---------- | ------------- |
+  | LongPress  | 通过长按触发菜单弹出。   |
   | RightClick | 通过鼠标右键触发菜单弹出。 |
 
 ## 示例
 
 #### 普通菜单
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MenuExample {
@@ -66,7 +67,8 @@ struct MenuExample {
 
 #### 自定义内容菜单
 
-```
+```ts
+// xxx.ets
 import router from '@system.router';
 
 @Entry
@@ -116,7 +118,8 @@ struct MenuExample {
 
 #### 菜单(右键触发显示)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ContextMenuExample {

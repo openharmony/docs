@@ -1,13 +1,13 @@
 # CanvasRenderingContext2D对象
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 使用CanvasRenderingContext2D在canvas画布组件上进行绘制，绘制对象可以是矩形、文本、图片等。
 
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
@@ -16,7 +16,7 @@
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -56,7 +56,7 @@
 | [lineJoin](#linejoin)                    | string                                   | miter                                    | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;round：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;bevel：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;miter：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
 | [miterLimit](#miterlimit)                | number                                   | 10                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。             |
 | [font](#font)                            | string                                   | "normal&nbsp;normal&nbsp;14px&nbsp;sans-serif" | 设置文本绘制中的字体样式。<br/>语法：ctx.font="font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family"<sup>5+</sup><br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：normal,&nbsp;italic。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：normal,&nbsp;bold,&nbsp;bolder,&nbsp;lighter,&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：sans-serif,&nbsp;serif,&nbsp;monospace。 |
-| [textAlign](#textalign)                  | string                                   | left                                     | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐。<br/>-&nbsp;right：文本右对齐。<br/>-&nbsp;center：文本居中对齐。<br/>-&nbsp;start：文本对齐界线开始的地方。<br/>-&nbsp;end：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下start和left一致，rtl布局模式下start和right一致·。 |
+| [textAlign](#textalign)                  | string                                   | left                                     | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐。<br/>-&nbsp;right：文本右对齐。<br/>-&nbsp;center：文本居中对齐。<br/>-&nbsp;start：文本对齐界线开始的地方。<br/>-&nbsp;end：文本对齐界线结束的地方。<br/>ltr布局模式下start和left一致，rtl布局模式下start和right一致·。 |
 | [textBaseline](#textbaseline)            | string                                   | alphabetic                               | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;alphabetic：文本基线是标准的字母基线。<br/>-&nbsp;top：文本基线在文本块的顶部。<br/>-&nbsp;hanging：文本基线是悬挂基线。<br/>-&nbsp;middle：文本基线在文本块的中间。<br/>-&nbsp;ideographic：文字基线是表意字基线；如果字符本身超出了alphabetic&nbsp;基线，那么ideographic基线位置在字符本身的底部。<br/>-&nbsp;bottom：文本基线在文本块的底部。&nbsp;与&nbsp;ideographic&nbsp;基线的区别在于&nbsp;ideographic&nbsp;基线不需要考虑下行字母。 |
 | [globalAlpha](#globalalpha)              | number                                   | -                                        | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
 | [lineDashOffset](#linedashoffset)        | number                                   | 0.0                                      | 设置画布的虚线偏移量，精度为float。                     |
@@ -70,16 +70,15 @@
 
 ### fillStyle
 
-  ```
+  ```html
 <!-- xxx.hml -->
-
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
   ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -95,15 +94,15 @@ export default {
 
 ### lineWidth
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -120,15 +119,15 @@ export default {
 
 ### strokeStyle
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -145,15 +144,15 @@ export default {
 
 ### lineCap
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -172,15 +171,15 @@ export default {
 
 ### lineJoin
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js 
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -200,15 +199,15 @@ export default {
 
 ### miterLimit
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -229,15 +228,15 @@ export default {
 
 ### font
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -253,15 +252,15 @@ export default {
 
 ### textAlign
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -292,15 +291,15 @@ export default {
 
 ### textBaseline
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -328,15 +327,15 @@ export default {
 
 ### globalAlpha
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -355,15 +354,15 @@ export default {
 
 ### lineDashOffset
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -380,48 +379,49 @@ export default {
 
 ### globalCompositeOperation
 
-- 类型字段说明
-  | 值                | 描述                       |
-  | ---------------- | ------------------------ |
-  | source-over      | 在现有绘制内容上显示新绘制内容，属于默认值。   |
-  | source-atop      | 在现有绘制内容顶部显示新绘制内容。        |
-  | source-in        | 在现有绘制内容中显示新绘制内容。         |
-  | source-out       | 在现有绘制内容之外显示新绘制内容。        |
-  | destination-over | 在新绘制内容上方显示现有绘制内容。        |
-  | destination-atop | 在新绘制内容顶部显示现有绘制内容。        |
-  | destination-in   | 在新绘制内容中显示现有绘制内容。         |
-  | destination-out  | 在新绘制内容外显示现有绘制内容。         |
-  | lighter          | 显示新绘制内容和现有绘制内容。          |
-  | copy             | 显示新绘制内容而忽略现有绘制内容。        |
-  | xor              | 使用异或操作对新绘制内容与现有绘制内容进行融合。 |
+类型字段说明
+| 值                | 描述                       |
+| ---------------- | ------------------------ |
+| source-over      | 在现有绘制内容上显示新绘制内容，属于默认值。   |
+| source-atop      | 在现有绘制内容顶部显示新绘制内容。        |
+| source-in        | 在现有绘制内容中显示新绘制内容。         |
+| source-out       | 在现有绘制内容之外显示新绘制内容。        |
+| destination-over | 在新绘制内容上方显示现有绘制内容。        |
+| destination-atop | 在新绘制内容顶部显示现有绘制内容。        |
+| destination-in   | 在新绘制内容中显示现有绘制内容。         |
+| destination-out  | 在新绘制内容外显示现有绘制内容。         |
+| lighter          | 显示新绘制内容和现有绘制内容。          |
+| copy             | 显示新绘制内容而忽略现有绘制内容。        |
+| xor              | 使用异或操作对新绘制内容与现有绘制内容进行融合。 |
 
-- 示例
-```
-  <!-- xxx.hml -->
-  <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
-  </div>
+**示例：** 
+
+```html
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
 ```
 
-  ```
-  //xxx.js
-  export default {
-    onShow() {
-      const el =this.$refs.canvas;
-      const ctx = el.getContext('2d');
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(20, 20, 50, 50);
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(50, 50, 50, 50);
-      // Start drawing second example
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(120, 20, 50, 50);
-      ctx.globalCompositeOperation = 'destination-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(150, 50, 50, 50);
-    }
+  ```js
+// xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(20, 20, 50, 50);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(50, 50, 50, 50);
+    // Start drawing second example
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(120, 20, 50, 50);
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(150, 50, 50, 50);
   }
+}
   ```
 
   ![zh-cn_image_0000001213192781](figures/zh-cn_image_0000001213192781.png)
@@ -430,15 +430,15 @@ export default {
 
 ### shadowBlur
 
-  ```
+  ```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
   ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -455,15 +455,15 @@ export default {
 
 ### shadowColor
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -480,15 +480,15 @@ export default {
 
 ### shadowOffsetX
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -507,15 +507,15 @@ export default {
 
 ### shadowOffsetY
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -533,15 +533,15 @@ export default {
 
 ### imageSmoothingEnabled<sup>6+</sup>
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -569,23 +569,24 @@ fillRect(x: number, y: number, width:number, height: number): void
 
 填充一个矩形。
 
-- 参数
-  | 参数     | 类型     | 描述            |
-  | ------ | ------ | ------------- |
-  | x      | number | 指定矩形左上角点的x坐标。 |
-  | y      | number | 指定矩形左上角点的y坐标。 |
-  | width  | number | 指定矩形的宽度。      |
-  | height | number | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 描述            |
+| ------ | ------ | ------------- |
+| x      | number | 指定矩形左上角点的x坐标。 |
+| y      | number | 指定矩形左上角点的y坐标。 |
+| width  | number | 指定矩形的宽度。      |
+| height | number | 指定矩形的高度。      |
 
-- 示例
-```
+**示例：** 
+
+```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
 ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -604,23 +605,23 @@ clearRect(x: number, y: number, width:number, height: number): void
 
 删除指定区域内的绘制内容。
 
-- 参数
-  | 参数     | 类型     | 描述            |
-  | ------ | ------ | ------------- |
-  | x      | number | 指定矩形上的左上角x坐标。 |
-  | y      | number | 指定矩形上的左上角y坐标。 |
-  | width  | number | 指定矩形的宽度。      |
-  | height | number | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 描述            |
+| ------ | ------ | ------------- |
+| x      | number | 指定矩形上的左上角x坐标。 |
+| y      | number | 指定矩形上的左上角y坐标。 |
+| width  | number | 指定矩形的宽度。      |
+| height | number | 指定矩形的高度。      |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -642,23 +643,23 @@ strokeRect(x: number, y: number, width:number, height: number): void
 
 绘制具有边框的矩形，矩形内部不填充。
 
-- 参数
-  | 参数     | 类型     | 描述           |
-  | ------ | ------ | ------------ |
-  | x      | number | 指定矩形的左上角x坐标。 |
-  | y      | number | 指定矩形的左上角y坐标。 |
-  | width  | number | 指定矩形的宽度。     |
-  | height | number | 指定矩形的高度。     |
+**参数：** 
+| 参数     | 类型     | 描述           |
+| ------ | ------ | ------------ |
+| x      | number | 指定矩形的左上角x坐标。 |
+| y      | number | 指定矩形的左上角y坐标。 |
+| width  | number | 指定矩形的宽度。     |
+| height | number | 指定矩形的高度。     |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -678,22 +679,22 @@ fillText(text: string, x: number, y: number): void
 
 绘制填充类文本。
 
-- 参数
-  | 参数   | 类型     | 描述              |
-  | ---- | ------ | --------------- |
-  | text | string | 需要绘制的文本内容。      |
-  | x    | number | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 需要绘制的文本的左下角y坐标。 |
+**参数：** 
+| 参数   | 类型     | 描述              |
+| ---- | ------ | --------------- |
+| text | string | 需要绘制的文本内容。      |
+| x    | number | 需要绘制的文本的左下角x坐标。 |
+| y    | number | 需要绘制的文本的左下角y坐标。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -713,22 +714,22 @@ strokeText(text: string, x: number, y: number): void
 
 绘制描边类文本。
 
-- 参数
-  | 参数   | 类型     | 描述              |
-  | ---- | ------ | --------------- |
-  | text | string | 需要绘制的文本内容。      |
-  | x    | number | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 需要绘制的文本的左下角y坐标。 |
+**参数：** 
+| 参数   | 类型     | 描述              |
+| ---- | ------ | --------------- |
+| text | string | 需要绘制的文本内容。      |
+| x    | number | 需要绘制的文本的左下角x坐标。 |
+| y    | number | 需要绘制的文本的左下角y坐标。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -748,25 +749,25 @@ measureText(text: string): TextMetrics
 
 该方法返回一个文本测算的对象，通过该对象可以获取指定文本的宽度值。
 
-- 参数
-  | 参数   | 类型     | 描述         |
-  | ---- | ------ | ---------- |
-  | text | string | 需要进行测量的文本。 |
+**参数：** 
+| 参数   | 类型     | 描述         |
+| ---- | ------ | ---------- |
+| text | string | 需要进行测量的文本。 |
 
-- 返回值
-  | 类型          | 说明                                     |
-  | ----------- | -------------------------------------- |
-  | TextMetrics | 包含指定字体的宽度，该宽度可以通过TextMetrics.width来获取。 |
+**返回值：** 
+| 类型          | 说明                                     |
+| ----------- | -------------------------------------- |
+| TextMetrics | 包含指定字体的宽度，该宽度可以通过TextMetrics.width来获取。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -788,15 +789,15 @@ stroke(): void
 
 进行边框绘制操作。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -819,15 +820,15 @@ beginPath(): void
 
 创建一个新的绘制路径。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -851,21 +852,21 @@ moveTo(x: number, y: number): void
 
 路径从当前点移动到指定点。
 
-- 参数
-  | 参数   | 类型     | 描述        |
-  | ---- | ------ | --------- |
-  | x    | number | 指定位置的x坐标。 |
-  | y    | number | 指定位置的y坐标。 |
+**参数：** 
+| 参数   | 类型     | 描述        |
+| ---- | ------ | --------- |
+| x    | number | 指定位置的x坐标。 |
+| y    | number | 指定位置的y坐标。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -887,21 +888,21 @@ lineTo(x: number, y: number): void
 
 从当前点到指定点进行路径连接。
 
-- 参数
-  | 参数   | 类型     | 描述        |
-  | ---- | ------ | --------- |
-  | x    | number | 指定位置的x坐标。 |
-  | y    | number | 指定位置的y坐标。 |
+**参数：** 
+| 参数   | 类型     | 描述        |
+| ---- | ------ | --------- |
+| x    | number | 指定位置的x坐标。 |
+| y    | number | 指定位置的y坐标。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -923,15 +924,15 @@ closePath(): void
 
 结束当前路径形成一个封闭路径。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -955,26 +956,26 @@ createPattern(image: Image, repetition: string): Object
 
 通过指定图像和重复方式创建图片填充的模板。
 
-- 参数
-  | 参数         | 类型     | 描述                                       |
-  | ---------- | ------ | ---------------------------------------- |
-  | image      | Image  | 图源对象，具体参考[Image对象](../arkui-js/js-components-canvas-image.md)。 |
-  | repetition | string | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
+**参数：** 
+| 参数         | 类型     | 描述                                       |
+| ---------- | ------ | ---------------------------------------- |
+| image      | Image  | 图源对象，具体参考[Image对象](../arkui-js/js-components-canvas-image.md)。 |
+| repetition | string | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
 
-- 返回值
-  | 类型     | 说明                |
-  | ------ | ----------------- |
-  | Object | 指定图像填充的Pattern对象。 |
+**返回值：** 
+| 类型     | 说明                |
+| ------ | ----------------- |
+| Object | 指定图像填充的Pattern对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -997,25 +998,25 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 创建三次贝赛尔曲线的路径。
 
-- 参数
-  | 参数   | 类型     | 描述             |
-  | ---- | ------ | -------------- |
-  | cp1x | number | 第一个贝塞尔参数的x坐标值。 |
-  | cp1y | number | 第一个贝塞尔参数的y坐标值。 |
-  | cp2x | number | 第二个贝塞尔参数的x坐标值。 |
-  | cp2y | number | 第二个贝塞尔参数的y坐标值。 |
-  | x    | number | 路径结束时的x坐标值。    |
-  | y    | number | 路径结束时的y坐标值。    |
+**参数：** 
+| 参数   | 类型     | 描述             |
+| ---- | ------ | -------------- |
+| cp1x | number | 第一个贝塞尔参数的x坐标值。 |
+| cp1y | number | 第一个贝塞尔参数的y坐标值。 |
+| cp2x | number | 第二个贝塞尔参数的x坐标值。 |
+| cp2y | number | 第二个贝塞尔参数的y坐标值。 |
+| x    | number | 路径结束时的x坐标值。    |
+| y    | number | 路径结束时的y坐标值。    |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1037,23 +1038,23 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 创建二次贝赛尔曲线的路径。
 
-- 参数
-  | 参数   | 类型     | 描述          |
-  | ---- | ------ | ----------- |
-  | cpx  | number | 贝塞尔参数的x坐标值。 |
-  | cpy  | number | 贝塞尔参数的y坐标值。 |
-  | x    | number | 路径结束时的x坐标值。 |
-  | y    | number | 路径结束时的y坐标值。 |
+**参数：** 
+| 参数   | 类型     | 描述          |
+| ---- | ------ | ----------- |
+| cpx  | number | 贝塞尔参数的x坐标值。 |
+| cpy  | number | 贝塞尔参数的y坐标值。 |
+| x    | number | 路径结束时的x坐标值。 |
+| y    | number | 路径结束时的y坐标值。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1075,25 +1076,25 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 绘制弧线路径。
 
-- 参数
-  | 参数            | 类型      | 描述         |
-  | ------------- | ------- | ---------- |
-  | x             | number  | 弧线圆心的x坐标值。 |
-  | y             | number  | 弧线圆心的y坐标值。 |
-  | radius        | number  | 弧线的圆半径。    |
-  | startAngle    | number  | 弧线的起始弧度。   |
-  | endAngle      | number  | 弧线的终止弧度。   |
-  | anticlockwise | boolean | 是否逆时针绘制圆弧。 |
+**参数：** 
+| 参数            | 类型      | 描述         |
+| ------------- | ------- | ---------- |
+| x             | number  | 弧线圆心的x坐标值。 |
+| y             | number  | 弧线圆心的y坐标值。 |
+| radius        | number  | 弧线的圆半径。    |
+| startAngle    | number  | 弧线的起始弧度。   |
+| endAngle      | number  | 弧线的终止弧度。   |
+| anticlockwise | boolean | 是否逆时针绘制圆弧。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1114,24 +1115,24 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
-- 参数
-  | 参数     | 类型     | 描述              |
-  | ------ | ------ | --------------- |
-  | x1     | number | 圆弧经过的第一个点的x坐标值。 |
-  | y1     | number | 圆弧经过的第一个点的y坐标值。 |
-  | x2     | number | 圆弧经过的第二个点的x坐标值。 |
-  | y2     | number | 圆弧经过的第二个点的y坐标值。 |
-  | radius | number | 圆弧的圆半径值。        |
+**参数：** 
+| 参数     | 类型     | 描述              |
+| ------ | ------ | --------------- |
+| x1     | number | 圆弧经过的第一个点的x坐标值。 |
+| y1     | number | 圆弧经过的第一个点的y坐标值。 |
+| x2     | number | 圆弧经过的第二个点的x坐标值。 |
+| y2     | number | 圆弧经过的第二个点的y坐标值。 |
+| radius | number | 圆弧的圆半径值。        |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1152,27 +1153,27 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 在规定的矩形区域绘制一个椭圆。
 
-- 参数
-  | 参数            | 类型     | 描述                                   |
-  | ------------- | ------ | ------------------------------------ |
-  | x             | number | 椭圆圆心的x轴坐标。                           |
-  | y             | number | 椭圆圆心的y轴坐标。                           |
-  | radiusX       | number | 椭圆x轴的半径长度。                           |
-  | radiusY       | number | 椭圆y轴的半径长度。                           |
-  | rotation      | number | 椭圆的旋转角度，单位为弧度。                       |
-  | startAngle    | number | 椭圆绘制的起始点角度，以弧度表示。                    |
-  | endAngle      | number | 椭圆绘制的结束点角度，以弧度表示。                    |
-  | anticlockwise | number | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) |
+**参数：** 
+| 参数            | 类型     | 描述                                   |
+| ------------- | ------ | ------------------------------------ |
+| x             | number | 椭圆圆心的x轴坐标。                           |
+| y             | number | 椭圆圆心的y轴坐标。                           |
+| radiusX       | number | 椭圆x轴的半径长度。                           |
+| radiusY       | number | 椭圆y轴的半径长度。                           |
+| rotation      | number | 椭圆的旋转角度，单位为弧度。                       |
+| startAngle    | number | 椭圆绘制的起始点角度，以弧度表示。                    |
+| endAngle      | number | 椭圆绘制的结束点角度，以弧度表示。                    |
+| anticlockwise | number | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1193,23 +1194,23 @@ rect(x: number, y: number, width: number, height: number): void
 
 创建矩形路径。
 
-- 参数
-  | 参数     | 类型     | 描述            |
-  | ------ | ------ | ------------- |
-  | x      | number | 指定矩形的左上角x坐标值。 |
-  | y      | number | 指定矩形的左上角y坐标值。 |
-  | width  | number | 指定矩形的宽度。      |
-  | height | number | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 描述            |
+| ------ | ------ | ------------- |
+| x      | number | 指定矩形的左上角x坐标值。 |
+| y      | number | 指定矩形的左上角y坐标值。 |
+| width  | number | 指定矩形的宽度。      |
+| height | number | 指定矩形的高度。      |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1229,15 +1230,15 @@ fill(): void
 
 对封闭路径进行填充。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1257,15 +1258,15 @@ clip(): void
 
 设置当前路径为剪切路径。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1289,20 +1290,20 @@ rotate(rotate: number): void
 
 针对当前坐标轴进行顺时针旋转。
 
-- 参数
-  | 参数     | 类型     | 描述                                       |
-  | ------ | ------ | ---------------------------------------- |
-  | rotate | number | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
+**参数：** 
+| 参数     | 类型     | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| rotate | number | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1322,21 +1323,21 @@ scale(x: number, y: number): void
 
 设置canvas画布的缩放变换属性，后续的绘制操作将按照缩放比例进行缩放。
 
-- 参数
-  | 参数   | 类型     | 描述          |
-  | ---- | ------ | ----------- |
-  | x    | number | 设置水平方向的缩放值。 |
-  | y    | number | 设置垂直方向的缩放值。 |
+**参数：** 
+| 参数   | 类型     | 描述          |
+| ---- | ------ | ----------- |
+| x    | number | 设置水平方向的缩放值。 |
+| y    | number | 设置垂直方向的缩放值。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1357,32 +1358,32 @@ transform(scaleX: number, skewX: number, skewY: number, scale: number, translate
 
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
+>  **说明：**
+>  变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+>  - x' = scaleX \* x + skewY \* y + translateX
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+>  - y' = skewX \* x + scaleY \* y + translateY
 
-- 参数
-  | 参数         | 类型     | 描述       |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | 指定水平缩放值。 |
-  | skewX      | number | 指定水平倾斜值。 |
-  | skewY      | number | 指定垂直倾斜值。 |
-  | scaleY     | number | 指定垂直缩放值。 |
-  | translateX | number | 指定水平移动值。 |
-  | translateY | number | 指定垂直移动值。 |
+**参数：** 
+| 参数         | 类型     | 描述       |
+| ---------- | ------ | -------- |
+| scaleX     | number | 指定水平缩放值。 |
+| skewX      | number | 指定水平倾斜值。 |
+| skewY      | number | 指定垂直倾斜值。 |
+| scaleY     | number | 指定垂直缩放值。 |
+| translateX | number | 指定水平移动值。 |
+| translateY | number | 指定垂直移动值。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1408,25 +1409,25 @@ setTransform(scaleX: number, skewX: number, skewY: number, scale: number, transl
 
 setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
-- 参数
-  | 参数         | 类型     | 描述       |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | 指定水平缩放值。 |
-  | skewX      | number | 指定水平倾斜值。 |
-  | skewY      | number | 指定垂直倾斜值。 |
-  | scaleY     | number | 指定垂直缩放值。 |
-  | translateX | number | 指定水平移动值。 |
-  | translateY | number | 指定垂直移动值。 |
+**参数：** 
+| 参数         | 类型     | 描述       |
+| ---------- | ------ | -------- |
+| scaleX     | number | 指定水平缩放值。 |
+| skewX      | number | 指定水平倾斜值。 |
+| skewY      | number | 指定垂直倾斜值。 |
+| scaleY     | number | 指定垂直缩放值。 |
+| translateX | number | 指定水平移动值。 |
+| translateY | number | 指定垂直移动值。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1449,21 +1450,21 @@ translate(x: number, y: number): void
 
 移动当前坐标系的原点。
 
-- 参数
-  | 参数   | 类型     | 描述       |
-  | ---- | ------ | -------- |
-  | x    | number | 设置水平平移量。 |
-  | y    | number | 设置竖直平移量。 |
+**参数：** 
+| 参数   | 类型     | 描述       |
+| ---- | ------ | -------- |
+| x    | number | 设置水平平移量。 |
+| y    | number | 设置竖直平移量。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1484,24 +1485,24 @@ createPath2D(path: Path2D, cmds: string): Path2D
 
 创建一个Path2D对象。
 
-- 参数
-  | 参数   | 类型     | 描述             |
-  | ---- | ------ | -------------- |
-  | path | Path2D | Path2D对象。      |
-  | cmds | string | SVG的Path描述字符串。 |
+**参数：** 
+| 参数   | 类型     | 描述             |
+| ---- | ------ | -------------- |
+| path | Path2D | Path2D对象。      |
+| cmds | string | SVG的Path描述字符串。 |
 
-- 返回值
+**返回值：** 
   [Path2D对象](../arkui-js/js-components-canvas-path2d.md)
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1529,28 +1530,28 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 
 进行图像绘制。
 
-- 参数
-  | 参数 | 类型 | 描述 |
-  | -------- | -------- | -------- |
-  | image | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
-  | sx | number | 裁切源图像时距离源图像左上角的x坐标值。 |
-  | sy | number | 裁切源图像时距离源图像左上角的y坐标值。 |
-  | sWidth | number | 裁切源图像时需要裁切的宽度。 |
-  | sHeight | number | 裁切源图像时需要裁切的高度。 |
-  | dx | number | 绘制区域左上角在x轴的位置。 |
-  | dy | number | 绘制区域左上角在y&nbsp;轴的位置。 |
-  | dWidth | number | 绘制区域的宽度。 |
-  | dHeight | number | 绘制区域的高度。 |
+**参数：** 
+| 参数      | 类型                             | 描述                                       |
+| ------- | ------------------------------ | ---------------------------------------- |
+| image   | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](../arkui-js/js-components-canvas-image.md) 或[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
+| sx      | number                         | 裁切源图像时距离源图像左上角的x坐标值。                     |
+| sy      | number                         | 裁切源图像时距离源图像左上角的y坐标值。                     |
+| sWidth  | number                         | 裁切源图像时需要裁切的宽度。                           |
+| sHeight | number                         | 裁切源图像时需要裁切的高度。                           |
+| dx      | number                         | 绘制区域左上角在x轴的位置。                           |
+| dy      | number                         | 绘制区域左上角在y&nbsp;轴的位置。                     |
+| dWidth  | number                         | 绘制区域的宽度。                                 |
+| dHeight | number                         | 绘制区域的高度。                                 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1571,15 +1572,15 @@ restore(): void
 
 对保存的绘图上下文进行恢复。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1596,15 +1597,15 @@ save(): void
 
 对当前的绘图上下文进行保存。
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1621,21 +1622,21 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
 创建一个线性渐变色，返回CanvasGradient对象，请参考[CanvasGradient对象](../arkui-js/js-components-canvas-canvasgradient.md)。
 
-- 参数
-  | 参数   | 类型     | 描述       |
-  | ---- | ------ | -------- |
-  | x0   | number | 起点的x轴坐标。 |
-  | y0   | number | 起点的y轴坐标。 |
-  | x1   | number | 终点的x轴坐标。 |
-  | y1   | number | 终点的y轴坐标。 |
+**参数：** 
+| 参数   | 类型     | 描述       |
+| ---- | ------ | -------- |
+| x0   | number | 起点的x轴坐标。 |
+| y0   | number | 起点的y轴坐标。 |
+| x1   | number | 终点的x轴坐标。 |
+| y1   | number | 终点的y轴坐标。 |
 
-- 返回值
-  | 类型     | 说明                     |
-  | ------ | ---------------------- |
-  | Object | 返回创建的CanvasGradient对象。 |
+**返回值：** 
+| 类型     | 说明                     |
+| ------ | ---------------------- |
+| Object | 返回创建的CanvasGradient对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
@@ -1643,7 +1644,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -1670,23 +1671,23 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 创建一个径向渐变色，返回CanvasGradient对象，请参考CanvasGradient
 
-- 参数
-  | 参数   | 类型     | 描述                |
-  | ---- | ------ | ----------------- |
-  | x0   | number | 起始圆的x轴坐标。         |
-  | y0   | number | 起始圆的y轴坐标。         |
-  | r0   | number | 起始圆的半径。必须是非负且有限的。 |
-  | x1   | number | 终点圆的x轴坐标。         |
-  | y1   | number | 终点圆的y轴坐标。         |
-  | r1   | number | 终点圆的半径。必须为非负且有限的。 |
+**参数：** 
+| 参数   | 类型     | 描述                |
+| ---- | ------ | ----------------- |
+| x0   | number | 起始圆的x轴坐标。         |
+| y0   | number | 起始圆的y轴坐标。         |
+| r0   | number | 起始圆的半径。必须是非负且有限的。 |
+| x1   | number | 终点圆的x轴坐标。         |
+| y1   | number | 终点圆的y轴坐标。         |
+| r1   | number | 终点圆的半径。必须为非负且有限的。 |
 
-- 返回值
-  | 类型     | 说明                     |
-  | ------ | ---------------------- |
-  | Object | 返回创建的CanvasGradient对象。 |
+**返回值：** 
+| 类型     | 说明                     |
+| ------ | ---------------------- |
+| Object | 返回创建的CanvasGradient对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
@@ -1694,7 +1695,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -1721,27 +1722,27 @@ createImageData(width: number, height: number, imageData: Object): Object
 
 创建新的ImageData 对象，请参考[ImageData对象](../arkui-js/js-components-canvas-imagedata.md)。
 
-- 参数
-  | 参数        | 类型     | 描述                |
-  | --------- | ------ | ----------------- |
-  | width     | number | ImageData的宽度。     |
-  | height    | number | ImageData的高度。     |
-  | imagedata | Object | 复制现有的ImageData对象。 |
+**参数：** 
+| 参数        | 类型     | 描述                |
+| --------- | ------ | ----------------- |
+| width     | number | ImageData的宽度。     |
+| height    | number | ImageData的高度。     |
+| imagedata | Object | 复制现有的ImageData对象。 |
 
-- 返回值
-  | 类型     | 说明                |
-  | ------ | ----------------- |
-  | Object | 返回创建的ImageData对象。 |
+**返回值：** 
+| 类型     | 说明                |
+| ------ | ----------------- |
+| Object | 返回创建的ImageData对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1759,28 +1760,28 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
 以当前canvas指定区域内的像素创建ImageData对象。
 
-- 参数
-  | 参数   | 类型     | 描述              |
-  | ---- | ------ | --------------- |
-  | sx   | number | 需要输出的区域的左上角x坐标。 |
-  | sy   | number | 需要输出的区域的左上角y坐标。 |
-  | sw   | number | 需要输出的区域的宽度。     |
-  | sh   | number | 需要输出的区域的高度。     |
+**参数：** 
+| 参数   | 类型     | 描述              |
+| ---- | ------ | --------------- |
+| sx   | number | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 需要输出的区域的宽度。     |
+| sh   | number | 需要输出的区域的高度。     |
 
-- 返回值
-  | 类型     | 说明                      |
-  | ------ | ----------------------- |
-  | Object | 返回包含指定区域像素的ImageData对象。 |
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| Object | 返回包含指定区域像素的ImageData对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1797,26 +1798,26 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
 使用ImageData数据填充新的矩形区域。
 
-- 参数
-  | 参数          | 类型     | 描述                            |
-  | ----------- | ------ | ----------------------------- |
-  | imagedata   | Object | 包含像素值的ImageData对象。            |
-  | dx          | number | 填充区域在x轴方向的偏移量。                |
-  | dy          | number | 填充区域在y轴方向的偏移量。                |
-  | dirtyX      | number | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-  | dirtyY      | number | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-  | dirtyWidth  | number | 源图像数据矩形裁切范围的宽度。               |
-  | dirtyHeight | number | 源图像数据矩形裁切范围的高度。               |
+**参数：** 
+| 参数          | 类型     | 描述                            |
+| ----------- | ------ | ----------------------------- |
+| imagedata   | Object | 包含像素值的ImageData对象。            |
+| dx          | number | 填充区域在x轴方向的偏移量。                |
+| dy          | number | 填充区域在y轴方向的偏移量。                |
+| dirtyX      | number | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number | 源图像数据矩形裁切范围的宽度。               |
+| dirtyHeight | number | 源图像数据矩形裁切范围的高度。               |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1842,31 +1843,31 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 获取用当前canvas指定区域内的像素创建的PixelMap对象。
 
-- 参数
+**参数：** 
 
-  | 参数 | 类型   | 描述                        |
-  | ---- | ------ | --------------------------- |
-  | sx   | number | 指定区域的左上角x坐标。 |
-  | sy   | number | 指定区域的左上角y坐标。 |
-  | sw   | number | 指定区域的宽度。        |
-  | sh   | number | 指定区域的高度。        |
+| 参数   | 类型     | 描述           |
+| ---- | ------ | ------------ |
+| sx   | number | 指定区域的左上角x坐标。 |
+| sy   | number | 指定区域的左上角y坐标。 |
+| sw   | number | 指定区域的宽度。     |
+| sh   | number | 指定区域的高度。     |
 
-- 返回值
+**返回值：** 
 
-  | 类型     | 说明                                 |
-  | -------- | ------------------------------------ |
-  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 返回包含指定区域像素的PixelMap对象。 |
+| 类型                                       | 说明                     |
+| ---------------------------------------- | ---------------------- |
+| [PixelMap](../apis/js-apis-image.md#pixelmap7) | 返回包含指定区域像素的PixelMap对象。 |
 
-- 示例
+**示例：** 
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas id="canvasId" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1883,20 +1884,20 @@ setLineDash(segments: Array): void
 
 设置画布的虚线样式。
 
-- 参数
-  | 参数       | 类型    | 描述                   |
-  | -------- | ----- | -------------------- |
-  | segments | Array | 作为数组用来描述线段如何交替和间距长度。 |
+**参数：** 
+| 参数       | 类型    | 描述                   |
+| -------- | ----- | -------------------- |
+| segments | Array | 作为数组用来描述线段如何交替和间距长度。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1917,20 +1918,20 @@ getLineDash(): Array
 
 获得当前画布的虚线样式。
 
-- 返回值
-  | 类型    | 说明                       |
-  | ----- | ------------------------ |
-  | Array | 返回数组，该数组用来描述线段如何交替和间距长度。 |
+**返回值：** 
+| 类型    | 说明                       |
+| ----- | ------------------------ |
+| Array | 返回数组，该数组用来描述线段如何交替和间距长度。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1947,20 +1948,20 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 显示给定的ImageBitmap对象。
 
-- 参数
-  | 参数     | 类型          | 描述                 |
-  | ------ | ----------- | ------------------ |
-  | bitmap | ImageBitmap | 待显示的ImageBitmap对象。 |
+**参数：** 
+| 参数     | 类型          | 描述                 |
+| ------ | ----------- | ------------------ |
+| bitmap | ImageBitmap | 待显示的ImageBitmap对象。 |
 
-- 示例
-  ```
+**示例：** 
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {

@@ -1,18 +1,18 @@
 # Context Usage
 
 ## Context Overview
-**context** provides the capability of obtaining contextual information of an application.
 
-## Context Structure
+**Context** provides the capability of obtaining contextual information of an application.
 
-The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms.
+The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
 
-**application/BaseContext** is a common context base class, which does not belong to either model. It has only one attribute, **stageMode**, which specifies whether the context is used for the stage model.
+- FA Model
 
-The FA model has only one type of context: **app/Context**. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the context instance.
+  Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
 
-The stage model has six types of contexts: **application/Context**, **application/AbilityStageContext**, **application/ExtensionContext**, **application/AbilityContext**, **application/FormExtensionContext**, and **application/ServiceExtensionContext**. For details about these contexts and how to use them, see [Context in the Stage Model](#context-in-the-stage-model).
+- Stage Model
 
+  The stage model has the following types of contexts: **application/Context**, **application/ApplicationContext**, **application/AbilityStageContext**, **application/ExtensionContext**, **application/AbilityContext**, and **application/FormExtensionContext**. For details about these contexts and how to use them, see [Context in the Stage Model](#context-in-the-stage-model).
 
 ![contextIntroduction](figures/contextIntroduction.png)
 
@@ -22,76 +22,102 @@ Only the methods in **app/Context** can be used for the context in the FA model.
 
 The FA model has only one context definition. All capabilities in the context are provided through methods. The context uses these methods to extend the capabilities of the FA.
 
-The context is defined in the d.ts file below:
+**d.ts statement**
 
 https://gitee.com/openharmony/interface_sdk-js/blob/master/api/app/context.d.ts
 
-Use the context as follows:
+**Example**
 
 ```javascript
-// 1. Import featureAbility.
 import featureAbility from '@ohos.ability.featureAbility'
-
 export default {
   onCreate() {
-    console.log('Application onCreate')
-
-    // 2. Obtain the context.
+    // Obtain the context and call related APIs.
     let context = featureAbility.getContext();
-
-    // 3. Call the methods.
-    context.setShowOnLockScreen(false, (data) => {
-      console.log("data: " + JSON.stringify(data));
+    context.getBundleName((data, bundleName)=>{
+      console.info("ability bundleName:" + bundleName)
     });
-  },
-  onActive() {
-    console.log('Application onActive')
+    console.info('Application onCreate')
   },
   onDestroy() {
-    console.log('Application onDestroy')
+    console.info('Application onDestroy')
   },
 }
 ```
 
 ## Context in the Stage Model
 
-The stage model has six contexts. The following describes these contexts in detail.
+The following describes the contexts provided by the stage model in detail.
 
 ### application/Context
 
-**Overview**
-
-**application/Context** is the base class context that provides basic application information such as **resourceManager**, **applicationInfo**, and **cacheDir**. It also provides basic application methods such as **createBundleContext** and **switchArea**. The application-level context is of the **application/Context** type.
-
-**How to Obtain**
-
-Obtain the context by calling **context.getApplicationContext()** in **AbilityStage**, **Ability**, and **Extension**.
-
-**Example**
-
-```javascript
-export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    // Obtain the application context.
-    let appContext = this.context.getApplicationContext();
-    // Obtain the path.
-    console.log('filesDir is ' + appContext.filesDir);
-  }
-
-  onDestroy() {
-    console.log('MainAbility onDestroy is called');
-  }
-}
-```
+**application/Context** is the base class context that provides basic application information such as **resourceManager**, **applicationInfo**, **cacheDir**, and **area**. It also provides basic application methods such as **createBundleContext**.
 
 **d.ts statement**
 
 https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/Context.d.ts
 
-### application/AbilityStageContext
+### application/ApplicationContext
 
-**Overview**
+**application/ApplicationContext** is an application-level context. In addition to the capabilities provided by the base class context, the application-level context provides **registerAbilityLifecycleCallback** and **unregisterAbilityLifecycleCallback** to monitor the ability lifecycle in a process.
+
+**How to Obtain**
+
+Obtain the context by calling **context.getApplicationContext()** in **Ability**.
+
+**Example**
+
+```javascript
+import AbilityStage from "@ohos.application.AbilityStage";
+
+var lifecycleid;
+
+export default class MyAbilityStage extends AbilityStage {
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let AbilityLifecycleCallback  =  {
+            onAbilityCreate(ability){
+                console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
+            },
+            onAbilityWindowStageCreate(ability){
+                console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
+            },
+            onAbilityWindowStageDestroy(ability){
+                console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
+            },
+            onAbilityDestroy(ability){
+                console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
+            },
+            onAbilityForeground(ability){
+                console.log("AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));             
+            },
+            onAbilityBackground(ability){
+                console.log("AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));              
+            },
+            onAbilityContinue(ability){
+                console.log("AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+            }
+        }
+        // 1. Obtain applicationContext through the context attribute.
+        let applicationContext = this.context.getApplicationContext();
+        // 2. Use applicationContext to register and listen for the ability lifecycle in the application.
+        lifecycleid = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+        console.log("registerAbilityLifecycleCallback number: " + JSON.stringify(lifecycleid));       
+    }
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.unregisterAbilityLifecycleCallback(lifecycleid, (error, data) => {
+        console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+        });
+    }
+}
+```
+
+**d.ts statement**
+
+https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ApplicationContext.d.ts
+
+### application/AbilityStageContext
 
 **application/AbilityStageContext** is the context for the HAP file. In addition to those provided by the base class **application/Context**, this context contains **HapModuleInfo** and **Configuration**.
 
@@ -105,7 +131,7 @@ Obtain the context from the **context** attribute in **AbilityStage**.
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     // The context attribute is of the AbilityStageContext type.
-    console.log('HapModuleInfo is ' + context.currentHapModuleInfo);
+    console.log('HapModuleInfo is ' + this.context.currentHapModuleInfo);
   }
 }
 ```
@@ -115,8 +141,6 @@ export default class MyAbilityStage extends AbilityStage {
 https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AbilityStageContext.d.ts
 
 ### application/AbilityContext
-
-**Overview**
 
 In the stage model, each ability has a context attribute.
 
@@ -129,109 +153,53 @@ Obtain the context from the **context** attribute in **Ability**.
 **Example**
 
 ```javascript
+import Ability from '@ohos.application.Ability'
+
 export default class MainAbility extends Ability {
-  onCreate(want, launchParam) {
-    console.log('MainAbility onCreate is called' + want + launchParam);
-    var want = {
-      "bundleName": "com.example.MyApplication",
-      "abilityName": "ServiceExtAbility",
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+        globalThis.abilityWant = want;
     }
-    // 1. The context here is of the AbilityContext type.
-    let contxt = this.context;
-    // 2. Start the ability.
-    contxt.startAbility(want).then((data) => {
-      console.info("startAbility success:" + JSON.stringify(data));
-    }).catch((error) => {
-      console.error("startAbility failed:" + JSON.stringify(error));
-    });
-  }
 
-  onDestroy() {
-    console.log("MainAbility on Destroy is called");
-  }
-}
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Set the main page for this ability when the main window is created.
+        console.log("[Demo] MainAbility onWindowStageCreate")
+
+        // Obtain AbilityContext and print the ability information.
+        let context = this.context;
+        console.log("[Demo] MainAbility bundleName " + context.abilityInfo.bundleName)
+
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {
+        // Release the UI related resources when the main window is destroyed.
+        console.log("[Demo] MainAbility onWindowStageDestroy")
+    }
+
+    onForeground() {
+        // The ability is switched to run in the foreground.
+        console.log("[Demo] MainAbility onForeground")
+    }
+
+    onBackground() {
+        // The ability is switched to run in the background.
+        console.log("[Demo] MainAbility onBackground")
+    }
+};
 ```
-
-**d.ts statement**
-
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/AbilityContext.d.ts
-
-### application/ExtensionContext
-
-**Overview**
-
-Unlike the FA model, the stage model separates **Service** from **Ability** and defines a group of **Extension** classes to provide the same capabilities. **Extension** is a base class and does not provide specific service functions. The service party extends the corresponding **Extension** class as required. For example, a Service ability is extended to **ServiceExtensionAbility**, and a form (service widget) is extended to **FormExtensionAbility**.
-
-**ExtensionContext** provides the context for the extension. **ExtensionContext** has the **HapModuleInfo** and **Configuration** attributes.
-
-**How to Obtain**
-
-This type of context is not used independently.
-
-**d.ts statement**
-
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ExtensionContext.d.ts
-
-### application/ServiceExtensionContext
-
-**Overview**
-
-Similar to **ServiceAbility** of the FA model, **ServiceExtensionAbility** contains only the processing related to lifecycle callbacks.
-
-The methods for operating the Service Extension ability (such as **startAbility** and **connectAbility**) are provided in **ServiceExtensionContext**.
-
-**How to Obtain**
-
-Obtain the context from the **context** attribute in **ServiceExtensionAbility**.
-
-**Example**
-```javascript
-export default class ServiceExtAbility extends ServiceExtensionAbility {
-  onCreate(want) {
-    console.info("ServiceAbility onCreate**");
-    // The context here is of the ServiceExtensionContext type.
-    let contxt = this.context;
-  }
-
-  onRequest(want, startId)  {
-    console.info("ServiceAbility onRequest**");
-  }
-
-  onConnect(want)  {
-    console.info("ServiceAbility onConnect**");
-    return new StubTest("test");
-  }
-
-  onDisconnect(want) {
-    console.info("ServiceAbility onDisconnect**");
-  }
-
-  onDestroy() {
-    console.info("ServiceAbility onDestroy**");
-  }
-}
-
-```
-
-**d.ts statement**
-
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/ServiceExtensionContext.d.ts
 
 ### application/FormExtensionContext
 
-For details, see [FormExtensionContext](/en/application-dev/reference/apis/js-apis-formextensioncontext.md)
+For details, see [FormExtensionContext](/en/application-dev/reference/apis/js-apis-formextensioncontext.md).
 
-**d.ts statement**
+## Common Incorrect Usage
 
-https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/FormExtensionContext.d.ts
-
-## FAQs
-
-Can I obtain the context through globalThis?
-
-**Answer**
-
-You can use **globalThis** to obtain the context in the FA model, but not in the stage model. To obtain the context in the stage model, use the **context** attribute in the corresponding component.
+**Error 1: Use globalThis to obtain the context in the stage model.**
 
 **Reason**
 

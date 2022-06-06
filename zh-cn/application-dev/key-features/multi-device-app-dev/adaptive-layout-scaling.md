@@ -7,7 +7,7 @@
 缩放能力通过使用百分比布局配合**固定宽高比**（aspectRatio属性）实现当容器尺寸发生变化时，内容自适应调整。
 
 
-可以访问[布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解aspectRatio属性的详细信息。
+可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解aspectRatio属性的详细信息。
 
 
 ## 示例：

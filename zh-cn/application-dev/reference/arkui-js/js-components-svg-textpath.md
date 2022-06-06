@@ -3,12 +3,12 @@
 沿路径绘制文本。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 按指定的路径绘制文本，可嵌套子标签tspan分段。
-> 
-> - 只支持被父元素标签text嵌套。
+>  **说明：**
+>  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - 按指定的路径绘制文本，可嵌套子标签tspan分段。
+>
+>  - 只支持被父元素标签text嵌套。
 
 ## 权限列表
 
@@ -26,37 +26,26 @@ tspan。
 支持以下表格中的属性。
 
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| id | string | - | 否 | 组件的唯一标识。 |
-| path | string | 0 | 是 | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath |
-| startOffset | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置文本沿path绘制的起始偏移。 |
-| font-size | &lt;length&gt; | 30px | 否 | 设置文本的尺寸。 |
-| fill | &lt;color&gt; | black | 否 | 字体填充颜色 |
-| by | number | - | 否 | 相对被指定动画的属性偏移值，from默认为原属性值。 |
-| opacity | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
-| fill-opacity | number | 1.0 | 否 | 字体填充透明度 |
-| stroke | &lt;color&gt; | black | 否 | 绘制字体边框并指定颜色 |
-| stroke-width | number | 1px | 否 | 字体边框宽度 |
-| stroke-opacity | number | 1.0 | 否 | 字体边框透明度 |
+| 名称             | 类型                                 | 默认值   | 必填   | 描述                                       |
+| -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
+| id             | string                             | -     | 否    | 组件的唯一标识。                                 |
+| path           | string                             | 0     | 是    | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath |
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置文本沿path绘制的起始偏移。                        |
+| font-size      | &lt;length&gt;                     | 30px  | 否    | 设置文本的尺寸。                                 |
+| fill           | &lt;color&gt;                      | black | 否    | 字体填充颜色                                   |
+| by             | number                             | -     | 否    | 相对被指定动画的属性偏移值，from默认为原属性值。               |
+| opacity        | number                             | 1     | 否    | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
+| fill-opacity   | number                             | 1.0   | 否    | 字体填充透明度                                  |
+| stroke         | &lt;color&gt;                      | black | 否    | 绘制字体边框并指定颜色                              |
+| stroke-width   | number                             | 1px   | 否    | 字体边框宽度                                   |
+| stroke-opacity | number                             | 1.0   | 否    | 字体边框透明度                                  |
 
 
 ## 示例
 
 textspan属性示例，textpath文本内容沿着属性path中的路径绘制文本，起点偏移20%的path长度。（绘制的元素&lt;path&gt;曲线仅做参照）
 
-```
-/* xxx.css */
-.container {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 1200px;
-    width: 600px;
-}
-```
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -70,11 +59,23 @@ textspan属性示例，textpath文本内容沿着属性path中的路径绘制文
 </div>
 ```
 
+```css
+/* xxx.css */
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 1200px;
+    width: 600px;
+}
+```
+
+
 ![zh-cn_image_0000001173164775](figures/zh-cn_image_0000001173164775.png)
 
 textpath与tspan组合示例与效果图
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -92,7 +93,7 @@ textpath与tspan组合示例与效果图
 
 ![zh-cn_image_0000001173324691](figures/zh-cn_image_0000001173324691.png)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -112,7 +113,7 @@ textpath与tspan组合示例与效果图
 
 ![zh-cn_image_0000001173324689](figures/zh-cn_image_0000001173324689.png)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -135,7 +136,7 @@ textpath与tspan组合示例与效果图
 
 startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘制超出path长度范围的文本。
 
-```
+```css
 /* xxx.css */
 .container {
     flex-direction: row;
@@ -146,7 +147,7 @@ startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘
 }
 ```
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -167,7 +168,7 @@ startOffset属性动画，文本绘制时起点偏移从10%运动到40%，不绘
 
 textpath与tspan组合属性动画与效果图
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -204,7 +205,7 @@ textpath与tspan组合属性动画与效果图
 
 textpath与tspan组合属性动画与效果图
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -242,7 +243,7 @@ textpath与tspan组合属性动画与效果图
 
 textpath与tspan组合属性动画与效果图
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">

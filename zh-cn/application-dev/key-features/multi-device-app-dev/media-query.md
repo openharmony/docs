@@ -28,9 +28,9 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 声明式开发范式，请查看[媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-ts-layout-mediaquery.md)了解详细用法。
+> - 声明式开发范式，请查看[媒体查询](../../ui/ui-ts-layout-mediaquery.md)了解详细用法。
 > 
-> - 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)和[css媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
+> - 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
 > 
 > - 媒体查询能力最为强大，它可以改变页面组件结构，而自适应布局和栅格布局均无此能力。
 > 

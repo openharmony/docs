@@ -16,13 +16,13 @@
 
 ## 消息气泡
 
-先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-border.md)）。
+先做一个最简单的消息气泡，通过borderRadius属性可以设置边框的圆角半径（详见[边框设置](../../reference/arkui-ts/ts-universal-attributes-border.md)）。
 
 | 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001313844881](figures/zh-cn_image_0000001313844881.png) | ![zh-cn_image_0000001313724825](figures/zh-cn_image_0000001313724825.png) | 
 
-  
+
 ```
 @Component
 struct MessageBubble {
@@ -48,13 +48,13 @@ struct MessageBubble {
 
 注意这个简单的消息气泡，左上角（或右上角）的样式，与实际期望不符。我们先修改发送消息右上角的样式，接收消息左上角的实现与之类似。
 
-[Stack组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
+[Stack组件](../../reference/arkui-ts/ts-container-stack.md)是一个堆叠容器，其子组件按照轴方向依次堆叠，后一个子组件覆盖前一个子组件。通过其alignContent接口，可以设置子组件在容器内的对齐方式，如alignContent: Alignment.TopStart代表子组件从左上角对齐。
 
 | 默认设备 | 平板 | 
 | -------- | -------- |
 | ![zh-cn_image_0000001313604829](figures/zh-cn_image_0000001313604829.png) | ![zh-cn_image_0000001313523845](figures/zh-cn_image_0000001313523845.png) | 
 
-  
+
 ```
 @Component
 struct MessageBubble {
@@ -92,7 +92,7 @@ struct MessageBubble {
 | -------- | -------- |
 | ![zh-cn_image_0000001266163748](figures/zh-cn_image_0000001266163748.png) | ![zh-cn_image_0000001265685020](figures/zh-cn_image_0000001265685020.png) | 
 
-  
+
 ```
 @Component
 struct MessageBubble {
@@ -140,7 +140,7 @@ struct MessageBubble {
 | -------- | -------- |
 | ![zh-cn_image_0000001265844904](figures/zh-cn_image_0000001265844904.png) | ![zh-cn_image_0000001266004832](figures/zh-cn_image_0000001266004832.png) | 
 
-  
+
 ```
 @Component
  struct MessageBubble {
@@ -189,7 +189,7 @@ struct MessageBubble {
 
 回顾方舟开发框架一多能力，消息气泡在默认设备和平板上布局不同，可以借助栅格布局来解决。为了方便测试，我们预定义一个全局数组。
 
-  
+
 ```
 const globalMessageList:any[] = [
    {
@@ -214,7 +214,7 @@ const globalMessageList:any[] = [
  ];
 ```
 
-结合[栅格组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridcontainer.md)的定义，考虑我们当前的实际场景，GridContainer的各参数设置如下。
+结合[栅格组件](../../reference/arkui-ts/ts-container-gridcontainer.md)的定义，考虑我们当前的实际场景，GridContainer的各参数设置如下。
 
 - columns：取默认值（auto），即根据设备尺寸自动设置栅格中的列数。
 
@@ -224,7 +224,7 @@ const globalMessageList:any[] = [
 
 - margin： 栅格布局两侧间距，在开发消息气泡组件时，已经设置了左右间距，故该属性也配置为0。
 
-栅格中仅包含我们自定义的消息气泡组件，该组件在各类型设备上的参数配置如下，可以通过[useSizeType属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-grid.md)设置消息气泡在不同场景下的尺寸和偏移值。
+栅格中仅包含我们自定义的消息气泡组件，该组件在各类型设备上的参数配置如下，可以通过[useSizeType属性](../../reference/arkui-ts/ts-universal-attributes-grid.md)设置消息气泡在不同场景下的尺寸和偏移值。
 
 | SizeType类型 | 设备宽度(vp) | 设备总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
@@ -237,7 +237,7 @@ const globalMessageList:any[] = [
 | -------- | -------- |
 | ![zh-cn_image_0000001313844889](figures/zh-cn_image_0000001313844889.png) | ![zh-cn_image_0000001313724829](figures/zh-cn_image_0000001313724829.png) | 
 
-  
+
 ```
 @Component
  struct MessageItem {

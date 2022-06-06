@@ -1,6 +1,9 @@
 # HiLog
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+The HiLog subsystem allows your applications or services to output logs based on the specified type, level, and format string. Such logs help you learn the running status of applications and better debug programs.
+This document describes only API functions. For details about log printing requirements, see [Logging Guide](../../../contribute/OpenHarmony-Log-guide.md).
+
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -9,184 +12,201 @@
 import hilog from '@ohos.hilog';
 ```
 
+## hilog.isLoggable
 
-## hilog.debug
+isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
-debug(domain: number, tag: string, format: string, ...args: any[]) : void
-
-Prints logs of the DEBUG level.
+Checks whether logs are printable based on the specified service domain, log tag, and log level.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
 
-| Name| Type | Mandatory | Description                                                        |
-| ------ | -------------- | ---- | ------------------------------------------------------------ |
-| domain | number         | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**. |
-| tag    | string         | Yes  | String constant used to identify the class or service behavior. |
-| format | string         | Yes  | String constant format, including the parameter type and privacy identifier. A parameter without the privacy identifier is treated as a privacy parameter by default. |
-| args   | any[]          | Yes  | Variable-length parameter list corresponding to the parameter type in the format string. The number and type of parameters must map to the identifier in the format string. |
+| Name| Type                 | Mandatory| Description                                                        |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string                | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| level  | [LogLevel](#loglevel) | Yes  | Log level.                                                  |
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** logs are printable based on the specified service domain, log tag, and log level; returns **false** otherwise.|
 
 **Example**
 
 ```js
-hilog.debug(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
+hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 ```
 
-**Output**
+## LogLevel
+
+Enumerates the log levels.
+
+**System capability**: SystemCapability.HiviewDFX.HiLog
+
+| Name | Default Value| Description                                                        |
+| ----- | ------ | ------------------------------------------------------------ |
+| DEBUG | 3      | Log level used to record more detailed process information than INFO logs to help developers analyze service processes and locate faults.|
+| INFO  | 4      | Log level used to record key service process nodes and exceptions that occur during service running,<br>for example, no network signal or login failure.<br>These logs should be recorded by the dominant module in the service to avoid repeated logging conducted by multiple invoked modules or low-level functions.|
+| WARN  | 5      | Log level used to record severe, unexpected faults that have little impact on users and can be rectified by the programs themselves or through simple operations.|
+| ERROR | 6      | Log level used to record program or functional errors that affect the normal running or use of the functionality and can be fixed at a high cost, for example, by resetting data.|
+| FATAL | 7      | Log level used to record program or functionality crashes that cannot be rectified.              |
+
+## hilog.debug
+
+debug(domain: number, tag: string, format: string, ...args: any[]) : void
+
+Prints DEBUG logs.
+
+DEBUG logs are not recorded in official versions by default. They are available in debug versions or in official versions with the debug function enabled.
+
+**System capability**: SystemCapability.HiviewDFX.HiLog
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
+| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
+
+**Example**
+
+This example is used to output a DEBUG log with the format string being `"%{public}s World %{private}d"`. The variable `%{public}s` is a plaintext string, and the variable `%{private}d` is a private integer.
+
+```js
+hilog.debug(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
+```
+
+If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-09-08 12:49:35.941  1547  2452 D FF00/testTag: 1: hello World 3.0
+08-05 12:21:47.579  2695-2703/com.example.myapplication D 00001/testTag: hello World <private>
 ```
 
 ## hilog.info
 
 info(domain: number, tag: string, format: string, ...args: any[]) : void
 
-Prints logs of the INFO level.
+Prints INFO logs.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
 
-| Name| Type | Mandatory | Description                                                        |
-| ------ | -------------- | ---- | ------------------------------------------------------------ |
-| domain | number         | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**. |
-| tag    | string         | Yes  | String constant used to identify the class or service behavior. |
-| format | string         | Yes  | String constant format, including the parameter type and privacy identifier. A parameter without the privacy identifier is treated as a privacy parameter by default. |
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the parameter type in the format string. The number and type of parameters must map to the identifier in the format string. |
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
+| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
+This example is used to output an INFO log with the format string being `"%{public}s World %{private}d"`. The variable `%{public}s` is a plaintext string, and the variable `%{private}d` is a private integer.
+
 ```js
-hilog.info(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
+hilog.info(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 ```
 
-**Output**
+If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-09-08 12:49:35.941  1547  2452 I FF00/testTag: 1: hello World 3.0
+08-05 12:21:47.579  2695-2703/com.example.myapplication I 00001/testTag: hello World <private>
 ```
 
 ## hilog.warn
 
 warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
-Prints logs of the WARN level.
+Prints WARN logs.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
 
-| Name| Type | Mandatory | Description                                                        |
-| ------ | -------------- | ---- | ------------------------------------------------------------ |
-| domain | number         | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**. |
-| tag    | string         | Yes  | String constant used to identify the class or service behavior. |
-| format | string         | Yes  | String constant format, including the parameter type and privacy identifier. A parameter without the privacy identifier is treated as a privacy parameter by default. |
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the parameter type in the format string. The number and type of parameters must map to the identifier in the format string. |
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
+| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
+This example is used to output a WARN log with the format string being `"%{public}s World %{private}d"`. The variable `%{public}s` is a plaintext string, and the variable `%{private}d` is a private integer.
+
 ```js
-hilog.warn(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
+hilog.warn(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 ```
 
-**Output**
+If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-09-08 12:49:35.941  1547  2452 W FF00/testTag: 1: hello World 3.0
+08-05 12:21:47.579  2695-2703/com.example.myapplication W 00001/testTag: hello World <private>
 ```
 
 ## hilog.error
 
 error(domain: number, tag: string, format: string, ...args: any[]) : void
 
-Prints logs of the ERROR level.
+Prints ERROR logs.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
 
-| Name| Type | Mandatory | Description                                                        |
-| ------ | -------------- | ---- | ------------------------------------------------------------ |
-| domain | number         | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**. |
-| tag    | string         | Yes  | String constant used to identify the class or service behavior. |
-| format | string         | Yes  | String constant format, including the parameter type and privacy identifier. A parameter without the privacy identifier is treated as a privacy parameter by default. |
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the parameter type in the format string. The number and type of parameters must map to the identifier in the format string. |
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
+| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
+This example is used to output an ERROR log with the format string being `"%{public}s World %{private}d"`. The variable `%{public}s` is a plaintext string, and the variable `%{private}d` is a private integer.
+
 ```js
-hilog.error(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
+hilog.error(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 ```
 
-**Output**
+If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
 ```
-09-08 12:49:35.941  1547  2452 E FF00/testTag: 1: hello World 3.0
+08-05 12:21:47.579  2695-2703/com.example.myapplication E 00001/testTag: hello World <private>
 ```
 
 ## hilog.fatal
 
 fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
-Prints logs of the FATAL level.
+Prints FATAL logs.
 
 **System capability**: SystemCapability.HiviewDFX.HiLog
 
 **Parameters**
 
-| Name| Type | Mandatory | Description                                                        |
-| ------ | -------------- | ---- | ------------------------------------------------------------ |
-| domain | number         | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**.                                 |
-| tag    | string         | Yes  | String constant used to identify the class or service behavior.                  |
-| format | string         | Yes  | String constant format, including the parameter type and privacy identifier. A parameter without the privacy identifier is treated as a privacy parameter by default. |
-| args   | any[]  | Yes  | Variable-length parameter list corresponding to the parameter type in the format string. The number and type of parameters must map to the identifier in the format string. |
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
+| format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
+| args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
 
 **Example**
 
-```js
-hilog.fatal(0xFF00, "testTag", "%d: %{private}s World %{public}f", 1, "hello", 3.0);
-```
-
-**Output**
-
-```
-09-08 12:49:35.941  1547  2452 F FF00/testTag: 1: hello World 3.0
-```
-
-## hilog.isLoggable
-
-isLoggable(domain: number, tag: string, level: LogLevel) : boolean
-
-Checks whether printing is enabled for a domain, tag, or log level.
-
-**System capability**: SystemCapability.HiviewDFX.HiLog
-
-**Parameters**
-
-| Name| Type | Mandatory | Description                                      |
-| ------ | --------------------- | ---- | ------------------------------------------ |
-| domain | number                | Yes  | Service domain. The value ranges from **0x0** to **0xFFFFF**.               |
-| tag    | string                | Yes  | String constant used to identify the class or service behavior. |
-| level  | [LogLevel](#loglevel) | Yes  | Log level.                                |
-
-**Example**
+This example is used to output a FATAL log with the format string being `"%{public}s World %{private}d"`. The variable `%{public}s` is a plaintext string, and the variable `%{private}d` is a private integer.
 
 ```js
-hilog.isLoggable(0xFF00, "testTag", hilog.DEBUG);
+hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 ```
 
-## LogLevel
+If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log is as follows:
 
-Enumerates event types.
-
-**System capability**: SystemCapability.HiviewDFX.HiLog
-
-| Name | Default Value | Description       |
-| ----- | ------ | ----------- |
-| DEBUG | 3      | DEBUG level |
-| INFO  | 4      | INFO level |
-| WARN  | 5      | WARN level |
-| ERROR | 6      | ERROR level |
-| FATAL | 7      | FATAL level |
+```
+08-05 12:21:47.579  2695-2703/com.example.myapplication F 00001/testTag: hello World <private>
+```

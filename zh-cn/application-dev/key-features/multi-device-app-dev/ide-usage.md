@@ -1,7 +1,7 @@
 # IDE使用
 
 
-DevEco Studio的基本使用，请参考[DevEco Studio使用指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md)。本章主要介绍如何使用DevEco Studio进行多设备应用开发。
+DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-start/deveco-studio-user-guide-for-openharmony.md)。本章主要介绍如何使用DevEco Studio进行多设备应用开发。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -16,7 +16,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](https://gite
 
 而在本文“[工程结构](introduction.md#部署模型)”小节中，推荐开发者采用common、features、product三层工程结构，这样在一个应用工程内可以更容易、清晰地管理多个设备的模块。工程结构示例如下所示：
 
-  
+
 ```
 /application
  ├── common                  # 公共特性目录
@@ -34,7 +34,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](https://gite
 
 当然开发者也可以使用平级的目录进行模块管理，只是看上去会显得有点“杂乱”，工程结构示例如下所示：
 
-  
+
 ```
 /application
 ├── common
@@ -73,7 +73,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](https://gite
 
 ### 修改Module类型及其设备类型
 
-通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。
+通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/stage-structure.md)。
 
 - 将default模块的deviceTypes配置为["phone", "tablet"]，同时将其type字段配置为entry。
   即default模块编译出的hap包在默认设备和平板上安装和运行。

@@ -3,7 +3,7 @@
 子组件comp定义如下：
 
 
-```
+```html
 <!-- comp.hml -->
 <div class="item">  
    <text class="text-style" onclick="childClicked">点击这里查看隐藏文本</text> 
@@ -12,7 +12,7 @@
 ```
 
 
-```
+```css
 /* comp.css */
 .item {  
   width: 700px;   
@@ -29,7 +29,7 @@
 ```
 
 
-```
+```js
 // comp.js
 export default { 
   data: {  
@@ -46,7 +46,7 @@ export default {
 引入子组件的示例如下：
 
 
-```
+```html
 <!-- xxx.hml --> 
 <element name='comp' src='../../common/component/comp.hml'></element>  
 <div class="container">  
@@ -55,7 +55,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {  
   background-color: #f8f8ff;  
@@ -66,7 +66,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {    
   textClicked () {},  

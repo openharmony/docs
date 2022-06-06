@@ -1,7 +1,7 @@
 # Progress
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,7 +25,7 @@ Progress(value: { value: number, total?: number, type?: ProgressType})
 Creates a progress bar.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Current progress. |
   | total | number | No | 100 | Total progress. |
@@ -33,7 +33,7 @@ Creates a progress bar.
 
 
 - ProgressType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Linear | Linear type. |
   | Ring<sup>8+</sup> | Ring type without scale. The ring fills up as the progress increases. |

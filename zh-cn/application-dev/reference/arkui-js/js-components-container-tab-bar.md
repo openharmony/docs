@@ -1,6 +1,6 @@
 # tab-bar
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 &lt;[tabs](../arkui-js/js-components-container-tabs.md)&gt;的子组件，用来展示tab的标签区，子组件排列方式为横向排列。

@@ -3,7 +3,7 @@
 基础容器，主要作为svg的根节点使用，也可以在svg中嵌套使用。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > 
 > - svg父组件或者svg组件需要定义宽高值，否则不进行绘制。
@@ -34,7 +34,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="400" height="400">

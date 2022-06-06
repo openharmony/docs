@@ -4,7 +4,7 @@ This document describes the general process for porting a development board, rat
 
 ## Defining a Development Board<a name="section132mcpsimp"></a>
 
-This document uses the process of porting a development board named  **MyProduct**  as an example. This development board is provided by  **MyProductVendor**  and uses the SoC  **MySOC**  produced by  **MySoCVendor**.
+This document uses the process of porting a development board named **MyProduct** as an example. This development board is provided by **MyProductVendor** and uses the SoC **MySOC** produced by **MySoCVendor**.
 
 ### Defining a Product<a name="section145mcpsimp"></a>
 
@@ -63,7 +63,7 @@ The main configurations are as follows:
 
 You can find predefined subsystems in **//build/subsystem\_config.json**. You can also customize subsystems.
 
-You are advised to copy the configuration file of Hi3516D V300 and delete the  **hisilicon\_products**  subsystem, which is used to compile the kernel for Hi3516D V300.
+You are advised to copy the configuration file of Hi3516D V300 and delete the **hisilicon\_products** subsystem, which is used to compile the kernel for Hi3516D V300.
 
 ### Verifying the Porting<a name="section163mcpsimp"></a>
 
@@ -73,7 +73,7 @@ Run the following command to start the build of your product:
 ./build.sh --product-name MyProduct 
 ```
 
-After the build is complete, you can view the built OpenHarmony image file in  **//out/{device_name}/packages/phone/images**.
+After the build is complete, you can view the built OpenHarmony image file in **//out/{device_name}/packages/phone/images**.
 
 ## Porting the Kernel<a name="section171mcpsimp"></a>
 
@@ -81,7 +81,7 @@ Now, you need to port the Linux kernel to enable it to run successfully.
 
 ### 1. Adding a Kernel-built Subsystem to the SoC<a name="section174mcpsimp"></a>
 
-Add the following subsystem configuration to the  **//build/subsystem\_config.json**  file:
+Add the following subsystem configuration to the **//build/subsystem\_config.json** file:
 
 ```
   "MySOCVendor_products": {
@@ -92,13 +92,13 @@ Add the following subsystem configuration to the  **//build/subsystem\_config.js
   },
 ```
 
-Then, open the configuration file  **//vendor/MyProductVendor/MyProduct/config.json**, which is used to define the product, and add the new subsystem to the product.
+Then, open the configuration file **//vendor/MyProductVendor/MyProduct/config.json**, which is used to define the product, and add the new subsystem to the product.
 
 ### 2. Building the Kernel<a name="section182mcpsimp"></a>
 
-The OpenHarmony source code provides the Linux kernel 4.19, which is archived in  **//kernel/linux-4.19**. This section uses this kernel version as an example to describe how to build the kernel.
+The OpenHarmony source code provides the Linux kernel 4.19, which is archived in **//kernel/linux-4.19**. This section uses this kernel version as an example to describe how to build the kernel.
 
-The path for building the subsystem is defined when you define the subsystem in the previous step. The path is  **//device/MySOCVendor/MySOC/build**. Now, you need to create a build script in this path to instruct the build system to build the kernel.
+The path for building the subsystem is defined when you define the subsystem in the previous step. The path is **//device/MySOCVendor/MySOC/build**. Now, you need to create a build script in this path to instruct the build system to build the kernel.
 
 The recommended directory structure is as follows:
 
@@ -111,7 +111,7 @@ The recommended directory structure is as follows:
 │ ├── ohos.build
 ```
 
-The  **BUILD.gn**  file is the only entry for building the subsystem.
+The **BUILD.gn** file is the only entry for building the subsystem.
 
 The expected build result is as follows:
 
@@ -144,11 +144,11 @@ Now start build, and check whether the kernel image is generated as expected.
 
 This section describes how to port a Liquid Crystal Display \(LCD\) driver. The hardware driver framework \(HDF\) designs a driver model for the LCD. To support an LCD, you must compile a driver, generate a model instance in the driver, and register the instance.
 
-The LCD drivers are stored in the  **//drivers/framework/model/display/driver/panel**  directory.
+The LCD drivers are stored in the **//drivers/framework/model/display/driver/panel** directory.
 
 -   Create a panel driver.
 
-In the  **Init**  method of the driver, call  **RegisterPanel**  to register the model instance.
+In the **Init** method of the driver, call **RegisterPanel** to register the model instance.
 
 ```
 int32_t XXXInit(struct HdfDeviceObject *object)
@@ -172,7 +172,7 @@ struct HdfDriverEntry g_xxxxDevEntry = {
 HDF_INIT(g_xxxxDevEntry);
 ```
 
--   Configure and load the panel driver. All device information about the product is defined in the  **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs**  file. Modify the file by adding configurations for the device named  **device\_lcd**  to the host named  **display**. Note: The value of  **moduleName**  must be the same as that in the panel driver.
+-   Configure and load the panel driver. All device information about the product is defined in the **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs** file. Modify the file by adding configurations for the device named **device\_lcd** to the host named **display**. Note: The value of **moduleName** must be the same as that in the panel driver.
 
 ```
 root {
@@ -190,15 +190,15 @@ root {
 }
 ```
 
-For details about driver development, see  [LCD](../driver/driver-peripherals-lcd-des.md).
+For details about driver development, see [LCD](../driver/driver-peripherals-lcd-des.md).
 
 ### 2. Touchscreen<a name="section229mcpsimp"></a>
 
-This section describes how to port a touchscreen driver. The touchscreen driver is stored in the  **//drivers/framework/model/input/driver/touchscreen**  directory. To port a touchscreen driver, register a  **ChipDevice**  model instance.
+This section describes how to port a touchscreen driver. The touchscreen driver is stored in the **//drivers/framework/model/input/driver/touchscreen** directory. To port a touchscreen driver, register a **ChipDevice** model instance.
 
 -   Create a touchscreen driver.
 
-Create the  **touch\_ic\_name.c**  file in the directory. Replace  **ic\_name**  with the name of your chip. The file template is as follows:
+Create the **touch\_ic\_name.c** file in the directory. Replace **ic\_name** with the name of your chip. The file template is as follows:
 
 ```
 #include "hdf_touch.h"
@@ -222,7 +222,7 @@ struct HdfDriverEntry g_touchXXXXChipEntry = {
 HDF_INIT(g_touchXXXXChipEntry);
 ```
 
-Implement the following interfaces in  **ChipDevice**:
+Implement the following interfaces in **ChipDevice**:
 
 <a name="table240mcpsimp"></a>
 <table><tbody><tr id="row245mcpsimp"><td class="cellrowborder" valign="top" width="50%"><p id="entry246mcpsimpp0"><a name="entry246mcpsimpp0"></a><a name="entry246mcpsimpp0"></a>Interface</p>
@@ -265,7 +265,7 @@ Implement the following interfaces in  **ChipDevice**:
 
 -   Configure the product and load the driver.
 
-    All device information about the product is defined in the  **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs**  file. Modify the file by adding configurations for the device named  **device\_touch\_chip**  to the host named  **input**. Note: The value of  **moduleName**  must be the same as that in the touchscreen driver.
+    All device information about the product is defined in the **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs** file. Modify the file by adding configurations for the device named **device\_touch\_chip** to the host named **input**. Note: The value of **moduleName** must be the same as that in the touchscreen driver.
 
 
 ```
@@ -279,16 +279,16 @@ Implement the following interfaces in  **ChipDevice**:
                 }
 ```
 
-For details about driver development, see  [TOUCHSCREEN](../driver/driver-peripherals-touch-des.md).
+For details about driver development, see [TOUCHSCREEN](../driver/driver-peripherals-touch-des.md).
 
 ### 3. WLAN<a name="section274mcpsimp"></a>
 
 The WLAN driver is divided into two parts. One of the parts manages WLAN devices, and the other part manages WLAN traffic. HDF WLAN provides abstraction for the two parts. Currently, only the WLAN with the SDIO interface is supported.
 
-**Figure  1**  WLAN chip<a name="fig16997123013494"></a>  
+**Figure 1** WLAN chip<a name="fig16997123013494"></a>  
 ![](figures/wlan-chip.png "wlan-chip")
 
-To support a chip, implement a  **ChipDriver**  for it. The major task is to implement the following interfaces provided by  **HDF\_WLAN\_CORE**  and  **NetDevice**.
+To support a chip, implement a **ChipDriver** for it. The major task is to implement the following interfaces provided by **HDF\_WLAN\_CORE** and **NetDevice**.
 
 <a name="table280mcpsimp"></a>
 <table><tbody><tr id="row286mcpsimp"><td class="cellrowborder" valign="top" width="33.33333333333333%"><p id="entry287mcpsimpp0"><a name="entry287mcpsimpp0"></a><a name="entry287mcpsimpp0"></a>Interface</p>
@@ -324,7 +324,7 @@ To support a chip, implement a  **ChipDriver**  for it. The major task is to imp
 
 To port a WLAN driver, perform the following steps:
 
-1. Create an HDF driver. You are advised to place the code file in the  **//device/MySoCVendor/peripheral/wifi/chip\_name/**  directory. The file template is as follows:
+1. Create an HDF driver. You are advised to place the code file in the **//device/MySoCVendor/peripheral/wifi/chip\_name/** directory. The file template is as follows:
 
 ```
 static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device) {
@@ -347,7 +347,7 @@ struct HdfDriverEntry g_hdfXXXChipEntry = {
 HDF_INIT(g_hdfXXXChipEntry);
 ```
 
-Create an  **HdfChipDriverFactory**  in the  **CreateChipDriverFactory**. The interfaces are as follows:
+Create an **HdfChipDriverFactory** in the **CreateChipDriverFactory**. The interfaces are as follows:
 
 <a name="table312mcpsimp"></a>
 <table><tbody><tr id="row317mcpsimp"><td class="cellrowborder" valign="top" width="50%"><p id="entry318mcpsimpp0"><a name="entry318mcpsimpp0"></a><a name="entry318mcpsimpp0"></a>Interface</p>
@@ -393,7 +393,7 @@ Create an  **HdfChipDriverFactory**  in the  **CreateChipDriverFactory**. The in
 </tbody>
 </table>
 
-Implement the following interfaces in the  **HdfChipDriver**.
+Implement the following interfaces in the **HdfChipDriver**.
 
 <a name="table342mcpsimp"></a>
 <table><tbody><tr id="row347mcpsimp"><td class="cellrowborder" valign="top" width="50%"><p id="entry348mcpsimpp0"><a name="entry348mcpsimpp0"></a><a name="entry348mcpsimpp0"></a>Interface</p>
@@ -431,9 +431,9 @@ Implement the following interfaces in the  **HdfChipDriver**.
 
 2. Compile the configuration file to describe the devices supported by the driver.
 
-Create the chip configuration file  **//vendor/MyProductVendor/MyProduct/config/wifi/wlan\_chip\_chip\_name.hcs**  in the product configuration directory.
+Create the chip configuration file **//vendor/MyProductVendor/MyProduct/config/wifi/wlan\_chip\_chip\_name.hcs** in the product configuration directory.
 
-Replace  **MyProductVendor**,  **MyProduct**, and  **chip\_name**  in the path with the actual names.
+Replace **MyProductVendor**, **MyProduct**, and **chip\_name** in the path with the actual names.
 
 The sample code is as follows:
 
@@ -456,7 +456,7 @@ root {
 
 3. Edit the configuration file and load the driver.
 
-All device information about the product is defined in the  **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs**  file. Modify the file by adding configurations for the device named  **device\_wlan\_chips**  to the host named  **network**. Note: The value of  **moduleName**  must be the same as that in the touchscreen driver.
+All device information about the product is defined in the **//vendor/MyProductVendor/MyProduct/config/device\_info/device\_info.hcs** file. Modify the file by adding configurations for the device named **device\_wlan\_chips** to the host named **network**. Note: The value of **moduleName** must be the same as that in the touchscreen driver.
 
 ```
                 deviceN :: deviceNode {
@@ -470,7 +470,7 @@ All device information about the product is defined in the  **//vendor/MyProduct
 
 4. Build the driver.
 
--   Create a kernel configuration menu. Create a  **Kconfig**  file in the  **//device/MySoCVendor/peripheral**  directory. The file template is as follows:
+-   Create a kernel configuration menu. Create a **Kconfig** file in the **//device/MySoCVendor/peripheral** directory. The file template is as follows:
 
 ```
 config DRIVERS_WLAN_XXX
@@ -481,7 +481,7 @@ config DRIVERS_WLAN_XXX
       Answer Y to enable XXX Host driver. Support chip xxx
 ```
 
-Add the following sample code to the end of the  **//drivers/adapter/khdf/linux/model/network/wifi/Kconfig**  file to add the configuration menu to the kernel:
+Add the following sample code to the end of the **//drivers/adapter/khdf/linux/model/network/wifi/Kconfig** file to add the configuration menu to the kernel:
 
 ```
 source "../../../../../device/MySoCVendor/peripheral/Kconfig"
@@ -489,7 +489,7 @@ source "../../../../../device/MySoCVendor/peripheral/Kconfig"
 
 -   Create a build script.
 
-    Add the following configuration to the end of the  **//drivers/adapter/khdf/linux/model/network/wifi/Makefile**  file:
+    Add the following configuration to the end of the **//drivers/adapter/khdf/linux/model/network/wifi/Makefile** file:
 
 
 ```
@@ -497,7 +497,7 @@ HDF_DEVICE_ROOT := $(HDF_DIR_PREFIX)/../device
 obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/build/standard/
 ```
 
-When  **DRIVERS\_WLAN\_XXX**  is enabled in the kernel,  **makefile**  in  **//device/MySoCVendor/peripheral/build/standard/**  is called. For more details, see  [WLAN Development](../guide/device-wlan-led-control.md).
+When **DRIVERS\_WLAN\_XXX** is enabled in the kernel, **makefile** in **//device/MySoCVendor/peripheral/build/standard/** is called. For more details, see [WLAN Development](../guide/device-wlan-led-control.md).
 
 ### 4. Samples<a name="section11253153018415"></a>
 

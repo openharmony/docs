@@ -1,6 +1,6 @@
 # 共享元素转场
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -9,23 +9,24 @@
 
 ## 属性
 
-| 名称 | 参数 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| sharedTransition | id:&nbsp;string,<br/>options?:&nbsp;Object | - | 两个页面的组件配置为同一个id，则转场过程中会进行共享元素转场，配置为空字符串时不会有共享元素转场效果。 |
+| 名称               | 参数                                       | 默认值  | 参数描述                                     |
+| ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| sharedTransition | id:&nbsp;string,<br/>options?:&nbsp;Object | -    | 两个页面的组件配置为同一个id，则转场过程中会进行共享元素转场，配置为空字符串时不会有共享元素转场效果。 |
 
 - options参数说明
-  | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | duration | number | 1000 | 否 | 单位为毫秒，默认动画时长为1000毫秒。 | 
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 否 | 默认曲线为线性，有效值参见Curve说明。 | 
-  | delay | number | 0 | 否 | 单位为毫秒，默认不延时播放。 |
+  | 参数名称     | 参数类型                      | 默认值    | 必填   | 参数描述                  |
+  | -------- | ------------------------- | ------ | ---- | --------------------- |
+  | duration | number                    | 1000   | 否    | 单位为毫秒，默认动画时长为1000毫秒。  |
+  | curve    | Curve&nbsp;\|&nbsp;Curves | Linear | 否    | 默认曲线为线性，有效值参见Curve说明。 |
+  | delay    | number                    | 0      | 否    | 单位为毫秒，默认不延时播放。        |
 
 
 ## 示例
 
 示例功能为两个页面，共享元素转场页面图片点击后转场至页面B的图片。
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SharedTransitionExample {
@@ -53,8 +54,8 @@ struct SharedTransitionExample {
 }
 ```
 
-```
-// PageB
+```ts
+// PageB.ets
 @Entry
 @Component
 struct BExample {

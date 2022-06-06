@@ -1,6 +1,6 @@
 # OffscreenCanvasRenderingContext2D对象
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -30,7 +30,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [lineJoin](#linejoin)                    | string                                   | 'miter'                                  | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
 | [miterLimit](#miterlimit)                | number                                   | 10                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。             |
 | [font](#font)                            | string                                   | 'normal&nbsp;normal&nbsp;14px&nbsp;sans-serif' | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal',&nbsp;'italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。 |
-| [textAlign](#textalign)                  | string                                   | 'left'                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下start和left一致，rtl布局模式下start和right一致·。 |
+| [textAlign](#textalign)                  | string                                   | 'left'                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下start和left一致，rtl布局模式下start和right一致·。 |
 | [textBaseline](#textbaseline)            | string                                   | 'alphabetic'                             | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic&nbsp;基线不需要考虑下行字母。 |
 | [globalAlpha](#globalalpha)              | number                                   | -                                        | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
 | [lineDashOffset](#linedashoffset)        | number                                   | 0.0                                      | 设置画布的虚线偏移量，精度为float。                     |
@@ -42,13 +42,14 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | true                                     | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。  |
 | imageSmoothingQuality                    | string                                   | 'low'                                    | 用于设置图像平滑度，支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > &lt;color&gt;类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
 
 
 ### fillStyle
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FillStyleExample {
@@ -80,7 +81,8 @@ struct FillStyleExample {
 
 ### lineWidth
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineWidthExample {
@@ -112,7 +114,8 @@ struct LineWidthExample {
 
 ### strokeStyle
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StrokeStyleExample {
@@ -146,7 +149,8 @@ struct StrokeStyleExample {
 
 ### lineCap
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineCapExample {
@@ -182,7 +186,8 @@ struct LineCapExample {
 
 ### lineJoin
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineJoinExample {
@@ -219,7 +224,8 @@ struct LineJoinExample {
 
 ### miterLimit
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MiterLimit {
@@ -256,7 +262,8 @@ struct MiterLimit {
 
 ### font
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Font {
@@ -288,7 +295,8 @@ struct Font {
 
 ### textAlign
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {
@@ -335,7 +343,8 @@ struct CanvasExample {
 
 ### textBaseline
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextBaseline {
@@ -382,7 +391,8 @@ struct TextBaseline {
 
 ### globalAlpha
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalAlpha {
@@ -417,7 +427,8 @@ struct GlobalAlpha {
 
 ### lineDashOffset
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineDashOffset {
@@ -464,7 +475,8 @@ struct LineDashOffset {
 | copy             | 显示新绘制内容而忽略现有绘制内容。        |
 | xor              | 使用异或操作对新绘制内容与现有绘制内容进行融合。 |
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalCompositeOperation {
@@ -504,7 +516,8 @@ struct GlobalCompositeOperation {
 
 ### shadowBlur
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowBlur {
@@ -538,7 +551,8 @@ struct ShadowBlur {
 
 ### shadowColor
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowColor {
@@ -573,7 +587,8 @@ struct ShadowColor {
 
 ### shadowOffsetX
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetX {
@@ -608,7 +623,8 @@ struct ShadowOffsetX {
 
 ### shadowOffsetY
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetY {
@@ -643,7 +659,8 @@ struct ShadowOffsetY {
 
 ### imageSmoothingEnabled
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ImageSmoothingEnabled {
@@ -692,8 +709,9 @@ fillRect(x: number, y: number, w: number, h: number): void
   | height | number | 是    | 0    | 指定矩形的高度。      |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct FillRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -736,8 +754,9 @@ strokeRect(x: number, y: number, w: number, h: number): void
   | height | number | 是    | 0    | 指定矩形的高度。     |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct StrokeRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -779,8 +798,9 @@ clearRect(x: number, y: number, w: number, h: number): void
   | height | number | 是    | 0    | 指定矩形的高度。      |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct ClearRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -823,8 +843,9 @@ fillText(text: string, x: number, y: number): void
   | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct FillText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -866,8 +887,9 @@ strokeText(text: string, x: number, y: number): void
   | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct StrokeText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -917,8 +939,9 @@ measureText(text: string): TextMetrics
   | width | number | 字符串的宽度。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct MeasureText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -959,8 +982,9 @@ stroke(path?: Path2D): void
   | path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Stroke {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -997,8 +1021,9 @@ beginPath(): void
 创建一个新的绘制路径。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct BeginPath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1043,8 +1068,9 @@ moveTo(x: number, y: number): void
   | y    | number | 是    | 0    | 指定位置的y坐标。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct MoveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1087,8 +1113,9 @@ lineTo(x: number, y: number): void
   | y    | number | 是    | 0    | 指定位置的y坐标。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct LineTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1125,8 +1152,9 @@ closePath(): void
 结束当前路径形成一个封闭路径。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct ClosePath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1171,8 +1199,9 @@ createPattern(image: ImageBitmap, repetition: string): CanvasPattern
   | repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1219,8 +1248,9 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   | y    | number | 是    | 0    | 路径结束时的y坐标值。    |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct BezierCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1265,8 +1295,9 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   | y    | number | 是    | 0    | 路径结束时的y坐标值。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct QuadraticCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1313,8 +1344,9 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   | anticlockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Arc {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1359,8 +1391,9 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   | radius | number | 是    | 0    | 圆弧的圆半径值。        |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct ArcTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1409,8 +1442,9 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 - 示例
 
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1454,8 +1488,9 @@ rect(x: number, y: number, width: number, height: number): void
   | height | number | 是    | 0    | 指定矩形的高度。      |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1490,8 +1525,9 @@ fill(): void
 对封闭路径进行填充。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Fill {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1526,8 +1562,9 @@ clip(): void
 设置当前路径为剪切路径。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Clip {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1570,8 +1607,9 @@ rotate(rotate: number): void
   | rotate | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Rotate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1612,8 +1650,9 @@ scale(x: number, y: number): void
   | y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Scale {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1648,7 +1687,7 @@ transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translat
 
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
 > - x' = scaleX \* x + skewY \* y + translateX
@@ -1666,8 +1705,9 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   | translateY | number | 是    | 0    | 指定垂直移动值。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Transform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1718,8 +1758,9 @@ setTransfrom方法使用的参数和transform()方法相同，但setTransform()�
   | translateY | number | 是    | 0    | 指定垂直移动值。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct SetTransform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1763,8 +1804,9 @@ translate(x: number, y: number): void
   | y    | number | 是    | 0    | 设置竖直平移量。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Translate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1795,18 +1837,18 @@ translate(x: number, y: number): void
 
 ### drawImage
 
-drawImage(image: ImageBitmap, dx: number, dy: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
-drawImage(image: ImageBitmap, dx: number, dy: number, dWidth: number, dHeight: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dWidth: number, dHeight: number): void
 
-drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 进行图像绘制。
 
 - 参数
   | 参数      | 类型                                       | 必填   | 默认值  | 描述                   |
   | ------- | ---------------------------------------- | ---- | ---- | -------------------- |
-  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图片资源，请参考ImageBitmap。 |
+  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../apis/js-apis-image.md#pixelmap7)| 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
   | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。 |
   | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。 |
   | sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。       |
@@ -1818,8 +1860,9 @@ drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: n
 
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct Index {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1871,6 +1914,18 @@ createImageData(imageData: ImageData): Object
   | --------- | ---------------------------------------- | ---- | ---- | ---------------- |
   | imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null | 被复制的ImageData对象。 |
 
+### getPixelMap
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+以当前canvas指定区域内的像素创建[PixelMap](../apis/js-apis-image.md#pixelmap7)对象。
+- 参数
+  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
+  | -------- | -------- | -------- | -------- | -------- |
+  | sx | number | 是 | 0 | 需要输出的区域的左上角x坐标。 | 
+  | sy | number | 是 | 0 | 需要输出的区域的左上角y坐标。 | 
+  | sw | number | 是 | 0 | 需要输出的区域的宽度。 | 
+  | sh | number | 是 | 0 | 需要输出的区域的高度。 | 
 
 ### getImageData
 
@@ -1905,8 +1960,9 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?
   | dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct PutImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1947,8 +2003,9 @@ restore(): void
 对保存的绘图上下文进行恢复。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1980,8 +2037,9 @@ save(): void
 对当前的绘图上下文进行保存。
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2021,8 +2079,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
   | y1   | number | 是    | 0    | 终点的y轴坐标。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CreateLinearGradient {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2072,8 +2131,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
   | r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的。 |
 
 - 示例
-  ```
-  @Entry
+  ```ts
+// xxx.ets
+@Entry
   @Component
   struct CreateRadialGradient {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

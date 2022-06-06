@@ -8,18 +8,18 @@ Go to the root directory of the source code in the Ubuntu environment and perfor
 
 
 1. Set the build path.
-     
+   
    ```
    hb set
    ```
 
 2. Select the current path.
-     
+   
    ```
    .
    ```
 
-3. Select **rk3568** under **built-in** and press **Enter**.
+3. Select **rk3568** under **hihope** and press **Enter**.
 
 4. Start building.
 
@@ -32,12 +32,12 @@ Go to the root directory of the source code in the Ubuntu environment and perfor
    > 
    > This example builds a product from the scratch.
 
-     
+   
    ```
    hb build -f
    ```
 
-     
+   
      **Figure 1** RK3568 build settings
 
      ![en-us_image_0000001226922302](figures/en-us_image_0000001226922302.png)

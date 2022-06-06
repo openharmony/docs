@@ -4,7 +4,7 @@
 拉伸能力是指容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
 
 
-拉伸能力通常通过Flex布局的flexGrow和flexShrink属性实现，详见[Flex布局](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
+拉伸能力通常通过Flex布局的flexGrow和flexShrink属性实现，详见[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
 
 
 - flexGrow：仅当父容器宽度大于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例拉伸，分配父容器的多余空间。
@@ -12,7 +12,7 @@
 - flexShrink：仅当父容器宽度小于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例收缩，分配父容器的不足空间。
 
 
-特别的，当开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过Blank组件实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效，详见[Blank组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-blank.md)。
+特别的，当开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过Blank组件实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效，详见[Blank组件](../../reference/arkui-ts/ts-basic-components-blank.md)。
 
 
 ## 示例1：

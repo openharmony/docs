@@ -1,16 +1,16 @@
 # Image Processing
 
-> **NOTE**
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions): Promise\<PixelMap>
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 Creates a **PixelMap** object. This API uses a promise to return the result.
 
@@ -21,7 +21,7 @@ Creates a **PixelMap** object. This API uses a promise to return the result.
 | Name   | Type                                            | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | colors  | ArrayBuffer                                      | Yes  | Color array.                                                  |
-| options | [InitializetionOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
@@ -39,7 +39,7 @@ image.createPixelMap(Color, opts)
 
 ## image.createPixelMap<sup>8+</sup>
 
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions, callback: AsyncCallback\<PixelMap>): void
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
 Creates a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
@@ -50,7 +50,7 @@ Creates a **PixelMap** object. This API uses an asynchronous callback to return 
 | Name    | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | Yes  | Color array.                |
-| options  | [InitializetionOptions](#initializationoptions8) | Yes  | Pixel properties.                    |
+| options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties.                    |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the **PixelMap** object.|
 
 **Example**
@@ -66,9 +66,11 @@ Provides APIs to read or write image pixel map data and obtain image pixel map i
 
  ### Attributes
 
-| Name                   | Type   | Readable| Writable| Description                                                        |
-| ----------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| isEditable<sup>7+</sup> | boolean | Yes  | No  | Whether the image pixel map is editable.<br>**System capability**: SystemCapability.Multimedia.Image|
+**System capability**: SystemCapability.Multimedia.Image
+
+| Name                   | Type   | Readable| Writable| Description                      |
+| ----------------------- | ------- | ---- | ---- | -------------------------- |
+| isEditable<sup>7+</sup> | boolean | Yes  | No  | Whether the image pixel map is editable.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -468,7 +470,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image source URI. Currently, only the local absolute path is supported.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.|
 
 **Return value**
 
@@ -479,7 +481,8 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```js
-const imageSourceApi = image.createImageSource('/data/local/tmp/test.jpg')
+let path = this.context.getApplicationContext().fileDirs + "test.jpg";
+const imageSourceApi = image.createImageSource(path);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -514,9 +517,11 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 ### Attributes
 
+**System capability**: SystemCapability.Multimedia.Image
+
 | Name            | Type          | Readable| Writable| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including png, jpeg, wbmp, bmp, gif, webp, and heif.<br>**System capability**: SystemCapability.Multimedia.Image|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including png, jpeg, wbmp, bmp, gif, webp, and heif.|
 
 ### getImageInfo
 
@@ -793,13 +798,15 @@ Provide APIs to pack images. Before calling any API in **ImagePacker**, you must
 
 ### Attributes
 
-| Name            | Type          | Readable| Writable| Description                                                        |
-| ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image format, which can be jpeg.<br>**System capability**: SystemCapability.Multimedia.Image|
+**System capability**: SystemCapability.Multimedia.Image
+
+| Name            | Type          | Readable| Writable| Description                      |
+| ---------------- | -------------- | ---- | ---- | -------------------------- |
+| supportedFormats | Array\<string> | Yes  | No  | Supported image format, which can be jpeg.|
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<ArrayBuffer>>): void
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
@@ -811,7 +818,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | Yes  | Image to pack.                    |
 | option   | [PackingOption](#packingoption)    | Yes  | Option for image packing.                    |
-| callback | AsyncCallback<Array\<ArrayBuffer>> | Yes  | Callback used to return the packed data.|
+| callback | AsyncCallback\<ArrayBuffer>        | Yes  | Callback used to return the packed data.|
 
 **Example**
 
@@ -822,7 +829,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
@@ -839,7 +846,7 @@ Packs an image. This API uses a promise to return the result.
 
 | Type                        | Description                                         |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise used to return the packed data.|
+| Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
@@ -850,7 +857,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 	.catch(error => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
@@ -873,9 +880,9 @@ let packOpts = { format:["image/jpeg"], quality:98 }
 imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
-packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
@@ -883,16 +890,16 @@ Packs an image. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description          |
-| ------ | ------------------------------- | ---- | -------------- |
+| Name| Type                           | Mandatory| Description              |
+| ------ | ------------------------------- | ---- | ------------------ |
 | source | [PixelMap](#pixelmap)           | Yes  | **PixelMap** object to pack.|
-| option | [PackingOption](#packingoption) | Yes  | Option for image packing.|
+| option | [PackingOption](#packingoption) | Yes  | Option for image packing.    |
 
 **Return value**
 
 | Type                        | Description                                         |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise used to return the packed data.|
+| Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
@@ -944,6 +951,345 @@ Releases this **ImagePacker** instance. This API uses a promise to return the re
             }).catch((error)=>{}) 
 ```
 
+## image.createImageReceiver<sup>9+</sup>
+
+createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+
+Create an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| width    | number | Yes  | Default image width.      |
+| height   | number | Yes  | Default image height.      |
+| format   | number | Yes  | Image format.            |
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+
+**Return value**
+
+| Type                            | Description                                   |
+| -------------------------------- | --------------------------------------- |
+| [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
+
+**Example**
+
+```js
+var receiver = image.createImageReceiver(8192, 8, 4, 8)
+```
+
+## ImageReceiver<sup>9+</sup>
+
+Provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the **ImageReceiver** instance.
+
+Before calling any APIs in **ImageReceiver**, you must create an **ImageReceiver** instance.
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+| Name                 | Type                        | Readable| Writable| Description              |
+| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
+| size<sup>9+</sup>     | [Size](#size)                | Yes  | No  | Image size.        |
+| capacity<sup>9+</sup> | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
+| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | Yes  | No  | Image format.        |
+
+### getReceivingSurfaceId<sup>9+</sup>
+
+getReceivingSurfaceId(callback: AsyncCallback\<string>): void
+
+Obtains a surface ID for the camera or other components. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                      |
+| -------- | ---------------------- | ---- | -------------------------- |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the surface ID.|
+
+**Example**
+
+```js
+ receiver.getReceivingSurfaceId((err, id) => {});
+```
+
+### getReceivingSurfaceId<sup>9+</sup>
+
+getReceivingSurfaceId(): Promise\<string>
+
+Obtains a surface ID for the camera or other components. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Return value**
+
+| Type            | Description                |
+| ---------------- | -------------------- |
+| Promise\<string> | Promise used to return the surface ID.|
+
+**Example**
+
+```js
+receiver.getReceivingSurfaceId().then( id => { 
+            }).catch(error => {
+            })
+```
+
+### readLatestImage<sup>9+</sup>
+
+readLatestImage(callback: AsyncCallback\<Image>): void
+
+Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type                           | Mandatory| Description                    |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the latest image.|
+
+**Example**
+
+```js
+ receiver.readLatestImage((err, img) => { });
+```
+
+### readLatestImage<sup>9+</sup>
+
+readLatestImage(): Promise\<Image>
+
+Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Return value**
+
+| Type                     | Description              |
+| ------------------------- | ------------------ |
+| Promise<[Image](#image8)> | Promise used to return the latest image.|
+
+**Example**
+
+```js
+receiver.readLatestImage().then(img => {})
+	.catch(error => {})
+```
+
+### readNextImage<sup>9+</sup>
+
+readNextImage(callback: AsyncCallback\<Image>): void
+
+Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type                           | Mandatory| Description                      |
+| -------- | ------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the next image.|
+
+**Example**
+
+```js
+receiver.readNextImage((err, img) => {});
+```
+
+### readNextImage<sup>9+</sup>
+
+readNextImage(): Promise\<Image>
+
+Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Return value**
+
+| Type                     | Description                |
+| ------------------------- | -------------------- |
+| Promise<[Image](#image9)> | Promise used to return the next image.|
+
+**Example**
+
+```js
+ receiver.readNextImage().then(img => {
+            }).catch(error => {
+            })
+```
+
+### on('imageArrival')<sup>9+</sup>
+
+on(type: 'imageArrival', callback: AsyncCallback\<void>): void
+
+Listens for image arrival events.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                                                  |
+| -------- | -------------------- | ---- | ------------------------------------------------------ |
+| type     | string               | Yes  | Type of event to listen for. The value is fixed at **imageArrival**, which is triggered when an image is received.|
+| callback | AsyncCallback\<void> | Yes  | Callback invoked for the event.                                      |
+
+**Example**
+
+```js
+ receiver.on('imageArrival', () => {})
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+Releases this **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+ receiver.release(() => {})
+```
+
+### release<sup>9+</sup>
+
+release(): Promise\<void>
+
+Releases this **ImageReceiver** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Return value**
+
+| Type          | Description              |
+| -------------- | ------------------ |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+ receiver.release().then(() => {})
+ 	.catch(error => {})
+```
+
+## Image<sup>9+</sup>
+
+Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage9) and [readLatestImage](#readlatestimage9) are called.
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name                 | Type              | Readable| Writable| Description                                              |
+| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
+| clipRect<sup>9+</sup> | [Region](#region7) | Yes  | Yes  | Image area to be cropped.                                |
+| size<sup>9+</sup>     | [Size](#size)      | Yes  | No  | Image size.                                        |
+| format<sup>9+</sup>   | number             | Yes  | No  | Image format. For details, see [PixelMapFormat](#pixelmapformat7).|
+
+### getComponent<sup>9+</sup>
+
+getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>): void
+
+Obtains the component buffer from the **Image** instance based on the color component type. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name         | Type                                   | Mandatory| Description                |
+| ------------- | --------------------------------------- | ---- | -------------------- |
+| componentType | [ComponentType](#componenttype9)        | Yes  | Color component type of the image.    |
+| callback      | AsyncCallback<[Component](#component9)> | Yes  | Callback used to return the component buffer.|
+
+**Example**
+
+```js
+ img.getComponent(4, (err, component) => {})
+```
+
+### getComponent<sup>9+</sup>
+
+getComponent(componentType: ComponentType): Promise\<Component>
+
+Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name         | Type                            | Mandatory| Description            |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| componentType | [ComponentType](#componenttype9) | Yes  | Color component type of the image.|
+
+**Return value**
+
+| Type                             | Description                             |
+| --------------------------------- | --------------------------------- |
+| Promise<[Component](#component9)> | Promise used to return the component buffer.|
+
+**Example**
+
+```js
+img.getComponent(4).then(component => { })
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+Releases this **Image** instance. This API uses an asynchronous callback to return the result.
+
+The corresponding resources must be released before another image arrives.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description          |
+| -------- | -------------------- | ---- | -------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+img.release(() =>{ }) 
+```
+
+### release<sup>9+</sup>
+
+release(): Promise\<void>
+
+Releases this **Image** instance. This API uses a promise to return the result.
+
+The corresponding resources must be released before another image arrives.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                 |
+| -------------- | --------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+img.release().then(() =>{
+            }).catch(error => {
+            })  
+```
+
 ## PositionArea<sup>7+</sup>
 
 Describes area information in an image.
@@ -954,8 +1300,8 @@ Describes area information in an image.
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | Yes  | No  | Pixels of the image.                                                      |
 | offset | number             | Yes  | No  | Offset for data reading.                                                    |
-| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                    |
-| region | [Region](#region8) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
+| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                   |
+| region | [Region](#region7) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
 
 ## ImageInfo
 
@@ -980,7 +1326,7 @@ Describes the size of an image.
 
 ## PixelMapFormat<sup>7+</sup>
 
-Enumerates pixel map formats.
+Enumerates the pixel formats of images.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -992,7 +1338,7 @@ Enumerates pixel map formats.
 
 ## AlphaType<sup>9+</sup>
 
-Enumerates alpha types.
+Enumerates the alpha types of images.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -1005,7 +1351,7 @@ Enumerates alpha types.
 
 ## ScaleMode<sup>9+</sup>
 
-Enumerates scale modes.
+Enumerates the scale modes of images.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -1016,19 +1362,21 @@ Enumerates scale modes.
 
 ## InitializationOptions<sup>8+</sup>
 
+Defines pixel map initialization options.
+
 **System capability**: SystemCapability.Multimedia.Image
 
-| Name       | Type                              | Readable| Writable| Description          |
-| ----------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
-| editable    | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
-| size        | [Size](#size)                      | Yes  | Yes  | Image size.|
+| Name                  | Type                              | Readable| Writable| Description          |
+| ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup> | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
+| editable               | boolean                            | Yes  | Yes  | Whether the image is editable.  |
+| pixelFormat            | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| scaleMode<sup>9+</sup> | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
+| size                   | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
 
-Describes the decoding options.
+Defines image decoding options.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -1056,7 +1404,7 @@ Describes region information.
 
 ## PackingOption
 
-Describes the option for image packing.
+Defines the option for image packing.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -1092,3 +1440,40 @@ Describes the exchangeable image file format (Exif) information of an image.
 | GPS_LONGITUDE     | "GPSLongitude"    | Image longitude.          |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"  | Latitude reference, for example, N or S.|
 | GPS_LONGITUDE_REF | "GPSLongitudeRef" | Longitude reference, for example, W or E.|
+
+## ImageFormat<sup>9+</sup>
+
+Enumerates the image formats.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name        | Default Value| Description                |
+| ------------ | ------ | -------------------- |
+| YCBCR_422_SP | 1000   | YCBCR422 semi-planar format.|
+| JPEG         | 2000   | JPEG encoding format.      |
+
+## ComponentType<sup>9+</sup>
+
+Enumerates the color component types of images.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+| Name | Default Value| Description       |
+| ----- | ------ | ----------- |
+| YUV_Y | 1      | Luminance component. |
+| YUV_U | 2      | Chrominance component. |
+| YUV_V | 3      | Chrominance component. |
+| JPEG  | 4      | JPEG type.|
+
+## Component<sup>9+</sup>
+
+Describes the color components of an image.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type                            | Readable| Writable| Description        |
+| ------------- | -------------------------------- | ---- | ---- | ------------ |
+| componentType | [ComponentType](#componenttype9) | Yes  | No  | Color component type.  |
+| rowStride     | number                           | Yes  | No  | Row stride.      |
+| pixelStride   | number                           | Yes  | No  | Pixel stride.  |
+| byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|

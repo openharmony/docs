@@ -17,14 +17,13 @@ PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值
 import PlainArray from '@ohos.util.PlainArray';  
 ```
 
-## 系统能力
 
-SystemCapability.Utils.Lang
 
 ## PlainArray
 
-
 ### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -36,6 +35,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 PlainArray的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
@@ -49,6 +50,8 @@ let plainArray = new PlainArray();
 isEmpty(): boolean
 
 判断该容器是否为空。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -69,6 +72,8 @@ let result = plainArray.isEmpty();
 has(key: number): boolean
 
 判断此容器中是否含有该指定key。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -98,6 +103,8 @@ get(key: number): T
 
 获取指定key所对应的value。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -125,6 +132,8 @@ let result = plainArray.get(1);
 getIndexOfKey(key: number): number
 
 查找指定key第一次出现的下标值，如果没有找到该key返回-1。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -154,6 +163,8 @@ getIndexOfValue(value: T): number
 
 查找指定value元素第一次出现的下标值，如果没有找到该value元素返回-1。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -182,6 +193,8 @@ getKeyAt(index: number): number
 
 查找指定下标的元素键值对中key值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -208,6 +221,8 @@ let result = plainArray.getKeyAt(1);
 getValueAt(index: number): T
 
 查找指定下标元素键值对中Value值，否则返回undefined。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -236,6 +251,8 @@ clone(): PlainArray&lt;T&gt;
 
 克隆一个实例，并返回克隆后的实例。修改克隆后的实例并不会影响原实例。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -258,6 +275,8 @@ add(key: number, value: T): void
 
 向容器中添加一组数据。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -278,6 +297,8 @@ plainArray.add(1, "sddfhf");
 remove(key: number): T
 
 删除指定key对应元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -308,6 +329,8 @@ removeAt(index: number): T
 
 删除指定下标对应的元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -336,6 +359,8 @@ let result = plainArray.removeAt(1);
 removeRangeFrom(index: number, size: number): number
 
 删除一定范围内的元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -366,6 +391,8 @@ setValueAt(index: number, value: T): void
 
 替换容器中指定下标对应键值对中的键值。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -389,6 +416,8 @@ toString(): String
 
 获取包含容器中所有键和值的字符串。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -411,6 +440,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```ts
@@ -426,6 +457,8 @@ plainArray.clear();
 forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -458,6 +491,8 @@ plainArray.forEach((value, index) => {
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript对象，并返回该对象。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 

@@ -1,6 +1,6 @@
 # TextInput
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -41,6 +41,7 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 | caretColor               | Color                                    | -                 | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | 设置文本是否可复制。 |
 
 - EnterKeyType枚举说明
   | 名称                  | 描述        |
@@ -97,7 +98,8 @@ caretPosition(value:&nbsp;number): void
 
 ### 单行文本输入
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample1 {
@@ -131,7 +133,8 @@ struct TextInputExample1 {
 
 ### 设置光标
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample2 {

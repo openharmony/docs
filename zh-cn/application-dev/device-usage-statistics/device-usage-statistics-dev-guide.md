@@ -22,6 +22,8 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询（返回）当前调用者应用的使用优先级群组。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 | function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 |
+| function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
+| function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 ## 开发步骤
 
@@ -261,3 +263,50 @@ import stats from '@ohos.bundleState';
     });
     ```
 
+9. 通过指定起始和结束时间查询所有应用的通知次数，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+
+    ```js
+    import stats from '@ohos.bundleState'
+
+    // 异步方法promise方式
+    stats.queryAppNotificationNumber(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise success.');
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise result ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise failed, because: ' + err.code);
+    });
+
+    // 异步方法callback方式
+    stats.queryAppNotificationNumber(0, 20000000000000, (err, res) => {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback success.');
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback result ' + JSON.stringify(res));
+        }
+    });
+    ```
+
+10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+
+    ```js
+    import stats from '@ohos.bundleState'
+
+    // 异步方法promise方式
+    stats.queryBundleActiveEventStates(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise success.');
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise result ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise failed, because: ' + err.code);
+    });
+
+    // 异步方法callback方式
+    stats.queryBundleActiveEventStates(0, 20000000000000, (err, res) => {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback success.');
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback result ' + JSON.stringify(res));
+        }
+    });
+    ```

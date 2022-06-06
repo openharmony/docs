@@ -62,7 +62,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 - 示例：
   ```typescript
-  import featureAbility from '@ohos.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   //获取数据项亮度的值（该数据项在数据库中已存在）
   let brightness = 'settings.screen.brightness';
@@ -97,7 +97,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 - 示例：
   ```typescript
-  import featureAbility from '@ohos.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
 
   //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
   let brightness = 'settings.screen.brightness';

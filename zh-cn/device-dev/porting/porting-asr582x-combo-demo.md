@@ -335,13 +335,13 @@ if(ret == osOK)
 }
 ```
 
-在`sys_init`中，需要对Openharmony的系统组件进行初始化：
+在`sys_init`中，需要对OpenHarmony的系统组件进行初始化：
 
 ```
 ...
 DeviceManagerStart();           --- HDF初始化
 
-OHOS_SystemInit();              --- Openharmony系统组件初始化
+OHOS_SystemInit();              --- OpenHarmony系统组件初始化
 ....
 ```
 
@@ -465,7 +465,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
    ...
    ```
 
-## Openharmony组件移植
+## OpenHarmony组件移植
 
 子系统的编译选项入口在相应产品config.json下，以下以`//vendor/asrmicro/wifi_demo/config.json`为例。
 
@@ -630,7 +630,7 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 ```
 
 在communication_dsoftbus仓中，加入了-fPIC编译选项，这样会让编译器产生与位置无关代码，并使用相对地址，但是在LiteOS-M核中使用的是静态库，不推荐使用。
-建议开发者手动注释-fPIC编译选项，后续会推进Openharmony统一规划此编译选项的开关。修改方法是在如下的四个文件中，找到"-fPIC"选项，并全部注释：
+建议开发者手动注释-fPIC编译选项，后续会推进OpenHarmony统一规划此编译选项的开关。修改方法是在如下的四个文件中，找到"-fPIC"选项，并全部注释：
 `//foundation/communication/dsoftbus/core/common/BUILD.gn`
 `//foundation/communication/dsoftbus/core/frame/BUILD.gn`
 `//foundation/communication/dsoftbus/sdk/BUILD.gn`

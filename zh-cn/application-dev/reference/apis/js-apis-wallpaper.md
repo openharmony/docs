@@ -586,6 +586,68 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
   ```
 
 
+## wallpaper.getPixelMap
+
+getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
+
+获取壁纸图片的像素图。
+
+**需要权限**：ohos.permission.GET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
+
+**示例：**
+  
+  ```js
+  wallpaper.getPixelMap(WALLPAPER_SYSTEM, function (err, data) {
+      console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem err : ' + JSON.stringify(err));
+      console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem data : ' + JSON.stringify(data));
+  });
+  ```
+
+
+## wallpaper.getPixelMap
+
+getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
+
+获取壁纸图片的像素图。
+
+**需要权限**：ohos.permission.GET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
+
+**示例：**
+  
+  ```js
+  wallpaper.getPixelMap(WALLPAPER_SYSTEM).then((data) => {
+      console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + data);
+      console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem err : ' + err);
+      console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem err : ' + JSON.stringify(err));
+  });
+  ```
+
+
 ## wallpaper.on('colorChange')
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void

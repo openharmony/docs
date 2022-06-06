@@ -232,7 +232,7 @@ int main()
 }
 ```
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The user-mode application uses the message sending API of the HDF, and the compilation of the user-mode application depends on the dynamic libraries **hdf_core** and **osal** provided by the HDF. Therefore, you need to add the following dependencies to the .gn file:
 > 
 > deps = [

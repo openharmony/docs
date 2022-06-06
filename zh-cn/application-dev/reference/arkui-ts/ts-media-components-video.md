@@ -1,6 +1,6 @@
 # Video
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 视频播放组件。
@@ -33,7 +33,7 @@ Video(value: VideoOptions)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | src | string \| [Resource](../../ui/ts-types.md) | 否 | - | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。 |
-  | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否 | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
+  | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否 | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
   | previewUri | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | 否 | - | 预览图片的路径。 |
   | controller | [VideoController](#videocontroller) | 否 | - | 控制器。 |
 
@@ -155,7 +155,8 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct VideoCreateComponent {

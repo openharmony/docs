@@ -7,7 +7,7 @@
 折行能力通过使用 **Flex折行布局** （将warp属性设置为FlexWrap.Wrap）实现，当横向布局尺寸不足以完整显示内容元素时，通过折行的方式，将元素显示在下方。
 
 
-可以访问[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
+可以访问[Flex组件](../../reference/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
 
 
 ## 示例：

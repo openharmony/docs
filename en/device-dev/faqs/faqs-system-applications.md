@@ -181,8 +181,9 @@ Do not include too many elements in an array. Avoid frequent operations on a lar
 
 - **Symptom**
   
+
 After the **hdc_std list targets** command is executed, **[Empty]** is displayed.
-  
+
 - **Solution**
   
   1. The device cannot be identified.
@@ -197,8 +198,9 @@ After the **hdc_std list targets** command is executed, **[Empty]** is displayed
 
 - **Symptom**
   
-After you click **hdc_std.exe**, the file fails to execute.
-  
+
+  After you click **hdc_std.exe**, the file fails to execute.
+
 - **Solution**
   
   **hdc_std.exe** requires no installation. You can use it after placing it to a local directory or adding the tool path to environment variables. Run the **cmd** command and then run the **hdc_std** command to start the tool.

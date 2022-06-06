@@ -56,4 +56,4 @@
 | 通讯色 | \#00CB87 | ohos_id_color_connected |
 
 
-关于OpenHarmony默认提供的所有分层参数，详见：[资源](OHOS_资源分层设计表_V1.0.01.xlsm)
+关于OpenHarmony默认提供的所有分层参数，详见：[资源](resource.md)

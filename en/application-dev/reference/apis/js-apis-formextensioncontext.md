@@ -1,9 +1,15 @@
 # FormExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Implements the context that provides the capabilities and APIs of **FormExtension**. This class is inherited from **ExtensionContext**.
+
+## Modules to Import
+
+```js
+import FormExtension from '@ohos.application.FormExtension';
+```
 
 ## FormExtensionContext.updateForm
 
@@ -24,10 +30,18 @@ Updates a widget. This method uses a callback to return the result.
 **Example**
 
   ```js
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-  this.context.updateForm(formId, obj2, (data)=>{
-      console.log('FormExtension context updateForm, data:' + data);
-  });
+  import formBindingData from '@ohos.application.formBindingData'
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2, (data)=>{
+              console.log('FormExtension context updateForm, data:' + data);
+          });
+      }
+  }
+
+
   ```
 
 ## FormExtensionContext.updateForm
@@ -53,11 +67,18 @@ Updates a widget. This method uses a promise to return the result.
 
 **Example**
 
-  ```
-  let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-  this.context.updateForm(formId, obj2)
-      .then((data)=>{
-          console.log('FormExtension context updateForm, data:' + data);
-      }).catch((error) => {
-      console.error('Operation updateForm failed. Cause: ' + error);});
+  ```js
+  import formBindingData from '@ohos.application.formBindingData'
+  export default class MyFormExtension extends FormExtension {
+      onUpdate(formId) {
+          console.log('FormExtension onUpdate, formId:' + formId);
+          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+          this.context.updateForm(formId, obj2)
+              .then((data)=>{
+                  console.log('FormExtension context updateForm, data:' + data);
+              }).catch((error) => {
+              console.error('Operation updateForm failed. Cause: ' + error);});
+      }
+  }
+
   ```

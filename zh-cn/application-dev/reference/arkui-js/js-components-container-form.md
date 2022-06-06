@@ -1,6 +1,6 @@
 # form
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 表单容器，支持容器内input元素的内容提交和重置。
@@ -49,7 +49,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <form onsubmit='onSubmit' onreset='onReset'>
   <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
@@ -67,7 +67,7 @@
 </form>
 ```
 
-```
+```js
 // xxx.js
 export default{
   onSubmit(result) {

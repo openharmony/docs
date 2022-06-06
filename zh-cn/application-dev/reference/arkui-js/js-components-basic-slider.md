@@ -1,6 +1,6 @@
 # slider
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动条组件，用来快速调节设置值，如音量、亮度等。
@@ -55,7 +55,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text>slider start value is {{startValue}}</text>
@@ -65,7 +65,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -75,7 +75,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

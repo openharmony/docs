@@ -1739,6 +1739,173 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   accountManager.off("activating", "osAccountOnOffNameA", offCallback);
   ```
 
+### getBundleIdFromUid<sup>9+</sup>
+
+getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+
+通过uid查询对应的bundleId。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| uid     | number | 是   |  进程uid。 |
+| callback | AsyncCallback&lt;number&gt;     | 是   | 回调结果，返回的是与uid对应的bundleId。                      |
+
+**示例：**
+
+  ```js
+  var testUid = 1000000;
+  osAccountManager.getBundleIdFromUid(testUid,(err,bundleId)=>{
+    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
+    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleId));
+  });
+  ```
+### getBundleIdFromUid<sup>9+</sup>
+
+getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
+
+通过uid查询对应的bundleId。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| uid     | number | 是   |  进程uid。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与uid对应的bundleId。 |
+
+**示例：**
+
+  ```js
+  var testUid = 1000000;
+  var bundleIdInfo = await osAccountManager.getBundleIdFromUid(testUid).catch((err)=>{
+    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));})
+  console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleIdInfo));
+  ```
+
+### isMainOsAccount<sup>9+</sup>
+
+isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
+
+查询当前进程是否处于主用户。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;boolean&gt;     | 是   | 回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。                      |
+
+**示例：**
+
+  ```js
+  osAccountManager.isMainOsAccount((err,result)=>{
+    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
+    console.info("isMainOsAccount result:" + JSON.stringify(result));
+  });
+  ```
+### isMainOsAccount<sup>9+</sup>
+
+isMainOsAccount(): Promise&lt;boolean&gt;;
+
+查询当前进程是否处于主用户。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。 |
+
+**示例：**
+
+  ```js
+  var result = await osAccountManager.isMainOsAccount().catch((err)=>{
+    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
+  });
+  console.info("isMainOsAccount result:" + JSON.stringify(result));
+  ```
+### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+
+queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+
+查询指定系统帐号的指定约束来源信息。
+
+此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| localId     | number | 是   |  要查询的系统帐号ID |
+| constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。                      |
+
+**示例：**
+
+  ```js
+  osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
+    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
+    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  });
+  ```
+
+### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+
+queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
+
+查询指定系统帐号的指定约束来源信息。
+
+此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统帐号ID |
+| constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
+
+**示例：**
+
+  ```js
+  var sourceTypeInfos = await osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").catch((err)=>{
+    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));})
+  console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  ```
+
 ## OsAccountInfo
 
 系统帐号信息。
@@ -1839,3 +2006,27 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | constraint.screen.timeout.set | 禁止配置屏幕关闭的超时 |
 | constraint.print | 禁止打印 |
 | constraint.private.dns.set | 禁止配置专用DNS |
+
+## ConstraintSourceTypeInfo<sup>9+</sup>
+
+域帐号信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 参数名      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| localId      | number | 是   | 系统帐号ID     |
+| type | [ConstraintSourceType](#constraintsourcetype) | 是   | 约束来源类型 |
+
+## ConstraintSourceType<sup>9+</sup>
+
+枚举，约束来源类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+
+| 参数   | 默认值 | 说明         |
+| ------ | ------ | ------------ |
+| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
+| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
+| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
+| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |

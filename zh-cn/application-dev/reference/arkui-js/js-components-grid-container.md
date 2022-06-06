@@ -1,6 +1,6 @@
 # grid-container
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 栅格布局容器根节点，使用grid-row与grid-col进行栅格布局。
@@ -38,7 +38,7 @@
 |              |         | md                               | 8       |32|12|
 |              |         | lg                               | 12      |48|12|
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 >
 > 本章中px单位是在js标签中配置了autoDesignWidth为true。<sup>6+</sup>
 
