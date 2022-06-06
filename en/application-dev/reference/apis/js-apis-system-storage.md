@@ -2,9 +2,8 @@
 
 >  **NOTE**<br/>
 >
-> - The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md).
+> The APIs of this module are no longer maintained since API Version 6, and you are advised to use [`@ohos.data.storage`](js-apis-data-storage.md). 
 >
-> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -68,7 +67,7 @@ Sets the value in the cache based on the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the data to set.|
-| value | string | Yes| New value to set. The maximum length is 128 bytes.|
+| value | string | Yes| New value to set. The length must be less than 128 bytes.|
 | success | Function | No| Called when **storage.set()** is successful.|
 | fail | Function | No| Called when **storage.set()** fails. In the callback, **data** indicates the error information, and **code** indicates the error code.|
 | complete | Function | No| Called when **storage.set()** is complete.|

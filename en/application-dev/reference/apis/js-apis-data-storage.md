@@ -7,7 +7,7 @@ Lightweight storage provides applications with data processing capability and al
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> 
+
 
 
 ## Modules to Import
@@ -22,15 +22,15 @@ import dataStorage from '@ohos.data.storage';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| MAX_KEY_LENGTH | string | Yes| No| Maximum length of a key. It is 80 bytes.|
-| MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It is 8192 bytes.|
+| MAX_KEY_LENGTH | string | Yes| No| Maximum length of a key. It must be less than 80 bytes.|
+| MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It must be less than 8192 bytes.|
 
 
 ## dataStorage.getStorageSync
 
 getStorageSync(path: string): Storage
 
-Reads the specified file and load its data to the **Storage** instance for data operations.
+Reads the specified file and loads its data to the **Storage** instance for data operations.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
