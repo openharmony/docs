@@ -243,7 +243,7 @@ updater.on("verifyProgress", callback => {
 update.verifyUpdatePackage("XXX", "XXX");
 ```
 
-### rebootAndCleanUserData<sup>7+</sup>
+### rebootAndCleanUserData<sup>8+</sup>
 
 rebootAndCleanUserData(): Promise\<number>
 
@@ -267,7 +267,7 @@ updater.rebootAndCleanUserData().then(result => {
 });
 ```
 
-### rebootAndCleanUserData<sup>7+</sup>
+### rebootAndCleanUserData<sup>8+</sup>
 
 rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
