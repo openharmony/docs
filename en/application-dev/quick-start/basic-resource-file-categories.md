@@ -9,7 +9,7 @@ Example of the **resources** directory:
 
 ```
 resources
-|---base  // Default directory
+|---base  // Default sub-directory
 |   |---element
 |   |   |---string.json
 |   |---media
@@ -19,7 +19,7 @@ resources
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---rawfile  // Default directory
+|---rawfile  // Default sub-directory
 ```
 
 **Table 1** Categories of the **resources** directory
