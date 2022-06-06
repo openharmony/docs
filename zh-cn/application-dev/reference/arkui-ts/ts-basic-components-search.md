@@ -34,6 +34,7 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 | placeholderColor | [ResourceColor](../../ui/ts-types.md) | -    | 设置placeholder颜色。      |
 | placeholderFont  | [Font](../../ui/ts-types.md)          | -    | 设置placeholder文本样式。    |
 | textFont         | [Font](../../ui/ts-types.md)          | -    | 设置搜索框内文本样式。           |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | 设置文本是否可复制。 |
 
 ## 事件
 
