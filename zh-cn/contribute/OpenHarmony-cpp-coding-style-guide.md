@@ -1,14 +1,14 @@
 # C++语言编程规范
 
 ## <a name="c0-1"></a>目的
-规则并不是完美的，通过禁止在特定情况下有用的特性，可能会对代码实现造成影响。但是我们制定规则的目的“为了大多数程序员可以得到更多的好处”， 如果在团队运作中认为某个规则无法遵循，希望可以共同改进该规则。 
-参考该规范之前，希望您具有相应的C++语言基础能力，而不是通过该文档来学习C++语言。 
+规则并不是完美的，通过禁止在特定情况下有用的特性，可能会对代码实现造成影响。但是我们制定规则的目的“为了大多数程序员可以得到更多的好处”， 如果在团队运作中认为某个规则无法遵循，希望可以共同改进该规则。
+参考该规范之前，希望您具有相应的C++语言基础能力，而不是通过该文档来学习C++语言。
 1. 了解C++语言的ISO标准；
 2. 熟知C++语言的基本语言特性，包括C++ 03/11/14/17相关特性；
 3. 了解C++语言的标准库；
 
 ## <a name="c0-2"></a>总体原则
-代码需要在保证功能正确的前提下，满足**可读、可维护、安全、可靠、可测试、高效、可移植**的特征要求。  
+代码需要在保证功能正确的前提下，满足**可读、可维护、安全、可靠、可测试、高效、可移植**的特征要求。 
 
 ## <a name="c0-2"></a> 重点关注
 1. 约定C++语言的编程风格，比如命名，排版等。
@@ -31,8 +31,8 @@
 在不违背总体原则，经过充分考虑，有充足的理由的前提下，可以适当违背规范中约定。
 例外破坏了代码的一致性，请尽量避免。'规则'的例外应该是极少的。
 
-下列情况，应风格一致性原则优先：  
-**修改外部开源代码、第三方代码时，应该遵守开源代码、第三方代码已有规范，保持风格统一。**  
+下列情况，应风格一致性原则优先： 
+**修改外部开源代码、第三方代码时，应该遵守开源代码、第三方代码已有规范，保持风格统一。** 
 
 # <a name="c2"></a>2 命名
 ## <a name="c2-1"></a>通用命名
@@ -112,11 +112,11 @@ enum UrlTableErrors { ...
 ```cpp
 // namespace
 namespace OsUtils {
-  
+ 
 namespace FileUtils {
-      
+     
 }
-  
+ 
 }
 ```
 
@@ -153,7 +153,7 @@ int g_activeConnectCount;
 
 void Func()
 {
-    static int packetCount = 0;  
+    static int packetCount = 0; 
     ...
 }
 ```
@@ -253,7 +253,7 @@ int Foo(int a)
 class MyClass {
 public:
     MyClass() : value_(0) {}
-    
+   
 private:
     int value_;
 };
@@ -305,7 +305,7 @@ ReturnType result = FunctionName(paramName1,
                                  paramName2,                // Good：保持与上方参数对齐
                                  paramName3);
 
-ReturnType result = FunctionName(paramName1, paramName2, 
+ReturnType result = FunctionName(paramName1, paramName2,
     paramName3, paramName4, paramName5);                    // Good：参数换行，4 空格缩进
 
 ReturnType result = VeryVeryVeryLongFunctionName(           // 行宽不满足第1个参数，直接换行
@@ -340,7 +340,7 @@ if (objectIsNotExist) {         // Good：单行条件语句也加大括号
 如下是正确的写法：
 
 ```cpp
-if (someConditions) { 
+if (someConditions) {
     DoSomething();
     ...
 } else {  // Good: else 与 if 在不同行
@@ -507,40 +507,40 @@ int&p = i;      // Bad
 编译预处理的"#"统一放在行首，即使编译预处理的代码是嵌入在函数体中的，"#"也应该放在行首。
 
 ### <a name="r3-13-2"></a>规则3.13.2 避免使用宏
-宏会忽略作用域，类型系统以及各种规则，容易引发问题。应尽量避免使用宏定义，如果必须使用宏，要保证证宏名的唯一性。  
-在C++中，有许多方式来避免使用宏：  
-- 用const或enum定义易于理解的常量  
-- 用namespace避免名字冲突  
-- 用inline函数避免函数调用的开销  
-- 用template函数来处理多种类型  
+宏会忽略作用域，类型系统以及各种规则，容易引发问题。应尽量避免使用宏定义，如果必须使用宏，要保证证宏名的唯一性。 
+在C++中，有许多方式来避免使用宏： 
+- 用const或enum定义易于理解的常量 
+- 用namespace避免名字冲突 
+- 用inline函数避免函数调用的开销 
+- 用template函数来处理多种类型 
 在文件头保护宏、条件编译、日志记录等必要场景中可以使用宏。
 
 ### <a name="r3-13-3"></a>规则3.13.3 禁止使用宏来表示常量
-宏是简单的文本替换，在预处理阶段完成，运行报错时直接报相应的值；跟踪调试时也是显示值，而不是宏名； 宏没有类型检查，不宏全； 宏没有作用域。
+宏是简单的文本替换，在预处理阶段完成，运行报错时直接报相应的值；跟踪调试时也是显示值，而不是宏名； 宏没有类型检查，不安全； 宏没有作用域。
 
 ### <a name="r3-13-4"></a>规则3.13.4 禁止使用函数式宏
 宏义函数式宏前，应考虑能否用函数替代。对于可替代场景，建议用函数替代宏。
-函数式宏的缺点如下：  
-- 函数式宏缺乏类型检查，不如函数调用检查严格  
-- 宏展开时宏参数不求值，可能会产生非预期结果  
-- 宏没有独产的作用域  
+函数式宏的缺点如下： 
+- 函数式宏缺乏类型检查，不如函数调用检查严格 
+- 宏展开时宏参数不求值，可能会产生非预期结果 
+- 宏没有独立的作用域 
 - 宏的技巧性太强，例如#的用法和无处不在的括号，影响可读性
-- 在特定场景中必须用编译器对宏的扩展语法，如GCC的statement expression，影响可移植性  
-- 宏在预编译阶段展开后，在期后编译、链接和调试时都不可见；而且包含多行的宏会展开为一行。函数式宏难以调试、难以打断点，不利于定位问题  
-- 对于包含大量语句的宏，在每个调用点都要展开。如果调用点很多，会造成代码空间的膨胀  
+- 在特定场景中必须用编译器对宏的扩展语法，如GCC的statement expression，影响可移植性 
+- 宏在预编译阶段展开后，在期后编译、链接和调试时都不可见；而且包含多行的宏会展开为一行。函数式宏难以调试、难以打断点，不利于定位问题 
+- 对于包含大量语句的宏，在每个调用点都要展开。如果调用点很多，会造成代码空间的膨胀 
 
 函数没有宏的上述缺点。但是，函数相比宏，最大的劣势是执行效率不高（增加函数调用的开销和编译器优化的难度）。
 为此，可以在必要时使用内联函数。内联函数跟宏类似，也是在调用点展开。不同之处在于内联函数是在编译时展开。
-  
-内联函数兼具函数和宏的优点：  
-- 内联函数执行严格的类型检查  
+ 
+内联函数兼具函数和宏的优点： 
+- 内联函数执行严格的类型检查 
 - 内联函数的参数求值只会进行一次
 - 内联函数就地展开，没有函数调用的开销
-- 内联函数比函数优化得更好  
-对于性能要求高的产品代码，可以考虑用内联函数代替函数。  
+- 内联函数比函数优化得更好 
+对于性能要求高的产品代码，可以考虑用内联函数代替函数。 
 
-例外：  
-在日志记录场景中，需要通过函数式宏保持调用点的文件名（__FILE__）、行号（__LINE__）等信息。  
+例外： 
+在日志记录场景中，需要通过函数式宏保持调用点的文件名（__FILE__）、行号（__LINE__）等信息。 
 
 ## <a name="c3-14"></a> 空格和空行
 ### <a name="r3-14-1"></a>规则3.14.1 水平空格应该突出关键字和重要信息，避免不必要的留白
@@ -647,19 +647,19 @@ int MyClass::GetValue() const {}  // Good: 对于成员函数定义，不要留�
 
 // Good: 类的派生需要留有空格
 class Sub : public Base {
-    
+   
 };
 
 // 构造函数初始化列表需要留有空格
-MyClass::MyClass(int var) : someVar_(var) 
+MyClass::MyClass(int var) : someVar_(var)
 {
     DoSomething();
 }
 
 // 位域表示也留有空格
 struct XX {
-    char a : 4;     
-    char b : 5;     
+    char a : 4;    
+    char b : 5;    
     char c : 4;
 };
 ```
@@ -733,7 +733,7 @@ public:      // 注意没有缩进
     ~MyClass() {}
 
     void SomeFunction();
-    void SomeFunctionThatDoesNothing() 
+    void SomeFunctionThatDoesNothing()
     {
     }
 
@@ -754,7 +754,7 @@ private:
 ### <a name="r3-15-2"></a>规则3.15.2 构造函数初始化列表放在同一行或按四格缩进并排多行
 ```cpp
 // 如果所有变量能放在同一行:
-MyClass::MyClass(int var) : someVar_(var) 
+MyClass::MyClass(int var) : someVar_(var)
 {
     DoSomething();
 }
@@ -770,28 +770,28 @@ MyClass::MyClass(int var)
 // 如果初始化列表需要置于多行, 需要逐行对齐
 MyClass::MyClass(int var)
     : someVar_(var),             // 缩进4个空格
-      someOtherVar_(var + 1) 
-{  
+      someOtherVar_(var + 1)
+{ 
     DoSomething();
 }
 ```
 
 # <a name="c4"></a>4 注释
-一般的，尽量通过清晰的架构逻辑，好的符号命名来提高代码可读性；需要的时候，才辅以注释说明。  
+一般的，尽量通过清晰的架构逻辑，好的符号命名来提高代码可读性；需要的时候，才辅以注释说明。 
 注释是为了帮助阅读者快速读懂代码，所以要从读者的角度出发，**按需注释**。
 
 注释内容要简洁、明了、无二义性，信息全面且不冗余。
 
-**注释跟代码一样重要。**  
-写注释时要换位思考，用注释去表达此时读者真正需要的信息。在代码的功能、意图层次上进行注释，即注释解释代码难以表达的意图，不要重复代码信息。  
+**注释跟代码一样重要。** 
+写注释时要换位思考，用注释去表达此时读者真正需要的信息。在代码的功能、意图层次上进行注释，即注释解释代码难以表达的意图，不要重复代码信息。 
 修改代码时，也要保证其相关注释的一致性。只改代码，不改注释是一种不文明行为，破坏了代码与注释的一致性，让阅读者迷惑、费解，甚至误解。
 
-使用英文进行注释。  
+使用英文进行注释。 
 
 ## <a name="c3-1"></a>注释风格
 
-在 C++ 代码中，使用 `/*` `*/`和 `//` 都是可以的。  
-按注释的目的和位置，注释可分为不同的类型，如文件头注释、函数头注释、代码注释等等；  
+在 C++ 代码中，使用 `/*` `*/`和 `//` 都是可以的。 
+按注释的目的和位置，注释可分为不同的类型，如文件头注释、函数头注释、代码注释等等； 
 同一类型的注释应该保持统一的风格。
 
 注意：本文示例代码中，大量使用 '//' 后置注释只是为了更精确的描述问题，并不代表这种注释风格更好。
@@ -948,7 +948,7 @@ const int ANOTHER_CONST = 200;   /* 上下对齐时，与左侧代码保持间�
 
 示例:
 ```cpp
-// Foo.h 
+// Foo.h
 
 #ifndef FOO_H
 #define FOO_H
@@ -957,7 +957,7 @@ class Foo {
 public:
     Foo();
     void Fun();
-    
+   
 private:
     int value_;
 };
@@ -985,7 +985,7 @@ void Foo::Fun()
 
 ## <a name="c5-2"></a> 头文件依赖
 ### <a name="r5-2-1"></a>规则5.2.1 禁止头文件循环依赖
-头文件循环依赖，指 a.h 包含 b.h，b.h 包含 c.h，c.h 包含 a.h， 导致任何一个头文件修改，都导致所有包含了a.h/b.h/c.h的代码全部重新编译一遍。  
+头文件循环依赖，指 a.h 包含 b.h，b.h 包含 c.h，c.h 包含 a.h， 导致任何一个头文件修改，都导致所有包含了a.h/b.h/c.h的代码全部重新编译一遍。 
 而如果是单向依赖，如a.h包含b.h，b.h包含c.h，而c.h不包含任何头文件，则修改a.h不会导致包含了b.h/c.h的源代码重新编译。
 
 头文件循环依赖直接体现了架构设计上的不合理，可通过优化架构去避免。
@@ -1018,7 +1018,7 @@ void Foo::Fun()
 ```cpp
 extern int Fun();   // Bad: 通过extern的方式使用外部函数
 
-void Bar() 
+void Bar()
 {
     int i = Fun();
     ...
@@ -1027,7 +1027,7 @@ void Bar()
 
 // b.cpp内容
 ```cpp
-int Fun() 
+int Fun()
 {
     // Do something
 }
@@ -1038,7 +1038,7 @@ int Fun()
 ```cpp
 #include "b.h"   // Good: 通过包含头文件的方式使用其他.cpp提供的接口
 
-void Bar() 
+void Bar()
 {
     int i = Fun();
     ...
@@ -1052,7 +1052,7 @@ int Fun();
 
 // b.cpp内容
 ```cpp
-int Fun() 
+int Fun()
 {
     // Do something
 }
@@ -1150,7 +1150,7 @@ namespace {
 void Foo::Fun()
 {
     int i = MAX_COUNT;
-    
+   
     InternalFun();
 }
 
@@ -1177,14 +1177,14 @@ using namespace NamespaceB;
 
 void G()
 {
-    Fun(1); 
+    Fun(1);
 }
 ```
 
 ```cpp
 // 源代码a.cpp
 #include "a.h"
-using namespace NamespaceA; 
+using namespace NamespaceA;
 #include "b.h"
 
 void main()
@@ -1267,12 +1267,12 @@ public:
         static Counter counter;
         return counter;
     }  // 单实例实现简单举例
-    
-    void Increase() 
+   
+    void Increase()
     {
         value_++;
     }
-    
+   
     void Print() const
     {
         std::cout << value_ << std::endl;
@@ -1305,7 +1305,7 @@ Counter::GetInstance().Print();
 构造，拷贝，移动和析构函数提供了对象的生命周期管理方法：
 - 构造函数（constructor）： `X()`
 - 拷贝构造函数（copy constructor）：`X(const X&)`
-- 拷贝赋值操作符（copy assignment）：`operator=(const X&)`   
+- 拷贝赋值操作符（copy assignment）：`operator=(const X&)`  
 - 移动构造函数（move constructor）：`X(X&&)`         *C++11以后提供*
 - 移动赋值操作符（move assignment）：`operator=(X&&)`       *C++11以后提供*
 - 析构函数（destructor）：`~X()`
@@ -1365,7 +1365,7 @@ public:
     {
         msgBuffer_ = nullptr;  // Bad，不推荐在构造函数中赋值
     }
-    
+   
 private:
     unsigned int msgID_{0};  // Good，C++11中使用
     unsigned int msgLength_;
@@ -1414,7 +1414,7 @@ private:
     Foo& operator=(const Foo&);
 };
 ```
-2. 使用C++11提供的delete, 请参见后面现代C++的相关章节。  
+2. 使用C++11提供的delete, 请参见后面现代C++的相关章节。 
 
 
 3. 推荐继承NoCopyable、NoMovable，禁止使用DISALLOW_COPY_AND_MOVE，DISALLOW_COPY，DISALLOW_MOVE等宏。
@@ -1502,8 +1502,8 @@ public:
 
 示例：类Base是基类，Sub是派生类
 ```cpp
-class Base {                       
-public:                
+class Base {                      
+public:               
     Base();
     virtual void Log() = 0;    // 不同的派生类调用不同的日志文件
 };
@@ -1511,11 +1511,11 @@ public:
 Base::Base()         // 基类构造函数
 {
     Log();           // 调用虚函数Log
-}                                                  
+}                                                 
 
-class Sub : public Base {       
+class Sub : public Base {      
 public:
-    virtual void Log();          
+    virtual void Log();         
 };
 ```
 
@@ -1525,13 +1525,13 @@ public:
 同样的道理也适用于析构函数。
 
 ### <a name="r7-1-7"></a>规则7.1.7 多态基类中的拷贝构造函数、拷贝赋值操作符、移动构造函数、移动赋值操作符必须为非public函数或者为delete函数
-如果报一个派生类对象直接赋值给基类对象，会发生切片，只拷贝或者移动了基类部分，损害了多态行为。  
+如果报一个派生类对象直接赋值给基类对象，会发生切片，只拷贝或者移动了基类部分，损害了多态行为。 
 【反例】
 如下代码中，基类没有定义拷贝构造函数或拷贝赋值操作符，编译器会自动生成这两个特殊成员函数，
 如果派生类对象赋值给基类对象时就发生切片。可以将此例中的拷贝构造函数和拷贝赋值操作符声明为delete，编译器可检查出此类赋值行为。
 ```cpp
-class Base {                       
-public:                
+class Base {                      
+public:               
     Base() = default;
     virtual ~Base() = default;
     ...
@@ -1565,8 +1565,8 @@ Foo(d); // 传入的是派生类对象
 class Base {
 public:
     virtual std::string getVersion() = 0;
-    
-    ~Base() 
+   
+    ~Base()
     {
         std::cout << "~Base" << std::endl;
     }
@@ -1577,15 +1577,15 @@ public:
 class Sub : public Base {
 public:
     Sub() : numbers_(nullptr)
-    {  
+    { 
     }
-    
+   
     ~Sub()
     {
         delete[] numbers_;
         std::cout << "~Sub" << std::endl;
     }
-    
+   
     int Init()
     {
         const size_t numberCount = 100;
@@ -1593,12 +1593,12 @@ public:
         if (numbers_ == nullptr) {
             return -1;
         }
-        
+       
         ...
     }
 
-    std::string getVersion() 
-    { 
+    std::string getVersion()
+    {
         return std::string("hello!");
     }
 private:
@@ -1616,7 +1616,7 @@ int main(int argc, char* args[])
 }
 ```
 由于基类Base的析构函数没有声明为virtual，当对象被销毁时，只会调用基类的析构函数，不会调用派生类Sub的析构函数，导致内存泄漏。
-例外：  
+例外： 
 NoCopyable、NoMovable这种没有任何行为，仅仅用来做标识符的类，可以不定义虚析构也不定义final。
 
 ### <a name="r7-2-2"></a>规则7.2.2 禁止虚函数使用缺省参数值
@@ -1629,7 +1629,7 @@ public:
     {
         std::cout << text << std::endl;
     }
-    
+   
     virtual ~Base(){}
 };
 
@@ -1637,9 +1637,9 @@ class Sub : public Base {
 public:
     virtual void Display(const std::string& text  = "Sub!")
     {
-        std::cout << text << std::endl; 
+        std::cout << text << std::endl;
     }
-    
+   
     virtual ~Sub(){}
 };
 
@@ -1647,12 +1647,12 @@ int main()
 {
     Base* base = new Sub();
     Sub* sub = new Sub();
-   
+  
     ...
-    
+   
     base->Display();  // 程序输出结果: Base! 而期望输出：Sub!
     sub->Display();   // 程序输出结果: Sub!
-    
+   
     delete base;
     delete sub;
     return 0;
@@ -1669,15 +1669,15 @@ public:
     void Fun();
 };
 
-class Sub : public Base { 
+class Sub : public Base {
 public:
     void Fun();
 };
 
-Sub* sub = new Sub();                     
+Sub* sub = new Sub();                    
 Base* base = sub;
 
-sub->Fun();    // 调用子类的Fun                  
+sub->Fun();    // 调用子类的Fun                 
 base->Fun();   // 调用父类的Fun
 //...
 
@@ -1719,7 +1719,7 @@ class basic_istream {};
 class basic_ostream {};
 
 class basic_iostream : public basic_istream, public basic_ostream {
-  
+ 
 };
 ```
 
@@ -1894,7 +1894,7 @@ enum SessionState {
 ```cpp
 enum RTCPType {
     RTCP_SR = 200,
-    RTCP_MIN_TYPE = RTCP_SR,        
+    RTCP_MIN_TYPE = RTCP_SR,       
     RTCP_RR    = 201,
     RTCP_SDES  = 202,
     RTCP_BYE   = 203,
@@ -1904,7 +1904,7 @@ enum RTCPType {
     RTCP_XR  = 207,
     RTCP_RSI = 208,
     RTCP_PUBPORTS = 209,
-    RTCP_MAX_TYPE = RTCP_PUBPORTS  
+    RTCP_MAX_TYPE = RTCP_PUBPORTS 
 };
 ```
 
@@ -2006,7 +2006,7 @@ x = Func(i, i);
 
 特例：
 如果switch条件变量是枚举类型，并且 case 分支覆盖了所有取值，则加上default分支处理有些多余。
-现代编译器都具备检查是否在switch语句中遗漏了某些枚举值的case分支的能力，会有相应的warning提示。 
+现代编译器都具备检查是否在switch语句中遗漏了某些枚举值的case分支的能力，会有相应的warning提示。
 
 ```cpp
 enum Color {
@@ -2031,11 +2031,11 @@ switch (color) {
 应当按人的正常阅读、表达习惯，将常量放右边。写成如下方式：
 ```cpp
 if (value == MAX) {
-  
+ 
 }
 
 if (value < MAX) {
-  
+ 
 }
 ```
 也有特殊情况，如：`if (MIN < value && value < MAX)` 用来描述区间时，前半段是常量在左的。
@@ -2102,7 +2102,7 @@ C++提供的类型转换操作比C风格更有针对性，更易读，也更加�
 
 ```cpp
 // 不好的例子
-const int i = 1024; 
+const int i = 1024;
 int* p = const_cast<int*>(&i);
 *p = 2048;      // 未定义行为
 ```
@@ -2113,7 +2113,7 @@ class Foo {
 public:
     Foo() : i(3) {}
 
-    void Fun(int v) 
+    void Fun(int v)
     {
         i = v;
     }
@@ -2180,12 +2180,12 @@ public:
     {
         lock_.Acquire();
     }
-    
+   
     ~LockGuard()
     {
         lock_.Release();
     }
-    
+   
 private:
     LockType lock_;
 };
@@ -2199,7 +2199,7 @@ bool Update()
     } else {
         // 操作数据
     }
-    
+   
     return true;
 }
 ```
@@ -2317,7 +2317,7 @@ class Foo {
 public:
     Foo(int length) : dataLength_(length) {}
 private:
-    const int dataLength_;  
+    const int dataLength_; 
 };
 ```
 
@@ -2385,18 +2385,18 @@ C++提供了强大的泛型编程的机制，能够实现非常灵活简洁的�
 4. 模板如果使用不当，会导致运行时代码过度膨胀。
 5. 模板代码难以修改和重构。模板的代码会在很多上下文里面扩展开来, 所以很难确认重构对所有的这些展开的代码有用。
 
-所以，OpenHarmony大部分部件禁止模板编程，仅有 __少数部件__ 可以使用泛型编程，并且开发的模板要有详细的注释。  
-例外：  
+所以，OpenHarmony大部分部件禁止模板编程，仅有 __少数部件__ 可以使用泛型编程，并且开发的模板要有详细的注释。 
+例外： 
 1. stl适配层可以使用模板
 
 ## <a name="c9-9"></a> 宏
 在C++语言中，我们强烈建议尽可能少使用复杂的宏
-- 对于常量定义，请按照前面章节所述，使用const或者枚举； 
+- 对于常量定义，请按照前面章节所述，使用const或者枚举；
 - 对于宏函数，尽可能简单，并且遵循下面的原则，并且优先使用内联函数，模板函数等进行替换。
 
 ```cpp
 // 不推荐使用宏函数
-#define SQUARE(a, b) ((a) * (b)) 
+#define SQUARE(a, b) ((a) * (b))
 
 // 请使用模板函数，内联函数等来替换。
 template<typename T> T Square(T a, T b) { return a * b; }
@@ -2655,7 +2655,7 @@ void func()
 **理由**
 智能指针会自动释放对象资源避免资源泄露，但会带额外的资源开销。如：智能指针自动生成的类、构造和析构的开销、内存占用多等。
 
-单例、类的成员等对象的所有权不会被多方持有的情况，仅在类析构中释放资源即可。不应该使用智能指针增加额外的开销。 
+单例、类的成员等对象的所有权不会被多方持有的情况，仅在类析构中释放资源即可。不应该使用智能指针增加额外的开销。
 
 **示例**
 
@@ -2664,7 +2664,7 @@ class Foo;
 class Base {
 public:
     Base() {}
-    virtual ~Base() 
+    virtual ~Base()
     {
         delete foo_;
     }
