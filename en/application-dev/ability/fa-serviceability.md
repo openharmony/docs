@@ -65,7 +65,7 @@ A Service ability is used to run tasks in the background, such as playing music 
 
 
 
-### Starting a Service ability
+### Starting a Service Ability
 
 The **Ability** class provides the **startAbility()** API for you to start another Service ability by passing a **Want** object.
 
@@ -95,7 +95,7 @@ After the preceding code is executed, the **startAbility()** API is called to st
 
 
 
-### Stopping a Service ability
+### Stopping a Service Ability
 
   Once created, the Service ability keeps running in the background. The system does not stop or destroy it unless memory resources must be reclaimed. You can call **terminateSelf()** on a Service ability to stop it.
 
