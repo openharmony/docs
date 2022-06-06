@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
 
-从DataAabilityPredicates对象创建RdbPredicates对象。
+从DataAbilityPredicates对象创建RdbPredicates对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
