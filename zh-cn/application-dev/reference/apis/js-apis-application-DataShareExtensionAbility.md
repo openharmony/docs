@@ -15,7 +15,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 ## onCreate
 
-onCreate?(want: Want, callback: AsyncCallback<void>): void;
+onCreate?(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 DataShareExtAbility生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
@@ -30,7 +30,7 @@ DataShareExtAbility生命周期回调，在创建时回调，执行初始化业�
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | want | [Want](js-apis-application-Want.md#want) | 是  | Want类型信息，包括ability名称、bundle名称等。 |
-| callback | AsyncCallback<void> | 是 | 表示被指定的回调方法。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -64,7 +64,7 @@ onCreate(want, callback) {
 
 ## insert
 
-insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback<number>): void;
+insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 insert生命周期回调，在数据库插入时回调。
 
@@ -80,7 +80,7 @@ insert生命周期回调，在数据库插入时回调。
 | ----- | ------ | ------ | ------ |
 | uri |string | 是  | 指示要插入的数据的路径。 |
 | valueBucket |[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要插入的数据记录。 |
-| callback |AsyncCallback<number> | 是 | 表示被指定的回调方法。 |
+| callback |AsyncCallback&lt;number&gt; | 是 | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -108,7 +108,7 @@ insert(uri, value, callback) {
 
 ## update
 
-update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback<number>): void;
+update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 update生命周期回调，在数据库更新时回调。
 
@@ -125,7 +125,7 @@ update生命周期回调，在数据库更新时回调。
 | uri | string | 是  | 指示要更新的数据的路径。 |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
-| callback | AsyncCallback<number> | 是 | 表示被指定的回调方法。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -151,7 +151,7 @@ update(uri, predicates, value, callback) {
 
 ## query
 
-query?(uri: string, predicates: DataSharePredicates, columns: Array<string>, callback: AsyncCallback<Object>): void;
+query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void
 
 query生命周期回调，在数据库查询时回调。
 
@@ -167,8 +167,8 @@ query生命周期回调，在数据库查询时回调。
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
-| columns | Array<string> | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
-| callback | AsyncCallback<Object> | 是 | 表示被指定的回调方法。 |
+| columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
+| callback | AsyncCallback&lt;Object&gt; | 是 | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -197,7 +197,7 @@ query(uri, predicates, columns, callback) {
 
 ## delete
 
-delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback<number>): void;
+delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
 
 delete生命周期回调，在删除数据库记录时回调。
 
@@ -213,7 +213,7 @@ delete生命周期回调，在删除数据库记录时回调。
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。 |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。           |
-| callback   | AsyncCallback<number>                                        | 是   | 表示被指定的回调方法。   |
+| callback   | AsyncCallback&lt;number&gt;                                        | 是   | 表示被指定的回调方法。   |
 
 **示例：**
 
@@ -239,7 +239,7 @@ delete(uri, predicates, callback) {
 
 ## batchInsert
 
-batchInsert?(uri: string, valueBuckets: Array<ValuesBucket>, callback: AsyncCallback<number>): void;
+batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 batchinsert生命周期回调，在数据库批量插入时回调。
 
@@ -254,8 +254,8 @@ batchinsert生命周期回调，在数据库批量插入时回调。
 | 名称         | 参数类型                                                     | 必填 | 说明                     |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri          | string                                                       | 是   | 指示要插入的数据的路径。 |
-| valueBuckets | Array<[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)> | 是   | 指示要插入的数据记录。   |
-| callback     | AsyncCallback<number>                                        | 是   | 表示被指定的回调方法。   |
+| valueBuckets | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据记录。   |
+| callback     | AsyncCallback&lt;number&gt;                                        | 是   | 表示被指定的回调方法。   |
 
 **示例：**
 
@@ -285,7 +285,7 @@ batchInsert(uri: string, valueBuckets, callback) {
 
 ## getType
 
-getType?(uri: string, callback: AsyncCallback<string>): void;
+getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 getType生命周期回调函数，获取给定URI对应的MIME类型时回调。
 
@@ -300,7 +300,7 @@ getType生命周期回调函数，获取给定URI对应的MIME类型时回调。
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要操作的数据的路径。 |
-| callback | AsyncCallback<string> | 是 | 表示被指定的回调方法。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -316,7 +316,7 @@ getType(uri: string, callback) {
 
 ## getFileTypes
 
-getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>): void;
+getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 getFileTypes生命周期回调，获取支持文件的MIME类型时回调。
 
@@ -332,7 +332,7 @@ getFileTypes生命周期回调，获取支持文件的MIME类型时回调。
 | -------------- | ---------------------------- | ---- | ---------------------------- |
 | uri            | string                       | 是   | 指示要获取的文件的路径。     |
 | mimeTypeFilter | string                       | 是   | 指示要获取的文件的MIME类型。 |
-| callback       | AsyncCallback<Array<string>> | 是   | 表示被指定的回调方法。       |
+| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 表示被指定的回调方法。       |
 
 **示例：**
 
@@ -348,7 +348,7 @@ getFileTypes(uri: string, mimeTypeFilter: string,callback) {
 
 ## normalizeUri
 
-normalizeUri?(uri: string, callback: AsyncCallback<string>): void;
+normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 normalizeUri生命周期回调，给定uri转换为规范化uri时回调。
 
@@ -363,7 +363,7 @@ normalizeUri生命周期回调，给定uri转换为规范化uri时回调。
 | 名称     | 类型                  | 必填 | 描述                    |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | 是   | 指示要规范化的uri对象。 |
-| callback | AsyncCallback<string> | 是   | 表示被指定的回调方法。  |
+| callback | AsyncCallback&lt;string&gt; | 是   | 表示被指定的回调方法。  |
 
 **示例：**
 
@@ -379,7 +379,7 @@ normalizeUri(uri: string, callback) {
 
 ## denormalizeUri
 
-denormalizeUri?(uri: string, callback: AsyncCallback<string>): void;
+denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将由denormalizeUri生命周期回调，给定规范化uri转换为非规范化uri时回调。
 
@@ -394,7 +394,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback<string>): void;
 | 名称     | 类型                  | 必填 | 描述                    |
 | -------- | --------------------- | ---- | ----------------------- |
 | uri      | string                | 是   | 指示要规范化的uri对象。 |
-| callback | AsyncCallback<string> | 是   | 表示被指定的回调方法。  |
+| callback | AsyncCallback&lt;string&gt; | 是   | 表示被指定的回调方法。  |
 
 **示例：**
 
@@ -410,7 +410,7 @@ denormalizeUri(uri: string, callback) {
 
 ## openFile
 
-openFile?(uri: string, mode: string, callback: AsyncCallback<number>): void;
+openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 将由openFile生命周期回调，在打开文件时回调。
 
@@ -426,7 +426,7 @@ openFile?(uri: string, mode: string, callback: AsyncCallback<number>): void;
 | -------- | --------------------- | ---- | ------------------------------------------ |
 | uri      | string                | 是   | 指示要规范化的uri对象。                    |
 | mode     | string                | 是   | 指示文件打开模式，包括只读模式，读写模式。 |
-| callback | AsyncCallback<number> | 是   | 表示被指定的回调方法。                     |
+| callback | AsyncCallback&lt;number&gt; | 是   | 表示被指定的回调方法。                     |
 
 **示例：**
 

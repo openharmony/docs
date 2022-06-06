@@ -47,14 +47,14 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 
 | 名称        | 参数类型      | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| columnNames | Array<string> | 是   | 结果集中所有列的名称。   |
+| columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |
 | rowCount    | number        | 是   | 结果集中的行数。         |
 | isClosed    | boolean       | 是   | 标志当前结果集是否关闭。 |
 
 ## goToFirstRow
 
-goToFirstRow(): boolean;
+goToFirstRow(): boolean
 
 该接口用于转到结果集的第一行。
 
@@ -77,7 +77,7 @@ console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 
 ## goToLastRow
 
-goToLastRow(): boolean;
+goToLastRow(): boolean
 
 该接口用于转到结果集的最后一行。
 
@@ -100,7 +100,7 @@ console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 
 ## goToNextRow
 
-goToNextRow(): boolean;
+goToNextRow(): boolean
 
 该接口用于转到结果集的下一行。
 
@@ -123,7 +123,7 @@ console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 
 ## goToPreviousRow
 
-goToPreviousRow(): boolean;
+goToPreviousRow(): boolean
 
 该接口用于转到结果集的上一行。
 
@@ -146,7 +146,7 @@ console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 
 ## goTo
 
-goTo(offset:number): boolean;
+goTo(offset:number): boolean
 
 该接口用于向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
@@ -176,7 +176,7 @@ console.info('resultSet.goTo: ' + isGoTo);
 
 ## goToRow
 
-goToRow(position: number): boolean;
+goToRow(position: number): boolean
 
 该接口用于转到结果集的指定行。
 
@@ -206,7 +206,7 @@ console.info('resultSet.goToRow: ' + isGoToRow);
 
 ## getBlob
 
-getBlob(columnIndex: number): Uint8Array;
+getBlob(columnIndex: number): Uint8Array
 
 该接口用于以字节数组的形式获取当前行中指定列的值。
 
@@ -237,7 +237,7 @@ console.info('resultSet.getBlob: ' + getBlob);
 
 ## getString
 
-getString(columnIndex: number): *string*;
+getString(columnIndex: number): *string*
 
 该接口用于以字符串形式获取当前行中指定列的值。
 
@@ -268,7 +268,7 @@ console.info('resultSet.getString: ' + getString);
 
 ## getLong
 
-getLong(columnIndex: number): *number*;
+getLong(columnIndex: number): *number*
 
 该接口用于以Long形式获取当前行中指定列的值。
 
@@ -299,7 +299,7 @@ console.info('resultSet.getLong: ' + getLong);
 
 ## getDouble
 
-getDouble(columnIndex: number): *number*;
+getDouble(columnIndex: number): *number*
 
 该接口用于以double形式获取当前行中指定列的值。
 
@@ -330,7 +330,7 @@ console.info('resultSet.getDouble: ' + getDouble);
 
 ## close
 
-close(): void;
+close(): void
 
 该接口用于关闭结果集。
 
@@ -344,7 +344,7 @@ resultSet.close();
 
 ## getColumnIndex
 
-getColumnIndex(columnName: string): *number*;
+getColumnIndex(columnName: string): *number*
 
 该接口用于根据指定的列名获取列索引。
 
@@ -374,7 +374,7 @@ console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 
 ## getColumnName
 
-getColumnName(columnIndex: number): *string*;
+getColumnName(columnIndex: number): *string*
 
 该接口用于根据指定的列索引获取列名。
 
@@ -404,7 +404,7 @@ console.info('resultSet.getColumnName: ' + getColumnName);
 
 ## getDataType
 
-getDataType(columnIndex: number): DataType;
+getDataType(columnIndex: number): DataType
 
 该接口用于获取指定列的数据类型。
 

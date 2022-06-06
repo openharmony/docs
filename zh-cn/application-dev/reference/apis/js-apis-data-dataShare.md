@@ -17,8 +17,8 @@ import dataShare from '@ohos.data.dataShare'
 
 ## dataShare.createDataShareHelper
 
-createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void;
-createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;;
+createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
+createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
 
 创建DataShare工具类，创建helper对象时将连接服务端，与服务端取得连接后或超时后将返回helper实例，此方法为异步方法。在与服务端取得连接后可使用DataShare工具类提供的方法访问或管理服务端的数据，若未连接上服务端，调用工具类提供的方法时将返回error code。
 
@@ -52,7 +52,7 @@ dataShare.createDataShareHelper(this.context, dseUri, (err, data) => {
 
 ### openFile
 
-openFile(uri: string, mode: string, callback: AsyncCallback<number>): void
+openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开URI所指定的远程路径中的文件（callback形式）。
 
@@ -64,7 +64,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback<number>): void
 | -------- | --------------------- | ---- | ---------------------------------- |
 | uri      | string                | 是   | 指示要打开的文件的路径。           |
 | mode     | string                | 是   | 指示文件打开模式‘rwt’。            |
-| callback | AsyncCallback<number> | 是   | 被指定的回调方法，返回文件描述符。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 被指定的回调方法，返回文件描述符。 |
 
 **示例：**
 
@@ -84,7 +84,7 @@ dataShareHelper.openFile(uri, "rwt", (err, data) => {
 
 ### openFile
 
-openFile(uri: string, mode: string): Promise<number>
+openFile(uri: string, mode: string): Promise&lt;number&gt;
 
 打开URI所指定的远程路径中的文件（Promise形式）。
 
@@ -101,7 +101,7 @@ openFile(uri: string, mode: string): Promise<number>
 
 | 类型            | 说明             |
 | --------------- | ---------------- |
-| Promise<number> | 返回文件描述符。 |
+| Promise&lt;number&gt; | 返回文件描述符。 |
 
 **示例：**
 
@@ -119,7 +119,7 @@ dataShareHelper.openFile(uri, "rwt").then((data) => {
 
 ### on('dataChange')
 
-on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
+on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 注册观察者以订阅给定uri指定的数据callback通知。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接受到callback通知。
 
@@ -131,7 +131,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 数据更改。               |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
-| callback | AsyncCallback\<void> | 是   | 指示数据更改时的回调。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 指示数据更改时的回调。   |
 
 **示例：**
 
@@ -148,7 +148,7 @@ export function onCallback() {
 
 ### off('dataChange')
 
-off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
+off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 注消观察者以停止观察给定uri指定的数据callback通知。
 
@@ -160,7 +160,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 数据更改。               |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
-| callback | AsyncCallback\<void> | 否   | 指示已注册的回调。       |
+| callback | AsyncCallback&lt;void&gt; | 否   | 指示已注册的回调。       |
 
 **示例：**
 
@@ -177,7 +177,7 @@ export function offCallback() {
 
 ### notifyChange
 
-notifyChange(uri: string, callback: AsyncCallback\<void>): void
+notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 通知已注册的观察者uri指定的数据资源的更改（callback形式）。
 
@@ -188,7 +188,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 | 名称     | 类型                 | 必填 | 描述                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 指示要操作的数据的路径。 |
-| callback | AsyncCallback\<void> | 是   | 回调方法。               |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调方法。               |
 
 **示例：**
 
@@ -203,7 +203,7 @@ dataShareHelper.notifyChange(uri, () => {
 
 ### notifyChange
 
-notifyChange(uri: string): Promise\<void>
+notifyChange(uri: string): Promise&lt;void&gt;
 
 通知已注册的观察者uri指定的数据资源的更改（Promise形式）。
 
@@ -219,7 +219,7 @@ notifyChange(uri: string): Promise\<void>
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| Promise\<void> | 返回值为Promise对象。 |
+| Promise&lt;void&gt; | 返回值为Promise对象。 |
 
 **示例：**
 
@@ -241,7 +241,7 @@ dataShareHelper.notifyChange(uri);
 
 ### getType
 
-getType(uri: string, callback: AsyncCallback\<string>): void
+getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取URI所指定的数据的MIME类型（callback形式）。
 
@@ -252,7 +252,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 | 名称     | 类型                   | 必填 | 描述                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | 是   | 指示要操作的数据的路径。                      |
-| callback | AsyncCallback\<string> | 是   | 回调方法，返回与uri指定的数据匹配的MIME类型。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调方法，返回与uri指定的数据匹配的MIME类型。 |
 
 **示例：**
 
@@ -272,7 +272,7 @@ dataShareHelper.getType(uri, (err, data)=>{
 
 ### getType
 
-getType(uri: string): Promise\<string>
+getType(uri: string): Promise&lt;string&gt;
 
 获取URI所指定数据的MIME类型（Promise形式）。
 
@@ -288,7 +288,7 @@ getType(uri: string): Promise\<string>
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | 返回与uri指定的数据匹配的MIME类型。 |
+| Promise&lt;string&gt; | 返回与uri指定的数据匹配的MIME类型。 |
 
 **示例：**
 
@@ -305,7 +305,7 @@ dataShareHelper.getType(uri).then((data) => {
 
 ### getFileTypes
 
-getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
+getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 获取支持的文件的MIME类型（callback形式）。
 
@@ -317,7 +317,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | 是   | 指示要获取的文件的路径。           |
 | mimeTypeFilter | string                         | 是   | 指示要获取的文件的MIME类型。       |
-| callback       | AsyncCallback\<Array\<string>> | 是   | 回调方法，返回匹配的MIME类型数组。 |
+| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调方法，返回匹配的MIME类型数组。 |
 
 **示例：**
 
@@ -339,7 +339,7 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
 
 ### getFileTypes
 
-getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
+getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt;&gt;
 
 获取支持的文件的MIME类型（Promise形式）。
 
@@ -356,7 +356,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 | 类型                     | 说明                     |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | 返回匹配的MIME类型数组。 |
+| Promise&lt;Array&lt;string&gt;&gt; | 返回匹配的MIME类型数组。 |
 
 **示例：**
 
@@ -374,7 +374,7 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
 
 ### normalizeUri
 
-normalizeUri(uri: string, callback: AsyncCallback\<string>): void
+normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将给定的DataShare uri转换为规范化uri（callback形式）。
 
@@ -385,7 +385,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 | 名称     | 类型                   | 必填 | 描述                                                     |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                                  |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果支持uri规范化或null，则返回规范化uri对象。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调方法。如果支持uri规范化或null，则返回规范化uri对象。 |
 
 **示例：**
 
@@ -404,7 +404,7 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 
 ### normalizeUri
 
-normalizeUri(uri: string): Promise\<string>
+normalizeUri(uri: string): Promise&lt;string&gt;
 
 将给定的DataShare uri转换为规范化uri（Promise形式）。
 
@@ -420,7 +420,7 @@ normalizeUri(uri: string): Promise\<string>
 
 | 类型             | 说明                                           |
 | ---------------- | ---------------------------------------------- |
-| Promise\<string> | 如果支持uri规范化或null，则返回规范化uri对象。 |
+| Promise&lt;string&gt; | 如果支持uri规范化或null，则返回规范化uri对象。 |
 
 **示例：**
 
@@ -437,7 +437,7 @@ dataShareHelper.normalizeUri(uri).then((data) => {
 
 ### denormalizeUri
 
-denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
+denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将由normalizeUri（uri）生成的规范化uri转换为非规范化uri（callback形式）。
 
@@ -448,7 +448,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 | 名称     | 类型                   | 必填 | 描述                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 指示要规范化的uri对象。                             |
-| callback | AsyncCallback\<string> | 是   | 回调方法。如果反规范化成功，则返回反规范化uri对象。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调方法。如果反规范化成功，则返回反规范化uri对象。 |
 
 **示例：**
 
@@ -467,7 +467,7 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 
 ### denormalizeUri
 
-denormalizeUri(uri: string): Promise\<string>
+denormalizeUri(uri: string): Promise&lt;string&gt;
 
 将由normalizeUri（uri）生成的规范化uri转换为非规范化uri（Promise形式）。
 
@@ -483,7 +483,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> | 如果反规范化成功，则返回反规范化uri对象。 |
+| Promise&lt;string&gt; | 如果反规范化成功，则返回反规范化uri对象。 |
 
 **示例：**
 
@@ -500,7 +500,7 @@ dataShareHelper.denormalizeUri(uri).then((data) => {
 
 ### insert
 
-insert(uri: string, value: ValuesBucket, callback: AsyncCallback\<number>): void
+insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 将单条数据记录插入数据库（callback形式）。
 
@@ -512,7 +512,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback\<number>): void
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | 是   | 指示要插入的数据的路径。                                     |
 | value    | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。       |
-| callback | AsyncCallback\<number>                                    | 是   | 回调方法，返回插入数据记录的索引。（能否返回索引取决于服务端所使用的数据库） |
+| callback | AsyncCallback&lt;number&gt;                                    | 是   | 回调方法，返回插入数据记录的索引。（能否返回索引取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -537,7 +537,7 @@ dataShareHelper.insert(uri, valueBucket, (err, data) => {
 
 ### insert
 
-insert(uri: string, value: ValuesBucket): Promise\<number>
+insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 将单条数据记录插入数据库（Promise形式）。
 
@@ -554,7 +554,7 @@ insert(uri: string, value: ValuesBucket): Promise\<number>
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | 返回插入数据记录的索引。（能否返回索引取决于服务端所使用的数据库） |
+| Promise&lt;number&gt; | 返回插入数据记录的索引。（能否返回索引取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -577,7 +577,7 @@ dataShareHelper.insert(uri, valueBucket).then((data) => {
 
 ### batchInsert
 
-batchInsert(uri: string, values: Array\<ValuesBucket>, callback: AsyncCallback\<number>): void
+batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 将批量数据插入数据库（callback形式）。
 
@@ -588,8 +588,8 @@ batchInsert(uri: string, values: Array\<ValuesBucket>, callback: AsyncCallback\<
 | 名称     | 类型                                                         | 必填 | 描述                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | 是   | 指示要插入的数据的路径。                                     |
-| values   | Array\<[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)> | 是   | 指示要插入的数据记录。                                       |
-| callback | AsyncCallback\<number>                                       | 是   | 回调方法，返回插入的数据记录数。（能否返回记录数取决于服务端所使用的数据库） |
+| values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据记录。                                       |
+| callback | AsyncCallback&lt;number&gt;                                       | 是   | 回调方法，返回插入的数据记录数。（能否返回记录数取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -611,7 +611,7 @@ dataShareHelper.batchInsert(uri, vbs, (err, data) => {
 
 ### batchInsert
 
-batchInsert(uri: string, values: Array\<ValuesBucket>): Promise\<number>
+batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
 将批量数据插入数据库（Promise形式）。
 
@@ -622,13 +622,13 @@ batchInsert(uri: string, values: Array\<ValuesBucket>): Promise\<number>
 | 名称   | 类型                                                         | 必填 | 描述                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | uri    | string                                                       | 是   | 指示要插入的数据的路径。 |
-| values | Array\<[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)> | 是   | 指示要插入的数据记录。   |
+| values | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据记录。   |
 
 **返回值：**
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | 返回插入的数据记录数。（能否返回记录数取决于服务端所使用的数据库） |
+| Promise&lt;number&gt; | 返回插入的数据记录数。（能否返回记录数取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -648,7 +648,7 @@ dataShareHelper.batchInsert(uri, vbs).then((data) => {
 
 ### delete
 
-delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback\<number>): void
+delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
 
 从数据库中删除一条或多条数据记录（callback形式）。
 
@@ -660,7 +660,7 @@ delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback\<nu
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。（具体所支持的谓词方法取决于服务端所选用的数据库,如KVDB的删除目前仅支持inKeys谓词） |
-| callback   | AsyncCallback\<number>                                       | 是   | 回调方法，返回已删除的数据记录数。（能否返回已删除的数目取决于服务端所使用的数据库） |
+| callback   | AsyncCallback&lt;number&gt;                                       | 是   | 回调方法，返回已删除的数据记录数。（能否返回已删除的数目取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -681,7 +681,7 @@ dataShareHelper.delete(uri, da, (err, data) => {
 
 ### delete
 
-delete(uri: string, predicates: DataSharePredicates): Promise\<number>
+delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 
 从数据库中删除一条或多条数据记录（Promise形式）。
 
@@ -698,7 +698,7 @@ delete(uri: string, predicates: DataSharePredicates): Promise\<number>
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | 返回已删除的数据记录数。（能否返回已删除的数目取决于服务端所使用的数据库） |
+| Promise&lt;number&gt; | 返回已删除的数据记录数。（能否返回已删除的数目取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -717,7 +717,7 @@ dataShareHelper.delete(uri, da).then((data) => {
 
 ### update
 
-update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callback: AsyncCallback<number>): void
+update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 更新数据库中的数据记录（callback形式）。
 
@@ -730,7 +730,7 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callba
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。（是否支持谓词取决于服务端所选用的数据库，如KVDB并不支持谓词，仅RDB支持） |
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
-| callback   | AsyncCallback\<number>                                       | 是   | 回调方法，返回更新的数据记录数。（能否返回更新的数据记录数取决于服务端所使用的数据库） |
+| callback   | AsyncCallback&lt;number&gt;                                       | 是   | 回调方法，返回更新的数据记录数。（能否返回更新的数据记录数取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -757,7 +757,7 @@ dataShareHelper.update(uri, da, va, (err, data) => {
 
 ### update
 
-update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promise<number>
+update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
 
 更新数据库中的数据记录（Promise形式）。
 
@@ -775,7 +775,7 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | 返回更新的数据记录数。（能否返回更新的数据记录数取决于服务端所使用的数据库） |
+| Promise&lt;number&gt; | 返回更新的数据记录数。（能否返回更新的数据记录数取决于服务端所使用的数据库） |
 
 **示例：**
 
@@ -800,7 +800,7 @@ dataShareHelper.update(uri, da, va).then((data) => {
 
 ### query
 
-query(uri: string, predicates: DataSharePredicates, columns: Array<string>, callback: AsyncCallback<DataShareResultSet>): void
+query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void
 
 查询数据库中的数据（callback形式）。
 
@@ -812,8 +812,8 @@ query(uri: string, predicates: DataSharePredicates, columns: Array<string>, call
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。（具体所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey） |
-| columns    | Array<string>                                                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
-| callback   | AsyncCallback\<[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)> | 是   | 回调方法，返回查询结果。                                     |
+| columns    | Array&lt;string&gt;                                                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
+| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 是   | 回调方法，返回查询结果。                                     |
 
 **示例：**
 
@@ -837,7 +837,7 @@ dataShareHelper.query(uri, da, columns, (err, data) => {
 
 ### query
 
-query(uri: string, predicates: DataSharePredicates, columns: Array<string>): Promise<DataShareResultSet>
+query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 查询数据库中的数据（Promise形式）。
 
@@ -849,13 +849,13 @@ query(uri: string, predicates: DataSharePredicates, columns: Array<string>): Pro
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。（具体所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey） |
-| columns    | Array<string>                                                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
+| columns    | Array&lt;string&gt;                                                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
 
 **返回值：**
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| Promise\<[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)> | 返回查询结果。 |
+| Promise&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 返回查询结果。 |
 
 **示例：**
 
