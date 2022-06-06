@@ -144,3 +144,91 @@ SystemCapability.Ability.Form
       console.log('formProvider updateForm, error:' + JSON.stringify(error));
   });
   ```
+
+## getFormsInfo<sup>9+</sup>
+
+getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+
+获取设备上当前应用程序的卡片信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
+
+**示例：**
+
+```js
+formProvider.getFormsInfo((error, data) => {
+    if (error.code) {
+        console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+    } else {
+        console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+    }
+});
+```
+## getFormsInfo<sup>9+</sup>
+
+getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
+
+获取设备上当前应用程序的卡片信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| filter | formInfo.FormInfoFilter | 是 | 过滤卡片信息 |
+| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
+
+**示例：**
+
+```js
+const filter : formInfo.FormInfoFilter = {
+    moduleName : "entry"
+};
+formProvider.getFormsInfo(filter, (error, data) => {
+    if (error.code) {
+        console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+    } else {
+        console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+    }
+});
+```
+
+## getFormsInfo<sup>9+</sup>
+
+getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
+
+获取设备上当前应用程序的卡片信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| filter | formInfo.FormInfoFilter | 否 | 过滤卡片信息 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Promise实例，用于获取异步返回查询到的卡片信息。 |
+
+**示例：**
+
+```js
+const filter : formInfo.FormInfoFilter = {
+    moduleName : "entry"
+};
+formProvider.getFormsInfo(filter).then((data) => {
+    console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('formProvider getFormsInfo, error:' + JSON.stringify(error));
+});
+```
