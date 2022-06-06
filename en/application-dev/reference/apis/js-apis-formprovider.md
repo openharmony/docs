@@ -80,7 +80,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void;
 
 Updates a widget. This API uses an asynchronous callback to return the result.
 
@@ -111,7 +111,7 @@ SystemCapability.Ability.Form
 
 ## updateForm
 
-updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;;
+updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;;
 
 Updates a widget. This API uses a promise to return the result.
 

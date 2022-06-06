@@ -1,6 +1,6 @@
 # FormExtension
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides **FormExtension** APIs.
@@ -46,6 +46,7 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 **Example**
 
   ```js
+  import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onCreate(want) {
           console.log('FormExtension onCreate, want:' + want.abilityName);
@@ -100,6 +101,7 @@ Called to notify the widget provider that a widget has been updated. After obtai
 **Example**
 
   ```js
+  import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -130,6 +132,7 @@ Called to notify the widget provider of the change of visibility.
 **Example**
 
   ```js
+    import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);
@@ -213,9 +216,35 @@ Called when the configuration of the environment where the ability is running is
 **Example**
     
   ```js
-  class MyFormExtension extends MyFormExtension {
+  class MyFormExtension extends FormExtension {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+      }
+  }
+  ```
+
+  ## FormExtension.onAcquireFormState
+
+onAcquireFormState?(want: Want): formInfo.FormState;
+
+Used by the widget provider to receive the widget state query request. By default, the initial widget state is returned.
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.| 
+
+**Example**
+    
+  ```js
+  import fromInfo from '@ohos.application.fromInfo'
+  class MyFormExtension extends FormExtension {
+      onAcquireFormState(want) {
+          console.log('FormExtension onAcquireFormState, want:' + want);
+          return fromInfo.FormState.UNKNOWN;
       }
   }
   ```

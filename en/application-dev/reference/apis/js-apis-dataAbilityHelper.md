@@ -1,13 +1,20 @@
 # DataAbilityHelper Module (JavaScript SDK APIs)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
+```js
+import featureAbility from "@ohos.ability.featureAbility";
+```
+
+## Usage
+
+Import the following modules based on the actual situation before using the current module:
 ```
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 import ohos_data_rdb from '@ohos.data.rdb'
 ```
 
@@ -499,7 +506,7 @@ const valueBucket = {
     "name": "rose",
     "age": 22,
     "salary": 200.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
@@ -541,7 +548,7 @@ const valueBucket = {
     "name": "rose1",
     "age": 221,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 DAHelper.insert(
     "dataability:///com.example.DataAbility",
@@ -574,9 +581,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
     cars,
@@ -613,9 +620,9 @@ import featureAbility from '@ohos.ability.featureAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
-var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+var cars = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": "u8",},
+                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": "u8",})
 DAHelper.batchInsert(
     "dataability:///com.example.DataAbility",
     cars
@@ -682,6 +689,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import ohos_data_ability from '@ohos.data.dataability'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -723,7 +731,7 @@ const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.update(
@@ -769,7 +777,7 @@ const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+    "blobType": "u8",
 }
 let da = new ohos_data_ability.DataAbilityPredicates()
 DAHelper.update(
