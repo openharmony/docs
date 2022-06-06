@@ -636,7 +636,7 @@ Sets the **RdbPredicates** to match the specified string.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. ? indicates a single digit or character.|
 
 **Return value**
 | Type| Description|
@@ -1390,7 +1390,7 @@ promise.then((resultSet) => {
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-Runs the SQL statement that contains the specified parameters but does not return a value. This API uses a callback to return the execution result.
+Runs the SQL statement that contains the specified parameters but does not return a value. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1555,9 +1555,9 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
         console.info('setDistributedTables failed, err: ' + err)
         return
     }
-    console.info('setDistributedTables successful.')
+    console.info('setDistributedTables successfully.')
 })
-  ```
+```
 
 
 ### setDistributedTables<sup>8+</sup>
@@ -1582,7 +1582,7 @@ Sets a list of distributed tables. This API uses a promise to return the result.
 ```js
 let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
-    console.info("setDistributedTables successful.")
+    console.info("setDistributedTables successfully.")
 }).catch((err) => {
     console.info("setDistributedTables failed, err: " + err)
 })
@@ -1610,7 +1610,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
         console.info('obtainDistributedTableName failed, err: ' + err)
         return
     }
-    console.info('obtainDistributedTableName successful, tableName=.' + tableName)
+    console.info('obtainDistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1638,7 +1638,7 @@ Obtains the distributed table name for a remote device based on the local table 
 ```js
 let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('obtainDistributedTableName successful, tableName=' + tableName)
+    console.info('obtainDistributedTableName successfully, tableName=' + tableName)
 }).catch((err) => {
     console.info('obtainDistributedTableName failed, err: ' + err)
 })
