@@ -117,6 +117,83 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
     });
   ```
 
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
+
+根据bundleName，查询对应的应用分组，使用Promise形式返回其应用分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+
+**返回值**：
+
+| 类型            | 说明                                            |
+| --------------- | ----------------------------------------------- |
+| Promise<number> | 指定的Promise回调方法。返回查询的应用分组结果。 |
+
+**示例**：
+
+```javascript
+//有bundleName的promise
+bundleState.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+});
+//无bundleName的promise
+bundleState.queryAppUsagePriorityGroup().then( res => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>): void
+
+根据bundleName，查询对应的应用分组，使用callback形式返回其应用分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string                                                       | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+| callback   | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
+
+**示例**：
+
+```javascript
+//有bundleName的callback
+bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+    }
+});
+//无bundleName的callback
+bundleState.queryAppUsagePriorityGroup((err, res) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+    }
+});
+```
+
 ## bundleState.queryBundleStateInfos
 
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
@@ -496,6 +573,210 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
     });
   ```
 
+## bundleState.setBundleGroup<sup>9+</sup>
+
+setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>
+
+将指定的bundleName的应用的分组设置为newGroup，使用Promise形式返回设置是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名     | 类型      | 必填 | 说明     |
+| ---------- | --------- | ---- | -------- |
+| bundleName | string    | 是   | 应用名称 |
+| newGroup   | GroupType | 是   | 应用分组 |
+
+**返回值**：
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise<boolean> | 指定的Promise回调方法。返回本次设置是否成功 |
+
+**示例**：
+
+```javascript
+this.bundleName = "com.example.deviceUsageStatistics";
+this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+
+bundleState.setBundleGroup(this.bundleName, this.newGroup).then( res => {
+    console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.setBundleGroup<sup>9+</sup>
+
+setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<boolean>): void
+
+将指定的bundleName的应用的分组设置为newGroup，使用CallBack形式返回设置是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名     | 类型                   | 必填 | 说明                                       |
+| ---------- | ---------------------- | ---- | ------------------------------------------ |
+| bundleName | string                 | 是   | 应用名称                                   |
+| newGroup   | GroupType              | 是   | 应用分组                                   |
+| callback   | AsyncCallback<boolean> | 是   | 指定的CallBack回调方法。返回设置是否成功。 |
+
+**示例**：
+
+```javascript
+this.bundleName = "com.example.deviceUsageStatistics";
+this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+
+bundleState.setBundleGroup(this.bundleName, this.newGroup, (err, res) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE SetBundleGroup callback succeeded. result: ' + JSON.stringify(res));
+    }
+});
+```
+
+## bundleState.registerGroupCallBack<sup>9+</sup>
+
+registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>
+
+应用分组变化注册，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册的应用返回BundleActiveGroupCallbackInfo。使用Promise形式返回注册是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型                                    | 必填 | 说明                   |
+| -------- | --------------------------------------- | ---- | ---------------------- |
+| callback | Callback<BundleActiveGroupCallbackInfo> | 是   | 应用分组变化的回调函数 |
+
+**返回值**：
+
+| 类型             | 说明                                    |
+| ---------------- | --------------------------------------- |
+| Promise<boolean> | 指定的Promise回调方法。返回注册是否成功 |
+
+**示例**：
+
+```javascript
+let onBundleGroupChanged = (err,res) =>{
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result newGroup is : ' + res.newGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result changeReason is : ' + res.newGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
+};
+bundleState.registerGroupCallBack(onBundleGroupChanged).then( res => {
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded. result1: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.registerGroupCallBack<sup>9+</sup>
+
+registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void
+
+应用分组变化注册，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册的应用返回BundleActiveGroupCallbackInfo。使用异步callback形式返回注册是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型                                    | 必填 | 说明                       |
+| -------- | --------------------------------------- | ---- | -------------------------- |
+| callback | Callback<BundleActiveGroupCallbackInfo> | 是   | 应用分组变化的回调函数     |
+| callback | AsyncCallback<boolean>                  | 是   | 注册是否成功的异步回调函数 |
+
+**示例**：
+
+```javascript
+let onBundleGroupChanged = (err,res) =>{
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s oldGroup is : ' + res.oldGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s newGroup is : ' + res.newGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s changeReason is : ' + res.newGroup);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s userId is : ' + res.userId);
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s bundleName is : ' + res.bundleName);
+};
+bundleState.registerGroupCallBack(onBundleGroupChanged, (err,res)=>{
+    if(err) {
+        console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback failed, because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback success.');
+        console.log('BUNDLE_ACTIVE RegisterGroupCallBack result is : ' + JSON.stringify(res));
+    }
+});
+```
+
+## bundleState.unRegisterGroupCallBack<sup>9+</sup>
+
+unRegisterGroupCallBack(): Promise<boolean>
+
+应用分组变化解注册，将之前注册的解除注册。使用Promise形式返回注册是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：无参数
+
+**返回值**：
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise<boolean> | 指定的Promise回调方法。返回解注册是否成功 |
+
+**示例**：
+
+```javascript
+bundleState.unRegisterGroupCallBack().then( res => {
+    console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.unRegisterGroupCallBack<sup>9+</sup>
+
+unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void;
+
+应用分组变化解注册，将之前注册的解除注册。使用异步callback形式返回注册是否成功。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型                   | 必填 | 说明                         |
+| -------- | ---------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback<boolean> | 是   | 解注册是否成功的异步回调函数 |
+
+**示例**：
+
+```javascript
+bundleState.unRegisterGroupCallBack((err,res)=>{
+    if(err) {
+        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback success.');
+        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack result is : ' + JSON.stringify(res));
+    }
+});
+```
+
 ## bundleState.queryBundleActiveEventStates<sup>9+</sup>
 
 queryBundleActiveEventStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveEventState&gt;&gt;
@@ -660,7 +941,22 @@ FA卡片的使用信息的属性集合。
 | formLastUsedTime | number | 是 | 卡片的上一次点击时间。|
 | count | number | 是 | 卡片的点击次数。|
 
+## BundleActiveGroupCallbackInfo<sup>9+</sup>
+
+应用分组变化回调返回的属性集合
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名           | 类型   | 必填 | 说明             |
+| ---------------- | ------ | ---- | ---------------- |
+| appUsageOldGroup | number | 是   | 修改前的应用分组 |
+| appUsageNewGroup | number | 是   | 修改后的应用分组 |
+| useId            | number | 是   | 用户id           |
+| changeReason     | number | 是   | 分组变化原因     |
+| bundleName       | string | 是   | 应用名称         |
+
 ## BundleStateInfo
+
 提供应用使用时长的具体信息。
 
 ### 属性
@@ -746,3 +1042,18 @@ merge(toMerge: BundleStateInfo): void
 | BY_WEEKLY | 2 | 表示系统按照周去查询指定时间段间隔的应用使用时长信息。|
 | BY_MONTHLY | 3 | 表示系统按照月去查询指定时间段间隔的应用使用时长信息。|
 | BY_ANNUALLY | 4 | 表示系统按照年去查询指定时间段间隔的应用使用时长信息。|
+
+## GroupType
+
+提供应用分组的设置类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 名称               | 默认值 | 说明                               |
+| ------------------ | ------ | ---------------------------------- |
+| ACTIVE_GROUP_ALIVE | 10     | 活跃分组                           |
+| ACTIVE_GROUP_DAILY | 20     | 经常使用，但当前并未在活跃态       |
+| ACTIVE_GROUP_FIXED | 30     | 常用分组，定期使用，但不是每天使用 |
+| ACTIVE_GROUP_RARE  | 40     | 极少使用分组，不经常使用           |
+| ACTIVE_GROUP_LIMIT | 50     | 受限使用分组                       |
+| ACTIVE_GROUP_NEVER | 60     | 从未使用分组，安装但是从未运行过   |
