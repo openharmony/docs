@@ -16,12 +16,24 @@
 2.  根据起止时间查询应用的使用时长。
 3.  根据起止时间查询当前应用的事件集合。
 4.  根据interval（日、周、月、年）类型和起止时间查询应用的使用时长。
-5.  查询调用者应用的优先级群组。
+5.  查询调用者应用或指定应用的优先级群组。
 6.  判断指定应用当前是否是空闲状态。
 7.  查询FA使用记录。返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000，若不填写maxNum参数，则maxNum默认为1000。
 8.  根据起止时间查询应用通知次数。
 9.  根据起止时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。
 
+- 设置接口
+
+1. 给应用名称为bundleName的应用分组设置为newGroup。
+
+- 注册接口
+
+1. 注册应用分组变化回调监听，当应用分组发生变化，会给所有已注册的应用返回变化信息
+
+- 解注册接口
+
+1. 解除注册应用分组变化回调监听
+
 ### 设备使用信息统计使用权限
-- 设备使用信息统计的queryBundleActiveStates、queryBundleStateInfos、queryBundleStateInfoByInterval、queryBundleActiveEventStates、queryAppNotificationNumber接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
-- 设备使用信息统计的queryCurrentBundleActiveStates、queryAppUsagePriorityGroup、isIdleState接口为三方api，调用时不需要申请权限。
+- 设备使用信息统计的queryBundleActiveStates、queryBundleStateInfos、queryBundleStateInfoByInterval、queryBundleActiveEventStates、queryAppNotificationNumber、queryAppUsagePriorityGroup(有参)、setBundleGroup、registerGroupCallBack、unRegisterGroupCallBack接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
+- 设备使用信息统计的queryCurrentBundleActiveStates、queryAppUsagePriorityGroup（无参）、isIdleState接口为三方api，调用时不需要申请权限。
