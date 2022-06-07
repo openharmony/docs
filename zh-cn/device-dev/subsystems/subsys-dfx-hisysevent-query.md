@@ -15,7 +15,7 @@ HiSysEvent提供了查询接口，支持开发者设置条件查询HiSysEvent事
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| bool&nbsp;HiSysEventManager::QueryHiSysEvent(struct&nbsp;QueryArg&amp;&nbsp;queryArg,&nbsp;std::vector&lt;QueryRule&gt;&amp;&nbsp;queryRules,&nbsp;std::shared_ptr&lt;HiSysEventQueryCallBack&gt;&nbsp;queryCallBack) | 接口功能：支持设置查询时间段，事件领域，事件名称等，查询满足条件的HiSysEvent事件。<br/>输入参数：<br/>-&nbsp;queryArg：查询参数。<br/>-&nbsp;queryRules：事件过滤规则。<br/>-&nbsp;queryCallBack：查询接口回调对象。<br/>返回值：<br/>-&nbsp;true：查询成功。<br/>-&nbsp;false：查询失败。 | 
+| int32_t&nbsp;HiSysEventManager::QueryHiSysEvent(struct&nbsp;QueryArg&amp;&nbsp;queryArg,<br/>&nbsp;std::vector&lt;QueryRule&gt;&amp;&nbsp;queryRules,<br/>&nbsp;std::shared_ptr&lt;HiSysEventQueryCallBack&gt;&nbsp;queryCallBack) | 接口功能：支持设置查询时间段，事件领域，事件名称等，查询满足条件的HiSysEvent事件。<br/>输入参数：<br/>-&nbsp;queryArg：查询参数。<br/>-&nbsp;queryRules：事件过滤规则。<br/>-&nbsp;queryCallBack：查询接口回调对象。<br/>返回值：<br/>-&nbsp;0：查询成功。<br/>-&nbsp;负值：查询失败。 |
 
   **表2** QueryArg查询参数对象
 
@@ -29,14 +29,14 @@ HiSysEvent提供了查询接口，支持开发者设置条件查询HiSysEvent事
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
-| QueryRule(const&nbsp;std::string&amp;&nbsp;domain,&nbsp;const&nbsp;std::vector&lt;std::string&gt;&amp;&nbsp;eventList) | 接口功能：查询规则构造函数，创建查询规则对象。<br/>输入参数：<br/>-&nbsp;domain：string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。<br/>-&nbsp;eventList：std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。 | 
+| QueryRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::vector&lt;std::string&gt;&amp;&nbsp;eventList) | 接口功能：查询规则构造函数，创建查询规则对象。<br/>输入参数：<br/>-&nbsp;domain：string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。<br/>-&nbsp;eventList：std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。 | 
 
   **表4** HiSysEventQueryCallBack查询回调对象
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
-| void&nbsp;HiSysEventQueryCallBack::OnQuery(const&nbsp;::std::vector&lt;std::string&gt;&amp;&nbsp;sysEvent,&nbsp;const&nbsp;::std::vector&lt;int64_t&gt;&amp;&nbsp;seq) | 接口功能：订阅事件查询中的回调。<br/>输入参数：<br/>-&nbsp;sysEvent：返回事件集合。<br/>-&nbsp;seq：事件序列集合。<br/>返回值：<br/>无。 | 
-| void&nbsp;HiSysEventQueryCallBack::OnComplete(int32_t&nbsp;reason,&nbsp;int32_t&nbsp;total) | 接口功能：订阅事件查询完成的回调。<br/>输入参数：<br/>-&nbsp;reason：查询结束返回原因，目前默认是0。<br/>-&nbsp;total：本次查询总共返回的事件总数量。<br/>返回值：<br/>无。 | 
+| void&nbsp;HiSysEventQueryCallBack::OnQuery(const&nbsp;::std::vector&lt;std::string&gt;&amp;&nbsp;sysEvent,<br/>&nbsp;const&nbsp;::std::vector&lt;int64_t&gt;&amp;&nbsp;seq) | 接口功能：订阅事件查询中的回调。<br/>输入参数：<br/>-&nbsp;sysEvent：返回事件集合。<br/>-&nbsp;seq：事件序列集合。<br/>返回值：<br/>无。 | 
+| void&nbsp;HiSysEventQueryCallBack::OnComplete(int32_t&nbsp;reason,&nbsp;int32_t&nbsp;total) | 接口功能：订阅事件查询完成的回调。<br/>输入参数：<br/>-&nbsp;reason：查询结束返回原因，目前默认是0。<br/>-&nbsp;total：本次查询总共返回的事件总数量。<br/>返回值：<br/>无。 |
 
 
 ### 开发实例
