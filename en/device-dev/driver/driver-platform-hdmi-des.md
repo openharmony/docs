@@ -260,7 +260,7 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 | Parameter      | Description      |
 | ---------- | -------------- |
 | handle     | HDMI controller handle.|
-| attr       | Pinter to the HDR attributes       |
+| attr       | Pointer to the HDR attributes       |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
 | Negative value      | The operation failed.      |
