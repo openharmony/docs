@@ -1,7 +1,5 @@
 # Zip模块(JS端SDK接口)
 
-## 使用限制
-无。
 ## 导入模块
 
 ```javascript
@@ -9,7 +7,7 @@ import zlib from '@ohos.zlib';
 ```
 
 ## zlib.zipFile
-zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
+zipFile(inFile:string, outFile:string, options: Options): Promise\<void>
 压缩接口（Promise形式）。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -72,7 +70,7 @@ zlib.zipFile(inFile , outFile, options).then((data) => {
 
 ## zlib.unzipFile
 
-unzipFile(inFile:string, outFile:string, options: Options): Promise<void>;
+unzipFile(inFile:string, outFile:string, options: Options): Promise\<void>
 
 解压文件，解压完成返回执行结果（Promise形式）。
 

@@ -41,7 +41,7 @@
 
 | 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：this.$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。<br/> |
+| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：this.$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。 |
 
 **res-defaults.json示例：**<br/>
 

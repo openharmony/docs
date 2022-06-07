@@ -6,14 +6,14 @@ OpenHarmony 3.2 Canary1版本相较于OpenHarmony 3.1 Release版本，包管理�
 
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
-| bundleInfo | BundleInfo | readonly extensionAbilityInfo: Array<ExtensionAbilityInfo>; | 新增 |
-| hapModuleInfo | HapModuleInfo | readonly metadata: Array<Metadata>; | 新增 |
-| hapModuleInfo | HapModuleInfo | readonly extensionAbilityInfo: Array<ExtensionAbilityInfo>; | 新增 |
+| bundleInfo | BundleInfo | readonly extensionAbilityInfo: Array\<ExtensionAbilityInfo>; | 新增 |
+| hapModuleInfo | HapModuleInfo | readonly metadata: Array\<Metadata>; | 新增 |
+| hapModuleInfo | HapModuleInfo | readonly extensionAbilityInfo: Array\<ExtensionAbilityInfo>; | 新增 |
 | hapModuleInfo | HapModuleInfo | readonly mainElementName: string; | 新增 |
 | metadata | Metadata | resource: string; | 新增 |
 | metadata | Metadata | value: string; | 新增 |
 | metadata | Metadata | name: string; | 新增 |
-| ohos.bundle | bundle | function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;<br>function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array<ExtensionAbilityInfo>>): void;<br>function queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array<ExtensionAbilityInfo>>; | 新增 |
+| ohos.bundle | bundle | queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback\<Array\<ExtensionAbilityInfo>>): void;<br>queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback\<Array\<ExtensionAbilityInfo>>): void;<br>queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise\<Array\<ExtensionAbilityInfo>>; | 新增 |
 | ohos.bundle | ExtensionAbilityType | UNSPECIFIED = 9 | 新增 |
 | ohos.bundle | ExtensionAbilityType | WALLPAPER = 8 | 新增 |
 | ohos.bundle | ExtensionAbilityType | STATIC_SUBSCRIBER = 7 | 新增 |
