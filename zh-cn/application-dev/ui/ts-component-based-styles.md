@@ -48,7 +48,7 @@ struct FancyUse {
 @Entry
 @Component
 struct FancyUse {
-  @Styles function componentFancy() {
+  @Styles componentFancy() {
     .width(50)
     .height(50)
   }
