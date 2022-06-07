@@ -84,7 +84,9 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **示例：**
   
   ```js
-  request.upload({ url: 'https://patch' }).then((data) => {
+  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let uploadTask;
+  request.upload({ url: 'https://patch', files:  [file1] }).then((data) => {
       uploadTask = data;
   }).catch((err) => {
       console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
@@ -112,7 +114,9 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **示例：**
   
   ```js
-  request.upload({ url: 'https://patch' }, (err, data) => {
+  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let uploadTask;
+  request.upload({ url: 'https://patch', files:  [file1] }, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
@@ -385,6 +389,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
       downloadTask = data;
   }).catch((err) => {
@@ -413,6 +418,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
       if (err) {
@@ -456,6 +462,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -497,6 +504,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -531,6 +539,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -565,6 +574,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + JSON.stringify(err));
@@ -605,6 +615,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
@@ -645,6 +656,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
   
   ```js
+  let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
       if (err) {        
           console.error('Failed to request download. Cause:' + err);
