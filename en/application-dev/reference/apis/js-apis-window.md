@@ -148,6 +148,7 @@ Describes the window properties.
 | focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**.                |
 | touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**.                |
 | brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. |
+| dimBehindValue<sup>(deprecated)</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br> |
 | isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**.                 |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**.                     |
 | isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**.               |
@@ -170,7 +171,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
+This API is deprecated since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -203,7 +204,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow. This API uses a promise to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
+This API is deprecated since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -372,7 +373,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+This API is deprecated since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -402,7 +403,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the top window of the current application. This API uses a promise to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+This API is deprecated since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1778,6 +1779,70 @@ Sets the screen brightness for this window. This API uses a promise to return th
   });
   ```
 
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name        | Type                     | Mandatory| Description                                              |
+| -------------- | ------------------------- | ---- | -------------------------------------------------- |
+| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                        |
+
+**Example**
+
+  ```js
+  windowClass.setDimBehind(0.5, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
+  });
+  ```
+
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
+
+Sets the dimness of the window that is not on top. This API uses a promise to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name        | Type  | Mandatory| Description                                              |
+| -------------- | ------ | ---- | -------------------------------------------------- |
+| dimBehindValue | number | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
+
+**Return value**
+
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let promise = windowClass.setDimBehind(0.5);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
 ### setFocusable<sup>7+</sup>
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -1863,6 +1928,70 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
           return;
       }
       console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type                     | Mandatory| Description            |
+| --------- | ------------------------- | ---- | ---------------- |
+| touchable | boolean                   | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
+
+**Example**
+
+  ```js
+  windowClass.setOutsideTouchable(true, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  })
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
+
+Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description            |
+| --------- | ------- | ---- | ---------------- |
+| touchable | boolean | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let promise = windowClass.setOutsideTouchable(true);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
   });
   ```
 
