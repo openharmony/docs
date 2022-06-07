@@ -6,34 +6,34 @@
 ### HDMI
 
 High-definition multimedia interface (HDMI) is an interface for transmitting audio and video data from a source device, such as a DVD player or set-top box (STB), to a sink device, such as a TV or display.
-HDMI works in primary/secondary mode and usually has a source and a sink.
+HDMI usually has a source and a sink.
 The HDMI APIs provide a set of common functions for HDMI transmission, including:
 
 - Opening and closing an HDMI controller
 - Starting and stopping HDMI transmission
 - Setting audio, video, and High Dynamic Range (HDR) attributes, color depth, and AV mute
 - Reading the raw Extended Display Identification Data (EDID) from a sink
-- Registering and unregistering a callback for HDMI hot plug detect (HPD).
+- Registering and unregistering a callback for HDMI hot plug detect (HPD)
 
 ### Basic Concepts
 
 HDMI is an audio and video transmission protocol released by Hitachi, Panasonic, Philips, Silicon Image, Sony, Thomson, and Toshiba. The transmission process complies with the Transition-minimized Differential Signaling (TMDS).
 
 - TMDS is used to transmit audio, video, and various auxiliary data.
-- Display data channel (DDC) allows the TX and RX ends to obtain the sending and receiving capabilities. However, the HDMI only needs to unidirectionally obtain the capabilities of the RX end (display).
+- Display data channel (DDC) allows the TX and RX ends to obtain the transmitting and receiving capabilities. However, HDMI only needs to unidirectionally obtain the capabilities of the RX end (display).
 - Consumer Electronics Control (CEC) enables interaction between the HDMI TX and RX devices.
 - Fixed rate link (FRL) allows the maximum TMDS bandwidth to be increased from 18 Gbit/s to 48 Gbit/s.
 - High-bandwidth Digital Content Protection (HDCP) prevents copying of digital audio and video content being transmitted across devices.
-- Extended Display Identification Data (EDID), usually stored in the display firmware, provides the vendor information, EDID version, maximum image size, color settings, vendor pre-settings, frequency range limit, display name, and serial number.
+- EDID, usually stored in the display firmware, provides the vendor information, EDID version, maximum image size, color settings, vendor pre-settings, frequency range limit, display name, and serial number.
 
 ### Working Principles
 
-The HDMI source end provides +5 V and GND for DDC and CEC communication. Through the DDC, the source end obtains the sink end parameters, such as the RX capabilities. The CEC is optional. It is used to synchronize the control signals between the source and sink ends to improve user experience. There are four TMDS channels between the HDMI source and sink ends. The TMDS clock channel provides clock signals for TMDS, and the other three channels transmit audio, video, and auxiliary data. HPD is the hot plug detect port. When the sink end is connected, the source end responds by using an interrupt program.
+The HDMI source provides +5 V and GND for DDC and CEC communication. Through the DDC, the source obtains the sink parameters, such as the RX capabilities. The CEC provides an optional channel to synchronize control signals between the source and sink for better user experience. There are four TMDS channels between the HDMI source and sink. The TMDS clock channel provides clock signals for TMDS, and the other three channels transmit audio, video, and auxiliary data. HDP is the hot plug detect port. When the sink is connected, the source responds by using an interrupt service routine (ISR).
 
 The figure below shows the HDMI physical connection.
-
+ 
 **Figure 1** HDMI physical connection
-
+  
 ![](figures/HDMI_physical_connection.png "HDMI_physical_connection")
 
 ### Constraints
@@ -69,15 +69,15 @@ HDMI features high transmission rate, wide transmission bandwidth, high compatib
 
 ### How to Develop
 
-The figure below illustrates the process of using an HDMI device.
+The figure below illustrates the general HDMI development process.
 
-**Figure 2** Process of using an HDMI device
-
-![](figures/HDMI_usage_flowchart.png "HDMI_usage_flowchart")
+**Figure 2** Using HDMI driver APIs
+  
+![](figures/using-HDMI-process.png "using-HDMI-process")
 
 #### Opening an HDMI Controller
 
-Before HDMI communication, call **HdmiOpen** to open an HDMI controller.
+Before HDMI communication, call **HdmiOpen()** to open an HDMI controller.
 
 ```c
 DevHandle HdmiOpen(int16_t number);
@@ -88,11 +88,11 @@ DevHandle HdmiOpen(int16_t number);
 | Parameter      | Description            |
 | ---------- | -------------------- |
 | number     | HDMI controller ID.        |
-| **Return Value**| **Description**     |
-| NULL       | Failed to open the HDMI controller.  |
+| **Return Value**| **Description**      |
+| NULL       | The operation failed.  |
 | Controller handle| Handle of the opened HDMI controller.|
 
-Example: Open controller 0 of the two HDMI controllers (numbered 0 and 1) in the system.
+For example, open controller 0 of the two HDMI controllers (numbered 0 and 1) in the system:
 
 ```c
 DevHandle hdmiHandle = NULL; /* HDMI controller handle /
@@ -117,7 +117,7 @@ int32_t HdmiRegisterHpdCallbackFunc(DevHandle handle, struct HdmiHpdCallbackInfo
 | ---------- | ------------------ |
 | handle     | HDMI controller handle.    |
 | callback   | Pointer to the callback to be invoked to return the HPD result.|
-| **Return Value**| **Description**   |
+| **Return Value**| **Description**    |
 | 0          | The operation is successful.          |
 | Negative value      | The operation failed.          |
 
@@ -165,7 +165,7 @@ int32_t HdmiReadSinkEdid(DevHandle handle, uint8_t *buffer, uint32_t len);
 | handle     | HDMI controller handle.        |
 | buffer     | Pointer to the data buffer.            |
 | len        | Data length.              |
-| **Return Value**| **Description**       |
+| **Return Value**| **Description**        |
 | Positive integer    | Raw EDID read.|
 | Negative number or 0   | Failed to read the EDID.              |
 
@@ -194,7 +194,7 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 | ------ | -------------- |
 | handle | HDMI controller handle.|
 | attr   | Pointer to the audio attributes.      |
-| **Return Value**| **Description**   |
+| **Return Value**| **Description**    |
 | 0      | The operation is successful.      |
 | Negative value  | The operation failed.      |
 
@@ -260,7 +260,7 @@ int32_t HdmiSetHdrAttribute(DevHandle handle, struct HdmiHdrAttr *attr);
 | Parameter      | Description      |
 | ---------- | -------------- |
 | handle     | HDMI controller handle.|
-| attr       | Pinter to the HDR attributes.     |
+| attr       | Pinter to the HDR attributes       |
 | **Return Value**| **Description**|
 | 0          | The operation is successful.      |
 | Negative value      | The operation failed.      |
@@ -295,7 +295,7 @@ int32_t HdmiAvmuteSet(DevHandle handle, bool enable);
 | ---------- | ----------------- |
 | handle     | HDMI controller handle.   |
 | enable     | Whether to enable the AV mute feature.|
-| **Return Value**| **Description**  |
+| **Return Value**| **Description**   |
 | 0          | The operation is successful.         |
 | Negative value      | The operation failed.         |
 
