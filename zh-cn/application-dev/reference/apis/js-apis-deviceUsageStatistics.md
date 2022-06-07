@@ -71,7 +71,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 
-根据bundleName，查询对应的应用分组，使用Promise形式返回其应用分组。
+可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用Promise形式返回其应用分组。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -81,7 +81,7 @@ queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 
 | 参数名                  | 类型   | 必填 | 说明                                                         |
 | ----------------------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName<sup>9+</sup> | string | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+| bundleName<sup>9+</sup> | string | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
 
 **返回值**：
 
@@ -110,7 +110,7 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>): void
 
-根据bundleName，查询对应的应用分组，使用callback形式返回其应用分组。
+可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用callback形式返回其应用分组。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -120,7 +120,7 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>
 
 | 参数名                  | 类型                                                         | 必填 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName<sup>9+</sup> | string                                                       | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+| bundleName<sup>9+</sup> | string                                                       | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
 | callback                | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
 
 **示例**：

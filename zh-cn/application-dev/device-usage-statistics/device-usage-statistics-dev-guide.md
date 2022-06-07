@@ -25,12 +25,12 @@ import stats from '@ohos.bundleState';
 | function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 |
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback<boolean>): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，callback形式 |
-| function setBundleGroup(bundleName : string, newGroup : GroupType): Promise<boolean>; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，promise形式 |
-| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，callback |
-| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，promise |
-| function unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void | 解除应用分组监听回调，callback形式 |
-| function unRegisterGroupCallBack(): Promise<boolean>; | 解除应用分组监听回调，promise形式 |
+| function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback<boolean>): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
+| function setBundleGroup(bundleName : string, newGroup : GroupType): Promise<boolean>; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
+| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
+| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
+| function unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void | 解除应用分组监听回调，以callback形式返回。 |
+| function unRegisterGroupCallBack(): Promise<boolean>; | 解除应用分组监听回调，以promise形式返回。 |
 
 ## 开发步骤
 
