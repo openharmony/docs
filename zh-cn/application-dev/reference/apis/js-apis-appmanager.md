@@ -160,7 +160,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
 
@@ -168,9 +168,9 @@ getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInfo>> | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -184,7 +184,7 @@ getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
 获取有关运行进程的信息。
 
@@ -192,9 +192,9 @@ getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): voi
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | 否 | 获取有关运行进程的信息。 |
 
 **示例：**
     

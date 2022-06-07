@@ -16,13 +16,11 @@ isWifiActive(): boolean
 
 查询WLAN是否已激活。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:已激活，&nbsp;false:未激活。 |
@@ -34,13 +32,11 @@ scan(): boolean
 
 启动WLAN扫描。
 
-- 需要权限：
-  ohos.permission.SET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.SET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
@@ -52,13 +48,11 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 获取扫描结果，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO以及ohos.permission.GET_WIFI_PEERS_MAC和ohos.permission.LOCATION权限中的至少一个。
+**需要权限：** ohos.permission.GET_WIFI_INFO以及ohos.permission.GET_WIFI_PEERS_MAC和ohos.permission.LOCATION权限中的至少一个。
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | 返回扫描到的热点列表。 |
@@ -70,18 +64,16 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 获取扫描结果，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO以及ohos.permission.GET_WIFI_PEERS_MAC和ohos.permission.LOCATION权限中的至少一个。
+**需要权限：** ohos.permission.GET_WIFI_INFO以及ohos.permission.GET_WIFI_PEERS_MAC和ohos.permission.LOCATION权限中的至少一个。
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 扫描到的热点列表结果回调函数。 |
 
-- 示例
+**示例：**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -160,18 +152,18 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 添加不可信网络配置，使用promise方式作为异步方法。
 
-- 需要权限：
+**需要权限：**
   ohos.permission.SET_WIFI_INFO
 
-- 系统能力：
+**系统能力：**
   SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | 是 | WLAN配置信息。 |
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 操作结果，ture: 成功， false: 失败。 |
@@ -195,13 +187,11 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
 
 添加不可信网络配置，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.SET_WIFI_INFO
+**需要权限：** ohos.permission.SET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | 是 | WLAN配置信息。 |
@@ -214,18 +204,16 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 移除不可信网络配置，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.SET_WIFI_INFO
+**需要权限：** ohos.permission.SET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | 是 | WLAN配置信息。 |
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 操作结果，ture: 成功， false: 失败。 |
@@ -237,13 +225,11 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 
 移除不可信网络配置，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.SET_WIFI_INFO
+**需要权限：** ohos.permission.SET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | 是 | WLAN配置信息。 |
@@ -256,19 +242,17 @@ getSignalLevel(rssi: number, band: number): number
 
 查询WLAN信号强度。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数：
+**参数：**：
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
   | band | number | 是 | WLAN接入点的频段。 |
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
@@ -280,13 +264,11 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 获取WLAN连接信息，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiLinkedInfo](#WifiLinkedInfo)&gt; | WLAN连接的相关信息。 |
@@ -298,18 +280,16 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 获取WLAN连接信息，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#WifiLinkedInfo)&gt; | 是 | WLAN连接信息结果回调函数。 |
 
-- 示例
+**示例：**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -370,13 +350,11 @@ isConnected(): boolean
 
 查询WLAN是否已连接。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:已连接，&nbsp;false:未连接。 |
@@ -388,35 +366,35 @@ isFeatureSupported(featureId: number): boolean
 
 判断设备是否支持相关WLAN特性。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.Core
+**系统能力：** SystemCapability.Communication.WiFi.Core
 
-- 参数：
+**参数：**
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | featureId | number | 是 | 特性ID值。 |
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:支持，&nbsp;false:不支持。 |
 
-- 特性ID值枚举。
-  | 枚举值 | 说明 |
-  | -------- | -------- |
-  | 0x0001 | 基础结构模式特性。 |
-  | 0x0002 | 5&nbsp;GHz带宽特性。 |
-  | 0x0004 | GAS/ANQP特性。 |
-  | 0x0008 | Wifi-Direct特性。 |
-  | 0x0010 | Soft&nbsp;AP特性。 |
-  | 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
-  | 0x8000 | AP&nbsp;STA共存特性。 |
-  | 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
-  | 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
-  | 0x20000000 | 增强开放特性。 |
+**特性ID值枚举：**
+
+| 枚举值 | 说明 |
+| -------- | -------- |
+| 0x0001 | 基础结构模式特性。 |
+| 0x0002 | 5&nbsp;GHz带宽特性。 |
+| 0x0004 | GAS/ANQP特性。 |
+| 0x0008 | Wifi-Direct特性。 |
+| 0x0010 | Soft&nbsp;AP特性。 |
+| 0x0040 | Wi-Fi&nbsp;AWare组网特性。 |
+| 0x8000 | AP&nbsp;STA共存特性。 |
+| 0x8000000 | WPA3-Personal&nbsp;SAE特性。 |
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x20000000 | 增强开放特性。 |
 
 
 ## wifi.getIpInfo<sup>7+</sup>
@@ -425,13 +403,11 @@ getIpInfo(): IpInfo
 
 获取IP信息。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | [IpInfo](#IpInfo) | IP信息。 |
@@ -458,13 +434,11 @@ getCountryCode(): string
 
 获取国家码信息。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.Core
+**系统能力：** SystemCapability.Communication.WiFi.Core
 
-- 返回值：
+**返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
   | string | 国家码。 |
@@ -476,13 +450,11 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 获取P2P连接信息，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pLinkedInfo](#WifiP2pLinkedInfo)&gt; | P2P连接信息。 |
@@ -494,13 +466,11 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 
 获取P2P连接信息，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#WifiP2pLinkedInfo)&gt; | 是 | P2P连接信息结果回调函数。 |
@@ -533,13 +503,11 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 获取P2P当前组信息，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | 当前组信息。 |
@@ -551,13 +519,11 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 获取P2P当前组信息，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | 是 | 当前组信息的回调函数。 |
@@ -610,13 +576,11 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 获取P2P对端设备列表信息，使用promise方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | 对端设备列表信息。 |
@@ -628,13 +592,11 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 获取P2P对端设备列表信息，使用callback方式作为异步方法。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | 是 | 对端设备列表信息回调函数。 |
@@ -646,18 +608,17 @@ createGroup(config: WifiP2PConfig): boolean;
 
 创建群组。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数：
+**参数：**
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#WifiP2PConfig) | 是 | 群组配置信息。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
@@ -691,13 +652,11 @@ removeGroup(): boolean;
 
 移除群组。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -709,24 +668,23 @@ p2pConnect(config: WifiP2PConfig): boolean;
 
 执行P2P连接。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数：
+**参数：**
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#WifiP2PConfig) | 是 | 连接配置信息。 |
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 
-- 示例
+**示例：**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -799,13 +757,11 @@ p2pCancelConnect(): boolean;
 
 取消P2P连接。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:取消连接操作执行成功，&nbsp;false:取消连接操作执行失败。 |
@@ -817,13 +773,11 @@ startDiscoverDevices(): boolean;
 
 开始发现设备。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -835,13 +789,11 @@ stopDiscoverDevices(): boolean;
 
 停止发现设备。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 返回值：
+**返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，操作执行失败。 |
@@ -853,25 +805,24 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 注册WLAN状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- 状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | 未激活。 |
-  | 1 | 已激活。 |
-  | 2 | 激活中。 |
-  | 3 | 去激活中。 |
+**状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 0 | 未激活。 |
+| 1 | 已激活。 |
+| 2 | 激活中。 |
+| 3 | 去激活中。 |
 
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
@@ -880,19 +831,17 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 取消注册WLAN状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
 
-- 示例
+**示例：**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -915,23 +864,22 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 注册WLAN连接状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- 连接状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | 已断开。 |
-  | 1 | 已连接。 |
+**连接状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 0 | 已断开。 |
+| 1 | 已连接。 |
 
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
@@ -940,13 +888,11 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
 取消注册WLAN连接状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
@@ -959,23 +905,22 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 注册扫描状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiScanStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- 扫描状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | 扫描失败。 |
-  | 1 | 扫描成功。 |
+**扫描状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 0 | 扫描失败。 |
+| 1 | 扫描成功。 |
 
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
@@ -984,13 +929,11 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
 取消注册扫描状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
@@ -1004,13 +947,11 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
 注册RSSI状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
@@ -1023,13 +964,11 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 取消注册RSSI状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
@@ -1042,25 +981,24 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 
 注册热点状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.AP.Core
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- 热点状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | 未激活。 |
-  | 1 | 已激活。 |
-  | 2 | 激活中。 |
-  | 3 | 去激活中。 |
+**热点状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 0 | 未激活。 |
+| 1 | 已激活。 |
+| 2 | 激活中。 |
+| 3 | 去激活中。 |
 
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
@@ -1069,13 +1007,11 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
 取消注册热点状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.AP.Core
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
@@ -1088,26 +1024,25 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
 注册P2P开关状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- P2P状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 1 | 空闲。 |
-  | 2 | 打开中。 |
-  | 3 | 已打开。 |
-  | 4 | 关闭中。 |
-  | 5 | 已关闭。 |
+**P2P状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 1 | 空闲。 |
+| 2 | 打开中。 |
+| 3 | 已打开。 |
+| 4 | 关闭中。 |
+| 5 | 已关闭。 |
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
@@ -1115,13 +1050,11 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
 取消注册P2P开关状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
@@ -1134,13 +1067,11 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 
 注册P2P连接状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
@@ -1153,13 +1084,11 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 取消注册P2P连接状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
@@ -1172,13 +1101,11 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
 注册P2P设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
@@ -1191,13 +1118,11 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.LOCATION
+**需要权限：** ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
@@ -1210,13 +1135,11 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 注册P2P对端设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
@@ -1229,13 +1152,11 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 取消注册P2P对端设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.LOCATION
+**需要权限：** ohos.permission.LOCATION
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
@@ -1248,13 +1169,11 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
 注册P2P永久组状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
@@ -1267,13 +1186,11 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
 取消注册P2P永久组状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
@@ -1286,23 +1203,22 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
 注册发现设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
   | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数。 |
 
-- 发现设备状态改变事件的枚举。
-  | **枚举值** | **说明** |
-  | -------- | -------- |
-  | 0 | 初始状态。 |
-  | 1 | 发现成功。 |
+**发现设备状态改变事件的枚举：**
+
+| **枚举值** | **说明** |
+| -------- | -------- |
+| 0 | 初始状态。 |
+| 1 | 发现成功。 |
 
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
@@ -1311,13 +1227,11 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
 取消注册发现设备状态改变事件。
 
-- 需要权限：
-  ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO
 
-- 系统能力：
-  SystemCapability.Communication.WiFi.P2P
+**系统能力：** SystemCapability.Communication.WiFi.P2P
 
-- 参数
+**参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
