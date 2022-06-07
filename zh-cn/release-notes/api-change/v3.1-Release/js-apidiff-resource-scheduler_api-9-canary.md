@@ -22,12 +22,12 @@ OpenHarmony 3.2 Canary1版本相较于OpenHarmony 3.1 Release版本，资源调�
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_WIFI | 新增 |
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_MOBILE | 新增 |
 | ohos.workScheduler | NetworkType | NETWORK_TYPE_ANY = 0 | 新增 |
-| ohos.workScheduler | workScheduler | function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;<br>function isLastWorkTimeOut(workId: number): Promise<boolean>; | 新增 |
-| ohos.workScheduler | workScheduler | function stopAndClearWorks(): boolean; | 新增 |
-| ohos.workScheduler | workScheduler | function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;<br>function obtainAllWorks(): Promise<Array<WorkInfo>>; | 新增 |
-| ohos.workScheduler | workScheduler | function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;<br>function getWorkStatus(workId: number): Promise<WorkInfo>; | 新增 |
-| ohos.workScheduler | workScheduler | function stopWork(work: WorkInfo, needCancel?: boolean): boolean; | 新增 |
-| ohos.workScheduler | workScheduler | function startWork(work: WorkInfo): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean;<br>isLastWorkTimeOut(workId: number): Promise\<boolean>; | 新增 |
+| ohos.workScheduler | workScheduler | stopAndClearWorks(): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>;<br>obtainAllWorks(): Promise\<Array\<WorkInfo>>; | 新增 |
+| ohos.workScheduler | workScheduler | getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void;<br>getWorkStatus(workId: number): Promise\<WorkInfo>; | 新增 |
+| ohos.workScheduler | workScheduler | stopWork(work: WorkInfo, needCancel?: boolean): boolean; | 新增 |
+| ohos.workScheduler | workScheduler | startWork(work: WorkInfo): boolean; | 新增 |
 | ohos.workScheduler | WorkInfo | idleWaitTime?: number; | 新增 |
 | ohos.workScheduler | WorkInfo | isDeepIdle?: boolean; | 新增 |
 | ohos.workScheduler | WorkInfo | repeatCount?: number; | 新增 |

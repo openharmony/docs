@@ -29,7 +29,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，位置服务�
 | ohos.geolocation | LocationRequestPriority | ACCURACY | 新增 |
 | ohos.geolocation | LocationRequestPriority | UNSET = 0x200 | 新增 |
 | ohos.geolocation | Location | additionSize?: number; | 新增 |
-| ohos.geolocation | Location | additions?: Array<string>; | 新增 |
+| ohos.geolocation | Location | additions?: Array\<string>; | 新增 |
 | ohos.geolocation | Location | timeSinceBoot: number; | 新增 |
 | ohos.geolocation | Location | direction: number; | 新增 |
 | ohos.geolocation | Location | timeStamp: number; | 新增 |
@@ -48,7 +48,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，位置服务�
 | ohos.geolocation | LocationRequest | scenario?: LocationRequestScenario; | 新增 |
 | ohos.geolocation | LocationRequest | priority?: LocationRequestPriority; | 新增 |
 | ohos.geolocation | GeoAddress | descriptionsSize?: number; | 新增 |
-| ohos.geolocation | GeoAddress | descriptions?: Array<string>; | 新增 |
+| ohos.geolocation | GeoAddress | descriptions?: Array\<string>; | 新增 |
 | ohos.geolocation | GeoAddress | addressUrl?: string; | 新增 |
 | ohos.geolocation | GeoAddress | phoneNumber?: string; | 新增 |
 | ohos.geolocation | GeoAddress | postalCode?: string; | 新增 |
@@ -85,31 +85,31 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，位置服务�
 | ohos.geolocation | GeofenceRequest | priority: LocationRequestPriority; | 新增 |
 | ohos.geolocation | CachedGnssLocationsRequest | wakeUpCacheQueueFull: boolean; | 新增 |
 | ohos.geolocation | CachedGnssLocationsRequest | reportingPeriodSec: number; | 新增 |
-| ohos.geolocation | SatelliteStatusInfo | carrierFrequencies: Array<number>; | 新增 |
-| ohos.geolocation | SatelliteStatusInfo | azimuths: Array<number>; | 新增 |
-| ohos.geolocation | SatelliteStatusInfo | altitudes: Array<number>; | 新增 |
-| ohos.geolocation | SatelliteStatusInfo | carrierToNoiseDensitys: Array<number>; | 新增 |
-| ohos.geolocation | SatelliteStatusInfo | satelliteIds: Array<number>; | 新增 |
+| ohos.geolocation | SatelliteStatusInfo | carrierFrequencies: Array\<number>; | 新增 |
+| ohos.geolocation | SatelliteStatusInfo | azimuths: Array\<number>; | 新增 |
+| ohos.geolocation | SatelliteStatusInfo | altitudes: Array\<number>; | 新增 |
+| ohos.geolocation | SatelliteStatusInfo | carrierToNoiseDensitys: Array\<number>; | 新增 |
+| ohos.geolocation | SatelliteStatusInfo | satelliteIds: Array\<number>; | 新增 |
 | ohos.geolocation | SatelliteStatusInfo | satellitesNumber: number; | 新增 |
-| ohos.geolocation | geolocation | function sendCommand(command: LocationCommand, callback: AsyncCallback<boolean>) : void;<br>function sendCommand(command: LocationCommand) : Promise<boolean>; | 新增 |
-| ohos.geolocation | geolocation | function flushCachedGnssLocations(callback: AsyncCallback<boolean>) : void;<br>function flushCachedGnssLocations() : Promise<boolean>; | 新增 |
-| ohos.geolocation | geolocation | function getCachedGnssLocationsSize(callback: AsyncCallback<number>) : void;<br>function getCachedGnssLocationsSize() : Promise<number>; | 新增 |
-| ohos.geolocation | geolocation | function isGeoServiceAvailable(callback: AsyncCallback<boolean>) : void;<br>function isGeoServiceAvailable() : Promise<boolean>; | 新增 |
-| ohos.geolocation | geolocation | function getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;<br>function getAddressesFromLocationName(request: GeoCodeRequest) : Promise<Array<GeoAddress>>; | 新增 |
-| ohos.geolocation | geolocation | function getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;<br>function getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise<Array<GeoAddress>>; | 新增 |
-| ohos.geolocation | geolocation | function requestEnableLocation(callback: AsyncCallback<boolean>) : void;<br>function requestEnableLocation() : Promise<boolean>; | 新增 |
-| ohos.geolocation | geolocation | function isLocationEnabled(callback: AsyncCallback<boolean>) : void;<br>function isLocationEnabled() : Promise<boolean>; | 新增 |
-| ohos.geolocation | geolocation | function getLastLocation(callback: AsyncCallback<Location>) : void;<br>function getLastLocation() : Promise<Location>; | 新增 |
-| ohos.geolocation | geolocation | function getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback<Location>) : void;<br>function getCurrentLocation(callback: AsyncCallback<Location>) : void;<br>function getCurrentLocation(request?: CurrentLocationRequest) : Promise<Location>; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'nmeaMessageChange', callback?: Callback<string>) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'nmeaMessageChange', callback: Callback<string>) : void; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'gnssStatusChange', callback?: Callback<SatelliteStatusInfo>) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'gnssStatusChange', callback: Callback<SatelliteStatusInfo>) : void; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'cachedGnssLocationsReporting', callback?: Callback<Array<Location>>) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback<Array<Location>>) : void; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'locationServiceState', callback?: Callback<boolean>) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'locationServiceState', callback: Callback<boolean>) : void; | 新增 |
-| ohos.geolocation | geolocation | function off(type: 'locationChange', callback?: Callback<Location>) : void; | 新增 |
-| ohos.geolocation | geolocation | function on(type: 'locationChange', request: LocationRequest, callback: Callback<Location>) : void; | 新增 |
+| ohos.geolocation | geolocation | sendCommand(command: LocationCommand, callback: AsyncCallback\<boolean>) : void;<br>sendCommand(command: LocationCommand) : Promise\<boolean>; | 新增 |
+| ohos.geolocation | geolocation | flushCachedGnssLocations(callback: AsyncCallback\<boolean>) : void;<br>flushCachedGnssLocations() : Promise\<boolean>; | 新增 |
+| ohos.geolocation | geolocation | getCachedGnssLocationsSize(callback: AsyncCallback\<number>) : void;<br>getCachedGnssLocationsSize() : Promise\<number>; | 新增 |
+| ohos.geolocation | geolocation | isGeoServiceAvailable(callback: AsyncCallback\<boolean>) : void;<br>isGeoServiceAvailable() : Promise\<boolean>; | 新增 |
+| ohos.geolocation | geolocation | getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback\<Array\<GeoAddress>>) : void;<br>getAddressesFromLocationName(request: GeoCodeRequest) : Promise\<Array\<GeoAddress>>; | 新增 |
+| ohos.geolocation | geolocation | getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback\<Array\<GeoAddress>>) : void;<br>getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise\<Array\<GeoAddress>>; | 新增 |
+| ohos.geolocation | geolocation | requestEnableLocation(callback: AsyncCallback\<boolean>) : void;<br>requestEnableLocation() : Promise\<boolean>; | 新增 |
+| ohos.geolocation | geolocation | isLocationEnabled(callback: AsyncCallback\<boolean>) : void;<br>isLocationEnabled() : Promise\<boolean>; | 新增 |
+| ohos.geolocation | geolocation | getLastLocation(callback: AsyncCallback\<Location>) : void;<br>getLastLocation() : Promise\<Location>; | 新增 |
+| ohos.geolocation | geolocation | getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback\<Location>) : void;<br>getCurrentLocation(callback: AsyncCallback\<Location>) : void;<br>getCurrentLocation(request?: CurrentLocationRequest) : Promise\<Location>; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'nmeaMessageChange', callback?: Callback\<string>) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'nmeaMessageChange', callback: Callback\<string>) : void; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'gnssStatusChange', callback?: Callback\<SatelliteStatusInfo>) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'gnssStatusChange', callback: Callback\<SatelliteStatusInfo>) : void; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'cachedGnssLocationsReporting', callback?: Callback\<Array\<Location>>) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback\<Array\<Location>>) : void; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'locationServiceState', callback?: Callback\<boolean>) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'locationServiceState', callback: Callback\<boolean>) : void; | 新增 |
+| ohos.geolocation | geolocation | off(type: 'locationChange', callback?: Callback\<Location>) : void; | 新增 |
+| ohos.geolocation | geolocation | on(type: 'locationChange', request: LocationRequest, callback: Callback\<Location>) : void; | 新增 |
