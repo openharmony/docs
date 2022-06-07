@@ -227,7 +227,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 
-返回formInfo#FormState对象。
+卡片提供方接收查询卡片状态通知接口。默认返回卡片初始状态。
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -235,7 +235,7 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | 否 | 返回formInfo#FormState对象。 | 
+  | want | [Want](js-apis-application-Want.md) | 否 | want表示获取卡片状态的描述。描述包括包名称、能力名称、模块名称、卡片名和卡片维度。 | 
 
 **示例：**
     
