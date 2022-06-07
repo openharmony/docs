@@ -20,6 +20,8 @@ import Ability from '@ohos.application.Ability';
 | context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
 | launchWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability启动时的参数。 | 
 | lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
+| callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
+
 
 
 ## Ability.onCreate
@@ -261,7 +263,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 dump(params: Array\<string>): Array\<string>;
 
-指示from命令的参数。
+转储客户端信息时调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -269,7 +271,7 @@ dump(params: Array\<string>): Array\<string>;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | 是 | 指示from命令的参数。| 
+  | params | Array\<string> | 是 | 表示命令形式的参数。| 
 
 **示例：**
     
@@ -475,7 +477,7 @@ release(): void;
 
 onRelease(callback: OnReleaseCallBack): void;
 
-注册通用组件服务端Stub断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
