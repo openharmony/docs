@@ -157,7 +157,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 2. **设置排版风格**。
 
     ```c++
-    // 选择左对齐/居中对齐等排版属性
+    // 选择从左到右/左对齐等排版属性
     OH_Drawing_TypographyStyle* typoStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextDirection(typoStyle, TEXT_DIRECTION_LTR);
     OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
