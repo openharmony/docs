@@ -191,9 +191,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -keystorePwd                       # 密钥库口令，可选项
           ├── -outFile                           # 输出证书文件，可选项，如果不填，则直接输出到控制台
 
-9.ProvisionProfile文件签名
+9.profile文件签名
 
-    sign-profile : ProvisionProfile文件签名
+    sign-profile : profile文件签名
           ├── -mode            # 签名模式，必填项，包括localSign，remoteSign
           ├── -keyAlias        # 密钥别名，必填项
           ├── -keyPwd          # 密钥口令，可选项
@@ -204,9 +204,9 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -keystorePwd     # 密钥库口令，可选项
           ├── -outFile         # 输出签名后的Provision Profile文件，p7b格式，必填项
 
-10.ProvisionProfile文件验签
+10.profile文件验签
 
-     verify-profile : ProvisionProfile文件验签
+     verify-profile : profile文件验签
            ├── -inFile       # 已签名的Provision Profile文件，p7b格式，必填项
            ├── -outFil       # 验证结果文件（包含验证结果和profile内容），json格式，可选项；如果不填，则直接输出到控制台
 
@@ -350,6 +350,7 @@ java -jar hap-sign-tool.jar sign-app -keyAlias "oh-app1-key-v1" -signAlg "SHA256
          ├── -keystorePwd      # 密钥库口令，与第一步的密钥库口令保持一致
 
  
+
 
 ## 常见问题
 
