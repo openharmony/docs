@@ -1,6 +1,6 @@
 # DataSharePredicates
 
-**谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的限制条件，经常被应用在更新数据(Update)和查询数据(Query)中。
+**谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))和查询数据([query](js-apis-data-dataShare.md#query))中。
 
 >**说明：** 
 >
@@ -179,16 +179,16 @@ dataSharePredicates.equalTo("NAME", "lisi")
 
 contains(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为String且value包含指定值的字段。目前仅RDB支持该谓词。
+该接口用于配置谓词以匹配数据类型为string且值包含指定的字段。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的值。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| field  | string | 是   | 数据库表中的列名。   |
+| value  | string | 是   | 指示值中包含该字段。 |
 
 **返回值：**
 
@@ -207,7 +207,7 @@ dataSharePredicates.contains("NAME", "os")
 
 beginsWith(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为String且值以指定字符串开头的字段。目前仅RDB支持该谓词。
+该接口用于配置谓词以匹配数据类型为string且值以指定字符串起始的字段。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -216,7 +216,7 @@ beginsWith(field: string, value: string): DataSharePredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的值。 |
+| value  | string | 是   | 指示值以该字符串起始。 |
 
 **返回值：**
 
@@ -235,7 +235,7 @@ dataSharePredicates.beginsWith("NAME", "os")
 
 endsWith(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为String且值以指定字符串结尾的字段。目前仅RDB支持该谓词。
+该接口用于配置谓词以匹配数据类型为string且值以指定字符串结尾的字段。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -244,7 +244,7 @@ endsWith(field: string, value: string): DataSharePredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的值。 |
+| value  | string | 是   | 指示值以该字符串结尾。 |
 
 **返回值：**
 
@@ -409,7 +409,7 @@ dataSharePredicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-该接口用于将谓词配置为匹配数据类型为ValueType且value在指定范围内的指定字段。目前仅RDB支持该谓词。
+该接口用于将谓词配置为匹配数据类型为ValueType且值在指定范围内的指定字段。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -438,7 +438,7 @@ dataSharePredicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为ValueType且value超出给定范围的指定字段。目前仅RDB支持该谓词。
+该接口用于配置谓词以匹配数据类型为ValueType且值超出给定范围的指定字段。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -497,7 +497,7 @@ dataSharePredicates.greaterThan("AGE", 10)
 
 lessThan(field: string, value: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为valueType且value小于指定值的字段。
+该接口用于配置谓词以匹配数据类型为ValueType且值小于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -527,7 +527,7 @@ dataSharePredicates.lessThan("AGE", 50)
 
 greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为ValueType且value大于或等于指定值的字段。
+该接口用于配置谓词以匹配数据类型为ValueType且值大于或等于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -557,7 +557,7 @@ dataSharePredicates.greaterThanOrEqualTo("AGE", 10)
 
 lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-该接口用于配置谓词以匹配数据类型为ValueType且value小于或等于指定值的字段。
+该接口用于配置谓词以匹配数据类型为ValueType且值小于或等于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
