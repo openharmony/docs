@@ -4,7 +4,7 @@
 In the Ubuntu environment, perform the following steps to obtain the OpenHarmony source code:
 
 
-## Before You Start
+## Preparations
 
 1. Register your account with Gitee.
 
@@ -41,7 +41,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
 
-## Obtaining Source Code
+## Procedure
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
