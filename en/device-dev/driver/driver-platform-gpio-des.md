@@ -89,7 +89,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   Call **GpioRead()** to read the level of a GPIO pin.
 
   ```c
-  int32_t GpioRead(uint16_t gpio, uint16_t \*val);
+  int32_t GpioRead(uint16_t gpio, uint16_t *val);
   ```
 
     **Table 3** Description of GpioRead
@@ -151,7 +151,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   Call **GpioSetIrq()** to set the ISR function for a GPIO pin.
 
   ```c
-  int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void \*arg);
+  int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void *arg);
   ``` 
  
     **Table 5** Description of GpioSetIrq
@@ -166,13 +166,13 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   | 0 | The operation is successful.| 
   | Negative value| The operation failed.| 
 
-  > ![icon-caution.gif](/public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
   > Only one ISR function can be set for a GPIO pin. If **GpioSetIrq** is called repeatedly, the previous IRS function will be replaced.
 
   If the ISR function is no longer required, call **GpioUnsetIrq()** to cancel it.
 
   ```c
-  int32_t GpioUnsetIrq(uint16_t gpio, void \*arg);
+  int32_t GpioUnsetIrq(uint16_t gpio, void *arg);
   ``` 
 
     **Table 6** Description of GpioUnsetIrq
@@ -200,7 +200,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   | 0 | The operation is successful.| 
   | Negative value| The operation failed.| 
 
-  > ![icon-caution.gif](/public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
   > The configured ISR function can be responded only after interrupts are enabled for the GPIO pin.
 
   You can call **GpioDisableIrq** to disable interrupts for the pin.
