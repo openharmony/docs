@@ -69,69 +69,19 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
-
-查询（返回）当前调用者应用的使用优先级群组，使用Callback形式返回。
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**参数**：
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回当前调用者应用的使用优先级群组。|
-
-**示例**：
-
-  ```js
-    bundleState.queryAppUsagePriorityGroup((err, res) => {
-        if (err) {
-            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
-        }
-    });
-  ```
-
-## bundleState.queryAppUsagePriorityGroup
-
-queryAppUsagePriorityGroup(): Promise&lt;number&gt;
-
-查询（返回）当前调用者应用的使用优先级群组，使用Promise形式返回。
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**返回值**：
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 指定的Promise回调方法。查询（返回）当前调用者应用的使用优先级群组。|
-
-**示例**：
-
-  ```js
-    bundleState.queryAppUsagePriorityGroup().then( res => {
-        console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
-    });
-  ```
-
-## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
-
 queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 
 根据bundleName，查询对应的应用分组，使用Promise形式返回其应用分组。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                                                         |
-| ---------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+| 参数名                  | 类型   | 必填 | 说明                                                         |
+| ----------------------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName<sup>9+</sup> | string | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
 
 **返回值**：
 
@@ -156,7 +106,7 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+## bundleState.queryAppUsagePriorityGroup
 
 queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>): void
 
@@ -164,14 +114,14 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
-| 参数名     | 类型                                                         | 必填 | 说明                                                         |
-| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string                                                       | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
-| callback   | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
+| 参数名                  | 类型                                                         | 必填 | 说明                                                         |
+| ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName<sup>9+</sup> | string                                                       | 否   | 有参的时候查询名称为bundleName的应用的分组，没有参数则是查询自己 |
+| callback                | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
 
 **示例**：
 
@@ -581,7 +531,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
@@ -617,7 +567,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
@@ -650,7 +600,7 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promis
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
@@ -690,7 +640,7 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callbac
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
@@ -728,7 +678,7 @@ unRegisterGroupCallBack(): Promise<boolean>
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：无参数
 
@@ -756,7 +706,7 @@ unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void;
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
@@ -961,7 +911,7 @@ FA卡片的使用信息的属性集合。
 
 ### 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -1047,7 +997,7 @@ merge(toMerge: BundleStateInfo): void
 
 提供应用分组的设置类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 | 名称               | 默认值 | 说明                               |
 | ------------------ | ------ | ---------------------------------- |

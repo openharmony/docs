@@ -19,15 +19,14 @@ import stats from '@ohos.bundleState';
 | function queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void | 通过指定起始和结束时间查询应用使用时长统计信息。 |
 | function queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void | 通过指定起始和结束时间查询当前应用的事件集合。 |
 | function queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
-| function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询（返回）当前调用者应用的使用优先级群组。 |
-| function queryAppUsagePriorityGroup(bundleName？：string， callback: AsyncCallback&lt;number&gt;): void | 查询（返回）当前调用者应用或者指定应用的使用优先级群组。callback形式。 |
-| function queryAppUsagePriorityGroup(bundleName? : string): Promise<number>; | 查询（返回）当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
+| function queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void | 查询当前调用者应用或者指定应用的使用优先级群组。callback形式。 |
+| function queryAppUsagePriorityGroup(bundleName? : string): Promise<number>; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 | function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 |
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<boolean>): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，callback形式 |
-| function setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，promise形式 |
+| function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback<boolean>): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，callback形式 |
+| function setBundleGroup(bundleName : string, newGroup : GroupType): Promise<boolean>; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，promise形式 |
 | function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，callback |
 | function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，promise |
 | function unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void | 解除应用分组监听回调，callback形式 |
