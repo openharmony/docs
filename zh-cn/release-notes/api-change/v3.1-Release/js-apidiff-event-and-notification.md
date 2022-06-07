@@ -9,8 +9,8 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，事件通知�
 | notificationUserInput | NotificationUserInput | inputKey: string; | 新增 |
 | notificationTemplate | NotificationTemplate | data: {[key: string]: Object}; | 新增 |
 | notificationTemplate | NotificationTemplate | name: string; | 新增 |
-| notificationRequest | DistributedOptions | supportOperateDevices?: Array<string>; | 新增 |
-| notificationRequest | DistributedOptions | supportDisplayDevices?: Array<string>; | 新增 |
+| notificationRequest | DistributedOptions | supportOperateDevices?: Array\<string>; | 新增 |
+| notificationRequest | DistributedOptions | supportDisplayDevices?: Array\<string>; | 新增 |
 | notificationRequest | DistributedOptions | isDistributed?: boolean; | 新增 |
 | notificationRequest | NotificationRequest | readonly notificationFlags?: NotificationFlags; | 新增 |
 | notificationRequest | NotificationRequest | distributedOption?: DistributedOptions; | 新增 |
@@ -18,10 +18,10 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，事件通知�
 | notificationRequest | NotificationRequest | readonly creatorUserId?: number; | 新增 |
 | notificationRequest | NotificationRequest | groupName?: string; | 新增 |
 | notificationActionButton | NotificationActionButton | userInput?: NotificationUserInput; | 新增 |
-| ohos.notification | notification | function isDistributedEnabled(callback: AsyncCallback<boolean>): void;<br>function isDistributedEnabled(): Promise<boolean>; | 新增 |
-| ohos.notification | notification | function requestEnableNotification(callback: AsyncCallback<void>): void;<br>function requestEnableNotification(): Promise<void>; | 新增 |
-| ohos.notification | notification | function isSupportTemplate(templateName: string, callback: AsyncCallback<boolean>): void;<br>function isSupportTemplate(templateName: string): Promise<boolean>; | 新增 |
-| ohos.notification | notification | function cancelGroup(groupName: string, callback: AsyncCallback<void>): void;<br>function cancelGroup(groupName: string): Promise<void>; | 新增 |
+| ohos.notification | notification | isDistributedEnabled(callback: AsyncCallback\<boolean>): void;<br>isDistributedEnabled(): Promise\<boolean>; | 新增 |
+| ohos.notification | notification | requestEnableNotification(callback: AsyncCallback\<void>): void;<br>requestEnableNotification(): Promise\<void>; | 新增 |
+| ohos.notification | notification | isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean>): void;<br>isSupportTemplate(templateName: string): Promise\<boolean>; | 新增 |
+| ohos.notification | notification | cancelGroup(groupName: string, callback: AsyncCallback\<void>): void;<br>cancelGroup(groupName: string): Promise\<void>; | 新增 |
 | ohos.events.emitter | EventPriority | IDLE | 新增 |
 | ohos.events.emitter | EventPriority | LOW | 新增 |
 | ohos.events.emitter | EventPriority | HIGH | 新增 |
@@ -29,9 +29,9 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，事件通知�
 | ohos.events.emitter | InnerEvent | priority?: EventPriority; | 新增 |
 | ohos.events.emitter | InnerEvent | eventId: number; | 新增 |
 | ohos.events.emitter | EventData | data?: {[key: string]: any}; | 新增 |
-| ohos.events.emitter | emitter | function emit(event: InnerEvent, data?: EventData): void; | 新增 |
-| ohos.events.emitter | emitter | function off(eventId: number): void; | 新增 |
-| ohos.events.emitter | emitter | function once(event: InnerEvent, callback: Callback<EventData>): void; | 新增 |
-| ohos.events.emitter | emitter | function on(event: InnerEvent, callback: Callback<EventData>): void; | 新增 |
+| ohos.events.emitter | emitter | emit(event: InnerEvent, data?: EventData): void; | 新增 |
+| ohos.events.emitter | emitter | off(eventId: number): void; | 新增 |
+| ohos.events.emitter | emitter | once(event: InnerEvent, callback: Callback\<EventData>): void; | 新增 |
+| ohos.events.emitter | emitter | on(event: InnerEvent, callback: Callback\<EventData>): void; | 新增 |
 | ohos.commonEvent | Support | COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN" | 新增 |
 | ohos.commonEvent | Support | COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED" | 新增 |

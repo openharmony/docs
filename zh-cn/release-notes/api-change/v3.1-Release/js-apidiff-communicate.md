@@ -7,7 +7,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
 | tagSession | TagSession | getMaxSendLength(): number; | 新增 |
-| tagSession | TagSession | sendData(data: number[]): Promise<number[]>;<br>sendData(data: number[], callback: AsyncCallback<number[]>): void; | 新增 |
+| tagSession | TagSession | sendData(data: number[]): Promise\<number[]>;<br>sendData(data: number[], callback: AsyncCallback\<number[]>): void; | 新增 |
 | tagSession | TagSession | getSendDataTimeout(): number; | 新增 |
 | tagSession | TagSession | setSendDataTimeout(timeout: number): boolean; | 新增 |
 | tagSession | TagSession | isTagConnected(): boolean; | 新增 |
@@ -25,11 +25,11 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.wifiext | PowerModel | THROUGH_WALL = 2 | 新增 |
 | ohos.wifiext | PowerModel | GENERAL = 1 | 新增 |
 | ohos.wifiext | PowerModel | SLEEPING = 0 | 新增 |
-| ohos.wifiext | wifiext | function setPowerModel(model: PowerModel) : boolean | 新增 |
-| ohos.wifiext | wifiext | function getPowerModel (): Promise<PowerModel>;<br>function getPowerModel (callback: AsyncCallback<PowerModel>): void; | 新增 |
-| ohos.wifiext | wifiext | function getSupportedPowerModel(): Promise<Array<PowerModel>>;<br>function getSupportedPowerModel(callback: AsyncCallback<Array<PowerModel>>): void; | 新增 |
-| ohos.wifiext | wifiext | function disableHotspot(): boolean; | 新增 |
-| ohos.wifiext | wifiext | function enableHotspot(): boolean; | 新增 |
+| ohos.wifiext | wifiext | setPowerModel(model: PowerModel) : boolean | 新增 |
+| ohos.wifiext | wifiext | getPowerModel (): Promise\<PowerModel>;<br>getPowerModel (callback: AsyncCallback\<PowerModel>): void; | 新增 |
+| ohos.wifiext | wifiext | getSupportedPowerModel(): Promise\<Array\<PowerModel>>;<br>getSupportedPowerModel(callback: AsyncCallback\<Array\<PowerModel>>): void; | 新增 |
+| ohos.wifiext | wifiext | disableHotspot(): boolean; | 新增 |
+| ohos.wifiext | wifiext | enableHotspot(): boolean; | 新增 |
 | ohos.wifi | GroupOwnerBand | GO_BAND_5GHZ = 2 | 新增 |
 | ohos.wifi | GroupOwnerBand | GO_BAND_2GHZ = 1 | 新增 |
 | ohos.wifi | GroupOwnerBand | GO_BAND_AUTO = 0 | 新增 |
@@ -90,49 +90,49 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.wifi | WifiLinkedInfo | ssid: string; | 新增 |
 | ohos.wifi | WifiScanInfo | channelWidth: number; | 新增 |
 | ohos.wifi | WifiScanInfo | capabilities: string; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pDiscoveryChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pDiscoveryChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pPersistentGroupChange", callback?: Callback<void>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pPersistentGroupChange", callback: Callback<void>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pConnectionChange", callback?: Callback<WifiP2pLinkedInfo>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pConnectionChange", callback: Callback<WifiP2pLinkedInfo>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "p2pStateChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "p2pStateChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "hotspotStateChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "hotspotStateChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "wifiRssiChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "wifiRssiChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "wifiScanStateChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "wifiScanStateChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "wifiConnectionChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "wifiConnectionChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function off(type: "wifiStateChange", callback?: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function on(type: "wifiStateChange", callback: Callback<number>): void; | 新增 |
-| ohos.wifi | wifi | function stopDiscoverDevices(): boolean; | 新增 |
-| ohos.wifi | wifi | function startDiscoverDevices(): boolean; | 新增 |
-| ohos.wifi | wifi | function p2pCancelConnect(): boolean; | 新增 |
-| ohos.wifi | wifi | function p2pConnect(config: WifiP2PConfig): boolean; | 新增 |
-| ohos.wifi | wifi | function removeGroup(): boolean; | 新增 |
-| ohos.wifi | wifi | function createGroup(config: WifiP2PConfig): boolean; | 新增 |
-| ohos.wifi | wifi | function getP2pPeerDevices(): Promise<WifiP2pDevice[]>;<br>function getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): void; | 新增 |
-| ohos.wifi | wifi | function getCurrentGroup(): Promise<WifiP2pGroupInfo>;<br>function getCurrentGroup(callback: AsyncCallback<WifiP2pGroupInfo>): void; | 新增 |
-| ohos.wifi | wifi | function getP2pLinkedInfo(): Promise<WifiP2pLinkedInfo>;<br>function getP2pLinkedInfo(callback: AsyncCallback<WifiP2pLinkedInfo>): void; | 新增 |
-| ohos.wifi | wifi | function getCountryCode(): string; | 新增 |
-| ohos.wifi | wifi | function getIpInfo(): IpInfo; | 新增 |
-| ohos.wifi | wifi | function isFeatureSupported(featureId: number): boolean; | 新增 |
-| ohos.wifi | wifi | function isConnected(): boolean; | 新增 |
-| ohos.wifi | wifi | function getLinkedInfo(): Promise<WifiLinkedInfo>;<br>function getLinkedInfo(callback: AsyncCallback<WifiLinkedInfo>): void; | 新增 |
-| ohos.wifi | wifi | function removeUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;<br>function removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void; | 新增 |
-| ohos.wifi | wifi | function addUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;<br>function addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pDiscoveryChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pDiscoveryChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pPersistentGroupChange", callback?: Callback\<void>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pPersistentGroupChange", callback: Callback\<void>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pPeerDeviceChange", callback?: Callback\<WifiP2pDevice[]>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pPeerDeviceChange", callback: Callback\<WifiP2pDevice[]>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pDeviceChange", callback?: Callback\<WifiP2pDevice>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pDeviceChange", callback: Callback\<WifiP2pDevice>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pConnectionChange", callback?: Callback\<WifiP2pLinkedInfo>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pConnectionChange", callback: Callback\<WifiP2pLinkedInfo>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "p2pStateChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "p2pStateChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "hotspotStateChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "hotspotStateChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "wifiRssiChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "wifiRssiChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "wifiScanStateChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "wifiScanStateChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "wifiConnectionChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "wifiConnectionChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | off(type: "wifiStateChange", callback?: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | on(type: "wifiStateChange", callback: Callback\<number>): void; | 新增 |
+| ohos.wifi | wifi | stopDiscoverDevices(): boolean; | 新增 |
+| ohos.wifi | wifi | startDiscoverDevices(): boolean; | 新增 |
+| ohos.wifi | wifi | p2pCancelConnect(): boolean; | 新增 |
+| ohos.wifi | wifi | p2pConnect(config: WifiP2PConfig): boolean; | 新增 |
+| ohos.wifi | wifi | removeGroup(): boolean; | 新增 |
+| ohos.wifi | wifi | createGroup(config: WifiP2PConfig): boolean; | 新增 |
+| ohos.wifi | wifi | getP2pPeerDevices(): Promise\<WifiP2pDevice[]>;<br>getP2pPeerDevices(callback: AsyncCallback\<WifiP2pDevice[]>): void; | 新增 |
+| ohos.wifi | wifi | getCurrentGroup(): Promise\<WifiP2pGroupInfo>;<br>getCurrentGroup(callback: AsyncCallback\<WifiP2pGroupInfo>): void; | 新增 |
+| ohos.wifi | wifi | getP2pLinkedInfo(): Promise\<WifiP2pLinkedInfo>;<br>getP2pLinkedInfo(callback: AsyncCallback\<WifiP2pLinkedInfo>): void; | 新增 |
+| ohos.wifi | wifi | getCountryCode(): string; | 新增 |
+| ohos.wifi | wifi | getIpInfo(): IpInfo; | 新增 |
+| ohos.wifi | wifi | isFeatureSupported(featureId: number): boolean; | 新增 |
+| ohos.wifi | wifi | isConnected(): boolean; | 新增 |
+| ohos.wifi | wifi | getLinkedInfo(): Promise\<WifiLinkedInfo>;<br>getLinkedInfo(callback: AsyncCallback\<WifiLinkedInfo>): void; | 新增 |
+| ohos.wifi | wifi | removeUntrustedConfig(config: WifiDeviceConfig): Promise\<boolean>;<br>removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback\<boolean>): void; | 新增 |
+| ohos.wifi | wifi | addUntrustedConfig(config: WifiDeviceConfig): Promise\<boolean>;<br>addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback\<boolean>): void; | 新增 |
 | ohos.nfc.tag | TagInfo | supportedProfiles: number[]; | 新增 |
-| ohos.nfc.tag | tag | function getNfcVTag(tagInfo: TagInfo): NfcVTag | 新增 |
-| ohos.nfc.tag | tag | function getNfcFTag(tagInfo: TagInfo): NfcFTag | 新增 |
-| ohos.nfc.tag | tag | function getNfcBTag(tagInfo: TagInfo): NfcBTag | 新增 |
-| ohos.nfc.tag | tag | function getNfcATag(tagInfo: TagInfo): NfcATag | 新增 |
+| ohos.nfc.tag | tag | getNfcVTag(tagInfo: TagInfo): NfcVTag | 新增 |
+| ohos.nfc.tag | tag | getNfcFTag(tagInfo: TagInfo): NfcFTag | 新增 |
+| ohos.nfc.tag | tag | getNfcBTag(tagInfo: TagInfo): NfcBTag | 新增 |
+| ohos.nfc.tag | tag | getNfcATag(tagInfo: TagInfo): NfcATag | 新增 |
 | ohos.nfc.tag | tag | const MIFARE_ULTRALIGHT = 9; | 新增 |
 | ohos.nfc.tag | tag | const MIFARE_CLASSIC = 8; | 新增 |
 | ohos.nfc.tag | tag | const NDEF = 6; | 新增 |
@@ -141,33 +141,33 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.nfc.tag | tag | const ISO_DEP = 3; | 新增 |
 | ohos.nfc.tag | tag | const NFC_B = 2; | 新增 |
 | ohos.nfc.tag | tag | const NFC_A = 1; | 新增 |
-| ohos.nfc.controller | nfcController | function getNfcState(): NfcState | 新增 |
-| ohos.nfc.controller | nfcController | function isNfcOpen(): boolean | 新增 |
-| ohos.nfc.controller | nfcController | function closeNfc(): boolean | 新增 |
-| ohos.nfc.controller | nfcController | function openNfc(): boolean | 新增 |
-| ohos.nfc.controller | nfcController | function off(type: "nfcStateChange", callback?: Callback<NfcState>): void | 新增 |
-| ohos.nfc.controller | nfcController | function on(type: "nfcStateChange", callback: Callback<NfcState>): void | 新增 |
-| ohos.nfc.controller | nfcController | function isNfcAvailable(): boolean | 新增 |
+| ohos.nfc.controller | nfcController | getNfcState(): NfcState | 新增 |
+| ohos.nfc.controller | nfcController | isNfcOpen(): boolean | 新增 |
+| ohos.nfc.controller | nfcController | closeNfc(): boolean | 新增 |
+| ohos.nfc.controller | nfcController | openNfc(): boolean | 新增 |
+| ohos.nfc.controller | nfcController | off(type: "nfcStateChange", callback?: Callback\<NfcState>): void | 新增 |
+| ohos.nfc.controller | nfcController | on(type: "nfcStateChange", callback: Callback\<NfcState>): void | 新增 |
+| ohos.nfc.controller | nfcController | isNfcAvailable(): boolean | 新增 |
 | ohos.nfc.controller | NfcState | STATE_TURNING_OFF = 4 | 新增 |
 | ohos.nfc.controller | NfcState | STATE_ON = 3 | 新增 |
 | ohos.nfc.controller | NfcState | STATE_TURNING_ON = 2 | 新增 |
 | ohos.nfc.controller | NfcState | STATE_OFF = 1 | 新增 |
 | ohos.nfc.cardEmulation | HceService | sendResponse(responseApdu: number[]): void; | 新增 |
-| ohos.nfc.cardEmulation | HceService | on(type: "hceCmd", callback: AsyncCallback<number[]>): void; | 新增 |
+| ohos.nfc.cardEmulation | HceService | on(type: "hceCmd", callback: AsyncCallback\<number[]>): void; | 新增 |
 | ohos.nfc.cardEmulation | HceService | stopHCE(): boolean; | 新增 |
 | ohos.nfc.cardEmulation | HceService | startHCE(aidList: string[]): boolean; | 新增 |
-| ohos.nfc.cardEmulation | cardEmulation | function isSupported(feature: number): boolean; | 新增 |
+| ohos.nfc.cardEmulation | cardEmulation | isSupported(feature: number): boolean; | 新增 |
 | ohos.nfc.cardEmulation | FeatureType | ESE = 2 | 新增 |
 | ohos.nfc.cardEmulation | FeatureType | UICC = 1 | 新增 |
 | ohos.nfc.cardEmulation | FeatureType | HCE = 0 | 新增 |
 | ohos.connectedTag | NfcRfType | NFC_RF_ENTER = 1 | 新增 |
 | ohos.connectedTag | NfcRfType | NFC_RF_LEAVE = 0 | 新增 |
-| ohos.connectedTag | connectedTag | function off(type: "notify", callback?:Callback<number>): void; | 新增 |
-| ohos.connectedTag | connectedTag | function on(type: "notify", callback: Callback<number>): void; | 新增 |
-| ohos.connectedTag | connectedTag | function writeNdefTag(data: string): Promise<void>;<br>function writeNdefTag(data: string, callback: AsyncCallback<void>): void; | 新增 |
-| ohos.connectedTag | connectedTag | function readNdefTag(): Promise<string>;<br>function readNdefTag(callback: AsyncCallback<string>): void; | 新增 |
-| ohos.connectedTag | connectedTag | function uninit(): boolean; | 新增 |
-| ohos.connectedTag | connectedTag | function init(): boolean; | 新增 |
+| ohos.connectedTag | connectedTag | off(type: "notify", callback?:Callback\<number>): void; | 新增 |
+| ohos.connectedTag | connectedTag | on(type: "notify", callback: Callback\<number>): void; | 新增 |
+| ohos.connectedTag | connectedTag | writeNdefTag(data: string): Promise\<void>;<br>writeNdefTag(data: string, callback: AsyncCallback\<void>): void; | 新增 |
+| ohos.connectedTag | connectedTag | readNdefTag(): Promise\<string>;<br>readNdefTag(callback: AsyncCallback\<string>): void; | 新增 |
+| ohos.connectedTag | connectedTag | uninit(): boolean; | 新增 |
+| ohos.connectedTag | connectedTag | init(): boolean; | 新增 |
 | ohos.bluetooth | ProfileId | PROFILE_HANDS_FREE_AUDIO_GATEWAY = 4 | 新增 |
 | ohos.bluetooth | ProfileId | PROFILE_A2DP_SOURCE = 1 | 新增 |
 | ohos.bluetooth | PlayingState | STATE_PLAYING | 新增 |
@@ -317,9 +317,9 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.bluetooth | ServiceData | serviceUuid: string; | 新增 |
 | ohos.bluetooth | ManufactureData | manufactureValue: ArrayBuffer; | 新增 |
 | ohos.bluetooth | ManufactureData | manufactureId: number; | 新增 |
-| ohos.bluetooth | AdvertiseData | serviceData: Array<ServiceData>; | 新增 |
-| ohos.bluetooth | AdvertiseData | manufactureData: Array<ManufactureData>; | 新增 |
-| ohos.bluetooth | AdvertiseData | serviceUuids: Array<string>; | 新增 |
+| ohos.bluetooth | AdvertiseData | serviceData: Array\<ServiceData>; | 新增 |
+| ohos.bluetooth | AdvertiseData | manufactureData: Array\<ManufactureData>; | 新增 |
+| ohos.bluetooth | AdvertiseData | serviceUuids: Array\<string>; | 新增 |
 | ohos.bluetooth | AdvertiseSetting | connectable?: boolean; | 新增 |
 | ohos.bluetooth | AdvertiseSetting | txPower?: number; | 新增 |
 | ohos.bluetooth | AdvertiseSetting | interval?: number; | 新增 |
@@ -369,40 +369,40 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.bluetooth | BLEDescriptor | descriptorUuid: string; | 新增 |
 | ohos.bluetooth | BLEDescriptor | characteristicUuid: string; | 新增 |
 | ohos.bluetooth | BLEDescriptor | serviceUuid: string; | 新增 |
-| ohos.bluetooth | BLECharacteristic | descriptors: Array<BLEDescriptor>; | 新增 |
+| ohos.bluetooth | BLECharacteristic | descriptors: Array\<BLEDescriptor>; | 新增 |
 | ohos.bluetooth | BLECharacteristic | characteristicValue: ArrayBuffer; | 新增 |
 | ohos.bluetooth | BLECharacteristic | characteristicUuid: string; | 新增 |
 | ohos.bluetooth | BLECharacteristic | serviceUuid: string; | 新增 |
-| ohos.bluetooth | GattService | includeServices?: Array<GattService>; | 新增 |
-| ohos.bluetooth | GattService | characteristics: Array<BLECharacteristic>; | 新增 |
+| ohos.bluetooth | GattService | includeServices?: Array\<GattService>; | 新增 |
+| ohos.bluetooth | GattService | characteristics: Array\<BLECharacteristic>; | 新增 |
 | ohos.bluetooth | GattService | isPrimary: boolean; | 新增 |
 | ohos.bluetooth | GattService | serviceUuid: string; | 新增 |
-| ohos.bluetooth | GattClientDevice | off(type: "BLEConnectionStateChange", callback?: Callback<BLEConnectChangedState>): void; | 新增 |
-| ohos.bluetooth | GattClientDevice | on(type: "BLEConnectionStateChange", callback: Callback<BLEConnectChangedState>): void; | 新增 |
-| ohos.bluetooth | GattClientDevice | off(type: "BLECharacteristicChange", callback?: Callback<BLECharacteristic>): void; | 新增 |
-| ohos.bluetooth | GattClientDevice | on(type: "BLECharacteristicChange", callback: Callback<BLECharacteristic>): void; | 新增 |
+| ohos.bluetooth | GattClientDevice | off(type: "BLEConnectionStateChange", callback?: Callback\<BLEConnectChangedState>): void; | 新增 |
+| ohos.bluetooth | GattClientDevice | on(type: "BLEConnectionStateChange", callback: Callback\<BLEConnectChangedState>): void; | 新增 |
+| ohos.bluetooth | GattClientDevice | off(type: "BLECharacteristicChange", callback?: Callback\<BLECharacteristic>): void; | 新增 |
+| ohos.bluetooth | GattClientDevice | on(type: "BLECharacteristicChange", callback: Callback\<BLECharacteristic>): void; | 新增 |
 | ohos.bluetooth | GattClientDevice | setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean; | 新增 |
 | ohos.bluetooth | GattClientDevice | setBLEMtuSize(mtu: number): boolean; | 新增 |
-| ohos.bluetooth | GattClientDevice | getRssiValue(callback: AsyncCallback<number>): void;<br>getRssiValue(): Promise<number>; | 新增 |
+| ohos.bluetooth | GattClientDevice | getRssiValue(callback: AsyncCallback\<number>): void;<br>getRssiValue(): Promise\<number>; | 新增 |
 | ohos.bluetooth | GattClientDevice | writeDescriptorValue(descriptor: BLEDescriptor): boolean; | 新增 |
 | ohos.bluetooth | GattClientDevice | writeCharacteristicValue(characteristic: BLECharacteristic): boolean; | 新增 |
-| ohos.bluetooth | GattClientDevice | readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): void;<br>readDescriptorValue(descriptor: BLEDescriptor): Promise<BLEDescriptor>; | 新增 |
-| ohos.bluetooth | GattClientDevice | readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback<BLECharacteristic>): void;<br>readCharacteristicValue(characteristic: BLECharacteristic): Promise<BLECharacteristic>; | 新增 |
-| ohos.bluetooth | GattClientDevice | getServices(callback: AsyncCallback<Array<GattService>>): void;<br>getServices(): Promise<Array<GattService>>; | 新增 |
-| ohos.bluetooth | GattClientDevice | getDeviceName(callback: AsyncCallback<string>): void;<br>getDeviceName(): Promise<string>; | 新增 |
+| ohos.bluetooth | GattClientDevice | readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback\<BLEDescriptor>): void;<br>readDescriptorValue(descriptor: BLEDescriptor): Promise\<BLEDescriptor>; | 新增 |
+| ohos.bluetooth | GattClientDevice | readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback\<BLECharacteristic>): void;<br>readCharacteristicValue(characteristic: BLECharacteristic): Promise\<BLECharacteristic>; | 新增 |
+| ohos.bluetooth | GattClientDevice | getServices(callback: AsyncCallback\<Array\<GattService>>): void;<br>getServices(): Promise\<Array\<GattService>>; | 新增 |
+| ohos.bluetooth | GattClientDevice | getDeviceName(callback: AsyncCallback\<string>): void;<br>getDeviceName(): Promise\<string>; | 新增 |
 | ohos.bluetooth | GattClientDevice | close(): boolean; | 新增 |
 | ohos.bluetooth | GattClientDevice | disconnect(): boolean; | 新增 |
 | ohos.bluetooth | GattClientDevice | connect(): boolean; | 新增 |
-| ohos.bluetooth | GattServer | off(type: "connectStateChange", callback?: Callback<BLEConnectChangedState>): void; | 新增 |
-| ohos.bluetooth | GattServer | on(type: "connectStateChange", callback: Callback<BLEConnectChangedState>): void; | 新增 |
-| ohos.bluetooth | GattServer | off(type: "descriptorWrite", callback?: Callback<DescriptorWriteReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | on(type: "descriptorWrite", callback: Callback<DescriptorWriteReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | off(type: "descriptorRead", callback?: Callback<DescriptorReadReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | on(type: "descriptorRead", callback: Callback<DescriptorReadReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | off(type: "characteristicWrite", callback?: Callback<CharacteristicWriteReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | on(type: "characteristicWrite", callback: Callback<CharacteristicWriteReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | off(type: "characteristicRead", callback?: Callback<CharacteristicReadReq>): void; | 新增 |
-| ohos.bluetooth | GattServer | on(type: "characteristicRead", callback: Callback<CharacteristicReadReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | off(type: "connectStateChange", callback?: Callback\<BLEConnectChangedState>): void; | 新增 |
+| ohos.bluetooth | GattServer | on(type: "connectStateChange", callback: Callback\<BLEConnectChangedState>): void; | 新增 |
+| ohos.bluetooth | GattServer | off(type: "descriptorWrite", callback?: Callback\<DescriptorWriteReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | on(type: "descriptorWrite", callback: Callback\<DescriptorWriteReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | off(type: "descriptorRead", callback?: Callback\<DescriptorReadReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | on(type: "descriptorRead", callback: Callback\<DescriptorReadReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | off(type: "characteristicWrite", callback?: Callback\<CharacteristicWriteReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | on(type: "characteristicWrite", callback: Callback\<CharacteristicWriteReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | off(type: "characteristicRead", callback?: Callback\<CharacteristicReadReq>): void; | 新增 |
+| ohos.bluetooth | GattServer | on(type: "characteristicRead", callback: Callback\<CharacteristicReadReq>): void; | 新增 |
 | ohos.bluetooth | GattServer | sendResponse(serverResponse: ServerResponse): boolean; | 新增 |
 | ohos.bluetooth | GattServer | notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean; | 新增 |
 | ohos.bluetooth | GattServer | close(): void; | 新增 |
@@ -410,54 +410,54 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，基础通信�
 | ohos.bluetooth | GattServer | addService(service: GattService): boolean; | 新增 |
 | ohos.bluetooth | GattServer | stopAdvertising(): void; | 新增 |
 | ohos.bluetooth | GattServer | startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void; | 新增 |
-| ohos.bluetooth | BLE | function off(type: "BLEDeviceFind", callback?: Callback<Array<ScanResult>>): void; | 新增 |
-| ohos.bluetooth | BLE | function on(type: "BLEDeviceFind", callback: Callback<Array<ScanResult>>): void; | 新增 |
-| ohos.bluetooth | BLE | function stopBLEScan(): void; | 新增 |
-| ohos.bluetooth | BLE | function startBLEScan(filters: Array<ScanFilter>, options?: ScanOptions): void; | 新增 |
-| ohos.bluetooth | BLE | function getConnectedBLEDevices(): Array<string>; | 新增 |
-| ohos.bluetooth | BLE | function createGattClientDevice(deviceId: string): GattClientDevice; | 新增 |
-| ohos.bluetooth | BLE | function createGattServer(): GattServer; | 新增 |
-| ohos.bluetooth | HandsFreeAudioGatewayProfile | off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void; | 新增 |
-| ohos.bluetooth | HandsFreeAudioGatewayProfile | on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void; | 新增 |
+| ohos.bluetooth | BLE | off(type: "BLEDeviceFind", callback?: Callback\<Array\<ScanResult>>): void; | 新增 |
+| ohos.bluetooth | BLE | on(type: "BLEDeviceFind", callback: Callback\<Array\<ScanResult>>): void; | 新增 |
+| ohos.bluetooth | BLE | stopBLEScan(): void; | 新增 |
+| ohos.bluetooth | BLE | startBLEScan(filters: Array\<ScanFilter>, options?: ScanOptions): void; | 新增 |
+| ohos.bluetooth | BLE | getConnectedBLEDevices(): Array\<string>; | 新增 |
+| ohos.bluetooth | BLE | createGattClientDevice(deviceId: string): GattClientDevice; | 新增 |
+| ohos.bluetooth | BLE | createGattServer(): GattServer; | 新增 |
+| ohos.bluetooth | HandsFreeAudioGatewayProfile | off(type: "connectionStateChange", callback?: Callback\<StateChangeParam>): void; | 新增 |
+| ohos.bluetooth | HandsFreeAudioGatewayProfile | on(type: "connectionStateChange", callback: Callback\<StateChangeParam>): void; | 新增 |
 | ohos.bluetooth | HandsFreeAudioGatewayProfile | disconnect(device: string): boolean; | 新增 |
 | ohos.bluetooth | HandsFreeAudioGatewayProfile | connect(device: string): boolean; | 新增 |
 | ohos.bluetooth | A2dpSourceProfile | getPlayingState(device: string): PlayingState; | 新增 |
-| ohos.bluetooth | A2dpSourceProfile | off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void; | 新增 |
-| ohos.bluetooth | A2dpSourceProfile | on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void; | 新增 |
+| ohos.bluetooth | A2dpSourceProfile | off(type: "connectionStateChange", callback?: Callback\<StateChangeParam>): void; | 新增 |
+| ohos.bluetooth | A2dpSourceProfile | on(type: "connectionStateChange", callback: Callback\<StateChangeParam>): void; | 新增 |
 | ohos.bluetooth | A2dpSourceProfile | disconnect(device: string): boolean; | 新增 |
 | ohos.bluetooth | A2dpSourceProfile | connect(device: string): boolean; | 新增 |
 | ohos.bluetooth | BaseProfile | getDeviceState(device: string): ProfileConnectionState; | 新增 |
-| ohos.bluetooth | BaseProfile | getConnectionDevices(): Array<string>; | 新增 |
-| ohos.bluetooth | bluetooth | function getProfile(profileId: ProfileId): A2dpSourceProfile \| HandsFreeAudioGatewayProfile; | 新增 |
-| ohos.bluetooth | bluetooth | function off(type: "sppRead", clientSocket: number, callback?: Callback<ArrayBuffer>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function on(type: "sppRead", clientSocket: number, callback: Callback<ArrayBuffer>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function sppWrite(clientSocket: number, data: ArrayBuffer): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function sppCloseClientSocket(socket: number): void; | 新增 |
-| ohos.bluetooth | bluetooth | function sppCloseServerSocket(socket: number): void; | 新增 |
-| ohos.bluetooth | bluetooth | function sppConnect(device: string, option: SppOption, callback: AsyncCallback<number>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function sppAccept(serverSocket: number, callback: AsyncCallback<number>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function sppListen(name: string, option: SppOption, callback: AsyncCallback<number>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function off(type: "stateChange", callback?: Callback<BluetoothState>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function on(type: "stateChange", callback: Callback<BluetoothState>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function off(type: "pinRequired", callback?: Callback<PinRequiredParam>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function on(type: "pinRequired", callback: Callback<PinRequiredParam>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function off(type: "bondStateChange", callback?: Callback<BondStateParam>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function on(type: "bondStateChange", callback: Callback<BondStateParam>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function off(type: "bluetoothDeviceFind", callback?: Callback<Array<string>>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function on(type: "bluetoothDeviceFind", callback: Callback<Array<string>>): void; | 新增 |
-| ohos.bluetooth | bluetooth | function stopBluetoothDiscovery(): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function startBluetoothDiscovery(): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function getBluetoothScanMode(): ScanMode; | 新增 |
-| ohos.bluetooth | bluetooth | function setBluetoothScanMode(mode: ScanMode, duration: number): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function setLocalName(name: string): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function setDevicePairingConfirmation(device: string, accept: boolean): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function getProfileConnState(profileId: ProfileId): ProfileConnectionState; | 新增 |
-| ohos.bluetooth | bluetooth | function getPairedDevices(): Array<string>; | 新增 |
-| ohos.bluetooth | bluetooth | function getLocalName(): string; | 新增 |
-| ohos.bluetooth | bluetooth | function disableBluetooth(): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function enableBluetooth(): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function getRemoteDeviceClass(deviceId: string): DeviceClass; | 新增 |
-| ohos.bluetooth | bluetooth | function getRemoteDeviceName(deviceId: string): string; | 新增 |
-| ohos.bluetooth | bluetooth | function pairDevice(deviceId: string): boolean; | 新增 |
-| ohos.bluetooth | bluetooth | function getBtConnectionState(): ProfileConnectionState; | 新增 |
-| ohos.bluetooth | bluetooth | function getState(): BluetoothState; | 新增 |
+| ohos.bluetooth | BaseProfile | getConnectionDevices(): Array\<string>; | 新增 |
+| ohos.bluetooth | bluetooth | getProfile(profileId: ProfileId): A2dpSourceProfile \| HandsFreeAudioGatewayProfile; | 新增 |
+| ohos.bluetooth | bluetooth | off(type: "sppRead", clientSocket: number, callback?: Callback\<ArrayBuffer>): void; | 新增 |
+| ohos.bluetooth | bluetooth | on(type: "sppRead", clientSocket: number, callback: Callback\<ArrayBuffer>): void; | 新增 |
+| ohos.bluetooth | bluetooth | sppWrite(clientSocket: number, data: ArrayBuffer): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | sppCloseClientSocket(socket: number): void; | 新增 |
+| ohos.bluetooth | bluetooth | sppCloseServerSocket(socket: number): void; | 新增 |
+| ohos.bluetooth | bluetooth | sppConnect(device: string, option: SppOption, callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.bluetooth | bluetooth | sppAccept(serverSocket: number, callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.bluetooth | bluetooth | sppListen(name: string, option: SppOption, callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.bluetooth | bluetooth | off(type: "stateChange", callback?: Callback\<BluetoothState>): void; | 新增 |
+| ohos.bluetooth | bluetooth | on(type: "stateChange", callback: Callback\<BluetoothState>): void; | 新增 |
+| ohos.bluetooth | bluetooth | off(type: "pinRequired", callback?: Callback\<PinRequiredParam>): void; | 新增 |
+| ohos.bluetooth | bluetooth | on(type: "pinRequired", callback: Callback\<PinRequiredParam>): void; | 新增 |
+| ohos.bluetooth | bluetooth | off(type: "bondStateChange", callback?: Callback\<BondStateParam>): void; | 新增 |
+| ohos.bluetooth | bluetooth | on(type: "bondStateChange", callback: Callback\<BondStateParam>): void; | 新增 |
+| ohos.bluetooth | bluetooth | off(type: "bluetoothDeviceFind", callback?: Callback\<Array\<string>>): void; | 新增 |
+| ohos.bluetooth | bluetooth | on(type: "bluetoothDeviceFind", callback: Callback\<Array\<string>>): void; | 新增 |
+| ohos.bluetooth | bluetooth | stopBluetoothDiscovery(): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | startBluetoothDiscovery(): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | getBluetoothScanMode(): ScanMode; | 新增 |
+| ohos.bluetooth | bluetooth | setBluetoothScanMode(mode: ScanMode, duration: number): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | setLocalName(name: string): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | setDevicePairingConfirmation(device: string, accept: boolean): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | getProfileConnState(profileId: ProfileId): ProfileConnectionState; | 新增 |
+| ohos.bluetooth | bluetooth | getPairedDevices(): Array\<string>; | 新增 |
+| ohos.bluetooth | bluetooth | getLocalName(): string; | 新增 |
+| ohos.bluetooth | bluetooth | disableBluetooth(): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | enableBluetooth(): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | getRemoteDeviceClass(deviceId: string): DeviceClass; | 新增 |
+| ohos.bluetooth | bluetooth | getRemoteDeviceName(deviceId: string): string; | 新增 |
+| ohos.bluetooth | bluetooth | pairDevice(deviceId: string): boolean; | 新增 |
+| ohos.bluetooth | bluetooth | getBtConnectionState(): ProfileConnectionState; | 新增 |
+| ohos.bluetooth | bluetooth | getState(): BluetoothState; | 新增 |

@@ -10,12 +10,12 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，全球化子�
 | rawFileDescriptor | RawFileDescriptor | offset: number; | 新增 |
 | rawFileDescriptor | RawFileDescriptor | fd: number; | 新增 |
 | ohos.resourceManager | ResourceManager | release(); | 新增 |
-| ohos.resourceManager | ResourceManager | closeRawFileDescriptor(path: string, callback: AsyncCallback<void>): void;<br>closeRawFileDescriptor(path: string): Promise<void>; | 新增 |
-| ohos.resourceManager | ResourceManager | getRawFileDescriptor(path: string, callback: AsyncCallback<RawFileDescriptor>): void;<br>getRawFileDescriptor(path: string): Promise<RawFileDescriptor>; | 新增 |
-| ohos.resourceManager | ResourceManager | getRawFile(path: string, callback: AsyncCallback<Uint8Array>): void;<br>getRawFile(path: string): Promise<Uint8Array>; | 新增 |
-| ohos.resourceManager | resourceManager | function getResourceManager(callback: AsyncCallback<ResourceManager>): void;<br>export function getResourceManager(bundleName: string, callback: AsyncCallback<ResourceManager>): void;<br>export function getResourceManager(): Promise<ResourceManager>;<br>export function getResourceManager(bundleName: string): Promise<ResourceManager>; | 新增 |
+| ohos.resourceManager | ResourceManager | closeRawFileDescriptor(path: string, callback: AsyncCallback\<void>): void;<br>closeRawFileDescriptor(path: string): Promise\<void>; | 新增 |
+| ohos.resourceManager | ResourceManager | getRawFileDescriptor(path: string, callback: AsyncCallback\<RawFileDescriptor>): void;<br>getRawFileDescriptor(path: string): Promise\<RawFileDescriptor>; | 新增 |
+| ohos.resourceManager | ResourceManager | getRawFile(path: string, callback: AsyncCallback\<Uint8Array>): void;<br>getRawFile(path: string): Promise\<Uint8Array>; | 新增 |
+| ohos.resourceManager | resourceManager | getResourceManager(callback: AsyncCallback\<ResourceManager>): void;<br>getResourceManager(bundleName: string, callback: AsyncCallback\<ResourceManager>): void;<br>getResourceManager(): Promise\<ResourceManager>;<br>getResourceManager(bundleName: string): Promise\<ResourceManager>; | 新增 |
 | ohos.intl | RelativeTimeFormat | resolvedOptions(): RelativeTimeFormatResolvedOptions; | 新增 |
-| ohos.intl | RelativeTimeFormat | formatToParts(value: number, unit: string): Array<object>; | 新增 |
+| ohos.intl | RelativeTimeFormat | formatToParts(value: number, unit: string): Array\<object>; | 新增 |
 | ohos.intl | RelativeTimeFormat | format(value: number, unit: string): string; | 新增 |
 | ohos.intl | RelativeTimeFormat | constructor(); | 新增 |
 | ohos.intl | RelativeTimeFormatResolvedOptions | numberingSystem: string; | 新增 |
@@ -55,13 +55,13 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，全球化子�
 | ohos.i18n | TimeZone | getRawOffset(): number; | 新增 |
 | ohos.i18n | TimeZone | getDisplayName(locale?: string, isDST?: boolean): string; | 新增 |
 | ohos.i18n | TimeZone | getID(): string; | 新增 |
-| ohos.i18n | i18n | function getTimeZone(zoneID?: string): TimeZone; | 新增 |
-| ohos.i18n | i18n | function getFirstPreferredLanguage(): string; | 新增 |
-| ohos.i18n | i18n | function getPreferredLanguageList(): Array<string>; | 新增 |
-| ohos.i18n | i18n | function removePreferredLanguage(index: number): boolean; | 新增 |
-| ohos.i18n | i18n | function addPreferredLanguage(language: string, index?: number): boolean; | 新增 |
-| ohos.i18n | i18n | function set24HourClock(option: boolean): boolean; | 新增 |
-| ohos.i18n | i18n | function is24HourClock(): boolean; | 新增 |
+| ohos.i18n | i18n | getTimeZone(zoneID?: string): TimeZone; | 新增 |
+| ohos.i18n | i18n | getFirstPreferredLanguage(): string; | 新增 |
+| ohos.i18n | i18n | getPreferredLanguageList(): Array\<string>; | 新增 |
+| ohos.i18n | i18n | removePreferredLanguage(index: number): boolean; | 新增 |
+| ohos.i18n | i18n | addPreferredLanguage(language: string, index?: number): boolean; | 新增 |
+| ohos.i18n | i18n | set24HourClock(option: boolean): boolean; | 新增 |
+| ohos.i18n | i18n | is24HourClock(): boolean; | 新增 |
 | ohos.i18n | Character | getType(char: string): string; | 新增 |
 | ohos.i18n | Character | isUpperCase(char: string): boolean; | 新增 |
 | ohos.i18n | Character | isLowerCase(char: string): boolean; | 新增 |
@@ -73,8 +73,8 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，全球化子�
 | ohos.i18n | Character | isDigit(char: string): boolean; | 新增 |
 | ohos.i18n | IndexUtil | getIndex(text: string): string; | 新增 |
 | ohos.i18n | IndexUtil | addLocale(locale: string): void; | 新增 |
-| ohos.i18n | IndexUtil | getIndexList(): Array<string>; | 新增 |
-| ohos.i18n | i18n | function getInstance(locale?:string): IndexUtil; | 新增 |
+| ohos.i18n | IndexUtil | getIndexList(): Array\<string>; | 新增 |
+| ohos.i18n | i18n | getInstance(locale?:string): IndexUtil; | 新增 |
 | ohos.i18n | BreakIterator | isBoundary(offset: number): boolean; | 新增 |
 | ohos.i18n | BreakIterator | getLineBreakText(): string; | 新增 |
 | ohos.i18n | BreakIterator | following(offset: number): number; | 新增 |
@@ -84,8 +84,8 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，全球化子�
 | ohos.i18n | BreakIterator | last(): number; | 新增 |
 | ohos.i18n | BreakIterator | first(): number; | 新增 |
 | ohos.i18n | BreakIterator | current(): number; | 新增 |
-| ohos.i18n | i18n | function getLineInstance(locale: string): BreakIterator; | 新增 |
-| ohos.i18n | i18n | function isRTL(locale: string): boolean; | 新增 |
+| ohos.i18n | i18n | getLineInstance(locale: string): BreakIterator; | 新增 |
+| ohos.i18n | i18n | isRTL(locale: string): boolean; | 新增 |
 | ohos.i18n | Calendar | isWeekend(date?: Date): boolean; | 新增 |
 | ohos.i18n | Calendar | getDisplayName(locale: string): string; | 新增 |
 | ohos.i18n | Calendar | get(field: string): number; | 新增 |
@@ -97,7 +97,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，全球化子�
 | ohos.i18n | Calendar | setTimeZone(timezone: string): void; | 新增 |
 | ohos.i18n | Calendar | set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void; | 新增 |
 | ohos.i18n | Calendar | setTime(date: Date): void;<br>setTime(time: number): void; | 新增 |
-| ohos.i18n | i18n | function getCalendar(locale: string, type?: string): Calendar; | 新增 |
+| ohos.i18n | i18n | getCalendar(locale: string, type?: string): Calendar; | 新增 |
 | ohos.i18n | PhoneNumberFormat | format(number: string): string; | 新增 |
 | ohos.i18n | PhoneNumberFormat | isValidNumber(number: string): boolean; | 新增 |
 | ohos.i18n | PhoneNumberFormat | constructor(country: string, options?: PhoneNumberFormatOptions); | 新增 |

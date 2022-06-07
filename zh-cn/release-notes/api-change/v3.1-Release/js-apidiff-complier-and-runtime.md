@@ -45,21 +45,21 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.xml | XmlSerializer | addEmptyElement(name: string): void; | 新增 |
 | ohos.xml | XmlSerializer | setAttributes(name: string, value: string): void; | 新增 |
 | ohos.xml | XmlSerializer | constructor(buffer: ArrayBuffer \| DataView, encoding?: string); | 新增 |
-| ohos.util.Vector | Vector | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.Vector | Vector | copyToArray(array: Array<T>): void; | 新增 |
+| ohos.util.Vector | Vector | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.Vector | Vector | copyToArray(array: Array\<T>): void; | 新增 |
 | ohos.util.Vector | Vector | trimToCurrentLength(): void; | 新增 |
 | ohos.util.Vector | Vector | toString(): string; | 新增 |
 | ohos.util.Vector | Vector | increaseCapacityTo(newCapacity: number): void; | 新增 |
 | ohos.util.Vector | Vector | isEmpty(): boolean; | 新增 |
-| ohos.util.Vector | Vector | convertToArray(): Array<T>; | 新增 |
+| ohos.util.Vector | Vector | convertToArray(): Array\<T>; | 新增 |
 | ohos.util.Vector | Vector | getCapacity(): number; | 新增 |
 | ohos.util.Vector | Vector | setLength(newSize: number): void; | 新增 |
-| ohos.util.Vector | Vector | clone(): Vector<T>; | 新增 |
+| ohos.util.Vector | Vector | clone(): Vector\<T>; | 新增 |
 | ohos.util.Vector | Vector | clear(): void; | 新增 |
-| ohos.util.Vector | Vector | subVector(fromIndex: number, toIndex: number): Vector<T>; | 新增 |
+| ohos.util.Vector | Vector | subVector(fromIndex: number, toIndex: number): Vector\<T>; | 新增 |
 | ohos.util.Vector | Vector | sort(comparator?: (firstValue: T, secondValue: T) => number): void; | 新增 |
-| ohos.util.Vector | Vector | forEach(callbackfn: (value: T, index?: number, vector?: Vector<T>) => void, thisArg?: Object): void; | 新增 |
-| ohos.util.Vector | Vector | replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector<T>) => T, thisArg?: Object): void; | 新增 |
+| ohos.util.Vector | Vector | forEach(callbackfn: (value: T, index?: number, vector?: Vector\<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.Vector | Vector | replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector\<T>) => T, thisArg?: Object): void; | 新增 |
 | ohos.util.Vector | Vector | removeByRange(fromIndex: number, toIndex: number): void; | 新增 |
 | ohos.util.Vector | Vector | getIndexFrom(element: T, index: number): number; | 新增 |
 | ohos.util.Vector | Vector | getLastIndexFrom(element: T, index: number): number; | 新增 |
@@ -76,10 +76,10 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.Vector | Vector | add(element: T): boolean; | 新增 |
 | ohos.util.Vector | Vector | length: number; | 新增 |
 | ohos.util.Vector | Vector | constructor(); | 新增 |
-| ohos.util.TreeSet | TreeSet | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.TreeSet | TreeSet | entries(): IterableIterator<[T, T]>; | 新增 |
-| ohos.util.TreeSet | TreeSet | values(): IterableIterator<T>; | 新增 |
-| ohos.util.TreeSet | TreeSet | forEach(callbackfn: (value?: T, key?: T, set?: TreeSet<T>) => void, thisArg?: Object): void;| 新增 |
+| ohos.util.TreeSet | TreeSet | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.TreeSet | TreeSet | entries(): IterableIterator\<[T, T]>; | 新增 |
+| ohos.util.TreeSet | TreeSet | values(): IterableIterator\<T>; | 新增 |
+| ohos.util.TreeSet | TreeSet | forEach(callbackfn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.TreeSet | TreeSet | popLast(): T; | 新增 |
 | ohos.util.TreeSet | TreeSet | popFirst(): T; | 新增 |
 | ohos.util.TreeSet | TreeSet | getHigherValue(key: T): T; | 新增 |
@@ -93,18 +93,18 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.TreeSet | TreeSet | isEmpty(): boolean; | 新增 |
 | ohos.util.TreeSet | TreeSet | length: number; | 新增 |
 | ohos.util.TreeSet | TreeSet | constructor(comparator?: (firstValue: T, secondValue: T) => boolean) | 新增 |
-| ohos.util.TreeMap | TreeMap | [Symbol.iterator](): IterableIterator<[K, V]>; | 新增 |
-| ohos.util.TreeMap | TreeMap | entries(): IterableIterator<[K, V]>; | 新增 |
-| ohos.util.TreeMap | TreeMap | forEach(callbackfn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.TreeMap | TreeMap | \[Symbol.iterator](): IterableIterator\<[K, V]>; | 新增 |
+| ohos.util.TreeMap | TreeMap | entries(): IterableIterator\<[K, V]>; | 新增 |
+| ohos.util.TreeMap | TreeMap | forEach(callbackfn: (value?: V, key?: K, map?: TreeMap\<K, V>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.TreeMap | TreeMap | replace(key: K, newValue: V): boolean; | 新增 |
-| ohos.util.TreeMap | TreeMap | values(): IterableIterator<V>; | 新增 |
-| ohos.util.TreeMap | TreeMap | keys(): IterableIterator<K>; | 新增 |
+| ohos.util.TreeMap | TreeMap | values(): IterableIterator\<V>; | 新增 |
+| ohos.util.TreeMap | TreeMap | keys(): IterableIterator\<K>; | 新增 |
 | ohos.util.TreeMap | TreeMap | getHigherKey(key: K): K; | 新增 |
 | ohos.util.TreeMap | TreeMap | getLowerKey(key: K): K; | 新增 |
 | ohos.util.TreeMap | TreeMap | clear(): void; | 新增 |
 | ohos.util.TreeMap | TreeMap | remove(key: K): V; | 新增 |
 | ohos.util.TreeMap | TreeMap | set(key: K, value: V): Object; | 新增 |
-| ohos.util.TreeMap | TreeMap | setAll(map: TreeMap<K, V>): void; | 新增 |
+| ohos.util.TreeMap | TreeMap | setAll(map: TreeMap\<K, V>): void; | 新增 |
 | ohos.util.TreeMap | TreeMap | getLastKey(): K; | 新增 |
 | ohos.util.TreeMap | TreeMap | getFirstKey(): K; | 新增 |
 | ohos.util.TreeMap | TreeMap | get(key: K): V; | 新增 |
@@ -113,8 +113,8 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.TreeMap | TreeMap | isEmpty(): boolean; | 新增 |
 | ohos.util.TreeMap | TreeMap | length: number; | 新增 |
 | ohos.util.TreeMap | TreeMap | constructor(comparator?: (firstValue: K, secondValue: K) => boolean); | 新增 |
-| ohos.util.Stack | Stack | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.Stack | Stack | forEach(callbackfn: (value: T, index?: number, stack?: Stack<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.Stack | Stack | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.Stack | Stack | forEach(callbackfn: (value: T, index?: number, stack?: Stack\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.Stack | Stack | locate(element: T): number; | 新增 |
 | ohos.util.Stack | Stack | push(item: T): T; | 新增 |
 | ohos.util.Stack | Stack | pop(): T; | 新增 |
@@ -122,15 +122,15 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.Stack | Stack | isEmpty(): boolean; | 新增 |
 | ohos.util.Stack | Stack | length: number; | 新增 |
 | ohos.util.Stack | Stack | constructor(); | 新增 |
-| ohos.util.Queue | Queue | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.Queue | Queue | forEach(callbackfn: (value: T, index?: number, Queue?: Queue<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.Queue | Queue | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.Queue | Queue | forEach(callbackfn: (value: T, index?: number, Queue?: Queue\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.Queue | Queue | pop(): T; | 新增 |
 | ohos.util.Queue | Queue | getFirst(): T; | 新增 |
 | ohos.util.Queue | Queue | add(element: T): boolean; | 新增 |
 | ohos.util.Queue | Queue | length: number; | 新增 |
 | ohos.util.Queue | Queue | constructor(); | 新增 |
-| ohos.util.PlainArray | PlainArray | [Symbol.iterator](): IterableIterator<[number, T]>; | 新增 |
-| ohos.util.PlainArray | PlainArray | forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray<T>) => void,  thisArg?: Object): void; | 新增 |
+| ohos.util.PlainArray | PlainArray | \[Symbol.iterator](): IterableIterator\<[number, T]>; | 新增 |
+| ohos.util.PlainArray | PlainArray | forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void,  thisArg?: Object): void; | 新增 |
 | ohos.util.PlainArray | PlainArray | getValueAt(index: number): T; | 新增 |
 | ohos.util.PlainArray | PlainArray | toString(): String; | 新增 |
 | ohos.util.PlainArray | PlainArray | setValueAt(index: number, value: T): void; | 新增 |
@@ -143,19 +143,19 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.PlainArray | PlainArray | getIndexOfKey(key: number): number; | 新增 |
 | ohos.util.PlainArray | PlainArray | get(key: number): T; | 新增 |
 | ohos.util.PlainArray | PlainArray | has(key: number): boolean; | 新增 |
-| ohos.util.PlainArray | PlainArray | clone(): PlainArray<T>; | 新增 |
+| ohos.util.PlainArray | PlainArray | clone(): PlainArray\<T>; | 新增 |
 | ohos.util.PlainArray | PlainArray | clear(): void; | 新增 |
 | ohos.util.PlainArray | PlainArray | add(key: number, value: T): void; | 新增 |
 | ohos.util.PlainArray | PlainArray | length: number; | 新增 |
 | ohos.util.PlainArray | PlainArray | constructor(); | 新增 |
-| ohos.util.List | List | [Symbol.iterator](): IterableIterator<T>; | 新增 |
+| ohos.util.List | List | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
 | ohos.util.List | List | isEmpty(): boolean; | 新增 |
-| ohos.util.List | List | convertToArray(): Array<T>; | 新增 |
-| ohos.util.List | List | replaceAllElements(callbackfn: (value: T, index?: number, list?: List<T>) => T, thisArg?: Object): void; | 新增 |
-| ohos.util.List | List | getSubList(fromIndex: number, toIndex: number): List<T>; | 新增 |
+| ohos.util.List | List | convertToArray(): Array\<T>; | 新增 |
+| ohos.util.List | List | replaceAllElements(callbackfn: (value: T, index?: number, list?: List\<T>) => T, thisArg?: Object): void; | 新增 |
+| ohos.util.List | List | getSubList(fromIndex: number, toIndex: number): List\<T>; | 新增 |
 | ohos.util.List | List | clear(): void; | 新增 |
 | ohos.util.List | List | sort(comparator: (firstValue: T, secondValue: T) => number): void; | 新增 |
-| ohos.util.List | List | forEach(callbackfn: (value: T, index?: number, List?: List<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.List | List | forEach(callbackfn: (value: T, index?: number, List?: List\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.List | List | equal(obj: Object): boolean; | 新增 |
 | ohos.util.List | List | set(index: number, element: T): T; | 新增 |
 | ohos.util.List | List | getLast(): T; | 新增 |
@@ -170,11 +170,11 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.List | List | add(element: T): boolean; | 新增 |
 | ohos.util.List | List | length: number; | 新增 |
 | ohos.util.List | List | constructor(); | 新增 |
-| ohos.util.LinkedList | LinkedList | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.LinkedList | LinkedList | convertToArray(): Array<T>; | 新增 |
-| ohos.util.LinkedList | LinkedList | clone(): LinkedList<T>; | 新增 |
+| ohos.util.LinkedList | LinkedList | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.LinkedList | LinkedList | convertToArray(): Array\<T>; | 新增 |
+| ohos.util.LinkedList | LinkedList | clone(): LinkedList\<T>; | 新增 |
 | ohos.util.LinkedList | LinkedList | clear(): void; | 新增 |
-| ohos.util.LinkedList | LinkedList | forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.LinkedList | LinkedList | forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.LinkedList | LinkedList | set(index: number, element: T): T; | 新增 |
 | ohos.util.LinkedList | LinkedList | getLast(): T; | 新增 |
 | ohos.util.LinkedList | LinkedList | getFirst(): T; | 新增 |
@@ -194,13 +194,13 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.LinkedList | LinkedList | length: number; | 新增 |
 | ohos.util.LinkedList | LinkedList | constructor(); | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | isEmpty(): boolean; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | entries(): IterableIterator<[T, T]>; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | values(): IterableIterator<T>; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | entries(): IterableIterator\<[T, T]>; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | values(): IterableIterator\<T>; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | getValueAt(index: number): T; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | toArray(): Array<T>; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | toArray(): Array\<T>; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | toString(): String; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | clear(): void; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | removeAt(index: number): boolean; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | remove(key: T): T; | 新增 |
@@ -208,39 +208,39 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.LightWeightSet | LightWeightSet | increaseCapacityTo(minimumCapacity: number): void; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | equal(obj: Object): boolean; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | has(key: T): boolean; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | hasAll(set: LightWeightSet<T>): boolean; | 新增 |
-| ohos.util.LightWeightSet | LightWeightSet | addAll(set: LightWeightSet<T>): boolean; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | hasAll(set: LightWeightSet\<T>): boolean; | 新增 |
+| ohos.util.LightWeightSet | LightWeightSet | addAll(set: LightWeightSet\<T>): boolean; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | add(obj: T): boolean; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | length: number; | 新增 |
 | ohos.util.LightWeightSet | LightWeightSet | constructor(); | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | values(): IterableIterator<V>; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | values(): IterableIterator\<V>; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | getValueAt(index: number): V; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | toString(): String; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | [Symbol.iterator](): IterableIterator<[K, V]>; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | \[Symbol.iterator](): IterableIterator\<[K, V]>; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap\<K, V>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | setValueAt(index: number, newValue: V): boolean; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | clear(): void; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | removeAt(index: number): boolean; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | remove(key: K): V; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | set(key: K, value: V): Object; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | setAll(map: LightWeightMap<K, V>): void; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | keys(): IterableIterator<K>; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | setAll(map: LightWeightMap\<K, V>): void; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | keys(): IterableIterator\<K>; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | getKeyAt(index: number): K; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | isEmpty(): boolean; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | getIndexOfValue(value: V): number; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | getIndexOfKey(key: K): number; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | get(key: K): V; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | entries(): IterableIterator<[K, V]>; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | entries(): IterableIterator\<[K, V]>; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | increaseCapacityTo(minimumCapacity: number): void; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | hasValue(value: V): boolean; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | hasKey(key: K): boolean; | 新增 |
-| ohos.util.LightWeightMap | LightWeightMap | hasAll(map: LightWeightMap<K, V>): boolean; | 新增 |
+| ohos.util.LightWeightMap | LightWeightMap | hasAll(map: LightWeightMap\<K, V>): boolean; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | length: number; | 新增 |
 | ohos.util.LightWeightMap | LightWeightMap | constructor(); | 新增 |
-| ohos.util.HashSet | HashSet | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.HashSet | HashSet | entries(): IterableIterator<[T, T]>; | 新增 |
-| ohos.util.HashSet | HashSet | values(): IterableIterator<T>; | 新增 |
-| ohos.util.HashSet | HashSet | forEach(callbackfn: (value?: T, key?: T, set?: HashSet<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.HashSet | HashSet | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.HashSet | HashSet | entries(): IterableIterator\<[T, T]>; | 新增 |
+| ohos.util.HashSet | HashSet | values(): IterableIterator\<T>; | 新增 |
+| ohos.util.HashSet | HashSet | forEach(callbackfn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.HashSet | HashSet | clear(): void; | 新增 |
 | ohos.util.HashSet | HashSet | remove(value: T): boolean; | 新增 |
 | ohos.util.HashSet | HashSet | add(value: T): boolean; | 新增 |
@@ -248,24 +248,24 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util.HashSet | HashSet | isEmpty(): boolean; | 新增 |
 | ohos.util.HashSet | HashSet | length: number; | 新增 |
 | ohos.util.HashSet | HashSet | constructor(); | 新增 |
-| ohos.util.HashMap | HashMap | [Symbol.iterator](): IterableIterator<[K, V]>; | 新增 |
-| ohos.util.HashMap | HashMap | entries(): IterableIterator<[K, V]>; | 新增 |
-| ohos.util.HashMap | HashMap | forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.HashMap | HashMap | \[Symbol.iterator](): IterableIterator\<[K, V]>; | 新增 |
+| ohos.util.HashMap | HashMap | entries(): IterableIterator\<[K, V]>; | 新增 |
+| ohos.util.HashMap | HashMap | forEach(callbackfn: (value?: V, key?: K, map?: HashMap\<K, V>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.HashMap | HashMap | replace(key: K, newValue: V): boolean; | 新增 |
-| ohos.util.HashMap | HashMap | values(): IterableIterator<V>; | 新增 |
-| ohos.util.HashMap | HashMap | keys(): IterableIterator<K>; | 新增 |
+| ohos.util.HashMap | HashMap | values(): IterableIterator\<V>; | 新增 |
+| ohos.util.HashMap | HashMap | keys(): IterableIterator\<K>; | 新增 |
 | ohos.util.HashMap | HashMap | clear(): void; | 新增 |
 | ohos.util.HashMap | HashMap | remove(key: K): V; | 新增 |
 | ohos.util.HashMap | HashMap | set(key: K, value: V): Object; | 新增 |
-| ohos.util.HashMap | HashMap | setAll(map: HashMap<K, V>): void; | 新增 |
+| ohos.util.HashMap | HashMap | setAll(map: HashMap\<K, V>): void; | 新增 |
 | ohos.util.HashMap | HashMap | get(key: K): V; | 新增 |
 | ohos.util.HashMap | HashMap | hasValue(value: V): boolean; | 新增 |
 | ohos.util.HashMap | HashMap | hasKey(key: K): boolean; | 新增 |
 | ohos.util.HashMap | HashMap | isEmpty(): boolean; | 新增 |
 | ohos.util.HashMap | HashMap | length: number; | 新增 |
 | ohos.util.HashMap | HashMap | constructor(); | 新增 |
-| ohos.util.Deque | Deque | [Symbol.iterator](): IterableIterator<T>; | 新增 |
-| ohos.util.Deque | Deque | forEach(callbackfn: (value: T, index?: number, deque?: Deque<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.Deque | Deque | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
+| ohos.util.Deque | Deque | forEach(callbackfn: (value: T, index?: number, deque?: Deque\<T>) => void, thisArg?: Object): void; | 新增 |
 | ohos.util.Deque | Deque | popLast(): T; | 新增 |
 | ohos.util.Deque | Deque | popFirst(): T; | 新增 |
 | ohos.util.Deque | Deque | getLast(): T; | 新增 |
@@ -321,18 +321,18 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，公共基础�
 | ohos.util | LruBuffer | getCapacity(): number; | 新增 |
 | ohos.util | LruBuffer | length:number | 新增 |
 | ohos.util | RationalNumber | valueOf(): number; | 新增 |
-| ohos.util.ArrayList | ArrayList | [Symbol.iterator](): IterableIterator<T>; | 新增 |
+| ohos.util.ArrayList | ArrayList | \[Symbol.iterator](): IterableIterator\<T>; | 新增 |
 | ohos.util.ArrayList | ArrayList | trimToCurrentLength(): void; | 新增 |
 | ohos.util.ArrayList | ArrayList | increaseCapacityTo(newCapacity: number): void; | 新增 |
 | ohos.util.ArrayList | ArrayList | isEmpty(): boolean; | 新增 |
-| ohos.util.ArrayList | ArrayList | convertToArray(): Array<T>; | 新增 |
+| ohos.util.ArrayList | ArrayList | convertToArray(): Array\<T>; | 新增 |
 | ohos.util.ArrayList | ArrayList | getCapacity(): number; | 新增 |
-| ohos.util.ArrayList | ArrayList | clone(): ArrayList<T>; | 新增 |
+| ohos.util.ArrayList | ArrayList | clone(): ArrayList\<T>; | 新增 |
 | ohos.util.ArrayList | ArrayList | clear(): void; | 新增 |
-| ohos.util.ArrayList | ArrayList | subArrayList(fromIndex: number, toIndex: number): ArrayList<T>; | 新增 |
+| ohos.util.ArrayList | ArrayList | subArrayList(fromIndex: number, toIndex: number): ArrayList\<T>; | 新增 |
 | ohos.util.ArrayList | ArrayList | sort(comparator?: (firstValue: T, secondValue: T) => number): void; | 新增 |
-| ohos.util.ArrayList | ArrayList | forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList<T>) => void, thisArg?: Object): void; | 新增 |
-| ohos.util.ArrayList | ArrayList | replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList<T>) => T, thisArg?: Object): void; | 新增 |
+| ohos.util.ArrayList | ArrayList | forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList\<T>) => void, thisArg?: Object): void; | 新增 |
+| ohos.util.ArrayList | ArrayList | replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList\<T>) => T, thisArg?: Object): void; | 新增 |
 | ohos.util.ArrayList | ArrayList | removeByRange(fromIndex: number, toIndex: number): void; | 新增 |
 | ohos.util.ArrayList | ArrayList | getLastIndexOf(element: T): number; | 新增 |
 | ohos.util.ArrayList | ArrayList | remove(element: T): boolean; | 新增 |
