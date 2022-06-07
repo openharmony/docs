@@ -316,9 +316,11 @@ The HDMI module adaptation involves the following steps:
     - **Bind** function
     
         **Input parameter**:
+    
         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
     
         **Return value**:
+    
         HDF_STATUS
     
         The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
@@ -333,6 +335,7 @@ The HDMI module adaptation involves the following steps:
         |HDF_FAILURE           |Transmission failed.|
     
         **Function description**:
+    
         Initializes the custom structure object **HdmiAdapterHost** and **HdmiCntlr**, and calls the **HdmiCntlrAdd** function to add the HDMI controller to the core layer.
     
         The **HdmiCntlr**, **HdmiAdapterHost**, and **HdfDeviceObject** assign values with each other so that other functions can be converted successfully.
@@ -377,13 +380,15 @@ The HDMI module adaptation involves the following steps:
     - **Init** function
     
         **Input parameter**:
+    
         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-        
+    
         **Return value**:
+    
         HDF_STATUS
-        
+    
         **Function description**:
-        
+    
         Implements the **HdmiAdapterInit** function.
     
         ```c
@@ -396,14 +401,17 @@ The HDMI module adaptation involves the following steps:
     - **Release** function
     
         **Input parameter**:
-        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-       
+        
+       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
+        
         **Return value**:
+        
         No value is returned.
         
         **Function description**:
+        
         Releases the memory and deletes the controller. This function assigns values to the **Release** callback in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
-    
+        
         ```c
         static void HdmiAdapterRelease(struct HdfDeviceObject *obj)
         {

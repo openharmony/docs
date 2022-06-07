@@ -66,6 +66,7 @@ The GPIO module adaptation involves the following steps:
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the callbacks in **GpioMethod**, see [Available APIs](#available_apis).
    
 4. Debug the driver.
+   
    (Optional) For new drivers, verify the basic functions, such as the GPIO status control and response to interrupts.
 
 
