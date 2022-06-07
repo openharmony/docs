@@ -8,4 +8,3 @@
 - [移植常见问题](faqs-porting.md)
 - [启动恢复常见问题](faqs-startup.md)
 - [系统应用常见问题](faqs-system-applications.md)
-- [appspawn应用孵化常见问题](faqs-appspawn.md)
