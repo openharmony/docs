@@ -215,7 +215,7 @@ APIs are provided to access the system language and region information.
 
 ## Measurement Conversion
 
-An API can be called to implement measurement conversion.
+The **unitConvert** API is provided to help you implement measurement conversion.
 
 
 ### Available APIs
