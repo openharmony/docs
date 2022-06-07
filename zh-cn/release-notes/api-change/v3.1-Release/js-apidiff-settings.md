@@ -6,13 +6,13 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，应用子系�
 
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
-| ohos.settings | settings | function setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean; | 新增 |
-| ohos.settings | settings | function getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string; | 新增 |
-| ohos.settings | settings | function getUriSync(name: string): string; | 新增 |
-| ohos.settings | settings | function canShowFloating(callback: AsyncCallback<boolean>): void;<br>function canShowFloating(): Promise<boolean>; | 新增 |
-| ohos.settings | settings | function enableAirplaneMode(enable: boolean, callback: AsyncCallback<void>): void;<br>function enableAirplaneMode(enable: boolean): Promise<void>; | 新增 |
-| ohos.settings | settings | function getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback<object>): void;<br>function getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise<object>; | 新增 |
-| ohos.settings | settings | function getURI(name: string, callback: AsyncCallback<object>): void;<br>function getURI(name: string): Promise<object>; | 新增 |
+| ohos.settings | settings | setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean; | 新增 |
+| ohos.settings | settings | getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string; | 新增 |
+| ohos.settings | settings | getUriSync(name: string): string; | 新增 |
+| ohos.settings | settings | canShowFloating(callback: AsyncCallback\<boolean>): void;<br>canShowFloating(): Promise\<boolean>; | 新增 |
+| ohos.settings | settings | enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void;<br>enableAirplaneMode(enable: boolean): Promise\<void>; | 新增 |
+| ohos.settings | settings | getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void;<br>getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>; | 新增 |
+| ohos.settings | settings | getURI(name: string, callback: AsyncCallback\<object>): void;<br>getURI(name: string): Promise\<object>; | 新增 |
 | ohos.settings | wireless | const WIFI_WATCHDOG_STATUS: string | 新增 |
 | ohos.settings | wireless | const WIFI_STATUS: string | 新增 |
 | ohos.settings | wireless | const WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT: string | 新增 |
