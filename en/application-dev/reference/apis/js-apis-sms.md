@@ -390,7 +390,7 @@ Provides the callback for the SMS message sending result. Return the SMS deliver
 
 ## SendSmsResult
 
-SMS message sending result.
+Enumerates SMS message sending results.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
