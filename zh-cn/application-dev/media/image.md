@@ -271,23 +271,26 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
 
 ```
 
-### ImageReceivert的使用
+### ImageReceiver的使用
+
+示例场景：camera作为客户端将拍照数据传给服务端
 
 ```js
-//创建ImageReceiver
+//服务端代码，创建ImageReceiver
 var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
 
 //获取Surface ID
 var surfaceId = await receiver.getReceivingSurfaceId();
 
+//注册Surface的监听，在suface的buffer准备好后触发
 receiver.on('imageArrival', () => {
-    //去获取Surface中的buffer的方法
+    //去获取Surface中最新的buffer
     receiver.readNextImage((err, img) => {
 	    img.getComponent(4, (err, componet) => {
-			//操作componet.byteBuffer
+			//消费componet.byteBuffer，例如：将buffer内容保存成图片。
 		})
 	})
 })
 
-//调用方法将surfaceId传递给消费端。
+//调用Camera方法将surfaceId传递给Camera。camera会通过surfaceId获取surface，并生产出surface buffer。
 ```
