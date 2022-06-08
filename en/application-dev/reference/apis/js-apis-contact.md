@@ -465,8 +465,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
@@ -494,8 +492,6 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
