@@ -31,11 +31,11 @@ Grid()
 | rowsTemplate | string | '1fr' | 用于设置当前网格布局行的数量，不设置时默认1行&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 |
 | columnsGap | Length | 0 | 用于设置列与列的间距。 |
 | rowsGap | Length | 0 | 用于设置行与行的间距。 |
-| editMode <font color=ff0000><sup>8+</sup></font> | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Gird组件内部[GridItem](ts-container-griditem.md)。 |
+| editMode<font color=ff0000><sup>8+</sup></font> | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Gird组件内部[GridItem](ts-container-griditem.md)。 |
 | layoutDirection<font color=ff0000><sup>8+</sup></font>  | [LayoutDirection](ts-appendix-enums.md) | LayoutDirection.Row |设置布局的主轴方向，目前支持的主轴布局方向如下：<br/>-&nbsp;LayoutDirection.Row：沿水平方向布局，即先填满一列，再去填下一列。 <br/>-&nbsp;LayoutDirection.Column：沿垂直方向布局，即先填满一行，再去填下一行。|
-| maxCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是Row时，表示可显示的最大行数<br/>当layoutDirection是Column时，表示可显示的最大列数。 |
-| minCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是Row时，表示可显示的最小行数<br/>当layoutDirection是Column时，表示可显示的最小列数。 |
-| cellLength <font color=ff0000><sup>8+</sup></font> | number | 0 | 当layoutDirection是Row时，表示一行的高度<br/>当layoutDirection是Column时，表示一列的宽度。 |
+| maxCount<font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是Row时，表示可显示的最大行数<br/>当layoutDirection是Column时，表示可显示的最大列数。 |
+| minCount<font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是Row时，表示可显示的最小行数<br/>当layoutDirection是Column时，表示可显示的最小列数。 |
+| cellLength<font color=ff0000><sup>8+</sup></font> | number | 0 | 当layoutDirection是Row时，表示一行的高度<br/>当layoutDirection是Column时，表示一列的宽度。 |
 | multiSelectable<font color=ff0000><sup>8+</sup></font> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | dragAnimation<font color=ff0000><sup>8+</sup></font> | boolean         | false                 | 是否开启拖拽GridItem动画。 |
 | edgeEffection<font color=ff0000><sup>8+</sup></font> | EdgeEffect         | EdgeEffect.Spring     | 设置边缘滑动效果，目前支持的滑动效果参见EdgeEffect枚举说明。 |
