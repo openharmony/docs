@@ -40,7 +40,7 @@ In addition to universal attributes, the following attributes are supported.
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
 | maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: regular expression to set.<br/>- **error**: error message containing the ignored content returned when regular expression matching fails. |
 
 - EnterKeyType enums
   | Name | Description |
