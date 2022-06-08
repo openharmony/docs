@@ -51,8 +51,8 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta1 | NA |
 | SDK | Ohos_sdk_full&nbsp;3.2.2.5 (API&nbsp;Version&nbsp;9 Beta1) | NA |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.2&nbsp;Beta1&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.2&nbsp;Beta1 | OpenHarmony智能设备集成开发环境推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0 Beta3 for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0 Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
 
 ## 源码获取
