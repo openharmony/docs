@@ -313,7 +313,7 @@ if (ret != 0) {
 Call **RtcGetFreq()** to obtain the frequency of the external crystal oscillator connected to the RTC driver.
 
 ```c
-int32_t RtcGetFreq(DevHandle handle, uint32_t \*freq);
+int32_t RtcGetFreq(DevHandle handle, uint32_t *freq);
 ```
 
   **Table 10** Description of RtcGetFreq
@@ -401,7 +401,7 @@ if (ret != 0) {
 Call **RtcReadReg()** to read the configuration of a custom RTC register based on the register index. One index corresponds to one byte of the register value.
 
 ```c
-int32_t RtcReadReg(DevHandle handle, uint8_t usrDefIndex, uint8_t \*value);
+int32_t RtcReadReg(DevHandle handle, uint8_t usrDefIndex, uint8_t *value);
 ```
 
   **Table 13** Description of RtcReadReg
