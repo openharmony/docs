@@ -1,7 +1,7 @@
 # ScrollBar
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,29 +23,29 @@ This component can contain a single child component.
 ScrollBar(value: ScrollBarOptions)
 
 - ScrollBarOptions parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller, which can be bound to and control scrollable components. |
   | direction | ScrollBarDirection | No | ScrollBarDirection.Vertical | Scrollbar direction in which scrollable components scroll. |
   | state | BarState | No | BarState.Auto | Scrollbar state. |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  > **NOTE**<br>
   > The **&lt;ScrollBar&gt;** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
   > 
   > This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **&lt;ScrollBar&gt;** component can be bound to only one scrollable component, and vice versa.
 
 - ScrollBarDirection enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Vertical | Vertical scrollbar. | 
   | Horizontal | Horizontal scrollbar. | 
 
 - BarState enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
-  | On | Always display. | 
-  | Off | Hide. | 
-  | Auto | Display on demand (displays when the screen is touched and disappears after 2s of inactivity). | 
+  | On | Always display the scrollbar. | 
+  | Off | Hide the scrollbar. | 
+  | Auto | Display the scrollbar on demand (for example, display the scrollbar when the screen is touched or hide the scrollbar after 2s of inactivity). | 
 
 
 ## Example
