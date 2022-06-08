@@ -1,6 +1,7 @@
 # TextClock
 
-> ![](public_sys-resources/icon-note.gif) **NOTE** This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<TextClock\>** component displays the current system time in text format for different time zones. The time is accurate to seconds.
 
@@ -18,10 +19,10 @@ TextClock(options?: {timeZoneOffset?: number, contorller?: TextClockController})
 
 - Parameters
 
-  | Name  | Type| Mandatory| Default Value            | Description                                                    |
+  | Name  | Type | Mandatory | Default Value          | Description                                                |
   | -------- | -------- | ---- | ------------------ | ------------------------------------------------------------ |
-  | timeZoneOffset | number   | No  | Time zone offset| Sets the time zone offset. The value range is [-14, 12], indicating UTC+12 to UTC-12. A negative value indicates Eastern Standard Time, and a positive value indicates Western Standard Time. For example, **-8** indicates UTC+8. For countries or regions crossing the International Date Line, use -13 (UTC+13) and -14 (UTC+14) to ensure consistent time within the entire country or region.|
-  | contorller | [TextClockContorller](#TextClockController) | No| null | Binds a controller to control the status of the **<TextClock\>** component.|
+  | timeZoneOffset | number   | No  | Time zone offset| Sets the time zone offset. The value range is [-14, 12], indicating UTC+12 to UTC-12. A negative value indicates Eastern Standard Time, and a positive value indicates Western Standard Time. For example, **-8** indicates UTC+8. For countries or regions crossing the International Date Line, use -13 (UTC+13) and -14 (UTC+14) to ensure consistent time within the entire country or region. |
+  | contorller | [TextClockContorller](#TextClockController) | No| null | Binds a controller to control the status of the **<TextClock\>** component. |
 
 ## Attributes
 
@@ -31,9 +32,9 @@ TextClock(options?: {timeZoneOffset?: number, contorller?: TextClockController})
 
 ## Events
 
-| Name                                        | Description                                                    |
+| Name                                         | Description                                                  |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | Triggered when the time changes in seconds at minimum.<br> **value**: Unix time stamp, which is the number of milliseconds that have elapsed since the Unix epoch.|
+| onDateChange(event: (value: number) => void) | Triggered when the time changes in seconds at minimum.<br> **value**: Unix time stamp, which is the number of milliseconds that have elapsed since the Unix epoch. |
 
 ## TextClockController
 

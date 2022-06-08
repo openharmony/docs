@@ -1,8 +1,8 @@
 # TextArea
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->
+> **NOTE**<br>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 The **&lt;TextArea&gt;** component provides multi-line text input.
@@ -26,7 +26,7 @@ TextArea(value?:{placeholder?: string controller?: TextAreaController})
     | Name                    | Type                                     | Mandatory | Default Value | Description                            |
     | ----------------------- | ---------------------------------------- | --------- | ------------- | -------------------------------------- |
     | placeholder             | string                                   | No        | -             | Text displayed when there is no input. |
-    | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No        | -             | Text area controller.                  |
+    | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No      | -             | Text area controller.                  |
 
 
 ## Attributes

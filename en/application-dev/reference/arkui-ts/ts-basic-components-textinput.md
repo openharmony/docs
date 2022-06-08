@@ -1,6 +1,6 @@
 # TextInput
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,7 +22,7 @@ None
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | placeholder | string | No | - | Text displayed when there is no input. |
   | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
@@ -40,19 +40,19 @@ In addition to universal attributes, the following attributes are supported.
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
 | maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: regular expression to set.<br/>- **error**: error message containing the ignored content returned when regular expression matching fails. |
 
 - EnterKeyType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
-  | EnterKeyType.Go | The Enter key is labeled "Go." |
-  | EnterKeyType.Search | The Enter key is labeled "Search." |
-  | EnterKeyType.Send | The Enter key is labeled "Send." |
-  | EnterKeyType.Next | The Enter key is labeled "Next." |
-  | EnterKeyType.Done | The Enter key is labeled "Done." |
+  | EnterKeyType.Go | The Enter key is labeled **Go**. |
+  | EnterKeyType.Search | The Enter key is labeled **Search**. |
+  | EnterKeyType.Send | The Enter key is labeled **Send**. |
+  | EnterKeyType.Next | The Enter key is labeled **Next**. |
+  | EnterKeyType.Done | The Enter key is labeled **Done**. |
 
 - InputType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | InputType.Normal | Normal input mode. |
   | InputType.Password | Password input mode. |
@@ -92,9 +92,9 @@ caretPosition(value: number): void
 Sets the cursor in a specified position.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: indicates the length from the start of the string to the position where the input cursor is located. |
+  | value | number | Yes | - | Position of the input cursor.<br/>**value**: length from the start of the string to the position where the input cursor is located. |
 
 
 
