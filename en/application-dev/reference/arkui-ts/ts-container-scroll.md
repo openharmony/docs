@@ -103,7 +103,7 @@ scroller.currentOffset(): Object
 Obtains the scrolling offset.
 
 
-- Return values
+- Return value
     | Type | Description |
   | -------- | -------- |
   | {<br/>xOffset: number,<br/>yOffset: number<br/>} | **xOffset**: horizontal scrolling offset.<br/>**yOffset**: vertical scrolling offset. |

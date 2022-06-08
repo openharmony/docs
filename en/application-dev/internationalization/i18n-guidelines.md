@@ -23,7 +23,7 @@ APIs are provided to access the system language and region information.
 ### How to Develop
 
 1. Obtain the system language.<br>
-   Call the **getSystemLanguage** method to obtain the system language (**i18n** is the name of the imported module).
+    Call the **getSystemLanguage** method to obtain the system language (**i18n** is the name of the imported module).
 
    
    ```
@@ -31,21 +31,21 @@ APIs are provided to access the system language and region information.
    ```
 
 2. Obtain the system region.<br>
-     Call the **getSystemRegion** method to obtain the system region.
+    Call the **getSystemRegion** method to obtain the system region.
      
    ```
    var region = i18n.getSystemRegion();
    ```
 
 3. Obtain the system locale.<br>
-     Call the **getSystemLocale** method to obtain the system locale.
+    Call the **getSystemLocale** method to obtain the system locale.
      
    ```
    var locale = i18n.getSystemLocale();
    ```
 
 4. Check whether the locale's language is RTL.<br>
-   Call the **isRTL** method to check whether the locale's language is RTL.
+    Call the **isRTL** method to check whether the locale's language is RTL.
 
    
    ```
@@ -53,14 +53,14 @@ APIs are provided to access the system language and region information.
    ```
 
 5. Check whether the system uses a 24-hour clock.<br>
-   Call the **is24HourClock** method to check whether the system uses a 24-hour clock.
+    Call the **is24HourClock** method to check whether the system uses a 24-hour clock.
      
    ```
    var hourClock = i18n.is24HourClock();
    ```
 
 6. Obtain the localized display of a language.<br>
-   Call the **getDisplayLanguage** method to obtain the localized display of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
+    Call the **getDisplayLanguage** method to obtain the localized display of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
      
    ```
    var language = "en";
@@ -70,7 +70,7 @@ APIs are provided to access the system language and region information.
    ```
 
 7. Obtain the localized display of a country.<br>
-   Call the **getDisplayCountry** method to obtain the localized display of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
+    Call the **getDisplayCountry** method to obtain the localized display of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
      
    ```
    var country = "US";
@@ -106,7 +106,7 @@ APIs are provided to access the system language and region information.
 ### How to Develop
 
 1. Instantiate a **Calendar** object.<br>
-   Call the **getCalendar** method to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
+    Call the **getCalendar** method to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
 
    
    ```
@@ -114,7 +114,7 @@ APIs are provided to access the system language and region information.
    ```
 
 2. Set the time for the **Calendar** object.<br>
-   Call the **setTime** method to set the time of the **Calendar** object. This method receives two types of parameters. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
+    Call the **setTime** method to set the time of the **Calendar** object. This method receives two types of parameters. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
      
    ```
    var date1 = new Date();
@@ -124,14 +124,14 @@ APIs are provided to access the system language and region information.
    ```
 
 3. Set the year, month, day, hour, minute, and second for the **Calendar** object.<br>
-   Call the **set** method to set the year, month, day, hour, minute, and second for the **Calendar** object.
+    Call the **set** method to set the year, month, day, hour, minute, and second for the **Calendar** object.
      
    ```
    calendar.set(2021, 12, 21, 6, 0, 0)
    ```
 
 4. Set and obtain the time zone for the **Calendar** object.<br>
-   Call the **setTimeZone** and **getTimeZone** methods to set and obtain the time zone for the **Calendar** object. The **setTimeZone** method requires an input string to indicate the time zone to be set.
+    Call the **setTimeZone** and **getTimeZone** methods to set and obtain the time zone for the **Calendar** object. The **setTimeZone** method requires an input string to indicate the time zone to be set.
 
    
    ```
@@ -140,7 +140,7 @@ APIs are provided to access the system language and region information.
    ```
 
 5. Set and obtain the first day of a week for the **Calendar** object.<br>
-   Call the **setFirstDayOfWeek** and **getFirstDayOfWeek** methods to set and obtain the first day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
+    Call the **setFirstDayOfWeek** and **getFirstDayOfWeek** methods to set and obtain the first day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
 
    
    ```
@@ -149,7 +149,7 @@ APIs are provided to access the system language and region information.
    ```
 
 6. Set and obtain the minimum count of days in the first week for the **Calendar** object.<br>
-   Call the **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** methods to set and obtain the minimum count of days in the first week for the **Calendar** object.
+    Call the **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** methods to set and obtain the minimum count of days in the first week for the **Calendar** object.
      
    ```
    calendar.setMinimalDaysInFirstWeek(3);
@@ -157,7 +157,7 @@ APIs are provided to access the system language and region information.
    ```
 
 7. Obtain the localized display of the **Calendar** object.<br>
-   Call the **getDisplayName** method to obtain the localized display of the **Calendar** object.
+    Call the **getDisplayName** method to obtain the localized display of the **Calendar** object.
 
    
    ```
@@ -165,7 +165,7 @@ APIs are provided to access the system language and region information.
    ```
 
 8. Check whether a date is a weekend.<br>
-   Call the **isWeekend** method to determine whether the input date is a weekend.
+    Call the **isWeekend** method to determine whether the input date is a weekend.
 
    
    ```
@@ -191,22 +191,22 @@ APIs are provided to access the system language and region information.
 ### How to Develop
 
 1. Instantiate a **PhoneNumberFormat** object.<br>
-   Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
+    Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
 
    
    ```
-   var phoneNumberFormat = new i18n.PhoneNubmerFormat("CN", {type: "E164"});
+   var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. Check whether the phone number format is correct.
-   Call the **isValidNumber** method to check whether the format of the input phone number is correct.
+    Call the **isValidNumber** method to check whether the format of the input phone number is correct.
      
    ```
    var validNumber = phoneNumberFormat.isValidNumber("15812341234");
    ```
 
 3. Format a phone number.
-   Call the **format** method of **PhoneNumberFormat** to format the input phone number.
+    Call the **format** method of **PhoneNumberFormat** to format the input phone number.
      
    ```
    var formattedNumber = phoneNumberFormat.format("15812341234");
@@ -215,12 +215,12 @@ APIs are provided to access the system language and region information.
 
 ## Measurement Conversion
 
-An API can be called to implement measurement conversion.
+The **unitConvert** API is provided to help you implement measurement conversion.
 
 
 ### Available APIs
 
-  | Module | API | Description | 
+| Module | API | Description | 
 | -------- | -------- | -------- |
 | ohos.i18n | unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string<sup>8+</sup> | Converts one measurement unit (**fromUnit**) into another (**toUnit**) and formats the unit based on the specified locale and style. | 
 
@@ -259,7 +259,7 @@ An API can be called to implement measurement conversion.
 ### How to Develop
 
 1. Instantiate an **IndexUtil** object.<br>
-   Call the **getInstance** method to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
+    Call the **getInstance** method to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
 
    
    ```
@@ -267,21 +267,21 @@ An API can be called to implement measurement conversion.
    ```
 
 2. Obtain the index list.<br>
-   Call the **getIndexList** method to obtain the alphabet index list of the current locale.
+    Call the **getIndexList** method to obtain the alphabet index list of the current locale.
      
    ```
    var indexList = indexUtil.getIndexList();
    ```
 
 3. Add an index.<br>
-   Call the **addLocale** method to add the alphabet index of a new locale to the current index list.
+    Call the **addLocale** method to add the alphabet index of a new locale to the current index list.
      
    ```
    indexUtil.addLocale("ar")
    ```
 
 4. Obtain the index of a string.<br>
-   Call the **getIndex** method to obtain the alphabet index of a string.
+    Call the **getIndex** method to obtain the alphabet index of a string.
      
    ```
    var text = "access index";
@@ -313,7 +313,7 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
 ### How to Develop
 
 1. Instantiate a **BreakIterator** object.<br>
-   Call the **getLineInstance** method to instantiate a **BreakIterator** object.
+    Call the **getLineInstance** method to instantiate a **BreakIterator** object.
 
    
    ```
@@ -322,7 +322,7 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
    ```
 
 2. Set and access the text that requires line breaking.<br>
-   Call the **setLineBreakText** and **getLineBreakText** methods to set and access the text that requires line breaking.
+    Call the **setLineBreakText** and **getLineBreakText** methods to set and access the text that requires line breaking.
 
    
    ```
@@ -332,7 +332,7 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
    ```
 
 3. Obtain the current position of the **BreakIterator** object.<br>
-   Call the **current** method to obtain the current position of the **BreakIterator** object in the text being processed.
+    Call the **current** method to obtain the current position of the **BreakIterator** object in the text being processed.
 
    
    ```
@@ -340,7 +340,7 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
    ```
 
 4. Set the position of a **BreakIterator** object.<br>
-   The following APIs are provided to adjust the **first**, **last**, **next**, **previous**, or **following** position of the **BreakIterator** object in the text to be processed.
+    The following APIs are provided to adjust the **first**, **last**, **next**, **previous**, or **following** position of the **BreakIterator** object in the text to be processed.
 
    
    ```
@@ -356,7 +356,7 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
    ```
 
 5. Determine whether a position is a break point.<br>
-   Call the **isBoundary** method to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
+    Call the **isBoundary** method to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
 
    
    ```

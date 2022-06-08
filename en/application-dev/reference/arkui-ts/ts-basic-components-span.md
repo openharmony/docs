@@ -1,7 +1,7 @@
 # Span
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ None
 Span(content: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | content | string | Yes | - | Text content. |
 
@@ -42,7 +42,7 @@ In addition to the text style attributes, the attributes below are supported.
 
 Among all the universal events, only the click event is supported.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > As the **&lt;Span&gt;** component does not have size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
 
 

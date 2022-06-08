@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
 
-Creates an **RdbPredicates** object based on a **DataAabilityPredicates** object.
+Creates an **RdbPredicates** object based on a **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

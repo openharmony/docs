@@ -58,10 +58,10 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type| Readable| Writable| Description                                                        |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
+| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **\#00FF00** or **\#FF00FF00**.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
 | statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
+| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **\#00FF00** or **\#FF00FF00**.|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
@@ -78,7 +78,7 @@ This is a system API and cannot be called by third-party applications.
 | type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
 | region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value, for example, **\#00FF00** or **\#FF00FF00**.|
+| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **\#00FF00** or **\#FF00FF00**.|
 | contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -146,6 +146,7 @@ Describes the window properties.
 | focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**.                |
 | touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**.                |
 | brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. |
+| dimBehindValue<sup>(deprecated)</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br> |
 | isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**.                 |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**.                     |
 | isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**.               |
@@ -168,7 +169,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
+This API is deprecated since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -201,7 +202,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow. This API uses a promise to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
+This API is deprecated since API version 8. You are advised to use [window.create<sup>8+</sup>](#windowcreate8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -370,7 +371,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+This API is deprecated since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -400,7 +401,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the top window of the current application. This API uses a promise to return the result.
 
-This API is discarded since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
+This API is deprecated since API version 8. You are advised to use [window.getTopWindow<sup>8+</sup>](#windowgettopwindow8) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -706,11 +707,11 @@ Moves this window. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                   |
-| -------- | ------------------------- | ---- | --------------------------------------- |
-| x        | number                    | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
-| y        | number                    | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                             |
+| Name  | Type                     | Mandatory| Description                                             |
+| -------- | ------------------------- | ---- | ------------------------------------------------- |
+| x        | number                    | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
+| y        | number                    | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                       |
 
 **Example**
 
@@ -735,10 +736,10 @@ Moves this window. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                   |
-| ------ | ------ | ---- | --------------------------------------- |
-| x      | number | Yes  | Distance that the window moves along the x-axis. A positive value indicates that the window moves to the right.|
-| y      | number | Yes  | Distance that the window moves along the y-axis. A positive value indicates that the window moves downwards.|
+| Name| Type  | Mandatory| Description                                             |
+| ------ | ------ | ---- | ------------------------------------------------- |
+| x      | number | Yes  | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right.|
+| y      | number | Yes  | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards.|
 
 **Return value**
 
@@ -767,11 +768,11 @@ Changes the size of this window. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description            |
-| -------- | ------------------------- | ---- | ---------------- |
-| width    | number                    | Yes  | New width of the window.|
-| height   | number                    | Yes  | New height of the window.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- | -------------------------- |
+| width    | number                    | Yes  | New width of the window, in px.|
+| height   | number                    | Yes  | New height of the window, in px.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                |
 
 **Example**
 
@@ -795,10 +796,10 @@ Changes the size of this window. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| width  | number | Yes  | New width of the window.|
-| height | number | Yes  | New height of the window.|
+| Name| Type  | Mandatory| Description                      |
+| ------ | ------ | ---- | -------------------------- |
+| width  | number | Yes  | New width of the window, in px.|
+| height | number | Yes  | New height of the window, in px.|
 
 **Return value**
 
@@ -1601,7 +1602,7 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
   promise.then((data)=> {
       console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
-      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+      console.error('Failed to set window colorspace. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -1624,10 +1625,10 @@ Obtains the color gamut mode of this window. This API uses an asynchronous callb
   ```js
   windowClass.getColorSpace((err, data) => {
       if (err.code) {
-          console.error('Failed to get window color space. Cause:' + JSON.stringify(err));
+          console.error('Failed to get window colorspace. Cause:' + JSON.stringify(err));
           return;
       }
-      console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
+      console.info('Succeeded in getting window colorspace. Cause:' + JSON.stringify(data))
   })
   ```
 
@@ -1652,7 +1653,7 @@ Obtains the color gamut mode of this window. This API uses a promise to return t
   promise.then((data)=> {
       console.info('Succeeded in getting window color space. Cause:' + JSON.stringify(data))
   }).catch((err)=>{
-      console.error('Failed to set window colorspacet. Cause: ' + JSON.stringify(err));
+      console.error('Failed to get window colorspace. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -1668,7 +1669,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
 
 **Example**
@@ -1696,7 +1697,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The color is a hexadecimal value, for example, #00FF00 or #FF00FF00.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 
 **Return value**
 
@@ -1773,6 +1774,70 @@ Sets the screen brightness for this window. This API uses a promise to return th
       console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data))
   }).catch((err)=>{
       console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
+  });
+  ```
+
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name        | Type                     | Mandatory| Description                                              |
+| -------------- | ------------------------- | ---- | -------------------------------------------------- |
+| dimBehindValue | number                    | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
+| callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                        |
+
+**Example**
+
+  ```js
+  windowClass.setDimBehind(0.5, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the dimness. Data:' + JSON.stringify(data));
+  });
+  ```
+
+### setDimBehind<sup>(deprecated)</sup>
+
+setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
+
+Sets the dimness of the window that is not on top. This API uses a promise to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name        | Type  | Mandatory| Description                                              |
+| -------------- | ------ | ---- | -------------------------------------------------- |
+| dimBehindValue | number | Yes  | Dimness of the window to set. The value ranges from 0 to 1. The value **1** indicates the dimmest.|
+
+**Return value**
+
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let promise = windowClass.setDimBehind(0.5);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the dimness. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the dimness. Cause: ' + JSON.stringify(err));
   });
   ```
 
@@ -1861,6 +1926,70 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
           return;
       }
       console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
+  });
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type                     | Mandatory| Description            |
+| --------- | ------------------------- | ---- | ---------------- |
+| touchable | boolean                   | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.      |
+
+**Example**
+
+  ```js
+  windowClass.setOutsideTouchable(true, (err, data) => {
+      if (err.code) {
+          console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  })
+  ```
+
+### setOutsideTouchable<sup>(deprecated)</sup>
+
+setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
+
+Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
+
+> This API is supported since API version 7 and deprecated since API version 9.
+> 
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description            |
+| --------- | ------- | ---- | ---------------- |
+| touchable | boolean | Yes  | Whether the area outside the subwindow is touchable. The value **true** means that such an area is touchable, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let promise = windowClass.setOutsideTouchable(true);
+  promise.then((data)=> {
+      console.info('Succeeded in setting the area to be touchable. Data: ' + JSON.stringify(data))
+  }).catch((err)=>{
+      console.error('Failed to set the area to be touchable. Cause: ' + JSON.stringify(err));
   });
   ```
 

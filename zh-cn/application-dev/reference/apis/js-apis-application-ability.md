@@ -20,6 +20,8 @@ import Ability from '@ohos.application.Ability';
 | context | [AbilityContext](js-apis-ability-context.md) | 是 | 否 | 上下文。 | 
 | launchWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability启动时的参数。 | 
 | lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
+| callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
+
 
 
 ## Ability.onCreate
@@ -210,7 +212,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
 ## Ability.onNewWant
 
-onNewWant(want: Want): void;
+onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 当ability的启动模式设置为单例时回调会被调用。
 
@@ -221,13 +223,17 @@ onNewWant(want: Want): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-application-Want.md) | 是 | Want类型参数，如ability名称，包名等。 | 
+  | launchParams | AbilityConstant.LaunchParam | 是 | Ability启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
     
   ```js
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          if (launchParams.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+              console.log('onNewWant, launchReason is continuation');
+          }
       }
   }
   ```
@@ -261,7 +267,7 @@ onConfigurationUpdated(config: Configuration): void;
 
 dump(params: Array\<string>): Array\<string>;
 
-指示from命令的参数。
+转储客户端信息时调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -269,7 +275,7 @@ dump(params: Array\<string>): Array\<string>;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | 是 | 指示from命令的参数。| 
+  | params | Array\<string> | 是 | 表示命令形式的参数。| 
 
 **示例：**
     
@@ -475,7 +481,7 @@ release(): void;
 
 onRelease(callback: OnReleaseCallBack): void;
 
-注册通用组件服务端Stub断开监听通知。
+注册通用组件服务端Stub（桩）断开监听通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

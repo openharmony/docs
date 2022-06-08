@@ -870,7 +870,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
+call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 调用DataAbility的扩展接口，使用Promise方式作为异步方法。
 
@@ -906,7 +906,7 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
 调用DataAbility的扩展接口，使用callback方式作为异步方法。
 

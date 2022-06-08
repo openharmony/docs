@@ -1,7 +1,7 @@
 # Matrix Transformation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -31,30 +31,30 @@ Matrix constructor, which is used to create a 4x4 matrix by using the input para
   | -------- | -------- | -------- | -------- | -------- |
   | array | Array&lt;number&gt; | Yes | [1, 0, 0, 0,<br/>0, 1, 0, 0,<br/>0, 0, 1, 0,<br/>0, 0, 0, 1] | A number array whose length is 16 (4 x 4). For details, see the parameter description. |
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | 4x4 matrix object created based on the input parameter. | 
+  | Object | 4x4 matrix object created based on the input parameter. |
 
 - Parameter description
-    | Name | Type | Mandatory | Description | 
+    | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | m00 | number | Yes | Scaling value of the x-axis. Defaults to **1** for the unit matrix. | 
-  | m01 | number | Yes | The second value, which is affected by the rotation of the x, y, and z axes. | 
-  | m02 | number | Yes | The third value, which is affected by the rotation of the x, y, and z axes. | 
-  | m03 | number | Yes | Meaningless. | 
-  | m10 | number | Yes | The fifth value, which is affected by the rotation of the x, y, and z axes. | 
-  | m11 | number | Yes | Scaling value of the y-axis. Defaults to **1** for the unit matrix. | 
-  | m12 | number | Yes | The seventh value, which is affected by the rotation of the x, y, and z axes. | 
-  | m13 | number | Yes | Meaningless. | 
-  | m20 | number | Yes | The ninth value, which is affected by the rotation of the x, y, and z axes. | 
-  | m21 | number | Yes | The tenth value, which is affected by the rotation of the x, y, and z axes. | 
-  | m22 | number | Yes | Scaling value of the z-axis. Defaults to **1** for the unit matrix. | 
-  | m23 | number | Yes | Meaningless. | 
-  | m30 | number | Yes | Translation value of the x-axis, in px. Defaults to **0** for the unit matrix. | 
-  | m31 | number | Yes | Translation value of the y-axis, in px. Defaults to **0** for the unit matrix. | 
-  | m32 | number | Yes | Translation value of the z-axis, in px. Defaults to **0** for the unit matrix. | 
-  | m33 | number | Yes | Valid in homogeneous coordinates, presenting the perspective projection effect. | 
+  | m00 | number | Yes | Scaling value of the x-axis. Defaults to **1** for the unit matrix. |
+  | m01 | number | Yes | The second value, which is affected by the rotation of the x, y, and z axes. |
+  | m02 | number | Yes | The third value, which is affected by the rotation of the x, y, and z axes. |
+  | m03 | number | Yes | Meaningless. |
+  | m10 | number | Yes | The fifth value, which is affected by the rotation of the x, y, and z axes. |
+  | m11 | number | Yes | Scaling value of the y-axis. Defaults to **1** for the unit matrix. |
+  | m12 | number | Yes | The seventh value, which is affected by the rotation of the x, y, and z axes. |
+  | m13 | number | Yes | Meaningless. |
+  | m20 | number | Yes | The ninth value, which is affected by the rotation of the x, y, and z axes. |
+  | m21 | number | Yes | The tenth value, which is affected by the rotation of the x, y, and z axes. |
+  | m22 | number | Yes | Scaling value of the z-axis. Defaults to **1** for the unit matrix. |
+  | m23 | number | Yes | Meaningless. |
+  | m30 | number | Yes | Translation value of the x-axis, in px. Defaults to **0** for the unit matrix. |
+  | m31 | number | Yes | Translation value of the y-axis, in px. Defaults to **0** for the unit matrix. |
+  | m32 | number | Yes | Translation value of the z-axis, in px. Defaults to **0** for the unit matrix. |
+  | m33 | number | Yes | Valid in homogeneous coordinates, presenting the perspective projection effect. |
 
 - Example
   
@@ -76,10 +76,10 @@ identity(): Object
 Matrix initialization function. Can return a unit matrix object.
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Unit matrix object. | 
+  | Object | Unit matrix object. |
 
 - Example
   
@@ -102,10 +102,10 @@ copy(): Object
 Matrix copy function, which is used to copy the current matrix object.
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Copy object of the current matrix. | 
+  | Object | Copy object of the current matrix. |
 
 - Example
   
@@ -147,14 +147,14 @@ Matrix overlay function, which is used to overlay the effects of two matrices to
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | matrix | Matrix4 | Yes | - | Matrix object to be overlaid. | 
+  | matrix | Matrix4 | Yes | - | Matrix object to be overlaid. |
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Object after matrix overlay. | 
+  | Object | Object after matrix overlay. |
 
 - Example
   
@@ -188,10 +188,10 @@ invert(): Object
 Matrix inverse function. Can return an inverse matrix of the current matrix object, that is, get an opposite effect.
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Inverse matrix object of the current matrix. | 
+  | Object | Inverse matrix object of the current matrix. |
 
 - Example
   
@@ -212,17 +212,17 @@ Matrix translation function, which is used to add the translation effect to the 
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | No | 0 | Translation distance of the x-axis, in px. | 
-  | y | number | No | 0 | Translation distance of the y-axis, in px. | 
-  | z | number | No | 0 | Translation distance of the z-axis, in px. | 
+  | x | number | No | 0 | Translation distance of the x-axis, in px. |
+  | y | number | No | 0 | Translation distance of the y-axis, in px. |
+  | z | number | No | 0 | Translation distance of the z-axis, in px. |
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Matrix object after the translation effect is added. | 
+  | Object | Matrix object after the translation effect is added. |
 
 - Example
   
@@ -254,19 +254,19 @@ Matrix scaling function, which is used to add the scaling effect to the x, y, an
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | No | 1 | Scaling multiple of the x-axis. | 
-  | y | number | No | 1 | Scaling multiple of the y-axis. | 
-  | z | number | No | 1 | Scaling multiple of the z-axis. | 
-  | centerX | number | No | 0 | X coordinate of the center point. | 
-  | centerY | number | No | 0 | Y coordinate of the center point. | 
+  | x | number | No | 1 | Scaling multiple of the x-axis. |
+  | y | number | No | 1 | Scaling multiple of the y-axis. |
+  | z | number | No | 1 | Scaling multiple of the z-axis. |
+  | centerX | number | No | 0 | X coordinate of the center point. |
+  | centerY | number | No | 0 | Y coordinate of the center point. |
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Matrix object after the scaling effect is added. | 
+  | Object | Matrix object after the scaling effect is added. |
 
 - Example
   
@@ -298,20 +298,20 @@ Matrix rotation function, which is used to add the rotation effect to the x, y, 
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | No | 1 | X coordinate of the rotation axis vector. | 
-  | y | number | No | 1 | Y coordinate of the rotation axis vector. | 
-  | z | number | No | 1 | Z coordinate of the rotation axis vector. | 
-  | angle | number | No | 0 | Rotation angle. | 
-  | centerX | number | No | 0 | X coordinate of the center point. | 
-  | centerY | number | No | 0 | Y coordinate of the center point. | 
+  | x | number | No | 1 | X coordinate of the rotation axis vector. |
+  | y | number | No | 1 | Y coordinate of the rotation axis vector. |
+  | z | number | No | 1 | Z coordinate of the rotation axis vector. |
+  | angle | number | No | 0 | Rotation angle. |
+  | centerX | number | No | 0 | X coordinate of the center point. |
+  | centerY | number | No | 0 | Y coordinate of the center point. |
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Object | Matrix object after the rotation effect is added. | 
+  | Object | Matrix object after the rotation effect is added. |
 
 - Example
   
@@ -343,15 +343,15 @@ Matrix point transformation function, which is used to apply the current transfo
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | point | Point | Yes | - | Point to be transformed. | 
+  | point | Point | Yes | - | Point to be transformed. |
 
 
-- Return values
-    | Type | Description | 
+- Return value
+    | Type | Description |
   | -------- | -------- |
-  | Point | Point object after matrix transformation | 
+  | Point | Point object after matrix transformation |
 
 - Example
   

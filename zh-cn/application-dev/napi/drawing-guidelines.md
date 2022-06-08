@@ -157,7 +157,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 2. **设置排版风格**。
 
     ```c++
-    // 选择左对齐/居中对齐等排版属性
+    // 选择从左到右/左对齐等排版属性
     OH_Drawing_TypographyStyle* typoStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextDirection(typoStyle, TEXT_DIRECTION_LTR);
     OH_Drawing_SetTypographyTextAlign(typoStyle, TEXT_ALIGN_LEFT);
@@ -204,5 +204,5 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 ## 相关实例
 
 针对Drawing模块的使用，有以下相关实例可供参考：
-* [Drawing模块2D图形绘制](https://gitee.com/openharmony/graphic_standard/blob/master/rosen/samples/2d_graphics/drawing_c_sample.cpp)。
-* [Drawing模块文本绘制显示](https://gitee.com/openharmony/graphic_standard/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。
+* [Drawing模块2D图形绘制](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/2d_graphics/drawing_c_sample.cpp)。
+* [Drawing模块文本绘制显示](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。

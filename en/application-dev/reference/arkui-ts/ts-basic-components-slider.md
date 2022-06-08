@@ -1,7 +1,7 @@
 # Slider
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -44,12 +44,12 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 
 Touch target configuration is not supported.
 
-| Name          | Type    | Default Value | Description                              |
-| ------------- | ------- | ------------- | ---------------------------------------- |
-| blockColor    | Color   | -             | Color of the slider.                     |
-| trackColor    | Color   | -             | Background color of the slider.          |
-| selectedColor | Color   | -             | Color of the slider rail that has been slid. |
-| showSteps     | boolean | false         | Whether to display the current step.     |
+| Name          | Type    | Default Value | Description                                                          |
+| ------------- | ------- | ------------- | -------------------------------------------------------------------- |
+| blockColor    | Color   | -             | Color of the slider.                                                 |
+| trackColor    | Color   | -             | Background color of the slider.                                      |
+| selectedColor | Color   | -             | Color of the slider rail that has been slid.                         |
+| showSteps     | boolean | false         | Whether to display the current step.                                 |
 | showTips      | boolean | false         | Whether to display a bubble to indicate the percentage when sliding. |
 
 

@@ -19,9 +19,18 @@ import stats from '@ohos.bundleState';
 | function queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void | 通过指定起始和结束时间查询应用使用时长统计信息。 |
 | function queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void | 通过指定起始和结束时间查询当前应用的事件集合。 |
 | function queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void | 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
-| function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询（返回）当前调用者应用的使用优先级群组。 |
+| function queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void | 查询当前调用者应用或者指定应用的使用优先级群组。callback形式。 |
+| function queryAppUsagePriorityGroup(bundleName? : string): Promise<number>; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 | function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 |
+| function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
+| function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
+| function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback<boolean>): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
+| function setBundleGroup(bundleName : string, newGroup : GroupType): Promise<boolean>; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
+| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
+| function registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
+| function unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void | 解除应用分组监听回调，以callback形式返回。 |
+| function unRegisterGroupCallBack(): Promise<boolean>; | 解除应用分组监听回调，以promise形式返回。 |
 
 ## 开发步骤
 
@@ -163,24 +172,40 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-6. 查询（返回）当前调用者应用的使用优先级群组，config.json中不需要配置权限。
+6. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。查询（有参）指定应用的使用优先级群组，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
 
     ```js
     import stats from '@ohos.bundleState'
-
-    // 异步方法promise方式
+    
+    // 无参异步方法promise方式
     stats.queryAppUsagePriorityGroup().then( res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( err => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
     });
-
-    // 异步方法callback方式
+    
+    // 无参异步方法callback方式
     stats.queryAppUsagePriorityGroup((err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
+        }
+    });
+    
+    //有参异步promise方式
+    stats.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+    });
+    
+    //有参异步方法callback方式
+    stats.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
         }
     });
     ```
@@ -258,6 +283,135 @@ import stats from '@ohos.bundleState';
                     console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
                 }
             }
+    });
+    ```
+
+9. 通过指定起始和结束时间查询所有应用的通知次数，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+
+    ```js
+    import stats from '@ohos.bundleState'
+
+    // 异步方法promise方式
+    stats.queryAppNotificationNumber(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise success.');
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise result ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise failed, because: ' + err.code);
+    });
+
+    // 异步方法callback方式
+    stats.queryAppNotificationNumber(0, 20000000000000, (err, res) => {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback success.');
+            console.log('BUNDLE_ACTIVE queryAppNotificationNumber callback result ' + JSON.stringify(res));
+        }
+    });
+    ```
+
+10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+
+    ```js
+    import stats from '@ohos.bundleState'
+    
+    // 异步方法promise方式
+    stats.queryBundleActiveEventStates(0, 20000000000000).then( res => {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise success.');
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise result ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise failed, because: ' + err.code);
+    });
+    
+    // 异步方法callback方式
+    stats.queryBundleActiveEventStates(0, 20000000000000, (err, res) => {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback success.');
+            console.log('BUNDLE_ACTIVE queryBundleActiveEventStates callback result ' + JSON.stringify(res));
+        }
+    });
+    ```
+
+11. 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功
+
+    ```javascript
+    import stats from '@ohos.bundleState'
+    
+    //异步方法promise
+    stats.setBundleGroup(this.bundleName, this.newGroup).then( res => {
+        console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded. result: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
+    });
+    //异步方法callback
+    stats.setBundleGroup(this.bundleName, this.newGroup, (err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE SetBundleGroup callback succeeded. result: ' + JSON.stringify(res));
+        }
+    });
+    ```
+
+12. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息
+
+    ```javascript
+    import stats from '@ohos.bundleState'
+    
+    //异步方法promise形式
+    let onBundleGroupChanged = (err,res) =>{
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result newGroup is : ' + res.newGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result changeReason is : ' + res.newGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
+    };
+    stats.registerGroupCallBack(onBundleGroupChanged).then( res => {
+        console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded. result1: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
+    });
+    //异步方法callback形式
+    let onBundleGroupChanged = (err,res) =>{
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s oldGroup is : ' + res.oldGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s newGroup is : ' + res.newGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s changeReason is : ' + res.newGroup);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s userId is : ' + res.userId);
+        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s bundleName is : ' + res.bundleName);
+    };
+    stats.registerGroupCallBack(onBundleGroupChanged, (err,res)=>{
+        if(err) {
+            console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback success.');
+            console.log('BUNDLE_ACTIVE RegisterGroupCallBack result is : ' + JSON.stringify(res));
+        }
+    });
+    ```
+
+13. 解除应用分组监听回调
+
+    ```javascript
+    import stats from '@ohos.bundleState'
+    
+    //promise
+    stats.unRegisterGroupCallBack().then( res => {
+        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded. result: ' + JSON.stringify(res));
+    }).catch( err => {
+        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
+    });
+    //callback
+    stats.unRegisterGroupCallBack((err,res)=>{
+        if(err) {
+            console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback success.');
+            console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack result is : ' + JSON.stringify(res));
+        }
     });
     ```
 

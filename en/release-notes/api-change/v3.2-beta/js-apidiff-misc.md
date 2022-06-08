@@ -1,0 +1,33 @@
+# JS API Changes of the Misc Services Subsystem
+
+The table below lists the APIs changes of the Misc services subsystem in OpenHarmony 3.2 Beta1 over OpenHarmony 3.1 Release.
+
+## API Changes
+
+| Module| Method/Event Name| Method/Attribute/Enumeration/Constant| Change Type|
+|---|---|---|---|
+| ohos.screenLock | sendScreenLockEvent | sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<boolean>): void;<br>sendScreenLockEvent(event: String, parameter: number): Promise\<boolean>; | Added|
+| ohos.screenLock | off_changeUser | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_endSleep | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_beginSleep | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_screenlockEnabled | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_beginExitAnimation | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_unlockScreen | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_endScreenOff | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_beginScreenOff | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_endScreenOn | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_beginScreenOn | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_endWakeUp | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | off_beginWakeUp | off(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation' \| 'screenlockEnabled' \| 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_screenlockEnabled | on(type: 'screenlockEnabled', callback: Callback\<boolean>): void; | Added|
+| ohos.screenLock | on_changeUser | on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<number>): void; | Added|
+| ohos.screenLock | on_endSleep | on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<number>): void; | Added|
+| ohos.screenLock | on_beginSleep | on(type: 'beginSleep' \| 'endSleep' \| 'changeUser', callback: Callback\<number>): void; | Added|
+| ohos.screenLock | on_beginExitAnimation | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_unlockScreen | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_endScreenOff | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_beginScreenOff | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_endScreenOn | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_beginScreenOn | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_endWakeUp | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|
+| ohos.screenLock | on_beginWakeUp | on(type: 'beginWakeUp' \| 'endWakeUp' \| 'beginScreenOn' \| 'endScreenOn' \| 'beginScreenOff' \| 'endScreenOff' \| 'unlockScreen' \| 'beginExitAnimation', callback: Callback\<void>): void; | Added|

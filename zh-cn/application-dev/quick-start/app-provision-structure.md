@@ -1,5 +1,5 @@
 #  HarmonyAppProvision配置文件的说明
-在应用的开发过程中，应用的部分信息需要在HarmonyAppProvision配置文件（该文件在部分文档中也称为profile文件）中声明。
+在应用的开发过程中，应用的权限、签名信息等需要在HarmonyAppProvision配置文件（该文件在部分文档中也称为profile文件）中声明。
 
 ## 配置文件的内部结构
 HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对象、type对象、issuer对象、validity对象、bundle-info对象、acls对象、permissions对象、debug-info对象等部分组成。

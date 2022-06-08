@@ -1,7 +1,7 @@
 # Stepper
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -24,7 +24,7 @@ Stepper(value?: { index?: number })
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | index | number | No | 0 | Index of the **&lt;StepperItem&gt;** that is currently displayed. | 
 
@@ -36,11 +36,11 @@ None
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
-| onFinish(callback: () =&gt; void) | Triggered when the **nextLabel** of the last **&lt;StepperItem&gt;** in the **&lt;Stepper&gt;** is clicked. | 
-| onSkip(callback: () =&gt; void) | Triggered when the current **&lt;StepperItem&gt;** is **ItemState.Skip** and the **nextLabel** is clicked. | 
-| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Triggered when the text button on the left or right is clicked to switch between steps.<br/>- **prevIndex**: index of the step page before the switching.<br/>- **index**: index of the step page after the switching, that is, index of the previous or next page. | 
+| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **&lt;StepperItem&gt;** in the **&lt;Stepper&gt;** is clicked. | 
+| onSkip(callback: () =&gt; void) | Invoked when the current **&lt;StepperItem&gt;** is **ItemState.Skip** and the **nextLabel** is clicked. | 
+| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the text button on the left or right is clicked to switch between steps.<br/>- **prevIndex**: index of the step page before the switching.<br/>- **index**: index of the step page after the switching, that is, index of the previous or next page. | 
 
 
 ## Example

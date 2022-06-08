@@ -25,7 +25,7 @@
 
 | 类型 | 含义与取值说明 |
 | -------- | -------- |
-| 屏幕密度 | 表示设备的屏幕密度（单位为dpi），取值如下：<br/>-&nbsp;ldpi：表示低密度屏幕（~120dpi）（0.75基准密度）<br/>-&nbsp;mdpi：表示中密度屏幕（~160dpi）（基准密度）<br/>-&nbsp;hdpi：表示高密度屏幕（~240dpi）（1.5基准密度）<br/>-&nbsp;xhdpi：表示加高密度屏幕（~320dpi）（2.0基准密度）<br/>-&nbsp;xxhdpi：表示超超高密度屏幕（~480dpi）（3.0基准密度）<br/>-&nbsp;xxxhdpi：表示超超超高密度屏幕（~640dpi）（4.0基准密度） |
+| 屏幕密度 | 表示设备的屏幕密度（单位为dpi），取值如下：<br/>-&nbsp;ldpi：表示低密度屏幕（\~120dpi）（0.75基准密度）<br/>-&nbsp;mdpi：表示中密度屏幕（\~160dpi）（基准密度）<br/>-&nbsp;hdpi：表示高密度屏幕（\~240dpi）（1.5基准密度）<br/>-&nbsp;xhdpi：表示加高密度屏幕（\~320dpi）（2.0基准密度）<br/>-&nbsp;xxhdpi：表示超超高密度屏幕（\~480dpi）（3.0基准密度）<br/>-&nbsp;xxxhdpi：表示超超超高密度屏幕（\~640dpi）（4.0基准密度） |
 
 
 ## 限定词与设备状态的匹配规则
@@ -41,7 +41,7 @@
 
 | 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：this.$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。<br/> |
+| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：this.$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。 |
 
 **res-defaults.json示例：**<br/>
 

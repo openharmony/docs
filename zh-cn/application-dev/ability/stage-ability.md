@@ -50,7 +50,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
 |onWindowStageDestroy(): void|Ability生命周期回调，销毁window stage时被调用。|
 |onForeground(): void|Ability生命周期回调，Ability切换至前台时被调用。|
 |onBackground(): void|Ability生命周期回调，Ability切换至后台时被调用。|
-|onNewWant(want: Want): void|Ability回调，Ability的启动模式设置为单例时被调用。|
+|onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void|Ability回调，Ability的启动模式设置为单例时被调用。|
 |onConfigurationUpdated(config: Configuration): void|Ability回调，Ability的系统配置更新时被调用。|
 ### 实现AbilityStage及Ability生命周期
 创建Stage模型的Page Ability应用，需实现AbilityStage接口及Ability生命周期接口，并使用窗口提供的方法设置页面。具体示例代码如下：
@@ -292,7 +292,7 @@ async function reStartAbility() {
 import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {
-  onNewWant(want) {
+  onNewWant(want, launchParams) {
     globalThis.newWant = want
   }
 }

@@ -5,7 +5,6 @@ The call module provides call management functions, including making calls, redi
 To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
 
 >**NOTE**<br>
->
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,10 +26,10 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                   |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| Name     | Type                        | Mandatory | Description |
+| ----------- | ---------------------------- | ---- | -------------------------------- |
+| phoneNumber | string                        | Yes  | Phone number.  |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
@@ -53,11 +52,11 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                   |
+| Name     | Type                        | Mandatory | Description                             |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
+| phoneNumber | string                       | Yes  | Phone number.                           |
 | options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
@@ -82,16 +81,16 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                  |
+| Name     | Type                       | Mandatory | Description                            |
 | ----------- | --------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                      | Yes  | Phone number.                            |
-| options     | [DialOptions](#dialoptions) | Yes  | Call option, which indicates whether the call is a voice call or video call.|
+| phoneNumber | string                      | Yes  | Phone number.                          |
+| options     | [DialOptions](#dialoptions) | Yes  | Call option, which indicates whether the call is a voice call or video call. |
 
 **Return value**
 
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
+| Type                   | Description                                                       |
+| ---------------------- | ---------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure |
 
 **Example**
 
@@ -116,10 +115,10 @@ Launches the call screen and displays the dialed number. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                     | Mandatory| Description                                      |
+| Name     | Type                     | Mandatory | Description                                      |
 | ----------- | ------------------------- | ---- | ------------------------------------------ |
 | phoneNumber | string                    | Yes  | Phone number.                                |
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -140,15 +139,15 @@ Launches the call screen and displays the dialed number. This API uses a promise
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| phoneNumber | string | Yes  | Phone number.|
+| phoneNumber | string | Yes  | Phone number. |
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -171,9 +170,9 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                        | Mandatory| Description                                                        |
+| Name  | Type                        | Mandatory | Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Callback used to return the result.<br>- **true**: A call is in progress.<br>- **false**: No call is in progress. |
 
 **Example**
 
@@ -196,7 +195,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 | Type                  | Description                                   |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -220,9 +219,9 @@ Obtains the call status. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                |
+| Name  | Type                                        | Mandatory | Description                                |
 | -------- | -------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[CallState](#callstate)&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;[CallState](#callstate)&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -245,7 +244,7 @@ Obtains the call status. This API uses a promise to return the result.
 
 | Type                                  | Description                                   |
 | -------------------------------------- | --------------------------------------- |
-| Promise&lt;[CallState](#callstate)&gt; | Promise used to return the result.|
+| Promise&lt;[CallState](#callstate)&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -270,7 +269,7 @@ Checks whether a device supports voice calls.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
+| boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls. |
 
 ```js
 let result = call.hasVoiceCapability(); 
@@ -287,10 +286,10 @@ Checks whether the called number is an emergency number. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                        | Mandatory| Description                                                        |
+| Name     | Type                        | Mandatory | Description                                                        |
 | ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | phoneNumber | string                       | Yes  | Phone number.                                                  |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
 
 **Example**
 
@@ -311,11 +310,11 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 **Parameters**
 
-| Name     | Type                                              | Mandatory| Description                                                       |
+| Name     | Type                                              | Mandatory | Description                                                       |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | phoneNumber | string                                             | Yes  | Phone number.                                                 |
 | options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.        |
-| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
+| callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result.<br> - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number. |
 
 **Example**
 
@@ -336,16 +335,16 @@ Checks whether the called number is an emergency number based on the phone numbe
 
 **Parameters**
 
-| Name     | Type                                              | Mandatory| Description          |
+| Name     | Type                                              | Mandatory | Description          |
 | ----------- | -------------------------------------------------- | ---- | -------------- |
 | phoneNumber | string                                             | Yes  | Phone number.    |
-| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option.|
+| options     | [EmergencyNumberOptions](#emergencynumberoptions7) | Yes  | Phone number option. |
 
 **Return value**
 
 | Type                  | Description                                               |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -370,10 +369,10 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                |
+| Name     | Type                       | Mandatory | Description                                |
 | ----------- | --------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                      | Yes  | Phone number.                          |
-| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -395,11 +394,11 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory| Description                                |
+| Name     | Type                                        | Mandatory | Description                                |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------ |
 | phoneNumber | string                                       | Yes  | Phone number.                          |
 | options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.              |
-| callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -424,16 +423,16 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 
 **Parameters**
 
-| Name     | Type                                        | Mandatory| Description                  |
+| Name     | Type                                        | Mandatory | Description                  |
 | ----------- | -------------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                       | Yes  | Phone number.            |
-| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code.|
+| options     | [NumberFormatOptions](#numberformatoptions7) | Yes  | Number formatting option, for example, country code. |
 
 **Return value**
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -460,11 +459,11 @@ The phone number must match the specified country code. For example, for a China
 
 **Parameters**
 
-| Name     | Type                       | Mandatory| Description                                                 |
+| Name     | Type                       | Mandatory | Description                                                 |
 | ----------- | --------------------------- | ---- | ----------------------------------------------------- |
 | phoneNumber | string                      | Yes  | Phone number.                                           |
 | countryCode | string                      | Yes  | Country code, for example, **CN** (China). All country codes are supported.             |
-| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -491,16 +490,16 @@ All country codes are supported.
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                                    |
+| Name     | Type  | Mandatory | Description                                    |
 | ----------- | ------ | ---- | ---------------------------------------- |
 | phoneNumber | string | Yes  | Phone number.                              |
-| countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported.|
+| countryCode | string | Yes  | Country code, for example, **CN** (China). All country codes are supported. |
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -521,7 +520,7 @@ Provides an option for determining whether a call is a video call.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type   | Mandatory| Description                                                        |
+| Name| Type   | Mandatory | Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | extras | boolean | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
 
@@ -536,7 +535,7 @@ Enumerates call states.
 | CALL_STATE_UNKNOWN | -1   | The call status fails to be obtained and is unknown.                        |
 | CALL_STATE_IDLE    | 0    | No call is in progress.                                    |
 | CALL_STATE_RINGING | 1    | The call is in the ringing or waiting state.                                    |
-| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting.|
+| CALL_STATE_OFFHOOK | 2    | At least one call is in dialing, active, or on hold, and no new incoming call is ringing or waiting. |
 
 ## EmergencyNumberOptions<sup>7+</sup>
 
@@ -544,7 +543,7 @@ Provides an option for determining whether a number is an emergency number for t
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name| Type  | Mandatory| Description                                          |
+| Name| Type  | Mandatory | Description                                          |
 | ------ | ------ | ---- | ---------------------------------------------- |
 | slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
@@ -554,6 +553,6 @@ Provides an option for number formatting.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name     | Type  | Mandatory| Description                                                      |
+| Name     | Type  | Mandatory | Description                                                      |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
-| countryCode | string | No  | Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**.|
+| countryCode | string | No  | Country code, for example, **CN** (China). All country codes are supported. The default value is **CN**. |
