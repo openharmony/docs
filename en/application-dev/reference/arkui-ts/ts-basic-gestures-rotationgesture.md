@@ -15,7 +15,7 @@ None
 RotationGesture(options?: { fingers?: number, angle?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. |
   | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. |
@@ -31,7 +31,7 @@ RotationGesture(options?: { fingers?: number, angle?: number })
 | onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. |
 
 - GestureEvent attributes related to the rotation gesture  
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | angle | number | Rotation angle. |
 
