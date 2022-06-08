@@ -1,7 +1,7 @@
 # StepperItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -32,9 +32,9 @@ StepperItem()
 | status | ItemState | ItemState.Normal | Status of the **&lt;StepperItem&gt;**. |
 
 - ItemState enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
-  | Normal | The right button is clickable and can navigate users to the next **&lt;StepperItem&gt;** when it is clicked.. | 
+  | Normal | The right button is clickable and can navigate users to the next **&lt;StepperItem&gt;** when it is clicked. | 
   | Disabled | The right button is grayed out and unavailable. | 
   | Waiting | The right button is not displayed, and a progress bar is displayed instead. | 
   | Skip | The current **&lt;StepperItem&gt;** is skipped, and the next **&lt;StepperItem&gt;** is displayed. | 
