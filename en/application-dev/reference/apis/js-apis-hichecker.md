@@ -1,6 +1,8 @@
 # HiChecker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+HiChecker is provided for you to check issues that may be easily ignored during development of OpenHarmony applications (including system-built and third-party applications). Such issues include calling of time-consuming functions by key application threads, event distribution and execution timeout in application processes, and ability resource leakage in application processes. The issues are recorded in logs or lead to process crashes explicitly so that you can find and rectify them.
+
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -11,7 +13,7 @@ import hichecker from '@ohos.hichecker';
 ```
 
 
-## Constants
+## Constant
 
 Provides the constants of all rule types.
 
@@ -19,16 +21,15 @@ Provides the constants of all rule types.
 
 | Name                              | Type| Description                                                  |
 | ---------------------------------- | -------- | ------------------------------------------------------ |
-| RULE\_CAUTION\_PRINT\_LOG            | BigInt   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
-| RULE\_CAUTION\_TRIGGER\_CRASH        | BigInt   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
-| RULE\_THREAD\_CHECK\_SLOW\_PROCESS    | BigInt   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
-| RULE\_CHECK\_SLOW\_EVENT             | BigInt   | Caution rule, which is programmed to detect whether the event distribution or processing time has exceeded the specified time threshold. |
-| RULE\_CHECK\_ABILITY\_CONNECTION\_LEAK| BigInt   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
+| RULE_CAUTION_PRINT_LOG             | bigint   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
+| RULE_CAUTION_TRIGGER_CRASH         | bigint   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
+| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
+| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
 
 
 ## hichecker.addRule
 
-addRule(rule: BigInt): void
+addRule(rule: bigint): void
 
 Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
 
@@ -36,9 +37,9 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Parameters**
 
-| Name | Type | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be added. |
+| rule   | bigint | Yes  | Rule to be added.|
 
 **Example**
 
@@ -53,7 +54,7 @@ hichecker.addRule(
 
 ## hichecker.removeRule
 
-removeRule(rule: BigInt): void
+removeRule(rule: bigint): void
 
 Removes one or more rules. The removed rules will become ineffective.
 
@@ -61,9 +62,9 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be removed. |
+| rule   | bigint | Yes  | Rule to be removed.|
 
 **Example**
 
@@ -78,7 +79,7 @@ hichecker.removeRule(
 
 ## hichecker.getRule
 
-getRule(): BigInt 
+getRule(): bigint 
 
 Obtains a collection of thread, process, and alarm rules that have been added.
 
@@ -88,7 +89,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| BigInt | Collection of added rules. |
+| bigint | Collection of added rules.|
 
 **Example**
 
@@ -97,12 +98,12 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
 // Obtain the collection of added rules.
-hichecker.getRule();   // Return 1n.
+hichecker.getRule();   // return 1n;
 ```
 
 ## hichecker.contains
 
-contains(rule: BigInt): boolean
+contains(rule: bigint): boolean
 
 Checks whether the specified rule exists in the collection of added rules. If the rule is of the thread level, this operation is performed only on the current thread.
 
@@ -110,15 +111,15 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | BigInt | Yes  | Rule to be checked. |
+| rule   | bigint | Yes  | Rule to be checked.|
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
 
 **Example**
 
@@ -127,6 +128,6 @@ Checks whether the specified rule exists in the collection of added rules. If th
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
 // Check whether the added rule exists in the collection of added rules.
-hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // Return true.
-hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // Return false.
+hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
+hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
 ```
