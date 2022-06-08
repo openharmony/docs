@@ -1,7 +1,7 @@
 # RotationGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
