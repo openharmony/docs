@@ -1,7 +1,7 @@
 # Text
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ The **&lt;Text&gt;** component can contain the child component [<Span>](ts-basic
 Text(content?: string)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | content | string | No | '' | Text content, which is the content of the child component **&lt;Span&gt;**. This parameter does not take effect when the child component **&lt;Span&gt;** is contained. |
 
@@ -41,21 +41,21 @@ Text(content?: string)
 | textCase | TextCase | TextCase.Normal | Text case. |
 
 - TextAlign enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Center | The text is center-aligned. |
   | Start | The text is aligned with the direction in which the text is written. |
   | End | The text is aligned with the opposite direction in which the text is written. |
 
 - TextOverflow enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Clip | Extra text is truncated. |
   | Ellipsis | The ellipsis (...) is used for extra-long text. |
   | None | No truncation or ellipsis is used for extra-long text. |
 
 - TextDecorationType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Underline | An underline is used. |
   | LineThrough | A strikethrough is used. |
@@ -63,13 +63,13 @@ Text(content?: string)
   | None | No decorative line is used. |
 
 - TextCase enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Normal | The original case of the text is retained. |
   | LowerCase | All letters in the text are in lowercase. |
   | UpperCase | All letters in the text are in uppercase. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The **&lt;Text&gt;** component cannot contain both the text and the child component **&lt;Span&gt;**. If both of them exist, only the content in **&lt;Span&gt;** is displayed.
 
 
