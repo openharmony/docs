@@ -69,8 +69,7 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
   ```
 
 
@@ -97,8 +96,7 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notEqualTo("NAME", "lisi")
+  dataAbilityPredicates.notEqualTo("NAME", "lisi")
   ```
 
 
@@ -119,8 +117,7 @@ beginWrap(): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbilitylity.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -146,8 +143,7 @@ endWrap(): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -173,8 +169,7 @@ or(): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .or()
       .equalTo("NAME", "Rose")
   ```
@@ -197,8 +192,7 @@ and(): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .and()
       .equalTo("SALARY", 200.5)
   ```
@@ -227,8 +221,7 @@ contains(field: string, value: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.contains("NAME", "os")
+  dataAbilityPredicates.contains("NAME", "os")
   ```
 
 
@@ -255,8 +248,7 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.beginsWith("NAME", "os")
+  dataAbilityPredicates.beginsWith("NAME", "os")
   ```
 
 
@@ -283,8 +275,7 @@ endsWith(field: string, value: string): DataAbilityPredicates
 
 **示例：**
   ```
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.endsWith("NAME", "se")
+  dataAbilityPredicates.endsWith("NAME", "se")
   ```
 
 
@@ -310,8 +301,7 @@ isNull(field: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNull("NAME")
+  dataAbilityPredicates.isNull("NAME")
   ```
 
 
@@ -337,8 +327,7 @@ isNotNull(field: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNotNull("NAME")
+  dataAbilityPredicates.isNotNull("NAME")
   ```
 
 
@@ -365,8 +354,7 @@ like(field: string, value: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.like("NAME", "%os%")
+  dataAbilityPredicates.like("NAME", "%os%")
   ```
 
 
@@ -393,8 +381,7 @@ glob(field: string, value: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.glob("NAME", "?h*g")
+  dataAbilityPredicates.glob("NAME", "?h*g")
   ```
 
 
@@ -422,8 +409,7 @@ between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.between("AGE", 10, 50)
+  dataAbilityPredicates.between("AGE", 10, 50)
   ```
 
 
@@ -451,8 +437,7 @@ notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicate
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notBetween("AGE", 10, 50)
+  dataAbilityPredicates.notBetween("AGE", 10, 50)
   ```
 
 
@@ -479,8 +464,7 @@ greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThan("AGE", 18)
+  dataAbilityPredicates.greaterThan("AGE", 18)
   ```
 
 
@@ -507,8 +491,7 @@ lessThan(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThan("AGE", 20)
+  dataAbilityPredicates.lessThan("AGE", 20)
   ```
 
 
@@ -535,8 +518,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThanOrEqualTo("AGE", 18)
+  dataAbilityPredicates.greaterThanOrEqualTo("AGE", 18)
   ```
 
 
@@ -563,8 +545,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThanOrEqualTo("AGE", 20)
+  dataAbilityPredicates.lessThanOrEqualTo("AGE", 20)
   ```
 
 
@@ -590,8 +571,7 @@ orderByAsc(field: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByAsc("NAME")
+  dataAbilityPredicates.orderByAsc("NAME")
   ```
 
 
@@ -617,8 +597,7 @@ orderByDesc(field: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByDesc("AGE")
+  dataAbilityPredicates.orderByDesc("AGE")
   ```
 
 
@@ -639,8 +618,7 @@ distinct(): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").distinct("NAME")
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct("NAME")
   let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
   promiseDistinct.then((resultSet) => {   
       console.log("distinct")
@@ -672,8 +650,7 @@ limitAs(value: number): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").limitAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").limitAs(3)
   ```
 
 
@@ -699,8 +676,7 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").offsetAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3)
   ```
 
 
@@ -726,8 +702,7 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.groupBy(["AGE", "NAME"])
+  dataAbilityPredicates.groupBy(["AGE", "NAME"])
   ```
 
 ### indexedBy
@@ -751,8 +726,7 @@ indexedBy(field: string): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.indexedBy("SALARY_INDEX")
+  dataAbilityPredicates.indexedBy("SALARY_INDEX")
   ```
 
 
@@ -780,8 +754,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.in("AGE", [18, 20])
+  dataAbilityPredicates.in("AGE", [18, 20])
   ```
 
 
@@ -809,8 +782,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **示例：**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notIn("NAME", ["Lisa", "Rose"])
+  dataAbilityPredicates.notIn("NAME", ["Lisa", "Rose"])
   ```
 
 ## ValueType
