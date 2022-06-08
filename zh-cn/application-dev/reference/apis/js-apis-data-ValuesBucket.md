@@ -1,6 +1,6 @@
 # ValuesBucket
 
-**数据集(ValuesBucket) **是开发者向数据库插入的数据集合，数据集以键-值对的形式进行传输。
+**数据集(ValuesBucket)**是开发者向数据库插入的数据集合，数据集以键-值对的形式进行传输。
 
 >**说明：**
 >
@@ -30,5 +30,5 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 | 名称          | 参数类型                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| [key: string] | [ValueType](#valuetype)(number/string/boolean) \| Uint8Array \| null | 是   | 键的类型为字符串型；值的类型可以为数字，字符串，布尔值，无符号整型8位数组，空值。 |
+| [key: string] | [ValueType](#valuetype)\| Uint8Array \| null | 是   | 键的类型为字符串型；值的类型可以为数字、字符串、布尔值、无符号整型8位数组、空值。 |
 
