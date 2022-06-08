@@ -21,15 +21,15 @@ Provides the constants of all rule types.
 
 | Name                              | Type| Description                                                  |
 | ---------------------------------- | -------- | ------------------------------------------------------ |
-| RULE_CAUTION_PRINT_LOG             | bigint   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
-| RULE_CAUTION_TRIGGER_CRASH         | bigint   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
-| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
-| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
+| RULE_CAUTION_PRINT_LOG             | bigInt   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
+| RULE_CAUTION_TRIGGER_CRASH         | bigInt   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
+| RULE_THREAD_CHECK_SLOW_PROCESS     | bigInt   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
+| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigInt   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
 
 
 ## hichecker.addRule
 
-addRule(rule: bigint): void
+addRule(rule: bigInt): void
 
 Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
 
@@ -39,7 +39,7 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be added.|
+| rule   | bigInt | Yes  | Rule to be added.|
 
 **Example**
 
@@ -54,7 +54,7 @@ hichecker.addRule(
 
 ## hichecker.removeRule
 
-removeRule(rule: bigint): void
+removeRule(rule: bigInt): void
 
 Removes one or more rules. The removed rules will become ineffective.
 
@@ -64,7 +64,7 @@ Removes one or more rules. The removed rules will become ineffective.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be removed.|
+| rule   | bigInt | Yes  | Rule to be removed.|
 
 **Example**
 
@@ -79,7 +79,7 @@ hichecker.removeRule(
 
 ## hichecker.getRule
 
-getRule(): bigint 
+getRule(): bigInt 
 
 Obtains a collection of thread, process, and alarm rules that have been added.
 
@@ -89,7 +89,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| bigint | Collection of added rules. |
+| bigInt | Collection of added rules.|
 
 **Example**
 
@@ -103,7 +103,7 @@ hichecker.getRule();   // Return 1n.
 
 ## hichecker.contains
 
-contains(rule: bigint): boolean
+contains(rule: bigInt): boolean
 
 Checks whether the specified rule exists in the collection of added rules. If the rule is of the thread level, this operation is performed only on the current thread.
 
@@ -113,7 +113,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked. |
+| rule   | bigInt | Yes  | Rule to be checked.|
 
 **Return value**
 
