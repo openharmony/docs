@@ -195,7 +195,7 @@ APIs are provided to access the system language and region information.
 
    
    ```
-   var phoneNumberFormat = new i18n.PhoneNubmerFormat("CN", {type: "E164"});
+   var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. Check whether the phone number format is correct.
