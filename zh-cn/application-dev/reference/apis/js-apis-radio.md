@@ -408,7 +408,7 @@ isNrSupported\(slotId: number\): boolean
 ```js
 let slotId = 0;
 let result = radio.isNrSupported(slotId);
-console.log(result);
+console.log("result is "+ result);
 ```
 
 
