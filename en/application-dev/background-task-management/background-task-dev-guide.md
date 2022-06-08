@@ -289,4 +289,4 @@ export default {
 
 The following sample is provided to help you better understand how to develop background task management:
 
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code1035211243011" tempcmdid="code1035211243011">BackgroundTaskManager</idp:inline>: Background Task Management (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)
+- [`BackgroundTaskManager`: Background Task Management (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)
