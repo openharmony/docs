@@ -9,17 +9,17 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 **表1** Data中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
-|onInitialized?(info: AbilityInfo): void|在Ability初始化调用，通过此回调方法执行rdb等初始化操作。|
+|onInitialized?(info: AbilityInfo): void|在Ability初始化调用，通过此回调方法执行RDB等初始化操作。|
 |update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void|更新数据库中的数据。|
 |query?(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<ResultSet>): void|查询数据库中的数据。|
 |delete?(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void|删除一条或多条数据。|
-|normalizeUri?(uri: string, callback: AsyncCallback<string>): void|对uri进行规范化。一个规范化的uri可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。|
+|normalizeUri?(uri: string, callback: AsyncCallback<string>): void|对URI进行规范化。一个规范化的URI可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。|
 |batchInsert?(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>): void|向数据库中插入多条数据。|
-|denormalizeUri?(uri: string, callback: AsyncCallback<string>): void|将一个由normalizeUri生产的规范化uri转换成非规范化的uri。|
+|denormalizeUri?(uri: string, callback: AsyncCallback<string>): void|将一个由normalizeUri生产的规范化URI转换成非规范化的URI。|
 |insert?(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>): void|向数据中插入一条数据。|
 |openFile?(uri: string, mode: string, callback: AsyncCallback<number>): void|打开一个文件。|
 |getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>): void|获取文件的MIME类型。|
-|getType?(uri: string, callback: AsyncCallback<string>): void|获取uri指定数据相匹配的MIME类型。|
+|getType?(uri: string, callback: AsyncCallback<string>): void|获取URI指定数据相匹配的MIME类型。|
 |executeBatch?(ops: Array<DataAbilityOperation>, callback: AsyncCallback<Array<DataAbilityResult>>): void|批量操作数据库中的数据。|
 |call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void|自定义方法。|
 
@@ -27,7 +27,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 ## 开发步骤
 ### 创建Data
 
-1. 需要实现Data中Insert、Query、Update、Delete接口的业务内容。保证能够满足数据库存储业务的基本需求。BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑，依赖Insert、Query、Update、Delete接口逻辑，来实现数据的批量处理。
+1. 实现Data中Insert、Query、Update、Delete接口的业务内容。保证能够满足数据库存储业务的基本需求。BatchInsert与ExecuteBatch接口已经在系统中实现遍历逻辑，依赖Insert、Query、Update、Delete接口逻辑，来实现数据的批量处理。
 
     创建Data的代码示例如下：
 
@@ -111,7 +111,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 ### 访问Data
 #### 开发前准备
 
-需导入基础依赖包，以及获取与Data子模块通信的Uri字符串。
+需导入基础依赖包，以及获取与Data子模块通信的URI字符串。
 
 其中，基础依赖包包括：
 - @ohos.ability.featureAbility
@@ -125,7 +125,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 
    工具接口类对象DataAbilityHelper相关接口可参考[DataAbilityHelper模块](../reference/apis/js-apis-dataAbilityHelper.md)。
    ```js
-   // 作为参数传递的Uri,与config中定义的Uri的区别是多了一个"/",是因为作为参数传递的uri中,在第二个与第三个"/"中间,存在一个DeviceID的参数
+   // 作为参数传递的URI,与config中定义的URI的区别是多了一个"/",是因为作为参数传递的URI中,在第二个与第三个"/"中间,存在一个DeviceID的参数
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
@@ -135,7 +135,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
     urivar
    );
    ```
-2. 构建数据库相关的rdb数据。
+2. 构建数据库相关的RDB数据。
    ```js
    var valuesBucket = {"name": "gaolu"}
    var da = new ohos_data_ability.DataAbilityPredicates()
@@ -243,7 +243,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
    ```
 8. 调用executeBatch方法向指定的Data子模块进行数据的批量处理。
    ```js
-   // callbacke方式调用:
+   // callback方式调用:
    DAHelper.executeBatch(
     urivar,
     [
