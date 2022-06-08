@@ -1564,6 +1564,126 @@ const receiver = function onReceive(err, data) {
 bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, receiver)
 ```
 
+## bundle.getProfileByAbility<sup>9+</sup>
+
+getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;
+
+以异步方法根据给定的moduleName，abilityName，metadataName来获取[metadata](js-apis-bundle-Metadata.md)中的配置文件的json字符串，使用callback形式返回结果。 该接口只能用来获取当前应用的配置文件的json字符串，不能在当前应用获取其他应用的配置文件json字符串。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
+| abilityName    | string                               | 是    | 表示要获取的配置文件所属的ability。             |
+| metadataName   | string                               | 是    | 表示要获取的配置文件所属的metadata。            |
+| callback       | AsyncCallback\<Array\<string>>        | 是    | 程序启动作为入参的回调函数，返回配置文件的json字符串数组。   |
+
+**示例：**
+
+```js
+let moduleName = 'entry';
+let abilityName = 'MainAbility';
+let metadataName = 'ohos.ability.shortcuts';
+const caller = function callback(err, data) {
+    console.error('Operation errcode is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getProfileByAbility(moduleName, abilityName, metadataName, caller)
+```
+
+## bundle.getProfileByAbility<sup>9+</sup>
+
+getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string>>;
+
+以异步方法根据给定的moduleName，abilityName，metadataName来获取[metadata](js-apis-bundle-Metadata.md)中的配置文件的json字符串，使用Promise形式返回结果。 该接口只能用来获取当前应用的配置文件的json字符串，不能在当前应用获取其他应用的配置文件json字符串。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
+| abilityName    | string                               | 是    | 表示要获取的配置文件所属的ability。             |
+| metadataName   | string                               | 否    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
+
+**示例：**
+
+```js
+let moduleName = 'entry';
+let abilityName = 'MainAbility';
+let metadataName = 'ohos.ability.shortcuts';
+
+bundle.getProfileByAbility(moduleName, abilityName, metadataName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation errcode is: ' + err);
+})
+```
+
+## bundle.getProfileByExtensionAbility<sup>9+</sup>
+
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;
+
+以异步方法根据给定的moduleName，extensionAbilityName，metadataName来获取[metadata](js-apis-bundle-Metadata.md)中的配置文件的json字符串，使用callback形式返回结果。 该接口只能用来获取当前应用的配置文件的json字符串，不能在当前应用获取其他应用的配置文件json字符串。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
+| extensionAbilityName    | string                               | 是    | 表示要获取的配置文件所属的extensionAbility。             |
+| metadataName   | string                               | 是    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
+| callback       | AsyncCallback\<Array\<string>>        | 是    | 程序启动作为入参的回调函数，返回配置文件的json字符串数组。   |
+
+**示例：**
+
+```js
+let moduleName = 'entry';
+let extensionAbilityName = 'Form';
+let metadataName = 'ohos.extension.form';
+const caller = function callback(err, data) {
+    console.error('Operation errcode is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, caller)
+```
+
+## bundle.getProfileByExtensionAbility<sup>9+</sup>
+
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string>>;
+
+以异步方法根据给定的moduleName，extensionAbilityName，metadataName来获取[metadata](js-apis-bundle-Metadata.md)中的配置文件的json字符串，使用Promise形式返回结果。 该接口只能用来获取当前应用的配置文件的json字符串，不能在当前应用获取其他应用的配置文件json字符串。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
+| extensionAbilityName    | string                               | 是    | 表示要获取的配置文件所属的extensionAbility。             |
+| metadataName   | string                               | 否    | 表示要获取的配置文件所属的metadata。            |
+
+**示例：**
+
+```js
+let moduleName = 'entry';
+let extensionAbilityName = 'Form';
+let metadataName = 'ohos.extension.form';
+
+bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation errcode is: ' + err);
+})
+```
+
 ## InstallErrorCode
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
