@@ -1613,6 +1613,7 @@ bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, receiver)
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | 获取包括被禁用的应用信息        |
 | GET_APPLICATION_INFO_WITH_CERTIFICATE_FINGERPRINT <sup>9+</sup> | 0x00000400 | 获取包括应用申请的签名证书的指纹信息        |
 | GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | 获取应用所有的信息           |
+| GET_BUNDLE_WITH_HASH_VALUE<sup>9+</sup> | 0x00000030 | 获取包含Hash值的包信息.       |
 
 ## BundleOptions
 

@@ -1612,6 +1612,7 @@ Enumerates bundle flags.
 | GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | Obtains information about disabled abilities.  |
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | Obtains information about disabled applications.       |
 | GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | Obtains all application information.          |
+| GET_BUNDLE_WITH_HASH_VALUE<sup>9+</sup> | 0x00000030 | Obtains the bundle information with the information about hash value.       |
 
 ## BundleOptions
 

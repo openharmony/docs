@@ -35,3 +35,4 @@ Provides the HAP module information.
 | mainElementName<sup>9+</sup>      | string                                                       | Yes  | No  | Information about the main ability.     |
 | extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | Yes  | No  | Information about the Extension ability.|
 | metadata<sup>9+</sup>             | Array\<[Metadata](js-apis-bundle-Metadata.md)>               | Yes  | No  | Metadata of the ability.     |
+| hashValue<sup>9+</sup>            | string                                                       | Yes  | No  | The hash value of the module.     |
