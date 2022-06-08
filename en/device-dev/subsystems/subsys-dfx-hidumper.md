@@ -126,55 +126,55 @@ The procedure is as follows:
 
 10. Run the **hidumper --net** command to obtain network information.
      
-   ```
-   hidumper --net
-   ```
+    ```
+    hidumper --net
+    ```
 
 11. Run the **hidumper --storage** command to obtain storage information.
      
-   ```
-   hidumper --storage
-   ```
+    ```
+    hidumper --storage
+    ```
 
 12. Run the **hidumper -p** command to obtain process information, including the list and information of processes and threads.
      
-   ```
-   hidumper -p
-   ```
+    ```
+    hidumper -p
+    ```
 
 13. Run the **hidumper -p 1024** command to obtain information about the process whose PID is **1024**.
      
-   ```
-   hidumper -p 1024
-   ```
+    ```
+    hidumper -p 1024
+    ```
 
 14. Run the **hidumper --cpuusage [pid]** command to obtain the CPU usage information of the process whose PID has been specified.
      
-   ```
-   hidumper --cpuusage
-   hidumper --cpuusage 1024
-   ```
+    ```
+    hidumper --cpuusage
+    hidumper --cpuusage 1024
+    ```
 
 15. Run the **hidumper --cpufreq** command to obtain the actual operating frequency of each CPU core.
      
-   ```
-   hidumper --cpufreq
-   ```
+    ```
+    hidumper --cpufreq
+    ```
 
 16. Run the **hidumper --mem [pid]** command to obtain all memory usage information of the process whose PID has been specified.
      
-   ```
-   hidumper --mem [pid]
-   ```
+    ```
+    hidumper --mem [pid]
+    ```
 
 17. Run the **hidumper --zip** command to compress data to the **/data/dumper** directory.
      
-   ```
-   hidumper --zip
-   ```
+    ```
+    hidumper --zip
+    ```
 
 18. Run the **hidumper -t timeout** command to set the timeout period, in seconds. The default value is **30**. Value **0** indicates no timeout limit.
      
-   ```
-   hidumper -t [timeout]
-   ```
+    ```
+    hidumper -t [timeout]
+    ```
