@@ -12,7 +12,8 @@ WebGL标准图形API，对应OpenGL ES 3.0特性集。更多信息请参考[WebG
 hml内创建canvas，示例如下：
 
 
-```
+```html
+<!--xxx.hml-->
 <div class="container">
     <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
     <button class="btn-button" onclick="BtnDraw2D">BtnDraw2D</button>
