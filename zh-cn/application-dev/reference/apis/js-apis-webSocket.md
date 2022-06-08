@@ -23,7 +23,7 @@ import webSocket from '@ohos.net.webSocket';
 var defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-    console.log("on open, status:" + value.status + ", message:" + value.message);
+    console.log("on open, status:" + value['status'] + ", message:" + value['message']);
     // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
     ws.send("Hello, server!", (err, value) => {
         if (!err) {
@@ -47,7 +47,7 @@ ws.on('message', (err, value) => {
     }
 });
 ws.on('close', (err, value) => {
-    console.log("on close, code is " + value.code + ", reason is " + value.reason);
+    console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
 });
 ws.on('error', (err) => {
     console.log("on error, error:" + JSON.stringify(err));
@@ -393,7 +393,7 @@ on\(type: 'open', callback: AsyncCallback<Object\>\): void
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 });
 ```
 
@@ -421,7 +421,7 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 ```js
 let ws = webSocket.createWebSocket();
 let callback1 = (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
@@ -505,7 +505,7 @@ on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
-	console.log("on close, code is " + value.code + ", reason is " + value.reason);
+	console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
 });
 ```
 
