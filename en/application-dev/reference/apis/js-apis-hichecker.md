@@ -89,7 +89,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| bigint | Collection of added rules.|
+| bigint | Collection of added rules. |
 
 **Example**
 
@@ -98,7 +98,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
 // Obtain the collection of added rules.
-hichecker.getRule();   // return 1n;
+hichecker.getRule();   // Return 1n.
 ```
 
 ## hichecker.contains
@@ -113,13 +113,13 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked.|
+| rule   | bigint | Yes  | Rule to be checked. |
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
 
 **Example**
 
@@ -128,6 +128,6 @@ Checks whether the specified rule exists in the collection of added rules. If th
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
 // Check whether the added rule exists in the collection of added rules.
-hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
-hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
+hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // Return true
+hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // Return false
 ```
