@@ -14,7 +14,7 @@ import uri from '@ohos.uri'
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -41,7 +41,7 @@ constructor是URI的构造函数。
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| url | string | 是 | 是 | 入参对象。 |
+| uri | string | 是 | 是 | 入参对象。 |
 
 **示例：**
 
@@ -71,7 +71,7 @@ toString(): string
 **示例：**
 
 ```js
-const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString()
 ```
 
