@@ -9,6 +9,7 @@
   - [@ohos.application.AbilityConstant](js-apis-application-abilityConstant.md)
   - [@ohos.application.abilityDelegatorRegistry](js-apis-abilityDelegatorRegistry.md)
   - [@ohos.application.AbilityStage ](js-apis-application-abilitystage.md)
+  - [@ohos.application.abilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md)
   - [@ohos.application.appManager](js-apis-appmanager.md)
   - [@ohos.application.Configuration](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
@@ -30,6 +31,7 @@
   - ability/[dataAbilityHelper](js-apis-dataAbilityHelper.md)
   - app/[context](js-apis-Context.md)
   - application/[AbilityContext](js-apis-ability-context.md)
+  - application/[ApplicationContext](js-apis-application-applicationContext.md)
   - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
   - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
   - application/[abilityMonitor](js-apis-application-abilityMonitor.md)
@@ -44,7 +46,8 @@
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
-
+  - application/[MissionInfo](js-apis-application-missionInfo.md)
+  
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)
@@ -58,6 +61,14 @@
   - [@ohos.bundle](js-apis-Bundle.md)
   - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
+  - bundle/[AbilityInfo](js-apis-bundle-AbilityInfo.md)
+  - bundle/[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)
+  - bundle/[BundleInfo](js-apis-bundle-BundleInfo.md)
+  - bundle/[CustomizeData](js-apis-bundle-CustomizeData.md)
+  - bundle/[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)
+  - bundle/[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[Metadata](js-apis-bundle-Metadata.md)
+  - bundle/[ModuleInfo](js-apis-bundle-ModuleInfo.md)
 
 - UI Page
 

@@ -1,6 +1,6 @@
-# JS API Changes of the Testing Framework Subsystem
+# JS API Changes of the Test Subsystem
 
-The table below lists the APIs changes of the testing framework subsystem in OpenHarmony 3.2 Beta1 over OpenHarmony 3.1 Release.
+The table below lists the APIs changes of the test subsystem in OpenHarmony 3.2 Beta1 over OpenHarmony 3.1 Release.
 
 ## API Changes
 

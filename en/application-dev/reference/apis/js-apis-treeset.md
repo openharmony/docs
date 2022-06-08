@@ -259,7 +259,7 @@ Removes the first entry in this container.
 | -------- | -------- |
 | T | Entry removed.|
 
-**Return value**
+**Example**
 
 ```ts
 let treeSet = new TreeSet();
@@ -281,7 +281,7 @@ Removes the last entry in this container.
 | -------- | -------- |
 | T | Entry removed.|
 
-**Return value**
+**Example**
 
 ```ts
 let treeSet = new TreeSet();
