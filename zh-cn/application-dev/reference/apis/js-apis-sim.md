@@ -521,7 +521,7 @@ getMaxSimCount\(\): number
 **示例：**
 
 ```js
-console.log("the result is "+sim.getMaxSimCount())
+console.log("Result: "+sim.getMaxSimCount())
 ```
 
 
