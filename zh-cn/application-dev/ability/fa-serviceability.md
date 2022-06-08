@@ -1,7 +1,7 @@
 # ServiceAbility开发指导
 
 ## 场景介绍
-基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动，即使用户切换到其他应用，Service仍将在后台继续运行。
+基于Service模板的Ability（以下简称“Service”）主要用于后台运行任务（如执行音乐播放、文件下载等），但不提供用户交互界面。Service可由其他应用或Ability启动。即使用户切换到其他应用，Service仍将在后台继续运行。
 
 ## 接口说明
 
@@ -12,13 +12,13 @@
 |onCommand?(want: Want, startId: number): void|在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。|
 |onConnect?(want: Want): rpc.RemoteObject|在Ability和Service连接时调用。|
 |onDisconnect?(want: Want): void|在Ability与绑定的Service断开连接时调用。|
-|onStop?(): void|在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。|
+|onStop?(): void|在Service销毁时调用。开发者应通过实现此方法来清理资源，如关闭线程、注册的侦听器等。|
 
 ## 开发步骤
 
 ### 创建注册Service
 
-1. Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
+1. 重写Service的生命周期方法，来添加其他Ability请求与Service Ability交互时的处理方法。
    
    创建Service的代码示例如下：
    
@@ -45,7 +45,7 @@
 
 2. 注册Service。
 
-   Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
+   Service需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
    
    ```javascript
     {
@@ -183,7 +183,7 @@ let connId = featureAbility.connectAbility(
 );
 ```
 
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
+同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 Service侧把自身的实例返回给调用侧的代码示例如下：
 
@@ -232,7 +232,8 @@ export default {
 ```
 
 ### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
->说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
+
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用。
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
@@ -355,7 +356,7 @@ async function RequestPermission() {
 }
 ```
 
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
+同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 Service侧把自身的实例返回给调用侧的代码示例如下：
 
