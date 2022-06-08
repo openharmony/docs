@@ -166,7 +166,7 @@
 ### 冷启动应用失败
 
    &emsp;**现象描述**
-   <br>&emsp;&emsp;通过aa start -d 12345 -a $name -b $package -C命令冷启动应用， 应用拉起失败。
+   <br>&emsp;&emsp;通过命令冷启动应用， 应用拉起失败。
 
    &emsp;**解决方法**
     <br>&emsp;&emsp;1. 需要设置 param set appspawn.cold.boot true生效。
