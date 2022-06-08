@@ -234,7 +234,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-power.setPowerMode(DevicePowerMode.MODE_PERFORMANCE, error => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, error => {
     if (typeof error === "undefined") {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -271,7 +271,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 **示例：**
 
 ```js
-power.setPowerMode(DevicePowerMode.MODE_PERFORMANCE)
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .then(() => {
     console.info('set power mode to MODE_PERFORMANCE');
 })
