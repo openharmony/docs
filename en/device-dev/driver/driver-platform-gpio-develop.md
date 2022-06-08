@@ -63,7 +63,7 @@ The GPIO module adaptation involves the following steps:
    - Initialize **GpioCntlr**.
    - Instantiate **GpioMethod** in the **GpioCntlr** object.
      
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the callbacks in **GpioMethod**, see [Available APIs](#available_apis).
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the callbacks in **GpioMethod**, see [Available APIs](#available-apis).
    
 4. Debug the driver.
    
