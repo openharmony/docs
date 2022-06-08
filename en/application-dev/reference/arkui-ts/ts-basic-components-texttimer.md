@@ -1,7 +1,7 @@
 # TextTimer
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,10 +23,10 @@ None
 TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | isCountDown | boolean | No | false | Whether to count down. |
-  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the value of **count** is less than or equal to 0, the default value is used.<br/>- If the value of **count** is greater than 0, it is used. |
+  | count | number | No | 60000 | Countdown time, in milliseconds. This parameter is valid only when **isCountDown** is set to **true**.<br/>- If the specified value is less than or equal to 0, the default value is used.<br/>- If the specified value is greater than 0, the value is used. |
   | controller | [TextTimerController](#texttimercontroller) | No | null | **&lt;TextTimer&gt;** controller. |
 
 ## Attributes

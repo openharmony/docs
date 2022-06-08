@@ -1,7 +1,7 @@
 # Toggle
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,14 +20,14 @@ None
 Toggle(options: { type: ToggleType, isOn?: boolean })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | type | ToggleType | Yes | - | Type of the toggle. |
-  | isOn | boolean | No | false | Initial state of the toggle.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If **isOn** is not set during component creation, the selected state can be retained during component reuse. If **isOn** is set, the selected state needs to be retained during component reuse after the selected state is recorded using an event method. |
+  | isOn | boolean | No | false | Initial state of the toggle.<br/>**NOTE**<br/>If **isOn** is not set during component creation, the selected state can be retained during component reuse. If **isOn** is set, the selected state needs to be retained during component reuse after the selected state is recorded using an event method. |
 
 
 - ToggleType enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Checkbox | A checkbox is provided. The text setting of the child component does not take effect. If the text setting is required, you can place the **&lt;Text&gt;** component and the current component in the layout component. | 
   | Button | A button is provided. If the text setting is available, the corresponding text content is displayed inside the button. | 
@@ -36,15 +36,15 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
 | selectedColor | Color | - | Background color of the toggle when it is enabled. | 
-| switchPointColor | Color | - | Color of the circular slider of the **Switch** type.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute is valid only when type is set to **ToggleType.Switch**. | 
+| switchPointColor | Color | - | Color of the circular slider of the **Switch** type.<br/>**NOTE**<br/>This attribute is valid only when type is set to **ToggleType.Switch**. | 
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onChange(callback: (isOn: boolean) =&gt; void) | Triggered when the switch status changes. | 
 

@@ -491,7 +491,7 @@ getCallingBundle(): Promise\<string>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<string> | 调用ability的包名称 |
+| Promise\<string> | 调用ability的包名称。 |
 
 **示例：**
 
@@ -544,7 +544,7 @@ getCacheDir(): Promise\<string>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<string> | 获取该应用程序的内部存储目录 |
+| Promise\<string> | 获取该应用程序的内部存储目录。 |
 
 **示例：**
 
@@ -758,7 +758,7 @@ getHapModuleInfo(): Promise\<HapModuleInfo>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<[HapModuleInfo](#hapmoduleinfo)> | Promise形式返回应用的ModuleInfo对象。 |
+| Promise\<[HapModuleInfo](#hapmoduleinfo)> | 返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -834,7 +834,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 | 名称     | 类型                   | 必填 | 描述                      |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | 是   |回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。|
+| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。|
 
 **示例：**
 
@@ -886,7 +886,7 @@ getApplicationContext(): Context
 
 | 类型      | 说明   |
 | --------- |------ |
-|  Context |返回应用上下文信息。 |
+|  Context | 返回应用上下文信息。 |
 
 **示例：**
 
@@ -920,27 +920,27 @@ Hap模块信息
 
 | 名称               | 类型 | 可读 | 可写 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
-| name             | string        | 是   | 否   | 模块名称           |
-| description      | string        | 是   | 否   | 模块描述信息       |
-| descriptionId    | number        | 是   | 否   | 描述信息ID         |
-| icon             | string        | 是   | 否   | 模块图标           |
-| label            | string        | 是   | 否   | 模块标签           |
-| labelId          | number        | 是   | 否   | 模块标签ID         |
-| iconId           | number        | 是   | 否   | 模块图标ID         |
-| backgroundImg    | string        | 是   | 否   | 模块背景图片       |
-| supportedModes   | number        | 是   | 否   | 模块支持的模式     |
-| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力 |
-| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型 |
-| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息        |
-| moduleName       | string        | 是   | 否   | 模块名             |
-| mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
-| installationFree | boolean       | 是   | 否   | 是否支持免安装     |
-| mainElementName | string | 是 | 否 | 入口ability信息 |
+| name             | string        | 是   | 否   | 模块名称。           |
+| description      | string        | 是   | 否   | 模块描述信息。       |
+| descriptionId    | number        | 是   | 否   | 描述信息ID。         |
+| icon             | string        | 是   | 否   | 模块图标。           |
+| label            | string        | 是   | 否   | 模块标签。           |
+| labelId          | number        | 是   | 否   | 模块标签ID。         |
+| iconId           | number        | 是   | 否   | 模块图标ID。         |
+| backgroundImg    | string        | 是   | 否   | 模块背景图片。       |
+| supportedModes   | number        | 是   | 否   | 模块支持的模式。     |
+| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力。 |
+| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型。 |
+| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息。  |
+| moduleName       | string        | 是   | 否   | 模块名。             |
+| mainAbilityName  | string        | 是   | 否   | 入口Ability名称。    |
+| installationFree | boolean       | 是   | 否   | 是否支持免安装。     |
+| mainElementName | string | 是 | 否 | 入口ability信息。 |
 
 ## AppVersionInfo<sup>7+</sup>
 
 | 名称             | 类型 | 可读    | 可写   | 说明 |
 | ------          | ------ | ------| ------ | ------    |
-| appName         | string | 是    | 否     | 模块名称      |
-| versionCode     | number | 是    | 否     | 模块描述信息   |
-| versionName     | string | 是    | 否     | 描述信息ID     |
+| appName         | string | 是    | 否     | 模块名称。      |
+| versionCode     | number | 是    | 否     | 模块描述信息。   |
+| versionName     | string | 是    | 否     | 描述信息ID。     |

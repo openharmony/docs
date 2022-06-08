@@ -1,7 +1,7 @@
 # TextPicker
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,10 +25,10 @@ TextPicker(value: {range: string[], selected?: number})
 Creates a text picker based on the selection range specified by **range**.
 
 - Parameter
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | range | string[] | Yes | - | Data selection range of the picker. |
-  | selected | number | No | First element | Index value of the selected item in the array. |
+  | selected | number | No | - | Index value of the selected item in the array. By default, the first element is selected. |
 
 
 ## Attributes
