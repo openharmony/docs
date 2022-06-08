@@ -20,10 +20,8 @@ import fileio from '@ohos.fileio';
 
 ## 使用说明
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
-
-“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”
-
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱绝对路径，“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”。
+应用目录路径dir的获取方式及对应的接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
 通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在应用沙箱路径为：
 
 ```js
@@ -43,7 +41,7 @@ let fd = fileio.openSync(path);
 
 stat(path: string): Promise&lt;Stat&gt;
 
-以异步方法获取文件信息，使用promise形式返回结果。
+获取文件信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -57,12 +55,12 @@ stat(path: string): Promise&lt;Stat&gt;
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件的具体信息。 |
 
 **示例：**
   ```js
   fileio.stat(path).then(function(stat){
-      console.info("getFileInfo successfully:"+ JSON.stringify(stat));
+      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("getFileInfo failed with error:"+ err);
   });
@@ -73,7 +71,7 @@ stat(path: string): Promise&lt;Stat&gt;
 
 stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
-以异步方法获取文件信息，使用callback形式返回结果。
+获取文件信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -121,7 +119,7 @@ statSync(path:string): Stat
 
 opendir(path: string): Promise&lt;Dir&gt;
 
-以异步方法打开文件目录，使用promise形式返回结果。
+打开文件目录，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -133,12 +131,12 @@ opendir(path: string): Promise&lt;Dir&gt;
 **返回值：**
   | 类型                         | 说明       |
   | -------------------------- | -------- |
-  | Promise&lt;[Dir](#dir)&gt; | 返回Dir对象。 |
+  | Promise&lt;[Dir](#dir)&gt; | Promise对象。返回Dir对象。 |
 
 **示例：**
   ```js
   fileio.opendir(path).then(function(dir){
-      console.info("opendir successfully:"+ JSON.stringify(dir));
+      console.info("opendir succeed:"+ JSON.stringify(dir));
   }).catch(function(err){
       console.info("opendir failed with error:"+ err);
   });
@@ -149,7 +147,7 @@ opendir(path: string): Promise&lt;Dir&gt;
 
 opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
-以异步方法打开文件目录，使用callback形式返回结果。
+打开文件目录，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -201,7 +199,7 @@ opendirSync(path: string): Dir
 
 access(path: string, mode?: number): Promise&lt;void&gt;
 
-以异步方法检查当前进程是否可访问某文件，使用promise形式返回结果。
+检查当前进程是否可访问某文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -215,12 +213,12 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.access(path).then(function() {
-      console.info("access successfully");
+      console.info("access succeed");
   }).catch(function(err){
       console.info("access failed with error:"+ err);
   });
@@ -231,7 +229,7 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法检查当前进程是否可访问某文件，使用callback形式返回结果。
+检查当前进程是否可访问某文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -278,7 +276,7 @@ accessSync(path: string, mode?: number): void
 
 close(fd: number):Promise&lt;void&gt;
 
-以异步方法关闭文件，使用promise形式返回结果。
+关闭文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -290,13 +288,13 @@ close(fd: number):Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   let fd = fileio.openSync(path);
   fileio.close(fd).then(function(){
-      console.info("close file successfully");
+      console.info("close file succeed");
   }).catch(function(err){
       console.info("close file failed with error:"+ err);
   });
@@ -307,7 +305,7 @@ close(fd: number):Promise&lt;void&gt;
 
 close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法关闭文件，使用callback形式返回结果。
+关闭文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -349,19 +347,19 @@ closeSync(fd: number): void
 
 close(): Promise&lt;void&gt;
 
-以异步方法关闭文件流，使用promise形式返回结果。
+关闭文件流，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.close().then(function(){
-      console.info("close file stream successfully");
+      console.info("close file stream succeed");
   }).catch(function(err){
       console.info("close file stream failed with error:"+ err);
   });
@@ -372,7 +370,7 @@ close(): Promise&lt;void&gt;
 
 close(callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法关闭文件流，使用callback形式返回结果。
+关闭文件流，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -393,7 +391,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;void&gt;
 
-以异步方法复制文件，使用promise形式返回结果。
+复制文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -407,12 +405,12 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.copyFile(src, dest).then(function(){
-      console.info("copyFile successfully");
+      console.info("copyFile succeed");
   }).catch(function(err){
       console.info("copyFile failed with error:"+ err);
   });
@@ -423,7 +421,7 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 
 copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法复制文件，使用callback形式返回结果。
+复制文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -468,7 +466,7 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
-以异步方法创建目录，使用promise形式返回结果。
+创建目录，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -481,12 +479,12 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.mkdir(path).then(function() {
-      console.info("mkdir successfully");
+      console.info("mkdir succeed");
   }).catch(function (error){
       console.info("mkdir failed with error:"+ error);
   });
@@ -497,7 +495,7 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 
 mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法创建目录，使用callback形式返回结果。
+创建目录，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -511,7 +509,7 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
   ```js
   fileio.mkdir(path, function(err) {
-    console.info("mkdir successfully");
+    console.info("mkdir succeed");
   });
   ```
 
@@ -540,7 +538,7 @@ mkdirSync(path: string, mode?: number): void
 
 open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
-以异步的方法打开文件，使用promise形式返回结果。
+打开文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -554,12 +552,12 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 **返回值：**
   | 类型                    | 说明          |
   | --------------------- | ----------- |
-  | Promise&lt;number&gt; | 打开文件的文件描述符。 |
+  | Promise&lt;number&gt; | Promise对象。返回打开文件的文件描述符。 |
 
 **示例：**
   ```js
   fileio.open(path, 0o1, 0o0200).then(function(number){
-      console.info("open file successfully");
+      console.info("open file succeed");
   }).catch(function(error){
       console.info("open file failed with error:"+ err);
   });
@@ -570,7 +568,7 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;number&gt;): void
 
-以异步的方法打开文件，使用callback形式返回结果。
+打开文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -624,7 +622,7 @@ read(fd: number, buffer: ArrayBuffer, options?: {
     position?: number;
 }): Promise&lt;ReadOut&gt;
 
-以异步方法从文件读取数据，使用promise形式返回结果。
+从文件读取数据，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -639,14 +637,14 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readout){
-      console.info("read file data successfully");
+      console.info("read file data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(error){
       console.info("read file data failed with error:"+ error);
@@ -662,7 +660,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
     position?: number;
 }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
-以异步方法从文件读取数据，使用callback形式返回结果。
+从文件读取数据，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -680,7 +678,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
       if (readOut) {
-          console.info("read file data successfully");
+          console.info("read file data succeed");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -723,7 +721,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 
 rmdir(path: string): Promise&lt;void&gt;
 
-以异步方法删除目录，使用promise形式返回结果。
+删除目录，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -735,12 +733,12 @@ rmdir(path: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.rmdir(path).then(function() {
-      console.info("rmdir successfully");
+      console.info("rmdir succeed");
   }).catch(function(err){
       console.info("rmdir failed with error:"+ err);
   });
@@ -751,7 +749,7 @@ rmdir(path: string): Promise&lt;void&gt;
 
 rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法删除目录，使用callback形式返回结果。
+删除目录，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -765,7 +763,7 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
   ```js
   fileio.rmdir(path, function(err){
       // do something
-      console.info("rmdir successfully");
+      console.info("rmdir succeed");
   });
   ```
 
@@ -793,7 +791,7 @@ rmdirSync(path: string): void
 
 unlink(path:string): Promise&lt;void&gt;
 
-以异步方法删除文件，使用promise形式返回结果。
+删除文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -805,12 +803,12 @@ unlink(path:string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.unlink(path).then(function(){
-      console.info("remove file successfully");
+      console.info("remove file succeed");
   }).catch(function(error){
       console.info("remove file failed with error:"+ error);
   });
@@ -821,7 +819,7 @@ unlink(path:string): Promise&lt;void&gt;
 
 unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法删除文件，使用callback形式返回结果。
+删除文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -834,7 +832,7 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 **示例：**
   ```js
   fileio.unlink(path, function(err) {
-      console.info("remove file successfully");
+      console.info("remove file succeed");
   });
   ```
 
@@ -867,7 +865,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
     encoding?: string;
 }): Promise&lt;number&gt;
 
-以异步方法将数据写入文件，使用promise形式返回结果。
+将数据写入文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -881,13 +879,13 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 **返回值：**
   | 类型                    | 说明       |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | 实际写入的长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
 **示例：**
   ```js
   let fd = fileio.openSync(fpath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file successfully and size is:"+ number);
+       console.info("write data to file succeed and size is:"+ number);
   }).catch(function(err){
       console.info("write data to file failed with error:"+ err);
   });
@@ -903,7 +901,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
     encoding?: string;
 }, callback: AsyncCallback&lt;number&gt;): void
 
-以异步方法将数据写入文件，使用callback形式返回结果。
+将数据写入文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -920,7 +918,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
-         console.info("write data to file successfully and size is:"+ bytesWritten);
+         console.info("write data to file succeed and size is:"+ bytesWritten);
       }
   });
   ```
@@ -962,7 +960,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
-以异步方法计算文件的哈希值，使用promise形式返回结果。
+计算文件的哈希值，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -975,12 +973,12 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 **返回值：**
   | 类型                    | 说明                         |
   | --------------------- | -------------------------- |
-  | Promise&lt;string&gt; | 文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
+  | Promise&lt;string&gt; | Promise对象。返回文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
 
 **示例：**
   ```js
   fileio.hash(path, "sha256").then(function(str){
-      console.info("calculate file hash successfully:"+ str);
+      console.info("calculate file hash succeed:"+ str);
   }).catch(function(error){
       console.info("calculate file hash failed with error:"+ err);
   });
@@ -991,7 +989,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
-以异步方法计算文件的哈希值，使用callback形式返回结果。
+计算文件的哈希值，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1000,13 +998,13 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 | --------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | path      | string                      | 是   | 待计算哈希值文件的应用沙箱路径。                             |
 | algorithm | string                      | 是   | 哈希计算采用的算法。可选&nbsp;"md5"、"sha1"&nbsp;或&nbsp;"sha256"。建议采用安全强度更高的&nbsp;"sha256"。 |
-| callback  | AsyncCallback&lt;string&gt; | 是   | 异步计算文件哈希操之后的回调函数（其中给定文件哈希值表示为十六进制数字串，所有字母均大写）。 |
+| callback  | AsyncCallback&lt;string&gt; | 是   | 异步计算文件哈希操作之后的回调函数（其中给定文件哈希值表示为十六进制数字串，所有字母均大写）。 |
 
 **示例：**
   ```js
   fileio.hash(fpath, "sha256", function(err, hashStr) {
       if (hashStr) {
-          console.info("calculate file hash successfully:"+ hashStr);
+          console.info("calculate file hash succeed:"+ hashStr);
       }
   });
   ```
@@ -1016,25 +1014,25 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 chmod(path: string, mode: number):Promise&lt;void&gt;
 
-以异步方法基于文件路径改变文件权限，使用promise形式返回结果。
+改变文件权限，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 待改变文件权限的应用沙箱路径。                               |
+| path   | string | 是   | 所需变更权限的文件的应用沙箱路径。                               |
 | mode   | number | 是   | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.chmod(path, mode).then(function() {
-      console.info("chmod successfully");
+      console.info("chmod succeed");
   }).catch(function(err){
       console.info("chmod failed with error:"+ err);
   });
@@ -1045,14 +1043,14 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 
 chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件路径改变文件权限，使用callback形式返回结果。
+改变文件权限，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                    | 是   | 待改变文件权限的应用沙箱路径。                               |
+| path     | string                    | 是   | 所需变更权限的文件的应用沙箱路径。                               |
 | mode     | number                    | 是   | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步改变文件权限之后的回调。                                 |
 
@@ -1068,14 +1066,14 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 chmodSync(path: string, mode: number): void
 
-以同步方法基于文件路径改变文件权限。
+以同步方法改变文件权限。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 待改变文件权限的应用沙箱路径。                               |
+| path   | string | 是   | 所需变更权限的文件的应用沙箱路径。                               |
 | mode   | number | 是   | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **示例：**
@@ -1088,24 +1086,24 @@ chmodSync(path: string, mode: number): void
 
 fstat(fd: number): Promise&lt;Stat&gt;
 
-以异步方法基于文件描述符获取文件信息，使用promise形式返回结果。
+基于文件描述符获取文件状态信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待获取文件的文件描述符。 |
+  | fd   | number | 是    | 待获取文件状态的文件描述符。 |
 
 **返回值：**
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
 
 **示例：**
   ```js
   fileio.fstat(fd).then(function(stat){
-      console.info("fstat successfully:"+ JSON.stringify(stat));
+      console.info("fstat succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("fstat failed with error:"+ err);
   });
@@ -1116,15 +1114,15 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
-以异步方法基于文件描述符获取文件信息，使用callback形式返回结果。
+基于文件描述符获取文件状态信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
   | 参数名      | 类型                                 | 必填   | 说明               |
   | -------- | ---------------------------------- | ---- | ---------------- |
-  | fd       | number                             | 是    | 待获取文件的文件描述符。     |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件信息之后的回调。 |
+  | fd       | number                             | 是    | 待获取文件状态的文件描述符。     |
+  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件状态信息之后的回调。 |
 
 **示例：**
   ```js
@@ -1139,19 +1137,19 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 fstatSync(fd: number): Stat
 
-以同步方法基于文件描述符获取文件信息。
+以同步方法基于文件描述符获取文件状态信息。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待获取文件的文件描述符。 |
+  | fd   | number | 是    | 待获取文件状态的文件描述符。 |
 
 **返回值：**
   | 类型            | 说明         |
   | ------------- | ---------- |
-  | [Stat](#stat) | 表示文件的具体信息。 |
+  | [Stat](#stat) | 表示文件状态的具体信息。 |
 
 **示例：**
   ```js
@@ -1164,7 +1162,7 @@ fstatSync(fd: number): Stat
 
 ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
-以异步方法基于文件描述符截断文件，使用promise形式返回结果。
+基于文件描述符截断文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1172,18 +1170,18 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   | 参数名  | 类型     | 必填   | 说明               |
   | ---- | ------ | ---- | ---------------- |
   | fd   | number | 是    | 待截断文件的文件描述符。     |
-  | len  | number | 是    | 文件截断后的长度，以字节为单位。 |
+  | len  | number | 否    | 文件截断后的长度，以字节为单位。 |
 
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   let fd = fileio.openSync(path);
   fileio.ftruncate(fd, 5).then(function(err) {    
-      console.info("truncate file successfully");
+      console.info("truncate file succeed");
   }).catch(function(err){
       console.info("truncate file failed with error:"+ err);
   });
@@ -1194,7 +1192,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件描述符截断文件，使用callback形式返回结果。
+基于文件描述符截断文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1237,7 +1235,7 @@ ftruncateSync(fd: number, len?: number): void
 
 truncate(path: string, len?: number): Promise&lt;void&gt;
 
-以异步方法基于文件路径截断文件，使用promise形式返回结果。
+基于文件路径截断文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1245,17 +1243,17 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | path   | string | 是   | 待截断文件的应用沙箱路径。       |
-| len    | number | 是   | 文件截断后的长度，以字节为单位。 |
+| len    | number | 否   | 文件截断后的长度，以字节为单位。 |
 
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.truncate(path, len).then(function(){
-      console.info("truncate file successfully");
+      console.info("truncate file succeed");
   }).catch(function(err){
       console.info("truncate file failed with error:"+ err);
   });
@@ -1266,7 +1264,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件路径截断文件，使用callback形式返回结果。
+基于文件路径截断文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1313,7 +1311,7 @@ readText(filePath: string, options?: {
     encoding?: string;
 }): Promise&lt;string&gt;
 
-以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用promise形式返回结果。
+基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1326,12 +1324,12 @@ readText(filePath: string, options?: {
 **返回值：**
   | 类型                    | 说明         |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | 返回读取文件的内容。 |
+  | Promise&lt;string&gt; | Promise对象。返回读取文件的内容。 |
 
 **示例：**
   ```js
   fileio.readText(path).then(function(str) {
-      console.info("readText successfully:"+ str);
+      console.info("readText succeed:"+ str);
   }).catch(function(err){
       console.info("readText failed with error:"+ err);
   });
@@ -1346,7 +1344,7 @@ readText(filePath: string, options: {
     encoding?: string;
 }, callback: AsyncCallback&lt;string&gt;): void
 
-以异步方法基于文本方式读取文件（即直接读取文件的文本内容），使用callback形式返回结果。
+基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1398,7 +1396,7 @@ readTextSync(filePath: string, options?: {
 
 lstat(path: string): Promise&lt;Stat&gt;
 
-以异步方法获取链接信息，使用promise形式返回结果。
+获取链接信息，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1410,12 +1408,12 @@ lstat(path: string): Promise&lt;Stat&gt;
 **返回值：**
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | 表示文件的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
 
 **示例：**
   ```js
   fileio.lstat(path).then(function(stat){
-      console.info("get link status successfully:"+ number);
+      console.info("get link status succeed:"+ number);
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
@@ -1426,7 +1424,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
-以异步方法获取链接信息，使用callback形式返回结果。
+获取链接信息，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1476,7 +1474,7 @@ read(buffer: ArrayBuffer, options?: {
     length?: number;
 }): Promise&lt;ReadOut&gt;
 
-以异步方法从文件读取数据，使用promise形式返回结果。
+从文件读取数据，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1489,12 +1487,12 @@ read(buffer: ArrayBuffer, options?: {
 **返回值：**
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
   fileio.read(new ArrayBuffer(4096)).then(function(readout){
-      console.info("read file data successfully");
+      console.info("read file data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("read file data failed with error:"+ err);
@@ -1510,7 +1508,7 @@ read(buffer: ArrayBuffer, options: {
     length?: number;
 }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
-异步方法从文件读取数据，使用callback形式返回结果。
+从文件读取数据，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1526,7 +1524,7 @@ read(buffer: ArrayBuffer, options: {
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
       if (readOut) {
-          console.info("read file data successfully");
+          console.info("read file data succeed");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -1537,7 +1535,7 @@ read(buffer: ArrayBuffer, options: {
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-以异步方法重命名文件，使用promise形式返回结果。
+重命名文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1550,12 +1548,12 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.rename(oldPath, newPath).then(function() {
-      console.info("rename successfully");
+      console.info("rename succeed");
   }).catch(function(err){
       console.info("rename failed with error:"+ err);
   });
@@ -1566,7 +1564,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法重命名文件，使用callback形式返回结果。
+重命名文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1608,7 +1606,7 @@ renameSync(oldPath: string, newPath: string): void
 
 fsync(fd: number): Promise&lt;void&gt;
 
-以异步方法同步文件数据，使用promise形式返回结果。
+同步文件数据，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1620,12 +1618,12 @@ fsync(fd: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.fsync(fd).then(function(){
-      console.info("sync data successfully");
+      console.info("sync data succeed");
   }).catch(function(err){
       console.info("sync data failed with error:"+ err);
   });
@@ -1636,7 +1634,7 @@ fsync(fd: number): Promise&lt;void&gt;
 
 fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法同步文件数据，使用callback形式返回结果。
+同步文件数据，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1677,7 +1675,7 @@ fsyncSync(fd: number): void
 
 fdatasync(fd: number): Promise&lt;void&gt;
 
-以异步方法实现文件内容数据同步，使用promise形式返回结果。
+实现文件内容数据同步，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1689,12 +1687,12 @@ fdatasync(fd: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.fdatasync(fd).then(function(err) {
-      console.info("sync data successfully");
+      console.info("sync data succeed");
   }).catch(function(err){
       console.info("sync data failed with error:"+ err);
   });
@@ -1705,7 +1703,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
 
 fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 
-以异步方法实现文件内容数据同步，使用callback形式返回结果。
+实现文件内容数据同步，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1746,7 +1744,7 @@ fdatasyncSync(fd: number): void
 
 symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
-以异步方法基于文件路径创建符号链接，使用promise形式返回结果。
+基于文件路径创建符号链接，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1759,12 +1757,12 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.symlink(target, srcPath).then(function() {
-      console.info("symlink successfully");
+      console.info("symlink succeed");
   }).catch(function(err){
       console.info("symlink failed with error:"+ err);
   });
@@ -1775,7 +1773,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件路径创建符号链接，使用callback形式返回结果。
+基于文件路径创建符号链接，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1818,7 +1816,7 @@ symlinkSync(target: string, srcPath: string): void
 
 chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
-以异步的方法基于文件路径改变文件所有者，使用promise形式返回结果。
+基于文件路径改变文件所有者，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1832,13 +1830,13 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
 
 **示例：**
   ```js
   let stat = fileio.statSync(path);
   fileio.chown(path, stat.uid, stat.gid).then(function(){
-      console.info("chown successfully");
+      console.info("chown succeed");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
   });
@@ -1849,7 +1847,7 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步的方法基于文件路径改变文件所有者，使用callback形式返回结果。
+基于文件路径改变文件所有者，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1896,7 +1894,7 @@ chownSync(path: string, uid: number, gid: number): void
 
 mkdtemp(prefix: string): Promise&lt;string&gt;
 
-以异步的方法创建临时目录，使用promise形式返回结果。
+创建临时目录，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1908,12 +1906,12 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **返回值：**
   | 类型                   | 说明         |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | 生成的唯一目录路径。 |
+  | Promise&lt;string&gt; | Promise对象。返回生成的唯一目录路径。 |
 
 **示例：**
   ```js
   fileio.mkdtemp(path + "XXXX").then(function(path){
-      console.info("mkdtemp successfully:"+ path);
+      console.info("mkdtemp succeed:"+ path);
   }).catch(function(err){
       console.info("mkdtemp failed with error:"+ err);
   });
@@ -1924,7 +1922,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
-以异步的方法创建临时目录，使用callback形式返回结果。
+创建临时目录，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1970,7 +1968,7 @@ mkdtempSync(prefix: string): string
 
 fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
-以异步方法基于文件描述符改变文件权限，使用promise形式返回结果。
+基于文件描述符改变文件权限，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1983,12 +1981,12 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                 | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
 
 **示例：**
   ```js
   fileio.fchmod(fd, mode).then(function() {
-      console.info("chmod successfully");
+      console.info("chmod succeed");
   }).catch(function(err){
       console.info("chmod failed with error:"+ err);
   });
@@ -1999,7 +1997,7 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件描述符改变文件权限，使用callback形式返回结果。
+基于文件描述符改变文件权限，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2042,7 +2040,7 @@ fchmodSync(fd: number, mode: number): void
 
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
-以异步方法基于文件路径打开文件流，使用promise形式返回结果。
+基于文件路径打开文件流，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2055,12 +2053,12 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 **返回值：**
   | 类型                                | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | 返回文件流的结果。 |
+  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
   ```js
   fileio.createStream(path, "r+").then(function(stream){
-      console.info("createStream successfully");
+      console.info("createStream succeed");
   }).catch(function(err){
       console.info("createStream failed with error:"+ err);
   });
@@ -2071,7 +2069,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-以异步方法基于文件路径打开文件流，使用callback形式返回结果。
+基于文件路径打开文件流，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2119,7 +2117,7 @@ createStreamSync(path: string, mode: string): Stream
 
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
-以异步方法基于文件描述符打开文件流，使用promise形式返回结果。
+基于文件描述符打开文件流，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2132,12 +2130,12 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 **返回值：**
   | 类型                               | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | 返回文件流的结果。 |
+  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
   ```js
   fileio.fdopenStream(fd, mode).then(function(stream){
-      console.info("openStream successfully");
+      console.info("openStream succeed");
   }).catch(function(err){
       console.info("openStream failed with error:"+ err);
   });
@@ -2148,7 +2146,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-以异步方法基于文件描述符打开文件流，使用callback形式返回结果。
+基于文件描述符打开文件流，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2196,7 +2194,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
-以异步方法基于文件描述符改变文件所有者，使用promise形式返回结果。
+基于文件描述符改变文件所有者，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2210,13 +2208,13 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid).then(function() {
-      console.info("chown successfully");
+      console.info("chown succeed");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
   });
@@ -2227,7 +2225,7 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件描述符改变文件所有者，使用callback形式返回结果。
+基于文件描述符改变文件所有者，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2274,7 +2272,7 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
-以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是符号链接所指向的实际文件，使用promise形式返回结果。
+基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是符号链接所指向的实际文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2288,13 +2286,13 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。 |
+  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
 
 **示例：**
   ```js
   let stat = fileio.statSync(path);
   fileio.lchown(path, stat.uid, stat.gid).then(function() {
-      console.info("chown successfully");
+      console.info("chown succeed");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
   });
@@ -2305,7 +2303,7 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件，使用callback形式返回结果。
+基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2352,7 +2350,7 @@ lchownSync(path: string, uid: number, gid: number): void
 
 createWatcher(filename: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
 
-以异步方法监听文件或者目录的变化，使用callback形式返回结果。
+监听文件或者目录的变化，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2366,7 +2364,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 **返回值：**
   | 类型                  | 说明         |
   | -------------------- | ---------- |
-  | [Watcher](#watcher7) | 文件变化监听的实例。 |
+  | [Watcher](#watcher7) | Promise对象。返回文件变化监听的实例。 |
 
 **示例：**
   ```js
@@ -2555,7 +2553,7 @@ Watcher是文件变化监听的实例，调用Watcher.stop()方法（同步或�
 
 stop(): Promise&lt;void&gt;
 
-以异步方法关闭watcher监听，使用promise形式返回结果。
+关闭watcher监听，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2569,7 +2567,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-以异步方法关闭watcher监听，使用callback形式返回结果。
+关闭watcher监听，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2595,20 +2593,20 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 close(): Promise&lt;void&gt;
 
-异步关闭文件流，使用promise形式返回结果。
+关闭文件流，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
   | 类型                  | 说明            |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | 表示异步关闭文件流的结果。 |
+  | Promise&lt;void&gt; | Promise对象。返回表示异步关闭文件流的结果。 |
 
 **示例：**
   ```js
   let ss= fileio.createStreamSync(path);
   ss.close().then(function(){
-      console.info("close fileStream successfully");
+      console.info("close fileStream succeed");
   }).catch(function(err){
       console.info("close fileStream  failed with error:"+ err);
   });
@@ -2619,7 +2617,7 @@ close(): Promise&lt;void&gt;
 
 close(callback: AsyncCallback&lt;void&gt;): void
 
-异步关闭文件流，使用callback形式返回结果。
+异步关闭文件流，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2656,20 +2654,20 @@ closeSync(): void
 
 flush(): Promise&lt;void&gt;
 
-异步刷新文件流，使用promise形式返回结果。
+刷新文件流，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
   | 类型                  | 说明            |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | 表示异步刷新文件流的结果。 |
+  | Promise&lt;void&gt; | Promise对象。返回表示异步刷新文件流的结果。 |
 
 **示例：**
   ```js
   let ss= fileio.createStreamSync(path);
   ss.flush().then(function (){
-      console.info("flush successfully");
+      console.info("flush succeed");
   }).catch(function(err){
       console.info("flush failed with error:"+ err);
   });
@@ -2680,7 +2678,7 @@ flush(): Promise&lt;void&gt;
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-异步刷新文件流，使用callback形式返回结果。
+异步刷新文件流，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2722,7 +2720,7 @@ write(buffer: ArrayBuffer | string, options?: {
     encoding?: string;
 }): Promise&lt;number&gt;
 
-以异步方法将数据写入流文件，使用promise形式返回结果。
+将数据写入流文件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2735,13 +2733,13 @@ write(buffer: ArrayBuffer | string, options?: {
 **返回值：**
   | 类型                    | 说明       |
   | --------------------- | -------- |
-  | Promise&lt;number&gt; | 实际写入的长度。 |
+  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
 **示例：**
   ```js
   let ss= fileio.createStreamSync(fpath, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write successfully and size is:"+ number);
+      console.info("write succeed and size is:"+ number);
   }).catch(function(err){
       console.info("write failed with error:"+ err);
   });
@@ -2757,7 +2755,7 @@ write(buffer: ArrayBuffer | string, options: {
     encoding?: string;
 }, callback: AsyncCallback&lt;number&gt;): void
 
-以异步方法将数据写入流文件，使用callback形式返回结果。
+将数据写入流文件，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2774,7 +2772,7 @@ write(buffer: ArrayBuffer | string, options: {
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // do something
-         console.info("write successfully and size is:"+ bytesWritten);
+         console.info("write succeed and size is:"+ bytesWritten);
       }
   });
   ```
@@ -2819,7 +2817,7 @@ read(buffer: ArrayBuffer, options?: {
     length?: number;
 }): Promise&lt;ReadOut&gt;
 
-以异步方法从流文件读取数据，使用promise形式返回结果。
+从流文件读取数据，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2832,13 +2830,13 @@ read(buffer: ArrayBuffer, options?: {
 **返回值：**
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | 读取的结果。 |
+  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
-      console.info("read data successfully");
+      console.info("read data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("read data failed with error:"+ err);
@@ -2854,7 +2852,7 @@ read(buffer: ArrayBuffer, options: {
     length?: number;
 }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
-以异步方法从流文件读取数据，使用callback形式返回结果。
+从流文件读取数据，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2870,7 +2868,7 @@ read(buffer: ArrayBuffer, options: {
   let ss = fileio.createStreamSync(fpath, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
       if (readOut) {
-          console.info("read data successfully");
+          console.info("read data succeed");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -2918,20 +2916,20 @@ readSync(buffer: ArrayBuffer, options?: {
 
 read(): Promise&lt;Dirent&gt;
 
-异步读取下一个目录项，使用promise形式返回结果。
+读取下一个目录项，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
   | 类型                               | 说明            |
   | -------------------------------- | ------------- |
-  | Promise&lt;[Dirent](#dirent)&gt; | 表示异步读取目录项的结果。 |
+  | Promise&lt;[Dirent](#dirent)&gt; | Promise对象。返回表示异步读取目录项的结果。 |
 
 **示例：**
   ```js
   let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
-      console.log("read successfully:"+JSON.stringify(dirent));
+      console.log("read succeed:"+JSON.stringify(dirent));
   }).catch(function(err){
       console.info("read failed with error:"+ err);
   });
@@ -2942,7 +2940,7 @@ read(): Promise&lt;Dirent&gt;
 
 read(callback: AsyncCallback&lt;Dirent&gt;): void
 
-异步读取下一个目录项，使用callback形式返回结果。
+读取下一个目录项，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2957,7 +2955,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
-          console.log("read successfully:"+JSON.stringify(dirent));
+          console.log("read succeed:"+JSON.stringify(dirent));
       }
   });
   ```
