@@ -185,7 +185,6 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | RELEASE-NOTES | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - |
 | **最新发布版本源码** | **版本信息** | **下载站点** | **SHA256校验码** |
 | 全量代码Beta版本（标准、轻量和小型系统） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz.sha256) |
-| Hi3516标准系统解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_hi3516.tar.gz.sha256) |
 | RK3568标准系统解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz.sha256) |
 | Hi3861解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
 | Hi3516解决方案-LiteOS（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
