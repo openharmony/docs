@@ -17,7 +17,7 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch gesture. The value ranges from 2 to 5. |
+  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. |
   | distance | number | No | 3.0 | Minimum recognition distance, in vp. |
 
 
