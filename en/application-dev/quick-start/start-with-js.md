@@ -40,7 +40,8 @@
    After the project synchronization is complete, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility** &gt; **pages** &gt; **index** in the **Project** window and open the **index.hml** file. You can see that the file contains a **&lt;Text&gt;** component. The sample code in the **index.hml** file is shown below:
 
 
-   ```
+   ```html
+   <!--index.hml-->
    <div class="container">
        <text class="title">
            Hello World
@@ -53,7 +54,8 @@
    On the default page, add an **&lt;input&gt;** component of the button type to respond to user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
 
 
-   ```
+   ```html
+   <!--index.hml-->
    <div class="container">
        <text class="title">
            Hello World
@@ -69,7 +71,7 @@
    From the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility** &gt; **pages** &gt; **index**, open the **index.css** file, and set the page styles, such as the width, height, font size, and spacing. The sample code in the **index.css** file is shown below:
 
 
-   ```
+   ```css
    .container {
        display: flex;
        flex-direction: column;
@@ -119,7 +121,8 @@
    Add **&lt;Text&gt;** and **&lt;Button&gt;** components and set their styles, as you do for the first page. The sample code in the **second.hml** file is shown below:
 
 
-   ```
+   ```html
+   <!--second.hml-->
    <div class="container">
        <text class="title">
            Hi there
@@ -132,7 +135,7 @@
 
 3. Set the page style in the **second.css** file. The sample code in the **second.css** file is shown below:
 
-   ```
+   ```css
    .container {
        display: flex;
        flex-direction: column;
@@ -172,7 +175,8 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    In the **index.js** file of the first page, bind the **onclick** method to the button so that clicking the button redirects the user to the second page. The sample code in the **index.js** file is shown below:
 
 
-   ```
+   ```js
+   // index.js
    import router from '@ohos.router';
    
    export default {
@@ -189,7 +193,8 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
    In the **second.ets** file of the second page, bind the **back** method to the **Back** button so that clicking the button redirects the user back to the first page. The sample code in the **second.js** file is shown below:
 
 
-   ```
+   ```js
+   // second.js
    import router from '@ohos.router';
    
    export default {
