@@ -23,7 +23,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | type | ToggleType | Yes | - | Type of the toggle. |
-  | isOn | boolean | No | false | Initial state of the toggle.<br/>> **NOTE**<br/>> If **isOn** is not set during component creation, the selected state can be retained during component reuse. If **isOn** is set, the selected state needs to be retained during component reuse after the selected state is recorded using an event method. |
+  | isOn | boolean | No | false | Initial state of the toggle.<br/>**NOTE**<br/>If **isOn** is not set during component creation, the selected state can be retained during component reuse. If **isOn** is set, the selected state needs to be retained during component reuse after the selected state is recorded using an event method. |
 
 
 - ToggleType enums
@@ -39,7 +39,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
 | selectedColor | Color | - | Background color of the toggle when it is enabled. | 
-| switchPointColor | Color | - | Color of the circular slider of the **Switch** type.<br/>> **NOTE**<br/>> This attribute is valid only when type is set to **ToggleType.Switch**. | 
+| switchPointColor | Color | - | Color of the circular slider of the **Switch** type.<br/>**NOTE**<br/>This attribute is valid only when type is set to **ToggleType.Switch**. | 
 
 
 ## Events
