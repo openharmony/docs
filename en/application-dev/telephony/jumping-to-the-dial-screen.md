@@ -1,6 +1,6 @@
 # Redirecting to the Dial Screen
 
-You can use this service for your application to redirect users to the dial screen and display the dialed number. When the **makeCall** API is called, the phone or tablet will automatically display the dial screen. On this screen, the user can choose to make an audio or video call and specify the SIM card.
+You can use this service for your application to redirect users to the dial screen and display the dialed number. When the **makeCall** API is called, the device will automatically display the dial screen. On this screen, the user can choose to make an audio or video call and specify the SIM card.
 
 
 ## Available APIs
