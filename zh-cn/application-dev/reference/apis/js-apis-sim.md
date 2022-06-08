@@ -521,7 +521,7 @@ getMaxSimCount\(\): number
 **示例：**
 
 ```
-console.log(sim.getMaxSimCount())
+console.log("Result: "+ sim.getMaxSimCount())
 ```
 
 
