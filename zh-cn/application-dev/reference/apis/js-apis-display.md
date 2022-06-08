@@ -168,11 +168,10 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 **示例：**
   ```js
-  var type = "add";
   var callback = (data) => {
       console.info('Listening enabled. Data: ' + JSON.stringify(data))
   }
-  display.on(type, callback);
+  display.on("add", callback);
   ```
 
 
@@ -192,6 +191,5 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 **示例：**
   ```js
-  var type = "remove";
-  display.off(type);
+  display.off("remove");
   ```
