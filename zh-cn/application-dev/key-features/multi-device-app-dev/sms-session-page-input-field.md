@@ -7,7 +7,7 @@
 ![zh-cn_image_0000001285597989](figures/zh-cn_image_0000001285597989.jpg)
 
 
-为了便于查看的效果，我们同样给底部输入栏设置了淡蓝色到背景色。注意这里有一个特殊的地方，我们给TextArea设置了flexGrow(1)属性。flexGrow属性仅在父组件是Flex组件时生效，表示Flex容器的剩余空间分配给此属性所在的组件的比例，flexGrow(1)表示父容器的剩余空间全部分配给此组件，详见[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
+为了便于查看效果，我们同样给底部输入栏设置了淡蓝色的背景色。注意这里有一个特殊的地方，我们给TextArea设置了flexGrow(1)属性。flexGrow属性仅在父组件是Flex组件时生效，表示Flex容器的剩余空间分配给此属性所在的组件的比例，flexGrow(1)表示父容器的剩余空间全部分配给此组件，详见[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)。
 
 
   | 默认设备 | 平板 | 
