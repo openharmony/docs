@@ -51,7 +51,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，用户身份�
 | ohos.userIAM.userAuth | UserAuth | getVersion() : number; | 新增 |
 | ohos.userIAM.userAuth | UserAuth | constructor(); | 新增 |
 | ohos.userIAM.userAuth | userAuth | function getAuthenticator(): Authenticator; | 新增 |
-| ohos.userIAM.userAuth | Authenticator | execute(type: AuthType, level: SecureLevel, callback: AsyncCallback<number>): void;<br>execute(type: AuthType, level: SecureLevel): Promise<number>; | 新增 |
+| ohos.userIAM.userAuth | Authenticator | execute(type: AuthType, level: SecureLevel, callback: AsyncCallback\<number>): void;<br>execute(type: AuthType, level: SecureLevel): Promise\<number>; | 新增 |
 | ohos.userIAM.userAuth | AuthenticationResult | GENERAL_ERROR = 100 | 新增 |
 | ohos.userIAM.userAuth | AuthenticationResult | NOT_ENROLLED = 8 | 新增 |
 | ohos.userIAM.userAuth | AuthenticationResult | LOCKED = 7 | 新增 |

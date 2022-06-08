@@ -18,13 +18,13 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 1** Ability call APIs
 |API|Description|
 |:------|:------|
-|Promise<Caller> startAbilityByCall(want: Want)|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
-|void on(method: string, callback: CalleeCallBack)|Callee.on: callback invoked when the callee registers a method.|
-|void off(method: string)|Callee.off: callback invoked when the callee deregisters a method.|
-|Promise<void> call(method: string, data: rpc.Sequenceable)|Caller.call: sends agreed sequenceable data to the callee.|
-|Promise<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult: sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
-|void release()|Caller.release: releases the caller interface.|
-|void onRelease(callback: OnReleaseCallBack)|Caller.onRelease: registers a callback that is invoked when the caller is disconnected.|
+|startAbilityByCall(want: Want): Promise<Caller>|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
+|on(method: string, callback: CaleeCallBack): void|Callback invoked when the callee registers a method.|
+|off(method: string): void|Callback invoked when the callee deregisters a method.|
+|call(method: string, data: rpc.Sequenceable): Promise<void>|Sends agreed sequenceable data to the callee.|
+|callWithResult(method: string, data: rpc.Sequenceable): Promise<rpc.MessageParcel>|Sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
+|release(): void|Releases the caller interface.|
+|onRelease(callback: OnReleaseCallBack): void|Registers a callback that is invoked when the caller is disconnected.|
 
 ## How to Develop
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
@@ -202,7 +202,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 3. Send agreed sequenceable data.
 
-The sequenceable data can be sent to the callee with or without a return value. The method and sequenceable data must be consistent with those of the callee. The following example describes how to invoke the **Call** API to send data to the callee. The sample code snippet is as follows:
+  The sequenceable data can be sent to the callee with or without a return value. The method and sequenceable data must be consistent with those of the callee. The following example describes how to invoke the **Call** API to send data to the callee. The sample code snippet is as follows:
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 async onButtonCall() {
@@ -237,7 +237,7 @@ async onButtonCallWithResult(originMsg, backMsg) {
 ```
 4. Release the caller interface.
 
-When the caller interface is no longer required, call the **release** API to release it. The sample code snippet is as follows:
+  When the caller interface is no longer required, call the **release** API to release it. The sample code snippet is as follows:
 ```ts
 try {
     this.caller.release()

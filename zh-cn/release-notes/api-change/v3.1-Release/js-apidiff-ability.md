@@ -6,18 +6,18 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子�
 
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
-| featureability | FeatureAbility | static getDeviceList(flag: number): Promise<Result>; | 新增 |
+| featureability | FeatureAbility | static getDeviceList(flag: number): Promise\<Result>; | 新增 |
 | customizeData | CustomizeData | extra: string; | 新增 |
 | applicationInfo | ApplicationInfo | readonly entityType: string; | 新增 |
 | applicationInfo | ApplicationInfo | readonly uid: number; | 新增 |
 | applicationInfo | ApplicationInfo | readonly accessTokenId: number; | 新增 |
 | applicationInfo | ApplicationInfo | readonly removable: boolean; | 新增 |
-| applicationInfo | ApplicationInfo | readonly metaData: Map<string, Array<CustomizeData>>; | 新增 |
+| applicationInfo | ApplicationInfo | readonly metaData: Map\<string, Array\<CustomizeData>>; | 新增 |
 | applicationInfo | ApplicationInfo | readonly codePath: string; | 新增 |
-| applicationInfo | ApplicationInfo | readonly moduleInfos: Array<ModuleInfo>; | 新增 |
+| applicationInfo | ApplicationInfo | readonly moduleInfos: Array\<ModuleInfo>; | 新增 |
 | shellCmdResult | ShellCmdResult | exitCode: number; | 新增 |
 | shellCmdResult | ShellCmdResult | stdResult: String; | 新增 |
-| ProcessRunningInfo | ProcessRunningInfo | bundleNames: Array<string>; | 新增 |
+| ProcessRunningInfo | ProcessRunningInfo | bundleNames: Array\<string>; | 新增 |
 | ProcessRunningInfo | ProcessRunningInfo | processName: string; | 新增 |
 | ProcessRunningInfo | ProcessRunningInfo | uid: number; | 新增 |
 | ProcessRunningInfo | ProcessRunningInfo | pid: number; | 新增 |
@@ -26,29 +26,29 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子�
 | abilityDelegatorArgs | AbilityDelegatorArgs | testCaseNames: string; | 新增 |
 | abilityDelegatorArgs | AbilityDelegatorArgs | parameters: {[key: string]: string}; | 新增 |
 | abilityDelegatorArgs | AbilityDelegatorArgs | bundleName: string; | 新增 |
-| abilityDelegator | AbilityDelegator | executeShellCommand(cmd: string, callback: AsyncCallback<ShellCmdResult>): void;<br>executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback<ShellCmdResult>): void;<br>executeShellCommand(cmd: string, timeoutSecs?: number): Promise<ShellCmdResult>; | 新增 |
-| abilityDelegator | AbilityDelegator | print(msg: string, callback: AsyncCallback<void>): void;<br>print(msg: string): Promise<void>; | 新增 |
-| context | Context | printDrawnCompleted(callback: AsyncCallback<void>): void;<br>printDrawnCompleted(): Promise<void>; | 新增 |
-| context | Context | isUpdatingConfigurations(callback: AsyncCallback<boolean>): void;<br>isUpdatingConfigurations(): Promise<boolean>; | 新增 |
-| context | Context | getAbilityInfo(callback: AsyncCallback<AbilityInfo>): void<br>getAbilityInfo(): Promise<AbilityInfo>; | 新增 |
+| abilityDelegator | AbilityDelegator | executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void;<br>executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void;<br>executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>; | 新增 |
+| abilityDelegator | AbilityDelegator | print(msg: string, callback: AsyncCallback\<void>): void;<br>print(msg: string): Promise\<void>; | 新增 |
+| context | Context | printDrawnCompleted(callback: AsyncCallback\<void>): void;<br>printDrawnCompleted(): Promise\<void>; | 新增 |
+| context | Context | isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void;<br>isUpdatingConfigurations(): Promise\<boolean>; | 新增 |
+| context | Context | getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void<br>getAbilityInfo(): Promise\<AbilityInfo>; | 新增 |
 | context | Context | getApplicationContext(): Context; | 新增 |
-| context | Context | getAppVersionInfo(callback: AsyncCallback<AppVersionInfo>): void<br>getAppVersionInfo(): Promise<AppVersionInfo>; | 新增 |
-| context | Context | getHapModuleInfo(callback: AsyncCallback<HapModuleInfo>): void<br>getHapModuleInfo(): Promise<HapModuleInfo>; | 新增 |
-| context | Context | getAppType(callback: AsyncCallback<string>): void<br>getAppType(): Promise<string>; | 新增 |
-| context | Context | getOrCreateDistributedDir(): Promise<string>;<br>getOrCreateDistributedDir(callback: AsyncCallback<string>): void; | 新增 |
-| context | Context | getCacheDir(callback: AsyncCallback<string>): void;<br>getCacheDir(): Promise<string>; | 新增 |
-| context | Context | getFilesDir(callback: AsyncCallback<string>): void;<br>getFilesDir(): Promise<string>; | 新增 |
-| context | Context | setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback<void>): void<br>setWakeUpScreen(wakeUp: boolean): Promise<void>; | 新增 |
-| context | Context | setShowOnLockScreen(show: boolean, callback: AsyncCallback<void>): void<br>setShowOnLockScreen(show: boolean): Promise<void>; | 新增 |
-| context | Context | setDisplayOrientation(orientation: DisplayOrientation, callback: AsyncCallback<void>): void<br>setDisplayOrientation(orientation: DisplayOrientation): Promise<void>; | 新增 |
-| context | Context | getDisplayOrientation(callback: AsyncCallback<DisplayOrientation>): void<br>getDisplayOrientation(): Promise<DisplayOrientation>; | 新增 |
+| context | Context | getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void<br>getAppVersionInfo(): Promise\<AppVersionInfo>; | 新增 |
+| context | Context | getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void<br>getHapModuleInfo(): Promise\<HapModuleInfo>; | 新增 |
+| context | Context | getAppType(callback: AsyncCallback\<string>): void<br>getAppType(): Promise\<string>; | 新增 |
+| context | Context | getOrCreateDistributedDir(): Promise\<string>;<br>getOrCreateDistributedDir(callback: AsyncCallback\<string>): void; | 新增 |
+| context | Context | getCacheDir(callback: AsyncCallback\<string>): void;<br>getCacheDir(): Promise\<string>; | 新增 |
+| context | Context | getFilesDir(callback: AsyncCallback\<string>): void;<br>getFilesDir(): Promise\<string>; | 新增 |
+| context | Context | setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void<br>setWakeUpScreen(wakeUp: boolean): Promise\<void>; | 新增 |
+| context | Context | setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void<br>setShowOnLockScreen(show: boolean): Promise\<void>; | 新增 |
+| context | Context | setDisplayOrientation(orientation: DisplayOrientation, callback: AsyncCallback\<void>): void<br>setDisplayOrientation(orientation: DisplayOrientation): Promise\<void>; | 新增 |
+| context | Context | getDisplayOrientation(callback: AsyncCallback\<DisplayOrientation>): void<br>getDisplayOrientation(): Promise\<DisplayOrientation>; | 新增 |
 | appVersionInfo | AppVersionInfo | readonly versionName: string; | 新增 |
 | appVersionInfo | AppVersionInfo | readonly versionCode: number; | 新增 |
 | appVersionInfo | AppVersionInfo | readonly appName: string; | 新增 |
-| dataAbilityHelper | PacMap | [key: string]: number \| string \| boolean \| Array<string \| number \| boolean> \| null; | 新增 |
-| dataAbilityHelper | DataAbilityHelper | executeBatch(uri: string, operations: Array<DataAbilityOperation>, callback: AsyncCallback<Array<DataAbilityResult>>): void;<br>executeBatch(uri: string, operations: Array<DataAbilityOperation>): Promise<Array<DataAbilityResult>>; | 新增 |
-| dataAbilityHelper | DataAbilityHelper | call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void;<br>call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>; | 新增 |
-| ohos.application.Want | Want | entities?: Array<string>; | 新增 |
+| dataAbilityHelper | PacMap | [key: string]: number \| string \| boolean \| Array\<string \| number \| boolean> \| null; | 新增 |
+| dataAbilityHelper | DataAbilityHelper | executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;<br>executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>; | 新增 |
+| dataAbilityHelper | DataAbilityHelper | call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void;<br>call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>; | 新增 |
+| ohos.application.Want | Want | entities?: Array\<string>; | 新增 |
 | ohos.application.Want | Want | parameters?: {[key: string]: any}; | 新增 |
 | ohos.application.Want | Want | action?: string; | 新增 |
 | ohos.application.Want | Want | flags?: number; | 新增 |
@@ -59,8 +59,8 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子�
 | ohos.application.Want | Want | deviceId?: string; | 新增 |
 | ohos.application.testRunner | TestRunner | onRun(): void; | 新增 |
 | ohos.application.testRunner | TestRunner | onPrepare(): void; | 新增 |
-| ohos.application.formProvider | formProvider | function updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback<void>): void;<br>function updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise<void>; | 新增 |
-| ohos.application.formProvider | formProvider | function setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback<void>): void;<br>function setFormNextRefreshTime(formId: string, minute: number): Promise<void>; | 新增 |
+| ohos.application.formProvider | formProvider | updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void;<br>updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void>; | 新增 |
+| ohos.application.formProvider | formProvider | setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback\<void>): void;<br>setFormNextRefreshTime(formId: string, minute: number): Promise\<void>; | 新增 |
 | ohos.application.formInfo | FormParam | TEMPORARY_KEY = "ohos.extra.param.key.form_temporary" | 新增 |
 | ohos.application.formInfo | FormParam | HEIGHT_KEY = "ohos.extra.param.key.form_height" | 新增 |
 | ohos.application.formInfo | FormParam | WIDTH_KEY = "ohos.extra.param.key.form_width" | 新增 |
@@ -77,7 +77,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子�
 | ohos.application.formInfo | ColorMode | MODE_AUTO = -1 | 新增 |
 | ohos.application.formInfo | FormType | JS = 1 | 新增 |
 | ohos.application.formInfo | FormInfo | customizeData: {[key: string]: [value: string]}; | 新增 |
-| ohos.application.formInfo | FormInfo | supportDimensions: Array<number>; | 新增 |
+| ohos.application.formInfo | FormInfo | supportDimensions: Array\<number>; | 新增 |
 | ohos.application.formInfo | FormInfo | defaultDimension: number; | 新增 |
 | ohos.application.formInfo | FormInfo | updateDuration: number; | 新增 |
 | ohos.application.formInfo | FormInfo | formConfigAbility: string; | 新增 |
@@ -117,42 +117,42 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，元能力子�
 | ohos.application.formError | FormError | ERR_PERMISSION_DENY = 2 | 新增 |
 | ohos.application.formError | FormError | ERR_COMMON = 1 | 新增 |
 | ohos.application.formBindingData | FormBindingData | data: Object | 新增 |
-| ohos.application.formBindingData | formBindingData | function createFormBindingData(obj?: Object \| string): FormBindingData; | 新增 |
+| ohos.application.formBindingData | formBindingData | createFormBindingData(obj?: Object \| string): FormBindingData; | 新增 |
 | ohos.application.ConfigurationConstant | ColorMode | COLOR_MODE_LIGHT = 1 | 新增 |
 | ohos.application.ConfigurationConstant | ColorMode | COLOR_MODE_DARK = 0 | 新增 |
 | ohos.application.ConfigurationConstant | ColorMode | COLOR_MODE_NOT_SET = -1 | 新增 |
 | ohos.application.Configuration | Configuration | colorMode: ConfigurationConstant.ColorMode; | 新增 |
 | ohos.application.Configuration | Configuration | language: string; | 新增 |
-| ohos.application.appManager | appManager | function getAppMemorySize(): Promise<number>;<br>function getAppMemorySize(callback: AsyncCallback<number>): void; | 新增 |
-| ohos.application.appManager | appManager | function isRamConstrainedDevice(): Promise<boolean>;<br>function isRamConstrainedDevice(callback: AsyncCallback<boolean>): void; | 新增 |
-| ohos.application.appManager | appManager | function getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;<br>function getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void; | 新增 |
-| ohos.application.appManager | appManager | function isRunningInStabilityTest(callback: AsyncCallback<boolean>): void;<br>function isRunningInStabilityTest(): Promise<boolean>; | 新增 |
+| ohos.application.appManager | appManager | getAppMemorySize(): Promise\<number>;<br>getAppMemorySize(callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.application.appManager | appManager | isRamConstrainedDevice(): Promise\<boolean>;<br>isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void; | 新增 |
+| ohos.application.appManager | appManager | getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;<br>getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void; | 新增 |
+| ohos.application.appManager | appManager | isRunningInStabilityTest(callback: AsyncCallback\<boolean>): void;<br>isRunningInStabilityTest(): Promise\<boolean>; | 新增 |
 | ohos.application.abilityDelegatorRegistry | AbilityLifecycleState | DESTROY | 新增 |
 | ohos.application.abilityDelegatorRegistry | AbilityLifecycleState | BACKGROUND | 新增 |
 | ohos.application.abilityDelegatorRegistry | AbilityLifecycleState | FOREGROUND | 新增 |
 | ohos.application.abilityDelegatorRegistry | AbilityLifecycleState | CREATE | 新增 |
 | ohos.application.abilityDelegatorRegistry | AbilityLifecycleState | UNINITIALIZED | 新增 |
-| ohos.application.abilityDelegatorRegistry | abilityDelegatorRegistry | function getArguments(): AbilityDelegatorArgs; | 新增 |
-| ohos.application.abilityDelegatorRegistry | abilityDelegatorRegistry | function getAbilityDelegator(): AbilityDelegator; | 新增 |
+| ohos.application.abilityDelegatorRegistry | abilityDelegatorRegistry | getArguments(): AbilityDelegatorArgs; | 新增 |
+| ohos.application.abilityDelegatorRegistry | abilityDelegatorRegistry | getAbilityDelegator(): AbilityDelegator; | 新增 |
 | ohos.abilityAccessCtrl | GrantStatus | PERMISSION_GRANTED = 0 | 新增 |
 | ohos.abilityAccessCtrl | GrantStatus | PERMISSION_DENIED = -1 | 新增 |
-| ohos.abilityAccessCtrl | AtManager | verifyAccessToken(tokenID: number, permissionName: string): Promise<GrantStatus>; | 新增 |
-| ohos.abilityAccessCtrl | abilityAccessCtrl | function createAtManager(): AtManager; | 新增 |
+| ohos.abilityAccessCtrl | AtManager | verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>; | 新增 |
+| ohos.abilityAccessCtrl | abilityAccessCtrl | createAtManager(): AtManager; | 新增 |
 | ohos.ability.wantConstant | Action | ACTION_APP_ACCOUNT_OAUTH = "ohos.account.appAccount.action.oauth" | 新增 |
 | ohos.ability.wantConstant | Action | ACTION_VIDEO_CAPTURE = "ohos.want.action.videoCapture" | 新增 |
 | ohos.ability.wantConstant | Action | ACTION_IMAGE_CAPTURE = "ohos.want.action.imageCapture" | 新增 |
 | ohos.ability.particleAbility | ErrorCode | INVALID_PARAMETER = -1 | 新增 |
-| ohos.ability.particleAbility | particleAbility | function disconnectAbility(connection: number, callback:AsyncCallback<void>): void;<br>function disconnectAbility(connection: number): Promise<void>; | 新增 |
-| ohos.ability.particleAbility | particleAbility | function connectAbility(request: Want, options:ConnectOptions): number; | 新增 |
-| ohos.ability.particleAbility | particleAbility | function cancelBackgroundRunning(callback: AsyncCallback<void>): void;<br>function cancelBackgroundRunning(): Promise<void>; | 新增 |
-| ohos.ability.particleAbility | particleAbility | function startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback<void>): void;<br>function startBackgroundRunning(id: number, request: NotificationRequest): Promise<void>; | 新增 |
-| ohos.ability.featureAbility | featureAbility | function getWindow(callback: AsyncCallback<window.Window>): void;<br>function getWindow(): Promise<window.Window>; | 新增 |
+| ohos.ability.particleAbility | particleAbility | disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;<br>disconnectAbility(connection: number): Promise\<void>; | 新增 |
+| ohos.ability.particleAbility | particleAbility | connectAbility(request: Want, options:ConnectOptions): number; | 新增 |
+| ohos.ability.particleAbility | particleAbility | cancelBackgroundRunning(callback: AsyncCallback\<void>): void;<br>cancelBackgroundRunning(): Promise\<void>; | 新增 |
+| ohos.ability.particleAbility | particleAbility | startBackgroundRunning(id: number, request: NotificationRequest, callback: AsyncCallback\<void>): void;<br>startBackgroundRunning(id: number, request: NotificationRequest): Promise\<void>; | 新增 |
+| ohos.ability.featureAbility | featureAbility | getWindow(callback: AsyncCallback\<window.Window>): void;<br>getWindow(): Promise\<window.Window>; | 新增 |
 | ohos.ability.errorCode | ErrorCode | NO_ERROR = 0 | 新增 |
 | ohos.ability.errorCode | ErrorCode | INVALID_PARAMETER = -1 | 新增 |
 | ohos.ability.errorCode | ErrorCode | ABILITY_NOT_FOUND = -2 | 新增 |
 | ohos.ability.errorCode | ErrorCode | PERMISSION_DENY = -3 | 新增 |
-| lifecycle | LifecycleData | call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void; | 新增 |
-| lifecycle | LifecycleData | executeBatch?(ops: Array<DataAbilityOperation>, callback: AsyncCallback<Array<DataAbilityResult>>): void; | 新增 |
+| lifecycle | LifecycleData | call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void; | 新增 |
+| lifecycle | LifecycleData | executeBatch?(ops: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void; | 新增 |
 | lifecycle | LifecycleService | onReconnect?(want: Want): void; | 新增 |
 | lifecycle | LifecycleApp | onMemoryLevel?(level: number): void; | 新增 |
 | lifecycle | LifecycleApp | onNewWant?(want: Want): void; | 新增 |

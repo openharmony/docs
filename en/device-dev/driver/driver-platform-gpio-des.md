@@ -1,496 +1,280 @@
-# GPIO<a name="EN-US_TOPIC_0000001206171135"></a>
+# GPIO
 
 
-## Overview<a name="section1635911016188"></a>
+## Overview
 
-Generally, a general-purpose input/output \(GPIO\) controller manages all GPIO pins by group. Each group of GPIO pins is associated with one or more registers. The GPIO pins are operated by reading data from and writing data to the registers.
+A general-purpose input/output (GPIO) controller manages all GPIO pins by group. Each group of GPIO pins is associated with one or more registers. The GPIO controller manages the pins by reading data from and writing data to the registers.
 
 The GPIO APIs define a set of standard functions for performing operations on GPIO pins, including:
 
--   Setting the pin direction, which can be input or output \(high impedance is not supported currently\)
+- Setting the pin direction, which can be input or output (high impedance is not supported currently)
 
--   Reading and writing level values, which can be low or high
--   Setting an interrupt service routine \(ISR\) function and interrupt trigger mode for a pin
--   Enabling or disabling interrupts for a pin
+- Reading and writing the pin level, which can be low or high
 
-## Available APIs<a name="section589913442203"></a>
+- Setting the interrupt service routine (ISR) function and interrupt trigger mode for a pin
 
-**Table  1** APIs available for the GPIO driver
-
-<a name="table89681075215"></a>
-<table><thead align="left"><tr id="row996807162115"><th class="cellrowborder" valign="top" width="19.74%" id="mcps1.2.4.1.1"><p id="p296817716212"><a name="p296817716212"></a><a name="p296817716212"></a>Capability</p>
-</th>
-<th class="cellrowborder" valign="top" width="32.36%" id="mcps1.2.4.1.2"><p id="p596897172119"><a name="p596897172119"></a><a name="p596897172119"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="47.9%" id="mcps1.2.4.1.3"><p id="p39681677213"><a name="p39681677213"></a><a name="p39681677213"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row896847202113"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p1796814719210"><a name="p1796814719210"></a><a name="p1796814719210"></a>GPIO read/write</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p39683732112"><a name="p39683732112"></a><a name="p39683732112"></a>GpioRead</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p59687710219"><a name="p59687710219"></a><a name="p59687710219"></a>Reads the level value of a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row17968872212"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p396812722116"><a name="p396812722116"></a><a name="p396812722116"></a>GpioWrite</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p396814715219"><a name="p396814715219"></a><a name="p396814715219"></a>Writes the level value of a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row129681576218"><td class="cellrowborder" rowspan="2" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p1496813782116"><a name="p1496813782116"></a><a name="p1496813782116"></a>GPIO settings</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p29688742119"><a name="p29688742119"></a><a name="p29688742119"></a>GpioSetDir</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p179682792111"><a name="p179682792111"></a><a name="p179682792111"></a>Sets the direction for a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row1196817715217"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p896827182120"><a name="p896827182120"></a><a name="p896827182120"></a>GpioGetDir</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p39689792111"><a name="p39689792111"></a><a name="p39689792111"></a>Obtains the direction for a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row69682071217"><td class="cellrowborder" rowspan="4" valign="top" width="19.74%" headers="mcps1.2.4.1.1 "><p id="p296818714213"><a name="p296818714213"></a><a name="p296818714213"></a>GPIO interrupt settings</p>
-</td>
-<td class="cellrowborder" valign="top" width="32.36%" headers="mcps1.2.4.1.2 "><p id="p1396916710216"><a name="p1396916710216"></a><a name="p1396916710216"></a>GpioSetIrq</p>
-</td>
-<td class="cellrowborder" valign="top" width="47.9%" headers="mcps1.2.4.1.3 "><p id="p99693712113"><a name="p99693712113"></a><a name="p99693712113"></a>Sets the ISR function for a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row4969117172110"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p119692079215"><a name="p119692079215"></a><a name="p119692079215"></a>GpioUnSetIrq</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1996916792114"><a name="p1996916792114"></a><a name="p1996916792114"></a>Cancels the setting of the ISR function for a GPIO pin.</p>
-</td>
-</tr>
-<tr id="row396907112117"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p109694717216"><a name="p109694717216"></a><a name="p109694717216"></a>GpioEnableIrq</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2969473216"><a name="p2969473216"></a><a name="p2969473216"></a>Enables GPIO interrupts for a pin.</p>
-</td>
-</tr>
-<tr id="row14969117152113"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18969157182116"><a name="p18969157182116"></a><a name="p18969157182116"></a>GpioDisableIrq</p>
-</td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p19690710214"><a name="p19690710214"></a><a name="p19690710214"></a>Disables GPIO interrupts for a pin.</p>
-</td>
-</tr>
-</tbody>
-</table>
+- Enabling or disabling interrupts for a pin
 
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
->All functions provided in this document can be called only in kernel mode.
+## Available APIs
 
-## Usage Guidelines<a name="section259614242196"></a>
+  **Table 1** GPIO driver APIs
 
-### How to Use<a name="section103477714216"></a>
+| Category| Description| 
+| -------- | -------- |
+| GPIO read/write| -&nbsp;**GpioRead**: reads the pin level.<br>-&nbsp;**GpioWrite**: writes the pin level.| 
+| GPIO settings| -&nbsp;**GpioSetDir**: sets the pin direction.<br>-&nbsp;**GpioGetDir**: obtains the pin direction.| 
+| GPIO interrupt settings| -&nbsp;**GpioSetIrq**: sets the ISR function for a GPIO pin.<br>-&nbsp;**GpioUnsetIrq**: cancels the ISR function setting for a GPIO pin.<br>-&nbsp;**GpioEnableIrq**: enables interrupts for a pin.<br>-&nbsp;**GpioDisableIrq**: disables interrupts for a pin.| 
 
-The GPIO APIs use the GPIO pin number to specify a pin. The figure below illustrates how to use the APIs.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> All APIs described in this document can be called only in kernel mode.
+
+
+## Usage Guidelines
+
+
+### How to Use
+
+The figure below shows the general GPIO development process. In the APIs, a GPIO pin is specified by the pin number.
 
 **Figure  1** Using GPIO driver APIs
- 
-![](figures/using-gpio-process.png "using-gpio-process.png")
 
-### Determining the GPIO Pin Number<a name="section370083272117"></a>
+![](figures/using-GPIO-process.png "using-gpio-process.png")
 
-The method for converting GPIO pin numbers varies depending on the GPIO controller model, parameters, and controller driver of different system on chips \(SoCs\).
 
-- Hi3516DV300
+### Determining the GPIO Pin Number
 
-  A controller manages 12 groups of GPIO pins. Each group contains 8 GPIO pins.
+The method for determining the GPIO pin number varies depending on the GPIO controller model, parameters, and controller driver of the system on chip (SoC).
 
-  GPIO pin number = GPIO group index x Number of GPIO pins in each group + Offset in the group
+- Hi3516D V300
+  A controller manages 12 groups of GPIO pins. Each group contains 8 GPIO pins. The group number ranges from 0 to 11. 
 
-  The group index ranges from 0 to 11. 
+  GPIO pin number = GPIO group number x Number of GPIO pins in each group + Offset in the group
 
   Example: 
 
-  GPIO pin number of GPIO10\_3 = 10 x 8 + 3 = 83
+  GPIO pin number of GPIO10_3 = 10 x 8 + 3 = 83
+  
+- Hi3518E V300
+  A controller manages 10 groups of GPIO pins. Each group contains 10 GPIO pins. The group number ranges from 0 to 9. 
 
--   Hi3518EV300
+  GPIO pin number = GPIO group number x Number of GPIO pins in each group + Offset in the group
 
-    A controller manages 10 groups of GPIO pins. Each group contains 10 GPIO pins.
-
-    GPIO pin number = GPIO group index \(0–9\) x Number of GPIO pins in each group \(10\) + Offset in the group
-
-    The group index ranges from 0 to 9.
-    
-    Example: 
-    
-    GPIO pin number of GPIO7\_3 = 7 x 10 + 3 = 73
+  Example: 
+  
+  GPIO pin number of GPIO7_3 = 7 x 10 + 3 = 73
 
 
-### Using APIs to Operate GPIO Pins<a name="section13604050132118"></a>
+### Using APIs to Operate GPIO Pins
 
--   Set the direction for a GPIO pin.
+- Set the GPIO pin direction.
+  Before performing read/write operations on a GPIO pin, call **GpioSetDir()** to set the pin direction.
 
-    Before performing read/write operations on a GPIO pin, call **GpioSetDir**() to set the direction.
+  ```c
+  int32_t GpioSetDir(uint16_t gpio, uint16_t dir);
+  ```
 
-    int32\_t GpioSetDir\(uint16\_t gpio, uint16\_t dir\);
+    **Table 2** Description of GpioSetDir
+  
+  | **Parameter**| **Description**|
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | dir | Direction to set.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-   **Table  2** Description of GpioSetDir
+- Read or write the pin level.
 
-    <a name="table63111557616"></a>
-    <table><tbody><tr id="row17311165469"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p53110515616"><a name="p53110515616"></a><a name="p53110515616"></a><strong id="b1142022718160"><a name="b1142022718160"></a><a name="b1142022718160"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p5311454616"><a name="p5311454616"></a><a name="p5311454616"></a><strong id="b93161228141614"><a name="b93161228141614"></a><a name="b93161228141614"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row0312151666"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1431265763"><a name="p1431265763"></a><a name="p1431265763"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p83121553613"><a name="p83121553613"></a><a name="p83121553613"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row11312151619"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p173121451664"><a name="p173121451664"></a><a name="p173121451664"></a>dir</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p153122520615"><a name="p153122520615"></a><a name="p153122520615"></a>Direction to set.</p>
-    </td>
-    </tr>
-    <tr id="row165937126386"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p83111453613"><a name="p83111453613"></a><a name="p83111453613"></a><strong id="b42491732121614"><a name="b42491732121614"></a><a name="b42491732121614"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p83111151165"><a name="p83111151165"></a><a name="p83111151165"></a><strong id="b1116336166"><a name="b1116336166"></a><a name="b1116336166"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row205931212123817"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p18312151463"><a name="p18312151463"></a><a name="p18312151463"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103124517618"><a name="p103124517618"></a><a name="p103124517618"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row75931212153818"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p23121951261"><a name="p23121951261"></a><a name="p23121951261"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p153121553610"><a name="p153121553610"></a><a name="p153121553610"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  Call **GpioRead()** to read the level of a GPIO pin.
 
+  ```c
+  int32_t GpioRead(uint16_t gpio, uint16_t *val);
+  ```
 
--   Read or write the level value for a GPIO pin.
+    **Table 3** Description of GpioRead
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- | 
+  | gpio | GPIO pin number.| 
+  | val | Pointer to the level to read.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-    Call **GpioRead**() to read the level value of a GPIO pin.
+  Call **GpioWrite()** to write the level for a GPIO pin.
 
-    int32\_t GpioRead\(uint16\_t gpio, uint16\_t \*val\);
+  ```c
+  int32_t GpioWrite(uint16_t gpio, uint16_t val);
+  ``` 
+ 
+    **Table 4** Description of GpioWrite
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | val | Level to write.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-   **Table  3** Description of GpioRead
+  Sample code:
 
-    <a name="table20347743174816"></a>
-    <table><tbody><tr id="row17348144394816"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p19348164313481"><a name="p19348164313481"></a><a name="p19348164313481"></a><strong id="b4862227121610"><a name="b4862227121610"></a><a name="b4862227121610"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p134810432488"><a name="p134810432488"></a><a name="p134810432488"></a><strong id="b677332841611"><a name="b677332841611"></a><a name="b677332841611"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row134874324814"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p183481437485"><a name="p183481437485"></a><a name="p183481437485"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p43481043194819"><a name="p43481043194819"></a><a name="p43481043194819"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row20348343144815"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1534864310480"><a name="p1534864310480"></a><a name="p1534864310480"></a>val</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p13689159154815"><a name="p13689159154815"></a><a name="p13689159154815"></a>Pointer to the level value.</p>
-    </td>
-    </tr>
-    <tr id="row19348043154813"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1234812431480"><a name="p1234812431480"></a><a name="p1234812431480"></a><strong id="b10599632101619"><a name="b10599632101619"></a><a name="b10599632101619"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p434894334814"><a name="p434894334814"></a><a name="p434894334814"></a><strong id="b236513361617"><a name="b236513361617"></a><a name="b236513361617"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row3348184311486"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1934854315487"><a name="p1934854315487"></a><a name="p1934854315487"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p103481943114814"><a name="p103481943114814"></a><a name="p103481943114814"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row23485436482"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1134834310486"><a name="p1134834310486"></a><a name="p1134834310486"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p93491343144815"><a name="p93491343144815"></a><a name="p93491343144815"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-   
-   
-    Call **GpioWrite()** to write the level value for a GPIO pin.
-   
-    int32\_t GpioWrite\(uint16\_t gpio, uint16\_t val\);
-   
-   **Table  4** Description of GpioWrite
-   
-    <a name="table1214911207520"></a>
-    <table><tbody><tr id="row6149720175218"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p18149132005216"><a name="p18149132005216"></a><a name="p18149132005216"></a><strong id="b19864427181615"><a name="b19864427181615"></a><a name="b19864427181615"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p16149220145216"><a name="p16149220145216"></a><a name="p16149220145216"></a><strong id="b4774132861616"><a name="b4774132861616"></a><a name="b4774132861616"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row16149102014526"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p31495206527"><a name="p31495206527"></a><a name="p31495206527"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p1014972085212"><a name="p1014972085212"></a><a name="p1014972085212"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row3149112095214"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p1815072011528"><a name="p1815072011528"></a><a name="p1815072011528"></a>val</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p1931618337524"><a name="p1931618337524"></a><a name="p1931618337524"></a>Level value to write.</p>
-    </td>
-    </tr>
-    <tr id="row1115062015220"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p10150172015218"><a name="p10150172015218"></a><a name="p10150172015218"></a><strong id="b760183221611"><a name="b760183221611"></a><a name="b760183221611"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p1150192015527"><a name="p1150192015527"></a><a name="p1150192015527"></a><strong id="b14366123310160"><a name="b14366123310160"></a><a name="b14366123310160"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row111503202526"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p171501320205216"><a name="p171501320205216"></a><a name="p171501320205216"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p15150102017522"><a name="p15150102017522"></a><a name="p15150102017522"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row1615002018528"><td class="cellrowborder" valign="top" width="48.120000000000005%"><p id="p15150182045212"><a name="p15150182045212"></a><a name="p15150182045212"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.88%"><p id="p13150320105212"><a name="p13150320105212"></a><a name="p13150320105212"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-   
-    Example:
-   
-    ```
-    int32_t ret;
-    uint16_t val;
-    /* Set the output direction for GPIO3. */
-    ret = GpioSetDir(3, GPIO_DIR_OUT);
-    if (ret != 0) {
-        HDF_LOGE("GpioSerDir: failed, ret %d\n", ret);
-        return;
-    }
-    /* Write the low level GPIO_VAL_LOW for GPIO3. */
-    ret = GpioWrite(3, GPIO_VAL_LOW);
-    if (ret != 0) {
-        HDF_LOGE("GpioWrite: failed, ret %d\n", ret);
-        return;
-    }
-    /* Set the input direction for GPIO6. */
-    ret = GpioSetDir(6, GPIO_DIR_IN);
-    if (ret != 0) {
-        HDF_LOGE("GpioSetDir: failed, ret %d\n", ret);
-        return;
-    }
-    /* Read the level value of GPIO6. */
-    ret = GpioRead(6, &val);
-    ```
+  
+  ```
+  int32_t ret;
+  uint16_t val;
+  /* Set the direction of GPIO pin 3 to output. */
+  ret = GpioSetDir(3, GPIO_DIR_OUT);
+  if (ret != 0) {
+      HDF_LOGE("GpioSerDir: failed, ret %d\n", ret);
+      return;
+  }
+  /* Write the low level GPIO_VAL_LOW for GPIO pin 3. */
+  ret = GpioWrite(3, GPIO_VAL_LOW);
+  if (ret != 0) {
+      HDF_LOGE("GpioWrite: failed, ret %d\n", ret);
+      return;
+  }
+  /* Set the direction of GPIO pin 6 to input. */
+  ret = GpioSetDir(6, GPIO_DIR_IN);
+  if (ret != 0) {
+      HDF_LOGE("GpioSetDir: failed, ret %d\n", ret);
+      return;
+  }
+  /* Read the level of GPIO pin 6. */
+  ret = GpioRead(6, &val);
+  ```
 
+- Set the ISR function for a GPIO pin.
 
--   Set the ISR function for a GPIO pin.
+  Call **GpioSetIrq()** to set the ISR function for a GPIO pin.
 
-    Call **GpioSetIrq()** to set the ISR function for a GPIO pin.
+  ```c
+  int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void *arg);
+  ``` 
+ 
+    **Table 5** Description of GpioSetIrq
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | mode | Interrupt trigger mode.| 
+  | func | ISR function to set.| 
+  | arg | Pointer to the parameters passed to the ISR function.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-    int32\_t GpioSetIrq\(uint16\_t gpio, uint16\_t mode, GpioIrqFunc func, void \*arg\);
+  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > Only one ISR function can be set for a GPIO pin. If **GpioSetIrq** is called repeatedly, the previous IRS function will be replaced.
 
-   **Table  5** Description of GpioSetIrq
+  If the ISR function is no longer required, call **GpioUnsetIrq()** to cancel it.
 
-    <a name="table16804111812466"></a>
-    <table><tbody><tr id="row880401834615"><td class="cellrowborder" valign="top" width="48.54%"><p id="p380491819469"><a name="p380491819469"></a><a name="p380491819469"></a><strong id="b0865192761614"><a name="b0865192761614"></a><a name="b0865192761614"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p48041318114619"><a name="p48041318114619"></a><a name="p48041318114619"></a><strong id="b1477520282162"><a name="b1477520282162"></a><a name="b1477520282162"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row19805181812465"><td class="cellrowborder" valign="top" width="48.54%"><p id="p11805101874611"><a name="p11805101874611"></a><a name="p11805101874611"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p6805181818461"><a name="p6805181818461"></a><a name="p6805181818461"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row1080541817469"><td class="cellrowborder" valign="top" width="48.54%"><p id="p580541864611"><a name="p580541864611"></a><a name="p580541864611"></a>mode</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p380511180463"><a name="p380511180463"></a><a name="p380511180463"></a>Interrupt trigger mode.</p>
-    </td>
-    </tr>
-    <tr id="row83541951134617"><td class="cellrowborder" valign="top" width="48.54%"><p id="p5355351104610"><a name="p5355351104610"></a><a name="p5355351104610"></a>func</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p11355551174619"><a name="p11355551174619"></a><a name="p11355551174619"></a>ISR function to set.</p>
-    </td>
-    </tr>
-    <tr id="row6593577469"><td class="cellrowborder" valign="top" width="48.54%"><p id="p165985724619"><a name="p165985724619"></a><a name="p165985724619"></a>arg</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p559185784619"><a name="p559185784619"></a><a name="p559185784619"></a>Pointer to the parameters passed to the ISR function.</p>
-    </td>
-    </tr>
-    <tr id="row16299193210587"><td class="cellrowborder" valign="top" width="48.54%"><p id="p7804101884614"><a name="p7804101884614"></a><a name="p7804101884614"></a><strong id="b126021932131615"><a name="b126021932131615"></a><a name="b126021932131615"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p680441818466"><a name="p680441818466"></a><a name="p680441818466"></a><strong id="b836716339162"><a name="b836716339162"></a><a name="b836716339162"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row12299632125817"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1180511189465"><a name="p1180511189465"></a><a name="p1180511189465"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p180521812465"><a name="p180521812465"></a><a name="p180521812465"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row029833235815"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1080591814468"><a name="p1080591814468"></a><a name="p1080591814468"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p18805141884611"><a name="p18805141884611"></a><a name="p18805141884611"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  ```c
+  int32_t GpioUnsetIrq(uint16_t gpio, void *arg);
+  ``` 
 
-    >![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
-    >Only one ISR function can be set for a GPIO pin at a time. If **GpioSetIrq** is called repeatedly, the previous IRS function will be replaced.
+    **Table 6** Description of GpioUnsetIrq
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | arg  | Pointer to the GPIO interrupt parameters.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-    If the ISR function is no longer required, call **GpioUnSetIrq()** to cancel the setting.
+  After the ISR function is set, call **GpioEnableIrq()** to enable interrupts for the GPIO pin.
 
-    int32\_t GpioUnSetIrq\(uint16\_t gpio\);
+  ```c
+  int32_t GpioEnableIrq(uint16_t gpio);
+  ``` 
 
-   **Table  6** Description of GpioUnSetIrq
+    **Table 7** Description of GpioEnableIrq
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-    <a name="table1157224664316"></a>
-    <table><tbody><tr id="row175721546174317"><td class="cellrowborder" valign="top" width="48.54%"><p id="p16572144694311"><a name="p16572144694311"></a><a name="p16572144694311"></a><strong id="b16866132761617"><a name="b16866132761617"></a><a name="b16866132761617"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p185721461435"><a name="p185721461435"></a><a name="p185721461435"></a><strong id="b1377613282167"><a name="b1377613282167"></a><a name="b1377613282167"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row1257284664318"><td class="cellrowborder" valign="top" width="48.54%"><p id="p95721946144317"><a name="p95721946144317"></a><a name="p95721946144317"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p1557313464439"><a name="p1557313464439"></a><a name="p1557313464439"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row1857324618435"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1257344624314"><a name="p1257344624314"></a><a name="p1257344624314"></a><strong id="b1160353241610"><a name="b1160353241610"></a><a name="b1160353241610"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p457384611439"><a name="p457384611439"></a><a name="p457384611439"></a><strong id="b133681833151617"><a name="b133681833151617"></a><a name="b133681833151617"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row357318466439"><td class="cellrowborder" valign="top" width="48.54%"><p id="p1573164616438"><a name="p1573164616438"></a><a name="p1573164616438"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p857384614319"><a name="p857384614319"></a><a name="p857384614319"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row18573124610433"><td class="cellrowborder" valign="top" width="48.54%"><p id="p165731146134311"><a name="p165731146134311"></a><a name="p165731146134311"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="51.459999999999994%"><p id="p6573164613437"><a name="p6573164613437"></a><a name="p6573164613437"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+  > The configured ISR function can be responded only after interrupts are enabled for the GPIO pin.
 
-    After the ISR function is set, call **GpioEnableIrq()** to enable interrupts.
+  You can call **GpioDisableIrq** to disable interrupts for the pin.
 
-    int32\_t GpioEnableIrq\(uint16\_t gpio\);
+  ```c
+  int32_t GpioDisableIrq(uint16_t gpio);
+  ``` 
 
-   **Table  7** Description of GpioEnableIrq
+    **Table 8** Description of GpioDisableIrq
+  
+  | **Parameter**| **Description**| 
+  | -------- | -------- |
+  | gpio | GPIO pin number.| 
+  | **Return Value**| **Description**| 
+  | 0 | The operation is successful.| 
+  | Negative value| The operation failed.| 
 
-    <a name="table26659291568"></a>
-    <table><tbody><tr id="row866632919566"><td class="cellrowborder" valign="top" width="50%"><p id="p066642985615"><a name="p066642985615"></a><a name="p066642985615"></a><strong id="b108661927171614"><a name="b108661927171614"></a><a name="b108661927171614"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p566613293568"><a name="p566613293568"></a><a name="p566613293568"></a><strong id="b10777228121617"><a name="b10777228121617"></a><a name="b10777228121617"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row19666029165620"><td class="cellrowborder" valign="top" width="50%"><p id="p16660295566"><a name="p16660295566"></a><a name="p16660295566"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1566632916566"><a name="p1566632916566"></a><a name="p1566632916566"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row84182176010"><td class="cellrowborder" valign="top" width="50%"><p id="p1566652915566"><a name="p1566652915566"></a><a name="p1566652915566"></a><strong id="b160443201612"><a name="b160443201612"></a><a name="b160443201612"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p966642917562"><a name="p966642917562"></a><a name="p966642917562"></a><strong id="b12369193319162"><a name="b12369193319162"></a><a name="b12369193319162"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row154188171403"><td class="cellrowborder" valign="top" width="50%"><p id="p1866610292563"><a name="p1866610292563"></a><a name="p1866610292563"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p13666182975613"><a name="p13666182975613"></a><a name="p13666182975613"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row1041891720012"><td class="cellrowborder" valign="top" width="50%"><p id="p766642911562"><a name="p766642911562"></a><a name="p766642911562"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1566652995613"><a name="p1566652995613"></a><a name="p1566652995613"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  Sample code:
 
-    >![](../public_sys-resources/icon-caution.gif) **CAUTION**<br/> 
-    >The configured ISR function can be responded only after the GPIO interrupt is enabled.
-
-    Call **GpioDisableIrq()** to disable interrupts.
-
-    int32\_t GpioDisableIrq\(uint16\_t gpio\);
-
-   **Table  8** Description of GpioDisableIrq
-
-    <a name="table186682041918"></a>
-    <table><tbody><tr id="row186684413116"><td class="cellrowborder" valign="top" width="50%"><p id="p866844916"><a name="p866844916"></a><a name="p866844916"></a><strong id="b88678273169"><a name="b88678273169"></a><a name="b88678273169"></a>Parameter</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p46681413119"><a name="p46681413119"></a><a name="p46681413119"></a><strong id="b2077772812169"><a name="b2077772812169"></a><a name="b2077772812169"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row4668243113"><td class="cellrowborder" valign="top" width="50%"><p id="p46681141919"><a name="p46681141919"></a><a name="p46681141919"></a>gpio</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p136681241311"><a name="p136681241311"></a><a name="p136681241311"></a>GPIO pin number.</p>
-    </td>
-    </tr>
-    <tr id="row066884412"><td class="cellrowborder" valign="top" width="50%"><p id="p566824015"><a name="p566824015"></a><a name="p566824015"></a><strong id="b16605123251612"><a name="b16605123251612"></a><a name="b16605123251612"></a>Return Value</strong></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1766974515"><a name="p1766974515"></a><a name="p1766974515"></a><strong id="b1237063341617"><a name="b1237063341617"></a><a name="b1237063341617"></a>Description</strong></p>
-    </td>
-    </tr>
-    <tr id="row156694410112"><td class="cellrowborder" valign="top" width="50%"><p id="p14669141214"><a name="p14669141214"></a><a name="p14669141214"></a>0</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p1266934818"><a name="p1266934818"></a><a name="p1266934818"></a>The operation is successful.</p>
-    </td>
-    </tr>
-    <tr id="row176691543117"><td class="cellrowborder" valign="top" width="50%"><p id="p7669941716"><a name="p7669941716"></a><a name="p7669941716"></a>Negative value</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%"><p id="p4669164219"><a name="p4669164219"></a><a name="p4669164219"></a>The operation failed.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-    Example:
-
-    ```
-    /* ISR function */
-    */
-    int32_t MyCallBackFunc(uint16_t gpio, void *data)
-    {
-        HDF_LOGI("%s: gpio:%u interrupt service in! data=%p\n", __func__, gpio, data);
-        return 0;
-    }
-    
-    int32_t ret;
-    /* Set the ISR function to MyCallBackFunc, the parameter to NULL, and the interrupt trigger mode to rising edge. */
-    ret = GpioSetIrq(3, OSAL_IRQF_TRIGGER_RISING, MyCallBackFunc, NULL);
-    if (ret != 0) {
-        HDF_LOGE("GpioSetIrq: failed, ret %d\n", ret);
-        return;
-    }
-    
-    /* Enable an interrupt for GPIO3. */
-    ret = GpioEnableIrq(3);
-    if (ret != 0) {
-        HDF_LOGE("GpioEnableIrq: failed, ret %d\n", ret);
-        return;
-    }
-    
-    /* Disable the interrupt for GPIO3. */
-    ret = GpioDisableIrq(3);
-    if (ret != 0) {
-        HDF_LOGE("GpioDisableIrq: failed, ret %d\n", ret);
-        return;
-    }
-    
-    /* Cancel the ISR function for GPIO3. */
-    ret = GpioUnSetIrq(3);
-    if (ret != 0) {
-        HDF_LOGE("GpioUnSetIrq: failed, ret %d\n", ret);
-        return;
-    }
-    ```
+  
+  ```
+  /* Set the ISR function. */
+  int32_t MyCallBackFunc(uint16_t gpio, void *data)
+  {
+      HDF_LOGI("%s: gpio:%u interrupt service in! data=%p\n", __func__, gpio, data);
+      return 0;
+  }
+  
+  int32_t ret;
+  /* Set the ISR function to MyCallBackFunc, with input parameter of NULL and the interrupt trigger mode of rising edge. */
+  ret = GpioSetIrq(3, OSAL_IRQF_TRIGGER_RISING, MyCallBackFunc, NULL);
+  if (ret != 0) {
+      HDF_LOGE("GpioSetIrq: failed, ret %d\n", ret);
+      return;
+  }
+  
+  /* Enable interrupts for GPIO pin 3. */
+  ret = GpioEnableIrq(3);
+  if (ret != 0) {
+      HDF_LOGE("GpioEnableIrq: failed, ret %d\n", ret);
+      return;
+  }
+  
+  /* Disable interrupts for GPIO pin 3. */
+  ret = GpioDisableIrq(3);
+  if (ret != 0) {
+      HDF_LOGE("GpioDisableIrq: failed, ret %d\n", ret);
+      return;
+  }
+  
+  /* Cancel the ISR function setting for GPIO pin 3. */
+  ret = GpioUnsetIrq(3, NULL);
+  if (ret != 0) {
+      HDF_LOGE("GpioUnSetIrq: failed, ret %d\n", ret);
+      return;
+  }
+  ```
 
 
-## Usage Example<a name="section25941262111"></a>
+## Development Example
 
 The procedure is as follows:
 
-1. Select an idle GPIO pin. 
+1. Select an idle GPIO pin, for example, pin GPIO10\_3 on a Hi3516D V300 development board. 
 
-   This example uses pin GPIO10\_3 on a Hi3516D V300 development board as an example. The pin number is 83. You can select an idle GPIO pin as required.
+   The pin number is 83. 
+
+   GPIO pin number of GPIO10_3 = 10 x 8 + 3 = 83
+
+   You can select an idle GPIO pin as required.
 
 2. Set the ISR function for the pin, with the trigger mode of rising edge and failing edge.
-
+  
 3. Write high and low levels to the pin alternately, and observe the execution of the ISR function.
-
 ```
 #include "gpio_if.h"
 #include "hdf_log.h"
@@ -503,7 +287,7 @@ static uint32_t g_irqCnt;
 static int32_t TestCaseGpioIrqHandler(uint16_t gpio, void *data)
 {
     HDF_LOGE("%s: irq triggered! on gpio:%u, data=%p", __func__, gpio, data);
-    g_irqCnt++; /* If the ISR function is triggered, the number of global interrupts is incremented by 1. */
+    g_irqCnt++; /* If the ISR function is triggered, the global interrupt counter is incremented by 1. */
     return GpioDisableIrq(gpio);
 }
 
@@ -516,14 +300,14 @@ static int32_t TestCaseGpioIrqEdge(void)
     uint16_t gpio = 83; /* Number of the GPIO pin to test */
     uint32_t timeout;
 
-    /* Set the output direction for the pin. */
+    /* Set the pin direction to output. */
     ret = GpioSetDir(gpio, GPIO_DIR_OUT);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: set dir fail! ret:%d\n", __func__, ret);
         return ret;
     }
 
-    /* Disable the interrupt of the pin. */
+    /* Disable interrupts of the pin. */
     ret = GpioDisableIrq(gpio);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: disable irq fail! ret:%d\n", __func__, ret);
@@ -539,17 +323,17 @@ static int32_t TestCaseGpioIrqEdge(void)
         return ret;
     }
 
-    /* Enable the interrupt for this pin. */
+    /* Enable interrupts for the pin. */
     ret = GpioEnableIrq(gpio);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: enable irq fail! ret:%d\n", __func__, ret);
-        (void)GpioUnSetIrq(gpio);
+        (void)GpioUnsetIrq(gpio, NULL);
         return ret;
     }
 
-    g_irqCnt = 0; /* Reset the global counter. */
-    timeout = 0;  /* Reset the waiting time. */
-    /* Wait for the ISR function of this pin to trigger. The timeout duration is 1000 ms. */
+    g_irqCnt = 0; /* Reset the global interrupt counter. */
+    timeout = 0;  /* Clear the waiting time. */
+    /* Wait for the ISR function to trigger for this pin. The timeout duration is 1000 ms. */
     while (g_irqCnt <= 0 && timeout < 1000) {
         (void)GpioRead(gpio, &valRead);
         (void)GpioWrite(gpio, (valRead == GPIO_VAL_LOW) ? GPIO_VAL_HIGH : GPIO_VAL_LOW);
@@ -557,7 +341,7 @@ static int32_t TestCaseGpioIrqEdge(void)
         OsalMDelay(200); /* wait for irq trigger */
         timeout += 200;
     }
-    (void)GpioUnSetIrq(gpio);
+    (void)GpioUnsetIrq(gpio, NULL);
     return (g_irqCnt > 0) ? HDF_SUCCESS : HDF_FAILURE;
 }
 ```

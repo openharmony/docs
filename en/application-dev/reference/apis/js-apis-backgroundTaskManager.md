@@ -1,6 +1,6 @@
 # Background Task Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,7 +25,7 @@ The default duration of delayed suspension is 180000 when the battery level is h
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | Yes   | Reason for delayed transition to the suspended state.                    |
-| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out. |
+| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out.|
 
 **Return value**
 | Type                                   | Description       |
@@ -66,10 +66,10 @@ Obtains the remaining duration before the application is suspended. This API use
   ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
-      if(err.data === 0) {
-          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+      if(err) {
+          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
-          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
       }
   })
   ```
@@ -99,7 +99,7 @@ Obtains the remaining duration before the application is suspended. This API use
   backgroundTaskManager.getRemainingDelayTime(id).then( res => {
       console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
-      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
   })
   ```
 
@@ -186,16 +186,16 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name       | Type                                 | Mandatory   | Description                      |
+| Name      | Type                                | Mandatory  | Description                     |
 | --------- | ---------------------------------- | ---- | ----------------------- |
-| context   | [Context](js-apis-Context.md)      | Yes    | Application context.               |
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes    | Background mode requested.             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes    | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked. |
+| context   | [Context](js-apis-Context.md)      | Yes   | Application context.              |
+| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.            |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
 
 **Return value**
-| Type             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 ```js
@@ -235,10 +235,10 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name       | Type                            | Mandatory   | Description                      |
+| Name     | Type                           | Mandatory  | Description                    |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| context   | [Context](js-apis-Context.md) | Yes    | Application context.              |
-| callback | AsyncCallback&lt;void&gt;     | Yes    | Callback used to return the result. |
+| context  | [Context](js-apis-Context.md) | Yes   | Application context.             |
+| callback | AsyncCallback&lt;void&gt;     | Yes   | Callback used to return the result.|
 
 **Example**
 ```js
@@ -266,14 +266,14 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name       | Type                            | Mandatory   | Description        |
+| Name    | Type                           | Mandatory  | Description       |
 | ------- | ----------------------------- | ---- | --------- |
-| context | [Context](js-apis-Context.md) | Yes    | Application context. |
+| context | [Context](js-apis-Context.md) | Yes   | Application context.|
 
 **Return value**
-| Type             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 ```js

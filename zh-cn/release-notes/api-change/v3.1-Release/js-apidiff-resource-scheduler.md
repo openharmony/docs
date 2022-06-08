@@ -13,11 +13,11 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，资源调度�
 | ohos.reminderAgent | LocalDateTime | month: number; | 新增 |
 | ohos.reminderAgent | LocalDateTime | year: number; | 新增 |
 | ohos.reminderAgent | ReminderRequestTimer | triggerTimeInSeconds: number; | 新增 |
-| ohos.reminderAgent | ReminderRequestAlarm | daysOfWeek?: Array<number>; | 新增 |
+| ohos.reminderAgent | ReminderRequestAlarm | daysOfWeek?: Array\<number>; | 新增 |
 | ohos.reminderAgent | ReminderRequestAlarm | minute: number; | 新增 |
 | ohos.reminderAgent | ReminderRequestAlarm | hour: number; | 新增 |
-| ohos.reminderAgent | ReminderRequestCalendar | repeatDays?: Array<number>; | 新增 |
-| ohos.reminderAgent | ReminderRequestCalendar | repeatMonths?: Array<number>; | 新增 |
+| ohos.reminderAgent | ReminderRequestCalendar | repeatDays?: Array\<number>; | 新增 |
+| ohos.reminderAgent | ReminderRequestCalendar | repeatMonths?: Array\<number>; | 新增 |
 | ohos.reminderAgent | ReminderRequestCalendar | dateTime: LocalDateTime; | 新增 |
 | ohos.reminderAgent | ReminderRequest | slotType?: notification.SlotType; | 新增 |
 | ohos.reminderAgent | ReminderRequest | notificationId?: number; | 新增 |
@@ -43,21 +43,21 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，资源调度�
 | ohos.reminderAgent | ReminderType | REMINDER_TYPE_TIMER = 0 | 新增 |
 | ohos.reminderAgent | ActionButtonType | ACTION_BUTTON_TYPE_SNOOZE = 1 | 新增 |
 | ohos.reminderAgent | ActionButtonType | ACTION_BUTTON_TYPE_CLOSE = 0 | 新增 |
-| ohos.reminderAgent | reminderAgent | function removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void;<br>function removeNotificationSlot(slotType: notification.SlotType): Promise<void>; | 新增 |
-| ohos.reminderAgent | reminderAgent | function addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void;<br>function addNotificationSlot(slot: NotificationSlot): Promise<void>; | 新增 |
-| ohos.reminderAgent | reminderAgent | function cancelAllReminders(callback: AsyncCallback<void>): void;<br>function cancelAllReminders(): Promise<void>; | 新增 |
-| ohos.reminderAgent | reminderAgent | function getValidReminders(callback: AsyncCallback<Array<ReminderRequest>>): void;<br>function getValidReminders(): Promise<Array<ReminderRequest>>; | 新增 |
-| ohos.reminderAgent | reminderAgent | function cancelReminder(reminderId: number, callback: AsyncCallback<void>): void;<br>function cancelReminder(reminderId: number): Promise<void>; | 新增 |
-| ohos.reminderAgent | reminderAgent | function publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback<number>): void;<br>function publishReminder(reminderReq: ReminderRequest): Promise<number>; | 新增 |
-| ohos.bundleState | bundleState | function queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void;<br>function queryCurrentBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>; | 新增 |
+| ohos.reminderAgent | reminderAgent | removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void;<br>removeNotificationSlot(slotType: notification.SlotType): Promise\<void>; | 新增 |
+| ohos.reminderAgent | reminderAgent | addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void;<br>addNotificationSlot(slot: NotificationSlot): Promise\<void>; | 新增 |
+| ohos.reminderAgent | reminderAgent | cancelAllReminders(callback: AsyncCallback\<void>): void;<br>cancelAllReminders(): Promise\<void>; | 新增 |
+| ohos.reminderAgent | reminderAgent | getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void;<br>getValidReminders(): Promise\<Array\<ReminderRequest>>; | 新增 |
+| ohos.reminderAgent | reminderAgent | cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void;<br>cancelReminder(reminderId: number): Promise\<void>; | 新增 |
+| ohos.reminderAgent | reminderAgent | publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void;<br>publishReminder(reminderReq: ReminderRequest): Promise\<number>; | 新增 |
+| ohos.bundleState | bundleState | queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback\<Array\<BundleActiveState>>): void;<br>queryCurrentBundleActiveStates(begin: number, end: number): Promise\<Array\<BundleActiveState>>; | 新增 |
 | ohos.bundleState | IntervalType | BY_ANNUALLY = 4 | 新增 |
 | ohos.bundleState | IntervalType | BY_MONTHLY = 3 | 新增 |
 | ohos.bundleState | IntervalType | BY_WEEKLY = 2 | 新增 |
 | ohos.bundleState | IntervalType | BY_DAILY = 1 | 新增 |
 | ohos.bundleState | IntervalType | BY_OPTIMIZED = 0 | 新增 |
 | ohos.bundleState | BundleActiveInfoResponse | [key: string]: BundleStateInfo; | 新增 |
-| ohos.bundleState | bundleState | function queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void;<br>function queryAppUsagePriorityGroup(): Promise<number>; | 新增 |
-| ohos.bundleState | bundleState | function isIdleState(bundleName: string, callback: AsyncCallback<boolean>): void;<br>function isIdleState(bundleName: string): Promise<boolean>; | 新增 |
+| ohos.bundleState | bundleState | queryAppUsagePriorityGroup(callback: AsyncCallback\<number>): void;<br>queryAppUsagePriorityGroup(): Promise\<number>; | 新增 |
+| ohos.bundleState | bundleState | isIdleState(bundleName: string, callback: AsyncCallback\<boolean>): void;<br>isIdleState(bundleName: string): Promise\<boolean>; | 新增 |
 | ohos.bundleState | BundleActiveState | stateType?: number; | 新增 |
 | ohos.bundleState | BundleActiveState | stateOccurredTime?: number; | 新增 |
 | ohos.bundleState | BundleActiveState | nameOfClass?: string; | 新增 |
@@ -82,10 +82,10 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，资源调度�
 | ohos.backgroundTaskManager | BackgroundMode | AUDIO_RECORDING = 3 | 新增 |
 | ohos.backgroundTaskManager | BackgroundMode | AUDIO_PLAYBACK = 2 | 新增 |
 | ohos.backgroundTaskManager | BackgroundMode | DATA_TRANSFER = 1 | 新增 |
-| ohos.backgroundTaskManager | backgroundTaskManager | function stopBackgroundRunning(context: Context, callback: AsyncCallback<void>): void;<br>function stopBackgroundRunning(context: Context): Promise<void>; | 新增 |
-| ohos.backgroundTaskManager | backgroundTaskManager | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback<void>): void;<br>function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise<void>; | 新增 |
-| ohos.backgroundTaskManager | backgroundTaskManager | function requestSuspendDelay(reason: string, callback: Callback<void>): DelaySuspendInfo; | 新增 |
-| ohos.backgroundTaskManager | backgroundTaskManager | function getRemainingDelayTime(requestId: number, callback: AsyncCallback<number>): void;<br>function getRemainingDelayTime(requestId: number): Promise<number>; | 新增 |
-| ohos.backgroundTaskManager | backgroundTaskManager | function cancelSuspendDelay(requestId: number): void; | 新增 |
+| ohos.backgroundTaskManager | backgroundTaskManager | stopBackgroundRunning(context: Context, callback: AsyncCallback\<void>): void;<br>stopBackgroundRunning(context: Context): Promise\<void>; | 新增 |
+| ohos.backgroundTaskManager | backgroundTaskManager | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback\<void>): void;<br>startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise\<void>; | 新增 |
+| ohos.backgroundTaskManager | backgroundTaskManager | requestSuspendDelay(reason: string, callback: Callback\<void>): DelaySuspendInfo; | 新增 |
+| ohos.backgroundTaskManager | backgroundTaskManager | getRemainingDelayTime(requestId: number, callback: AsyncCallback\<number>): void;<br>getRemainingDelayTime(requestId: number): Promise\<number>; | 新增 |
+| ohos.backgroundTaskManager | backgroundTaskManager | cancelSuspendDelay(requestId: number): void; | 新增 |
 | ohos.backgroundTaskManager | DelaySuspendInfo | actualDelayTime: number; | 新增 |
 | ohos.backgroundTaskManager | DelaySuspendInfo | requestId: number; | 新增 |

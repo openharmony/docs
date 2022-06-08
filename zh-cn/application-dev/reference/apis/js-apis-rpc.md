@@ -78,7 +78,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -119,7 +119,7 @@ readRemoteObject(): IRemoteObject
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1698,7 +1698,7 @@ writeNoException(): void
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1901,7 +1901,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1947,7 +1947,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1994,7 +1994,7 @@ readRemoteObjectArray(): IRemoteObject[]
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2456,7 +2456,7 @@ onRemoteDied(): void
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   ```
@@ -2931,7 +2931,7 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -2982,7 +2982,7 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -3362,7 +3362,7 @@ static flushCommands(object : IRemoteObject): number
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3497,7 +3497,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3561,7 +3561,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3627,7 +3627,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3694,7 +3694,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3743,7 +3743,7 @@ getCallingUid(): number
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3784,7 +3784,7 @@ getCallingPid(): number
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3830,7 +3830,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3871,7 +3871,7 @@ getInterfaceDescriptor(): string
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3914,7 +3914,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -4189,6 +4189,8 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let mapResult = ashmem.mapReadAndWriteAshmem();
+  console.info("RpcTest map ashmem result is " + mapResult);
   var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
@@ -4219,6 +4221,8 @@ readFromAshmem(size: number, offset: number): number[]
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let mapResult = ashmem.mapReadAndWriteAshmem();
+  console.info("RpcTest map ashmem result is " + mapResult);
   var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
