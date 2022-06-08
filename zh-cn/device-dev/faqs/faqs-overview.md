@@ -116,7 +116,7 @@
 
 ## 移植
 
-- [如何将用户的堆内存挂载进内核](../faqs/faqs-transplant.md)
+- [如何将用户的堆内存挂载进内核](../faqs/faqs-porting.md)
 
 
 ## 启动恢复
