@@ -617,7 +617,7 @@ form示例 :
 
 #### shortcuts对象内部结构
 
-标识应用的快捷方式信息。标签值为数组，最多可以配置四个快捷方式。其包含四个子标签shortcutId、label、icon、intents。
+标识应用的快捷方式信息。标签值为数组，最多可以配置四个快捷方式。其包含四个子标签shortcutId、label、icon、wants。
 
 metadata中指定shortcut信息，其中 :
 1）name :指定shortcuts的名称。使用ohos.ability.shortcut作为shortcuts信息的标识。
@@ -740,7 +740,7 @@ metadata中指定commonEvent信息，其中 :
 
 表示应用的分发规则。
 
-该标签用于定义HAP包对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Verion、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
+该标签用于定义HAP包对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
 
 表15  distroFilter对象内部结构
 
