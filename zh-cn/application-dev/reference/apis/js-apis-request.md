@@ -462,13 +462,6 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
   
   ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
       downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
@@ -504,13 +497,6 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
   
   ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }
-      downloadTask = data;    
       downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
           console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
       }
@@ -539,13 +525,6 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
   
   ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;   
-      }    
-      downloadTask= data;    
       downloadTask.on('complete', function callback() {
           console.info('Download task completed.');
       }
@@ -574,13 +553,6 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
   
   ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + JSON.stringify(err));
-          return;
-     }    
-      downloadTask = data;
       downloadTask.off('complete', function callback() {
           console.info('Download task completed.');
       }
@@ -614,14 +586,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 **示例：**
   
-  ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
+  ```js 
       downloadTask.on('fail', function callBack(err) {
           console.info('Download task failed. Cause:' + err);
       }
@@ -656,13 +621,6 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
   
   ```js
-  let downloadTask;
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;       
       downloadTask.off('fail', function callBack(err) {
           console.info('Download task failed. Cause:' + err);
       } 
