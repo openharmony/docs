@@ -258,16 +258,36 @@ imagePackerApi.packing(imageSourceApi, packOpts)
              
 //编码完成，释放imagepacker
  imagePackerApi.release();
- 
+
 //用于获取imagesource信息
 imageSourceApi.getImageInfo(imageInfo => {
      console.info('TC_045 imageInfo');
      expect(imageInfo !== null).assertTrue();
      done();
    })
-   
+
 //用于更新增量数据
 imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
 
 ```
 
+### ImageReceivert的使用
+
+```js
+//创建ImageReceiver
+var receiver = image.createImageReceiver(8 * 1024, 8, image.ImageFormat.JPEG, 1);
+
+//获取Surface ID
+var surfaceId = await receiver.getReceivingSurfaceId();
+
+receiver.on('imageArrival', () => {
+    //去获取Surface中的buffer的方法
+    receiver.readNextImage((err, img) => {
+	    img.getComponent(4, (err, componet) => {
+			//操作componet.byteBuffer
+		})
+	})
+})
+
+//调用方法将surfaceId传递给消费端。
+```
