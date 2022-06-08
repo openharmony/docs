@@ -10,9 +10,9 @@ The real-time clock (RTC) provides precise real time for the operating system (O
 
   **Table 1** RTC APIs
 
-| Category| Description| 
+| Category| Description|
 | -------- | -------- |
-| RTC handle| **RtcOpen**: Opens the RTC device to obtain its handle.<br>**RtcClose**: Closes the RTC device handle.|
+| RTC handle| **RtcOpen**: opens the RTC device to obtain its handle.<br>**RtcClose**: closes the RTC device handle.|
 | RTC time| **RtcReadTime**: reads the RTC time information, which includes the year, month, day, day of week, hour, minute, second, and millisecond.<br>**RtcWriteTime**: writes the RTC time, including the year, month, day, day of week, hour, minute, second, and millisecond.|
 | RTC alarm| **RtcReadAlarm**: reads the RTC alarm time.<br>**RtcWriteAlarm**: writes the RTC alarm time.<br>**RtcRegisterAlarmCallback**: registers a callback to be invoked when an alarm is not generated at the specified time.<br>**RtcAlarmInterruptEnable**: enables or disables interrupts for an RTC alarm.|
 | RTC configuration| **RtcGetFreq**: obtains the frequency of the external crystal oscillator connected to the RTC driver.<br>**RtcSetFreq**: sets the frequency of the external crystal oscillator connected to the RTC driver.<br>**RtcReset**: resets the RTC.|
