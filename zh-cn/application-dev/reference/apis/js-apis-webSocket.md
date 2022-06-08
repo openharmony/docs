@@ -47,7 +47,7 @@ ws.on('message', (err, value) => {
     }
 });
 ws.on('close', (err, value) => {
-    console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
+    console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err) => {
     console.log("on error, error:" + JSON.stringify(err));
@@ -505,7 +505,7 @@ on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
-	console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
+	console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ```
 
