@@ -43,7 +43,8 @@
 工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; ets &gt; MainAbility &gt; pages**”，打开“**index.ets**”文件，可以看到页面由Text组件组成。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    @Entry
    @Component
    struct Index {
@@ -67,7 +68,8 @@
    在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    @Entry
    @Component
    struct Index {
@@ -116,7 +118,8 @@
    参照第一个页面，在第二个页面添加Text组件、Button组件等，并设置其样式。“**second.ets**”文件的示例如下：
 
 
-   ```
+   ```ts
+   // second.ets
    @Entry
    @Component
    struct Second {
@@ -157,7 +160,8 @@
    在第一个页面中，跳转按钮绑定onClick事件，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    import router from '@ohos.router';
    
    @Entry
@@ -200,7 +204,8 @@
    在第二个页面中，返回按钮绑定onClick事件，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // second.ets
    import router from '@ohos.router';
    
    @Entry
