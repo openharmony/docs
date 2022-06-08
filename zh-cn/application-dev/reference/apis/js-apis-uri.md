@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import uri from '@ohos.uri'  
 ```
 
