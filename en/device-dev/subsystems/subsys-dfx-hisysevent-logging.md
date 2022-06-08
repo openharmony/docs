@@ -31,7 +31,7 @@ For details about the HiSysEvent class, see the API reference.
 | static const std::string AAFWK | Atomic ability subsystem|
 | static const std::string APPEXECFWK | User program framework subsystem|
 | static const std::string ACCOUNT | Account subsystem|
-| static const std::string ACE | JS application framework|
+| static const std::string ARKUI | ARKUI subsystem|
 | static const std::string AI | AI subsystem|
 | static const std::string BARRIER_FREE | Accessibility subsystem|
 | static const std::string BIOMETRICS | Biometric recognition subsystem|
