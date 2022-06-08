@@ -4,14 +4,15 @@
 输入设备管理模块，用于监听输入设备连接、断开和变化，并查看输入设备相关信息。比如监听鼠标插拔，并获取鼠标的id、name和指针移动速度等信息。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 
-```
+```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
@@ -33,7 +34,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **示例：** 
 
-```
+```js
 export default {
     data: {
         deviceIds: Array,
@@ -65,7 +66,7 @@ function getDeviceIds(): Promise<Array<number>>
 
 **示例：**
 
-```
+```js
 export default {
     testGetDeviceIds: function () {
         console.info("InputDeviceJsTest---start---testGetDeviceIds");
@@ -100,7 +101,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **示例：** 
 
-```
+```js
 export default {
     InputDeviceData: {
         deviceId : 0,
@@ -136,7 +137,7 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 **示例：**
 
-```
+```js
 export default {
     InputDeviceData: {
         deviceId : 0,
@@ -165,18 +166,18 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称       | 参数类型                               | 说明                                                         |
-| ---------- | -------------------------------------- | ------------------------------------------------------------ |
-| id         | number                                 | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| name       | string                                 | 输入设备的名字。                                             |
+| 名称         | 参数类型                                   | 说明                                       |
+| ---------- | -------------------------------------- | ---------------------------------------- |
+| id         | number                                 | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。        |
+| name       | string                                 | 输入设备的名字。                                 |
 | sources    | Array&lt;[SourceType](#sourcetype)&gt; | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
-| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                           |
-| bus        | number                                 | 输入设备的总线类型。                                         |
-| product    | number                                 | 输入设备的产品信息。                                         |
-| vendor     | number                                 | 输入设备的厂商信息。                                         |
-| version    | number                                 | 输入设备的版本信息。                                         |
-| phys       | string                                 | 输入设备的物理地址。                                         |
-| uniq       | string                                 | 输入设备的唯一标识。                                         |
+| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                |
+| bus        | number                                 | 输入设备的总线类型。                               |
+| product    | number                                 | 输入设备的产品信息。                               |
+| vendor     | number                                 | 输入设备的厂商信息。                               |
+| version    | number                                 | 输入设备的版本信息。                               |
+| phys       | string                                 | 输入设备的物理地址。                               |
+| uniq       | string                                 | 输入设备的唯一标识。                               |
 
 ## AxisType
 
