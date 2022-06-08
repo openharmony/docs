@@ -137,7 +137,7 @@ setData(key: string, value: object): boolean
 
 | 参数名   | 参数类型   | 必填   | 描述      |
 | ----- | ------ | ---- | ------- |
-| key   | string | 是    | 数据建值。   |
+| key   | string | 是    | 数据键值。   |
 | value | object | 是    | 要存储的数据。 |
 
 **返回值：** 
@@ -170,7 +170,7 @@ getData(key: string): object
 
 | 参数名  | 参数类型   | 必填   | 描述    |
 | ---- | ------ | ---- | ----- |
-| key  | string | 是    | 数据建值。 |
+| key  | string | 是    | 数据键值。 |
 
 **返回值：** 
 | 类型     | 说明     |
@@ -201,7 +201,7 @@ clearData(key?: string): boolean
 
 | 参数名  | 参数类型   | 必填   | 描述    |
 | ---- | ------ | ---- | ----- |
-| key  | string | 否    | 数据建值。 |
+| key  | string | 否    | 数据键值。 |
 
 **返回值：** 
 | 类型      | 说明                       |
@@ -225,14 +225,14 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 | 参数名      | 参数类型     | 必填   | 描述                                       |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | PixelMap | 是    | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
+| pixelmap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 前端传入的图片资源。 |
 | offsetX  | number   | 是    | 相对于图片的横向偏移量。                             |
-| offsetY  | number   | 是    | 相对于图片的纵向偏移量 。                            |
+| offsetY  | number   | 是    | 相对于图片的纵向偏移量。                            |
 
 **返回值：** 
 | 类型   | 说明                       |
 | ---- | ------------------------ |
-| bool | 执行结果，true表示成功，false表示失败。 |
+| boolean | 执行结果，true表示成功，false表示失败。 |
 
 **示例：** 
 
