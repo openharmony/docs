@@ -53,12 +53,23 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
    git config --global credential.helper store
    ```
 
-4. 安装码云repo工具，可以执行如下命令。
+4. 执行如下命令安装码云repo工具。
+
+   下述命令中的安装路径以"~/bin"为例，请用户自行创建所需目录。
   
    ```
-   curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
-   chmod a+x /usr/local/bin/repo
+   mkdir ~/bin
+   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+5. 将repo添加到环境变量。
+
+   ```
+   vim ~/.bashrc               # 编辑环境变量
+   export PATH=~/bin:$PATH     # 在环境变量的最后添加一行repo路径信息
+   source ~/.bashrc            # 应用环境变量
    ```
 
 
