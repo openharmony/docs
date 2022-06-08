@@ -217,6 +217,7 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | abilities           | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。            |
 | extensionAbilities  | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。            |
 | requestPermissions  | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。            |
+| testRunner          | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                    |
 
 表4 deviceTypes对象的系统预定义设备
 
@@ -826,5 +827,19 @@ distroFilter示例 :
     }
 ]
 
+```
+
+#### testRunner对象内部结构
+
+| 属性名称 | 含义                   | 数据类型 | 是否可缺省 |
+| -------- | ---------------------- | -------- | ---------- |
+| name     | 表示测试框架对象名称。 | 字符串   | 不可缺省。 |
+| srcPath  | 表示测试框架代码路径。 | 字符串   | 不可缺省。 |
+
+```
+"testRunner": {
+	"name": "myTestRUnnerName",
+	"srcPath": "etc/test/TestRunner.ts"
+}
 ```
 

@@ -234,6 +234,7 @@ module对象包含HAP包的配置信息，内部结构说明参见表11。
 | commonEvents    | 静态广播，参考表35。                                         | 对象数组   | 可缺省，缺省为空                                             |
 | allowClassMap   | HAP的元信息。标记值为true或false。如果标记值为true，则hap使用OpenHarmony框架提供的Java对象代理机制。默认值为false。 | 布尔值     | 可缺省，缺省值为false                                        |
 | entryTheme      | 此标签表示OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串     | 可缺省，缺省值为空                                           |
+| testRunner      | 此标签用于支持对测试框架的配置，参考表36。                   | 对象       | 可缺省，缺省值为空                                           |
 
 module示例：
 
@@ -763,3 +764,18 @@ commonEvents示例：
 	}
 ]
 ```
+
+表36 testRunner对象的内部结构说明
+
+| 属性名称 | 含义                 | 数据类型 | 是否可缺省 |
+| -------- | -------------------- | -------- | ---------- |
+| name     | 表示测试框架对象名称 | 字符串   | 不可缺省   |
+| srcPath  | 表示测试框架代码路径 | 字符串   | 不可缺省   |
+
+```json
+"testRunner": {
+	"name": "myTestRUnnerName",
+	"srcPath": "etc/test/TestRunner.ts"
+}
+```
+
