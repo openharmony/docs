@@ -12,7 +12,7 @@ import sms from '@ohos.telephony.sms';
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
 Creates an SMS message instance based on the protocol data unit (PDU) and the specified SMS protocol. This API uses an asynchronous callback to return the result.
 
@@ -40,7 +40,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
 Creates an SMS message instance based on the PDU and the specified SMS protocol. This API uses a promise to return the result.
 
@@ -110,7 +110,7 @@ sms.sendMessage(options);
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
+getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
@@ -133,7 +133,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(\): Promise<number\>
+getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
@@ -143,7 +143,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 | Type           | Description                                                        |
 | --------------- | ------------------------------------------------------------ |
-| Promise<number> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Promise&lt;number&gt; | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -390,7 +390,7 @@ Provides the callback for the SMS message sending result. Return the SMS deliver
 
 ## SendSmsResult
 
-SMS message sending result.
+Enumerates SMS message sending results.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
