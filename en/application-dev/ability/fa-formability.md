@@ -18,7 +18,7 @@ Basic concepts:
   
   The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -249,7 +249,7 @@ Data of a temporary widget is not persistently stored. If the widget framework i
 ### Developing the Widget UI Page
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
    - HML:
