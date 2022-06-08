@@ -83,7 +83,7 @@ export default class MySequenceable {
 ```
 4. 实现Callee.on监听及Callee.off解除监听。
 
-  被调用端Callee的监听函数注册时机, 取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'CalleeSortMethod'监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
+  被调用端Callee的监听函数注册时机, 取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'MSG_SEND_METHOD'监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
 ```ts
 const TAG: string = '[CalleeAbility]'
 const MSG_SEND_METHOD: string = 'CallSendMsg'
