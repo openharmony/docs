@@ -1,7 +1,7 @@
 # PinchGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,9 +15,9 @@ None
 PinchGesture(options?: { fingers?: number, distance?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. |
+  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch gesture. The value ranges from 2 to 5. |
   | distance | number | No | 3.0 | Minimum recognition distance, in vp. |
 
 
@@ -31,7 +31,7 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 | onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pinch gesture is recognized. |
 
 - GestureEvent attributes related to the pinch gesture  
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | scale | number | Scale ratio. This attribute is used for the pinch gesture. |
   | pinchCenterX | number | X-coordinate of the center of the pinch gesture, in px. |
