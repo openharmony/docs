@@ -36,6 +36,7 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
 - [Internationalization](internationalization/international-overview.md)
+- [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
 ### Tools
 
@@ -53,4 +54,8 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 They are organized as follows:
 -   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
--   [API Reference](reference/apis/js-apis-DataUriUtils.md)
+-   [JS and TS APIs](reference/apis/js-apis-DataUriUtils.md)
+-   Native APIs
+    -   [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
+    -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+

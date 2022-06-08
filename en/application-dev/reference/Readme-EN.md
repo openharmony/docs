@@ -6,9 +6,9 @@
 
 -   APIs
     
-    -   [JS (eTS Included) APIs](apis/Readme-EN.md)
+    -   [JS and TS APIs](apis/Readme-EN.md)
     -   Native APIs
-        -   [Standard Library](native-lib/third_party_libc/musl.md)
+        -   [Standard Libraries](native-lib/third_party_libc/musl.md)
         -   [Node_API](native-lib/third_party_napi/napi.md)
     
     
