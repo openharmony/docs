@@ -1,35 +1,16 @@
 # appspawn应用孵化组件<a name="ZH-CN_TOPIC_0000001063680582"></a>
 
-## 小型系统
+## 概述
+
+### 功能简介
+
+  应用孵化器，负责接受应用程序框架的命令孵化应用进程，设置其对应权限，并调用应用程序框架的入口。
 
 ### 基本概念
 
-appspawn被init启动后，向IPC框架注册服务名称，之后等待接收进程间消息，根据消息解析结果启动应用服务并赋予其对应权限。
+  appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地socket，接收来自客户端的请求消息。消息类型为AppParameter的结构体，定义路径为：“interfaces/innerkits/include/appspawn_msg.h“。
 
-appspawn注册的服务名称为“appspawn”，可通过包含“interfaces/innerkits/include/appspawn_msg.h“头文件，获取服务名称对应的宏APPSPAWN_SOCKET_NAME定义。在安全子系统限制规则下，目前仅Ability Manager Service有权限可以向appspawn发送的进程间消息。
-
-appspawn接收的消息为json格式，如下所示：
-  ```
-  "{"bundleName":"testvalid1","identityID":"1234","uID":1000,"gID":1000,"capability":[0]}"
-  ```
-
-  **表 1** 小型系统字段说明
-  | 字段名 | 说明 |
-  | -------- | -------- |
-  | bundleName | 即将启动的应用服务进程名，长度≥7字节，≤127字节。 |
-  | identityID | AMS为新进程生成的标识符，由appspawn透传给新进程，长度≥1字节，≤24字节。 |
-  | uID | 即将启动的应用服务进程的uID。 |
-  | gID | 即将启动的应用服务进程的gID。 |
-  | capability | 即将启动的应用服务进程所需的capability权限，数量≤10个。 |
-
-## 标准系统
-
-### 基本概念<a name="section56901555912"></a>
-
-appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地socket，接收来自客户端的请求消息。消息类型为AppParameter的结构体，定义路径为：“interfaces/innerkits/include/appspawn_msg.h“。
-
-
-  **表 2**  标准系统字段说明
+  **表 1**  字段说明
   | 字段名 | 说明 |
   | -------- | -------- |
   | processName | 即将启动的应用服务进程名，最大256字节。 |
@@ -46,7 +27,12 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
   | pid | 即渲染进程pid，查询渲染进程退出状态。 |
   | AppOperateType | 即App操作类型，0： 默认状态； 1：获取渲染终止状态。 |
 
-### 功能简介<a name="section56901555911"></a>
+### 约束与限制
+仅限标准系统下使用
+
+## 开发指导
+
+### 场景介绍
 
 - 安全控制
 
@@ -79,7 +65,6 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
 - 冷启动
 
   支持通过aa命令冷启动应用。
-
     ```
     param set appspawn.cold.boot true // 打开冷启动开关
     aa start -d 12345 -a $name -b $package -C
@@ -89,54 +74,13 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
 
 - 应用沙盒
 
-  应用独立运行于自身沙盒环境。
+  应用独立运行于自身沙盒环境。应用沙盒中，只保留应用依赖的库或文件，同时，应用之间数据的也进行隔离。
 
-  沙盒配置项：
-    1. 应用沙盒的配置入口，在json中配置。
-    2. 根据应用需要，结合沙盒目录化的规范，在下列三个json文件中，添加应用依赖的目录或文件。
-    沙盒配置文件如下：
-    ```c++
-    namespace {
-    #ifdef __aarch64__
-        const std::string APP_JSON_CONFIG("/system/etc/sandbox/appdata-sandbox64.json");
-    #else
-        const std::string APP_JSON_CONFIG("/system/etc/sandbox/appdata-sandbox.json");
-    #endif
-        const std::string PRODUCT_JSON_CONFIG("/system/etc/sandbox/product-sandbox.json");
-    }
-    ```
-  沙盒流程：
-    1. 读取/修改沙盒配置文件。
-    2. 解析json文件中的配置项。
-    3. 调用mount与link的函数实现挂载和隔离。
+### 接口说明
 
-  json文件中配置项如下：
-    ```json
-    {
-        "src-path" : "/sys_prod",
-        "sandbox-path" : "/sys_prod",
-        "sandbox-flags" : [ "bind", "rec" ],
-        "check-action-status": "false"
-    }
-    {
-        "target-name" : "/system/bin",
-        "link-name" : "/bin",
-        "check-action-status": "false"
-    }
-    ```
+  接口定义路径： “/interfaces/innerkits/include/client_socket.h“，接口说明参见表2。
 
-  调用mount与link的函数。即，将src-path挂载至sandbox-path路径下。
-    ```c++
-    int SandboxUtils::DoAllMntPointsMount(const ClientSocket::AppProperty *appProperty, nlohmann::json &appConfig);
-    int SandboxUtils::DoAllSymlinkPointslink(const ClientSocket::AppProperty *appProperty, nlohmann::json &appConfig);
-    ```
-### 开发指导<a name="section56901555913"></a>
-
-  接口定义路径： “/interfaces/innerkits/include/client_socket.h“，接口说明参见表3。
-
-#### 接口说明<a name="section56901555914"></a>
-
-  **表 2**  标准系统接口说明
+  **表 2**  接口说明
   | 接口名 | 说明 |
   | -------- | -------- |
   | CreateClient | 创建client。 |
@@ -145,36 +89,85 @@ appspawn注册的服务名称为“appspawn”。appspawn 通过监听本地sock
   | WriteSocketMessage | 发送消息到appspawn服务。 |
   | ReadSocketMessage | 接收来自appspawn服务的消息。 |
 
+### 开发步骤
 
-#### 开发实例<a name="section56901555915"></a>
+  沙盒配置说明：
 
-接口使用参考：
-  ```c++
-    std::shared_ptr<AppSpawn::ClientSocket> clientSocket = std::make_unique<AppSpawn::ClientSocket>("AppSpawn");
-    if (clientSocket == nullptr) {
-        return -1;
+  ```json
+    {
+        "common" : [{                                           // 应用沙盒通用挂载项
+            "top-sandbox-switch": "ON",                         // 沙盒总开关 ON: 打开， OFF： 关闭
+            "app-base" : [{
+                "sandbox-root" : "/mnt/sandbox/<PackageName>",  // 沙盒根路径
+                "mount-paths" : [{
+                        "src-path" : "/config",                 // mount的源目录
+                        "sandbox-path" : "/config",             // 沙盒挂载路径
+                        "sandbox-flags" : [ "bind", "rec" ],    // 挂载方式
+                        "check-action-status": "false"          // false 不检查当前项挂载结果， true： 检查当前项挂载结果
+                    }
+                ],
+                "symbol-links" : [{                             // link 的目录项
+                        "target-name" : "/system/bin",          // link 的源目录
+                        "link-name" : "/bin",                   // 链接名称
+                        "check-action-status": "false"
+                    }
+                ]
+            }],
+        // 应用独有配置参考
+        "individual" : [{                                        // 个别应用单独挂载项
+            "com.ohos.medialibrary.MediaLibraryDataA" : [{       // 应用名
+                "sandbox-switch": "ON",                          // ON： 挂载沙盒路径， OFF: 挂载根路径
+                "sandbox-root" : "/mnt/sandbox/<PackageName>",   // 沙盒根路径
+                "mount-paths" : [{
+                        "src-path" : "/storage/media/<currentUserId>",
+                        "sandbox-path" : "/storage/media",
+                        "sandbox-flags" : [ "bind", "rec" ],
+                        "check-action-status": "false"
+                    }
+                ],
+                "symbol-links" : []
+            }]
+        }]
     }
-    if (clientSocket->CreateClient() != ERR_OK) {
-        return -1;
-    }
-    if (clientSocket->ConnectSocket() != ERR_OK) {
-        return -1;;
-    }
-    // property 构造AppProperty
-    clientSocket->WriteSocketMessage((void *)&property, sizeof(AppSpawn::AppProperty));
-    // 读结果
-    int pid;
-    clientSocket->ReadSocketMessage((void *)&pid, sizeof(pid));
-    // 如果失败，返回pid小于等于0；否则返回应用的进程id
   ```
 
-### 常见问题<a name="section56901555916"></a>
+   参考沙盒配置说明，修改配置文件。
 
-#### 冷启动应用失败<a name="section56901555917"></a>
+   - 进入设备下：/system/etc/sandbox/路径下，直接修改对应沙盒配置文件， 重新启动。
+   - 代码路径下：base/startup/appspawn_standard， 修改对应沙盒配置文件。
+
+  **表 3**  沙盒配置文件解释
+
+  | 沙盒配置文件 | 解释 |
+  | -------- | -------- |
+  | appdata-sandbox64.json | 64位系统的沙盒配置 |
+  | appdata-sandbox.json | 32位系统的沙盒配置 |
+  | product-sandbox.json  | 应用沙盒的产品差异化配置 |
+
+### 开发实例
+以launcher应用新增独有配置应用为例：
+  ```c++
+  "com.ohos.launcher" : [{
+      "sandbox-switch": "ON",
+      "sandbox-root" : "/mnt/sandbox/<PackageName>",
+      "mount-paths" : [{
+              "src-path" : "/data/app/el1/bundle/public/",
+              "sandbox-path" : "/data/bundles/",
+              "sandbox-flags" : [ "bind", "rec" ],
+              "check-action-status": "true"
+          }
+      ],
+      "symbol-links" : []
+  }],
+  ```
+
+## 常见问题
+
+### 冷启动应用失败
 
    &emsp;**现象描述**
-   <br>&emsp;&emsp;通过命令冷启动应用失败。
+   <br>&emsp;&emsp;通过aa start -d 12345 -a $name -b $package -C命令冷启动应用， 应用拉起失败。
 
    &emsp;**解决方法**
-    <br>&emsp;&emsp;1. 确认是否打开冷启动设置。
+    <br>&emsp;&emsp;1. 需要设置 param set appspawn.cold.boot true生效。
     <br>&emsp;&emsp;2. 确认冷启动命令是否正确。
