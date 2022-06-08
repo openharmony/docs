@@ -4,10 +4,9 @@
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## ContextMenu.close
-
-close(): void
-
-Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page.
+|methods|description|
+|----|---|
+|close(): void|Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page.|
 
 - Example
   ```
