@@ -93,7 +93,7 @@
 
   沙盒配置说明：
 
-  ```json
+  ```
     {
         "common" : [{                                           // 应用沙盒通用挂载项
             "top-sandbox-switch": "ON",                         // 沙盒总开关 ON: 打开， OFF： 关闭
