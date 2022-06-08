@@ -18,8 +18,8 @@ Before subscribing to system events, you need to configure HiSysEvent logging. F
 
 | Name| Description |
 | -------- | --------- |
-|bool HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|Registers a listener for system events. You can listen for certain events by specifying rules.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </li><li>**rules**: rules for event listening. </li></ul>Return value:<ul><li>**0**: Repeated registration is successful. </li><li>**1**: Initial registration is successful. </li><li>Other values: Registration has failed.</li></ul>|
-|bool HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)|Removes the listener for system events.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </ul>Return value:<br>None.|
+|int32_t HiSysEventManager::AddEventListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener, std::vector&lt;ListenerRule&gt;&amp; rules)|Registers a listener for system events. You can listen for certain events by specifying rules.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </li><li>**rules**: rules for event listening. </li></ul>Return value:<ul><li>**0**: registration is successful. </li><li>Other values: Registration has failed.</li></ul>|
+|int32_t HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventSubscribeCallBack&gt; listener)|Removes the listener for system events.<br><br>Input arguments: <ul><li>**listener**: callback object for system events. </ul>Return value:<ul><li>**0**: Cancel registration is successful. </li><li>Other values: Cancel registration has failed.</li></ul>|
 
 **Table 2** Description of ListenerRule
 

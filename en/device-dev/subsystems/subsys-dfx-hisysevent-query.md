@@ -12,7 +12,7 @@ HiSysEvent provides an API for you to query system events. You can query concern
 
 | Name| Description |
 | -------- | --------- |
-| bool HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name.<br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**true**: The query is successful. </li><li>**false**: The query has failed.</li></ul> |
+| int32_t HiSysEventManager::QueryHiSysEvent(struct QueryArg&amp; queryArg, std::vector&lt;QueryRule&gt;&amp; queryRules, std::shared_ptr&lt;HiSysEventQueryCallBack&gt; queryCallBack) | Queries system events by specifying search criteria such as the time segment, event domain, and event name.<br><br>Input arguments:<ul><li>**queryArg**: event query parameter. </li><li>**queryRules**: event filtering rules. </li><li>**queryRules**: callback object for query results. </li></ul>Return value:<ul><li>**0**: The query is successful. </li><li>Other values: The query has failed.</li></ul> |
 
 
 **Table 2** Description of QueryArg
