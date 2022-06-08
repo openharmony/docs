@@ -76,7 +76,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
    HDF_INIT(g_hdfPwm);
    ```
 
-2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 pwm_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层PwmDev成员的默认值或限制范围有密切关系。 如有更多个器件信息，则需要在device_info文件增加deviceNode信息，以及在pwm_config文件中增加对应的器件属性**。**
+2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 pwm_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层PwmDev成员的默认值或限制范围有密切关系。如有更多个器件信息，则需要在device_info文件增加deviceNode信息，以及在pwm_config文件中增加对应的器件属性。
    - device_info.hcs配置参考
 
         
@@ -86,7 +86,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           platform :: host {
             hostName = "platform_host";
             priority = 50;
-            device_pwm :: device {// 为每一个 pwm 控制器配置一个HDF设备节点，存在多个时【必须】添加，否则不用
+            device_pwm :: device {// 为每一个pwm控制器配置一个HDF设备节点
               device0 :: deviceNode {
                 policy = 1;       // 等于1，向内核态发布服务
                 priority = 80;    // 驱动启动优先级
@@ -116,16 +116,16 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       root {
         platform {
           pwm_config {
-            template pwm_device {                   // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+            template pwm_device {                   // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
               serviceName = "";
               match_attr = "";
               num = 0;                              // 【必要】设备号
               base = 0x12070000;                    // 【必要】地址映射需要
             }
-            device_0x12070000 :: pwm_device {
+            device_0x12070000 :: pwm_device {       //  存在多个设备时，请逐一添加相关HDF节点和设备节点信息。
               match_attr = "hisilicon_hi35xx_pwm_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
             }
-            device_0x12070020 :: pwm_device {       // 存在多个设备时【必须】添加，否则不用
+            device_0x12070020 :: pwm_device {       // 存在多个设备时请
               match_attr = "hisilicon_hi35xx_pwm_1";
               num = 1;
               base = 0x12070020;                    // 【必要】地址映射需要
