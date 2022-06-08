@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import uri from '@ohos.uri'  
 ```
 
@@ -14,7 +14,7 @@ import uri from '@ohos.uri'
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
