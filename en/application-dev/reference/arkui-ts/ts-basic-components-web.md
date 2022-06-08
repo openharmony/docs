@@ -1,7 +1,7 @@
 # Web
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE** 
->This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<Web\>** component can be used to display web pages.
 
@@ -42,8 +42,7 @@ None
 | onlineImageAccess | boolean                                  | true           | Whether to enable access to online images through HTTP and HTTPS. By default, this feature is enabled. |
 | zoomAccess        | boolean                                  | true           | Whether to enable zoom gestures. By default, zoom gestures are enabled. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE** 
->
+> **NOTE**<br> 
 > Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#Attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#Attributes), and [border](ts-universal-attributes-border.md#Attributes).
 - <span id="MixedMode">MixedMode</span>
 
@@ -85,7 +84,7 @@ Universal events are not supported.
 - MessageLevel enums
 
   | Name  | Description        |
-  | ----- | :----------------- |
+  | ----- | ------------------ |
   | Debug | Debug level.       |
   | Error | Error level.       |
   | Info  | Information level. |
@@ -100,8 +99,8 @@ Represents the result returned to the **\<Web>** component to indicate the opera
 
   | Name                  | Description                              |
   | --------------------- | ---------------------------------------- |
-  | handleCancel(): void  | <p>Notifies the **\<Web>** component that the user touches the Cancel button in the dialog box.</p> |
-  | handleConfirm(): void | <p>Notifies the **\<Web>** component that the user touches the Confirm button in the dialog box.</p> |
+  | handleCancel(): void  | <p>Notifies the **\<Web>** component that the user touches the **Cancel** button in the dialog box.  |
+  | handleConfirm(): void | <p>Notifies the **\<Web>** component that the user touches the **Confirm** button in the dialog box. |
 
 ### WebResourceError
 
@@ -181,7 +180,7 @@ Indicates whether a specific number of steps forward or backward can be performe
 
   | Name | Type   | Mandatory | Default Value | Description                              |
   | ---- | ------ | --------- | ------------- | ---------------------------------------- |
-  | step | number | Yes       | -             | Number of the steps to take. A positive number means to going forward, and a negative number means to going backward. |
+  | step | number | Yes       | -             | Number of the steps to take. A positive number means going forward, and a negative number means going backward. |
 
 - Return value
 
@@ -273,7 +272,7 @@ Objects injected through **registerJavaScriptProxy** are still valid on a new pa
 
 onActive(): void
 
-Invoked to instruct the **\<Web>** component to enter the foreground, active state.
+Invoked to instruct the **\<Web>** component to enter the active state.
 
 ### onInactive
 
@@ -312,7 +311,7 @@ Asynchronously executes a JavaScript script. This API uses a callback to return 
   | Name     | Type                     | Mandatory | Default Value | Description                              |
   | -------- | ------------------------ | --------- | ------------- | ---------------------------------------- |
   | script   | string                   | Yes       | -             | JavaScript script.                       |
-  | callback | (result: string) => void | No        | -             | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned. |
+  | callback | (result: string) => void | No        | -             | Callback used to return the result. The value **null** indicates that the JavaScript script fails to be executed or no value is returned. |
 
 ### stop
 
