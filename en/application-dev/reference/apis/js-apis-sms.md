@@ -319,7 +319,7 @@ Defines an SMS message instance.
 
 | Name                  | Type                                   | Description                                                        |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the mobile phone can reply to the SMS message through the originating SMSC.|
+| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the device can reply to the SMS message through the originating SMSC.|
 | isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
 | isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
 | messageClass             | [ShortMessageClass](#shortmessageclass) | SMS message type.                                                  |
