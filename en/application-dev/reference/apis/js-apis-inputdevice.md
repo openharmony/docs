@@ -180,7 +180,7 @@ Defines the information about an input device.
 
 ## AxisType
 
-Axis type. This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+Defines the axis type of an input device, which is **NULL**.
 
 ## AxisRange
 
