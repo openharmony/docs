@@ -125,7 +125,7 @@ PWM模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
             device_0x12070000 :: pwm_device {       //  存在多个设备时，请逐一添加相关HDF节点和设备节点信息。
               match_attr = "hisilicon_hi35xx_pwm_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
             }
-            device_0x12070020 :: pwm_device {       // 存在多个设备时请
+            device_0x12070020 :: pwm_device {      
               match_attr = "hisilicon_hi35xx_pwm_1";
               num = 1;
               base = 0x12070020;                    // 【必要】地址映射需要
