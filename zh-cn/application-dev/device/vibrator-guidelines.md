@@ -8,20 +8,20 @@
 
 ## 接口说明
 
-  | 模块 | 接口名 | 描述 | 
-| -------- | -------- | -------- |
-| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | 触发马达按照时长振动，Promise型。 | 
-| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，Callback型。 | 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | 触发马达按照指定字符串振动，Promise型。 | 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照指定字符串振动，Callback型。 | 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。 | 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。 | 
+| 模块            | 接口名                                      | 描述                          |
+| ------------- | ---------------------------------------- | --------------------------- |
+| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | 触发马达按照时长振动，Promise型。        |
+| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照时长振动，Callback型。       |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | 触发马达按照指定开发者传递效果振动，Promise型。 |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 触发马达按照开发者传递效果振动，Callback型。  |
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | 停止振动。                       |
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 停止振动。                       |
 
 
 ## 开发步骤
 
 1. 控制设备上的振动器，需要在`config.json`里面进行配置请求权限。具体如下：
-  
+
    ```
    "reqPermissions": [
      {
@@ -58,7 +58,7 @@
    ```
 
 2. 触发设备振动。
-  
+
    ```
    import vibrator from "@ohos.vibrator"
    vibrator.vibrate(1000).then((error)=>{
@@ -71,7 +71,7 @@
    ```
 
 3. 停止设备振动。
-  
+
    ```
    import vibrator from "@ohos.vibrator"
    vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{

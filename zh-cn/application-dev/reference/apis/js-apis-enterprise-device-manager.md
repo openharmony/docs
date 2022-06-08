@@ -1,12 +1,13 @@
 # 企业设备管理
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 ```
 
@@ -25,16 +26,16 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| admin    | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用               |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | 是   | 设备管理员应用的企业信息 |
-| type | [AdminType](#AdminType) | 是 | 激活的设备管理员类型 |
-| callback | AsyncCallback\<boolean> | 是 | callback方式返回是否激活成功 |
+| 参数名            | 类型                                  | 必填   | 说明                 |
+| -------------- | ----------------------------------- | ---- | ------------------ |
+| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用            |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息       |
+| type           | [AdminType](#AdminType)             | 是    | 激活的设备管理员类型         |
+| callback       | AsyncCallback\<boolean>             | 是    | callback方式返回是否激活成功 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -48,7 +49,7 @@ enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDevice
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -66,21 +67,21 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名         | 类型                                           | 必填 | 说明                     |
-| -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用           |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息 |
-| type           | [AdminType](#AdminType)                        | 是   | 激活的设备管理员类型     |
+| 参数名            | 类型                                  | 必填   | 说明           |
+| -------------- | ----------------------------------- | ---- | ------------ |
+| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用      |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息 |
+| type           | [AdminType](#AdminType)             | 是    | 激活的设备管理员类型   |
 
 **返回值：**
 
-| 类型              | 说明                        |
-| ----------------- | --------------------------- |
+| 类型                | 说明                |
+| ----------------- | ----------------- |
 | Promise\<boolean> | Promise形式返回是否激活成功 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -91,7 +92,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -111,24 +112,24 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名   | 类型                                           | 必填 | 说明                           |
-| -------- | ---------------------------------------------- | ---- | ------------------------------ |
-| admin    | [Want](js-apis-application-Want.md) | 是   | 普通设备管理员应用             |
-| callback | AsyncCallback\<boolean>                        | 是   | callback方式返回是否去激活成功 |
+| 参数名      | 类型                                  | 必填   | 说明                  |
+| -------- | ----------------------------------- | ---- | ------------------- |
+| admin    | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用           |
+| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否去激活成功 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
-	bundleName: elementName.bundleName,
-	abilityName: elementName.abilityName,
+	bundleName: "bundleName",
+	abilityName: "abilityName",
 };
 enterpriseDeviceManager.deactivateAdmin(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -148,25 +149,25 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名 | 类型                                           | 必填 | 说明               |
-| ------ | ---------------------------------------------- | ---- | ------------------ |
-| admin  | [Want](js-apis-application-Want.md) | 是   | 普通设备管理员应用 |
+| 参数名   | 类型                                  | 必填   | 说明        |
+| ----- | ----------------------------------- | ---- | --------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 普通设备管理员应用 |
 
 **返回值：**
 
-| 类型              | 说明                        |
-| ----------------- | --------------------------- |
+| 类型                | 说明                |
+| ----------------- | ----------------- |
 | Promise\<boolean> | Promise形式返回是否激活成功 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
 enterpriseDeviceManager.deactivateAdmin(wantTemp).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -183,21 +184,21 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名     | 类型                    | 必填 | 说明                           |
-| ---------- | ----------------------- | ---- | ------------------------------ |
-| bundleName | String                  | 是   | 超级设备管理员应用的包名       |
-| callback   | AsyncCallback\<boolean> | 是   | callback方式返回是否去激活成功 |
+| 参数名        | 类型                      | 必填   | 说明                  |
+| ---------- | ----------------------- | ---- | ------------------- |
+| bundleName | String                  | 是    | 超级设备管理员应用的包名        |
+| callback   | AsyncCallback\<boolean> | 是    | callback方式返回是否去激活成功 |
 
 **示例**：
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.deactivateSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -212,22 +213,22 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                     |
-| ---------- | ------ | ---- | ------------------------ |
-| bundleName | String | 是   | 超级设备管理员应用的包名 |
+| 参数名        | 类型     | 必填   | 说明           |
+| ---------- | ------ | ---- | ------------ |
+| bundleName | String | 是    | 超级设备管理员应用的包名 |
 
 **返回值：**
 
-| 类型              | 说明                        |
-| ----------------- | --------------------------- |
+| 类型                | 说明                |
+| ----------------- | ----------------- |
 | Promise\<boolean> | Promise形式返回是否激活成功 |
 
 **示例**：
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.deactivateSuperAdmin(bundleName).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -244,24 +245,24 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名   | 类型                                           | 必填 | 说明                             |
-| -------- | ---------------------------------------------- | ---- | -------------------------------- |
-| admin    | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用                   |
-| callback | AsyncCallback\<boolean>                        | 是   | callback方式返回是否处于激活状态 |
+| 参数名      | 类型                                  | 必填   | 说明                   |
+| -------- | ----------------------------------- | ---- | -------------------- |
+| admin    | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用              |
+| callback | AsyncCallback\<boolean>             | 是    | callback方式返回是否处于激活状态 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
-	bundleName: elementName.bundleName,
-	abilityName: elementName.abilityName,
+	bundleName: "bundleName",
+	abilityName: "abilityName",
 };
 enterpriseDeviceManager.isAdminAppActive(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -278,25 +279,25 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名 | 类型                                           | 必填 | 说明           |
-| ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用 |
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
-| 类型              | 说明                            |
-| ----------------- | ------------------------------- |
+| 类型                | 说明                  |
+| ----------------- | ------------------- |
 | Promise\<boolean> | Promise形式返回是否处于激活状态 |
 
 **示例**：
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
 enterpriseDeviceManager.isAdminAppActive(wantTemp).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -313,21 +314,21 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名     | 类型                    | 必填 | 说明                             |
-| ---------- | ----------------------- | ---- | -------------------------------- |
-| bundleName | String                  | 是   | 设备管理员应用                   |
-| callback   | AsyncCallback\<boolean> | 是   | callback方式返回是否处于激活状态 |
+| 参数名        | 类型                      | 必填   | 说明                   |
+| ---------- | ----------------------- | ---- | -------------------- |
+| bundleName | String                  | 是    | 设备管理员应用              |
+| callback   | AsyncCallback\<boolean> | 是    | callback方式返回是否处于激活状态 |
 
 **示例**：
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.isSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -344,22 +345,22 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明               |
-| ---------- | ------ | ---- | ------------------ |
-| bundleName | String | 是   | 超级设备管理员应用 |
+| 参数名        | 类型     | 必填   | 说明        |
+| ---------- | ------ | ---- | --------- |
+| bundleName | String | 是    | 超级设备管理员应用 |
 
 **返回值：**
 
-| 类型              | 说明                            |
-| ----------------- | ------------------------------- |
+| 类型                | 说明                  |
+| ----------------- | ------------------- |
 | Promise\<boolean> | Promise形式返回是否处于激活状态 |
 
 **示例**：
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.isSuperAdmin(bundleName).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -376,13 +377,13 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback<DeviceSettingsManager&gt; | 是   | callback方式返回DeviceSettingsManager对象 |
+| 参数名      | 类型                                      | 必填   | 说明                                  |
+| -------- | --------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback<DeviceSettingsManager&gt; | 是    | callback方式返回DeviceSettingsManager对象 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
@@ -414,13 +415,13 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **返回值：**
 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                   | 说明                                 |
+| ------------------------------------ | ---------------------------------- |
 | Promise&lt;DeviceSettingsManager&gt; | Promise方式返回DeviceSettingsManager对象 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
@@ -447,15 +448,15 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数：**
 
-| 参数名         | 类型                                           | 必填 | 说明                                 |
-| -------------- | ---------------------------------------------- | ---- | ------------------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用                       |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息             |
-| callback       | AsyncCallback\<boolean&gt;                     | 是   | callback方式返回是否设置企业信息成功 |
+| 参数名            | 类型                                  | 必填   | 说明                     |
+| -------------- | ----------------------------------- | ---- | ---------------------- |
+| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息           |
+| callback       | AsyncCallback\<boolean&gt;          | 是    | callback方式返回是否设置企业信息成功 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -466,7 +467,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -484,20 +485,20 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数：**
 
-| 参数名         | 类型                                           | 必填 | 说明                     |
-| -------------- | ---------------------------------------------- | ---- | ------------------------ |
-| admin          | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用           |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)              | 是   | 设备管理员应用的企业信息 |
+| 参数名            | 类型                                  | 必填   | 说明           |
+| -------------- | ----------------------------------- | ---- | ------------ |
+| admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用      |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息 |
 
 **返回值：**
 
-| 类型               | 说明                                |
-| ------------------ | ----------------------------------- |
+| 类型                 | 说明                    |
+| ------------------ | --------------------- |
 | Promise\<boolean>; | Promise方式返回是否设置企业信息成功 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -508,7 +509,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -525,14 +526,14 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数：**
 
-| 参数名   | 类型                                                   | 必填 | 说明                                     |
-| -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| admin    | [Want](js-apis-application-Want.md)         | 是   | 设备管理员应用                           |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | 是   | callback方式返回设备管理员应用的企业信息 |
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
+| callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -559,19 +560,19 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **参数：**
 
-| 参数名 | 类型                                           | 必填 | 说明           |
-| ------ | ---------------------------------------------- | ---- | -------------- |
-| admin  | [Want](js-apis-application-Want.md) | 是   | 设备管理员应用 |
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用 |
 
 **返回值：**
 
-| 类型                                             | 说明                                        |
-| ------------------------------------------------ | ------------------------------------------- |
+| 类型                                       | 说明                        |
+| ---------------------------------------- | ------------------------- |
 | Promise&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Promise方式返回设备管理员应用的企业信息对象 |
 
 **示例：**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -590,10 +591,10 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 **系统能力：**
 以下各项对应系统能力均为SystemCapability.Customation.EnterpriseDeviceManager
-| 名称        | 读写属性 | 类型   | 必填 | 描述                               |
-| ----------- | -------- | ------ | ---- | ---------------------------------- |
-| name        | 只读     | string | 是   | 表示设备管理员应用所属企业的名称。 |
-| description | 只读     | string | 是   | 表示设备管理员应用所属企业的描述。 |
+| 名称          | 读写属性 | 类型     | 必填   | 描述                |
+| ----------- | ---- | ------ | ---- | ----------------- |
+| name        | 只读   | string | 是    | 表示设备管理员应用所属企业的名称。 |
+| description | 只读   | string | 是    | 表示设备管理员应用所属企业的描述。 |
 
 
 ## AdminType
@@ -602,7 +603,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 **系统能力：**
 以下各项对应系统能力均为SystemCapability.Customation.EnterpriseDeviceManager
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
+| 名称                | 默认值  | 说明    |
+| ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通管理员 |
-| ADMIN_TYPE_SUPER | 0x01 | 超级管理员 |
+| ADMIN_TYPE_SUPER  | 0x01 | 超级管理员 |

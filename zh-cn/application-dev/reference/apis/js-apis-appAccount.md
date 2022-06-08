@@ -23,13 +23,13 @@ createAppAccountManager(): AppAccountManager
 
 **返回值：**
 
-| 类型              | 说明                     |
-| ----------------- | ------------------------ |
+| 类型                | 说明           |
+| ----------------- | ------------ |
 | AppAccountManager | 获取应用帐号模块的实例。 |
 
 **示例：**
   ```js
-  var appAccountManager = account.createAppAccountManager();
+  var appAccountManager = account_appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager
@@ -46,10 +46,10 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                     |
-| -------- | ------------------------- | ---- | ---------------------------------------- |
-| name     | string                    | 是   | 要添加的应用帐号名称。                   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 将此应用的帐号名添加到帐号管理服务回调。 |
+| 参数名      | 类型                        | 必填   | 说明                   |
+| -------- | ------------------------- | ---- | -------------------- |
+| name     | string                    | 是    | 要添加的应用帐号名称。          |
+| callback | AsyncCallback&lt;void&gt; | 是    | 将此应用的帐号名添加到帐号管理服务回调。 |
 
 **示例：**
 
@@ -70,11 +70,11 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 **参数：**
 
-| 参数名    | 类型                      | 必填 | 说明                                                         |
-| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| name      | string                    | 是   | 要添加的应用帐号名称。                                       |
-| extraInfo | string                    | 是   | 要添加的应用帐号的额外信息(能转换string类型的其它信息，如token等)，额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 将此应用程序的帐号名和额外信息添加到帐号管理服务中回调。     |
+| 参数名       | 类型                        | 必填   | 说明                                       |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| name      | string                    | 是    | 要添加的应用帐号名称。                              |
+| extraInfo | string                    | 是    | 要添加的应用帐号的额外信息(能转换string类型的其它信息，如token等)，额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
+| callback  | AsyncCallback&lt;void&gt; | 是    | 将此应用程序的帐号名和额外信息添加到帐号管理服务中回调。             |
 
 **示例：**
 
@@ -97,15 +97,15 @@ addAccount(name: string, extraInfo: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明                                                         |
-| --------- | ------ | ---- | ------------------------------------------------------------ |
-| name      | string | 是   | 要添加的应用帐号名称。                                       |
-| extraInfo | string | 是   | 要添加的应用帐号的额外信息（能转换成string类型的其它信息），额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
+| 参数名       | 类型     | 必填   | 说明                                       |
+| --------- | ------ | ---- | ---------------------------------------- |
+| name      | string | 是    | 要添加的应用帐号名称。                              |
+| extraInfo | string | 是    | 要添加的应用帐号的额外信息（能转换成string类型的其它信息），额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| ------------------- | ----------------------------------- |
+| 类型                  | 说明                    |
+| ------------------- | --------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -129,12 +129,12 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                                           |
-| -------- | --------------------- | ---- | ---------------------------------------------- |
-| owner    | string                | 是   | 要添加的应用帐号所有者包名。                   |
-| authType | string                | 是   | 要添加的应用帐号鉴权类型。鉴权类型为自定义。   |
-| options  | {[key: string]: any}  | 是   | 鉴权所需要的可选项。可选项可根据自己需要设置。 |
-| callback | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。                 |
+| 参数名      | 类型                    | 必填   | 说明                      |
+| -------- | --------------------- | ---- | ----------------------- |
+| owner    | string                | 是    | 要添加的应用帐号所有者包名。          |
+| authType | string                | 是    | 要添加的应用帐号鉴权类型。鉴权类型为自定义。  |
+| options  | {[key: string]: any}  | 是    | 鉴权所需要的可选项。可选项可根据自己需要设置。 |
+| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。         |
 
 **示例：**
 
@@ -170,10 +170,10 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                             |
-| -------- | ------------------------- | ---- | -------------------------------- |
-| name     | string                    | 是   | 要删除的应用帐号名称。           |
-| callback | AsyncCallback&lt;void&gt; | 是   | 帐号管理服务中删除应用帐号回调。 |
+| 参数名      | 类型                        | 必填   | 说明               |
+| -------- | ------------------------- | ---- | ---------------- |
+| name     | string                    | 是    | 要删除的应用帐号名称。      |
+| callback | AsyncCallback&lt;void&gt; | 是    | 帐号管理服务中删除应用帐号回调。 |
 
 **示例：**
 
@@ -194,14 +194,14 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| name   | string | 是   | 要删除的应用帐号名称。 |
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| name | string | 是    | 要删除的应用帐号名称。 |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -225,11 +225,11 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                                                         |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| name       | string                    | 是   | 要禁用访问的第三方应用帐号名称。                             |
-| bundleName | string                    | 是   | 第三方应用的包名。                                           |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 禁止指定第三方应用帐号名称对指定包名称的第三方应用的回调进行访问。 |
+| 参数名        | 类型                        | 必填   | 说明                                |
+| ---------- | ------------------------- | ---- | --------------------------------- |
+| name       | string                    | 是    | 要禁用访问的第三方应用帐号名称。                  |
+| bundleName | string                    | 是    | 第三方应用的包名。                         |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 禁止指定第三方应用帐号名称对指定包名称的第三方应用的回调进行访问。 |
 
 **示例：**
 
@@ -250,15 +250,15 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                             |
-| ---------- | ------ | ---- | -------------------------------- |
-| name       | string | 是   | 要禁用访问的第三方应用帐号名称。 |
-| bundleName | string | 是   | 第三方应用的包名。               |
+| 参数名        | 类型     | 必填   | 说明               |
+| ---------- | ------ | ---- | ---------------- |
+| name       | string | 是    | 要禁用访问的第三方应用帐号名称。 |
+| bundleName | string | 是    | 第三方应用的包名。        |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -282,11 +282,11 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                                                         |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| name       | string                    | 是   | 应用帐号名称。                                               |
-| bundleName | string                    | 是   | 第三方应用的包名。                                           |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 允许指定第三方应用帐号名称对指定包名称的第三方应用的回调进行访问。 |
+| 参数名        | 类型                        | 必填   | 说明                                |
+| ---------- | ------------------------- | ---- | --------------------------------- |
+| name       | string                    | 是    | 应用帐号名称。                           |
+| bundleName | string                    | 是    | 第三方应用的包名。                         |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 允许指定第三方应用帐号名称对指定包名称的第三方应用的回调进行访问。 |
 
 **示例：**
 
@@ -307,15 +307,15 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明               |
-| ---------- | ------ | ---- | ------------------ |
-| name       | string | 是   | 应用帐号名称。     |
-| bundleName | string | 是   | 第三方应用的包名。 |
+| 参数名        | 类型     | 必填   | 说明        |
+| ---------- | ------ | ---- | --------- |
+| name       | string | 是    | 应用帐号名称。   |
+| bundleName | string | 是    | 第三方应用的包名。 |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -340,10 +340,10 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明                                       |
-| -------- | ---------------------------- | ---- | ------------------------------------------ |
-| name     | string                       | 是   | 应用帐号名称。                             |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 检查指定应用帐号是否允许应用数据同步回调。 |
+| 参数名      | 类型                           | 必填   | 说明                    |
+| -------- | ---------------------------- | ---- | --------------------- |
+| name     | string                       | 是    | 应用帐号名称。               |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 检查指定应用帐号是否允许应用数据同步回调。 |
 
 **示例：**
 
@@ -367,14 +367,14 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| name   | string | 是   | 应用帐号名称。 |
+| 参数名  | 类型     | 必填   | 说明      |
+| ---- | ------ | ---- | ------- |
+| name | string | 是    | 应用帐号名称。 |
 
 **返回值：**
 
-| 类型                   | 说明                                |
-| :--------------------- | :---------------------------------- |
+| 类型                     | 说明                    |
+| :--------------------- | :-------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -398,12 +398,12 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 **参数：**
 
-| 参数名         | 类型                      | 必填 | 说明                       |
-| -------------- | ------------------------- | ---- | -------------------------- |
-| name           | string                    | 是   | 应用程序帐号名称。         |
-| credentialType | string                    | 是   | 要设置的凭据类型。         |
-| credential     | string                    | 是   | 要设置的凭据。             |
-| callback       | AsyncCallback&lt;void&gt; | 是   | 设置此应用帐号的凭据回调。 |
+| 参数名            | 类型                        | 必填   | 说明            |
+| -------------- | ------------------------- | ---- | ------------- |
+| name           | string                    | 是    | 应用程序帐号名称。     |
+| credentialType | string                    | 是    | 要设置的凭据类型。     |
+| credential     | string                    | 是    | 要设置的凭据。       |
+| callback       | AsyncCallback&lt;void&gt; | 是    | 设置此应用帐号的凭据回调。 |
 
 **示例：**
 
@@ -424,16 +424,16 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 **参数：**
 
-| 参数名         | 类型   | 必填 | 说明                 |
-| -------------- | ------ | ---- | -------------------- |
-| name           | string | 是   | 应用帐号的名称。     |
-| credentialType | string | 是   | 要设置的凭据的类型。 |
-| credential     | string | 是   | 要设置的凭据。       |
+| 参数名            | 类型     | 必填   | 说明         |
+| -------------- | ------ | ---- | ---------- |
+| name           | string | 是    | 应用帐号的名称。   |
+| credentialType | string | 是    | 要设置的凭据的类型。 |
+| credential     | string | 是    | 要设置的凭据。    |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -457,11 +457,11 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 **参数：**
 
-| 参数名    | 类型                      | 必填 | 说明                           |
-| --------- | ------------------------- | ---- | ------------------------------ |
-| name      | string                    | 是   | 应用帐号名称。                 |
-| extraInfo | string                    | 是   | 要设置的额外信息。             |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 设置此应用帐号的额外信息回调。 |
+| 参数名       | 类型                        | 必填   | 说明              |
+| --------- | ------------------------- | ---- | --------------- |
+| name      | string                    | 是    | 应用帐号名称。         |
+| extraInfo | string                    | 是    | 要设置的额外信息。       |
+| callback  | AsyncCallback&lt;void&gt; | 是    | 设置此应用帐号的额外信息回调。 |
 
 **示例：**
 
@@ -482,15 +482,15 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明               |
-| --------- | ------ | ---- | ------------------ |
-| name      | string | 是   | 应用帐号名称。     |
-| extraInfo | string | 是   | 要设置的额外信息。 |
+| 参数名       | 类型     | 必填   | 说明        |
+| --------- | ------ | ---- | --------- |
+| name      | string | 是    | 应用帐号名称。   |
+| extraInfo | string | 是    | 要设置的额外信息。 |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -516,11 +516,11 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                               |
-| -------- | ------------------------- | ---- | -------------------------------------------------- |
-| name     | string                    | 是   | 应用帐号名称。                                     |
-| isEnable | boolean                   | 是   | 是否允许应用数据同步。                             |
-| callback | AsyncCallback&lt;void&gt; | 是   | 设置指定的应用帐号是否允许应用程序数据同步的回调。 |
+| 参数名      | 类型                        | 必填   | 说明                        |
+| -------- | ------------------------- | ---- | ------------------------- |
+| name     | string                    | 是    | 应用帐号名称。                   |
+| isEnable | boolean                   | 是    | 是否允许应用数据同步。               |
+| callback | AsyncCallback&lt;void&gt; | 是    | 设置指定的应用帐号是否允许应用程序数据同步的回调。 |
 
 **示例：**
 
@@ -543,15 +543,15 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                   |
-| -------- | ------- | ---- | ---------------------- |
-| name     | string  | 是   | 应用帐号名称。         |
-| isEnable | boolean | 是   | 是否允许应用数据同步。 |
+| 参数名      | 类型      | 必填   | 说明          |
+| -------- | ------- | ---- | ----------- |
+| name     | string  | 是    | 应用帐号名称。     |
+| isEnable | boolean | 是    | 是否允许应用数据同步。 |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -575,12 +575,12 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                               |
-| -------- | ------------------------- | ---- | ---------------------------------- |
-| name     | string                    | 是   | 应用帐号名称。                     |
-| key      | string                    | 是   | 要设置的数据的键，密钥可以自定义。 |
-| value    | string                    | 是   | 要设置的数据的值。                 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 设置与此应用帐号关联的数据的回调。 |
+| 参数名      | 类型                        | 必填   | 说明                |
+| -------- | ------------------------- | ---- | ----------------- |
+| name     | string                    | 是    | 应用帐号名称。           |
+| key      | string                    | 是    | 要设置的数据的键，密钥可以自定义。 |
+| value    | string                    | 是    | 要设置的数据的值。         |
+| callback | AsyncCallback&lt;void&gt; | 是    | 设置与此应用帐号关联的数据的回调。 |
 
 **示例：**
 
@@ -600,16 +600,16 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                               |
-| ------ | ------ | ---- | ---------------------------------- |
-| name   | string | 是   | 应用帐号名称。                     |
-| key    | string | 是   | 要设置的数据的键，密钥可以自定义。 |
-| value  | string | 是   | 要设置的数据的值。                 |
+| 参数名   | 类型     | 必填   | 说明                |
+| ----- | ------ | ---- | ----------------- |
+| name  | string | 是    | 应用帐号名称。           |
+| key   | string | 是    | 要设置的数据的键，密钥可以自定义。 |
+| value | string | 是    | 要设置的数据的值。         |
 
 **返回值：**
 
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
+| 类型                  | 说明                    |
+| :------------------ | :-------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -633,11 +633,11 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 **参数：**
 
-| 参数名         | 类型                        | 必填 | 说明                         |
-| -------------- | --------------------------- | ---- | ---------------------------- |
-| name           | string                      | 是   | 应用帐号名称。               |
-| credentialType | string                      | 是   | 获取此应用帐号的凭据的类型。 |
-| callback       | AsyncCallback&lt;string&gt; | 是   | 获取此应用帐号的凭据的回调。 |
+| 参数名            | 类型                          | 必填   | 说明             |
+| -------------- | --------------------------- | ---- | -------------- |
+| name           | string                      | 是    | 应用帐号名称。        |
+| credentialType | string                      | 是    | 获取此应用帐号的凭据的类型。 |
+| callback       | AsyncCallback&lt;string&gt; | 是    | 获取此应用帐号的凭据的回调。 |
 
 **示例：**
 
@@ -659,15 +659,15 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 **参数：**
 
-| 参数名         | 类型   | 必填 | 说明                 |
-| -------------- | ------ | ---- | -------------------- |
-| name           | string | 是   | 应用帐号名称。       |
-| credentialType | string | 是   | 要获取的凭据的类型。 |
+| 参数名            | 类型     | 必填   | 说明         |
+| -------------- | ------ | ---- | ---------- |
+| name           | string | 是    | 应用帐号名称。    |
+| credentialType | string | 是    | 要获取的凭据的类型。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| :-------------------- | :---------------------------------- |
+| 类型                    | 说明                    |
+| :-------------------- | :-------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -691,10 +691,10 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                           |
-| -------- | --------------------------- | ---- | ------------------------------ |
-| name     | string                      | 是   | 应用帐号名称。                 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 获取此应用帐号的额外信息回调。 |
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| name     | string                      | 是    | 应用帐号名称。         |
+| callback | AsyncCallback&lt;string&gt; | 是    | 获取此应用帐号的额外信息回调。 |
 
 **示例：**
 
@@ -716,14 +716,14 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| name   | string | 是   | 应用帐号名称。 |
+| 参数名  | 类型     | 必填   | 说明      |
+| ---- | ------ | ---- | ------- |
+| name | string | 是    | 应用帐号名称。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| :-------------------- | :---------------------------------- |
+| 类型                    | 说明                    |
+| :-------------------- | :-------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -747,11 +747,11 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                               |
-| -------- | --------------------------- | ---- | ---------------------------------- |
-| name     | string                      | 是   | 应用帐号名称。                     |
-| key      | string                      | 是   | 要获取的数据的键。                 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 获取与此应用帐号关联的数据的回调。 |
+| 参数名      | 类型                          | 必填   | 说明                |
+| -------- | --------------------------- | ---- | ----------------- |
+| name     | string                      | 是    | 应用帐号名称。           |
+| key      | string                      | 是    | 要获取的数据的键。         |
+| callback | AsyncCallback&lt;string&gt; | 是    | 获取与此应用帐号关联的数据的回调。 |
 
 **示例：**
 
@@ -773,15 +773,15 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| name   | string | 是   | 应用帐号名称。     |
-| key    | string | 是   | 要获取的数据的键。 |
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| name | string | 是    | 应用帐号名称。   |
+| key  | string | 是    | 要获取的数据的键。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| :-------------------- | :---------------------------------- |
+| 类型                    | 说明                    |
+| :-------------------- | :-------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -807,9 +807,9 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 **参数：**
 
-| 参数名   | 类型                                             | 必填 | 说明               |
-| -------- | ------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是   | 应用帐号信息列表。 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -833,8 +833,8 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **参数：**
 
-| 类型                                       | 说明                                |
-| ------------------------------------------ | ----------------------------------- |
+| 类型                                       | 说明                    |
+| ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -860,10 +860,10 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 **参数：**
 
-| 参数名   | 类型                                             | 必填 | 说明               |
-| -------- | ------------------------------------------------ | ---- | ------------------ |
-| owner    | string                                           | 是   | 应用包名称。       |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是   | 应用帐号信息列表。 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| owner    | string                                   | 是    | 应用包名称。    |
+| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -888,14 +888,14 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明         |
-| ------ | ------ | ---- | ------------ |
-| owner  | string | 是   | 应用包名称。 |
+| 参数名   | 类型     | 必填   | 说明     |
+| ----- | ------ | ---- | ------ |
+| owner | string | 是    | 应用包名称。 |
 
 **参数：**
 
-| 类型                                       | 说明                                |
-| ------------------------------------------ | ----------------------------------- |
+| 类型                                       | 说明                    |
+| ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -920,11 +920,11 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 **参数：**
 
-| 参数名   | 类型                                        | 必填 | 说明                                                         |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'change'                                    | 是   | 关于帐号更改事件，当帐号所有者更新帐号时，订阅者将收到通知。 |
-| owners   | Array&lt;string&gt;                         | 是   | 指示帐号的所有者。                                           |
-| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是   | 订阅指定帐号所有者的帐号变更事件的回调。                     |
+| 参数名      | 类型                                       | 必填   | 说明                             |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | 'change'                                 | 是    | 关于帐号更改事件，当帐号所有者更新帐号时，订阅者将收到通知。 |
+| owners   | Array&lt;string&gt;                      | 是    | 指示帐号的所有者。                      |
+| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 订阅指定帐号所有者的帐号变更事件的回调。           |
 
 **示例：**
 
@@ -951,10 +951,10 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 
 **参数：**
 
-| 参数名   | 类型                             | 必填 | 说明                     |
-| -------- | -------------------------------- | ---- | ------------------------ |
-| type     | 'change'                         | 是   | 关于帐号更改事件。       |
-| callback | Callback<Array\<AppAccountInfo>> | 否   | 取消订阅帐号事件的回调。 |
+| 参数名      | 类型                               | 必填   | 说明           |
+| -------- | -------------------------------- | ---- | ------------ |
+| type     | 'change'                         | 是    | 关于帐号更改事件。    |
+| callback | Callback<Array\<AppAccountInfo>> | 否    | 取消订阅帐号事件的回调。 |
 
 **示例：**
 
@@ -984,13 +984,13 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                           |
-| -------- | --------------------- | ---- | ------------------------------ |
-| name     | string                | 是   | 要鉴权的应用帐号名称。         |
-| owner    | string                | 是   | 要鉴权的应用帐号所有者包名。   |
-| authType | string                | 是   | 鉴权类型。                     |
-| options  | {[key: string]: any}  | 是   | 鉴权所需的可选项。             |
-| callback | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+| 参数名      | 类型                    | 必填   | 说明              |
+| -------- | --------------------- | ---- | --------------- |
+| name     | string                | 是    | 要鉴权的应用帐号名称。     |
+| owner    | string                | 是    | 要鉴权的应用帐号所有者包名。  |
+| authType | string                | 是    | 鉴权类型。           |
+| options  | {[key: string]: any}  | 是    | 鉴权所需的可选项。       |
+| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
 
 **示例：**
 
@@ -1026,12 +1026,12 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                   |
-| -------- | --------------------------- | ---- | ---------------------- |
-| name     | string                      | 是   | 应用帐号的名称。       |
-| owner    | string                      | 是   | 应用帐号的所有者包名。 |
-| authType | string                      | 是   | 鉴权类型。             |
-| callback |AsyncCallback&lt;string&gt; | 是   | 查询结果的回调。       |
+| 参数名      | 类型                          | 必填   | 说明          |
+| -------- | --------------------------- | ---- | ----------- |
+| name     | string                      | 是    | 应用帐号的名称。    |
+| owner    | string                      | 是    | 应用帐号的所有者包名。 |
+| authType | string                      | 是    | 鉴权类型。       |
+| callback | AsyncCallback&lt;string&gt; | 是    | 查询结果的回调。    |
 
 **示例：**
 
@@ -1053,16 +1053,16 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| name     | string | 是   | 应用帐号的名称。       |
-| owner    | string | 是   | 应用帐号的所有者包名。 |
-| authType | string | 是   | 鉴权类型。             |
+| 参数名      | 类型     | 必填   | 说明          |
+| -------- | ------ | ---- | ----------- |
+| name     | string | 是    | 应用帐号的名称。    |
+| owner    | string | 是    | 应用帐号的所有者包名。 |
+| authType | string | 是    | 鉴权类型。       |
 
 **参数：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
+| 类型                    | 说明                    |
+| --------------------- | --------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1086,12 +1086,12 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明             |
-| -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | 是   | 应用帐号的名称。 |
-| authType | string                    | 是   | 鉴权类型。       |
-| token    | string                    | 是   | OAuth令牌。      |
-| callback | AsyncCallback&lt;void&gt; | 是   | 设置结果的回调。 |
+| 参数名      | 类型                        | 必填   | 说明       |
+| -------- | ------------------------- | ---- | -------- |
+| name     | string                    | 是    | 应用帐号的名称。 |
+| authType | string                    | 是    | 鉴权类型。    |
+| token    | string                    | 是    | OAuth令牌。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 设置结果的回调。 |
 
 **示例：**
 
@@ -1112,16 +1112,16 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明             |
-| -------- | ------ | ---- | ---------------- |
-| name     | string | 是   | 应用帐号的名称。 |
-| authType | string | 是   | 鉴权类型。       |
-| token    | string | 是   | OAuth令牌。      |
+| 参数名      | 类型     | 必填   | 说明       |
+| -------- | ------ | ---- | -------- |
+| name     | string | 是    | 应用帐号的名称。 |
+| authType | string | 是    | 鉴权类型。    |
+| token    | string | 是    | OAuth令牌。 |
 
 **参数：**
 
-| 类型                | 说明                                |
-| ------------------- | ----------------------------------- |
+| 类型                  | 说明                    |
+| ------------------- | --------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1145,13 +1145,13 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                   |
-| -------- | ------------------------- | ---- | ---------------------- |
-| name     | string                    | 是   | 应用帐号的名称。       |
-| owner    | string                    | 是   | 应用帐号的所有者包名。 |
-| authType | string                    | 是   | 鉴权类型。             |
-| token    | string                    | 是   | 要删除的OAuth令牌。    |
-| callback | AsyncCallback&lt;void&gt; | 是   | 删除结果的回调。       |
+| 参数名      | 类型                        | 必填   | 说明           |
+| -------- | ------------------------- | ---- | ------------ |
+| name     | string                    | 是    | 应用帐号的名称。     |
+| owner    | string                    | 是    | 应用帐号的所有者包名。  |
+| authType | string                    | 是    | 鉴权类型。        |
+| token    | string                    | 是    | 要删除的OAuth令牌。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 删除结果的回调。     |
 
 **示例：**
 
@@ -1172,17 +1172,17 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| name     | string | 是   | 应用帐号的名称。       |
-| owner    | string | 是   | 应用帐号的所有者包名。 |
-| authType | string | 是   | 鉴权类型。             |
-| token    | string | 是   | 要删除的OAuth令牌。    |
+| 参数名      | 类型     | 必填   | 说明           |
+| -------- | ------ | ---- | ------------ |
+| name     | string | 是    | 应用帐号的名称。     |
+| owner    | string | 是    | 应用帐号的所有者包名。  |
+| authType | string | 是    | 鉴权类型。        |
+| token    | string | 是    | 要删除的OAuth令牌。 |
 
 **参数：**
 
-| 类型                | 说明                                |
-| ------------------- | ----------------------------------- |
+| 类型                  | 说明                    |
+| ------------------- | --------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1206,13 +1206,13 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                                      |
-| ---------- | ------------------------- | ---- | ----------------------------------------- |
-| name       | string                    | 是   | 应用帐号的名称。                          |
-| authType   | string                    | 是   | 鉴权类型。                                |
-| bundleName | string                    | 是   | 被设置可见性的应用包名。                  |
-| isVisible  | boolean                   | 是   | 是否可见。当设置成true可见，false不可见。 |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 设置结果的回调。                          |
+| 参数名        | 类型                        | 必填   | 说明                        |
+| ---------- | ------------------------- | ---- | ------------------------- |
+| name       | string                    | 是    | 应用帐号的名称。                  |
+| authType   | string                    | 是    | 鉴权类型。                     |
+| bundleName | string                    | 是    | 被设置可见性的应用包名。              |
+| isVisible  | boolean                   | 是    | 是否可见。当设置成true可见，false不可见。 |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 设置结果的回调。                  |
 
 **示例：**
 
@@ -1233,17 +1233,17 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 **参数：**
 
-| 参数名     | 类型    | 必填 | 说明                     |
-| ---------- | ------- | ---- | ------------------------ |
-| name       | string  | 是   | 应用帐号的名称。         |
-| authType   | string  | 是   | 鉴权类型。               |
-| bundleName | string  | 是   | 被设置可见性的应用包名。 |
-| isVisible  | boolean | 是   | 是否可见。               |
+| 参数名        | 类型      | 必填   | 说明           |
+| ---------- | ------- | ---- | ------------ |
+| name       | string  | 是    | 应用帐号的名称。     |
+| authType   | string  | 是    | 鉴权类型。        |
+| bundleName | string  | 是    | 被设置可见性的应用包名。 |
+| isVisible  | boolean | 是    | 是否可见。        |
 
 **参数：**
 
-| 类型                | 说明                                |
-| ------------------- | ----------------------------------- |
+| 类型                  | 说明                    |
+| ------------------- | --------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1267,12 +1267,12 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 **参数：**
 
-| 参数名     | 类型                         | 必填 | 说明                   |
-| ---------- | ---------------------------- | ---- | ---------------------- |
-| name       | string                       | 是   | 应用帐号的名称。       |
-| authType   | string                       | 是   | 鉴权类型。             |
-| bundleName | string                       | 是   | 检查可见性的应用包名。 |
-| callback   | AsyncCallback&lt;boolean&gt; | 是   | 检查结果的回调。       |
+| 参数名        | 类型                           | 必填   | 说明          |
+| ---------- | ---------------------------- | ---- | ----------- |
+| name       | string                       | 是    | 应用帐号的名称。    |
+| authType   | string                       | 是    | 鉴权类型。       |
+| bundleName | string                       | 是    | 检查可见性的应用包名。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 检查结果的回调。    |
 
 **示例：**
 
@@ -1294,16 +1294,16 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                       |
-| ---------- | ------ | ---- | -------------------------- |
-| name       | string | 是   | 应用帐号的名称。           |
-| authType   | string | 是   | 鉴权类型。                 |
-| bundleName | string | 是   | 用于检查可见性的应用包名。 |
+| 参数名        | 类型     | 必填   | 说明            |
+| ---------- | ------ | ---- | ------------- |
+| name       | string | 是    | 应用帐号的名称。      |
+| authType   | string | 是    | 鉴权类型。         |
+| bundleName | string | 是    | 用于检查可见性的应用包名。 |
 
 **参数：**
 
-| 类型                   | 说明                                |
-| ---------------------- | ----------------------------------- |
+| 类型                     | 说明                    |
+| ---------------------- | --------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1327,11 +1327,11 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                   |
-| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| name     | string                                                       | 是   | 应用帐号的名称。       |
-| owner    | string                                                       | 是   | 应用帐号的所有者包名。 |
-| callback | AsyncCallback&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfo8)&gt;&gt; | 是   | 查询结果的回调。       |
+| 参数名      | 类型                                       | 必填   | 说明          |
+| -------- | ---------------------------------------- | ---- | ----------- |
+| name     | string                                   | 是    | 应用帐号的名称。    |
+| owner    | string                                   | 是    | 应用帐号的所有者包名。 |
+| callback | AsyncCallback&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfo8)&gt;&gt; | 是    | 查询结果的回调。    |
 
 **示例：** 
 
@@ -1353,15 +1353,15 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| name   | string | 是   | 应用帐号的名称。       |
-| owner  | string | 是   | 应用帐号的所有者包名。 |
+| 参数名   | 类型     | 必填   | 说明          |
+| ----- | ------ | ---- | ----------- |
+| name  | string | 是    | 应用帐号的名称。    |
+| owner | string | 是    | 应用帐号的所有者包名。 |
 
 **参数：**
 
-| 类型                                       | 说明                                |
-| ------------------------------------------ | ----------------------------------- |
+| 类型                                       | 说明                    |
+| ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfo8)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1385,11 +1385,11 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                      |
-| -------- | ---------------------------------------- | ---- | ----------------------------------------- |
-| name     | string                                   | 是   | 应用帐号的名称。                          |
-| authType | string                                   | 是   | 应用帐号的鉴权类型的OAuth令牌的授权列表。 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 查询结果的回调。                          |
+| 参数名      | 类型                                       | 必填   | 说明                      |
+| -------- | ---------------------------------------- | ---- | ----------------------- |
+| name     | string                                   | 是    | 应用帐号的名称。                |
+| authType | string                                   | 是    | 应用帐号的鉴权类型的OAuth令牌的授权列表。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 查询结果的回调。                |
 
 **示例：**
 
@@ -1411,15 +1411,15 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                                      |
-| -------- | ------ | ---- | ----------------------------------------- |
-| name     | string | 是   | 应用帐号的名称。                          |
-| authType | string | 是   | 应用帐号的鉴权类型的OAuth令牌的授权列表。 |
+| 参数名      | 类型     | 必填   | 说明                      |
+| -------- | ------ | ---- | ----------------------- |
+| name     | string | 是    | 应用帐号的名称。                |
+| authType | string | 是    | 应用帐号的鉴权类型的OAuth令牌的授权列表。 |
 
 **参数：**
 
-| 类型                               | 说明                                |
-| ---------------------------------- | ----------------------------------- |
+| 类型                                 | 说明                    |
+| ---------------------------------- | --------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1443,10 +1443,10 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 **参数：**
 
-| 参数名    | 类型                                       | 必填 | 说明             |
-| --------- | ------------------------------------------ | ---- | ---------------- |
-| sessionId | string                                     | 是   | 鉴权会话的标识。 |
-| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | 是   | 查询结果的回调。 |
+| 参数名       | 类型                                       | 必填   | 说明       |
+| --------- | ---------------------------------------- | ---- | -------- |
+| sessionId | string                                   | 是    | 鉴权会话的标识。 |
+| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | 是    | 查询结果的回调。 |
 
 **示例：**
 
@@ -1479,14 +1479,14 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明             |
-| --------- | ------ | ---- | ---------------- |
-| sessionId | string | 是   | 鉴权会话的标识。 |
+| 参数名       | 类型     | 必填   | 说明       |
+| --------- | ------ | ---- | -------- |
+| sessionId | string | 是    | 鉴权会话的标识。 |
 
 **参数：**
 
-| 类型                                 | 说明                                |
-| ------------------------------------ | ----------------------------------- |
+| 类型                                   | 说明                    |
+| ------------------------------------ | --------------------- |
 | Promise&lt;AuthenticatorCallback&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1519,10 +1519,10 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                   |
-| -------- | -------------------------------------- | ---- | ---------------------- |
-| owner    | string                                 | 是   | 应用帐号的所有者包名。 |
-| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | 是   | 查询结果的回调。       |
+| 参数名      | 类型                                     | 必填   | 说明          |
+| -------- | -------------------------------------- | ---- | ----------- |
+| owner    | string                                 | 是    | 应用帐号的所有者包名。 |
+| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | 是    | 查询结果的回调。    |
 
 **示例：**
 
@@ -1544,14 +1544,14 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| owner  | string | 是   | 应用帐号的所有者包名。 |
+| 参数名   | 类型     | 必填   | 说明          |
+| ----- | ------ | ---- | ----------- |
+| owner | string | 是    | 应用帐号的所有者包名。 |
 
 **参数：**
 
-| 类型                             | 说明                                |
-| -------------------------------- | ----------------------------------- |
+| 类型                               | 说明                    |
+| -------------------------------- | --------------------- |
 | Promise&lt;AuthenticatorInfo&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
@@ -1571,10 +1571,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名 | 类型   | 必填 | 说明                   |
-| ------ | ------ | ---- | ---------------------- |
-| owner  | string | 是   | 应用帐号的所有者包名。 |
-| name   | string | 是   | 应用帐号的名称。       |
+| 参数名   | 类型     | 必填   | 说明          |
+| ----- | ------ | ---- | ----------- |
+| owner | string | 是    | 应用帐号的所有者包名。 |
+| name  | string | 是    | 应用帐号的名称。    |
 
 ## OAuthTokenInfo<sup>8+</sup>
 
@@ -1582,10 +1582,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名   | 类型   | 必填 | 说明             |
-| -------- | ------ | ---- | ---------------- |
-| authType | string | 是   | 令牌的鉴权类型。 |
-| token    | string | 是   | 令牌的取值。     |
+| 参数名      | 类型     | 必填   | 说明       |
+| -------- | ------ | ---- | -------- |
+| authType | string | 是    | 令牌的鉴权类型。 |
+| token    | string | 是    | 令牌的取值。   |
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -1593,11 +1593,11 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名  | 类型   | 必填 | 说明                 |
-| ------- | ------ | ---- | -------------------- |
-| owner   | string | 是   | 认证器的所有者包名。 |
-| iconId  | string | 是   | 认证器的图标标识。   |
-| labelId | string | 是   | 认证器的标签标识。   |
+| 参数名     | 类型     | 必填   | 说明         |
+| ------- | ------ | ---- | ---------- |
+| owner   | string | 是    | 认证器的所有者包名。 |
+| iconId  | string | 是    | 认证器的图标标识。  |
+| labelId | string | 是    | 认证器的标签标识。  |
 
 ## Constants<sup>8+</sup>
 
@@ -1605,19 +1605,19 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称                          | 默认值                 | 说明                       |
-| ----------------------------- | ---------------------- | -------------------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | 表示操作，隐式添加帐号。   |
-| ACTION_AUTHENTICATE           | "authenticate"         | 表示操作，鉴权。           |
-| KEY_NAME                      | "name"                 | 表示键名，应用帐号名称。   |
+| 名称                            | 默认值                    | 说明            |
+| ----------------------------- | ---------------------- | ------------- |
+| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | 表示操作，隐式添加帐号。  |
+| ACTION_AUTHENTICATE           | "authenticate"         | 表示操作，鉴权。      |
+| KEY_NAME                      | "name"                 | 表示键名，应用帐号名称。  |
 | KEY_OWNER                     | "owner"                | 表示键名，应用帐号所有者。 |
-| KEY_TOKEN                     | "token"                | 表示键名，令牌。           |
-| KEY_ACTION                    | "action"               | 表示键名，操作。           |
-| KEY_AUTH_TYPE                 | "authType"             | 表示键名，鉴权类型。       |
-| KEY_SESSION_ID                | "sessionId"            | 表示键名，会话标识。       |
-| KEY_CALLER_PID                | "callerPid"            | 表示键名，调用方PID。      |
-| KEY_CALLER_UID                | "callerUid"            | 表示键名，调用方UID。      |
-| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | 表示键名，调用方包名。     |
+| KEY_TOKEN                     | "token"                | 表示键名，令牌。      |
+| KEY_ACTION                    | "action"               | 表示键名，操作。      |
+| KEY_AUTH_TYPE                 | "authType"             | 表示键名，鉴权类型。    |
+| KEY_SESSION_ID                | "sessionId"            | 表示键名，会话标识。    |
+| KEY_CALLER_PID                | "callerPid"            | 表示键名，调用方PID。  |
+| KEY_CALLER_UID                | "callerUid"            | 表示键名，调用方UID。  |
+| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | 表示键名，调用方包名。   |
 
 ## ResultCode<sup>8+</sup>
 
@@ -1625,27 +1625,27 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称                                | 默认值 | 说明                     |
-| ----------------------------------- | ------ | ------------------------ |
-| SUCCESS                             | 0      | 表示操作成功。           |
-| ERROR_ACCOUNT_NOT_EXIST             | 10001  | 表示应用帐号不存在。     |
-| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002  | 表示应用帐号服务异常。   |
-| ERROR_INVALID_PASSWORD              | 10003  | 表示密码无效。           |
-| ERROR_INVALID_REQUEST               | 10004  | 表示请求无效。           |
-| ERROR_INVALID_RESPONSE              | 10005  | 表示响应无效。           |
-| ERROR_NETWORK_EXCEPTION             | 10006  | 表示网络异常。           |
-| ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST | 10007  | 表示认证器不存在。       |
-| ERROR_OAUTH_CANCELED                | 10008  | 表示鉴权取消。           |
-| ERROR_OAUTH_LIST_TOO_LARGE          | 10009  | 表示开放授权列表过大。   |
-| ERROR_OAUTH_SERVICE_BUSY            | 10010  | 表示开放授权服务忙碌。   |
-| ERROR_OAUTH_SERVICE_EXCEPTION       | 10011  | 表示开放授权服务异常。   |
-| ERROR_OAUTH_SESSION_NOT_EXIST       | 10012  | 表示鉴权会话不存在。     |
-| ERROR_OAUTH_TIMEOUT                 | 10013  | 表示鉴权超时。           |
-| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014  | 表示开放授权令牌不存在。 |
-| ERROR_OAUTH_TOKEN_TOO_MANY          | 10015  | 表示开放授权令牌过多。   |
-| ERROR_OAUTH_UNSUPPORT_ACTION        | 10016  | 表示不支持的鉴权操作。   |
-| ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017  | 表示不支持的鉴权类型。   |
-| ERROR_PERMISSION_DENIED             | 10018  | 表示权限不足。           |
+| 名称                                  | 默认值   | 说明           |
+| ----------------------------------- | ----- | ------------ |
+| SUCCESS                             | 0     | 表示操作成功。      |
+| ERROR_ACCOUNT_NOT_EXIST             | 10001 | 表示应用帐号不存在。   |
+| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | 表示应用帐号服务异常。  |
+| ERROR_INVALID_PASSWORD              | 10003 | 表示密码无效。      |
+| ERROR_INVALID_REQUEST               | 10004 | 表示请求无效。      |
+| ERROR_INVALID_RESPONSE              | 10005 | 表示响应无效。      |
+| ERROR_NETWORK_EXCEPTION             | 10006 | 表示网络异常。      |
+| ERROR_OAUTH_AUTHENTICATOR_NOT_EXIST | 10007 | 表示认证器不存在。    |
+| ERROR_OAUTH_CANCELED                | 10008 | 表示鉴权取消。      |
+| ERROR_OAUTH_LIST_TOO_LARGE          | 10009 | 表示开放授权列表过大。  |
+| ERROR_OAUTH_SERVICE_BUSY            | 10010 | 表示开放授权服务忙碌。  |
+| ERROR_OAUTH_SERVICE_EXCEPTION       | 10011 | 表示开放授权服务异常。  |
+| ERROR_OAUTH_SESSION_NOT_EXIST       | 10012 | 表示鉴权会话不存在。   |
+| ERROR_OAUTH_TIMEOUT                 | 10013 | 表示鉴权超时。      |
+| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | 表示开放授权令牌不存在。 |
+| ERROR_OAUTH_TOKEN_TOO_MANY          | 10015 | 表示开放授权令牌过多。  |
+| ERROR_OAUTH_UNSUPPORT_ACTION        | 10016 | 表示不支持的鉴权操作。  |
+| ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017 | 表示不支持的鉴权类型。  |
+| ERROR_PERMISSION_DENIED             | 10018 | 表示权限不足。      |
 
 ## AuthenticatorCallback<sup>8+</sup>
 
@@ -1660,10 +1660,10 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 参数名 | 类型                 | 必填 | 说明         |
-| ------ | -------------------- | ---- | ------------ |
-| code   | number               | 是   | 鉴权结果码。 |
-| result | {[key: string]: any} | 是   | 鉴权结果。   |
+| 参数名    | 类型                   | 必填   | 说明     |
+| ------ | -------------------- | ---- | ------ |
+| code   | number               | 是    | 鉴权结果码。 |
+| result | {[key: string]: any} | 是    | 鉴权结果。  |
 
 **示例：**
 
@@ -1690,9 +1690,9 @@ onRequestRedirected: (request: Want) =&gt; void
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 参数名  | 类型 | 必填 | 说明                 |
-| ------- | ---- | ---- | -------------------- |
-| request | Want | 是   | 用于跳转的请求信息。 |
+| 参数名     | 类型   | 必填   | 说明         |
+| ------- | ---- | ---- | ---------- |
+| request | Want | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
@@ -1727,12 +1727,12 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 参数名           | 类型                  | 必填 | 说明                           |
-| ---------------- | --------------------- | ---- | ------------------------------ |
-| authType         | string                | 是   | 应用帐号的鉴权类型。           |
-| callerBundleName | string                | 是   | 鉴权请求方的包名。             |
-| options          | {[key: string]: any}  | 是   | 鉴权所需要的可选项。           |
-| callback         | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+| 参数名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| authType         | string                | 是    | 应用帐号的鉴权类型。      |
+| callerBundleName | string                | 是    | 鉴权请求方的包名。       |
+| options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
+| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
 
 ### authenticate<sup>8+</sup>
 
@@ -1743,13 +1743,13 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 接口名           | 类型                  | 必填 | 说明                           |
-| ---------------- | --------------------- | ---- | ------------------------------ |
-| name             | string                | 是   | 应用帐号的名称。               |
-| authType         | string                | 是   | 应用帐号的鉴权类型。           |
-| callerBundleName | string                | 是   | 鉴权请求方的包名。             |
-| options          | {[key: string]: any}  | 是   | 鉴权所需要的可选项。           |
-| callback         | AuthenticatorCallback | 是   | 认证器回调，用于返回鉴权结果。 |
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| name             | string                | 是    | 应用帐号的名称。        |
+| authType         | string                | 是    | 应用帐号的鉴权类型。      |
+| callerBundleName | string                | 是    | 鉴权请求方的包名。       |
+| options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
+| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
 
 **示例：**
 
