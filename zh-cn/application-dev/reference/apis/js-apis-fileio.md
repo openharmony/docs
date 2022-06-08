@@ -213,7 +213,7 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -288,7 +288,7 @@ close(fd: number):Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -354,7 +354,7 @@ close(): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -405,7 +405,7 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -479,7 +479,7 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -733,7 +733,7 @@ rmdir(path: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -803,7 +803,7 @@ unlink(path:string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1027,7 +1027,7 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1175,7 +1175,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。|
 
 **示例：**
   ```js
@@ -1248,7 +1248,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1548,7 +1548,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1618,7 +1618,7 @@ fsync(fd: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1687,7 +1687,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1757,7 +1757,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例,用于异步获取结果,Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1830,7 +1830,7 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1981,7 +1981,7 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                 | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果，Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -2208,7 +2208,7 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -2286,7 +2286,7 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **返回值：**
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise实例，用于异步获取结果。Promise对象。无返回值。 |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
