@@ -2,9 +2,7 @@
 
 
 > **NOTE**<br>
-> This API is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-The **&lt;LongPressGesture&gt;** component can be used to trigger a long press gesture.
+> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
