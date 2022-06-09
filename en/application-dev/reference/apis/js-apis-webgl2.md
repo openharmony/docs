@@ -12,7 +12,8 @@ This module provides WebGL APIs that correspond to the OpenGL ES 3.0 feature set
 Create a **<canvas\>** component in the HML file. The following is an example:
 
 
-```
+```html
+<!--xxx.hml-->
 <div class="container">
     <canvas ref="canvas1" style="width : 400px; height : 200px; background-color : lightyellow;"></canvas>
     <button class="btn-button" onclick="BtnDraw2D">BtnDraw2D</button>
