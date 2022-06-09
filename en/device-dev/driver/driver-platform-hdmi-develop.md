@@ -235,7 +235,7 @@ The HDMI module adaptation involves the following steps:
         > ![](../public_sys-resources/icon-note.gif) **NOTE**
         >
         >
-        > To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **hdmi_config.hcs** file to initialize the members in the custom structure and passes important parameters, such as the device number and bus number, to the **HdmiCntlr** object at the core layer.
+        > To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **hdmi_config.hcs** file to initialize the members in the custom structure and pass important parameters, such as the device number and bus number, to the **HdmiCntlr** object at the core layer.
     
         ```c
         struct HdmiAdapterHost {
