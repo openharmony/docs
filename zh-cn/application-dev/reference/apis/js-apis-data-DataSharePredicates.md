@@ -723,7 +723,7 @@ dataSharePredicates.groupBy(["AGE", "NAME"])
 
 indexedBy(field: string): DataSharePredicates
 
-该接口用于配置谓词以指定索引列。目前仅RDB支持该谓词。
+该接口用于配置谓词按指定索引列查询结果。目前仅RDB支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 

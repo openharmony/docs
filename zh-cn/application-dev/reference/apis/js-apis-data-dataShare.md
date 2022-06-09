@@ -84,7 +84,7 @@ dataShare.createDataShareHelper(this.context, dseUri).then((data) => {
 
 ## DataShareHelper
 
-DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#dataShare.createDataShareHelper)构建一个实例。
+DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datashare.createdatasharehelper)构建一个实例。
 
 ### openFile
 
@@ -368,7 +368,7 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt;&gt;
 
-获取支持的文件的MIME类型。使用callback异步回调。
+获取支持的文件的MIME类型。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -472,7 +472,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | 名称     | 类型                   | 必填 | 描述                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 指示要反规范化的URI。                         |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需执行任何操作，则返回原始URI；若不支持则返回空。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空。 |
 
 **示例：**
 
