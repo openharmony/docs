@@ -28,7 +28,7 @@ struct GpioMethod {
   int32_t (*unsetIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*enableIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*disableIrq)(struct GpioCntlr *cntlr, uint16_t local);
-}
+};
 ```
 
   **Table 1** Description of the callback functions in GpioMethod

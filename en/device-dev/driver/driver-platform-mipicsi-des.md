@@ -46,14 +46,14 @@ The figure below shows a simplified CSI. The D-PHY transmits data by using one p
 
 <a name="table3_MIPI_CSIDes"></a>
 
-  | Category| API| 
+| Category| API|
 | -------- | -------- |
-| Opening or closing the MIPI CSI controller operation handle| **MipiCsiOpen**: opens the MIPI CSI controller operation handle.<br>**MipiCsiClose**: closes the MIPI CSI controller operation handle.| 
-| Setting MIPI CSI parameters| **MipiCsiSetComboDevAttr**: sets parameters of the MIPI, CMOS, or LVDS camera to the controller. The parameters include the working mode, image area, image depth, data rate, and physical channel.<br>**MipiCsiSetExtDataType** (optional): sets the YUV and RAW data formats and bit depths.<br>**MipiCsiSetHsMode**: sets the MIPI RX lane distribution. Set the mode based on the hardware connection.<br>**MipiCsiSetPhyCmvmode**: sets the common-mode voltage (CMV) mode.| 
-| Resetting a sensor or deasserting the reset of a sensor| **MipiCsiResetSensor**: resets a sensor.<br>**MipiCsiUnresetSensor**: deasserts the reset of a sensor.| 
-| Resetting the MIPI RX or deasserting the reset of the MIPI RX| **MipiCsiResetRx**: resets the MIPI&amp;nbsp;RX. The value of **enSnsType** varies depending on the value of **s32WorkingViNum**.<br>**MipiCsiUnresetRx**: deasserts the reset on the MIPI&amp;nbsp;RX.| 
-| Enabling or disabling the MIPI Clock| **MipiCsiEnableClock**: enables the MIPI clock. The **enSnsType** passed by the upper-layer function during electrophoresis determines whether MIPI or LVDS is used.<br>**MipiCsiDisableClock**: disables the MIPI clock.| 
-| Enabling or disabling the MIPI sensor clock| **MipiCsiEnableSensorClock**: enables the MIPI sensor clock.<br>**MipiCsiDisableSensorClock**: disables the MIPI sensor clock.| 
+| Opening or closing the MIPI CSI controller operation handle| **MipiCsiOpen**: opens the MIPI CSI controller operation handle.<br>**MipiCsiClose**: closes the MIPI CSI controller operation handle.|
+| Setting MIPI CSI attributes | **MipiCsiSetComboDevAttr**: sets attributes of the MIPI, CMOS, or LVDS camera to the controller. The attributes include the working mode, image area, image depth, data rate, and physical channel.<br>**MipiCsiSetExtDataType** (optional): sets the YUV and RAW data formats and bit depths.<br>**MipiCsiSetHsMode**: sets the MIPI RX lane distribution. Set the mode based on the hardware connection.<br>**MipiCsiSetPhyCmvmode**: sets the common-mode voltage (CMV) mode. |
+| Resetting a sensor or deasserting the reset of a sensor| **MipiCsiResetSensor**: resets a sensor.<br>**MipiCsiUnresetSensor**: deasserts the reset of a sensor.|
+| Resetting the MIPI RX or deasserting the reset of the MIPI RX| **MipiCsiResetRx**: resets the MIPI&amp;nbsp;RX. The value of **enSnsType** varies depending on the value of **s32WorkingViNum**.<br>**MipiCsiUnresetRx**: deasserts the reset on the MIPI&amp;nbsp;RX.|
+| Enabling or disabling the MIPI clock| **MipiCsiEnableClock**: enables the MIPI clock. The **enSnsType** passed by the upper-layer function during electrophoresis determines whether MIPI or LVDS is used.<br>**MipiCsiDisableClock**: disables the MIPI clock.|
+| Enabling or disabling the MIPI sensor clock| **MipiCsiEnableSensorClock**: enables the MIPI sensor clock.<br>**MipiCsiDisableSensorClock**: disables the MIPI sensor clock.|
 
 
 ## Usage Guidelines
@@ -90,7 +90,7 @@ For example, open the controller operation handle of MIPI CSI lane 0:
 
 ```c
 DevHandle mipiCsiHandle = NULL;  /* Device handle */
-id = 0; /* MIPI CSI lane ID*/
+id = 0; /* MIPI CSI lane ID */
 
 /* Open the controller operation handle. */
 MipiCsiHandle = MipiCsiOpen(id);

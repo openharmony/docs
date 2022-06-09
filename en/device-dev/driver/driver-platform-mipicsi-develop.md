@@ -198,9 +198,11 @@ The following uses **mipi_rx_hi35xx.c** as an example to present the information
 - Init function
 
    **Input parameter**:
-   **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-  
+   
+  **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
+   
    **Return value**:
+   
    HDF_STATUS<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
 
 
@@ -214,6 +216,7 @@ The following uses **mipi_rx_hi35xx.c** as an example to present the information
    | HDF_FAILURE            |   Operation failed.  |
 
    **Function description**:
+
    Attaches the **MipiCsiCntlrMethod** instance, calls **MipiCsiRegisterCntlr**, and initializes the custom structure.
 
 
@@ -283,14 +286,19 @@ The following uses **mipi_rx_hi35xx.c** as an example to present the information
 - Release function
 
    **Input parameter**:
-   **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-  
+   
+  **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
+   
    **Return value**:
-   No value is returned.
   
-   **Function description**:
-   Releases the memory and deletes the controller. This function assigns values to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the value assignment operations.
-
+   No value is returned.
+   
+  **Function description**:
+  
+  Releases the memory and deletes the controller. This function assigns values to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. 
+  
+  All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the value assignment operations.
+  
   ```c
   static void Hi35xxMipiCsiRelease(struct HdfDeviceObject *device)
   {
