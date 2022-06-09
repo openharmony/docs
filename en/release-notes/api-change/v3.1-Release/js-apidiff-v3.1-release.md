@@ -1,4 +1,4 @@
-# JS API Diff
+# JS API Differences
 
 For details about the JS API changes in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS, see the following documents of each subsystem:
 - [Ability framework](js-apidiff-ability.md)
@@ -9,10 +9,10 @@ For details about the JS API changes in OpenHarmony 3.1 Release over OpenHarmony
 - [Bundle management subsystem](js-apidiff-bundle.md)
 - [Communication subsystem](js-apidiff-communicate.md)
 - [Multi-language Runtime subsystem](js-apidiff-compiler-and-runtime.md)
-- [DFX](js-apidiff-dfx.md)
+- [DFX subsystem](js-apidiff-dfx.md)
 - [Distributed data management subsystem](js-apidiff-distributed-data.md)
 - [Distributed hardware subsystem](js-apidiff-distributed-hardware.md)
-- [Common event and notification framework](js-apidiff-event-and-notification.md)
+- [Common event and notification subsystem](js-apidiff-event-and-notification.md)
 - [File management subsystem](js-apidiff-file-management.md)
 - [Location subsystem](js-apidiff-geolocation.md)
 - [Globalization subsystem](js-apidiff-global.md)
@@ -21,7 +21,7 @@ For details about the JS API changes in OpenHarmony 3.1 Release over OpenHarmony
 - [Multimodal input subsystem](js-apidiff-multi-modal-input.md)
 - [Multimedia subsystem](js-apidiff-multimedia.md)
 - [Network management subsystem](js-apidiff-network.md)
-- [Resource scheduling subsystem](js-apidiff-resource-scheduler.md)
+- [Distributed scheduler subsystem](js-apidiff-resource-scheduler.md)
 - [Security subsystem](js-apidiff-security.md)
 - [Pan-sensor subsystem](js-apidiff-sensor.md)
 - [Application framework subsystem](js-apidiff-settings.md)
