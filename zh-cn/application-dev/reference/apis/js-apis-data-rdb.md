@@ -1807,7 +1807,7 @@ rdbStore.restore("dbBackup.db", function(err) {
 
 ### restore<sup>9+</sup>
 
-restore(destName:string): Promise&lt;void&gt;
+restore(srcName:string): Promise&lt;void&gt;
 
 从指定的数据库备份文件恢复数据库，结果以promise形式返回。
 
