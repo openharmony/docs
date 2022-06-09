@@ -158,7 +158,6 @@ Requests the temporary permission for the application to access the USB device.
   });
   ```
 
-
 ## usb.claimInterface
 
 claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
@@ -243,14 +242,13 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
   console.log(`setConfiguration = ${ret}`);
   ```
 
-
 ## usb.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface..
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -290,7 +288,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Uint8Array | Raw descriptor data. |
+  | Uint8Array | Raw descriptor data. The value **undefined** indicates that the operation has failed. |
 
 - **Example**
   ```js
@@ -316,7 +314,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | File descriptor of the USB device. |
+  | number | File descriptor of the USB device. The value **-1** indicates that the operation has failed. |
 
 - **Example**
   ```js
