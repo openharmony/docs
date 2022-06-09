@@ -11,7 +11,7 @@ The "js" tag contains the instance name, window style, and page route informatio
 | window | Object | - | No | Window information. For details, see ["window"](#window). | 
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The "name", "window", and "pages" tags are configured in the "js" tag of the config.json file.
 
 
@@ -32,7 +32,7 @@ The "pages" defines the route information of each page. Each page consists of th
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > 
 > - The first page in the pages list is the home page, also referred to as the entry, of the application.
 >
@@ -47,14 +47,15 @@ The "window" defines window-related configurations. To solve the screen adaptati
 
 - Set autoDesignWidth to true, the designWidth field will be ignored, and the component and layout will be scaled automatically based on the screen density. The logical screen width is automatically calculated based on the physical screen width and screen density. The logical screen width may vary depending on the device. Use the relative layout to adapt to different devices. For example, on a device with a resolution of 466x466 and 320 DPI (a screen density of 2x, with 160 DPI as the base), 1 px is equivalent to 2 physical px.
   
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
   > 1. The default  &lt;length&gt; value in the current style is calculated based on the screen density. For example, if the screen density is x2 (with 160 DPI as the baseline) and the default  &lt;length&gt; value is 1 px, the actual length rendered on the device is 2 physical px.
   > 
   > 2. Values of autoDesignWidth and designWidth do not affect how the default  &lt;length&gt; value is calculated and the final effect.
+
+
 | Attribute | Type | Mandatory | Default Value | Description |
 | -------- | -------- | -------- | -------- | -------- |
-|  |  |  |  |  |
-| designWidth | number | No | 720<br/> | Logical screen width, which is a reference value for page design. The actual display width is scaled at the ratio of the value to the device width. |
+| designWidth | number | No | 720 | Logical screen width, which is a reference value for page design. The actual display width is scaled at the ratio of the value to the device width. |
 | autoDesignWidth | boolean | No | false | Whether to automatically calculate the baseline width. If autoDesignWidth is set to true, designWidth is ignored. The baseline width is calculated based on the physical screen width and screen density. |
 
 The following is a sample code snippet:
