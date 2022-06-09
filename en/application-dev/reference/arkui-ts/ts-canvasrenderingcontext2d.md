@@ -1,11 +1,11 @@
 # CanvasRenderingContext2D
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Use **RenderingContext** to draw rectangles, text, images, and other objects on a canvas.
+The **&lt;RenderingContext&gt;** component is used to draw rectangles, text, images, and other objects on a canvas.
 
 
 ## APIs
@@ -15,7 +15,7 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 - Parameters
     | Name    | Type                                     | Mandatory | Default Value | Description                   |
     | ------- | ---------------------------------------- | --------- | ------------- | ----------------------------- |
-    | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes       | -             | See RenderingContextSettings. |
+    | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes       | -             | See [RenderingContextSettings](#renderingcontextsettings). |
 
 
 ### RenderingContextSettings
