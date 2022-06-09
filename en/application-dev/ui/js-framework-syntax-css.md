@@ -159,8 +159,8 @@ The following is an example for you to use the :active pseudo-class to control t
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> Pseudo-classes are not supported for the <popup> component and its child components, including, <dialog>, <menu>, <option>, and <picker>.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> Pseudo-classes are not supported for the <popup> component and its child components, including <popup>, <dialog>, <menu>, <option>, and <picker>.
 
 
 ## Precompiled Styles
@@ -199,7 +199,7 @@ Precompilation is a program that uses specific syntax to generate CSS files. It 
   ```
 
   
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
   > Place precompiled style files in the common directory.
 
 ## CSS Style Inheritance<sup>6+</sup>
