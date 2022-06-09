@@ -1,18 +1,14 @@
 # Ability Development
 ## When to Use
-The stage model is an application development model introduced in API version 9. For details about this model, see [Stage Model Overview](stage-brief.md). To develop an ability based on the stage model, you must implement the following logic:
-- Create Page abilities for an application that needs to be browsed on the screen and supports man-machine interaction, such as video playback and news browsing.
-- Obtain ability configuration information, such as **ApplicationInfo**, **AbilityInfo**, and **HapModuleInfo**.
-- Start an ability, start an ability with start options, start an ability with the returned result, or start an ability with an account ID.
-- Request certain permissions from end users.
-- Notify the ability stage and ability of environment configuration changes.
-- Call common components. For details, see [Call Development](stage-call.md).
-- Connect to and disconnect from the Service Extension ability. For details, see [Service Extension Ability Development](stage-serviceextension.md).
-- Continue the application on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
+Unlike the FA model, the [stage model](stage-brief.md) requires you to declare the application package structure in the `module.json` and `app.json` files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop abilities based on the stage model, implement the following logic:
+- Create abilities for an application that involves screen viewing and human-machine interaction. You must implement the following scenarios: ability lifecycle callbacks, obtaining ability configuration, requesting permissions, and notifying environment changes.
+- Start an ability. You need to implement ability startup on the same device, on a remote device, or with a specified UI page.
+- Call abilities. For details, see [Call Development](stage-call.md).
+- Connect to and disconnect from a Service Extension ability. For details, see [Service Extension Ability Development](stage-serviceextension.md).
+- Continue the ability on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
 
 ### Launch Type
-The ability supports three launch types: singleton, multi-instance, and instance-specific.
-The **launchType** item in the **module.json** file is used to specify the launch type.
+The ability supports three launch types: singleton, multi-instance, and instance-specific. Each launch type, specified by `launchType` in the `module.json` file, specifies the action that can be performed when the ability is started.
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
@@ -20,56 +16,49 @@ The **launchType** item in the **module.json** file is used to specify the launc
 | singleton   | Singleton  | Only one instance exists in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, **singleton** is used.
-
-## Available APIs
-The table below describes the APIs provided by the **AbilityStage** class, which has the **context** attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
+By default, the singleton mode is used. The following is an example of the `module.json` file:
+```json
+{
+  "module": {
+    "abilities": [
+      {
+        "launchType": "singleton",
+      }
+    ]
+  }
+}
+```
+## Creating an Ability
+### Available APIs
+The table below describes the APIs provided by the `AbilityStage` class, which has the `context` attribute. For details about the APIs, see [AbilityStage](../reference/apis/js-apis-application-abilitystage.md).
 
 **Table 1** AbilityStage APIs
 |API|Description|
 |:------|:------|
-|void onCreate()|Called when an ability stage is created.|
-|string onAcceptWant(want: Want)|Called when a specified ability is started.|
-|void onConfigurationUpdated(config: Configuration)|Called when the global configuration is updated.|
+|onCreate(): void|Called when an ability stage is created.|
+|onAcceptWant(want: Want): string|Called when a specified ability is started.|
+|onConfigurationUpdated(config: Configuration): void|Called when the global configuration is updated.|
 
-The table below describes the APIs provided by the **Ability** class. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
+The table below describes the APIs provided by the `Ability` class. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
 
 **Table 2** Ability APIs
 |API|Description|
 |:------|:------|
-|void onCreate(want: Want, param: AbilityConstant.LaunchParam)|Called when an ability is created.|
-|void onDestroy()|Called when the ability is destroyed.|
-|void onWindowStageCreate(windowStage: window.WindowStage)|Called when a **WindowStage** is created for the ability. You can use the **window.WindowStage** APIs to implement operations such as page loading.|
-|void onWindowStageDestroy()|Called when the **WindowStage** is destroyed for the ability.|
-|void onForeground()|Called when the ability is running in the foreground.|
-|void onBackground()|Called when the ability is switched to the background.|
-|void onNewWant(want: Want)|Called when the ability startup mode is set to singleton.|
-|void onConfigurationUpdated(config: Configuration)|Called when the configuration of the environment where the ability is running is updated.|
-
-The **Ability** class has the **context** attribute, which belongs to the **AbilityContext** class. The **AbilityContext** class has attributes such as **abilityInfo** and **currentHapModuleInfo**. For details about the APIs, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
-
-**Table 3** AbilityContext APIs
-|API|Description|
-|:------|:------|
-|void startAbility(want: Want, callback: AsyncCallback<void>)|Starts an ability.|
-|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with start options.|
-|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|Starts an ability with the account ID.|
-|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with the account ID and start options.|
-|void startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result.|
-|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result and start options.|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result and account ID.|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with the returned result, account ID, and start options.|
-|void terminateSelf(callback: AsyncCallback<void>)|Destroys the Page ability.|
-|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback<void>)|Destroys the Page ability with the returned result.|
-
-## How to Develop
-### Creating Page Abilities for an Application
-To create Page abilities for an application on the stage model, you must implement the **AbilityStage** class and ability lifecycle callbacks, and use the **Window** APIs to set the pages. The sample code is as follows:
-1. Import the **AbilityStage** module.
+|onCreate(want: Want, param: AbilityConstant.LaunchParam): void|Called when an ability is created.|
+|onDestroy(): void|Called when the ability is destroyed.|
+|onWindowStageCreate(windowStage: window.WindowStage): void|Called when a `WindowStage` is created for the ability. You can use the `window.WindowStage` APIs to implement operations such as page loading.|
+|onWindowStageDestroy(): void|Called when the `WindowStage` is destroyed for the ability.|
+|onForeground(): void|Called when the ability is switched to the foreground.|
+|onBackground(): void|Called when the ability is switched to the background.|
+|onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void|Called when the ability launch type is set to `singleton`.|
+|onConfigurationUpdated(config: Configuration): void|Called when the configuration of the environment where the ability is running is updated.|
+### Implementing AbilityStage and Ability Lifecycle Callbacks
+To create Page abilities for an application in the stage model, you must implement the `AbilityStage` class and ability lifecycle callbacks, and use the `Window` APIs to set the pages. The sample code is as follows:
+1. Import the `AbilityStage` module.
    ```
    import AbilityStage from "@ohos.application.AbilityStage"
    ```
-2. Implement the **AbilityStage** class.
+2. Implement the `AbilityStage` class.
    ```ts
    export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -77,13 +66,13 @@ To create Page abilities for an application on the stage model, you must impleme
     }
    }
    ```
-3. Import the **Ability** module.
+3. Import the `Ability` module.
    ```js
    import Ability from '@ohos.application.Ability'
    ```
-4. Implement the lifecycle callbacks of the **Ability** class.
+4. Implement the lifecycle callbacks of the `Ability` class.
 
-   In the **onWindowStageCreate(windowStage)** API, use **loadContent** to set the pages to be loaded by the application. For details about how to use the **Window** APIs, see [Window Development](../windowmanager/window-guidelines.md).
+   In the `onWindowStageCreate(windowStage)` API, use `loadContent` to set the application page to be loaded. For details about how to use the `Window` APIs, see [Window Development](../windowmanager/window-guidelines.md).
    ```ts
    export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -100,7 +89,7 @@ To create Page abilities for an application on the stage model, you must impleme
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
-            console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
+            console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
 
@@ -117,8 +106,8 @@ To create Page abilities for an application on the stage model, you must impleme
     }
    }
    ```
-### Obtaining AbilityStage and Ability Configuration Information
-Both the **AbilityStage** and **Ability** classes have the **context** attribute. An application can obtain the context of the **Ability** instance through **this.context** to obtain detailed configuration information. The following example shows how the ability stage obtains the bundle code directory, HAP file name, ability name, and system language through the **context** attribute. The sample code is as follows:
+### Obtaining AbilityStage and Ability Configurations
+Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details. The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
 export default class MyAbilityStage extends AbilityStage {
@@ -137,7 +126,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-The following example shows how the ability obtains the bundle code directory, HAP file name, ability name, and system language through the **context** attribute. The sample code is as follows:
+The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `Ability` class. The sample code is as follows:
 ```ts
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
@@ -155,9 +144,82 @@ export default class MainAbility extends Ability {
     }
 }
 ```
+### Requesting Permissions
+If an application needs to obtain user privacy information or use system capabilities, for example, obtaining location information or using the camera to take photos or record videos, it must request the permission from consumers. During application development, you need to specify the involved sensitive permissions, declare the required permissions in `module.json`, and use the `requestPermissionsFromUser` API to request the permission from consumers in the form of a dialog box. The following uses the permissions for calendar access as an example.
 
-### Starting an Ability
-An application can obtain the context of an **Ability** instance through **this.context** and then use the **StartAbility** API in the **AbilityContext** class to start the ability. The ability can be started by specifying **Want**, **StartOptions**, and **accountId**, and the operation result can be returned using a callback or **Promise** instance. The sample code is as follows:
+Declare the required permissions in the `module.json` file.
+```json
+"requestPermissions": [
+    {
+    "name": "ohos.permission.READ_CALENDAR"
+    }
+]
+```
+Request the permissions from consumers in the form of a dialog box:
+```ts
+let context = this.context
+let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
+context.requestPermissionsFromUser(permissions).then((data) => {
+    console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
+}).catch((error) => {
+    console.log("Failed to request permission from user with error: " + JSON.stringify(error))
+})
+```
+### Notifying of Environment Changes
+Environment changes include changes of global configurations and ability configurations. Currently, the global configurations include the system language and color mode. The change of global configurations is generally triggered by the configuration item in **Settings** or the icon in **Control Panel**. The ability configuration is specific to a single `Ability` instance, including the display ID, screen resolution, and screen orientation. The configuration is related to the display where the ability is located, and the change is generally triggered by the window. For details on the configuration, see [Configuration](../reference/apis/js-apis-configuration.md).
+
+For an application in the stage model, when the configuration changes, its abilities are not restarted, but the `onConfigurationUpdated(config: Configuration)` callback is triggered. If the application needs to perform processing based on the change, you can overwrite `onConfigurationUpdated`. Note that the `Configuration` object in the callback contains all the configurations of the current ability, not only the changed configurations.
+
+The following example shows the implement of the `onConfigurationUpdated` callback in the `AbilityStage` class. The callback is triggered when the system language and color mode are changed.  
+```ts
+import Ability from '@ohos.application.Ability'
+import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
+
+export default class MyAbilityStage extends AbilityStage {
+    onConfigurationUpdated(config) {
+        if (config.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+            console.log('colorMode changed to dark')
+        }
+    }
+}
+```
+
+The following example shows the implement of the `onConfigurationUpdated` callback in the `Ability` class. The callback is triggered when the system language, color mode, or display parameters (such as the direction and density) change.  
+```ts
+import Ability from '@ohos.application.Ability'
+import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
+
+export default class MainAbility extends Ability {
+    direction : number;
+
+    onCreate(want, launchParam) {
+        this.direction = this.context.config.direction
+    }
+
+    onConfigurationUpdated(config) {
+        if (this.direction !== config.direction) {
+            console.log(`direction changed to ${config.direction}`)
+        }
+    }
+}
+```
+## Starting an Ability
+### Available APIs
+The `Ability` class has the `context` attribute, which belongs to the `AbilityContext` class. The `AbilityContext` class has the `abilityInfo`, `currentHapModuleInfo`, and other attributes and the APIs used for starting abilities. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
+
+**Table 3** AbilityContext APIs
+|API|Description|
+|:------|:------|
+|startAbility(want: Want, callback: AsyncCallback<void>): void|Starts an ability.|
+|startAbility(want: Want, options?: StartOptions): Promise<void>|Starts an ability.|
+|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>): void|Starts an ability with the account ID.|
+|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<void>|Starts an ability with the account ID.|
+|startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>): void|Starts an ability with the returned result.|
+|startAbilityForResult(want: Want, options?: StartOptions): Promise<AbilityResult>|Starts an ability with the returned result.|
+|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void|Starts an ability with the execution result and account ID.|
+|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<AbilityResult>|Starts an ability with the execution result and account ID.|
+### Starting an Ability on the Same Device
+An application can obtain the context of an `Ability` instance through `this.context` and then use the `startAbility` API in the `AbilityContext` class to start the ability. The ability can be started by specifying `Want`, `StartOptions`, and `accountId`, and the operation result can be returned using a callback or `Promise` instance. The sample code is as follows:
 ```ts
 let context = this.context
 var want = {
@@ -165,20 +227,17 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-var options = {
-    windowMode: 0,
-    displayId: 2
-};
-context.startAbility(want, options).then((data) => {
+context.startAbility(want).then((data) => {
     console.log("Succeed to start ability with data: " + JSON.stringify(data))
 }).catch((error) => {
     console.error("Failed to start ability with error: "+ JSON.stringify(error))
 })
 ```
 
-### Starting an Ability on a Remote Device (Available only to System Applications)
->Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, cross-device ability startup applies only to system applications.
+### Starting an Ability on a Remote Device
+This feature applies only to system applications, since the `getTrustedDeviceListSync` API of the `DeviceManager` class is open only to system applications.
 In the cross-device scenario, you must specify the ID of the remote device. The sample code is as follows:
+
 ```ts
 let context = this.context
 var want = {
@@ -189,10 +248,10 @@ var want = {
 context.startAbility(want).then((data) => {
     console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+    console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
 ```
-Obtain the ID of a specified device from **DeviceManager**. The sample code is as follows:
+Obtain the ID of a specified device from `DeviceManager`. The sample code is as follows:
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
@@ -209,68 +268,57 @@ function getRemoteDeviceId() {
     }
 }
 ```
+Request the permission `ohos.permission.DISTRIBUTED_DATASYNC ` from consumers. This permission is used for data synchronization. For details about the sample code for requesting the permission, see [Requesting Permissions](##requesting-permissions).
+### Starting an Ability with the Specified Page
+If the launch type of an ability is set to `singleton` and the ability has been started, the `onNewWant` callback is triggered when the ability is started again. You can pass start options through the `want`. For example, to start an ability with the specified page, use the `uri` or `parameters` parameter in the `want` to pass the page information. Currently, the ability in the stage model cannot directly use the `router` capability. You must pass the start options to the custom component and invoke the `router` method to display the specified page during the custom component lifecycle management. The sample code is as follows:
 
-### Requesting Permissions
-If an application requires certain permissions, such as storage, location information, and log access, the application must request the permissions from end users. After determining the required permissions, add the permissions in the **module.json** file and use **requestPermissionsFromUser** to request the permissions from end users in the form of a dialog box. The following uses the permissions for calendar access as an example.
-Modify the **module.json** file as follows:
-```json
-"requestPermissions": [
-    {
-    "name": "ohos.permission.READ_CALENDAR"
-    }
-]
-```
-Request the permissions from end users in the form of a dialog box:
+When using `startAbility` to start an ability again, use the `uri` parameter in the `want` to pass the page information.
 ```ts
-let context = this.context
-let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
-context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
-}).catch((error) => {
-    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
-})
-```
-In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code is as follows:
-```ts
-let context = this.context
-let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
-context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log("Succeed to request permission from user with data: "+ JSON.stringify(data))
-}).catch((error) => {
-    console.log("Failed to request permission from user with error: "+ JSON.stringify(error))
-})
-```
-
-### Notifying of Environment Configuration Changes
-When the global configuration, for example, system language and color mode, changes, the **onConfigurationUpdated** API is called to notify the ability stage and ability. System applications can update the system language and color mode through the **updateConfiguration** API. The following example shows the implement of the **onConfigurationUpdated** callback in the **AbilityStage** class. The callback is triggered when the system language and color mode change. The sample code is as follows:
-```ts
-import Ability from '@ohos.application.Ability'
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
-export default class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdated(config) {
-        console.log("MyAbilityStage onConfigurationUpdated")
-        console.log("MyAbilityStage config language" + config.language)
-        console.log("MyAbilityStage config colorMode" + config.colorMode)
-    }
+async function reStartAbility() {
+  try {
+    await this.context.startAbility({
+      bundleName: "com.sample.MyApplication",
+      abilityName: "MainAbility",
+      uri: "pages/second"
+    })
+    console.log('start ability succeed')
+  } catch (error) {
+    console.error(`start ability failed with ${error.code}`)
+  }
 }
 ```
 
-The following example shows the implement of the **onConfigurationUpdated** callback in the **Ability** class. The callback is triggered when the system language, color mode, and display parameters (such as the direction and density) change. The sample code is as follows:
+Obtain the `want` parameter that contains the page information from the `onNewWant` callback of the ability.
 ```ts
 import Ability from '@ohos.application.Ability'
-import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
-export default class MainAbility extends Ability { {
-    onConfigurationUpdated(config) {
-        console.log("MainAbility onConfigurationUpdated")
-        console.log("MainAbility config language" + config.language)
-        console.log("MainAbility config colorMode" + config.colorMode)
-        console.log("MainAbility config direction" + config.direction)
-        console.log("MainAbility config screenDensity" + config.screenDensity)
-        console.log("MainAbility config displayId" + config.displayId)
+
+export default class MainAbility extends Ability {
+  onNewWant(want, launchParams) {
+    globalThis.newWant = want
+  }
+}
+```
+
+Obtain the `want` parameter that contains the page information from the custom component and process the route based on the URI.
+```ts
+import router from '@system.router'
+
+@Entry
+@Component
+struct Index {
+  newWant = undefined
+
+  onPageShow() {
+    console.info('Index onPageShow')
+    let newWant = globalThis.newWant
+    if (newWant.hasOwnProperty("uri")) {
+      router.push({ uri: newWant.uri });
+      globalThis.newWant = undefined
     }
+  }
 }
 ```
 
 ## Samples
 The following sample is provided to help you better understand how to develop an ability on the stage model:
-- [`StageCallAbility`: Stage Ability Creation and Usage (eTS) (API9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
+- [`StageCallAbility`: Stage Call Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
