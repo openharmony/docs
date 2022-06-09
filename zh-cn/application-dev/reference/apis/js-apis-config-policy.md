@@ -1,14 +1,16 @@
 # 配置策略
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口均为系统接口，三方应用不支持调用。
+>  **说明：**
+>
+>  本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>  本模块接口均为系统接口，三方应用不支持调用。
 
 配置策略提供按预先定义的定制配置层级获取对应定制配置目录和文件路径的能力。
 
 ## 导入模块
 
-```
+```js
 import configPolicy from '@ohos.configPolicy';
 ```
 
@@ -22,18 +24,18 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;): void
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | 是 | 配置文件名 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 异步回调，用于返回最高优先级配置文件的路径 |
+| 参数名      | 类型                          | 必填   | 说明                    |
+| -------- | --------------------------- | ---- | --------------------- |
+| relPath  | string                      | 是    | 配置文件名                 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回最高优先级配置文件的路径 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getOneCfgFile('config.xml', (error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -48,19 +50,19 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | 是 | 配置文件名 |
+| 参数名     | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| relPath | string | 是    | 配置文件名 |
 
 **返回值：** 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;string&gt; | 最高优先级配置文件的路径 |
+| 类型                    | 说明           |
+| --------------------- | ------------ |
+| Promise&lt;string&gt; | 最高优先级配置文件的路径 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getOneCfgFile('config.xml').then(value => {
-      console.log(value);
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getOneCfgFile promise " + error);
   });
@@ -77,18 +79,18 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | 是 | 配置文件名 |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 异步回调，用于返回文件列表 |
+| 参数名      | 类型                                       | 必填   | 说明            |
+| -------- | ---------------------------------------- | ---- | ------------- |
+| relPath  | string                                   | 是    | 配置文件名         |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回文件列表 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getCfgFiles('config.xml', (error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -103,19 +105,19 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | 是 | 配置文件名 |
+| 参数名     | 类型     | 必填   | 说明    |
+| ------- | ------ | ---- | ----- |
+| relPath | string | 是    | 配置文件名 |
 
 **返回值：** 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | 文件列表 |
+| 类型                                 | 说明   |
+| ---------------------------------- | ---- |
+| Promise&lt;Array&lt;string&gt;&gt; | 文件列表 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getCfgFiles('config.xml').then(value => {
-      console.log(value);
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getCfgFiles promise " + error);
   });
@@ -131,17 +133,17 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **参数：** 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 异步回调，用于返回配置层级目录列表 |
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回配置层级目录列表 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getCfgDirList((error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -156,14 +158,14 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
 **返回值：** 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | 配置层级目录列表 |
+| 类型                                 | 说明       |
+| ---------------------------------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 配置层级目录列表 |
 
 **示例：** 
-  ```
+  ```js
   configPolicy.getCfgDirList().then(value => {
-      console.log(value);
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getCfgDirList promise " + error);
   });
