@@ -1,6 +1,6 @@
-# JS API Changes of the Resource Scheduling Subsystem
+# JS API Changes of the Distributed Scheduler Subsystem
 
-The table below lists the APIs changes of the resource scheduling subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
+The table below lists the APIs changes of the distributed scheduler subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
 
 ## API Changes
 
