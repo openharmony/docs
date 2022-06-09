@@ -12,7 +12,7 @@ The APIs provided by the test framework can be used only in the test HAP. They t
 
 The test framework can be started in either of the following ways:
 
-- Method 1: Run the <idp:inline class="- topic/inline " val="code" displayname="code" id="code779717408187" tempcmdid="code779717408187">aa test</idp:inline> command.
+- Method 1: Run the `aa test` command.
 - Method 2: Use the IDE.
 
 ### Running aa test
