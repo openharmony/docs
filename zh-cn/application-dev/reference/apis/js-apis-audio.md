@@ -246,16 +246,16 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
 
 
-## InterruptMode
+## InterruptMode<sup>9+</sup>
 
-枚举，焦点模型类型。
+枚举，焦点模型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.InterruptMode
+**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
 
 | 名称                         | 默认值 | 描述       |
 | ---------------------------- | ------ | ---------- |
-| SHARE_MODE<sup>9+</sup>      | 0      | 共享焦点模式。 |
-| INDEPENDENT_MODE<sup>9+</sup>| 1      | 独立焦点模式。     |
+| SHARE_MODE      | 0      | 共享焦点模式。 |
+| INDEPENDENT_MODE| 1      | 独立焦点模式。     |
 
 ## DeviceFlag
 
@@ -2490,9 +2490,9 @@ audioRenderer.getRenderRate().then((renderRate) => {
 ```
 ### setInterruptMode<sup>9+</sup>
 
-setInterruptMode(interruptType: InterruptType): Promise&lt;void&gt;
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
 
-设置指定流的音量，使用Promise方式异步返回结果。
+设置应用的焦点模型。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2500,18 +2500,22 @@ setInterruptMode(interruptType: InterruptType): Promise&lt;void&gt;
 
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| interruptType | [InterruptType](#InterruptMode) | 是   | 焦点模型类型。                                             |
+| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
 
 **返回值：**
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
+| Promise&lt;void&gt; | 以Promise对象返回结果，设置成功时返回undefined，否则返回error。 |
 
 **示例：**
 
 ```
 audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+    console.log('Promise returned to indicate a successful volume setting.');
+});
+
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
     console.log('Promise returned to indicate a successful volume setting.');
 });
 ```
