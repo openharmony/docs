@@ -1,12 +1,13 @@
 # 振动
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import vibrator from '@ohos.vibrator';
 ```
 
@@ -34,7 +35,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 
 **示例：** 
-  ```
+  ```js
   vibrator.vibrate(1000).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
@@ -60,7 +61,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 否    | 马达执行振动的回调函数，指示触发振动是否成功。 |
 
 **示例：** 
-  ```
+  ```js
   vibrator.vibrate(1000,function(error){
       if(error){
           console.log("error.code"+error.code+"error.message"+error.message);
@@ -92,7 +93,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 指示触发振动是否成功。 |
 
 **示例：** 
-  ```
+  ```js
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
@@ -118,7 +119,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 否    | 马达执行振动的回调函数，指示触发振动是否成功。 |
 
 **示例：** 
-  ```
+  ```js
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
       if(error){
           console.log("error.code"+error.code+"error.message"+error.message);
@@ -150,7 +151,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 指示停止振动是否成功。 |
 
 **示例：** 
-  ```
+  ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
@@ -176,7 +177,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | callback | AsyncCallback&lt;void&gt;             | 否    | 马达停止振动的回调函数，指示停止振动是否成功。 |
 
 **示例：** 
-  ```
+  ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
       if(error){
           console.log("error.code"+error.code+"error.message"+error.message);
