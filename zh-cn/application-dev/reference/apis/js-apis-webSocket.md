@@ -11,19 +11,19 @@
 
 ## 导入模块
 
-```
+```js
 import webSocket from '@ohos.net.webSocket';
 ```
 
 ## 完整示例
 
-```
+```js
 import webSocket from '@ohos.net.webSocket';
 
 var defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-    console.log("on open, status:" + value.status + ", message:" + value.message);
+    console.log("on open, status:" + value['status'] + ", message:" + value['message']);
     // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
     ws.send("Hello, server!", (err, value) => {
         if (!err) {
@@ -77,7 +77,7 @@ createWebSocket\(\): WebSocket
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ```
 
@@ -106,7 +106,7 @@ connect\(url: string, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -140,7 +140,7 @@ connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, {
@@ -183,7 +183,7 @@ connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
@@ -214,7 +214,7 @@ send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -253,7 +253,7 @@ send\(data: string | ArrayBuffer\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
@@ -285,7 +285,7 @@ close\(callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.close((err, value) => {
@@ -317,7 +317,7 @@ close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.close({
@@ -357,7 +357,7 @@ close\(options?: WebSocketCloseOptions\): Promise<boolean\>
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.close({
@@ -390,10 +390,10 @@ on\(type: 'open', callback: AsyncCallback<Object\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 });
 ```
 
@@ -418,10 +418,10 @@ off\(type: 'open', callback?: AsyncCallback<Object\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 let callback1 = (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
@@ -450,7 +450,7 @@ on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('message', (err, value) => {
 	console.log("on message, message:" + value);
@@ -479,7 +479,7 @@ off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
@@ -502,7 +502,7 @@ on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
 	console.log("on close, code is " + value.code + ", reason is " + value.reason);
@@ -531,7 +531,7 @@ off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
@@ -555,7 +555,7 @@ on\(type: 'error', callback: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.on('error', (err) => {
 	console.log("on error, error:" + JSON.stringify(err))
@@ -583,7 +583,7 @@ off\(type: 'error', callback?: ErrorCallback\): void
 
 **示例：**
 
-```
+```js
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
