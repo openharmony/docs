@@ -1,6 +1,6 @@
 # Nonlinear Container TreeSet 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -259,7 +259,7 @@ Removes the first entry in this container.
 | -------- | -------- |
 | T | Entry removed.|
 
-**Return value**
+**Example**
 
 ```ts
 let treeSet = new TreeSet();
@@ -281,7 +281,7 @@ Removes the last entry in this container.
 | -------- | -------- |
 | T | Entry removed.|
 
-**Return value**
+**Example**
 
 ```ts
 let treeSet = new TreeSet();

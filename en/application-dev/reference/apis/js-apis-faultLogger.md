@@ -1,10 +1,10 @@
 # Fault Logger
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
-```
+```js
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -52,11 +52,10 @@ Obtains the fault information about the current process. This API uses a callbac
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
-
+| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)>> | Yes | Callback used to return the fault information array.<br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned. |
 **Example**
 
-```
+```js
 function queryFaultLogCallback(error, value) {
     if (error) {
         console.info('error is ' + error);
@@ -68,7 +67,7 @@ function queryFaultLogCallback(error, value) {
             console.info("Log pid: " + value[i].pid);
             console.info("Log uid: " + value[i].uid);
             console.info("Log type: " + value[i].type);
-            console.info("Log ts: " + value[i].ts);
+            console.info("Log timestamp: " + value[i].timestamp);
             console.info("Log reason: " + value[i].reason);
             console.info("Log module: " + value[i].module);
             console.info("Log summary: " + value[i].summary);
@@ -101,7 +100,7 @@ Obtains the fault information about the current process. This API uses a promise
 
 **Example**
 
-```
+```js
 async function getLog() {
     let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
@@ -112,7 +111,7 @@ async function getLog() {
 	    console.info("Log pid: " + value[i].pid);
 	    console.info("Log uid: " + value[i].uid);
 	    console.info("Log type: " + value[i].type);
-	    console.info("Log ts: " + value[i].ts);
+	    console.info("Log timestamp: " + value[i].timestamp);
 	    console.info("Log reason: " + value[i].reason);
 	    console.info("Log module: " + value[i].module);
 	    console.info("Log summary: " + value[i].summary);
