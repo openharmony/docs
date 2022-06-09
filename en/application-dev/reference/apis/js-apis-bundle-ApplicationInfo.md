@@ -39,3 +39,4 @@ Provides the application information.
 | accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                   |
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                             |
 | entityType<sup>8+</sup>    | string                                                       | Yes  | No  | Entity type of the application.                        |
+| fingerprint<sup>9+</sup>   | string                                                       | Yes  | No  | Signing certificate fingerprint of the application, that is, the SHA-256 checksum of the signing certificate that you apply for for the application.   |
