@@ -63,7 +63,7 @@ The GPIO module adaptation involves the following steps:
    - Initialize **GpioCntlr**.
    - Instantiate **GpioMethod** in the **GpioCntlr** object.
      
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the callbacks in **GpioMethod**, see [Available APIs](#available-apis).
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the functions in **GpioMethod**, see [Available APIs](#available-apis).
    
 4. Debug the driver.
    
@@ -72,7 +72,7 @@ The GPIO module adaptation involves the following steps:
 
 ## Development Example
 
-The following uses **gpio_hi35xx.c** as an example to present the information to be provided by the vendor for implementing device functions.
+The following uses **gpio_hi35xx.c** as an example to present the information required for implementing device functions.
 
 1. Instantiate the driver entry. 
    
