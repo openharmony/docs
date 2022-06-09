@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-该模块提供文件存储相关的常用功能，向应用程序提供用于IO的JS接口，包括:
+该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读取等常用功能，向应用程序提供用于IO的JS接口，包括:
 
 - 用于管理文件的基本文件接口
 - 用于管理目录的基本目录接口
@@ -20,20 +20,11 @@ import fileio from '@ohos.fileio';
 
 ## 使用说明
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱绝对路径，“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”。
-应用目录路径dir的获取方式及对应的接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
-通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在应用沙箱路径为：
-
-```js
-let path = dir + "/xxx.txt";
-```
-
-
-文件描述符fd：
-
-
-```js
-let fd = fileio.openSync(path);
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
+ ```js
+ import featureAbility from '@ohos.ability.featureAbility';
+ let context = featureAbility.getContext();
+ let path = context.getFilesDir();
 ```
 
 
@@ -1201,7 +1192,7 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | 是    | 待截断文件的文件描述符。     |
   | len      | number                    | 是    | 文件截断后的长度，以字节为单位。 |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步截断文件的信息之后的回调。  |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，本调用无返回值  |
 
 **示例：**
   ```js
@@ -1273,7 +1264,7 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | -------------------------------- |
 | path     | string                    | 是   | 待截断文件的应用沙箱路径。       |
 | len      | number                    | 是   | 文件截断后的长度，以字节为单位。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步截断文件的信息之后的回调。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
 **示例：**
   ```js
@@ -1352,8 +1343,8 @@ readText(filePath: string, options: {
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | 是   | 待读取文件的应用沙箱路径。                                   |
-| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 异步通过文本方式读取文件之后的回调。                         |
+| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回读取文件的内容。                         |
 
 **示例：**
   ```js
@@ -1403,12 +1394,12 @@ lstat(path: string): Promise&lt;Stat&gt;
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
+| path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
 **示例：**
   ```js
@@ -1431,8 +1422,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 **参数：**
 | 参数名   | 类型                               | 必填 | 说明                                   |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
-| path     | string                             | 是   | 目标文件的应用沙箱路径，指向链接。 |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取链接信息之后的回调。       |
+| path     | string                             | 是   | 目标文件的应用沙箱路径。 |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 回调函数，返回文件的具体信息。       |
 
 **示例：**
   ```js
@@ -1453,7 +1444,7 @@ lstatSync(path:string): Stat
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
+| path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
   | 类型            | 说明         |
