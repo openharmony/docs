@@ -3,6 +3,7 @@
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
 
 
@@ -29,7 +30,8 @@ Enables listening for global touch events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **Parameters**
+**Parameters**
+
 | Name    | Type                                     | Mandatory| Description                           |
 | -------- | ----------------------------------------- | ---- | ------------------------------- |
 | type     | string                                    | Yes  | Type of the input event to listen for. The value is **touch**.|
@@ -52,7 +54,7 @@ Enables listening for global mouse events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **Parameters**
+**Parameters**
 
 | Name    | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
@@ -73,13 +75,14 @@ inputMonitor.off("mouse", (event) => {
 
 off(type: "touch", receiver?:TouchEventReceiver):void
 
-Enables listening for global touch events.
+Stops listening for global touch events.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **Parameters**
+**Parameters**
+
 | Name    | Type                                     | Mandatory| Description                           |
 | -------- | ----------------------------------------- | ---- | ------------------------------- |
 | type     | string                                    | Yes  | Type of the input event to listen for. The value is **touch**.|
@@ -99,7 +102,7 @@ Stops listening for global mouse events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **Parameters**
+**Parameters**
 
 | Name    | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
@@ -116,7 +119,7 @@ inputMonitor.off("mouse");
 
 ## TouchEventReceiver
 
-Represents the class of the callback used to return the touch event. The value **true** indicates that the touch event has been consumed, and the value **false** indicates the opposite.
+This class provides the callback of touch events.
 
 
 ### (touchEvent: TouchEvent): Boolean
@@ -125,12 +128,14 @@ Represents the callback used to return the touch event. You need to define the n
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-  **Parameters**
+**Parameters**
+
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | Yes   | Callback used to return the touch event.|
 
-  **Return value**
+**Return value**
+
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
 | Boolean | Result indicating whether the touch event has been consumed by the input monitor. The value **true** indicates that the touch event has been consumed, and the value **false** indicates the opposite.|
