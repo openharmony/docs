@@ -202,7 +202,7 @@ The following uses **himci.c** as an example to present the information required
 3. Initialize the **MmcCntlr** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Bind**, **Init**, and **Release**) to instantiate **MmcCntlrOps** in **MmcCntlr** (so that the underlying driver functions can be called).
    - Defining a custom structure
 
-      To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **mmc_config.hcs** file to initialize the members in the custom structure and passes important parameters to the **MmcCntlr** object at the core layer.
+      To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **mmc_config.hcs** file to initialize the members in the custom structure and pass important parameters to the **MmcCntlr** object at the core layer.
 
       
       ```
