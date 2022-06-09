@@ -180,6 +180,7 @@
   - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor](js-apis-inputmonitor.md)
+  - [@ohos.multimodalInput.inputEvent](js-apis-inputevent.md)
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)
