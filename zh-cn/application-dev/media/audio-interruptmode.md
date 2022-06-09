@@ -19,6 +19,8 @@
    该实例可用于音频渲染、控制和获取采集状态，以及注册通知回调。<br>
 
    ```js
+   import audio from '@ohos.multimedia.audio';
+
     var audioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_1,
