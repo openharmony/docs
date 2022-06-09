@@ -1,17 +1,18 @@
-# MIPI CSI<a name="title_MIPI_CSIDes"></a>
+# MIPI CSI
 
-## Overview<a name="section1_MIPI_CSIDes"></a>
+
+## Overview
 
 Defined by the Mobile Industry Processor Interface (MIPI) Alliance, the Camera Serial Interface (CSI) is a specification that allows data to be transmitted from the camera to the host processor on mobile platforms. As the second release, the MIPI CSI-2 consists of the application layer, protocol layer, and physical layer. It supports a maximum of four-lane data transmission and a single-lane transmission rate of 1 Gbit/s.
 
-The physical layer supports the high speed (HS) and low power (LP) modes. Using low-voltage differential signaling (LVDS), the HS mode delivers 80 Mbit/s to 1 Gbit/s transmission speed but high power consumption. The unidirectional LP mode provides lower power consumption but lower transmission speed (< 10 Mbit/s). The blend of the two modes ensures high-speed transmission of massive data (such as images) and minimized power consumption when less data is transmitted.
+The physical layer supports the high speed (HS) and low speed (LS) modes. Using low-voltage differential signaling (LVDS), the HS mode delivers 80 Mbit/s to 1 Gbit/s transmission speed but high power consumption. The unidirectional LS mode provides lower power consumption but lower transmission speed (< 10 Mbit/s). The blend of the two modes ensures high-speed transmission of massive data (such as images) and minimized power consumption when less data is transmitted.
 
 The figure below shows a simplified CSI. The D-PHY transmits data by using one pair of source-synchronized differential clocks and one to four pairs of differential data lanes. Data is transmitted in Double Data Rate (DDR) mode, that is, data is transmitted on both the rising and falling edges of the clock.
 
-**Figure 1** CSI TX and RX interfaces<a name="fig1_MIPI_CSIDes"></a> 
-![](figures/CSI_TX-RX_interface.png)
+  **Figure 1** CSI TX and RX interfaces 
+  ![](figures/CSI_TX-RX_interface.png)
 
-### ComboDevAttr Structure<a name="section1.1_MIPI_CSIDes"></a>
+### ComboDevAttr Structure
 
 **Table 1** ComboDevAttr structure
 
@@ -26,7 +27,7 @@ The figure below shows a simplified CSI. The D-PHY transmits data by using one p
 | MIPIAttr  | Attributes of the MIPI device.                                         |
 | lvdsAttr  | Attributes of the LVDS, sub-LVDS, or HiSPi device.                           |
 
-### ExtDataType Structure<a name="section1.2_MIPI_CSIDes"></a>
+### ExtDataType Structure
 
 **Table 2** ExtDataType structure
 
@@ -39,33 +40,34 @@ The figure below shows a simplified CSI. The D-PHY transmits data by using one p
 | extDataBitWidth | Bit depth of an image.                     |
 | extDataType     | Pointer to the YUV, raw data format, and bit depth.|
 
-### Available APIs<a name="section1.3_MIPI_CSIDes"></a>
+### Available APIs
 
 **Table 3** MIPI CSI APIs
 
 <a name="table3_MIPI_CSIDes"></a>
 
-  | Category| API| 
+| Category| API|
 | -------- | -------- |
-| Opening or closing the MIPI CSI controller operation handle| **MipiCsiOpen**: opens the MIPI CSI controller operation handle.<br>**MipiCsiClose**: closes the MIPI CSI controller operation handle.| 
-| Setting MIPI CSI parameters| **MipiCsiSetComboDevAttr**: sets parameters of the MIPI, CMOS, or LVDS camera to the controller. The parameters include the working mode, image area, image depth, data rate, and physical channel.<br>**MipiCsiSetExtDataType** (optional): sets the YUV and RAW data formats and bit depths.<br>**MipiCsiSetHsMode**: sets the MIPI RX lane distribution. Set the mode based on the hardware connection.<br>**MipiCsiSetPhyCmvmode**: sets the common-mode voltage (CMV) mode.| 
-| Resetting a sensor or deasserting the reset of a sensor| **MipiCsiResetSensor**: resets a sensor.<br>**MipiCsiUnresetSensor**: deasserts the reset of a sensor.| 
-| Resetting the MIPI RX or deasserting the reset of the MIPI RX| **MipiCsiResetRx**: resets the MIPI&amp;nbsp;RX. The value of **enSnsType** varies depending on the value of **s32WorkingViNum**.<br>**MipiCsiUnresetRx**: deasserts the reset on the MIPI&amp;nbsp;RX.| 
-| Enabling or disabling the MIPI clock| **MipiCsiEnableClock**: enables the MIPI clock. The **enSnsType** passed by the upper-layer function during electrophoresis determines whether MIPI or LVDS is used.<br>**MipiCsiDisableClock**: disables the MIPI clock.| 
-| Enabling or disabling the MIPI sensor clock| **MipiCsiEnableSensorClock**: enables the MIPI sensor clock.<br>**MipiCsiDisableSensorClock**: disables the MIPI sensor clock.| 
+| Opening or closing the MIPI CSI controller operation handle| **MipiCsiOpen**: opens the MIPI CSI controller operation handle.<br>**MipiCsiClose**: closes the MIPI CSI controller operation handle.|
+| Setting MIPI CSI attributes | **MipiCsiSetComboDevAttr**: sets attributes of the MIPI, CMOS, or LVDS camera to the controller. The attributes include the working mode, image area, image depth, data rate, and physical channel.<br>**MipiCsiSetExtDataType** (optional): sets the YUV and RAW data formats and bit depths.<br>**MipiCsiSetHsMode**: sets the MIPI RX lane distribution. Set the mode based on the hardware connection.<br>**MipiCsiSetPhyCmvmode**: sets the common-mode voltage (CMV) mode. |
+| Resetting a sensor or deasserting the reset of a sensor| **MipiCsiResetSensor**: resets a sensor.<br>**MipiCsiUnresetSensor**: deasserts the reset of a sensor.|
+| Resetting the MIPI RX or deasserting the reset of the MIPI RX| **MipiCsiResetRx**: resets the MIPI&amp;nbsp;RX. The value of **enSnsType** varies depending on the value of **s32WorkingViNum**.<br>**MipiCsiUnresetRx**: deasserts the reset on the MIPI&amp;nbsp;RX.|
+| Enabling or disabling the MIPI clock| **MipiCsiEnableClock**: enables the MIPI clock. The **enSnsType** passed by the upper-layer function during electrophoresis determines whether MIPI or LVDS is used.<br>**MipiCsiDisableClock**: disables the MIPI clock.|
+| Enabling or disabling the MIPI sensor clock| **MipiCsiEnableSensorClock**: enables the MIPI sensor clock.<br>**MipiCsiDisableSensorClock**: disables the MIPI sensor clock.|
 
 
-## Usage Guidelines<a name="section2_MIPI_CSIDes"></a>
+## Usage Guidelines
 
-### How to Use<a name="section2.1_MIPI_CSIDes"></a>
+### How to Use
 
-The figure below illustrates how to use the APIs.
+The figure below illustrates the general development process.
 
 **Figure 2** Using MIPI CSI driver APIs 
 
+
 ![](figures/using-MIPI-CSI-process.png)
 
-### Opening the MIPI CSI Controller Operation Handle<a name="section2.2_MIPI_CSIDes"></a>
+### Opening a MIPI CSI Controller Operation Handle
 
 Before starting MIPI CSI communication, call **MipiCsiOpen** to open the MIPI CSI device handle. This function returns the MIPI CSI device handle with the specified lane ID.
 
@@ -81,10 +83,10 @@ DevHandle MipiCsiOpen(uint8_t id);
 | ---------- | ----------------------------------------------- |
 | id         | MIPI CSI lane ID.                                 |
 | **Return Value**| **Description**                                 |
-| NULL       | The operation fails.                                       |
-| Device handle  | MIPI CSI device handle with the specified lane ID. The data type is **DevHandle**.|
+| NULL       | The operation failed.                                       |
+| Device handle  | The operation is successful. The MIPI CSI device handle with the specified lane ID is returned. The data type is **DevHandle**. |
 
-For example, open the controller operation handle for MIPI CSI lane 0:
+For example, open the controller operation handle of MIPI CSI lane 0:
 
 ```c
 DevHandle mipiCsiHandle = NULL;  /* Device handle */
@@ -98,9 +100,9 @@ if (MipiCsiHandle == NULL) {
 }
 ```
 
-### Setting MIPI CSI Parameters<a name="section2.3_MIPI_CSIDes"></a>
+### Setting MIPI CSI Attributes
 
--   Set MIPI CSI parameters.
+-   Set MIPI CSI attributes.
 
     ```c
     int32_t MipiCsiSetComboDevAttr(DevHandle handle, ComboDevAttr *pAttr);
@@ -116,7 +118,7 @@ if (MipiCsiHandle == NULL) {
     | pAttr      | Pointer to the MIPI CSI structure.|
     | **Return Value**| **Description**            |
     | 0          | The operation is successful.                  |
-    | Negative value      | The operation fails.                  |
+    | Negative value      | The operation failed.                  |
 
     ```c
     int32_t ret;
@@ -155,7 +157,7 @@ if (MipiCsiHandle == NULL) {
     | dataType   | Pointer to the YUV, raw data format, and bit depth.|
     | **Return Value**| **Description**                 |
     | 0          | The operation is successful.                       |
-    | Negative value      | The operation fails.                       |
+    | Negative value      | The operation failed.                       |
 
     ```c
     int32_t ret;
@@ -195,7 +197,7 @@ if (MipiCsiHandle == NULL) {
     | laneDivideMode | Lane mode.  |
     | **Return Value**    | **Description**|
     | 0              | The operation is successful.      |
-    | Negative value          | The operation fails.      |
+    | Negative value          | The operation failed.      |
 
     ```c
     int32_t ret;
@@ -228,7 +230,7 @@ if (MipiCsiHandle == NULL) {
     | devno      | Device number.        |
     | **Return Value**| **Description**  |
     | 0          | The operation is successful.        |
-    | Negative value      | The operation fails.        |
+    | Negative value      | The operation failed.        |
 
     ```c
     int32_t ret;
@@ -247,7 +249,7 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Resetting a Sensor or Deasserting the Reset of a Sensor<a name="section2.4_MIPI_CSIDes"></a>
+### Resetting a Sensor or Deasserting the Reset of a Sensor
 
 -   Reset a sensor.
 
@@ -262,10 +264,10 @@ if (MipiCsiHandle == NULL) {
     | Parameter          | Description                                        |
     | -------------- | ------------------------------------------------ |
     | handle         | Controller operation handle.                                  |
-    | snsResetSource | Sensor's reset signal cable number, which is called reset source of the sensor in software.|
+    | snsResetSource | Sensor's reset signal cable number, which is called "sensor reset source" in software. |
     | **Return Value**    | **Description**                                  |
     | 0              | The operation is successful.                                        |
-    | Negative value          | The operation fails.                                        |
+    | Negative value          | The operation failed.                                        |
 
     ```c
     int32_t ret;
@@ -294,10 +296,10 @@ if (MipiCsiHandle == NULL) {
     | Parameter          | Description                                        |
     | -------------- | ------------------------------------------------ |
     | handle         | Controller operation handle.                                  |
-    | snsResetSource | Sensor's reset signal cable number, which is called reset source of the sensor in software.|
+    | snsResetSource | Sensor's reset signal cable number, which is called "sensor reset source" in software. |
     | **Return Value**    | **Description**                                  |
     | 0              | The operation is successful.                                    |
-    | Negative value          | The operation fails.                                    |
+    | Negative value          | The operation failed.                                    |
 
     ```c
     int32_t ret;
@@ -313,7 +315,7 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Resetting the MIPI RX or Deasserting the Reset of the MIPI RX<a name="section2.5_MIPI_CSIDes"></a>
+### Resetting the MIPI RX or Deasserting the Reset of the MIPI RX
 
 -   Reset the MIPI RX.
 
@@ -331,7 +333,7 @@ if (MipiCsiHandle == NULL) {
     | comboDev   | MIPI RX or LVDS channel number.|
     | **Return Value**| **Description**       |
     | 0          | The operation is successful.             |
-    | Negative value      | The operation fails.             |
+    | Negative value      | The operation failed.             |
 
     ```c
     int32_t ret;
@@ -363,7 +365,7 @@ if (MipiCsiHandle == NULL) {
     | comboDev   | MIPI RX or LVDS channel number.|
     | **Return Value**| **Description**       |
     | 0          | The operation is successful.         |
-    | Negative value      | The operation fails.         |
+    | Negative value      | The operation failed.         |
 
     ```c
     int32_t ret;
@@ -379,7 +381,7 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Enabling or Disabling the MIPI Clock<a name="section2.6_MIPI_CSIDes"></a>
+### Enabling or Disabling the MIPI Clock
 
 -   Enable the MIPI clock.
 
@@ -397,7 +399,7 @@ if (MipiCsiHandle == NULL) {
     | comboDev   | Channel number.      |
     | **Return Value**| **Description**|
     | 0          | The operation is successful.      |
-    | Negative value      | The operation fails.      |
+    | Negative value      | The operation failed.      |
 
     ```c
     int32_t ret;
@@ -429,7 +431,7 @@ if (MipiCsiHandle == NULL) {
     | comboDev   | Channel number.      |
     | **Return Value**| **Description**|
     | 0          | The operation is successful.      |
-    | Negative value      | The operation fails.      |
+    | Negative value      | The operation failed.      |
 
     ```c
     int32_t ret;
@@ -445,7 +447,7 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Enabling or Disabling the MIPI Sensor Clock<a name="section2.7_MIPI_CSIDes"></a>
+### Enabling or Disabling the MIPI Sensor Clock
 
 -   Enable the MIPI sensor clock.
 
@@ -463,7 +465,7 @@ if (MipiCsiHandle == NULL) {
     | snsClkSource | Sensor's clock signal cable number, which is called clock source of the sensor in software.|
     | **Return Value**  | **Description**                                  |
     | 0            | The operation is successful.                                        |
-    | Negative value        | The operation fails.                                        |
+    | Negative value        | The operation failed.                                        |
 
     ```c
     int32_t ret;
@@ -495,7 +497,7 @@ if (MipiCsiHandle == NULL) {
     | snsClkSource | Sensor's clock signal cable number, which is called clock source of the sensor in software.|
     | **Return Value**  | **Description**                                  |
     | 0            | The operation is successful.                                        |
-    | Negative value        | The operation fails.                                        |
+    | Negative value        | The operation failed.                                        |
 
     ```c
     int32_t ret;
@@ -511,9 +513,9 @@ if (MipiCsiHandle == NULL) {
     }
     ```
 
-### Closing a MIPI CSI Controller Operation Handle<a name="section2.8_MIPI_CSIDes"></a>
+### Closing a MIPI CSI Controller Operation Handle
 
-After the MIPI CSI communication, close the MIPI CSI controller handle by calling the following function:
+Call **MipiCsiClose()** to close the MIPI CSI controller handle after the MIPI CSI communication is complete.
 
 ```c
 void MipiCsiClose(DevHandle handle);
@@ -533,7 +535,7 @@ This function releases the resources requested by **MipiCsiOpen**.
 MipiCsiClose(MIPIHandle); /* Close the operation handle of the MIPI CSI controller. */
 ```
 
-## Development Example<a name="section3_MIPI_CSIDes"></a>
+## Example
 
 The sample code is as follows:
 
