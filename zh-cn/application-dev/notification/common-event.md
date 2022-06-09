@@ -25,13 +25,13 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 ### 开发步骤
 1. 导入CommonEvent模块。
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo文档](../reference/apis/js-apis-commonEvent.md#commoneventsubscribeinfo)介绍。
 
-```javascript
+```js
 private subscriber = null	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
@@ -42,7 +42,7 @@ var subscribeInfo = {
 
 3. 创建订阅者，保存返回的订阅者对象subscriber，用于执行后续的订阅、退订等操作。
 
-```javascript
+```js
 //创建订阅者回调
 commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
     if (err.code) {
@@ -57,7 +57,7 @@ commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
 
 4. 创建订阅回调函数，订阅回调函数会在接收到事件时触发。订阅回调函数返回的data内包含了公共事件的名称、发布者携带的数据等信息，公共事件数据的详细参数和数据类型请见[CommonEventData文档](../reference/apis/js-apis-commonEvent.md#commoneventdata)介绍。
 
-```javascript
+```js
 //订阅公共事件回调
 if (this.subscriber != null) {
     commonEvent.subscribe(this.subscriber, (err, data) => {
@@ -89,13 +89,13 @@ if (this.subscriber != null) {
 #### 发布公共事件开发步骤
 1. 导入CommonEvent模块。
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
 
-```javascript
+```js
 //发布公共事件
 commonEvent.publish("event", (err) => {
 	if (err.code) {
@@ -109,13 +109,13 @@ commonEvent.publish("event", (err) => {
 #### 指定发布信息发布公共事件的开发步骤
 1. 导入CommonEvent模块。
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent'
 ```
 
 2. 定义发布事件时需要指定的发布信息，发布信息所包含的详细参数及其参数类型请见[CommonEventPublishData文档](../reference/apis/js-apis-commonEvent.md#commoneventpublishdata)介绍。
 
-```javascript
+```js
 //公共事件相关信息
 var options = {
 	code: 1,			 //公共事件的初始代码
@@ -125,7 +125,7 @@ var options = {
 
 3. 传入需要发布的事件名称、需要发布的指定信息和回调函数，发布事件。
 
-```javascript
+```js
 //发布公共事件
 commonEvent.publish("event", options, (err) => {
 	if (err.code) {
@@ -149,14 +149,14 @@ commonEvent.publish("event", options, (err) => {
 ### 开发步骤
 1. 导入CommonEvent模块。
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. 根据[公共事件订阅指导](#公共事件订阅开发指导)的步骤来订阅某个事件。
 3. 调用CommonEvent中的unsubscribe方法取消订阅某事件。
 
-```javascript
+```js
 if (this.subscriber != null) {
     commonEvent.unsubscribe(this.subscriber, (err) => {
         if (err.code) {
