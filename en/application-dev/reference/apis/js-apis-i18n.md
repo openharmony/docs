@@ -702,7 +702,7 @@ Defines the measurement unit information.
 
 ### unitConvert<sup>8+</sup>
 
-unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
@@ -825,7 +825,7 @@ Obtains the index of a text object.
 
 ### isDigit<sup>8+</sup>
 
-isDigit(char: string): boolean
+static isDigit(char: string): boolean
 
 Checks whether the input character string is composed of digits.
 
@@ -849,7 +849,7 @@ Checks whether the input character string is composed of digits.
 
 ### isSpaceChar<sup>8+</sup>
 
-isSpaceChar(char: string): boolean
+static isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
@@ -873,7 +873,7 @@ Checks whether the input character is a space.
 
 ### isWhitespace<sup>8+</sup>
 
-isWhitespace(char: string): boolean
+static isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
 
@@ -897,7 +897,7 @@ Checks whether the input character is a white space.
 
 ### isRTL<sup>8+</sup>
 
-isRTL(char: string): boolean
+static isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
@@ -921,7 +921,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 ### isIdeograph<sup>8+</sup>
 
-isIdeograph(char: string): boolean
+static isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
 
@@ -945,7 +945,7 @@ Checks whether the input character is an ideographic character.
 
 ### isLetter<sup>8+</sup>
 
-isLetter(char: string): boolean
+static isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
@@ -969,7 +969,7 @@ Checks whether the input character is a letter.
 
 ### isLowerCase<sup>8+</sup>
 
-isLowerCase(char: string): boolean
+static isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
@@ -993,7 +993,7 @@ Checks whether the input character is a lowercase letter.
 
 ### isUpperCase<sup>8+</sup>
 
-isUpperCase(char: string): boolean
+static isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
@@ -1017,7 +1017,7 @@ Checks whether the input character is an uppercase letter.
 
 ### getType<sup>8+</sup>
 
-getType(char: string): string
+static getType(char: string): string
 
 Obtains the type of the input character string.
 
@@ -1124,7 +1124,7 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
   ```
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  breakIter.current(); // 0
+  iterator.current(); // 0
   ```
 
 
@@ -1145,7 +1145,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
   ```
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
-  breakIter.first(); // 0
+  iterator.first(); // 0
   ```
 
 
