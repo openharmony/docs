@@ -20,7 +20,7 @@ Obtains the USB device list.
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | Device information list.|
+  | Array&lt;Readonly&lt;[USBDevice](#usbdevice)&gt;&gt; | Device information list. |
 
 - **Example**
   ```js
@@ -92,12 +92,12 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | device | [USBDevice](#usbdevice) | Yes| USB device information.|
+  | device | [USBDevice](#usbdevice) | Yes| USB device information. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
+  | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer. |
 
 - **Example**
   ```js
@@ -117,12 +117,12 @@ Checks whether the application has the permission to access the device.
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name.|
+  | deviceName | string | Yes| Device name. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
+  | boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise. |
 
 - **Example**
   ```js
@@ -143,12 +143,12 @@ Requests the temporary permission for the application to access the USB device.
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name.|
+  | deviceName | string | Yes| Device name. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Returns **true** if the temporary device access permissions are granted; returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Returns **true** if the temporary device access permissions are granted; returns **false** otherwise. |
 
 - **Example**
   ```js
@@ -157,7 +157,6 @@ Requests the temporary permission for the application to access the USB device.
     console.log(`requestRight = ${JSON.stringify(ret)}`);
   });
   ```
-
 
 ## usb.claimInterface
 
@@ -172,14 +171,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
-  | force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
+  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim. |
+  | force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
+  | number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise. |
 
 - **Example**
   ```js
@@ -201,13 +200,13 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
+  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
+  | number | Returns **0** if the USB interface is successfully released; returns an error code otherwise. |
 
 - **Example**
   ```js
@@ -229,13 +228,13 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | config | [USBConfig](#usbconfig) | Yes| USB configuration to set.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
+  | config | [USBConfig](#usbconfig) | Yes| USB configuration to set. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
+  | number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise. |
 
 - **Example**
   ```js
@@ -243,27 +242,26 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
   console.log(`setConfiguration = ${ret}`);
   ```
 
-
 ## usb.setInterface
 
 setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, and call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter.
+Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface..
 
 **System capability**: SystemCapability.USB.USBManager
 
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface to set.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
+  | iface | [USBInterface](#usbinterface) | Yes| USB interface to set. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
+  | number | Returns **0** if the USB interface is successfully set; returns an error code otherwise. |
 
 - **Example**
   ```js
@@ -285,12 +283,12 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Uint8Array | Raw descriptor data.|
+  | Uint8Array | Raw descriptor data. The value **undefined** indicates that the operation has failed. |
 
 - **Example**
   ```js
@@ -311,12 +309,12 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | File descriptor of the USB device.|
+  | number | File descriptor of the USB device. The value **-1** indicates that the operation has failed. |
 
 - **Example**
   ```js
@@ -337,14 +335,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device. |
+  | contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. |
+  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs. |
 
 - **Example**
   ```js
@@ -367,15 +365,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
-  | buffer | Uint8Array | Yes| Buffer for writing or reading data.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device. |
+  | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer. |
+  | buffer | Uint8Array | Yes| Buffer for writing or reading data. |
+  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs. |
 
 - **Example**
   ```js
@@ -401,12 +399,12 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 - **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
+  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. |
 
 - **Return value**
   | Type| Description|
   | -------- | -------- |
-  | number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
+  | number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise. |
 
 - **Example**
   ```js
@@ -423,14 +421,14 @@ Represents the USB endpoint from which data is sent or received. You can obtain 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| address | number | Endpoint address.|
-| attributes | number | Endpoint attributes.|
-| interval | number | Endpoint interval.|
-| maxPacketSize | number | Maximum size of data packets on the endpoint.|
-| direction | [USBRequestDirection](#usbrequestdirection) | Endpoint direction.|
-| number | number | Endpoint number.|
-| type | number | Endpoint type.|
-| interfaceId | number | Unique ID of the interface to which the endpoint belongs.|
+| address | number | Endpoint address. |
+| attributes | number | Endpoint attributes. |
+| interval | number | Endpoint interval. |
+| maxPacketSize | number | Maximum size of data packets on the endpoint. |
+| direction | [USBRequestDirection](#usbrequestdirection) | Endpoint direction. |
+| number | number | Endpoint number. |
+| type | number | Endpoint type. |
+| interfaceId | number | Unique ID of the interface to which the endpoint belongs. |
 
 
 ## USBInterface
@@ -441,13 +439,13 @@ Represents a USB interface. One [USBConfig](#usbconfig) can contain multiple **U
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Unique ID of the USB interface.|
-| protocol | number | Interface protocol.|
-| clazz | number | Device type.|
-| subClass | number | Device subclass.|
-| alternateSetting | number | Settings for alternating between descriptors of the same USB interface.|
-| name | string | Interface name.|
-| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Endpoints that belong to the USB interface.|
+| id | number | Unique ID of the USB interface. |
+| protocol | number | Interface protocol. |
+| clazz | number | Device type. |
+| subClass | number | Device subclass. |
+| alternateSetting | number | Settings for alternating between descriptors of the same USB interface. |
+| name | string | Interface name. |
+| endpoints | Array&lt;[USBEndpoint](#usbendpoint)&gt; | Endpoints that belong to the USB interface. |
 
 
 ## USBConfig
@@ -458,13 +456,13 @@ Represents the USB configuration. One [USBDevice](#usbdevice) can contain multip
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Unique ID of the USB configuration.|
-| attributes | number | Configuration attributes.|
-| maxPower | number | Maximum power consumption, in mA.|
-| name | string | Configuration name, which can be left empty.|
-| isRemoteWakeup | boolean | Support for remote wakeup.|
-| isSelfPowered | boolean | Support for independent power supplies.|
-| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Supported interface attributes.|
+| id | number | Unique ID of the USB configuration. |
+| attributes | number | Configuration attributes. |
+| maxPower | number | Maximum power consumption, in mA. |
+| name | string | Configuration name, which can be left empty. |
+| isRemoteWakeup | boolean | Support for remote wakeup. |
+| isSelfPowered | boolean | Support for independent power supplies. |
+| interfaces | Array&nbsp;&lt;[USBInterface](#usbinterface)&gt; | Supported interface attributes. |
 
 
 ## USBDevice
@@ -475,19 +473,19 @@ Represents USB device information.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| busNum | number | Bus address.|
-| devAddress | number | Device address.|
-| serial | string | Device SN.|
-| name | string | Device name.|
-| manufacturerName | string | Device manufacturer.|
-| productName | string | Product information.|
-| version | string | Version.|
-| vendorId | number | Vendor ID.|
-| productId | number | Product ID.|
-| clazz | number | Device class.|
-| subClass | number | Device subclass.|
-| protocol | number | Device protocol code.|
-| configs | Array&lt;[USBConfig](#usbconfig)&gt; | Device configuration descriptor information.|
+| busNum | number | Bus address. |
+| devAddress | number | Device address. |
+| serial | string | Device SN. |
+| name | string | Device name. |
+| manufacturerName | string | Device manufacturer. |
+| productName | string | Product information. |
+| version | string | Version. |
+| vendorId | number | Vendor ID. |
+| productId | number | Product ID. |
+| clazz | number | Device class. |
+| subClass | number | Device subclass. |
+| protocol | number | Device protocol code. |
+| configs | Array&lt;[USBConfig](#usbconfig)&gt; | Device configuration descriptor information. |
 
 
 ## USBDevicePipe
@@ -498,8 +496,8 @@ Represents a USB device pipe, which is used to determine a USB device.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| busNum | number | Bus address.|
-| devAddress | number | Device address.|
+| busNum | number | Bus address. |
+| devAddress | number | Device address. |
 
 
 ## USBControlParams
@@ -510,12 +508,12 @@ Represents control transfer parameters.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| request | number | Request type.|
-| target | [USBRequestTargetType](#usbrequesttargettype) | Represents the request target type.|
-| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Request control type.|
+| request | number | Request type. |
+| target | [USBRequestTargetType](#usbrequesttargettype) | Type of the request target. |
+| reqType | [USBControlRequestType](#usbcontrolrequesttype) | Request control type. |
 | value | number | Request parameters|
-| index | number | Index of the request parameter value.|
-| data | Uint8Array | Buffer for writing or reading data.|
+| index | number | Index of the request parameter value. |
+| data | Uint8Array | Buffer for writing or reading data. |
 
 
 ## USBRequestTargetType
@@ -526,8 +524,8 @@ Represents the request target type.
 
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
-| USB_REQUEST_TARGET_DEVICE | 0 | Device.|
-| USB_REQUEST_TARGET_INTERFACE | 1 | Interface.|
+| USB_REQUEST_TARGET_DEVICE | 0 | Device. |
+| USB_REQUEST_TARGET_INTERFACE | 1 | Interface. |
 | USB_REQUEST_TARGET_ENDPOINT | 2 | Endpoint|
 | USB_REQUEST_TARGET_OTHER | 3 | Others|
 
@@ -541,7 +539,7 @@ Enumerates control request types.
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
 | USB_REQUEST_TYPE_STANDARD | 0 | Standard|
-| USB_REQUEST_TYPE_CLASS | 1 | Class.|
+| USB_REQUEST_TYPE_CLASS | 1 | Class. |
 | USB_REQUEST_TYPE_VENDOR | 2 | Vendor|
 
 
@@ -553,5 +551,5 @@ Enumerates request directions.
 
 | Name| Default Value | Description|
 | -------- | -------- | -------- |
-| USB_REQUEST_DIR_TO_DEVICE | 0 | Request for writing data from the host to the device.|
-| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host.|
+| USB_REQUEST_DIR_TO_DEVICE | 0 | Request for writing data from the host to the device. |
+| USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host. |
