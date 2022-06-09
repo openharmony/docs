@@ -1,7 +1,7 @@
 # CanvasRenderingContext2D
 
 
-> **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -41,7 +41,7 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 | [lineJoin](#linejoin)                    | string                                   | 'miter'                         | Style of the shape used to join line segments. The options are as follows:<br/>- **'round'**: The shape used to join line segments is a rounded corner with the radius equal to the line width.<br/>- **'bevel'**: The shape used to join line segments is a beveled corner. The rectangular corner of each line is independent.<br/>- **'miter'**: The shape used to join line segments is a mitered corner. The corner is formed by extending the outside edges of the lines until they meet. You can adjust the effect of this attribute using **miterLimit**. |
 | [miterLimit](#miterlimit)                | number                                   | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
 | [font](#font)                            | string                                   | 'normal normal 14px sans-serif' | Font style.<br/>Syntax: ctx.font='font-size font-family'<br/>- (Optional) **font-size**: font size and row height. The unit can only be px.<br/>- (Optional) **font-family**: font family.<br/>Syntax: ctx.font='font-style font-weight font-size font-family'<br/>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br/>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**<br/>- (Optional) **font-size**: font size and row height. The unit can only be px.<br/>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**. |
-| [textAlign](#textalign)                  | string                                   | 'left'                          | Text alignment mode. Available values are as follows:<br/>- **'left'**: The text is left-aligned.<br/>- **'right'**: The text is right-aligned.<br/>- **'center'**: The text is center-aligned.<br/>- **'start'**: The text is aligned with the start bound.<br/>- **'end'**: The text is aligned with the end bound.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**. |
+| [textAlign](#textalign)                  | string                                   | 'left'                          | Text alignment mode. Available values are as follows:<br/>- **'left'**: The text is left-aligned.<br/>- **'right'**: The text is right-aligned.<br/>- **'center'**: The text is center-aligned.<br/>- **'start'**: The text is aligned with the start bound.<br/>- **'end'**: The text is aligned with the end bound.<br/>**NOTE**<br/>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**. |
 | [textBaseline](#textbaseline)            | string                                   | 'alphabetic'                    | Horizontal alignment mode of text. Available values are as follows:<br/>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br/>- **'top'**: The text baseline is on the top of the text bounding box.<br/>- **'hanging'**: The text baseline is a hanging baseline over the text.<br/>- **'middle'**: The text baseline is in the middle of the text bounding box.<br/>- **'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br/>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
 | [globalAlpha](#globalalpha)              | number                                   | -                               | Opacity. **0.0**: completely transparent; **1.0**: completely opaque. |
 | [lineDashOffset](#linedashoffset)        | number                                   | 0.0                             | Offset of the dashed line. The precision is float. |
@@ -53,7 +53,7 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
 | imageSmoothingQuality                    | string                                   | 'low'                           | Image smoothness. The value can be **'low'**, **'medium'**, or **'high'**. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The value of the **&lt;color&gt;** type can be in 'rgb(255, 255, 255)', 'rgba(255, 255, 255, 1.0)', or '\#FFFFFF' format.
 
 
@@ -1594,7 +1594,7 @@ transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translat
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
 > - x' = scaleX \* x + skewY \* y + translateX
