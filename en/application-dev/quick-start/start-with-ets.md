@@ -1,6 +1,6 @@
 # Getting Started with eTS in the Traditional Coding Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
+> **NOTE**<br/>To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 >
 > For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
@@ -20,17 +20,18 @@
 
 ## eTS Project Files
 
-- **entry** : OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
-  - **src &gt; main &gt; ets** : a collection of eTS source code.
-  - **src &gt; main &gt; ets &gt; MainAbility** : entry to your application/service.
-  - **src &gt; main &gt; ets &gt; MainAbility &gt; pages** : pages contained in **MainAbility**.
-  - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets** : ability lifecycle file.
-  - **src &gt; main &gt; resources** : a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files.
-  - **src &gt; main &gt; config.json** : module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file.
-  - **build-profile.json5** : current module information and build configuration options, including **buildOption target**.
-  - **hvigorfile.js** : module-level compilation and build task script. You can customize related tasks and code implementation.
-- **build-profile.json5** : application-level configuration information, including the signature and product configuration.
-- **hvigorfile.js** : application-level compilation and build task script.
+- **entry**: OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
+  - **src &gt; main &gt; ets**: a collection of eTS source code.
+  - **src &gt; main &gt; ets &gt; MainAbility**: entry to your application/service.
+  - **src &gt; main &gt; ets &gt; MainAbility &gt; pages**: pages contained in **MainAbility**.
+  - **src &gt; main &gt; ets &gt; MainAbility &gt; pages &gt; index.ets**: the first  page in the pages list, that is, the home page of your application.
+  - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets**: ability lifecycle file.
+  - **src &gt; main &gt; resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files.
+  - **src &gt; main &gt; config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file.
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption target**.
+  - **hvigorfile.js**: module-level compilation and build task script. You can customize related tasks and code implementation.
+- **build-profile.json5**: application-level configuration information, including the signature and product configuration.
+- **hvigorfile.js**: application-level compilation and build task script.
 
 
 ## Building the First Page
@@ -63,7 +64,7 @@
 
 2. Add a **&lt;Button&gt;** component.
 
-   On the default page, add a **&lt;Button&gt;** component to accept user clicks and implement redirection to another page. The sample code in the **index.ets** file is shown below:
+   On the default page, add a **&lt;Button&gt;** component to respond to user clicks and implement redirection to another page. The sample code in the **index.ets** file is shown below:
 
 
    ```ts
@@ -79,7 +80,7 @@
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-           // Add a button to accept user clicks.
+           // Add a button to respond to user clicks.
            Button() {
              Text('Next')
                .fontSize(30)
@@ -178,7 +179,7 @@ You can implement page redirection through the page router, which finds the targ
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-           // Add a button to accept user clicks.
+           // Add a button to respond to user clicks.
            Button() {
              Text('Next')
                .fontSize(30)
@@ -264,4 +265,4 @@ You can implement page redirection through the page router, which finds the targ
 
    ![en-us_image_0000001217526428](figures/en-us_image_0000001217526428.png)
 
-Congratulations! You have finished developing your OpenHarmony application in eTS in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)
+Congratulations! You have finished developing your OpenHarmony application in eTS in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md).

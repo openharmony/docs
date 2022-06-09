@@ -1,8 +1,7 @@
 # Upload and Download
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -17,16 +16,16 @@ import request from '@ohos.request';
 
 - HTTPS is supported by default. To support HTTP, you need to add **network** to the **config.json** file and set the **cleartextTraffic** attribute to **true**.
   
-  ```
-    "deviceConfig": {
-      "default": {
-        "network": {
-          "cleartextTraffic": true
-        }
-        ...
+```
+  "deviceConfig": {
+    "default": {
+      "network": {
+        "cleartextTraffic": true
       }
+      ...
     }
-  ```
+  }
+```
 
 
 ## Constants
@@ -84,11 +83,13 @@ Uploads files. This API uses a promise to return the result.
 **Example**
 
   ```js
-request.upload({ url: 'https://patch' }).then((data) => {
-    uploadTask = data;
-}).catch((err) => {
-    console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-})
+  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let uploadTask;
+  request.upload({ url: 'https://patch', files:  [file1] }).then((data) => {
+      uploadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+  })
   ```
 
 
@@ -112,13 +113,15 @@ Uploads files. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-request.upload({ url: 'https://patch' }, (err, data) => {
-    if (err) {
-        console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    uploadTask = data;
-});
+  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let uploadTask;
+  request.upload({ url: 'https://patch', files:  [file1] }, (err, data) => {
+      if (err) {
+          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      uploadTask = data;
+  });
   ```
 
 
@@ -154,10 +157,10 @@ Parameters of the callback function
 **Example**
 
   ```js
-uploadTask.on('progress', function callback(uploadedSize, totalSize) {
-    console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
-}
-);
+  uploadTask.on('progress', function callback(uploadedSize, totalSize) {
+      console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
+  }
+  );
   ```
 
 
@@ -187,10 +190,10 @@ Parameters of the callback function
 **Example**
 
   ```js
-uploadTask.on('headerReceive', function callback(headers){   
-    console.info("upOnHeader headers:" + JSON.stringify(headers));
-}
-);
+  uploadTask.on('headerReceive', function callback(headers){   
+      console.info("upOnHeader headers:" + JSON.stringify(headers));
+  }
+  );
   ```
 
 
@@ -221,10 +224,10 @@ Parameters of the callback function
 **Example**
 
   ```js
-uploadTask.off('progress', function callback(uploadedSize, totalSize) {
-    console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
-}
-);
+  uploadTask.off('progress', function callback(uploadedSize, totalSize) {
+      console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
+  }
+  );
   ```
 
 
@@ -254,10 +257,10 @@ Parameters of the callback function
 **Example**
 
   ```js
-uploadTask.off('headerReceive', function callback(headers) {
-    console.info("upOnHeader headers:" + JSON.stringify(headers));
-}
-);
+  uploadTask.off('headerReceive', function callback(headers) {
+      console.info("upOnHeader headers:" + JSON.stringify(headers));
+  }
+  );
   ```
 
 
@@ -280,15 +283,15 @@ Removes this upload task. This API uses a promise to return the result.
 **Example**
 
   ```js
-uploadTask.remove().then((result) => {
-    if (result) {
-        console.info('Upload task removed successfully. ');
-    } else {
-        console.error('Failed to remove the upload task. ');
-    }
-}).catch((err) => {
-    console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-});
+  uploadTask.remove().then((result) => {
+      if (result) {
+          console.info('Upload task removed successfully. ');
+      } else {
+          console.error('Failed to remove the upload task. ');
+      }
+  }).catch((err) => {
+      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+  });
   ```
 
 
@@ -311,17 +314,17 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 **Example**
 
   ```js
-uploadTask.remove((err, result) => {
-    if (err) {
-        console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Upload task removed successfully.');
-    } else {
-        console.error('Failed to remove the upload task.');
-    }
-});
+  uploadTask.remove((err, result) => {
+      if (err) {
+          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+          console.info('Upload task removed successfully.');
+      } else {
+          console.error('Failed to remove the upload task.');
+      }
+  });
   ```
 
 
@@ -384,13 +387,14 @@ Downloads files. This API uses a promise to return the result.
 
 **Example**
 
-```js
-request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
-    downloadTask = data;
-}).catch((err) => {
-    console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-})
-```
+  ```js
+  let downloadTask;
+  request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+  })
+  ```
 
 
 ## request.download
@@ -413,14 +417,15 @@ Downloads files. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-request.download({ url: 'https://xxxx/xxxxx.hap', 
-filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-    if (err) {
-        console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    downloadTask = data;
-});
+  let downloadTask;
+  request.download({ url: 'https://xxxx/xxxxx.hap', 
+  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+      if (err) {
+          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      downloadTask = data;
+  });
   ```
 
 
@@ -456,12 +461,6 @@ Parameters of the callback function
 **Example**
 
   ```js
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;    
       downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
@@ -497,17 +496,11 @@ Parameters of the callback function
 **Example**
 
   ```js
-request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-    if (err) {        
-        console.error('Failed to request download. Cause:' + err);
-        return;
-    }
-    downloadTask = data;    
-    downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
-        console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-    }
-);
-});
+      downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
+          console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+      }
+  );
+  });
   ```
 
 
@@ -531,17 +524,11 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 **Example**
 
   ```js
-request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-    if (err) {        
-        console.error('Failed to request download. Cause:' + err);
-        return;   
-    }    
-    downloadTask= data;    
-    downloadTask.on('complete', function callback() {
-        console.info('Download task completed.');
-    }
-);
-});
+      downloadTask.on('complete', function callback() {
+          console.info('Download task completed.');
+      }
+  );
+  });
   ```
 
 
@@ -559,23 +546,17 @@ Unsubscribes from the download event. This API uses an asynchronous callback to 
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type.<br/>- **complete**: download task completion event.<br/>- **pause**: download task pause event.<br/>- **remove**: download task removal event. |
+| type | string | Yes | Event type.<br/>- **'complete'**: download task completion event.<br/>- **'pause'**: download task pause event.<br/>- **remove**: download task removal event. |
 | callback | function | No | Callback used to return the result. |
 
 **Example**
 
   ```js
-request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-    if (err) {        
-        console.error('Failed to request download. Cause:' + JSON.stringify(err));
-        return;
-   }    
-    downloadTask = data;
-    downloadTask.off('complete', function callback() {
-        console.info('Download task completed.');
-    }
-);
-}); 
+      downloadTask.off('complete', function callback() {
+          console.info('Download task completed.');
+      }
+  );
+  }); 
   ```
 
 
@@ -604,18 +585,12 @@ Parameters of the callback function
 
 **Example**
 
-  ```js
-request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-    if (err) {        
-        console.error('Failed to request download. Cause:' + err);
-        return;
-    }    
-    downloadTask = data;    
-    downloadTask.on('fail', function callBack(err) {
-        console.info('Download task failed. Cause:' + err);
-    }
-);
-});
+  ```js 
+      downloadTask.on('fail', function callBack(err) {
+          console.info('Download task failed. Cause:' + err);
+      }
+  );
+  });
   ```
 
 
@@ -645,12 +620,6 @@ Parameters of the callback function
 **Example**
 
   ```js
-  request.download({ url: 'https://xxxx/xxxx.hap' }, (err, data)=> {    
-      if (err) {        
-          console.error('Failed to request download. Cause:' + err);
-          return;
-      }    
-      downloadTask = data;       
       downloadTask.off('fail', function callBack(err) {
           console.info('Download task failed. Cause:' + err);
       } 
@@ -709,17 +678,17 @@ Removes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```js
-downloadTask.remove((err, result)=>{
-    if(err) {
-        console.error('Failed to remove the download task.');
-        return;
-    } 
-    if (result) {
-        console.info('Download task removed.');
-    } else {
-        console.error('Failed to remove the download task.');
-    } 
-});
+  downloadTask.remove((err, result)=>{
+      if(err) {
+          console.error('Failed to remove the download task.');
+          return;
+      } 
+      if (result) {
+          console.info('Download task removed.');
+      } else {
+          console.error('Failed to remove the download task.');
+      } 
+  });
   ```
 
 
@@ -742,11 +711,11 @@ Queries this download task. This API uses a promise to return the result.
 **Example**
 
   ```js
-downloadTask.query().then((downloadInfo) => {    
-    console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
-}) .catch((err) => {
-    console.error('Failed to query the download task. Cause:' + err)
-});
+  downloadTask.query().then((downloadInfo) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
+  }) .catch((err) => {
+      console.error('Failed to query the download task. Cause:' + err)
+  });
   ```
 
 
@@ -769,13 +738,13 @@ Queries this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```js
-downloadTask.query((err, downloadInfo)=>{
-    if(err) {
-        console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-    } else {
-        console.info('download query success. data:'+ JSON.stringify(downloadInfo));
-    }
-});
+  downloadTask.query((err, downloadInfo)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
+      }
+  });
   ```
 
 
@@ -798,11 +767,11 @@ Queries **MimeType** of this download task. This API uses a promise to return th
 **Example**
 
   ```js
-downloadTask.queryMimeType().then((data) => {    
-    console.info('Download task queried. Data:' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
-});
+  downloadTask.queryMimeType().then((data) => {    
+      console.info('Download task queried. Data:' + JSON.stringify(data));
+  }).catch((err) => {
+      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
+  });
   ```
 
 
@@ -825,13 +794,13 @@ Queries **MimeType** of this download task. This API uses an asynchronous callba
 **Example**
 
   ```js
-downloadTask.queryMimeType((err, data)=>{
-    if(err) {
-        console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-    } else {
-        console.info('Download task queried. data:' + JSON.stringify(data));
-    }
-});
+  downloadTask.queryMimeType((err, data)=>{
+      if(err) {
+          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
+      } else {
+          console.info('Download task queried. data:' + JSON.stringify(data));
+      }
+  });
   ```
 
 
@@ -854,15 +823,15 @@ Pauses this download task. This API uses a promise to return the result.
 **Example**
 
   ```js
-downloadTask.pause().then((result) => {    
-    if (result) {
-         console.info('Download task paused. ');
-    } else {
-        console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-    }
-}).catch((err) => {
-    console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-});
+  downloadTask.pause().then((result) => {    
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  }).catch((err) => {
+      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+  });
   ```
 
 
@@ -885,17 +854,17 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 **Example**
 
   ```js
-downloadTask.pause((err, result)=>{
-    if(err) {
-        console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-         console.info('Download task paused. ');
-    } else {
-        console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-    }
-});
+  downloadTask.pause((err, result)=>{
+      if(err) {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+          return;
+      }
+      if (result) {
+           console.info('Download task paused. ');
+      } else {
+          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
+      }
+  });
   ```
 
 
@@ -918,16 +887,16 @@ Resumes this download task. This API uses a promise to return the result.
 **Example**
 
   ```js
-downloadTask.resume().then((result) => {
-    if (result) {
-        console.info('Download task resumed.')
-    } else {
-        console.error('Failed to resume the download task. ');
-    }
-    console.info('Download task resumed.')
-}).catch((err) => {
-    console.error('Failed to resume the download task. Cause:' + err);
-});
+  downloadTask.resume().then((result) => {
+      if (result) {
+          console.info('Download task resumed.')
+      } else {
+          console.error('Failed to resume the download task. ');
+      }
+      console.info('Download task resumed.')
+  }).catch((err) => {
+      console.error('Failed to resume the download task. Cause:' + err);
+  });
   ```
 
 
@@ -950,17 +919,17 @@ Resumes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```js
-downloadTask.resume((err, result)=>{
-    if (err) {
-        console.error('Failed to resume the download task. Cause:' + err);
-        return;
-    } 
-    if (result) {
-        console.info('Download task resumed.');
-    } else {
-        console.error('Failed to resume the download task.');
-    }
-});
+  downloadTask.resume((err, result)=>{
+      if (err) {
+          console.error('Failed to resume the download task. Cause:' + err);
+          return;
+      } 
+      if (result) {
+          console.info('Download task resumed.');
+      } else {
+          console.error('Failed to resume the download task.');
+      }
+  });
   ```
 
 
@@ -975,7 +944,7 @@ downloadTask.resume((err, result)=>{
 | enableMetered | boolean | No | Download allowed in metered connections. |
 | enableRoaming | boolean | No | Download allowed on a roaming network. |
 | description | string | No | Description of the download session. |
-| filePath<sup>7+</sup> | string | No | Download path. (The default path is [ERROR:Invalid link:en-us_topic_0000001135742582.xml#xref8132147102215,link:en-us_topic_0000001127125012.xml#section1856519365229](en-us_topic_0000001127125012.xml#section1856519365229)).<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
+| filePath<sup>7+</sup> | string | No | Download path. (The default value is **'internal://cache/'**).<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
 | networkType | number | No | Network type allowed for download. |
 | title | string | No | Title of the download session. |
 

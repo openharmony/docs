@@ -1,7 +1,6 @@
 # Getting Started with JavaScript in the Traditional Coding Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
->
+> **NOTE**<br/>For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
 
 ## Creating a JavaScript Project
@@ -19,7 +18,7 @@
 
 ## JavaScript Project Files
 
-- **entry** : OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
+- **entry**: OpenHarmony project module, which can be built into an ability package ([HAP](../../glossary.md#hap)).
   - **src &gt; main &gt; js**: a collection of JS source code.
   - **src &gt; main &gt; js &gt; MainAbility**: entry to your application/service.
   - **src &gt; main &gt; js &gt; MainAbility &gt; i18n**: resources in different languages, for example, UI strings and image paths.
@@ -51,7 +50,7 @@
 
 2. Add a button and bind the **onclick** method to this button.
 
-   On the default page, add an **&lt;input&gt;** component of the button type to accept user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
+   On the default page, add an **&lt;input&gt;** component of the button type to respond to user clicks and implement redirection to another page. The sample code in the **index.hml** file is shown below:
 
 
    ```html
@@ -221,4 +220,4 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 
    ![en-us_image_0000001217527892](figures/en-us_image_0000001217527892.png)
 
-Congratulations! You have finished developing your OpenHarmony application in JavaScript in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)
+Congratulations! You have finished developing your OpenHarmony application in JavaScript in the traditional coding approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md).

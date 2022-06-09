@@ -1,7 +1,7 @@
 # Blank
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,24 +23,25 @@ None
 Blank(min?:  Length)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | min | Length | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. | 
+  | min | Length | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. |
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| color | Color | 0x00000000 | Color to fill the blank. | 
+| color | Color | 0x00000000 | Color to fill the blank. |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > - Universal attribute methods are not supported.
 
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component
