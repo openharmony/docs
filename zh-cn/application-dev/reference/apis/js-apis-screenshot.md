@@ -1,6 +1,7 @@
 # 屏幕截图
 
 >  **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -13,7 +14,7 @@ import screenshot from '@ohos.screenshot';
 
 设置截取图像的信息。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 
 | 参数名     | 类型          | 必填 | 说明                                                         |
@@ -27,7 +28,7 @@ import screenshot from '@ohos.screenshot';
 
 表示截取图像的区域。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -41,7 +42,7 @@ import screenshot from '@ohos.screenshot';
 
 表示截取图像的大小。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -56,7 +57,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限**：ohos.permission.CAPTURE_SCREEN
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
 
 **参数：**
 
@@ -96,7 +97,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**需要权限**：ohos.permission.CAPTURE_SCREEN
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
 
 **参数：**
 
