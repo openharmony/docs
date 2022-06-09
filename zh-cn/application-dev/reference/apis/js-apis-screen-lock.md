@@ -20,12 +20,12 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回true表示屏幕已锁屏，返回false表示屏幕未锁屏。 | 
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.isScreenLocked((err, data)=>{      
@@ -46,12 +46,12 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **返回值**：
+**返回值**：
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 以Promise形式返回结果。 | 
 
-- **示例**：
+**示例**：
 
   ```js
   screenlock.isScreenLocked().then((data) => {
@@ -73,12 +73,12 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
 
-- **参数**：
+**参数**：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示屏幕处于安全模式下，返回false表示屏幕当前不在安全模式下。 | 
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.isSecureMode((err, data)=>{      
@@ -99,12 +99,12 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **返回值**：
+**返回值**：
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 以Promise形式返回结果。 | 
 
-- **示例**：
+**示例**：
 
   ```js
   screenlock.isSecureMode().then((data) => {
@@ -126,12 +126,12 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
 
-- **参数**：
+**参数**：
     | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.unlockScreen((err) => {      
@@ -152,12 +152,12 @@ unlockScreen(): Promise&lt;void&gt;
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **返回值**：
+**返回值**：
     | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.unlockScreen().then(() => {
@@ -175,13 +175,13 @@ on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginS
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。<br/>- type为"beginWakeUp"，表示事件开始时开始唤醒。<br/>- type为"endWakeUp"，表示事件结束时结束唤醒。<br/>- type为"beginScreenOn"，表示事件开始时开始亮屏。<br/>- type为"endScreenOn"，表示事件结束时结束亮屏。<br/>- type为"beginScreenOff"，表示事件开始时开始灭屏。<br/>- type为"endScreenOff"，表示事件结束时结束灭屏。<br/>- type为"unlockScreen"，表示请求解锁。<br/>- type为"beginExitAnimation"，表示动画开始退场。 |
   | callback | Callback\<void\> | 是 | 事件回调方法。 |
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.on('beginWakeUp', () => {
@@ -197,13 +197,13 @@ on(type: 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<number\>)
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。<br/>- type为"beginSleep"，表示开始休眠。<br/>- type为"endSleep"，表示结束休眠。<br/>- type为"changeUser"，表示切换用户。 |
   | callback | Callback\<number\> | 是 | 事件回调方法。<br/>返回事件相应的状态。 |
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.on('beginSleep', (why) => {
@@ -218,13 +218,13 @@ on(type: 'screenlockEnabled', callback: Callback\<boolean\>): void
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。<br/>- type为"screenlockEnabled"，表示锁屏是否启用。 |
   | callback | Callback\<boolean\> | 是 | 注册成功的回调。<br/>回调结果用true/false表示。 |
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.on('screenlockEnabled', (isEnabled) => {
@@ -241,13 +241,13 @@ off(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'begin
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。<br/>- type为"beginWakeUp"，表示事件开始时开始唤醒。<br/>- type为"endWakeUp"，表示事件结束时结束唤醒。<br/>- type为"beginScreenOn"，表示事件开始时开始亮屏。<br/>- type为"endScreenOn"，表示事件结束时结束亮屏。<br/>- type为"beginScreenOff"，表示事件开始时开始灭屏。<br/>- type为"endScreenOff"，表示事件结束时结束灭屏。<br/>- type为"unlockScreen"，表示请求解锁。<br/>- type为"beginExitAnimation"，表示动画开始退场。<br/>- type为"screenlockEnabled"，表示锁屏是否启用。<br/>- type为"beginSleep"，表示开始休眠。<br/>- type为"endSleep"，表示结束休眠。<br/>- type为"changeUser"，表示切换用户。 |
   | callback | Callback\<void\> | 是 | 注册成功的回调。 |
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.off('beginWakeUp', () => {
@@ -263,14 +263,14 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<b
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | String | 是 | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
   | parameter | number | 是 | 解锁状态。<br/>- parameter为0，表示解锁成功。<br/>- parameter为1，表示解锁失败。<br/>- parameter为2，表示解锁取消。 |
   | callback | AsyncCallback\<boolean\> | 是 | 表示执行结果。 |
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
@@ -286,18 +286,18 @@ sendScreenLockEvent(event: String, parameter: number): Promise<boolean>
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-- **参数**：
+**参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | String | 是 | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
   | parameter | number | 是 | 解锁状态。<br/>- parameter为0，表示解锁成功。<br/>- parameter为1，表示解锁失败。<br/>- parameter为2，表示解锁取消。 |
 
-- **返回值**：
+**返回值**：
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise\<boolean\> | 以Promise形式返回执行结果。 | 
 
-- **示例**：
+**示例**：
   
   ```js
   screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((err, result) => {
