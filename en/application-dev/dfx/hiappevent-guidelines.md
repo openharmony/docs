@@ -15,7 +15,7 @@ JS application event logging APIs are provided by the **hiAppEvent** module.
 | write(string eventName, EventType type, object keyValues, AsyncCallback\<void> callback): void | void           | Logs application events in asynchronous mode. This method uses an asynchronous callback to return the result. |
 | write(string eventName, EventType type, object keyValues): Promise\<void> | Promise\<void> | Logs application events in asynchronous mode. This method uses a promise to return the result. |
 
-When an asynchronous callback is used, the return value can be processed directly in the callback. When a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Event Verification Result Codes](#Event Verification Result Codes).
+When an asynchronous callback is used, the return value can be processed directly in the callback. When a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Event Verification Result Codes](#event-verification-result-codes).
 
 **APIs for Event Logging Configuration**
 
