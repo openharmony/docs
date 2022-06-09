@@ -254,8 +254,8 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 
 | 名称                         | 默认值 | 描述       |
 | ---------------------------- | ------ | ---------- |
-| SHARE_MODE<sup>8+</sup>      | 0      | 共享焦点模式。 |
-| INDEPENDENT_MODE<sup>8+</sup>| 1      | 独立焦点模式。     |
+| SHARE_MODE<sup>9+</sup>      | 0      | 共享焦点模式。 |
+| INDEPENDENT_MODE<sup>9+</sup>| 1      | 独立焦点模式。     |
 
 ## DeviceFlag
 
