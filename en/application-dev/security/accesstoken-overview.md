@@ -74,7 +74,7 @@ The table below describes the APLs.
 | system_basic| The apps of this level provide basic system services.    |
 | Normal      | The apps of this level are normal apps.                            |
 
-By default, apps are of the normal APL. For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's [profile](../quick-start/app-provision-structure.md), and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+By default, apps are of the normal APL. For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
 ### Permission Levels
 
 The permissions open to apps vary with the permission level. The permission levels include the following in ascending order of seniority.
