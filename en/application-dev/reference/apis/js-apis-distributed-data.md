@@ -611,7 +611,7 @@ Defines the KV store constants.
 | ---   | ----  | ----------------------- |
 | MAX_KEY_LENGTH  | 1024 | Maximum length (in bytes) of a key in the KV store.  |
 | MAX_VALUE_LENGTH  | 4194303 | Maximum length (in bytes) of a value in the KV store. |
-| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of the device coordinate key, in bytes.|
+| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of the device key, in bytes.|
 | MAX_STORE_ID_LENGTH  | 128 | Maximum length (in bytes) of a KV store ID. |
 | MAX_QUERY_LENGTH  | 512000 | Maximum query length, in bytes.|
 | MAX_BATCH_SIZE  | 128 | Maximum number of batch operations.|
