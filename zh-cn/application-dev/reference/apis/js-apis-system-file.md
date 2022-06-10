@@ -154,7 +154,7 @@ export default {
     file.list({            
       uri: 'internal://app/pic',            
       success: function(data) {                
-        console.log(data.fileList);            
+        console.log(JSON.stringify(data.fileList));            
       },            
       fail: function(data, code) {                
         console.error('call fail callback fail, code: ' + code + ', data: ' + data);            
