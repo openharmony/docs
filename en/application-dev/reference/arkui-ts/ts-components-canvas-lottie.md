@@ -4,6 +4,7 @@
 > **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+**Lottie** allows you to implement animation-specific operations.
 
 ## Required Permissions
 
