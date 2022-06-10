@@ -18,10 +18,23 @@ Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name             | Default Value| Description              |
+| Name             | Default Value | Description              |
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | Application subwindow.  |
 | TYPE_SYSTEM_ALERT | 1      | System alert window.|
+| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | Input method window.|
+| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | Status bar.|
+| TYPE_PANEL<sup>9+</sup>        | 4      | Notification panel.|
+| TYPE_KEYGUARD<sup>9+</sup>     | 5      | Lock screen.|
+| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | Volume bar.|
+| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | Navigation bar.|
+| TYPE_FLOAT<sup>9+</sup> | 8      | Floating window.|
+| TYPE_WALLPAPER<sup>9+</sup> | 9      | Wallpaper.|
+| TYPE_DESKTOP<sup>9+</sup> | 10      | Home screen.|
+| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | Recent tasks screen.|
+| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | Dock bar on the home screen.|
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.|
+| TYPE_POINTER<sup>9+</sup> | 14      | Mouse.|
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -29,7 +42,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Default Value| Description              |
+| Name       | Default Value | Description              |
 | ----------- | ------ | ------------------ |
 | TYPE_SYSTEM | 0      | Default area of the system.|
 | TYPE_CUTOUT | 1      | Notch.  |
@@ -42,7 +55,7 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value| Description                         |
+| Name      | Default Value | Description                         |
 | ---------- | ------ | ----------------------------- |
 | UNDEFINED  | 1      | The window mode is not defined by the application.      |
 | FULLSCREEN | 2      | The application is displayed in full screen.            |
@@ -158,7 +171,7 @@ Describes the color gamut mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value| Description          |
+| Name      | Default Value | Description          |
 | ---------- | ------ | -------------- |
 | DEFAULT    | 0      | Default color gamut mode.|
 | WIDE_GAMUT | 1      | Wide color gamut mode.  |
@@ -236,7 +249,7 @@ This API is deprecated since API version 8. You are advised to use [window.creat
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow (in API version 8) or a system window (since API version 9). This API uses an asynchronous callback to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -244,7 +257,7 @@ Creates a subwindow (in API version 8) or a system window (since API version 9).
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md). |
+| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md).|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                                      |
@@ -268,7 +281,7 @@ Creates a subwindow (in API version 8) or a system window (since API version 9).
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow (in API version 8) or a system window (since API version 9). This API uses a promise to return the result.
+Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -276,7 +289,7 @@ Creates a subwindow (in API version 8) or a system window (since API version 9).
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md). |
+| ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md).|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
 
@@ -432,7 +445,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [AbilityContext](js-apis-ability-context.md). |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                      |
 
 **Example**
@@ -461,7 +474,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| ctx    | Context | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [AbilityContext](js-apis-ability-context.md). |
 
 **Return value**
 
@@ -1779,8 +1792,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1809,8 +1823,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 Sets the dimness of the window that is not on top. This API uses a promise to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1931,8 +1946,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1961,8 +1977,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2149,7 +2166,7 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Default Value| Description    |
+| Name      | Default Value | Description    |
 | ---------- | ------ | -------- |
 | FOREGROUND | 1      | The window stage is running in the foreground.|
 | ACTIVE     | 2      | The window stage gains focus.|
@@ -2450,3 +2467,28 @@ Disables listening for window stage lifecycle changes.
       }
   }
   ```
+
+### setShowOnLockScreen('showOnLockScreen')<sup>9+</sup>
+
+setShowOnLockScreen(showOnLockScreen: boolean): void
+
+Sets whether to display the window of the application on the lock screen.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name          | Type   | Mandatory| Description                        |
+| ---------------- | ------- | ---- | ---------------------------- |
+| showOnLockScreen | boolean | Yes  | Whether to display the window on the lock screen.|
+
+**Example**
+
+```ts
+class myAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        console.log('onWindowStageCreate');
+        windowStage.setShowOnLockScreen(true);
+    }
+}
+```
