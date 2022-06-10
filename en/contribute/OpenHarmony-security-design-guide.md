@@ -1,6 +1,6 @@
 # OpenHarmony Security Design Specifications
 
-With reference to industry standards and best practices, the document provides OpenHarmony security design specifications.
+With reference to industry standards and best practices, this document provides OpenHarmony security design specifications.
 
 ## 1\. Access Channel Control
 
@@ -26,31 +26,41 @@ With reference to industry standards and best practices, the document provides O
 
 **Description**: The security of an algorithm does not mean its confidentiality.
 
-**Example**: Recommended cipher algorithms are as follows: 
-(1) Block cipher algorithm: AES (key length of 128 bits or longer)  
-(2) Stream cipher algorithm: AES (key length of 128 bits or longer) (OFB/CTR mode)   
-(3) Asymmetric encryption algorithm: RSA (recommended: 3072 bits)   
-(4) Hash algorithm: SHA-2 (256 bits or above)  
-(5) Key exchange algorithm: DH (recommended: 3072 bits)  
-(6) Hash-based message authentication code (HMAC) algorithm: HMAC-SHA-2  
-The following are some examples of insecure cipher algorithms: MD5, DES, 3DES (Do not use 3DES in TLS/SSH, and ensure K1≠K2≠K3 in non-cryptographic protocols), HMAC-SHA2-256-96, HMAC-SHA1-96, HMAC-MD5, HMAC-MD5-96, SSH CBC, anonymous algorithm suites, DH512, DH1024, SKIPJACK, RC2, RSA (1024 bits or shorter), MD2, MD4, Blowfish, and RC4. 3-2 Do not use algorithms for error control coding, such as parity check and CRC, to perform integrity check, unless otherwise specified in standard protocols
+**Example**: 
+
+Recommended cipher algorithms are as follows:
+
+- Block cipher algorithm: AES (key length of 128 bits or longer)  
+- Stream cipher algorithm: AES (key length of 128 bits or longer) (OFB/CTR mode)   
+- Asymmetric encryption algorithm: RSA (recommended: 3072 bits)   
+- Hash algorithm: SHA-2 (256 bits or above)  
+- Key exchange algorithm: DH (recommended: 3072 bits)  
+- Hash-based message authentication code (HMAC) algorithm: HMAC-SHA-2  
+
+The following are examples of insecure cipher algorithms: 
+
+MD5, DES, 3DES (Do not use 3DES in TLS/SSH, and ensure K1≠K2≠K3 in non-cryptographic protocols), HMAC-SHA2-256-96, HMAC-SHA1-96, HMAC-MD5, HMAC-MD5-96, SSH CBC, anonymous algorithm suites, DH512, DH1024, SKIPJACK, RC2, RSA (1024 bits or shorter), MD2, MD4, Blowfish, RC4 
+
+3-2 Do not use algorithms for error control coding, such as parity check and CRC, to perform integrity check, unless otherwise specified in standard protocols
 
 3-3 Cipher algorithms must use cryptographically secure random numbers for security purposes
 
 **Description**: The use of insecure random numbers may easily weaken a cipher algorithm or even render it ineffective.
 
-**Example**: The following interfaces can be used to generate secure random numbers:
+**Example**: 
 
-(1) **RAND\_bytes** or **RAND\_priv\_bytes** of OpenSSL
-(2) DRBG implemented in the OpenSSL FIPS module
-(3) **java.security.SecureRandom** of the JDK  
-(4) **/dev/random** file of Unix-like platforms
+The following interfaces can be used to generate secure random numbers:
 
-3-4 By default, use secure cipher algorithms and disable/prohibit insecure cipher algorithms. Use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by OpenHarmony.
+- **RAND\_bytes** or **RAND\_priv\_bytes** of OpenSSL
+- DRBG implemented in the OpenSSL FIPS module
+- **java.security.SecureRandom** of the JDK  
+- **/dev/random** file of Unix-like platforms
+
+3-4 By default, use secure cipher algorithms and disable/prohibit insecure cipher algorithms. Use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by OpenHarmony
 
 **Description**: In the context of advances in cryptographic technologies and enhancement in computing capabilities, some cipher algorithms may become insecure. Using such algorithms may bring risks to user data. In addition, unknown flaws may exist in cipher algorithms that are developed by amateurs and not analyzed/verified by the industry. In this regard, use cipher algorithm libraries that are certified by authoritative organizations, recognized by open-source communities in the industry, or assessed and approved by OpenHarmony.
 
-**Example**: For examples of cipher algorithms, see 3-1.
+**Example**: See 3-1.
 
 3-5 The GCM mode is preferred when block cipher algorithms are used
 
@@ -78,14 +88,19 @@ The following are some examples of insecure cipher algorithms: MD5, DES, 3DES (D
 
 **Description**: In cryptographic protocols (such as TLS, SSH, and IKE), MACs are usually used to verify the integrity of messages. Some protocols support truncated MACs. Truncation reduces MAC security. For example, SLOTH attacks against multiple cryptographic protocols (such as TLS and SSH) may craft collisions using truncated hash values.
 
-**Example**: The following are some examples of truncated MACs. The standard output lengths of HMAC-MD5-96, HMAC-SHA1-96, and HMAC-SHA2-256-96 configured in SSH are listed below. A shorter length is considered a truncation. 
-(1) SHA-1/HMAC-SHA-1: The standard output length is 160 bits.  
-(2) SHA-224/HMAC-SHA-224: The standard output length is 224 bits.  
-(3) SHA-256/HMAC-SHA-256: The standard output length is 256 bits.  
-(4) SHA-384/HMAC-SHA-384: The standard output length is 384 bits.  
-(5) SHA-512/HMAC-SHA-512: The standard output length is 512 bits.  
-(6) SHA-512/224/HMAC-SHA-512/224: The standard output length is 224 bits.  
-(7) SHA-512/256/HMAC-SHA-512/256: The standard output length is 256 bits.
+**Example**: 
+
+The following are examples of truncated MACs: 
+
+The standard output lengths of HMAC-MD5-96, HMAC-SHA1-96, and HMAC-SHA2-256-96 configured in SSH are listed below. A shorter length is considered a truncation. 
+
+- SHA-1/HMAC-SHA-1: The standard output length is 160 bits.  
+- SHA-224/HMAC-SHA-224: The standard output length is 224 bits.  
+- SHA-256/HMAC-SHA-256: The standard output length is 256 bits.  
+- SHA-384/HMAC-SHA-384: The standard output length is 384 bits.  
+- SHA-512/HMAC-SHA-512: The standard output length is 512 bits.  
+- SHA-512/224/HMAC-SHA-512/224: The standard output length is 224 bits.  
+- SHA-512/256/HMAC-SHA-512/256: The standard output length is 256 bits.
 
 3-13 When HMAC is used for data integrity protection, do not use the calculation result of hash(key\|\|message) or hash(message\|\|key) as the MAC value
 
@@ -103,9 +118,15 @@ The following are some examples of insecure cipher algorithms: MD5, DES, 3DES (D
 
 **Description**: Their use may compromise system security.
 
-**Example**:  
-The following are examples of anonymous authentication: TLS\_DH\_anon\_WITH\_3DES\_EDE\_CBC\_SHA and TLS\_DH\_anon\_WITH\_AES\_256\_CBC\_SHA.  
-The following is an example of weak authentication: RSA/DSA, with a key length less than 2048 bits.
+**Example**:
+
+The following are examples of anonymous authentication: 
+
+TLS\_DH\_anon\_WITH\_3DES\_EDE\_CBC\_SHA and TLS\_DH\_anon\_WITH\_AES\_256\_CBC\_SHA  
+
+The following is an example of weak authentication: 
+
+RSA/DSA, with a key length less than 2048 bits
 
 3-17 It is recommended that only ECDHE be used as the cipher suite of the key exchange algorithm
 
@@ -131,9 +152,9 @@ The following is an example of weak authentication: RSA/DSA, with a key length l
 
 **Example**: 
 
-1. When calculating the one-way password hash using PBKDF2, the number of iterations is at least 1000. 
-2. A salt value is a cryptographically secure random number generated by the system. The salt value has at least 16 bytes and is unique to each user. 
-3. Avoid using HASH(user name\|\|password), HMAC(user name, password), and HASH(password XOR salt).
+- When calculating the one-way password hash using PBKDF2, the number of iterations is at least 1000. 
+- A salt value is a cryptographically secure random number generated by the system. The salt value has at least 16 bytes and is unique to each user. 
+- Avoid using HASH(user name\|\|password), HMAC(user name, password), and HASH(password XOR salt).
 
 4-3 If sensitive data needs to be transmitted over untrusted networks, ensure that sensitive data is transmitted over secure paths or is transmitted after being encrypted
 
@@ -144,10 +165,11 @@ The following is an example of weak authentication: RSA/DSA, with a key length l
 ## 5\. System Management and Maintenance Security
 
 5-1 Adopt one or more of the following protection measures for login authentication on system O\&M interfaces to support anti-brute force cracking based on actual scenarios and risks: 
-(1) Account lockout  
-(2) IP address lockout  
-(3) Login postponed  
-(4) Verification code required
+
+- Account lockout 
+- IP address lockout
+- Login postponed
+- Verification code required
 
 5-2 By default, all the passwords entered by users on the GUI for system O\&M purposes are not displayed in plaintext
 
@@ -155,7 +177,17 @@ The following is an example of weak authentication: RSA/DSA, with a key length l
 
 5-4 Use appropriate security protocols, and disable insecure protocols by default
 
-**Example**: The following are examples of security protocols: SSHv2, TLS 1.2, TLS 1.3, IPsec, SFTP, SNMPv3, and their latest versions. It is recommended that AES in OFB or CTR mode or ChaCha20 be used to replace RC4. The following are examples of insecure protocols: TFTP, FTP, Telnet, SSL 2.0, SSL 3.0, TLS 1.0, TLS 1.1, SNMPv1/v2, and SSHv1.x.
+**Example**: 
+
+The following are examples of security protocols: 
+
+SSHv2, TLS 1.2, TLS 1.3, IPsec, SFTP, SNMPv3, and their latest versions 
+
+It is recommended that AES in OFB or CTR mode or ChaCha20 be used to replace RC4. 
+
+The following are examples of insecure protocols: 
+
+TFTP, FTP, Telnet, SSL 2.0, SSL 3.0, TLS 1.0, TLS 1.1, SNMPv1/v2, and SSHv1.x
 
 5-5 Do not assign a role to a new account or assign a role with the least privilege (for example, read only) by default in line with the principle of least privilege
 
