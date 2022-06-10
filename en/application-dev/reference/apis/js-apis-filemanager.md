@@ -175,7 +175,7 @@ Creates a file in the specified path in asynchronous mode. This API uses a promi
 
   | Type| Description|
   | --- | -- |
-  | Promise&lt;string> | Promise used to return the URI of the file created.|
+  | Promise&lt;string&gt; | Promise used to return the URI of the file created.|
 
 - Error
   | Error Info| Error Code|Description|
