@@ -36,7 +36,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       onWindowStageCreate(windowStage) {
           let want = {
               "bundleName": "com.example.myapp",
-              "abilityName": "com.example.myapp.MyAbility"};
+              "abilityName": "MyAbility"};
           this.context.startAbility(want, (err) => {
           console.log('startAbility result:' + JSON.stringify(err));
           });
@@ -74,7 +74,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
         onWindowStageCreate(windowStage) {
             let want = {
             "bundleName": "com.example.myapp",
-            "abilityName": "com.example.myapp.MyAbility"
+            "abilityName": "MyAbility"
             };
         this.context.startAbility(want).then((data) => {
             console.log('success:' + JSON.stringify(data));
@@ -175,7 +175,7 @@ connectAbility(want: Want, options: ConnectOptions): number;
   ```js
   let want = {
       "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
+      "abilityName": "MyAbility"
   };
   let options = {
       onConnect: function(elementName, proxy) {},
