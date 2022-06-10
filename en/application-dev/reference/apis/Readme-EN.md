@@ -59,6 +59,14 @@
   - [@ohos.bundle](js-apis-Bundle.md)
   - [@ohos.bundleState ](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
+  - bundle/[AbilityInfo](js-apis-bundle-AbilityInfo.md)
+  - bundle/[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)
+  - bundle/[BundleInfo](js-apis-bundle-BundleInfo.md)
+  - bundle/[CustomizeData](js-apis-bundle-CustomizeData.md)
+  - bundle/[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)
+  - bundle/[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[Metadata](js-apis-bundle-Metadata.md)
+  - bundle/[ModuleInfo](js-apis-bundle-ModuleInfo.md)
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
