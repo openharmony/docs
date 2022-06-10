@@ -13,11 +13,11 @@ The table below lists the APIs changes of the distributed scheduler subsystem in
 | ohos.reminderAgent | LocalDateTime | month: number; | Added|
 | ohos.reminderAgent | LocalDateTime | year: number; | Added|
 | ohos.reminderAgent | ReminderRequestTimer | triggerTimeInSeconds: number; | Added|
-| ohos.reminderAgent | ReminderRequestAlarm | daysOfWeek?: Array<number>; | Added|
+| ohos.reminderAgent | ReminderRequestAlarm | daysOfWeek?: Array\<number>; | Added|
 | ohos.reminderAgent | ReminderRequestAlarm | minute: number; | Added|
 | ohos.reminderAgent | ReminderRequestAlarm | hour: number; | Added|
-| ohos.reminderAgent | ReminderRequestCalendar | repeatDays?: Array<number>; | Added|
-| ohos.reminderAgent | ReminderRequestCalendar | repeatMonths?: Array<number>; | Added|
+| ohos.reminderAgent | ReminderRequestCalendar | repeatDays?: Array\<number>; | Added|
+| ohos.reminderAgent | ReminderRequestCalendar | repeatMonths?: Array\<number>; | Added|
 | ohos.reminderAgent | ReminderRequestCalendar | dateTime: LocalDateTime; | Added|
 | ohos.reminderAgent | ReminderRequest | slotType?: notification.SlotType; | Added|
 | ohos.reminderAgent | ReminderRequest | notificationId?: number; | Added|
@@ -43,21 +43,21 @@ The table below lists the APIs changes of the distributed scheduler subsystem in
 | ohos.reminderAgent | ReminderType | REMINDER_TYPE_TIMER = 0 | Added|
 | ohos.reminderAgent | ActionButtonType | ACTION_BUTTON_TYPE_SNOOZE = 1 | Added|
 | ohos.reminderAgent | ActionButtonType | ACTION_BUTTON_TYPE_CLOSE = 0 | Added|
-| ohos.reminderAgent | reminderAgent | function removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void;<br>function removeNotificationSlot(slotType: notification.SlotType): Promise<void>; | Added|
-| ohos.reminderAgent | reminderAgent | function addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void;<br>function addNotificationSlot(slot: NotificationSlot): Promise<void>; | Added|
-| ohos.reminderAgent | reminderAgent | function cancelAllReminders(callback: AsyncCallback<void>): void;<br>function cancelAllReminders(): Promise<void>; | Added|
-| ohos.reminderAgent | reminderAgent | function getValidReminders(callback: AsyncCallback<Array<ReminderRequest>>): void;<br>function getValidReminders(): Promise<Array<ReminderRequest>>; | Added|
-| ohos.reminderAgent | reminderAgent | function cancelReminder(reminderId: number, callback: AsyncCallback<void>): void;<br>function cancelReminder(reminderId: number): Promise<void>; | Added|
-| ohos.reminderAgent | reminderAgent | function publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback<number>): void;<br>function publishReminder(reminderReq: ReminderRequest): Promise<number>; | Added|
-| ohos.bundleState | bundleState | function queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback<Array<BundleActiveState>>): void;<br>function queryCurrentBundleActiveStates(begin: number, end: number): Promise<Array<BundleActiveState>>; | Added|
+| ohos.reminderAgent | reminderAgent | removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void;<br>removeNotificationSlot(slotType: notification.SlotType): Promise\<void>; | Added|
+| ohos.reminderAgent | reminderAgent | addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void;<br>addNotificationSlot(slot: NotificationSlot): Promise\<void>; | Added|
+| ohos.reminderAgent | reminderAgent | cancelAllReminders(callback: AsyncCallback\<void>): void;<br>cancelAllReminders(): Promise\<void>; | Added|
+| ohos.reminderAgent | reminderAgent | getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void;<br>getValidReminders(): Promise\<Array\<ReminderRequest>>; | Added|
+| ohos.reminderAgent | reminderAgent | cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void;<br>cancelReminder(reminderId: number): Promise\<void>; | Added|
+| ohos.reminderAgent | reminderAgent | publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void;<br>publishReminder(reminderReq: ReminderRequest): Promise\<number>; | Added|
+| ohos.bundleState | bundleState | queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback\<Array\<BundleActiveState>>): void;<br>queryCurrentBundleActiveStates(begin: number, end: number): Promise\<Array\<BundleActiveState>>; | Added|
 | ohos.bundleState | IntervalType | BY_ANNUALLY = 4 | Added|
 | ohos.bundleState | IntervalType | BY_MONTHLY = 3 | Added|
 | ohos.bundleState | IntervalType | BY_WEEKLY = 2 | Added|
 | ohos.bundleState | IntervalType | BY_DAILY = 1 | Added|
 | ohos.bundleState | IntervalType | BY_OPTIMIZED = 0 | Added|
 | ohos.bundleState | BundleActiveInfoResponse | [key: string]: BundleStateInfo; | Added|
-| ohos.bundleState | bundleState | function queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void;<br>function queryAppUsagePriorityGroup(): Promise<number>; | Added|
-| ohos.bundleState | bundleState | function isIdleState(bundleName: string, callback: AsyncCallback<boolean>): void;<br>function isIdleState(bundleName: string): Promise<boolean>; | Added|
+| ohos.bundleState | bundleState | queryAppUsagePriorityGroup(callback: AsyncCallback\<number>): void;<br>queryAppUsagePriorityGroup(): Promise\<number>; | Added|
+| ohos.bundleState | bundleState | isIdleState(bundleName: string, callback: AsyncCallback\<boolean>): void;<br>isIdleState(bundleName: string): Promise\<boolean>; | Added|
 | ohos.bundleState | BundleActiveState | stateType?: number; | Added|
 | ohos.bundleState | BundleActiveState | stateOccurredTime?: number; | Added|
 | ohos.bundleState | BundleActiveState | nameOfClass?: string; | Added|
@@ -82,10 +82,10 @@ The table below lists the APIs changes of the distributed scheduler subsystem in
 | ohos.backgroundTaskManager | BackgroundMode | AUDIO_RECORDING = 3 | Added|
 | ohos.backgroundTaskManager | BackgroundMode | AUDIO_PLAYBACK = 2 | Added|
 | ohos.backgroundTaskManager | BackgroundMode | DATA_TRANSFER = 1 | Added|
-| ohos.backgroundTaskManager | backgroundTaskManager | function stopBackgroundRunning(context: Context, callback: AsyncCallback<void>): void;<br>function stopBackgroundRunning(context: Context): Promise<void>; | Added|
-| ohos.backgroundTaskManager | backgroundTaskManager | function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback<void>): void;<br>function startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise<void>; | Added|
-| ohos.backgroundTaskManager | backgroundTaskManager | function requestSuspendDelay(reason: string, callback: Callback<void>): DelaySuspendInfo; | Added|
-| ohos.backgroundTaskManager | backgroundTaskManager | function getRemainingDelayTime(requestId: number, callback: AsyncCallback<number>): void;<br>function getRemainingDelayTime(requestId: number): Promise<number>; | Added|
-| ohos.backgroundTaskManager | backgroundTaskManager | function cancelSuspendDelay(requestId: number): void; | Added|
+| ohos.backgroundTaskManager | backgroundTaskManager | stopBackgroundRunning(context: Context, callback: AsyncCallback\<void>): void;<br>stopBackgroundRunning(context: Context): Promise\<void>; | Added|
+| ohos.backgroundTaskManager | backgroundTaskManager | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback\<void>): void;<br>startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise\<void>; | Added|
+| ohos.backgroundTaskManager | backgroundTaskManager | requestSuspendDelay(reason: string, callback: Callback\<void>): DelaySuspendInfo; | Added|
+| ohos.backgroundTaskManager | backgroundTaskManager | getRemainingDelayTime(requestId: number, callback: AsyncCallback\<number>): void;<br>getRemainingDelayTime(requestId: number): Promise\<number>; | Added|
+| ohos.backgroundTaskManager | backgroundTaskManager | cancelSuspendDelay(requestId: number): void; | Added|
 | ohos.backgroundTaskManager | DelaySuspendInfo | actualDelayTime: number; | Added|
 | ohos.backgroundTaskManager | DelaySuspendInfo | requestId: number; | Added|

@@ -14,13 +14,13 @@ The table below lists the APIs changes of the bundle management framework in Ope
 | launcherAbilityInfo | LauncherAbilityInfo | readonly labelId: number; | Added|
 | launcherAbilityInfo | LauncherAbilityInfo | readonly elementName : ElementName; | Added|
 | launcherAbilityInfo | LauncherAbilityInfo | readonly applicationInfo: ApplicationInfo; | Added|
-| bundleInfo | BundleInfo | readonly reqPermissionStates: Array<number>; | Added|
-| bundleInfo | BundleInfo | readonly hapModuleInfos: Array<HapModuleInfo>; | Added|
-| bundleInfo | BundleInfo | readonly abilityInfos: Array<AbilityInfo>; | Added|
+| bundleInfo | BundleInfo | readonly reqPermissionStates: Array\<number>; | Added|
+| bundleInfo | BundleInfo | readonly hapModuleInfos: Array\<HapModuleInfo>; | Added|
+| bundleInfo | BundleInfo | readonly abilityInfos: Array\<AbilityInfo>; | Added|
 | abilityInfo | AbilityInfo | readonly enabled: boolean; | Added|
-| abilityInfo | AbilityInfo | readonly metaData: Array<CustomizeData>; | Added|
-| ohos.zlib | zlib | function unzipFile(inFile:string, outFile:string, options: Options): Promise<void>; | Added|
-| ohos.zlib | zlib | function zipFile(inFile:string, outFile:string, options: Options): Promise<void>; | Added|
+| abilityInfo | AbilityInfo | readonly metaData: Array\<CustomizeData>; | Added|
+| ohos.zlib | zlib | unzipFile(inFile:string, outFile:string, options: Options): Promise\<void>; | Added|
+| ohos.zlib | zlib | zipFile(inFile:string, outFile:string, options: Options): Promise\<void>; | Added|
 | ohos.zlib | Options | strategy?: CompressStrategy; | Added|
 | ohos.zlib | Options | memLevel?: MemLevel; | Added|
 | ohos.zlib | Options | level?: CompressLevel; | Added|
@@ -38,12 +38,12 @@ The table below lists the APIs changes of the bundle management framework in Ope
 | ohos.zlib | CompressLevel | COMPRESS_LEVEL_NO_COMPRESSION = 0 | Added|
 | ohos.zlib | ErrorCode | ERROR_CODE_ERRNO = -1 | Added|
 | ohos.zlib | ErrorCode | ERROR_CODE_OK = 0 | Added|
-| ohos.bundle | bundle | function isApplicationEnabled(bundleName: string, callback: AsyncCallback<boolean>): void;<br>function isApplicationEnabled(bundleName: string): Promise<boolean>; | Added|
-| ohos.bundle | bundle | function isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback<boolean>): void;<br>function isAbilityEnabled(info: AbilityInfo): Promise<boolean>; | Added|
-| ohos.bundle | bundle | function getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback<image.PixelMap>): void;<br>function getAbilityIcon(bundleName: string, abilityName: string): Promise<image.PixelMap>; | Added|
-| ohos.bundle | bundle | function getAbilityLabel(bundleName: string, abilityName: string, callback: AsyncCallback<string>): void;<br>function getAbilityLabel(bundleName: string, abilityName: string): Promise<string>; | Added|
-| ohos.bundle | bundle | function getNameForUid(uid: number, callback: AsyncCallback<string>) : void<br>function getNameForUid(uid: number) : Promise<string>; | Added|
-| ohos.bundle | bundle | function getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback<AbilityInfo>): void;<br>function getAbilityInfo(bundleName: string, abilityName: string): Promise<AbilityInfo>; | Added|
+| ohos.bundle | bundle | isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void;<br>isApplicationEnabled(bundleName: string): Promise\<boolean>; | Added|
+| ohos.bundle | bundle | isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void;<br>isAbilityEnabled(info: AbilityInfo): Promise\<boolean>; | Added|
+| ohos.bundle | bundle | getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;<br>getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>; | Added|
+| ohos.bundle | bundle | getAbilityLabel(bundleName: string, abilityName: string, callback: AsyncCallback\<string>): void;<br>getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>; | Added|
+| ohos.bundle | bundle | getNameForUid(uid: number, callback: AsyncCallback\<string>) : void<br>getNameForUid(uid: number) : Promise\<string>; | Added|
+| ohos.bundle | bundle | getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;<br>getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>; | Added|
 | ohos.bundle | InstallErrorCode | STATUS_UNINSTALL_PERMISSION_DENIED = 0x45 | Added|
 | ohos.bundle | InstallErrorCode | STATUS_INSTALL_PERMISSION_DENIED = 0x44 | Added|
 | ohos.bundle | InstallErrorCode | STATUS_GRANT_REQUEST_PERMISSIONS_FAILED = 0x43 | Added|
