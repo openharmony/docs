@@ -19,7 +19,6 @@
   - [@ohos.application.formError (FormError)](js-apis-formerror.md)
   - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
   - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
-  - [@ohos.application.missionInfo (MissionInfo)](js-apis-application-missionInfo.md)
   - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
   - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
   - [@ohos.ability.particleAbility (particleAbility模块)](js-apis-particleAbility.md)
