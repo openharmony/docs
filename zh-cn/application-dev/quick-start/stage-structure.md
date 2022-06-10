@@ -514,6 +514,8 @@ requestPermissions示例 :
 
 ```json
 {
+    "name": "ohos.abilitydemo.permission.PROVIDER",
+    "reason": "$string:reason",
     "usedScene": {
         "abilities": [
             "AudioAbility",
