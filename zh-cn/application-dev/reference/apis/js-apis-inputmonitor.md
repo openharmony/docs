@@ -74,7 +74,7 @@ inputMonitor.off("mouse", (event) => {
 
 off(type: "touch", receiver?:TouchEventReceiver):void
 
-开始监听全局触屏事件。
+停止监听全局触屏事件。
 
 **需要权限：**ohos.permission.INPUT_MONITORING
 
@@ -117,7 +117,7 @@ inputMonitor.off("mouse");
 
 ## TouchEventReceiver
 
-触摸输入事件的回调函数，如果返回true，则触摸输入将被监听器消耗（系统执行关闭动作）。
+触摸输入事件的回调函数。如果返回true，则触摸输入被监听器消耗，系统将执行关闭动作。
 
 
 ### (touchEvent: TouchEvent): Boolean
@@ -132,15 +132,15 @@ inputMonitor.off("mouse");
 | touchEvent | [TouchEvent](../arkui-js/js-components-common-events.md) | 是    | 触摸输入事件回调函数，返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
 
   **返回值：**
-| 类型      | 说明                                     |
+| 类型    | 说明                                    |
 | ------- | -------------------------------------- |
-| Boolean | 返回true表示输触事件被监听器消费，false表示输触事件未被监听器消费。 |
+| Boolean | 返回true表示触摸输入事件被监听器消费，false表示触摸输入事件未被监听器消费。 |
 
   **示例：**
 
 ```js
 inputMonitor.on("touch", (event) => {
-  // 消费触屏事件
+  // 消费触摸输入事件
   return false;
 });
 inputMonitor.off("touch");
