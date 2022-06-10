@@ -58,7 +58,7 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 ```
 
 
-  figure1 Static animation
+  Figure 1 Static animation
   
   ![en-us_image_0000001223127724](figures/en-us_image_0000001223127724.png)
 
@@ -163,6 +163,6 @@ export default {
 }
 ```
 
-  figure2 Continuous animation effect
+  Figure 2 Continuous animation effect
   
   ![en-us_image_0000001223287696](figures/en-us_image_0000001223287696.gif)
