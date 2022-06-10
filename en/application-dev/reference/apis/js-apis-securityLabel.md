@@ -3,7 +3,7 @@
 > **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-This module provides functions related to file security levels. It provides JS APIs to obtain and set file security levels.
+The APIs of this module can be used to obtain and set file security levels.
 
 ## Modules to Import
 
@@ -64,7 +64,7 @@ Sets the security label for a file in asynchronous mode. This API uses a promise
 
 setSecurityLabel(path:string, dataLevel:string, callback: AsyncCallback&lt;void&gt;):void
 
-Sets the security label for a file in asynchronous mode. This API uses an asynchronous callback to return the result.
+Sets the security label for a file in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.DistributedFile
 
@@ -138,7 +138,7 @@ Obtains the security label of a file in asynchronous mode. This API uses a promi
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the security label of a file in asynchronous mode. This API uses an asynchronous callback to return the result.
+Obtains the security label of a file in asynchronous mode. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.DistributedFile
 

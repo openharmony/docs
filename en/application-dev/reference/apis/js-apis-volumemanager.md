@@ -1,9 +1,12 @@
 # Volume Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 >
 > - The initial APIs of this module are supported since API version 9.
-> - API version 9 is a canary release for trial use. The APIs of this version may be unstable.
+> - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+> - The APIs of this module are system APIs and cannot be called by third-party applications.
+
+The APIs of this module can be used to perform volume and disk management, including obtaining volume information, mounting and unmounting volumes, partitioning disks, and formatting volumes.
 
 ## Modules to Import
 
@@ -15,7 +18,7 @@ import volumemanager from "@ohos.volumeManager";
 
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
-Asynchronously obtains information about all available volumes. This method uses a promise to return the result.
+Asynchronously obtains information about all available volumes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
@@ -37,7 +40,7 @@ Asynchronously obtains information about all available volumes. This method uses
 
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
-Asynchronously obtains information about all available volumes. This method uses a callback to return the result.
+Asynchronously obtains information about all available volumes. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
@@ -61,7 +64,7 @@ Asynchronously obtains information about all available volumes. This method uses
 
 mount(volumeId: string): Promise&lt;boolean&gt;
 
-Asynchronously mounts a volume. This method uses a promise to return the result.
+Asynchronously mounts a volume. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
@@ -90,7 +93,7 @@ Asynchronously mounts a volume. This method uses a promise to return the result.
 
 mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
-Asynchronously obtains the available space of the specified volume. This method uses a callback to return the result.
+Asynchronously obtains the available space of the specified volume. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
@@ -114,7 +117,7 @@ Asynchronously obtains the available space of the specified volume. This method 
 
 unmount(volumeId: string): Promise&lt;boolean&gt;
 
-Asynchronously unmounts a volume. This method uses a promise to return the result.
+Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
@@ -143,7 +146,7 @@ Asynchronously unmounts a volume. This method uses a promise to return the resul
 
 unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
-Asynchronously unmounts a volume. This method uses a callback to return the result.
+Asynchronously unmounts a volume. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
