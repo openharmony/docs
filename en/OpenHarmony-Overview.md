@@ -12,22 +12,22 @@ OpenHarmony is designed with a layered architecture, which from bottom to top, c
 
 **Kernel layer**
 
--   Kernel subsystem: OpenHarmony uses a multi-kernel design \(Linux or LiteOS\) so that different kernels can be selected for devices with different resource limitations. The kernel abstraction layer \(KAL\) hides differences in kernel implementations and provides the upper layer with basic kernel capabilities, including process and thread management, memory management, file system, network management, and peripheral management.
+- Kernel subsystem: OpenHarmony uses a multi-kernel design \(Linux or LiteOS\) so that different kernels can be selected for devices with different resource limitations. The kernel abstraction layer \(KAL\) hides differences in kernel implementations and provides the upper layer with basic kernel capabilities, including process and thread management, memory management, file system, network management, and peripheral management.
 
--   Driver subsystem: Hardware Driver Foundation \(HDF\) lays the foundation for an open OpenHarmony hardware ecosystem. It allows for unified access from peripheral devices and provides foundation for driver development and management.
+- Driver subsystem: Hardware Driver Foundation \(HDF\) lays the foundation for an open OpenHarmony hardware ecosystem. It allows for unified access from peripheral devices and provides foundation for driver development and management.
 
 
 **System service layer**
 
 The system service layer provides a complete set of capabilities essential for OpenHarmony to offer services for apps through the framework layer. This layer consists of the following parts:
 
--   Basic system capability subsystem set: Implements distributed app running, scheduling, and migration across OpenHarmony devices. This subsystem set provides the following basic capabilities: Intelligent Soft Bus, distributed data management, Distributed Scheduler, Utils, multimodal input, graphics, security, and AI.
+- Basic system capability subsystem set: Implements distributed app running, scheduling, and migration across OpenHarmony devices. This subsystem set provides the following basic capabilities: Distributed Soft Bus (DSoftBus), distributed data management, Distributed Scheduler, Utils, multimodal input, graphics, security, and AI.
 
--   Basic software service subsystem set: Provides OpenHarmony with common universal software services, including common event and notification, telephony, multimedia, and Design For X \(DFX\).
+- Basic software service subsystem set: Provides OpenHarmony with common universal software services, including common event and notification, telephony, multimedia, and Design For X \(DFX\).
 
--   Enhanced software service subsystem set: Provides OpenHarmony with differentiated enhanced software services, including those dedicated to smart TVs, wearables, IoT devices, and more.
+- Enhanced software service subsystem set: Provides OpenHarmony with differentiated enhanced software services, including those dedicated to smart TVs, wearables, IoT devices, and more.
 
--   Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, IAM, as well as those dedicated to wearables and IoT devices.
+- Hardware service subsystem set: Provides OpenHarmony with hardware services, including location, IAM, as well as those dedicated to wearables and IoT devices.
 
 
 The basic software service, enhanced software service, and hardware service subsystem sets can be modified by the subsystems, and each subsystem can be modified by various functions, depending on the deployment scenario for a particular device form.
@@ -42,81 +42,77 @@ This layer consists of system apps and third-party apps. Each OpenHarmony app is
 
 ## Technical Features<a name="section12212842173518"></a>
 
-1.  **Hardware collaboration and resource sharing**
+**Hardware collaboration and resource sharing**
 
-    This feature is implemented through the following modules:
+This feature is implemented through the following modules:
 
-    -   Intelligent Soft Bus
+- DSoftBus
 
-        Intelligent Soft Bus is a unified base for seamless interconnection among devices. It powers OpenHarmony with distributed communication capabilities to quickly discover and connect devices, and efficiently transmit data.
+  DSoftBus is a unified base for seamless interconnection among devices. It powers OpenHarmony with distributed communication capabilities to quickly discover and connect devices, and efficiently transmit data.
 
+- Distributed data management
+  
+  DSoftBus manages apps and user data distributed across different devices. Under such management, user data is no longer bound to a single physical device, and service logic is decoupled from storage. As your apps are running across devices, their data is seamlessly transmitted from one device to another, creating a foundation for a user experience that is smooth and consistent.
 
-    -   Distributed data management
-    
-        Intelligent Soft Bus manages apps and user data distributed across different devices. Under such management, user data is no longer bound to a single physical device, and service logic is decoupled from storage. As your apps are running across devices, their data is seamlessly transmitted from one device to another, creating a foundation for a user experience that is smooth and consistent.
+- Distributed Scheduler
+  
+  The Distributed Scheduler is designed based on technical features such as DSoftBus, distributed data management, and distributed profile. It builds a unified distributed service management mechanism \(including service discovery, synchronization, registration, and invocation\), and supports remote startup, remote invocation, binding/unbinding, and migration of apps across devices. This way, your app can select the most suitable device to perform distributed tasks based on the capabilities, locations, running status, and resource usage of different devices, as well as user habits and intentions.
 
+- Device virtualization
+  
+  A distributed device virtualization platform enables cross-device resource convergence, device management, and data processing so that virtual peripherals can function as capability extensions of smartphones to form a super virtual terminal.
 
-    -   Distributed Scheduler
-    
-        The Distributed Scheduler is designed based on technical features such as Intelligent Soft Bus, distributed data management, and distributed profile. It builds a unified distributed service management mechanism \(including service discovery, synchronization, registration, and invocation\), and supports remote startup, remote invocation, binding/unbinding, and migration of apps across devices. This way, your app can select the most suitable device to perform distributed tasks based on the capabilities, locations, running status, and resource usage of different devices, as well as user habits and intentions.
+**One-time development for multi-device deployment**
 
+OpenHarmony provides you with the user application, ability, and UI frameworks. With these frameworks, you can develop your apps once, and then flexibly deploy them across a broad range of different devices.
 
-    -   Device virtualization
-    
-        A distributed device virtualization platform enables cross-device resource convergence, device management, and data processing so that virtual peripherals can function as capability extensions of smartphones to form a super virtual terminal.
+Consistent APIs ensure the operational compatibility of apps across devices.
 
+- Adaptation of device capabilities \(including CPU, memory, peripheral, and software resources\) can be previewed.
+- Resources can be scheduled based on the compatibility between user apps and the software platform.
 
-2.  **One-time development for multi-device deployment**
+**A unified OS for flexible deployment**
 
-    OpenHarmony provides you with the user application, ability, and UI frameworks. With these frameworks, you can develop your apps once, and then flexibly deploy them across a broad range of different devices.
-
-    Consistent APIs ensure the operational compatibility of apps across devices.
-
-    -   Adaptation of device capabilities \(including CPU, memory, peripheral, and software resources\) can be previewed.
-    -   Resources can be scheduled based on the compatibility between user apps and the software platform.
-
-3.  **A unified OS for flexible deployment**
-
-    OpenHarmony enables hardware resources to be scaled with its component-based and small-scale designs. It can be deployed on demand for a diverse range of devices, including ARM, RISC-V, and x86 architectures, and providing RAM volumes ranging from hundreds of KiB to GiB.
+OpenHarmony enables hardware resources to be scaled with its component-based and small-scale designs. It can be deployed on demand for a diverse range of devices, including ARM, RISC-V, and x86 architectures, and providing RAM volumes ranging from hundreds of KiB to GiB.
 
 
 ## OS Types<a name="section145241459142416"></a>
 
 OpenHarmony supports the following types:
 
--   Mini system
+- Mini system
 
-    A mini system runs on the devices whose memory is greater than or equal to 128 KiB and that are equipped with MCU processors such as Arm Cortex-M and 32-bit RISC-V. This system provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home.
+  A mini system runs on the devices whose memory is greater than or equal to 128 KiB and that are equipped with MCU processors such as Arm Cortex-M and 32-bit RISC-V. This system provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home.
 
--   Small system
+- Small system
 
-    A small system runs on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as Arm Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel.
+  A small system runs on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as Arm Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel.
 
--   Standard system
+- Standard system
 
-    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
+  A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
 
 
 ## Subsystems<a name="section25831825174419"></a>
 
 You need to understand the following basic concepts related to OpenHarmony:
 
--   Subsystem
+- Subsystem
 
-    OpenHarmony is designed with a layered architecture, which from bottom to top consists of the kernel layer, system service layer, framework layer, and application layer. System functions are expanded by levels, from system to subsystem, and further to module. In a multi-device deployment scenario, unnecessary modules can be excluded from the system as required. A subsystem is a logical concept and is a flexible combination of functions.
+  OpenHarmony is designed with a layered architecture, which from bottom to top consists of the kernel layer, system service layer, framework layer, and application layer. System functions are expanded by levels, from system to subsystem, and further to module. In a multi-device deployment scenario, unnecessary modules can be excluded from the system as required. A subsystem is a logical concept and is a flexible combination of functions.
 
--   Module
+- Module
 
-    A module is a reusable software binary unit that contains source code, configuration files, resource files, and build scripts. A module can be built independently, integrated in binary mode, and then tested independently.
+  A module is a reusable software binary unit that contains source code, configuration files, resource files, and build scripts. A module can be built independently, integrated in binary mode, and then tested independently.
 
 The following table describes the subsystems of OpenHarmony. For details about the readme files of these subsystems, see  [https://gitee.com/openharmony/docs/tree/master/en/readme](https://gitee.com/openharmony/docs/tree/master/en/readme).
 
 | Subsystem| Description| Applicable To|
 | -------- | -------- | -------- |
-| Kernel| Supports small-sized LiteOS kernels that provide high performance and low power consumption for embedded devices and devices with limited resources, and supports Linux kernels that are applicable to the standard system.| Small system<br> Standard system |
-| DFileSystem | Provides APIs for synchronizing local JS files. | Standard system |
+| Kernel| Supports small-sized LiteOS kernels that provide high performance and low power consumption for embedded devices and devices with limited resources, and supports Linux kernels that are applicable to the standard system.| Small system<br>Standard system |
+| Distributed File System | Provides APIs for synchronizing local JS files. | Standard system |
 | Graphics | Consists of user interface (UI) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop OpenHarmony applications for Internet of Things (IoT) devices with limited hardware resources or on the standard OS to develop OpenHarmony applications for standard- and large-system devices (for example, tablet and lite smart devices). | All systems |
-| Driver | Constructed using the C object-oriented programming (OOP) language. It provides a unified driver platform and is compatible with different kernels by means of platform decoupling and kernel decoupling. This unified driver platform is designed to provide a more precise and efficient development environment, where you develop a driver that can be deployed on different systems supporting Hardware Driver Foundation (HDF). | All systems |
+| Driver | Constructed using the C object-oriented programming (OOP) language. It provides a unified driver platform and is compatible with different kernels by means of platform decoupling and kernel decoupling. This unified driver platform is designed to provide a more precise and efficient development environment, where you develop a driver that can be deployed on different systems supporting HDF. | All systems |
 | Power Management | Provides the following functions: restarting the system, managing running locks, managing and querying the system power status, querying and reporting the charging and battery status, and turning on/off the device screen, including adjusting the screen brightness. | Standard system                   |
 | Pan-sensor | Contains sensors and misc devices. A sensor is a device to detect events or changes in an environment and send messages about the events or changes to another electronic device. Misc devices, including vibrators and LED lights, are used to send signals externally. You can call APIs to control the vibration of vibrators and lighting-on and lighting-off of LED lights. | Small system |
 | Multimodal Input | OpenHarmony provides a Natural User Interface (NUI) for you to interact with your users. Unlike conventional categorization of input methods, OpenHarmony combines input methods of different dimensions into multimodal inputs, so you can easily arm your app with multi-dimensional, natural interaction features by using the application framework and system built-in UI components or APIs. Specifically, OpenHarmony currently supports traditional input methods such as key and touch inputs. | Standard system |
@@ -125,14 +121,14 @@ The following table describes the subsystems of OpenHarmony. For details about t
 | Account | Provides interconnection with vendors' cloud account apps on the device side, and query and update of the cloud account login status. | Standard system |
 | Compilation and Building | Provides a compilation and building framework based on Generate Ninja (GN) and Ninja. | All systems |
 | Test | The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase. | All systems |
-| Data Management | Provides local data management and distributed data management:<\br> -   Local app data management for lightweight preference databases and relational databases<\br> -   Distributed data service to provide apps with the capability to store data in the databases of different devices | Standard system |
+| Data Management | Provides local data management and distributed data management:<br>- Local app data management for lightweight preference databases and relational databases<br>- Distributed data service to provide apps with the capability to store data in the databases of different devices | Standard system |
 | Programming Language Runtime | Provides the compilation and execution environment for programs developed with JavaScript or C/C++, basic libraries that support the runtime, and the runtime-associated APIs, compilers, and auxiliary tools. | All systems |
 | Distributed Scheduler | Starts, registers, queries, and manages system services. | All systems |
 | JS UI framework              | OpenHarmony UI development framework that supports web-development-like paradigm. | All systems |
 | Multimedia | Provides easy-to-use APIs for developing multimedia components such as audio, video, and camera, and enables apps to use multimedia resources of the system. | All systems |
 | Event Notification | Provides the common event management capabilities that allow apps to subscribe to, unsubscribe from, publish, and receive common events (such as screen-on/off events and USB device attachment/detachment events). | Standard system |
 | Misc Services | Provides the function of setting the time. | Standard system |
-| Bundle management | Provides bundle installation, uninstallation, update, and query capabilities. | All systems |
+| Bundle management | Provides bundle installation, uninstall, update, and query capabilities. | All systems |
 | Telephony | Provides basic communication capabilities of the cellular network, such as SIM cards, network search, cellular data, cellular calls, SMS, and MMS, as well as easy-to-use APIs for you to manage multiple types of calls and data network connections. | Standard system |
 | Utils | Stores basic OpenHarmony components, which can be used by OpenHarmony subsystems and upper-layer apps. | All systems |
 | Development Tools | Provides a performance profiler platform for you to analyze system issues such as memory and performance, including hdc used for device debugging, APIs for performance tracing, and a performance profiler framework. | Standard system |
@@ -197,7 +193,7 @@ For details about how to contribute, see  [How to Contribute](contribute/how-to-
 
 OpenHarmony complies with Apache License Version 2.0. For details, see the LICENSE in each repository.
 
-OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](contribute/third-party-open-source-software-and-license-notice.md).
+OpenHarmony uses third-party open-source software and licenses. For details, see  [Third-Party Open-Source Software](https://gitee.com/openharmony/docs/blob/master/en/contribute/third-party-open-source-software-and-license-notice.md).
 
 ## Contact Info<a name="section61728335424"></a>
 
