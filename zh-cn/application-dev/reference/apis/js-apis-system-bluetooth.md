@@ -47,6 +47,7 @@ ohos.permission.MANAGE_BLUETOOTH
 
   ```
   bluetooth.startBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.startBLEScan success.');
     },
@@ -129,7 +130,7 @@ ohos.permission.MANAGE_BLUETOOTH
 **示例：**
 
   ```
-  bluetooth.startaBLEScan({
+  bluetooth.startBLEScan({
     success() {
       bluetooth.subscribeBLEFound({
         success(data) {
