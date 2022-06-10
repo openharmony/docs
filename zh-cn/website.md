@@ -31,7 +31,7 @@
         - [电源服务](release-notes/api-change/v3.1-Release/js-apidiff-battery.md)
         - [包管理](release-notes/api-change/v3.1-Release/js-apidiff-bundle.md)
         - [基础通信](release-notes/api-change/v3.1-Release/js-apidiff-communicate.md)
-        - [语言编译器运行时](release-notes/api-change/v3.1-Release/js-apidiff-complier-and-runtime.md)
+        - [语言编译器运行时](release-notes/api-change/v3.1-Release/js-apidiff-compiler-and-runtime.md)
         - [DFX](release-notes/api-change/v3.1-Release/js-apidiff-dfx.md)
         - [分布式数据管理](release-notes/api-change/v3.1-Release/js-apidiff-distributed-data.md)
         - [分布式硬件](release-notes/api-change/v3.1-Release/js-apidiff-distributed-hardware.md)

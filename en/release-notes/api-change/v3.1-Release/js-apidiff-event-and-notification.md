@@ -1,6 +1,6 @@
-# JS API Changes of the Common Event and Notification Framework
+# JS API Changes of the Common Event and Notification Subsystem
 
-The table below lists the APIs changes of the common event and notification framework in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
+The table below lists the APIs changes of the common event and notification subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
 
 ## API Changes
 
