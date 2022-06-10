@@ -925,9 +925,9 @@ Hap模块信息
 | iconId           | number        | 是   | 否   | 模块图标ID         |
 | backgroundImg    | string        | 是   | 否   | 模块背景图片       |
 | supportedModes   | number        | 是   | 否   | 模块支持的模式     |
-| reqCapabilities  | Array<string> | 是   | 否   | 模块运行需要的能力 |
-| deviceTypes      | Array<string> | 是   | 否   | 支持运行的设备类型 |
-| abilityInfo      | Array<AbilityInfo> | 是   | 否   | Ability信息        |
+| reqCapabilities  | Array\<string> | 是   | 否   | 模块运行需要的能力 |
+| deviceTypes      | Array\<string> | 是   | 否   | 支持运行的设备类型 |
+| abilityInfo      | Array\<AbilityInfo> | 是   | 否   | Ability信息        |
 | moduleName       | string        | 是   | 否   | 模块名             |
 | mainAbilityName  | string        | 是   | 否   | 入口Ability名称    |
 | installationFree | boolean       | 是   | 否   | 是否支持免安装     |

@@ -668,7 +668,7 @@ this.context.connectAbility(want, accountId, options) {
 
 ## disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback<void>): void
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 断开Ability连接（callback形式）。
 
@@ -692,7 +692,7 @@ this.context.disconnectAbility(connection, () => {
 
 ## disconnectAbility
 
-disconnectAbility(connection: number): Promise<void>
+disconnectAbility(connection: number): Promise\<void>
 
 断开Ability连接（Promise形式）。
 

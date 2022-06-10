@@ -544,7 +544,7 @@ audio.createAudioRenderer(audioCapturerOptions).then((data) => {
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | 是   | 事件返回类型。TYPE_ACTIVATED为焦点触发事件，TYPE_INTERRUPT为音频打断事件。 |
 | type       | [InterruptType](#interrupttype)             | 否   | 打断事件类型。                                               |
-| hint       | [InterruptHint](interrupthint)              | 否   | 打断事件提示。                                               |
+| hint       | [InterruptHint](#interrupthint)             | 否   | 打断事件提示。                                               |
 | activated  | boolean                                     | 否   | 获得/释放焦点。true表示焦点获取/释放成功，false表示焦点获得/释放失败。 |
 
 ## VolumeEvent<sup>8+</sup>

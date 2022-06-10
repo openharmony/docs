@@ -1947,7 +1947,7 @@ async function example() {
 
 实体相册
 
-### **属性**
+### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 

@@ -14,11 +14,11 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 **表1** Call API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|Promise<Caller> startAbilityByCall(want: Want)|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
+|Promise\<Caller> startAbilityByCall(want: Want)|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
 |void on(method: string, callback: CalleeCallBack)|Callee.on，通用组件Callee注册method对应的callback方法。|
 |void off(method: string)|Callee.off，通用组件Callee去注册method的callback方法。|
-|Promise<void> call(method: string, data: rpc.Sequenceable)|Caller.call，向通用组件Callee发送约定序列化数据。|
-|Promise<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult，向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
+|Promise\<void> call(method: string, data: rpc.Sequenceable)|Caller.call，向通用组件Callee发送约定序列化数据。|
+|Promise\<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult，向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
 |void release()|Caller.release，释放通用组件的Caller通信接口。|
 |void onRelease(callback: OnReleaseCallBack)|Caller.onRelease，注册通用组件通信断开监听通知。|
 

@@ -869,7 +869,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
+call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 调用DataAbility的扩展接口，使用Promise方式作为异步方法。
 
@@ -888,7 +888,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise<[PacMap](#pacmap)> | 调用的返回值。 |
+|Promise\<[PacMap](#pacmap)> | 调用的返回值。 |
 
 **示例：**
 
@@ -905,7 +905,7 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
 调用DataAbility的扩展接口，使用callback方式作为异步方法。
 
@@ -919,7 +919,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | method    | string                  | 是   | 被调用的方法名。   |
 | arg      | string                   | 是   |需传入的参数。      |
 | extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
-| callback | AsyncCallback<[PacMap](#pacmap)> | 是 | 返回值。     |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | 是 | 返回值。     |
 
 **示例：**
 
