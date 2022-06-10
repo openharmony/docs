@@ -54,7 +54,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   ```js
   let uuid = "";
-  volumemanager.getAllVolumes(uuid, function(error, volumes){
+  volumemanager.getAllVolumes(function(error, volumes){
       // do something
   });
   ```

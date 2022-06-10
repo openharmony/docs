@@ -63,13 +63,19 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 - 示例
 
   ```js
-  filemanager.getRoot((err, fileInfo) => {
-      if(Array.isArray(fileInfo)) {
+  let option = {
+            "dev":{
+            name:"",
+        }
+        };
+        filemanager.getRoot(option,(err, fileInfo)=>{
+           if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
           }
-      }
-  });
+      } 
+        });
+  
   ```
 
 ## filemanager.listFile
@@ -105,7 +111,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   ```js
   // 获取目录下所有文件
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
+  let media_path = file.path
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
@@ -230,7 +236,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   ```js
   // 创建文件，返回文件uri
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
+  let media_path = file.path
   // 待保存文件的后缀
   let name = "xxx.jpg"
   filemanager.createFile(media_path, name, (err, uri) => {
