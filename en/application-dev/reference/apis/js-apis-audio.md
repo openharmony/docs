@@ -467,8 +467,6 @@ Enumerates the hints provided along with audio interruption.
 
 Enumerates the returned event types for audio interruption events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
 | Name          | Default Value| Description              |
@@ -528,8 +526,6 @@ Describes the interruption event received by the application when playback is in
 
 Describes input parameters of audio interruption events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
 | Name           | Type                       | Mandatory| Description                                                        |
@@ -541,8 +537,6 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 ## InterruptAction
 
 Describes the callback invoked for audio interruption or focus gain events.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -617,11 +611,11 @@ Enumerates the audio source types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                           | Default Value| Description                                                        |
-| :------------------------------ | :----- | :----------------------------------------------------------- |
-| SOURCE_TYPE_INVALID             | -1     | Invalid audio source.                                              |
-| SOURCE_TYPE_MIC                 | 0      | Mic source.                                                 |
-| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | Voice communication source.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+| Name                           | Default Value| Description                  |
+| :------------------------------ | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID             | -1     | Invalid audio source.        |
+| SOURCE_TYPE_MIC                 | 0      | Mic source.           |
+| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | Voice communication source.|
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -1605,8 +1599,6 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 Unsubscribes from device change events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 **Parameters**
@@ -1629,8 +1621,6 @@ audioManager.off('deviceChange', (deviceChanged) => {
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -1668,15 +1658,13 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 
 Unsubscribes from audio interruption events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
 **Parameters**
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Type of event to subscribe to. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Type of event to unsubscribe from. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptaction)> | No  | Callback invoked for the audio interruption event.                                      |
 
@@ -1853,19 +1841,13 @@ promise.then(function (value) {
 
 Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, you must use [createAudioRenderer](#audiocreateaudiorenderer8) to create an **AudioRenderer** instance.
 
+### Attributes
+
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
-
-### state<sup>8+</sup>
-
-Readonly state: AudioState
-
-Defines the state of the audio renderer.
-
-**Parameters**
 
 | Name | Type                    | Readable| Writable| Description              |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [AudioState](#audiostate8) | Yes  | No  | Audio renderer state.|
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes  | No  | Audio renderer state.|
 
 **Example**
 
@@ -2668,17 +2650,13 @@ audioRenderer.on('stateChange', (state) => {
 
 Provides APIs for audio capture. Before calling any API in **AudioCapturer**, you must use [createAudioCapturer](#audiocreateaudiocapturer8) to create an **AudioCapturer** instance.
 
-### state<sup>8+</sup>
-
-Readonly state: AudioState
-
-Defines the audio capturer state.
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
 | Name | Type                    | Readable| Writable| Description            |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
-| state | [AudioState](#audiostate8) | Yes  | No   | Audio capturer state.|
+| state<sup>8+</sup>  | [AudioState](#audiostate8) | Yes| No  | Audio capturer state.|
 
 **Example**
 
@@ -3204,7 +3182,7 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.           |
+| frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**.           |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.   |
 
 **Example**

@@ -12,7 +12,7 @@ import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions): Promise\<PixelMap>
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 Creates a **PixelMap** object. This API uses a promise to return the result.
 
@@ -41,7 +41,7 @@ image.createPixelMap(Color, opts)
 
 ## image.createPixelMap<sup>8+</sup>
 
-createPixelMap(colors: ArrayBuffer, options: InitializetionOptions, callback: AsyncCallback\<PixelMap>): void
+createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
 Creates a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
@@ -470,7 +470,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image source URI. Currently, only the local absolute path is supported.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.|
 
 **Return value**
 
@@ -481,7 +481,8 @@ Creates an **ImageSource** instance based on the URI.
 **Example**
 
 ```js
-const imageSourceApi = image.createImageSource('/data/local/tmp/test.jpg')
+let path = this.context.getApplicationContext().fileDirs + "test.jpg";
+const imageSourceApi = image.createImageSource(path);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -801,7 +802,7 @@ Provide APIs to pack images. Before calling any API in **ImagePacker**, you must
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<Array\<ArrayBuffer>>): void
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
@@ -813,7 +814,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | Yes  | Image to pack.                    |
 | option   | [PackingOption](#packingoption)    | Yes  | Option for image packing.                    |
-| callback | AsyncCallback<Array\<ArrayBuffer>> | Yes  | Callback used to return the packed data.|
+| callback | AsyncCallback\<ArrayBuffer> | Yes  | Callback used to return the packed data.|
 
 **Example**
 
@@ -824,7 +825,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 
 ### packing
 
-packing(source: ImageSource, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
@@ -841,7 +842,7 @@ Packs an image. This API uses a promise to return the result.
 
 | Type                        | Description                                         |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise used to return the packed data.|
+| Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
@@ -852,7 +853,7 @@ imagePackerApi.packing(imageSourceApi, packOpts)
 	.catch(error => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
@@ -875,9 +876,9 @@ let packOpts = { format:["image/jpeg"], quality:98 }
 imagePackerApi.packing(pixelMapApi, packOpts, data => {})
 ```
 
-### packing
+### packing<sup>8+</sup>
 
-packing(source: PixelMap, option: PackingOption): Promise<Array\<ArrayBuffer>>
+packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
@@ -894,7 +895,7 @@ Packs an image. This API uses a promise to return the result.
 
 | Type                        | Description                                         |
 | :--------------------------- | :-------------------------------------------- |
-| Promise<Array\<ArrayBuffer>> | Promise used to return the packed data.|
+| Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
@@ -957,7 +958,7 @@ Describes area information in an image.
 | pixels | ArrayBuffer        | Yes  | No  | Pixels of the image.                                                      |
 | offset | number             | Yes  | No  | Offset for data reading.                                                    |
 | stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                    |
-| region | [Region](#region8) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
+| region | [Region](#region7) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
 
 ## ImageInfo
 
@@ -1013,8 +1014,8 @@ Enumerates scale modes.
 
 | Name           | Default Value| Description                                              |
 | --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | The image is scaled in such a way that it fits the dimensions of the target and centered in the target. |
-| FIT_TARGET_SIZE | 2      | The image size is reduced to fit the dimensions of the target. |
+| CENTER_CROP     | 1      | The image is scaled in such a way that it fits the dimensions of the target and centered in the target.|
+| FIT_TARGET_SIZE | 2      | The image size is reduced to fit the dimensions of the target.                          |
 
 ## InitializationOptions<sup>8+</sup>
 
