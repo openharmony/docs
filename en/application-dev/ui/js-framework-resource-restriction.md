@@ -91,5 +91,5 @@ resources/res-defaults.json:
 </div>
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The resource qualifier file does not support color enumeration.
