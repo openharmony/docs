@@ -1,13 +1,13 @@
 # Audio Management
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**<br/>
+>  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 This module provides the following common audio-related functions:
 
-- [AudioManager](#audiomanager): Audio management.
-- [AudioRenderer](#audiorenderer8): Audio rendering, used to play Pulse Code Modulation (PCM) audio data.
-- [AudioCapturer](#audiocapturer8): Audio capture, used to record PCM audio data.
+- [AudioManager](#audiomanager): audio management.
+- [AudioRenderer](#audiorenderer8): audio rendering, used to play Pulse Code Modulation (PCM) audio data.
+- [AudioCapturer](#audiocapturer8): audio capture, used to record PCM audio data.
 
 ## Modules to Import
 
@@ -15,22 +15,21 @@ This module provides the following common audio-related functions:
 import audio from '@ohos.multimedia.audio';
 ```
 
+
 ## audio.getAudioManager
 
 getAudioManager(): AudioManager
 
 Obtains an **AudioManager** instance.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Return value:**
+**Return value**
+| Type                         | Description        |
+| ----------------------------- | ------------ |
+| [AudioManager](#audiomanager) | **AudioManager** instance.|
 
-| Type                          | Description          |
-| ----------------------------- | -------------------- |
-| [AudioManager](#audiomanager) | AudioManager object. |
-
-**Example:**
-
+**Example**
 ```
 var audioManager = audio.getAudioManager();
 ```
@@ -39,17 +38,18 @@ var audioManager = audio.getAudioManager();
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
-Obtains an **AudioRenderer** instance. This API uses an asynchronous callback to return the renderer instance.
+Obtains an **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
-| Name       | Type                                            | Mandatory | Description                                          |
-| :--------- | :---------------------------------------------- | :-------- | :--------------------------------------------------- |
-| options    | [AudioRendererOptions](#audiorendereroptions8)  | Yes       | Renderer configurations.                             |
-| callback   | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes       | Callback used to return the audio renderer instance. |
+**Parameters**
 
-**Example:**
+| Name  | Type                                           | Mandatory| Description            |
+| -------- | ----------------------------------------------- | ---- | ---------------- |
+| options  | [AudioRendererOptions](#audiorendereroptions8)  | Yes  | Renderer configurations.    |
+| callback | AsyncCallback<[AudioRenderer](#audiorenderer8)> | Yes  | Callback used to return the **AudioRenderer** instance.|
+
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -81,26 +81,28 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
     }
 });
 ```
+
 ## audio.createAudioRenderer<sup>8+</sup>
 
-createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer>
+createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
-Obtains an **AudioRenderer** instance. This API uses a promise to return the renderer instance.
+Obtains an **AudioRenderer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
-| Name       | Type                                           | Mandatory | Description                 |
-| :--------- | :--------------------------------------------- | :-------- | :---------------------------|
-| options    | [AudioRendererOptions](#audiorendereroptions8) | Yes       | Renderer configurations.    |
+**Parameters**
 
-**Return value:**
+| Name | Type                                          | Mandatory| Description        |
+| :------ | :--------------------------------------------- | :--- | :----------- |
+| options | [AudioRendererOptions](#audiorendereroptions8) | Yes  | Renderer configurations.|
 
-| Type                                      | Description                                         |
-| ----------------------------------------- | --------------------------------------------------- |
-| Promise<[AudioRenderer](#audiorenderer8)> | Promise used to return the audio renderer instance. |
+**Return value**
 
-**Example:**
+| Type                                     | Description            |
+| ----------------------------------------- | ---------------- |
+| Promise<[AudioRenderer](#audiorenderer8)> | Promise used to return the **AudioRenderer** instance.|
+
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -136,17 +138,18 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
 
-Obtains an **AudioCapturer** instance. This API uses an asynchronous callback to return the capturer instance.
+Obtains an **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
-| Name       | Type                                            | Mandatory | Description                                          |
-| :--------- | :---------------------------------------------- | :-------- | :--------------------------------------------------- |
-| options    | [AudioCapturerOptions](#audiocaptureroptions8)   | Yes       | Capturer configurations.                             |
-| callback   | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes       | Callback used to return the audio capturer instance. |
+**Parameters**
 
-**Example:**
+| Name  | Type                                           | Mandatory| Description            |
+| :------- | :---------------------------------------------- | :--- | :--------------- |
+| options  | [AudioCapturerOptions](#audiocaptureroptions8)  | Yes  | Capturer configurations.|
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | Yes  | Callback used to return the **AudioCapturer** instance.|
+
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -182,22 +185,23 @@ audio.createAudioCapturer(audioCapturerOptions,(err, data) => {
 
 createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
-Obtains an **AudioCapturer** instance. This API uses a promise to return the capturer instance.
+Obtains an **AudioCapturer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
-| Name       | Type                                          | Mandatory | Description                 |
-| :--------- | :-------------------------------------------- | :-------- | :-------------------------- |
-| options    | [AudioCapturerOptions](#audiocaptureroptions8) | Yes       | Capturer configurations.    |
+**Parameters**
 
-**Return value:**
+| Name | Type                                          | Mandatory| Description            |
+| :------ | :--------------------------------------------- | :--- | :--------------- |
+| options | [AudioCapturerOptions](#audiocaptureroptions8) | Yes  | Capturer configurations.|
 
-| Type                                      | Description                                         |
-| ----------------------------------------- | --------------------------------------------------- |
-| Promise<[AudioCapturer](#audiocapturer8)> | Promise used to return the audio capturer instance. |
+**Return value**
 
-**Example:**
+| Type                                     | Description          |
+| ----------------------------------------- | -------------- |
+| Promise<[AudioCapturer](#audiocapturer8)> | Promise used to return the **AudioCapturer** instance.|
+
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -230,432 +234,421 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## AudioVolumeType
 
-Enumerates audio stream types.
+Enumerates the audio stream types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-| Name                         | Default Value  | Description                       |
-| ---------------------------- | -------------- | --------------------------------- |
-| VOICE_CALL<sup>8+</sup>      | 0              | Audio stream for voice calls.     |
-| RINGTONE                     | 2              | Audio stream for ringtones.       |
-| MEDIA                        | 3              | Audio stream for media purpose.   |
-| VOICE_ASSISTANT<sup>8+</sup> | 9              | Audio stream for voice assistant. |
+| Name                        | Default Value| Description      |
+| ---------------------------- | ------ | ---------- |
+| VOICE_CALL<sup>8+</sup>      | 0      | Audio stream for voice calls.|
+| RINGTONE                     | 2      | Audio stream for ringtones.    |
+| MEDIA                        | 3      | Audio stream for media purpose.    |
+| VOICE_ASSISTANT<sup>8+</sup> | 9      | Audio stream for voice assistant.|
+
 
 ## DeviceFlag
 
-Enumerates audio device flags.
+Enumerates the audio device flags.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                | Default Value | Description    |
-| ------------------- | ------------- | -------------- |
-| OUTPUT_DEVICES_FLAG | 1             | Output device. |
-| INPUT_DEVICES_FLAG  | 2             | Input device.  |
-| ALL_DEVICES_FLAG    | 3             | All devices.   |
+| Name               | Default Value| Description      |
+| ------------------- | ------ | ---------- |
+| OUTPUT_DEVICES_FLAG | 1      | Output device.|
+| INPUT_DEVICES_FLAG  | 2      | Input device.|
+| ALL_DEVICES_FLAG    | 3      | All devices.|
 
 
 ## DeviceRole
 
-Enumerates audio device roles.
+Enumerates the audio device roles.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name          | Default Value | Description  |
-| ------------- | ------------- | ------------ |
-| INPUT_DEVICE  | 1             | Input role.  |
-| OUTPUT_DEVICE | 2             | Output role. |
+| Name         | Default Value| Description          |
+| ------------- | ------ | -------------- |
+| INPUT_DEVICE  | 1      | Input role.|
+| OUTPUT_DEVICE | 2      | Output role.|
+
 
 ## DeviceType
 
-Enumerates audio device types.
+Enumerates the audio device types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name             | Default Value | Description                                                              |
-| ---------------- | ------------- | ------------------------------------------------------------------------ |
-| INVALID          | 0             | Invalid device.                                                          |
-| EARPIECE         | 1             | Earpiece.                                                                |
-| SPEAKER          | 2             | Speaker.                                                                 |
-| WIRED_HEADSET    | 3             | Wired headset.                                                           |
-| WIRED_HEADPHONES | 4             | Wired headset without microphone.                                        |
-| BLUETOOTH_SCO    | 7             | Bluetooth device using Synchronous Connection Oriented (SCO) links.      |
-| BLUETOOTH_A2DP   | 8             | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links. |
-| MIC              | 15            | Microphone.                                                              |
-| USB_HEADSET      | 22            | USB Type-C headset.                                                      |
+| Name            | Default Value| Description                                                     |
+| ---------------- | ------ | --------------------------------------------------------- |
+| INVALID          | 0      | Invalid device.                                               |
+| EARPIECE         | 1      | Earpiece.                                                   |
+| SPEAKER          | 2      | Speaker.                                                 |
+| WIRED_HEADSET    | 3      | Wired headset with a microphone.                                     |
+| WIRED_HEADPHONES | 4      | Wired headset without microphone.                                     |
+| BLUETOOTH_SCO    | 7      | Bluetooth device using Synchronous Connection Oriented (SCO) links.     |
+| BLUETOOTH_A2DP   | 8      | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.|
+| MIC              | 15     | Microphone.                                                 |
+| USB_HEADSET      | 22     | USB Type-C headset.                                      |
 
 ## ActiveDeviceType
 
 Enumerates the active device types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name          | Default Value | Description                                                            |
-| ------------- | ------------- | ---------------------------------------------------------------------- |
-| SPEAKER       | 2             | Speaker.                                                               |
-| BLUETOOTH_SCO | 7             | Bluetooth device using the SCO links.                                  |
+| Name         | Default Value| Description                                                |
+| ------------- | ------ | ---------------------------------------------------- |
+| SPEAKER       | 2      | Speaker.                                            |
+| BLUETOOTH_SCO | 7      | Bluetooth device using the SCO links.|
 
 ## AudioRingMode
 
-Enumerates ringer modes.
+Enumerates the ringer modes.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-| Name                | Default Value | Description      |
-| ------------------- | ------------- | ---------------- |
-| RINGER_MODE_SILENT  | 0             | Silent mode.     |
-| RINGER_MODE_VIBRATE | 1             | Vibration mode.  |
-| RINGER_MODE_NORMAL  | 2             | Normal mode.     |
+| Name               | Default Value| Description      |
+| ------------------- | ------ | ---------- |
+| RINGER_MODE_SILENT  | 0      | Silent mode.|
+| RINGER_MODE_VIBRATE | 1      | Vibration mode.|
+| RINGER_MODE_NORMAL  | 2      | Normal mode.|
 
 ## AudioSampleFormat<sup>8+</sup>
 
-Enumerates the audio sample formats.
+Enumerate the audio sample formats.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                  | Default Value | Description                           |
-| :-------------------- | :------------ | :------------------------------------ |
-| SAMPLE_FORMAT_INVALID | -1            | Invalid format.                       |
-| SAMPLE_FORMAT_U8      | 0             | Unsigned 8 bit integer.               |
-| SAMPLE_FORMAT_S16LE   | 1             | Signed 16 bit integer, little endian. |
-| SAMPLE_FORMAT_S24LE   | 2             | Signed 24 bit integer, little endian. |
-| SAMPLE_FORMAT_S32LE   | 3             | Signed 32 bit integer, little endian. |
+| Name                 | Default Value| Description                      |
+| --------------------- | ------ | -------------------------- |
+| SAMPLE_FORMAT_INVALID | -1     | Invalid format.                |
+| SAMPLE_FORMAT_U8      | 0      | Unsigned 8-bit integer.           |
+| SAMPLE_FORMAT_S16LE   | 1      | Signed 16-bit integer, little endian.|
+| SAMPLE_FORMAT_S24LE   | 2      | Signed 24-bit integer, little endian.|
+| SAMPLE_FORMAT_S32LE   | 3      | Signed 32-bit integer, little endian.|
 
 ## AudioChannel<sup>8+</sup>
 
 Enumerates the audio channels.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name      | Default Value | Description      |
-| :-------- | :------------ | :--------------- |
-| CHANNEL_1 | 0x1 << 0      | Channel count 1. |
-| CHANNEL_2 | 0x1 << 1      | Channel count 2. |
+| Name     | Default Value  | Description    |
+| --------- | -------- | -------- |
+| CHANNEL_1 | 0x1 << 0 | Mono.|
+| CHANNEL_2 | 0x1 << 1 | Dual-channel.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
 Enumerates the audio sampling rates.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name              | Default Value | Description          |
-| :---------------- | :------------ | :------------------- |
-| SAMPLE_RATE_8000  | 8000          | Sampling rate 8000.  |
-| SAMPLE_RATE_11025 | 11025         | Sampling rate 11025. |
-| SAMPLE_RATE_12000 | 12000         | Sampling rate 12000. |
-| SAMPLE_RATE_16000 | 16000         | Sampling rate 16000. |
-| SAMPLE_RATE_22050 | 22050         | Sampling rate 22050. |
-| SAMPLE_RATE_24000 | 24000         | Sampling rate 24000. |
-| SAMPLE_RATE_32000 | 32000         | Sampling rate 32000. |
-| SAMPLE_RATE_44100 | 44100         | Sampling rate 44100. |
-| SAMPLE_RATE_48000 | 48000         | Sampling rate 48000. |
-| SAMPLE_RATE_64000 | 64000         | Sampling rate 64000. |
-| SAMPLE_RATE_96000 | 96000         | Sampling rate 96000. |
-
+| Name             | Default Value| Description           |
+| ----------------- | ------ | --------------- |
+| SAMPLE_RATE_8000  | 8000   | The sampling rate is 8000. |
+| SAMPLE_RATE_11025 | 11025  | The sampling rate is 11025.|
+| SAMPLE_RATE_12000 | 12000  | The sampling rate is 12000.|
+| SAMPLE_RATE_16000 | 16000  | The sampling rate is 16000.|
+| SAMPLE_RATE_22050 | 22050  | The sampling rate is 22050.|
+| SAMPLE_RATE_24000 | 24000  | The sampling rate is 24000.|
+| SAMPLE_RATE_32000 | 32000  | The sampling rate is 32000.|
+| SAMPLE_RATE_44100 | 44100  | The sampling rate is 44100.|
+| SAMPLE_RATE_48000 | 48000  | The sampling rate is 48000.|
+| SAMPLE_RATE_64000 | 64000  | The sampling rate is 64000.|
+| SAMPLE_RATE_96000 | 96000  | The sampling rate is 96000.|
 
 ## AudioEncodingType<sup>8+</sup>
 
 Enumerates the audio encoding types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                  | Default Value  | Description       |
-| :-------------------- | :------------- | :---------------- |
-| ENCODING_TYPE_INVALID | -1             | Invalid.          |
-| ENCODING_TYPE_RAW     |  0             | PCM encoding.     |
-
+| Name                 | Default Value| Description     |
+| --------------------- | ------ | --------- |
+| ENCODING_TYPE_INVALID | -1     | Invalid.   |
+| ENCODING_TYPE_RAW     | 0      | PCM encoding.|
 
 ## ContentType
 
-Enumerates the content types.
+Enumerates the audio content types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                               | Default Value | Description             |
-| :----------------------------------| :------------ | :---------------------- |
-| CONTENT_TYPE_UNKNOWN               | 0             | Unknown content.        |
-| CONTENT_TYPE_SPEECH                | 1             | Speech content.         |
-| CONTENT_TYPE_MUSIC                 | 2             | Music content.          |
-| CONTENT_TYPE_MOVIE                 | 3             | Movie content.          |
-| CONTENT_TYPE_SONIFICATION          | 4             | Sonification content.   |
-| CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5             | Ringtone content.       |
-
+| Name                              | Default Value| Description      |
+| ---------------------------------- | ------ | ---------- |
+| CONTENT_TYPE_UNKNOWN               | 0      | Unknown content.|
+| CONTENT_TYPE_SPEECH                | 1      | Speech.    |
+| CONTENT_TYPE_MUSIC                 | 2      | Music.    |
+| CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
+| CONTENT_TYPE_SONIFICATION          | 4      | Sonification content.|
+| CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
 
 ## StreamUsage
 
-Enumerates the stream usage.
+Enumerates the audio stream usage.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                               | Default Value | Description                       |
-| :--------------------------------- | :------------ | :-------------------------------- |
-| STREAM_USAGE_UNKNOWN               | 0             | Unknown usage.                    |
-| STREAM_USAGE_MEDIA                 | 1             | Media usage.                      |
-| STREAM_USAGE_VOICE_COMMUNICATION   | 2             | Voice communication usage.        |
-| STREAM_USAGE_NOTIFICATION_RINGTONE | 6             | Notification or ringtone usage.   |
-
+| Name                              | Default Value| Description      |
+| ---------------------------------- | ------ | ---------- |
+| STREAM_USAGE_UNKNOWN               | 0      | Unknown usage.|
+| STREAM_USAGE_MEDIA                 | 1      | Used for media.    |
+| STREAM_USAGE_VOICE_COMMUNICATION   | 2      | Used for voice communication.|
+| STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | Used for notification.|
 
 ## AudioState<sup>8+</sup>
 
 Enumerates the audio states.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name           | Default Value | Description                  |
-| :------------- | :------------ | :--------------------------- |
-| STATE_INVALID  | -1            | Invalid state.               |
-| STATE_NEW      | 0             | Creating new instance state. |
-| STATE_PREPARED | 1             | Prepared state.              |
-| STATE_RUNNING  | 2             | Running state.               |
-| STATE_STOPPED  | 3             | Stopped state.               |
-| STATE_RELEASED | 4             | Released state.              |
-| STATE_PAUSED   | 5             | Paused state.                |
-
+| Name          | Default Value| Description            |
+| -------------- | ------ | ---------------- |
+| STATE_INVALID  | -1     | Invalid state.      |
+| STATE_NEW      | 0      | Creating instance state.|
+| STATE_PREPARED | 1      | Prepared.      |
+| STATE_RUNNING  | 2      | Running.    |
+| STATE_STOPPED  | 3      | Stopped.      |
+| STATE_RELEASED | 4      | Released.      |
+| STATE_PAUSED   | 5      | Paused.      |
 
 ## AudioRendererRate<sup>8+</sup>
 
 Enumerates the audio renderer rates.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name               | Default Value | Description   |
-| :----------------- | :------------ | :------------ |
-| RENDER_RATE_NORMAL | 0             | Normal rate.  |
-| RENDER_RATE_DOUBLE | 1             | Double rate.  |
-| RENDER_RATE_HALF   | 2             | Half rate.    |
+| Name              | Default Value| Description      |
+| ------------------ | ------ | ---------- |
+| RENDER_RATE_NORMAL | 0      | Normal rate.|
+| RENDER_RATE_DOUBLE | 1      | Double rate.   |
+| RENDER_RATE_HALF   | 2      | Half rate. |
 
 ## InterruptType
 
-Enumerates the interrupt types.
+Enumerates the audio interruption types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name                 | Default Value | Description                          |
-| :------------------- | :------------ | :----------------------------------- |
-| INTERRUPT_TYPE_BEGIN | 1             | Audio playback interruption started. |
-| INTERRUPT_TYPE_END   | 2             | Audio playback interruption ended.   |
-
+| Name                | Default Value| Description                  |
+| -------------------- | ------ | ---------------------- |
+| INTERRUPT_TYPE_BEGIN | 1      | Audio interruption started.|
+| INTERRUPT_TYPE_END   | 2      | Audio interruption ended.|
 
 ## InterruptForceType<sup>9+</sup>
 
-Enumerates the interrupt force types.
+Enumerates the types of force that causes audio interruption.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name            | Default Value | Description                                |
-| :-------------- | :------------ | :----------------------------------------- |
-| INTERRUPT_FORCE | 0             | Forced action taken by system.             |
-| INTERRUPT_SHARE | 1             | App can choose to take action or ignore.   |
+| Name           | Default Value| Description                                |
+| --------------- | ------ | ------------------------------------ |
+| INTERRUPT_FORCE | 0      | Forced action taken by the system.  |
+| INTERRUPT_SHARE | 1      | The application can choose to take action or ignore.|
 
 ## InterruptHint
 
-Enumerates the interrupt hints.
+Enumerates the hints provided along with audio interruption.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name                               | Default Value | Description                  |
-| :--------------------------------- | :------------ | :--------------------------- |
-| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0             | None.                        |
-| INTERRUPT_HINT_RESUME              | 1             | Resume the playback.         |
-| INTERRUPT_HINT_PAUSE               | 2             | Paused/Pause the playback.   |
-| INTERRUPT_HINT_STOP                | 3             | Stopped/Stop the playback.   |
-| INTERRUPT_HINT_DUCK                | 4             | Ducked the playback.         |
-| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5             | Unducked the playback.       |
+| Name                              | Default Value| Description                                        |
+| ---------------------------------- | ------ | -------------------------------------------- |
+| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | None.                                    |
+| INTERRUPT_HINT_RESUME              | 1      | Resume the playback.                              |
+| INTERRUPT_HINT_PAUSE               | 2      | Paused/Pause the playback.                              |
+| INTERRUPT_HINT_STOP                | 3      | Stopped/Stop the playback.                              |
+| INTERRUPT_HINT_DUCK                | 4      | Ducked the playback. (In ducking, the audio volume is reduced, but not silenced.)|
+| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | Unducked the playback.                              |
 
 ## InterruptActionType
 
-Enumerates the interrupt event return types.
+Enumerates the returned event types for audio interruption events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name           | Default Value | Description                               |
-| :------------- | :------------ | :---------------------------------------- |
-| TYPE_ACTIVATED | 0             | Audio interrupt activated.                |
-| TYPE_INTERRUPT | 1             | Audio interrupted.                        |
+| Name          | Default Value| Description              |
+| -------------- | ------ | ------------------ |
+| TYPE_ACTIVATED | 0      | Focus gain event.|
+| TYPE_INTERRUPT | 1      | Audio interruption event.|
 
 ## AudioStreamInfo<sup>8+</sup>
 
 Describes audio stream information.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name          | Type                                      | Mandatory | Description           |
-| :------------ | :---------------------------------------- | :-------- | :-------------------- |
-| samplingRate  | [AudioSamplingRate](#audiosamplingrate8)  | Yes       | Sampling rate.        |
-| channels      | [AudioChannel](#audiochannel8)            | Yes       | Audio channels.       |
-| sampleFormat  | [AudioSampleFormat](#audiosampleformat8)  | Yes       | Audio sample format.  |
-| encodingType  | [AudioEncodingType](#audioencodingtype8)  | Yes       | Audio encoding type.  |
+| Name        | Type                                    | Mandatory| Description              |
+| ------------ | ---------------------------------------- | ---- | ------------------ |
+| samplingRate | [AudioSamplingRate](#audiosamplingrate8) | Yes  | Audio sampling rate.|
+| channels     | [AudioChannel](#audiochannel8)           | Yes  | Number of audio channels.|
+| sampleFormat | [AudioSampleFormat](#audiosampleformat8) | Yes  | Audio sample format.    |
+| encodingType | [AudioEncodingType](#audioencodingtype8) | Yes  | Audio encoding type.    |
 
 ## AudioRendererInfo<sup>8+</sup>
 
 Describes audio renderer information.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name          | Type                        | Mandatory | Description           |
-| :------------ | :-------------------------- | :-------- | :-------------------- |
-| contentType   | [ContentType](#contenttype) | Yes       | Content type.         |
-| usage         | [StreamUsage](#streamusage) | Yes       | Stream usage.         |
-| rendererFlags | number                      | Yes       | Audio renderer flags. |
+| Name         | Type                       | Mandatory| Description            |
+| ------------- | --------------------------- | ---- | ---------------- |
+| content       | [ContentType](#contenttype) | Yes  | Audio content type.      |
+| usage         | [StreamUsage](#streamusage) | Yes  | Audio stream usage.|
+| rendererFlags | number                      | Yes  | Audio renderer flags.|
 
 ## AudioRendererOptions<sup>8+</sup>
 
-Describes audio renderer configuration options.
+Describes audio renderer configurations.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name          | Type                                      | Mandatory | Description           |
-| :------------ | :-----------------------------------------| :-------- | :-------------------- |
-| streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
-| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)  | Yes       | Renderer information. |
+| Name        | Type                                    | Mandatory| Description            |
+| ------------ | ---------------------------------------- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)     | Yes  | Audio stream information.|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | Yes  | Audio renderer information.|
+
+## InterruptEvent<sup>9+</sup>
+
+Describes the interruption event received by the application when playback is interrupted.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Name     | Type                                      | Mandatory| Description                                |
+| --------- | ------------------------------------------ | ---- | ------------------------------------ |
+| eventType | [InterruptType](#interrupttype)            | Yes  | Whether the interruption has started or ended.        |
+| forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the interruption is taken by the system or to be taken by the application.|
+| hintType  | [InterruptHint](#interrupthint)            | Yes  | Hint provided along the interruption.                          |
+
+## AudioInterrupt
+
+Describes input parameters of audio interruption events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Name           | Type                       | Mandatory| Description                                                        |
+| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| streamUsage     | [StreamUsage](#streamusage) | Yes  | Audio stream usage.                                            |
+| contentType     | [ContentType](#contenttype) | Yes  | Audio content type.                                          |
+| pauseWhenDucked | boolean                     | Yes  | Whether audio playback can be paused during audio interruption. The value **true** means that audio playback can be paused during audio interruption, and **false** means the opposite.|
+
+## InterruptAction
+
+Describes the callback invoked for audio interruption or focus gain events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Name      | Type                                       | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| actionType | [InterruptActionType](#interruptactiontype) | Yes  | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
+| type       | [InterruptType](#interrupttype)             | No  | Type of the audio interruption event.                                              |
+| hint       | [InterruptHint](interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
+| activated  | boolean                                     | No  | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
+
+## VolumeEvent<sup>8+</sup>
+
+Describes the event received by the application when the volume is changed.
+
+This is a system API and cannot be called by third-party applications.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+| Name      | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volume     | number                              | Yes  | Volume level. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                    |
+
+## DeviceChangeAction
+
+Describes the device connection status and device information.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+| Name             | Type                                             | Mandatory| Description              |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| type              | [DeviceChangeType](#devicechangetype)          | Yes  | Device connection status.|
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
+
+## DeviceChangeType
+
+Enumerates the device connection statuses.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+| Name      | Default Value| Description          |
+| :--------- | :----- | :------------- |
+| CONNECT    | 0      | Connected.    |
+| DISCONNECT | 1      | Disconnected.|
+
+## AudioCapturerOptions<sup>8+</sup>
+
+Describes audio capturer configurations.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name        | Type                                   | Mandatory| Description            |
+| ------------ | --------------------------------------- | ---- | ---------------- |
+| streamInfo   | [AudioStreamInfo](#audiostreaminfo8)    | Yes  | Audio stream information.|
+| capturerInfo | [AudioCapturerInfo](#audiocapturerinfo) | Yes  | Audio capturer information.|
 
 ## AudioCapturerInfo<sup>8+</sup><a name="audiocapturerinfo"></a>
 
 Describes audio capturer information.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name            | Type                       | Mandatory | Description           |
-| :---------------| :------------------------- | :-------- | :-------------------- |
-| source          | [SourceType](#sourcetype)  | Yes       | Audio source type.    |
-| capturerFlags   | number                     | Yes       | Audio capturer flags. |
-
-## AudioCapturerOptions<sup>8+</sup>
-
-Describes audio capturer configuration options.
-
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
-
-| Name          | Type                                      | Mandatory | Description           |
-| :------------ | :-----------------------------------------| :-------- | :-------------------- |
-| streamInfo    | [AudioStreamInfo](#audiostreaminfo8)      | Yes       | Stream information.   |
-| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)  | Yes       | Capturer information. |
-
-## InterruptEvent<sup>9+</sup>
-
-Describes the interrupt event received by the app when playback is interrupted.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name      | Type                                          | Mandatory | Description                                                       |
-| :-------- | :-------------------------------------------- | :-------- | :---------------------------------------------------------------- |
-| eventType | [InterruptType](#interrupttype)               | Yes       | Whether the interruption has started or finished.                 |
-| forceType | [InterruptForceType](#interruptforcetype9)    | Yes       | Whether the action is taken by system or to be taken by the app.  |
-| hintType  | [InterruptHint](#interrupthint)               | Yes       | Type of action.                                                   |
-
-## AudioInterrupt
-
-The parameters passed in by the audio listener event.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name          | Type                                      | Mandatory | Description           |
-| --------------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](#streamusage) | Yes   | Audio stream usage type.                                             |
-| contentType     | [ContentType](#contenttype) | Yes   | Audio interrupt media type.                                           |
-| pauseWhenDucked | boolean                     | Yes   | Whether audio playback can be paused when audio is interrupted (true means audio playback can be paused during audio interruptions and false means the opposite). |
-
-## InterruptAction
-
-Callback method for the audio interrupt or audio interrupt activated event.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name       | Type                                        | Mandatory | Description                                                                                                                                            |
-| ---------- | ------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| actionType | [InterruptActionType](#interruptactiontype) | Yes       | Event return type. TYPE_ACTIVATED is the audio interrupt activated event, and TYPE_INTERRUPT is the audio interrupt event.                                         |
-| type       | [InterruptType](#interrupttype)             | No        | Interrupt event type.                                                                                                                                  |
-| hint       | [InterruptHint](#interrupthint)              | No        | Interrupt event prompts.                                                                                                                               |
-| activated  | boolean                                     | No        | Acquire/release focus. true indicates that the focus acquisition/release is successful, and false indicates that the focus acquisition/release fails.  |
-
-## VolumeEvent<sup>8+</sup>
-Describes the volume event received by the app when the volume is changed.
-
-This is a system API and cannot be called by third-party applications.
-
-**System capability:** SystemCapability.Multimedia.Audio.Volume
-
-| Name       | Type                                | Mandatory | Description                              |
-| :--------- | :---------------------------------- | :-------- | :--------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Volume type of the current stream.       |
-| volume     | number                              | Yes       | Volume level.                            |
-| updateUi   | boolean                             | Yes       | Whether to show the volume change in UI. |
-
-## DeviceChangeAction
-
-Describes the device change type and device information.
-
-**System capability:** SystemCapability.Multimedia.Audio.Device
-
-| Name                | Type                                              | Mandatory | Description         |
-| :------------------ | :------------------------------------------------ | :-------- | :------------------ |
-| type                | [DeviceChangeType](#devicechangetype)             | Yes       | Device change type. |
-| deviceDescriptors   | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes       | Device information. |
-
-
-## DeviceChangeType
-
-Enumerates device change types.
-
-**System capability:** SystemCapability.Multimedia.Audio.Device
-
-| Name                   | Default Value | Description           |
-| :--------------------- | :------------ | :-------------------- |
-| CONNECT                | 0             | Device connection.    |
-| DISCONNECT             | 1             | Device disconnection. |
+| Name         | Type                     | Mandatory| Description            |
+| :------------ | :------------------------ | :--- | :--------------- |
+| source        | [SourceType](#sourcetype) | Yes  | Audio source type.      |
+| capturerFlags | number                    | Yes  | Audio capturer flags.|
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
-Enumerates source types.
+Enumerates the audio source types.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                                                                                                                                                         | Default Value | Description                      |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ | :------------------------------- |
-| SOURCE_TYPE_INVALID                                                                                                                                          | -1            | Invalid source type.             |
-| SOURCE_TYPE_MIC                                                                                                                                              | 0             | Mic source type.                 |
-| SOURCE_TYPE_VOICE_COMMUNICATION(This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR) | 7             | Voice communication source type. |
-
+| Name                           | Default Value| Description                  |
+| :------------------------------ | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID             | -1     | Invalid audio source.        |
+| SOURCE_TYPE_MIC                 | 0      | Mic source.           |
+| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | Voice communication source.|
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
-Enumerates audio scenes.
+Enumerates the audio scenes.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-| Name                                                                                  | Default Value | Description             |
-| :------------------------------------------------------------------------------------ | :------------ | :---------------------- |
-| AUDIO_SCENE_DEFAULT                                                                   | 0             | Default audio scene.    |
-| AUDIO_SCENE_RINGING(system API, not supported by third-party applications)       | 1             | Ringing audio scene.    |
-| AUDIO_SCENE_PHONE_CALL(system API, not supported by third-party applications)    | 2             | Phone call audio scene. |
-| AUDIO_SCENE_VOICE_CHAT                                                                | 3             | Voice chat audio scene. |
+| Name                  | Default Value| Description                                         |
+| :--------------------- | :----- | :-------------------------------------------- |
+| AUDIO_SCENE_DEFAULT    | 0      | Default audio scene.                               |
+| AUDIO_SCENE_RINGING    | 1      | Ringing audio scene.<br>This is a system API and cannot be called by third-party applications.|
+| AUDIO_SCENE_PHONE_CALL | 2      | Phone call audio scene.<br>This is a system API and cannot be called by third-party applications.|
+| AUDIO_SCENE_VOICE_CHAT | 3      | Voice chat audio scene.                               |
 
 ## AudioManager
 
-Implements audio volume and audio device management. Before calling the interface of AudioManager, you need to create an instance through [getAudioManager](#audiogetaudiomanager).
+Implements audio volume and audio device management. Before calling any API in **AudioManager**, you must use [getAudioManager](#audiogetaudiomanager) to create an **AudioManager** instance.
 
 ### setVolume
 
-setVolume\(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback<void\>\): void
+setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the volume for a stream. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                              |
-| ---------- | ----------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Volume stream type.                                                                      |
-| volume     | number                              | Yes       | Volume to set. The value range can be obtained by calling getMinVolume and getMaxVolume. |
-| callback   | AsyncCallback<void\>                | Yes       | Callback used to return the result.                                                      |
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| callback   | AsyncCallback&lt;void\>         | Yes  | Callback used to return the result.                                  |
 
-**Example:**
+**Example**
 
 ```
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
@@ -666,28 +659,29 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
     console.log('Callback invoked to indicate a successful volume setting.');
 });
 ```
+
 ### setVolume
 
-setVolume\(volumeType: AudioVolumeType, volume: number\): Promise<void\>
+setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 Sets the volume for a stream. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                              |
-| ---------- | ----------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Volume stream type.                                                                      |
-| volume     | number                              | Yes       | Volume to set. The value range can be obtained by calling getMinVolume and getMaxVolume. |
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
@@ -697,20 +691,20 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
 
 ### getVolume
 
-getVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void
+getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the volume of a stream. This API uses an asynchronous callback to return the query result.
+Obtains the volume of a stream. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
-| callback   | AsyncCallback<number>               | Yes       | Callback used to return the volume.  |
+| Name    | Type                               | Mandatory| Description              |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -722,28 +716,27 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 });
 ```
 
-
 ### getVolume
 
-getVolume\(volumeType: AudioVolumeType\): Promise<number\>
+getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-Obtains the volume of a stream. This API uses a promise to return the query result.
+Obtains the volume of a stream. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<number>       | Promise used to return the result.  |
+| Type                 | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
@@ -753,20 +746,20 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ### getMinVolume
 
-getMinVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void
+getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum volume allowed for a stream. This API uses an asynchronous callback to return the query result.
+Obtains the minimum volume allowed for a stream. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
-| callback   | AsyncCallback<number>               | Yes       | Callback used to return the volume.  |
+| Name    | Type                               | Mandatory| Description              |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.      |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the minimum volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -778,28 +771,27 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 });
 ```
 
-
 ### getMinVolume
 
-getMinVolume\(volumeType: AudioVolumeType\): Promise<number\><a name="section41556389511"></a>
+getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-Obtains the minimum volume allowed for a stream. This API uses a promise to return the query result.
+Obtains the minimum volume allowed for a stream. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<number>     | Promise used to return the result.  |
+| Type                 | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the minimum volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
@@ -809,20 +801,20 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ### getMaxVolume
 
-getMaxVolume\(volumeType: AudioVolumeType, callback: AsyncCallback<number\>\): void
+getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the maximum volume allowed for a stream. This API uses an asynchronous callback to return the query result.
+Obtains the maximum volume allowed for a stream. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
-| callback   | AsyncCallback<number>               | Yes       | Callback used to return the volume.  |
+| Name    | Type                               | Mandatory| Description                  |
+| ---------- | ----------------------------------- | ---- | ---------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.          |
+| callback   | AsyncCallback&lt;number&gt;         | Yes  | Callback used to return the maximum volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -834,28 +826,27 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 });
 ```
 
-
 ### getMaxVolume
 
-getMaxVolume\(volumeType: AudioVolumeType\): Promise<number\>
+getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-Obtains the maximum volume allowed for a stream. This API uses a promise to return the query result.
+Obtains the maximum volume allowed for a stream. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                          |
-| ---------- | ----------------------------------- | --------- | ------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                   |
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<number>       | Promise used to return the result.  |
+| Type                 | Description                         |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise used to return the maximum volume.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
@@ -865,21 +856,21 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
 
 ### mute
 
-mute\(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void\>\): void
+mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Mutes a stream. This API uses an asynchronous callback to return the result.
+Mutes or unmutes a stream. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                                |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                                                         |
-| mute       | boolean                             | Yes       | Mute status to set. The value true means to mute the stream, and false means the opposite. |
-| callback   | AsyncCallback<number>               | Yes       | Callback used to return the volume.                                                        |
+| Name    | Type                               | Mandatory| Description                                 |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
+| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.               |
 
-**Example:**
+**Example**
 
 ```
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
@@ -891,29 +882,29 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 });
 ```
 
-
 ### mute
 
-mute\(volumeType: AudioVolumeType, mute: boolean\): Promise<void\>
+mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
-Mutes a stream. This API uses a promise to return the result.
+Mutes or unmutes a stream. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                                |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------------------------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                                                         |
-| mute       | boolean                             | Yes       | Mute status to set. The value true means to mute the stream, and false means the opposite. |
+| Name    | Type                               | Mandatory| Description                                 |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                         |
+| mute       | boolean                             | Yes  | Mute status to set. The value **true** means to mute the stream, and **false** means the opposite.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-**Example:**
+**Example**
+
 
 ```
 audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
@@ -924,20 +915,20 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
 
 ### isMute
 
-isMute\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\): void
+isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a stream is muted. This API uses an asynchronous callback to return the query result.
+Checks whether a stream is muted. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                                                                         |
-| ---------- | ----------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                                                                                                  |
-| callback   | AsyncCallback<boolean>               | Yes       | Callback used to return the mute status of the stream. The value true means that the stream is muted, and false means the opposite.|
+| Name    | Type                               | Mandatory| Description                                           |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                   |
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -952,25 +943,25 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 
 ### isMute
 
-isMute\(volumeType: AudioVolumeType\): Promise<boolean\>
+isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-Checks whether a stream is muted. This API uses a promise to return the result.
+Checks whether a stream is muted. This method uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description         |
-| ---------- | ----------------------------------- | --------- | ------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.  |
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                                                                                                                         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Promise<boolean>    | Promise used to return the mute status of the stream. The value true means that the stream is muted, and false means the opposite.  |
+| Type                  | Description                                                  |
+| ---------------------- | ------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the mute status of the stream. The value **true** means that the stream is muted, and **false** means the opposite.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
@@ -980,20 +971,20 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ### isActive
 
-isActive\(volumeType: AudioVolumeType, callback: AsyncCallback<boolean\>\)
+isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a stream is active. This API uses an asynchronous callback to return the query result.
+Checks whether a stream is active. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                                                                                                                           |
-| ---------- | ----------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type.                                                                                                                    |
-| callback   | AsyncCallback<boolean>              | Yes       | Callback used to return the active status of the stream. The value true means that the stream is active, and false means the opposite.|
+| Name    | Type                               | Mandatory| Description                                             |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                     |
+| callback   | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
@@ -1005,28 +996,27 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
 });
 ```
 
-
 ### isActive
 
-isActive\(volumeType: AudioVolumeType\): Promise<boolean\>
+isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-Checks whether a stream is active. This API uses a promise to return the query result.
+Checks whether a stream is active. This method uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description        |
-| ---------- | ----------------------------------- | --------- | ------------------ |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes       | Audio stream type. |
+| Name    | Type                               | Mandatory| Description        |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                                                                                                                               |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Promise<boolean>       | Promise used to return the active status of the stream. The value true means that the stream is active, and false means the opposite.  |
+| Type                  | Description                                                    |
+| ---------------------- | -------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the active status of the stream. The value **true** means that the stream is active, and **false** means the opposite.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
@@ -1034,23 +1024,22 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
-
 ### setRingerMode
 
-setRingerMode\(mode: AudioRingMode, callback: AsyncCallback<void\>\): void
+setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the ringer mode. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                         |
-| ---------- | ----------------------------------- | --------- | ----------------------------------- |
-| mode       | [AudioRingMode](#audioringmode)     | Yes       | Ringer mode.                        |
-| callback   | AsyncCallback<void>                 | Yes       | Callback used to return the result. |
+| Name  | Type                           | Mandatory| Description                    |
+| -------- | ------------------------------- | ---- | ------------------------ |
+| mode     | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.          |
+| callback | AsyncCallback&lt;void&gt;       | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
@@ -1062,28 +1051,27 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 });
 ```
 
-
 ### setRingerMode
 
-setRingerMode\(mode: AudioRingMode\): Promise<void\>
+setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 Sets the ringer mode. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                | Mandatory | Description                         |
-| ---------- | ----------------------------------- | --------- | ----------------------------------- |
-| mode       | [AudioRingMode](#audioringmode)     | Yes       | Ringer mode.                        |
+| Name| Type                           | Mandatory| Description          |
+| ------ | ------------------------------- | ---- | -------------- |
+| mode   | [AudioRingMode](#audioringmode) | Yes  | Ringer mode.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
@@ -1094,19 +1082,19 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
 
 ### getRingerMode
 
-getRingerMode\(callback: AsyncCallback<AudioRingMode\>\): void
+getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
-Obtains the ringer mode. This API uses an asynchronous callback to return the query result.
+Obtains the ringer mode. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                            | Mandatory | Description                              |
-| ---------- | ----------------------------------------------- | --------- | ---------------------------------------- |
-| callback   | AsyncCallback<[AudioRingMode](#audioringmode)>  | Yes       | Callback used to return the ringer mode. |
+| Name  | Type                                                | Mandatory| Description                    |
+| -------- | ---------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;[AudioRingMode](#audioringmode)&gt; | Yes  | Callback used to return the ringer mode.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getRingerMode((err, value) => {
@@ -1121,19 +1109,19 @@ audioManager.getRingerMode((err, value) => {
 
 ### getRingerMode
 
-getRingerMode\(\): Promise<AudioRingMode\>
+getRingerMode(): Promise&lt;AudioRingMode&gt;
 
-Obtains the ringer mode. This API uses a promise to return the query result.
+Obtains the ringer mode. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Return value:**
+**Return value**
 
-| Type                                           | Description                             |
-| ---------------------------------------------- | --------------------------------------- |
-| Promise<[AudioRingMode](#audioringmode)>       | Promise used to return the ringer mode. |
+| Type                                          | Description                           |
+| ---------------------------------------------- | ------------------------------- |
+| Promise&lt;[AudioRingMode](#audioringmode)&gt; | Promise used to return the ringer mode.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getRingerMode().then((value) => {
@@ -1141,24 +1129,23 @@ audioManager.getRingerMode().then((value) => {
 });
 ```
 
-
 ### setAudioParameter
 
-setAudioParameter\(key: string, value: string, callback: AsyncCallback<void\>\): void
+setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets an audio parameter. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
+**Parameters**
 
-| Name      | Type                  | Mandatory | Description                           |
-| --------- | ----------------------| --------- | ------------------------------------- |
-| key       | string                | Yes       | Key of the audio parameter to set.    |
-| value     | string                | Yes       | Value of the audio parameter to set.  |
-| callback  | AsyncCallback<void>   | Yes       | Callback used to return the result.   |
+| Name  | Type                     | Mandatory| Description                    |
+| -------- | ------------------------- | ---- | ------------------------ |
+| key      | string                    | Yes  | Key of the audio parameter to set.  |
+| value    | string                    | Yes  | Value of the audio parameter to set.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
@@ -1170,29 +1157,28 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 });
 ```
 
-
 ### setAudioParameter
 
-setAudioParameter\(key: string, value: string\): Promise<void\>
+setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 Sets an audio parameter. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
+**Parameters**
 
-| Name      | Type                  | Mandatory | Description                           |
-| --------- | ----------------------| --------- | ------------------------------------- |
-| key       | string                | Yes       | Key of the audio parameter to set.    |
-| value     | string                | Yes       | Value of the audio parameter to set.  |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| key    | string | Yes  | Key of the audio parameter to set.|
+| value  | string | Yes  | Value of the audio parameter to set.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
@@ -1200,23 +1186,22 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
 });
 ```
 
-
 ### getAudioParameter
 
-getAudioParameter\(key: string, callback: AsyncCallback<string\>\)
+getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the value of an audio parameter. This API uses an asynchronous callback to return the query result.
+Obtains the value of an audio parameter. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
+**Parameters**
 
-| Name      | Type                  | Mandatory | Description                                                |
-| --------- | ----------------------| --------- | ---------------------------------------------------------- |
-| key       | string                | Yes       | Key of the audio parameter whose value is to be obtained.  |
-| callback  | AsyncCallback<string> | Yes       | Callback used to return the value of the audio parameter.  |
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| key      | string                      | Yes  | Key of the audio parameter whose value is to be obtained.      |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the value of the audio parameter.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getAudioParameter('PBits per sample', (err, value) => {
@@ -1228,28 +1213,27 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 });
 ```
 
-
 ### getAudioParameter
 
-getAudioParameter\(key: string\): Promise<string\>
+getAudioParameter(key: string): Promise&lt;string&gt;
 
-Obtains the value of an audio parameter. This API uses a promise to return the query result.
+Obtains the value of an audio parameter. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Parameters:**
+**Parameters**
 
-| Name      | Type                  | Mandatory | Description                                                 |
-| --------- | ----------------------| --------- | ----------------------------------------------------------- |
-| key       | string                | Yes       | Key of the audio parameter whose value is to be obtained.   |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| key    | string | Yes  | Key of the audio parameter whose value is to be obtained.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<string>     | Promise used to return the value of the audio parameter.  |
+| Type                 | Description                               |
+| --------------------- | ----------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the value of the audio parameter.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getAudioParameter('PBits per sample').then((value) => {
@@ -1257,24 +1241,22 @@ audioManager.getAudioParameter('PBits per sample').then((value) => {
 });
 ```
 
-
 ### getDevices
 
-getDevices\(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors\>\): void
+getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-Obtains the audio devices with a specific flag. This API uses an asynchronous callback to return the query result.
+Obtains the audio devices with a specific flag. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                                             | Mandatory | Description                               |
-| ---------  | ---------------------------------------------------------------- | --------- | ----------------------------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)                                        | Yes       | Audio device flag.                        |
-| callback   | AsyncCallback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | Yes       | Callback used to return the device list.  |
+| Name    | Type                                                        | Mandatory| Description                |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes  | Audio device flag.    |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Yes  | Callback used to return the device list.|
 
-**Example:**
-
+**Example**
 ```
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
    if (err) {
@@ -1285,29 +1267,27 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
 });
 ```
 
-
-
 ### getDevices
 
-getDevices\(deviceFlag: DeviceFlag\): Promise<AudioDeviceDescriptors\>
+getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
-Obtains the audio devices with a specific flag. This API uses a promise to return the query result.
+Obtains the audio devices with a specific flag. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                        | Mandatory | Description         |
-| ---------  | --------------------------- | --------- | ------------------- |
-| deviceFlag | [DeviceFlag](#deviceflag)   | Yes       | Audio device flag.  |
+| Name    | Type                     | Mandatory| Description            |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | Yes  | Audio device flag.|
 
-**Return value:**
+**Return value**
 
-| Type                                                        | Description                              |
-| ----------------------------------------------------------- | ---------------------------------------- |
-| Promise<[AudioDeviceDescriptors](#audiodevicedescriptors)>  | Promise used to return the device list.  |
+| Type                                                        | Description                     |
+| ------------------------------------------------------------ | ------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise used to return the device list.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
@@ -1317,21 +1297,21 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
 
 ### setDeviceActive
 
-setDeviceActive\(deviceType: DeviceType, active: boolean, callback: AsyncCallback<void\>\): void
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a device to the active state. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                   | Mandatory | Description                                                                                                      |
-| ---------  | ---------------------------------------| --------- | ---------------------------------------------------------------------------------------------------------------- |
-| deviceType | [ActiveDeviceType](#activedevicetype)  | Yes       | Audio device type.                                                                                               |
-| active     | boolean                                | Yes       | Active status to set. The value true means to set the device to the active status, and false means the opposite. |
-| callback   | AsyncCallback<void>                    | Yes       | Callback used to return the result.                                                                              |
+| Name    | Type                                 | Mandatory| Description                    |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | Yes  | Audio device type.      |
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
+| callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
@@ -1343,31 +1323,29 @@ audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
 });
 ```
 
-
-
 ### setDeviceActive
 
-setDeviceActive\(deviceType: DeviceType, active: boolean\): Promise<void\>
+setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
 
 Sets a device to the active state. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                   | Mandatory | Description                                                                                                      |
-| ---------  | ---------------------------------------| --------- | ---------------------------------------------------------------------------------------------------------------- |
-| deviceType | [ActiveDeviceType](#activedevicetype)  | Yes       | Audio device type.                                                                                               |
-| active     | boolean                                | Yes       | Active status to set. The value true means to set the device to the active status, and false means the opposite. |
+| Name    | Type                                 | Mandatory| Description              |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | Yes  | Audio device type.|
+| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
+**Example**
 
-**Example:**
 
 ```
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
@@ -1375,23 +1353,22 @@ audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
 });
 ```
 
-
 ### isDeviceActive
 
-isDeviceActive\(deviceType: DeviceType, callback: AsyncCallback<boolean\>\): void
+isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a device is active. This API uses an asynchronous callback to return the query result.
+Checks whether a device is active. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                   | Mandatory | Description                                              |
-| ---------  | ---------------------------------------| --------- | -------------------------------------------------------- |
-| deviceType | [ActiveDeviceType](#activedevicetype)  | Yes       | Audio device type.                                       |
-| callback   | AsyncCallback<boolean>                 | Yes       | Callback used to return the active status of the device. |
+| Name    | Type                                 | Mandatory| Description                    |
+| ---------- | ------------------------------------- | ---- | ------------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | Yes  | Audio device type.      |
+| callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
@@ -1406,25 +1383,25 @@ audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
 
 ### isDeviceActive
 
-isDeviceActive\(deviceType: DeviceType\): Promise<boolean\>
+isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
-Checks whether a device is active. This API uses a promise to return the query result.
+Checks whether a device is active. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                                   | Mandatory | Description                               |
-| ---------  | ---------------------------------------| --------- | ----------------------------------------- |
-| deviceType | [ActiveDeviceType](#activedevicetype)  | Yes       | Audio device type.                        |
+| Name    | Type                                 | Mandatory| Description              |
+| ---------- | ------------------------------------- | ---- | ------------------ |
+| deviceType | [ActiveDeviceType](#activedevicetype) | Yes  | Audio device type.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<boolean>    | Promise used to return the active status of the device.  |
+| Type                   | Description                     |
+| ---------------------- | ------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the active state of the device.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
@@ -1432,23 +1409,22 @@ audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
 });
 ```
 
-
 ### setMicrophoneMute
 
-setMicrophoneMute\(mute: boolean, callback: AsyncCallback<void\>\): void
+setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Mutes or unmutes the microphone. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                 | Mandatory | Description                                                                                    |
-| ---------  | -------------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| mute       | boolean              | Yes       | Mute status to set. The value true means to mute the microphone, and false means the opposite. |
-| callback   | AsyncCallback<void>  | Yes       | Callback used to return the result.                                                            |
+| Name  | Type                     | Mandatory| Description                                         |
+| -------- | ------------------------- | ---- | --------------------------------------------- |
+| mute     | boolean                   | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
 
-**Example:**
+**Example**
 
 ```
 audioManager.setMicrophoneMute(true, (err) => {
@@ -1460,30 +1436,27 @@ audioManager.setMicrophoneMute(true, (err) => {
 });
 ```
 
-
 ### setMicrophoneMute
 
-setMicrophoneMute\(mute: boolean\): Promise<void\>
+setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 Mutes or unmutes the microphone. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                 | Mandatory | Description                                                                                    |
-| ---------  | -------------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| mute       | boolean              | Yes       | Mute status to set. The value true means to mute the microphone, and false means the opposite. |
+| Name| Type   | Mandatory| Description                                         |
+| ------ | ------- | ---- | --------------------------------------------- |
+| mute   | boolean | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
 
-**Return value:**
+**Return value**
 
-| Type                | Description                         |
-| ------------------- | ----------------------------------- |
-| Promise<void>       | Promise used to return the result.  |
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-</table>
-
-**Example:**
+**Example**
 
 ```
 audioManager.setMicrophoneMute(true).then(() => {
@@ -1491,25 +1464,23 @@ audioManager.setMicrophoneMute(true).then(() => {
 });
 ```
 
-
 ### isMicrophoneMute
 
-isMicrophoneMute\(callback: AsyncCallback<boolean\>\): void
+isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the microphone is muted. This API uses an asynchronous callback to return the query result.
+Checks whether the microphone is muted. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name       | Type                   | Mandatory | Description                                                                                                                                 |
-| ---------  | --------------------   | --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| callback   | AsyncCallback<boolean> | Yes       | Callback used to return the mute status of the microphone. The value true means that the microphone is muted, and false means the opposite. |
+| Name  | Type                        | Mandatory| Description                                                   |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
 
-**Example:**
+**Example**
 
 ```
-var audioManager = audio.getAudioManager();
 audioManager.isMicrophoneMute((err, value) => {
     if (err) {
         console.error('Failed to obtain the mute status of the microphone. ${err.message}');
@@ -1519,25 +1490,24 @@ audioManager.isMicrophoneMute((err, value) => {
 });
 ```
 
-
 ### isMicrophoneMute
 
-isMicrophoneMute\(\): Promise<boolean\>
+isMicrophoneMute(): Promise&lt;boolean&gt;
 
-Checks whether the microphone is muted. This API uses a promise to return the query result.
+Checks whether the microphone is muted. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Return value:**
+**Return value**
 
-| Type                | Description                                                                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Promise<boolean>    | Promise used to return the mute status of the microphone. The value true means that the microphone is muted, and false means the opposite. |
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the mute status of the microphone. The value **true** means that the microphone is muted, and **false** means the opposite.|
 
-**Example:**
+**Example**
+
 
 ```
-var audioManager = audio.getAudioManager();
 audioManager.isMicrophoneMute().then((value) => {
     console.log('Promise returned to indicate that the mute status of the microphone is obtained.', + value);
 });
@@ -1547,20 +1517,20 @@ audioManager.isMicrophoneMute().then((value) => {
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
-Subscribes to system volume change events. This API uses a callback to get volume change events.
+Subscribes to system volume change events.
 
 This is a system API and cannot be called by third-party applications.
 
-**System capability:** SystemCapability.Multimedia.Audio.Volume
+**System capability**: SystemCapability.Multimedia.Audio.Volume
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                   | Mandatory     | Description                                                                                                                                                   |
-| :------- | :--------------------------------------| :-------------| :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type     | string                                 | Yes           | Type of the event to subscribe to. The value 'volumeChange' means the system volume change event, which is triggered when a system volume change is detected. |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes           | Callback used to get the system volume change event.                                                                                                          |
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | Yes  | Type of event to subscribe to. The value **volumeChange** means the system volume change event, which is triggered when a system volume change is detected.|
+| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
 
-**Example:**
+**Example**
 
 ```
 audioManager.on('volumeChange', (volumeEvent) => {
@@ -1570,25 +1540,24 @@ audioManager.on('volumeChange', (volumeEvent) => {
 });
 ```
 
-
 ### on('ringerModeChange')<sup>8+</sup>
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to ringer mode change events. This API uses a callback to get ringer mode changes.
+Subscribes to ringer mode change events.
 
 This is a system API and cannot be called by third-party applications.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                       | Mandatory | Description                                                                                                                                                    |
-| :------- | :----------------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                                     | Yes       | Type of the event to subscribe to. The value 'ringerModeChange' means the ringer mode change event, which is triggered when a ringer mode change is detected.  |
-| callback | Callback<[AudioRingMode](#audioringmode)>  | Yes       | Callback used to get the updated ringer mode.                                                                                                                  |
+| Name  | Type                                     | Mandatory| Description                                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                    | Yes  | Type of event to subscribe to. The value **ringerModeChange** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the updated ringer mode.                                                  |
 
-**Example:**
+**Example**
 
 ```
 audioManager.on('ringerModeChange', (ringerMode) => {
@@ -1600,18 +1569,18 @@ audioManager.on('ringerModeChange', (ringerMode) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-Subscribes to device change events. When a device is connected/disconnected, registered clients will receive the callback.
+Subscribes to device change events. When a device is connected or disconnected, registered clients will receive the callback.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                                                                                                                     |
-| :------- | :-------------------------------------------------- | :---------| :---------------------------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                                              | Yes       | Type of the event to subscribe to. The value 'deviceChange' means the device change event, which is triggered when a device change is detected. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | Yes       | Callback used to obtain the device update details.                                                                                              |
+| Name  | Type                                                | Mandatory| Description                                      |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | Yes  | Type of event to subscribe to. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)\> | Yes  | Callback used to return the device update details.                        |
 
-**Example:**
+**Example**
 
 ```
 audioManager.on('deviceChange', (deviceChanged) => {
@@ -1626,20 +1595,18 @@ audioManager.on('deviceChange', (deviceChanged) => {
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-Unsubscribes from audio device connection change events.
+Unsubscribes from device change events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**Parameters**
 
-**Parameters:**
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | Yes  | Type of event to unsubscribe from. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | No  | Callback used to return the device update details.                        |
 
-| Name     | Type                                                | Mandatory | Description                                                                                                                                         |
-| :------- | :-------------------------------------------------- | :---------| :-------------------------------------------------- |
-| type     | string                                              | Yes       | Type of the event to unsubscribe from.              |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to obtain the device update details.  |
-
-**Example:**
+**Example**
 
 ```
 audioManager.off('deviceChange', (deviceChanged) => {
@@ -1647,26 +1614,23 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-
 ### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
-Subscribes to audio interrupt events. When the application's audio is interrupted by another playback event, the application will receive the callback.
+Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**Parameters**
 
-**Parameters:**
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | Yes  | Type of event to subscribe to. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| callback  | Callback<[InterruptAction](#interruptaction)> | Yes  | Callback invoked for the audio interruption event.                                      |
 
-| Name     | Type                          | Mandatory | Description                                                                                                                                                                                                    |
-| --------- | --------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type      | string                                        | Yes   | Type of event to subscribe to. The value 'interrupt' means the audio interrupt event, which is triggered when the audio playback of the current application is interrupted by another application.|
-| interrupt | AudioInterrupt                                | Yes   | Audio interrupt event type.                                                                                                                                                                       |
-| callback  | Callback<[InterruptAction](#interruptaction)> | Yes   | Audio interrupt event callback method.                                                                                                                                                            |
-
-**Example:**
+**Example**
 
 ```
 var interAudioInterrupt = {
@@ -1690,21 +1654,19 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
-Unsubscribes from audio interrupt events.
+Unsubscribes from audio interruption events.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**Parameters**
 
-**Parameters:**
+| Name   | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | string                                        | Yes  | Type of event to unsubscribe from. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
+| callback  | Callback<[InterruptAction](#interruptaction)> | No  | Callback invoked for the audio interruption event.                                      |
 
-| Name      | Type                                          | Mandatory | Description                                                                                                                                                                                            |
-| --------- | --------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| type      | string                                        | Yes       | Type of event to unsubscribe from. The value 'interrupt' means the audio interrupt event, which is triggered when the audio playback of the current application is interrupted by another application. |
-| interrupt | AudioInterrupt                                | Yes       | Audio interrupt event type.                                                                                                                                                                            |
-| callback  | Callback<[InterruptAction](#interruptaction)> | No        | Audio interrupt event callback method.                                                                                                                                                                 |
-
-**Example:**
+**Example**
 
 ```
 var interAudioInterrupt = {
@@ -1720,25 +1682,24 @@ audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-
 ### setAudioScene<sup>8+</sup>
 
 setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
-Sets the audio scene mode to change audio strategies. This API uses an asynchronous callback to return the result.
+Sets an audio scene. This API uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                  | Mandatory | Description                         |
-| :------- | :------------------------------------ | :-------- | :---------------------------------- |
-| scene    | <a href="#audioscene">AudioScene</a>  | Yes       | Audio scene mode.                   |
-| callback | AsyncCallback<void\>                  | Yes       | Callback used to return the result. |
+| Name  | Type                                | Mandatory| Description                |
+| :------- | :----------------------------------- | :--- | :------------------- |
+| scene    | <a href="#audioscene">AudioScene</a> | Yes  | Audio scene to set.      |
+| callback | AsyncCallback<void\>                 | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
@@ -1750,32 +1711,29 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
 });
 ```
 
-
 ### setAudioScene<sup>8+</sup>
 
 setAudioScene\(scene: AudioScene\): Promise<void\>
 
-Sets the audio scene mode to change audio strategies. This API uses a promise to return the result.
+Sets an audio scene. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                    | Mandatory | Description       |
-| :------- | :-------------------------------------- | :-------- | :---------------- |
-| scene    | <a href="#audioscene">AudioScene</a>    | Yes       | Audio scene mode. |
+| Name| Type                                | Mandatory| Description          |
+| :----- | :----------------------------------- | :--- | :------------- |
+| scene  | <a href="#audioscene">AudioScene</a> | Yes  | Audio scene to set.|
 
+**Return value**
 
-**Return value:**
+| Type          | Description                |
+| :------------- | :------------------- |
+| Promise<void\> | Promise used to return the result.|
 
-| Type           | Description                         |
-| :------------- | :---------------------------------- |
-| Promise<void\> | Promise used to return the result.  |
-
-
-**Example:**
+**Example**
 
 ```
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
@@ -1785,22 +1743,21 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 });
 ```
 
-
 ### getAudioScene<sup>8+</sup>
 
 getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 
-Obtains the audio scene mode. This API uses an asynchronous callback to return the query result.
+Obtains the audio scene. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                   |
-| :------- | :-------------------------------------------------- | :-------- | :-------------------------------------------- |
-| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | Yes       | Callback used to return the audio scene mode. |
+| Name  | Type                                               | Mandatory| Description                        |
+| :------- | :-------------------------------------------------- | :--- | :--------------------------- |
+| callback | AsyncCallback<<a href="#audioscene">AudioScene</a>> | Yes  | Callback used to return the audio scene.|
 
-**Example:**
+**Example**
 
 ```
 audioManager.getAudioScene((err, value) => {
@@ -1817,18 +1774,17 @@ audioManager.getAudioScene((err, value) => {
 
 getAudioScene\(\): Promise<AudioScene\>
 
-Obtains the audio scene mode. This API uses a promise to return the query result.
+Obtains the audio scene. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Communication
+**System capability**: SystemCapability.Multimedia.Audio.Communication
 
-**Return value:**
+**Return value**
 
-| Type                                          | Description                                  |
-| :-------------------------------------------- | :------------------------------------------- |
-| Promise<<a href="#audioscene">AudioScene</a>> | Promise used to return the audio scene mode. |
+| Type                                         | Description                        |
+| :-------------------------------------------- | :--------------------------- |
+| Promise<<a href="#audioscene">AudioScene</a>> | Promise used to return the audio scene.|
 
-
-**Example:**
+**Example**
 
 ```
 audioManager.getAudioScene().then((value) => {
@@ -1842,20 +1798,18 @@ audioManager.getAudioScene().then((value) => {
 
 Describes an audio device.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
+**System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name       | Type                      | Readable | Writable | Description        |
-| ---------- | ------------------------- | -------- | -------- | ------------------ |
-| deviceRole | [DeviceRole](#devicerole) | Yes      | No       | Audio device role. |
-| deviceType | [DeviceType](#devicetype) | Yes      | No       | Audio device type. |
+| Name      | Type                   | Readable| Writable| Description      |
+| ---------- | ------------------------- | ---- | ---- | ---------- |
+| deviceRole | [DeviceRole](#devicerole) | Yes  | No  | Device role.|
+| deviceType | [DeviceType](#devicetype) | Yes  | No  | Device type.|
 
 ## AudioDeviceDescriptors
 
 Array of [AudioDeviceDescriptor](#audiodevicedescriptor), which is read-only.
 
-**System capability:** SystemCapability.Multimedia.Audio.Device
-
-**Example:**
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -1880,45 +1834,40 @@ promise.then(function (value) {
     }
 });
 ```
+
 ## AudioRenderer<sup>8+</sup>
 
-Provides related APIs for audio rendering. Before calling the AudioRenderer API, you need to create an instance through [createAudioRenderer](#audiocreateaudiorenderer8).
+Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, you must use [createAudioRenderer](#audiocreateaudiorenderer8) to create an **AudioRenderer** instance.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+### Attributes
 
-### state<sup>8+</sup>
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-readonly state: AudioState
+| Name | Type                    | Readable| Writable| Description              |
+| ----- | -------------------------- | ---- | ---- | ------------------ |
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes  | No  | Audio renderer state.|
 
-Defines the current render state.
-
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
-
-| Name  | Type                        | Readable | Writable | Description         |
-| :---- | :-------------------------- | :------- | :------- | :------------------ |
-| state |  [AudioState](#audiostate8) | Yes      | No       | Audio render state. |
-
-**Example:**
+**Example**
 
 ```
-    var state = audioRenderer.state;
+var state = audioRenderer.state;
 ```
 
 ### getRendererInfo<sup>8+</sup>
 
 getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 
-Obtains the renderer information provided while creating a renderer instance. This API uses an asynchronous callback to return the result.
+Obtains the renderer information of this **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                     | Mandatory | Description                                       |
-| :------- | :------------------------------------------------------- | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)>  | Yes       | Callback used to return the renderer information. |
+| Name  | Type                                                    | Mandatory| Description                  |
+| :------- | :------------------------------------------------------- | :--- | :--------------------- |
+| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | Yes  | Callback used to return the renderer information.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getRendererInfo((err, rendererInfo) => {
@@ -1929,22 +1878,21 @@ audioRenderer.getRendererInfo((err, rendererInfo) => {
 });
 ```
 
-
 ### getRendererInfo<sup>8+</sup>
 
 getRendererInfo(): Promise<AudioRendererInfo\>
 
-Obtains the renderer information provided while creating a renderer instance. This API uses a promise to return the result.
+Obtains the renderer information of this **AudioRenderer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type                                                | Description                                      |
-| :-------------------------------------------------- | :----------------------------------------------- |
-| Promise<[AudioRendererInfo](#audiorendererinfo8)>   | Promise used to return the renderer information. |
+| Type                                              | Description                           |
+| -------------------------------------------------- | ------------------------------- |
+| Promise<[AudioRendererInfo](#audiorendererinfo8)\> | Promise used to return the renderer information.|
 
-**Example:**
+**Example**
 
 ```
 var resultFlag = true;
@@ -1957,24 +1905,23 @@ audioRenderer.getRendererInfo().then((rendererInfo) => {
     console.log('AudioFrameworkRenderLog: RendererInfo :ERROR: '+err.message);
     resultFlag = false;
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
-Obtains the renderer stream information. This API uses an asynchronous callback to return the result.
+Obtains the stream information of this **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                     |
-| :------- | :------------------------------------------------------ | :-------- | :---------------------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\>    | Yes       | Callback used to return the stream information. |
+| Name  | Type                                                | Mandatory| Description                |
+| :------- | :--------------------------------------------------- | :--- | :------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes  | Callback used to return the stream information.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getStreamInfo((err, streamInfo) => {
@@ -1990,17 +1937,17 @@ audioRenderer.getStreamInfo((err, streamInfo) => {
 
 getStreamInfo(): Promise<AudioStreamInfo\>
 
-Obtains the renderer stream information. This API uses a promise to return the result.
+Obtains the stream information of this **AudioRenderer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type                                               | Description                                    |
-| :------------------------------------------------- | :--------------------------------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\>     | Promise used to return the stream information. |
+| Type                                          | Description                  |
+| :--------------------------------------------- | :--------------------- |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getStreamInfo().then((streamInfo) => {
@@ -2012,7 +1959,6 @@ audioRenderer.getStreamInfo().then((streamInfo) => {
 }).catch((err) => {
     console.log('ERROR: '+err.message);
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -2021,16 +1967,15 @@ start(callback: AsyncCallback<void\>): void
 
 Starts the renderer. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                             |
-| :------- | :---------------------- | :-------- | :-------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
-|          |                         |           |                                         |
+| Name  | Type                | Mandatory| Description      |
+| -------- | -------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.start((err) => {
@@ -2048,15 +1993,15 @@ start(): Promise<void\>
 
 Starts the renderer. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.start().then(() => {
@@ -2066,23 +2011,21 @@ audioRenderer.start().then(() => {
 });
 ```
 
-
 ### pause<sup>8+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
 Pauses rendering. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                           |
-| :------- | :---------------------- | :-------- | :------------------------------------ |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.   |
-|          |                         |           |                                       |
+| Name  | Type                | Mandatory| Description            |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.pause((err) => {
@@ -2100,15 +2043,15 @@ pause(): Promise\<void>
 
 Pauses rendering. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.pause().then(() => {
@@ -2124,16 +2067,15 @@ drain(callback: AsyncCallback\<void>): void
 
 Drains the playback buffer. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                             |
-| :------- | :---------------------- | :-------- | :---------------------------------------|
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
-|          |                         |           |                                         |
+| Name  | Type                | Mandatory| Description            |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.drain((err) => {
@@ -2151,15 +2093,15 @@ drain(): Promise\<void>
 
 Drains the playback buffer. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.drain().then(() => {
@@ -2169,22 +2111,21 @@ audioRenderer.drain().then(() => {
 });
 ```
 
-
 ### stop<sup>8+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
 Stops rendering. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                            |
-| :------- | :---------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+| Name  | Type                | Mandatory| Description            |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.stop((err) => {
@@ -2202,15 +2143,15 @@ stop(): Promise\<void>
 
 Stops rendering. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.stop().then(() => {
@@ -2220,22 +2161,21 @@ audioRenderer.stop().then(() => {
 });
 ```
 
-
 ### release<sup>8+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
 Releases the renderer. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                            |
-| :------- | :---------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+| Name  | Type                | Mandatory| Description            |
+| -------- | -------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.release((err) => {
@@ -2253,15 +2193,15 @@ release(): Promise\<void>
 
 Releases the renderer. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.release().then(() => {
@@ -2277,16 +2217,16 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
 Writes the buffer. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                                                                                          |
-| :------- | :---------------------- | :-------- | :--------------------------------------------------------------------------------------------------- |
-| buffer   | ArrayBuffer             | Yes       | Buffer to be written.                                                                                |
-| callback | AsyncCallback<boolean\> | Yes       | Returns the number of bytes written if the operation is successful; returns an error code otherwise. |
+| Name  | Type                  | Mandatory| Description                                               |
+| -------- | ---------------------- | ---- | --------------------------------------------------- |
+| buffer   | ArrayBuffer            | Yes  | Buffer to be written.                               |
+| callback | AsyncCallback\<number> | Yes  | Returns the number of bytes written if the operation is successful; returns an error code otherwise.|
 
-**Example:**
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -2304,22 +2244,21 @@ audioRenderer.write(buf, (err, writtenbytes) => {
 });
 ```
 
-
 ### write<sup>8+</sup>
 
 write(buffer: ArrayBuffer): Promise\<number>
 
 Writes the buffer. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type             | Description                                                                                          |
-| :--------------- | :--------------------------------------------------------------------------------------------------- |
-| Promise<number\> | Returns the number of bytes written if the operation is successful; returns an error code otherwise. |
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Returns the number of bytes written if the operation is successful; returns an error code otherwise.|
 
-**Example:**
+**Example**
 
 ```
 import audio from '@ohos.multimedia.audio';
@@ -2344,17 +2283,17 @@ audioRenderer.write(buf).then((writtenbytes) => {
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
-Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This API uses an asynchronous callback to return the result.
+Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970). This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                   | Mandatory | Description                            |
-| :------- | :--------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the timestamp. |
+| Name  | Type                  | Mandatory| Description            |
+| -------- | ---------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the timestamp.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getAudioTime((err, timestamp) => {
@@ -2362,22 +2301,21 @@ audioRenderer.getAudioTime((err, timestamp) => {
 });
 ```
 
-
 ### getAudioTime<sup>8+</sup>
 
 getAudioTime(): Promise\<number>
 
-Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This API uses a promise to return the result.
+Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970). This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type             | Description                           |
-| :--------------- | :------------------------------------ |
-| Promise<number\> | Promise used to return the timestamp. |
+| Type            | Description                   |
+| ---------------- | ----------------------- |
+| Promise\<number> | Promise used to return the timestamp.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getAudioTime().then((timestamp) => {
@@ -2387,22 +2325,21 @@ audioRenderer.getAudioTime().then((timestamp) => {
 });
 ```
 
-
 ### getBufferSize<sup>8+</sup>
 
 getBufferSize(callback: AsyncCallback\<number>): void
 
 Obtains a reasonable minimum buffer size in bytes for rendering. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| :------- | :--------------------- | :-------- | :--------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
+| Name  | Type                  | Mandatory| Description                |
+| -------- | ---------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the buffer size.|
 
-**Example:**
+**Example**
 
 ```
 var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
@@ -2412,22 +2349,21 @@ var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
 });
 ```
 
-
 ### getBufferSize<sup>8+</sup>
 
 getBufferSize(): Promise\<number>
 
 Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type             | Description                             |
-| :--------------- | :-------------------------------------- |
-| Promise<number\> | Promise used to return the buffer size. |
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| Promise\<number> | Promise used to return the buffer size.|
 
-**Example:**
+**Example**
 
 ```
 var bufferSize;
@@ -2445,16 +2381,16 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
 Sets the render rate. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                        | Mandatory | Description                         |
-| :------- | :------------------------------------------ | :-------- | :---------------------------------- |
-| rate     | [AudioRendererRate](#audiorendererrate8)    | Yes       | Audio render rate.                  |
-| callback | AsyncCallback<void\>                        | Yes       | Callback used to return the result. |
+| Name  | Type                                    | Mandatory| Description                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| rate     | [AudioRendererRate](#audiorendererrate8) | Yes  | Audio render rate.            |
+| callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) => {
@@ -2466,28 +2402,27 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) =>
 });
 ```
 
-
 ### setRenderRate<sup>8+</sup>
 
 setRenderRate(rate: AudioRendererRate): Promise\<void>
 
 Sets the render rate. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description        |
-| :--- | :--------------------------------------- | :-------- | :----------------- |
-| rate | [AudioRendererRate](#audiorendererrate8) | Yes       | Audio render rate. |
+| Name| Type                                    | Mandatory| Description        |
+| ------ | ---------------------------------------- | ---- | ------------ |
+| rate   | [AudioRendererRate](#audiorendererrate8) | Yes  | Audio render rate.|
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
@@ -2503,15 +2438,15 @@ getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
 Obtains the current render rate. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                     | Mandatory | Description                                    |
-| :------- | :------------------------------------------------------- | :-------- | :--------------------------------------------- |
-| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)\> | Yes       | Callback used to return the audio render rate. |
+| Name  | Type                                                   | Mandatory| Description              |
+| -------- | ------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | Yes  | Callback used to return the audio render rate.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getRenderRate((err, renderrate) => {
@@ -2519,22 +2454,21 @@ audioRenderer.getRenderRate((err, renderrate) => {
 });
 ```
 
-
 ### getRenderRate<sup>8+</sup>
 
 getRenderRate(): Promise\<AudioRendererRate>
 
 Obtains the current render rate. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Return value:**
+**Return value**
 
-| Type                                                | Description                                   |
-| :-------------------------------------------------- | :-------------------------------------------- |
-| Promise<<[AudioRendererRate](#audiorendererrate8)\> | Promise used to return the audio render rate. |
+| Type                                             | Description                     |
+| ------------------------------------------------- | ------------------------- |
+| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise used to return the audio render rate.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.getRenderRate().then((renderRate) => {
@@ -2544,23 +2478,22 @@ audioRenderer.getRenderRate().then((renderRate) => {
 });
 ```
 
-
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interrupt events. This API uses a callback to get interrupt events. The interrupt event is triggered when audio rendering is interrupted.
+Subscribes to audio interruption events. This API uses a callback to get interrupt events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                     |
-| :------- | :-------------------------------------------- | :-------- | :---------------------------------------------- |
-| type     | string                                        | Yes       | Type of the playback event to subscribe to.     |
-| callback | Callback<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to listen for interrupt callback. |
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | Yes  | Type of event to subscribe to. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted.|
+| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes  | Callback used to return the audio interruption event.                                    |
 
-**Example:**
+**Example**
 
 ```
 var isPlay;
@@ -2615,19 +2548,19 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 
-Subscribes to mark reached events. When the number of frames rendered reaches the value of the frame parameter, the callback is invoked.
+Subscribes to mark reached events. When the number of frames rendered reaches the value of the **frame** parameter, the callback is invoked.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                              |
-| :------- | :------------------------ | :-------- | :----------------------------------------------------------------------- |
-| type     | string                    | Yes       | Type of the renderer event to subscribe to.                              |
-| frame    | number                    | Yes       | Number of frames to trigger the event. The value must be greater than 0. |
-| callback | (position: number) => {}  | Yes       | Callback invoked when the event is triggered.                            |
+| Name  | Type                    | Mandatory| Description                                     |
+| :------- | :----------------------- | :--- | :---------------------------------------- |
+| type     | string                   | Yes  | Type of event to subscribe to. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.        |
+| callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                   |
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.on('markReach', 1000, (position) => {
@@ -2644,15 +2577,15 @@ off(type: 'markReach'): void
 
 Unsubscribes from mark reached events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                      |
-| :------- | :------------------------ | :-------- | :----------------------------------------------- |
-| type     | string                    | Yes       | Type of the renderer event to unsubscribe from.  |
+| Name| Type  | Mandatory| Description                                             |
+| :----- | :----- | :--- | :------------------------------------------------ |
+| type   | string | Yes  | Type of event to unsubscribe from. The value is fixed at **markReach**.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.off('markReach');
@@ -2662,19 +2595,19 @@ audioRenderer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 
-Subscribes to period reached events. When the period of frame rendering reaches the value of frame parameter, the callback is invoked.
+Subscribes to period reached events. When the period of frame rendering reaches the value of the **frame** parameter, the callback is invoked.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                                        |
-| :------- | :------------------------ | :-------- | :--------------------------------------------------------------------------------- |
-| type     | string                    | Yes       | Type of the renderer event to subscribe to.                                        |
-| frame    | number                    | Yes       | Period during which frame rendering is listened. The value must be greater than 0. |
-| callback |  (position: number) => {} | Yes       | Callback invoked when the event is triggered.                                      |
+| Name  | Type                    | Mandatory| Description                                       |
+| :------- | :----------------------- | :--- | :------------------------------------------ |
+| type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
+| frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**.          |
+| callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                     |
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.on('periodReach', 1000, (position) => {
@@ -2690,15 +2623,15 @@ off(type: 'periodReach'): void
 
 Unsubscribes from period reached events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                      |
-| :------- | :------------------------ | :-------- | :----------------------------------------------- |
-| type     | string                    | Yes       | Type of the renderer event to unsubscribe from.  |
+| Name| Type  | Mandatory| Description                                               |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| type   | string | Yes  | Type of event to unsubscribe from. The value is fixed at **periodReach**.|
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.off('periodReach')
@@ -2710,16 +2643,16 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 Subscribes to state change events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Renderer
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                                              |
-| :------- | :------------------------- | :-------- | :--------------------------------------------------------------------------------------- |
-| type     | string                     | Yes       | Type of the event to subscribe to. The value 'stateChange' means the state change event. |
-| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                                                |
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Type of event to subscribe to. The value **stateChange** means the state change event.|
+| callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
-**Example:**
+**Example**
 
 ```
 audioRenderer.on('stateChange', (state) => {
@@ -2734,42 +2667,37 @@ audioRenderer.on('stateChange', (state) => {
 
 ## AudioCapturer<sup>8+</sup>
 
-Provides related APIs for audio capture. Before calling the API of AudioCapturer, you need to create an instance through [createAudioCapturer](#audiocreateaudiocapturer8).
+Provides APIs for audio capture. Before calling any API in **AudioCapturer**, you must use [createAudioCapturer](#audiocreateaudiocapturer8) to create an **AudioCapturer** instance.
 
-### state<sup>8+</sup>
+### Attributes
 
-readonly state: AudioState
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-Defines the current capture state.
+| Name | Type                    | Readable| Writable| Description            |
+| :---- | :------------------------- | :--- | :--- | :--------------- |
+| state<sup>8+</sup>  | [AudioState](#audiostate8) | Yes| No  | Audio capturer state.|
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
-
-| Name  | Type                       | Readable | Writable | Description          |
-| :---- | :------------------------- | :------- | :------- | :------------------- |
-| state | [AudioState](#audiostate8) | Yes      | No       | Audio capture state. |
-
-**Example:**
+**Example**
 
 ```
 var state = audioCapturer.state;
 ```
 
-
 ### getCapturerInfo<sup>8+</sup>
 
 getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
-Obtains the capturer information provided while creating a capturer instance. This API uses an asynchronous callback to return the result.
+Obtains the capturer information of this **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                     | Mandatory | Description                                       |
-| :------- | :------------------------------------------------------- | :-------- | :------------------------------------------------ |
-| callback | AsyncCallback<[AudioCapturerInfo](#audiocapturerinfo)\>  | Yes       | Callback used to return the capturer information. |
+| Name  | Type                             | Mandatory| Description                                |
+| :------- | :-------------------------------- | :--- | :----------------------------------- |
+| callback | AsyncCallback<AudioCapturerInfo\> | Yes  | Callback used to return the capturer information.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getCapturerInfo((err, capturerInfo) => {
@@ -2788,17 +2716,17 @@ audioCapturer.getCapturerInfo((err, capturerInfo) => {
 
 getCapturerInfo(): Promise<AudioCapturerInfo\>
 
-Obtains the capturer information provided while creating a capturer instance. This API uses a promise to return the result.
+Obtains the capturer information of this **AudioCapturer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type                                                | Description                                      |
-| :-------------------------------------------------- | :----------------------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo)\>   | Promise used to return the capturer information. |
+| Type                                             | Description                               |
+| :------------------------------------------------ | :---------------------------------- |
+| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise used to return the capturer information.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getCapturerInfo().then((audioParamsGet) => {
@@ -2813,24 +2741,23 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
 }).catch((err) => {
     console.log('AudioFrameworkRecLog: CapturerInfo :ERROR: '+err.message);
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
-Obtains the capturer stream information. This API uses an asynchronous callback to return the result.
+Obtains the stream information of this **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                     |
-| :------- | :----------------------------------------------------------- | :-------- | :---------------------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\>    | Yes       | Callback used to return the stream information. |
+| Name  | Type                                                | Mandatory| Description                            |
+| :------- | :--------------------------------------------------- | :--- | :------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes  | Callback used to return the stream information.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getStreamInfo((err, streamInfo) => {
@@ -2850,17 +2777,17 @@ audioCapturer.getStreamInfo((err, streamInfo) => {
 
 getStreamInfo(): Promise<AudioStreamInfo\>
 
-Obtains the capturer stream information. This API uses a promise to return the result.
+Obtains the stream information of this **AudioCapturer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type                                                  | Description                                      |
-| :---------------------------------------------------- | :----------------------------------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\>   | Promise used to return the stream information.   |
+| Type                                          | Description                           |
+| :--------------------------------------------- | :------------------------------ |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getStreamInfo().then((audioParamsGet) => {
@@ -2872,7 +2799,6 @@ audioCapturer.getStreamInfo().then((audioParamsGet) => {
 }).catch((err) => {
     console.log('getStreamInfo :ERROR: ' + err.message);
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -2881,15 +2807,15 @@ start(callback: AsyncCallback<void\>): void
 
 Starts capturing. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                             |
-| :------- | :---------------------- | :-------- | :-------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.     |
+| Name  | Type                | Mandatory| Description                          |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.start((err) => {
@@ -2908,15 +2834,15 @@ start(): Promise<void\>
 
 Starts capturing. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                         |
+| :------------- | :---------------------------- |
+| Promise<void\> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.start().then(() => {
@@ -2939,15 +2865,15 @@ stop(callback: AsyncCallback<void\>): void
 
 Stops capturing. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                            |
-| :------- | :---------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+| Name  | Type                | Mandatory| Description                          |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.stop((err) => {
@@ -2966,15 +2892,15 @@ stop(): Promise<void\>
 
 Stops capturing. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                         |
+| :------------- | :---------------------------- |
+| Promise<void\> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.stop().then(() => {
@@ -2990,22 +2916,21 @@ audioCapturer.stop().then(() => {
 });
 ```
 
-
 ### release<sup>8+</sup>
 
 release(callback: AsyncCallback<void\>): void
 
-Releases the capturer. This API uses an asynchronous callback to return the result.
+Releases this **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                    | Mandatory | Description                            |
-| :------- | :---------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<void\>    | Yes       | Callback used to return the result.    |
+| Name  | Type                | Mandatory| Description                               |
+| :------- | :------------------- | :--- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. |
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.release((err) => {
@@ -3022,20 +2947,19 @@ audioCapturer.release((err) => {
 
 release(): Promise<void\>
 
-Releases the capturer. This API uses a promise to return the result.
+Releases this **AudioCapturer** instance. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type           | Description                        |
-| :------------- | :--------------------------------- |
-| Promise<void\> | Promise used to return the result. |
+| Type          | Description                         |
+| :------------- | :---------------------------- |
+| Promise<void\> | Promise used to return the result.|
 
-**Example:**
+**Example**
 
 ```
-
 audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -3046,7 +2970,6 @@ audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
     stateFlag=false
 });
-
 ```
 
 
@@ -3054,19 +2977,19 @@ audioCapturer.release().then(() => {
 
 read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void
 
-Reads the buffer from the audio capturer. This API uses an asynchronous callback to return the result.
+Reads the buffer. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name           | Type                        | Mandatory | Description                                   |
-| :------------- | :-------------------------- | :-------- | :-------------------------------------------- |
-| size           | number                      | Yes       | Number of bytes to read.                      |
-| isBlockingRead | boolean                     | Yes       | Whether the read operation should be blocked. |
-| callback       | AsyncCallback<ArrayBuffer\> | Yes       | Callback used to return the buffer.           |
+| Name        | Type                       | Mandatory| Description                            |
+| :------------- | :-------------------------- | :--- | :------------------------------- |
+| size           | number                      | Yes  | Number of bytes to read.                  |
+| isBlockingRead | boolean                     | Yes  | Whether to block the read operation.                |
+| callback       | AsyncCallback<ArrayBuffer\> | Yes  | Callback used to return the buffer.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
@@ -3081,24 +3004,24 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
 
 read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 
-Reads the buffer from the audio capturer. This API uses a promise to return the result.
+Reads the buffer. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name           | Type       | Mandatory | Description                                   |
-| :------------- | :--------- | :-------- | :-------------------------------------------- |
-| size           | number     | Yes       | Number of bytes to read.                      |
-| isBlockingRead | boolean    | Yes       | Whether the read operation should be blocked. |
+| Name        | Type   | Mandatory| Description            |
+| :------------- | :------ | :--- | :--------------- |
+| size           | number  | Yes  | Number of bytes to read.  |
+| isBlockingRead | boolean | Yes  | Whether to block the read operation.|
 
-**Return value:**
+**Return value**
 
-| Type                  | Description                                                                                      |
-| :-------------------- | :----------------------------------------------------------------------------------------------- |
-| Promise<ArrayBuffer\> | Returns the buffer data read if the operation is successful; returns an error code otherwise.    |
+| Type                 | Description                                                  |
+| :-------------------- | :----------------------------------------------------- |
+| Promise<ArrayBuffer\> | Returns the buffer data read if the operation is successful; returns an error code otherwise.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.read(bufferSize, true).then((buffer) => {
@@ -3113,18 +3036,17 @@ audioCapturer.read(bufferSize, true).then((buffer) => {
 
 getAudioTime(callback: AsyncCallback<number\>): void
 
-Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This API uses an asynchronous callback to return the result.
+Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970). This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                   | Mandatory | Description                            |
-| :------- | :--------------------- | :-------- | :------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the timestamp. |
-|          |                        |           |                                        |
+| Name  | Type                  | Mandatory| Description                          |
+| :------- | :--------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<number\> | Yes  | Callback used to return the timestamp.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getAudioTime((err, timestamp) => {
@@ -3137,17 +3059,17 @@ audioCapturer.getAudioTime((err, timestamp) => {
 
 getAudioTime(): Promise<number\>
 
-Obtains the timestamp in Unix epoch time (starts from January 1, 1970), in nanoseconds. This API uses a promise to return the result.
+Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970). This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type             | Description                           |
-| :--------------- | :------------------------------------ |
-| Promise<number\> | Promise used to return the timestamp. |
+| Type            | Description                         |
+| :--------------- | :---------------------------- |
+| Promise<number\> | Promise used to return the timestamp.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getAudioTime().then((audioTime) => {
@@ -3155,7 +3077,6 @@ audioCapturer.getAudioTime().then((audioTime) => {
 }).catch((err) => {
     console.info('AudioFrameworkRecLog: AudioCapturer Created : ERROR : '+err.message);
 });
-
 ```
 
 
@@ -3165,16 +3086,15 @@ getBufferSize(callback: AsyncCallback<number\>): void
 
 Obtains a reasonable minimum buffer size in bytes for capturing. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| :------- | :--------------------- | :-------- | :--------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
-|          |                        |           |                                          |
+| Name  | Type                  | Mandatory| Description                                |
+| :------- | :--------------------- | :--- | :----------------------------------- |
+| callback | AsyncCallback<number\> | Yes  | Callback used to return the buffer size.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.getBufferSize((err, bufferSize) => {
@@ -3189,21 +3109,22 @@ audioCapturer.getBufferSize((err, bufferSize) => {
 });
 ```
 
+
 ### getBufferSize<sup>8+</sup>
 
 getBufferSize(): Promise<number\>
 
 Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Return value:**
+**Return value**
 
-| Type             | Description                             |
-| :--------------- | :-------------------------------------- |
-| Promise<number\> | Promise used to return the buffer size. |
+| Type            | Description                               |
+| :--------------- | :---------------------------------- |
+| Promise<number\> | Promise used to return the buffer size.|
 
-**Example:**
+**Example**
 
 ```
 await audioCapturer.getBufferSize().then(async function (bufferSize) {
@@ -3215,23 +3136,24 @@ await audioCapturer.getBufferSize().then(async function (bufferSize) {
 });
 ```
 
+
 ### on('markReach')<sup>8+</sup>
 
 on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 
-Subscribes to mark reached events. When the number of frames captured reaches the value of the frame parameter, the callback is invoked.
+Subscribes to mark reached events. When the number of frames captured reaches the value of the **frame** parameter, the callback is invoked.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                              |
-| :------- | :------------------------ | :-------- | :----------------------------------------------------------------------- |
-| type     | string                    | Yes       | Type of the capturer event to subscribe to.                              |
-| frame    | number                    | Yes       | Number of frames to trigger the event. The value must be greater than 0. |
-| callback | position: number) => {}   | Yes       | Callback invoked when the event is triggered.                            |
+| Name  | Type                   | Mandatory| Description                                      |
+| :------- | :---------------------- | :--- | :----------------------------------------- |
+| type     | string                  | Yes  | Type of event to subscribe to. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
+| frame    | number                  | Yes  | Number of frames to trigger the event. The value must be greater than **0**.          |
+| callback | position: number) => {} | Yes  | Callback invoked when the event is triggered.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.on('markReach', 1000, (position) => {
@@ -3241,22 +3163,21 @@ audioCapturer.on('markReach', 1000, (position) => {
 });
 ```
 
-
 ### off('markReach')<sup>8+</sup>
 
 off(type: 'markReach'): void
 
-Unsubscribes from the mark reached events.
+Unsubscribes from mark reached events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                     |
-| :------- | :------------------------ | :-------- | :---------------------------------------------- |
-| type     | string                    | Yes       | Type of the capturer event to unsubscribe from. |
+| Name| Type  | Mandatory| Description                                         |
+| :----- | :----- | :--- | :-------------------------------------------- |
+| type   | string | Yes  | Type of event to unsubscribe from. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.off('markReach');
@@ -3266,19 +3187,19 @@ audioCapturer.off('markReach');
 
 on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 
-Subscribes to period reached events. When the period of frame capturing reaches the value of frame parameter, the callback is invoked.
+Subscribes to mark reached events. When the period of frame capturing reaches the value of the **frame** parameter, the callback is invoked.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                                                        |
-| :------- | :------------------------ | :-------- | :--------------------------------------------------------------------------------- |
-| type     | string                    | Yes       | Type of the capturer event to subscribe to.                                        |
-| frame    | number                    | Yes       | Period during which frame capturing is listened. The value must be greater than 0. |
-| callback | (position: number) => {}  | Yes       | Callback invoked when the event is triggered.                                      |
+| Name  | Type                    | Mandatory| Description                                       |
+| :------- | :----------------------- | :--- | :------------------------------------------ |
+| type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
+| frame    | number                   | Yes  | Period during which frame capturing is listened. The value must be greater than **0**.           |
+| callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.   |
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.on('periodReach', 1000, (position) => {
@@ -3294,15 +3215,15 @@ off(type: 'periodReach'): void
 
 Unsubscribes from period reached events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                      | Mandatory | Description                                     |
-| :------- | :------------------------ | :-------- | :---------------------------------------------- |
-| type     | string                    | Yes       | Type of the capturer event to unsubscribe from. |
+| Name| Type  | Mandatory| Description                                           |
+| :----- | :----- | :--- | :---------------------------------------------- |
+| type   | string | Yes  | Type of event to unsubscribe from. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.off('periodReach')
@@ -3314,16 +3235,16 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 Subscribes to state change events.
 
-**System capability:** SystemCapability.Multimedia.Audio.Capturer
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-**Parameters:**
+**Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                                              |
-| :------- | :------------------------- | :-------- | :--------------------------------------------------------------------------------------- |
-| type     | string                     | Yes       | Type of the event to subscribe to. The value 'stateChange' means the state change event. |
-| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                                                |
+| Name  | Type                      | Mandatory| Description                                       |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | Yes  | Type of event to subscribe to. The value **stateChange** means the state change event.|
+| callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
-**Example:**
+**Example**
 
 ```
 audioCapturer.on('stateChange', (state) => {
