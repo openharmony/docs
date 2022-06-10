@@ -23,10 +23,11 @@ Basic page elements include title, text, and image areas. Each basic element may
 - Container components and their types
 
   You can disassemble elements on the page first and then implement them in sequence. This reduces visual confusion and logical conflicts caused by element nesting and improves code readability for easier modification. For example, as shown below, you disassemble the page elements and elements in the comment area.
-  figure1 Page layout
+
+  Figure 1 Page layout
 
   ![en-us_image_0000001222967792](figures/en-us_image_0000001222967792.png)
 
-  figure2 Layout of the comment area
+  Figure 2 Layout of the comment area
 
 ![en-us_image_0000001267767889](figures/en-us_image_0000001267767889.png)

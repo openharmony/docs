@@ -236,9 +236,7 @@ This API is deprecated since API version 8. You are advised to use [window.creat
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses an asynchronous callback to return the result.
-
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses an asynchronous callback to return the result. It is valid since API version 9.
+Creates a subwindow (in API version 8) or a system window (since API version 9). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -246,7 +244,7 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
+| ctx      | Context                                | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md). |
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                                      |
@@ -270,9 +268,7 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow when the context is [Context](js-apis-Context.md). This API uses a promise to return the result.
-
-Creates a system window when the context is [ServiceExtensionContext](js-apis-service-extension-context.md). This API uses a promise to return the result. It is valid since API version 9.
+Creates a subwindow (in API version 8) or a system window (since API version 9). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -280,7 +276,7 @@ Creates a system window when the context is [ServiceExtensionContext](js-apis-se
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-service-extension-context.md).|
+| ctx    | Context                   | Yes  | Current application context.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md). |
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
 

@@ -1,6 +1,6 @@
 # FeatureAbility Module (JavaScript)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Constraints
@@ -44,7 +44,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* In the FA model, abilityName consists of package and ability name. */
-            abilityName: "com.example.entry.secondAbility",,
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     },
@@ -139,7 +139,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
    {
@@ -157,7 +157,7 @@ featureAbility.startAbilityForResult(
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringfy(err) + "data: " + JSON.stringfy(data))
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
     }
 )
 ```
@@ -185,7 +185,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
     {
@@ -291,7 +291,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.terminateSelfWithResult(
     {
@@ -343,7 +343,7 @@ Checks whether the main window of this ability has the focus. This API uses a ca
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus()
 ```
 
@@ -391,7 +391,7 @@ Obtains the **Want** object sent from this ability. This API uses a callback to 
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant()
 ```
 
@@ -414,7 +414,7 @@ Obtains the **Want** object sent from this ability. This API uses a promise to r
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
 	console.info("==========================>getWantCallBack=======================>");
 });
@@ -437,7 +437,7 @@ Obtains the application context.
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 context.getBundleName()
 ```
@@ -461,7 +461,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf()
 ```
 
@@ -484,7 +484,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
     console.info("==========================>terminateSelfCallBack=======================>");
 });
@@ -918,7 +918,6 @@ Enumerates operation types of the Data ability.
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | want                | Read-only  | [Want](js-apis-application-Want.md)        | Yes   | Information about the ability to start.                    |
 | abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
-                                  |
 
 ## flags
 

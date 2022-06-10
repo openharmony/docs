@@ -2583,10 +2583,10 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
                 console.log('Resume force paused renderer or ignore');
                 await audioRenderer.start().then(async function () {
                     console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-                started = true;
+                    started = true;
                 }).catch((err) => {
-                console.info('AudioInterruptMusic: renderInstant start :ERROR : '+err.message);
-                started = false;
+                    console.info('AudioInterruptMusic: renderInstant start :ERROR : '+err.message);
+                    started = false;
                 });
                 if (started) {
                     isPlay = true;

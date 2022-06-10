@@ -257,7 +257,7 @@ Data of a temporary widget is not persistently stored. If the widget framework i
 ### Developing the Widget UI Page
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
    - hml:

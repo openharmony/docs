@@ -6,13 +6,13 @@
 
 ## Modules to Import
 
-```js
+```
 import sms from '@ohos.telephony.sms';
 ```
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
 Creates an SMS message instance based on the protocol data unit (PDU) and the specified SMS protocol. This API uses an asynchronous callback to return the result.
 
@@ -28,7 +28,7 @@ Creates an SMS message instance based on the protocol data unit (PDU) and the sp
 
 **Example**
 
-```js
+```
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -40,7 +40,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array<number\>, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
 Creates an SMS message instance based on the PDU and the specified SMS protocol. This API uses a promise to return the result.
 
@@ -61,7 +61,7 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 
 **Example**
 
-```js
+```
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -91,7 +91,7 @@ Sends an SMS message.
 
 **Example**
 
-```js
+```
 let sendCallback = function (err, data) {    
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
@@ -110,7 +110,7 @@ sms.sendMessage(options);
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(callback: AsyncCallback<number\>\): void
+getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
@@ -124,7 +124,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 **Example**
 
-```js
+```
 sms.getDefaultSmsSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -133,7 +133,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(\): Promise<number\>
+getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
@@ -143,11 +143,11 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 | Type           | Description                                                        |
 | --------------- | ------------------------------------------------------------ |
-| Promise<number> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Promise&lt;number&gt; | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
-```js
+```
 let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -179,7 +179,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```js
+```
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 sms.setSmscAddr(slotId, smscAddr, (err,data) => {
@@ -215,7 +215,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```js
+```
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 let promise = sms.setSmscAddr(slotId, smscAddr);
@@ -248,7 +248,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```js
+```
 let slotId = 0;
 sms.getSmscAddr(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -282,7 +282,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```js
+```
 let slotId = 0;
 let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
@@ -306,7 +306,7 @@ Checks whether the current device can send and receive SMS messages. This API wo
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
 
-```js
+```
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
@@ -319,7 +319,7 @@ Defines an SMS message instance.
 
 | Name                  | Type                                   | Description                                                        |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the mobile phone can reply to the SMS message through the originating SMSC.|
+| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the device can reply to the SMS message through the originating SMSC.|
 | isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
 | isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
 | messageClass             | [ShortMessageClass](#shortmessageclass) | SMS message type.                                                  |
@@ -390,7 +390,7 @@ Provides the callback for the SMS message sending result. Return the SMS deliver
 
 ## SendSmsResult
 
-SMS message sending result.
+Enumerates SMS message sending results.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 

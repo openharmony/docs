@@ -3,7 +3,6 @@
 > **NOTE**<br>
 > The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 Provides the permission request result.
 
 ## Modules to Import
@@ -11,6 +10,29 @@ Provides the permission request result.
 ```js
 import Ability from '@ohos.application.Ability'
 ```
+
+## How to Use
+
+The permission request result is obtained through an **AbilityStage** instance.
+
+```js
+import Ability from '@ohos.application.Ability'
+export default class MainAbility extends Ability {
+  onWindowStageCreate(windowStage) {
+    var permissions=['com.example.permission']
+    var permissionRequestResult;
+    this.context.requestPermissionsFromUser(permissions,(err,result) => {
+      if(err){
+        console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
+      }else{
+        permissionRequestResult=result;
+        console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+      }    
+    });
+  }
+}
+```
+
 
 ## Attributes
 

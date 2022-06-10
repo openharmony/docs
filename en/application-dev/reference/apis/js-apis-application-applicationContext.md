@@ -6,6 +6,11 @@
 
 Provides application-level context and APIs for registering and deregistering the ability lifecycle listener in an application.
 
+## Modules to Import
+
+```
+import Ability from '@ohos.application.Ability';
+```
 
 ## How to Use
 

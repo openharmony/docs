@@ -508,7 +508,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 
 **Return value**
 | Type            | Description                                    |
@@ -543,8 +543,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
-| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles. |
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles.|
 
 **Example**
 
@@ -1611,8 +1611,9 @@ Enumerates bundle flags.
 | GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | Obtains the ability information of system applications.|
 | GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | Obtains information about disabled abilities.  |
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | Obtains information about disabled applications.       |
+| GET_APPLICATION_INFO_WITH_CERTIFICATE_FINGERPRINT <sup>9+</sup> | 0x00000400 | Obtains the signing certificate fingerprint of the application.       |
 | GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | Obtains all application information.          |
-| GET_BUNDLE_WITH_HASH_VALUE<sup>9+</sup> | 0x00000030 | Obtains the bundle information with the information about hash value.       |
+| GET_BUNDLE_WITH_HASH_VALUE<sup>9+</sup> | 0x00000030 | Obtains information about the bundle that contains a hash value.      |
 
 ## BundleOptions
 

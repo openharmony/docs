@@ -52,8 +52,7 @@ Obtains the fault information about the current process. This API uses an asynch
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | faultType | [FaultType](#faulttype) | Yes| Fault type.|
-| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)&gt;&gt; | Yes| Callback used to return the fault information array.<br>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned.
-
+| callback | AsyncCallbackArray&lt;Array&lt;[FaultLogInfo](#faultloginfo)>> | Yes | Callback used to return the fault information array.<br/>The value is the fault information array obtained. If the value is **undefined**, an exception occurs during the information retrieval. In this case, an error string will be returned. |
 **Example**
 
 ```js

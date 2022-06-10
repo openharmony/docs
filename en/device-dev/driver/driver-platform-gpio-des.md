@@ -260,7 +260,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   ```
 
 
-## Development Example
+## Example
 
 The procedure is as follows:
 
