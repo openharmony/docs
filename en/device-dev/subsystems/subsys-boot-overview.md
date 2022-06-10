@@ -149,6 +149,7 @@ On each development board, you need to partition the memory to store the precedi
   | root        | /dev/ram0 (Hi3516DV00) , root=PARTUUID=614e0000-0000 rw (rk3568)                                                   | Boot device loaded by the kernel.|
   | rootfstype  | ext4                                                         | Type of the root file system.|
   | default_boot_device | soc/10100000.himci.eMMC | (Recommended information) Default boot device. In the first phase of the boot process, a soft link will be created for the required device based on this field.|
+  | ohos.required_mount.xxx | /dev/block/platform/soc/10100000.himci.eMMC/by-name/xxx@/usr@ext4@ro,barrier=1@wait,required |  The fstab information is first read from cmdline. If this fails, the system will try to read the information from the **fstab.required** file.|
 
 - Mounting of required partitions
 
@@ -179,7 +180,7 @@ On each development board, you need to partition the memory to store the precedi
 
     - Mapping with **default_boot_device**
 
-      The kernel writes **bootargs** information to **/proc/cmdline**. The information includes **default_boot_device**, which specifies the primary device directory required for system boot.
+      The kernel writes **bootargs** information to **/proc/cmdline**. The information includes **default_boot_device**, which specifies the primary device directory required for system boot. The content prefixed with **ohos.required_mount.** is the partition mounting information required for system boot. It should be the same as that in the **fstab.required** file. In addition, the block device node in the partition mounting information should be a device node pointed by the soft link under **by-name** in the **default_boot_device** directory. For example, if the value of **default_boot_device** is **soc/10100000.himci.eMMC**, then the value of **ohos.required_mount.system** contains **/dev/block/platform/soc/10100000.himci.eMMC/by-name/system**, which is the soft link pointing to the system device node.
 
       During creation of a block device node, the device path will be matched against the value of **default_boot_device**. If the matching is successful, a soft link pointing to the real block device node will be created in **/dev/block/by-name**. In this way, device node access is made irrelevant to the chip platform.
 
