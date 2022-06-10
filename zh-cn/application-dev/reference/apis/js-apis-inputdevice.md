@@ -19,7 +19,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 
-监听设备的热插拔事件。
+监听输入设备的热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -54,7 +54,7 @@ inputDevice.on("change", (data) => {
 
 off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 
-取消监听设备的热插拔事件。
+取消监听输入设备的热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -90,7 +90,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **参数**：
 
-| 参数      | 类型                                       | 必填   | 说明    |
+| 参数      | 类型                                     | 必填 | 说明  |
 | -------- | ---------------------------------------- | ---- | ----- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。 |
 
@@ -134,9 +134,9 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **参数**：
 
-| 参数       | 类型                                       | 必填   | 说明                          |
+| 参数      | 类型                                     | 必填 | 说明                          |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| deviceId | number                                   | 是    | 需要获取信息的设备id。                |
+| deviceId | number                                   | 是   | 需要获取信息的设备id。                |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是    | 回调函数，异步返回InputDeviceData对象。 |
 
 **示例**：
@@ -311,7 +311,7 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 ## AxisType<sup>9+</sup>
 
-输入设备的轴类型
+输入设备的轴类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -329,7 +329,7 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 ## AxisRange
 
-输入设备的轴信息
+输入设备的轴信息。
 
 **系统能力**： 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
