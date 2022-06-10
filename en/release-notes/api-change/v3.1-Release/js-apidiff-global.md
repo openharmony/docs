@@ -10,12 +10,12 @@ The table below lists the APIs changes of the globalization subsystem in OpenHar
 | rawFileDescriptor | RawFileDescriptor | offset: number; | Added|
 | rawFileDescriptor | RawFileDescriptor | fd: number; | Added|
 | ohos.resourceManager | ResourceManager | release(); | Added|
-| ohos.resourceManager | ResourceManager | closeRawFileDescriptor(path: string, callback: AsyncCallback<void>): void;<br>closeRawFileDescriptor(path: string): Promise<void>; | Added|
-| ohos.resourceManager | ResourceManager | getRawFileDescriptor(path: string, callback: AsyncCallback<RawFileDescriptor>): void;<br>getRawFileDescriptor(path: string): Promise<RawFileDescriptor>; | Added|
-| ohos.resourceManager | ResourceManager | getRawFile(path: string, callback: AsyncCallback<Uint8Array>): void;<br>getRawFile(path: string): Promise<Uint8Array>; | Added|
-| ohos.resourceManager | resourceManager | function getResourceManager(callback: AsyncCallback<ResourceManager>): void;<br>export function getResourceManager(bundleName: string, callback: AsyncCallback<ResourceManager>): void;<br>export function getResourceManager(): Promise<ResourceManager>;<br>export function getResourceManager(bundleName: string): Promise<ResourceManager>; | Added|
+| ohos.resourceManager | ResourceManager | closeRawFileDescriptor(path: string, callback: AsyncCallback\<void>): void;<br>closeRawFileDescriptor(path: string): Promise\<void>; | Added|
+| ohos.resourceManager | ResourceManager | getRawFileDescriptor(path: string, callback: AsyncCallback\<RawFileDescriptor>): void;<br>getRawFileDescriptor(path: string): Promise\<RawFileDescriptor>; | Added|
+| ohos.resourceManager | ResourceManager | getRawFile(path: string, callback: AsyncCallback\<Uint8Array>): void;<br>getRawFile(path: string): Promise\<Uint8Array>; | Added|
+| ohos.resourceManager | resourceManager | getResourceManager(callback: AsyncCallback\<ResourceManager>): void;<br>getResourceManager(bundleName: string, callback: AsyncCallback\<ResourceManager>): void;<br>getResourceManager(): Promise\<ResourceManager>;<br>getResourceManager(bundleName: string): Promise\<ResourceManager>; | Added|
 | ohos.intl | RelativeTimeFormat | resolvedOptions(): RelativeTimeFormatResolvedOptions; | Added|
-| ohos.intl | RelativeTimeFormat | formatToParts(value: number, unit: string): Array<object>; | Added|
+| ohos.intl | RelativeTimeFormat | formatToParts(value: number, unit: string): Array\<object>; | Added|
 | ohos.intl | RelativeTimeFormat | format(value: number, unit: string): string; | Added|
 | ohos.intl | RelativeTimeFormat | constructor(); | Added|
 | ohos.intl | RelativeTimeFormatResolvedOptions | numberingSystem: string; | Added|
@@ -55,13 +55,13 @@ The table below lists the APIs changes of the globalization subsystem in OpenHar
 | ohos.i18n | TimeZone | getRawOffset(): number; | Added|
 | ohos.i18n | TimeZone | getDisplayName(locale?: string, isDST?: boolean): string; | Added|
 | ohos.i18n | TimeZone | getID(): string; | Added|
-| ohos.i18n | i18n | function getTimeZone(zoneID?: string): TimeZone; | Added|
-| ohos.i18n | i18n | function getFirstPreferredLanguage(): string; | Added|
-| ohos.i18n | i18n | function getPreferredLanguageList(): Array<string>; | Added|
-| ohos.i18n | i18n | function removePreferredLanguage(index: number): boolean; | Added|
-| ohos.i18n | i18n | function addPreferredLanguage(language: string, index?: number): boolean; | Added|
-| ohos.i18n | i18n | function set24HourClock(option: boolean): boolean; | Added|
-| ohos.i18n | i18n | function is24HourClock(): boolean; | Added|
+| ohos.i18n | i18n | getTimeZone(zoneID?: string): TimeZone; | Added|
+| ohos.i18n | i18n | getFirstPreferredLanguage(): string; | Added|
+| ohos.i18n | i18n | getPreferredLanguageList(): Array\<string>; | Added|
+| ohos.i18n | i18n | removePreferredLanguage(index: number): boolean; | Added|
+| ohos.i18n | i18n | addPreferredLanguage(language: string, index?: number): boolean; | Added|
+| ohos.i18n | i18n | set24HourClock(option: boolean): boolean; | Added|
+| ohos.i18n | i18n | is24HourClock(): boolean; | Added|
 | ohos.i18n | Character | getType(char: string): string; | Added|
 | ohos.i18n | Character | isUpperCase(char: string): boolean; | Added|
 | ohos.i18n | Character | isLowerCase(char: string): boolean; | Added|
@@ -73,8 +73,8 @@ The table below lists the APIs changes of the globalization subsystem in OpenHar
 | ohos.i18n | Character | isDigit(char: string): boolean; | Added|
 | ohos.i18n | IndexUtil | getIndex(text: string): string; | Added|
 | ohos.i18n | IndexUtil | addLocale(locale: string): void; | Added|
-| ohos.i18n | IndexUtil | getIndexList(): Array<string>; | Added|
-| ohos.i18n | i18n | function getInstance(locale?:string): IndexUtil; | Added|
+| ohos.i18n | IndexUtil | getIndexList(): Array\<string>; | Added|
+| ohos.i18n | i18n | getInstance(locale?:string): IndexUtil; | Added|
 | ohos.i18n | BreakIterator | isBoundary(offset: number): boolean; | Added|
 | ohos.i18n | BreakIterator | getLineBreakText(): string; | Added|
 | ohos.i18n | BreakIterator | following(offset: number): number; | Added|
@@ -84,8 +84,8 @@ The table below lists the APIs changes of the globalization subsystem in OpenHar
 | ohos.i18n | BreakIterator | last(): number; | Added|
 | ohos.i18n | BreakIterator | first(): number; | Added|
 | ohos.i18n | BreakIterator | current(): number; | Added|
-| ohos.i18n | i18n | function getLineInstance(locale: string): BreakIterator; | Added|
-| ohos.i18n | i18n | function isRTL(locale: string): boolean; | Added|
+| ohos.i18n | i18n | getLineInstance(locale: string): BreakIterator; | Added|
+| ohos.i18n | i18n | isRTL(locale: string): boolean; | Added|
 | ohos.i18n | Calendar | isWeekend(date?: Date): boolean; | Added|
 | ohos.i18n | Calendar | getDisplayName(locale: string): string; | Added|
 | ohos.i18n | Calendar | get(field: string): number; | Added|
@@ -97,7 +97,7 @@ The table below lists the APIs changes of the globalization subsystem in OpenHar
 | ohos.i18n | Calendar | setTimeZone(timezone: string): void; | Added|
 | ohos.i18n | Calendar | set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void; | Added|
 | ohos.i18n | Calendar | setTime(date: Date): void;<br>setTime(time: number): void; | Added|
-| ohos.i18n | i18n | function getCalendar(locale: string, type?: string): Calendar; | Added|
+| ohos.i18n | i18n | getCalendar(locale: string, type?: string): Calendar; | Added|
 | ohos.i18n | PhoneNumberFormat | format(number: string): string; | Added|
 | ohos.i18n | PhoneNumberFormat | isValidNumber(number: string): boolean; | Added|
 | ohos.i18n | PhoneNumberFormat | constructor(country: string, options?: PhoneNumberFormatOptions); | Added|
