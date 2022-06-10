@@ -107,9 +107,12 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
 **场景举例：**
 
-开发者正在开发应用A，该应用的APL等级为normal级别。由于功能场景需要，应用A必须申请到权限B和权限C，其中，权限B的权限等级为system_basic，权限C的权限等级为normal级别。此时，推荐开发者使用ACL方式来申请权限B。
+开发者正在开发应用A，该应用的APL等级为normal级别。由于功能场景需要，应用A必须申请到权限B和权限C，其中，权限B的权限等级为system_basic，权限C的权限等级为normal级别。
+
+在权限B的ACL使能为TRUE的情况下，此时，开发者可以使用ACL方式来申请权限B。
 
 ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说明)。
+权限的ACL使能情况可查阅[权限定义列表](permission-list.md)
 
 ## 权限类型说明
 
