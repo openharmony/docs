@@ -1791,7 +1791,7 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| srcName | string | 是 | 指定数据库的备份文件。 |
+| srcName | string | 是 | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
@@ -1816,7 +1816,7 @@ restore(srcName:string): Promise&lt;void&gt;
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| srcName | string | 是 | 指定数据库的备份文件。 |
+| srcName | string | 是 | 指定数据库的备份文件名。 |
 
 **返回值**：
 | 类型 | 说明 |
