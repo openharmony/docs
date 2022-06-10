@@ -69,19 +69,11 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
+queryAppUsagePriorityGroup(): Promise<number>
 
-可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用Promise形式返回其应用分组。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+查询当前应用的优先级分组。使用Promise形式返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**参数**：
-
-| 参数名                  | 类型   | 必填 | 说明                                                         |
-| ----------------------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName<sup>9+</sup> | string | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
 
 **返回值**：
 
@@ -92,13 +84,6 @@ queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 **示例**：
 
 ```javascript
-//有bundleName的promise
-bundleState.queryAppUsagePriorityGroup(this.bundleName).then( res => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
-}).catch( err => {
-    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
-});
-//无bundleName的promise
 bundleState.queryAppUsagePriorityGroup().then( res => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch( err => {
@@ -108,20 +93,17 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>): void
+queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void
 
-可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用callback形式返回其应用分组。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+查询当前应用的优先级分组。使用callback形式返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
 
-| 参数名                  | 类型                                                         | 必填 | 说明                                                         |
-| ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName<sup>9+</sup> | string                                                       | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
-| callback                | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
+| 参数名   | 类型                  | 必填 | 说明                                         |
+| -------- | --------------------- | ---- | -------------------------------------------- |
+| callback | AsyncCallback<number> | 是   | 指定的CallBack回调方法。返回查询的应用分组。 |
 
 **示例**：
 
@@ -523,9 +505,86 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
     });
   ```
 
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
+
+可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用Promise形式返回其应用分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
+
+**返回值**：
+
+| 类型            | 说明                                            |
+| --------------- | ----------------------------------------------- |
+| Promise<number> | 指定的Promise回调方法。返回查询的应用分组结果。 |
+
+**示例**：
+
+```javascript
+//有bundleName的promise
+bundleState.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+});
+//无bundleName的promise
+bundleState.queryAppUsagePriorityGroup().then( res => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch( err => {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>): void
+
+可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用callback形式返回其应用分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**参数**：
+
+| 参数名     | 类型                  | 必填 | 说明                                                         |
+| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
+| callback   | AsyncCallback<number> | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
+
+**示例**：
+
+```javascript
+//有bundleName的callback
+bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+    }
+});
+//无bundleName的callback
+bundleState.queryAppUsagePriorityGroup((err, res) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+    } else {
+        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+    }
+});
+```
+
 ## bundleState.setBundleGroup<sup>9+</sup>
 
-setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>
+setBundleGroup(bundleName: string, newGroup: GroupType): Promise<void>
 
 将指定的bundleName的应用的分组设置为newGroup，使用Promise形式返回设置是否成功。
 
@@ -542,9 +601,9 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>
 
 **返回值**：
 
-| 类型             | 说明                                        |
-| ---------------- | ------------------------------------------- |
-| Promise<boolean> | 指定的Promise回调方法。返回本次设置是否成功 |
+| 类型          | 说明                                        |
+| ------------- | ------------------------------------------- |
+| Promise<void> | 指定的Promise回调方法。返回本次设置是否成功 |
 
 **示例**：
 
@@ -552,8 +611,8 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise<boolean>
 this.bundleName = "com.example.deviceUsageStatistics";
 this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
 
-bundleState.setBundleGroup(this.bundleName, this.newGroup).then( res => {
-    console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded. result: ' + JSON.stringify(res));
+bundleState.setBundleGroup(this.bundleName, this.newGroup).then( () => {
+    console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
 }).catch( err => {
     console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
 });
@@ -561,7 +620,7 @@ bundleState.setBundleGroup(this.bundleName, this.newGroup).then( res => {
 
 ## bundleState.setBundleGroup<sup>9+</sup>
 
-setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<boolean>): void
+setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<void>): void
 
 将指定的bundleName的应用的分组设置为newGroup，使用CallBack形式返回设置是否成功。
 
@@ -571,11 +630,11 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<
 
 **参数**：
 
-| 参数名     | 类型                   | 必填 | 说明                                       |
-| ---------- | ---------------------- | ---- | ------------------------------------------ |
-| bundleName | string                 | 是   | 应用名称                                   |
-| newGroup   | GroupType              | 是   | 应用分组                                   |
-| callback   | AsyncCallback<boolean> | 是   | 指定的CallBack回调方法。返回设置是否成功。 |
+| 参数名     | 类型                | 必填 | 说明                                       |
+| ---------- | ------------------- | ---- | ------------------------------------------ |
+| bundleName | string              | 是   | 应用名称                                   |
+| newGroup   | GroupType           | 是   | 应用分组                                   |
+| callback   | AsyncCallback<void> | 是   | 指定的CallBack回调方法。返回设置是否成功。 |
 
 **示例**：
 
@@ -583,18 +642,18 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<
 this.bundleName = "com.example.deviceUsageStatistics";
 this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
 
-bundleState.setBundleGroup(this.bundleName, this.newGroup, (err, res) => {
+bundleState.setBundleGroup(this.bundleName, this.newGroup, (err) => {
     if(err) {
         console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
     } else {
-        console.log('BUNDLE_ACTIVE SetBundleGroup callback succeeded. result: ' + JSON.stringify(res));
+        console.log('BUNDLE_ACTIVE SetBundleGroup callback succeeded.');
     }
 });
 ```
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<boolean>
+registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promise<void>
 
 应用分组变化注册，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册的应用返回BundleActiveGroupCallbackInfo。使用Promise形式返回注册是否成功。
 
@@ -610,9 +669,9 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promis
 
 **返回值**：
 
-| 类型             | 说明                                    |
-| ---------------- | --------------------------------------- |
-| Promise<boolean> | 指定的Promise回调方法。返回注册是否成功 |
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise<void> | 指定的Promise回调方法。返回注册是否成功 |
 
 **示例**：
 
@@ -625,8 +684,8 @@ let onBundleGroupChanged = (err,res) =>{
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
 };
-bundleState.registerGroupCallBack(onBundleGroupChanged).then( res => {
-    console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded. result1: ' + JSON.stringify(res));
+bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded.');
 }).catch( err => {
     console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
 });
@@ -634,7 +693,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( res => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<boolean>): void
+registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callback: AsyncCallback<void>): void
 
 应用分组变化注册，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册的应用返回BundleActiveGroupCallbackInfo。使用异步callback形式返回注册是否成功。
 
@@ -647,7 +706,7 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callbac
 | 参数名   | 类型                                    | 必填 | 说明                       |
 | -------- | --------------------------------------- | ---- | -------------------------- |
 | callback | Callback<BundleActiveGroupCallbackInfo> | 是   | 应用分组变化的回调函数     |
-| callback | AsyncCallback<boolean>                  | 是   | 注册是否成功的异步回调函数 |
+| callback | AsyncCallback<void>                     | 是   | 注册是否成功的异步回调函数 |
 
 **示例**：
 
@@ -660,19 +719,18 @@ let onBundleGroupChanged = (err,res) =>{
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s userId is : ' + res.userId);
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s bundleName is : ' + res.bundleName);
 };
-bundleState.registerGroupCallBack(onBundleGroupChanged, (err,res)=>{
+bundleState.registerGroupCallBack(onBundleGroupChanged, (err)=>{
     if(err) {
         console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback failed, because: ' + err.code);
     } else {
         console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE RegisterGroupCallBack result is : ' + JSON.stringify(res));
     }
 });
 ```
 
 ## bundleState.unRegisterGroupCallBack<sup>9+</sup>
 
-unRegisterGroupCallBack(): Promise<boolean>
+unRegisterGroupCallBack(): Promise<void>
 
 应用分组变化解注册，将之前注册的解除注册。使用Promise形式返回注册是否成功。
 
@@ -684,15 +742,15 @@ unRegisterGroupCallBack(): Promise<boolean>
 
 **返回值**：
 
-| 类型             | 说明                                      |
-| ---------------- | ----------------------------------------- |
-| Promise<boolean> | 指定的Promise回调方法。返回解注册是否成功 |
+| 类型          | 说明                                      |
+| ------------- | ----------------------------------------- |
+| Promise<void> | 指定的Promise回调方法。返回解注册是否成功 |
 
 **示例**：
 
 ```javascript
-bundleState.unRegisterGroupCallBack().then( res => {
-    console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded. result: ' + JSON.stringify(res));
+bundleState.unRegisterGroupCallBack().then( () => {
+    console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded.');
 }).catch( err => {
     console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
 });
@@ -700,7 +758,7 @@ bundleState.unRegisterGroupCallBack().then( res => {
 
 ## bundleState.unRegisterGroupCallBack<sup>9+</sup>
 
-unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void;
+unRegisterGroupCallBack(callback: AsyncCallback<void>): void;
 
 应用分组变化解注册，将之前注册的解除注册。使用异步callback形式返回注册是否成功。
 
@@ -710,19 +768,18 @@ unRegisterGroupCallBack(callback: AsyncCallback<boolean>): void;
 
 **参数**：
 
-| 参数名   | 类型                   | 必填 | 说明                         |
-| -------- | ---------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback<boolean> | 是   | 解注册是否成功的异步回调函数 |
+| 参数名   | 类型                | 必填 | 说明                         |
+| -------- | ------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback<void> | 是   | 解注册是否成功的异步回调函数 |
 
 **示例**：
 
 ```javascript
-bundleState.unRegisterGroupCallBack((err,res)=>{
+bundleState.unRegisterGroupCallBack((err)=>{
     if(err) {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);
     } else {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack result is : ' + JSON.stringify(res));
     }
 });
 ```
