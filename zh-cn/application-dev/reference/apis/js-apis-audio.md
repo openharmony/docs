@@ -2514,7 +2514,27 @@ setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
 audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
     console.log('Promise returned to indicate a successful volume setting.');
 });
+```
+### setInterruptMode<sup>9+</sup>
 
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+
+设置应用的焦点模型。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
+callback | Callback<[void](#)> | 是  |回调返回执行结果，设置成功时返回undefined，否则返回error。
+
+
+
+**示例：**
+
+```
 audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
     console.log('Promise returned to indicate a successful volume setting.');
 });
