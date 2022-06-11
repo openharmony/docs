@@ -1,12 +1,13 @@
 # 拨打电话
 
-call模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
-
-如需订阅通话状态请使用[`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange)。
 
 >**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
+
+如需订阅通话状态请使用[`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange)。
 
 
 ## 导入模块
@@ -418,7 +419,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 
 格式化电话号码，可设置格式化参数。使用Promise异步回调。
 
-电话号码格式化后为标准数字字串，例如：”138 xxxx xxxx“、”0755 xxxx xxxx“。
+电话号码格式化后为标准数字字串，例如：“138 xxxx xxxx”、“0755 xxxx xxxx”。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -546,7 +547,7 @@ promise.then(data => {
 
 | 参数名 | 类型   | 必填 | 说明                                           |
 | ------ | ------ | ---- | ---------------------------------------------- |
-| slotId | number | 否   | 卡槽ID：<br/>- 卡槽1为`0`。<br/>- 卡槽2为`1`。 |
+| slotId | number | 否   | 卡槽ID：<br/>- `0`：卡槽1。<br/>- `1`：卡槽2。 |
 
 ## NumberFormatOptions<sup>7+</sup>
 
@@ -556,4 +557,4 @@ promise.then(data => {
 
 | 参数名      | 类型   | 必填 | 说明                                                       |
 | ----------- | ------ | ---- | ---------------------------------------------------------- |
-| countryCode | string | 否   | 国家码，支持所有国家的国家码，如：中国（CN）。默认为：CN。 |
+| countryCode | string | 否   | 国家码，支持所有国家的国家码，如：CN（中国）。默认为：CN。 |
