@@ -35,7 +35,7 @@ init(curve?: Curve): Object
 
 ## curves.steps
 
-steps(count: number, end: boolean): Object
+steps(count: number, end?: boolean): Object
 
 
 构造阶梯曲线对象。
