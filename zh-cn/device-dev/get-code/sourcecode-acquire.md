@@ -100,7 +100,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 - **OpenHarmony发布版本代码获取**
 
-  OpenHarmony发布版本获取源码方式请参考[Release-Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)。
+  OpenHarmony发布版本获取源码方式请参考[Release-Notes](../../release-notes/OpenHarmony-v3.1.1-release.md)。
 
 
 ## 获取方式2：从DevEco Marketplace获取
