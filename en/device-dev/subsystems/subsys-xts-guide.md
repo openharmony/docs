@@ -1,6 +1,6 @@
-# XTS Test Case Development<a name="EN-US_TOPIC_0000001126156429"></a>
+# XTS Test Case Development
 
-## Introduction<a name="section465982318513"></a>
+## Introduction
 
 The X test suite \(XTS\) subsystem contains a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
 
@@ -9,41 +9,41 @@ This subsystem contains the ACTS and  **tools**  software package.
 -   The  **acts**  directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible to OpenHarmony during the entire development process.
 -   The  **tools**  software package stores the test case development framework related to  **acts**.
 
-## System Types<a name="section125090457443"></a>
+## System Types
 
-OpenHarmony supports the following system types:
+OpenHarmony supports the following systems:
 
 -   Mini system
 
-    A mini system runs on the devices whose memory is greater than or equal to 128 KiB and that are equipped with MCU processors such as ARM Cortex-M and 32-bit RISC-V. This system provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home.
+    A mini system runs on a device that comes with memory greater than or equal to 128 KiB and MCU such as ARM Cortex-M and 32-bit RISC-V. It provides multiple lightweight network protocols and graphics frameworks, and a wide range of read/write components for the IoT bus. Typical products include connection modules, sensors, and wearables for smart home.
 
 -   Small system
 
-    A small system runs on the devices whose memory is greater than or equal to 1 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel.
+    A small system runs on a device that comes with memory greater than or equal to 1 MiB and application processors such as ARM Cortex-A. It provides higher security capabilities, standard graphics frameworks, and video encoding and decoding capabilities. Typical products include smart home IP cameras, electronic cat eyes, and routers, and event data recorders \(EDRs\) for smart travel.
 
 -   Standard system
 
-    A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
+    A standard system runs on a device that comes with memory greater than or equal to 128 MiB and application processors such as ARM Cortex-A. It provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
 
 
-## Directory Structure<a name="section161941989596"></a>
+## Directory Structure
 
 ```
 /test/xts
 ├── acts                 # Test code
-│   └── subsystem       # Source code of subsystem test cases for the standard system
-│   └── subsystem_lite  # Source code of subsystems test cases for mini and small systems
-│   └── BUILD.gn        # Build configuration of test cases for the standard system
+│   └── subsystem        # Source code of subsystem test cases for the standard system
+│   └── subsystem_lite   # Source code of subsystems test cases for mini and small systems
+│   └── BUILD.gn         # Build configuration of test cases for the standard system
 │   └── build_lite      
-│       └── BUILD.gn    # Build configuration of test cases for mini and small systems
+│       └── BUILD.gn     # Build configuration of test cases for mini and small systems
 └── tools                # Test tool code
 ```
 
-## Constraints<a name="section119744591305"></a>
+## Constraints
 
-Test cases for the mini system must be developed based on C, and those for the small system must be developed based on C++.
+Test cases for the mini system must be developed in C, and those for the small system must be developed in C++.
 
-## Usage Guidelines<a name="section137768191623"></a>
+## Usage Guidelines
 
 **Table  1**  Test case levels
 
@@ -196,9 +196,9 @@ Test cases for the mini system must be developed based on C, and those for the s
 </tbody>
 </table>
 
-## Test Case Development Guidelines<a name="section3695134065513"></a>
+## Test Case Development Guidelines
 
-You should select the appropriate programming language and your target test framework to develop test cases.
+The test framework and programming language vary with the system type.
 
 **Table  4**  Test frameworks and test case languages for different systems
 
@@ -235,13 +235,13 @@ You should select the appropriate programming language and your target test fram
 </tbody>
 </table>
 
-### C-based Test Case Development and Compilation \(for the Mini System\)<a name="section198193336544"></a>
+### Developing Test Cases in C (for the Mini System\)
 
-**Developing test cases for the mini system**
+**Developing Test Cases for the Mini System**
 
-The HCTest framework is used to support test cases developed with the C language. HCTest is enhanced and adapted based on the open-source test framework Unity.
+HCTest and the C language are used to develop test cases. HCTest is enhanced and adapted based on the open-source test framework Unity.
 
-1.  Access the  **test/xts/acts**  repository where the test cases will be stored.
+1.  Define the test case directory. The test cases are stored to **test/xts/acts**.
 
     ```
     ├── acts
@@ -253,52 +253,52 @@ The HCTest framework is used to support test cases developed with the C language
     │ │ └── BUILD.gn
     ```
 
-2.  Write the test case in the  **src**  directory.
+2. Write the test case in the  **src**  directory.
 
-    1. Import the test framework header file.
+   a) Include the test framework header file.
 
-    ```
-    #include "hctest.h"
-    ```
+   ```
+   #include "hctest.h"
+   ```
 
-    2. Use the  **LITE\_TEST\_SUIT**  macro to define names of the subsystem, module, and test suite.
+   b) Use the  **LITE\_TEST\_SUIT**  macro to define names of the subsystem, module, and test suite.
 
-    ```
-    /**  
-    * @brief  Registers a test suite named IntTestSuite.
-    * @param  test Subsystem name
-    * @param  example Module name
-    * @param  IntTestSuite Test suite name
-    */
-    LITE_TEST_SUIT(test, example, IntTestSuite);
-    ```
+   ```
+   /**  
+   * @brief  Registers a test suite named IntTestSuite.
+   * @param  test Subsystem name
+   * @param  example Module name
+   * @param  IntTestSuite Test suite name
+   */
+   LITE_TEST_SUIT(test, example, IntTestSuite);
+   ```
 
-    3. Define Setup and TearDown.
+   c) Define Setup and TearDown.
 
-    Format: Test suite name+Setup, Test suite name+TearDown.
+   ​    Format: Test suite name+Setup, Test suite name+TearDown.
 
-    The Setup and TearDown functions must exist, but function bodies can be empty.
+   ​    The Setup and TearDown functions must exist, but function bodies can be empty.
 
-    4. Use the  **LITE\_TEST\_CASE**  macro to write the test case.
+   d) Use the  **LITE\_TEST\_CASE**  macro to write the test case.
 
-    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
+   ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
-    ```
-    LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
-    {  
-      // Do something 
-    };
-    ```
+   ```
+   LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
+   {  
+     // Do something 
+   };
+   ```
 
-    5. Use the  **RUN\_TEST\_SUITE**  macro to register the test suite.
+   e) Use the  **RUN\_TEST\_SUITE**  macro to register the test suite.
 
-    ```
-    RUN_TEST_SUITE(IntTestSuite);
-    ```
+   ```
+   RUN_TEST_SUITE(IntTestSuite);
+   ```
 
 3.  Create the configuration file \(**BUILD.gn**\) of the test module.
 
-    Create a  **BUILD.gn**  \(example\) build file in each test module directory. Specify the name of the built static library and its dependent header file and library in the build file. The format is as follows:
+    Create a **BUILD.gn**  \(example\) file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. The format is as follows:
 
     ```
     import("//test/xts/tools/lite/build/suite_lite.gni")
@@ -330,36 +330,35 @@ The HCTest framework is used to support test cases developed with the C language
 
 5.  Run build commands.
 
-    Test suites are built along with version build. The ACTS is built together with the debug version.
+    Test suites are built along with the OS version. The ACTS is built together with the debug version.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >The ACTS build middleware is a static library, which will be linked to the image.
+    >![](../public_sys-resources/icon-note.gif) **NOTE**<br/> The ACTS build middleware is a static library, which will be linked to the image.
 
 
-### C-based Test Case Execution \(for the Mini System\)<a name="section13820233175418"></a>
+### Executing Test Cases in C (for the Mini System\)
 
-**Executing test cases for the mini system**
+**Executing Test Cases for the Mini System**
 
 Burn the image into the development board.
 
-**Executing the test**
+**Executing the Test**
 
 1.  Use a serial port tool to log in to the development board and save information about the serial port.
 2.  Restart the device and view serial port logs.
 
-**Analyzing the test result**
+**Analyzing the Test Result**
 
-View the serial port logs, whose format is as follows:
+View the serial port logs in the following format:
 
-The log for each test suite starts with  **Start to run test suite:**  and ends with  **xx Tests xx Failures xx Ignored**.
+The log for each test suite starts with "Start to run test suite:"  and ends with "xx Tests xx Failures xx Ignored".
 
-### C++-based Test Case Development and Compilation \(for Standard and Small Systems\)<a name="section3822123311540"></a>
+### Developing Test Cases in C++ (for Standard and Small Systems)
 
-**Developing test cases for small-system devices**  \(For examples of the standard system, go to the  **global/i18n\_standard directory**.\)
+**Developing Test Cases for Small-System Devices**  \(for the standard system, see the  **global/i18n\_standard directory**.\)
 
-The HCPPTest framework is enhanced and adapted based on the open-source framework Googletest.
+The HCPPTest framework, an enhanced version based on the open-source framework Googletest, is used.
 
-1.  Access the  **test/xts/acts**  repository where the test cases will be stored.
+1.  Define the test case directory. The test cases are stored to **test/xts/acts**.
 
     ```
     ├── acts
@@ -371,57 +370,57 @@ The HCPPTest framework is enhanced and adapted based on the open-source framewor
     │ │ └── BUILD.gn
     ```
 
-2.  Write the test case in the  **src**  directory.
+2. Write the test case in the **src** directory.
 
-    1. Import the test framework header file.
+   a) Include the test framework header file.
 
-    The following statement includes  **gtest.h**.
+   ​    The following statement includes  **gtest.h**.
 
-    ```
-    #include "gtest/gtest.h"
-    ```
+   ```
+   #include "gtest/gtest.h"
+   ```
 
-    2. Define Setup and TearDown.
+   b) Define Setup and TearDown.
 
-    ```
-    using namespace std;
-    using namespace testing::ext;
-    class TestSuite: public testing::Test {
-    protected:
-    // Preset action of the test suite, which is executed before the first test case
-    static void SetUpTestCase(void){
-    }
-    // Test suite cleanup action, which is executed after the last test case
-    static void TearDownTestCase(void){
-    }
-    // Preset action of the test case
-    virtual void SetUp()
-    {
-    }
-    // Cleanup action of the test case
-    virtual void TearDown()
-    {
-    }
-    };
-    ```
+   ```
+   using namespace std;
+   using namespace testing::ext;
+   class TestSuite: public testing::Test {
+   protected:
+   // Preset action of the test suite, which is executed before the first test case
+   static void SetUpTestCase(void){
+   }
+   // Test suite cleanup action, which is executed after the last test case
+   static void TearDownTestCase(void){
+   }
+   // Preset action of the test case
+   virtual void SetUp()
+   {
+   }
+   // Cleanup action of the test case
+   virtual void TearDown()
+   {
+   }
+   };
+   ```
 
-    3. Use the  **HWTEST**  or  **HWTEST\_F**  macro to write the test case.
+   c) Use the  **HWTEST**  or  **HWTEST\_F**  macro to write the test case.
 
-    **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
+   ​     **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
 
-    **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
+   ​     **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
 
-    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
+   ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
-    ```
-    HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
-    // Do something
-    }
-    ```
+   ```
+   HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
+   // Do something
+   }
+   ```
 
 3.  Create a configuration file \(**BUILD.gn**\) of the test module.
 
-    Create a  **BUILD.gn**  build file in each test module directory. Specify the name of the built static library and its dependent header file and library in the build file. Each test module is independently built into a  **.bin**  executable file, which can be directly pushed to the development board for testing.
+    Create a  **BUILD.gn**  file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. Each test module is independently built into a  **.bin**  executable file, which can be directly pushed to the development board for testing.
 
     Example:
 
@@ -463,19 +462,18 @@ The HCPPTest framework is enhanced and adapted based on the open-source framewor
 
 5.  Run build commands.
 
-    Test suites are built along with the version build. The ACTS is built together with the debug version.
+    Test suites are built along with the OS version. The ACTS is built together with the debug version.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the  **suites\\acts**  directory of the build result.
+    >![](../public_sys-resources/icon-note.gif) **NOTE**<br/> The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the **suites\\acts**  directory of the build result.
 
 
-### C++-based Test Case Execution \(for Standard and Small Systems\)<a name="section128222336544"></a>
+### Executing Test Cases in C++ (for Standard and Small Systems\)
 
-**Executing test cases for the small system**
+**Executing Test Cases for the Small System**
 
 Currently, test cases are shared by the NFS and mounted to the development board for execution.
 
-**Setting up the environment**
+**Setting Up the Environment**
 
 1.  Use a network cable or wireless network to connect the development board to your PC.
 2.  Configure the IP address, subnet mask, and gateway for the development board. Ensure that the development board and the PC are in the same network segment.
@@ -490,16 +488,15 @@ Currently, test cases are shared by the NFS and mounted to the development board
     mount 192.168.1.10:/nfs /nfs nfs
     ```
 
-
-**Executing test cases**
+**Executing Test Cases**
 
 Execute  **ActsDemoTest.bin**  to trigger test case execution, and analyze serial port logs generated after the execution is complete.
 
-### JavaScript-based Test Case Development \(for the Standard System\)<a name="section159801435165220"></a>
+### Developing Test Cases in JavaScript (for the Standard System\)
 
 The HJSUnit framework is used to support automated test of OpenHarmony apps that are developed using the JavaScript language based on the JS application framework.
 
-**Basic syntax of test cases**
+**Basic Syntax of Test Cases**
 
 The test cases are developed with the JavaScript language and must meet the programming specifications of the language.
 
@@ -567,7 +564,7 @@ The test cases are developed with the JavaScript language and must meet the prog
 
 Use the standard syntax of Jasmine to write test cases. The ES6 specification is supported.
 
-1.  Store the test cases in the  **entry/src/main/js/test**  directory, whose structure is as follows:
+1.  Define the test case directory. The test cases are stored in the  **entry/src/main/js/test**  directory.
 
     ```
     ├── BUILD.gn   
@@ -629,32 +626,30 @@ Use the standard syntax of Jasmine to write test cases. The ES6 specification is
     ```
 
 
-### JavaScript-based Test Case Packaging \(for the Standard System\)<a name="section445519106559"></a>
+### Packaging Test Cases in JavaScript (for the Standard System\)
 
-For details about how to build a HAP, see the JS application development guide of the standard system  [Building and Creating HAPs](https://developer.harmonyos.com/en/docs/documentation/doc-guides/build_overview-0000001055075201).
+For details about how to build a HAP, see the JS application development guide of the standard system [Building and Creating HAPs](https://developer.harmonyos.com/en/docs/documentation/doc-guides/build_overview-0000001055075201).
 
-## Full Compilation Guide \(for the Standard System\)<a name="section1519992743415"></a>
+## Performing a Full Build (for the Standard System)
 
-1.  Perform full building.
+Run the following command:
 
-    Command:
+```
+./build.sh suite=acts system_size=standard
+```
 
-    ```
-    ./build.sh suite=acts system_size=standard
-    ```
+Test case directory: **out/release/suites/acts/testcases**
 
-    Test case output directory:  **out/release/suites/acts/testcases**
-
-    Test framework and case output directory:  **out/release/suites/acts**  \(The test suite execution framework is compiled during case compilation.\)
+Test framework and test case directory: **out/release/suites/acts**  \(the test suite execution framework is compiled during the build process)
 
 
-## Full Test Case Execution Guide \(for Small and Standard Systems\)<a name="section118149111426"></a>
+## Executing Test Cases in a Full Build (for Small and Standard Systems\)
 
-**Setting up a test environment**
+**Setting Up a Test Environment**
 
 Install Python 3.7 or a later version on a Windows environment and ensure that the Windows environment is properly connected to the test device.
 
-**Test execution directory**  \(corresponding to the  **out/release/suites/acts**  directory generated during compilation\)
+**Test execution directory**  \(corresponding to the  **out/release/suites/acts**  directory generated in the build)
 
 ```
 ├── testcase                       # Directory for storing test suite files
@@ -665,9 +660,9 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 ├── report                         # Directory for storing the test reports
 ```
 
-**Executing test cases**
+**Executing Test Cases**
 
-1.  On the Windows environment, locate the directory in which the test cases are stored \(**out/release/suites/acts**, copied from the Linux server\), go to the directory in the Windows command window, and run  **acts\\run.bat**.
+1.  On the Windows environment, locate the directory in which the test cases are stored \(**out/release/suites/acts**, copied from the Linux server\), go to the directory in the Windows command window, and run **acts\\run.bat**.
 
 1.  Enter the command for executing the test case.
 
@@ -679,7 +674,7 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 
         ![](figure/en-us_image_0000001119924146.gif)
 
-    -   Execute the test cases of a module \(view specific module information in  **\\acts\\testcases\\**\).
+    -   Execute the test cases of a module \(view specific module information in **\\acts\\testcases\\**\).
 
         ```
         run –l ActsSamgrTest
@@ -687,11 +682,11 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 
         ![](figure/en-us_image_0000001166643927.jpg)
 
-    Wait until the test case is complete.
+    Wait until the test cases are complete.
 
 
-3.  View test reports.
+3.  View the test report.
 
-    Go to  **acts\\reports\\**, obtain the current execution record, and open  **summary\_report.html**  to view the test report.
+    Go to **acts\\reports\\**, obtain the current execution record, and open  **summary\_report.html**  to view the test report.
 
 
