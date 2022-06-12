@@ -84,7 +84,7 @@ Obtains the NFC state.
 
 | **Type**| **Description**              |
 | -------- | ---------------------- |
-| NfcState | NFC state obtained. For details, see [NfcState](#nfc-state).|
+| NfcState | NFC state obtained. For details, see [NfcState](#nfcstate).|
 
 ## controller.on('nfcStateChange')
 
