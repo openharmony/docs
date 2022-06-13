@@ -309,6 +309,8 @@ zh-cn/application-dev/reference/apis/js-apis-worker.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-xml.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-uitest.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-hisysevent.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-privacyManager.md @zengyawen
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets.md @ge-yafang
 zh-cn/application-dev/quick-start/start-with-ets-low-code.md @ge-yafang
