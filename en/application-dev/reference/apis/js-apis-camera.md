@@ -293,7 +293,7 @@ Creates a **CameraInput** instance with the specified camera position and camera
 **Example**
 
 ```
-cameraManager.createCameraInput(cameraPosition, cameraType).then((cameraInput) => {
+cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED).then((cameraInput) => {
     console.log('Promise returned with the CameraInput instance.');
 })
 ```
@@ -342,7 +342,7 @@ After **[camera.getCameraManager](#cameragetcameramanager)** is called, a camera
 **Example**
 
 ```
-async function getCameraInfo() {
+async function getCameraInfo("cameraId") {
     var cameraManager = await camera.getCameraManager();
     var cameras = await cameraManager.getCameras();
     var cameraObj = cameras[0];
@@ -517,7 +517,7 @@ Checks whether a specified flash mode is supported. This API uses a promise to r
 **Example**
 
 ```
-cameraInput.isFlashModeSupported(flashMode).then((status) => {
+cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
     console.log('Promise returned with flash mode support status.' + status);
 })
 ```
@@ -545,7 +545,7 @@ Before setting the parameters, do the following checks:
 **Example**
 
 ```
-cameraInput.setFlashMode(flashMode, (err) => {
+cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
     if (err) {
         console.error('Failed to set the flash mode  ${err.message}');
         return;
@@ -582,7 +582,7 @@ Before setting the parameters, do the following checks:
 **Example**
 
 ```
-cameraInput.setFlashMode(flashMode).then(() => {
+cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
@@ -685,7 +685,7 @@ Checks whether a specified focus mode is supported. This API uses a promise to r
 **Example**
 
 ```
-cameraInput.isFocusModeSupported(afMode).then((status) => {
+cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
     console.log('Promise returned with focus mode support status.' + status);
 })
 ```
@@ -710,7 +710,7 @@ Before setting the focus mode, use **[isFocusModeSupported](#isfocusmodesupporte
 **Example**
 
 ```
-cameraInput.setFocusMode(afMode, (err) => {
+cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
     if (err) {
         console.error('Failed to set the focus mode  ${err.message}');
         return;
@@ -744,7 +744,7 @@ Before setting the focus mode, use **[isFocusModeSupported](#isfocusmodesupporte
 **Example**
 
 ```
-cameraInput.setFocusMode(afMode).then(() => {
+cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFocusMode.');
 })
 ```
@@ -895,7 +895,7 @@ Sets a zoom ratio. This API uses a promise to return the result.
 **Example**
 
 ```
-cameraInput.setZoomRatio(zoomRatio).then(() => {
+cameraInput.setZoomRatio(1).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -1944,7 +1944,7 @@ Creates a **PreviewOutput** instance. This API uses a promise to return the inst
 **Example**
 
 ```
-camera.createPreviewOutput(surfaceId).then((previewOutput) => {
+camera.createPreviewOutput("surfaceId").then((previewOutput) => {
     console.log('Promise returned with the PreviewOutput instance');
 })
 ```
@@ -2111,7 +2111,7 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 **Example**
 
 ```
-camera.createPhotoOutput((surfaceId), (err, photoOutput) => {
+camera.createPhotoOutput(("surfaceId"), (err, photoOutput) => {
     if (err) {
         console.error('Failed to create the PhotoOutput instance. ${err.message}');
         return;
@@ -2143,7 +2143,7 @@ Creates a **PhotoOutput** instance. This API uses a promise to return the instan
 **Example**
 
 ```
-camera.createPhotoOutput(surfaceId).then((photoOutput) => {
+camera.createPhotoOutput("surfaceId").then((photoOutput) => {
     console.log('Promise returned with PhotoOutput instance');
 })
 ```
@@ -2340,7 +2340,7 @@ Listens for photo capture start events. This API uses a callback to return the e
 **Example**
 
 ```
-photoOutput.on('captureStart', (captureId) => {
+photoOutput.on('captureStart', (err, captureId) => {
     console.log('photo capture stated, captureId : ' + captureId);
 })
 ```
@@ -2478,7 +2478,7 @@ Creates a **VideoOutput** instance. This API uses an asynchronous callback to re
 **Example**
 
 ```
-camera.createVideoOutput((surfaceId), (err, videoOutput) => {
+camera.createVideoOutput(("surfaceId"), (err, videoOutput) => {
     if (err) {
         console.error('Failed to create the VideoOutput instance. ${err.message}');
         return;
@@ -2510,7 +2510,8 @@ Creates a **VideoOutput** instance. This API uses a promise to return the instan
 **Example**
 
 ```
-camera.createVideoOutput(surfaceId).then((videoOutput) => {
+camera.createVideoOutput("surfaceId"
+).then((videoOutput) => {
     console.log('Promise returned with the VideoOutput instance');
 })
 ```
