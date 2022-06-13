@@ -93,7 +93,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
+media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     if (fetchFileResult != undefined) {
         console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
         fetchFileResult.getAllObject((err, fileAssetList) => {
@@ -135,7 +135,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
+media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
     console.info("getFileAssets successfully:"+ JSON.stringify(dir));
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
@@ -182,7 +182,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 **示例：**
 
 ```
-mediaLibrary.off('imageChange', () => {
+media.off('imageChange', () => {
     // stop listening success
 })
 ```
@@ -350,7 +350,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
+media.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
@@ -390,7 +390,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+media.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
     console.info("getAlbums failed with error:"+ err);
@@ -439,7 +439,6 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```
-var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
