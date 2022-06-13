@@ -1,6 +1,6 @@
 # System Parameter
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This is a system API and cannot be called by third-party applications.
 
@@ -24,7 +24,7 @@ Obtains the value of the attribute with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | No| Default Value|
+| def | string | No| Default value.|
 
 **Return value**
 
@@ -88,7 +88,7 @@ Obtains the value of the attribute with the specified key. This API uses an asyn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | Yes| Default Value|
+| def | string | Yes| Default value.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -121,7 +121,7 @@ Obtains the value of the attribute with the specified key. This API uses a promi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | No| Default Value|
+| def | string | No| Default value.|
 
 **Return value**
 
@@ -171,7 +171,7 @@ try {
 ```
 
 
-## parameter.set(key: string, value: string, callback: AsyncCallback&lt;void&gt;)
+## parameter.set
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -184,7 +184,7 @@ Sets a value for the attribute with the specified key. This API uses an asynchro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | Yes| Default Value|
+| value | string | Yes| System attribute value to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -203,9 +203,9 @@ try {
 ```
 
 
-## parameter.set(key: string, def?: string)
+## parameter.set
 
-set(key: string, def?: string): Promise&lt;string&gt;
+set(key: string, value: string): Promise&lt;void&gt;
 
 Sets a value for the attribute with the specified key. This API uses a promise to return the result.
 
@@ -216,13 +216,13 @@ Sets a value for the attribute with the specified key. This API uses a promise t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | No| Default Value|
+| value| string | Yes | System attribute value to set.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
 **Example**
 

@@ -1,4 +1,4 @@
-# SysCap Usage Guidelines
+# SysCap
 
 ## Overview
 
@@ -53,7 +53,7 @@ Right-click the project directory and choose **Import Product Compatibility ID**
 
 The IDE automatically configures the associated capability set and required capability set based on the settings supported by the created project. You can modify the capability sets when necessary.
 You can add APIs to the associated capability set in the IDE by adding system capabilities. However, note that these APIs may not be supported on the device. Therefore, check whether these APIs are supported before using them.
-Exercise caution when modifying the required capability set. Incorrect modifications may cause the application to unable to be distributed to the target device.
+Exercise caution when modifying the required capability set. Incorrect modifications may result in the application being unable to be distributed to the target device.
 
 ```
 /* syscap.json */
@@ -91,7 +91,7 @@ Exercise caution when modifying the required capability set. Incorrect modificat
 
 ### Single-Device Application Development
 
-By default, the association capability set and required system capability set of the application are the same as the supported system capability set of the device. Exercise caution when modifying the required capability set.
+By default, the associated capability set and required system capability set of the application are the same as the supported system capability set of the device. Exercise caution when modifying the required capability set.
 
 ![image-20220326065124911](figures/image-20220326065124911.png)
 
@@ -99,7 +99,7 @@ By default, the association capability set and required system capability set of
 
 ### Cross-Device Application Development
 
-By default, the associated capability set of the application is the union of multiple devices' supported capability sets. The capability sets must be the intersection.
+By default, the associated capability set of an application is the union of multiple devices' supported capability sets, while the required capability set is the intersection of the devices' supported capability sets.
 
 ![image-20220326065201867](figures/image-20220326065201867.png)
 
@@ -158,7 +158,7 @@ authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
 
 ### How Do SysCap Differences Arise Between Devices
 
-The SysCap of devices varies according to the component combination defined by the product solution vendor. The following figure shows the overall process.
+The device SysCaps in product solutions vary according to the component combination defined by the product solution vendor. The following figure shows the overall process.
 
 ![image-20220326072448840](figures/image-20220326072448840.png)
 
@@ -172,8 +172,8 @@ The SysCap of devices varies according to the component combination defined by t
 
 5. The SysCap set is encoded to generate the PCID. You can import the PCID to the IDE and decode it into SysCap. During development, compatibility processing is performed to mitigate the SysCap differences of devices.
 
-6. System parameters deployed on devices contain the SysCap set. The system provides native interfaces and application interfaces for components and applications to check whether a SysCap set is available.
+6. System parameters deployed on devices contain the SysCap set. The system provides native interfaces and application interfaces for components and applications to check whether a specific SysCap is available.
 
 7. During application development, the SysCap required by the application is encoded into the Required Product Compatibility ID (RPCID) and written into the application installation package. During application installation, the package manager decodes the RPCID to obtain the SysCap required by the application and compares it with the SysCap of the device. If the SysCap required by the application is met, the application can be installed.
 
-8. When an application is running, the **canIUse** API can be used to query whether the SysCap is compatible with the device.
+8. When an application is running on a device, the **canIUse** API can be used to query whether the device is compatible with a specific SysCap.

@@ -1,6 +1,6 @@
 # Getting Started with eTS in the Low-Code Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
+> **NOTE**<br/>This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
 >
 > The component lineup that supports low-code development in eTS is now at its preliminary stage and will be expanding in coming versions.
 >

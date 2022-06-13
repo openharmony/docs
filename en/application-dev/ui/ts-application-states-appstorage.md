@@ -30,9 +30,6 @@ By default, the attributes in the AppStorage are changeable. If needed, AppStora
 | Clear | void | boolean | Deletes all attributes. If any of the attributes is being referenced by a state variable, false is returned. |
 | IsMutable | key: string | boolean | Specifies whether the attribute exists and can be changed. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> Currently, the API can process only basic data and cannot modify a value in an object.
-
 
 ## Synchronization Between AppStorage and Components
 
@@ -90,4 +87,4 @@ struct ComponentA {
 }
 ```
 
-Each time the user clicks the Count button, the value of this.varA will increase by 1. This variable is synchronized with varA in the AppStorage. Each time the user clicks the language icon, the value of languageCode in the AppStorage will be changed, and the change will be synchronized to the this.lang variable.
+Each time the user clicks the **Count** button, the value of **this.varA** will increase by 1. This variable is synchronized with varA in the AppStorage. Each time the user clicks the language icon, the value of **languageCode** in the AppStorage will be changed, and the change will be synchronized to the **this.lang** variable.
