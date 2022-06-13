@@ -1727,6 +1727,111 @@ try {
 }
 ```
 
+### backup<sup>9+</sup>
+
+backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
+
+以指定名称备份数据库，结果以callback形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| destName | string | 是 | 指定数据库的备份文件名。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
+
+**示例：**
+```js
+rdbStore.backup("dbBackup.db", function(err) {
+    if (err) {
+        console.info('Backup failed, err: ' + err)
+        return
+    }
+    console.info('Backup success.')
+})
+```
+
+### backup<sup>9+</sup>
+
+backup(destName:string): Promise&lt;void&gt;
+
+以指定名称备份数据库，结果以promise形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| destName | string | 是 | 指定数据库的备份文件名。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 指定Promise回调函数。 |
+
+**示例：**
+```js
+let promiseBackup = rdbStore.backup("dbBackup.db")
+promiseBackup.then(()=>{
+    console.info('Backup success.')
+}).catch((err)=>{
+    console.info('Backup failed, err: ' + err)
+})
+```
+
+### restore<sup>9+</sup>
+
+restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
+
+从指定的数据库备份文件恢复数据库，结果以callback形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| srcName | string | 是 | 指定数据库的备份文件名。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
+
+**示例：**
+```js
+rdbStore.restore("dbBackup.db", function(err) {
+    if (err) {
+        console.info('Restore failed, err: ' + err)
+        return
+    }
+    console.info('Restore success.')
+})
+```
+
+### restore<sup>9+</sup>
+
+restore(srcName:string): Promise&lt;void&gt;
+
+从指定的数据库备份文件恢复数据库，结果以promise形式返回。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| srcName | string | 是 | 指定数据库的备份文件名。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 指定Promise回调函数。 |
+
+**示例：**
+```js
+let promiseRestore = rdbStore.restore("dbBackup.db")
+promiseRestore.then(()=>{
+    console.info('Restore success.')
+}).catch((err)=>{
+    console.info('Restore failed, err: ' + err)
+})
+```
 
 ### setDistributedTables<sup>8+</sup>
 
