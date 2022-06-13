@@ -146,7 +146,7 @@ mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
 
 on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
 
-打开媒体媒体库变更通知，使用callback方式返回异步结果。
+打开媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -168,7 +168,7 @@ mediaLibrary.on('imageChange', () => {
 
 off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
-关闭媒体媒体库变更通知，使用callback方式返回异步结果。
+关闭媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
