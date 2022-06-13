@@ -333,7 +333,7 @@ You can set your application to call the  **ReminderRequest**  class to create s
 </td>
 <td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.2.5.1.3 "><p id="p12898269481"><a name="p12898269481"></a><a name="p12898269481"></a>No</p>
 </td>
-<td class="cellrowborder" valign="top" width="50.480000000000004%" headers="mcps1.2.5.1.4 "><p id="p16327733456"><a name="p16327733456"></a><a name="p16327733456"></a>Notification ID used by the reminder. For details, see the API reference of the <strong id="b1391142771410"><a name="b1391142771410"></a><a name="b1391142771410"></a>NotificationRequest.setNotificationId(int id)</strong> method.</p>
+<td class="cellrowborder" valign="top" width="50.480000000000004%" headers="mcps1.2.5.1.4 "><p id="p16327733456"><a name="p16327733456"></a><a name="p16327733456"></a>Notification ID used by the reminder. For details, see the API reference of the <strong id="b1391142771410"><a name="b1391142771410"></a><a name="b1391142771410"></a>NotificationRequest::SetNotificationId(int32_t id)</strong> method.</p>
 </td>
 </tr>
 <tr id="row4369223114511"><td class="cellrowborder" valign="top" width="24.94%" headers="mcps1.2.5.1.1 "><p id="p13370423174515"><a name="p13370423174515"></a><a name="p13370423174515"></a>slotType</p>
