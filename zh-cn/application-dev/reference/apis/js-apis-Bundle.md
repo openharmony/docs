@@ -1770,7 +1770,15 @@ Ability类型
 | LANDSCAPE     | 无    | 屏幕方向--横屏      |
 | PORTRAIT      | 无    | 屏幕方向--竖屏      |
 | FOLLOW_RECENT | 无    | 屏幕方向--紧跟上一个组件 |
-
+| LANDSCAPE_INVERTED |无    | 屏幕方向--反向横屏     |
+| PORTRAIT_INVERTED |无    | 屏幕方向--反向竖屏     |
+| AUTO_ROTATION |无    | 屏幕方向--随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE |无    | 屏幕方向--传感器横屏旋转，包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT |无    | 屏幕方向--传感器竖屏旋转，包括了竖屏和反向竖屏     |
+| AUTO_ROTATION_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏     |
+| LOCKED |无    | 屏幕方向--传感器开关关闭，方向锁定     |
 ## LaunchMode
 
 启动模式
@@ -1849,3 +1857,15 @@ ExtensionAbility的类型
 | ------------------ | ---- | ---- |
 | PERMISSION_DENIED  | -1   | 拒绝许可 |
 | PERMISSION_GRANTED | 0    | 批准   |
+
+## SupportWindowMode
+
+支持窗口模式
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称                 | 类型   | 说明   |
+| ------------------ | ---- | ---- |
+| FULLSCREEN  | 无   | 全屏模式 |
+| SPLIT | 无    | 分屏模式   |
+| FLOATING | 无    | 悬浮模式   |
