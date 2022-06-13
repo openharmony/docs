@@ -134,7 +134,7 @@ export default {
     isPaused: true,
     intervalId : null,
   },
-  star(){
+  start(){
     this.intervalId = setInterval(()=>{
       if(this.percent <100){
         this.percent += 1;
@@ -159,7 +159,7 @@ export default {
       prompt.showToast({
         message: "Started Downloading"
       })
-      this.star();
+      this.start();
       this.isPaused = false;
     }else{
       prompt.showToast({
