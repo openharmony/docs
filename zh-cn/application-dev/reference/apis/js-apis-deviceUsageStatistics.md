@@ -14,7 +14,7 @@ import bundleState from '@ohos.bundleState'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-判断指定bundleName的应用当前是否是空闲状态，使用Callback形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Callback形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -41,7 +41,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-判断指定bundleName的应用当前是否是空闲状态，使用Promise形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Promise形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -136,6 +136,8 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -171,6 +173,8 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -211,6 +215,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -245,6 +251,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -284,6 +292,8 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -317,6 +327,8 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -422,6 +434,8 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -469,6 +483,8 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -515,6 +531,8 @@ queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
@@ -554,6 +572,8 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名     | 类型                  | 必填 | 说明                                                         |
@@ -592,6 +612,8 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise<void>
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名     | 类型      | 必填 | 说明     |
@@ -628,6 +650,8 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名     | 类型                | 必填 | 说明                                       |
@@ -660,6 +684,8 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promis
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -701,6 +727,8 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callbac
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名   | 类型                                    | 必填 | 说明                       |
@@ -738,6 +766,8 @@ unRegisterGroupCallBack(): Promise<void>
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：无参数
 
 **返回值**：
@@ -766,6 +796,8 @@ unRegisterGroupCallBack(callback: AsyncCallback<void>): void;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名   | 类型                | 必填 | 说明                         |
@@ -793,6 +825,8 @@ queryBundleActiveEventStates(begin: number, end: number): Promise&lt;Array&lt;Bu
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -828,6 +862,8 @@ queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -858,6 +894,8 @@ queryAppNotificationNumber(begin: number, end: number): Promise&lt;Array&lt;Bund
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -892,6 +930,8 @@ queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&l
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -1029,6 +1069,8 @@ merge(toMerge: BundleStateInfo): void
 提供通知、系统事件的统计信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
