@@ -947,7 +947,6 @@ async function demo() {
     let text = await driver.findComponent(BY.text('hello world'))
     await button.dragTo(text)
     }
-}
 ```
 
 ## UiDriver
