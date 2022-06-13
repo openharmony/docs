@@ -1,42 +1,33 @@
 # Transition Styles
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE** Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Transition of Shared Elements
 
-
 ### Attributes
 
-| Name    | Type   | Default Value | Description                              |
-| ------- | ------ | ------------- | ---------------------------------------- |
+| Name    | Type   | Default Value | Description                                                  |
+| ------- | ------ | ------------- | ------------------------------------------------------------ |
 | shareid | string | -             | Used for the transition of shared elements and takes effect only when it is configured.**list-item**, **image**, **text**, **button**, and **label** components are supported for the transition of shared elements. |
-
 
 ### Styles
 
-| Name                              | Type   | Default Value | Description                              |
-| --------------------------------- | ------ | ------------- | ---------------------------------------- |
-| shared-transition-effect          | string | exchange      | Entry style of a shared element during transition.<br>-&nbsp;**exchange** (default): The source page element is moved to the position of the target page element and is zoomed in or out properly.<br>-&nbsp;**static**: The position of the target page element remains unchanged. You can configure the opacity animation. Currently, only the static effect configured on the target page takes effect. |
+| Name                              | Type   | Default Value | Description                                                  |
+| --------------------------------- | ------ | ------------- | ------------------------------------------------------------ |
+| shared-transition-effect          | string | exchange      | Entry style of a shared element during transition.<br> - **exchange** (default): The source page element is moved to the position of the target page element and is zoomed in or out properly. <br>- **static**: The position of the target page element remains unchanged. You can configure the opacity animation. Currently, only the static effect configured on the target page takes effect. |
 | shared-transition-name            | string | -             | During the transition, the style configured on the target page takes effect preferentially. This style is used to configure the animation effect of shared elements. The animation effect is an animation sequence defined by **@keyframes** supporting transform and opacity animations. If the effect of shared elements conflicts with the custom animation, the latter is used. |
 | shared-transition-timing-function | string | friction      | During the transition, the style configured on the target page takes effect preferentially. This style defines the difference curve during the transition of shared elements. If it is not configured, the friction curve is used. |
-
 
 ### Important Notes
 
 1. If the shared element transition style and custom page transition style are both configured, the latter is used.
-
 2. The exchange effect of shared elements is similar to the transition shown below.
 
-**Figure 1** Default transition effect of shared elements
-![en-us_image_0000001238424309](figures/en-us_image_0000001238424309.png)
+**Figure 1** Default transition effect of shared elements ![en-us_image_0000001238424309](figures/en-us_image_0000001238424309.png)
 
-3. The animation of a shared element does not take effect for the border and background color of the element.
-
-4. During the transition of a shared element, the page element is hidden. Therefore, the animation style and function set for the page element are invalid.
-
-5. During the dynamic change of **shareid**<sup>5+</sup>, if the **shareid** value in component A is overwritten by that in component B, the shared element effect of component A becomes ineffective and will not be restored even if the **shareid** value is changed in component B.
-
+1. The animation of a shared element does not take effect for the border and background color of the element.
+2. During the transition of a shared element, the page element is hidden. Therefore, the animation style and function set for the page element are invalid.
+3. During the dynamic change of **shareid**<sup>5+</sup>, if the **shareid** value in component A is overwritten by that in component B, the shared element effect of component A becomes ineffective and will not be restored even if the **shareid** value is changed in component B.
 
 ### Example
 
@@ -53,9 +44,6 @@ In the example below, where **PageA** jumps to **PageB**, the shared element is 
     </list-item>
   </list>
 </div>
-```
-
-```
 // xxx.js
 import router from '@system.router';
 export default {
@@ -65,9 +53,6 @@ export default {
     });
   },
 }
-```
-
-```
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -77,17 +62,11 @@ export default {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-```
-
-```
 <!-- PageB -->
 <!-- xxx.hml -->
 <div>
   <image src="itemDetail.jpg" shareid="shareImage" onclick="jumpBack" class="shared-transition-style"></image>
 </div>
-```
-
-```
 // xxx.js
 import router from '@system.router';
 export default {
@@ -95,9 +74,6 @@ export default {
     router.back();
   },
 }
-```
-
-```
 /* xxx.css */
 .shared-transition-style {
   shared-transition-effect: exchange;
@@ -109,19 +85,15 @@ export default {
 }
 ```
 
-
 ## Card Transition
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> Card transitions are not available when other transitions (including shared element transitions and custom transitions) are used.
-
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE** Card transitions are not available when other transitions (including shared element transitions and custom transitions) are used.
 
 ### Styles
 
-| Name              | Type   | Default Value | Description                              |
-| ----------------- | ------ | ------------- | ---------------------------------------- |
-| transition-effect | string | -             | Whether a component on the current page displays the transition effect during a card transition. Available values are as follows:<br>-&nbsp;**unfold**: The component will move upwards by one card height if the component is located above the card tapped by the user, or move downwards by one card height if the component is located below the card.<br>-&nbsp;**none**: No transition effect is displayed. |
-
+| Name              | Type   | Default Value | Description                                                  |
+| ----------------- | ------ | ------------- | ------------------------------------------------------------ |
+| transition-effect | string | -             | Whether a component on the current page displays the transition effect during a card transition. Available values are as follows: - **unfold**: The component will move upwards by one card height if the component is located above the card tapped by the user, or move downwards by one card height if the component is located below the card. - **none**: No transition effect is displayed. |
 
 ### Example
 
@@ -140,9 +112,6 @@ The **source_page** has a title area on the top and a card list. Users can tap a
     </list-item>
   </list>
 </div>
-```
-
-```
 // xxx.js
 import router from '@system.router'
 export default {
@@ -159,9 +128,6 @@ export default {
     router.push({ uri: uri, params : { ref : cardId } });
   }
 }
-```
-
-```
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -179,9 +145,6 @@ export default {
   align-items: flex-end;
   transition-effect: unfold;
 }
-```
-
-```
 <!-- target_page -->
 <!-- xxx.hml -->
 <div class="container">
@@ -189,9 +152,6 @@ export default {
     <text style="font-size: 30px">this is detail</text>
   </div>
 </div>
-```
-
-```
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -208,19 +168,16 @@ export default {
 
 ![en-us_image_0000001193544358](figures/en-us_image_0000001193544358.gif)
 
-
 ## Page Transition Styles
-
 
 ### Styles
 
-| Name                       | Type   | Default Value                            | Description                              |
-| -------------------------- | ------ | ---------------------------------------- | ---------------------------------------- |
-| transition-enter           | string | -                                        | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md). |
-| transition-exit            | string | -                                        | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](../arkui-js/js-components-common-animation.md). |
+| Name                       | Type   | Default Value                                          | Description                                                  |
+| -------------------------- | ------ | ------------------------------------------------------ | ------------------------------------------------------------ |
+| transition-enter           | string | -                                                      | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](js-components-common-animation.md). |
+| transition-exit            | string | -                                                      | Works with **@keyframes** and supports transform and opacity animations. For details, see [Attributes available for the @keyframes rule](js-components-common-animation.md). |
 | transition-duration        | string | Follows the default page transition time of the device | The unit can be s or ms. The default unit is ms. If no value is specified, the default value is used. |
-| transition-timing-function | string | friction                                 | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](../arkui-js/js-components-common-animation.md). |
-
+| transition-timing-function | string | friction                                               | Speed curve of the transition animation, which makes the animation more fluent. For details, see the description of **animation-timing-function **in [Animation Styles](js-components-common-animation.md). |
 
 ### Important Notes
 
@@ -230,11 +187,9 @@ export default {
 
 3. Notes on the **transition-enter** and **transition-exit** styles:
 
-   a. In the push scenario, the animation defined by **transition-enter** is used for entering the **Page2.js** in the page stack; the animation defined by **transition-exit** is used for entering the **Page1.js** in the page stack.
-   ![en-us_image_0000001193704354](figures/en-us_image_0000001193704354.png)
+   a. In the push scenario, the animation defined by **transition-enter** is used for entering the **Page2.js** in the page stack; the animation defined by **transition-exit** is used for entering the **Page1.js** in the page stack. ![en-us_image_0000001193704354](figures/en-us_image_0000001193704354.png)
 
-   b. In the back scenario, the animation defined by **transition-enter** is used for exiting the **Page2.js** in the page stack, with the animation played in reverse sequence; the animation defined by **transition-exit** is used for exiting the **Page1.js** in the page stack, with the animation played in reverse sequence.
-   ![en-us_image_0000001238184345](figures/en-us_image_0000001238184345.png)
+   b. In the back scenario, the animation defined by **transition-enter** is used for exiting the **Page2.js** in the page stack, with the animation played in reverse sequence; the animation defined by **transition-exit** is used for exiting the **Page1.js** in the page stack, with the animation played in reverse sequence. ![en-us_image_0000001238184345](figures/en-us_image_0000001238184345.png)
 
 ### Example
 
@@ -255,7 +210,7 @@ export default {
    import router from '@system.router';
    export default {
        data: {
-
+   
        },
        jump() {
            router.push({
@@ -283,13 +238,13 @@ export default {
        transition-duration: 5s;
        transition-timing-function: friction;
    }
-
+   
    @keyframes go_page {
        from {
            opacity: 0;
            transform: translate(0px) rotate(60deg) scale(1.0);
        }
-
+   
        to {
            opacity: 1;
            transform: translate(100px) rotate(360deg) scale(1.0);
@@ -300,14 +255,13 @@ export default {
            opacity: 1;
            transform: translate(200px) rotate(60deg) scale(2);
        }
-
+   
        to {
            opacity: 0;
            transform: translate(200px) rotate(360deg) scale(2);
        }
    }
    ```
-
 
 2. Page2
 
@@ -324,7 +278,7 @@ export default {
    import router from '@system.router';
    export default {
        data: {
-
+   
        },
        jumpBack() {
            router.back()
@@ -341,7 +295,7 @@ export default {
        width: 100%;
        height: 100%;
    }
-
+   
    .move_page {
        width: 100px;
        height: 100px;
@@ -351,7 +305,7 @@ export default {
        transition-duration: 5s;
        transition-timing-function: ease;
    }
-
+   
    @keyframes go_page {
        from {
            opacity: 0;
@@ -362,7 +316,7 @@ export default {
            transform:translate(100px) rotate(180deg) scale(2.0);
        }
    }
-
+   
    @keyframes exit_page {
        from {
            opacity: 1;

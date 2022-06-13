@@ -1,4 +1,4 @@
-# Custom Events<a name="EN-US_TOPIC_0000001127284896"></a>
+# Custom Events
 
 The following example describes how to define a child component  **comp**:
 

@@ -1,12 +1,12 @@
 # CanvasRenderingContext2D
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**
 > Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 **CanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on a canvas.
 
-
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -38,47 +38,42 @@
 
 - Anti-aliasing disabled
 
-  ![en-us_image_0000001214837333](figures/en-us_image_0000001214837333.png)
+  ![en-us_image_0000001214837333](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214837333.png)
 
 - Anti-aliasing enabled
 
-  ![screenshot-8](figures/screenshot-8.png)
-
+  ![screenshot-8](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/screenshot-8.png)
 
 ## Attributes
 
 | Name                                                         | Type                                                         | Default Value                   | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                                      | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Style to fill an area.<br>- When the type is **&lt;color&gt;**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineWidth](#linewidth)                                      | number                                                       | -                               | Line width.                                                  |
-| [strokeStyle](#strokestyle)                                  | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Stroke style.<br>- When the type is **&lt;color&gt;**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineCap](#linecap)                                          | string                                                       | butt                            | Style of the specified line endpoint. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness. |
-| [lineJoin](#linejoin)                                        | string                                                       | miter                           | Style of the intersection point between line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
-| [miterLimit](#miterlimit)                                    | number                                                       | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
-| [font](#font)                                                | string                                                       | "normal normal 14px sans-serif" | Font style.<br>Syntax: ctx.font="font-style font-weight font-size font-family"<sup>5+</sup><br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. |
-| [textAlign](#textalign)                                      | string                                                       | left                            | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>> In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
-| [textBaseline](#textbaseline)                                | string                                                       | alphabetic                      | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
-| [globalAlpha](#globalalpha)                                  | number                                                       | -                               | Opacity. <br/>**0.0**: completely transparent.<br/>**1.0**: completely opaque. |
-| [lineDashOffset](#linedashoffset)                            | number                                                       | 0.0                             | Offset of the dashed line. The precision is float.           |
-| [globalCompositeOperation](#globalcompositeoperation)        | string                                                       | source-over                     | Composition operation type. Available values are as follows: source-over, source-atop, source-in, source-out, destination-over, destination-atop, destination-in, destination-out, lighter, copy, and xor. For details, see [Operation types](#globalcompositeoperation). |
-| [shadowBlur](#shadowblur)                                    | number                                                       | 0.0                             | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float. |
-| [shadowColor](#shadowcolor)                                  | &lt;color&gt;                                                | -                               | Shadow color.                                                |
-| [shadowOffsetX](#shadowoffsetx)                              | number                                                       | -                               | X-axis shadow offset relative to the original object.        |
-| [shadowOffsetY](#shadowoffsety)                              | number                                                       | -                               | Y-axis shadow offset relative to the original object.        |
-| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                                      | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
-
+| [fillStyle](js-components-canvas-canvasrenderingcontext2d.md) | \<color> \| [CanvasGradient](js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Style to fill an area. <br/>-When the type is **\<color>**, this parameter indicates the color of the filling area. <br/>-When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method. <br/>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
+| [lineWidth](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | -                               | Line width.                                                  |
+| [strokeStyle](js-components-canvas-canvasrenderingcontext2d.md) | \<color> \| [CanvasGradient](js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Stroke style. <br/>- When the type is **\<color>**, this parameter indicates the stroke color. <br/>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method. <br/>-When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
+| [lineCap](js-components-canvas-canvasrenderingcontext2d.md)  | string                                                       | butt                            | Style of the specified line endpoint. The options are as follows:<br/>- **butt**: The endpoints of the line are squared off. <br/>- **round**: The endpoints of the line are rounded. <br/>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness. |
+| [lineJoin](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | miter                           | Style of the intersection point between line segments. The options are as follows: <br/>-**round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width. <br/>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent. <br/>-**miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
+| [miterLimit](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
+| [font](js-components-canvas-canvasrenderingcontext2d.md)     | string                                                       | "normal normal 14px sans-serif" | Font style. Syntax: ctx.font="font-style font-weight font-size font-family"5+ <br/>-(Optional) **font-style**: font style. Available values are **normal** and **italic**. <br/>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**. <br/>- (Optional) **font-size**: font size and row height. The unit can only be pixels. <br/>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. |
+| [textAlign](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | left                            | Text alignment mode. Available values are as follows: <br/>- **left**: The text is left-aligned. <br/>-**right**: The text is right-aligned. <br/>- **center**: The text is center-aligned. <br/>- **start**: The text is aligned with the start bound. <br/>- **end**: The text is aligned with the end bound. <br/>>![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**<br/> > In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
+| [textBaseline](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | alphabetic                      | Horizontal alignment mode of text. Available values are as follows:<br/>- **alphabetic**: The text baseline is the normal alphabetic baseline. <br/>- **top**: The text baseline is on the top of the text bounding box. <br/>-**hanging**: The text baseline is a hanging baseline over the text. <br/>- **middle**: The text baseline is in the middle of the text bounding box. <br/>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character. <br/>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
+| [globalAlpha](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | -                               | Opacity. <br/>**0.0**: completely transparent. <br/>**1.0**: completely opaque. |
+| [lineDashOffset](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | 0.0                             | Offset of the dashed line. The precision is float.           |
+| [globalCompositeOperation](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | source-over                     | Composition operation type. Available values are as follows: source-over, source-atop, source-in, source-out, destination-over, destination-atop, destination-in, destination-out, lighter, copy, and xor. For details, see [Operation types](js-components-canvas-canvasrenderingcontext2d.md). |
+| [shadowBlur](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | 0.0                             | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float. |
+| [shadowColor](js-components-canvas-canvasrenderingcontext2d.md) | \<color>                                                     | -                               | Shadow color.                                                |
+| [shadowOffsetX](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | -                               | X-axis shadow offset relative to the original object.        |
+| [shadowOffsetY](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | -                               | Y-axis shadow offset relative to the original object.        |
+| [imageSmoothingEnabled](js-components-canvas-canvasrenderingcontext2d.md)6+ | boolean                                                      | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
 
 ### fillStyle
 
-  ```
+```
 <!-- xxx.hml -->
 
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+<canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-  ```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -90,8 +85,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001166962736](figures/en-us_image_0000001166962736.png)
-
+![en-us_image_0000001166962736](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001166962736.png)
 
 ### lineWidth
 
@@ -100,9 +94,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -112,11 +103,9 @@ export default {
     ctx.strokeRect(25, 25, 85, 105);
   }
 }
-
 ```
 
-![en-us_image_0000001166484430](figures/en-us_image_0000001166484430.png)
-
+![en-us_image_0000001166484430](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001166484430.png)
 
 ### strokeStyle
 
@@ -125,9 +114,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -140,8 +126,7 @@ export default {
 }
 ```
 
-
-![en-us_image_0000001212124299](figures/en-us_image_0000001212124299.png)
+![en-us_image_0000001212124299](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001212124299.png)
 
 ### lineCap
 
@@ -150,9 +135,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -168,7 +150,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001214837127](figures/en-us_image_0000001214837127.png)
+![en-us_image_0000001214837127](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214837127.png)
 
 ### lineJoin
 
@@ -177,9 +159,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -196,7 +175,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001214717247](figures/en-us_image_0000001214717247.png)
+![en-us_image_0000001214717247](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214717247.png)
 
 ### miterLimit
 
@@ -205,9 +184,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -224,8 +200,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167001464](figures/en-us_image_0000001167001464.png)
-
+![en-us_image_0000001167001464](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167001464.png)
 
 ### font
 
@@ -234,9 +209,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -248,8 +220,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167046832](figures/en-us_image_0000001167046832.png)
-
+![en-us_image_0000001167046832](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167046832.png)
 
 ### textAlign
 
@@ -258,9 +229,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -284,11 +252,9 @@ export default {
     ctx.fillText('textAlign=right',140, 140);
   }
 }
-
 ```
 
-
-![en-us_image_0000001167472798](figures/en-us_image_0000001167472798.png)
+![en-us_image_0000001167472798](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167472798.png)
 
 ### textBaseline
 
@@ -297,9 +263,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -324,7 +287,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001169315920](figures/en-us_image_0000001169315920.png)
+![en-us_image_0000001169315920](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169315920.png)
 
 ### globalAlpha
 
@@ -333,9 +296,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -351,7 +311,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167953648](figures/en-us_image_0000001167953648.png)
+![en-us_image_0000001167953648](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167953648.png)
 
 ### lineDashOffset
 
@@ -360,9 +320,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -376,68 +333,64 @@ export default {
 }
 ```
 
-![en-us_image_0000001167950468](figures/en-us_image_0000001167950468.png)
+![en-us_image_0000001167950468](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167950468.png)
 
 ### globalCompositeOperation
 
 - Operation types
-  | Value               | Description                      |
-  | ---------------- | ------------------------ |
-  | source-over      | Displays the new drawing above the existing drawing. This attribute is used by default.  |
-  | source-atop      | Displays the new drawing on the top of the existing drawing.       |
+
+  | Value            | Description                                                  |
+  | ---------------- | ------------------------------------------------------------ |
+  | source-over      | Displays the new drawing above the existing drawing. This attribute is used by default. |
+  | source-atop      | Displays the new drawing on the top of the existing drawing. |
   | source-in        | Displays the new drawing inside the existing drawing.        |
-  | source-out       | Displays part of the new drawing that is outside of the existing drawing.       |
-  | destination-over | Displays the existing drawing above the new drawing.       |
-  | destination-atop | Displays the existing drawing on the top of the new drawing.       |
+  | source-out       | Displays part of the new drawing that is outside of the existing drawing. |
+  | destination-over | Displays the existing drawing above the new drawing.         |
+  | destination-atop | Displays the existing drawing on the top of the new drawing. |
   | destination-in   | Displays the existing drawing inside the new drawing.        |
-  | destination-out  | Displays part of the existing drawing that is outside of the new drawing.        |
-  | lighter          | Displays both the new drawing and the existing drawing.         |
-  | copy             | Displays the new drawing and neglects the existing drawing.       |
-  | xor              | Combines the new drawing and existing drawing using the XOR operation.|
+  | destination-out  | Displays part of the existing drawing that is outside of the new drawing. |
+  | lighter          | Displays both the new drawing and the existing drawing.      |
+  | copy             | Displays the new drawing and neglects the existing drawing.  |
+  | xor              | Combines the new drawing and existing drawing using the XOR operation. |
 
 - Example
+
 ```
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(20, 20, 50, 50);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(50, 50, 50, 50);
+    // Start drawing second example
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(120, 20, 50, 50);
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(150, 50, 50, 50);
+  }
+}
 ```
 
-  ```
-  //xxx.js
-  export default {
-    onShow() {
-      const el =this.$refs.canvas;
-      const ctx = el.getContext('2d');
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(20, 20, 50, 50);
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(50, 50, 50, 50);
-      // Start drawing second example
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(120, 20, 50, 50);
-      ctx.globalCompositeOperation = 'destination-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(150, 50, 50, 50);
-    }
-  }
-  ```
+![en-us_image_0000001213192781](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001213192781.png)
 
-  ![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
-
-  In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
+In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
 
 ### shadowBlur
 
-  ```
+```
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+<canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-  ```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -451,7 +404,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001168111514](figures/en-us_image_0000001168111514.png)
+![en-us_image_0000001168111514](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168111514.png)
 
 ### shadowColor
 
@@ -460,9 +413,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -476,7 +426,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001168111610](figures/en-us_image_0000001168111610.png)
+![en-us_image_0000001168111610](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168111610.png)
 
 ### shadowOffsetX
 
@@ -485,9 +435,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -502,8 +449,7 @@ export default {
 }
 ```
 
-
-![en-us_image_0000001167631876](figures/en-us_image_0000001167631876.png)
+![en-us_image_0000001167631876](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167631876.png)
 
 ### shadowOffsetY
 
@@ -512,9 +458,6 @@ export default {
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -529,18 +472,15 @@ export default {
 }
 ```
 
-![en-us_image_0000001213193285](figures/en-us_image_0000001213193285.png)
+![en-us_image_0000001213193285](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001213193285.png)
 
-### imageSmoothingEnabled<sup>6+</sup>
+### imageSmoothingEnabled6+
 
 ```
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
-```
-
-```
 //xxx.js
 export default {
   onShow() {
@@ -556,12 +496,9 @@ export default {
 }
 ```
 
-![smoothoff](figures/smoothoff.png)
-
-
+![smoothoff](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/smoothoff.png)
 
 ## Methods
-
 
 ### fillRect
 
@@ -570,33 +507,32 @@ fillRect(x: number, y: number, width:number, height: number): void
 Fills a rectangle on the canvas.
 
 - Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+
+  | Name   | Type   | Description                                             |
+  | ------ | ------ | ------------------------------------------------------- |
+  | x      | number | X-coordinate of the upper left corner of the rectangle. |
+  | y      | number | Y-coordinate of the upper left corner of the rectangle. |
+  | width  | number | Width of the rectangle.                                 |
+  | height | number | Height of the rectangle.                                |
 
 - Example
+
 ```
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
+//xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillRect(20, 20, 200, 150);
+  }
+}
 ```
 
-  ```
-  //xxx.js
-  export default {
-    onShow() {
-      const el =this.$refs.canvas;
-      const ctx = el.getContext('2d');
-      ctx.fillRect(20, 20, 200, 150);
-    }
-  }
-  ```
-
-  ![en-us_image_0000001214811029](figures/en-us_image_0000001214811029.png)
+![en-us_image_0000001214811029](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214811029.png)
 
 ### clearRect
 
@@ -605,14 +541,16 @@ clearRect(x: number, y: number, width:number, height: number): void
 Clears the content in a rectangle on the canvas.
 
 - Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+
+  | Name   | Type   | Description                                             |
+  | ------ | ------ | ------------------------------------------------------- |
+  | x      | number | X-coordinate of the upper left corner of the rectangle. |
+  | y      | number | Y-coordinate of the upper left corner of the rectangle. |
+  | width  | number | Width of the rectangle.                                 |
+  | height | number | Height of the rectangle.                                |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -633,8 +571,7 @@ Clears the content in a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214619417](figures/en-us_image_0000001214619417.png)
-
+  ![en-us_image_0000001214619417](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214619417.png)
 
 ### strokeRect
 
@@ -643,14 +580,16 @@ strokeRect(x: number, y: number, width:number, height: number): void
 Draws a rectangle stroke on the canvas.
 
 - Parameters
-  | Name    | Type    | Description          |
-  | ------ | ------ | ------------ |
-  | x      | number | X-coordinate of the upper left corner of the rectangle stroke.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle stroke.|
-  | width  | number | Width of the rectangle.    |
-  | height | number | Height of the rectangle.    |
+
+  | Name   | Type   | Description                                                  |
+  | ------ | ------ | ------------------------------------------------------------ |
+  | x      | number | X-coordinate of the upper left corner of the rectangle stroke. |
+  | y      | number | Y-coordinate of the upper left corner of the rectangle stroke. |
+  | width  | number | Width of the rectangle.                                      |
+  | height | number | Height of the rectangle.                                     |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -669,8 +608,7 @@ Draws a rectangle stroke on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214822091](figures/en-us_image_0000001214822091.png)
-
+  ![en-us_image_0000001214822091](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214822091.png)
 
 ### fillText
 
@@ -679,13 +617,15 @@ fillText(text: string, x: number, y: number): void
 Draws filled text on the canvas.
 
 - Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | text | string | Text to draw.     |
-  | x    | number | X-coordinate of the lower left corner of the text.|
-  | y    | number | Y-coordinate of the lower left corner of the text.|
+
+  | Name | Type   | Description                                        |
+  | ---- | ------ | -------------------------------------------------- |
+  | text | string | Text to draw.                                      |
+  | x    | number | X-coordinate of the lower left corner of the text. |
+  | y    | number | Y-coordinate of the lower left corner of the text. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -705,7 +645,7 @@ Draws filled text on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214469787](figures/en-us_image_0000001214469787.png)
+  ![en-us_image_0000001214469787](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214469787.png)
 
 ### strokeText
 
@@ -714,13 +654,15 @@ strokeText(text: string, x: number, y: number): void
 Draws a text stroke on the canvas.
 
 - Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | text | string | Text to draw.     |
-  | x    | number | X-coordinate of the lower left corner of the text.|
-  | y    | number | Y-coordinate of the lower left corner of the text.|
+
+  | Name | Type   | Description                                        |
+  | ---- | ------ | -------------------------------------------------- |
+  | text | string | Text to draw.                                      |
+  | x    | number | X-coordinate of the lower left corner of the text. |
+  | y    | number | Y-coordinate of the lower left corner of the text. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -740,7 +682,7 @@ Draws a text stroke on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214460669](figures/en-us_image_0000001214460669.png)
+  ![en-us_image_0000001214460669](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214460669.png)
 
 ### measureText
 
@@ -749,16 +691,19 @@ measureText(text: string): TextMetrics
 Returns a **TextMetrics** object used to obtain the width of specified text.
 
 - Parameters
-  | Name  | Type    | Description        |
-  | ---- | ------ | ---------- |
-  | text | string | Text to be measured.|
+
+  | Name | Type   | Description          |
+  | ---- | ------ | -------------------- |
+  | text | string | Text to be measured. |
 
 - Return value
-  | Type         | Description                                    |
-  | ----------- | -------------------------------------- |
-  | TextMetrics | Object that contains the text width. You can obtain the width by **TextMetrics.width**.|
+
+  | Type        | Description                                                  |
+  | ----------- | ------------------------------------------------------------ |
+  | TextMetrics | Object that contains the text width. You can obtain the width by **TextMetrics.width**. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -780,15 +725,16 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
   }
   ```
 
-  ![en-us_image_0000001169142476](figures/en-us_image_0000001169142476.png)
-
+  ![en-us_image_0000001169142476](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169142476.png)
 
 ### stroke
+
 stroke(): void
 
 Draws a stroke.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -811,15 +757,16 @@ Draws a stroke.
   }
   ```
 
-  ![en-us_image_0000001236697937](figures/en-us_image_0000001236697937.png)
-
+  ![en-us_image_0000001236697937](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001236697937.png)
 
 ### beginPath
+
 beginPath(): void
 
 Creates a drawing path.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -843,21 +790,23 @@ Creates a drawing path.
   }
   ```
 
-  ![en-us_image_0000001214629745](figures/en-us_image_0000001214629745.png)
-
+  ![en-us_image_0000001214629745](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214629745.png)
 
 ### moveTo
+
 moveTo(x: number, y: number): void
 
 Moves a drawing path to a target position on the canvas.
 
 - Parameters
-  | Name  | Type    | Description       |
-  | ---- | ------ | --------- |
-  | x    | number | X-coordinate of the target position.|
-  | y    | number | Y-coordinate of the target position.|
+
+  | Name | Type   | Description                          |
+  | ---- | ------ | ------------------------------------ |
+  | x    | number | X-coordinate of the target position. |
+  | y    | number | Y-coordinate of the target position. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -879,21 +828,23 @@ Moves a drawing path to a target position on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169309948](figures/en-us_image_0000001169309948.png)
-
+  ![en-us_image_0000001169309948](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169309948.png)
 
 ### lineTo
+
 lineTo(x: number, y: number): void
 
 Connects the current point to a target position using a straight line.
 
 - Parameters
-  | Name  | Type    | Description       |
-  | ---- | ------ | --------- |
-  | x    | number | X-coordinate of the target position.|
-  | y    | number | Y-coordinate of the target position.|
+
+  | Name | Type   | Description                          |
+  | ---- | ------ | ------------------------------------ |
+  | x    | number | X-coordinate of the target position. |
+  | y    | number | Y-coordinate of the target position. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -915,15 +866,16 @@ Connects the current point to a target position using a straight line.
   }
   ```
 
-  ![en-us_image_0000001169469914](figures/en-us_image_0000001169469914.png)
-
+  ![en-us_image_0000001169469914](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169469914.png)
 
 ### closePath
+
 closePath(): void
 
 Draws a closed path.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -947,7 +899,7 @@ Draws a closed path.
   }
   ```
 
-  ![en-us_image_0000001169151508](figures/en-us_image_0000001169151508.png)
+  ![en-us_image_0000001169151508](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169151508.png)
 
 ### createPattern
 
@@ -956,17 +908,20 @@ createPattern(image: Image, repetition: string): Object
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
 - Parameters
-  | Name        | Type    | Description                                      |
-  | ---------- | ------ | ---------------------------------------- |
-  | image      | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
-  | repetition | string | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**.|
+
+  | Name       | Type   | Description                                                  |
+  | ---------- | ------ | ------------------------------------------------------------ |
+  | image      | Image  | Source image. For details, see [Image](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/js-components-canvas-image.md). |
+  | repetition | string | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**. |
 
 - Return value
-  | Type    | Description               |
-  | ------ | ----------------- |
-  | Object | Pattern of image filling.|
+
+  | Type   | Description               |
+  | ------ | ------------------------- |
+  | Object | Pattern of image filling. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -989,7 +944,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   }
   ```
 
-  ![en-us_image_0000001169301188](figures/en-us_image_0000001169301188.png)
+  ![en-us_image_0000001169301188](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169301188.png)
 
 ### bezierCurveTo
 
@@ -998,16 +953,18 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 Draws a cubic bezier curve on the canvas.
 
 - Parameters
-  | Name  | Type    | Description            |
-  | ---- | ------ | -------------- |
-  | cp1x | number | X-coordinate of the first parameter of the bezier curve.|
-  | cp1y | number | Y-coordinate of the first parameter of the bezier curve.|
-  | cp2x | number | X-coordinate of the second parameter of the bezier curve.|
-  | cp2y | number | Y-coordinate of the second parameter of the bezier curve.|
-  | x    | number | X-coordinate of the end point on the bezier curve.   |
-  | y    | number | Y-coordinate of the end point on the bezier curve.   |
+
+  | Name | Type   | Description                                               |
+  | ---- | ------ | --------------------------------------------------------- |
+  | cp1x | number | X-coordinate of the first parameter of the bezier curve.  |
+  | cp1y | number | Y-coordinate of the first parameter of the bezier curve.  |
+  | cp2x | number | X-coordinate of the second parameter of the bezier curve. |
+  | cp2y | number | Y-coordinate of the second parameter of the bezier curve. |
+  | x    | number | X-coordinate of the end point on the bezier curve.        |
+  | y    | number | Y-coordinate of the end point on the bezier curve.        |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1029,7 +986,7 @@ Draws a cubic bezier curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214621177](figures/en-us_image_0000001214621177.png)
+  ![en-us_image_0000001214621177](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214621177.png)
 
 ### quadraticCurveTo
 
@@ -1038,14 +995,16 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 Draws a quadratic curve on the canvas.
 
 - Parameters
-  | Name  | Type    | Description         |
-  | ---- | ------ | ----------- |
-  | cpx  | number | X-coordinate of the bezier curve parameter.|
-  | cpy  | number | Y-coordinate of the bezier curve parameter.|
-  | x    | number | X-coordinate of the end point on the bezier curve.|
-  | y    | number | Y-coordinate of the end point on the bezier curve.|
+
+  | Name | Type   | Description                                        |
+  | ---- | ------ | -------------------------------------------------- |
+  | cpx  | number | X-coordinate of the bezier curve parameter.        |
+  | cpy  | number | Y-coordinate of the bezier curve parameter.        |
+  | x    | number | X-coordinate of the end point on the bezier curve. |
+  | y    | number | Y-coordinate of the end point on the bezier curve. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1067,25 +1026,27 @@ Draws a quadratic curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169461910](figures/en-us_image_0000001169461910.png)
-
+  ![en-us_image_0000001169461910](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169461910.png)
 
 ### arc
+
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): void
 
 Draws an arc on the canvas.
 
 - Parameters
-  | Name           | Type     | Description        |
-  | ------------- | ------- | ---------- |
-  | x             | number  | X-coordinate of the center point of the arc.|
-  | y             | number  | Y-coordinate of the center point of the arc.|
-  | radius        | number  | Radius of the arc.   |
-  | startAngle    | number  | Start radian of the arc.  |
-  | endAngle      | number  | End radian of the arc.  |
-  | anticlockwise | boolean | Whether to draw the arc counterclockwise.|
+
+  | Name          | Type    | Description                                  |
+  | ------------- | ------- | -------------------------------------------- |
+  | x             | number  | X-coordinate of the center point of the arc. |
+  | y             | number  | Y-coordinate of the center point of the arc. |
+  | radius        | number  | Radius of the arc.                           |
+  | startAngle    | number  | Start radian of the arc.                     |
+  | endAngle      | number  | End radian of the arc.                       |
+  | anticlockwise | boolean | Whether to draw the arc counterclockwise.    |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1106,7 +1067,7 @@ Draws an arc on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169470288](figures/en-us_image_0000001169470288.png)
+  ![en-us_image_0000001169470288](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169470288.png)
 
 ### arcTo
 
@@ -1115,15 +1076,17 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 Draws an arc based on the radius and points on the arc.
 
 - Parameters
-  | Name    | Type    | Description             |
-  | ------ | ------ | --------------- |
-  | x1     | number | X-coordinate of the first point on the arc.|
-  | y1     | number | Y-coordinate of the first point on the arc.|
-  | x2     | number | X-coordinate of the second point on the arc.|
-  | y2     | number | Y-coordinate of the second point on the arc.|
-  | radius | number | Radius of the arc.       |
+
+  | Name   | Type   | Description                                  |
+  | ------ | ------ | -------------------------------------------- |
+  | x1     | number | X-coordinate of the first point on the arc.  |
+  | y1     | number | Y-coordinate of the first point on the arc.  |
+  | x2     | number | X-coordinate of the second point on the arc. |
+  | y2     | number | Y-coordinate of the second point on the arc. |
+  | radius | number | Radius of the arc.                           |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1144,27 +1107,29 @@ Draws an arc based on the radius and points on the arc.
   }
   ```
 
-  ![en-us_image_0000001169143586](figures/en-us_image_0000001169143586.png)
+  ![en-us_image_0000001169143586](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169143586.png)
 
-### ellipse<sup>6+</sup>
+### ellipse6+
 
 ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, anticlockwise: number): void
 
 Draws an ellipse in the specified rectangular region on the canvas.
 
 - Parameters
-  | Name           | Type    | Description                                  |
-  | ------------- | ------ | ------------------------------------ |
+
+  | Name          | Type   | Description                                                  |
+  | ------------- | ------ | ------------------------------------------------------------ |
   | x             | number | X-coordinate of the ellipse center.                          |
   | y             | number | Y-coordinate of the ellipse center.                          |
-  | radiusX       | number | Ellipse radius on the x-axis.                          |
-  | radiusY       | number | Ellipse radius on the y-axis.                          |
-  | rotation      | number | Rotation angle of the ellipse. The unit is radian.                      |
-  | startAngle    | number | Angle of the start point for drawing the ellipse. The unit is radian.                   |
-  | endAngle      | number | Angle of the end point for drawing the ellipse. The unit is radian.                   |
-  | anticlockwise | number | Whether to draw the ellipse counterclockwise. The value **0** means clockwise, and **1** means counterclockwise. This parameter is optional. The default value is **0**.|
+  | radiusX       | number | Ellipse radius on the x-axis.                                |
+  | radiusY       | number | Ellipse radius on the y-axis.                                |
+  | rotation      | number | Rotation angle of the ellipse. The unit is radian.           |
+  | startAngle    | number | Angle of the start point for drawing the ellipse. The unit is radian. |
+  | endAngle      | number | Angle of the end point for drawing the ellipse. The unit is radian. |
+  | anticlockwise | number | Whether to draw the ellipse counterclockwise. The value **0** means clockwise, and **1** means counterclockwise. This parameter is optional. The default value is **0**. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1185,23 +1150,25 @@ Draws an ellipse in the specified rectangular region on the canvas.
   }
   ```
 
-  ![ellipse](figures/ellipse.png)
-
+  ![ellipse](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/ellipse.png)
 
 ### rect
+
 rect(x: number, y: number, width: number, height: number): void
 
 Creates a rectangle on the canvas.
 
 - Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+
+  | Name   | Type   | Description                                             |
+  | ------ | ------ | ------------------------------------------------------- |
+  | x      | number | X-coordinate of the upper left corner of the rectangle. |
+  | y      | number | Y-coordinate of the upper left corner of the rectangle. |
+  | width  | number | Width of the rectangle.                                 |
+  | height | number | Height of the rectangle.                                |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1221,7 +1188,7 @@ Creates a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214630783](figures/en-us_image_0000001214630783.png)
+  ![en-us_image_0000001214630783](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214630783.png)
 
 ### fill
 
@@ -1230,6 +1197,7 @@ fill(): void
 Fills the area inside a closed path on the canvas.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1249,7 +1217,7 @@ Fills the area inside a closed path on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214703717](figures/en-us_image_0000001214703717.png)
+  ![en-us_image_0000001214703717](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214703717.png)
 
 ### clip
 
@@ -1258,6 +1226,7 @@ clip(): void
 Sets the current path to a clipping path.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1281,7 +1250,7 @@ Sets the current path to a clipping path.
   }
   ```
 
-  ![en-us_image_0000001169303414](figures/en-us_image_0000001169303414.png)
+  ![en-us_image_0000001169303414](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169303414.png)
 
 ### rotate
 
@@ -1290,11 +1259,13 @@ rotate(rotate: number): void
 Rotates a canvas clockwise around its coordinate axes.
 
 - Parameters
-  | Name    | Type    | Description                                      |
-  | ------ | ------ | ---------------------------------------- |
-  | rotate | number | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
+
+  | Name   | Type   | Description                                                  |
+  | ------ | ------ | ------------------------------------------------------------ |
+  | rotate | number | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1314,7 +1285,7 @@ Rotates a canvas clockwise around its coordinate axes.
   }
   ```
 
-  ![en-us_image_0000001169463368](figures/en-us_image_0000001169463368.png)
+  ![en-us_image_0000001169463368](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169463368.png)
 
 ### scale
 
@@ -1323,12 +1294,14 @@ scale(x: number, y: number): void
 Scales the canvas based on scale factors.
 
 - Parameters
-  | Name  | Type    | Description         |
-  | ---- | ------ | ----------- |
-  | x    | number | Horizontal scale factor.|
-  | y    | number | Vertical scale factor.|
+
+  | Name | Type   | Description              |
+  | ---- | ------ | ------------------------ |
+  | x    | number | Horizontal scale factor. |
+  | y    | number | Vertical scale factor.   |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1349,7 +1322,7 @@ Scales the canvas based on scale factors.
   }
   ```
 
-  ![en-us_image_0000001214463281](figures/en-us_image_0000001214463281.png)
+  ![en-us_image_0000001214463281](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214463281.png)
 
 ### transform
 
@@ -1357,24 +1330,25 @@ transform(scaleX: number, skewX: number, skewY: number, scale: number, translate
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
-> - x' = scaleX \* x + skewY \* y + translateX
->
-> - y' = skewX \* x + scaleY \* y + translateY
+> - x' = scaleX * x + skewY * y + translateX
+> - y' = skewX * x + scaleY * y + translateY
 
 - Parameters
-  | Name        | Type    | Description      |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | X-axis scale.|
-  | skewX      | number | X-axis skew.|
-  | skewY      | number | Y-axis skew.|
-  | scaleY     | number | Y-axis scale.|
-  | translateX | number | X-axis translation.|
-  | translateY | number | Y-axis translation.|
+
+  | Name       | Type   | Description         |
+  | ---------- | ------ | ------------------- |
+  | scaleX     | number | X-axis scale.       |
+  | skewX      | number | X-axis skew.        |
+  | skewY      | number | Y-axis skew.        |
+  | scaleY     | number | Y-axis scale.       |
+  | translateX | number | X-axis translation. |
+  | translateY | number | Y-axis translation. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1400,7 +1374,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
   }
   ```
 
-  ![en-us_image_0000001214623227](figures/en-us_image_0000001214623227.png)
+  ![en-us_image_0000001214623227](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214623227.png)
 
 ### setTransform
 
@@ -1409,16 +1383,18 @@ setTransform(scaleX: number, skewX: number, skewY: number, scale: number, transl
 Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
 
 - Parameters
-  | Name        | Type    | Description      |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | X-axis scale.|
-  | skewX      | number | X-axis skew.|
-  | skewY      | number | Y-axis skew.|
-  | scaleY     | number | Y-axis scale.|
-  | translateX | number | X-axis translation.|
-  | translateY | number | Y-axis translation.|
+
+  | Name       | Type   | Description         |
+  | ---------- | ------ | ------------------- |
+  | scaleX     | number | X-axis scale.       |
+  | skewX      | number | X-axis skew.        |
+  | skewY      | number | Y-axis skew.        |
+  | scaleY     | number | Y-axis scale.       |
+  | translateX | number | X-axis translation. |
+  | translateY | number | Y-axis translation. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1441,7 +1417,7 @@ Resets the existing transformation matrix and creates a new transformation matri
   }
   ```
 
-  ![en-us_image_0000001168984880](figures/en-us_image_0000001168984880.png)
+  ![en-us_image_0000001168984880](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168984880.png)
 
 ### translate
 
@@ -1450,12 +1426,14 @@ translate(x: number, y: number): void
 Moves the origin of the coordinate system.
 
 - Parameters
-  | Name  | Type    | Description      |
-  | ---- | ------ | -------- |
-  | x    | number | X-axis translation.|
-  | y    | number | Y-axis translation.|
+
+  | Name | Type   | Description         |
+  | ---- | ------ | ------------------- |
+  | x    | number | X-axis translation. |
+  | y    | number | Y-axis translation. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1476,24 +1454,25 @@ Moves the origin of the coordinate system.
   }
   ```
 
-  ![en-us_image_0000001169144864](figures/en-us_image_0000001169144864.png)
+  ![en-us_image_0000001169144864](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169144864.png)
 
-### createPath2D<sup>6+</sup>
+### createPath2D6+
 
 createPath2D(path: Path2D, cmds: string): Path2D
 
 Creates a **Path2D** object.
 
 - Parameters
-  | Name  | Type    | Description            |
-  | ---- | ------ | -------------- |
-  | path | Path2D | **Path2D** object.     |
-  | cmds | string | Path description of the SVG image.|
 
-- Return value
-  [Path2D object](../arkui-js/js-components-canvas-path2d.md)
+  | Name | Type   | Description                        |
+  | ---- | ------ | ---------------------------------- |
+  | path | Path2D | **Path2D** object.                 |
+  | cmds | string | Path description of the SVG image. |
+
+- Return value [Path2D object](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/js-components-canvas-path2d.md)
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1521,7 +1500,7 @@ Creates a **Path2D** object.
   }
   ```
 
-  ![en-us_image_0000001214824709](figures/en-us_image_0000001214824709.png)
+  ![en-us_image_0000001214824709](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214824709.png)
 
 ### drawImage
 
@@ -1530,19 +1509,21 @@ drawImage(image: Image, sx: number, sy: number, sWidth: number, sHeight: number,
 Draws an image on the canvas.
 
 - Parameters
-  | Name     | Type    | Description                                      |
-  | ------- | ------ | ---------------------------------------- |
-  | image   | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
-  | sx      | number | X-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
-  | sy      | number | Y-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
-  | sWidth  | number | Target width to crop the source image.                          |
-  | sHeight | number | Target height to crop the source image.                          |
-  | dx      | number | X-coordinate of the upper left corner of the drawing area on the canvas.                          |
-  | dy      | number | Y-coordinate of the upper left corner of the drawing area on the canvas.                    |
-  | dWidth  | number | Width of the drawing area.                                |
-  | dHeight | number | Height of the drawing area.                                |
+
+  | Name    | Type   | Description                                                  |
+  | ------- | ------ | ------------------------------------------------------------ |
+  | image   | Image  | Source image. For details, see [Image](js-components-canvas-image.md). |
+  | sx      | number | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
+  | sy      | number | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
+  | sWidth  | number | Target width to crop the source image.                       |
+  | sHeight | number | Target height to crop the source image.                      |
+  | dx      | number | X-coordinate of the upper left corner of the drawing area on the canvas. |
+  | dy      | number | Y-coordinate of the upper left corner of the drawing area on the canvas. |
+  | dWidth  | number | Width of the drawing area.                                   |
+  | dHeight | number | Height of the drawing area.                                  |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1563,7 +1544,7 @@ Draws an image on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214704759](figures/en-us_image_0000001214704759.png)
+  ![en-us_image_0000001214704759](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214704759.png)
 
 ### restore
 
@@ -1572,6 +1553,7 @@ restore(): void
 Restores the saved drawing context.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1597,6 +1579,7 @@ save(): void
 Saves the current drawing context.
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1615,26 +1598,29 @@ Saves the current drawing context.
   }
   ```
 
-### createLinearGradient<sup>6+</sup>
+### createLinearGradient6+
 
 createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
-Creates a linear gradient and returns a **CanvasGradient** object. For details, see [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md).
+Creates a linear gradient and returns a **CanvasGradient** object. For details, see [CanvasGradient](js-components-canvas-canvasgradient.md).
 
 - Parameters
-  | Name  | Type    | Description      |
-  | ---- | ------ | -------- |
-  | x0   | number | X-coordinate of the start point.|
-  | y0   | number | Y-coordinate of the start point.|
-  | x1   | number | X-coordinate of the end point.|
-  | y1   | number | Y-coordinate of the end point.|
+
+  | Name | Type   | Description                      |
+  | ---- | ------ | -------------------------------- |
+  | x0   | number | X-coordinate of the start point. |
+  | y0   | number | Y-coordinate of the start point. |
+  | x1   | number | X-coordinate of the end point.   |
+  | y1   | number | Y-coordinate of the end point.   |
 
 - Return value
-  | Type    | Description                    |
-  | ------ | ---------------------- |
-  | Object | Created **CanvasGradient** object.|
+
+  | Type   | Description                        |
+  | ------ | ---------------------------------- |
+  | Object | Created **CanvasGradient** object. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1662,30 +1648,33 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
   }
   ```
 
-  ![en-us_image_0000001169303416](figures/en-us_image_0000001169303416.png)
+  ![en-us_image_0000001169303416](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169303416.png)
 
-### createRadialGradient<sup>6+</sup>
+### createRadialGradient6+
 
 createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): Object
 
 Creates a radial gradient and returns a **CanvasGradient** object.
 
 - Parameters
-  | Name  | Type    | Description               |
-  | ---- | ------ | ----------------- |
-  | x0   | number | X-coordinate of the center of the start circle.        |
-  | y0   | number | Y-coordinate of the center of the start circle.        |
-  | r0   | number | Radius of the start circle, which must be a non-negative finite number.|
-  | x1   | number | X-coordinate of the center of the end circle.        |
-  | y1   | number | Y-coordinate of the center of the end circle.        |
-  | r1   | number | Radius of the end circle, which must be a non-negative finite number.|
+
+  | Name | Type   | Description                                                  |
+  | ---- | ------ | ------------------------------------------------------------ |
+  | x0   | number | X-coordinate of the center of the start circle.              |
+  | y0   | number | Y-coordinate of the center of the start circle.              |
+  | r0   | number | Radius of the start circle, which must be a non-negative finite number. |
+  | x1   | number | X-coordinate of the center of the end circle.                |
+  | y1   | number | Y-coordinate of the center of the end circle.                |
+  | r1   | number | Radius of the end circle, which must be a non-negative finite number. |
 
 - Return value
-  | Type    | Description                    |
-  | ------ | ---------------------- |
-  | Object | Created **CanvasGradient** object.|
+
+  | Type   | Description                        |
+  | ------ | ---------------------------------- |
+  | Object | Created **CanvasGradient** object. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1713,27 +1702,30 @@ Creates a radial gradient and returns a **CanvasGradient** object.
   }
   ```
 
-  ![en-us_image_0000001169463370](figures/en-us_image_0000001169463370.png)
+  ![en-us_image_0000001169463370](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169463370.png)
 
 ### createImageData
 
 createImageData(width: number, height: number, imageData: Object): Object
 
-Creates an **ImageData** object. For details, see [ImageData](../arkui-js/js-components-canvas-imagedata.md).
+Creates an **ImageData** object. For details, see [ImageData](js-components-canvas-imagedata.md).
 
 - Parameters
-  | Name       | Type    | Description               |
-  | --------- | ------ | ----------------- |
-  | width     | number | Width of the **ImageData** object.    |
-  | height    | number | Height of the **ImageData** object.    |
-  | imagedata | Object | **ImageData** object with the same width and height copied from the original **ImageData** object.|
+
+  | Name      | Type   | Description                                                  |
+  | --------- | ------ | ------------------------------------------------------------ |
+  | width     | number | Width of the **ImageData** object.                           |
+  | height    | number | Height of the **ImageData** object.                          |
+  | imagedata | Object | **ImageData** object with the same width and height copied from the original **ImageData** object. |
 
 - Return value
-  | Type    | Description               |
-  | ------ | ----------------- |
-  | Object | Created **ImageData** object.|
+
+  | Type   | Description                   |
+  | ------ | ----------------------------- |
+  | Object | Created **ImageData** object. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1760,19 +1752,22 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 Creates an **ImageData** object with pixels in the specified area on the canvas.
 
 - Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | sx   | number | X-coordinate of the upper left corner of the output area.|
-  | sy   | number | Y-coordinate of the upper left corner of the output area.|
-  | sw   | number | Width of the output area.    |
-  | sh   | number | Height of the output area.    |
+
+  | Name | Type   | Description                                               |
+  | ---- | ------ | --------------------------------------------------------- |
+  | sx   | number | X-coordinate of the upper left corner of the output area. |
+  | sy   | number | Y-coordinate of the upper left corner of the output area. |
+  | sw   | number | Width of the output area.                                 |
+  | sh   | number | Height of the output area.                                |
 
 - Return value
-  | Type    | Description                     |
-  | ------ | ----------------------- |
-  | Object | **ImageData** object that contains pixels in the specified area on the canvas.|
+
+  | Type   | Description                                                  |
+  | ------ | ------------------------------------------------------------ |
+  | Object | **ImageData** object that contains pixels in the specified area on the canvas. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1798,17 +1793,19 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 Puts the **ImageData** onto a rectangular area on the canvas.
 
 - Parameters
-  | Name         | Type    | Description                           |
-  | ----------- | ------ | ----------------------------- |
-  | imagedata   | Object | **ImageData** object with pixels to put onto the canvas.           |
-  | dx          | number | X-axis offset of the rectangular area on the canvas.               |
-  | dy          | number | Y-axis offset of the rectangular area on the canvas.               |
-  | dirtyX      | number | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-  | dirtyY      | number | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-  | dirtyWidth  | number | Width of the rectangular area to crop the source image.              |
-  | dirtyHeight | number | Height of the rectangular area to crop the source image.              |
+
+  | Name        | Type   | Description                                                  |
+  | ----------- | ------ | ------------------------------------------------------------ |
+  | imagedata   | Object | **ImageData** object with pixels to put onto the canvas.     |
+  | dx          | number | X-axis offset of the rectangular area on the canvas.         |
+  | dy          | number | Y-axis offset of the rectangular area on the canvas.         |
+  | dirtyX      | number | X-axis offset of the upper left corner of the rectangular area relative to that of the source image. |
+  | dirtyY      | number | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image. |
+  | dirtyWidth  | number | Width of the rectangular area to crop the source image.      |
+  | dirtyHeight | number | Height of the rectangular area to crop the source image.     |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1834,7 +1831,7 @@ Puts the **ImageData** onto a rectangular area on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214463283](figures/en-us_image_0000001214463283.png)
+  ![en-us_image_0000001214463283](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214463283.png)
 
 ### setLineDash
 
@@ -1843,11 +1840,13 @@ setLineDash(segments: Array): void
 Sets the dash line style.
 
 - Parameters
-  | Name      | Type   | Description                  |
-  | -------- | ----- | -------------------- |
-  | segments | Array | An array describing the interval of alternate line segments and length of spacing.|
+
+  | Name     | Type  | Description                                                  |
+  | -------- | ----- | ------------------------------------------------------------ |
+  | segments | Array | An array describing the interval of alternate line segments and length of spacing. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1868,7 +1867,7 @@ Sets the dash line style.
   }
   ```
 
-  ![en-us_image_0000001214623229](figures/en-us_image_0000001214623229.png)
+  ![en-us_image_0000001214623229](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214623229.png)
 
 ### getLineDash
 
@@ -1877,11 +1876,13 @@ getLineDash(): Array
 Obtains the dash line style.
 
 - Return value
-  | Type   | Description                      |
-  | ----- | ------------------------ |
-  | Array | An array describing the interval of alternate line segments and length of spacing.|
+
+  | Type  | Description                                                  |
+  | ----- | ------------------------------------------------------------ |
+  | Array | An array describing the interval of alternate line segments and length of spacing. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1900,18 +1901,20 @@ Obtains the dash line style.
   }
   ```
 
-### transferFromImageBitmap<sup>7+</sup>
+### transferFromImageBitmap7+
 
 transferFromImageBitmap(bitmap: ImageBitmap): void
 
 Displays the specified **ImageBitmap** object.
 
 - Parameters
-  | Name    | Type         | Description                |
-  | ------ | ----------- | ------------------ |
-  | bitmap | ImageBitmap | **ImageBitmap** object to display.|
+
+  | Name   | Type        | Description                        |
+  | ------ | ----------- | ---------------------------------- |
+  | bitmap | ImageBitmap | **ImageBitmap** object to display. |
 
 - Example
+
   ```
   <!-- xxx.hml -->
   <div>
@@ -1929,11 +1932,11 @@ Displays the specified **ImageBitmap** object.
       var offscreen = new OffscreenCanvas(500,500);
       var offscreenCanvasCtx = offscreen.getContext("2d");
       offscreenCanvasCtx.fillRect(0, 0, 200, 200); 
-
+  
       var bitmap = offscreen.transferToImageBitmap();
       canvas.transferFromImageBitmap(bitmap);
     }
   }
   ```
 
-  ![en-us_image_0000001168984882](figures/en-us_image_0000001168984882.png)
+  ![en-us_image_0000001168984882](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168984882.png)

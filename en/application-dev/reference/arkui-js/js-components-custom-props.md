@@ -1,4 +1,4 @@
-# props<a name="EN-US_TOPIC_0000001173164675"></a>
+# props
 
 You can use  **props**  to declare attributes of a custom component and pass the attributes to the child component. The supported types of  **props**  include String, Number, Boolean, Array, Object, and Function. Note that a camel case attribute name \(**compProp**\) should be converted to the kebab case format \(**comp-prop**\) when you reference the attribute in an external parent component. You can add  **props**  to a custom component, and pass the attribute to the child component.
 
@@ -27,7 +27,7 @@ export default {
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The name of a custom attribute cannot start with reserved keywords such as  **on**,  **@**,  **on:**, and  **grab:**.
 
-## Default Value<a name="section448655843113"></a>
+## Default Value
 
 You can set the default value for a child component attribute via  **default**. The default value is used if the parent component does not have  **default**  set. In this case, the  **props**  attribute must be in object format instead of an array.
 
@@ -59,7 +59,7 @@ In this example, a  **<text\>**  component is added to display the title. The ti
 </div>
 ```
 
-## Unidirectional Value Transfer<a name="section9681151218247"></a>
+## Unidirectional Value Transfer
 
 Data can be transferred only from the parent component to child components. You are not allowed to change the value passed to the child component. However, you can receive the value passed by  **props**  as a default value in  **data**, and then change the  **data**  value.
 
@@ -78,7 +78,7 @@ export default {
 }
 ```
 
-## Monitoring Data Changes by  **$watch**<a name="section205821113182114"></a>
+## Monitoring Data Changes by  $watch
 
 To listen for attribute changes in a component, you can use the  **$watch**  method to add a callback. The following code snippet shows how to use  **$watch**:
 
@@ -95,7 +95,7 @@ export default {
 }
 ```
 
-## Computed Property<a name="section1088954011234"></a>
+## Computed Property
 
 To improve the development efficiency, you can use a computed property to pre-process an attribute in a custom component before reading or setting the attribute. In the  **computed**  field, you can set a getter or setter to be triggered when the attribute is read or written, respectively. The following is an example:
 

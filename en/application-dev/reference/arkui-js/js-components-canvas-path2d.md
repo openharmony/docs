@@ -1,805 +1,460 @@
-# Path2D<a name="EN-US_TOPIC_0000001173164751"></a>
+# Path2D
 
-**Path2D**  allows you to describe a path through an existing path. This path can be drawn through the  **stroke**  API of  **Canvas**.
+**Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**.
 
-## addPath<a name="section12484748163816"></a>
+## addPath
 
-addPath\(path: Object\): void
+addPath(path: Object): void
 
 Adds a path to this path.
 
--   Parameters
+- Parameters
 
-    <a name="table1948454813819"></a>
-    <table><thead align="left"><tr id="row17484114816383"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p1348494853817"><a name="p1348494853817"></a><a name="p1348494853817"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="34.74%" id="mcps1.1.4.1.2"><p id="p1148414873815"><a name="p1148414873815"></a><a name="p1148414873815"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="43.57%" id="mcps1.1.4.1.3"><p id="p34841948133816"><a name="p34841948133816"></a><a name="p34841948133816"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1148424813816"><td class="cellrowborder" valign="top" width="21.69%" headers="mcps1.1.4.1.1 "><p id="p64848482383"><a name="p64848482383"></a><a name="p64848482383"></a>path</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.74%" headers="mcps1.1.4.1.2 "><p id="p9484194817384"><a name="p9484194817384"></a><a name="p9484194817384"></a>Object</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.57%" headers="mcps1.1.4.1.3 "><p id="p9484144883813"><a name="p9484144883813"></a><a name="p9484144883813"></a>Path to be added to this path.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Name | Type   | Description                    |
+  | ---- | ------ | ------------------------------ |
+  | path | Object | Path to be added to this path. |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-        var path2 = ctx.createPath2D();
-        path2.addPath(path1);
-        ctx.stroke(path2);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path1 = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+      var path2 = ctx.createPath2D();
+      path2.addPath(path1);
+      ctx.stroke(path2);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173164873.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164873.png)
 
+## setTransform
 
-## setTransform<a name="section68262045132013"></a>
-
-setTransform\(scaleX: number, skewX: number, skewY: number, scaleY: number, translateX: number, translateY: number\): void
+setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, translateX: number, translateY: number): void
 
 Sets the path transformation matrix.
 
--   Parameters
+- Parameters
 
-    <a name="table4826104515201"></a>
-    <table><thead align="left"><tr id="row58261345122010"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1382684562019"><a name="p1382684562019"></a><a name="p1382684562019"></a>Name</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p382617450202"><a name="p382617450202"></a><a name="p382617450202"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p48261945172017"><a name="p48261945172017"></a><a name="p48261945172017"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1182611454206"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p178262456205"><a name="p178262456205"></a><a name="p178262456205"></a>scaleX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p182620458203"><a name="p182620458203"></a><a name="p182620458203"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p10751910222"><a name="p10751910222"></a><a name="p10751910222"></a>Scale ratio of the x-axis</p>
-    </td>
-    </tr>
-    <tr id="row168266458201"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p16827445142013"><a name="p16827445142013"></a><a name="p16827445142013"></a>skewX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p68274454204"><a name="p68274454204"></a><a name="p68274454204"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p71155207223"><a name="p71155207223"></a><a name="p71155207223"></a>Skew angle of the x-axis</p>
-    </td>
-    </tr>
-    <tr id="row38271945122016"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p7827134572011"><a name="p7827134572011"></a><a name="p7827134572011"></a>skewY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p168275453206"><a name="p168275453206"></a><a name="p168275453206"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p562016295229"><a name="p562016295229"></a><a name="p562016295229"></a>Skew angle of the y-axis</p>
-    </td>
-    </tr>
-    <tr id="row13827114514206"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p11827745122012"><a name="p11827745122012"></a><a name="p11827745122012"></a>scaleY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p168272459209"><a name="p168272459209"></a><a name="p168272459209"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p19205153616222"><a name="p19205153616222"></a><a name="p19205153616222"></a>Scale ratio of the y-axis</p>
-    </td>
-    </tr>
-    <tr id="row482704512010"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p2082713455206"><a name="p2082713455206"></a><a name="p2082713455206"></a>translateX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p5827104512206"><a name="p5827104512206"></a><a name="p5827104512206"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p10511942152217"><a name="p10511942152217"></a><a name="p10511942152217"></a>Translation distance of the x-axis</p>
-    </td>
-    </tr>
-    <tr id="row1274814215213"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p574820262114"><a name="p574820262114"></a><a name="p574820262114"></a>translateY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1174820232117"><a name="p1174820232117"></a><a name="p1174820232117"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1645314484227"><a name="p1645314484227"></a><a name="p1645314484227"></a>Translation distance of the y-axis</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Name       | Type   | Description                        |
+  | ---------- | ------ | ---------------------------------- |
+  | scaleX     | number | Scale ratio of the x-axis          |
+  | skewX      | number | Skew angle of the x-axis           |
+  | skewY      | number | Skew angle of the y-axis           |
+  | scaleY     | number | Scale ratio of the y-axis          |
+  | translateX | number | Translation distance of the x-axis |
+  | translateY | number | Translation distance of the y-axis |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
-        path.setTransform(0.8, 0, 0, 0.4, 0, 0);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D("M250 150 L150 350 L350 350 Z");
+      path.setTransform(0.8, 0, 0, 0.4, 0, 0);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001127125208.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125208.png)
 
+## closePath
 
-## closePath<a name="section653891424217"></a>
-
-closePath\(\): void
+closePath(): void
 
 Moves the current point of the path back to the start point of the path, and draws a straight line between the current point and the start point. If the shape is closed or has only one point, this method does not perform any action.
 
--   Example
+- Example
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.moveTo(200, 100);
-        path.lineTo(300, 100);
-        path.lineTo(200, 200);
-        path.closePath();
-        ctx.stroke(path);
-      }
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.moveTo(200, 100);
+      path.lineTo(300, 100);
+      path.lineTo(200, 200);
+      path.closePath();
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001127125202.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125202.png)
 
+## moveTo
 
-## moveTo<a name="section384917162456"></a>
-
-moveTo\(x: number, y: number\): void
+moveTo(x: number, y: number): void
 
 Moves the current coordinate point of the path to the target point, without drawing a line during the movement.
 
--   Parameters
+- Parameters
 
-    <a name="table78491916124512"></a>
-    <table><thead align="left"><tr id="row14850181613456"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p11850191612454"><a name="p11850191612454"></a><a name="p11850191612454"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="34.74%" id="mcps1.1.4.1.2"><p id="p9850416144514"><a name="p9850416144514"></a><a name="p9850416144514"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="43.57%" id="mcps1.1.4.1.3"><p id="p1850816154519"><a name="p1850816154519"></a><a name="p1850816154519"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row6850181612455"><td class="cellrowborder" valign="top" width="21.69%" headers="mcps1.1.4.1.1 "><p id="p17850161612455"><a name="p17850161612455"></a><a name="p17850161612455"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.74%" headers="mcps1.1.4.1.2 "><p id="p118501716164516"><a name="p118501716164516"></a><a name="p118501716164516"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.57%" headers="mcps1.1.4.1.3 "><p id="p3850181634517"><a name="p3850181634517"></a><a name="p3850181634517"></a>X-coordinate of the target point</p>
-    </td>
-    </tr>
-    <tr id="row12850181618452"><td class="cellrowborder" valign="top" width="21.69%" headers="mcps1.1.4.1.1 "><p id="p1185081616453"><a name="p1185081616453"></a><a name="p1185081616453"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.74%" headers="mcps1.1.4.1.2 "><p id="p98506164455"><a name="p98506164455"></a><a name="p98506164455"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.57%" headers="mcps1.1.4.1.3 "><p id="p138501116104518"><a name="p138501116104518"></a><a name="p138501116104518"></a>Y-coordinate of the target point</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                      |
+  | --------- | ------ | -------------------------------- |
+  | x         | number | X-coordinate of the target point |
+  | y         | number | Y-coordinate of the target point |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.moveTo(50, 100);
-        path.lineTo(250, 100);
-        path.lineTo(150, 200);
-        path.closePath();
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.moveTo(50, 100);
+      path.lineTo(250, 100);
+      path.lineTo(150, 200);
+      path.closePath();
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173164869.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164869.png)
 
+## lineTo
 
-## lineTo<a name="section1374011322484"></a>
-
-lineTo\(x: number, y: number\): void
+lineTo(x: number, y: number): void
 
 Draws a straight line from the current point to the target point.
 
--   Parameters
+- Parameters
 
-    <a name="table174093224819"></a>
-    <table><thead align="left"><tr id="row187401432134818"><th class="cellrowborder" valign="top" width="21.69%" id="mcps1.1.4.1.1"><p id="p374173224817"><a name="p374173224817"></a><a name="p374173224817"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="34.74%" id="mcps1.1.4.1.2"><p id="p2741183219482"><a name="p2741183219482"></a><a name="p2741183219482"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="43.57%" id="mcps1.1.4.1.3"><p id="p1774112327488"><a name="p1774112327488"></a><a name="p1774112327488"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1741143284810"><td class="cellrowborder" valign="top" width="21.69%" headers="mcps1.1.4.1.1 "><p id="p19741103254812"><a name="p19741103254812"></a><a name="p19741103254812"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.74%" headers="mcps1.1.4.1.2 "><p id="p57411832154812"><a name="p57411832154812"></a><a name="p57411832154812"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.57%" headers="mcps1.1.4.1.3 "><p id="p1474119322489"><a name="p1474119322489"></a><a name="p1474119322489"></a>X-coordinate of the target point</p>
-    </td>
-    </tr>
-    <tr id="row97411532144814"><td class="cellrowborder" valign="top" width="21.69%" headers="mcps1.1.4.1.1 "><p id="p14741193212488"><a name="p14741193212488"></a><a name="p14741193212488"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="34.74%" headers="mcps1.1.4.1.2 "><p id="p127411332174814"><a name="p127411332174814"></a><a name="p127411332174814"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="43.57%" headers="mcps1.1.4.1.3 "><p id="p137412326481"><a name="p137412326481"></a><a name="p137412326481"></a>Y-coordinate of the target point</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                      |
+  | --------- | ------ | -------------------------------- |
+  | x         | number | X-coordinate of the target point |
+  | y         | number | Y-coordinate of the target point |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.moveTo(100, 100);
-        path.lineTo(100, 200);
-        path.lineTo(200, 200);
-        path.lineTo(200, 100);
-        path.closePath();
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.moveTo(100, 100);
+      path.lineTo(100, 200);
+      path.lineTo(200, 200);
+      path.lineTo(200, 100);
+      path.closePath();
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001127285024.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127285024.png)
 
+## bezierCurveTo
 
-## bezierCurveTo<a name="section122413525494"></a>
-
-bezierCurveTo\(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number\): void
+bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
 Draws a cubic bezier curve on the canvas.
 
--   Parameters
+- Parameters
 
-    <a name="table5241185218495"></a>
-    <table><thead align="left"><tr id="row1224175215491"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p192411529491"><a name="p192411529491"></a><a name="p192411529491"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p4241052154910"><a name="p4241052154910"></a><a name="p4241052154910"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p5241052114911"><a name="p5241052114911"></a><a name="p5241052114911"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row624113524497"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p6241135213493"><a name="p6241135213493"></a><a name="p6241135213493"></a>cp1x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p22422529499"><a name="p22422529499"></a><a name="p22422529499"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p172421052114919"><a name="p172421052114919"></a><a name="p172421052114919"></a>X-coordinate of the first parameter of the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row924225212492"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p4242115213499"><a name="p4242115213499"></a><a name="p4242115213499"></a>cp1y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p7242195234910"><a name="p7242195234910"></a><a name="p7242195234910"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p524211522496"><a name="p524211522496"></a><a name="p524211522496"></a>Y-coordinate of the first parameter of the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row1924210522498"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p624214522499"><a name="p624214522499"></a><a name="p624214522499"></a>cp2x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p15242175214914"><a name="p15242175214914"></a><a name="p15242175214914"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p524275215490"><a name="p524275215490"></a><a name="p524275215490"></a>X-coordinate of the second parameter of the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row1024285214912"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p3242175211491"><a name="p3242175211491"></a><a name="p3242175211491"></a>cp2y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p624205215497"><a name="p624205215497"></a><a name="p624205215497"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p124214527499"><a name="p124214527499"></a><a name="p124214527499"></a>Y-coordinate of the second parameter of the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row11242175210494"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p8242185217497"><a name="p8242185217497"></a><a name="p8242185217497"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p11242125219493"><a name="p11242125219493"></a><a name="p11242125219493"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p122428527495"><a name="p122428527495"></a><a name="p122428527495"></a>X-coordinate of the end point on the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row02433524498"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p924345217491"><a name="p924345217491"></a><a name="p924345217491"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1243135224912"><a name="p1243135224912"></a><a name="p1243135224912"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p3243135254915"><a name="p3243135254915"></a><a name="p3243135254915"></a>Y-coordinate of the end point on the bezier curve</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                                              |
+  | --------- | ------ | -------------------------------------------------------- |
+  | cp1x      | number | X-coordinate of the first parameter of the bezier curve  |
+  | cp1y      | number | Y-coordinate of the first parameter of the bezier curve  |
+  | cp2x      | number | X-coordinate of the second parameter of the bezier curve |
+  | cp2y      | number | Y-coordinate of the second parameter of the bezier curve |
+  | x         | number | X-coordinate of the end point on the bezier curve        |
+  | y         | number | Y-coordinate of the end point on the bezier curve        |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.moveTo(10, 10);
-        path.bezierCurveTo(20, 100, 200, 100, 200, 20);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.moveTo(10, 10);
+      path.bezierCurveTo(20, 100, 200, 100, 200, 20);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173324783.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324783.png)
 
+## quadraticCurveTo
 
-## quadraticCurveTo<a name="section16154556165015"></a>
-
-quadraticCurveTo\(cpx: number, cpy: number, x: number, y: number\): void
+quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 Draws a quadratic curve on the canvas.
 
--   Parameters
+- Parameters
 
-    <a name="table815416567500"></a>
-    <table><thead align="left"><tr id="row915445619508"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p1815412561507"><a name="p1815412561507"></a><a name="p1815412561507"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p3154195613509"><a name="p3154195613509"></a><a name="p3154195613509"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p6154456135016"><a name="p6154456135016"></a><a name="p6154456135016"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row51543567505"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p111544569503"><a name="p111544569503"></a><a name="p111544569503"></a>cpx</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1315419563508"><a name="p1315419563508"></a><a name="p1315419563508"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p10154105675010"><a name="p10154105675010"></a><a name="p10154105675010"></a>X-coordinate of the bezier curve parameter</p>
-    </td>
-    </tr>
-    <tr id="row4154175618504"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1615410566508"><a name="p1615410566508"></a><a name="p1615410566508"></a>cpy</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p31540568507"><a name="p31540568507"></a><a name="p31540568507"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p8154165685013"><a name="p8154165685013"></a><a name="p8154165685013"></a>Y-coordinate of the bezier curve parameter</p>
-    </td>
-    </tr>
-    <tr id="row11548564504"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p41551856175018"><a name="p41551856175018"></a><a name="p41551856175018"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1515575685013"><a name="p1515575685013"></a><a name="p1515575685013"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p9155115610507"><a name="p9155115610507"></a><a name="p9155115610507"></a>X-coordinate of the end point on the bezier curve</p>
-    </td>
-    </tr>
-    <tr id="row1115555665015"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p18155105685012"><a name="p18155105685012"></a><a name="p18155105685012"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p20155856135019"><a name="p20155856135019"></a><a name="p20155856135019"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p5155156125013"><a name="p5155156125013"></a><a name="p5155156125013"></a>Y-coordinate of the end point on the bezier curve</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                                       |
+  | --------- | ------ | ------------------------------------------------- |
+  | cpx       | number | X-coordinate of the bezier curve parameter        |
+  | cpy       | number | Y-coordinate of the bezier curve parameter        |
+  | x         | number | X-coordinate of the end point on the bezier curve |
+  | y         | number | Y-coordinate of the end point on the bezier curve |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.moveTo(10, 10);
-        path.quadraticCurveTo(100, 100, 200, 20);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.moveTo(10, 10);
+      path.quadraticCurveTo(100, 100, 200, 20);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173164871.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164871.png)
 
+## arc
 
-## arc<a name="section950116919527"></a>
-
-arc\(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise: number\): void
+arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise: number): void
 
 Draws an arc on the canvas.
 
--   Parameters
+- Parameters
 
-    <a name="table1050139185219"></a>
-    <table><thead align="left"><tr id="row250129165211"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p185016935213"><a name="p185016935213"></a><a name="p185016935213"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p250111935212"><a name="p250111935212"></a><a name="p250111935212"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p7501997528"><a name="p7501997528"></a><a name="p7501997528"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row850189195216"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p175011099524"><a name="p175011099524"></a><a name="p175011099524"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p14501390521"><a name="p14501390521"></a><a name="p14501390521"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p85027935216"><a name="p85027935216"></a><a name="p85027935216"></a>X-coordinate of the center point of the arc</p>
-    </td>
-    </tr>
-    <tr id="row350216985214"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p55026925210"><a name="p55026925210"></a><a name="p55026925210"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p75021291525"><a name="p75021291525"></a><a name="p75021291525"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p18502193521"><a name="p18502193521"></a><a name="p18502193521"></a>Y-coordinate of the center point of the arc</p>
-    </td>
-    </tr>
-    <tr id="row2502169185215"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p150211925210"><a name="p150211925210"></a><a name="p150211925210"></a>radius</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p550211913528"><a name="p550211913528"></a><a name="p550211913528"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p13502169135212"><a name="p13502169135212"></a><a name="p13502169135212"></a>Radius of the arc</p>
-    </td>
-    </tr>
-    <tr id="row550212975211"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1350212985217"><a name="p1350212985217"></a><a name="p1350212985217"></a>startAngle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p85029985211"><a name="p85029985211"></a><a name="p85029985211"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p165021920526"><a name="p165021920526"></a><a name="p165021920526"></a>Start radian of the arc</p>
-    </td>
-    </tr>
-    <tr id="row25022912524"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p105021912522"><a name="p105021912522"></a><a name="p105021912522"></a>endAngle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p150219925218"><a name="p150219925218"></a><a name="p150219925218"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p550213945213"><a name="p550213945213"></a><a name="p550213945213"></a>End radian of the arc</p>
-    </td>
-    </tr>
-    <tr id="row250218913526"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p850216913520"><a name="p850216913520"></a><a name="p850216913520"></a>anticlockwise</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1850219914524"><a name="p1850219914524"></a><a name="p1850219914524"></a>boolean</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p105031691522"><a name="p105031691522"></a><a name="p105031691522"></a>Whether to draw the arc counterclockwise</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter     | Type    | Description                                 |
+  | ------------- | ------- | ------------------------------------------- |
+  | x             | number  | X-coordinate of the center point of the arc |
+  | y             | number  | Y-coordinate of the center point of the arc |
+  | radius        | number  | Radius of the arc                           |
+  | startAngle    | number  | Start radian of the arc                     |
+  | endAngle      | number  | End radian of the arc                       |
+  | anticlockwise | boolean | Whether to draw the arc counterclockwise    |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.arc(100, 75, 50, 0, 6.28);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.arc(100, 75, 50, 0, 6.28);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173164867.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164867.png)
 
+## arcTo
 
-## arcTo<a name="section98421358175219"></a>
-
-arcTo\(x1: number, y1: number, x2: number, y2: number, radius: number\): void
+arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
--   Parameters
+- Parameters
 
-    <a name="table584265819528"></a>
-    <table><thead align="left"><tr id="row198421584521"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p12842115815217"><a name="p12842115815217"></a><a name="p12842115815217"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p38431558175217"><a name="p38431558175217"></a><a name="p38431558175217"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p8843195812520"><a name="p8843195812520"></a><a name="p8843195812520"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row148431358115213"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p384345875215"><a name="p384345875215"></a><a name="p384345875215"></a>x1</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p984325805212"><a name="p984325805212"></a><a name="p984325805212"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p178438582527"><a name="p178438582527"></a><a name="p178438582527"></a>X-coordinate of the first point on the arc</p>
-    </td>
-    </tr>
-    <tr id="row1984385813525"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p16843958185217"><a name="p16843958185217"></a><a name="p16843958185217"></a>y1</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p168431058165216"><a name="p168431058165216"></a><a name="p168431058165216"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p12843205813522"><a name="p12843205813522"></a><a name="p12843205813522"></a>Y-coordinate of the first point on the arc</p>
-    </td>
-    </tr>
-    <tr id="row88431558115211"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p88431058105211"><a name="p88431058105211"></a><a name="p88431058105211"></a>x2</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1984315875217"><a name="p1984315875217"></a><a name="p1984315875217"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p158431558185211"><a name="p158431558185211"></a><a name="p158431558185211"></a>X-coordinate of the second point on the arc</p>
-    </td>
-    </tr>
-    <tr id="row198431858125217"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1484420584525"><a name="p1484420584525"></a><a name="p1484420584525"></a>y2</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p084495885213"><a name="p084495885213"></a><a name="p084495885213"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p1684418583522"><a name="p1684418583522"></a><a name="p1684418583522"></a>Y-coordinate of the second point on the arc</p>
-    </td>
-    </tr>
-    <tr id="row11844358155211"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p8844155865219"><a name="p8844155865219"></a><a name="p8844155865219"></a>radius</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p1984410581525"><a name="p1984410581525"></a><a name="p1984410581525"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p17844155815220"><a name="p17844155815220"></a><a name="p17844155815220"></a>Radius of the arc</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                                 |
+  | --------- | ------ | ------------------------------------------- |
+  | x1        | number | X-coordinate of the first point on the arc  |
+  | y1        | number | Y-coordinate of the first point on the arc  |
+  | x2        | number | X-coordinate of the second point on the arc |
+  | y2        | number | Y-coordinate of the second point on the arc |
+  | radius    | number | Radius of the arc                           |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.arcTo(150, 20, 150, 70, 50);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.arcTo(150, 20, 150, 70, 50);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001127125204.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125204.png)
 
+## ellipse
 
-## ellipse<a name="section8146160205420"></a>
-
-ellipse\(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, anticlockwise: number\): void
+ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, anticlockwise: number): void
 
 Draws an ellipse in the specified rectangular region.
 
--   Parameters
+- Parameters
 
-    <a name="table51461805541"></a>
-    <table><thead align="left"><tr id="row181461109541"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.1.4.1.1"><p id="p014716035415"><a name="p014716035415"></a><a name="p014716035415"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="31.34343434343434%" id="mcps1.1.4.1.2"><p id="p171472055413"><a name="p171472055413"></a><a name="p171472055413"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="35.323232323232325%" id="mcps1.1.4.1.3"><p id="p1814718035418"><a name="p1814718035418"></a><a name="p1814718035418"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row1114714015418"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p81478015543"><a name="p81478015543"></a><a name="p81478015543"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p71470013548"><a name="p71470013548"></a><a name="p71470013548"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p714720125410"><a name="p714720125410"></a><a name="p714720125410"></a>X-coordinate of the ellipse center</p>
-    </td>
-    </tr>
-    <tr id="row1114710018548"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1214718010544"><a name="p1214718010544"></a><a name="p1214718010544"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p314760175411"><a name="p314760175411"></a><a name="p314760175411"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p014730105419"><a name="p014730105419"></a><a name="p014730105419"></a>Y-coordinate of the ellipse center</p>
-    </td>
-    </tr>
-    <tr id="row2147709540"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p201478045416"><a name="p201478045416"></a><a name="p201478045416"></a>radiusX</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p14147205540"><a name="p14147205540"></a><a name="p14147205540"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p151475013547"><a name="p151475013547"></a><a name="p151475013547"></a>Ellipse radius on the x-axis.</p>
-    </td>
-    </tr>
-    <tr id="row61474012544"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p51477018543"><a name="p51477018543"></a><a name="p51477018543"></a>radiusY</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p14148150205416"><a name="p14148150205416"></a><a name="p14148150205416"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p181481705544"><a name="p181481705544"></a><a name="p181481705544"></a>Ellipse radius on the y-axis.</p>
-    </td>
-    </tr>
-    <tr id="row201484005417"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p161483075416"><a name="p161483075416"></a><a name="p161483075416"></a>rotation</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p1148502548"><a name="p1148502548"></a><a name="p1148502548"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p514820005414"><a name="p514820005414"></a><a name="p514820005414"></a>Rotation angle of the ellipse. The unit is radian.</p>
-    </td>
-    </tr>
-    <tr id="row181481704549"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1814850165416"><a name="p1814850165416"></a><a name="p1814850165416"></a>startAngle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p1914815025414"><a name="p1914815025414"></a><a name="p1914815025414"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p51481906547"><a name="p51481906547"></a><a name="p51481906547"></a>Angle of the start point for drawing the ellipse. The unit is radian.</p>
-    </td>
-    </tr>
-    <tr id="row1148150125412"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p131483019542"><a name="p131483019542"></a><a name="p131483019542"></a>endAngle</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p14148190155418"><a name="p14148190155418"></a><a name="p14148190155418"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p1114812095411"><a name="p1114812095411"></a><a name="p1114812095411"></a>Angle of the end point for drawing the ellipse. The angle is represented by radians.</p>
-    </td>
-    </tr>
-    <tr id="row4148206542"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.1.4.1.1 "><p id="p1114817035417"><a name="p1114817035417"></a><a name="p1114817035417"></a>anticlockwise</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="31.34343434343434%" headers="mcps1.1.4.1.2 "><p id="p3148130105411"><a name="p3148130105411"></a><a name="p3148130105411"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="35.323232323232325%" headers="mcps1.1.4.1.3 "><p id="p914910015410"><a name="p914910015410"></a><a name="p914910015410"></a>Whether to draw the ellipse in the anticlockwise direction. The value <strong id="b148606837841113"><a name="b148606837841113"></a><a name="b148606837841113"></a>0</strong> indicates clockwise and the value <strong id="b64668246441113"><a name="b64668246441113"></a><a name="b64668246441113"></a>1</strong> indicates anticlockwise. This parameter is optional. The default value is <strong id="b137444197741113"><a name="b137444197741113"></a><a name="b137444197741113"></a>0</strong>.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter     | Type   | Description                                                  |
+  | ------------- | ------ | ------------------------------------------------------------ |
+  | x             | number | X-coordinate of the ellipse center                           |
+  | y             | number | Y-coordinate of the ellipse center                           |
+  | radiusX       | number | Ellipse radius on the x-axis.                                |
+  | radiusY       | number | Ellipse radius on the y-axis.                                |
+  | rotation      | number | Rotation angle of the ellipse. The unit is radian.           |
+  | startAngle    | number | Angle of the start point for drawing the ellipse. The unit is radian. |
+  | endAngle      | number | Angle of the end point for drawing the ellipse. The angle is represented by radians. |
+  | anticlockwise | number | Whether to draw the ellipse in the anticlockwise direction. The value **0** indicates clockwise and the value **1** indicates anticlockwise. This parameter is optional. The default value is **0**. |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx =el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx =el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI, 1);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001173324787.png)
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324787.png)
 
+## rect
 
-## rect<a name="section18565225124518"></a>
-
-rect\(x: number, y: number, width: number, height: number\): void
+rect(x: number, y: number, width: number, height: number): void
 
 Creates a rectangle.
 
--   Parameters
+- Parameters
 
-    <a name="table92131548185610"></a>
-    <table><thead align="left"><tr id="row9238348185613"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.1"><p id="p723854810561"><a name="p723854810561"></a><a name="p723854810561"></a>Parameter</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.2"><p id="p2238144885615"><a name="p2238144885615"></a><a name="p2238144885615"></a>Type</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.1.4.1.3"><p id="p223814486561"><a name="p223814486561"></a><a name="p223814486561"></a>Description</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row5238104813569"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1423864816566"><a name="p1423864816566"></a><a name="p1423864816566"></a>x</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p3238194814560"><a name="p3238194814560"></a><a name="p3238194814560"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p9238204818566"><a name="p9238204818566"></a><a name="p9238204818566"></a>X-coordinate of the upper left corner of the rectangle.</p>
-    </td>
-    </tr>
-    <tr id="row1423884816562"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p132383488563"><a name="p132383488563"></a><a name="p132383488563"></a>y</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p02395487560"><a name="p02395487560"></a><a name="p02395487560"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523934819568"><a name="p523934819568"></a><a name="p523934819568"></a>Y-coordinate of the upper left corner of the rectangle.</p>
-    </td>
-    </tr>
-    <tr id="row723954815563"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p182391481565"><a name="p182391481565"></a><a name="p182391481565"></a>width</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p142391648145610"><a name="p142391648145610"></a><a name="p142391648145610"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523919486569"><a name="p523919486569"></a><a name="p523919486569"></a>Width of the rectangle.</p>
-    </td>
-    </tr>
-    <tr id="row1723924885618"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.1 "><p id="p1923934820561"><a name="p1923934820561"></a><a name="p1923934820561"></a>height</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.2 "><p id="p13239448135615"><a name="p13239448135615"></a><a name="p13239448135615"></a>number</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.1.4.1.3 "><p id="p523924819568"><a name="p523924819568"></a><a name="p523924819568"></a>Height of the rectangle.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+  
 
--   Example
+  | Parameter | Type   | Description                                             |
+  | --------- | ------ | ------------------------------------------------------- |
+  | x         | number | X-coordinate of the upper left corner of the rectangle. |
+  | y         | number | Y-coordinate of the upper left corner of the rectangle. |
+  | width     | number | Width of the rectangle.                                 |
+  | height    | number | Height of the rectangle.                                |
 
-    ```
-    <!-- xxx.hml -->
-    <div>
-      <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
-    </div>
-    ```
+- Example
 
-    ```
-    //xxx.js
-    export default {
-      onShow() {
-        const el =this.$refs.canvas;
-        const ctx = el.getContext('2d');
-        var path = ctx.createPath2D();
-        path.rect(20, 20, 100, 100);
-        ctx.stroke(path);
-      }
+  ```
+  <!-- xxx.hml -->
+  <div>
+    <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```
+  //xxx.js
+  export default {
+    onShow() {
+      const el =this.$refs.canvas;
+      const ctx = el.getContext('2d');
+      var path = ctx.createPath2D();
+      path.rect(20, 20, 100, 100);
+      ctx.stroke(path);
     }
-    ```
+  }
+  ```
 
-    ![](figures/en-us_image_0000001127125212.png)
-
+  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125212.png)

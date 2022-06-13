@@ -1,4 +1,4 @@
-# animateTransform<a name="EN-US_TOPIC_0000001173324667"></a>
+# animateTransform
 
 The  **<animateTransform\>**  component is used to apply a transform animation and supports the following components:
 
@@ -7,46 +7,24 @@ The  **<animateTransform\>**  component is used to apply a transform animation a
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section11257113618419"></a>
+## Required Permissions
 
 None
 
-## Child Components<a name="section9288143101012"></a>
+## Child Components
 
 Not supported
 
-## Attributes<a name="section2907183951110"></a>
+## Attributes
 
 The  **animate**  attributes and the attributes in the following table are supported.
 
-<a name="table20633101642315"></a>
-<table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aaf1247770b244944bbcc9f28d9a6f00b"><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.2"><p id="a6efc3502761f4faf9630e484280f75b6"><a name="a6efc3502761f4faf9630e484280f75b6"></a><a name="a6efc3502761f4faf9630e484280f75b6"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="10.48%" id="mcps1.1.6.1.3"><p id="a27a37273d9ad47569ddbcb8db985d302"><a name="a27a37273d9ad47569ddbcb8db985d302"></a><a name="a27a37273d9ad47569ddbcb8db985d302"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="7.5200000000000005%" id="mcps1.1.6.1.4"><p id="p824610360217"><a name="p824610360217"></a><a name="p824610360217"></a>Mandatory</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.76%" id="mcps1.1.6.1.5"><p id="a2ff3361bfd3b420ba4967452d2ddd098"><a name="a2ff3361bfd3b420ba4967452d2ddd098"></a><a name="a2ff3361bfd3b420ba4967452d2ddd098"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row36332165231"><td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.1 "><p id="p19122124719532"><a name="p19122124719532"></a><a name="p19122124719532"></a>type</p>
-</td>
-<td class="cellrowborder" valign="top" width="23.119999999999997%" headers="mcps1.1.6.1.2 "><p id="p3121547175310"><a name="p3121547175310"></a><a name="p3121547175310"></a>[translate | scale | rotate | skewX | skewY]</p>
-</td>
-<td class="cellrowborder" valign="top" width="10.48%" headers="mcps1.1.6.1.3 "><p id="p201211474539"><a name="p201211474539"></a><a name="p201211474539"></a>-</p>
-</td>
-<td class="cellrowborder" valign="top" width="7.5200000000000005%" headers="mcps1.1.6.1.4 "><p id="p151201747195314"><a name="p151201747195314"></a><a name="p151201747195314"></a>Yes</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.76%" headers="mcps1.1.6.1.5 "><p id="p1211954714533"><a name="p1211954714533"></a><a name="p1211954714533"></a>Transform animation type.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name | Type                                             | Default Value | Mandatory | Description               |
+| ---- | ------------------------------------------------ | ------------- | --------- | ------------------------- |
+| type | [translate \| scale \| rotate \| skewX \| skewY] | -             | Yes       | Transform animation type. |
 
-## Example<a name="section360556124815"></a>
+
+## Example
 
 ```
 <!-- xxx.hml -->
