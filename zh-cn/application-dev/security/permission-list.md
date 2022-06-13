@@ -2,7 +2,7 @@
 
 在符合[应用申请和使用权限的基本原则](accesstoken-overview.md#基本原则)的基础上，可以根据下图判断应用是否可以申请某权限。
 
-![](D:\doc-gitee\docs\zh-cn\application-dev\security\figures\permission-application-process.png)
+![](figures/permission-application-process.png)
 
 1. 应用APL等级与权限等级的匹配关系请参考[访问控制开发概述-权限等级说明](accesstoken-overview.md#权限等级说明)。
 2. 权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[访问控制开发概述-权限类型说明](accesstoken-overview.md#权限类型说明)。
