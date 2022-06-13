@@ -26,7 +26,7 @@ createAppAccountManager(): AppAccountManager
 
 **示例：**
   ```js
-  var appAccountManager = account_appAccount.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager

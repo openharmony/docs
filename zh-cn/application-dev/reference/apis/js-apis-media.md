@@ -117,7 +117,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder();
+let audioRecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
