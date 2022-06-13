@@ -1,9 +1,9 @@
 # Service Extension Ability Development
 
 ## When to Use
-**ExtensionAbility** is the base class of the new **Extension** component in the stage model. It is used to process jobs without UIs. The lifecycle of an Extension ability is simple, and it does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
+**ExtensionAbility** is the base class of the new **Extension** component in the stage model. It is used to process jobs without UIs. The lifecycle of **ExtensionAbility** is simple, and it does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
 
-You can customize a class that inherits from **ServiceExtensionAbility** and override the lifecycle callbacks of **ServiceExtensionAbility** to perform service logic operations during the initialization, connection, and disconnection processes.
+You can customize a class that inherits from **ServiceExtensionAbility** and override the lifecycle callbacks of **ExtensionAbility** to perform service logic operations during the initialization, connection, and disconnection processes.
 
 ## Available APIs
 
