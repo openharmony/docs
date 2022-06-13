@@ -82,7 +82,7 @@ interface ReminderRequest: 需要发布的提醒实例的信息
 | content | string | 否 | 提醒的内容 |
 | expiredContent | string | 否 | 提醒“过期”时显示的扩展内容 |
 | snoozeContent | string | 否 | 提醒“再响”时显示的扩展内容 |
-| notificationId | number | 否 | 提醒使用的notificationRequest的id，参见NotificationRequest.setNotificationId(int&nbsp;id) |
+| notificationId | number | 否 | 提醒使用的notificationRequest的id，参见NotificationRequest::SetNotificationId(int32_t&nbsp;id) |
 | slotType | SlotType | 否 | 提醒使用的slot类型 |
 
 interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例。
