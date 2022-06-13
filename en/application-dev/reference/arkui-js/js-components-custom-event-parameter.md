@@ -1,4 +1,4 @@
-# Event Parameter<a name="EN-US_TOPIC_0000001173164759"></a>
+# Event Parameter
 
 A child component can also pass parameters to an upper-layer component through the bound event. The following example describes how to pass parameters through the custom event:
 

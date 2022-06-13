@@ -1,9 +1,9 @@
-# slot<a name="EN-US_TOPIC_0000001127284840"></a>
+# slot
 
 >![](../../public_sys-resources/icon-note.gif) **NOTE:** 
 >The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Default Slot<a name="section68133181214"></a>
+## Default Slot
 
 You can use the  **<slot\>**  tag to create a slot inside a custom component to fill the content defined in the parent component. The sample code is as follows:
 
@@ -27,7 +27,7 @@ The following references the custom component:
  </div>
 ```
 
-## Named Slot<a name="section18337143291211"></a>
+## Named Slot
 
 When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the  **<name\>**  attribute.
 
