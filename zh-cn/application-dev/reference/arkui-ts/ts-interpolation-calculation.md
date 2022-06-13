@@ -45,7 +45,7 @@ steps(count: number, end: boolean): Object
   | 参数名 | 类型 | 必填 | 默认值 | 说明 | 
   | -------- | -------- | -------- | -------- | -------- |
   | count | number | 是 | - | 阶梯的数量，需要为正整数。 | 
-  | end | boolean | 否 | true | 在每个间隔的起点或是终点发生阶跃变化&nbsp;，默认值为true，即在终点发生阶跃变化。 | 
+  | end | boolean | 是 | true | 在每个间隔的起点或是终点发生阶跃变化&nbsp;，默认值为true，即在终点发生阶跃变化。 | 
 
 - 返回值
   曲线对象Object。
