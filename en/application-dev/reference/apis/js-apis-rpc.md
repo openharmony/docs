@@ -78,7 +78,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -119,7 +119,7 @@ Reads the remote object from this **MessageParcel** object. You can use this met
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1698,7 +1698,7 @@ Writes information to this **MessageParcel** object indicating that no exception
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1901,7 +1901,7 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1947,7 +1947,7 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -1994,7 +1994,7 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -2456,7 +2456,7 @@ Called to perform subsequent operations when a death notification of the remote 
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   ```
@@ -2652,7 +2652,7 @@ Provides methods to implement **IRemoteObject**.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-2).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-2).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2931,7 +2931,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -2982,7 +2982,7 @@ Removes the callback used to receive death notifications of the remote object.
   FA.connectAbility(want, connect);
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
@@ -3362,7 +3362,7 @@ Flushes all suspended commands from the specified **RemoteProxy** to the corresp
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3497,7 +3497,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3561,7 +3561,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3627,7 +3627,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3694,7 +3694,7 @@ Provides a response to **sendRequest()**. The server processes the request and r
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3743,7 +3743,7 @@ Obtains the UID of the remote process.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3784,7 +3784,7 @@ Obtains the PID of the remote process.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3830,7 +3830,7 @@ Checks whether the remote object corresponding to the specified interface descri
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3871,7 +3871,7 @@ Obtains the interface descriptor.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -3914,7 +3914,7 @@ Binds an interface descriptor to an **IRemoteBroker** object.
   ```
   class MyDeathRecipient {
       onRemoteDied() {
-          console.log("server is died");
+          console.log("server died");
       }
   }
   class TestRemoteObject extends rpc.RemoteObject {
@@ -4076,7 +4076,7 @@ Creates the shared file mapping on the virtual address space of this process. Th
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | mapType | number | Yes| Protection level of the memory region to which the shared file is mapped.|
 
@@ -4189,6 +4189,8 @@ Writes data to the shared file associated with this **Ashmem** object.
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let mapResult = ashmem.mapReadAndWriteAshmem();
+  console.info("RpcTest map ashmem result is " + mapResult);
   var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
@@ -4204,7 +4206,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
+    | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | size | number | Yes| Size of the data to read.|
   | offset | number | Yes| Start position of the data to read in the memory region associated with this **Ashmem** object.|
@@ -4219,6 +4221,8 @@ Reads data from the shared file associated with this **Ashmem** object.
 
   ```
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
+  let mapResult = ashmem.mapReadAndWriteAshmem();
+  console.info("RpcTest map ashmem result is " + mapResult);
   var ByteArrayVar = [1, 2, 3, 4, 5];
   let writeResult = ashmem.writeToAshmem(ByteArrayVar, 5, 0);
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
