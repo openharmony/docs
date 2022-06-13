@@ -161,7 +161,7 @@ privacyManager.getPermissionUsedRecords(request, (err, data) => {
 
 | 名称                    | 值 | 描述                   |
 | ----------------------- | ------ | ---------------------- |
-| FLAG_PERMISSION_USAGE_SUMMARY             | 0    | 表示查询总览数据，默认值。 |
+| FLAG_PERMISSION_USAGE_SUMMARY             | 0    | 表示查询总览数据。 |
 | FLAG_PERMISSION_USAGE_DETAIL         | 1    | 表示查询详细数据。         |
 
 ## PermissionUsedRequest
