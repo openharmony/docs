@@ -42,7 +42,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
-let tokenID = 0;
+var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -72,9 +72,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
-import bundle from '@ohos.bundle'
-var appInfo = await bundle.getApplicationInfo('bundle_name', 0, 100);
-var tokenID = appInfo.accessTokenId;
+var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
