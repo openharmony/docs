@@ -22,15 +22,15 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
 接口名                                                    |     接口描述                            
 ---------------------------------------------------------|-----------------------------------------
-function startWork(work: WorkInfo): boolean; | 延迟调度任务申请 
-function stopWork(work: WorkInfo, needCancel?: boolean): boolean;        | 延迟调度任务取消 
-function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;| 获取延迟调度任务状态（Callback形式） 
-function getWorkStatus(workId: number): Promise<WorkInfo>; | 获取延迟调度任务状态（Promise形式） 
-function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;| 获取所有延迟调度任务（Callback形式） 
-function obtainAllWorks(): Promise<Array<WorkInfo>>;| 获取所有延迟调度任务（Promise形式） 
-function stopAndClearWorks(): boolean;| 停止并清除任务
-function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;| 获取上次任务是否超时（针对RepeatWork，Callback形式）
-function isLastWorkTimeOut(workId: number): Promise<boolean>;| 获取上次任务是否超时（针对RepeatWork，Promise形式）
+startWork(work: WorkInfo): boolean | 延迟调度任务申请 
+stopWork(work: WorkInfo, needCancel?: boolean): boolean        | 延迟调度任务取消 
+getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void| 获取延迟调度任务状态（Callback形式） 
+getWorkStatus(workId: number): Promise\<WorkInfo> | 获取延迟调度任务状态（Promise形式） 
+obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>| 获取所有延迟调度任务（Callback形式） 
+obtainAllWorks(): Promise<Array\<WorkInfo>>| 获取所有延迟调度任务（Promise形式） 
+stopAndClearWorks(): boolean| 停止并清除任务
+isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean| 获取上次任务是否超时（针对RepeatWork，Callback形式）
+isLastWorkTimeOut(workId: number): Promise\<boolean>| 获取上次任务是否超时（针对RepeatWork，Promise形式）
 
 **表2** WorkInfo包含参数
 
@@ -53,15 +53,15 @@ repeatCount    |循环次数| number
 
 接口名                                                    |     接口描述                            
 ---------------------------------------------------------|-----------------------------------------
-function onWorkStart(work: WorkInfo): void; | 延迟调度任务开始回调
-function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
+onWorkStart(work: WorkInfo): void | 延迟调度任务开始回调
+onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
 
 ### 开发步骤
 
 **开发对应的Extension**
 
     import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-
+    
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
         onWorkStart(workInfo) {
             console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
@@ -77,7 +77,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 
     import workScheduler from '@ohos.workScheduler';
-
+    
     let workInfo = {
         workId: 1,
         batteryLevel:50,
@@ -95,7 +95,7 @@ function onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
 
 
     import workScheduler from '@ohos.workScheduler';
-
+    
     let workInfo = {
         workId: 1,
         batteryLevel:50,

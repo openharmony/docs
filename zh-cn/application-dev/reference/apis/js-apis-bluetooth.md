@@ -729,7 +729,7 @@ bluetooth.off('stateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.sppListen<sup>8+</sup><a name="sppListen<"></a>
+## bluetooth.sppListen<sup>8+</sup><a name="sppListen"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -1288,8 +1288,6 @@ getDeviceState(device: string): ProfileConnectionState
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
-
 **返回值：**
 
 |                                                   |                         |
@@ -1303,7 +1301,7 @@ getDeviceState(device: string): ProfileConnectionState
 使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="a2dp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1335,7 +1333,7 @@ let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="a2dp-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1459,7 +1457,7 @@ let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 使用HandsFreeAudioGatewayProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="hfp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1491,7 +1489,7 @@ let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="hfp-disconnect"></a>
 
 disconnect(device: string): boolean
 
