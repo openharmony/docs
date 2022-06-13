@@ -8,36 +8,36 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 |---|---|---|---|
 | ohos.multimedia.mediaLibrary | Size | height: number; | Added|
 | ohos.multimedia.mediaLibrary | Size | width: number; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | startMediaSelect(option: MediaSelectOption, callback: AsyncCallback<Array<string>>): void;<br>startMediaSelect(option: MediaSelectOption): Promise<Array<string>>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | startImagePreview(images: Array<string>, index: number, callback: AsyncCallback<void>): void;<br>startImagePreview(images: Array<string>, callback: AsyncCallback<void>): void;<br>startImagePreview(images: Array<string>, index?: number): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback<string>): void;<br>storeMediaAsset(option: MediaAssetOption): Promise<string>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array<Album>>): void;<br>getAlbums(options: MediaFetchOptions): Promise<Array<Album>>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback<FileAsset>): void;<br>createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise<FileAsset>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback<void>): void; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;<br>getFileAssets(options: MediaFetchOptions): Promise<FetchFileResult>; | Added|
-| ohos.multimedia.mediaLibrary | MediaLibrary | getPublicDirectory(type: DirectoryType, callback: AsyncCallback<string>): void;<br>getPublicDirectory(type: DirectoryType): Promise<string>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | startMediaSelect(option: MediaSelectOption, callback: AsyncCallback\<Array\<string>>): void;<br>startMediaSelect(option: MediaSelectOption): Promise\<Array\<string>>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | startImagePreview(images: Array\<string>, index: number, callback: AsyncCallback\<void>): void;<br>startImagePreview(images: Array\<string>, callback: AsyncCallback\<void>): void;<br>startImagePreview(images: Array\<string>, index?: number): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback\<string>): void;<br>storeMediaAsset(option: MediaAssetOption): Promise\<string>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | getAlbums(options: MediaFetchOptions, callback: AsyncCallback\<Array\<Album>>): void;<br>getAlbums(options: MediaFetchOptions): Promise\<Array\<Album>>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback\<FileAsset>): void;<br>createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise\<FileAsset>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | off(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback?: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | on(type: 'deviceChange'\|'albumChange'\|'imageChange'\|'audioChange'\|'videoChange'\|'fileChange'\|'remoteFileChange', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | getFileAssets(options: MediaFetchOptions, callback: AsyncCallback\<FetchFileResult>): void;<br>getFileAssets(options: MediaFetchOptions): Promise\<FetchFileResult>; | Added|
+| ohos.multimedia.mediaLibrary | MediaLibrary | getPublicDirectory(type: DirectoryType, callback: AsyncCallback\<string>): void;<br>getPublicDirectory(type: DirectoryType): Promise\<string>; | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_DOWNLOAD | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_DOCUMENTS | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_AUDIO | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_IMAGE | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_VIDEO | Added|
 | ohos.multimedia.mediaLibrary | DirectoryType | DIR_CAMERA = 0 | Added|
-| ohos.multimedia.mediaLibrary | Album | getFileAssets(callback: AsyncCallback<FetchFileResult>): void;<br>getFileAssets(options: MediaFetchOptions, callback: AsyncCallback<FetchFileResult>): void;<br>getFileAssets(options?: MediaFetchOptions): Promise<FetchFileResult>; | Added|
-| ohos.multimedia.mediaLibrary | Album | commitModify(callback: AsyncCallback<void>): void;<br>commitModify(): Promise<void>; | Added|
+| ohos.multimedia.mediaLibrary | Album | getFileAssets(callback: AsyncCallback\<FetchFileResult>): void;<br>getFileAssets(options: MediaFetchOptions, callback: AsyncCallback\<FetchFileResult>): void;<br>getFileAssets(options?: MediaFetchOptions): Promise\<FetchFileResult>; | Added|
+| ohos.multimedia.mediaLibrary | Album | commitModify(callback: AsyncCallback\<void>): void;<br>commitModify(): Promise\<void>; | Added|
 | ohos.multimedia.mediaLibrary | Album | readonly coverUri: string; | Added|
 | ohos.multimedia.mediaLibrary | Album | readonly relativePath: string; | Added|
 | ohos.multimedia.mediaLibrary | Album | readonly count: number; | Added|
@@ -45,11 +45,11 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.mediaLibrary | Album | readonly albumUri: string; | Added|
 | ohos.multimedia.mediaLibrary | Album | albumName: string; | Added|
 | ohos.multimedia.mediaLibrary | Album | readonly albumId: number; | Added|
-| ohos.multimedia.mediaLibrary | FetchFileResult | getAllObject(callback: AsyncCallback<Array<FileAsset>>): void;<br>getAllObject(): Promise<Array<FileAsset>>; | Added|
-| ohos.multimedia.mediaLibrary | FetchFileResult | getPositionObject(index: number, callback: AsyncCallback<FileAsset>): void;<br>getPositionObject(index: number): Promise<FileAsset>; | Added|
-| ohos.multimedia.mediaLibrary | FetchFileResult | getLastObject(callback: AsyncCallback<FileAsset>): void;<br>getLastObject(): Promise<FileAsset>; | Added|
-| ohos.multimedia.mediaLibrary | FetchFileResult | getNextObject(callback: AsyncCallback<FileAsset>): void;<br>getNextObject(): Promise<FileAsset>; | Added|
-| ohos.multimedia.mediaLibrary | FetchFileResult | getFirstObject(callback: AsyncCallback<FileAsset>): void;<br>getFirstObject(): Promise<FileAsset>; | Added|
+| ohos.multimedia.mediaLibrary | FetchFileResult | getAllObject(callback: AsyncCallback\<Array\<FileAsset>>): void;<br>getAllObject(): Promise\<Array\<FileAsset>>; | Added|
+| ohos.multimedia.mediaLibrary | FetchFileResult | getPositionObject(index: number, callback: AsyncCallback\<FileAsset>): void;<br>getPositionObject(index: number): Promise\<FileAsset>; | Added|
+| ohos.multimedia.mediaLibrary | FetchFileResult | getLastObject(callback: AsyncCallback\<FileAsset>): void;<br>getLastObject(): Promise\<FileAsset>; | Added|
+| ohos.multimedia.mediaLibrary | FetchFileResult | getNextObject(callback: AsyncCallback\<FileAsset>): void;<br>getNextObject(): Promise\<FileAsset>; | Added|
+| ohos.multimedia.mediaLibrary | FetchFileResult | getFirstObject(callback: AsyncCallback\<FileAsset>): void;<br>getFirstObject(): Promise\<FileAsset>; | Added|
 | ohos.multimedia.mediaLibrary | FetchFileResult | close(): void; | Added|
 | ohos.multimedia.mediaLibrary | FetchFileResult | isAfterLast(): boolean; | Added|
 | ohos.multimedia.mediaLibrary | FetchFileResult | getCount(): number; | Added|
@@ -57,7 +57,7 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.mediaLibrary | MediaFetchOptions | networkId?: string; | Added|
 | ohos.multimedia.mediaLibrary | MediaFetchOptions | uri?: string; | Added|
 | ohos.multimedia.mediaLibrary | MediaFetchOptions | order?: string; | Added|
-| ohos.multimedia.mediaLibrary | MediaFetchOptions | selectionArgs: Array<string>; | Added|
+| ohos.multimedia.mediaLibrary | MediaFetchOptions | selectionArgs: Array\<string>; | Added|
 | ohos.multimedia.mediaLibrary | MediaFetchOptions | selections: string; | Added|
 | ohos.multimedia.mediaLibrary | FileKey | ALBUM_NAME = "bucket_display_name" | Added|
 | ohos.multimedia.mediaLibrary | FileKey | ALBUM_ID = "bucket_id" | Added|
@@ -78,15 +78,15 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.mediaLibrary | FileKey | DISPLAY_NAME = "display_name" | Added|
 | ohos.multimedia.mediaLibrary | FileKey | RELATIVE_PATH = "relative_path" | Added|
 | ohos.multimedia.mediaLibrary | FileKey | ID = "file_id" | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | isTrash(callback: AsyncCallback<boolean>): void;<br>isTrash():Promise<boolean>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | trash(isTrash: boolean, callback: AsyncCallback<void>): void;<br>trash(isTrash: boolean): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | isFavorite(callback: AsyncCallback<boolean>): void;<br>isFavorite():Promise<boolean>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | favorite(isFavorite: boolean, callback: AsyncCallback<void>): void;<br>favorite(isFavorite: boolean): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | getThumbnail(callback: AsyncCallback<image.PixelMap>): void;<br>getThumbnail(size: Size, callback: AsyncCallback<image.PixelMap>): void;<br>getThumbnail(size?: Size): Promise<image.PixelMap>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | close(fd: number, callback: AsyncCallback<void>): void;<br>close(fd: number): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | open(mode: string, callback: AsyncCallback<number>): void;<br>open(mode: string): Promise<number>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | commitModify(callback: AsyncCallback<void>): void;<br>commitModify(): Promise<void>; | Added|
-| ohos.multimedia.mediaLibrary | FileAsset | isDirectory(callback: AsyncCallback<boolean>): void;<br>isDirectory():Promise<boolean>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | isTrash(callback: AsyncCallback\<boolean>): void;<br>isTrash():Promise\<boolean>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | trash(isTrash: boolean, callback: AsyncCallback\<void>): void;<br>trash(isTrash: boolean): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | isFavorite(callback: AsyncCallback\<boolean>): void;<br>isFavorite():Promise\<boolean>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | favorite(isFavorite: boolean, callback: AsyncCallback\<void>): void;<br>favorite(isFavorite: boolean): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | getThumbnail(callback: AsyncCallback\<image.PixelMap>): void;<br>getThumbnail(size: Size, callback: AsyncCallback\<image.PixelMap>): void;<br>getThumbnail(size?: Size): Promise\<image.PixelMap>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | close(fd: number, callback: AsyncCallback\<void>): void;<br>close(fd: number): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | open(mode: string, callback: AsyncCallback\<number>): void;<br>open(mode: string): Promise\<number>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | commitModify(callback: AsyncCallback\<void>): void;<br>commitModify(): Promise\<void>; | Added|
+| ohos.multimedia.mediaLibrary | FileAsset | isDirectory(callback: AsyncCallback\<boolean>): void;<br>isDirectory():Promise\<boolean>; | Added|
 | ohos.multimedia.mediaLibrary | FileAsset | readonly albumName: string; | Added|
 | ohos.multimedia.mediaLibrary | FileAsset | readonly albumUri: string; | Added|
 | ohos.multimedia.mediaLibrary | FileAsset | readonly albumId: number; | Added|
@@ -117,7 +117,7 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.mediaLibrary | MediaType | VIDEO | Added|
 | ohos.multimedia.mediaLibrary | MediaType | IMAGE | Added|
 | ohos.multimedia.mediaLibrary | MediaType | FILE = 0 | Added|
-| ohos.multimedia.mediaLibrary | mediaLibrary | function getMediaLibrary(): MediaLibrary;<br>function getMediaLibrary(context: Context): MediaLibrary; | Added|
+| ohos.multimedia.mediaLibrary | mediaLibrary | getMediaLibrary(): MediaLibrary;<br>getMediaLibrary(context: Context): MediaLibrary; | Added|
 | ohos.multimedia.media | CodecMimeType | AUDIO_FLAC = 'audio/flac' | Added|
 | ohos.multimedia.media | CodecMimeType | AUDIO_VORBIS = 'audio/vorbis' | Added|
 | ohos.multimedia.media | CodecMimeType | AUDIO_AAC = 'audio/mp4a-latm' | Added|
@@ -145,10 +145,10 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.media | ContainerFormatType | CFT_MPEG_4 = "mp4" | Added|
 | ohos.multimedia.media | VideoPlayer | on(type: 'error', callback: ErrorCallback): void; | Added|
 | ohos.multimedia.media | VideoPlayer | on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void; | Added|
-| ohos.multimedia.media | VideoPlayer | on(type: 'startRenderFrame', callback: Callback<void>): void; | Added|
+| ohos.multimedia.media | VideoPlayer | on(type: 'startRenderFrame', callback: Callback\<void>): void; | Added|
 | ohos.multimedia.media | VideoPlayer | on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void; | Added|
-| ohos.multimedia.media | VideoPlayer | on(type: 'playbackCompleted', callback: Callback<void>): void; | Added|
-| ohos.multimedia.media | VideoPlayer | setSpeed(speed:number, callback: AsyncCallback<number>): void;<br>setSpeed(speed:number): Promise<number>; | Added|
+| ohos.multimedia.media | VideoPlayer | on(type: 'playbackCompleted', callback: Callback\<void>): void; | Added|
+| ohos.multimedia.media | VideoPlayer | setSpeed(speed:number, callback: AsyncCallback\<number>): void;<br>setSpeed(speed:number): Promise\<number>; | Added|
 | ohos.multimedia.media | VideoPlayer | readonly height: number; | Added|
 | ohos.multimedia.media | VideoPlayer | readonly width: number; | Added|
 | ohos.multimedia.media | VideoPlayer | readonly state: VideoPlayState; | Added|
@@ -156,16 +156,16 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.media | VideoPlayer | readonly currentTime: number; | Added|
 | ohos.multimedia.media | VideoPlayer | loop: boolean; | Added|
 | ohos.multimedia.media | VideoPlayer | url: string; | Added|
-| ohos.multimedia.media | VideoPlayer | getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;<br>getTrackDescription() : Promise<Array<MediaDescription>>; | Added|
-| ohos.multimedia.media | VideoPlayer | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | setVolume(vol: number, callback: AsyncCallback<void>): void;<br>setVolume(vol: number): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | seek(timeMs: number, callback: AsyncCallback<number>): void;<br>seek(timeMs: number, mode:SeekMode, callback: AsyncCallback<number>): void;<br>seek(timeMs: number, mode?:SeekMode): Promise<number>; | Added|
-| ohos.multimedia.media | VideoPlayer | reset(callback: AsyncCallback<void>): void;<br>reset(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | stop(callback: AsyncCallback<void>): void;<br>stop(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | pause(callback: AsyncCallback<void>): void;<br>pause(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | play(callback: AsyncCallback<void>): void;<br>play(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | prepare(callback: AsyncCallback<void>): void;<br>prepare(): Promise<void>; | Added|
-| ohos.multimedia.media | VideoPlayer | setDisplaySurface(surfaceId: string, callback: AsyncCallback<void>): void;<br>setDisplaySurface(surfaceId: string): Promise<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void;<br>getTrackDescription() : Promise\<Array\<MediaDescription>>; | Added|
+| ohos.multimedia.media | VideoPlayer | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | setVolume(vol: number, callback: AsyncCallback\<void>): void;<br>setVolume(vol: number): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | seek(timeMs: number, callback: AsyncCallback\<number>): void;<br>seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void;<br>seek(timeMs: number, mode?:SeekMode): Promise\<number>; | Added|
+| ohos.multimedia.media | VideoPlayer | reset(callback: AsyncCallback\<void>): void;<br>reset(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | stop(callback: AsyncCallback\<void>): void;<br>stop(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | pause(callback: AsyncCallback\<void>): void;<br>pause(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | play(callback: AsyncCallback\<void>): void;<br>play(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | prepare(callback: AsyncCallback\<void>): void;<br>prepare(): Promise\<void>; | Added|
+| ohos.multimedia.media | VideoPlayer | setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void;<br>setDisplaySurface(surfaceId: string): Promise\<void>; | Added|
 | ohos.multimedia.media | PlaybackSpeed | SPEED_FORWARD_2_00_X = 4 | Added|
 | ohos.multimedia.media | PlaybackSpeed | SPEED_FORWARD_1_75_X = 3 | Added|
 | ohos.multimedia.media | PlaybackSpeed | SPEED_FORWARD_1_25_X = 2 | Added|
@@ -209,7 +209,7 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.media | AudioEncoder | DEFAULT = 0 | Added|
 | ohos.multimedia.media | AudioPlayer | on(type: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange', callback: () => void): void; | Added|
 | ohos.multimedia.media | AudioPlayer | on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void; | Added|
-| ohos.multimedia.media | AudioPlayer | getTrackDescription(callback: AsyncCallback<Array<MediaDescription>>): void;<br>getTrackDescription() : Promise<Array<MediaDescription>>; | Added|
+| ohos.multimedia.media | AudioPlayer | getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void;<br>getTrackDescription() : Promise\<Array\<MediaDescription>>; | Added|
 | ohos.multimedia.media | AudioPlayer | reset(): void; | Added|
 | ohos.multimedia.media | BufferingInfoType | CACHED_DURATION = 4 | Added|
 | ohos.multimedia.media | BufferingInfoType | BUFFERING_PERCENT = 3 | Added|
@@ -225,28 +225,28 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.media | MediaErrorCode | MSERR_OPERATION_NOT_PERMIT = 2 | Added|
 | ohos.multimedia.media | MediaErrorCode | MSERR_NO_MEMORY = 1 | Added|
 | ohos.multimedia.media | MediaErrorCode | MSERR_OK = 0 | Added|
-| ohos.multimedia.media | media | function createVideoPlayer(callback: AsyncCallback<VideoPlayer>): void;<br>function createVideoPlayer() : Promise<VideoPlayer>; | Added|
-| ohos.multimedia.media | media | function createAudioRecorder(): AudioRecorder; | Added|
-| ohos.multimedia.image | ImagePacker | readonly supportedFormats: Array<string>; | Added|
-| ohos.multimedia.image | ImagePacker | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.image | ImagePacker | packing(source: ImageSource, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;<br>packing(source: ImageSource, option: PackingOption): Promise<ArrayBuffer>;<br>packing(source: PixelMap, option: PackingOption, callback: AsyncCallback<ArrayBuffer>): void;<br>packing(source: PixelMap, option: PackingOption): Promise<ArrayBuffer>; | Added|
-| ohos.multimedia.image | ImageSource | readonly supportedFormats: Array<string>; | Added|
-| ohos.multimedia.image | ImageSource | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.image | ImageSource | getImageProperty(key:string, options?: GetImagePropertyOptions): Promise<string>;<br>getImageProperty(key:string, callback: AsyncCallback<string>): void;<br>getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback<string>): void; | Added|
-| ohos.multimedia.image | ImageSource | createPixelMap(options?: DecodingOptions): Promise<PixelMap>;<br>createPixelMap(callback: AsyncCallback<PixelMap>): void;<br>createPixelMap(options: DecodingOptions, callback: AsyncCallback<PixelMap>): void; | Added|
-| ohos.multimedia.image | ImageSource | getImageInfo(index: number, callback: AsyncCallback<ImageInfo>): void;<br>getImageInfo(callback: AsyncCallback<ImageInfo>): void;<br>getImageInfo(index?: number): Promise<ImageInfo>; | Added|
-| ohos.multimedia.image | PixelMap | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
+| ohos.multimedia.media | media | createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void;<br>createVideoPlayer() : Promise\<VideoPlayer>; | Added|
+| ohos.multimedia.media | media | createAudioRecorder(): AudioRecorder; | Added|
+| ohos.multimedia.image | ImagePacker | readonly supportedFormats: Array\<string>; | Added|
+| ohos.multimedia.image | ImagePacker | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.image | ImagePacker | packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void;<br>packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>;<br>packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void;<br>packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>; | Added|
+| ohos.multimedia.image | ImageSource | readonly supportedFormats: Array\<string>; | Added|
+| ohos.multimedia.image | ImageSource | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.image | ImageSource | getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>;<br>getImageProperty(key:string, callback: AsyncCallback\<string>): void;<br>getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void; | Added|
+| ohos.multimedia.image | ImageSource | createPixelMap(options?: DecodingOptions): Promise\<PixelMap>;<br>createPixelMap(callback: AsyncCallback\<PixelMap>): void;<br>createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void; | Added|
+| ohos.multimedia.image | ImageSource | getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void;<br>getImageInfo(callback: AsyncCallback\<ImageInfo>): void;<br>getImageInfo(index?: number): Promise\<ImageInfo>; | Added|
+| ohos.multimedia.image | PixelMap | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
 | ohos.multimedia.image | PixelMap | getPixelBytesNumber(): number; | Added|
 | ohos.multimedia.image | PixelMap | getBytesNumberPerRow(): number; | Added|
-| ohos.multimedia.image | PixelMap | getImageInfo(): Promise<ImageInfo>;<br>getImageInfo(callback: AsyncCallback<ImageInfo>): void; | Added|
-| ohos.multimedia.image | PixelMap | writeBufferToPixels(src: ArrayBuffer): Promise<void>;<br>writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback<void>): void; | Added|
-| ohos.multimedia.image | PixelMap | writePixels(area: PositionArea): Promise<void>;<br>writePixels(area: PositionArea, callback: AsyncCallback<void>): void; | Added|
-| ohos.multimedia.image | PixelMap | readPixels(area: PositionArea): Promise<void>;<br>readPixels(area: PositionArea, callback: AsyncCallback<void>): void; | Added|
-| ohos.multimedia.image | PixelMap | readPixelsToBuffer(dst: ArrayBuffer): Promise<void>;<br>readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback<void>): void; | Added|
+| ohos.multimedia.image | PixelMap | getImageInfo(): Promise\<ImageInfo>;<br>getImageInfo(callback: AsyncCallback\<ImageInfo>): void; | Added|
+| ohos.multimedia.image | PixelMap | writeBufferToPixels(src: ArrayBuffer): Promise\<void>;<br>writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void; | Added|
+| ohos.multimedia.image | PixelMap | writePixels(area: PositionArea): Promise\<void>;<br>writePixels(area: PositionArea, callback: AsyncCallback\<void>): void; | Added|
+| ohos.multimedia.image | PixelMap | readPixels(area: PositionArea): Promise\<void>;<br>readPixels(area: PositionArea, callback: AsyncCallback\<void>): void; | Added|
+| ohos.multimedia.image | PixelMap | readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>;<br>readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void; | Added|
 | ohos.multimedia.image | PixelMap | readonly isEditable: boolean; | Added|
-| ohos.multimedia.image | image | function createImagePacker(): ImagePacker; | Added|
-| ohos.multimedia.image | image | function createImageSource(uri: string): ImageSource;<br>function createImageSource(fd: number): ImageSource; | Added|
-| ohos.multimedia.image | image | function createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback<PixelMap>): void;<br>function createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise<PixelMap>; | Added|
+| ohos.multimedia.image | image | createImagePacker(): ImagePacker; | Added|
+| ohos.multimedia.image | image | createImageSource(uri: string): ImageSource;<br>createImageSource(fd: number): ImageSource; | Added|
+| ohos.multimedia.image | image | createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void;<br>createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>; | Added|
 | ohos.multimedia.image | InitializationOptions | editable?: boolean; | Added|
 | ohos.multimedia.image | InitializationOptions | pixelFormat?: PixelMapFormat; | Added|
 | ohos.multimedia.image | InitializationOptions | size: Size; | Added|
@@ -282,19 +282,19 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.image | PixelMapFormat | RGBA_8888 = 3 | Added|
 | ohos.multimedia.image | PixelMapFormat | RGB_565 = 2 | Added|
 | ohos.multimedia.image | PixelMapFormat | UNKNOWN = 0 | Added|
-| ohos.multimedia.audio | AudioCapturer | on(type: "stateChange", callback: Callback<AudioState>): void; | Added|
+| ohos.multimedia.audio | AudioCapturer | on(type: "stateChange", callback: Callback\<AudioState>): void; | Added|
 | ohos.multimedia.audio | AudioCapturer | off(type: "periodReach"): void; | Added|
 | ohos.multimedia.audio | AudioCapturer | on(type: "periodReach", frame: number, callback: (position: number) => {}): void; | Added|
 | ohos.multimedia.audio | AudioCapturer | off(type: "markReach"): void; | Added|
 | ohos.multimedia.audio | AudioCapturer | on(type: "markReach", frame: number, callback: (position: number) => {}): void; | Added|
-| ohos.multimedia.audio | AudioCapturer | getBufferSize(callback: AsyncCallback<number>): void;<br>getBufferSize(): Promise<number>; | Added|
-| ohos.multimedia.audio | AudioCapturer | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioCapturer | stop(callback: AsyncCallback<void>): void;<br>stop(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioCapturer | getAudioTime(callback: AsyncCallback<number>): void;<br>getAudioTime(): Promise<number>; | Added|
-| ohos.multimedia.audio | AudioCapturer | read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer>): void;<br>read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer>; | Added|
-| ohos.multimedia.audio | AudioCapturer | start(callback: AsyncCallback<void>): void;<br>start(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioCapturer | getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;<br>getStreamInfo(): Promise<AudioStreamInfo>; | Added|
-| ohos.multimedia.audio | AudioCapturer | getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo>): void;<br>getCapturerInfo(): Promise<AudioCapturerInfo>; | Added|
+| ohos.multimedia.audio | AudioCapturer | getBufferSize(callback: AsyncCallback\<number>): void;<br>getBufferSize(): Promise\<number>; | Added|
+| ohos.multimedia.audio | AudioCapturer | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioCapturer | stop(callback: AsyncCallback\<void>): void;<br>stop(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioCapturer | getAudioTime(callback: AsyncCallback\<number>): void;<br>getAudioTime(): Promise\<number>; | Added|
+| ohos.multimedia.audio | AudioCapturer | read(size: number, isBlockingRead: boolean, callback: AsyncCallback\<ArrayBuffer>): void;<br>read(size: number, isBlockingRead: boolean): Promise\<ArrayBuffer>; | Added|
+| ohos.multimedia.audio | AudioCapturer | start(callback: AsyncCallback\<void>): void;<br>start(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioCapturer | getStreamInfo(callback: AsyncCallback\<AudioStreamInfo>): void;<br>getStreamInfo(): Promise\<AudioStreamInfo>; | Added|
+| ohos.multimedia.audio | AudioCapturer | getCapturerInfo(callback: AsyncCallback\<AudioCapturerInfo>): void;<br>getCapturerInfo(): Promise\<AudioCapturerInfo>; | Added|
 | ohos.multimedia.audio | AudioCapturer | readonly state: AudioState; | Added|
 | ohos.multimedia.audio | AudioCapturerOptions | capturerInfo: AudioCapturerInfo; | Added|
 | ohos.multimedia.audio | AudioCapturerOptions | streamInfo: AudioStreamInfo; | Added|
@@ -303,23 +303,23 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.audio | SourceType | SOURCE_TYPE_VOICE_COMMUNICATION = 7 | Added|
 | ohos.multimedia.audio | SourceType | SOURCE_TYPE_MIC = 0 | Added|
 | ohos.multimedia.audio | SourceType | SOURCE_TYPE_INVALID = -1 | Added|
-| ohos.multimedia.audio | AudioRenderer | on(type: "stateChange", callback: Callback<AudioState>): void; | Added|
+| ohos.multimedia.audio | AudioRenderer | on(type: "stateChange", callback: Callback\<AudioState>): void; | Added|
 | ohos.multimedia.audio | AudioRenderer | off(type: "periodReach"): void; | Added|
 | ohos.multimedia.audio | AudioRenderer | on(type: "periodReach", frame: number, callback: (position: number) => {}): void; | Added|
 | ohos.multimedia.audio | AudioRenderer | off(type: "markReach"): void; | Added|
 | ohos.multimedia.audio | AudioRenderer | on(type: "markReach", frame: number, callback: (position: number) => {}): void; | Added|
-| ohos.multimedia.audio | AudioRenderer | getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;<br>getRenderRate(): Promise<AudioRendererRate>; | Added|
-| ohos.multimedia.audio | AudioRenderer | setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;<br>setRenderRate(rate: AudioRendererRate): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | getBufferSize(callback: AsyncCallback<number>): void;<br>getBufferSize(): Promise<number>; | Added|
-| ohos.multimedia.audio | AudioRenderer | release(callback: AsyncCallback<void>): void;<br>release(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | stop(callback: AsyncCallback<void>): void;<br>stop(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | pause(callback: AsyncCallback<void>): void;<br>pause(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | drain(callback: AsyncCallback<void>): void;<br>drain(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | getAudioTime(callback: AsyncCallback<number>): void;<br>getAudioTime(): Promise<number>; | Added|
-| ohos.multimedia.audio | AudioRenderer | write(buffer: ArrayBuffer, callback: AsyncCallback<number>): void;<br>write(buffer: ArrayBuffer): Promise<number>; | Added|
-| ohos.multimedia.audio | AudioRenderer | start(callback: AsyncCallback<void>): void;<br>start(): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioRenderer | getStreamInfo(callback: AsyncCallback<AudioStreamInfo>): void;<br>getStreamInfo(): Promise<AudioStreamInfo>; | Added|
-| ohos.multimedia.audio | AudioRenderer | getRendererInfo(callback: AsyncCallback<AudioRendererInfo>): void;<br>getRendererInfo(): Promise<AudioRendererInfo>; | Added|
+| ohos.multimedia.audio | AudioRenderer | getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void;<br>getRenderRate(): Promise\<AudioRendererRate>; | Added|
+| ohos.multimedia.audio | AudioRenderer | setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void;<br>setRenderRate(rate: AudioRendererRate): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | getBufferSize(callback: AsyncCallback\<number>): void;<br>getBufferSize(): Promise\<number>; | Added|
+| ohos.multimedia.audio | AudioRenderer | release(callback: AsyncCallback\<void>): void;<br>release(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | stop(callback: AsyncCallback\<void>): void;<br>stop(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | pause(callback: AsyncCallback\<void>): void;<br>pause(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | drain(callback: AsyncCallback\<void>): void;<br>drain(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | getAudioTime(callback: AsyncCallback\<number>): void;<br>getAudioTime(): Promise\<number>; | Added|
+| ohos.multimedia.audio | AudioRenderer | write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void;<br>write(buffer: ArrayBuffer): Promise\<number>; | Added|
+| ohos.multimedia.audio | AudioRenderer | start(callback: AsyncCallback\<void>): void;<br>start(): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioRenderer | getStreamInfo(callback: AsyncCallback\<AudioStreamInfo>): void;<br>getStreamInfo(): Promise\<AudioStreamInfo>; | Added|
+| ohos.multimedia.audio | AudioRenderer | getRendererInfo(callback: AsyncCallback\<AudioRendererInfo>): void;<br>getRendererInfo(): Promise\<AudioRendererInfo>; | Added|
 | ohos.multimedia.audio | AudioRenderer | readonly state: AudioState; | Added|
 | ohos.multimedia.audio | DeviceChangeAction | deviceDescriptors: AudioDeviceDescriptors; | Added|
 | ohos.multimedia.audio | DeviceChangeAction | type: DeviceChangeType; | Added|
@@ -330,22 +330,22 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.audio | InterruptAction | hint?: InterruptHint; | Added|
 | ohos.multimedia.audio | InterruptAction | type?: InterruptType; | Added|
 | ohos.multimedia.audio | InterruptAction | actionType: InterruptActionType; | Added|
-| ohos.multimedia.audio | AudioManager | off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback<InterruptAction>): void; | Added|
-| ohos.multimedia.audio | AudioManager | on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback<InterruptAction>): void; | Added|
-| ohos.multimedia.audio | AudioManager | off(type: 'deviceChange', callback?: Callback<DeviceChangeAction>): void; | Added|
-| ohos.multimedia.audio | AudioManager | on(type: 'deviceChange', callback: Callback<DeviceChangeAction>): void; | Added|
-| ohos.multimedia.audio | AudioManager | getAudioScene(callback: AsyncCallback<AudioScene>): void;<br>getAudioScene(): Promise<AudioScene>; | Added|
-| ohos.multimedia.audio | AudioManager | isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback<boolean>): void;<br>isDeviceActive(deviceType: ActiveDeviceType): Promise<boolean>; | Added|
-| ohos.multimedia.audio | AudioManager | setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback<void>): void;<br>setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioManager | getAudioParameter(key: string, callback: AsyncCallback<string>): void;<br>getAudioParameter(key: string): Promise<string>; | Added|
-| ohos.multimedia.audio | AudioManager | setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;<br>setAudioParameter(key: string, value: string): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioManager | getRingerMode(callback: AsyncCallback<AudioRingMode>): void;<br>getRingerMode(): Promise<AudioRingMode>; | Added|
-| ohos.multimedia.audio | AudioManager | setRingerMode(mode: AudioRingMode, callback: AsyncCallback<void>): void;<br>setRingerMode(mode: AudioRingMode): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioManager | isMicrophoneMute(callback: AsyncCallback<boolean>): void;<br>isMicrophoneMute(): Promise<boolean>; | Added|
-| ohos.multimedia.audio | AudioManager | setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void;<br>setMicrophoneMute(mute: boolean): Promise<void>; | Added|
-| ohos.multimedia.audio | AudioManager | isActive(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;<br>isActive(volumeType: AudioVolumeType): Promise<boolean>; | Added|
-| ohos.multimedia.audio | AudioManager | isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void;<br>isMute(volumeType: AudioVolumeType): Promise<boolean>; | Added|
-| ohos.multimedia.audio | AudioManager | mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void>): void;<br>mute(volumeType: AudioVolumeType, mute: boolean): Promise<void>; | Added|
+| ohos.multimedia.audio | AudioManager | off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void; | Added|
+| ohos.multimedia.audio | AudioManager | on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void; | Added|
+| ohos.multimedia.audio | AudioManager | off(type: 'deviceChange', callback?: Callback\<DeviceChangeAction>): void; | Added|
+| ohos.multimedia.audio | AudioManager | on(type: 'deviceChange', callback: Callback\<DeviceChangeAction>): void; | Added|
+| ohos.multimedia.audio | AudioManager | getAudioScene(callback: AsyncCallback\<AudioScene>): void;<br>getAudioScene(): Promise\<AudioScene>; | Added|
+| ohos.multimedia.audio | AudioManager | isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback\<boolean>): void;<br>isDeviceActive(deviceType: ActiveDeviceType): Promise\<boolean>; | Added|
+| ohos.multimedia.audio | AudioManager | setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback\<void>): void;<br>setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioManager | getAudioParameter(key: string, callback: AsyncCallback\<string>): void;<br>getAudioParameter(key: string): Promise\<string>; | Added|
+| ohos.multimedia.audio | AudioManager | setAudioParameter(key: string, value: string, callback: AsyncCallback\<void>): void;<br>setAudioParameter(key: string, value: string): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioManager | getRingerMode(callback: AsyncCallback\<AudioRingMode>): void;<br>getRingerMode(): Promise\<AudioRingMode>; | Added|
+| ohos.multimedia.audio | AudioManager | setRingerMode(mode: AudioRingMode, callback: AsyncCallback\<void>): void;<br>setRingerMode(mode: AudioRingMode): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioManager | isMicrophoneMute(callback: AsyncCallback\<boolean>): void;<br>isMicrophoneMute(): Promise\<boolean>; | Added|
+| ohos.multimedia.audio | AudioManager | setMicrophoneMute(mute: boolean, callback: AsyncCallback\<void>): void;<br>setMicrophoneMute(mute: boolean): Promise\<void>; | Added|
+| ohos.multimedia.audio | AudioManager | isActive(volumeType: AudioVolumeType, callback: AsyncCallback\<boolean>): void;<br>isActive(volumeType: AudioVolumeType): Promise\<boolean>; | Added|
+| ohos.multimedia.audio | AudioManager | isMute(volumeType: AudioVolumeType, callback: AsyncCallback\<boolean>): void;<br>isMute(volumeType: AudioVolumeType): Promise\<boolean>; | Added|
+| ohos.multimedia.audio | AudioManager | mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback\<void>): void;<br>mute(volumeType: AudioVolumeType, mute: boolean): Promise\<void>; | Added|
 | ohos.multimedia.audio | AudioScene | AUDIO_SCENE_VOICE_CHAT | Added|
 | ohos.multimedia.audio | AudioScene | AUDIO_SCENE_DEFAULT = 0 | Added|
 | ohos.multimedia.audio | DeviceChangeType | DISCONNECT = 1 | Added|
@@ -395,8 +395,8 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.audio | AudioSamplingRate | SAMPLE_RATE_12000 = 12000 | Added|
 | ohos.multimedia.audio | AudioSamplingRate | SAMPLE_RATE_11025 = 11025 | Added|
 | ohos.multimedia.audio | AudioSamplingRate | SAMPLE_RATE_8000 = 8000 | Added|
-| ohos.multimedia.audio | AudioChannel | CHANNEL_2 = 0x1 << 1 | Added|
-| ohos.multimedia.audio | AudioChannel | CHANNEL_1 = 0x1 << 0 | Added|
+| ohos.multimedia.audio | AudioChannel | CHANNEL_2 = 0x1 \<\< 1 | Added|
+| ohos.multimedia.audio | AudioChannel | CHANNEL_1 = 0x1 \<\< 0 | Added|
 | ohos.multimedia.audio | AudioSampleFormat | SAMPLE_FORMAT_S32LE = 3 | Added|
 | ohos.multimedia.audio | AudioSampleFormat | SAMPLE_FORMAT_S24LE = 2 | Added|
 | ohos.multimedia.audio | AudioSampleFormat | SAMPLE_FORMAT_S16LE = 1 | Added|
@@ -419,5 +419,5 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.audio | AudioState | STATE_PREPARED | Added|
 | ohos.multimedia.audio | AudioState | STATE_NEW | Added|
 | ohos.multimedia.audio | AudioState | STATE_INVALID = -1 | Added|
-| ohos.multimedia.audio | audio | function createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback<AudioRenderer>): void;<br>function createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer>; | Added|
-| ohos.multimedia.audio | audio | function createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer>): void;<br>function createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer>; | Added|
+| ohos.multimedia.audio | audio | createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void;<br>createAudioRenderer(options: AudioRendererOptions): Promise\<AudioRenderer>; | Added|
+| ohos.multimedia.audio | audio | createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback\<AudioCapturer>): void;<br>createAudioCapturer(options: AudioCapturerOptions): Promise\<AudioCapturer>; | Added|

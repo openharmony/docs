@@ -51,7 +51,7 @@ The table below lists the APIs changes of the user IAM subsystem in OpenHarmony 
 | ohos.userIAM.userAuth | UserAuth | getVersion() : number; | Added|
 | ohos.userIAM.userAuth | UserAuth | constructor(); | Added|
 | ohos.userIAM.userAuth | userAuth | function getAuthenticator(): Authenticator; | Added|
-| ohos.userIAM.userAuth | Authenticator | execute(type: AuthType, level: SecureLevel, callback: AsyncCallback<number>): void;<br>execute(type: AuthType, level: SecureLevel): Promise<number>; | Added|
+| ohos.userIAM.userAuth | Authenticator | execute(type: AuthType, level: SecureLevel, callback: AsyncCallback\<number>): void;<br>execute(type: AuthType, level: SecureLevel): Promise\<number>; | Added|
 | ohos.userIAM.userAuth | AuthenticationResult | GENERAL_ERROR = 100 | Added|
 | ohos.userIAM.userAuth | AuthenticationResult | NOT_ENROLLED = 8 | Added|
 | ohos.userIAM.userAuth | AuthenticationResult | LOCKED = 7 | Added|

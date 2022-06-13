@@ -1,6 +1,6 @@
-# JS API Changes of the Common Event and Notification Subsystem
+# JS API Changes of the Common Event and Notification Framework
 
-The table below lists the APIs changes of the common event and notification subsystem in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
+The table below lists the APIs changes of the common event and notification framework in OpenHarmony 3.1 Release over OpenHarmony 3.0 LTS.
 
 ## API Changes
 
@@ -9,8 +9,8 @@ The table below lists the APIs changes of the common event and notification subs
 | notificationUserInput | NotificationUserInput | inputKey: string; | Added|
 | notificationTemplate | NotificationTemplate | data: {[key: string]: Object}; | Added|
 | notificationTemplate | NotificationTemplate | name: string; | Added|
-| notificationRequest | DistributedOptions | supportOperateDevices?: Array<string>; | Added|
-| notificationRequest | DistributedOptions | supportDisplayDevices?: Array<string>; | Added|
+| notificationRequest | DistributedOptions | supportOperateDevices?: Array\<string>; | Added|
+| notificationRequest | DistributedOptions | supportDisplayDevices?: Array\<string>; | Added|
 | notificationRequest | DistributedOptions | isDistributed?: boolean; | Added|
 | notificationRequest | NotificationRequest | readonly notificationFlags?: NotificationFlags; | Added|
 | notificationRequest | NotificationRequest | distributedOption?: DistributedOptions; | Added|
@@ -18,10 +18,10 @@ The table below lists the APIs changes of the common event and notification subs
 | notificationRequest | NotificationRequest | readonly creatorUserId?: number; | Added|
 | notificationRequest | NotificationRequest | groupName?: string; | Added|
 | notificationActionButton | NotificationActionButton | userInput?: NotificationUserInput; | Added|
-| ohos.notification | notification | function isDistributedEnabled(callback: AsyncCallback<boolean>): void;<br>function isDistributedEnabled(): Promise<boolean>; | Added|
-| ohos.notification | notification | function requestEnableNotification(callback: AsyncCallback<void>): void;<br>function requestEnableNotification(): Promise<void>; | Added|
-| ohos.notification | notification | function isSupportTemplate(templateName: string, callback: AsyncCallback<boolean>): void;<br>function isSupportTemplate(templateName: string): Promise<boolean>; | Added|
-| ohos.notification | notification | function cancelGroup(groupName: string, callback: AsyncCallback<void>): void;<br>function cancelGroup(groupName: string): Promise<void>; | Added|
+| ohos.notification | notification | isDistributedEnabled(callback: AsyncCallback\<boolean>): void;<br>isDistributedEnabled(): Promise\<boolean>; | Added|
+| ohos.notification | notification | requestEnableNotification(callback: AsyncCallback\<void>): void;<br>requestEnableNotification(): Promise\<void>; | Added|
+| ohos.notification | notification | isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean>): void;<br>isSupportTemplate(templateName: string): Promise\<boolean>; | Added|
+| ohos.notification | notification | cancelGroup(groupName: string, callback: AsyncCallback\<void>): void;<br>cancelGroup(groupName: string): Promise\<void>; | Added|
 | ohos.events.emitter | EventPriority | IDLE | Added|
 | ohos.events.emitter | EventPriority | LOW | Added|
 | ohos.events.emitter | EventPriority | HIGH | Added|
@@ -29,9 +29,9 @@ The table below lists the APIs changes of the common event and notification subs
 | ohos.events.emitter | InnerEvent | priority?: EventPriority; | Added|
 | ohos.events.emitter | InnerEvent | eventId: number; | Added|
 | ohos.events.emitter | EventData | data?: {[key: string]: any}; | Added|
-| ohos.events.emitter | emitter | function emit(event: InnerEvent, data?: EventData): void; | Added|
-| ohos.events.emitter | emitter | function off(eventId: number): void; | Added|
-| ohos.events.emitter | emitter | function once(event: InnerEvent, callback: Callback<EventData>): void; | Added|
-| ohos.events.emitter | emitter | function on(event: InnerEvent, callback: Callback<EventData>): void; | Added|
+| ohos.events.emitter | emitter | emit(event: InnerEvent, data?: EventData): void; | Added|
+| ohos.events.emitter | emitter | off(eventId: number): void; | Added|
+| ohos.events.emitter | emitter | once(event: InnerEvent, callback: Callback\<EventData>): void; | Added|
+| ohos.events.emitter | emitter | on(event: InnerEvent, callback: Callback\<EventData>): void; | Added|
 | ohos.commonEvent | Support | COMMON_EVENT_SPLIT_SCREEN = "common.event.SPLIT_SCREEN" | Added|
 | ohos.commonEvent | Support | COMMON_EVENT_THERMAL_LEVEL_CHANGED = "usual.event.THERMAL_LEVEL_CHANGED" | Added|
