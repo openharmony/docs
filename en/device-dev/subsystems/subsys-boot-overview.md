@@ -22,19 +22,19 @@ When the system is powered on, the kernel loads and starts services and applicat
 
 The Startup subsystem consists of the following modules:
 
-- init module
+- init module<br>
   This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in [Table 2](../subsystems/subsys-boot-init.md) and starts the key system service processes in sequence with corresponding permissions granted.
 
-- ueventd module
+- ueventd module<br>
   This module listens for **netlink** events about hot swap of kernel device drivers and dynamically manages the **dev** node of the corresponding device based on the event type.
 
-- appspawn module
+- appspawn module<br>
   This module spawns application processes upon receiving commands from the foundation, configures permissions for new processes, and calls the entry function of the application framework.
 
-- bootstrap module
+- bootstrap module<br>
   This module provides entry identifiers for starting services and features. When SAMGR is started, the entry function identified by bootstrap is called and system services are started.
 
-- syspara module
+- syspara module<br>
   This module provides APIs for obtaining device information, such as the product name, brand name, and manufacturer name, based on the OpenHarmony Product Compatibility Specifications (PCS). It also provides APIs for setting and obtaining system attributes.
 
 
