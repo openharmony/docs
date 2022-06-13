@@ -52,7 +52,7 @@ export default {
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise<Array<number>>
+function getDeviceIds(): Promise<Array\<number>>
 
 获取所有输入设备的id列表，使用Promise方式作为异步方法。
 
@@ -60,9 +60,9 @@ function getDeviceIds(): Promise<Array<number>>
 
 **返回值：**
 
-| 参数                     | 说明                 |
-| ---------------------- | ------------------ |
-| Promise<Array<number>> | Promise实例，用于异步获取结果 |
+| 参数                     | 说明                          |
+| ------------------------ | ----------------------------- |
+| Promise\<Array\<number>> | Promise实例，用于异步获取结果 |
 
 **示例：**
 
@@ -123,7 +123,7 @@ export default {
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise<InputDeviceData>
+function getDevice(deviceId: number): Promise\<InputDeviceData>
 
 获取输入设备的描述信息，使用Promise方式作为异步方法。
 
@@ -131,9 +131,9 @@ function getDevice(deviceId: number): Promise<InputDeviceData>
 
 **返回值：**
 
-| 参数                       | 说明                 |
-| ------------------------ | ------------------ |
-| Promise<InputDeviceData> | Promise实例，用于异步获取结果 |
+| 参数                      | 说明                          |
+| ------------------------- | ----------------------------- |
+| Promise\<InputDeviceData> | Promise实例，用于异步获取结果 |
 
 **示例：**
 
@@ -189,12 +189,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型                      | 说明       |
-| ------ | ------------------------- | -------- |
+| 名称   | 参数类型                  | 说明             |
+| ------ | ------------------------- | ---------------- |
 | source | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis   | [AxisType](axistype)      | 轴的类型     |
-| max    | number                    | 轴上报的最大值  |
-| min    | number                    | 轴上报的最小值  |
+| axis   | [AxisType](#axistype)     | 轴的类型         |
+| max    | number                    | 轴上报的最大值   |
+| min    | number                    | 轴上报的最小值   |
 
 
 

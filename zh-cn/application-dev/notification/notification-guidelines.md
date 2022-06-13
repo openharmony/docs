@@ -34,8 +34,8 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 | 接口名                                                       | 描述             |
 | ------------------------------------------------------------ | ---------------- |
-| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback<boolean>): void | 查询通知使能开关 |
-| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void | 设置使能开关     |
+| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean>): void | 查询通知使能开关 |
+| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void | 设置使能开关     |
 
 用于查询和设置通知使能开关，若某个应用的通知使能关闭状态，则无法发送通知。
 
@@ -45,9 +45,9 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 | 接口名                                                       | 描述             |
 | ------------------------------------------------------------ | ---------------- |
-| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback<void>): void | 订阅指定应用通知 |
-| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | 订阅所有通知     |
-| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | 取消订阅通知     |
+| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void>): void | 订阅指定应用通知 |
+| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | 订阅所有通知     |
+| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | 取消订阅通知     |
 
 订阅接口有支持订阅所有通知、或订阅某些应用的通知。
 
@@ -69,9 +69,9 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 | 接口名                                                       | 描述                     |
 | ------------------------------------------------------------ | ------------------------ |
-| publish(request: NotificationRequest, callback: AsyncCallback<void>): void | 发布通知                 |
-| publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void | 指定用户发布通知         |
-| cancel(id: number, label: string, callback: AsyncCallback<void>): void | 取消指定的通知           |
+| publish(request: NotificationRequest, callback: AsyncCallback\<void>): void | 发布通知                 |
+| publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void>): void | 指定用户发布通知         |
+| cancel(id: number, label: string, callback: AsyncCallback\<void>): void | 取消指定的通知           |
 | cancelAll(callback: AsyncCallback<void>): void;              | 取消所有该应用发布的通知 |
 
 携带userId的publish接口，可以指定向该用户下订阅者发布通知。

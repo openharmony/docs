@@ -920,7 +920,7 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 
 ## WantAgent.getOperationType<sup>9+</sup>
 
-getOperationType(agent: WantAgent, callback: AsyncCallback<number>): void
+getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 获取一个WantAgent的OperationType信息（callback形式）。
 
@@ -981,7 +981,7 @@ WantAgent.getOperationType(wantAgent, (OperationType) => {
 
 ## WantAgent.getOperationType<sup>9+</sup>
 
-getOperationType(agent: WantAgent): Promise<number>
+getOperationType(agent: WantAgent): Promise\<number>
 
 获取一个WantAgent的OperationType信息（Promise形式）。
 

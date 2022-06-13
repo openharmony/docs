@@ -208,7 +208,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 ## prompt.showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
+showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 
 创建并显示操作菜单，菜单响应后同步返回结果。
 

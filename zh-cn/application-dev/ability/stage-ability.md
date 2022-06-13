@@ -51,16 +51,16 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|void startAbility(want: Want, callback: AsyncCallback<void>)|启动Ability。|
-|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|启动Ability。|
-|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|带AccountId启动Ability。|
-|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|带AccountId启动Ability。|
-|void startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|带返回结果启动Ability。|
-|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|带返回结果启动Ability。|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|带返回结果及AccountId启动Ability。|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|带返回结果及AccountId启动Ability。|
-|void terminateSelf(callback: AsyncCallback<void>)|销毁当前的Page Ability。|
-|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback<void>)|带返回结果销毁当前的Page Ability。|
+|void startAbility(want: Want, callback: AsyncCallback\<void>)|启动Ability。|
+|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>)|启动Ability。|
+|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>)|带AccountId启动Ability。|
+|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|带AccountId启动Ability。|
+|void startAbilityForResult(want: Want, callback: AsyncCallback\<AbilityResult>)|带返回结果启动Ability。|
+|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback\<AbilityResult>)|带返回结果启动Ability。|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>)|带返回结果及AccountId启动Ability。|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|带返回结果及AccountId启动Ability。|
+|void terminateSelf(callback: AsyncCallback\<void>)|销毁当前的Page Ability。|
+|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>)|带返回结果销毁当前的Page Ability。|
 
 ## 开发步骤
 ### 创建Page Ability应用

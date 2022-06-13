@@ -119,7 +119,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder();
+let audioRecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -718,9 +718,9 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 **返回值：**
 
-| 类型          | 说明                           |
-| ------------- | ------------------------------ |
-| Promise<void> | 设置SurfaceId的Promise返回值。 |
+| 类型           | 说明                           |
+| -------------- | ------------------------------ |
+| Promise\<void> | 设置SurfaceId的Promise返回值。 |
 
 **示例：**
 
