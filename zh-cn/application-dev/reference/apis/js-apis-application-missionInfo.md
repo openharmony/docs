@@ -9,7 +9,6 @@
 import MissionInfo from '@ohos.application.missionInfo'
 ```
 
-
 ## MissionInfo
 
 表示Ability对应任务信息的枚举。

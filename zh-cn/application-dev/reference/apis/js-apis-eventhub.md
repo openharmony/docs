@@ -1,8 +1,8 @@
 # EventHub
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在Stage模型下使用。
 
 事件中心，提供订阅、取消订阅、触发事件能力。
 
@@ -14,11 +14,8 @@ import Ability from '@ohos.application.Ability'
 
 ## 使用说明
 
-
 ​在使用eventHub的功能前，需要通过Ability实例的成员变量context获取。
 
-
-  
 ```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {
