@@ -10,7 +10,7 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | version-code | 表示HarmonyAppProvision文件格式的版本号，取值范围为二进制32位以内的正整数。 | 数值   | 必选 | 不可缺省                 |
 | version-name     | 表示版本号的文字描述，推荐使用三段数字版本号，如A.B.C。        | 字符串   | 必选 | 不可缺省 |
 | uuid    | 表示文件的唯一ID号，用于OEM厂商标识HarmonyAppProvision文件，开源社区版本该属性不做强制要求。                       | 字符串     | 必选 | 不可缺省 |
-| type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括：debug（用于应用发布场景） ，开源社区版本该属性值建议为debug。 | 字符串     | 必选 | 不可缺省 |
+| type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括：debug（用于应用调试场景）和release（用于应用发布场景） ，开源社区版本该属性值建议为debug。 | 字符串     | 必选 | 不可缺省 |
 | issuer | 表示HarmonyAPPProvision签发者。        | 字符串     | 必选 | 不可缺省 |
 | validity    | 表示HarmonyAppProvision文件有效期的信息。参考[validity对象内部结构](#validity对象内部结构)。  | 对象     | 必选 | 不可缺省  |
 | bundle-info | 表示应用包以及开发者的信息。参考[bundle-info对象内部结构](#bundle-info对象内部结构)。         | 对象     | 必选 | 不可缺省  |
