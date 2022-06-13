@@ -5,9 +5,7 @@
 
 Want是系统的基本通信组件。
 
-
 ## 导入模块
-
 
 ```
 import Want from '@ohos.application.Want';
