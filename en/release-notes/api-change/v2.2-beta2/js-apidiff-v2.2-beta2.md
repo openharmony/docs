@@ -4,67 +4,67 @@ This document describes the changes of APIs in OpenHarmony 2.2 Beta2 over OpenHa
 
 | Module | API | Change Type | Change Description |
 |  --------  |  --------  |  --------  |  --------  |
-  |  Time, date, and digit module - Locale |  constructor(locale: string, options?:options)  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  toString(): string  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  maximize(): Locale  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  minimize(): Locale  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  calendar  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  caseFirst  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  collation  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  hourCycle  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  numberingSystem  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  numeric  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  language  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  script  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  region  |  Added |  -  |
-  |  Time, date, and digit module - Locale |  baseName  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeFormat |  constructor(locale: string, options?:options)  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeFormat |  constructor(locale: string[], options?:options)  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeFormat |  resolvedOptions(): DateTimeOptions  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeFormat |  format(date: Date): string;  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeFormat |  formatRange(fromDate: Date, toDate: Date): string;  |  Added |  -  |
-  |  Time, date, and digit module - NumberFormat |  constructor(locale: string, options?:options)  |  Added |  -  |
-  |  Time, date, and digit module - NumberFormat |  constructor(locale: string[], options?:options)  |  Added |  -  |
-  |  Time, date, and digit module - NumberFormat |  resolvedOptions(): NumberOptions  |  Added |  -  |
-  |  Time, date, and digit module - NumberFormat |  format(number: number): string;  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  locale  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  dateStyle  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  timeStyle  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  calendar  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  dayPeriod  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  numberingSystem  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  localeMatcher  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  timeZone  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  hour12  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  hourCycle  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  formatMatcher  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  weekday  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  era  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  year  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  month  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  day  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  hour  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  minute  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  second  |  Added |  -  |
-  |  Time, date, and digit module - DateTimeOptions |  timeZoneName  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  locale  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  compactDisplay  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  currency  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  currencyDisplay  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  currencySign  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  localeMatcher  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  notation  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  numberingSystem  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  signDisplay  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  style  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  unit  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  unitDisplay  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  useGrouping  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  minimumIntegerDigits  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  minimumFractionDigits  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  maximumFractionDigits  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  minimumSignificantDigits  |  Added |  -  |
-  |  Time, date, and digit module - NumberOptions |  maximumSignificantDigits  |  Added |  -  |
+|  Time, date, and digit module - Locale |  constructor(locale: string, options?:options)  |  Added |  -  |
+|  Time, date, and digit module - Locale |  toString(): string  |  Added |  -  |
+|  Time, date, and digit module - Locale |  maximize(): Locale  |  Added |  -  |
+|  Time, date, and digit module - Locale |  minimize(): Locale  |  Added |  -  |
+|  Time, date, and digit module - Locale |  calendar  |  Added |  -  |
+|  Time, date, and digit module - Locale |  caseFirst  |  Added |  -  |
+|  Time, date, and digit module - Locale |  collation  |  Added |  -  |
+|  Time, date, and digit module - Locale |  hourCycle  |  Added |  -  |
+|  Time, date, and digit module - Locale |  numberingSystem  |  Added |  -  |
+|  Time, date, and digit module - Locale |  numeric  |  Added |  -  |
+|  Time, date, and digit module - Locale |  language  |  Added |  -  |
+|  Time, date, and digit module - Locale |  script  |  Added |  -  |
+|  Time, date, and digit module - Locale |  region  |  Added |  -  |
+|  Time, date, and digit module - Locale |  baseName  |  Added |  -  |
+|  Time, date, and digit module - DateTimeFormat |  constructor(locale: string, options?:options)  |  Added |  -  |
+|  Time, date, and digit module - DateTimeFormat |  constructor(locale: string[], options?:options)  |  Added |  -  |
+|  Time, date, and digit module - DateTimeFormat |  resolvedOptions(): DateTimeOptions  |  Added |  -  |
+|  Time, date, and digit module - DateTimeFormat |  format(date: Date): string;  |  Added |  -  |
+|  Time, date, and digit module - DateTimeFormat |  formatRange(fromDate: Date, toDate: Date): string;  |  Added |  -  |
+|  Time, date, and digit module - NumberFormat |  constructor(locale: string, options?:options)  |  Added |  -  |
+|  Time, date, and digit module - NumberFormat |  constructor(locale: string[], options?:options)  |  Added |  -  |
+|  Time, date, and digit module - NumberFormat |  resolvedOptions(): NumberOptions  |  Added |  -  |
+|  Time, date, and digit module - NumberFormat |  format(number: number): string;  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  locale  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  dateStyle  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  timeStyle  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  calendar  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  dayPeriod  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  numberingSystem  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  localeMatcher  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  timeZone  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  hour12  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  hourCycle  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  formatMatcher  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  weekday  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  era  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  year  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  month  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  day  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  hour  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  minute  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  second  |  Added |  -  |
+|  Time, date, and digit module - DateTimeOptions |  timeZoneName  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  locale  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  compactDisplay  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  currency  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  currencyDisplay  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  currencySign  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  localeMatcher  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  notation  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  numberingSystem  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  signDisplay  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  style  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  unit  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  unitDisplay  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  useGrouping  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  minimumIntegerDigits  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  minimumFractionDigits  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  maximumFractionDigits  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  minimumSignificantDigits  |  Added |  -  |
+|  Time, date, and digit module - NumberOptions |  maximumSignificantDigits  |  Added |  -  |
 |File storage - system.file|mkdir|Added|-|
 |File storage - system.file|rmdir|Added|-|
 |File storage - system.file|get|Added|-|
@@ -140,20 +140,20 @@ This document describes the changes of APIs in OpenHarmony 2.2 Beta2 over OpenHa
 |Device management - DeviceManager|ExchangeMedium|Added|-|
 |Device management - DeviceManager|ExchangeFreq|Added|-|
 |Device management - DeviceManager|SubscribeCap|Added|-|
-|Device management - DeviceManager|createDeviceManager(bundleName: string, callback: AsyncCallback<DeviceManager>): void|Added|-|
+|Device management - DeviceManager|createDeviceManager(bundleName: string, callback: AsyncCallback\<DeviceManager>): void|Added|-|
 |Device management - DeviceManager|release(): void|Added|-|
-|Device management - DeviceManager|getTrustedDeviceListSync(): Array<DeviceInfo>|Added|-|
+|Device management - DeviceManager|getTrustedDeviceListSync(): Array\<DeviceInfo>|Added|-|
 |Device management - DeviceManager|startDeviceDiscovery(subscribeInfo: SubscribeInfo): void|Added|-|
 |Device management - DeviceManager|stopDeviceDiscovery(subscribeId: number): void|Added|-|
 |Device management - DeviceManager|authenticateDevice(deviceInfo: DeviceInfo): void|Added|-|
-|Device management - DeviceManager|on(type: 'deviceStateChange', callback: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void|Added|-|
-|Device management - DeviceManager|off(type: 'deviceStateChange', callback?: Callback<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void|Added|-|
-|Device management - DeviceManager|on(type: 'deviceFound', callback: Callback<{ subscribeId: number, device: DeviceInfo }>): void|Added|-|
-|Device management - DeviceManager|off(type: 'deviceFound', callback?: Callback<{ subscribeId: number, device: DeviceInfo }>): void|Added|-|
-|Device management - DeviceManager|on(type: 'discoverFail', callback: Callback<{ subscribeId: number, reason: number }>): void|Added|-|
-|Device management - DeviceManager|off(type: 'discoverFail', callback?: Callback<{ subscribeId: number, reason: number }>): void|Added|-|
-|Device management - DeviceManager|on(type: 'authResult', callback: Callback<{ deviceId: string, status: number, reason: number }>): void|Added|-|
-|Device management - DeviceManager|off(type: 'authResult', callback?: Callback<{ deviceId: string, status: number, reason: number }>): void|Added|-|
+|Device management - DeviceManager|on(type: 'deviceStateChange', callback: Callback\<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void|Added|-|
+|Device management - DeviceManager|off(type: 'deviceStateChange', callback?: Callback\<{ action: DeviceStateChangeAction, device: DeviceInfo }>): void|Added|-|
+|Device management - DeviceManager|on(type: 'deviceFound', callback: Callback\<{ subscribeId: number, device: DeviceInfo }>): void|Added|-|
+|Device management - DeviceManager|off(type: 'deviceFound', callback?: Callback\<{ subscribeId: number, device: DeviceInfo }>): void|Added|-|
+|Device management - DeviceManager|on(type: 'discoverFail', callback: Callback\<{ subscribeId: number, reason: number }>): void|Added|-|
+|Device management - DeviceManager|off(type: 'discoverFail', callback?: Callback\<{ subscribeId: number, reason: number }>): void|Added|-|
+|Device management - DeviceManager|on(type: 'authResult', callback: Callback\<{ deviceId: string, status: number, reason: number }>): void|Added|-|
+|Device management - DeviceManager|off(type: 'authResult', callback?: Callback\<{ deviceId: string, status: number, reason: number }>): void|Added|-|
 |Device management - DeviceManager|on(type: 'serviceDie', callback: () => void): void|Added|-|
 |Device management - DeviceManager|off(type: 'serviceDie', callback?: () => void): void|Added|-|
 |Playback and recording|createAudioPlayer(): AudioPlayer|Added|-|
@@ -171,7 +171,7 @@ This document describes the changes of APIs in OpenHarmony 2.2 Beta2 over OpenHa
 |Playback and recording|readonly duration: number|Added|-|
 |Playback and recording|readonly state: AudioState|Added|-|
 |Playback and recording|on(type: 'play' / 'pause' / 'stop' / 'reset' / 'dataLoad' / 'finish' / 'volumeChange', callback: () => void): void|Added|-|
-|Playback and recording|on(type: 'timeUpdate', callback: Callback<number>): void|Added|-|
+|Playback and recording|on(type: 'timeUpdate', callback: Callback\<number>): void|Added|-|
 |Playback and recording|on(type: 'error', callback: ErrorCallback): void|Added|-|
 |Audio management|getAudioManager(): AudioManager|Added|-|
 |Audio management|AudioVolumeType|Added|-|
@@ -195,38 +195,38 @@ This document describes the changes of APIs in OpenHarmony 2.2 Beta2 over OpenHa
 |Audio management|RINGER_MODE_NORMAL |Added|-|
 |Audio management|RINGER_MODE_SILENT|Added|-|
 |Audio management|RINGER_MODE_VIBRATE |Added|-|
-|Audio management|setVolume(audioType: AudioVolumeType, volume: number,callback: AsyncCallback<void>): void|Added|-|
-|Audio management|setVolume(audioType: AudioVolumeType, volume: number): Promise<void>|Added|-|
-|Audio management|getVolume(audioType: AudioVolumeType, callback: AsyncCallback<number>): void|Added|-|
-|Audio management|getVolume(audioType: AudioVolumeType): Promise<number>|Added|-|
-|Audio management|getMinVolume(audioType: AudioVolumeType, callback: AsyncCallback<number>): void|Added|-|
-|Audio management|getMinVolume(audioType: AudioVolumeType): Promise<number>|Added|-|
-|Audio management|getMaxVolume(audioType: AudioVolumeType, callback: AsyncCallback<number>): void|Added|-|
-|Audio management|getMaxVolume(audioType: AudioVolumeType): Promise<number>|Added|-|
-|Audio management|getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback<AudioDeviceDescriptors>): void|Added|-|
-|Audio management|getDevices(deviceFlag: DeviceFlag): Promise<AudioDeviceDescriptors>|Added|-|
-|Audio management|getRingerMode(callback: AsyncCallback<AudioRingMode>): void|Added|-|
-|Audio management|getRingerMode(): Promise<AudioRingMode>|Added|-|
-|Audio management|setRingerMode(mode: AudioRingMode, callback: AsyncCallback<void>): void|Added|-|
-|Audio management|setRingerMode(mode: AudioRingMode): Promise<void>|Added|-|
-|Audio management|isMute(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void|Added|-|
-|Audio management|isMute(volumeType: AudioVolumeType): Promise<boolean>|Added|-|
-|Audio management|isActive(volumeType: AudioVolumeType, callback: AsyncCallback<boolean>): void|Added|-|
-|Audio management|isActive(volumeType: AudioVolumeType): Promise<boolean>|Added|-|
-|Audio management|isMicrophoneMute(callback: AsyncCallback<boolean>): void|Added|-|
-|Audio management|isMicrophoneMute(): Promise<boolean>|Added|-|
-|Audio management|mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback<void>) : void|Added|-|
-|Audio management|mute(volumeType: AudioVolumeType, mute: boolean): Promise<void>|Added|-|
-|Audio management|setMicrophoneMute(mute: boolean, callback: AsyncCallback<void>): void|Added|-|
-|Audio management|setMicrophoneMute(mute: boolean): Promise<void>|Added|-|
-|Audio management|isDeviceActive(deviceType: DeviceType, callback: AsyncCallback<boolean>): void|Added|-|
-|Audio management|isDeviceActive(deviceType: DeviceType): Promise<boolean>|Added|-|
-|Audio management|setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback<boolean>): void|Added|-|
-|Audio management|setDeviceActive(deviceType: DeviceType, active: boolean): Promise<boolean>|Added|-|
-|Audio management|getAudioParameter(key: string, callback: AsyncCallback<string>): void|Added|-|
-|Audio management|getAudioParameter(key: string): Promise<string>|Added|-|
-|Audio management|setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void|Added|-|
-|Audio management|setAudioParameter(key: string, value: string): Promise<void>|Added|-|
+|Audio management|setVolume(audioType: AudioVolumeType, volume: number,callback: AsyncCallback\<void>): void|Added|-|
+|Audio management|setVolume(audioType: AudioVolumeType, volume: number): Promise\<void>|Added|-|
+|Audio management|getVolume(audioType: AudioVolumeType, callback: AsyncCallback\<number>): void|Added|-|
+|Audio management|getVolume(audioType: AudioVolumeType): Promise\<number>|Added|-|
+|Audio management|getMinVolume(audioType: AudioVolumeType, callback: AsyncCallback\<number>): void|Added|-|
+|Audio management|getMinVolume(audioType: AudioVolumeType): Promise\<number>|Added|-|
+|Audio management|getMaxVolume(audioType: AudioVolumeType, callback: AsyncCallback\<number>): void|Added|-|
+|Audio management|getMaxVolume(audioType: AudioVolumeType): Promise\<number>|Added|-|
+|Audio management|getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback\<AudioDeviceDescriptors>): void|Added|-|
+|Audio management|getDevices(deviceFlag: DeviceFlag): Promise\<AudioDeviceDescriptors>|Added|-|
+|Audio management|getRingerMode(callback: AsyncCallback\<AudioRingMode>): void|Added|-|
+|Audio management|getRingerMode(): Promise\<AudioRingMode>|Added|-|
+|Audio management|setRingerMode(mode: AudioRingMode, callback: AsyncCallback\<void>): void|Added|-|
+|Audio management|setRingerMode(mode: AudioRingMode): Promise\<void>|Added|-|
+|Audio management|isMute(volumeType: AudioVolumeType, callback: AsyncCallback\<boolean>): void|Added|-|
+|Audio management|isMute(volumeType: AudioVolumeType): Promise\<boolean>|Added|-|
+|Audio management|isActive(volumeType: AudioVolumeType, callback: AsyncCallback\<boolean>): void|Added|-|
+|Audio management|isActive(volumeType: AudioVolumeType): Promise\<boolean>|Added|-|
+|Audio management|isMicrophoneMute(callback: AsyncCallback\<boolean>): void|Added|-|
+|Audio management|isMicrophoneMute(): Promise\<boolean>|Added|-|
+|Audio management|mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback\<void>) : void|Added|-|
+|Audio management|mute(volumeType: AudioVolumeType, mute: boolean): Promise\<void>|Added|-|
+|Audio management|setMicrophoneMute(mute: boolean, callback: AsyncCallback\<void>): void|Added|-|
+|Audio management|setMicrophoneMute(mute: boolean): Promise\<void>|Added|-|
+|Audio management|isDeviceActive(deviceType: DeviceType, callback: AsyncCallback\<boolean>): void|Added|-|
+|Audio management|isDeviceActive(deviceType: DeviceType): Promise\<boolean>|Added|-|
+|Audio management|setDeviceActive(deviceType: DeviceType, active: boolean, callback: AsyncCallback\<boolean>): void|Added|-|
+|Audio management|setDeviceActive(deviceType: DeviceType, active: boolean): Promise\<boolean>|Added|-|
+|Audio management|getAudioParameter(key: string, callback: AsyncCallback\<string>): void|Added|-|
+|Audio management|getAudioParameter(key: string): Promise\<string>|Added|-|
+|Audio management|setAudioParameter(key: string, value: string, callback: AsyncCallback\<void>): void|Added|-|
+|Audio management|setAudioParameter(key: string, value: string): Promise\<void>|Added|-|
 |Audio management|AudioDeviceDescriptor|Added|-|
 |Audio management|readonly deviceRole: DeviceRole|Added|-|
 |Audio management|readonly deviceType: DeviceType|Added|-|

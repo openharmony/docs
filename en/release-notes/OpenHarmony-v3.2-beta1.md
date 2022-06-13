@@ -6,7 +6,7 @@ OpenHarmony 3.2 Beta1 provides the following enhancements over OpenHarmony 3.1 R
 
 **Enhanced basic capabilities for the mini system**
 
-The inter-process communication (IPC) mechanism is normalized for LiteOS and Linux running on the mini system. Now both local and distributed IPC capabilities are available for distributed services and applications.
+The inter-process communication (IPC) mechanism is normalized for LiteOS and Linux running on the mini system.
 
 **Enhanced basic capabilities for the standard system**
 
@@ -51,8 +51,8 @@ Multiple sample apps, including GPU drawing, minesweeper game, and 2048 game, ar
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta1 | NA |
 | SDK | Ohos_sdk_full&nbsp;3.2.2.5 (API&nbsp;Version&nbsp;9 Beta1) | NA |
-| (Optional) HUAWEI DevEco Studio| 3.2&nbsp;Beta1&nbsp;for&nbsp;OpenHarmony | Recommended for developing OpenHarmony applications|
-| (Optional) HUAWEI DevEco Device Tool| 3.2&nbsp;Beta1 | Recommended for developing OpenHarmony devices|
+| (Optional) HUAWEI DevEco Studio| 3.0 Beta3 for&nbsp;OpenHarmony | Recommended for developing OpenHarmony applications|
+| (Optional) HUAWEI DevEco Device Tool| 3.0 Release | Recommended for developing OpenHarmony devices|
 
 
 ## Source Code Acquisition
@@ -142,7 +142,7 @@ This version has the following updates to OpenHarmony 3.1 Release.
 
 | Subsystem| Standard System| Mini and Small Systems|
 | -------- | -------- | -------- |
-| Common| ARM64 build is supported.| The same set of IPC APIs is provided for the mini, small, and standard systems.|
+| Common| ARM64 build is supported.| The same set of IPC APIs is provided for the mini and small systems.|
 | Resource scheduling| Statistics on widget usage can be collected.<br>The following requirements are involved:<br>I531ST Deleting the usage records of a widget once it is uninstalled<br>I531SU Querying and obtaining widget usage records<br>I531SV Recording the widget usage count and usage duration| NA |
 | Multimodal input| Listening for hot swap events of the remote control, mouse, and keyboard is supported<br>The following requirements are involved:<br>I530U7 Third-party JSON version upgrade<br>I530UH Startup optimization<br>I530UU Tailoring the mouse cursor display<br>I530UL Non-touchable window<br>I530W5 Using JS APIs to listen for hot swap events of the remote control<br>I530W9 Using JS APIs to listen for hot swap events of the mouse<br>I530WB Using JS APIs to query extended information about the touchpad<br>I530W9 Using JS APIs to listen for hot swap events of the keyboard<br>I530UW Tailoring the configuration of combined keys| NA |
 | System service management| Group verification is supported.<br>The following requirements are involved:<br>I59XYB Adding group verification<br>I53NZQ Processing the installation status and version number of a remote application<br>I568AO Reporting the association between distributed components by DMS<br>I58ZSB Collecting OS type information| NA |
