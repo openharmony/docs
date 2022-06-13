@@ -40,21 +40,19 @@ let TBL_NAME = "TBL00";
 let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
 + TBL_NAME
 + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
 
-onCreate(want, callback) {
-    console.log('DataShareExtAbility onCreate, want:' + want.abilityName);
-    console.log('DataShareExtAbility onCreate, this.context:' + this.context);
+onCreate(want: Want, callback: AsyncCallback&lt;void&gt;) {
     rdb.getRdbStore(this.context, {
         name: DB_NAME
     }, 1, function (err, data) {
-        console.log('getRdbStore fail, error message : ' + err);
         console.log('getRdbStore done, data : ' + data);
-        let rdbStore = data;
+        rdbStore = data;
         rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-            console.log('executeSql fail, error message : ' + err);
+            console.log('executeSql done, error message : ' + err);
         });
+        callback();
     });
-    callback();
 }
 ```
 
@@ -64,7 +62,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 
 在数据库插入时回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -77,11 +75,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
-let TBL_NAME = "TBL00";
-let rdbStore;
-
-insert(uri, value, callback) {
+insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
     if (value == null) {
         console.info('invalid valueBuckets');
         return;
@@ -101,7 +95,7 @@ update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket,
 
 在数据库更新时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -115,11 +109,7 @@ update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket,
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
-let TBL_NAME = "TBL00";
-let rdbStore;
-
-update(uri, predicates, value, callback) {
+update(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -137,7 +127,7 @@ query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt
 
 在查询数据库时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -151,11 +141,7 @@ query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
-let TBL_NAME = "TBL00";
-let rdbStore;
-
-query(uri, predicates, columns, callback) {
+query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -176,7 +162,7 @@ delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt
 
 在删除数据库记录时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -189,11 +175,7 @@ delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
-let TBL_NAME = "TBL00";
-let rdbStore;
-
-delete(uri, predicates, callback) {
+delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -211,7 +193,7 @@ BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 
 在数据库批量插入时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -224,11 +206,7 @@ BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
-let TBL_NAME = "TBL00";
-let rdbStore;
-
-batchInsert(uri: string, valueBuckets, callback) {
+batchInsert(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;) {
     if (valueBuckets == null || valueBuckets.length == undefined) {
         console.info('invalid valueBuckets');
         return;
@@ -250,7 +228,7 @@ getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取给定URI对应的MIME类型时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -262,8 +240,8 @@ getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-getType(uri: string, callback) {
-    let err;
+getType(uri: string, callback: AsyncCallback&lt;string&gt;) {
+    let err = {"code":0};
     let ret = "image";
     callback(err, ret);
 }
@@ -275,7 +253,7 @@ getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Ar
 
 获取支持文件的MIME类型时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -288,8 +266,8 @@ getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Ar
 **示例：**
 
 ```ts
-getFileTypes(uri: string, mimeTypeFilter: string,callback) {
-    let err;
+getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) {
+    let err = {"code":0};
     let ret = new Array("type01", "type02", "type03");
     callback(err, ret);
 }
@@ -301,7 +279,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 用户给定的URI转换为服务端使用的URI时回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -313,8 +291,8 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-normalizeUri(uri: string, callback) {
-    let err;
+normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;) {
+    let err = {"code":0};
     let ret = "normalize+" + uri;
     callback(err, ret);
 }
@@ -326,7 +304,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 服务端使用的URI转换为用户传入的初始URI时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -338,8 +316,8 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-denormalizeUri(uri: string, callback) {
-    let err;
+denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;) {
+    let err = {"code":0};
 	let ret = "denormalize+" + uri;
 	callback(err, ret);
 }
@@ -351,7 +329,7 @@ openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): voi
 
 在打开文件时服务端回调此接口，该方法可以选择性重写。
 
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider。
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
 
 **参数：**
 
@@ -364,8 +342,8 @@ openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): voi
 **示例：**
 
 ```ts
-openFile(uri: string, mode, callback) {
-    let err;
+openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {
+    let err = {"code":0};
     let fd = 0;
     callback(err,fd);
 }

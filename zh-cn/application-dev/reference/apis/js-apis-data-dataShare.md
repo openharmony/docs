@@ -36,13 +36,14 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 ```ts
 import dataShare from '@ohos.data.dataShare'
 
-let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShare.createDataShareHelper(this.context, dseUri, (err, data) => {
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let dataShareHelper;
+dataShare.createDataShareHelper(this.context, uri, (err, data) => {
     if (err != undefined) {
         console.info("createDataShareHelper failed, error message : " + err);
     } else {
         console.info("createDataShareHelper succeed, data : " + data);
-        let dataShareHelper = data;
+        dataShareHelper = data;
     }
 });
 ```
@@ -73,10 +74,11 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 ```ts
 import dataShare from '@ohos.data.dataShare'
 
-let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShare.createDataShareHelper(this.context, dseUri).then((data) => {
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let dataShareHelper;
+dataShare.createDataShareHelper(this.context, uri).then((data) => {
     console.info("createDataShareHelper succeed, data : " + data);
-    let dataShareHelper = data;
+    dataShareHelper = data;
 }).catch((err) => {
 	console.info("createDataShareHelper failed, error message : " + err); 
 })
@@ -84,7 +86,7 @@ dataShare.createDataShareHelper(this.context, dseUri).then((data) => {
 
 ## DataShareHelper
 
-DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datashare.createdatasharehelper)构建一个实例。
+DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
 
 ### openFile
 
@@ -105,8 +107,6 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt", (err, data) => {
     if (err != undefined) {
         console.info("openFile failed, error message : " + err);
@@ -141,8 +141,6 @@ openFile(uri: string, mode: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt").then((data) => {
     console.info("openFile succeed, data : " + data);
     let fd = data;
@@ -170,13 +168,10 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.on("dataChange", uri, onCallback);
-
-export function onCallback() {
+function onCallback() {
     console.info("**** Observer on callback ****");
 }
+dataShareHelper.on("dataChange", uri, onCallback);
 ```
 
 ### off('dataChange')
@@ -198,13 +193,10 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.off("dataChange", uri, offCallback);
-
-export function offCallback() {
+function offCallback() {
     console.info("**** Observer off callback ****");
 }
+dataShareHelper.off("dataChange", uri, offCallback);
 ```
 
 ### notifyChange
@@ -225,8 +217,6 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
 });
@@ -255,17 +245,6 @@ notifyChange(uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-    if (err != undefined) {
-        console.info("createDataShareHelper failed, error message : " + err);
-    } else {
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    }
-});
-
 dataShareHelper.notifyChange(uri);
 ```
 
@@ -287,15 +266,13 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri, (err, data)=>{
     if (err != undefined) {
         console.log("getType failed, error message : " + err);
     }else{
         console.log("getType succeed, data : " + data);
         let result = data;
-    }         
+    }
 });
 ```
 
@@ -322,8 +299,6 @@ getType(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri).then((data) => {
     console.log("getType succeed, data : " + data);
 }).catch((err) => {
@@ -350,8 +325,6 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
     if (err != undefined) {
@@ -361,8 +334,6 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
     }
 });
 ```
-
-
 
 ### getFileTypes
 
@@ -388,8 +359,6 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
 	console.log("getFileTypes succeed, data : " + data);
@@ -416,8 +385,6 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
         console.log("normalizeUri failed, error message : " + err);
@@ -450,8 +417,6 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
 }).catch((err) => {
@@ -477,8 +442,6 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
         console.log("denormalizeUri failed, error message : " + err);
@@ -511,8 +474,6 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
 }).catch((err) => {
@@ -539,13 +500,10 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
     "age": 22,
     "salary": 200.5,
-    "blobType": u8,
 }
 dataShareHelper.insert(uri, valueBucket, (err, data) => {
     if (err != undefined) {
@@ -580,13 +538,10 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
     "age": 221,
     "salary": 20.5,
-    "blobType": u8,
 }
 dataShareHelper.insert(uri, valueBucket).then((data) => {
     console.log("insert succeed, data : " + data);
@@ -614,11 +569,9 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
+                     {"name": "roe12", "age": 21, "salary": 20.5,},
+                     {"name": "roe13", "age": 21, "salary": 20.5,})
 dataShareHelper.batchInsert(uri, vbs, (err, data) => {
     if (err != undefined) {
         console.log("batchInsert failed, error message : " + err);
@@ -652,11 +605,9 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                     {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
+                     {"name": "roe12", "age": 21, "salary": 20.5,},
+                     {"name": "roe13", "age": 21, "salary": 20.5,})
 dataShareHelper.batchInsert(uri, vbs).then((data) => {
     console.log("batchInsert succeed, data : " + data);
 }).catch((err) => {
@@ -683,8 +634,6 @@ delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.delete(uri, da, (err, data) => {
@@ -720,8 +669,6 @@ delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.delete(uri, da).then((data) => {
@@ -751,15 +698,13 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callba
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+   
 }
 dataShareHelper.update(uri, da, va, (err, data) => {
     if (err != undefined) {
@@ -795,15 +740,13 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 const va = {
     "name": "roe1",
     "age": 21,
     "salary": 20.5,
-    "blobType": u8,
+   
 }
 dataShareHelper.update(uri, da, va).then((data) => {
     console.log("update succeed, data : " + data);
@@ -832,8 +775,6 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
@@ -841,12 +782,10 @@ dataShareHelper.query(uri, da, columns, (err, data) => {
     if (err != undefined) {
         console.log("query failed, error message : " + err);
     }else{
-        console.log("query succeed, data : " + data);
+        console.log("query succeed, ret : " + data.rowCount);
     }
 });
 ```
-
-
 
 ### query
 
@@ -873,13 +812,11 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 **示例：**
 
 ```ts
-let dataShareHelper;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataShare.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.query(uri, da, columns).then((data) => {
-    console.log("query succeed, data : " + data);
+    console.log("query succeed, ret : " + data.rowCount);
 }).catch((err) => {
     console.log("query failed, error message : " + err);
 });
