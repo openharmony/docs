@@ -2509,7 +2509,7 @@ class myAbility extends Ability {
 
 ### loadContent<sup>9+</sup>
 
-loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
+loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
 
@@ -2522,7 +2522,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                         | 必填 | 说明                                                         |
 | ------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                       | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../ui/ui-ts-local-storage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../ui/ui-ts-local-storage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
