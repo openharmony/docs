@@ -1,7 +1,9 @@
 # FeatureAbility模块(JS端SDK接口)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在FA模型下使用。
 
 ## 使用限制
 
@@ -918,7 +920,6 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | want                | 只读   | [Want](js-apis-application-Want.md)        | 是    | 表示需要包含有关目标启动能力的信息。                     |
 | abilityStartSetting | 只读   | {[key: string]: any} | 否    | 表示能力的特殊属性，当开发者启动能力时，该属性可以作为调用中的输入参数传递。 |
-                                  |
 
 ## flags说明
 

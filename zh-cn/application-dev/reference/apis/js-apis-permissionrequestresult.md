@@ -1,8 +1,9 @@
 # PermissionRequestResult
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> 本模块接口仅可在Stage模型下使用。
 
 权限请求结果。
 
@@ -11,6 +12,29 @@
 ```js
 import Ability from '@ohos.application.Ability'
 ```
+
+## 使用说明
+
+通过AbilityContext实例来获取。
+
+```js
+import Ability from '@ohos.application.Ability'
+export default class MainAbility extends Ability {
+  onWindowStageCreate(windowStage) {
+    var permissions=['com.example.permission']
+    var permissionRequestResult;
+    this.context.requestPermissionsFromUser(permissions,(err,result) => {
+      if(err){
+        console.log('requestPermissionsFromUserError: ' + JSON.stringify(err));
+      }else{
+        permissionRequestResult=result;
+        console.log('permissionRequestResult: ' + JSON.stringify(permissionRequestResult));
+      }    
+    });
+  }
+}
+```
+
 
 ## 属性
 

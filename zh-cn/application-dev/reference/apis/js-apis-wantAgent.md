@@ -1,8 +1,8 @@
 # WantAgent模块
 
->**说明：**
->
->本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
@@ -914,7 +914,7 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 });
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
@@ -975,7 +975,7 @@ WantAgent.getOperationType(wantAgent, (OperationType) => {
 })
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent): Promise\<number>;
 
