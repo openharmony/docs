@@ -195,7 +195,7 @@ privacyManager.getPermissionUsedRecords(request, (err, data) => {
 
 ## BundleUsedRecord
 
-某个权限的访问记录。
+某个应用的访问记录。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.Security.AccessToken
 
