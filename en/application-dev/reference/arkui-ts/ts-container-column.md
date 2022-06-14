@@ -1,7 +1,7 @@
 # Column
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -40,7 +40,7 @@ Column(value:{space?: Length})
     | Name   | Description                              |
     | ------ | ---------------------------------------- |
     | Start  | Aligned with the start edge in the same direction as the language in use. |
-    | Center | Center alignment. This is the default alignment mode. |
+    | Center | Aligned to the center. This is the default alignment mode. |
     | End    | Aligned with the end edge in the same direction as the language in use. |
 
 
