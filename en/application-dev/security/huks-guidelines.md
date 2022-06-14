@@ -9,14 +9,14 @@
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Generates a private key. This method uses an asynchronous callback to return the result.        |
-| function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Generates a private key. This method uses a promise to return the result.        |
-| function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Exports the public key. This method uses an asynchronous callback to return the result.        |
-| function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Exports the public key. This method uses a promise to return the result.        |
-| function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void; | Check whether a key exists. This method uses an asynchronous callback to return the result.|
-| function isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>; | Check whether a key exists. This method uses a promise to return the result.|
-| function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void; | Deletes a key. This method uses an asynchronous callback to return the result.        |
-| function deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Deletes a key. This method uses a promise to return the result.        |
+| function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void; | Generates a private key. This method uses an asynchronous callback to return the result.        |
+| function generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Generates a private key. This method uses a promise to return the result.        |
+| function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void; | Exports the public key. This method uses an asynchronous callback to return the result.        |
+| function exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Exports the public key. This method uses a promise to return the result.        |
+| function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void; | Check whether a key exists. This method uses an asynchronous callback to return the result.|
+| function isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>; | Check whether a key exists. This method uses a promise to return the result.|
+| function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void; | Deletes a key. This method uses an asynchronous callback to return the result.        |
+| function deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Deletes a key. This method uses a promise to return the result.        |
 
 ## How to Develop
 

@@ -51,7 +51,7 @@ export default {
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise<Array<number>>
+function getDeviceIds(): Promise<Array\<number>>
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
@@ -61,7 +61,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 | Parameter                    | Description                |
 | ---------------------- | ------------------ |
-| Promise<Array<number>> | Promise used to return the result.|
+| Promise<Array\<number>> | Promise used to return the result.|
 
 **Example**
 
@@ -122,7 +122,7 @@ export default {
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise<InputDeviceData>
+function getDevice(deviceId: number): Promise\<InputDeviceData>
 
 Obtains the information about an input device. This API uses a promise to return the result.
 
@@ -132,7 +132,7 @@ Obtains the information about an input device. This API uses a promise to return
 
 | Parameter                      | Description                |
 | ------------------------ | ------------------ |
-| Promise<InputDeviceData> | Promise used to return the result.|
+| Promise\<InputDeviceData> | Promise used to return the result.|
 
 **Example**
 

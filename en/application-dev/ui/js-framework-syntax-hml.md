@@ -358,7 +358,7 @@ export default {
 
 ## Logic Control Block
 
-<block> makes loop rendering and conditional rendering more flexible. A <block> will not be compiled as a real component. **NOTE** that the <block> tag supports only the for and if attributes.
+\<block> makes loop rendering and conditional rendering more flexible. A \<block> will not be compiled as a real component. **NOTE** that the \<block> tag supports only the for and if attributes.
 
 
 ```

@@ -369,7 +369,7 @@ All APIs provided by this class use a promise to return the result and must be i
 
 ### UiComponent.click
 
-click():Promise<void>;
+click():Promise\<void>;
 
 Clicks this component.
 
@@ -389,7 +389,7 @@ async function demo() {
 
 ### UiComponent.doubleClick
 
-doubleClick():Promise<void>;
+doubleClick():Promise\<void>;
 
 Double-clicks this component.
 
@@ -409,7 +409,7 @@ async function demo() {
 
 ### UiComponent.longClick
 
-longClick():Promise<void>;
+longClick():Promise\<void>;
 
 Long-clicks this component.
 
@@ -429,7 +429,7 @@ async function demo() {
 
 ### UiComponent.getId
 
-getId():Promise<number>;
+getId():Promise\<number>;
 
 Obtains the ID of this component.
 
@@ -441,7 +441,7 @@ Obtains the ID of this component.
 
 | Type            | Description                     |
 | ---------------- | ------------------------- |
-| Promise<number>; | Promise used to return the component ID.|
+| Promise\<number>; | Promise used to return the component ID.|
 
 **Example**
 
@@ -455,7 +455,7 @@ async function demo() {
 
 ### UiComponent.getKey
 
-getKey():Promise<string>;
+getKey():Promise\<string>;
 
 Obtains the key of this component.
 
@@ -467,7 +467,7 @@ Obtains the key of this component.
 
 | Type            | Description                      |
 | ---------------- | -------------------------- |
-| Promise<string>; | Promise used to return the component key.|
+| Promise\<string>; | Promise used to return the component key.|
 
 **Example**
 
@@ -481,7 +481,7 @@ async function demo() {
 
 ### UiComponent.getText
 
-getText():Promise<string>;
+getText():Promise\<string>;
 
 Obtains the text information of this component.
 
@@ -493,7 +493,7 @@ Obtains the text information of this component.
 
 | Type            | Description                           |
 | ---------------- | ------------------------------- |
-| Promise<string>; | Promise used to return the text information of the component.|
+| Promise\<string>; | Promise used to return the text information of the component.|
 
 **Example**
 
@@ -507,7 +507,7 @@ async function demo() {
 
 ### UiComponent.getType
 
-getType():Promise<string>;
+getType():Promise\<string>;
 
 Obtains the type of this component.
 
@@ -519,7 +519,7 @@ Obtains the type of this component.
 
 | Type            | Description                           |
 | ---------------- | ------------------------------- |
-| Promise<string>; | Promise used to return the component type.|
+| Promise\<string>; | Promise used to return the component type.|
 
 **Example**
 
@@ -533,7 +533,7 @@ async function demo() {
 
 ### UiComponent.isClickable
 
-isClickable():Promise<bool>;
+isClickable():Promise\<bool>;
 
 Obtains the clickable status of this component.
 
@@ -545,7 +545,7 @@ Obtains the clickable status of this component.
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise<bool>; | Promise used to return the clickable status of the component.|
+| Promise\<bool>; | Promise used to return the clickable status of the component.|
 
 **Example**
 
@@ -564,7 +564,7 @@ async function demo() {
 
 ### UiComponent.isScrollable
 
-isScrollable():Promise<bool>;
+isScrollable():Promise\<bool>;
 
 Obtains the scrollable status of this component.
 
@@ -576,7 +576,7 @@ Obtains the scrollable status of this component.
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise<bool>; | Promise used to return the scrollable status of the component.|
+| Promise\<bool>; | Promise used to return the scrollable status of the component.|
 
 **Example**
 
@@ -596,7 +596,7 @@ async function demo() {
 
 ### UiComponent.isEnabled
 
-isEnabled():Promise<bool>;
+isEnabled():Promise\<bool>;
 
 Obtains the enable status of this component.
 
@@ -608,7 +608,7 @@ Obtains the enable status of this component.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise<bool>; | Promise used to return the enable status of the component.|
+| Promise\<bool>; | Promise used to return the enable status of the component.|
 
 **Example**
 
@@ -628,7 +628,7 @@ async function demo() {
 
 ### UiComponent.isFocused
 
-isFocused():Promise<bool>;
+isFocused():Promise\<bool>;
 
 Obtains the focused status of this component.
 
@@ -640,7 +640,7 @@ Obtains the focused status of this component.
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise<bool>; | Promise used to return the focused status of the component.|
+| Promise\<bool>; | Promise used to return the focused status of the component.|
 
 **Example**
 
@@ -659,7 +659,7 @@ async function demo() {
 
 ### UiComponent.isSelected
 
-isSelected():Promise<bool>;
+isSelected():Promise\<bool>;
 
 Obtains the selected status of this component.
 
@@ -671,7 +671,7 @@ Obtains the selected status of this component.
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise<bool>; | Promise used to return the selected status of the component.|
+| Promise\<bool>; | Promise used to return the selected status of the component.|
 
 **Example**
 
@@ -690,7 +690,7 @@ async function demo() {
 
 ### UiComponent.inputText
 
-inputText(text: string):Promise<void>;
+inputText(text: string):Promise\<void>;
 
 Enters text into this component (available for text boxes).
 
@@ -716,7 +716,7 @@ async function demo() {
 
 ### UiComponent.scrollSearch
 
-scrollSearch(by:By):Promise<UiComponent>;
+scrollSearch(by:By):Promise\<UiComponent>;
 
 Scrolls on this component to search for the target component (available for lists).
 
@@ -734,7 +734,7 @@ Scrolls on this component to search for the target component (available for list
 
 | Type                 | Description                               |
 | --------------------- | ----------------------------------- |
-| Promise<UiComponent>; | Promise used to return the target component.|
+| Promise\<UiComponent>; | Promise used to return the target component.|
 
 **Example**
 
@@ -777,7 +777,7 @@ async function demo() {
 
 ### UiDriver.delayMs
 
-delayMs(duration:number):Promise<void>;
+delayMs(duration:number):Promise\<void>;
 
 Delays this **UiDriver** object within the specified duration.
 
@@ -802,7 +802,7 @@ async function demo() {
 
 ### UiDriver.findComponent
 
-findComponent(by:By):Promise<UiComponent>;
+findComponent(by:By):Promise\<UiComponent>;
 
 Searches this **UiDriver** object for the target component that has the given attributes.
 
@@ -820,7 +820,7 @@ Searches this **UiDriver** object for the target component that has the given at
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| Promise<UiComponent>; | Promise used to return the found component.|
+| Promise\<UiComponent>; | Promise used to return the found component.|
 
 **Example**
 
@@ -833,7 +833,7 @@ async function demo() {
 
 ### UiDriver.findComponents
 
-findComponents(by:By):Promise<Array<UiComponent>>;
+findComponents(by:By):Promise\<Array\<UiComponent>>;
 
 Searches this **UiDriver** object for all components that match the given attributes.
 
@@ -851,7 +851,7 @@ Searches this **UiDriver** object for all components that match the given attrib
 
 | Type                        | Description                                 |
 | ---------------------------- | ------------------------------------- |
-| Promise<Array<UiComponent>>; | Promise used to return a list of found components.|
+| Promise\<Array\<UiComponent>>; | Promise used to return a list of found components.|
 
 **Example**
 
@@ -864,7 +864,7 @@ async function demo() {
 
 ### UiDriver.assertComponentExist   
 
-assertComponentExist(by:By):Promise<void>;
+assertComponentExist(by:By):Promise\<void>;
 
 Asserts that a component that matches the given attributes exists on the current page. If the component does not exist, the API throws a JS exception, causing the current test case to fail.
 
@@ -889,7 +889,7 @@ async function demo() {
 
 ### UiDriver.pressBack
 
-pressBack():Promise<void>;
+pressBack():Promise\<void>;
 
 Presses the Back button on this **UiDriver** object.
 
@@ -908,7 +908,7 @@ async function demo() {
 
 ### UiDriver.triggerKey
 
-triggerKey(keyCode:number):Promise<void>;
+triggerKey(keyCode:number):Promise\<void>;
 
 Triggers the key of this **UiDriver** object that matches the given key code.
 
@@ -933,7 +933,7 @@ async function demo() {
 
 ### UiDriver.click
 
-click(x:number,y:number):Promise<void>;
+click(x:number,y:number):Promise\<void>;
 
 Clicks a specific point of this **UiDriver** object based on the given coordinates.
 
@@ -958,7 +958,7 @@ async function demo() {
 
 ### UiDriver.doubleClick
 
-doubleClick(x:number,y:number):Promise<void>;
+doubleClick(x:number,y:number):Promise\<void>;
 
 Double-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
@@ -983,7 +983,7 @@ async function demo() {
 
 ### UiDriver.longClick
 
-longClick(x:number,y:number):Promise<void>;
+longClick(x:number,y:number):Promise\<void>;
 
 Long-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
@@ -1008,7 +1008,7 @@ async function demo() {
 
 ### UiDriver.swipe
 
-swipe(startx:number,starty:number,endx:number,endy:number):Promise<void>;
+swipe(startx:number,starty:number,endx:number,endy:number):Promise\<void>;
 
 Swipes from the start point to the end point of this **UiDriver** object based on the given coordinates.
 
@@ -1034,7 +1034,7 @@ async function demo() {
 
 ### UiDriver.screenCap
 
-screenCap(savePath:string):Promise<bool>;
+screenCap(savePath:string):Promise\<bool>;
 
 Captures the current screen of this **UiDriver** object and saves it as a PNG image to the given save path.
 

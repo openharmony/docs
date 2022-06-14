@@ -9,7 +9,7 @@ import zlib from '@ohos.zlib';
 ```
 
 ## zlib.zipFile
-zipFile(inFile:string, outFile:string, options: Options): Promise<void>;
+zipFile(inFile:string, outFile:string, options: Options): Promise\<void>;
 Zips a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.Zlib
@@ -78,7 +78,7 @@ zlib.zipFile(inFile , unzipDir, options).then((data) => {
 
 ## zlib.unzipFile
 
-unzipFile(inFile:string, outFile:string, options: Options): Promise<void>;
+unzipFile(inFile:string, outFile:string, options: Options): Promise\<void>;
 
 Unzips a file. This API uses a promise to return the result.
 
