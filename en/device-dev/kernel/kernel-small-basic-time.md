@@ -77,7 +77,7 @@ The following table describes APIs available for the OpenHarmony LiteOS-A time m
 
 ### Development Example
 
-**Prerequisites**
+**Prerequisites**<br>
 The following parameters are configured: 
 
 -   **LOSCFG\_BASE\_CORE\_TICK\_PER\_SECOND**: number of ticks per second in the system. The value range is (0, 1000].
