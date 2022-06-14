@@ -495,7 +495,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 ## bundle.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise\<BundleInfo>
 
 以异步方法获取有关HAP包中包含的应用程序包的信息，使用Promise形式返回结果。
 
@@ -530,7 +530,7 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
 
 ## bundle.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>) : void
 
 以异步方法获取有关HAP包中包含的应用程序包的信息，使用callback形式返回结果。
 

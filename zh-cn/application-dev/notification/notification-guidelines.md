@@ -72,7 +72,7 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 | publish(request: NotificationRequest, callback: AsyncCallback\<void>): void | 发布通知                 |
 | publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void>): void | 指定用户发布通知         |
 | cancel(id: number, label: string, callback: AsyncCallback\<void>): void | 取消指定的通知           |
-| cancelAll(callback: AsyncCallback<void>): void;              | 取消所有该应用发布的通知 |
+| cancelAll(callback: AsyncCallback\<void>): void;              | 取消所有该应用发布的通知 |
 
 携带userId的publish接口，可以指定向该用户下订阅者发布通知。
 
