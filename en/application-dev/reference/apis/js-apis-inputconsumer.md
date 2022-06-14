@@ -17,9 +17,9 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## inputConsumer.on
 
-on(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): void
+on(type: "key", keyOptions: KeyOptions, callback: Callback<KeyOptions>): void
 
-Enables listening for combination key events. When a combination key event that meets the specified conditions occurs, **keyOption** will be passed as an input parameter to **callback**.
+Enables listening for combination key events. When a combination key event that meets the specified conditions occurs, **keyOptions** will be passed as an input parameter to **callback**.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -27,24 +27,24 @@ Enables listening for combination key events. When a combination key event that 
   | Name | Type | Mandatory | Description | 
 | -------- | -------- | -------- | -------- |
 | type | string | Yes | Type of the key input event to listen for. Only **key** is supported. | 
-| keyOption | [KeyOption](#keyoption) | Yes | Key option, which specifies the condition for combination key input. | 
-| callback | Callback&lt;KeyOption&gt; | Yes | Callback function. When a key input event that meets the specified options occurs, **keyOption** will be passed as an input parameter to **callback**. | 
+| keyOptions | [keyOptions](#keyOptions) | Yes | Key option, which specifies the condition for combination key input. | 
+| callback | KeyOptions | Yes | Callback function. When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**. | 
 
   **Example**
 
 ```
-let keyOption = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
-let callback = function(keyOption) {
-    console.info("preKeys: " + keyOption.preKeys, "finalKey: " + keyOption.finalKey, 
-                 "isFinalKeyDown: " + keyOption.isFinalKeyDown, "finalKeyDownDuration: " + keyOption.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey, 
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
-inputConsumer.on('key', keyOption, callback);
+inputConsumer.on('key', keyOptions, callback);
 ```
 
 
 ## inputConsumer.off
 
-off(type: "key", keyOption: KeyOption, callback: Callback&lt;KeyOption&gt;): void
+off(type: "key", keyOptions: KeyOptions, callback?: Callback<KeyOptions>): void
 
 Stops listening for combination key events.
 
@@ -54,18 +54,18 @@ Stops listening for combination key events.
   | Name | Type | Mandatory | Description | 
 | -------- | -------- | -------- | -------- |
 | type | string | Yes | Type of the key input event to listen for. Only **key** is supported. | 
-| keyOption | [KeyOption](#keyoption) | Yes | Key option passed to the key input event when listening starts. | 
-| callback | Callback&lt;KeyOption&gt; | Yes | Callback function passed to the key input event with the key option when listening starts. | 
+| keyOptions | [keyOptions](#keyOptions) | Yes | Key option passed to the key input event when listening starts. | 
+| callback | Callback<KeyOptions> | Yes | Callback function passed to the key input event with the key option when listening starts. | 
 
   **Example**
 
 ```
-let keyOption = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
-let callback = function(keyOption) {
-    console.info("preKeys: " + keyOption.preKeys, "finalKey: " + keyOption.finalKey, 
-                 "isFinalKeyDown: " + keyOption.isFinalKeyDown, "finalKeyDownDuration: " + keyOption.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey, 
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
-inputConsumer.off('key', keyOption, callback);
+inputConsumer.off('key', keyOptions, callback);
 ```
 
 
