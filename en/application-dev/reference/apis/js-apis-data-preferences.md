@@ -33,11 +33,11 @@ Reads a **Preferences** persistence file and loads data to the **Preferences** i
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -60,15 +60,15 @@ Reads a **Preferences** persistence file and loads data to the **Preferences** i
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -76,7 +76,7 @@ let promise = data_preferences.getPreferences(this.context, 'mystore')
 promise.then((preferences) => {
     console.info("Got preferences successfully.")
 }).catch((err) => {
-          console.info("Failed to get the preferences")
+    console.info("Failed to get the preferences")
 })
 ```
 
@@ -91,11 +91,11 @@ Once a **Preferences** persistence file is deleted, the **Preferences** instance
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -119,15 +119,15 @@ Once a **Preferences** persistence file is deleted, the **Preferences** instance
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -151,11 +151,11 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -179,16 +179,16 @@ When a **Preferences** singleton instance is removed, this instance cannot be us
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
-  | name | string | Yes| Name of the **Preferences** instance persistence file.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [Context](js-apis-ability-context.md) | Yes| Context of the application or functionality.|
+| name | string | Yes| Name of the **Preferences** instance persistence file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -215,15 +215,15 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data to obtain. It cannot be empty.|
-  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data to obtain. It cannot be empty.|
+| defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
+| callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
- preferences.get('startup', 'default', function(err, value) {
+preferences.get('startup', 'default', function(err, value) {
     if (err) {
                   console.info("Failed to get the value of startup, err: " + err)
         return
@@ -242,15 +242,15 @@ Obtains the value of a key. If the value is null or a non-default value, the def
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data to obtain. It cannot be empty.|
-  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data to obtain. It cannot be empty.|
+| defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;ValueType&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;ValueType&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -270,10 +270,10 @@ Obtains the **Object** instance that contains all KV pairs.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-Parameters
+**Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the **Object** instance that contains all KV pairs. |
+| callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the **Object** instance obtained.|
 
 **Example**
 ```ts
@@ -288,6 +288,7 @@ preferences.get.getAll(function (err, value) {
 });
 ```
 
+
 ### getAll
 
 getAll(): Promise&lt;Object&gt;
@@ -299,7 +300,7 @@ Obtains the **Object** instance that contains all KV pairs.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Object&gt; | Promise used to return the **Object** instance that contains all KV pairs. |
+| Promise&lt;Object&gt; | Promise used to return the **Object** instance obtained.|
 
 **Example**
 ```ts
@@ -322,11 +323,11 @@ Puts a new value to this **Preferences** instance and its persistence file. This
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -339,6 +340,7 @@ preferences.put('startup', 'auto', function (err) {
 })
 ```
 
+
 ### put
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
@@ -348,15 +350,15 @@ Puts a new value to this **Preferences** instance and its persistence file. This
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -378,11 +380,10 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data to check. It cannot be empty.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
-
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data to check. It cannot be empty.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -409,14 +410,14 @@ Checks whether this **Preferences** instance contains data with a given key. Thi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data to check. It cannot be empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data to check. It cannot be empty.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. It returns **true** if the **Preferences** instance contains data with the given key and returns **false** otherwise.|
 
 **Example**
 ```ts
@@ -428,7 +429,7 @@ promise.then((isExist) => {
         console.info("The key of startup is not contained.")
     }
 }).catch((err) => {
-              console.info("Check the key of startup failed, err: " + err)
+    console.info("Failed to check the key of startup, err: " + err)
 })
 ```
 
@@ -442,10 +443,10 @@ Deletes a KV pair of the specified key from this **Preferences** instance. This 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -468,14 +469,14 @@ Deletes a KV pair of the specified key from this **Preferences** instance. This 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the KV pair to delete. It cannot be empty.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -497,9 +498,9 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -522,9 +523,9 @@ Saves the modification to this **Preferences** instance and synchronizes the mod
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -545,10 +546,10 @@ Clears data of this **Preferences** instance. This API uses an asynchronous call
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-Parameters
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 ```ts
@@ -571,9 +572,9 @@ Clears data of this **Preferences** instance. This API uses a promise to return 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```ts
@@ -595,10 +596,10 @@ Subscribes to data changes. When the value of the subscribed key changes, a call
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type|Mandatory| Description|
-  | -------- | -------- | -------- |-------- |
-  | type | string | Yes| Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;{ key : string }&gt; | Yes| Callback used to return data changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes|  Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;{ key : string }&gt;  | Yes| Callback used to return data changes.|
 
 **Example**
 ```ts
@@ -636,10 +637,10 @@ Unsubscribes from data changes.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- |-------- |
-  | type | string| Yes| Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;{ key : string }&gt; | No| Callback used to return data changes. If this parameter is left empty, all callbacks for data changes will be canceled.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;{ key : string }&gt;  | No| Callback used to return data changes. If this parameter is left empty, all callbacks for data changes will be canceled.|
 
 **Example**
 ```ts
