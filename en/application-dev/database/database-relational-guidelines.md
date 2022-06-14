@@ -25,38 +25,38 @@ The following table describes the APIs available for creating and deleting an RD
 The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
 
 - **Inserting data**
-  
+
   The RDB provides APIs for inserting data through a **ValuesBucket** in a data table. If the data is inserted, the row ID of the data inserted will be returned; otherwise, **-1** will be returned.
-  
+
   **Table 2** APIs for inserting data
-  
+
   | Class    | API                                                          | Description                                                  |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. This method uses a callback to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table.<br>-&nbsp;**callback**: callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned. |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | Inserts a row of data into a table. This method uses a promise to return the result.<br>-&nbsp;**name**: name of the target table.<br>-&nbsp;**values**: data to be inserted into the table. |
-  
+
 - **Updating data**
-  
+
   Call the **update()** method to pass new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
-  
+
   **Table 3** APIs for updating data
-  
+
   | Class    | API                                                          | Description                                                  |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.<br>-&nbsp;**callback**: callback invoked to return the number of rows updated. |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data. |
-  
+
 - **Deleting data**
-  
+
   Call the **delete()** method to delete data meeting the conditions specified by **RdbPredicates**. If the data is deleted, the number of rows of the deleted data will be returned; otherwise, **0** will be returned.
-  
+
   **Table 4** APIs for deleting data
-  
+
   | Class    | API                                                          | Description                                                  |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.<br>-&nbsp;**callback**: callback invoked to return the number of rows deleted. |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data. |
-  
+
 - **Querying data**
 
   You can query data in an RDB store in either of the following ways:
@@ -148,7 +148,7 @@ A result set can be regarded as a row of data in the queried results. It allows 
 | Class    | API                                                          | Description                                                  |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | RdbStore | setDistributedTables(tables: Array\<string>, callback: AsyncCallback\<void>): void | Sets a list of distributed tables. This method uses a callback to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.<br>-&nbsp;**callback**: callback invoked to return the result. |
-| RdbStore | setDistributedTables(tables: Array\<string>): Promise<void>  | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set. |
+| RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void> | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set. |
 
 **Obtaining the Distributed Table Name for a Remote Device**
 
@@ -190,6 +190,7 @@ You can obtain the distributed table name for a remote device based on the local
 ## How to Develop
 
 1. Create an RDB store.
+
    1. Configure the RDB store attributes, including the RDB store name, storage mode, and whether read-only mode is used.
    2. Initialize the table structure and related data in the RDB store.
    3. Create the RDB store.
@@ -208,6 +209,7 @@ You can obtain the distributed table name for a remote device based on the local
    ```
 
 2. Insert data.
+
    1. Create a **ValuesBucket** to store the data you need to insert.
    2. Call the **insert()** method to insert data into the RDB store.
 
@@ -220,6 +222,7 @@ You can obtain the distributed table name for a remote device based on the local
    ```
 
 3. Query data.
+
    1. Create an **RdbPredicates** object to specify query conditions.
    2. Call the **query()** method to query data.
    3. Call the **ResultSet()** method to obtain the query result.
@@ -242,6 +245,7 @@ You can obtain the distributed table name for a remote device based on the local
    ```
 
 4. Set the distributed tables to be synchronized.
+
    1. Set the distributed tables.
    2. Check whether the setting is successful.
 
@@ -257,6 +261,7 @@ You can obtain the distributed table name for a remote device based on the local
    ```
 
  5. Synchronize data across devices.
+
     1. Constructs an **RdbPredicates** object to specify remote devices within the network to be synchronized.
     2. Call the **sync()** method to synchronize data.
     3. Check whether the data synchronization is successful.
@@ -278,31 +283,33 @@ You can obtain the distributed table name for a remote device based on the local
     ```
 
 6. Subscribe to distributed data.
-    1. Register an observer to listen for distributed data changes.
-    2. When data in the RDB store changes, a callback will be invoked to return the data changes.
 
-    The sample code is as follows:
+   1. Register an observer to listen for distributed data changes.
+   2. When data in the RDB store changes, a callback will be invoked to return the data changes.
 
-    ```js
-    function storeObserver(devices) {
-        for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
-        }
-    }
-    try {
-        rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
-    } catch (err) {
-        console.log('register observer failed')
-    }
-    ```
+   The sample code is as follows:
+
+   ```js
+   function storeObserver(devices) {
+       for (let i = 0; i < devices.length; i++) {
+           console.log('device=' + device[i] + ' data changed')
+       }
+   }
+   try {
+       rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+   } catch (err) {
+       console.log('register observer failed')
+   }
+   ```
 
 7. Query data across devices.
-    1. Obtain the distributed table name for a remote device based on the local table name.
-    2. Call the **ResultSet()** method to obtain the query result.
 
-    The sample code is as follows:
+   1. Obtain the distributed table name for a remote device based on the local table name.
+   2. Call the **ResultSet()** method to obtain the query result.
 
-    ```js
-    let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
-    let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
-    ```
+   The sample code is as follows:
+
+   ```js
+   let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
+   let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
+   ```
