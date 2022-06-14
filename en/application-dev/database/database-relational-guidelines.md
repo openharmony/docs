@@ -44,7 +44,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.<br>-&nbsp;**callback**: callback invoked to return the number of rows updated.|
-  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.|
+  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | Updates data in the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**values**: data to update, which is stored in a **ValuesBucket**.<br>-&nbsp;**rdbPredicates**: conditions for updating data.|
   
 - **Deleting data**
   
@@ -55,7 +55,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | Class| API| Description|
   | -------- | -------- | -------- |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.<br>-&nbsp;**callback**: callback invoked to return the number of rows deleted.|
-  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.|
+  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.|
   
 - **Querying data**
 
@@ -81,7 +81,7 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbPredicates |inDevices(devices: Array<string>): RdbPredicates | Specifies remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**devices**: IDs of the remote devices on the network.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
+| RdbPredicates |inDevices(devices: Array\<string>): RdbPredicates | Specifies remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**devices**: IDs of the remote devices on the network.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates |inAllDevices(): RdbPredicates | Connects to all remote devices on the network with RDB stores to be synchronized.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | Sets the **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.<br>-&nbsp;**field**: column name in the database table.<br>-&nbsp;**value**: value specified.<br>-&nbsp;**RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
@@ -116,7 +116,7 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 
 A result set can be regarded as a row of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
+> **NOTICE**<br>
 > After a result set is used, you must call the **close()** method to close it explicitly.
 
 **Table 7** APIs for using the result set
@@ -147,8 +147,8 @@ A result set can be regarded as a row of data in the queried results. It allows 
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore | setDistributedTables(tables: Array<string>, callback: AsyncCallback<void>): void;| Sets a list of distributed tables. This method uses a callback to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.<br>-&nbsp;**callback**: callback invoked to return the result.|
-| RdbStore | setDistributedTables(tables: Array<string>): Promise<void>; | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.|
+| RdbStore | setDistributedTables(tables: Array\<string>, callback: AsyncCallback\<void>): void | Sets a list of distributed tables. This method uses a callback to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.<br>-&nbsp;**callback**: callback invoked to return the result.|
+| RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void> | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.|
 
 **Obtaining the Distributed Table Name for a Remote Device**
 
@@ -158,8 +158,8 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void; | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is used to query the RDB store of the remote device. This method uses a callback to return the result.<br>-&nbsp;**device**: remote device.<br>- &nbsp;**table**: local table name.<br>- &nbsp;**callback**: callback used to return the result. If the operation is successful, the distributed table name of the remote device will be returned. |
-| RdbStore | obtainDistributedTableName(device: string, table: string): Promise<string>; | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is used to query the RDB store of the remote device. This method uses a promise to return the result.<br>-&nbsp;**device**: remote device.<br>- &nbsp;**table**: local table name.|
+| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback\<string>): void | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is used to query the RDB store of the remote device. This method uses a callback to return the result.<br>-&nbsp;**device**: remote device.<br>- &nbsp;**table**: local table name.<br>- &nbsp;**callback**: callback used to return the result. If the operation is successful, the distributed table name of the remote device will be returned. |
+| RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string> | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is used to query the RDB store of the remote device. This method uses a promise to return the result.<br>-&nbsp;**device**: remote device.<br>- &nbsp;**table**: local table name.|
 
 **Synchronizing Data Between Devices**
 
@@ -167,8 +167,8 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;| Synchronizes data between devices. This method uses a callback to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized.<br>-&nbsp;**callback**: callback invoked to return the result. In the result, **string** indicates the device ID, and **number** indicates the synchronization status of each device. The value **0** indicates a success, and other values indicate a failure.|
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;| Synchronizes data between devices. This method uses a promise to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized. |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void | Synchronizes data between devices. This method uses a callback to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized.<br>-&nbsp;**callback**: callback invoked to return the result. In the result, **string** indicates the device ID, and **number** indicates the synchronization status of each device. The value **0** indicates a success, and other values indicate a failure.|
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>> | Synchronizes data between devices. This method uses a promise to return the result.<br>-&nbsp;**mode**: data synchronization mode.  **SYNC\_MODE\_PUSH** means to push data from the local device to a remote device. **SYNC\_MODE\_PULL** means to pull data from a remote device to the local device.<br>-&nbsp;**predicates**: data and devices to be synchronized. |
 
 **Registering an RDB Store Observer**
 
@@ -176,7 +176,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| Registers an observer for this RDB store to subscribe to distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes.<br>-&nbsp;**type**: subscription type. **SUBSCRIBE\_TYPE\_REMOTE** means to subscribe to remote data changes.<br>-&nbsp;**observer**: observer that listens for data changes in the RDB store.|
+| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void| Registers an observer for this RDB store to subscribe to distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes.<br>-&nbsp;**type**: subscription type. **SUBSCRIBE\_TYPE\_REMOTE** means to subscribe to remote data changes.<br>-&nbsp;**observer**: observer that listens for data changes in the RDB store.|
 
 **Unregistering an RDB Store Observer**
 
@@ -184,7 +184,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| Unregisters the observer of the specified type for the RDB store. This method uses a callback to return the result.<br>- &nbsp;**type**: subscription type. **SUBSCRIBE\_TYPE\_REMOTE** means to subscribe to remote data changes.<br>- &nbsp;**observer**: observer to unregister.|
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void| Unregisters the observer of the specified type for the RDB store. This method uses a callback to return the result.<br>- &nbsp;**type**: subscription type. **SUBSCRIBE\_TYPE\_REMOTE** means to subscribe to remote data changes.<br>- &nbsp;**observer**: observer to unregister.|
 
 
 ## How to Develop

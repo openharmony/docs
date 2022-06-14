@@ -34,8 +34,8 @@ Certain APIs can be invoked only by system applications that have been granted t
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback<boolean>): void | Checks whether notification is enabled.|
-| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void | Sets whether to enable notification.    |
+| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean>): void | Checks whether notification is enabled.|
+| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void | Sets whether to enable notification.    |
 
 If the notification function of an application is disabled, it cannot send notifications.
 

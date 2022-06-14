@@ -35,7 +35,7 @@ aa test -m com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s c
 | -m              | Yes      | Module name of the HAP where the **TestRunner** is located. This parameter is used by the stage model.           |
 | -s unittest     | Yes      | Name of the **TestRunner** to be used. The TestRunner name must be the same as the file name.  |
 | -w              | No      | Timeout interval of a test case, in seconds. If this parameter is not specified, the test framework exits only after **finishTest** is invoked.|
-| -s <key><value> | No      | It can be any parameter in the key-value format. The entered parameters can be obtained in key-value mode through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **classname** is the key and **myTest** is the value.|
+| -s \<key>\<value> | No      | It can be any parameter in the key-value format. The entered parameters can be obtained in key-value mode through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **classname** is the key and **myTest** is the value.|
 
 ### Using the IDE
 

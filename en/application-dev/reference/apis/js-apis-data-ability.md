@@ -762,7 +762,7 @@ Sets a **DataAbilityPredicates** object to specify the index column.
 in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 
-Sets a **DataAbilityPredicates** object to match the field with data type Array<ValueType> and value within the specified range.
+Sets a **DataAbilityPredicates** object to match the field with data type Array\<ValueType> and value within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -791,7 +791,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 
-Sets a **DataAbilityPredicates** object to match the field with data type Array<ValueType> and value out of the specified range.
+Sets a **DataAbilityPredicates** object to match the field with data type Array\<ValueType> and value out of the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

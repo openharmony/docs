@@ -517,7 +517,7 @@ Notification.getSlot(slotType).then((data) => {
 
 ## Notification.getSlots
 
-getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlots(callback: AsyncCallback\<Array\<NotificationSlot\>>): void
 
 Obtains all notification slots. This API uses an asynchronous callback to return the result.
 
@@ -2350,7 +2350,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
-bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
+bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 Sets whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
 

@@ -12,7 +12,7 @@ import sms from '@ohos.telephony.sms';
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
+createMessage\(pdu: Array\<number\>, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
 Creates an SMS message instance based on the protocol data unit (PDU) and the specified SMS protocol. This API uses an asynchronous callback to return the result.
 
@@ -40,7 +40,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 ## sms.createMessage
 
-createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
+createMessage\(pdu: Array\<number\>, specification: string\): Promise<ShortMessage\>
 
 Creates an SMS message instance based on the PDU and the specified SMS protocol. This API uses a promise to return the result.
 
@@ -110,7 +110,7 @@ sms.sendMessage(options);
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
+getDefaultSmsSlotId\(callback: AsyncCallback\<number\>\): void
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
@@ -133,7 +133,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 ## sms.getDefaultSmsSlotId<sup>7+</sup>
 
-getDefaultSmsSlotId\(\): Promise&lt;number&gt;
+getDefaultSmsSlotId\(\): Promise\<number\>
 
 Obtains the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
@@ -143,7 +143,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 | Type           | Description                                                        |
 | --------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Promise\<number> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
@@ -319,7 +319,7 @@ Defines an SMS message instance.
 
 | Name                  | Type                                   | Description                                                        |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the device can reply to the SMS message through the originating SMSC.|
+| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the mobile phone can reply to the SMS message through the originating SMSC.|
 | isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
 | isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
 | messageClass             | [ShortMessageClass](#shortmessageclass) | SMS message type.                                                  |
@@ -390,7 +390,7 @@ Provides the callback for the SMS message sending result. Return the SMS deliver
 
 ## SendSmsResult
 
-Enumerates SMS message sending results.
+SMS message sending result.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 

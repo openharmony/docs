@@ -360,7 +360,7 @@ this.context.connectAbility(want, accountId, options) {
 
 ## disconnectAbility
 
-disconnectAbility(connection: number, callback:AsyncCallback<void>): void
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 Disconnects this ability from another ability. This API uses an asynchronous callback to return the result.
 
@@ -384,7 +384,7 @@ this.context.disconnectAbility(connection, () => {
 
 ## disconnectAbility
 
-disconnectAbility(connection: number): Promise<void>
+disconnectAbility(connection: number): Promise\<void>
 
 Disconnects this ability from another ability. This API uses a promise to return the result.
 

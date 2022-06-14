@@ -927,7 +927,7 @@ Describes the HAP module information.
 | supportedModes   | number        | Yes  | No  | Modes supported by the module.    |
 | reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
 | deviceTypes      | Array<string> | Yes  | No  | An array of supported device types.|
-| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information.       |
+| abilityInfo      | Array\<AbilityInfo> | Yes  | No  | Ability information.       |
 | moduleName       | string        | Yes  | No  | Module name.            |
 | mainAbilityName  | string        | Yes  | No  | Name of the entrance ability.   |
 | installationFree | boolean       | Yes  | No  | When installation-free is supported.    |

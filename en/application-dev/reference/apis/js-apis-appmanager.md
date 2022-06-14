@@ -160,7 +160,7 @@ Obtains the memory size of this application. This API uses an asynchronous callb
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
@@ -184,7 +184,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 

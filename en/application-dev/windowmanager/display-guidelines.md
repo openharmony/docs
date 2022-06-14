@@ -10,7 +10,7 @@ For details about the APIs, see [Display](../reference/apis/js-apis-display.md).
 
 ## How to Develop
 
-Call **getDefaultDisplay(): Promise<Display>** to obtain the default display object. An example code snippet is as follows:
+Call **getDefaultDisplay(): Promise\<Display>** to obtain the default display object. An example code snippet is as follows:
 
 ```js
 import display from '@ohos.display' // Import the module.

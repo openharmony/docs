@@ -5,7 +5,7 @@ Use the List component and ForEach loop to build the food category list layout.
 
 
 1. Create a page file named FoodCategoryList.ets in the pages directory, rename the index.ets file FoodDetail.ets, and add the renamed file to the "pages" tag in the config.json file. The first page under the tag is the home page.
-     
+   
    ```
    "js": [
      {
@@ -16,8 +16,8 @@ Use the List component and ForEach loop to build the food category list layout.
    ]
    ```
 
-2. Create a List component named FoodList as the page entry point. Then, add a ListItem component named FoodListItem as its child component. The List component is used to display data of the same type. Its child component <ListItem> is used to display specific items in the list.
-     
+2. Create a List component named FoodList as the page entry point. Then, add a ListItem component named FoodListItem as its child component. The List component is used to display data of the same type. Its child component \<ListItem> is used to display specific items in the list.
+   
    ```
    @Component
    struct FoodListItem {
@@ -38,14 +38,14 @@ Use the List component and ForEach loop to build the food category list layout.
    ```
 
 3. Import the FoodData class and initializeOnStartup method.
-     
+   
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
    ```
 
 4. Configure the FoodList and FoodListItem components to pass values. Create a member variable named foodItems of the FoodData[] type in the FoodList component and invoke the initializeOnStartup method to assign a value to the variable. Create a member variable foodItem of the FoodData type in the FoodListItem component. Pass the foodItems[0] of the first element in the parent foodItems array as a parameter to FoodListItem.
-     
+   
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
@@ -71,7 +71,7 @@ Use the List component and ForEach loop to build the food category list layout.
    ```
 
 5. Declare the UI layout of the FoodListItem child component. Create a Flex component, including the food image thumbnail, food name, and calories in the food.
-     
+   
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
@@ -115,7 +115,7 @@ Use the List component and ForEach loop to build the food category list layout.
    ![en-us_image_0000001267887833](figures/en-us_image_0000001267887833.png)
 
 6. Create two FoodListItem objects. Create two FoodListItem objects in the List component and pass the first element this.foodItems[0] and the second element foodItem: this.foodItems[1] to the FoodListItem.
-     
+   
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
@@ -162,7 +162,7 @@ Use the List component and ForEach loop to build the food category list layout.
    ![en-us_image_0000001267767849](figures/en-us_image_0000001267767849.png)
 
 7. Import ForEach so that you do not need to create FoodListItem objects one by one.
-     
+   
    ```
    ForEach(
        arr: any[], // Array to be iterated
@@ -175,7 +175,7 @@ Use the List component and ForEach loop to build the food category list layout.
 
    Traverse the foodItems array to cyclically create the ListItem component. Pass each item in foodItems as a parameter to the FoodListItem component.
 
-     
+   
    ```
    ForEach(this.foodItems, item => {
        ListItem() {
@@ -186,7 +186,7 @@ Use the List component and ForEach loop to build the food category list layout.
 
    The code is as follows:
 
-     
+   
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
@@ -230,7 +230,7 @@ Use the List component and ForEach loop to build the food category list layout.
    ```
 
 8. Add a title for the FoodList.
-     
+   
    ```
    @Entry
    @Component

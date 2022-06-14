@@ -51,16 +51,16 @@ The **Ability** class has the **context** attribute, which belongs to the **Abil
 **Table 3** AbilityContext APIs
 |API|Description|
 |:------|:------|
-|void startAbility(want: Want, callback: AsyncCallback<void>)|Starts an ability.|
-|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with start options.|
-|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|Starts an ability with the account ID.|
-|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with the account ID and start options.|
-|void startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result.|
-|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result and start options.|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|Starts an ability with the returned result and account ID.|
-|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|Starts an ability with the returned result, account ID, and start options.|
-|void terminateSelf(callback: AsyncCallback<void>)|Destroys the Page ability.|
-|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback<void>)|Destroys the Page ability with the returned result.|
+|void startAbility(want: Want, callback: AsyncCallback\<void>)|Starts an ability.|
+|void startAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>)|Starts an ability with start options.|
+|void startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>)|Starts an ability with the account ID.|
+|void startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|Starts an ability with the account ID and start options.|
+|void startAbilityForResult(want: Want, callback: AsyncCallback\<AbilityResult>)|Starts an ability with the returned result.|
+|void startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback\<AbilityResult>)|Starts an ability with the returned result and start options.|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>)|Starts an ability with the returned result and account ID.|
+|void startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void>)|Starts an ability with the returned result, account ID, and start options.|
+|void terminateSelf(callback: AsyncCallback\<void>)|Destroys the Page ability.|
+|void terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>)|Destroys the Page ability with the returned result.|
 
 ## How to Develop
 ### Creating Page Abilities for an Application
@@ -89,29 +89,29 @@ To create Page abilities for an application on the stage model, you must impleme
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }

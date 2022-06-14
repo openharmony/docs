@@ -208,7 +208,7 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 
 ## prompt.showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
+showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 
 Shows an action menu. This API uses a promise to return the result synchronously.
 

@@ -721,7 +721,7 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 
 | Type         | Description                          |
 | ------------- | ------------------------------ |
-| Promise<void> | Promise used to return the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 

@@ -141,7 +141,7 @@ build() {
 
 $$ supports two-way binding for simple variables and @State, @Link, and @Prop decorated variables.
 
-Currently, $$ supports only the rendering between the show parameter of the bindPopup attribute and the @State decorated variable, and the checked attribute of the <Radio> component.
+Currently, $$ supports only the rendering between the show parameter of the bindPopup attribute and the @State decorated variable, and the checked attribute of the \<Radio> component.
 
 ```
 @Entry

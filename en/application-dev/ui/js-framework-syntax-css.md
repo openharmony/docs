@@ -160,7 +160,7 @@ The following is an example for you to use the :active pseudo-class to control t
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> Pseudo-classes are not supported for the <popup> component and its child components, including, <dialog>, <menu>, <option>, and <picker>.
+> Pseudo-classes are not supported for the \<popup> component and its child components, including, \<dialog>, \<menu>, \<option>, and \<picker>.
 
 
 ## Precompiled Styles

@@ -14,11 +14,11 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 1** Ability call APIs
 |API|Description|
 |:------|:------|
-|Promise<Caller> startAbilityByCall(want: Want)|Obtains the caller interface of the specified ability, and if the specified ability is not started, starts the ability in the background.|
+|Promise\<Caller> startAbilityByCall(want: Want)|Obtains the caller interface of the specified ability, and if the specified ability is not started, starts the ability in the background.|
 |void on(method: string, callback: CalleeCallBack)|Callee.on: callback invoked when the callee registers a method.|
 |void off(method: string)|Callee.off: callback invoked when the callee deregisters a method.|
-|Promise<void> call(method: string, data: rpc.Sequenceable)|Caller.call: sends agreed sequenceable data to the callee.|
-|Promise<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult: sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
+|Promise\<void> call(method: string, data: rpc.Sequenceable)|Caller.call: sends agreed sequenceable data to the callee.|
+|Promise\<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult: sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
 |void release()|Caller.release: releases the caller interface.|
 |void onRelease(callback: OnReleaseCallBack)|Caller.onRelease: registers a callback that is invoked when the caller is disconnected.|
 
