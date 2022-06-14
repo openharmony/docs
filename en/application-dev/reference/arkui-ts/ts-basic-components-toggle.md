@@ -4,6 +4,7 @@
 > **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+The **<Toggle\>** component can be used to change settings between two states.
 
 ## Required Permissions
 

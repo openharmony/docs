@@ -1,9 +1,7 @@
 # PanGesture
 
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
 
 ## Required Permissions
 
@@ -15,14 +13,14 @@ None
 PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOption](#pangestureoptions))
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. |
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a slide gesture. The value ranges from 1 to 10. |
   | direction | PanDirection | No | All | Slide direction. The enumerated value supports the AND (&amp;) and OR (\|) operations. |
   | distance | number | No | 5.0 | Minimum slide recognition distance, in vp. |
 
 - PanDirection enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | All | All directions. |
   | Horizontal | Horizontal slide. |
@@ -44,7 +42,7 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
   For details, see **PanGesture**.
 
 - APIs
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | setDirection(value: PanDirection) | Sets the direction. |
   | setDistance(value: number) | Sets the distance. |
@@ -61,7 +59,7 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
 | onActionCancel(callback: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized. |
 
 - GestureEvent attributes related to the pan gesture  
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | offsetX | number | Offset of the gesture event, in vp. |
   | offsetY | number | Offset of the gesture event, in vp. |
