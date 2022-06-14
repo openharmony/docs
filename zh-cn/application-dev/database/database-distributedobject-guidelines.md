@@ -71,6 +71,8 @@
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | DistributedDataObject | save(deviceId: string): Promise&lt;SaveSuccessResponse&gt; | 保存数据对象。 |
+| DistributedDataObject| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存数据对象。 |
+| DistributedDataObject | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回已保存的数据对象。 |
 | DistributedDataObject| revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt; | 撤回已保存的数据对象。 |
 
 ## 开发步骤
@@ -201,6 +203,9 @@
    ```
 
 10. 保存和撤回已保存的数据对象。
+
+    1.callback方式
+    
        ```js
         // 保存数据对象
         local_object.save("local", (result, data)=>{
@@ -215,23 +220,31 @@
         console.info("revokeSave sessionId " + data.sessionId);
         });
        ```
+       2.Promise方式
+       ```js
+        // 保存数据对象
+        g_object.save("local").then((result)=>{
+            console.info("save sessionId " + result.sessionId);
+            console.info("save version " + result.version);
+            console.info("save deviceId " + result.deviceId);
+        }, (result)=>{
+            console.info("save local failed.");
+        });
+        // 撤回保存的数据对象
+        g_object.revokeSave().then((result)=>{
+            console.info("revokeSave success.");
+        }, (result)=>{
+            console.info("revokeSave failed.");
+        });
+       ```
 11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
 
     以下为取消监听数据变更的代码示例：
        ```js
-       // 保存数据对象
-       g_object.save("local", (result)=>{
-         console.log("save callback");
-         console.info("save sessionId " + result.sessionId);
-         console.info("save version " + result.version);
-         console.info("save deviceId " + result.deviceId);
-       });
-
-       // 撤回保存的数据对象
-       g_object.revokeSave((result, data) =>{
-       console.log("revokeSave callback");
-       });
-
+    //删除上下线回调statusCallback
+    local_object.off("status", this.statusCallback);
+    //删除所有的上下线回调
+    local_object.off("status");
        ```
 12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
 
@@ -241,10 +254,10 @@
        ```
 ## 开发实例
 
-针对分布式数据对象，有以下开发实例可供参考： 
+针对分布式数据对象，有以下开发实例可供参考：
 
 - [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
 
 在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
- 
+
