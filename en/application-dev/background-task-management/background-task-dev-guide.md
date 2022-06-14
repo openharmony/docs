@@ -41,7 +41,7 @@ If a service needs to be continued when the application or service module is run
     backgroundTaskManager.getRemainingDelayTime(id).then( res => {
         console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
     }).catch( err => {
-        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
     });
     ```
 
@@ -74,7 +74,7 @@ console.info("The actualDelayTime is: " + time);
 backgroundTaskManager.getRemainingDelayTime(id).then( res => {
     console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch( err => {
-    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
 });
 
 // Cancel the suspension delay.
