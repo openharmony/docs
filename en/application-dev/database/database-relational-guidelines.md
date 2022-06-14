@@ -306,8 +306,3 @@ You can obtain the distributed table name for a remote device based on the local
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
-## Samples
-The following samples are provided for you to better understand the RDB development:
-- [`Rdb`: eTS RDB (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
-- [`DistributedRdb`: eTS Distributed Relational Database (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
-- [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)

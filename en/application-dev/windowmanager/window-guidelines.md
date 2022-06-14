@@ -105,4 +105,3 @@ import window from '@ohos.window';
 })
 ```
 
-For the complete code, see [immersive](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive).
