@@ -13,12 +13,12 @@
 
 **表1** 数据库创建和删除API
 
-| 接口名                                                       | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
-| getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
-| deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
-| deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt;  | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;name：数据库名称。 |
+| 接口名 | 描述 |
+| -------- | -------- |
+|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
+|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
+|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
+| deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;name：数据库名称。 |
 
 ### 数据库的增删改查
 
@@ -30,8 +30,8 @@
   
   **表2** 数据库插入API
   
-  | 类名     | 接口名                                                       | 描述                                                         |
-  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 类名 | 接口名 | 描述 |
+  | -------- | -------- | -------- |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据，结果以callback形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
   | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | 向目标表中插入一行数据，结果以Promise形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。 |
   
@@ -41,10 +41,10 @@
   
   **表3** 数据库更新API
   
-  | 类名     | 接口名                                                       | 描述                                                         |
-  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 类名 | 接口名 | 描述 |
+  | -------- | -------- | -------- |
   | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。<br/>-&nbsp;callback：指定的callback回调方法。返回受影响的行数。 |
-  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
+  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
   
 - **删除** 
   
@@ -52,10 +52,10 @@
   
   **表4** 数据库删除API
   
-  | 类名     | 接口名                                                       | 描述                                                         |
-  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 类名 | 接口名 | 描述 |
+  | -------- | -------- | -------- |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。<br/>-&nbsp;callback：指定callback回调函数。返回受影响的行数。 |
-  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise      | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
+  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
   
 - **查询** 
 
@@ -66,8 +66,8 @@
 
   **表5** 数据库查询API
 
-  | 类名     | 接口名                                                       | 描述                                                         |
-  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 类名 | 接口名 | 描述 |
+  | -------- | -------- | -------- |
   | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
   | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array):&nbsp;Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs:&nbsp;Array&lt;ValueType&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):void | 根据指定SQL语句查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;sql：指定要查询的SQL语句。<br/>-&nbsp;bindArgs：SQL语句中参数的值。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
@@ -79,21 +79,21 @@
 
 **表6** 数据库谓词API
 
-| 类名          | 接口名                                                       | 描述                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbPredicates | inDevices(devices: Array\<string>): RdbPredicates            | 同步分布式数据库时指定组网内的远程设备。<br/>-&nbsp;devices：组网内指定的远程设备ID。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | inAllDevices(): RdbPredicates                                | 同步分布式数据库时连接到组网内的所有远程设备。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbPredicates |inDevices(devices: Array\<string>): RdbPredicates | 同步分布式数据库时指定组网内的远程设备。<br/>-&nbsp;devices：组网内指定的远程设备ID。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates |inAllDevices(): RdbPredicates | 同步分布式数据库时连接到组网内的所有远程设备。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | beginWrap():&nbsp;RdbPredicates                              | 向谓词添加左括号。<br/>-&nbsp;RdbPredicates：返回带有左括号的谓词。 |
-| RdbPredicates | endWrap():&nbsp;RdbPredicates                                | 向谓词添加右括号。<br/>-&nbsp;RdbPredicates：返回带有右括号的谓词。 |
-| RdbPredicates | or():&nbsp;RdbPredicates                                     | 将或条件添加到谓词中。<br/>-&nbsp;RdbPredicates：返回带有或条件的谓词。 |
-| RdbPredicates | and():&nbsp;RdbPredicates                                    | 向谓词添加和条件。<br/>-&nbsp;RdbPredicates：返回带有和条件的谓词。 |
+| RdbPredicates | beginWrap():&nbsp;RdbPredicates | 向谓词添加左括号。<br/>-&nbsp;RdbPredicates：返回带有左括号的谓词。 |
+| RdbPredicates | endWrap():&nbsp;RdbPredicates | 向谓词添加右括号。<br/>-&nbsp;RdbPredicates：返回带有右括号的谓词。 |
+| RdbPredicates | or():&nbsp;RdbPredicates | 将或条件添加到谓词中。<br/>-&nbsp;RdbPredicates：返回带有或条件的谓词。 |
+| RdbPredicates | and():&nbsp;RdbPredicates | 向谓词添加和条件。<br/>-&nbsp;RdbPredicates：返回带有和条件的谓词。 |
 | RdbPredicates | contains(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicats | 配置谓词以匹配数据字段为String且value包含指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回带有包含条件的谓词。 |
 | RdbPredicates | beginsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且值以指定字符串开头的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | endsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且值以指定字符串结尾的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | isNull(field:&nbsp;string):&nbsp;RdbPredicates               | 配置谓词以匹配值为null的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | isNotNull(field:&nbsp;string):&nbsp;RdbPredicates            | 配置谓词以匹配值不为null的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | isNull(field:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配值为null的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | isNotNull(field:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配值不为null的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | like(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且值类似于指定字符串的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | glob(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置RdbPredicates匹配数据字段为String的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | between(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | 将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;low：指示与谓词匹配的最小值。<br/>-&nbsp;high：指示与谓词匹配的最大值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
@@ -102,13 +102,13 @@
 | RdbPredicates | lessThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为valueType且value小于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | greaterThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | lessThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | orderByAsc(field:&nbsp;string):&nbsp;RdbPredicates           | 配置谓词以匹配其值按升序排序的列。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | orderByDesc(field:&nbsp;string):&nbsp;RdbPredicates          | 配置谓词以匹配其值按降序排序的列。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | distinct():&nbsp;RdbPredicates                               | 配置谓词以过滤重复记录并仅保留其中一个。<br/>-&nbsp;RdbPredicates：返回可用于过滤重复记录的谓词。 |
-| RdbPredicates | limitAs(value:&nbsp;number):&nbsp;RdbPredicates              | 设置最大数据记录数的谓词。<br/>-&nbsp;value：最大数据记录数。<br/>-&nbsp;RdbPredicates：返回可用于设置最大数据记录数的谓词。 |
-| RdbPredicates | offsetAs(rowOffset:&nbsp;number):&nbsp;RdbPredicates         | 配置RdbPredicates以指定返回结果的起始位置。<br/>-&nbsp;rowOffset：返回结果的起始位置，取值为正整数。<br/>-&nbsp;RdbPredicates：返回具有指定返回结果起始位置的谓词。 |
+| RdbPredicates | orderByAsc(field:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配其值按升序排序的列。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | orderByDesc(field:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配其值按降序排序的列。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | distinct():&nbsp;RdbPredicates | 配置谓词以过滤重复记录并仅保留其中一个。<br/>-&nbsp;RdbPredicates：返回可用于过滤重复记录的谓词。 |
+| RdbPredicates | limitAs(value:&nbsp;number):&nbsp;RdbPredicates | 设置最大数据记录数的谓词。<br/>-&nbsp;value：最大数据记录数。<br/>-&nbsp;RdbPredicates：返回可用于设置最大数据记录数的谓词。 |
+| RdbPredicates | offsetAs(rowOffset:&nbsp;number):&nbsp;RdbPredicates | 配置RdbPredicates以指定返回结果的起始位置。<br/>-&nbsp;rowOffset：返回结果的起始位置，取值为正整数。<br/>-&nbsp;RdbPredicates：返回具有指定返回结果起始位置的谓词。 |
 | RdbPredicates | groupBy(fields:&nbsp;Array&lt;string&gt;):&nbsp;RdbPredicates | 配置RdbPredicates按指定列分组查询结果。<br/>-&nbsp;fields：指定分组依赖的列名。<br/>-&nbsp;RdbPredicates：返回分组查询列的谓词。 |
-| RdbPredicates | indexedBy(indexName:&nbsp;string):&nbsp;RdbPredicates        | 配置RdbPredicates以指定索引列。<br/>-&nbsp;indexName：索引列的名称。<br/>-&nbsp;RdbPredicates：返回具有指定索引列的RdbPredicates。 |
+| RdbPredicates | indexedBy(indexName:&nbsp;string):&nbsp;RdbPredicates | 配置RdbPredicates以指定索引列。<br/>-&nbsp;indexName：索引列的名称。<br/>-&nbsp;RdbPredicates：返回具有指定索引列的RdbPredicates。 |
 | RdbPredicates | in(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | 配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：以ValueType型数组形式指定的要匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | notIn(field:&nbsp;string,&nbsp;value:&nbsp;Array&lt;ValueType&gt;):&nbsp;RdbPredicates | 将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：以ValueType型数组形式指定的要匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 
@@ -121,21 +121,21 @@
 
 **表7** 结果集API
 
-| 类名      | 接口名                                               | 描述                                       |
-| --------- | ---------------------------------------------------- | ------------------------------------------ |
-| ResultSet | goTo(offset:number):&nbsp;boolean                    | 从结果集当前位置移动指定偏移量。           |
-| ResultSet | goToRow(position:&nbsp;number):&nbsp;boolean         | 将结果集移动到指定位置。                   |
-| ResultSet | goToNextRow():&nbsp;boolean                          | 将结果集向后移动一行。                     |
-| ResultSet | goToPreviousRow():&nbsp;boolean                      | 将结果集向前移动一行。                     |
-| ResultSet | getColumnIndex(columnName:&nbsp;string):&nbsp;number | 根据指定的列名获取列索引。                 |
-| ResultSet | getColumnName(columnIndex:&nbsp;number):&nbsp;string | 根据指定的列索引获取列名。                 |
-| ResultSet | goToFirstRow():&nbsp;boolean                         | 判断结果集当前位置是否在第一行。           |
-| ResultSet | goToLastRow():&nbsp;boolean                          | 判断结果集当前位置是否在最后一行。         |
-| ResultSet | getString(columnIndex:&nbsp;number):&nbsp;string     | 获取当前行指定列的值，以String类型返回。   |
-| ResultSet | getBlob(columnIndex:&nbsp;number):&nbsp;Uint8Array   | 获取当前行指定列的值，以字节数组形式返回。 |
-| ResultSet | getDouble(columnIndex:&nbsp;number):&nbsp;number     | 获取当前行指定列的值，以double型返回。     |
-| ResultSet | isColumnNull(columnIndex:&nbsp;number):&nbsp;boolean | 检查当前行中指定列的值是否为null。         |
-| ResultSet | close():&nbsp;void                                   | 关闭结果集。                               |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| ResultSet | goTo(offset:number):&nbsp;boolean | 从结果集当前位置移动指定偏移量。 |
+| ResultSet | goToRow(position:&nbsp;number):&nbsp;boolean | 将结果集移动到指定位置。 |
+| ResultSet | goToNextRow():&nbsp;boolean | 将结果集向后移动一行。 |
+| ResultSet | goToPreviousRow():&nbsp;boolean | 将结果集向前移动一行。 |
+| ResultSet | getColumnIndex(columnName:&nbsp;string):&nbsp;number | 根据指定的列名获取列索引。 |
+| ResultSet | getColumnName(columnIndex:&nbsp;number):&nbsp;string | 根据指定的列索引获取列名。 |
+| ResultSet | goToFirstRow():&nbsp;boolean | 判断结果集当前位置是否在第一行。 |
+| ResultSet | goToLastRow():&nbsp;boolean | 判断结果集当前位置是否在最后一行。 |
+| ResultSet | getString(columnIndex:&nbsp;number):&nbsp;string | 获取当前行指定列的值，以String类型返回。 |
+| ResultSet | getBlob(columnIndex:&nbsp;number):&nbsp;Uint8Array | 获取当前行指定列的值，以字节数组形式返回。 |
+| ResultSet | getDouble(columnIndex:&nbsp;number):&nbsp;number | 获取当前行指定列的值，以double型返回。 |
+| ResultSet | isColumnNull(columnIndex:&nbsp;number):&nbsp;boolean | 检查当前行中指定列的值是否为null。 |
+| ResultSet | close():&nbsp;void | 关闭结果集。 |
 
 
 
@@ -147,8 +147,8 @@
 
 **表8** 设置分布式列表
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
 | RdbStore | setDistributedTables(tables: Array\<string>, callback: AsyncCallback\<void>): void | 设置分布式列表，结果以callback形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。<br/>-&nbsp;callback：指定callback回调函数。 |
 | RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void> | 设置分布式列表，结果以Promise形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。 |
 
@@ -158,35 +158,35 @@
 
 **表9** 根据本地表名获取指定远程设备的分布式表名
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback\<string>): void | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。 |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback\<string>): void | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。  |
 | RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string> | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。 |
 
 **在设备之间同步数据**
 
 **表10** 在设备之间同步数据
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void | 在设备之间同步数据，结果以callback形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。<br/>-&nbsp;callback：指定的callback回调函数，string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>> | 在设备之间同步数据，结果以Promise形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。 |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback\<Array\<[string, number]>>): void | 在设备之间同步数据，结果以callback形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。<br/>-&nbsp;callback：指定的callback回调函数，string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | 在设备之间同步数据，结果以Promise形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。  |
 
 **注册数据库的观察者**
 
 **表11** 注册数据库的观察者
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | on(event: 'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void | 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指分布式数据库中数据更改事件的观察者。 |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void| 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指分布式数据库中数据更改事件的观察者。 |
 
 **从数据库中删除指定类型的指定观察者**
 
 **表12** 从数据库中删除指定类型的指定观察者
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | off(event:'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void | 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
 
 
 ## 开发步骤
