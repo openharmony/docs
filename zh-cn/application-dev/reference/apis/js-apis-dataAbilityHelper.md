@@ -891,7 +891,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise<[PacMap](#pacmap)> | 调用的返回值。 |
+|Promise\<[PacMap](#pacmap)> | 调用的返回值。 |
 
 **示例：**
 
@@ -922,7 +922,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | method    | string                  | 是   | 被调用的方法名。   |
 | arg      | string                   | 是   |需传入的参数。      |
 | extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
-| callback | AsyncCallback<[PacMap](#pacmap)> | 是 | 返回值。     |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | 是 | 返回值。     |
 
 **示例：**
 
