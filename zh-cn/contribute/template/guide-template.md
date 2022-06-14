@@ -56,10 +56,10 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| AudioRenderer(AudioRendererInfo&nbsp;audioRendererInfo,&nbsp;PlayMode&nbsp;pm)&nbsp;throws&nbsp;IllegalArgumentException | 构造函数，设置播放相关音频参数和播放模式，使用默认播放设备 |
-| AudioRenderer(AudioRendererInfo&nbsp;audioRendererInfo,&nbsp;PlayMode&nbsp;pm,&nbsp;AudioDeviceDescriptor&nbsp;outputDevice)&nbsp;throws&nbsp;IllegalArgumentException | 构造函数，设置播放相关音频参数、播放模式和播放设备 |
-| boolean&nbsp;play() | 播放音频流 |
-| boolean&nbsp;write(byte[]&nbsp;data,&nbsp;int&nbsp;offset,&nbsp;int&nbsp;size) | 将音频数据以byte流写入音频接收器以进行播放 |
+| AudioRenderer(AudioRendererInfo audioRendererInfo, PlayMode pm) throws IllegalArgumentException | 构造函数，设置播放相关音频参数和播放模式，使用默认播放设备 |
+| AudioRenderer(AudioRendererInfo audioRendererInfo, PlayMode pm, AudioDeviceDescriptor outputDevice) throws IllegalArgumentException | 构造函数，设置播放相关音频参数、播放模式和播放设备 |
+| boolean play() | 播放音频流 |
+| boolean write(byte[] data, int offset, int size) | 将音频数据以byte流写入音频接收器以进行播放 |
 
 
 ## 开发步骤
@@ -89,27 +89,50 @@
 
 1. 构造音频流参数的数据结构AudioStreamInfo，推荐使用AudioStreamInfo.Builder类来构造，模板如下，模板中设置的均为AudioStreamInfo.Builder类的默认值，根据音频流的具体规格来设置具体参数。
    ```
-   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(    AudioStreamInfo.SAMPLE_RATE_UNSPECIFIED)    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_NONE)    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_INVALID)    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_INVALID)    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_UNKNOWN)    .build();
+   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder()
+    .sampleRate(    AudioStreamInfo.SAMPLE_RATE_UNSPECIFIED)    
+    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_NONE)
+    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_INVALID)
+    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_INVALID)
+    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_UNKNOWN)    
+    .build();
    ```
 
     以真实的播放pcm流为例：
       ```
-      AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(44100)//44.1kHz    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_MAY_DUCK)//混音    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)//16-bit PCM    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_OUT_STEREO)//双声道    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_MEDIA)//媒体类音频    .build();
+   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(44100)//44.1kHz            
+    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_MAY_DUCK)//混音            
+    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)//16-bit PCM    
+    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_OUT_STEREO)//双声道    
+    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_MEDIA)//媒体类音频
+    .build();
       ```
 
 2. 使用步骤1创建的音频流构建音频播放的参数结构AudioRendererInfo，推荐使用AudioRendererInfo.Builder类来构造，模板如下，模板中设置的均为AudioRendererInfo.Builder类的默认值，根据音频播放的具体规格来设置具体参数。
    ```
-   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_NONE)    .bufferSizeInBytes(0)    .distributedDeviceId("")    .isOffload(false)    .sessionID(AudioRendererInfo.SESSION_ID_UNSPECIFIED)    .build();
+   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder()
+    .audioStreamInfo(audioStreamInfo)
+    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_NONE)
+    .bufferSizeInBytes(0)
+    .distributedDeviceId("")
+    .isOffload(false)
+    .sessionID(AudioRendererInfo.SESSION_ID_UNSPECIFIED)
+    .build();
    ```
 
     以真实的播放pcm流为例：
       ```
-      AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_DIRECT_PCM)//pcm格式的输出流    .bufferSizeInBytes(100)    .distributedDeviceId("E54***5E8")//使用分布式设备E54***5E8播放    .isOffload(false)//false表示分段传输buffer并播放，true表示整个音频流一次性传输到HAL层播放    .build();
+   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder()
+    .audioStreamInfo(audioStreamInfo)
+    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_DIRECT_PCM)//pcm格式的输出流
+    .bufferSizeInBytes(100)
+    .distributedDeviceId("E54***5E8")//使用分布式设备E54***5E8播放
+    .isOffload(false)//false表示分段传输buffer并播放，true表示整个音频流一次性传输到HAL层播放
+    .build();
       ```
 
 3. 根据要播放音频流指定PlayMode，不同的PlayMode在写数据时存在差异，详情见步骤7，其余播放流程是无区别的。并通过构造函数获取AudioRenderer类的实例化对象。
-   ....
-
+   
 4. 播放任务结束后，调用AudioRenderer实例化对象的release()释放资源。
 
 
