@@ -37,4 +37,4 @@
 
 ### 设备使用信息统计使用权限
 - 设备使用信息统计的queryBundleActiveStates、queryBundleStateInfos、queryBundleStateInfoByInterval、queryBundleActiveEventStates、queryAppNotificationNumber、queryAppUsagePriorityGroup(bundleName?)、setBundleGroup、registerGroupCallBack、unRegisterGroupCallBack接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
-- 设备使用信息统计的queryCurrentBundleActiveStates、queryAppUsagePriorityGroup()、isIdleState接口为三方api，调用时不需要申请权限。
+- 设备使用信息统计的queryCurrentBundleActiveStates、queryAppUsagePriorityGroup()、isIdleState（三方应用只能查询自身的空闲状态）接口为三方api，调用时不需要申请权限。

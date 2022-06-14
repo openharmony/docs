@@ -196,7 +196,7 @@ import stats from '@ohos.bundleState';
     });
     ```
     
-7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中不需要配置权限。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中不需要配置权限，三方应用只能查询自身的空闲状态。
 
     ```js
     import stats from '@ohos.bundleState'
