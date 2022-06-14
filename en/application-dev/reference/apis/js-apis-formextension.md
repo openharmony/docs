@@ -21,7 +21,7 @@ None
 
 | Name   | Type                                               | Readable| Writable| Description                                               |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.|
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This context is inherited from **ExtensionContext**.|
 
 ## onCreate
 
@@ -227,7 +227,7 @@ Called when the configuration of the environment where the ability is running is
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 
-Used by the widget provider to receive the widget state query request. By default, the initial widget state is returned.
+Called when the widget provider receives the status query result of a specified service widget. By default, the initial state is returned.
 
 **System capability**: SystemCapability.Ability.Form
 

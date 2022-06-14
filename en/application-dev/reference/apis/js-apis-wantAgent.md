@@ -914,7 +914,7 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 });
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
@@ -975,7 +975,7 @@ WantAgent.getOperationType(wantAgent, (OperationType) => {
 })
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent): Promise\<number>;
 
