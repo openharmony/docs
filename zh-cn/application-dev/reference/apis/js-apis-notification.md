@@ -2354,7 +2354,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
-根据bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
+bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 根据应用的包设置应用程序是否支持分布式通知（Promise形式）。
 

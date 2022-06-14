@@ -81,7 +81,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbPredicates |inDevices(devices: Array<string>): RdbPredicates | 同步分布式数据库时指定组网内的远程设备。<br/>-&nbsp;devices：组网内指定的远程设备ID。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates |inDevices(devices: Array\<string>): RdbPredicates | 同步分布式数据库时指定组网内的远程设备。<br/>-&nbsp;devices：组网内指定的远程设备ID。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates |inAllDevices(): RdbPredicates | 同步分布式数据库时连接到组网内的所有远程设备。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | equalTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | notEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
@@ -149,8 +149,8 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore | setDistributedTables(tables: Array<string>, callback: AsyncCallback<void>): void;| 设置分布式列表，结果以callback形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。<br/>-&nbsp;callback：指定callback回调函数。 |
-| RdbStore | setDistributedTables(tables: Array<string>): Promise<void>; | 设置分布式列表，结果以Promise形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。 |
+| RdbStore | setDistributedTables(tables: Array\<string>, callback: AsyncCallback\<void>): void; | 设置分布式列表，结果以callback形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。<br/>-&nbsp;callback：指定callback回调函数。 |
+| RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void>; | 设置分布式列表，结果以Promise形式返回。<br/>-&nbsp;tables：要设置的分布式列表表名。 |
 
 **根据本地表名获取指定远程设备的分布式表名**
 
@@ -160,8 +160,8 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback<string>): void; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。  |
-| RdbStore | obtainDistributedTableName(device: string, table: string): Promise<string>; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。 |
+| RdbStore | obtainDistributedTableName(device: string, table: string, callback: AsyncCallback\<string>): void; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。<br/>-&nbsp;callback：指定的callback回调函数，如果操作成功，返回远程设备的分布式表名。  |
+| RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string>; | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。<br/>-&nbsp;device：远程设备。<br/>-&nbsp;table：本地表名。 |
 
 **在设备之间同步数据**
 
@@ -169,8 +169,8 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback<Array<[string, number]>>): void;| 在设备之间同步数据，结果以callback形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。<br/>-&nbsp;callback：指定的callback回调函数，string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
-| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise<Array<[string, number]>>;| 在设备之间同步数据，结果以Promise形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。  |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback\<Array\<[string, number]>>): void; | 在设备之间同步数据，结果以callback形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。<br/>-&nbsp;callback：指定的callback回调函数，string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>>; | 在设备之间同步数据，结果以Promise形式返回。<br/>-&nbsp;mode：指同步模式。SYNC_MODE_PUSH 表示数据从本地设备推送到远程设备；SYNC_MODE_PULL 表示数据从远程设备拉至本地设备。<br/>-&nbsp;predicates：约束同步数据和设备。  |
 
 **注册数据库的观察者**
 
@@ -178,7 +178,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指分布式数据库中数据更改事件的观察者。 |
+| RdbStore |on(event: 'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void;| 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指分布式数据库中数据更改事件的观察者。 |
 
 **从数据库中删除指定类型的指定观察者**
 
@@ -186,7 +186,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
 
 
 ## 开发步骤

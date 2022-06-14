@@ -104,7 +104,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 获取所有输入设备的id列表，使用Promise方式作为异步方法。
 
@@ -150,7 +150,7 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 获取输入设备的描述信息，使用Promise方式作为异步方法。
 
@@ -333,15 +333,15 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 **系统能力**： 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                      | 参数类型                      | 说明       |
-| ----------------------- | ------------------------- | -------- |
+| 名称                    | 参数类型                  | 说明             |
+| ----------------------- | ------------------------- | ---------------- |
 | source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](axistype)      | 轴的类型。    |
-| max                     | number                    | 轴的最大值。   |
-| min                     | number                    | 轴的最小值。   |
-| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
-| flat<sup>9+</sup>       | number                    | 轴的基准值。   |
-| resolution<sup>9+</sup> | number                    | 轴的分辨率。   |
+| axis                    | [AxisType](#axistype)     | 轴的类型。       |
+| max                     | number                    | 轴的最大值。     |
+| min                     | number                    | 轴的最小值。     |
+| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。     |
+| flat<sup>9+</sup>       | number                    | 轴的基准值。     |
+| resolution<sup>9+</sup> | number                    | 轴的分辨率。     |
 
 ## SourceType
 
