@@ -55,7 +55,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   | Class    | API                                                          | Description                                                  |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a callback to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data.<br>-&nbsp;**callback**: callback invoked to return the number of rows deleted. |
-  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise      | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data. |
+  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | Deletes data from the RDB store based on the specified **RdbPredicates** object. This method uses a promise to return the result.<br>-&nbsp;**rdbPredicates**: conditions for deleting data. |
   
 - **Querying data**
 
@@ -148,7 +148,7 @@ A result set can be regarded as a row of data in the queried results. It allows 
 | Class    | API                                                          | Description                                                  |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | RdbStore | setDistributedTables(tables: Array\<string>, callback: AsyncCallback\<void>): void | Sets a list of distributed tables. This method uses a callback to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set.<br>-&nbsp;**callback**: callback invoked to return the result. |
-| RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void> | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set. |
+| RdbStore | setDistributedTables(tables: Array\<string>): Promise<void>  | Sets a list of distributed tables. This method uses a promise to return the result.<br>- &nbsp;**tables**: names of the distributed tables to set. |
 
 **Obtaining the Distributed Table Name for a Remote Device**
 
