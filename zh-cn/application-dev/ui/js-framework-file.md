@@ -22,13 +22,13 @@ JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如�
 
 各个文件夹的作用：
 
-- app.js文件用于全局JavaScript逻辑和应用生命周期管理，详见[app.js](../ui/js-framework-js-file.md)。
+- app.js文件用于全局JavaScript逻辑和应用生命周期管理，详见[app.js](js-framework-js-file.md)。
 
 - pages目录用于存放所有组件页面。
 
 - common目录用于存放公共资源文件，比如：媒体资源，自定义组件和JS文件。
 
-- resources目录用于存放资源配置文件，比如：多分辨率加载等配置文件，详见[资源限定与访问](../ui/js-framework-resource-restriction.md)章节。
+- resources目录用于存放资源配置文件，比如：多分辨率加载等配置文件，详见[资源限定与访问](js-framework-resource-restriction.md)章节。
 
 - share目录用于配置多个实例共享的资源内容，比如：share中的图片和JSON文件可被default1和default2实例共享。
 
