@@ -207,4 +207,4 @@ export default class MainAbility extends Ability {
 
 **原因**
 
-​        应用框架在API8上推出了新的应用模型（Stage模型）。在老的模型（FA模型）下，每个Ability实例有一个js虚拟机实例，所以可以从js引擎的global对象上，获取到一个全局的Ability实例，但是在新的模型（Stage模型）下，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，这样就不存在一个全局的Ability实例。如果开发者在新的模型（Stage模型）下，调用的API实现仍然走到了获取全局Ability实例的方法，就可能会发生错误或者崩溃。
+​        应用框架在API9上推出了新的应用模型（Stage模型）。在老的模型（FA模型）下，每个Ability实例有一个js虚拟机实例，所以可以从js引擎的global对象上，获取到一个全局的Ability实例，但是在新的模型（Stage模型）下，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，这样就不存在一个全局的Ability实例。如果开发者在新的模型（Stage模型）下，调用的API实现仍然走到了获取全局Ability实例的方法，就可能会发生错误或者崩溃。
