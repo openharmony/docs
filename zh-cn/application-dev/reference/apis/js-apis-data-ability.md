@@ -618,13 +618,7 @@ distinct(): DataAbilityPredicates
 
 **示例：**
   ```js
-  dataAbilityPredicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
-  promiseDistinct.then((resultSet) => {   
-      console.log("distinct")
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct()
   ```
 
 
