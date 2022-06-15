@@ -1,15 +1,14 @@
 # Encryption Algorithm
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> **NOTE**<br>
 >
-> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 
-```
+```js
 import cipher from '@system.cipher'
 ```
 
@@ -24,27 +23,27 @@ Encrypts or decrypts data using RSA.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes | Action&nbsp;type.&nbsp;The&nbsp;options&nbsp;are&nbsp;as&nbsp;follows:<br/>1.&nbsp;**encrypt**:&nbsp;Encrypts&nbsp;data.<br/>2.&nbsp;**decrypt**:&nbsp;Decrypts&nbsp;data. |
-| text | string | Yes | Text&nbsp;content&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;or&nbsp;decrypted.&nbsp;The&nbsp;text&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;must&nbsp;be&nbsp;a&nbsp;common&nbsp;text&nbsp;and&nbsp;cannot&nbsp;exceed&nbsp;the&nbsp;length&nbsp;calculated&nbsp;based&nbsp;on&nbsp;the&nbsp;formula&nbsp;(keySize/8&nbsp;-&nbsp;66).&nbsp;**keySize**&nbsp;indicates&nbsp;the&nbsp;key&nbsp;length.&nbsp;For&nbsp;example,&nbsp;if&nbsp;the&nbsp;key&nbsp;length&nbsp;is&nbsp;1024&nbsp;bytes,&nbsp;the&nbsp;text&nbsp;cannot&nbsp;exceed&nbsp;62&nbsp;bytes&nbsp;(1024/8&nbsp;-&nbsp;66&nbsp;=&nbsp;62).&nbsp;The&nbsp;text&nbsp;content&nbsp;to&nbsp;be&nbsp;decrypted&nbsp;must&nbsp;be&nbsp;a&nbsp;binary&nbsp;value&nbsp;encoded&nbsp;using&nbsp;Base64.&nbsp;The&nbsp;default&nbsp;format&nbsp;is&nbsp;used&nbsp;for&nbsp;Base64&nbsp;encoding. |
-| key | string | Yes | Keys&nbsp;encrypted&nbsp;using&nbsp;RSA.&nbsp;During&nbsp;encryption,&nbsp;this&nbsp;parameter&nbsp;is&nbsp;a&nbsp;public&nbsp;key.&nbsp;During&nbsp;decryption,&nbsp;it&nbsp;is&nbsp;a&nbsp;private&nbsp;key. |
-| transformation | string | No | RSA&nbsp;algorithm&nbsp;padding.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**RSA/None/OAEPWithSHA256AndMGF1Padding**. |
-| success | Function | No | Called&nbsp;when&nbsp;data&nbsp;is&nbsp;encrypted&nbsp;or&nbsp;decrypted&nbsp;successfully. |
-| fail | Function | No | Called&nbsp;when&nbsp;data&nbsp;fails&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;or&nbsp;decrypted. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
+| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text that meets the following requirement:<br> Maximum text length = Key length/8 - 66<br>For example, if the key is of 1024 bytes, the text to be encrypted cannot exceed 62 bytes (1024/8 -66 = 62).<br> The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
+| key | string | Yes| RSA key. The key is used as a public key in encryption and a private key in decryption.|
+| transformation | string | No| RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
+| success | Function | No| Called when data is encrypted or decrypted successful.|
+| fail | Function | No| Called when data fails to be encrypted or decrypted.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   rsa() {        
     cipher.rsa({            
-  // Encrypt data.
+      // Encrypt data.           
       action: 'encrypt',            
-  // Text content to be encrypted
+      // Text to be encrypted.           
       text: 'hello',            
-  // Base64-encoded public key used for encryption
+      // Base64-encoded public key used for encryption.           
       key:            
         'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7GR2MrfAoefES+wrs1ns2afT\n' +            
         'eJXSfIkEHfPXG9fVFjaws1ho4KcZfsxlA0+SXvc83f2SVGCuzULmM2lxxRCtcUN/\n' +            
@@ -58,14 +57,14 @@ export default {
         }       
       });        
       cipher.rsa({            
-  // Decrypt data.
+        // Decrypt data.           
         action: 'decrypt',            
-  // The text to be decrypted is a Base64-encoded binary value, and the decrypted text is "hello".
+        // Text to be decrypted, which is binary text encoded in Base64. The decrypted text is "hello".           
         text:            
           'CUg3tTxTIdpCfreIxIBdws3uhd5qXLwcrVl3XDnQzZFVHyjVVCDHS16rjopaZ4C5xU2Tc8mSDzt7\n' +            
           'gp9vBfSwi7bMtSUvXG18DlncsKJFDkJpS5t0PkpS9YrJXrY80Gpe+ME6+6dN9bjgqMljbitDdBRf\n' +            
           'S/ZWNI4Q8Q0suNjNkGU=',            
-  // Base64-encoded public key used for encryption
+           // Base64-encoded private key used for decryption.           
          key:            
            'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANzsZHYyt8Ch58RL\n' +            
            '7CuzWezZp9N4ldJ8iQQd89cb19UWNrCzWGjgpxl+zGUDT5Je9zzd/ZJUYK7NQuYz\n' +            
@@ -103,30 +102,30 @@ Encrypts or decrypts data using AES.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes | Action&nbsp;type.&nbsp;The&nbsp;options&nbsp;are&nbsp;as&nbsp;follows:<br/>1.&nbsp;**encrypt**:&nbsp;Encrypts&nbsp;data.<br/>2.&nbsp;**decrypt**:&nbsp;Decrypts&nbsp;data. |
-| text | string | Yes | Text&nbsp;content&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;or&nbsp;decrypted.&nbsp;The&nbsp;text&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;must&nbsp;be&nbsp;a&nbsp;common&nbsp;text.&nbsp;The&nbsp;text&nbsp;content&nbsp;to&nbsp;be&nbsp;decrypted&nbsp;must&nbsp;be&nbsp;a&nbsp;binary&nbsp;value&nbsp;encoded&nbsp;using&nbsp;Base64.&nbsp;The&nbsp;default&nbsp;format&nbsp;is&nbsp;used&nbsp;for&nbsp;Base64&nbsp;encoding. |
-| key | string | Yes | Key&nbsp;used&nbsp;for&nbsp;encryption&nbsp;or&nbsp;decryption,&nbsp;which&nbsp;is&nbsp;a&nbsp;character&nbsp;string&nbsp;encrypted&nbsp;using&nbsp;Base64. |
-| transformation | string | No | Encryption&nbsp;mode&nbsp;and&nbsp;padding&nbsp;of&nbsp;the&nbsp;AES&nbsp;algorithm.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**AES/CBC/PKCS5Padding**. |
-| iv | string | No | Initial&nbsp;vector&nbsp;for&nbsp;AES-based&nbsp;encryption&nbsp;and&nbsp;decryption.&nbsp;The&nbsp;value&nbsp;is&nbsp;a&nbsp;character&nbsp;string&nbsp;encoded&nbsp;using&nbsp;Base64.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;the&nbsp;key&nbsp;value. |
-| ivOffset | string | No | Offset&nbsp;of&nbsp;the&nbsp;initial&nbsp;vector&nbsp;for&nbsp;AES-based&nbsp;encryption&nbsp;and&nbsp;decryption.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**. |
-| ivLen | string | No | Length&nbsp;of&nbsp;the&nbsp;initial&nbsp;vector&nbsp;for&nbsp;AES-based&nbsp;encryption&nbsp;and&nbsp;decryption.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**16**. |
-| success | Function | No | Called&nbsp;when&nbsp;data&nbsp;is&nbsp;encrypted&nbsp;or&nbsp;decrypted&nbsp;successfully. |
-| fail | Function | No | Called&nbsp;when&nbsp;data&nbsp;fails&nbsp;to&nbsp;be&nbsp;encrypted&nbsp;or&nbsp;decrypted. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
+| text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text. The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
+| key | string | Yes| Key used for encryption or decryption. It is a string encoded in Base64.|
+| transformation | string | No| Encryption mode and padding of the AES algorithm. The default value is **AES/CBC/PKCS5Padding**.|
+| iv | string | No| Initialization vector (IV) for AES-based encryption and decryption. The value is a string encoded in Base64. The default value is the key value.|
+| ivOffset | string | No| Offset of the IV for AES-based encryption and decryption. The default value is **0**.|
+| ivLen | string | No| Length of the IV for AES-based encryption and decryption, in bytes. The default value is **16**.|
+| success | Function | No| Called when data is encrypted or decrypted successful.|
+| fail | Function | No| Called when data fails to be encrypted or decrypted.|
+| complete | Function | No| Called when the execution is complete.|
 
 **Example**
 
-```
+```js
 export default {    
   aes() {        
     cipher.aes({            
-  // Encrypt data.
+      // Encrypt data.           
       action: 'encrypt',            
-  // Text content to be encrypted
+      // Text to be encrypted.           
       text: 'hello',            
-  // Base64-encoded key used for encryption
+      // Base64-encoded key used for encryption.           
       key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
       transformation: 'AES/CBC/PKCS5Padding',            
       ivOffset: 0,            
@@ -139,13 +138,13 @@ export default {
       }        
     });        
     cipher.aes({            
-  // Decrypt data.
+      // Decrypt data.           
       action: 'decrypt',            
-  // Text to be decrypted, which is a Base64-encoded binary value
+      // Text to be decrypted, which is binary text encoded in Base64.           
       text: 'CUg3tTxTIdpCfreIxIBdws3uhd5qXLwcrVl3XDnQzZFVHyjVVCDHS16rjopaZ4C5xU2Tc8mSDzt7\n' +            
       'gp9vBfSwi7bMtSUvXG18DlncsKJFDkJpS5t0PkpS9YrJXrY80Gpe+ME6+6dN9bjgqMljbitDdBRf\n' +            
       'S/ZWNI4Q8Q0suNjNkGU=',            
-  // Base64-encoded key used for decryption
+       // Base64-encoded key used for decryption.           
        key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
        transformation: 'AES/CBC/PKCS5Padding',            
        ivOffset: 0,            
