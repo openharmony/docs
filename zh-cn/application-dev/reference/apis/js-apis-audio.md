@@ -2528,7 +2528,7 @@ setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
-callback | Callback<[void](#)> | 是  |回调返回执行结果，设置成功时返回undefined，否则返回error。
+callback | Callback\<void>  | 是  |回调返回执行结果。
 
 
 
