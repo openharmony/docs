@@ -83,8 +83,8 @@ Obtains information about the second-level album or files in asynchronous mode. 
 - Parameters
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | path | promise<string>| Yes| URI of the directory to query.|
-  | type | promise<string>| Yes| Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
+  | path | string | Yes| URI of the directory to query.|
+  | type | string | Yes| Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
   
 - Return value
@@ -130,8 +130,8 @@ Obtains information about the second-level album or files in asynchronous mode. 
 
   | Name  | Type                     | Mandatory| Description                                                        |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | path     | promise<string>                   | Yes  | URI of the directory to query.                                               |
-  | type     | promise<string>                   | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
+  | path     | string                   | Yes  | URI of the directory to query.                                               |
+  | type     | string                   | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained.                                |
 - Error
@@ -167,8 +167,8 @@ Creates a file in the specified path in asynchronous mode. This API uses a promi
 - Parameters
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | filename | promise<string>| Yes| Name of the file to create.|
-  | path | promise<string>| Yes| URI of the file to create.|
+  | filename | string | Yes| Name of the file to create.|
+  | path | string | Yes| URI of the file to create.|
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
 
 - Return value
@@ -211,8 +211,8 @@ Creates a file in the specified path in asynchronous mode. This API uses a callb
 
   | Name  | Type                     | Mandatory| Description                         |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | filename | promise<string>                   | Yes  | Name of the file to create.               |
-  | path     | promise<string>                   | Yes  | URI of the file to create.            |
+  | filename | string                   | Yes  | Name of the file to create.               |
+  | path     | string                   | Yes  | URI of the file to create.            |
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained. |
 
@@ -248,9 +248,9 @@ Defines the file information returned by **getRoot()** or **listFile()**.
 
 | Name| Type| Readable| Writable| Description|
 | --- | -- | -- | -- | -- |
-| name | promise<string>| Yes| No| File name.|
-| path | promise<string>| Yes| No| URI of the file.|
-| type | promise<string>| Yes| No| File type.|
+| name | string | Yes| No| File name.|
+| path | string | Yes| No| URI of the file.|
+| type | string | Yes| No| File type.|
 | size | number | Yes| No| File size.|
 | addedTime | number | Yes| No| Time when the file was scanned to the database.|
 | modifiedTime | number | Yes| No| Time when the file was modified.|
@@ -265,4 +265,4 @@ Defines the device type.
 
 | Name| Type  | Readable| Writable| Description    |
 | ------ | ------ | ---- | ---- | -------- |
-| name   | promise<string>| Yes  | Yes  | Device name.|
+| name   | string | Yes  | Yes  | Device name.|
