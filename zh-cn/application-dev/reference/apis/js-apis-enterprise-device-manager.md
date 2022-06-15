@@ -14,7 +14,7 @@ import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<boolean>): void
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
 
@@ -56,7 +56,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType): Promise\<boolean>
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<boolean>
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Promise形式返回是否激活成功。
 
@@ -102,7 +102,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
+disableAdmin(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
 
@@ -140,7 +140,7 @@ enterpriseDeviceManager.disableAdmin(wantTemp, 100, (error, result) => {
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want): Promise\<boolean>
+disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Promise形式返回是否去激活成功。
 
@@ -240,7 +240,7 @@ enterpriseDeviceManager.disableSuperAdmin(bundleName).then((result) => {
 
 ## enterpriseDeviceManager.isAdminEnabled
 
-isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
+isAdminEnabled(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
 
@@ -275,7 +275,7 @@ enterpriseDeviceManager.isAdminEnabled(wantTemp, 100, (error, result) => {
 
 ## enterpriseDeviceManager.isAdminEnabled
 
-isAdminEnabled(admin: Want): Promise\<boolean>
+isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
