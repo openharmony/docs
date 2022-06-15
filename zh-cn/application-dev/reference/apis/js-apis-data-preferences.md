@@ -1,6 +1,6 @@
 # 首选项
 
-首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
+首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
 
 > **说明：**
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import preferences from '@ohos.data.preferences';
+import data_preferences from '@ohos.data.preferences';
 ```
 
 ## 常量
@@ -23,7 +23,7 @@ import preferences from '@ohos.data.preferences';
 | MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，需小于8192字节。 |
 
 
-## preferences.getPreferences
+## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -41,7 +41,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 **示例：**
 ```ts
-preferences.getPreferences(this.context, 'mystore', function (err, pref) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
         console.info("Get preferences failed.")
         return;
@@ -51,7 +51,7 @@ preferences.getPreferences(this.context, 'mystore', function (err, pref) {
 ```
 
 
-## preferences.getPreferences
+## data_preferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -72,8 +72,8 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 **示例：**
 ```ts
-let promise = preferences.getPreferences(this.context, 'mystore')
-promise.then((pref) => {
+let promise = data_preferences.getPreferences(this.context, 'mystore')
+promise.then((preferences) => {
     console.info("Get preferences successfully.")
 }).catch((err) => {
     console.info("Get preferences failed.")
@@ -81,7 +81,7 @@ promise.then((pref) => {
 ```
 
 
-## preferences.deletePreferences
+## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -99,7 +99,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **示例：**
 ```ts
-preferences.deletePreferences(this.context, 'mystore', function (err) {
+data_preferences.deletePreferences(this.context, 'mystore', function (err) {
     if (err) {
         console.info("Deleted preferences failed, err: " + err)
         return
@@ -109,7 +109,7 @@ preferences.deletePreferences(this.context, 'mystore', function (err) {
 ```
 
 
-## preferences.deletePreferences
+## data_preferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -131,7 +131,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = preferences.deletePreferences(this.context, 'mystore')
+let promise = data_preferences.deletePreferences(this.context, 'mystore')
 promise.then(() => {
     console.info("Deleted preferences successfully.")
 }).catch((err) => {
@@ -140,7 +140,7 @@ promise.then(() => {
 ```
 
 
-## preferences.removePreferencesFromCache
+## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -159,7 +159,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 **示例：**
 ```ts
-preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
     if (err) {
         console.info("Removed preferences from cache failed, err: " + err)
         return
@@ -169,7 +169,7 @@ preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
 ```
 
 
-## preferences.removePreferencesFromCache
+## data_preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
@@ -192,7 +192,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = preferences.removePreferencesFromCache(this.context, 'mystore')
+let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
 promise.then(() => {
     console.info("Removed preferences from cache successfully.")
 }).catch((err) => {
@@ -223,7 +223,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **示例：**
 ```ts
-pref.get('startup', 'default', function(err, value) {
+preferences.get('startup', 'default', function(err, value) {
     if (err) {
         console.info("Get value of startup failed, err: " + err)
         return
@@ -254,7 +254,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 **示例：**
 ```ts
-let promise = pref.get('startup', 'default')
+let promise = preferences.get('startup', 'default')
 promise.then((value) => {
     console.info("Get value of startup is " + value)
 }).catch((err) => {
@@ -277,7 +277,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **示例：**
 ```ts
-pref.getAll(function (err, value) {
+preferences.get.getAll(function (err, value) {
     if (err) {
         console.info("getAll failed, err: " + err)
         return
@@ -304,7 +304,7 @@ getAll(): Promise&lt;Object&gt;
 
 **示例：**
 ```ts
-let promise = pref.getAll()
+let promise = preferences.getAll()
 promise.then((value) => {
     let keys = Object.keys(value)
     console.info('getAll keys = ' + keys)
@@ -331,7 +331,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 ```ts
-pref.put('startup', 'auto', function (err) {
+preferences.put('startup', 'auto', function (err) {
     if (err) {
         console.info("Put value of startup failed, err: " + err)
         return
@@ -362,7 +362,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = pref.put('startup', 'auto')
+let promise = preferences.put('startup', 'auto')
 promise.then(() => {
     console.info("Put value of startup successfully.")
 }).catch((err) => {
@@ -387,7 +387,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 ```ts
-pref.has('startup', function (err, isExist) {
+preferences.has('startup', function (err, isExist) {
     if (err) {
         console.info("Check the key of startup failed, err: " + err)
         return
@@ -421,7 +421,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 **示例：**
 ```ts
-let promise = pref.has('startup')
+let promise = preferences.has('startup')
 promise.then((isExist) => {
     if (isExist) {
         console.info("The key of startup is contained.")
@@ -450,7 +450,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 ```ts
-pref.delete('startup', function (err) {
+preferences.delete('startup', function (err) {
     if (err) {
         console.info("Delete startup key failed, err: " + err)
         return
@@ -480,7 +480,7 @@ delete(key: string): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = pref.delete('startup')
+let promise = preferences.delete('startup')
 promise.then(() => {
     console.info("Deleted startup key successfully.")
 }).catch((err) => {
@@ -504,7 +504,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 ```ts
-pref.flush(function (err) {
+preferences.flush(function (err) {
     if (err) {
         console.info("Flush to file failed, err: " + err)
         return
@@ -529,7 +529,7 @@ flush(): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = pref.flush()
+let promise = preferences.flush()
 promise.then(() => {
     console.info("Flushed to file successfully.")
 }).catch((err) => {
@@ -553,7 +553,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 ```ts
-pref.clear(function (err) {
+preferences.clear(function (err) {
     if (err) {
         console.info("Clear to file failed, err: " + err)
         return
@@ -578,7 +578,7 @@ clear(): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-let promise = pref.clear()
+let promise = preferences.clear()
 promise.then(() => {
     console.info("Cleared to file successfully.")
 }).catch((err) => {
@@ -607,15 +607,17 @@ var observer = function (key) {
     console.info("The key of " + key + " changed.")
 }
 
-pref.on('change', observer)
-pref.put('startup', 'auto', function (err) {
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
     if (err) {
         console.info("Put the value of startup failed, err: " + err)
         return
     }
     console.info("Put the value of startup successfully.")
 
-    pref.flush(function (err) {
+    preferences.flush(function (err) {
         if (err) {
             console.info("Flush to file failed, err: " + err)
             return
@@ -646,21 +648,23 @@ var observer = function (key) {
     console.info("The key of " + key + " changed.")
 }
 
-pref.on('change', observer)
-pref.put('startup', 'auto', function (err) {
+...
+
+preferences.on('change', observer)
+preferences.put('startup', 'auto', function (err) {
     if (err) {
         console.info("Put the value of startup failed, err: " + err)
         return
     }
     console.info("Put the value of startup successfully.")
 
-    pref.flush(function (err) {
+    preferences.flush(function (err) {
         if (err) {
             console.info("Flush to file failed, err: " + err)
             return
         }
         console.info("Flushed to file successfully.")    // observer will be called.
-        pref.off('change', observer)
+        preferences.off('change', observer)
     })
 })
 ```
@@ -671,11 +675,11 @@ pref.put('startup', 'auto', function (err) {
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称          | 说明                   |
-| ------------- | ---------------------- |
-| number        | 表示值类型为数字。     |
-| string        | 表示值类型为字符。     |
-| boolean       | 表示值类型为布尔值。   |
-| Array<number> | 表示值类型为数字数组。 |
-| Array<string> | 表示值类型为字符数组。 |
-| Array<bool>   | 表示值类型为布尔数组。 |
+| 名称           | 说明                           |
+| -------------- | ------------------------------ |
+| number         | 表示值类型为数字。             |
+| string         | 表示值类型为字符串。           |
+| boolean        | 表示值类型为布尔值。           |
+| Array\<number>  | 表示值类型为数字类型的数组。   |
+| Array\<boolean> | 表示值类型为布尔类型的数组。   |
+| Array\<string>  | 表示值类型为字符串类型的数组。 |
