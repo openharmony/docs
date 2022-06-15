@@ -70,7 +70,6 @@
 
   - UI开发
 
-
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     
     - 基于JS扩展的类Web开发范式
@@ -363,7 +362,6 @@
 
     - 公共事件与通知
 
-
       - [公共事件与通知概述](notification/notification-brief.md)
     
       - [公共事件开发指导](notification/common-event.md)
@@ -371,7 +369,6 @@
       - [通知开发指导](notification/notification-guidelines.md)
     
       - [调试助手使用指导](notification/assistant-guidelines.md)
-
 
     - 窗口管理
     
@@ -393,11 +390,7 @@
     
         - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
 
-
-​      
-
     - WebGL
-
 
       - [WebGL开发概述](webgl/webgl-overview.md)
     
@@ -423,9 +416,6 @@
     
         - [视频录制开发指导](media/video-recorder.md)
 
-
-​      
-
       - 图片
     
         - [图片开发指导](media/image.md)
@@ -438,24 +428,15 @@
     
         - [用户认证开发指导](security/userauth-guidelines.md)
 
-
-​        
-
       - 密钥管理
     
         - [HUKS开发概述](security/huks-overview.md)
     
         - [HUKS开发指导](security/huks-guidelines.md)
 
-
-​        
-
       - Hap包签名工具  
     
         - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
-
-
-​      
 
       - 访问控制  
     
@@ -493,7 +474,6 @@
     
     - 数据管理
 
-
       - 分布式数据服务
     
         - [分布式数据服务概述](database/database-mdds-overview.md)
@@ -520,13 +500,11 @@
     
     - 后台代理提醒
 
-
       - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
     
       - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
     
     - 后台任务管理
-
 
       - [后台任务概述](background-task-management/background-task-overview.md)
     
@@ -534,13 +512,11 @@
     
     - 延迟任务调度
 
-
       - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
     
       - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
     
     - 设备管理
-
 
       - USB服务
     
@@ -570,7 +546,6 @@
     
     - 设备使用信息统计
 
-
       - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
     
       - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
@@ -594,12 +569,8 @@
         - [分布式跟踪概述](dfx/hitracechain-overview.md)
     
         - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
-
-
-​      
-
+    
     - 国际化
-
 
       - [国际化开发概述](internationalization/international-overview.md)
     
@@ -607,16 +578,13 @@
     
       - [I18n开发指导](internationalization/i18n-guidelines.md)
 
-
     - Native API的相关指导
-
 
       - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     
       - [Drawing开发指导](napi/drawing-guidelines.md)
     
       - [Rawfile开发指导](napi/rawfile-guidelines.md)
-
 
 - 工具
 
@@ -630,7 +598,6 @@
 - API参考
 
   - 组件参考（基于JS扩展的类Web开发范式）
-
 
     - 组件
     
@@ -835,7 +802,6 @@
       - [类型说明](reference/arkui-js/js-appendix-types.md)
 
   - 组件参考（基于TS扩展的声明式开发范式）
-
 
     - 组件
     
