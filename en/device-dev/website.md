@@ -394,14 +394,14 @@
     - [Container Component Development](subsystems/subsys-graphics-container-guide.md)
     - [Development of Layout Container Components](subsystems/subsys-graphics-layout-guide.md)
     - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
-    - [Animator Development Guidelines](subsystems/subsys-graphics-animation-guide.md)
+    - [Animator Development](subsystems/subsys-graphics-animation-guide.md)
   - Multimedia
     - Camera
       - [Camera Overview](subsystems/subsys-multimedia-camera-overview.md)
       - [Photographing Development](subsystems/subsys-multimedia-camera-photo-guide.md)
       - [Video Recording Development](subsystems/subsys-multimedia-camera-record-guide.md)
       - [Previewing Development](subsystems/subsys-multimedia-camera-preview-guide.md)
-    - Audio/Video
+    - Audio and Video
       - [Audio/Video Overview](subsystems/subsys-multimedia-video-overview.md)
       - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
       - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)
