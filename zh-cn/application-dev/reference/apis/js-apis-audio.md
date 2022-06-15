@@ -246,6 +246,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
 
 
+## InterruptMode<sup>9+</sup>
+
+枚举，焦点模型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
+
+| 名称                         | 默认值 | 描述       |
+| ---------------------------- | ------ | ---------- |
+| SHARE_MODE      | 0      | 共享焦点模式。 |
+| INDEPENDENT_MODE| 1      | 独立焦点模式。     |
+
 ## DeviceFlag
 
 枚举，可获取的设备种类。
@@ -2477,7 +2488,55 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('ERROR: '+err.message);
 });
 ```
+### setInterruptMode<sup>9+</sup>
 
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+
+设置应用的焦点模型。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise对象返回结果，设置成功时返回undefined，否则返回error。 |
+
+**示例：**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+    console.log('Promise returned to indicate a successful volume setting.');
+});
+```
+### setInterruptMode<sup>9+</sup>
+
+setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
+
+设置应用的焦点模型。使用Callback回调返回执行结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+|interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。|
+|callback | Callback\<void>  | 是  |回调返回执行结果。|
+
+**示例：**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+    console.log('Callback returned to indicate a successful volume setting.');
+});
+```
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
