@@ -28,3 +28,20 @@ import Want from '@ohos.application.Want';
 | parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述。                                       |
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
 | moduleName<sup>9+</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。同一应用的不同hap的组件可能重名，仅通过BundleName和AbilityName无法区分时，可以通过设置moduleName加以区分，以匹配到指定的Ability。 |                              |
+
+**示例：**
+
+```  js
+  var want = {
+      "deviceId": "", // deviceId为空表示本设备
+      "bundleName": "com.extreme.test",
+      "abilityName": "MainAbility",
+      "moduleName": "entry" // moduleName非必选
+  };
+  this.context.startAbility(want, (error) => {
+      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+      // moduleName非必选项，如果系统中仅有1个hap满足该bundleName和abilityName的要求，则无moduleName时也可拉起符合预期的Ability，
+      // 如果系统中存在多个hap满足该bundleName和abilityName的要求，但moduleName不同，则无moduleName时拉起的Ability可能不符合预期
+      console.log("error.code = " + error.code)
+  })
+```
