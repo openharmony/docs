@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import dataStorage from '@ohos.data.storage';
+import data_storage from '@ohos.data.storage';
 ```
 
 ## 常量
@@ -24,7 +24,7 @@ import dataStorage from '@ohos.data.storage';
 | MAX_VALUE_LENGTH | string | 是 | 否 | value的最大长度限制，需小于8192字节。 |
 
 
-## dataStorage.getStorageSync
+## data_storage.getStorageSync
 
 getStorageSync(path: string): Storage
 
@@ -44,24 +44,17 @@ getStorageSync(path: string): Storage
 
 **示例：**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let storage = dataStorage.getStorageSync(path + '/mystore')
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  });
+  var path = '/data/storage/el2/database/test_storage'
+  let storage = data_storage.getStorageSync(path + '/mystore')
+  storage.putSync('startup', 'auto')
+  storage.flushSync()
+  
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
@@ -77,29 +70,21 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
 **示例：**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
+  var path = '/data/storage/el2/database/test_storage'
+  data_storage.getStorage(path + '/mystore', function (err, storage) {
       if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
+          console.info("Get the storage failed, path: " + path + '/mystore')
           return;
       }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      dataStorage.getStorage(path + '/mystore', function (err, storage) {
-          if (err) {
-              console.info("Get the storage failed, path: " + path + '/mystore')
-              return;
-          }
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      })
-  });
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  })
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
@@ -119,28 +104,21 @@ getStorage(path: string): Promise&lt;Storage&gt;
 
 **示例：**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let promisegetSt = dataStorage.getStorage(path + '/mystore')
-      promisegetSt.then((storage) => {
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      }).catch((err) => {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-      })
-  });
+  var path = '/data/storage/el2/database/test_storage'
+  
+  let getPromise = data_storage.getStorage(path + '/mystore')
+  getPromise.then((storage) => {
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  }).catch((err) => {
+      console.info("Get the storage failed, path: " + path + '/mystore')
+  })
   ```
 
 
-## dataStorage.deleteStorageSync
+## data_storage.deleteStorageSync
 
 deleteStorageSync(path: string): void
 
@@ -155,11 +133,11 @@ deleteStorageSync(path: string): void
 
 **示例：**
   ```js
-  dataStorage.deleteStorageSync(path + '/mystore')
+  data_storage.deleteStorageSync(path + '/mystore')
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -175,7 +153,7 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  dataStorage.deleteStorage(path + '/mystore', function (err) {
+  data_storage.deleteStorage(path + '/mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -185,7 +163,7 @@ deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
@@ -205,7 +183,7 @@ deleteStorage(path: string): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
+  let promisedelSt = data_storage.deleteStorage(path + '/mystore')
   promisedelSt.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
@@ -214,7 +192,7 @@ deleteStorage(path: string): Promise&lt;void&gt;
   ```
 
 
-## dataStorage.removeStorageFromCacheSync
+## data_storage.removeStorageFromCacheSync
 
 removeStorageFromCacheSync(path: string): void
 
@@ -229,11 +207,11 @@ removeStorageFromCacheSync(path: string): void
 
 **示例：**
   ```js
-  dataStorage.removeStorageFromCacheSync(path + '/mystore')
+  data_storage.removeStorageFromCacheSync(path + '/mystore')
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -249,7 +227,7 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  dataStorage.removeStorageFromCache(path + '/mystore', function (err) {
+  data_storage.removeStorageFromCache(path + '/mystore', function (err) {
       if (err) {
           console.info("Removed storage from cache failed with err: " + err)
           return
@@ -259,7 +237,7 @@ removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
@@ -279,7 +257,7 @@ removeStorageFromCache(path: string): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
+  let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
   }).catch((err) => {
