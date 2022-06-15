@@ -2519,7 +2519,7 @@ audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
 
 setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
 
-设置应用的焦点模型。使用Promise异步回调。
+设置应用的焦点模型。使用Callback回调返回执行结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
