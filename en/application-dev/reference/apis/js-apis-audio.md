@@ -544,7 +544,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | Yes  | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
 | type       | [InterruptType](#interrupttype)             | No  | Type of the audio interruption event.                                              |
-| hint       | [InterruptHint](interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
+| hint       | [InterruptHint](#interrupthint)             | No  | Hint provided along with the audio interruption event.                                              |
 | activated  | boolean                                     | No  | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
 
 ## VolumeEvent<sup>8+</sup>
@@ -2656,7 +2656,7 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 | Name | Type                    | Readable| Writable| Description            |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
-| state<sup>8+</sup>  | [AudioState](#audiostate8) | Yes| No  | Audio capturer state.|
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes | No  | Audio capturer state.|
 
 **Example**
 
