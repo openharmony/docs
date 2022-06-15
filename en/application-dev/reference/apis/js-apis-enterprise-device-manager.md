@@ -13,7 +13,7 @@ import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<boolean>): void
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number, callback: AsyncCallback\<boolean>): void
 
 Enables a device administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
@@ -57,7 +57,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 
 ## enterpriseDeviceManager.enableAdmin
 
-enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType): Promise\<boolean>
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<boolean>
 
 Enables a device administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
@@ -105,7 +105,7 @@ enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceMa
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
+disableAdmin(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
 Disables a device common administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
@@ -145,7 +145,7 @@ enterpriseDeviceManager.disableAdmin(wantTemp, 100, (error, result) => {
 
 ## enterpriseDeviceManager.disableAdmin
 
-disableAdmin(admin: Want): Promise\<boolean>
+disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
 Disables a device common administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
@@ -249,7 +249,7 @@ enterpriseDeviceManager.disableSuperAdmin(bundleName).then((result) => {
 
 ## enterpriseDeviceManager.isAdminEnabled
 
-isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
+isAdminEnabled(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
 Checks whether a device administrator application is enabled based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
@@ -285,7 +285,7 @@ enterpriseDeviceManager.isAdminEnabled(wantTemp, 100, (error, result) => {
 
 ## enterpriseDeviceManager.isAdminEnabled
 
-isAdminEnabled(admin: Want): Promise\<boolean>
+isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 Checks whether a device administrator application is enabled based on the specified bundle name and class name. This API uses a promise to return the result.
 
