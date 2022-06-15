@@ -2517,7 +2517,7 @@ audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
 ```
 ### setInterruptMode<sup>9+</sup>
 
-setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
 
 设置应用的焦点模型。使用Callback回调返回执行结果。
 
