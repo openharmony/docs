@@ -250,7 +250,7 @@ None
 
 ## How to Develop<a name="en-us_topic_0000001052170554_section138543918214"></a>
 
-1.  <a name="en-us_topic_0000001052170554_li378084192111"></a>Extend the  **CameraDeviceCallback**  class and call  **OnCameraStatus**  to customize operations when the camera device changes, for example, when a camera becomes available or unavailable.
+1.  Extend the  **CameraDeviceCallback**  class and call  **OnCameraStatus**  to customize operations when the camera device changes, for example, when a camera becomes available or unavailable.
 
     ```
     class SampleCameraDeviceCallback : public CameraDeviceCallback {
@@ -261,7 +261,7 @@ None
     };
     ```
 
-2.  <a name="en-us_topic_0000001052170554_li8716104682913"></a>Extend the  **FrameStateCallback**  class. After obtaining the frame data, save the data as a file.
+2.  Extend the  **FrameStateCallback**  class. After obtaining the frame data, save the data as a file.
 
     ```
     static void SampleSaveCapture(const char *p, uint32_t size)
@@ -305,7 +305,7 @@ None
     };
     ```
 
-3.  <a name="en-us_topic_0000001052170554_li6671035102514"></a>Extend the  **CameraStateCallback**  class and customize operations when the camera state changes \(configuration successful or failed, and creation successful or failed\).
+3.  Extend the  **CameraStateCallback**  class and customize operations when the camera state changes \(configuration successful or failed, and creation successful or failed\).
 
     ```
     class SampleCameraStateMng : public CameraStateCallback {
@@ -358,7 +358,7 @@ None
     camKit->CreateCamera(camId, CamStateMng, eventHdlr);
     ```
 
-6.  Based on the callback design in  [1](#en-us_topic_0000001052170554_li378084192111),  [2](#en-us_topic_0000001052170554_li8716104682913), and  [3](#en-us_topic_0000001052170554_li6671035102514), perform related operations until the  **OnCreated**  callback obtains  **cam\_**.
+6.  Based on the callback design in steps 1 to 3, perform related operations until the **OnCreated** callback obtains  **cam\_**.
 
     ```
     void OnCreated(Camera &c) override
