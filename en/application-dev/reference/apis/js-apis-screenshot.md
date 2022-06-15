@@ -1,6 +1,7 @@
 # Screenshot
 
->  **NOTE**<br/>
+>  **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -56,14 +57,14 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
 
 **Parameters**
 
-  | Name  | Type                                   | Mandatory| Description                                                        |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
-  | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot options, which consist of **screenRect**, **imageSize**, and **rotation**. You need to set these parameters.|
+| callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Example**
 
@@ -96,7 +97,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
 
 **Parameters**
 
@@ -106,9 +107,9 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 **Return value**
 
-  | Type                         | Description                                           |
-  | ----------------------------- | ----------------------------------------------- |
-  | Promise&lt;image.PixelMap&gt; | Promise used to return an **image.PixelMap** object.|
+| Type                         | Description                                           |
+| ----------------------------- | ----------------------------------------------- |
+| Promise&lt;image.PixelMap&gt; | Promise used to return an **image.PixelMap** object.|
 
 **Example**
 
