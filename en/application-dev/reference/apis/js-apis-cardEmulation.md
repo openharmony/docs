@@ -1,6 +1,6 @@
 # Standard NFC Card Emulation
 
-This module is used to implement Near-Field Communication (NFC) card emulation.
+Implements Near-Field Communication (NFC) card emulation.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -45,7 +45,7 @@ Starts HCE.
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| aidList | string[] | Yes  | Aid list to be registered for card emulation.|
+| aidList | string[] | Yes  | Application ID (AID) list to be registered for card emulation.|
 
 ### stopHCE
 
@@ -78,7 +78,7 @@ Subscribes to messages from the peer device after **startHCE()**.
 
 sendResponse(responseApdu: number[]): void;
 
-Sends data to the peer device.
+Sends a response to the peer device.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
