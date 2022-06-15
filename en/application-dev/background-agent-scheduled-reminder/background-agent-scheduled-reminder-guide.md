@@ -9,16 +9,13 @@ You can set your application to call the **ReminderRequest** class to create sch
 **reminderAgent** encapsulates the methods for publishing and canceling reminders.
 
 **Table 1** Major APIs in reminderAgent
-
-
-
 | API                                                          | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | function publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void;<br>function publishReminder(reminderReq: ReminderRequest): Promise\<number>; | Publishes a scheduled reminder.<br>The maximum number of valid notifications (excluding expired ones that will not pop up again) is 30 for one application and 2000 for the entire system. |
 | function cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void;<br/>function cancelReminder(reminderId: number): Promise\<void>; | Cancels a specified reminder. (The value of **reminderId** is obtained from the return value of **publishReminder**.) |
 | function getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void;<br/>function getValidReminders(): Promise<Array\<ReminderRequest>>; | Obtains all valid reminders set by the current application.  |
 | function cancelAllReminders(callback: AsyncCallback\<void>): void;<br/>function cancelAllReminders(): Promise\<void>; | Cancels all reminders set by the current application.        |
-| function addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void;<br/>function addNotificationSlot(slot: NotificationSlot): Promise<void>; | Registers a NotificationSlot instance to be used by the reminder. |
+| function addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void;<br/>function addNotificationSlot(slot: NotificationSlot): Promise\<void>; | Registers a NotificationSlot instance to be used by the reminder. |
 | function removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void;function removeNotificationSlot(slotType: notification.SlotType): Promise\<void>; | Removes a NotificationSlot instance of a specified type.     |
 
 **ActionButtonType** enumerates types of buttons displayed in a reminder notification.

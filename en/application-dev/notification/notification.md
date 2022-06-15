@@ -45,9 +45,9 @@ If the notification function of an application is disabled, it cannot send notif
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback<void>): void | Subscribes to a notification with the subscription information specified.|
-| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | Subscribes to all notifications.    |
-| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | Unsubscribes from a notification.    |
+| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void>): void | Subscribes to a notification with the subscription information specified.|
+| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | Subscribes to all notifications.    |
+| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | Unsubscribes from a notification.    |
 
 The subscription APIs support subscription to all notifications or notifications from specific applications.
 
@@ -69,10 +69,10 @@ The subscription APIs support subscription to all notifications or notifications
 
 | API                                                      | Description                    |
 | ------------------------------------------------------------ | ------------------------ |
-| publish(request: NotificationRequest, callback: AsyncCallback<void>): void | Publishes a notification.                |
-| publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void | Publishes a notification to the specified user.        |
-| cancel(id: number, label: string, callback: AsyncCallback<void>): void | Cancels a specified notification.          |
-| cancelAll(callback: AsyncCallback<void>): void;              | Cancels all notifications published by the application.|
+| publish(request: NotificationRequest, callback: AsyncCallback\<void>): void | Publishes a notification.                |
+| publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void>): void | Publishes a notification to the specified user.        |
+| cancel(id: number, label: string, callback: AsyncCallback\<void>): void | Cancels a specified notification.          |
+| cancelAll(callback: AsyncCallback\<void>): void;              | Cancels all notifications published by the application.|
 
 The **publish** API that carries **userId** can be used to publish notifications to subscribers of a specified user.
 
