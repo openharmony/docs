@@ -4,9 +4,13 @@ Ability Call调用是Ability能力的扩展，它为Ability提供一种能够被
 - 创建Callee被调用端。
 - 访问Callee被调用端。
 
-本文中的Caller和Callee分别表示调用者和被调用者，Call调用流程示意图如下。
+本文中的Caller和Callee分别表示调用者和被调用者，IPC表示进程间通信，Call调用流程示意图如下。
 
 ![stage-call](figures/stage-call.png)
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> Callee被调用端所在的Ability，启动模式需要为单实例。
+> 当前仅支持系统应用及ServiceExtensionAbility使用Call访问Callee。
 
 ## 接口说明
 Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md#caller)。
@@ -14,15 +18,17 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 **表1** Call API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|Promise\<Caller> startAbilityByCall(want: Want)|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
-|void on(method: string, callback: CalleeCallBack)|Callee.on，通用组件Callee注册method对应的callback方法。|
-|void off(method: string)|Callee.off，通用组件Callee去注册method的callback方法。|
-|Promise\<void> call(method: string, data: rpc.Sequenceable)|Caller.call，向通用组件Callee发送约定序列化数据。|
-|Promise\<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult，向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
-|void release()|Caller.release，释放通用组件的Caller通信接口。|
-|void onRelease(callback: OnReleaseCallBack)|Caller.onRelease，注册通用组件通信断开监听通知。|
+|startAbilityByCall(want: Want): Promise<Caller>|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
+|on(method: string, callback: CaleeCallBack): void|通用组件Callee注册method对应的callback方法。|
+|off(method: string): void|通用组件Callee去注册method的callback方法。|
+|call(method: string, data: rpc.Sequenceable): Promise<void>|向通用组件Callee发送约定序列化数据。|
+|callWithResult(method: string, data: rpc.Sequenceable): Promise<rpc.MessageParcel>|向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
+|release(): void|释放通用组件的Caller通信接口。|
+|onRelease(callback: OnReleaseCallBack): void|注册通用组件通信断开监听通知。|
 
 ## 开发步骤
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 开发步骤章节中的示例代码片段是开发过程的步骤化展示，部分代码可能无法单独运行，完整工程代码请参考[相关实例](##相关实例)。
 ### 创建Callee被调用端
 Callee被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 1. 配置Ability的启动模式
@@ -196,7 +202,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 3. 发送约定序列化数据
 
-向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。具体示例代码如下：
+  向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。具体示例代码如下：
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 async onButtonCall() {
@@ -231,7 +237,7 @@ async onButtonCallWithResult(originMsg, backMsg) {
 ```
 4. 释放Caller通信接口
 
-Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
+  Caller不再使用后，应用开发者可以通过release接口释放Caller。具体示例代码如下：
 ```ts
 try {
     this.caller.release()
