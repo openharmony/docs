@@ -316,7 +316,7 @@ Listens for camera status changes. This API uses a callback to return the camera
 **Example**
 
 ```
-cameraManager.on('cameraStatus', (err, cameraInput) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     if (err) {
         console.error('Failed to get cameraStatus callback. ${err.message}');
         return;
