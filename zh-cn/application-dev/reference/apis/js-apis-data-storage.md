@@ -49,7 +49,7 @@ getStorageSync(path: string): Storage
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
-  var context = featureAbility.getContext()
+  var path = '/data/storage/el2/database/test_storage'
   context.getFilesDir((err, path) => {
       if (err) {
           console.error('getFilesDir failed. err: ' + JSON.stringify(err));
@@ -82,7 +82,7 @@ getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
-  var context = featureAbility.getContext()
+  var path = '/data/storage/el2/database/test_storage'
   context.getFilesDir((err, path) => {
       if (err) {
           console.error('getFilesDir failed. err: ' + JSON.stringify(err));
@@ -124,7 +124,7 @@ getStorage(path: string): Promise&lt;Storage&gt;
   import dataStorage from '@ohos.data.storage'
   import featureAbility from '@ohos.ability.featureAbility'
   
-  var context = featureAbility.getContext()
+  var path = '/data/storage/el2/database/test_storage'
   context.getFilesDir((err, path) => {
       if (err) {
           console.info("Get the storage failed, path: " + path + '/mystore')

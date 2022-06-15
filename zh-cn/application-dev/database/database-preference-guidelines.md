@@ -26,7 +26,7 @@
 
 | 类名    | 接口名                                             | 描述                                            |
 | ------- | -------------------------------------------------- | ----------------------------------------------- |
-| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean类型的数据存入。 |
+| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean类型的数据存入，同时也支持Array<number>、Array<string>、Array<boolean>三种类型的数组的存入。 |
 
 ### 读取数据
 
@@ -36,7 +36,7 @@
 
 | 类名    | 接口名                                                     | 描述                                            |
 | ------- | ---------------------------------------------------------- | ----------------------------------------------- |
-| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean类型的数据。 |
+| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean类型的数据，同时也支持获取值为Array<number>、Array<string>、Array<boolean>三种数组类型的数据。 |
 
 ### 数据持久化
 
@@ -75,14 +75,14 @@
 1. 准备工作，导入@ohos.data.preferences以及相关的模块到开发环境。
 
    ```js
-   import data_preferences from '@ohos.data.preferences'
+   import preferences from '@ohos.data.preferences'
    ```
 
 2. 获取Preferences实例。
 
    读取指定文件，将数据加载到Preferences实例，用于数据操作。
    ```js
-   let promise = data_preferences.getPreferences(this.context, 'mystore')
+   let promise = preferences.getPreferences(this.context, 'mystore')
    ```
 
 3. 存入数据。
@@ -90,9 +90,9 @@
    使用Preferences put方法保存数据到缓存的实例中。
 
    ```js
-   promise.then((preferences) => {
-       let getPromise = preferences.put('startup', 'auto')
-       getPromise.then(() => {
+   promise.then((pref) => {
+       let putPromise = pref.put('startup', 'auto')
+       putPromise.then(() => {
            console.info("Put the value of startup successfully.")
        }).catch((err) => {
            console.info("Put the value of startup failed with err: " + err)
@@ -107,8 +107,8 @@
    使用Preferences get方法读取数据。
 
    ```js
-   promise.then((preferences) => {
-       let getPromise = preferences.get('startup', 'default')
+   promise.then((pref) => {
+       let getPromise = pref.get('startup', 'default')
        getPromise.then((value) => {
            console.info("The value of startup is " + value)
        }).catch((err) => {
@@ -123,7 +123,7 @@
    应用存入数据到Preferences实例后，可以通过flush方法将Preferences实例回写到文件中。
 
    ```js
-   preferences.flush();
+   pref.flush();
    ```
 
 6. 订阅数据变化。
@@ -134,14 +134,14 @@
     var observer = function (key) {
         console.info("The key of " + key + " changed.")
     }
-    preferences.on('change', observer)
-    preferences.put('startup', 'auto', function (err) {
+    pref.on('change', observer)
+    pref.put('startup', 'auto', function (err) {
         if (err) {
             console.info("Put the value of startup failed with err: " + err)
             return
         }
         console.info("Put the value of startup successfully.")
-        preferences.flush(function (err) {
+        pref.flush(function (err) {
             if (err) {
                 console.info("Flush to file failed with err: " + err)
                 return
@@ -156,8 +156,8 @@
    使用deletePreferences方法从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。删除后，数据及文件将不可恢复。
 
    ```js
-    let proDelete = data_preferences.deletePreferences(context, 'mystore')
-    proDelete.then(() => {
+    let deletePromise = preferences.deletePreferences(context, 'mystore')
+    deletePromise.then(() => {
         console.info("Deleted successfully.")
     }).catch((err) => {
         console.info("Deleted failed with err: " + err)
