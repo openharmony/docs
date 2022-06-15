@@ -1,6 +1,6 @@
 # Standard NFC Tag
 
-This module is used to manage Near-Field Communication (NFC) tags.
+Manages Near-Field Communication (NFC) tags.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -17,7 +17,7 @@ import tag from '@ohos.nfc.tag';
 
 getNfcATag(tagInfo: TagInfo): NfcATag
 
-Obtains the **NfcATag** object, which allows access to the tags that use the NfcA technology.
+Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -33,7 +33,7 @@ Obtains the **NfcATag** object, which allows access to the tags that use the Nfc
 
 getNfcBTag(tagInfo: TagInfo): NfcBTag
 
-Obtains the **NfcBTag** object, which allows access to the tags that use the NfcB technology.
+Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -49,7 +49,7 @@ Obtains the **NfcBTag** object, which allows access to the tags that use the Nfc
 
 getNfcFTag(tagInfo: TagInfo): NfcFTag
 
-Obtains the **NfcFTag** object, which allows access to the tags that use the NfcF technology.
+Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -65,7 +65,7 @@ Obtains the **NfcFTag** object, which allows access to the tags that use the Nfc
 
 getNfcVTag(tagInfo: TagInfo): NfcVTag
 
-Obtains the **NfcVTag** object, which allows access to the tags that use the NfcV technology.
+Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
