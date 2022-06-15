@@ -1,7 +1,6 @@
 # Display
 
-> **NOTE**
->
+> **NOTE**<br/>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -60,24 +59,22 @@ Obtains the default display object.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 **Example**
-
-```js
-var displayClass = null;
-display.getDefaultDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-    displayClass = data;
-});
-```
+  ```js
+  var displayClass = null;
+  display.getDefaultDisplay((err, data) => {
+      if (err.code) {
+          console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+      displayClass = data;
+  });
+  ```
 
 ## display.getDefaultDisplay
 
@@ -89,20 +86,20 @@ Obtains the default display object.
 
 **Return value**
 
-| Type                              | Description                                          |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
+  | Type                              | Description                                          |
+  | ---------------------------------- | ---------------------------------------------- |
+  | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
 **Example**
 
-```js
-let promise = display.getDefaultDisplay();
-promise.then(() => {
-    console.log('getDefaultDisplay success');
-}).catch((err) => {
-    console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
-});
-```
+  ```js
+  let promise = display.getDefaultDisplay();
+  promise.then(() => {
+      console.log('getDefaultDisplay success');
+  }).catch((err) => {
+      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
 
 ## display.getAllDisplay
 
@@ -114,21 +111,21 @@ Obtains all the display objects.
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                           |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
+  | Name  | Type                                                | Mandatory| Description                           |
+  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 **Example**
 
-```js
-display.getAllDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
-});
-```
+  ```js
+  display.getAllDisplay((err, data) => {
+      if (err.code) {
+          console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+          return;
+      }
+      console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
+  });
+  ```
 
 ## display.getAllDisplay
 
@@ -140,20 +137,20 @@ Obtains all the display objects.
 
 **Return value**
 
-| Type                                           | Description                                                   |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return an array containing all the display objects.|
+  | Type                                           | Description                                                   |
+  | ----------------------------------------------- | ------------------------------------------------------- |
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return an array containing all the display objects.|
 
 **Example**
 
-```js
-let promise = display.getAllDisplay();
-promise.then(() => {
-    console.log('getAllDisplay success');
-}).catch((err) => {
-    console.log('getAllDisplay fail: ' + JSON.stringify(err));
-});
-```
+  ```js
+  let promise = display.getAllDisplay();
+  promise.then(() => {
+      console.log('getAllDisplay success');
+  }).catch((err) => {
+      console.log('getAllDisplay fail: ' + JSON.stringify(err));
+  });
+  ```
 
 ## display.on('add'|'remove'|'change')
 
@@ -164,21 +161,18 @@ Enables listening.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
+  | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
-
-```js
-var type = "add";
-var callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data))
-}
-display.on(type, callback);
-```
+  ```js
+  var callback = (data) => {
+      console.info('Listening enabled. Data: ' + JSON.stringify(data))
+  }
+  display.on("add", callback);
+  ```
 
 
 ## display.off('add'|'remove'|'change')
@@ -190,15 +184,12 @@ Disables listening.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
-| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
-
-```js
-var type = "remove";
-display.off(type);
-```
+  ```js
+  display.off("remove");
+  ```
