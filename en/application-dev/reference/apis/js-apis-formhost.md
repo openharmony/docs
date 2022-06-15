@@ -591,7 +591,7 @@ SystemCapability.Ability.Form
 
 ## getAllFormsInfo
 
-getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 Obtains the widget information provided by all applications on the device. This API uses an asynchronous callback to return the result.
 
@@ -619,7 +619,7 @@ SystemCapability.Ability.Form
 
 ## getAllFormsInfo
 
-getAllFormsInfo(): Promise&lt;Array&lt;FormInfo&gt;&gt;;
+getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 Obtains the widget information provided by all applications on the device. This API uses a promise to return the result.
 
@@ -645,7 +645,7 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
@@ -674,7 +674,7 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;FormInfo&gt;&gt;): void;
+getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
@@ -704,7 +704,7 @@ SystemCapability.Ability.Form
 
 ## getFormsInfo
 
-getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;FormInfo&gt;&gt;;
+getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 Obtains the widget information provided by a given application on the device. This API uses a promise to return the result.
 
@@ -767,7 +767,7 @@ SystemCapability.Ability.Form
 
 ## deleteInvalidForms
 
-function deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
+deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 Deletes invalid widgets from the list. This API uses a promise to return the result.
 
@@ -800,7 +800,7 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-acquireFormState(want: Want, callback: AsyncCallback&lt;FormStateInfo&gt;): void;
+acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&gt;): void;
 
 Obtains the widget state. This API uses an asynchronous callback to return the result.
 
@@ -819,9 +819,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want, (error, data) => {
       if (error.code) {
@@ -834,7 +839,7 @@ SystemCapability.Ability.Form
 
 ## acquireFormState
 
-function acquireFormState(want: Want): Promise&lt;FormStateInfo&gt;;
+acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 
 Obtains the widget state. This API uses a promise to return the result.
 
@@ -858,9 +863,14 @@ SystemCapability.Ability.Form
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+      "deviceId": "",
+      "bundleName": "ohos.samples.FormApplication",
+      "abilityName": "FormAbility",
+      "parameters": {
+          "ohos.extra.param.key.module_name": "entry",
+          "ohos.extra.param.key.form_name": "widget",
+          "ohos.extra.param.key.form_dimension": 2
+      }
   };
   formHost.acquireFormState(want).then((data) => {
       console.log('formHost acquireFormState, data:' + JSON.stringify(data));
