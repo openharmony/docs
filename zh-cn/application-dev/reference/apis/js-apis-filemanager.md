@@ -66,15 +66,15 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
   let option = {
             "dev":{
             name:"",
-        }
-        };
-        filemanager.getRoot(option,(err, fileInfo)=>{
-           if(Array.isArray(fileInfo)) {
+            }
+  };
+  filemanager.getRoot(option,(err, fileInfo)=>{
+      if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
           }
       } 
-        });
+  });
   
   ```
 
@@ -120,6 +120,9 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
           }
       }
   }).catch((err) => {
+
+
+    
       console.log(err)
   });
   ```
@@ -151,14 +154,30 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 - 示例
 
   ```js
-  // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
-  filemanager.listFile(media_path, "file", (err, fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // 通过listFile、getRoot获取的文件path
+  let fileInfos = await filemanager.getRoot(); 
+  let media_path  = "";
+  for (let i = 0; i < fileInfos.length; i++) {
+	if (fileInfos[i].name == "image_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "audio_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "video_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "file_folder") {
+	  media_path = fileInfos[i].path;
+	}
+  }
+
+  filemanager.listFile(media_path, "file")
+  .then((fileInfo) => {
+    if(Array.isArray(fileInfo)) {
+        for (var i = 0; i < fileInfo.length; i++) {
+            console.log("file:"+JSON.stringify(fileInfo));
+        }
+    }
+  }).catch((err) => {
+    console.log(err)
   });
   ```
 
