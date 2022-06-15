@@ -109,11 +109,11 @@
       - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
     - Kernel Porting
-      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Porting Overview](porting/porting-chip-kernel-overview.md)
       - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
       - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
     - Board-Level OS Porting
-      - [Overview](porting/porting-chip-board-overview.md)
+      - [Porting Overview](porting/porting-chip-board-overview.md)
       - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
       - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
       - [System Modules](porting/porting-chip-board-component.md)
@@ -131,7 +131,7 @@
       - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
       - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
     - Driver Porting
-      - [Overview](porting/porting-smallchip-driver-overview.md)
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
       - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
       - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
 
@@ -178,7 +178,7 @@
       - Kernel Debugging
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
-          - [Memory Leak Check](kernel/kernel-mini-imemory-debug-det.md)
+          - [Memory Leak Check](kernel/kernel-mini-memory-debug-det.md)
           - [Memory Corruption Check](kernel/kernel-mini-memory-debug-cet.md)
         - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
         - [Trace](kernel/kernel-mini-memory-trace.md)
@@ -383,8 +383,8 @@
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [USB](driver/driver-peripherals-usb-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
-      - [Vibrator](driver-peripherals-vibrator-des.md)
-      - [Light](driver-peripherals-light-des.md)
+      - [Vibrator](driver/driver-peripherals-vibrator-des.md)
+      - [Light](driver/driver-peripherals-light-des.md)
   - Compilation and Building
     - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)
