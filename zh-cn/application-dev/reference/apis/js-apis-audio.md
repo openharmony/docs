@@ -2525,10 +2525,10 @@ setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名     | 类型                                | 必填 | 说明                                                     |
+| 参数名 | 类型 | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
-callback | Callback\<void>  | 是  |回调返回执行结果。
+|interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。|
+|callback | Callback\<void>  | 是  |回调返回执行结果。
 
 
 
@@ -2536,7 +2536,7 @@ callback | Callback\<void>  | 是  |回调返回执行结果。
 
 ```
 audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
-    console.log('Promise returned to indicate a successful volume setting.');
+    console.log('Callback returned to indicate a successful volume setting.');
 });
 ```
 ### on('interrupt')<sup>9+</sup>
