@@ -1,12 +1,12 @@
 # URI String Parsing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import uri from '@ohos.uri'  
 ```
 
@@ -39,9 +39,9 @@ A constructor used to create a URI instance.
 
 **Parameters**
 
-| Name| Type.| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| url | string | Yes| Yes| Input object.|
+| uri | string | Yes| Yes| Input object.|
 
 **Example**
 
@@ -60,19 +60,19 @@ toString(): string
 
 **System capability**: SystemCapability.Utils.Lang
 
-Obtains the query string applicable to this URL.
+Obtains the query string applicable to this URI.
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | string | Website address in a serialized string.|
 
 **Example**
 
 ```js
-const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+const uri = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+uri.toString()
 ```
 
 
@@ -86,7 +86,7 @@ Checks whether this URI is the same as another URI object.
 
 **Parameters**
 
-| Name| Type.| Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | other | [URI](#uri) | Yes| URI object to compare.|
 
@@ -114,7 +114,7 @@ Checks whether this URI is an absolute URI (whether the scheme component is defi
 
 **Return value**
 
-| Type.| Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the URI is an absolute URI; returns **false** otherwise.|
 
