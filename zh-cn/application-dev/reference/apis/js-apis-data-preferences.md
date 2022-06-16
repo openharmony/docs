@@ -223,7 +223,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **示例：**
 ```ts
- preferences.get('startup', 'default', function(err, value) {
+preferences.get('startup', 'default', function(err, value) {
     if (err) {
         console.info("Get value of startup failed, err: " + err)
         return
@@ -277,7 +277,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **示例：**
 ```ts
-preferences.get.getAll(function (err, value) {
+preferences.getAll(function (err, value) {
     if (err) {
         console.info("getAll failed, err: " + err)
         return
@@ -287,6 +287,7 @@ preferences.get.getAll(function (err, value) {
     console.info("getAll object = " + JSON.stringify(value))
 });
 ```
+
 
 ### getAll
 
@@ -339,6 +340,7 @@ preferences.put('startup', 'auto', function (err) {
 })
 ```
 
+
 ### put
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
@@ -382,7 +384,6 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要检查的存储key名称，不能为空。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
-
 
 **示例：**
 ```ts
@@ -595,33 +596,36 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-  | 参数名 | 类型 |必填 | 说明 |
-  | -------- | -------- | -------- |-------- |
-  | type | string | 是 | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 是 | 回调对象实例。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 |  事件类型，固定值'change'，表示数据变更。 |
+  | callback | Callback&lt;{ key : string }&gt;  | 是| 回调对象实例。 |
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
     })
 })
 ```
@@ -637,32 +641,35 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- |-------- |
-  | type | string| 是 | 事件类型，固定值'change'，表示数据变更。 |
-  | callback | Callback&lt;{ key : string }&gt; | 否| 需要取消的回调对象实例，不填则全部取消。 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 事件类型，固定值'change'，表示数据变更。 |
+  | callback | Callback&lt;{ key : string }&gt;  | 否| 需要取消的回调对象实例，不填则全部取消。 |
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
         preferences.off('change', observer)
     })
 })
@@ -674,8 +681,8 @@ preferences.put('startup', 'auto', function (err) {
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称    | 说明                 |
-| ------- | -------------------- |
-| number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符。   |
-| boolean | 表示值类型为布尔值。 |
+| 名称           | 说明                           |
+| -------------- | ------------------------------ |
+| number         | 表示值类型为数字。             |
+| string         | 表示值类型为字符串。           |
+| boolean        | 表示值类型为布尔值。           |
