@@ -134,11 +134,11 @@ Obtains the new version information. This function uses an asynchronous callback
 **Example**
 
 ```
-update.getNewVersionInfo(info => {
+updater.getNewVersionInfo(info => {
   console.log("getNewVersionInfo success  " + info.status);
-  console.log(`info versionName = ` + info.result[0].versionName);
-  console.log(`info versionCode = ` + info.result[0].versionCode);
-  console.log(`info verifyInfo = ` + info.result[0].verifyInfo);
+  console.log(`info versionName = ` + info.checkResult[0].versionName);
+  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
+  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
 });
 ```
 
@@ -160,9 +160,9 @@ Obtains the new version information. This function uses a promise to return the 
 
 ```
 updater.getNewVersionInfo().then(value => {
-  console.log(`info versionName = ` + value.result[0].versionName);
-  console.log(`info versionCode = ` + value.result[0].versionCode);
-  console.log(`info verifyInfo = ` + value.result[0].verifyInfo);
+  console.log(`info versionName = ` + value.checkResult[0].versionName);
+  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
+  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
 }).catch(err => {
   console.log("getNewVersionInfo promise error: " + err.code);
 });
@@ -185,11 +185,11 @@ Checks whether the current version is the latest. This function uses an asynchro
 **Example**
 
 ```
-update.checkNewVersion(info => {
+updater.checkNewVersion(info => {
   console.log("checkNewVersion success  " + info.status);
-  console.log(`info versionName = ` + info.result[0].versionName);
-  console.log(`info versionCode = ` + info.result[0].versionCode);
-  console.log(`info verifyInfo = ` + info.result[0].verifyInfo);
+  console.log(`info versionName = ` + info.checkResult[0].versionName);
+  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
+  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
 });
 ```
 
@@ -210,10 +210,10 @@ Checks whether the current version is the latest. This function uses a promise t
 **Example**
 
 ```
-update.checkNewVersion().then(value => {
-  console.log(`info versionName = ` + value.result[0].versionName);
-  console.log(`info versionCode = ` + value.result[0].versionCode);
-  console.log(`info verifyInfo = ` + value.result[0].verifyInfo);
+updater.checkNewVersion().then(value => {
+  console.log(`info versionName = ` + value.checkResult[0].versionName);
+  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
+  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
 }).catch(err => {
   console.log("checkNewVersion promise error: " + err.code);
 });
@@ -237,13 +237,13 @@ Verifies whether the update package is valid.
 **Example**
 
 ```
-update.on("verifyProgress", callback => {
+updater.on("verifyProgress", callback => {
   console.info('on verifyProgress ' + callback.percent);
 });
 update.verifyUpdatePackage("XXX", "XXX");
 ```
 
-### rebootAndCleanUserData
+### rebootAndCleanUserData<sup>8+</sup>
 
 rebootAndCleanUserData(): Promise\<number>
 
@@ -260,14 +260,14 @@ Reboots the device and clears the user partition data. This function uses a prom
 **Example**
 
 ```
-update.rebootAndCleanUserData().then(result => {
+updater.rebootAndCleanUserData().then(result => {
   console.log("rebootAndCleanUserData " + result);
 }).catch(err => {
   console.info("rebootAndCleanUserData promise error: " + err.code);
 });
 ```
 
-### rebootAndCleanUserData
+### rebootAndCleanUserData<sup>8+</sup>
 
 rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
@@ -284,7 +284,7 @@ Reboots the device and clears the user partition data. This function uses a prom
 **Example**
 
 ```
-update.rebootAndCleanUserData(result => {
+updater.rebootAndCleanUserData(result => {
   console.log("rebootAndCleanUserData ", result)
 });
 ```
@@ -306,7 +306,7 @@ Installs the update package. This function uses a promise to return the result.
 **Example**
 
 ```
-update.applyNewVersion().then(result => {
+updater.applyNewVersion().then(result => {
     console.log("appVewVersion ", result)
 }).catch(err => {
     console.info("applyNewVersion promise error: " + err.code);
@@ -330,7 +330,7 @@ Installs the update package. This function uses a promise to return the result.
 **Example**
 
 ```
-update.applyNewVersion(result => {
+updater.applyNewVersion(result => {
   console.log("applyNewVersion ", result)
 });
 ```
@@ -399,7 +399,7 @@ let policy = {
   autoUpgradeInterval: [ 2, 3 ],
   autoUpgradeCondition: 2
 }
-update.setUpdatePolicy(policy, result => {
+updater.setUpdatePolicy(policy, result => {
   console.log("setUpdatePolicy ", result)
 });
 ```
@@ -434,7 +434,7 @@ let policy = {
   autoUpgradeInterval: [ 2, 3 ],
   autoUpgradeCondition: 2
 }
-update.setUpdatePolicy(policy).then(result => 
+updater.setUpdatePolicy(policy).then(result => 
   console.log("setUpdatePolicy ", result)
 ).catch(err => {
   console.log("setUpdatePolicy promise error: " + err.code);
@@ -458,7 +458,7 @@ Obtains the update policy. This function uses an asynchronous callback to return
 **Example**
 
 ```
-update.getUpdatePolicy(policy => {
+updater.getUpdatePolicy(policy => {
   console.log("getUpdatePolicy success");
   console.log(`policy autoDownload = ` + policy.autoDownload);
   console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
@@ -483,7 +483,7 @@ Obtains the update policy. This function uses a promise to return the result.
 **Example**
 
 ```
-update.getUpdatePolicy().then(value => {
+updater.getUpdatePolicy().then(value => {
   console.log(`info autoDownload = ` + value.autoDownload);
   console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
   console.log(`info mode = ` + value.mode);
