@@ -2,9 +2,9 @@
 
 ​        公共事件与通知提供了供开发者查看公共事件信息及通知信息、发布公共事件等一些调试功能的工具。这些工具已经随系统集成，开发者进入shell环境，可以直接调用相关命令。
 
-### cem调试助手
+## cem调试助手
 
-##### publish
+### publish
 
 * 介绍
 
@@ -41,7 +41,7 @@
 
    ![cem-publish-all](figures/cem-publish-all.png)
 
-##### dump
+### dump
 
 * 介绍
 
@@ -67,7 +67,7 @@
 
 ​        ![cem-dump-e](figures/cem-dump-e.png)
 
-##### help
+### help
 
 * 介绍
 
@@ -83,9 +83,9 @@
 
 
 
-### anm调试助手
+## anm调试助手
 
-##### dump
+### dump
 
 * 介绍
 
@@ -119,7 +119,7 @@
 
   设置打印最近通知消息缓存数量为10
 
-##### help
+### help
 
 * 介绍
 
