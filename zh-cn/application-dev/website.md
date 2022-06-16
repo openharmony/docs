@@ -1308,6 +1308,8 @@
 
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
 
+      - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
+
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
 
     - 文件管理
@@ -1501,8 +1503,6 @@
     - 已停止维护的接口
 
       - [@ohos.bytrace (性能打点)](reference/apis/js-apis-bytrace.md)
-
-      - [@ohos.data.storage (轻量级存储)](reference/apis/js-apis-data-storage.md)
 
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
 
