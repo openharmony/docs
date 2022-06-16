@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import curves from '@ohos.curves'
 ```
 
