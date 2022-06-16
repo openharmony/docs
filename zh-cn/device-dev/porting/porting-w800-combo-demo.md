@@ -194,7 +194,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 4. 修改`Board`目录下`Kconfig`文件内容：
 
- 在 `neptune100/Kconfig.liteos_m.board`中添加，
+   在 `neptune100/Kconfig.liteos_m.board`中添加，
 
    ```
    config BOARD_NEPTUNE100
@@ -202,17 +202,17 @@ OHOS Which product do you need?  neptune_iotlink_demo
        depends on SOC_WM800
    ```
 
-配置只有SOC_WM800被选后，BOARD_NEPTUNE100才可被选。
+   配置只有SOC_WM800被选后，BOARD_NEPTUNE100才可被选。
 
- 在 `neptune100/Kconfig.liteos_m.defconfig.board`中添加，
+   在 `neptune100/Kconfig.liteos_m.defconfig.board`中添加，
 
-   ```
-   if BOARD_NEPTUNE100
+     ```
+     if BOARD_NEPTUNE100
 
-   endif #BOARD_NEPTUNE100
-   ```
+     endif #BOARD_NEPTUNE100
+     ```
 
-用于添加 BOARD_NEPTUNE100默认配置
+     用于添加 BOARD_NEPTUNE100默认配置
 
 5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
 
@@ -229,16 +229,16 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 6. 修改`Soc`目录下`Kconfig`文件内容：
 
- 在`wm800/Kconfig.liteos_m.defconfig.wm800`中添加：
+   在`wm800/Kconfig.liteos_m.defconfig.wm800`中添加：
 
    ```
-   config SOC
+    config SOC
        string
        default "wm800"
        depends on SOC_WM800
    ```
 
- 在`wm800/Kconfig.liteos_m.defconfig.series`中添加：
+   在`wm800/Kconfig.liteos_m.defconfig.series`中添加：
 
    ```
    if SOC_SERIES_WM800
@@ -252,7 +252,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
    endif
    ```
 
- 在 `wm800/Kconfig.liteos_m.series`中添加：
+   在 `wm800/Kconfig.liteos_m.series`中添加：
 
    ```
    config SOC_SERIES_WM800
@@ -264,7 +264,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
            Enable support for winnermicro 800 series
    ```
 
- 在选择了 SOC_SERIES_WM800之后，才可选 `wm800/Kconfig.liteos_m.soc`文件中的 SOC_WM800：
+   在选择了 SOC_SERIES_WM800之后，才可选 `wm800/Kconfig.liteos_m.soc`文件中的 SOC_WM800：
 
    ```
    choice
@@ -277,12 +277,12 @@ OHOS Which product do you need?  neptune_iotlink_demo
    endchoice
    ```
 
-综上所述，要编译单板BOARD_NEPTUNE100，则要分别选中：SOC_COMPANY_WINNERMICRO、SOC_SERIES_WM800、SOC_WM800
+   综上所述，要编译单板BOARD_NEPTUNE100，则要分别选中：SOC_COMPANY_WINNERMICRO、SOC_SERIES_WM800、SOC_WM800
 7. 在`kernel/liteos_m`中执行`make menuconfig`进行选择配置,能够对SoC Series进行选择：
 
-![w800_select.json](figures/w800_select.png)
+   ![w800_select.json](figures/w800_select.png)
 
-配置后的文件会默认保存在`vendor/hihope/neptune_iotlink_demo/kernel_configs/debug.config`,也可以直接填写`debug.config`：
+   配置后的文件会默认保存在`vendor/hihope/neptune_iotlink_demo/kernel_configs/debug.config`,也可以直接填写`debug.config`：
 
    ```
    LOSCFG_PLATFORM_QEMU_CSKY_SMARTL=y
