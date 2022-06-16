@@ -603,26 +603,29 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
     })
 })
 ```
@@ -644,26 +647,29 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
         preferences.off('change', observer)
     })
 })
