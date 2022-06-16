@@ -654,7 +654,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在config.json的module下面定义metadata信息，如下 :
+在module.json的module下面定义metadata信息，如下 :
 
 ```json
 {
