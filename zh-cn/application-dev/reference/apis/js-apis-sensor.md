@@ -10,8 +10,9 @@
 import sensor from '@ohos.sensor';
 ```
 
+## sensor.on
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
@@ -40,8 +41,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
@@ -69,8 +69,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
@@ -101,8 +100,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
@@ -128,8 +126,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
@@ -157,8 +154,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
@@ -189,8 +185,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
@@ -214,8 +209,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
@@ -241,8 +235,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
@@ -268,8 +261,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
@@ -293,8 +285,7 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambie
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
@@ -320,8 +311,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
@@ -350,8 +340,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
@@ -375,8 +364,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
@@ -400,8 +388,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
@@ -425,8 +412,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
@@ -450,8 +436,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
@@ -475,8 +460,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
@@ -502,7 +486,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
   );
   ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
@@ -529,7 +513,7 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
 );
 ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
@@ -556,8 +540,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
@@ -581,8 +564,9 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
   );
   ```
 
+## sensor.once
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -608,8 +592,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -635,8 +618,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -665,8 +647,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
@@ -690,8 +671,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -717,8 +697,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -747,8 +726,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -770,8 +748,7 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -795,8 +772,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
@@ -820,8 +796,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -843,8 +818,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -868,8 +842,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -896,8 +869,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
@@ -923,8 +895,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
@@ -946,8 +917,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
@@ -969,8 +939,7 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
@@ -992,8 +961,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
@@ -1015,8 +983,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
@@ -1040,8 +1007,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1066,8 +1032,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1091,8 +1056,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1114,7 +1078,9 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
   );
   ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.off
+
+### ACCELEROMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -1142,7 +1108,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -1173,7 +1139,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
 
@@ -1197,7 +1163,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -1221,7 +1187,7 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
 
@@ -1245,7 +1211,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
@@ -1271,7 +1237,7 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -1299,7 +1265,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -1327,7 +1293,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
 
@@ -1351,7 +1317,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1377,7 +1343,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
@@ -1403,7 +1369,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -1431,7 +1397,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -1459,7 +1425,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -1488,7 +1454,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
  off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
@@ -1514,7 +1480,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
@@ -1529,7 +1495,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 | type     | [SensorType](#sensortype)                | 是    | 要取消订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是    | 取消注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
-**返回值：** ;
+**示例：** 
 
 ```js
 function callback(data) {
@@ -1538,7 +1504,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -1564,7 +1530,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
@@ -1588,7 +1554,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1615,7 +1581,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -1639,7 +1605,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1774,7 +1740,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 | ---------------------------------------- | ------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
 
-**返回值：** 
+**示例：** 
   ```js
   const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
@@ -1802,7 +1768,7 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 | currentPressure | number                      | 是    | 表示设备所在高度的气压值，单位为hPa。 |
 | callback        | AsyncCallback&lt;number&gt; | 是    | 返回设备所在的海拔高度，单位为米。    |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.getAltitude(0, 200, function(err, data)  {
@@ -1836,7 +1802,7 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 | --------------------- | ------------------ |
 | Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.getAltitude(0, 200);
@@ -1863,7 +1829,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 | inclinationMatrix | Array&lt;number&gt;         | 是    | 表示倾斜矩阵。        |
 | callback          | AsyncCallback&lt;number&gt; | 是    | 返回地磁倾斜角，单位为弧度。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
@@ -1896,7 +1862,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 | --------------------- | -------------- |
 | Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
@@ -1923,7 +1889,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | preRotationMatrix     | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回z、x、y轴方向的旋转角度变化。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
@@ -1934,7 +1900,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
       }
       console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -1961,17 +1927,17 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
           console.info('getAngleModifiy_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })
   ```
 
@@ -1991,7 +1957,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 | rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
@@ -2002,7 +1968,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2028,17 +1994,17 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 | ---------------------------------- | ------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })	
   ```
 
@@ -2058,7 +2024,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 | rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回四元数。  |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
@@ -2069,7 +2035,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
       }
       console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2095,7 +2061,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
 | ---------------------------------- | ------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
@@ -2125,7 +2091,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 | rotationMatrix | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回围绕z、x、y轴方向的旋转角度。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
@@ -2134,7 +2100,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
@@ -2162,12 +2128,12 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('sensor_getAltitude_Promise success', data.x);
+          console.info('sensor_getAltitude_Promise success', data);
           for (var i = 1; i < data.length; i++) {
               console.info("sensor_getDirection_promise" + data[i]);
           }
@@ -2193,7 +2159,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | geomagnetic | Array&lt;number&gt;                      | 是    | 表示地磁矢量。 |
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是    | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
@@ -2231,14 +2197,14 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | ---------------------------------------- | ------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
   ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');

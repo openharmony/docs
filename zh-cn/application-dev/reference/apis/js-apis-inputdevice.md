@@ -35,19 +35,9 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例：** 
 
 ```js
-export default {
-    data: {
-        deviceIds: Array,
-    },
-    callback: function(ids) {
-        this.deviceIds = ids;
-    },
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        inputDevice.getDeviceIds(this.callback);
-        console.info("InputDeviceJsTest---end---testGetDeviceIds");
-    }
-}
+inputDevice.getDeviceIds((ids)=>{
+    console.log("The device ID list is: " + ids);
+});
 ```
 
 ## inputDevice.getDeviceIds
@@ -60,29 +50,17 @@ function getDeviceIds(): Promise<Array\<number>>
 
 **返回值：**
 
-| 参数                     | 说明                          |
-| ------------------------ | ----------------------------- |
+| 参数                       | 说明                 |
+| ------------------------ | ------------------ |
 | Promise\<Array\<number>> | Promise实例，用于异步获取结果 |
 
 **示例：**
 
 ```js
-export default {
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        let promise = inputDevice.getDeviceIds();
-        promise.then((data)=> {
-            console.info('GetDeviceIds successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceIds. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+inputDevice.getDeviceIds().then((ids)=>{
+    console.log("The device ID list is: " + ids);
+});
 ```
-
-
-
-
 
 ## inputDevice.getDevice
 
@@ -102,23 +80,10 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 **示例：** 
 
 ```js
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    callback: function(deviceData) {
-        this.InputDeviceData = deviceData;
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        inputDevice.getDevice(1, this.callback);
-        console.info("InputDeviceJsTest---end---testGetDevice");
-    }
-}
+// 示例获取设备id为1的设备name信息。
+inputDevice.getDevice(1, (inputDevice)=>{
+    console.log("The device name is: " + inputDevice.name);
+});
 ```
 
 ## inputDevice.getDevice
@@ -131,31 +96,17 @@ function getDevice(deviceId: number): Promise\<InputDeviceData>
 
 **返回值：**
 
-| 参数                      | 说明                          |
-| ------------------------- | ----------------------------- |
+| 参数                        | 说明                 |
+| ------------------------- | ------------------ |
 | Promise\<InputDeviceData> | Promise实例，用于异步获取结果 |
 
 **示例：**
 
 ```js
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    testGetDevice: function () {
-        // 示例获取设备id为1的设备信息。
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        let promise = inputDevice.getDevice(1);
-        promise.then((data)=> {
-            console.info('GetDeviceId successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceId. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+// 示例获取设备id为1的设备name信息。
+inputDevice.getDevice(1).then((inputDevice)=>{
+    console.log("The device name is: " + inputDevice.name);
+});
 ```
 
 
@@ -189,12 +140,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称   | 参数类型                  | 说明             |
-| ------ | ------------------------- | ---------------- |
+| 名称     | 参数类型                      | 说明       |
+| ------ | ------------------------- | -------- |
 | source | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis   | [AxisType](#axistype)     | 轴的类型         |
-| max    | number                    | 轴上报的最大值   |
-| min    | number                    | 轴上报的最小值   |
+| axis   | [AxisType](#axistype)     | 轴的类型     |
+| max    | number                    | 轴上报的最大值  |
+| min    | number                    | 轴上报的最小值  |
 
 
 
