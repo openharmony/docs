@@ -2,24 +2,26 @@
 
 # Application Package Structure Configuration File
 
-When developing an application in the FA model, you need to declare the package structure of the application in the **config.json** file. Similarly, when developing an application in the stage model, you need to declare the package structure of the application in the **module.json** file.
+When developing an application in the Feature Ability (FA) model, you need to declare the package structure of the application in the **config.json** file. Similarly, when developing an application in the stage model, you need to declare the package structure of the application in the **module.json** and **app.json** files.
 
-## Internal Structure of the module.json File
+## Configuration File Internal Structure
 
-The **module.json** file consists of two tags: **app** and **module**. See Table 1 for details.
+The configuration files consist of two parts: **app** and **module**. See Table 1 for details.
 
-Table 1 Internal structure of the module.json file
+Table 1 Configuration file internal structure
 
 | Tag| Description                                                        | Data Type| Initial Value Allowed|
 | -------- | ------------------------------------------------------------ | -------- | ---------- |
 | app      | Global configuration of an application. Different HAP files of an application must use the same **app** configuration. For details, see [Internal Structure of the app Tag](#internal-structure-of-the-app-tag).| Object    | No        |
 | module   | Configuration of a HAP file. The **module** configuration is valid only for the current HAP file. For details, see [Internal Structure of the module Tag](#internal-structure-of-the-module-tag).| Object    | No        |
 
-Example of the **module.json** file:
+### Internal Structure of the app Tag
+
+Code snippet in the **app.json** file:
 
 ```json
 {
-    "app": {
+	"app": {
         "bundleName": "com.application.music",
         "vendor": "application",
         "versionCode": 1,
@@ -37,7 +39,37 @@ Example of the **module.json** file:
         "car": {
             "apiCompatibleVersion": 8
         }
-    },
+    }
+}
+```
+
+This tag is an application-level attribute that applies to all the HAP files and components in the application. For the internal structure of the tag, see Table 2.
+
+Table 2 Internal structure of the app tag
+
+| Attribute                      | Description                                                        | Data Type| Initial Value Allowed                                 |
+| ------------------------------ | ------------------------------------------------------------ | -------- | ------------------------------------------- |
+| bundleName                     | Bundle name that uniquely identifies the application. The value must comply with the following rules:<br> (1) Consists of letters, digits, underscores (_), and periods (.).<br> (2) Starts with a letter.<br> (3) Contains 7 to 127 bytes.<br>You are advised to use the reverse domain name notion, for example, *com.example.xxx*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.<br>For an application compiled with the system source code, its bundle name must be in the format of **com.ohos.*xxx***, where **ohos** signifies OpenHarmony. | String  | No                                         |
+| debug                          | Whether the application can be debugged.                                  | Boolean  | Yes (initial value: **false**)              |
+| icon                           | Icon of the application. The value is the index to the resource file.              | String  | No                           |
+| label                          | Name of the application. The value is a resource index to descriptions in multiple languages.| String  | No                           |
+| description                    | Description of the application. The value can be a string or a resource index to descriptions in multiple languages.| String  | Yes (initial value: left empty)                 |
+| vendor                         | Application vendor. The value is a string with a maximum of 255 bytes.| String  | Yes (initial value: left empty)                 |
+| versionCode                    | Version number of the application. The value is a 32-bit non-negative integer and less than 2 to the power of 31. It is used only to determine whether a version is later than another version. A larger value indicates a later version. Ensure that a new version of the application uses a value greater than any of its predecessors. | Number    | No                             |
+| versionName                    | Text description of the version number, which is displayed to users.<br>The value consists of only digits and dots. The four-segment format *A.B.C.D* is recommended, wherein:<br>Segment 1: major version number, which ranges from 0 to 99. A major version consists of major new features or large changes.<br>Segment 2: minor version number, which ranges from 0 to 99. A minor version consists of some new features and large bug fixes.<br>Segment 3: feature version number, which ranges from 0 to 99. A feature version consists of scheduled new features.<br>Segment 4: maintenance release number or patch number, which ranges from 0 to 999. A maintenance release or patch consists of resolution to security flaws or minor bugs.| String  | No                             |
+| minCompatibleVersionCode       | Minimum API version compatible with the application.              | Number    | Yes (initial value: value of **versionCode**)|
+| minAPIVersion                  | Minimum API version required for running the application.                       | Number    | No                           |
+| targetAPIVersion               | Target API version required for running the application.                       | Integer    | No                           |
+| apiReleaseType                 | Type of the target API version required for running the application. The value can be **CanaryN**, **BetaN**, or **Release**, where **N** represents a positive integer.<br>**Canary**: indicates a restricted release.<br>**Beta**: indicates a publicly released beta version.<br>**Release**: indicates a publicly released official version.| String  | Yes (initial value: **"Release"**)            |
+| distributedNotificationEnabled | Whether the distributed notification feature is enabled for the application.                        | Boolean  | Yes (initial value: **true**)               |
+| entityType                     | Category of the application, which can be **game**, **media**, **communication**, **news**, **travel**, **utility**, **shopping**, **education**, **kids**, **business**, and **photography**.| String  | Yes (initial value: unspecified)        |
+
+### Internal Structure of the module Tag
+
+Example of the **module.json** file:
+
+```json
+{
     "module": {
         "name": "myHapName",
         "type": "entry|feature|har",
@@ -159,31 +191,6 @@ Example of the **module.json** file:
 }
 ```
 
-### Internal Structure of the app Tag
-
-This tag is an application-level attribute that affects all the HAP files and components in the application. For the internal structure of the tag, see Table 2.
-
-Table 2 Internal structure of the app tag
-
-| Attribute                      | Description                                                        | Data Type| Initial Value Allowed                                 |
-| ------------------------------ | ------------------------------------------------------------ | -------- | ------------------------------------------- |
-| bundleName                     | Bundle name that uniquely identifies the application. This attribute cannot be left empty. The value must comply with the following rules:<br> (1) Consists of letters, digits, underscores (_), and periods (.).<br> (2) Starts with a letter.<br> (3) Contains 7 to 127 bytes.<br> You are advised to use the reverse domain name notion, for example, *com.example.xxx*. The first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.<br> The application compiled with the system source code must be named in the format of **com.ohos.*xxx***, where **ohos** signifies OpenHarmony.| String  | No                                         |
-| debug                          | Whether the application can be debugged.                                  | Boolean  | Yes (initial value: **false**)              |
-| icon                           | Icon of the application. The value is the index to the resource file.    | String  | No                           |
-| label                          | Name of the application. The value is a resource index to descriptions in multiple languages.| String  | No                           |
-| description                    | Description of the application. The value can be a string or a resource index to descriptions in multiple languages.| String  | Yes (initial value: left empty)                 |
-| vendor                         | Application vendor. The value is a string with a maximum of 255 bytes.| String  | Yes (initial value: left empty)                 |
-| versionCode                    | Version number of the application. The value is a 32-bit non-negative integer and less than 2 to the power of 31. It is used only to determine whether a version is later than another version. A larger value indicates a later version. Ensure that a new version of the application uses a value greater than any of its predecessors. | Number    | No |
-| versionName                    | Text description of the version number, which is displayed to users.<br>The value consists of only digits and dots. The four-segment format *A.B.C.D* is recommended, wherein:<br>Segment 1: major version number, which ranges from 0 to 99. A major version consists of major new features or large changes.<br>Segment 2: minor version number, which ranges from 0 to 99. A minor version consists of some new features and large bug fixes.<br>Segment 3: feature version number, which ranges from 0 to 99. A feature version consists of scheduled new features.<br>Segment 4: maintenance release number or patch number, which ranges from 0 to 999. A maintenance release or patch consists of resolution to security flaws or minor bugs.| String  | No                             |
-| minCompatibleVersionCode       | Minimum API version required for running the application.                       | Number    | Yes (initial value: value of **versionCode**)|
-| minAPIVersion                  | Target API version required for running the application.                       | Number    | No                           |
-| targetAPIVersion               | Target API version required for running the application.                       | Integer    | No                           |
-| apiReleaseType                 | Type of the target API version required for running the application. The value can be **CanaryN**, **BetaN**, or **Release**, where **N** represents a positive integer.<br>**Canary**: indicates a restricted release.<br>**Beta**: indicates a publicly released beta version.<br>**Release**: indicates a publicly released official version.| String  | Yes (initial value: **"Release"**)            |
-| distributedNotificationEnabled | Whether the distributed notification feature is enabled for the application.                        | Boolean  | Yes (initial value: **true**)               |
-| entityType                     | Category of the application, which can be **game**, **media**, **communication**, **news**, **travel**, **utility**, **shopping**, **education**, **kids**, **business**, and **photography**.| String  | Yes (initial value: unspecified)        |
-
-### Internal Structure of the module Tag
-
 This tag stores the HAP configuration, which only applies to the current HAP file.
 
 Table 3 Internal structure of the module tag
@@ -199,7 +206,7 @@ Table 3 Internal structure of the module tag
 | deviceTypes         | Types of the devices on which the HAP file can run. Table 4 lists the device types predefined by the system.<br>Different from **syscap**, which is based on the device capability (such as Bluetooth and Wi-Fi), **deviceTypes** is based on the device type.| String array| No (can be left empty)         |
 | deliveryWithInstall | Whether the current HAP file will be installed when the user installs the application. The value **true** means that the HAP file will be automatically installed when the user installs the application, and **false** means the opposite.| Boolean    | No                     |
 | installationFree    | Whether the HAP file supports the installation-free feature. <br>**true**: The HAP file supports the installation-free feature and meets installation-free constraints.<br>**false**: The HAP file does not support the installation-free feature.<br><br>When **entry.hap** is set to **true**, all **feature.hap** fields related to **entry.hap** must be **true**.<br>When **entry.hap** is set to **false**, **feature.hap** fields related to **entry.hap** can be set to **true** or **false** based on service requirements. | Boolean    | No                     |
-| virtualMachine      | Type of the target virtual machine (VM) where the current HAP file is running. It is used for cloud distribution, such as the application market and distribution center.<br>If the target VM type is Ark, the value is **ark**. Otherwise, the value is **default**. This attribute is automatically inserted when the IDE builds the HAP file. When the decompression tool parses the HAP file, if the HAP file does not contain this attribute, the value is set to **default**. | String    | Yes (initial value: **default**)    |
+| virtualMachine      | Type of the target virtual machine (VM) where the current HAP file is running. It is used for cloud distribution, such as the application market and distribution center.<br>The value **ark** means that the target VM type is Ark, and **default** means otherwise. This attribute is automatically inserted when DevEco Studio builds the HAP file. When the decompression tool parses the HAP file, if the HAP file does not contain this attribute, the value is set to **default**. | String    | Yes (initial value: **default**)    |
 | uiSyntax            | Syntax type of the JS component.<br>**hml**: indicates that the JS component is developed using HML, CSS, or JS.<br>**ets**: indicates that the JS component is developed using the eTS declarative syntax.| String    | Yes (initial value: **hml**)            |
 | pages               | Profile resource used to list information about each page in the JS component. For details about how to use **pages**, see the **pages** example.| Object      | No in the ability scenario|
 | metadata            | Custom metadata of the HAP file. The configuration is valid only for the current module, ability, or extensionAbility. For details about **metadata**, see [Internal Structure of the metadata Attribute](#internal-structure-of-the-metadata-attribute).| Array      | Yes (initial value: left empty)           |
@@ -209,13 +216,13 @@ Table 3 Internal structure of the module tag
 
 Table 4 System-defined deviceTypes values
 
-| Device Type | Value      | Description                                      |
-| ------------ | ------------ | -------------------------------------------------------- |
-| tablet       | tablet       | Tablet, speaker with a screen                                          |
-| smart TV     | tv           |                                                          |
-| smart watch  | wearable     | Smart watch, kids' watch, especially a watch that provides call features|
-| head unit    | car          |                                                          |
-| router       | router       | Router                                                  |
+| Device Type | Value  | Description                                      |
+| ----------- | -------- | -------------------------------------------------------- |
+| Tablet      | tablet   | Tablet, speaker with a screen                                          |
+| Smart TV    | tv       | Smart TV                                                  |
+| Smart watch | wearable | Smart watch, kids' watch, especially a watch that provides call features|
+| Head unit   | car      | Head unit                                                    |
+| Router      | router   | Router                                                  |
 
 Example of the **deviceTypes** attribute structure:
 
@@ -231,7 +238,7 @@ Example of the **deviceTypes** attribute structure:
 }
 ```
 
-Example of the **pages** attribute structure::
+Example of the **pages** attribute structure:
 
 ```json
 {
@@ -306,15 +313,13 @@ Table 6 Internal structure of the abilities attribute
 | srcEntrance     | JS code path corresponding to the ability. The value is a string with a maximum of 127 bytes.| String    | No                                            |
 | launchType      | Ability startup mode. The value can be **standard**, **singleton**, or **specified**. The default value is **singleton**. The value **standard** indicates common multi-instance, the value **singleton** indicates a singleton, and the value **specified** indicates one or more specified instances, depending on the internal service of the ability.| String    | Yes (initial value: **singleton**)                              |
 | description     | Ability description. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)                                  |
-| icon            | Icon of the ability. The value is the index to the resource file. This attribute can be left empty, and the default value is an empty array.<br>If **ability** is set to **MainElement**, this attribute is mandatory.| String    | Yes (initial value: left empty)<br>If **ability** is set to **MainElement**, this attribute is mandatory.|
+| icon            | Icon of the ability. The value is the index to the resource file. | String    | Yes (initial value: left empty)<br>If **ability** is set to **MainElement**, this attribute is mandatory.|
 | permissions     | A set of permissions that need to be applied for when the capability of another application is invoked. The value is a string array. Each array element is a permission name, which is usually represented by a reverse domain name (a maximum of 255 bytes). The permission can be predefined by the system or customized by the application. For the latter, the value must be the same as the **name** value of a permission defined in the **defPermissions** attribute. | String array| Yes (initial value: left empty)                                  |
 | metadata        | Metadata about the ability. For details about metadata, see [Internal Structure of the metadata Attribute](#internal-structure-of-the-metadata-attribute).| Array      | Yes (initial value: left empty)                                  |
-| visible         | Indicates whether the ability can be invoked by other applications. The value **true** means that the ability can be invoked by other applications, and **false** means the opposite.| Boolean    | Yes (initial value: **false**)                               |
+| visible         | Whether the ability can be invoked by other applications. The value **true** means that the ability can be invoked by other applications, and **false** means the opposite. | Boolean    | Yes (initial value: **false**)                               |
 | continuable     | Whether the ability can be migrated. The value **true** means that the ability can be migrated, and **false** means the opposite.| Boolean    | Yes (initial value: **false**)                               |
 | skills          | Feature set of wants that can be received by the ability.<br>Configuration rule: In an entry package, you can configure multiple abilities with the **skills** attribute (where **action.system.home** and **entity.system.home** are configured) that has the entry capability. The **label** and **icon** in the first ability that has **skills** configured are used as the **label** and **icon** of the entire service/application.<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application,<br>but not for an OpenHarmony service.<br>For details about the internal structure of **skills**, see [Internal Structure of the skills Attribute](#internal-structure-of-the-skills-attribute).| Array      | Yes (initial value: left empty)                                  |
 | backgroundModes | Continuous task modes of the ability.<br>Continuous tasks are classified into the following types:<br>**dataTransfer**: service for downloading, backing up, sharing, or transferring data from the network or peer devices<br>**audioPlayback**: audio playback service<br>**audioRecording**: audio recording service<br>**location**: location and navigation services<br>**bluetoothInteraction**: Bluetooth scanning, connection, and transmission services (wearables)<br>**multiDeviceConnection**: multi-device interconnection service<br>**wifiInteraction**: Wi-Fi scanning, connection, and transmission services (multi-screen cloning)<br>**voip**: voice/video call and VoIP services<br>**taskKeeping**: computing service<br>| String    | Yes (initial value: left empty)                                          |
-| startWindowIcon | Index to the icon file of the ability startup page. Example value: **$media:icon**. | String | No |
-| startWindowBackground | Index to the background color resource file of the ability startup page. Example value: **$color:red**. | String | No |
 
 Example of the **abilities** attribute structure:
 
@@ -361,7 +366,7 @@ Table 7 Internal structure of the skills attribute
 | -------- | ------------------------------------------------------------ | ---------- | -------------------- |
 | actions  | A set of want action values that can be received. The value can be a value predefined by the system or a custom value.| String array| Yes (initial value: left empty)|
 | entities | Categories of abilities that can receive the want. The value can be a value predefined by the system or a custom value.| String array| Yes (initial value: left empty)|
-| uris     | Data specifications to be added to the want filter. The specification can be of data type only (**mimeType** attribute), URI only, or both. For details about the internal structure of **uris**, see Table 8.| Object array  | Yes (initial value: left empty)|
+| uris     | Data specification to be added to the want filter. The specification can be of data type only (**mimeType** attribute), URI only, or both. For details about the internal structure of **uris**, see Table 8.| Object array  | Yes (initial value: left empty)|
 
 Table 8 Internal structure of the uris attribute
 
@@ -441,10 +446,10 @@ Table 9 Internal structure of the extensionAbility attribute
 | description | Description of the extensionAbility. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)   |
 | icon        | Icon of the extensionAbility. The value is the index to the resource file. If **extensionAbility** is set to **MainElement**, this attribute is mandatory.| String    | Yes (initial value: left empty)   |
 | label       | Name of the extensionAbility displayed to users. The value is a resource index to names in multiple languages.<br>If **extensionAbility** is set to **MainElement**, this attribute is mandatory and the value must be unique in the application.| String    | No             |
-| type        | Type of the extension capability. The value can be form, workScheduler, inputMethod, service, accessibility, dataShare, fileShare, staticSubscriber, wallpaper, or backup. | String    | No             |
+| type        | Type of the extension capability. The value can be **form**, **workScheduler**, **inputMethod**, service, **accessibility**, **dataShare**, **fileShare**, **staticSubscriber**, **wallpaper**, **backup**, or **window**.| String    | No             |
 | permissions | A set of permissions that need to be applied for when the capability of another application is invoked. The value is a string array. Each array element is a permission name, which is usually represented by a reverse domain name (a maximum of 255 bytes). The permission can be predefined by the system or customized by the application. For the latter, the value must be the same as the **name** value of a permission defined in the **defPermissions** attribute.| String array| Yes (initial value: left empty)   |
 | uri         | Data URI provided by the ability. The value is an array containing a maximum of 255 characters and is in the format of a reverse domain name. This attribute is mandatory when **type** is set to **extensionAbility** of the dataShare type.| String    | Yes (initial value: left empty)   |
-| skills      | Feature set of wants that can be received by the ability.<br>Configuration rule: In an entry package, you can configure multiple abilities with the **skills** attribute (where **action.system.home** and **entity.system.home** are configured) that has the entry capability. The **label** and **icon** in the first ability that has **skills** configured are used as the **label** and **icon** of the entire service/application.<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application,<br>but not for an OpenHarmony service.<br>For details about the internal structure of **skills**, see [Internal Structure of the skills Attribute](#internal-structure-of-the-skills-attribute).| Array      | Yes (initial value: left empty)   |
+| skills      | Feature set of wants that can be received by the ability.<br>Configuration rule: In an entry package, you can configure multiple abilities with the **skills** attribute (where **action.system.home** and **entity.system.home** are configured) that has the entry capability. The **label** and **icon** in the first ability that has **skills** configured are used as the **label** and **icon** of the entire service/application.<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.<br>For details about the internal structure of **skills**, see [Internal Structure of the skills Attribute](#internal-structure-of-the-skills-attribute). | Array      | Yes (initial value: left empty)   |
 | metadata    | Metadata of extensionAbility. For details about metadata, see [Internal Structure of the metadata Attribute](#internal-structure-of-the-metadata-attribute).| Object      | Yes (initial value: left empty)   |
 | visible     | Whether extensionAbility can be invoked by other applications. The value is of the Boolean type. The value **true** means that it can be invoked by other applications, and the value **false** means the opposite.|            | Yes (initial value: **false**)|
 
@@ -488,16 +493,18 @@ This attribute identifies a set of permissions that the application needs to app
 
 Table 10 requestPermissions attributes
 
-| Attribute  | Description                                                         | **Type**                        | **Value Range**                                                | **Default Value**             | **Restrictions**                                                 |
+| Attribute | Description                                                        | **Type**                       | **Value Range**                                               | **Default Value**            | **Restrictions**                                                |
 | --------- | ------------------------------------------------------------ | ------------------------------- | ----------------------------------------------------------- | ---------------------- | ------------------------------------------------------------ |
-| name      | Permission name. This attribute is mandatory.                               | String                          | Custom                                                      | None                     | Parsing will fail if this field is not set.                                         |
-| reason    | Reason for requesting the permission. This attribute is mandatory when the requested permission is **user_grant**. | String                          | The maximum length is 256 bytes.                             | Empty                     | If the requested permission is **user_grant**, this attribute is required for the application to be released to AppGallery. Multi-language adaptation is required. |
-| usedScene | Application scenario and timing for using the permission, which is mandatory when the requested permission is **user_grant**. This attribute consists of the **ability** and **when** sub-attributes. Multiple abilities can be configured. | **ability**: string array; **when**: string | **ability**: ability name; **when**: **inuse** or **always** | **ability**: left empty; **when**: **inuse** | If the requested permission is **user_grant**, the **ability** sub-attribute is mandatory and **when** is optional.                      |
+| name      | Permission name. This attribute is mandatory.                              | String                         | Custom                                                     | N/A                    | Parsing will fail if this attribute is not set.                                        |
+| reason    | Reason for requesting the permission. This attribute is mandatory when the permission to request is **user_grant**. | String                         | A maximum of 256 bytes                            | Empty                    | If the permission to request is **user_grant**, this attribute is required for the application to be released to AppGallery. Multi-language adaptation is required.|
+| usedScene | Application scenario and timing for using the permission. This attribute is mandatory when the permission to request is **user_grant**. It consists of the **ability** and **when** sub-attributes. Multiple abilities can be configured.| **ability**: string array; **when**: string| **ability**: ability name; **when**: **inuse** or **always**| **ability**: null; **when**: **inuse**| If the permission to request is **user_grant**, the **ability** sub-attribute is mandatory and **when** is optional.                     |
 
 Example of the **requestPermissions** attribute structure:
 
 ```json
 {
+    "name": "ohos.abilitydemo.permission.PROVIDER",
+    "reason": "$string:reason",
     "usedScene": {
         "abilities": [
             "AudioAbility",
@@ -513,8 +520,11 @@ Example of the **requestPermissions** attribute structure:
 The **forms** attribute indicates the service widget configuration. The service widget is an application brief view that can be displayed on the home screen and periodically updated. You can include the **forms** attribute in any of the following modes:
 
 1. Set **type** to **form** in **extensions**.
+
 2. Specify the **form** information in **metadata**, where:
-   	  - **name** indicates the name of the service widget, for example, **ohos.extability.form**.
+   	  
+      - **name** indicates the name of the service widget, for example, **ohos.extability.form**.
+      
       - **resource** indicates where the resources of the service widget are stored.
 
 Table 11 Internal structure of the forms attribute
@@ -612,7 +622,7 @@ Table 13 Internal structure of the shortcuts attribute
 
 | Attribute  | Description                                                        | Data Type| Initial Value Allowed                |
 | ---------- | ------------------------------------------------------------ | -------- | -------------------------- |
-| shortcutId | Shortcut ID. The value is a string with a maximum of 63 bytes.                | String  | No                        |
+| shortcutId | ID of the shortcut. The value is a string with a maximum of 63 bytes.     | String  | No                        |
 | label      | Label of the shortcut, that is, the text description displayed by the shortcut. The value can be a string or a resource index to the description. The value is a string with a maximum of 63 bytes.| String  | Yes (initial value: left empty)        |
 | icon       | Icon of the shortcut. The value is the index to the resource file.          | String  | Yes (initial value: left empty)|
 | wants      | Wants to which the shortcut points. The attribute consists of the **bundleName** and **abilityName** sub-attributes.<br>**bundleName**: target bundle name of the shortcut; string type.<br>**abilityName**: target component name of the shortcut; string type.| Object    | Yes (initial value: left empty)  |
@@ -743,14 +753,14 @@ Table 16 Internal structure of the apiVersion attribute
 | Attribute| Description                                                        | Data Type| Initial Value Allowed          |
 | -------- | ------------------------------------------------------------ | -------- | -------------------- |
 | policy   | Blocklist and trustlist rule of the sub-attribute value. Set this attribute to **exclude** or **include**. **include** indicates that the sub-attribute value is in the trustlist. If the value matches any of the **value** enums, it matches this attribute.| String  | Yes (initial value: left empty)|
-| value    | An integer of the existing API version, for example, 4, 5, or 6. If an application uses two software versions developed using API 5 and API 6 for the same device model, two installation packages of the entry type can be released. | Array    | Yes (initial value: left empty)|
+| value    | An integer of the existing API version, for example, 4, 5, or 6. If an application uses two software versions developed using API 5 and API 6 for the same device model, two installation packages of the entry type can be released.| Array    | Yes (initial value: left empty)|
 
 Table 17 Internal structure of the screenShape attribute
 
 | Attribute| Description                                                        | Data Type| Initial Value Allowed          |
 | -------- | ------------------------------------------------------------ | -------- | -------------------- |
 | policy   | Blocklist and trustlist rule of the sub-attribute value. Set this attribute to **exclude** or **include**. **include** indicates that the sub-attribute value is in the trustlist. If the value matches any of the **value** enums, it matches this attribute.| String  | Yes (initial value: left empty)|
-| value    | The value can be **circle** or **rect**. Example: Different HAPs can be provided for a smart watch with a circular face and a smart watch with a rectangular face.| Array    | Yes (initial value: left empty)|
+| value    | The value can be **circle** or **rect**. Example: Different HAP files can be provided for a smart watch with a circular face and a smart watch with a rectangular face.| Array    | Yes (initial value: left empty)|
 
 Table 18 Internal structure of the screenWindow attribute
 
