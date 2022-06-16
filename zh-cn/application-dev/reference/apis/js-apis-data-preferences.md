@@ -215,11 +215,11 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
-  | callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | string | 是 | 要获取的存储key名称，不能为空。 |
+| defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>。 |
+| callback | AsyncCallback&lt;ValueType&gt; | 是 | 回调函数。 |
 
 **示例：**
 ```ts
@@ -245,7 +245,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要获取的存储key名称，不能为空。 |
-  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean。 |
+  | defValue | [ValueType](#valuetype) | 是 | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>。 |
 
 **返回值：**
   | 类型 | 说明 |
@@ -326,7 +326,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
@@ -353,7 +353,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | key | string | 是 | 要修改的存储的key，不能为空。 |
-  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean。 |
+  | value | [ValueType](#valuetype) | 是 | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>。 |
 
 **返回值：**
   | 类型 | 说明 |
@@ -603,26 +603,29 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
     })
 })
 ```
@@ -644,26 +647,29 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 ```ts
-var observer = function (key) {
-    console.info("The key of " + key + " changed.")
-}
-
-...
-
-preferences.on('change', observer)
-preferences.put('startup', 'auto', function (err) {
+data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Put the value of startup failed, err: " + err)
-        return
+        console.info("Get preferences failed.")
+        return;
     }
-    console.info("Put the value of startup successfully.")
-
-    preferences.flush(function (err) {
+    var observer = function (key) {
+        console.info("The key of " + key + " changed.")
+    }
+    preferences.on('change', observer)
+    preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Flush to file failed, err: " + err)
+            console.info("Put the value of startup failed, err: " + err)
             return
         }
-        console.info("Flushed to file successfully.")    // observer will be called.
+        console.info("Put the value of startup successfully.")
+
+        preferences.flush(function (err) {
+            if (err) {
+                console.info("Flush to file failed, err: " + err)
+                return
+            }
+            console.info("Flushed to file successfully.") // observer will be called.
+        })
         preferences.off('change', observer)
     })
 })
