@@ -1,6 +1,6 @@
 # 首选项
 
-首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
+首选项为应用提供key-value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
 
 > **说明：**
@@ -277,7 +277,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **示例：**
 ```ts
-preferences.get.getAll(function (err, value) {
+preferences.getAll(function (err, value) {
     if (err) {
         console.info("getAll failed, err: " + err)
         return
@@ -675,8 +675,11 @@ preferences.put('startup', 'auto', function (err) {
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称    | 说明                 |
-| ------- | -------------------- |
-| number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符。   |
-| boolean | 表示值类型为布尔值。 |
+| 名称           | 说明                           |
+| -------------- | ------------------------------ |
+| number         | 表示值类型为数字。             |
+| string         | 表示值类型为字符串。           |
+| boolean        | 表示值类型为布尔值。           |
+| Array\<number>  | 表示值类型为数字类型的数组。   |
+| Array\<boolean> | 表示值类型为布尔类型的数组。   |
+| Array\<string>  | 表示值类型为字符串类型的数组。 |

@@ -26,7 +26,7 @@
 
 | 类名    | 接口名                                             | 描述                                            |
 | ------- | -------------------------------------------------- | ----------------------------------------------- |
-| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean类型的数据存入。 |
+| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据存入。 |
 
 ### 读取数据
 
@@ -36,7 +36,7 @@
 
 | 类名    | 接口名                                                     | 描述                                            |
 | ------- | ---------------------------------------------------------- | ----------------------------------------------- |
-| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean类型的数据。 |
+| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
 
 ### 数据持久化
 
@@ -67,7 +67,7 @@
 
 | 包名              | 接口名                                               | 描述                                                         |
 | ----------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise<void>;     | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
+| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void>;     | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void>; | 仅从缓存中移除已加载的Preferences对象，主要用于释放内存。
 
 ## 开发步骤
@@ -91,8 +91,8 @@
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.put('startup', 'auto')
-       getPromise.then(() => {
+       let putPromise = preferences.put('startup', 'auto')
+       putPromise.then(() => {
            console.info("Put the value of startup successfully.")
        }).catch((err) => {
            console.info("Put the value of startup failed with err: " + err)
