@@ -641,6 +641,7 @@
         - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
         - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
         - [@ohos.settings](reference/apis/js-apis-settings.md)
+        - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
         - [resultSet](reference/apis/js-apis-data-resultset.md)
     - File Management      
         - [@ohos.document](reference/apis/js-apis-document.md)
@@ -736,7 +737,6 @@
         - [@ohos.uitest](reference/apis/js-apis-uitest.md)
     - APIs No Longer Maintained      
         - [@ohos.bytrace](reference/apis/js-apis-bytrace.md)
-        - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
         - [@system.app](reference/apis/js-apis-system-app.md)
         - [@system.battery](reference/apis/js-apis-system-battery.md)
         - [@system.bluetooth](reference/apis/js-apis-system-bluetooth.md)
