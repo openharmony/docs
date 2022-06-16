@@ -335,10 +335,7 @@ vendor
 
 ### SoC芯片平台HDF驱动移植
 
-驱动适配相关文件放置在`device/soc/st/common/platform`中，所有的驱动都是通过`HDF`机制加载，本章节以`gpio`为例进行详细说明。
-
-#### GPIO驱动适配
-
+驱动适配相关文件放置在`device/soc/st/common/platform`中，所有的驱动都是通过`HDF`机制加载，本章节以GPIO驱动适配为例进行详细说明。
 
 1. 在`//device/soc/st/common/platform/gpio/BUILD.gn`文件中，描述了stm32mp1xx `gpio`驱动的编译适配。如下：
 
