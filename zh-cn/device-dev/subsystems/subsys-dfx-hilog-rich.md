@@ -34,7 +34,7 @@ HiLog是OpenHarmony日志系统，提供给系统框架、服务、以及应用�
 |  | int&nbsp;Error(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | 功能：输出&nbsp;error&nbsp;级别日志。<br/>参数说明同&nbsp;Debug&nbsp;接口。 | 
 |  | int&nbsp;Fatal(const&nbsp;HiLogLabel&nbsp;&amp;label,&nbsp;const&nbsp;char&nbsp;\*fmt,&nbsp;...) | 功能：输出&nbsp;fatal&nbsp;级别日志。<br/>参数说明同&nbsp;Debug&nbsp;接口。 | 
 |  | boolean&nbsp;IsLoggable(unsigned&nbsp;int&nbsp;domain,&nbsp;const&nbsp;char&nbsp;\*tag,&nbsp;LogLevel&nbsp;level) | 功能：检查指定业务领域、TAG、级别的日志是否可以打印。<br/>输入参数：<br/>-&nbsp;domain：指定日志业务领域。<br/>-&nbsp;tag:&nbsp;指定日志TAG。<br/>-&nbsp;level:&nbsp;指定日志level。<br/>输出参数：无<br/>返回值：如果指定domain、tag、level日志可以打印则返回true；否则返回false。 | 
-| HiLogLabel | struct&nbsp;HiLogLabel | 功能：初始化日志标签参数。<br/>成员参数：<br/>-&nbsp;domain：指定日志业务领域。<br/>-&nbsp;tag:&nbsp;指定日志TAG。<br/>-&nbsp;level:&nbsp;指定日志level。 | 
+| HiLogLabel | struct&nbsp;HiLogLabel | 功能：初始化日志标签参数。<br/>成员参数：<br/>-&nbsp;type:&nbsp;指定日志type。<br/>-&nbsp;domain：指定日志业务领域。<br/>-&nbsp;tag:&nbsp;指定日志TAG。 | 
 
 
 ## 开发实例
