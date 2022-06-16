@@ -277,7 +277,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **示例：**
 ```ts
-preferences.get.getAll(function (err, value) {
+preferences.getAll(function (err, value) {
     if (err) {
         console.info("getAll failed, err: " + err)
         return
