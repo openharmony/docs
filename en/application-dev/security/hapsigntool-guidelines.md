@@ -216,7 +216,7 @@ The usage of hapsigner varies depending on whether an application signing certif
               ├── -keyAlias      # Key alias. It is mandatory.
               ├── -keyPwd         # Key password. It is optional.
               ├── -appCertFile   # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
-              ├── -profileFile   # Singed provisioning profile, in p7b format. It is mandatory.
+              ├── -profileFile   # Signed provisioning profile, in p7b format. It is mandatory.
               ├── -profileSigned # Whether the profile is signed. The value 1 means signed, and value 0 means unsigned. The default value is 1. It is optional.
               ├── -inForm        # Raw file, in .zip (default) or .bin format. It is optional.
               ├── -inFile        # Raw application package, in HAP or .bin format. It is mandatory.
