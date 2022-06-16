@@ -1,6 +1,6 @@
 # Device Information
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -24,7 +24,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | softwareModel | string | Yes| No| Software model.|
 | hardwareModel | string | Yes| No| Hardware model.|
 | hardwareProfile | string | Yes| No| Hardware profile.|
-| serial | string | Yes| No| Device serial number.|
+| serial | string | Yes| No| Device serial number.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID (a system permission)|
 | bootloaderVersion | string | Yes| No| Bootloader version.|
 | abiList | string | Yes| No| Application binary interface (Abi) list.|
 | securityPatchTag | string | Yes| No| Security patch tag.|
@@ -44,4 +44,4 @@ import deviceInfo from '@ohos.deviceInfo'
 | buildHost | string | Yes| No| Build host.|
 | buildTime | string | Yes| No| Build time.|
 | buildRootHash | string | Yes| No| Build root hash.|
-| udid<sup>7+</sup> | string | Yes| No| Device UDID.|
+| udid<sup>7+</sup> | string | Yes| No| Device UDID.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID (a system permission)|
