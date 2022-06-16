@@ -36,7 +36,7 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 let isPhysicalKeyboardExist = true;
 inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
-    inputDevice.getKeyboardType(data.deviceId, (ret) => {
+    inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
         console.log("The keyboard type of the device is: " + ret);
         if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
             // 监听物理键盘已连接。
@@ -68,12 +68,12 @@ off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 **示例**：
 
 ```js
-listener: function(data) {
+function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 // 单独取消listener的监听。
-inputDevice.off("change", this.listener);
+inputDevice.off("change", listener);
 
 // 取消所有监听。
 inputDevice.off("change");
@@ -90,7 +90,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **参数**：
 
-| 参数      | 类型                                     | 必填 | 说明  |
+| 参数       | 类型                                       | 必填   | 说明    |
 | -------- | ---------------------------------------- | ---- | ----- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 回调函数。 |
 
@@ -134,9 +134,9 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 **参数**：
 
-| 参数      | 类型                                     | 必填 | 说明                          |
+| 参数       | 类型                                       | 必填   | 说明                          |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| deviceId | number                                   | 是   | 需要获取信息的设备id。                |
+| deviceId | number                                   | 是    | 需要获取信息的设备id。                |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是    | 回调函数，异步返回InputDeviceData对象。 |
 
 **示例**：
@@ -333,15 +333,15 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 **系统能力**： 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                    | 参数类型                  | 说明             |
-| ----------------------- | ------------------------- | ---------------- |
+| 名称                      | 参数类型                      | 说明       |
+| ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](#axistype)     | 轴的类型。       |
-| max                     | number                    | 轴的最大值。     |
-| min                     | number                    | 轴的最小值。     |
-| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。     |
-| flat<sup>9+</sup>       | number                    | 轴的基准值。     |
-| resolution<sup>9+</sup> | number                    | 轴的分辨率。     |
+| axis                    | [AxisType](#axistype)     | 轴的类型。    |
+| max                     | number                    | 轴的最大值。   |
+| min                     | number                    | 轴的最小值。   |
+| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
+| flat<sup>9+</sup>       | number                    | 轴的基准值。   |
+| resolution<sup>9+</sup> | number                    | 轴的分辨率。   |
 
 ## SourceType
 

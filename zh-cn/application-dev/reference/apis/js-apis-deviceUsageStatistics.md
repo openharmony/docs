@@ -20,10 +20,10 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用的bundleName。|
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
 
 **示例**：
 
@@ -47,15 +47,15 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用的bundleName。|
+| 参数名        | 类型     | 必填   | 说明             |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | 是    | 应用的bundleName。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+| 类型                     | 说明                                       |
+| ---------------------- | ---------------------------------------- |
+| Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
 
 **示例**：
 
@@ -77,8 +77,8 @@ queryAppUsagePriorityGroup(): Promise<number>
 
 **返回值**：
 
-| 类型            | 说明                                            |
-| --------------- | ----------------------------------------------- |
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
 | Promise<number> | 指定的Promise回调方法。返回查询的应用分组结果。 |
 
 **示例**：
@@ -101,9 +101,9 @@ queryAppUsagePriorityGroup(callback: AsyncCallback<number>): void
 
 **参数**：
 
-| 参数名   | 类型                  | 必填 | 说明                                         |
-| -------- | --------------------- | ---- | -------------------------------------------- |
-| callback | AsyncCallback<number> | 是   | 指定的CallBack回调方法。返回查询的应用分组。 |
+| 参数名      | 类型                    | 必填   | 说明                         |
+| -------- | --------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<number> | 是    | 指定的CallBack回调方法。返回查询的应用分组。 |
 
 **示例**：
 
@@ -140,11 +140,11 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
+| 参数名      | 类型                                       | 必填   | 说明                                      |
+| -------- | ---------------------------------------- | ---- | --------------------------------------- |
+| begin    | number                                   | 是    | 起始时间。                                   |
+| end      | number                                   | 是    | 结束时间。                                   |
+| callback | AsyncCallback&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
@@ -178,16 +178,16 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。|
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[BundleActiveInfoResponse](#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
@@ -219,12 +219,12 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | byInterval | [IntervalType](#intervaltype) | 是 | 查询类型。|
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 是 | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
+| 参数名        | 类型                                       | 必填   | 说明                                       |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| byInterval | [IntervalType](#intervaltype)            | 是    | 查询类型。                                    |
+| begin      | number                                   | 是    | 起始时间。                                    |
+| end        | number                                   | 是    | 结束时间。                                    |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -256,17 +256,17 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | byInterval | [IntervalType](#intervaltype) | 是 | 查询类型。|
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名        | 类型                            | 必填   | 说明    |
+| ---------- | ----------------------------- | ---- | ----- |
+| byInterval | [IntervalType](#intervaltype) | 是    | 查询类型。 |
+| begin      | number                        | 是    | 起始时间。 |
+| end        | number                        | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。|
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[BundleStateInfo](#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -296,11 +296,11 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
+| 参数名      | 类型                                       | 必填   | 说明                                      |
+| -------- | ---------------------------------------- | ---- | --------------------------------------- |
+| begin    | number                                   | 是    | 起始时间。                                   |
+| end      | number                                   | 是    | 结束时间。                                   |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -332,16 +332,16 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。|
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -367,11 +367,11 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
+| 参数名      | 类型                                       | 必填   | 说明                                      |
+| -------- | ---------------------------------------- | ---- | --------------------------------------- |
+| begin    | number                                   | 是    | 起始时间。                                   |
+| end      | number                                   | 是    | 结束时间。                                   |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
 **示例**：
 
@@ -399,16 +399,16 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。|
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
 **示例**：
 
@@ -438,20 +438,20 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
+| 参数名    | 类型     | 必填   | 说明                                 |
+| ------ | ------ | ---- | ---------------------------------- |
+| maxNum | number | 否    | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。|
+| 类型                                       | 说明                                 |
+| ---------------------------------------- | ---------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
 
   ```js
-    bundleState.getRecentlyUsedModules(this.maxNum).then( res => {
+    bundleState.getRecentlyUsedModules(1000).then( res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
@@ -487,15 +487,15 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | maxNum | number | 否 | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是 | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。|
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| maxNum   | number                                   | 否    | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。  |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
 
   ```js
-    bundleState.getRecentlyUsedModules(this.maxNum,(err, res) => {
+    bundleState.getRecentlyUsedModules(1000,(err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
@@ -508,7 +508,7 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
     });
 
     // 无maNum参数调用方式
-    stats.getRecentlyUsedModules((err, res) => {
+    bundleState.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
@@ -535,14 +535,14 @@ queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                                                         |
-| ---------- | ------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
+| 参数名        | 类型     | 必填   | 说明                                       |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| bundleName | string | 否    | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
 
 **返回值**：
 
-| 类型            | 说明                                            |
-| --------------- | ----------------------------------------------- |
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
 | Promise<number> | 指定的Promise回调方法。返回查询的应用分组结果。 |
 
 **示例**：
@@ -576,10 +576,10 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback<number>
 
 **参数**：
 
-| 参数名     | 类型                  | 必填 | 说明                                                         |
-| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| bundleName | string                | 否   | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
-| callback   | AsyncCallback<number> | 是   | 指定的CallBack回调方法。返回查询的应用分组。                 |
+| 参数名        | 类型                    | 必填   | 说明                                       |
+| ---------- | --------------------- | ---- | ---------------------------------------- |
+| bundleName | string                | 否    | 可选参数。设置该参数时查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。 |
+| callback   | AsyncCallback<number> | 是    | 指定的CallBack回调方法。返回查询的应用分组。               |
 
 **示例**：
 
@@ -616,15 +616,15 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise<void>
 
 **参数**：
 
-| 参数名     | 类型      | 必填 | 说明     |
-| ---------- | --------- | ---- | -------- |
-| bundleName | string    | 是   | 应用名称 |
-| newGroup   | GroupType | 是   | 应用分组 |
+| 参数名        | 类型        | 必填   | 说明   |
+| ---------- | --------- | ---- | ---- |
+| bundleName | string    | 是    | 应用名称 |
+| newGroup   | GroupType | 是    | 应用分组 |
 
 **返回值**：
 
-| 类型          | 说明                                        |
-| ------------- | ------------------------------------------- |
+| 类型            | 说明                        |
+| ------------- | ------------------------- |
 | Promise<void> | 指定的Promise回调方法。返回本次设置是否成功 |
 
 **示例**：
@@ -654,11 +654,11 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback<
 
 **参数**：
 
-| 参数名     | 类型                | 必填 | 说明                                       |
-| ---------- | ------------------- | ---- | ------------------------------------------ |
-| bundleName | string              | 是   | 应用名称                                   |
-| newGroup   | GroupType           | 是   | 应用分组                                   |
-| callback   | AsyncCallback<void> | 是   | 指定的CallBack回调方法。返回设置是否成功。 |
+| 参数名        | 类型                  | 必填   | 说明                        |
+| ---------- | ------------------- | ---- | ------------------------- |
+| bundleName | string              | 是    | 应用名称                      |
+| newGroup   | GroupType           | 是    | 应用分组                      |
+| callback   | AsyncCallback<void> | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
 
 **示例**：
 
@@ -689,14 +689,14 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>): Promis
 
 **参数**：
 
-| 参数名   | 类型                                    | 必填 | 说明                   |
-| -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | Callback<BundleActiveGroupCallbackInfo> | 是   | 应用分组变化的回调函数 |
+| 参数名      | 类型                                      | 必填   | 说明          |
+| -------- | --------------------------------------- | ---- | ----------- |
+| callback | Callback<BundleActiveGroupCallbackInfo> | 是    | 应用分组变化的回调函数 |
 
 **返回值**：
 
-| 类型          | 说明                                    |
-| ------------- | --------------------------------------- |
+| 类型            | 说明                      |
+| ------------- | ----------------------- |
 | Promise<void> | 指定的Promise回调方法。返回注册是否成功 |
 
 **示例**：
@@ -731,10 +731,10 @@ registerGroupCallBack(callback: Callback<BundleActiveGroupCallbackInfo>, callbac
 
 **参数**：
 
-| 参数名   | 类型                                    | 必填 | 说明                       |
-| -------- | --------------------------------------- | ---- | -------------------------- |
-| callback | Callback<BundleActiveGroupCallbackInfo> | 是   | 应用分组变化的回调函数     |
-| callback | AsyncCallback<void>                     | 是   | 注册是否成功的异步回调函数 |
+| 参数名      | 类型                                      | 必填   | 说明            |
+| -------- | --------------------------------------- | ---- | ------------- |
+| callback | Callback<BundleActiveGroupCallbackInfo> | 是    | 应用分组变化的回调函数   |
+| callback | AsyncCallback<void>                     | 是    | 注册是否成功的异步回调函数 |
 
 **示例**：
 
@@ -772,8 +772,8 @@ unRegisterGroupCallBack(): Promise<void>
 
 **返回值**：
 
-| 类型          | 说明                                      |
-| ------------- | ----------------------------------------- |
+| 类型            | 说明                       |
+| ------------- | ------------------------ |
 | Promise<void> | 指定的Promise回调方法。返回解注册是否成功 |
 
 **示例**：
@@ -800,9 +800,9 @@ unRegisterGroupCallBack(callback: AsyncCallback<void>): void;
 
 **参数**：
 
-| 参数名   | 类型                | 必填 | 说明                         |
-| -------- | ------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback<void> | 是   | 解注册是否成功的异步回调函数 |
+| 参数名      | 类型                  | 必填   | 说明             |
+| -------- | ------------------- | ---- | -------------- |
+| callback | AsyncCallback<void> | 是    | 解注册是否成功的异步回调函数 |
 
 **示例**：
 
@@ -830,16 +830,16 @@ queryBundleActiveEventStates(begin: number, end: number): Promise&lt;Array&lt;Bu
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。|
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **示例**：
 
@@ -866,11 +866,11 @@ queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是 | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。|
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | 是    | 起始时间。                                    |
+| end      | number                                   | 是    | 结束时间。                                    |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **示例**：
 
@@ -899,16 +899,16 @@ queryAppNotificationNumber(begin: number, end: number): Promise&lt;Array&lt;Bund
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间。 |
+| end   | number | 是    | 结束时间。 |
 
 **返回值**：
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。|
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -935,11 +935,11 @@ queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&l
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | begin | number | 是 | 起始时间。|
-  | end | number | 是 | 结束时间。|
-  | callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是 | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。|
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | 是    | 起始时间。                                    |
+| end      | number                                   | 是    | 结束时间。                                    |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -959,34 +959,34 @@ FA的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 否 | FA所属deviceId。|
-| bundleName | string | 是 | FA所属应用包名。|
-| moduleName | string | 是 | FA所属module名。|
-| abilityName | string | 否 | FA的MainAbility名。|
-| appLabelId | number | 否 | FA的应用labelId。|
-| labelId | number | 否 | FA所属module的labelId。|
-| descriptionId | number | 否 | FA所属的应用descriptionId。|
-| abilityLableId | number | 否 | FA的MainAbility labelId。|
-| abilityDescriptionId | number | 否 | FA的MainAbility descriptionId。|
-| abilityIconId | number | 否 | FA的MainAbility iconId。|
-| launchedCount | number | 是 | FA的启动次数。|
-| lastModuleUsedTime | number | 是 | FA的上一次使用时间。|
-| formRecords | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo9)&gt; | 是 | FA中卡片的使用记录。|
+| 参数名                  | 类型                                       | 必填   | 说明                            |
+| -------------------- | ---------------------------------------- | ---- | ----------------------------- |
+| deviceId             | string                                   | 否    | FA所属deviceId。                 |
+| bundleName           | string                                   | 是    | FA所属应用包名。                     |
+| moduleName           | string                                   | 是    | FA所属module名。                  |
+| abilityName          | string                                   | 否    | FA的MainAbility名。              |
+| appLabelId           | number                                   | 否    | FA的应用labelId。                 |
+| labelId              | number                                   | 否    | FA所属module的labelId。           |
+| descriptionId        | number                                   | 否    | FA所属的应用descriptionId。         |
+| abilityLableId       | number                                   | 否    | FA的MainAbility labelId。       |
+| abilityDescriptionId | number                                   | 否    | FA的MainAbility descriptionId。 |
+| abilityIconId        | number                                   | 否    | FA的MainAbility iconId。        |
+| launchedCount        | number                                   | 是    | FA的启动次数。                      |
+| lastModuleUsedTime   | number                                   | 是    | FA的上一次使用时间。                   |
+| formRecords          | Array&lt;[BundleActiveFormInfo](#bundleactiveforminfo9)&gt; | 是    | FA中卡片的使用记录。                   |
 
 ## BundleActiveFormInfo<sup>9+</sup>
 FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| formName | number | 是 | 卡片名称。|
-| formDimension | number | 是 | 卡片尺寸。|
-| formId | number | 是 | 卡片Id。|
-| formLastUsedTime | number | 是 | 卡片的上一次点击时间。|
-| count | number | 是 | 卡片的点击次数。|
+| 参数名              | 类型     | 必填   | 说明          |
+| ---------------- | ------ | ---- | ----------- |
+| formName         | number | 是    | 卡片名称。       |
+| formDimension    | number | 是    | 卡片尺寸。       |
+| formId           | number | 是    | 卡片Id。       |
+| formLastUsedTime | number | 是    | 卡片的上一次点击时间。 |
+| count            | number | 是    | 卡片的点击次数。    |
 
 ## BundleActiveGroupCallbackInfo<sup>9+</sup>
 
@@ -994,13 +994,13 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名           | 类型   | 必填 | 说明             |
-| ---------------- | ------ | ---- | ---------------- |
-| appUsageOldGroup | number | 是   | 修改前的应用分组 |
-| appUsageNewGroup | number | 是   | 修改后的应用分组 |
-| useId            | number | 是   | 用户id           |
-| changeReason     | number | 是   | 分组变化原因     |
-| bundleName       | string | 是   | 应用名称         |
+| 参数名              | 类型     | 必填   | 说明       |
+| ---------------- | ------ | ---- | -------- |
+| appUsageOldGroup | number | 是    | 修改前的应用分组 |
+| appUsageNewGroup | number | 是    | 修改后的应用分组 |
+| useId            | number | 是    | 用户id     |
+| changeReason     | number | 是    | 分组变化原因   |
+| bundleName       | string | 是    | 应用名称     |
 
 ## BundleStateInfo
 
@@ -1010,18 +1010,18 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。|
-| abilityPrevAccessTime | number | 是 | 应用最后一次使用的时间。|
-| abilityInFgTotalTime | number | 是 | 应用在前台使用的总时间。|
-| id | number | 否 | 用户id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| abilityPrevSeenTime | number | 否 | 应用最后一次在前台可见的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| abilitySeenTotalTime | number | 否 | 应用在前台可见的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| fgAbilityAccessTotalTime | number | 否 | 应用访问前台的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| fgAbilityPrevAccessTime | number | 否 | 应用最后一次访问前台的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| infosBeginTime | number | 否 | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| infosEndTime | number | 否 | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
+| 参数名                      | 类型     | 必填   | 说明                                       |
+| ------------------------ | ------ | ---- | ---------------------------------------- |
+| bundleName               | string | 是    | 应用包名。                                    |
+| abilityPrevAccessTime    | number | 是    | 应用最后一次使用的时间。                             |
+| abilityInFgTotalTime     | number | 是    | 应用在前台使用的总时间。                             |
+| id                       | number | 否    | 用户id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| abilityPrevSeenTime      | number | 否    | 应用最后一次在前台可见的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| abilitySeenTotalTime     | number | 否    | 应用在前台可见的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| fgAbilityAccessTotalTime | number | 否    | 应用访问前台的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 ### merge
 
@@ -1035,9 +1035,9 @@ merge(toMerge: BundleStateInfo): void
 
 **参数**：
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | toMerge | [BundleStateInfo](#bundlestateinfo) | 是 | 相同包名的应用使用统计信息。|
+| 参数名     | 类型                                  | 必填   | 说明             |
+| ------- | ----------------------------------- | ---- | -------------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | 是    | 相同包名的应用使用统计信息。 |
 
 ## BundleActiveState
 
@@ -1045,14 +1045,14 @@ merge(toMerge: BundleStateInfo): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。|
-| stateType | number | 是 | 应用事件类型。|
-| stateOccurredTime | number | 是 | 应用事件发生的时间戳。|
-| appUsagePriorityGroup | number | 否 | 应用程序的使用优先级组。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| indexOfLink | string | 否 | 快捷方式id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
-| nameOfClass | string | 否 | 类名。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。|
+| 参数名                   | 类型     | 必填   | 说明                                       |
+| --------------------- | ------ | ---- | ---------------------------------------- |
+| bundleName            | string | 是    | 应用包名。                                    |
+| stateType             | number | 是    | 应用事件类型。                                  |
+| stateOccurredTime     | number | 是    | 应用事件发生的时间戳。                              |
+| appUsagePriorityGroup | number | 否    | 应用程序的使用优先级组。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| indexOfLink           | string | 否    | 快捷方式id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| nameOfClass           | string | 否    | 类名。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
 ## BundleActiveInfoResponse
 
@@ -1060,9 +1060,9 @@ merge(toMerge: BundleStateInfo): void
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是 | 不同应用的使用时长统计信息。|
+| 参数名                            | 类型                                       | 必填   | 说明             |
+| ------------------------------ | ---------------------------------------- | ---- | -------------- |
+| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是    | 不同应用的使用时长统计信息。 |
 
 ## BundleActiveEventState<sup>9+</sup>
 
@@ -1072,11 +1072,11 @@ merge(toMerge: BundleStateInfo): void
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 通知应用包名或者系统事件名。|
-| eventId | number | 是 | 通知、系统事件类型。|
-| count | number | 是 | 应用通知次数或者系统事件触发次数。|
+| 参数名     | 类型     | 必填   | 说明                |
+| ------- | ------ | ---- | ----------------- |
+| name    | string | 是    | 通知应用包名或者系统事件名。    |
+| eventId | number | 是    | 通知、系统事件类型。        |
+| count   | number | 是    | 应用通知次数或者系统事件触发次数。 |
 
 ## IntervalType
 
@@ -1084,13 +1084,13 @@ merge(toMerge: BundleStateInfo): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-|名称    |默认值    |说明|
-| -------- | -------- | -------- |
-| BY_OPTIMIZED | 0 | 表示系统自行判断最合适的查询类型（天、周、月、年）去查询指定时间段间隔的应用使用时长信息。|
-| BY_DAILY | 1 | 表示系统按照天去查询指定时间段间隔的应用使用时长信息。|
-| BY_WEEKLY | 2 | 表示系统按照周去查询指定时间段间隔的应用使用时长信息。|
-| BY_MONTHLY | 3 | 表示系统按照月去查询指定时间段间隔的应用使用时长信息。|
-| BY_ANNUALLY | 4 | 表示系统按照年去查询指定时间段间隔的应用使用时长信息。|
+| 名称           | 默认值  | 说明                                       |
+| ------------ | ---- | ---------------------------------------- |
+| BY_OPTIMIZED | 0    | 表示系统自行判断最合适的查询类型（天、周、月、年）去查询指定时间段间隔的应用使用时长信息。 |
+| BY_DAILY     | 1    | 表示系统按照天去查询指定时间段间隔的应用使用时长信息。              |
+| BY_WEEKLY    | 2    | 表示系统按照周去查询指定时间段间隔的应用使用时长信息。              |
+| BY_MONTHLY   | 3    | 表示系统按照月去查询指定时间段间隔的应用使用时长信息。              |
+| BY_ANNUALLY  | 4    | 表示系统按照年去查询指定时间段间隔的应用使用时长信息。              |
 
 ## GroupType
 
@@ -1098,11 +1098,11 @@ merge(toMerge: BundleStateInfo): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-| 名称               | 默认值 | 说明                               |
-| ------------------ | ------ | ---------------------------------- |
-| ACTIVE_GROUP_ALIVE | 10     | 活跃分组                           |
-| ACTIVE_GROUP_DAILY | 20     | 经常使用，但当前并未在活跃态       |
-| ACTIVE_GROUP_FIXED | 30     | 常用分组，定期使用，但不是每天使用 |
-| ACTIVE_GROUP_RARE  | 40     | 极少使用分组，不经常使用           |
-| ACTIVE_GROUP_LIMIT | 50     | 受限使用分组                       |
-| ACTIVE_GROUP_NEVER | 60     | 从未使用分组，安装但是从未运行过   |
+| 名称                 | 默认值  | 说明                |
+| ------------------ | ---- | ----------------- |
+| ACTIVE_GROUP_ALIVE | 10   | 活跃分组              |
+| ACTIVE_GROUP_DAILY | 20   | 经常使用，但当前并未在活跃态    |
+| ACTIVE_GROUP_FIXED | 30   | 常用分组，定期使用，但不是每天使用 |
+| ACTIVE_GROUP_RARE  | 40   | 极少使用分组，不经常使用      |
+| ACTIVE_GROUP_LIMIT | 50   | 受限使用分组            |
+| ACTIVE_GROUP_NEVER | 60   | 从未使用分组，安装但是从未运行过  |

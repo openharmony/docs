@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```
+```js
 import curves from '@ohos.curves'
 ```
 
@@ -135,8 +135,6 @@ struct ImageComponent {
         .backgroundColor(Color.Red)
         .onClick(()=> {
           let curve = Curves.cubicBezier(0.25, 0.1, 0.25, 1.0);
-          this.widthSize = curve.interpolate(0.5) * this.widthSize;
-          this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
         .animation({duration: 2000 , curve: Curves.spring(0.25, 0.1, 0.25, 1.0)})
     }.width("100%").height("100%")
