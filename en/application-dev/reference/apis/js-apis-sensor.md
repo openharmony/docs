@@ -1,12 +1,13 @@
 # Sensor
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import sensor from '@ohos.sensor';
 ```
 
@@ -30,7 +31,7 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -59,7 +60,7 @@ Subscribes to data changes of the linear acceleration sensor. If this API is cal
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -88,7 +89,7 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -118,7 +119,7 @@ Subscribes to data changes of the gravity sensor. If this API is called multiple
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.       |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -147,7 +148,7 @@ Subscribes to data changes of the gyroscope sensor. If this API is called multip
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -176,7 +177,7 @@ Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is 
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data.                          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -206,7 +207,7 @@ Subscribes to data changes of the significant motion sensor. If this API is call
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
@@ -233,7 +234,7 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
@@ -260,7 +261,7 @@ Subscribes to data changes of the pedometer sensor. If this API is called multip
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.         |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
   },
@@ -285,7 +286,7 @@ Subscribes to data changes of the ambient temperature sensor. If this API is cal
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
   },
@@ -310,7 +311,7 @@ Subscribes to data changes of the magnetic field sensor. If this API is called m
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -337,7 +338,7 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -367,7 +368,7 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
@@ -392,7 +393,7 @@ Subscribes to data changes of the humidity sensor. If this API is called multipl
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.        |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   },
@@ -417,7 +418,7 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
   },
@@ -442,7 +443,7 @@ Subscribes to data changes of the Hall effect sensor. If this API is called mult
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
@@ -467,7 +468,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
       console.info(' Illumination: ' + data.intensity);
   },
@@ -492,7 +493,7 @@ Subscribes to data changes of the orientation sensor. If this API is called mult
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -521,7 +522,7 @@ Subscribes to only one data change of the heart rate sensor.
 
 **Example**
 
-```
+```js
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
     console.info("Heart rate: " + data.heartRate);
 },
@@ -545,7 +546,7 @@ Subscribes to data changes of the rotation vector sensor. If this API is called 
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -573,7 +574,7 @@ Subscribes to data changes of the wear detection sensor. If this API is called m
 | options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
 
 **Example**
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
@@ -599,7 +600,7 @@ Subscribes to only one data change of the acceleration sensor.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes   | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -626,7 +627,7 @@ Subscribes to only one data change of the linear acceleration sensor.
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes   | One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -681,7 +682,7 @@ Subscribes to only one data change of the gravity sensor.
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes   | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -708,7 +709,7 @@ Subscribes to only one data change of the gyroscope sensor.
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes   | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -735,7 +736,7 @@ Subscribes to only one data change of the uncalibrated gyroscope sensor.
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes   | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -763,7 +764,7 @@ Subscribes to only one data change of the significant motion sensor.
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes   | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
@@ -788,7 +789,7 @@ Subscribes to only one data change of the pedometer detection sensor.
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes   | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
@@ -813,7 +814,7 @@ Subscribes to only one data change of the pedometer sensor.
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes   | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
       console.info('Steps: ' + data.steps);
     }
@@ -836,7 +837,7 @@ Subscribes to only one data change of the ambient temperature sensor.
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes   | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
       console.info('Temperature: ' + data.temperature);
     }
@@ -859,7 +860,7 @@ Subscribes to only one data change of the magnetic field sensor.
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes   | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -884,7 +885,7 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes   | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -912,7 +913,7 @@ Subscribes to only one data change of the proximity sensor.
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes   | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
@@ -939,7 +940,7 @@ Subscribes to only one data change of the humidity sensor.
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes   | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
       console.info('Humidity: ' + data.humidity);
     }
@@ -962,7 +963,7 @@ Subscribes to only one data change of the barometer sensor.
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes   | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
       console.info('Atmospheric pressure: ' + data.pressure);
     }
@@ -985,7 +986,7 @@ Subscribes to only one data change of the Hall effect sensor.
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes   | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
       console.info('Status: ' + data.status);
     }
@@ -1008,7 +1009,7 @@ Subscribes to only one data change of the ambient light sensor.
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes   | One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
       console.info(' Illumination: ' + data.intensity);
     }
@@ -1031,7 +1032,7 @@ Subscribes to only one data change of the orientation sensor.
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes   | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -1056,7 +1057,7 @@ Subscribes to only one data change of the rotation vector sensor.
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes   | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -1084,7 +1085,7 @@ Subscribes to only one data change of the heart rate sensor.
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes   | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(data) {
       console.info("Heart rate: " + data.heartRate);
     }
@@ -1107,7 +1108,7 @@ Subscribes to only one data change of the wear detection sensor.
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes   | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 
 **Example**
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
       console.info("Wear status: "+ data.value);
     }
@@ -1133,7 +1134,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('x-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1161,7 +1162,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1190,7 +1191,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info(' Illumination: ' + data.intensity);
 }
@@ -1214,7 +1215,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
      console.info('Temperature: ' + data.temperature);
 }
@@ -1238,7 +1239,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
      console.info('Atmospheric pressure: ' + data.pressure);
 }
@@ -1262,7 +1263,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1290,7 +1291,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1318,7 +1319,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1344,7 +1345,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('Status: ' + data.status);
 }
@@ -1370,7 +1371,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info("Heart rate: " + data.heartRate);
 }
@@ -1396,7 +1397,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('Humidity: ' + data.humidity);
 }
@@ -1422,7 +1423,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1450,7 +1451,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1476,7 +1477,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1505,7 +1506,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('The device rotates at an angle around the X axis: ' + data.beta);
     console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -1529,9 +1530,9 @@ Unsubscribes from sensor data changes.
 | type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER**. |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes   | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
-**Return value**
+**Example**
 
-```
+```js
 function callback(data) {
     console.info('Steps: ' + data.steps);
 }
@@ -1557,7 +1558,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
@@ -1581,7 +1582,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('Distance: ' + data.distance);
 }
@@ -1605,7 +1606,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1632,7 +1633,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
@@ -1656,7 +1657,7 @@ Unsubscribes from sensor data changes.
 
 **Example**
 
-```
+```js
 function accCallback(data) {
     console.info('Wear status: ' + data.value);
 }
@@ -1681,13 +1682,13 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 **Example**
 
-```
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3}, function(err, data) {
+```js
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(err, data) {
     if (err) {
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation successed. Data obtained: " + data.x);
+    console.info("Operation successed. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
@@ -1716,8 +1717,8 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 
 **Example**
 
-```
-const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3});
+```js
+const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
         console.info("Operation successed.");
         for (var i=0; i < data.length; i++) {
@@ -1744,8 +1745,8 @@ Obtains the geomagnetic field of a geographic location. This API uses a callback
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes   | Callback used to return the geomagnetic field.          |
 
 **Example**
-```
-sensor.getGeomagneticField([80, 0, 0], 1580486400000, function(err, data)  {
+```js
+sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
     if (err) {
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
@@ -1774,9 +1775,10 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 | ---------------------------------------- | ------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
-**Return value**
-  ```
-  const promise = sensor.getGeomagneticField([80, 0, 0], 1580486400000);
+**Example** 
+
+  ```js
+  const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
           console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
@@ -1802,9 +1804,9 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 | currentPressure | number                      | Yes   | Atmospheric pressure at the altitude where the device is located, in hPa.|
 | callback        | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the altitude, in meters.   |
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.getAltitude(0, 200, function(err, data)  {
       if (err) {
           console.error(
@@ -1836,9 +1838,9 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 | --------------------- | ------------------ |
 | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.getAltitude(0, 200);
       promise.then((data) => {
           console.info(' sensor_getAltitude_Promise success', data);
@@ -1863,12 +1865,12 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a callba
 | inclinationMatrix | Array&lt;number&gt;         | Yes   | Inclination matrix.       |
 | callback          | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the magnetic dip, in radians.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -1896,9 +1898,9 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 | --------------------- | -------------- |
 | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
           console.info(' getGeomagneticDip_promise successed', data);
@@ -1923,12 +1925,12 @@ Obtains the angle change between two rotation matrices. This API uses a callback
 | preRotationMatrix     | Array&lt;number&gt;                      | Yes   | The other rotation matrix.           |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the angle change around the z, x, and y axes.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -1961,12 +1963,12 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
-          console.info(LABEL + 'getAngleModifiy_promise success');
+          console.info('getAngleModifiy_promise success');
           for (var i=0; i < data.length; i++) {
               console.info(LABEL + "data[" + i + "]: " + data[i]);
           }
@@ -1991,12 +1993,12 @@ Converts a rotation vector into a rotation matrix. This API uses a callback to r
 | rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation matrix.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -2028,12 +2030,12 @@ Converts a rotation vector into a rotation matrix. This API uses a promise to re
 | ---------------------------------- | ------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info(LABEL + 'createRotationMatrix_promise success');
+          console.info('createRotationMatrix_promise success');
           for (var i=0; i < data.length; i++) {
               console.info(LABEL + "data[" + i + "]: " + data[i]);
           }
@@ -2058,12 +2060,12 @@ Converts a rotation vector into a quaternion. This API uses a callback to return
 | rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the quaternion. |
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -2095,14 +2097,14 @@ Converts a rotation vector into a quaternion. This API uses a promise to return 
 | ---------------------------------- | ------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           console.info('createQuaternion_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2125,18 +2127,18 @@ Obtains the device direction based on the rotation matrix. This API uses a callb
 | rotationMatrix | Array&lt;number&gt;                      | Yes   | Rotation matrix.           |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation angle around the z, x, and y axes.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
                         err.message);
           return;
       }
-      console.info(LABEL + "SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
       for (var i = 1; i < data.length; i++) {
-          console.info(TAG +"sensor_getDirection_callback" + data[i]);
+          console.info("sensor_getDirection_callback" + data[i]);
       }
   })
   ```
@@ -2162,14 +2164,14 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info(' sensor_getAltitude_Promise success', data.x);
+          console.info('sensor_getAltitude_Promise success', data.x);
           for (var i = 1; i < data.length; i++) {
-              console.info(TAG +"sensor_getDirection_promise" + data[i]);
+              console.info("sensor_getDirection_promise" + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2193,18 +2195,18 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 | geomagnetic | Array&lt;number&gt;                      | Yes   | Geomagnetic vector.|
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes   | Callback used to return the rotation matrix.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
                         err.message);
           return;
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i])
+          console.info("data[" + i + "]: " + data[i])
       }
   })
   ```
@@ -2231,17 +2233,17 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 | ---------------------------------------- | ------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
-**Return value**
+**Example**
 
-  ```
+  ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info(LABEL + 'createRotationMatrix_promise successed');
+          console.info('createRotationMatrix_promise successed');
           for (var i=0; i < data.length; i++) {
               console.info(LABEL + "data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
-          console.info(LABEL + 'promise failed');
+          console.info('promise failed');
   })
   ```
 
@@ -2357,9 +2359,9 @@ Describes the orientation sensor data. It extends from [Response](#response).
 
 | Name   | Type  | Readable  | Writable  | Description                      |
 | ----- | ------ | ---- | ---- | ------------------------ |
-| alpha | number | Yes   | Yes   | Rotation angle of the device around the z-axis, in degrees.|
-| beta  | number | Yes   | Yes   | Rotation angle of the device around the x-axis, in degrees. |
-| gamma | number | Yes   | Yes   | Rotation angle of the device around the y-axis, in degrees. |
+| alpha | number | Yes   | Yes   | Rotation angle of the device around the z-axis, in rad.|
+| beta  | number | Yes   | Yes   | Rotation angle of the device around the x-axis, in rad. |
+| gamma | number | Yes   | Yes   | Rotation angle of the device around the y-axis, in rad. |
 
 
 ## RotationVectorResponse
