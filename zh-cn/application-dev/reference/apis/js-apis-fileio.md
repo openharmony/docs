@@ -600,6 +600,14 @@ openSync(path:string, flags?:number, mode?:number): number
   ```js
   let fd = fileio.openSync(path, 0o102, 0o640);
   ```
+  ```js
+  let fd = fileio.openSync(path, 0o102, 0o666);
+  fileio.writeSync(fd, 'hello world');
+  let fd = fileio.openSync(path, 0o2002);
+  fileio.writeSync(fd, 'hello world');
+  let num = fileio.readSync(fd, new ArrayBuffer(4096), {position: 0});
+  console.info("num == " + num);
+  ```
 
 
 ## fileio.read
