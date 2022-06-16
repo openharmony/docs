@@ -115,6 +115,7 @@
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
+  - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
 
@@ -221,7 +222,6 @@
 - 已停止维护的接口
 
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
-  - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
