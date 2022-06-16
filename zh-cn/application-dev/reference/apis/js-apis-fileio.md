@@ -598,7 +598,7 @@ openSync(path:string, flags?:number, mode?:number): number
 
 **示例：**
   ```js
-  let fd = fileio.openSync(path);
+  let fd = fileio.openSync(path, 0o102, 0o640);
   ```
 
 
