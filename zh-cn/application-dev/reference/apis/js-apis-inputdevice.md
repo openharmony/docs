@@ -69,12 +69,12 @@ off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 **示例：** 
 
 ```js
-listener: function(data) {
+function listener(data) {
   console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 // 单独取消listener的监听。
-inputDevice.off("change", this.listener);
+inputDevice.off("change", listener);
 
 // 取消所有监听
 inputDevice.off("change");
