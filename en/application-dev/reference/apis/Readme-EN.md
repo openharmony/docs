@@ -132,6 +132,7 @@
   - [@ohos.environment](js-apis-environment.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.fileManager](js-apis-filemanager.md)
+  - [@ohos.securityLabel](js-apis-securityLabel.md)
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
