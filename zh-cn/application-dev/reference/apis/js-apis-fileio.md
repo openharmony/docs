@@ -2977,6 +2977,40 @@ readSync(): Dirent
   ```
 
 
+### close
+
+close(): Promise&lt;void&gt;
+
+异步关闭目录，使用promise形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+  ```js
+  let dir = fileio.opendirSync(path);
+  dir.close().then(function(err){
+      console.info("close dir successfully");
+  });
+  ```
+
+
+  ### close
+
+close(callback: AsyncCallback&lt;void&gt;): void
+
+异步关闭目录，使用callback形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+  ```js
+  let dir = fileio.opendirSync(path);
+  dir.close(function(err){
+      console.info("close dir successfully");
+  });
+  ```
+
+
 ### closeSync
 
 closeSync(): void
