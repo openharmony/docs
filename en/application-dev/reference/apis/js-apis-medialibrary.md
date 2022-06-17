@@ -28,7 +28,6 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
 
-
 **Example**
 
 ```
@@ -1948,7 +1947,7 @@ async function example() {
 
 Provides APIs to implement a physical album.
 
-### **Attributes**
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2205,7 +2204,7 @@ Describes options for fetching media files.
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
 | selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
+| order      | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
 | uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |
 | networkId<sup>8+</sup>  | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
 | extendArgs<sup>8+</sup> | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
