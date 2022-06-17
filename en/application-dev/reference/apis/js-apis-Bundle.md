@@ -276,7 +276,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ------------- | ---- | --------------------------------------- |
 | bundleName  | string        | Yes   | Bundle name of the application.                                     |
 | bundleFlags | number        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| options     | [BundleOptions](#bundleoptions)| No   | Includes **userId**.                              |
+| options     | [BundleOptions](#bundleoptions) | No   | Includes **userId**.                              |
 
 **Return value**
 
@@ -359,7 +359,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | -------------------------- | ---- | --------------------------------------- |
 | bundleName  | string                     | Yes   | Bundle name of the application.                                     |
 | bundleFlags | number                     | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| options     | [BundleOptions](#bundleoptions)             | Yes   | Includes **userId**.                              |
+| options     | [BundleOptions](#bundleoptions)              | Yes   | Includes **userId**.                              |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the bundle information.                   |
 
 **Example**
@@ -508,7 +508,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 
 **Return value**
 | Type            | Description                                    |
@@ -543,8 +543,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
-| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than 0.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles.|
 
 **Example**
 
