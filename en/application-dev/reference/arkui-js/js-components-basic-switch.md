@@ -6,7 +6,7 @@ The **\<switch>** component is used to enable or disable a function.
 
 None
 
-## Child Component
+## Child Components
 
 None
 
