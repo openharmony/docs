@@ -1,7 +1,9 @@
 # AbilityContext
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
+> The APIs of this module can be used only in the stage model.
 
 Implements the ability context. This module is inherited from **Context**.
 
@@ -55,7 +57,7 @@ Starts an ability. This API uses a callback to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   this.context.startAbility(want, (error) => {
       console.log("error.code = " + error.code)
@@ -85,7 +87,7 @@ Starts an ability. This API uses a callback to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -123,7 +125,7 @@ Starts an ability. This API uses a promise to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -374,7 +376,7 @@ Obtains the caller interface of the specified ability, and if the specified abil
       onWindowStageCreate(windowStage) {
           this.context.startAbilityByCall({
               bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
+              abilityName: "MainAbility",
               deviceId: ""
           }).then((obj) => {
               caller = obj;
