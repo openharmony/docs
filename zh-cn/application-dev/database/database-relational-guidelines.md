@@ -188,6 +188,25 @@
 | -------- | -------- | -------- |
 | RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void;| 从数据库中删除指定类型的指定观察者，结果以callback形式返回。<br/>-&nbsp;type：指在{@code SubscribeType}中定义的订阅类型；SUBSCRIBE_TYPE_REMOTE 订阅远程数据更改。<br/>-&nbsp;observer：指已注册的数据更改观察者。 |
 
+### 数据库的备份和恢复
+
+**备份**
+
+**表13** 备份数据库
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |backup(destName:string, callback: AsyncCallback&lt;void&gt;):void| 以指定名称备份数据库，结果以callback形式返回。<br/>-&nbsp;destName：指定数据库的备份文件名。<br/>-&nbsp;callback：指定callback回调函数。 |
+| RdbStore |backup(destName:string): Promise&lt;void&gt;| 以指定名称备份数据库，结果以promise形式返回。<br/>-&nbsp;destName：指定数据库的备份文件名。 |
+
+**恢复**
+
+**表13** 恢复数据库
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| 从指定的数据库备份文件恢复数据库，结果以callback形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。<br/>-&nbsp;callback：指定callback回调函数。 |
+| RdbStore |restore(srcName:string): Promise&lt;void&gt;| 从指定的数据库备份文件恢复数据库，结果以promise形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。 |
 
 ## 开发步骤
 

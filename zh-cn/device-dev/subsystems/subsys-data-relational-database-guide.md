@@ -155,6 +155,30 @@
 |  ----  |  ----  |  ----  |
 | RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | 从数据库中删除指定类型的指定观察者。<ul><li> option：订阅类型；</li><li> observer：指已注册的数据更改观察者</li></ul>
 
+### 数据库的备份和恢复 
+
+关系型数据库提供对本地数据库文件的备份和恢复能力，相关API如下所示。
+
+- 备份
+
+  关系型数据库提供了备份数据库文件的接口，通过databasePath指定的备份文件名（也可以是目录+文件名的形式）备份当前数据库文件。通过返回值判断是否备份成功，成功时返回0，失败时则返回相应的错误码。
+
+  表11 数据库备份API
+
+  | 类名 | 接口名 | 描述 |
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int Backup(const std::string databasePath, const std::vector<uint8_t> destEncryptKey) | 备份数据库文件。<ul><li>databasePath：指定的备份文件名。 </li><li> destEncryptKey：数据库的加密密钥。注意：当前只支持非加密数据库的备份。</li></ul> |
+
+- 恢复
+
+  关系型数据库提供了恢复数据库文件的接口，通过databasePath指定的备份文件名（也可以是目录+文件名的形式）恢复当前数据库文件。通过返回值判断是否恢复成功，成功时返回0，失败时则返回相应的错误码。
+
+  表12 数据库恢复API
+
+  | 类名 | 接口名 | 描述 |
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int Restore(const std::string backupPath, const std::vector<uint8_t> &newKey) | 恢复数据库文件。<ul><li>backupPath：指定的备份文件名。 </li><li> newKey：数据库的加密密钥。注意：当前只支持非加密数据库的恢复。</li></ul> |
+
 ## 约束与限制
 
 无。
