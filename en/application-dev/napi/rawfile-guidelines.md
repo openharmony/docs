@@ -4,7 +4,7 @@
 
 ## When to Use
 
-This document describes how to use the native Rawfile APIs to manage raw file directories and files in OpenHarmony. The table below describes the APIs.
+This document describes how to use the native Rawfile APIs to manage raw file directories and files in OpenHarmony. You can use the APIs to traverse, open, search for, read, and close raw files.
 
 ## Available APIs
 
@@ -16,14 +16,14 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 | const char *OH_ResourceManager_GetRawFileName(RawDir *rawDir, int index) | Obtains the name of a raw file.                       |
 | RawFile *OH_ResourceManager_OpenRawFile(const NativeResourceManager *mgr, const char *fileName) | Opens a raw file.                   |
 | long OH_ResourceManager_GetRawFileSize(RawFile *rawFile)     | Obtains the size of a raw file.                   |
-| int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | Seeks a data read/write position in a raw file based on the specified offset.                   |
+| int OH_ResourceManager_SeekRawFile(const RawFile *rawFile, long offset, int whence) | Seeks a read/write position in a raw file based on the specified offset.                   |
 | long OH_ResourceManager_GetRawFileOffset(const RawFile *rawFile) | Obtains the offset.                     |
 | int OH_ResourceManager_ReadRawFile(const RawFile *rawFile, void *buf, size_t length) | Reads a raw file.                   |
 | void OH_ResourceManager_CloseRawFile(RawFile *rawFile)       | Closes a raw file to release resources.               |
 | void OH_ResourceManager_CloseRawDir(RawDir *rawDir)          | Closes a raw file directory to release resources.               |
-| bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | Obtains the file description (FD) of a raw file.                       |
+| bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | Obtains the file descriptor (FD) of a raw file.                       |
 | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | Releases the FD of a raw file.                       |
-| void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | Releases native resource manager resources.   |
+| void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | Releases the native resource manager.   |
 
 ## How to Develop
 
@@ -38,7 +38,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 2. Call **OH_ResourceManager_InitNativeResourceManager(napi_env env, napi_value jsResMgr)** to obtain a **NativeResourceManager** instance.
 
     ```js
-    // Call the JS API to pass the JS resource manager.
+    // Import the JS resource manager from the JS head file and pass it to the C++ file.
     import resManager from '@ohos.resourceManager'
     import rawfileTest from 'librawFileTest.so'
     resManager.getResourceManager().then(resmgr => {
@@ -49,7 +49,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     ```
 
     ```c++
-    // The C++ API obtains and parses the parameters passed by the JS API.
+    // Obtain and parse the parameters in the C++ file.
     NativeResourceManager* nativeResourceManager = nullptr;
     std::string path;
     if (i == 0 && valueType == napi_string) {
@@ -57,7 +57,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
         ......
         path = buf.data();
     } else if (i == 1 && valueType == napi_object) {
-        // Parse the second parameter, which is the resource manager.
+        // Parse the second parameter, which is the JS resource manager.
         nativeResourceManager = OH_ResourceManager_InitNativeResourceManager(env, argv[i]);
     }
     ```
@@ -80,7 +80,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     
     
     
-5. Call **OH_ResourceManager_GetRawFileName** to obtain the name of the raw file based on the specified index.
+5. Call **OH_ResourceManager_GetRawFileName** to obtain the name of the raw file with the specified index.
 
     ```c++
     for (int index = 0; index < count; index++) {
@@ -90,7 +90,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
     
 
-6. Call **OH_ResourceManager_OpenRawFile** to obtain a **RawFile** instance based on the specified file name.
+6. Call **OH_ResourceManager_OpenRawFile** to obtain a **RawFile** instance with the specified file name.
 
     ```c++
     RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
@@ -106,7 +106,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     
     
 
-8. Call **OH_ResourceManager_SeekRawFile** to seek a data read/write position in the raw file based on the specified offset.
+8. Call **OH_ResourceManager_SeekRawFile** to seek a read/write position in the raw file based on the specified offset.
 
     ```c++
     int position = OH_ResourceManager_SeekRawFile(rawFile, 10, 0);
@@ -124,7 +124,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     
     
 
-10. Call **OH_ResourceManager_ReadRawFile** to read a raw file.
+10. Call **OH_ResourceManager_ReadRawFile** to read the raw file.
 
     ```c++
     std::unique_ptr<char[]> mediaData = std::make_unique<char[]>(rawFileSize);
@@ -149,7 +149,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     
     
 
-13. Call **OH_ResourceManager_GetRawFileDescriptor** to obtain **RawFileDescriptor** of the raw file.
+13. Call **OH_ResourceManager_GetRawFileDescriptor** to obtain the FD of the raw file.
 
     ```c++
     RawFileDescriptor descriptor;
