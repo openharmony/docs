@@ -1,6 +1,6 @@
 # User Authentication Development
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
 > This development guide applies to the SDK of API Version 8 or later.
 
 ## When to Use
@@ -68,7 +68,7 @@ The development procedure is as follows:
            try {
                console.info("auth onResult result = " + result);
                console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-               if (result == 'SUCCESS') {
+               if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                    // Add the logic to be executed when the authentication is successful.
                }  else {
                    // Add the logic to be executed when the authentication fails.
