@@ -145,7 +145,7 @@ This development guide is applicable to standard-system devices \(reference memo
 </td>
 <td class="cellrowborder" valign="top" width="60.31999999999999%" headers="mcps1.2.4.1.3 "><p id="p48419181372"><a name="p48419181372"></a><a name="p48419181372"></a>Initializes log tag parameters.</p>
 <p id="p335055115288"><a name="p335055115288"></a><a name="p335055115288"></a>Members:</p>
-<a name="ul1235085115287"></a><a name="ul1235085115287"></a><ul id="ul1235085115287"><li><strong id="b1014691044111"><a name="b1014691044111"></a><a name="b1014691044111"></a>domain</strong>: Indicates the service domain of logs.</li><li><strong id="b1843710115416"><a name="b1843710115416"></a><a name="b1843710115416"></a>tag</strong>: Indicates the log tag.</li><li><strong id="b521813144117"><a name="b521813144117"></a><a name="b521813144117"></a>level</strong>: Indicates the log level.</li></ul>
+<a name="ul1235085115287"></a><a name="ul1235085115287"></a><ul id="ul1235085115287"><li><strong id="b521813144117"><a name="b521813144117"></a><a name="b521813144117"></a>type</strong>: Indicates the log type.</li><li><strong id="b1014691044111"><a name="b1014691044111"></a><a name="b1014691044111"></a>domain</strong>: Indicates the service domain of logs.</li><li><strong id="b1843710115416"><a name="b1843710115416"></a><a name="b1843710115416"></a>tag</strong>: Indicates the log tag.</li></ul>
 </td>
 </tr>
 </tbody>
