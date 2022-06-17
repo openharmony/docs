@@ -67,10 +67,10 @@ Obtains the remaining duration before the application is suspended. This API use
   ```js
   let id = 1;
   backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
-      if(err.data === 0) {
-          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+      if(err) {
+          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
-          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
       }
   })
   ```
@@ -100,7 +100,7 @@ Obtains the remaining duration before the application is suspended. This API use
   backgroundTaskManager.getRemainingDelayTime(id).then( res => {
       console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
-      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.data);
+      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
   })
   ```
 
