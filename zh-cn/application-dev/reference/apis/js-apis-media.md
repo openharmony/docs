@@ -679,6 +679,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 通过回调方式设置SurfaceId。
 
+*注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 **参数：**
@@ -705,6 +707,8 @@ videoPlayer.setDisplaySurface(surfaceId, (err) => {
 setDisplaySurface(surfaceId: string): Promise\<void>
 
 通过Promise方式设置SurfaceId。
+
+*注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
