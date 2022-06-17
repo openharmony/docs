@@ -638,7 +638,7 @@ form示例 :
 标识应用的快捷方式信息。标签值为数组，最多可以配置四个快捷方式。其包含四个子标签shortcutId、label、icon、wants。
 
 metadata中指定shortcut信息，其中 :
-1）name :指定shortcuts的名称。使用ohos.ability.shortcut作为shortcuts信息的标识。
+1）name :指定shortcuts的名称。使用ohos.ability.shortcuts作为shortcuts信息的标识。
 2）resource :指定shortcuts信息的资源位置。
 
 表13 shortcuts对象的内部结构说明
@@ -670,7 +670,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在config.json的module下面定义metadata信息，如下 :
+在module.json的module下面定义metadata信息，如下 :
 
 ```json
 {
@@ -687,7 +687,7 @@ metadata中指定shortcut信息，其中 :
                 }],
                 "metadata": [
                     {
-                        "name": "ohos.ability.shortcut",
+                        "name": "ohos.ability.shortcuts",
                         "resource": "$profile:shortcuts_config", 
                     }
                 ],
