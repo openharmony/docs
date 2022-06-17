@@ -336,6 +336,7 @@ abilities描述ability的配置信息，标签值为数组类型。
 |minWindowWidth|表示该ability支持的最小的窗口宽度, 宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
 |maxWindowHeight|表示该ability支持的最大的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
 |minWindowHeight|表示该ability支持的最小的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
+| excludeFromMissions    | 该标签标识该ability是否在最近任务列表中显示。为布尔类型，true表示不在任务列表中显示， false表示在任务列表中显示。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 abilities示例
 
@@ -344,7 +345,7 @@ abilities示例
     "abilities": [{
         "name": "MainAbility",
         "srcEntrance": "./ets/login/MyLoginAbility.ts",
-        "launchType":"standard"
+        "launchType":"standard",
         "description": "$string:description_main_ability",
         "icon": "$media:icon",
         "label": "Login",
@@ -378,8 +379,9 @@ abilities示例
         "maxWindowWidth": 2560,
         "minWindowWidth": 1400,
         "maxWindowHeight": 300,
-        "minWindowHeight": 200
-    }],
+        "minWindowHeight": 200,
+        "excludeFromMissions": false
+    }]
 }
 ```
 
