@@ -1,6 +1,9 @@
 # 分布式数据对象
 
+本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。
+
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -38,7 +41,7 @@ createDistributedObject(source: object): DistributedObject
   ```
 
 
-## distributedObject.genSessionId()
+## distributedObject.genSessionId
 
 genSessionId(): string
 
@@ -112,19 +115,19 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
   | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-                 parent:{mother:"jack mom",father:"jack Dad"}});
-  g_object.on("change", function (sessionId, changeData) {
-      console.info("change" + sessionId);  
-      if (changeData != null && changeData != undefined) {
-          changeData.forEach(element => {
-              console.info("changed !" + element + " " + g_object[element]);
-          });
-      }
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';  
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+globalThis.changeCallback = (sessionId, changeData) => {
+    console.info("change" + sessionId);
+    if (changeData != null && changeData != undefined) {
+        changeData.forEach(element => {
+        console.info("changed !" + element + " " + g_object[element]);
+        });
+    }
+}
+g_object.on("change", globalThis.changeCallback);
+```
 
 ### off('change')
 
@@ -142,20 +145,14 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 
 **示例：**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-                 parent:{mother:"jack mom",father:"jack Dad"}});
-  g_object.on("change", function (sessionId, changeData) {
-      console.info("change" + sessionId);
-  });
-  //删除数据变更回调changeCallback
-  g_object.off("change", function (sessionId, changeData) {
-      console.info("change" + sessionId);
-  });
-  //删除所有的数据变更回调
-  g_object.off("change");
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';  
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+//删除数据变更回调changeCallback
+g_object.off("change", globalThis.changeCallback);
+//删除所有的数据变更回调
+g_object.off("change");
+```
 
 ### on('status')
 
@@ -172,14 +169,14 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
   | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备的networkId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-                 parent:{mother:"jack mom",father:"jack Dad"}});
-  g_object.on("status", function (sessionId, networkId, status) {
-      this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+globalThis.statusCallback = (sessionId, networkId, status) => {
+    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+}
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+g_object.on("status", globalThis.statusCallback);
+```
 
 ### off('status')
 
@@ -198,15 +195,14 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 
 **示例：**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject'; 
-  g_object.on("status", function (sessionId, networkId, status) {
-      this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  });
-  //删除上下线回调changeCallback
-  g_object.off("status", function (sessionId, networkId, status) {
-      this.response += "status changed " + sessionId + " " + status + " " + networkId;
-  });
-  //删除所有的上下线回调
-  g_object.off("status");
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject'; 
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+globalThis.statusCallback = (sessionId, networkId, status) => {
+    globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
+}
+//删除上下线回调changeCallback
+g_object.off("status",globalThis.statusCallback);
+//删除所有的上下线回调
+g_object.off("status");
+```
