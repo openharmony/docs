@@ -5,7 +5,7 @@
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
-The APIs of this module can be used to obtain storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
+Obtains storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
 ## Modules to Import
 
@@ -148,7 +148,7 @@ Asynchronously obtains the available space of the specified volume. This API use
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
-Asynchronously obtains information about an application. This API uses a promise to return the result.
+Asynchronously obtains space information of an application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -166,7 +166,7 @@ Asynchronously obtains information about an application. This API uses a promise
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the application information obtained.|
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.|
 
 - Example
 
@@ -183,7 +183,7 @@ Asynchronously obtains information about an application. This API uses a promise
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Asynchronously obtains information about an application. This API uses a callback to return the result.
+Asynchronously obtains space information of an application. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -196,7 +196,7 @@ Asynchronously obtains information about an application. This API uses a callbac
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the application.|
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the application information obtained.|
+  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.|
   
 - Example
 
@@ -214,7 +214,7 @@ Asynchronously obtains information about an application. This API uses a callbac
 
 getCurrentBundleStats(): Promise<BundleStats>
 
-Asynchronously obtains information about the current third-party application. This API uses a promise to return the result.
+Asynchronously obtains space information of the current third-party application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -222,7 +222,7 @@ Asynchronously obtains information about the current third-party application. Th
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the application information obtained.     |
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.     |
 
 - Example
 
@@ -235,15 +235,15 @@ Asynchronously obtains information about the current third-party application. Th
 
 getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
 
-Asynchronously obtains information about the current third-party application. This API uses a callback to return the result.
- 
+Asynchronously obtains space information of the current third-party application. This API uses a callback to return the result.
+
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 - Parameters
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the application information obtained.       |
+  | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.       |
 
 - Example
 
@@ -260,7 +260,7 @@ Asynchronously obtains information about the current third-party application. Th
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Attribute
+- Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
@@ -452,7 +452,7 @@ Asynchronously obtains the space occupied by each type of user data. This API us
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | string | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
+  | userId | string | No  | User ID.<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
 
 - Return value
 
@@ -487,7 +487,7 @@ Asynchronously obtains the space occupied by each type of user data. This API us
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
+  | userId | string                               | No  | User ID.<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | Yes  | Callback invoked to return the information obtained.|
 
 - Example
@@ -505,13 +505,13 @@ Asynchronously obtains the space occupied by each type of user data. This API us
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Attribute
+- Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
 | total   | number | Total space of the built-in memory card.   |
-| audio | number | Space occupied by the audio data.  |
-| video  | number | Space occupied by the video data.|
-| image   | number | Space occupied by the image data.   |
+| audio | number | Space occupied by audio data.  |
+| video  | number | Space occupied by video data.|
+| image   | number | Space occupied by image data.   |
 | file | number | Space occupied by files.  |
-| app  | number | Space occupied by the application data.|
+| app  | number | Space occupied by application data.|
