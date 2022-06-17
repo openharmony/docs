@@ -256,7 +256,7 @@ Specifies the focused status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the focused status attribute of the target component.
+let by = BY.focused(true) // Use the static constructor BY to create a By object and specify the focused status attribute of the target component.
 ```
 
 ### By.selected
