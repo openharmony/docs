@@ -136,9 +136,9 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 ```
 updater.getNewVersionInfo(info => {
   console.log("getNewVersionInfo success  " + info.status);
-  console.log(`info versionName = ` + info.checkResult[0].versionName);
-  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
+  console.log(`info versionName = ` + info.checkResults[0].versionName);
+  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
+  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
 });
 ```
 
@@ -160,9 +160,9 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 ```
 updater.getNewVersionInfo().then(value => {
-  console.log(`info versionName = ` + value.checkResult[0].versionName);
-  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
+  console.log(`info versionName = ` + value.checkResults[0].versionName);
+  console.log(`info versionCode = ` + value.checkResults[0].versionCode);
+  console.log(`info verifyInfo = ` + value.checkResults[0].verifyInfo);
 }).catch(err => {
   console.log("getNewVersionInfo promise error: " + err.code);
 });
@@ -187,9 +187,9 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 ```
 updater.checkNewVersion(info => {
   console.log("checkNewVersion success  " + info.status);
-  console.log(`info versionName = ` + info.checkResult[0].versionName);
-  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
+  console.log(`info versionName = ` + info.checkResults[0].versionName);
+  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
+  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
 });
 ```
 
@@ -211,9 +211,9 @@ checkNewVersion(): Promise\<NewVersionInfo>
 
 ```
 updater.checkNewVersion().then(value => {
-  console.log(`info versionName = ` + value.checkResult[0].versionName);
-  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
+  console.log(`info versionName = ` + value.checkResults[0].versionName);
+  console.log(`info versionCode = ` + value.checkResults[0].versionCode);
+  console.log(`info verifyInfo = ` + value.checkResults[0].verifyInfo);
 }).catch(err => {
   console.log("checkNewVersion promise error: " + err.code);
 });
