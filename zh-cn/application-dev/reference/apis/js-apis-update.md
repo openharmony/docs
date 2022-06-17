@@ -134,7 +134,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```
-updater.getNewVersionInfo(info => {
+updater.getNewVersionInfo(err, info => {
   console.log("getNewVersionInfo success  " + info.status);
   console.log(`info versionName = ` + info.checkResults[0].versionName);
   console.log(`info versionCode = ` + info.checkResults[0].versionCode);
@@ -185,7 +185,7 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 **示例：**
 
 ```
-updater.checkNewVersion(info => {
+updater.checkNewVersion(err, info => {
   console.log("checkNewVersion success  " + info.status);
   console.log(`info versionName = ` + info.checkResults[0].versionName);
   console.log(`info versionCode = ` + info.checkResults[0].versionCode);
@@ -284,7 +284,7 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```
-updater.rebootAndCleanUserData(result => {
+updater.rebootAndCleanUserData(err, result => {
   console.log("rebootAndCleanUserData ", result)
 });
 ```
@@ -330,7 +330,7 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```
-updater.applyNewVersion(result => {
+updater.applyNewVersion(err, result => {
   console.log("applyNewVersion ", result)
 });
 ```
@@ -458,7 +458,7 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 **示例：**
 
 ```
-updater.getUpdatePolicy(policy => {
+updater.getUpdatePolicy(err, policy => {
   console.log("getUpdatePolicy success");
   console.log(`policy autoDownload = ` + policy.autoDownload);
   console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
