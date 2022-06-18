@@ -1,11 +1,11 @@
 # Navigator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Navigator&gt;** component provides redirection.
+The **Navigator** component provides redirection to the target page.
 
 
 ## Required Permissions
@@ -25,7 +25,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 Creates a navigator.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | target | string | Yes | - | Path of the target page to be redirected to. | 
   | type | NavigationType | No | NavigationType.Push | Navigation type. | 
@@ -40,9 +40,9 @@ Creates a navigator.
 
 ## Attributes
 
-  | Name | Parameters | Default Value | Description | 
+| Name | Parameters | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| active | boolean | - | Whether the **&lt;Navigator&gt;** component is activated. If the component is activated, the corresponding navigation takes effect. | 
+| active | boolean | - | Whether the **Navigator** component is activated. If the component is activated, the corresponding navigation takes effect. | 
 | params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. | 
 
 
