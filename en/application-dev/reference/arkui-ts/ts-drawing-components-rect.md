@@ -1,7 +1,7 @@
 # Rect
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,12 +23,12 @@ None
 Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;Length&gt;} | {width: Length,height: Length,radiusWidth?: Length,radiusHeight?: Length}})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | options | Object | No | - | For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | width | Length | Yes | - | Width. | 
   | height | Length | Yes | - | Height. | 
@@ -39,7 +39,7 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width. | 
 | height | Length | 0 | No | Height. | 
@@ -51,7 +51,7 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct RectExample {
