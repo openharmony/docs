@@ -31,7 +31,8 @@ Implements initialization for the interpolation curve, which is used to create a
   | -------- | -------- | -------- | -------- | -------- |
   | curve | Curve | No | Linear | Curve object. |
 
-- Return value<br>
+- Return value
+  
   Curve object.
 
 
@@ -47,7 +48,7 @@ Constructs a step curve object.
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | count | number | Yes | - | Number of steps. Must be a positive integer. |
-  | end | boolean | No | true | Step change at the start or end point of each interval. Defaults to **true**, indicating that the step change occurs at the end point. |
+  | end | boolean | Yes | true | Step change at the start or end point of each interval. Defaults to **true**, indicating that the step change occurs at the end point. |
 
 - Return value
   

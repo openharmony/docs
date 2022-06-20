@@ -1,6 +1,6 @@
 # Notification
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -2900,6 +2900,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | Yes | Yes | string                                          | Yes  | Button title.                 |
 | wantAgent | Yes | Yes | WantAgent                                       | Yes  | **WantAgent** of the button.|
 | extras    | Yes | Yes | { [key: string]: any }                          | No  | Extra information of the button.             |
+| userInput | Yes | Yes | [NotificationUserInput](#notificationuserinput8) | No  | User input.            |
 
 
 ## NotificationBasicContent
