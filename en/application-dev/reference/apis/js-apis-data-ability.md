@@ -619,13 +619,7 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 
 **Example**
   ```js
-  dataAbilityPredicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
-  promiseDistinct.then((resultSet) => {   
-      console.log("distinct")
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct()
   ```
 
 
