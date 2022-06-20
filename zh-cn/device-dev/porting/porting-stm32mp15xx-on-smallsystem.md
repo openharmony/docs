@@ -493,7 +493,7 @@ vendor
 
 #### 安全子系统适配
 
-进行安全子系统适配需要添加`permission_lite`、`appverify`、`deviceauth_standard`、`huks`四个部件，直接在`config.json`配置即可。
+进行安全子系统适配需要添加`permission_lite`、`appverify`、`device_auth`、`huks`四个部件，直接在`config.json`配置即可。
 
 ```
     {
@@ -501,7 +501,7 @@ vendor
     "components": [
         { "component": "permission_lite", "features":[] },
         { "component": "appverify", "features":[] },
-        { "component": "deviceauth_standard", "features":[] },
+        { "component": "device_auth", "features":[] },
         { "component": "huks", "features":
         [
             "huks_config_file = \"hks_config_small.h\""
