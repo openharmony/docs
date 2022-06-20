@@ -210,14 +210,14 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|startAbility(want: Want, callback: AsyncCallback<void>): void|启动Ability。|
-|startAbility(want: Want, options?: StartOptions): Promise<void>|启动Ability。|
-|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>): void|带AccountId启动Ability。|
-|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<void>|带AccountId启动Ability。|
-|startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>): void|带返回结果启动Ability。|
-|startAbilityForResult(want: Want, options?: StartOptions): Promise<AbilityResult>|带返回结果启动Ability。|
-|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void|带返回结果及AccountId启动Ability。|
-|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<AbilityResult>|带返回结果及AccountId启动Ability。|
+|startAbility(want: Want, callback: AsyncCallback\<void>): void|启动Ability。|
+|startAbility(want: Want, options?: StartOptions): Promise\<void>|启动Ability。|
+|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void|带AccountId启动Ability。|
+|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>|带AccountId启动Ability。|
+|startAbilityForResult(want: Want, callback: AsyncCallback\<AbilityResult>): void|带返回结果启动Ability。|
+|startAbilityForResult(want: Want, options?: StartOptions): Promise\<AbilityResult>|带返回结果启动Ability。|
+|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void|带返回结果及AccountId启动Ability。|
+|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult>|带返回结果及AccountId启动Ability。|
 ### 相同设备启动Ability
 应用可以通过`this.context`获取Ability实例的上下文，进而使用AbilityContext中的StartAbility相关接口启动Ability。启动Ability可指定Want、StartOptions、accountId，通过callback形式或promise形式实现。具体示例代码如下：
 ```ts
@@ -247,7 +247,7 @@ var want = {
 context.startAbility(want).then((data) => {
     console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+    console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
 ```
 从DeviceManager获取指定设备的deviceId。具体示例代码如下：
