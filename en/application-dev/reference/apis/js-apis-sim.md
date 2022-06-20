@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -28,7 +28,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 
 **Example**
 
-```
+```js
 sim.isSimActive(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -57,7 +57,7 @@ Checks whether the SIM card in the specified slot is activated. This API uses a 
 
 **Example**
 
-```
+```js
 let promise = sim.isSimActive(0);
 promise.then(data => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
@@ -83,7 +83,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 **Example**
 
-```
+```js
 sim.getDefaultVoiceSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -106,7 +106,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 **Example**
 
-```
+```js
 let promise = sim.getDefaultVoiceSlotId();
 promise.then(data => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -132,7 +132,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 **Example**
 
-```
+```js
 sim.hasOperatorPrivileges(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -160,7 +160,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 **Example**
 
-```
+```js
 let promise = sim.hasOperatorPrivileges(0);
 promise.then(data => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
@@ -186,7 +186,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 
 **Example**
 
-```
+```js
 sim.getISOCountryCodeForSim(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -215,7 +215,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 
 **Example**
 
-```
+```js
 let promise = sim.getISOCountryCodeForSim(0);
 promise.then(data => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
@@ -242,7 +242,7 @@ Obtains the public land mobile network (PLMN) ID of the SIM card in the specifie
 
 **Example**
 
-```
+```js
 sim.getSimOperatorNumeric(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -271,7 +271,7 @@ Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promi
 
 **Example**
 
-```
+```js
 let promise = sim.getSimOperatorNumeric(0);
 promise.then(data => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
@@ -298,7 +298,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 
 **Example**
 
-```
+```js
 sim.getSimSpn(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -327,7 +327,7 @@ Obtains the SPN of the SIM card in the specified slot. This API uses a promise t
 
 **Example**
 
-```
+```js
 let promise = sim.getSimSpn(0);
 promise.then(data => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
@@ -354,7 +354,7 @@ Obtains the status of the SIM card in the specified slot. This API uses an async
 
 **Example**
 
-```
+```js
 sim.getSimState(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -383,7 +383,7 @@ Obtains the status of the SIM card in the specified slot. This API uses a promis
 
 **Example**
 
-```
+```js
 let promise = sim.getSimState(0);
 promise.then(data => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
@@ -409,7 +409,7 @@ Obtains the type of the SIM card in the specified slot. This API uses an asynchr
 
 **Example**
 
-```
+```js
 sim.getCardType(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -438,7 +438,7 @@ Obtains the type of the SIM card in the specified slot. This API uses a promise 
 
 **Example**
 
-```
+```js
 let promise = sim.getCardType(0);
 promise.then(data => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
@@ -465,7 +465,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 
 **Example**
 
-```
+```js
 sim.hasSimCard(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -494,7 +494,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses a 
 
 **Example**
 
-```
+```js
 let promise = sim.hasSimCard(0);
 promise.then(data => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
@@ -520,8 +520,8 @@ Obtains the number of card slots.
 
 **Example**
 
-```
-console.log(sim.getMaxSimCount())
+```js
+console.log("Result: "+ sim.getMaxSimCount())
 ```
 
 

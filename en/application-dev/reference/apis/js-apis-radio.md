@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+```js
 import radio from '@ohos.telephony.radio'
 ```
 
@@ -30,7 +30,7 @@ Obtains the radio access technology (RAT) used by the CS and PS domains. This AP
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getRadioTech(slotId, (err, data) =>{ 
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -62,7 +62,7 @@ Obtains the RAT used by the CS and PS domains. This API uses a promise to return
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getRadioTech(slotId);
 promise.then(data => {
@@ -91,7 +91,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 **Example**
 
-```
+```js
 radio.getNetworkState((err, data) =>{
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -117,7 +117,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getNetworkState(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -149,7 +149,7 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getNetworkState(slotId);
 promise.then(data => {
@@ -177,7 +177,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getNetworkSelectionMode(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -207,7 +207,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getNetworkSelectionMode(slotId);
 promise.then(data => {
@@ -235,7 +235,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -265,7 +265,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getISOCountryCodeForNetwork(slotId);
 promise.then(data => {
@@ -292,7 +292,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 **Example**
 
-```
+```js
 radio.getPrimarySlotId((err, data) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -315,7 +315,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 **Example**
 
-```
+```js
 let promise = radio.getPrimarySlotId();
 promise.then(data => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
@@ -342,7 +342,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getSignalInformation(slotId, (err, data) => {
    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -372,7 +372,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getSignalInformation(slotId);
 promise.then(data => {
@@ -405,10 +405,10 @@ Checks whether the current device supports 5G \(NR\).
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let result = radio.isNrSupported(slotId);
-console.log(result);
+console.log("Result: "+ result);
 ```
 
 
@@ -430,7 +430,7 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 
 **Example**
 
-```
+```js
 radio.isRadioOn((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -456,7 +456,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.isRadioOn(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -488,7 +488,7 @@ Checks whether the radio service is enabled. This API uses a promise to return t
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.isRadioOn(slotId);
 promise.then(data => {
@@ -516,7 +516,7 @@ Obtains the carrier name. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```
+```js
 let slotId = 0;
 radio.getOperatorName(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -546,7 +546,7 @@ Obtains the carrier name. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = radio.getOperatorName(slotId);
 promise.then(data => {
