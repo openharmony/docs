@@ -1,6 +1,7 @@
-# DataUriUtils Module
+# DataUriUtils
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -32,7 +33,7 @@ Obtains the ID attached to the end of a given URI.
 **Example**
 
 ```js
-dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
+dataUriUtils.getId("com.example.dataUriUtils/1221")
 ```
 
 

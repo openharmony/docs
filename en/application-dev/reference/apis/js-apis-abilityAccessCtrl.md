@@ -1,6 +1,7 @@
-# Ability Access Control
+# AbilityAccessCtrl
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -20,9 +21,9 @@ Creates an **AtManager** instance, which is used for ability access control.
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | [AtManager](#atmanager) | **AtManager** instance obtained. |
+| Type | Description |
+| -------- | -------- |
+| [AtManager](#atmanager) | **AtManager** instance obtained. |
 
 **Example**
 
@@ -44,16 +45,16 @@ Checks whether an application has been granted the specified permission. This AP
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | ------------------- | ---- | ------------------------------------------ |
- | tokenID |  number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to verify. |
+| Name | Type | Mandatory | Description |
+| -------- | ------------------- | ---- | ------------------------------------------ |
+| tokenID |  number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to verify. |
 
 **Return value**
 
- | Type | Description |
- | :------------ | :---------------------------------- |
- | Promise&lt;GrantStatus&gt; | Promise used to return the result. |
+| Type | Description |
+| :------------ | :---------------------------------- |
+| Promise&lt;GrantStatus&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -78,24 +79,25 @@ Grants a user granted permission to an application. This API uses a promise to r
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------- | ------------------- | ---- | ------------------------------------------------------------ |
- | tokenID | number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to grant. |
- | permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
+| Name | Type | Mandatory | Description |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID | number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to grant. |
+| permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 
 **Return value**
 
- | Type | Description |
- | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise used to return the result. |
+| Type | Description |
+| :------------ | :---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
 ```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let permissionFlag = 1;
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -115,12 +117,12 @@ Grants a user granted permission to an application. This API uses an asynchronou
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------- | ------------------- | ---- | ------------------------------------------------------------ |
- | tokenID | number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to grant. |
- | permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
- | callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID | number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to grant. |
+| permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -145,17 +147,17 @@ Revokes a user granted permission given to an application. This API uses a promi
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------- | ------------------- | ---- | ------------------------------------------------------------ |
- | tokenID | number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to revoke. |
- | permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
+| Name | Type | Mandatory | Description |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID | number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to revoke. |
+| permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
 
 **Return value**
 
- | Type | Description |
- | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise used to return the result. |
+| Type | Description |
+| :------------ | :---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -181,18 +183,19 @@ Revokes a user granted permission given to an application. This API uses an asyn
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------- | ------------------- | ---- | ------------------------------------------------------------ |
- | tokenID | number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to revoke. |
- | permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
- | callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID | number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to revoke. |
+| permissionFlag | number | Yes | Permission flag. The value **1** means that a dialog box will still be displayed after the user grants or denies the permission. The value **2** means that no dialog box will be displayed after the user grants or denies the permission. The value **3** means a system permission that cannot be changed. |
+| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
 ```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
+let permissionFlag = 1;
 AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
@@ -210,16 +213,16 @@ Obtains the flags of the specified permission of a given application. This API u
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------- | ------------------- | ---- | ------------------------------------------------------------ |
- | tokenID | number | Yes | ID of the application. |
- | permissionName | string | Yes | Name of the permission to query. |
+| Name | Type | Mandatory | Description |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID | number | Yes | ID of the application. |
+| permissionName | string | Yes | Name of the permission to query. |
 
 **Return value**
 
- | Type | Description |
- | :------------ | :---------------------------------- |
- | Promise&lt;number&gt; | Promise used to return the result. |
+| Type | Description |
+| :------------ | :---------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result. |
 
 **Example**
 
@@ -238,7 +241,7 @@ Enumerates the permission grant states.
 
 **System capability**: SystemCapability.Security.AccessToken
 
- | Name | Default Value | Description |
- | ----------------------------- | ---------------------- | ----------------------- |
- | PERMISSION_DENIED | -1 | Permission denied. |
- | PERMISSION_GRANTED | 0 | Permission granted. |
+| Name | Default Value | Description |
+| ----------------------------- | ---------------------- | ----------------------- |
+| PERMISSION_DENIED | -1 | Permission denied. |
+| PERMISSION_GRANTED | 0 | Permission granted. |
