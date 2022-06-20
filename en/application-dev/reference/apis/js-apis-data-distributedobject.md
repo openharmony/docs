@@ -31,7 +31,7 @@ Creates a distributed data object.
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   // Create a distributed data object, which contains attributes of four types, namely, string, number, boolean, and object.
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
@@ -53,7 +53,7 @@ Creates a random session ID.
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var sessionId = distributedObject.genSessionId();
   ```
 
@@ -85,7 +85,7 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 **Example**
 
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   // Add g_object to the distributed network.
@@ -111,7 +111,7 @@ Subscribes to the changes of this distributed data object.
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   g_object.on("change", function (sessionId, changeData) {
@@ -136,22 +136,22 @@ Unsubscribes from the changes of this distributed data object.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
-  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback used to return the changes of the distributed data object. If this parameter is not specified, this API unsubscribes from all callbacks for data changes of this distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback to be unregistered. If this parameter is not specified, all data change callbacks of the object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
   g_object.on("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  // Unsubscribe from the specified data change callback for the distributed data object.
+  // Unregister the specified data change callback for the distributed data object.
   g_object.off("change", function (sessionId, changeData) {
       console.info("change" + sessionId);
   });
-  // Unsubscribe from all data change callbacks for the distributed data object.
+  // Unregister all data change callbacks for the distributed data object.
   g_object.off("change");
   ```
 
@@ -171,10 +171,10 @@ Subscribes to the status change (online or offline) of this distributed data obj
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'
+  import distributedObject from '@ohos.data.distributedDataObject';
   var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
                  parent:{mother:"jack mom",father:"jack Dad"}});
-  g_object.on("status", function (sessionId, networkid, status) {
+  g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });
   ```
@@ -197,7 +197,7 @@ Unsubscribes from the status change (online or offline) of this distributed data
 
 **Example**
   ```js
-  import distributedObject from '@ohos.data.distributedDataObject'  
+  import distributedObject from '@ohos.data.distributedDataObject'; 
   g_object.on("status", function (sessionId, networkId, status) {
       this.response += "status changed " + sessionId + " " + status + " " + networkId;
   });

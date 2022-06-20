@@ -141,4 +141,4 @@ The procedure is as follows:
 
 ```
 > **NOTE**<br>
-> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md#abilitycontextrequestpermissionsfromuser).
+> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).
