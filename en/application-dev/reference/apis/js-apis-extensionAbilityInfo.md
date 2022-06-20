@@ -1,8 +1,14 @@
 # ExtensionAbilityInfo
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+
+## Modules to Import
+```js
+import bundle from "@ohos.bundle";
+```
+
 
 ## AbilityInfo
 
