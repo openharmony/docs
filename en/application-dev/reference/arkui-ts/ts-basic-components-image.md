@@ -1,16 +1,16 @@
 # Image
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Image&gt;** component is used to render and display images.
+The **\<Image>** component is used to render and display images.
 
 
 ## Required Permissions
 
-ohos.permission.INTERNET (using Internet images)
+ohos.permission.INTERNET (to use Internet images)
 
 
 ## Child Components
@@ -20,12 +20,12 @@ None
 
 ## APIs
 
-Image(value: {uri: string | PixelMap})
+Image(src: string | PixelMap | Resource)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | uri | string | Yes | - | Image URI. Both local and Internal URIs are supported. | 
+  | src | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Image address, which can be the address of an Internet or a local image.<br/>\- The following image formats are supported: png, jpg, bmp, svg, gif.<br/>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string. <br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
 
 
 ## Attributes
@@ -34,43 +34,43 @@ Image(value: {uri: string | PixelMap})
 | -------- | -------- | -------- | -------- |
 | alt | string | - | Placeholder image displayed during loading. Both local and Internal URIs are supported. |
 | objectFit | ImageFit | ImageFit.Cover | Image scale type. |
-| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
-| interpolation | ImageInterpolation | ImageInterpolation.None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images.<br/>> <br/>> - This attribute is not applicable to a **PixelMap** object. |
-| renderMode | ImageRenderMode | ImageRenderMode.Original | Rendering mode of the image.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
+| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
+| interpolation | ImageInterpolation | None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images.<br/>> <br/>> - This attribute is not applicable to a **PixelMap** object. |
+| renderMode | ImageRenderMode | Original | Rendering mode of the image.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
 | sourceSize | {<br/>width: number,<br/>height: number<br/>} | - | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute is not applicable to a **PixelMap** object. |
 | syncLoad<sup>8+</sup> | boolean | false | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 - ImageFit enums
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Cover | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. | 
-  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. | 
-  | Fill | The video content is resized to fill the display area while retaining its aspect ratio. | 
-  | None | The original size is retained. Generally, this enum is used together with the **objectRepeat** attribute. | 
-  | ScaleDown | The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size. | 
+  | Cover | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. |
+  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. |
+  | Fill | The video content is resized to fill the display area while retaining its aspect ratio. |
+  | None | The original size is retained. Generally, this enum is used together with the **objectRepeat** attribute. |
+  | ScaleDown | The image content is displayed with its aspect ratio retained. The size is smaller than or equal to the original size. |
 
 - ImageInterpolation enums
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | None | Interpolation image data is not used. | 
-  | High | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed. | 
-  | Medium | The interpolation image data is used at the medium level. | 
-  | Low | The interpolation image data is used at the low level. | 
+  | None | Interpolation image data is not used. |
+  | High | The interpolation image data is used at the high level. The use of the interpolation image data may affect the image rendering speed. |
+  | Medium | The interpolation image data is used at the medium level. |
+  | Low | The interpolation image data is used at the low level. |
 
 - ImageRenderMode enums
-    | Name | Description | 
+    | Name | Description |
   | -------- | -------- |
-  | Original | The image is rendered based on the original image, including the color. | 
-  | Template | The image is rendered as a template image, and its color is ignored. | 
+  | Original | The image is rendered based on the original image, including the color. |
+  | Template | The image is rendered as a template image, and its color is ignored. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned. | 
-| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | An exception occurs during image loading. | 
-| onFinish(callback: () =&gt; void) | If the source file to be loaded is an SVG image, this callback is invoked when the SVG animation playback is complete. If the animation is an infinite loop, this callback is not triggered. | 
+| onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The loaded image is returned. |
+| onError(callback: (event?: { componentWidth: number, componentHeight: number }) =&gt; void) | An exception occurs during image loading. |
+| onFinish(callback: () =&gt; void) | If the source file to be loaded is an SVG image, this callback is invoked when the SVG animation playback is complete. If the animation is an infinite loop, this callback is not triggered. |
 
 
 ## Example

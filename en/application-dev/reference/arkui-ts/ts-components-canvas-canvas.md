@@ -1,7 +1,7 @@
 # Canvas
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -37,9 +37,9 @@ Universal attributes are supported.
 
 In addition to universal events, the following events are supported.
 
-| Name                             | Parameter | Description      |
-| -------------------------------- | --------- | ---------------- |
-| onReady(callback: () =&gt; void) | None      | Triggered when . |
+| Name                             | Parameter | Description                                     |
+| -------------------------------- | --------- | ----------------------------------------------- |
+| onReady(callback: () =&gt; void) | None      | Triggered when the canvas is ready for drawing. |
 
 
 ## Example
