@@ -1910,7 +1910,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 **示例：**
 ```js
-rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
+rdbStore.obtainDistributedTableName("123456789abcde", "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.info('ObtainDistributedTableName failed, err: ' + err)
         return
@@ -1943,7 +1943,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 
 **示例：**
 ```js
-let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+let promise = rdbStore.obtainDistributedTableName("123456789abcde", "EMPLOYEE")
 promise.then((tableName) => {
     console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
 }).catch((err) => {
@@ -1970,9 +1970,9 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **示例：**
 ```js
-let predicates = new rdb.RdbPredicates('EMPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(['12345678abcde'])
-rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('Sync failed, err: ' + err)
         return
