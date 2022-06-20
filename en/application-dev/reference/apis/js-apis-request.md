@@ -335,10 +335,10 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | url | string | Yes | Resource URL. |
-| header | object | No | HTTP or HTTPS header added to an upload request. |
-| method | string | No | Request methods available: **POST** and **PUT**. The default value is **POST**. |
+| header | object | Yes | HTTP or HTTPS header added to an upload request. |
+| method | string | Yes | Request methods available: **POST** and **PUT**. The default value is **POST**. |
 | files | Array&lt;[File](#file)&gt; | Yes | List of files to upload, which is submitted through **multipart/form-data**. |
-| data | Array&lt;[RequestData](#requestdata)&gt; | No | Form data in the request body. |
+| data | Array&lt;[RequestData](#requestdata)&gt; | Yes | Form data in the request body. |
 
 
 ## File
@@ -349,7 +349,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | -------- | -------- | -------- | -------- |
 | filename | string | No | File name in the header when **multipart** is used. |
 | name | string | No | Name of a form item when **multipart** is used. The default value is **file**. |
-| uri | string | Yes | Local path for storing files.<br/>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. The following is an example:<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
+| uri | string | Yes | Local path for storing files.<br/>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. Below are examples:<br>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br>internal://cache/path/to/file.txt |
 | type | string | No | Type of the file content. By default, the type is obtained based on the extension of the file name or URI. |
 
 
