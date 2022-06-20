@@ -1,9 +1,16 @@
 # FormExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Implements the context that provides the capabilities and APIs of **FormExtension**. This class is inherited from **ExtensionContext**.
+
+## Modules to Import
+
+```js
+import FormExtension from "@ohos.application.FormExtension";
+```
 
 ## FormExtensionContext.updateForm
 

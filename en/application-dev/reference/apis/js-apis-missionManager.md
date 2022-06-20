@@ -1,7 +1,8 @@
 # missionManager
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,15 +27,15 @@ Registers a listener to observe the mission status.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | listener | MissionListener | Yes| Listener to register.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| listener | MissionListener | Yes| Listener to register.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns the index of the listener, which is created by the system and allocated when the mission status listener is registered. Each listener has a unique index.|
+| Type| Description|
+| -------- | -------- |
+| number | Returns the unique index of the mission status listener, which is created by the system and allocated when the listener is registered.|
 
 **Example**
 
@@ -55,16 +56,16 @@ Registers a listener to observe the mission status.
 
 unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Unregisters a mission status listener. This API uses an asynchronous callback to return the result.
+Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Index of the mission status listener to unregister. Each listener has a unique index, which is returned by **registerMissionListener**.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -88,21 +89,21 @@ Unregisters a mission status listener. This API uses an asynchronous callback to
 
 unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
-Unregisters a mission status listener. This API uses a promise to return the result.
+Deregisters a mission status listener. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | listenerId | number | Yes| Index of the mission status listener to unregister. Each listener has a unique index, which is returned by **registerMissionListener**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| listenerId | number | Yes| Unique index of the mission status listener to unregister. It is returned by **registerMissionListener**.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -126,17 +127,17 @@ Unregisters a mission status listener. This API uses a promise to return the res
 
 getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
 
-Obtains the information of a given mission. This API uses an asynchronous callback to return the result.
+Obtains the information about a given mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;[MissionInfo](#missioninfo)&gt; | Yes| Callback used to return the mission information obtained.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;[MissionInfo](#missioninfo)&gt; | Yes| Callback used to return the mission information obtained.|
 
 **Example**
 
@@ -159,22 +160,22 @@ Obtains the information of a given mission. This API uses an asynchronous callba
 
 getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
-Obtains the information of a given mission. This API uses a promise to return the result.
+Obtains the information about a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| missionId | number | Yes| Mission ID.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[MissionInfo](#missioninfo)&gt; | Promise used to return the mission information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[MissionInfo](#missioninfo)&gt; | Promise used to return the mission information obtained.|
 
 **Example**
 
@@ -191,17 +192,17 @@ Obtains the information of a given mission. This API uses a promise to return th
 
 getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
 
-Obtains information of all missions. This API uses an asynchronous callback to return the result.
+Obtains information about all missions. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | numMax | number | Yes| Maximum number of missions whose information can be obtained.|
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Yes| Callback used to return the array of mission information obtained.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| numMax | number | Yes| Maximum number of missions whose information can be obtained.|
+| callback | AsyncCallback&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Yes| Callback used to return the array of mission information obtained.|
 
 **Example**
 
@@ -220,22 +221,22 @@ Obtains information of all missions. This API uses an asynchronous callback to r
 
 getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
 
-Obtains information of all missions. This API uses a promise to return the result.
+Obtains information about all missions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | numMax | number | Yes| Maximum number of missions whose information can be obtained.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| numMax | number | Yes| Maximum number of missions whose information can be obtained.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Promise used to return the array of mission information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[MissionInfo](#missioninfo)&gt;&gt; | Promise used to return the array of mission information obtained.|
 
 **Example**
 
@@ -258,11 +259,11 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | Yes| Callback used to return the snapshot information obtained.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | Yes| Callback used to return the snapshot information obtained.|
 
 **Example**
 
@@ -293,16 +294,16 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
+| missionId | number | Yes| Mission ID.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | Promise used to return the snapshot information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[MissionSnapshot](js-apis-application-MissionSnapshot.md)&gt; | Promise used to return the snapshot information obtained.|
 
 **Example**
 
@@ -331,10 +332,10 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -364,15 +365,15 @@ Locks a given mission. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -435,15 +436,15 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -476,10 +477,10 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -509,15 +510,15 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -566,9 +567,9 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -590,10 +591,10 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -623,11 +624,11 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
-  | options | StartOptions | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| options | StartOptions | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -657,16 +658,16 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | missionId | number | Yes| Mission ID.|
-  | options | StartOptions | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID.|
+| options | StartOptions | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -684,20 +685,3 @@ Switches a given mission to the foreground, with the startup parameters for the 
     console.log(err);
   });
   ```
-
-## MissionInfo
-
-Describes the mission information.
-
-**System capability**: SystemCapability.Ability.AbilityBase
-
-| Name| Type| Readable| Writable| Description| 
-| -------- | -------- | -------- | -------- | -------- |
-| missionId | number | Yes| Yes| Mission ID.| 
-| runningState | number | Yes| Yes| Running state of the mission.| 
-| lockedState | boolean | Yes| Yes| Locked state of the mission.| 
-| timestamp | string | Yes| Yes| Latest time when the mission was created or updated.| 
-| want | [Want](js-apis-featureAbility.md#want) | Yes| Yes| **Want** information of the mission.| 
-| label | string | Yes| Yes| Label of the mission.| 
-| iconPath | string | Yes| Yes| Path of the mission icon.| 
-| continuable | boolean | Yes| Yes| Whether the mission is continuable.| 
