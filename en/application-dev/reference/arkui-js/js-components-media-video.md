@@ -1,79 +1,134 @@
 # video
 
-The **\<video>** component provides a video player.
 
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:**
+>  **NOTE**<br>
 >
-> - Configure the following information in the **config.json** file:
+> - This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - Set **configChanges** under **abilities** in the **config.json** file to **orientation**.
 > ```
-> "configChanges": ["orientation"]
+> "abilities": [
+> {
+> "configChanges": ["orientation"],
+> ...
+> }
+> ]
 > ```
 
-## Required Permissions
+The **\<Video>** component provides a video player.
 
-## Child Component
+
+## Child Components
 
 Not supported
 
+
 ## Attributes
 
-In addition to the attributes in [Universal Attributes](js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| muted | boolean | false | No| Whether the video is muted.|
+| src | string | - | No| Path of the video content to play.|
+| autoplay | boolean | false | No| Whether the video is played automatically after being rendered.|
+| controls | boolean | true | No| Whether the control bar is displayed during video playback. If the value is set to **false**, the control bar is not displayed. The default value is **true**, indicating that the platform can either show or hide the control bar.|
 
-
-| Name     | Type    | Default Value | Mandatory | Description                                                  |
-| -------- | ------- | ------------- | --------- | ------------------------------------------------------------ |
-| muted    | boolean | false         | No        | Whether a video is muted.                                    |
-| src      | string  | -             | No        | Path of the video content to play.                           |
-| autoplay | boolean | false         | No        | Whether a video is played automatically after being rendered. |
-| controls | boolean | true          | No        | Whether the control bar is displayed during video playback. If the value is set to **false**, the control bar is not displayed. The default value is **true**, indicating that the platform can either show or hide the control bar. |
 
 ## Styles
 
-In addition to the styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
 
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| object-fit | string | contain | No| Video scale type. If **poster** has been assigned a value, the setting of this style will affect the scaling type of the video poster. For details, see object-fit enums.|
 
+**Table 1** object-fit enums
 
-| Name       | Type   | Default Value | Mandatory | Description                                                  |
-| ---------- | ------ | ------------- | --------- | ------------------------------------------------------------ |
-| object-fit | string | contain       | No        | Scaling type of the video source. If **poster** has been assigned a value, this configuration will affect the scaling type of the video poster. For details about available values, see [Table 1](js-components-media-video.md). |
+| Type| Description|
+| -------- | -------- |
+| fill | The image is resized to fill the display area, and its aspect ratio is not retained.|
 
-**Table 1** object-fit description
-
-
-
-| Type | Description                                                  |
-| ---- | ------------------------------------------------------------ |
-| fill | The video content is resized to fill the display area and its aspect ratio is not retained. |
 
 ## Events
 
-In addition to the events in [Universal Events](js-components-common-events.md), the following events are supported.
+In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
 
+| Name| Parameter| Description|
+| -------- | -------- | -------- |
+| prepared | {&nbsp;duration:&nbsp;value&nbsp;}<sup>5+</sup> | Triggered when the video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
+| start | - | Triggered when the video is played.|
+| pause | - | Triggered when the video playback is paused.|
+| finish | - | Triggered when the video playback is finished.|
+| error | - | Triggered when the video playback fails.|
+| seeking | {&nbsp;currenttime:&nbsp;value&nbsp;} | Triggered to report the time (in seconds) when the progress bar is being dragged.|
+| seeked | {&nbsp;currenttime:&nbsp;value&nbsp;} | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.|
+| timeupdate | {&nbsp;currenttime:&nbsp;value&nbsp;} | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.|
 
-
-| Name       | Parameter              | Description                                                  |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| prepared   | { duration: value }5+  | Triggered when the video preparation is complete. The video duration (in seconds) is obtained from **duration**. |
-| start      | -                      | Triggered when a video is played.                            |
-| pause      | -                      | Triggered when a video is paused.                            |
-| finish     | -                      | Triggered when the video playback is finished.               |
-| error      | -                      | Triggered when the playback fails.                           |
-| seeking    | { currenttime: value } | Triggered to report the time (in seconds) when the progress bar is being dragged. |
-| seeked     | { currenttime: value } | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar. |
-| timeupdate | { currenttime: value } | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second. |
 
 ## Methods
 
-In addition to the methods in [Universal Methods](js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
 
+| Name| Parameter| Description|
+| -------- | -------- | -------- |
+| start | - | Starts playing a video.|
+| pause | - | Pauses a video.|
+| setCurrentTime | {&nbsp;currenttime:&nbsp;value&nbsp;} | Sets the video playback position, in seconds.|
 
+>  **NOTE**<br>
+> The methods in the above table can be called after the **attached** callback is invoked.
 
-| Name           | Type                   | Description                                   |
-| -------------- | ---------------------- | --------------------------------------------- |
-| start          | -                      | Starts playing a video.                       |
-| pause          | -                      | Pauses a video.                               |
-| setCurrentTime | { currenttime: value } | Sets the video playback position, in seconds. |
+## Example
 
-> ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/public_sys-resources/icon-note.gif) **NOTE:** The methods in the above table can be called after the **attached** callback is invoked.
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <video id='videoId' src='/common/myDeram.mp4' muted='false' autoplay='false'
+         controls='true' onprepared='preparedCallback' onstart='startCallback'
+         onpaues='pauesCallback' onfinish='finishCallback' onerror='errorCallback'
+         onseeking='seekingCallback' onseeked='seekedCallback' 
+         ontimeupdate='timeupdateCallback'
+         style="object-fit:fit; width:80%; height:400px;"
+         onclick="change_start_pause">
+   </video>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+  justify-content: center;
+  align-items: center;
+}
+```
+
+```js
+// xxx.js
+export default {
+  data: {
+    event:'',
+    seekingtime:'',
+    timeupdatetime:'',
+    seekedtime:'',
+    isStart: true,
+    duration: '',
+  },
+  preparedCallback:function(e){ this.event = 'Video successfully connected'; this.duration = e.duration;},
+  startCallback:function(){this.event = 'Playback starts.';},
+  pauseCallback:function(){this.event = 'Playback pauses.';},
+  finishCallback:function(){this.event = 'Playback ends.';},
+  errorCallback:function(){this.event = 'Playback error.';},
+  seekingCallback:function(e){ this.seekingtime = e.currenttime; },
+  timeupdateCallback:function(e){ this.timeupdatetime = e.currenttime;},
+  change_start_pause: function() {
+    if(this.isStart) {
+      this.$element('videoId').pause();
+      this.isStart = false;
+    } else {
+      this.$element('videoId').start();
+      this.isStart = true; 
+    }
+  },
+}
+```

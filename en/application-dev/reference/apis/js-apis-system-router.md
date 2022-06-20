@@ -1,6 +1,6 @@
 # Page Routing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.router`](js-apis-router.md) instead.
 >
@@ -11,7 +11,7 @@
 ## Modules to Import
 
 
-```
+```js
 import router from '@system.router';
 ```
 
@@ -31,7 +31,7 @@ Navigates to a specified page in the application.
 
 **Example**
 
-```
+```js
 // Current page
 export default {
   pushPage() {
@@ -49,7 +49,7 @@ export default {
 ```
 
 
-```
+```js
 // routerpage2 page
 export default {
   data: {
@@ -85,7 +85,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Example**
 
-```
+```js
 // Current page
 export default {
   replacePage() {
@@ -100,7 +100,7 @@ export default {
 ```
 
 
-```
+```js
 // detail page
 export default {
   data: {
@@ -128,7 +128,7 @@ Returns to the previous page or a specified page.
 
 **Example**
 
-```
+```js
 // index page
 export default {    
   indexPushPage() {        
@@ -140,7 +140,7 @@ export default {
 ```
 
 
-```
+```js
 // detail page
 export default {    
   detailPushPage() {        
@@ -152,7 +152,7 @@ export default {
 ```
 
 
-```
+```js
 // Navigate from the mall page to the detail page through router.back().
 export default {    
   mallBackPage() {        
@@ -162,7 +162,7 @@ export default {
 ```
 
 
-```
+```js
 // Navigate from the detail page to the index page through router.back().
 export default {    
   defaultBack() {        
@@ -172,7 +172,7 @@ export default {
 ```
 
 
-```
+```js
 // Return to the detail page through router.back().
 export default {    
   backToDetail() {        
@@ -208,7 +208,7 @@ Clears all historical pages in the stack and retains only the current page at th
 
 **Example**
 
-```
+```js
 export default {    
   clearPage() {        
     router.clear();    
@@ -232,7 +232,7 @@ Obtains the number of pages in the current stack.
 
 **Example**
 
-```
+```js
 export default {     
   getLength() {        
     var size = router.getLength();        
@@ -257,7 +257,7 @@ Obtains state information about the current page.
 
 **Example**
 
-```
+```js
 export default {     
   getState() {        
     var page = router.getState();
@@ -284,7 +284,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Example**
 
-```
+```js
 export default {    
   enableAlertBeforeBackPage() {        
     router.enableAlertBeforeBackPage({            
@@ -292,8 +292,8 @@ export default {
       success: function() {                
         console.log('success');            
       },            
-      fail: function() {                
-        console.log('fail');            
+      cancel: function() {                
+        console.log('cancel');            
       },        
     });    
   }
@@ -316,15 +316,15 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 **Example**
 
-```
+```js
 export default {    
   disableAlertBeforeBackPage() {        
     router.disableAlertBeforeBackPage({            
       success: function() {                
         console.log('success');            
       },            
-      fail: function() {                
-        console.log('fail');            
+      cancel: function() {                
+        console.log('cancel');            
       },        
     });    
   }

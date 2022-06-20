@@ -57,7 +57,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
 
 **Parameters**
 
@@ -68,26 +68,26 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 **Example**
 
-```js
-var ScreenshotOptions = {
-	"screenRect": {
-		"left": 200,
-		"top": 100,
-		"width": 200,
-		"height": 200},
-	"imageSize": {
-		"width": 300,
-		"height": 300},
-	"rotation": 0
-};
-screenshot.save(ScreenshotOptions, (err, data) => {
-	if (err) {
-		console.error('Failed to save the screenshot. Error: ' + JSON.stringify(err));
-		return;
-	}
-	console.info('Screenshot saved. Data: ' + JSON.stringify(data));
-});
-```
+  ```js
+  var ScreenshotOptions = {
+  	"screenRect": {
+  		"left": 200,
+  		"top": 100,
+  		"width": 200,
+  		"height": 200},
+  	"imageSize": {
+  		"width": 300,
+  		"height": 300},
+  	"rotation": 0
+  };
+  screenshot.save(ScreenshotOptions, (err, data) => {
+  	if (err) {
+  		console.error('Failed to save the screenshot. Error: ' + JSON.stringify(err));
+  		return;
+  	}
+  	console.info('Screenshot saved. Data: ' + JSON.stringify(data));
+  });
+  ```
 
 ## screenshot.save
 
@@ -97,7 +97,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-**Required permissions**: ohos.permission.CAPTURE_SCREEN
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
 
 **Parameters**
 
@@ -113,22 +113,22 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 **Example**
 
-```js
-var ScreenshotOptions = {
-	"screenRect": {
-		"left": 200,
-		"top": 100,
-		"width": 200,
-		"height": 200},
-	"imageSize": {
-		"width": 300,
-		"height": 300},
-	"rotation": 0
-};
-let promise = screenshot.save(ScreenshotOptions);
-promise.then(() => {
-    console.log('screenshot save success');
-}).catch((err) => {
-    console.log('screenshot save fail: ' + JSON.stringify(err));
-});
-```
+  ```js
+  var ScreenshotOptions = {
+  	"screenRect": {
+  		"left": 200,
+  		"top": 100,
+  		"width": 200,
+  		"height": 200},
+  	"imageSize": {
+  		"width": 300,
+  		"height": 300},
+  	"rotation": 0
+  };
+  let promise = screenshot.save(ScreenshotOptions);
+  promise.then(() => {
+      console.log('screenshot save success');
+  }).catch((err) => {
+      console.log('screenshot save fail: ' + JSON.stringify(err));
+  });
+  ```

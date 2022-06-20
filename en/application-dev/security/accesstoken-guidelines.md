@@ -43,7 +43,7 @@ Declare the permissions required by the app one by one in the **config.json** fi
 ```json
 {
     "module" : {
-        "requesetPermissions":[
+        "requestPermissions":[
            {
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
@@ -141,4 +141,4 @@ The procedure is as follows:
 
 ```
 > **NOTE**<br>
-> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md#abilitycontextrequestpermissionsfromuser).
+> For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).

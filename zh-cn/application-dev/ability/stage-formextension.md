@@ -252,7 +252,28 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景比如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
+### 卡片数据交互
+
+当卡片应用需要更新数据时（如触发了定时更新或定点更新），卡片应用获取最新数据，并调用updateForm接口更新卡片。示例如下：
+
+```javascript
+onUpdate(formId) {
+    // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+    console.log('FormAbility onUpdate');
+    let obj = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+    };
+    let formData = formBindingData.createFormBindingData(obj);
+    // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
+    formProvider.updateForm(formId, formData).catch((error) => {
+        console.log('FormAbility updateForm, error:' + JSON.stringify(error));
+    });
+}
+```
+
 ### 开发卡片页面
+
 开发者可以使用hml+css+json开发JS卡片页面：
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

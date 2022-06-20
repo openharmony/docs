@@ -1,9 +1,9 @@
 # Bluetooth
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
->  The Bluetooth module provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+
+Provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 
 ## Modules to Import
@@ -223,7 +223,7 @@ Obtains the connection status of a profile.
 **Example**
 
 ```js
-let result = bluetooth.getProfileConnState(PROFILE_A2DP_SOURCE);
+let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 
@@ -364,7 +364,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 
 ```js
 // The device can be discovered and connected only when the discoverable and connectable mode is used.
-let result = bluetooth.setBluetoothScanMode(ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 ```
 
 
@@ -456,7 +456,7 @@ Sets the device pairing confirmation.
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| device | string  | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
+| device | string  | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | accept | boolean | Yes   | Whether to accept the pairing request. The value **true** means to accept the pairing request, and the value **false** means the opposite.       |
 
 **Return value**
@@ -729,7 +729,7 @@ bluetooth.off('stateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.sppListen<sup>8+</sup><a name="sppListen<"></a>
+## bluetooth.sppListen<sup>8+</sup><a name="sppListen"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -782,6 +782,14 @@ Listens for a connection to be made to this socket from the client and accepts i
 **Example**
 
 ```js
+let serverNumber = -1;
+function serverSocket(code, number) {
+  console.log('bluetooth error code: ' + code.code);
+  if (code.code == 0) {
+    console.log('bluetooth serverSocket Number: ' + number);
+    serverNumber = number;
+  }
+}
 let clientNumber = -1;
 function acceptClientSocket(code, number) {
   console.log('bluetooth error code: ' + code.code);
@@ -847,6 +855,14 @@ Closes the listening socket of the server.
 **Example**
 
 ```js
+let serverNumber = -1;
+function serverSocket(code, number) {
+  console.log('bluetooth error code: ' + code.code);
+  if (code.code == 0) {
+    console.log('bluetooth serverSocket Number: ' + number);
+    serverNumber = number;
+  }
+}
 bluetooth.sppCloseServerSocket(serverNumber);
 ```
 
@@ -869,6 +885,15 @@ Closes the client socket.
 **Example**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+  clientNumber = number;
+}
 bluetooth.sppCloseClientSocket(clientNumber);
 ```
 
@@ -897,6 +922,15 @@ Writes data to the remote device through the socket.
 **Example**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+  clientNumber = number;
+}
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -932,6 +966,15 @@ No value is returned.
 **Example**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+  clientNumber = number;
+}
 function dataRead(dataBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
@@ -963,6 +1006,15 @@ No value is returned.
 **Example**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
+  clientNumber = number;
+}
 bluetooth.off('sppRead', clientNumber);
 ```
 
@@ -1218,7 +1270,7 @@ No value is returned.
 |                     |               |
 | ------------------- | ------------- |
 | Type                  | Description            |
-| Array&lt;string&gt; | List of addresses of the connected devices. |
+| Array&lt;string&gt; | Addresses of the connected devices. |
 
 
 ### getDeviceState<sup>8+</sup><a name="getDeviceState"></a>
@@ -1236,14 +1288,12 @@ Obtains the connection status of the profile.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
-|
-
 **Return value**
 
 |                                                   |                         |
 | ------------------------------------------------- | ----------------------- |
 | Type                                              | Description                    |
-| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
+| [ProfileConnectionState](#profileconnectionState) | Profile connection state obtained. |
 
 
 ## A2dpSourceProfile
@@ -1251,7 +1301,7 @@ Obtains the connection status of the profile.
 Before using a method of **A2dpSourceProfile**, you need to create an instance of this class by using the **getProfile()** method.
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="a2dp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1278,12 +1328,12 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
 let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="a2dp-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1310,7 +1360,7 @@ Disconnects an A2DP connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1397,7 +1447,7 @@ Obtains the playing status of a device.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1407,7 +1457,7 @@ let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 Before using a method of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using the **getProfile()** method.
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="hfp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1434,12 +1484,12 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="hfp-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1465,7 +1515,7 @@ Disconnects the HFP connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1665,7 +1715,7 @@ cccV[0] = 1;
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let characteristicN = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptorsN};
+  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // Create a gattService instance.
@@ -1757,8 +1807,11 @@ Notifies the connected client device when a characteristic value changes.
 **Example**
 
 ```js
+let arrayBufferC = new ArrayBuffer(8);
+let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue:  notifyCcc.characteristicValue, confirm: false};
+characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
 let server = bluetooth.BLE.createGattServer();
 server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 ```
@@ -1984,7 +2037,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
 
 **Return value**
 
@@ -2334,7 +2387,7 @@ Obtains all services of the remote BLE device. This method uses a promise to ret
 // Promise
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
-let services = device.getServices();
+var services = device.getServices();
 console.log("bluetooth services size is ", services.length);
 
 for (let i = 0; i < services.length; i++) {
@@ -2672,8 +2725,11 @@ Sets the function of notifying the GATT client when the characteristic value of 
 **Example**
 
 ```js
+let arrayBufferC = new ArrayBuffer(8);
+let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setNotifyCharacteristicChanged(notifyCcc, false);
+device.setNotifyCharacteristicChanged(characteristic, false);
 ```
 
 

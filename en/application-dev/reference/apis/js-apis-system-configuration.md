@@ -17,7 +17,7 @@ import configuration from '@system.configuration';
 
 ## configuration.getLocale
 
-getLocale(): LocaleResponse
+static getLocale(): LocaleResponse
 
 Obtains the current locale of the application, which is the same as the system locale.
 

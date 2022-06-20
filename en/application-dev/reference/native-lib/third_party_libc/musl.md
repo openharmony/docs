@@ -1,8 +1,8 @@
-# Standard Libraries Supported by Native APIs
+# Native Standard Libraries Supported by OpenHarmony
 
 
 
-## Introduction
+## Overview
 
 
 
@@ -12,20 +12,22 @@
 | :-------- | :----------------------------------------------------------- |
 | C standard library  | C11 standard library implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header).      |
 | C++ standard library ([libc++](https://libcxx.llvm.org/))| An implementation of the C++ standard library.  |
-| [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/)| An embedded cross-platform audio processing library.|
-| [zlib](https://zlib.net/)     | A general data compression library implemented in C/C++.|
+| Open Sound Library for Embedded Systems ([OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/))| An embedded, cross-platform audio processing library.|
+| [Zlib](https://zlib.net/)     | A general data compression library implemented in C/C++.|
+| [EGL](https://www.khronos.org/egl/)  | A standard software interface between rendering APIs and the underlying native window system.|
+| Open Graphics Library for Embedded Systems ([OpenGL ES](https://www.khronos.org/opengles/))| A cross-platform software interface for rendering 3D graphics on embedded and mobile systems.|
 
 ## C Standard Library
 
 
 
-C11 standard library implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header).
+The C standard library is a C11 standard library implemented by:
 
 libc: provides thread-related functions and a majority of standard functions.
 
 libm: provides basic mathematical functions.
 
-libdl: provides functions related to dynamic linking, such as dlopen.
+libdl: provides functions related to dynamic linking, such as **dlopen**.
 
 **Version**
 
@@ -39,7 +41,7 @@ C standard library includes a set of header files in accordance with standard C 
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
-## C++ Standard Library
+## libc++
 
 
 
@@ -57,7 +59,7 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 
 
-[OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded cross-platform audio processing library.
+[OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded, cross-platform audio processing library.
 
 
 
@@ -66,3 +68,31 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 
 [zlib](https://zlib.net/) is a general data compression library implemented in C/C++.
+
+
+
+
+
+
+
+## EGL
+
+EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG) and the underlying native window system. OpenHarmony supports EGL.
+
+**Symbols Exported from the Standard Library**
+
+[EGL Symbols Exported from Native APIs](../third_party_opengl/egl-symbol.md)
+
+
+
+## OpenGL ES
+
+OpenGL is a cross-platform software interface for 3D graphics processing. [OpenGL ES](https://www.khronos.org/opengles/) is a OpenGL specification for embedded devices. OpenHarmony supports OpenGL ES 3.0.
+
+**Capabilities**
+
+OpenGL ES 3.0
+
+**Symbols Exported from the Standard Library**
+
+[OpenGL ES 3.0 Symbols Exported from Native APIs](../third_party_opengl/openglesv3-symbol.md)

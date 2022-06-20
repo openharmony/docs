@@ -1,6 +1,7 @@
-# DataAbilityHelper Module (JavaScript SDK APIs)
+# DataAbilityHelper
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -553,7 +554,7 @@ DAHelper.insert(
 
 ## DataAbilityHelper.batchInsert
 
-batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
+batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
 Inserts multiple data records into the database. This API uses an asynchronous callback to return the result.
 
@@ -881,7 +882,7 @@ Calls the extended API of the Data ability. This API uses a promise to return th
 
 | Type| Description|
 |------ | ------- |
-|Promise<[PacMap](#pacmap)> | Promise used to return the result.|
+|Promise\<[PacMap](#pacmap)> | Promise used to return the result.|
 
 **Example**
 

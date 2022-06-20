@@ -72,7 +72,7 @@
 
 如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
 
-在config.json文件声明的基础上，应用还需要在[profile文件](../quick-start/app-provision-structure.md)中声明不满足申请条件部分的权限。该场景中，用户应该在字段"acls"中做声明如下：
+在config.json文件声明的基础上，应用还需要在profile文件中声明不满足申请条件部分的权限。该场景中，用户应该在字段"acls"中做声明如下：
 ```json
 {
     "version-name": "1.0.0",

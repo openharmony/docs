@@ -8,21 +8,27 @@ The following figure shows the ability call process.
 
 ![stage-call](figures/stage-call.png)
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The startup mode of the callee must be **singleton**.
+> Currently, only system applications and Service Extension abilities can use the **Call** APIs to access the callee.
+
 ## Available APIs
 The table below describes the ability call APIs. For details, see [Ability](../reference/apis/js-apis-application-ability.md#caller).
 
 **Table 1** Ability call APIs
 |API|Description|
 |:------|:------|
-|Promise\<Caller> startAbilityByCall(want: Want)|Obtains the caller interface of the specified ability, and if the specified ability is not started, starts the ability in the background.|
-|void on(method: string, callback: CalleeCallBack)|Callee.on: callback invoked when the callee registers a method.|
-|void off(method: string)|Callee.off: callback invoked when the callee deregisters a method.|
-|Promise\<void> call(method: string, data: rpc.Sequenceable)|Caller.call: sends agreed sequenceable data to the callee.|
-|Promise\<rpc.MessageParcel> callWithResult(method: string, data: rpc.Sequenceable)|Caller.callWithResult: sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
-|void release()|Caller.release: releases the caller interface.|
-|void onRelease(callback: OnReleaseCallBack)|Caller.onRelease: registers a callback that is invoked when the caller is disconnected.|
+|startAbilityByCall(want: Want): Promise\<Caller>|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
+|on(method: string, callback: CaleeCallBack): void|Callback invoked when the callee registers a method.|
+|off(method: string): void|Callback invoked when the callee deregisters a method.|
+|call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee.|
+|callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|Sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
+|release(): void|Releases the caller interface.|
+|onRelease(callback: OnReleaseCallBack): void|Registers a callback that is invoked when the caller is disconnected.|
 
 ## How to Develop
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> The sample code snippets provided in the **How to Develop** section are used to show specific development steps. They may not be able to run independently. For details about the complete project code, see [Samples](#samples).
 ### Creating a Callee
 For the callee, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use the **on** API to register a listener. When data does not need to be received, use the **off** API to deregister the listener.
 1. Configure the ability startup mode.
@@ -51,7 +57,7 @@ import Ability from '@ohos.application.Ability'
 ```
 3. Define the agreed sequenceable data.
 
-  The data formats sent and received by the caller and callee must be consistent. In the following example, the data consists of numbers and strings. The sample code is as follows:
+  The data formats sent and received by the caller and callee must be consistent. In the following example, the data consists of numbers and strings. The sample code snippet is as follows:
 ```ts
 export default class MySequenceable {
     num: number = 0
@@ -77,7 +83,7 @@ export default class MySequenceable {
 ```
 4. Implement **Callee.on** and **Callee.off**.
 
-  The time to register a listener for the callee depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **CalleeSortMethod** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns them. You need to implement processing based on service requirements. The sample code is as follows:
+  The time to register a listener for the callee depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code snippet is as follows:
 ```ts
 const TAG: string = '[CalleeAbility]'
 const MSG_SEND_METHOD: string = 'CallSendMsg'
@@ -121,7 +127,7 @@ import Ability from '@ohos.application.Ability'
 ```
 2. Obtain the caller interface.
 
-  The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller interface of the ability. The following example uses **this.context** to obtain the **context** attribute of the **Ability** instance, uses **startAbilityByCall** to start the callee, obtain the caller interface, and register the **onRelease** listener of the caller. You need to implement processing based on service requirements. The sample code is as follows:
+  The **context** attribute of the ability implements **startAbilityByCall** to obtain the caller interface of the ability. The following example uses **this.context** to obtain the **context** attribute of the **Ability** instance, uses **startAbilityByCall** to start the callee, obtain the caller interface, and register the **onRelease** listener of the caller. You need to implement processing based on service requirements. The sample code snippet is as follows:
 ```ts
 async onButtonGetCaller() {
     try {
@@ -142,7 +148,7 @@ async onButtonGetCaller() {
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
-In the cross-device scenario, you need to specify the ID of the peer device. The sample code is as follows:
+  In the cross-device scenario, you need to specify the ID of the peer device. The sample code snippet is as follows:
 ```ts
 let TAG = '[MainAbility] '
 var caller = undefined
@@ -166,7 +172,7 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
-Obtain the ID of the peer device from **DeviceManager**. Note that the **getTrustedDeviceListSync** API is open only to system applications. The sample code is as follows:
+  Obtain the ID of the peer device from **DeviceManager**. Note that the **getTrustedDeviceListSync** API is open only to system applications. The sample code snippet is as follows:
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
@@ -184,7 +190,7 @@ function getRemoteDeviceId() {
     }
 }
 ```
-In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code is as follows:
+  In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code snippet is as follows:
 ```ts
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
@@ -196,7 +202,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 ```
 3. Send agreed sequenceable data.
 
-The sequenceable data can be sent to the callee in either of the following ways: without a return value or obtaining data returned by the callee. The method and sequenceable data must be consistent with those of the callee. The following example describes how to invoke the **Call** API to send data to the callee. The sample code is as follows:
+  The sequenceable data can be sent to the callee with or without a return value. The method and sequenceable data must be consistent with those of the callee. The following example describes how to invoke the **Call** API to send data to the callee. The sample code snippet is as follows:
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 async onButtonCall() {
@@ -209,7 +215,7 @@ async onButtonCall() {
 }
 ```
 
-In the following, **CallWithResult** is used to send data **originMsg** to the callee and assign the data processed by the **CallSendMsg** method to **backMsg**. The sample code is as follows:
+  In the following, **CallWithResult** is used to send data **originMsg** to the callee and assign the data processed by the **CallSendMsg** method to **backMsg**. The sample code snippet is as follows:
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 originMsg: string = ''
@@ -231,7 +237,7 @@ async onButtonCallWithResult(originMsg, backMsg) {
 ```
 4. Release the caller interface.
 
-When the caller interface is no longer required, call the **release** API to release it. The sample code is as follows:
+  When the caller interface is no longer required, call the **release** API to release it. The sample code snippet is as follows:
 ```ts
 try {
     this.caller.release()
@@ -242,9 +248,6 @@ try {
 }
 ```
 
-## Development Example
+## Samples
 The following sample is provided to help you better understand how to develop an ability call in the stage model:
-
-[StageCallAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
-
-In this sample, the **AbilityStage** APIs are implemented in the **AbilityStage.ts** file in the **Application** directory, the **Ability** APIs are implemented in the **MainAbility** directory, and **pages/index** is the pages of the ability. Another ability and callee are implemented in the **CalleeAbility** directory, and its pages are the content configured in **pages/second**. The **MainAbility** functions as the caller, and the **CalleeAbility** functions as the callee. After starting the **CalleeAbility**, the **MainAbility** obtains the caller interface, processes the string entered by the user, and transfers the processed string to the **CalleeAbility**. The **CalleeAbility** refreshes the page based on the received data and returns the result to the **MainAbility**.
+- [`StageCallAbility`: Stage Call Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

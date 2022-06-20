@@ -1,6 +1,6 @@
 #  	App Account Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,7 +26,7 @@ Creates an **AppAccountManager** instance.
 
 **Example**
   ```js
-  var appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager
@@ -387,7 +387,7 @@ Checks whether an app account allows application data synchronization. This meth
 
 ### setAccountCredential
 
-setAccountCredential(name: string, credentialType: string, credential: string, callback: AsyncCallback&lt;void&gt;): void
+setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
 Sets a credential for an app account. This method uses an asynchronous callback to return the result.
 

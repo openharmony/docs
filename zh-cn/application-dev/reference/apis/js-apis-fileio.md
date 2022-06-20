@@ -3,13 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-该模块提供文件存储相关的常用功能，向应用程序提供用于IO的JS接口，包括:
-
-- 用于管理文件的基本文件接口
-- 用于管理目录的基本目录接口
-- 用于获取文件信息的统计接口
-- 用于流式读写文件的流式接口
-
+该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
 ## 导入模块
 
@@ -20,20 +14,14 @@ import fileio from '@ohos.fileio';
 
 ## 使用说明
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱绝对路径，“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”。
-应用目录路径dir的获取方式及对应的接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
-通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在应用沙箱路径为：
-
-```js
-let path = dir + "/xxx.txt";
-```
-
-
-文件描述符fd：
-
-
-```js
-let fd = fileio.openSync(path);
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
+ ```js
+ import featureAbility from '@ohos.ability.featureAbility';
+ let context = featureAbility.getContext();
+ let path = '';
+ context.getFilesDir().then((data) => {
+      path = data;
+ })
 ```
 
 
@@ -601,7 +589,7 @@ openSync(path:string, flags?:number, mode?:number): number
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 待打开文件的应用沙箱路径。                                   |
 | flags  | number | 否   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
-| mode   | number | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。<br/>创建出的文件权限受umask影响，umask随进程启动确定，其修改当前不开放。 |
+| mode   | number | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o640：所有者具有读、写权限，所有用户组具有读权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。<br/>创建出的文件权限受umask影响，umask随进程启动确定，其修改当前不开放。 |
 
 **返回值：**
   | 类型     | 说明          |
@@ -610,7 +598,15 @@ openSync(path:string, flags?:number, mode?:number): number
 
 **示例：**
   ```js
-  let fd = fileio.openSync(path);
+  let fd = fileio.openSync(path, 0o102, 0o640);
+  ```
+  ```js
+  let fd = fileio.openSync(path, 0o102, 0o666);
+  fileio.writeSync(fd, 'hello world');
+  let fd1 = fileio.openSync(path, 0o2002);
+  fileio.writeSync(fd1, 'hello world');
+  let num = fileio.readSync(fd1, new ArrayBuffer(4096), {position: 0});
+  console.info("num == " + num);
   ```
 
 
@@ -1201,7 +1197,7 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | 是    | 待截断文件的文件描述符。     |
   | len      | number                    | 是    | 文件截断后的长度，以字节为单位。 |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步截断文件的信息之后的回调。  |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，本调用无返回值。  |
 
 **示例：**
   ```js
@@ -1273,7 +1269,7 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | -------------------------------- |
 | path     | string                    | 是   | 待截断文件的应用沙箱路径。       |
 | len      | number                    | 是   | 文件截断后的长度，以字节为单位。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步截断文件的信息之后的回调。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
 **示例：**
   ```js
@@ -1352,8 +1348,8 @@ readText(filePath: string, options: {
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | 是   | 待读取文件的应用沙箱路径。                                   |
-| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 异步通过文本方式读取文件之后的回调。                         |
+| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回读取文件的内容。                         |
 
 **示例：**
   ```js
@@ -1403,12 +1399,12 @@ lstat(path: string): Promise&lt;Stat&gt;
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
+| path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
+  | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
 **示例：**
   ```js
@@ -1431,8 +1427,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 **参数：**
 | 参数名   | 类型                               | 必填 | 说明                                   |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
-| path     | string                             | 是   | 目标文件的应用沙箱路径，指向链接。 |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取链接信息之后的回调。       |
+| path     | string                             | 是   | 目标文件的应用沙箱路径。 |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 回调函数，返回文件的具体信息。       |
 
 **示例：**
   ```js
@@ -1453,7 +1449,7 @@ lstatSync(path:string): Stat
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | 是   | 目标文件的应用沙箱路径，指向链接。 |
+| path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
   | 类型            | 说明         |
@@ -2978,6 +2974,40 @@ readSync(): Dirent
   ```js
   let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
+  ```
+
+
+### close
+
+close(): Promise&lt;void&gt;
+
+异步关闭目录，使用promise形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+  ```js
+  let dir = fileio.opendirSync(path);
+  dir.close().then(function(err){
+      console.info("close dir successfully");
+  });
+  ```
+
+
+  ### close
+
+close(callback: AsyncCallback&lt;void&gt;): void
+
+异步关闭目录，使用callback形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+  ```js
+  let dir = fileio.opendirSync(path);
+  dir.close(function(err){
+      console.info("close dir successfully");
+  });
   ```
 
 

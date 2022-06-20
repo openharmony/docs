@@ -14,8 +14,8 @@ import request from '@ohos.request';
 
 ## Constraints
 
-- HTTPS is supported by default. To support HTTP, you need to add **network** to the **config.json** file and set the **cleartextTraffic** attribute to **true**.
-  
+HTTPS is supported by default. To support HTTP, you need to add **network** to the **config.json** file and set the **cleartextTraffic** attribute to **true**.
+
 ```
   "deviceConfig": {
     "default": {
@@ -30,7 +30,7 @@ import request from '@ohos.request';
 
 ## Constants
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -64,7 +64,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 Uploads files. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -99,7 +99,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 Uploads files. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -127,7 +127,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 ## UploadTask
 
-Implements file uploads. Before using a method of this class, you must obtain an **UploadTask** object.
+Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object.
 
 
 ### on('progress')
@@ -136,7 +136,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 Subscribes to the upload progress event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -170,7 +170,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 Subscribes to the **headerReceive** event, which is triggered when an HTTP response header is received. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -203,7 +203,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 Unsubscribes from the upload progress event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -237,7 +237,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 Unsubscribes from the **headerReceive** event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -270,7 +270,7 @@ remove(): Promise&lt;boolean&gt;
 
 Removes this upload task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -301,7 +301,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 Removes this upload task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -335,10 +335,10 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | url | string | Yes | Resource URL. |
-| header | object | No | HTTP or HTTPS header added to an upload request. |
-| method | string | No | Request methods available: **POST** and **PUT**. The default value is **POST**. |
+| header | object | Yes | HTTP or HTTPS header added to an upload request. |
+| method | string | Yes | Request methods available: **POST** and **PUT**. The default value is **POST**. |
 | files | Array&lt;[File](#file)&gt; | Yes | List of files to upload, which is submitted through **multipart/form-data**. |
-| data | Array&lt;[RequestData](#requestdata)&gt; | No | Form data in the request body. |
+| data | Array&lt;[RequestData](#requestdata)&gt; | Yes | Form data in the request body. |
 
 
 ## File
@@ -349,7 +349,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | -------- | -------- | -------- | -------- |
 | filename | string | No | File name in the header when **multipart** is used. |
 | name | string | No | Name of a form item when **multipart** is used. The default value is **file**. |
-| uri | string | Yes | Local path for storing files.<br/>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. The following is an example:<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
+| uri | string | Yes | Local path for storing files.<br/>The **dataability** and **internal** protocol types are supported. However, the **internal** protocol type supports only temporary directories. Below are examples:<br>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br>internal://cache/path/to/file.txt |
 | type | string | No | Type of the file content. By default, the type is obtained based on the extension of the file name or URI. |
 
 
@@ -369,7 +369,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 Downloads files. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -403,7 +403,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 Downloads files. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -440,7 +440,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 Subscribes to the download progress event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -475,7 +475,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 Unsubscribes from the download progress event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -510,7 +510,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 Subscribes to a download event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -538,7 +538,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 Unsubscribes from the download event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -546,7 +546,7 @@ Unsubscribes from the download event. This API uses an asynchronous callback to 
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type.<br/>- **'complete'**: download task completion event.<br/>- **'pause'**: download task pause event.<br/>- **remove**: download task removal event. |
+| type | string | Yes | Event type.<br/>- **complete**: download task completion event.<br/>- **pause**: download task pause event.<br/>- **remove**: download task removal event. |
 | callback | function | No | Callback used to return the result. |
 
 **Example**
@@ -566,7 +566,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 Subscribes to the download task failure event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -600,7 +600,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 Unsubscribes from the download task failure event. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -634,7 +634,7 @@ remove(): Promise&lt;boolean&gt;
 
 Removes this download task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -665,7 +665,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 Removes this download task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -698,7 +698,7 @@ query(): Promise&lt;DownloadInfo&gt;
 
 Queries this download task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -725,7 +725,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 Queries this download task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -754,7 +754,7 @@ queryMimeType(): Promise&lt;string&gt;
 
 Queries **MimeType** of this download task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -781,7 +781,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 Queries **MimeType** of this download task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -810,7 +810,7 @@ pause(): Promise&lt;void&gt;
 
 Pauses this download task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -841,7 +841,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 Pauses this download task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -874,7 +874,7 @@ resume(): Promise&lt;void&gt;
 
 Resumes this download task. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -906,7 +906,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 Resumes this download task. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.INTERNET
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -944,7 +944,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | enableMetered | boolean | No | Download allowed in metered connections. |
 | enableRoaming | boolean | No | Download allowed on a roaming network. |
 | description | string | No | Description of the download session. |
-| filePath<sup>7+</sup> | string | No | Download path. (The default value is **'internal://cache/'**).<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
+| filePath<sup>7+</sup> | string | No | Download path. (The default path is [ERROR:Invalid link:en-us_topic_0000001135742582.xml#xref8132147102215,link:en-us_topic_0000001127125012.xml#section1856519365229](en-us_topic_0000001127125012.xml#section1856519365229)).<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
 | networkType | number | No | Network type allowed for download. |
 | title | string | No | Title of the download session. |
 
