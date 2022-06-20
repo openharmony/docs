@@ -6,7 +6,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **Panel** component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
+The **<Panel\>** component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
 
 
 ## Required Permissions
