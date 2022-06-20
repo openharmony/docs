@@ -8,13 +8,11 @@
 
 ![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
-
-
 **图2** 视频播放零层图
 
 ![zh-ch_image_video_player](figures/zh-ch_image_video_player.png)
 
-*注意：视频播放需要显示、音频、编解码等硬件能力。
+*注意：视频播放需要显示、音频、编解码等硬件能力。*
 
 1. 三方应用从Xcomponent组件获取surfaceID。
 2. 三方应用把surfaceID传递给VideoPlayer JS。
@@ -118,7 +116,7 @@ export class VideoPlayerDemo {
       console.info('pause success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // 通过promise回调方式获取视频轨道信息
+    // 通过promise回调方式获取视频轨道信息ommunication_dsoftbus
     let arrayDescription;
     await videoPlayer.getTrackDescription().then((arrlist) => {
       if (typeof (arrlist) != 'undefined') {
