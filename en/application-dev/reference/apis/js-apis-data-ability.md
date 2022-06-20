@@ -1,6 +1,7 @@
 # DataAbilityPredicates
 
 > **NOTE**<br/>
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,7 +18,7 @@ import dataAbility from '@ohos.data.dataAbility';
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
 
-Creates an **RdbPredicates** object based on a **DataAabilityPredicates** object.
+Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -69,8 +70,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
   ```
 
 
@@ -97,8 +97,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notEqualTo("NAME", "lisi")
+  dataAbilityPredicates.notEqualTo("NAME", "lisi")
   ```
 
 
@@ -119,8 +118,7 @@ Adds a left parenthesis to this **DataAbilityPredicates**.
 
 **Example**
   ```js
-  let predicates = new dataAbilitylity.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -146,8 +144,7 @@ Adds a right parenthesis to this **DataAbilityPredicates**.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -173,8 +170,7 @@ Adds the OR condition to this **DataAbilityPredicates**.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .or()
       .equalTo("NAME", "Rose")
   ```
@@ -197,8 +193,7 @@ Adds the AND condition to this **DataAbilityPredicates**.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .and()
       .equalTo("SALARY", 200.5)
   ```
@@ -227,8 +222,7 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.contains("NAME", "os")
+  dataAbilityPredicates.contains("NAME", "os")
   ```
 
 
@@ -255,8 +249,7 @@ Sets a **DataAbilityPredicates** object to match a string that starts with the s
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.beginsWith("NAME", "os")
+  dataAbilityPredicates.beginsWith("NAME", "os")
   ```
 
 
@@ -283,8 +276,7 @@ Sets a **DataAbilityPredicates** object to match a string that ends with the spe
 
 **Example**
   ```
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.endsWith("NAME", "se")
+  dataAbilityPredicates.endsWith("NAME", "se")
   ```
 
 
@@ -310,8 +302,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNull("NAME")
+  dataAbilityPredicates.isNull("NAME")
   ```
 
 
@@ -337,8 +328,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNotNull("NAME")
+  dataAbilityPredicates.isNotNull("NAME")
   ```
 
 
@@ -365,8 +355,7 @@ Sets a **DataAbilityPredicates** object to match a string that is similar to the
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.like("NAME", "%os%")
+  dataAbilityPredicates.like("NAME", "%os%")
   ```
 
 
@@ -393,8 +382,7 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.glob("NAME", "?h*g")
+  dataAbilityPredicates.glob("NAME", "?h*g")
   ```
 
 
@@ -422,8 +410,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.between("AGE", 10, 50)
+  dataAbilityPredicates.between("AGE", 10, 50)
   ```
 
 
@@ -451,8 +438,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notBetween("AGE", 10, 50)
+  dataAbilityPredicates.notBetween("AGE", 10, 50)
   ```
 
 
@@ -479,8 +465,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThan("AGE", 18)
+  dataAbilityPredicates.greaterThan("AGE", 18)
   ```
 
 
@@ -507,8 +492,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThan("AGE", 20)
+  dataAbilityPredicates.lessThan("AGE", 20)
   ```
 
 
@@ -535,8 +519,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThanOrEqualTo("AGE", 18)
+  dataAbilityPredicates.greaterThanOrEqualTo("AGE", 18)
   ```
 
 
@@ -563,8 +546,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThanOrEqualTo("AGE", 20)
+  dataAbilityPredicates.lessThanOrEqualTo("AGE", 20)
   ```
 
 
@@ -590,8 +572,7 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByAsc("NAME")
+  dataAbilityPredicates.orderByAsc("NAME")
   ```
 
 
@@ -617,8 +598,7 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByDesc("AGE")
+  dataAbilityPredicates.orderByDesc("AGE")
   ```
 
 
@@ -639,14 +619,7 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
-  promiseDistinct.then((resultSet) => {   
-      console.log("distinct")
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct()
   ```
 
 
@@ -672,8 +645,7 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").limitAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").limitAs(3)
   ```
 
 
@@ -699,8 +671,7 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").offsetAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3)
   ```
 
 
@@ -726,8 +697,7 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.groupBy(["AGE", "NAME"])
+  dataAbilityPredicates.groupBy(["AGE", "NAME"])
   ```
 
 ### indexedBy
@@ -751,8 +721,7 @@ Sets a **DataAbilityPredicates** object to specify the index column.
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.indexedBy("SALARY_INDEX")
+  dataAbilityPredicates.indexedBy("SALARY_INDEX")
   ```
 
 
@@ -780,8 +749,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.in("AGE", [18, 20])
+  dataAbilityPredicates.in("AGE", [18, 20])
   ```
 
 
@@ -809,8 +777,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notIn("NAME", ["Lisa", "Rose"])
+  dataAbilityPredicates.notIn("NAME", ["Lisa", "Rose"])
   ```
 
 ## ValueType
