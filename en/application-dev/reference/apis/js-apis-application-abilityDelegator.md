@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -747,7 +747,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs: number): Promise\<ShellCmdResult>
+executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 Executes a shell command with the timeout period specified. This API uses a promise to return the result.
 

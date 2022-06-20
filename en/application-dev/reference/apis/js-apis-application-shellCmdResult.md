@@ -10,8 +10,6 @@
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
 
-
-
 ## ShellCmdResult
 
 Describes the shell command execution result.

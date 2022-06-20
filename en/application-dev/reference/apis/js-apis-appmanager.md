@@ -1,6 +1,7 @@
 # appManager
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,16 +26,16 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest((err, flag) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
+      console.log('startAbility result:' + JSON.stringify(err));
   })  
   ```
 
@@ -49,18 +50,18 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```js
   import app from '@ohos.application.appManager';
   app.isRunningInStabilityTest().then((flag) => {
-      console.log('success:' + JSON.stringfy(flag));
+      console.log('success:' + JSON.stringify(flag));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -75,14 +76,14 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```js
-        app.isRamConstrainedDevicePromise().then((data) => {
+        app.isRamConstrainedDevice().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
@@ -99,14 +100,14 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
   ```js
-        app.isRamConstrainedDevicePromise((err, data) => {
+        app.isRamConstrainedDevice((err, data) => {
             console.log('startAbility result failed:' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })
@@ -122,9 +123,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Size of the application memory.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Size of the application memory.|
 
 **Example**
     
@@ -146,9 +147,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.|
 
 **Example**
     
@@ -160,7 +161,7 @@ Obtains the memory size of this application. This API uses an asynchronous callb
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise<Array<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
@@ -168,14 +169,14 @@ Obtains information about the running processes. This API uses a promise to retu
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise<Array\<ProcessRunningInfo>> | Promise used to return the process information.| 
+| Type| Description|
+| -------- | -------- |
+| Promise<Array\<ProcessRunningInfo>> | Promise used to return the process information.|
 
 **Example**
     
   ```js
-        app.GetProcessRunningInfos().then((data) => {
+        app.getProcessRunningInfos().then((data) => {
             console.log('success:' + JSON.stringify(data));
         }).catch((error) => {
             console.log('failed:' + JSON.stringify(error));
@@ -184,7 +185,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback<Array<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
@@ -192,14 +193,14 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.|
 
 **Example**
     
   ```js
-        app.GetProcessRunningInfos((err, data) => {
+        app.getProcessRunningInfos((err, data) => {
             console.log('startAbility result failed :' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })

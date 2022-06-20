@@ -1,7 +1,10 @@
-# Context Module
+# Context
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module can be used only in the FA module.
 
 ## Modules to Import
 
@@ -96,8 +99,8 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 import featureAbility from '@ohos.ability.featureAbility'
 import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-bundle.getBundleInfo('com.context.test', 1, (datainfo) =>{
-	context.verifyPermission("com.example.permission", datainfo.uid);
+bundle.getBundleInfo('com.context.test', 1, (err,datainfo) =>{
+	context.verifyPermission("com.example.permission", {uid:datainfo.uid});
 });
 ```
 
@@ -152,7 +155,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-var Permission = context.PermissionOptions(1,1);
+var Permission = {pid:1};
 context.verifyPermission('com.context.permission',Permission).then((data) => {
     console.info("======================>verifyPermissionCallback====================>");
     console.info("====>data====>" + JSON.stringify(data));

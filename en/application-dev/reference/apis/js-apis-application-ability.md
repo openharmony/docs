@@ -1,7 +1,10 @@
 # Ability
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>  The APIs of this module can be used only in the stage model. 
 
 
 Manages the ability lifecycle and context.
@@ -9,7 +12,7 @@ Manages the ability lifecycle and context.
 
 ## Modules to Import
 
-  
+
 ```
 import Ability from '@ohos.application.Ability';
 ```
@@ -18,11 +21,12 @@ import Ability from '@ohos.application.Ability';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
- | Name | Type | Readable | Writable | Description | 
- | -------- | -------- | -------- | -------- | -------- |
- | context | [AbilityContext](js-apis-ability-context.md) | Yes | No | Context of an ability. | 
- | launchWant | [Want](js-apis-application-Want.md) | Yes | No | Parameters for starting the ability. | 
- | lastRequestWant | [Want](js-apis-application-Want.md) | Yes | No | Parameters used when the ability was started last time. | 
+| Name | Type | Readable | Writable | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| context | [AbilityContext](js-apis-ability-context.md) | Yes | No | Context of an ability. |
+| launchWant | [Want](js-apis-application-Want.md) | Yes | No | Parameters for starting the ability. |
+| lastRequestWant | [Want](js-apis-application-Want.md) | Yes | No | Parameters used when the ability was started last time. |
+| callee | [Callee](#callee) | Yes | No | Object that invokes the stub service. |
 
 
 ## Ability.onCreate
@@ -35,10 +39,10 @@ Called to initialize the service logic when an ability is created.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | want | [Want](js-apis-application-Want.md) | Yes | Information related to this ability, including the ability name and bundle name. | 
- | param | AbilityConstant.LaunchParam | Yes | Parameters for starting the ability, and the reason for the last abnormal exit. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes | Information related to this ability, including the ability name and bundle name. |
+| param | AbilityConstant.LaunchParam | Yes | Parameters for starting the ability, and the reason for the last abnormal exit. |
 
 **Example**
     
@@ -61,9 +65,9 @@ Called when a **WindowStage** is created for this ability.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | windowStage | window.WindowStage | Yes | **WindowStage** information. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| windowStage | window.WindowStage | Yes | **WindowStage** information. |
 
 **Example**
     
@@ -105,9 +109,9 @@ Called when the **WindowStage** is restored during the migration of this ability
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | windowStage | window.WindowStage | Yes | **WindowStage** information. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| windowStage | window.WindowStage | Yes | **WindowStage** information. |
 
 **Example**
     
@@ -187,24 +191,25 @@ Called to save data during the ability migration preparation process.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes | **want** parameter. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes | **want** parameter. |
 
 **Return value**
 
- | Type | Description | 
- | -------- | -------- |
- | AbilityConstant.OnContinueResult | Continuation result. | 
+| Type | Description |
+| -------- | -------- |
+| AbilityConstant.OnContinueResult | Continuation result. |
 
 **Example**
     
   ```js
+  import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
-          return true;
+          return AbilityConstant.OnContinueResult.AGREE;
       }
   }
   ```
@@ -220,9 +225,9 @@ Called when the ability startup mode is set to singleton.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | want | [Want](js-apis-application-Want.md) | Yes | Want parameters, such as the ability name and bundle name. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes | Want parameters, such as the ability name and bundle name. |
 
 **Example**
     
@@ -245,12 +250,12 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | config | [Configuration](js-apis-configuration.md) | Yes | New configuration. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-configuration.md) | Yes | New configuration. |
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
@@ -258,6 +263,32 @@ Called when the configuration of the environment where the ability is running is
       }
   }
   ```
+
+## Ability.dump
+
+dump(params: Array\<string>): Array\<string>;
+
+ Called when the client information is dumped. 
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name   | Type           | Mandatory | Description                          |
+| -------- | -------- | -------- | -------- |
+| params | Array\<string> | Yes | Parameters in the form of a command. |
+
+**Example**    
+
+  ```js
+  class myAbility extends Ability {
+      dump(params) {
+          console.log('dump, params:' + JSON.stringify(params));
+          return ["params"]
+      }
+  }
+  ```
+
 
 
 ## Caller
@@ -275,22 +306,25 @@ Sends sequenceable data to the target ability.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | method | string | Yes | Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data. | 
- | data | rpc.Sequenceable | Yes | Sequenceable data. You need to customize the data. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| method | string | Yes | Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data. |
+| data | rpc.Sequenceable | Yes | Sequenceable data. You need to customize the data. |
 
 **Return value**
 
- | Type | Description | 
- | -------- | -------- |
- | Promise&lt;void&gt; | Promise used to return a response. | 
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return a response. |
 
 **Example**
     
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // Custom sequenceable data structure
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -314,7 +348,7 @@ Sends sequenceable data to the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -345,22 +379,25 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | method | string | Yes | Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data. | 
- | data | rpc.Sequenceable | Yes | Sequenceable data. You need to customize the data. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| method | string | Yes | Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data. |
+| data | rpc.Sequenceable | Yes | Sequenceable data. You need to customize the data. |
 
 **Return value**
 
- | Type | Description | 
- | -------- | -------- |
- | Promise&lt;rpc.MessageParcel&gt; | Promise used to return the sequenceable data from the target ability. | 
+| Type | Description |
+| -------- | -------- |
+| Promise&lt;rpc.MessageParcel&gt; | Promise used to return the sequenceable data from the target ability. |
 
 **Example**
     
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -384,7 +421,7 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -423,7 +460,7 @@ Releases the caller interface of the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -451,9 +488,9 @@ Registers a callback that is invoked when the Stub on the target ability is disc
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | callback | OnReleaseCallBack | Yes | Callback used for the **onRelease** API. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | OnReleaseCallBack | Yes | Callback used for the **onRelease** API. |
 
 **Example**
     
@@ -464,7 +501,7 @@ Registers a callback that is invoked when the Stub on the target ability is disc
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -499,16 +536,19 @@ Registers a caller notification callback, which is invoked when the target abili
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | method | string | Yes | Notification message string negotiated between the two abilities. | 
- | callback | CaleeCallBack | Yes | JS notification synchronization callback of the **rpc.MessageParcel** type. The callback must return at least one empty **rpc.Sequenceable** object. Otherwise, the function execution fails. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| method | string | Yes | Notification message string negotiated between the two abilities. |
+| callback | CaleeCallBack | Yes | JS notification synchronization callback of the **rpc.MessageParcel** type. The callback must return at least one empty **rpc.Sequenceable** object. Otherwise, the function execution fails. |
 
 **Example**
     
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -552,9 +592,9 @@ Unregisters a caller notification callback, which is invoked when the target abi
 
 **Parameters**
 
- | Name | Type | Mandatory | Description | 
- | -------- | -------- | -------- | -------- |
- | method | string | Yes | Registered notification message string. | 
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| method | string | Yes | Registered notification message string. |
 
 **Example**
     
@@ -575,10 +615,10 @@ Unregisters a caller notification callback, which is invoked when the target abi
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
- | Name | Type | Readable | Writable | Description | 
- | -------- | -------- | -------- | -------- | -------- |
- | (msg: string) | function | Yes | No | Prototype of the listener function interface registered by the caller. | 
- 
+| Name | Type | Readable | Writable | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | function | Yes | No | Prototype of the listener function interface registered by the caller. |
+
 
  ## CaleeCallBack
 
@@ -586,6 +626,6 @@ Unregisters a caller notification callback, which is invoked when the target abi
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
- | Name | Type | Readable | Writable | Description | 
- | -------- | -------- | -------- | -------- | -------- |
- | (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes | No | Prototype of the message listener function interface registered by the callee. | 
+| Name | Type | Readable | Writable | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes | No | Prototype of the message listener function interface registered by the callee. |

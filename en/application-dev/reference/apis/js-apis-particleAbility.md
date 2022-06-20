@@ -1,9 +1,12 @@
-# ParticleAbility Module
+# ParticleAbility
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module can be used only in the FA module.
 
-## Constraints
+## Usage
 
 The ParticleAbility module is used to perform operations on abilities of the Data and Service types.
 
@@ -196,11 +199,11 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| Notification ID of a continuous task.|
-  | request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | number | Yes| Notification ID of a continuous task.|
+| request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
 
@@ -226,7 +229,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -235,11 +238,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;
@@ -287,7 +290,7 @@ let wantAgentInfo = {
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESET_FLAG]
+    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -296,11 +299,11 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
         text: "text"
     };
     let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_TEXT,
+        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: basicContent
     };
     let request = {
-        content: notificatonContent,
+        content: notificationContent,
         wantAgent: wantAgentObj
     };
     let id = 1;
@@ -323,9 +326,9 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
  **Parameters**
 
-  | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
  **Example**
 
@@ -401,6 +404,7 @@ Connects this ability to a specific Service ability. This API uses a callback to
 **Example**
 
 ```js
+        import rpc from '@ohos.rpc'
         function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -422,8 +426,10 @@ Connects this ability to a specific Service ability. This API uses a callback to
             },
         );
 
-        particleAbility.disconnectAbility(connId).then((error,data)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code + " data: " + data);
+        particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
         });
     
 
@@ -440,13 +446,14 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
 
 **Example**
 
 ```js
+import rpc from '@ohos.rpc'
  function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -467,11 +474,11 @@ Disconnects this ability from the Service ability. This API uses a callback to r
                 onFailed: onFailedCallback,
             },
         );
-        var result = particleAbility.disconnectAbility(connId,
-            (error,data) => {
-                console.log('particleAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
-            },
-        );
+        var result =  particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
+        });
 
 ```
 
@@ -493,6 +500,7 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 **Example**
 
 ```js
+import rpc from '@ohos.rpc'
 function onConnectCallback(element, remote){
             console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
         }
@@ -514,8 +522,10 @@ function onConnectCallback(element, remote){
             },
         );
 
-        particleAbility.disconnectAbility(connId).then((error,data)=>{
-            console.log('particleAbilityTest result errCode : ' + error.code + " data: " + data);
+         particleAbility.disconnectAbility(connId).then((data)=>{
+            console.log( " data: " + data);
+        }).catch((error)=>{
+            console.log('particleAbilityTest result errCode : ' + error.code )
         });
 
 ```
