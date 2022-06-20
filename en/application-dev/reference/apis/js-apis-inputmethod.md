@@ -1,6 +1,6 @@
 # Input Method Framework
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 
 
@@ -10,7 +10,7 @@
 import inputMethod from '@ohos.inputMethod';
 ```
 
-## inputMethod<sup>8+</sup>
+## inputMethod<sup>6+</sup>
 
 Provides the constants.
 
@@ -21,7 +21,7 @@ Provides the constants.
 | MAX_TYPE_NUM | number | Yes| No| Maximum number of supported input methods.|
 
 
-## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
+## InputMethodProperty<sup>6+</sup><a name="InputMethodProperty"></a>
 
 Describes the input method application attributes.
 
@@ -48,11 +48,11 @@ Obtains an [InputMethodController](#InputMethodController) instance.
 
 **Example**
 
-```
-var InputMethodController = inputMethod.getInputMethodController();
-```
+  ```js
+  var InputMethodController = inputMethod.getInputMethodController();
+  ```
 
-## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
+## inputMethod.getInputMethodSetting<sup>6+</sup><a name="getInputMethodSetting"></a>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -120,7 +120,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>6+</sup><a name="InputMethodSetting"></a>
 
 In the following API examples, you must first use [getInputMethodSetting](#getInputMethodSetting) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
 
@@ -140,14 +140,14 @@ Obtains the list of installed input methods. This API uses an asynchronous callb
 
 **Example**
 
-```js
- InputMethodSetting.listInputMethod((properties)=>{
-   for (var i = 0;i < properties.length; i++) {
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId);
-   }
-});
-```
+  ```js
+   InputMethodSetting.listInputMethod((properties)=>{
+     for (var i = 0;i < properties.length; i++) {
+       var property = properties[i];
+       console.info(property.packageName + "/" + property.methodId);
+     }
+  });
+  ```
 
 ### listInputMethod
 
