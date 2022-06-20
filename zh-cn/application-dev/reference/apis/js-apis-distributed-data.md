@@ -261,7 +261,7 @@ const options = {
     kvManager.getKVStore('storeId', options, async function (err, store) {
     console.log('getKVStore success');
     kvStore = store;
-    await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+    kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
         console.log('closeKVStore success');
     });
     });
@@ -311,7 +311,7 @@ const options = {
     kvManager.getKVStore('storeId', options).then(async (store) => {
     console.log('getKVStore success');
     kvStore = store;
-    await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+    kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
         console.log('closeKVStore success');
     }).catch((err) => {
         console.log('closeKVStore err ' + JSON.stringify(err));
@@ -359,7 +359,7 @@ try {
     kvManager.getKVStore('store', options, async function (err, store) {
         console.log('getKVStore success');
         kvStore = store;
-        await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+        kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
             console.log('deleteKVStore success');
         });
     });
@@ -408,7 +408,7 @@ try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
         console.log('getKVStore success');
         kvStore = store;
-        await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+        kvManager.deleteKVStore('appId', 'storeId').then(() => {
             console.log('deleteKVStore success');
         }).catch((err) => {
             console.log('deleteKVStore err ' + JSON.stringify(err));
@@ -695,7 +695,7 @@ try {
     node.appendChild(child1);
     node.appendChild(child2);
     node.appendChild(child3);
-    console.log("appendNode " + node.toJson());
+    console.log("appendNode " + JSON.stringify(node));
     child1 = null;
     child2 = null;
     child3 = null;
@@ -2333,7 +2333,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -2385,7 +2385,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -2437,7 +2437,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.deleteBatch(keys, async function (err,data) {
+        kvStore.deleteBatch(keys, async function (err,data) {
             console.log('deleteBatch success');
         });
     });
@@ -2489,7 +2489,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.deleteBatch(keys).then((err) => {
+        kvStore.deleteBatch(keys).then((err) => {
             console.log('deleteBatch success');
         }).catch((err) => {
             console.log('deleteBatch fail ' + JSON.stringify(err));
@@ -2545,7 +2545,7 @@ try {
         console.log('startTransaction success');
         let entries = putBatchString(10, 'batch_test_string_key');
         console.log('entries: ' + JSON.stringify(entries));
-        await kvStore.putBatch(entries, async function (err,data) {
+        kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
         });
     });
@@ -3039,7 +3039,7 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3091,7 +3091,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3147,7 +3147,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3183,6 +3183,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```js
+let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
     let entries = [];
@@ -3202,7 +3203,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3252,7 +3253,7 @@ try {
     }
     kvStore.putBatch(entries, async function (err, data) {
         console.log('GetResultSet putBatch success');
-        await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+        kvStore.getResultSet('batch_test_string_key', async function (err, result) {
             console.log('GetResultSet getResultSet succeed.');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
@@ -3363,7 +3364,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSet(query, async function (err, result) {
+        kvStore.getResultSet(query, async function (err, result) {
             console.log('getResultSet succeed.');
             resultSet = result;
         });
@@ -3537,7 +3538,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSize(query, async function (err, resultSize) {
+        kvStore.getResultSize(query, async function (err, resultSize) {
             console.log('getResultSet succeed.');
         });
     });
@@ -3627,12 +3628,12 @@ try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
         console.log('put success');
         const deviceid = 'no_exist_device_id';
-        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+        kvStore.removeDeviceData(deviceid, async function (err,data) {
             if (err == undefined) {
                 console.log('removeDeviceData success');
             } else {
                 console.log('removeDeviceData fail');
-                await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
                     console.log('RemoveDeviceData get success');
                 });
             }
@@ -4030,7 +4031,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4083,7 +4084,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4137,11 +4138,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        expect(err == undefined).assertTrue();
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4197,7 +4197,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4249,11 +4249,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        expect(err == undefined).assertTrue();
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4311,7 +4310,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        await kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4351,7 +4350,7 @@ try {
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
         console.log('getResultSet succeed.');
         resultSet = result;
-        await kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log('closeResultSet success');
         })
     });
@@ -4443,10 +4442,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getResultSet(query, async function (err, result) {
+        kvStore.getResultSet(query, async function (err, result) {
             console.log('getResultSet succeed.');
             resultSet = result;
-            await kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
             })
         });
@@ -4559,10 +4558,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+        kvStore.getResultSet('localDeviceId', query, async function (err, result) {
             console.log('getResultSet succeed.');
             resultSet = result;
-            await kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
             })
         });
@@ -4749,7 +4748,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getResultSize(query, async function (err, resultSize) {
+        kvStore.getResultSize(query, async function (err, resultSize) {
             console.log('getResultSet succeed.');
         });
     });
@@ -4852,7 +4851,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+        kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
             console.log('getResultSet succeed.');
         });
     });
@@ -4943,12 +4942,12 @@ try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
         console.log('RemoveDeviceData  put success');
         const deviceid = 'no_exist_device_id';
-        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+        kvStore.removeDeviceData(deviceid, async function (err,data) {
             if (err == undefined) {
                 console.log('removeDeviceData success');
             } else {
                 console.log('removeDeviceData fail');
-                await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
                     console.log('RemoveDeviceData get success');
                 });
             }
@@ -5066,6 +5065,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 **示例：**
 
 ```js
+let kvStore;
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
