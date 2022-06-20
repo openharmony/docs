@@ -63,13 +63,19 @@ Obtains information about the root album or directory in asynchronous mode. This
 - Example
 
   ```js
-  filemanager.getRoot((err, fileInfo) => {
+  let option = {
+            "dev":{
+            name:"",
+            }
+  };
+  filemanager.getRoot(option,(err, fileInfo)=>{
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
           }
-      }
+      } 
   });
+  
   ```
 
 ## filemanager.listFile
@@ -105,7 +111,7 @@ Obtains information about the second-level album or files in asynchronous mode. 
   ```js
   // Obtain all files in the directory.
   // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
+  let media_path = file.path
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
@@ -114,9 +120,12 @@ Obtains information about the second-level album or files in asynchronous mode. 
           }
       }
   }).catch((err) => {
-      console.log(err)
-  });
+     
+	  console.log(err)
+  });  
   ```
+
+  
 
 ## filemanager.listFile
 
@@ -130,8 +139,8 @@ Obtains information about the second-level album or files in asynchronous mode. 
 
   | Name  | Type                     | Mandatory| Description                                                        |
   | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | path     | string                   | Yes  | URI of the directory to query.                                               |
-  | type     | string                   | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
+  | path     | string                    | Yes  | URI of the directory to query.                                               |
+  | type     | string                    | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained.                                |
 - Error
@@ -145,14 +154,30 @@ Obtains information about the second-level album or files in asynchronous mode. 
 - Example
 
   ```js
-  // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
-  filemanager.listFile(media_path, "file", (err, fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // Call listFile() and getRoot() to obtain the file path.
+  let fileInfos = await filemanager.getRoot(); 
+  let media_path  = "";
+  for (let i = 0; i < fileInfos.length; i++) {
+	if (fileInfos[i].name == "image_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "audio_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "video_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "file_folder") {
+	  media_path = fileInfos[i].path;
+	}
+  }
+
+  filemanager.listFile(media_path, "file")
+  .then((fileInfo) => {
+    if(Array.isArray(fileInfo)) {
+        for (var i = 0; i < fileInfo.length; i++) {
+            console.log("file:"+JSON.stringify(fileInfo));
+        }
+    }
+  }).catch((err) => {
+    console.log(err)
   });
   ```
 
@@ -211,8 +236,8 @@ Creates a file in the specified path in asynchronous mode. This API uses a callb
 
   | Name  | Type                     | Mandatory| Description                         |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | filename | string                   | Yes  | Name of the file to create.               |
-  | path     | string                   | Yes  | URI of the file to create.            |
+  | filename | string                    | Yes  | Name of the file to create.               |
+  | path     | string                    | Yes  | URI of the file to create.            |
   | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained. |
 
@@ -230,7 +255,7 @@ Creates a file in the specified path in asynchronous mode. This API uses a callb
   ```js
   // Create a file.
   // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
+  let media_path = file.path
   // File to be saved.
   let name = "xxx.jpg"
   filemanager.createFile(media_path, name, (err, uri) => {
