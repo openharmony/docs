@@ -635,7 +635,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -669,7 +669,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **返回值：**
 
