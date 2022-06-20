@@ -36,7 +36,7 @@ Enables listening for hot swap events of an input device.
 let isPhysicalKeyboardExist = true;
 inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
-    inputDevice.getKeyboardType(data.deviceId, (ret) => {
+    inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
         console.log("The keyboard type of the device is: " + ret);
         if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
             // The physical keyboard is connected.
@@ -68,12 +68,12 @@ Disables listening for hot swap events of an input device.
 **Example**
 
 ```js
-listener: function(data) {
+function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 // Disable this listener.
-inputDevice.off("change", this.listener);
+inputDevice.off("change", listener);
 
 // Disable all listeners.
 inputDevice.off("change");
@@ -336,7 +336,7 @@ Defines the axis range of an input device.
 | Name                     | Type                     | Description      |
 | ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis                    | [AxisType](axistype)      | Axis type.   |
+| axis                    | [AxisType](#axistype)      | Axis type.   |
 | max                     | number                    | Maximum value of the axis.  |
 | min                     | number                    | Minimum value of the axis.  |
 | fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.  |
