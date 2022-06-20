@@ -22,8 +22,6 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 
 为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考[音频管理API文档AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8)。
 
-
-
 ## 开发步骤
 
 1. 使用createAudioRenderer()创建一个AudioRenderer实例。
@@ -33,7 +31,7 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
     var audioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_1,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
     }
    
@@ -60,49 +58,49 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    在音频中断的情况下，应用可能会碰到音频数据写入失败的问题。所以建议不感知、不处理中断的应用在写入音频数据前，使用audioRenderer.state检查播放器状态。而订阅音频中断事件，可以获取到更多详细信息，具体可参考[InterruptEvent](../reference/apis/js-apis-audio.md#interruptevent9)。
    
    ```js
-   audioRenderer.on('interrupt', (interruptEvent) => {
-           console.info('InterruptEvent Received');
-           console.info('InterruptType: ' + interruptEvent.eventType);
-           console.info('InterruptForceType: ' + interruptEvent.forceType);
-           console.info('AInterruptHint: ' + interruptEvent.hintType);
+    audioRenderer.on('interrupt', (interruptEvent) => {
+        console.info('InterruptEvent Received');
+        console.info('InterruptType: ' + interruptEvent.eventType);
+        console.info('InterruptForceType: ' + interruptEvent.forceType);
+        console.info('AInterruptHint: ' + interruptEvent.hintType);
    
-           if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-               switch (interruptEvent.hintType) {
-                   // Force Pause: Action was taken by framework.
-                   // Halt the write calls to avoid data loss.
-                   case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                       isPlay = false;
-                       break;
-                   // Force Stop: Action was taken by framework.
-                   // Halt the write calls to avoid data loss.
-                   case audio.InterruptHint.INTERRUPT_HINT_STOP:
-                       isPlay = false;
-                       break;
-                   // Force Duck: Action was taken by framework,
-                   // just notifying the app that volume has been reduced.
-                   case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-                       break;
-                   // Force Unduck: Action was taken by framework,
-                   // just notifying the app that volume has been restored.
-                   case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-                       break;
-               }
-           } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-               switch (interruptEvent.hintType) {
-                   // Share Resume: Action is to be taken by App.
-                   // Resume the force paused stream if required.
-                   case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-                       startRenderer();
-                       break;
-                   // Share Pause: Stream has been interrupted,
-                   // It can choose to pause or play concurrently.
-                   case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                       isPlay = false;
-                       pauseRenderer();
-                       break;
-               }
-           }
-       });
+        if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+            switch (interruptEvent.hintType) {
+                // Force Pause: Action was taken by framework.
+                // Halt the write calls to avoid data loss.
+                case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                    isPlay = false;
+                    break;
+                // Force Stop: Action was taken by framework.
+                // Halt the write calls to avoid data loss.
+                case audio.InterruptHint.INTERRUPT_HINT_STOP:
+                    isPlay = false;
+                    break;
+                // Force Duck: Action was taken by framework,
+                // just notifying the app that volume has been reduced.
+                case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+                    break;
+                // Force Unduck: Action was taken by framework,
+                // just notifying the app that volume has been restored.
+                case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+                    break;
+            }
+        } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+            switch (interruptEvent.hintType) {
+                // Share Resume: Action is to be taken by App.
+                // Resume the force paused stream if required.
+                case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+                    startRenderer();
+                    break;
+                // Share Pause: Stream has been interrupted,
+                // It can choose to pause or play concurrently.
+                case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                    isPlay = false;
+                    pauseRenderer();
+                    break;
+            }
+        }
+    });
    ```
 
 3. 调用start()方法来启动/恢复播放任务。
@@ -180,38 +178,38 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
 5. （可选）调用pause()方法或stop()方法暂停/停止渲染音频数据。
 
    ```js
-       async function pauseRenderer() {
-           var state = audioRenderer.state;
-           if (state != audio.AudioState.STATE_RUNNING) {
-               console.info('Renderer is not running');
-               return;
-           }
+    async function pauseRenderer() {
+        var state = audioRenderer.state;
+        if (state != audio.AudioState.STATE_RUNNING) {
+            console.info('Renderer is not running');
+            return;
+        }
+
+        await audioRenderer.pause();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_PAUSED) {
+            console.info('Renderer paused');
+        } else {
+            console.error('Renderer pause failed');
+        }
+    }
    
-           await audioRenderer.pause();
-   
-           state = audioRenderer.state;
-           if (state == audio.AudioState.STATE_PAUSED) {
-               console.info('Renderer paused');
-           } else {
-               console.error('Renderer pause failed');
-           }
-       }
-   
-       async function stopRenderer() {
-           var state = audioRenderer.state;
-           if (state != audio.AudioState.STATE_RUNNING || state != audio.AudioState.STATE_PAUSED) {
-               console.info('Renderer is not running or paused');
-               return;
-           }
-   
-           await audioRenderer.stop();
-   
-           state = audioRenderer.state;
-           if (state == audio.AudioState.STATE_STOPPED) {
-               console.info('Renderer stopped');
-           } else {
-               console.error('Renderer stop failed');
-           }
+    async function stopRenderer() {
+        var state = audioRenderer.state;
+        if (state != audio.AudioState.STATE_RUNNING || state != audio.AudioState.STATE_PAUSED) {
+            console.info('Renderer is not running or paused');
+            return;
+        }
+
+        await audioRenderer.stop();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_STOPPED) {
+            console.info('Renderer stopped');
+        } else {
+            console.error('Renderer stop failed');
+        }
    }
    ```
 
@@ -220,22 +218,20 @@ AudioRenderer提供了渲染音频文件和控制播放的接口，开发者可�
    AudioRenderer会使用大量的系统资源，所以请确保完成相关任务后，进行资源释放。
 
    ```js
-       async function releaseRenderer() {
-           if (state_ == RELEASED || state_ == NEW) {
-               console.info('Resourced already released');
-               return;
-           }
-   
-           await audioRenderer.release();
-   
-           state = audioRenderer.state;
-           if (state == STATE_RELEASED) {
-               console.info('Renderer released');
-           } else {
-               console.info('Renderer release failed');
-           }
-   
-       }
-   ```
+    async function releaseRenderer() {
+        if (state_ == RELEASED || state_ == NEW) {
+            console.info('Resourced already released');
+            return;
+        }
 
-   
+        await audioRenderer.release();
+
+        state = audioRenderer.state;
+        if (state == STATE_RELEASED) {
+            console.info('Renderer released');
+        } else {
+            console.info('Renderer release failed');
+        }
+
+    }
+   ```
