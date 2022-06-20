@@ -2762,7 +2762,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 });
 ```
 
-### Notification.enableNotificationSlot <sup>9+</sup>
+## Notification.enableNotificationSlot <sup>9+</sup>
 
 enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback<void>): void
 
@@ -2796,7 +2796,7 @@ Notification.enableNotificationSlot(
     enableSlotCallback);
 ```
 
-### Notification.enableNotificationSlot <sup>9+</sup>
+## Notification.enableNotificationSlot <sup>9+</sup>
 
 enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise<void> 
 
@@ -2826,7 +2826,7 @@ Notification.enableNotificationSlot(
     });
 ```
 
-### Notification.isNotificationSlotEnabled <sup>9+</sup>
+## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback<boolean>): void
 
@@ -2858,7 +2858,7 @@ Notification.isNotificationSlotEnabled(
     getEnableSlotCallback);
 ```
 
-### Notification.isNotificationSlotEnabled <sup>9+</sup>
+## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean>  
 
