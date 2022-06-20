@@ -1,6 +1,7 @@
 # Audio Management
 
->  **NOTE**<br/>
+>  **NOTE**
+>
 >  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 >  API version 9 is a canary release for trial use. The APIs of this version may be unstable.
