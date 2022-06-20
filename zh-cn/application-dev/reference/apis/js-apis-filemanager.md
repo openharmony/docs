@@ -120,9 +120,6 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
           }
       }
   }).catch((err) => {
-
-
-    
       console.log(err)
   });
   ```
@@ -200,7 +197,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
   | 类型 | 说明 |
   | --- | -- |
-  | string | 文件uri |
+  | Promise&lt;string&gt; | 文件uri |
 
 - 异常
   | 错误名称 | 错误类型 | 错误码 |说明 |
