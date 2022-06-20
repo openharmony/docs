@@ -120,7 +120,7 @@ Creates an **AudioRecorder** instance to control audio recording.
 **Example**
 
 ```js
-let audiorecorder = media.createAudioRecorder();
+let audioRecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
