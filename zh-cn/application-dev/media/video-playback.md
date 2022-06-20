@@ -41,7 +41,7 @@
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
-Xcomponent创建方法可参考：[Xcomponent创建方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md)
+Xcomponent创建方法可参考：[Xcomponent创建方法](../reference/arkui-ts/ts-basic-components-xcomponent.md)
 
 ```js
 import media from '@ohos.multimedia.media'
