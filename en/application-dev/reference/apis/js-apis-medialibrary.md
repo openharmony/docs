@@ -1,4 +1,4 @@
-# Media Library Management
+# MediaLibrary
 
 > **NOTE**
 >
@@ -1957,7 +1957,7 @@ async function example() {
 
 Provides APIs to implement a physical album.
 
-### **Attributes**
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
