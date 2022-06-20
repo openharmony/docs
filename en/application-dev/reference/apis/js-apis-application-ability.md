@@ -1,7 +1,9 @@
 # Ability
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Manages the ability lifecycle and context.
 
@@ -347,7 +349,7 @@ Sends sequenceable data to the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -420,7 +422,7 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -459,7 +461,7 @@ Releases the caller interface of the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -500,7 +502,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
