@@ -46,8 +46,8 @@
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
   - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
-  - application/[MissionInfo (MissionInfo)](js-apis-application-missionInfo.md)
-
+  - application/[MissionInfo](js-apis-application-missionInfo.md)
+  
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)
@@ -136,6 +136,7 @@
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
+  - [@ohos.securityLabel](js-apis-securityLabel.md)
 
 - Telephony Service
 
@@ -158,6 +159,9 @@
 
   - [@ohos.bluetooth](js-apis-bluetooth.md)
   - [@ohos.connectedTag](js-apis-connectedTag.md)
+  - [@ohos.nfc.cardEmulation](js-apis-cardEmulation.md)
+  - [@ohos.nfc.controller](js-apis-nfcController.md)
+  - [@ohos.nfc.tag](js-apis-nfcTag.md)
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
