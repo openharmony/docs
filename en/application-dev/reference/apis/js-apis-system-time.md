@@ -1,7 +1,8 @@
 # Setting the System Time
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+This module provides the time, time zone, and timing services. Use the time and time zone services to set and obtain the system time and time zone, and use the timing service to manage and use the system time and time zone to implement alarms or other timing functions.
+
+> **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -199,7 +200,7 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(callback: AsyncCallback&lt;number&gt;): void
+getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses an asynchronous callback to return the result.
 
@@ -227,7 +228,7 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(): Promise&lt;number&gt;
+getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses a promise to return the result.
 
