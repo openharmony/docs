@@ -11,7 +11,7 @@ The input device management module is used to listen for the connection, disconn
 ## Modules to Import
 
 
-```
+```js
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
@@ -33,7 +33,7 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 
 **Example**
 
-```
+```js
 export default {
     data: {
         deviceIds: Array,
@@ -65,7 +65,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 **Example**
 
-```
+```js
 export default {
     testGetDeviceIds: function () {
         console.info("InputDeviceJsTest---start---testGetDeviceIds");
@@ -100,7 +100,7 @@ Obtains the information about an input device. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 export default {
     InputDeviceData: {
         deviceId : 0,
@@ -136,7 +136,7 @@ Obtains the information about an input device. This API uses a promise to return
 
 **Example**
 
-```
+```js
 export default {
     InputDeviceData: {
         deviceId : 0,
@@ -166,17 +166,17 @@ Defines the information about an input device.
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 | Name      | Type                              | Description                                                        |
-| ---------- | -------------------------------------- | ------------------------------------------------------------ |
-| id         | number                                 | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| name       | string                                 | Name of the input device.                                            |
-| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
-| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                                          |
-| bus        | number                                 | Bus type of the input device.                                        |
-| product    | number                                 | Product information of the input device.                                        |
-| vendor     | number                                 | Vendor information of the input device.                                        |
-| version    | number                                 | Version information of the input device.                                        |
-| phys       | string                                 | Physical address of the input device.                                        |
-| uniq       | string                                 | Unique ID of the input device.                                        |
+| ---------- | -------------------------- | ---------------------------------------------------- |
+| id            | number                         | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes. |
+| name       | string                            | Name of the input device.  |
+| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad. |
+| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device. |
+| bus           | number                           | Bus type of the input device. |
+| product    | number                        | Product information of the input device. |
+| vendor     | number                        | Vendor information of the input device. |
+| version     | number                        | Version information of the input device. |
+| phys        | string                            | Physical address of the input device. |
+| uniq        | string                            | Unique ID of the input device. |
 
 ## AxisType
 
