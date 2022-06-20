@@ -330,13 +330,14 @@
 
 8. 数据库的备份和恢复
 
-  a. 根据指定的数据库备份文件名备份当前数据库
-  b. 根据指定的数据库备份文件恢复当前数据库
+   a. 根据指定的数据库备份文件名备份当前数据库。
 
-  示例代码如下：
+   b. 根据指定的数据库备份文件恢复当前数据库。
+
+   示例代码如下：
    ```
-    std::string backupName = "backup.db";
-    std::vector<uint8_t> key;
+    std::string backupName = "backup.db"; // 指定数据库的备份文件名
+    std::vector<uint8_t> key; // 数据库的加密密钥
     int errno = store->Backup(backupName, key);
     errno = store->Restore(backupName, key);
     ```
