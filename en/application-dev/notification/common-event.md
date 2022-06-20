@@ -1,5 +1,5 @@
 # Common Event Development
-### Introduction
+## Introduction
 OpenHarmony provides a Common Event Service (CES) for applications to subscribe to, publish, and unsubscribe from common events.
 
 Common events are classified into system common events and custom common events.
