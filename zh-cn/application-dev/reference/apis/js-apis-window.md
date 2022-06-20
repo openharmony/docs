@@ -1591,6 +1591,52 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 windowClass.off('keyboardHeightChange');
 ```
 
+### on('touchOutside')<sup>9+</sup>
+
+on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
+
+开启本窗口区域范围外的点击事件的监听。
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback<void&gt; | 是   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+
+**示例：**
+
+```js
+windowClass.on('touchOutside', () => {
+    console.info('touch outside');
+});
+```
+
+### off('touchOutside')<sup>9+</sup>
+
+off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
+
+关闭本窗口区域范围外的点击事件的监听。
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+
+**示例：**
+
+```js
+windowClass.off('touchOutside');
+```
+
 ### isSupportWideGamut<sup>8+</sup>
 
 isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -1755,7 +1801,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的背景色，使用callback异步回调。
+设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1783,7 +1829,7 @@ windowClass.setBackgroundColor(color, (err, data) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-设置窗口的背景色，使用Promise异步回调。
+设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
