@@ -32,8 +32,8 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据，结果以callback形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
-  | RdbStore | insert(name:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | 向目标表中插入一行数据，结果以Promise形式返回。<br/>-&nbsp;name：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。 |
+  | RdbStore | insert(table:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据，结果以callback形式返回。<br/>-&nbsp;table：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
+  | RdbStore | insert(table:&nbsp;string,&nbsp;values:&nbsp;ValuesBucket):&nbsp;Promise&lt;number&gt; | 向目标表中插入一行数据，结果以Promise形式返回。<br/>-&nbsp;table：指定的目标表名。<br/>-&nbsp;values：表示要插入到表中的数据行。 |
   
 - **更新**
   
@@ -43,8 +43,8 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。<br/>-&nbsp;callback：指定的callback回调方法。返回受影响的行数。 |
-  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
+  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;predicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的更新条件。<br/>-&nbsp;callback：指定的callback回调方法。返回受影响的行数。 |
+  | RdbStore | update(values:&nbsp;ValuesBucket,&nbsp;predicates:&nbsp;RdbPredicates):&nbsp;Promise&lt;number&gt; | 根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;values：以ValuesBucket存储的要更新的数据。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的更新条件。 |
   
 - **删除** 
   
@@ -54,8 +54,8 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。<br/>-&nbsp;callback：指定callback回调函数。返回受影响的行数。 |
-  | RdbStore | delete(rdbPredicates:&nbsp;RdbPredicates):&nbsp;Promise\<number> | 根据rdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
+  | RdbStore | delete(predicates:&nbsp;RdbPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。<br/>-&nbsp;predicates：RdbPredicates的实例对象指定的删除条件。<br/>-&nbsp;callback：指定callback回调函数。返回受影响的行数。 |
+  | RdbStore | delete(predicates:&nbsp;RdbPredicates):&nbsp;Promise&lt;number&gt; | 根据RdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。<br/>-&nbsp;predicates：RdbPredicates的实例对象指定的删除条件。 |
   
 - **查询** 
 
@@ -68,8 +68,8 @@
 
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
-  | RdbStore | query(rdbPredicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array):&nbsp;Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array):&nbsp;Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs:&nbsp;Array&lt;ValueType&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):void | 根据指定SQL语句查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;sql：指定要查询的SQL语句。<br/>-&nbsp;bindArgs：SQL语句中参数的值。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs?:&nbsp;Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;sql：指定要查询的SQL语句。<br/>-&nbsp;bindArgs：SQL语句中参数的值。 |
 
@@ -201,7 +201,7 @@
 
 **恢复**
 
-**表13** 恢复数据库
+**表14** 恢复数据库
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
@@ -340,6 +340,29 @@
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
+8. 数据库的备份和恢复。
+   1. 调用数据库的备份接口，备份当前数据库文件。
+   2. 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
+   
+   示例代码如下：
+
+    ```js
+    let promiseBackup = rdbStore.backup("dbBackup.db")
+    promiseBackup.then(()=>{
+        console.info('Backup success.')
+    }).catch((err)=>{
+        console.info('Backup failed, err: ' + err)
+    })
+    ```
+    ```js
+    let promiseRestore = rdbStore.restore("dbBackup.db")
+    promiseRestore.then(()=>{
+        console.info('Restore success.')
+    }).catch((err)=>{
+        console.info('Restore failed, err: ' + err)
+    })
+    ```
+
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
 - [`Rdb`：关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
