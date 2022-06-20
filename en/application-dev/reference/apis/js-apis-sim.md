@@ -521,7 +521,7 @@ Obtains the number of card slots.
 **Example**
 
 ```js
-console.log(sim.getMaxSimCount())
+console.log("the result is "+sim.getMaxSimCount())
 ```
 
 
