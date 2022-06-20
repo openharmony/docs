@@ -20,7 +20,8 @@ HUKS对密钥的使用主要通过Init、Update、Finish操作来实现。
 
 - **Fnish操作**：当所有待处理的数据均传入HUKS后，调用Finish操作完成最终数据处理，释放资源。
 
-    >![](../public_sys-resources/icon-notice.gif) **须知：当Init、Update、Finish操作中的任一阶段发生错误时，都需要调用Abort操作来终止密钥的使用。**
+> **须知：**<br>
+> 当Init、Update、Finish操作中的任一阶段发生错误时，都需要调用Abort操作来终止密钥的使用。
 
 
 ## 约束与限制
