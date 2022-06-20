@@ -300,7 +300,7 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 
 | 类型          | 说明            |
 | ------------- | -------------- |
-| Promise\<void> | Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -397,7 +397,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
 | 类型          | 说明            |
 | ------------- | -------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
