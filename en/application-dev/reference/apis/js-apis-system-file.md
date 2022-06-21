@@ -1,9 +1,7 @@
 # File Storage
 
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
-> - The APIs of this module are no longer maintained since API version 6. It is recommended that you use [`@ohos.fileio`](js-apis-fileio.md) instead.
+> **NOTE**<br/>
+> - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.fileio`](js-apis-fileio.md) instead.
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -26,21 +24,21 @@ Moves a specified file to a given location.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| srcUri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;file&nbsp;to&nbsp;move. |
-| dstUri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;location&nbsp;to&nbsp;which&nbsp;the&nbsp;file&nbsp;is&nbsp;to&nbsp;move. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;source&nbsp;file&nbsp;is&nbsp;moved&nbsp;to&nbsp;the&nbsp;specified&nbsp;location&nbsp;successfully.&nbsp;This&nbsp;function&nbsp;returns&nbsp;the&nbsp;URI&nbsp;of&nbsp;the&nbsp;destination&nbsp;location. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| srcUri | string | Yes| Uniform resource identifier (URI) of the file to move. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F |
+| dstUri | string | Yes| URI of the location to which the file is to move. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F |
+| success | Function | No| Called when the file is moved to the specified location. This API returns the URI of the destination location.|
+| fail | Function | No| Called when the file fails to be moved.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -66,27 +64,27 @@ export default {
 
 copy(Object): void
 
-Copies a file and saves the copy to a specified location. 
+Copies a file to the given URI.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| srcUri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;file&nbsp;to&nbsp;copy. |
-| dstUri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;location&nbsp;to&nbsp;which&nbsp;the&nbsp;copy&nbsp;is&nbsp;to&nbsp;save.<br>The&nbsp;directory&nbsp;of&nbsp;application&nbsp;resources&nbsp;and&nbsp;URI&nbsp;of&nbsp;the&nbsp;**tmp**&nbsp;type&nbsp;are&nbsp;not&nbsp;supported. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;source&nbsp;file&nbsp;is&nbsp;copied&nbsp;and&nbsp;saved&nbsp;to&nbsp;the&nbsp;specified&nbsp;location&nbsp;successfully.&nbsp;This&nbsp;function&nbsp;returns&nbsp;the&nbsp;URI&nbsp;of&nbsp;the&nbsp;destination&nbsp;location. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| srcUri | string | Yes| URI of the file to copy.|
+| dstUri | string | Yes| URI of the location to which the copy is to be saved.<br>The directory of application resources and URI of the **tmp** type are not supported.|
+| success | Function | No| Called when the file is copied and saved to the specified location. This API returns the URI of the destination location.|
+| fail | Function | No| Called when the file fails to be copied.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -112,41 +110,41 @@ export default {
 
 list(Object): void
 
-Obtains the list of all files in a specified directory. 
+Obtains all files in the specified directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;directory. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the directory. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F |
+| success | Function | No| Called when the file list is obtained.|
+| fail | Function | No| Called when the file list fails to be obtained.|
+| complete | Function | No| Called when the execution is complete.|
 
-Return values of the **success** callback
+Return values of the **success** callback:
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| fileList | Array&lt;FileInfo&gt; | File&nbsp;list.&nbsp;The&nbsp;format&nbsp;of&nbsp;each&nbsp;file&nbsp;is&nbsp;as&nbsp;follows:<br/>{<br/>uri:'file1',<br/>lastModifiedTime:1589965924479,<br/>length:10240,<br/>type:&nbsp;'file'<br/>} |
+| fileList | Array&lt;FileInfo&gt; | File list. The format of each file is as follows:<br>{<br>uri:'file1',<br>lastModifiedTime:1589965924479,<br>length:10240,<br>type:&nbsp;'file'<br>} |
 
-**Table1** FileInfo
+**Table 1** FileInfo
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| uri | string | File&nbsp;URI. |
-| lastModifiedTime | number | Timestamp&nbsp;when&nbsp;the&nbsp;file&nbsp;is&nbsp;stored&nbsp;the&nbsp;last&nbsp;time,&nbsp;which&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;milliseconds&nbsp;elapsed&nbsp;since&nbsp;1970/01/01&nbsp;00:00:00&nbsp;GMT. |
-| length | number | File&nbsp;size,&nbsp;in&nbsp;bytes. |
-| type | string | File&nbsp;type.&nbsp;Available&nbsp;values&nbsp;are&nbsp;as&nbsp;follows:<br/>-&nbsp;**dir**:&nbsp;directory<br/>-&nbsp;**file**:&nbsp;file |
+| uri | string | URI of the file.|
+| lastModifiedTime | number | Timestamp when the file is saved the last time, which is the number of milliseconds elapsed since 1970/01/01 00:00:00 GMT.|
+| length | number | File size, in bytes.|
+| type | string | File type. Available values are as follows:<br>-&nbsp;**dir**: directory<br>-&nbsp;**file**: file |
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -156,7 +154,7 @@ export default {
     file.list({            
       uri: 'internal://app/pic',            
       success: function(data) {                
-        console.log(data.fileList);            
+        console.log(JSON.stringify(data.fileList));            
       },            
       fail: function(data, code) {                
         console.error('call fail callback fail, code: ' + code + ', data: ' + data);            
@@ -171,37 +169,37 @@ export default {
 
 get(Object): void
 
-Obtains information about a specified local file. 
+Obtains information about a local file.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | File&nbsp;URI. |
-| recursive | boolean | No | Whether&nbsp;to&nbsp;recursively&nbsp;obtain&nbsp;the&nbsp;file&nbsp;list&nbsp;under&nbsp;a&nbsp;subdirectory.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the file.|
+| recursive | boolean | No| Whether to recursively obtain the file list under a subdirectory. The default value is **false**.|
+| success | Function | No| Called when the file information is obtained.|
+| fail | Function | No| Called when the file information fails to be obtained.|
+| complete | Function | No| Called when the execution is complete.|
 
-Return values of the **success** callback
+Return values of the **success** callback:
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| uri | string | File&nbsp;URI. |
-| length | number | File&nbsp;size,&nbsp;in&nbsp;bytes. |
-| lastModifiedTime | number | Timestamp&nbsp;when&nbsp;the&nbsp;file&nbsp;is&nbsp;stored&nbsp;the&nbsp;last&nbsp;time,&nbsp;which&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;milliseconds&nbsp;elapsed&nbsp;since&nbsp;1970/01/01&nbsp;00:00:00&nbsp;GMT. |
-| type | string | File&nbsp;type.&nbsp;The&nbsp;values&nbsp;are&nbsp;as&nbsp;follows:<br/>-&nbsp;**dir**:&nbsp;directory<br/>-&nbsp;**file**:&nbsp;file |
-| subFiles | Array | File&nbsp;list. |
+| uri | string | URI of the file.|
+| length | number | File size, in bytes.|
+| lastModifiedTime | number | Timestamp when the file is saved the last time, which is the number of milliseconds elapsed since 1970/01/01 00:00:00 GMT.|
+| type | string | File type. Available values are as follows:<br>-&nbsp;**dir**: directory<br>-&nbsp;**file**: file |
+| subFiles | Array | List of files.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -226,26 +224,26 @@ export default {
 
 delete(Object): void
 
-Deletes local files. 
+Deletes a local file.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;file&nbsp;to&nbsp;delete,&nbsp;which&nbsp;cannot&nbsp;be&nbsp;an&nbsp;application&nbsp;resource&nbsp;path. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the file to delete. It cannot be an application resource path.|
+| success | Function | No| Called when the file is deleted.|
+| fail | Function | No| Called when the file fails to be deleted.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Incorrect&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -270,28 +268,28 @@ export default {
 
 writeText(Object): void
 
-Writes text into a specified file.
+Writes text into a file. Only text files can be read and written.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;a&nbsp;local&nbsp;file.&nbsp;If&nbsp;it&nbsp;does&nbsp;not&nbsp;exist,&nbsp;a&nbsp;file&nbsp;will&nbsp;be&nbsp;created. |
-| text | string | Yes | Character&nbsp;string&nbsp;to&nbsp;write&nbsp;into&nbsp;the&nbsp;local&nbsp;file. |
-| encoding | string | No | Encoding&nbsp;format.&nbsp;The&nbsp;default&nbsp;format&nbsp;is&nbsp;UTF-8. |
-| append | boolean | No | Whether&nbsp;to&nbsp;enable&nbsp;the&nbsp;append&nbsp;mode.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of a local file. If it does not exist, a file will be created.|
+| text | string | Yes| Text to write into the file. |
+| encoding | string | No| Encoding format. The default format is **UTF-8**.|
+| append | boolean | No| Whether to enable the append mode. The default value is **false**.|
+| success | Function | No| Called when the text is written into the specified file.|
+| fail | Function | No| Called when the text fails to be written into the file.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Incorrect&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
 
 **Example**
 
@@ -317,28 +315,28 @@ export default {
 
 writeArrayBuffer(Object): void
 
-Writes buffer data into a specified file.
+Writes buffer data into a file. Only text files can be read and written.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;a&nbsp;local&nbsp;file.&nbsp;If&nbsp;it&nbsp;does&nbsp;not&nbsp;exist,&nbsp;a&nbsp;file&nbsp;will&nbsp;be&nbsp;created. |
-| buffer | Uint8Array | Yes | Buffer&nbsp;from&nbsp;which&nbsp;the&nbsp;data&nbsp;is&nbsp;derived. |
-| position | number | No | Offset&nbsp;to&nbsp;the&nbsp;position&nbsp;where&nbsp;the&nbsp;writing&nbsp;starts.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**0**. |
-| append | boolean | No | Whether&nbsp;to&nbsp;enable&nbsp;the&nbsp;append&nbsp;mode.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**.&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;**true**,&nbsp;the&nbsp;**position**&nbsp;parameter&nbsp;will&nbsp;become&nbsp;invalid. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of a local file. If it does not exist, a file will be created.|
+| buffer | Uint8Array | Yes| Buffer from which the data is derived.|
+| position | number | No| Offset to the position where the writing starts. The default value is **0**.|
+| append | boolean | No| Whether to enable the append mode. The default value is **false**. If the value is **true**, the **position** parameter will become invalid.|
+| success | Function | No| Called when buffer data is written into the file. |
+| fail | Function | No| Called when buffer data fails to be written into the file.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
 
 **Example**
 
@@ -347,7 +345,7 @@ export default {
   writeArrayBuffer() {       
     file.writeArrayBuffer({           
       uri: 'internal://app/test',           
-      buffer: new Uint8Array(8), // The buffer is of the Uint8Array type.
+      buffer: new Uint8Array(8), // The buffer is of the Uint8Array type.          
       success: function() {                
         console.log('call writeArrayBuffer success.');            
       },           
@@ -364,36 +362,36 @@ export default {
 
 readText(Object): void
 
-Reads text from a specified file.
+Reads text from a file. Only text files can be read and written.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;a&nbsp;local&nbsp;file. |
-| encoding | string | No | Encoding&nbsp;format.&nbsp;The&nbsp;default&nbsp;format&nbsp;is&nbsp;UTF-8. |
-| position | number | No | Position&nbsp;where&nbsp;the&nbsp;reading&nbsp;starts.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;the&nbsp;start&nbsp;position&nbsp;of&nbsp;the&nbsp;file. |
-| length | number | No | Length&nbsp;of&nbsp;the&nbsp;text&nbsp;to&nbsp;be&nbsp;read&nbsp;(in&nbsp;bytes).&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**4096**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of a local file.|
+| encoding | string | No| Encoding format. The default format is **UTF-8**.|
+| position | number | No| Position where the reading starts. The default value is the start position of the file.|
+| length | number | No| Length of the text to read, in bytes. The default value is **4096**.|
+| success | Function | No| Called when the text is read successfully.|
+| fail | Function | No| Called when the text failed to be read.|
+| complete | Function | No| Called when the execution is complete.|
 
-Return values of the **success** callback
+Return values of the **success** callback:
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| text | string | Text&nbsp;read&nbsp;from&nbsp;the&nbsp;specified&nbsp;file. |
+| text | string | Text read from the specified file.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | The&nbsp;file&nbsp;or&nbsp;directory&nbsp;does&nbsp;not&nbsp;exist. |
-| 302 | The&nbsp;size&nbsp;of&nbsp;text&nbsp;to&nbsp;read&nbsp;exceeds&nbsp;4096&nbsp;bytes. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
+| 302 | The text to read exceeds 4 KB.|
 
 **Example**
 
@@ -418,34 +416,34 @@ export default {
 
 readArrayBuffer(Object): void
 
-Reads buffer data from a specified file.
+Reads buffer data from a file. Only text files can be read and written.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;a&nbsp;local&nbsp;file. |
-| position | number | No | Position&nbsp;where&nbsp;the&nbsp;reading&nbsp;starts.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;the&nbsp;start&nbsp;position&nbsp;of&nbsp;the&nbsp;file. |
-| length | number | No | Length&nbsp;of&nbsp;data&nbsp;to&nbsp;read.&nbsp;If&nbsp;this&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set,&nbsp;the&nbsp;reading&nbsp;proceeds&nbsp;until&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;file. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of a local file.|
+| position | number | No| Position where the reading starts. The default value is the start position of the file.|
+| length | number | No| Length of data to read. If this parameter is not set, the reading proceeds until the end of the file.|
+| success | Function | No| Called when the buffer data is read successfully.|
+| fail | Function | No| Called when the buffer data fails to be read.|
+| complete | Function | No| Called when the execution is complete.|
 
-Return values of the **success** callback
+Return values of the **success** callback:
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| buffer | Uint8Array | File&nbsp;content&nbsp;that&nbsp;is&nbsp;read |
+| buffer | Uint8Array | Data read.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -472,26 +470,26 @@ export default {
 
 access(Object): void
 
-Checks whether a specified file or directory exists.
+Checks whether a file or directory exists.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;directory&nbsp;or&nbsp;file. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the directory or file to check.|
+| success | Function | No| Called when the operation is successful.|
+| fail | Function | No| Called when the operation fails.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 
@@ -516,26 +514,26 @@ export default {
 
 mkdir(Object): void
 
-Creates a specified directory.
+Creates a directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;directory. |
-| recursive | boolean | No | Whether&nbsp;to&nbsp;recursively&nbsp;create&nbsp;upper-level&nbsp;directories&nbsp;of&nbsp;the&nbsp;specified&nbsp;directory.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the directory to create.|
+| recursive | boolean | No| Whether to recursively create upper-level directories of the specified directory. The default value is **false**.|
+| success | Function | No| Called when the directory is created.|
+| fail | Function | No| Called when the directory fails to be created.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
 
 **Example**
 
@@ -560,27 +558,27 @@ export default {
 
 rmdir(Object): void
 
-Deletes a specified directory.
+Deletes a directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uri | string | Yes | URI&nbsp;of&nbsp;the&nbsp;directory. |
-| recursive | boolean | No | Whether&nbsp;to&nbsp;recursively&nbsp;delete&nbsp;subfiles&nbsp;and&nbsp;subdirectories&nbsp;of&nbsp;the&nbsp;specified&nbsp;directory.&nbsp;The&nbsp;default&nbsp;value&nbsp;is&nbsp;**false**. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| uri | string | Yes| URI of the directory to delete.|
+| recursive | boolean | No| Whether to recursively delete files and subdirectories of the specified directory. The default value is **false**.|
+| success | Function | No| Called when the directory is deleted.|
+| fail | Function | No| Called when the directory fails to be deleted.|
+| complete | Function | No| Called when the execution is complete.|
 
-One of the following error codes will be returned if the operation fails.
+Error code returned:
 
-| Error&nbsp;Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| 202 | Invalid&nbsp;parameter. |
-| 300 | I/O&nbsp;error. |
-| 301 | File&nbsp;or&nbsp;directory&nbsp;not&nbsp;exist. |
+| 202 | Incorrect parameters are detected.|
+| 300 | An I/O error occurs.|
+| 301 | The file or directory does not exist.|
 
 **Example**
 

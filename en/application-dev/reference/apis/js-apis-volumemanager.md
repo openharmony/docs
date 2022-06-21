@@ -6,7 +6,7 @@
 > - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
 
-This module provides APIs to implement volume and disk management, including obtaining volume information, mounting and unmounting volumes, partitioning disks, and formatting volumes.
+Performs volume and disk management, including obtaining volume information, mounting and unmounting volumes, partitioning disks, and formatting volumes.
 
 ## Modules to Import
 
@@ -54,7 +54,7 @@ Asynchronously obtains information about all available volumes. This API uses a 
 
   ```js
   let uuid = "";
-  volumemanager.getAllVolumes(uuid, function(error, volumes){
+  volumemanager.getAllVolumes(function(error, volumes){
       // do something
   });
   ```

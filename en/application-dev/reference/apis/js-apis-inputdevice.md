@@ -34,19 +34,9 @@ Obtains the IDs of all input devices. This API uses an asynchronous callback to 
 **Example**
 
 ```js
-export default {
-    data: {
-        deviceIds: Array,
-    },
-    callback: function(ids) {
-        this.deviceIds = ids;
-    },
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        inputDevice.getDeviceIds(this.callback);
-        console.info("InputDeviceJsTest---end---testGetDeviceIds");
-    }
-}
+inputDevice.getDeviceIds((ids)=>{
+    console.log("The device ID list is: " + ids);
+});
 ```
 
 ## inputDevice.getDeviceIds
@@ -61,22 +51,14 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 | Parameter                    | Description                |
 | ---------------------- | ------------------ |
-| Promise<Array\<number>> | Promise used to return the result.|
+| Promise\<Array\<number>> | Promise used to return the result.|
 
 **Example**
 
 ```js
-export default {
-    testGetDeviceIds: function () {
-        console.info("InputDeviceJsTest---start---testGetDeviceIds");
-        let promise = inputDevice.getDeviceIds();
-        promise.then((data)=> {
-            console.info('GetDeviceIds successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceIds. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+inputDevice.getDeviceIds().then((ids)=>{
+    console.log("The device ID list is: " + ids);
+});
 ```
 
 
@@ -101,23 +83,10 @@ Obtains the information about an input device. This API uses an asynchronous cal
 **Example**
 
 ```js
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    callback: function(deviceData) {
-        this.InputDeviceData = deviceData;
-    },
-    testGetDevice: function () {
-        // The example is used to obtain the information about the device whose ID is 1.
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        inputDevice.getDevice(1, this.callback);
-        console.info("InputDeviceJsTest---end---testGetDevice");
-    }
-}
+// This example obtains the information about the device whose ID is 1.
+inputDevice.getDevice(1, (inputDevice)=>{
+    console.log("The device name is: " + inputDevice.name);
+});
 ```
 
 ## inputDevice.getDevice
@@ -137,24 +106,10 @@ Obtains the information about an input device. This API uses a promise to return
 **Example**
 
 ```js
-export default {
-    InputDeviceData: {
-        deviceId : 0,
-        name : "NA",
-        sources : Array,
-        axisRanges : Array,
-    },
-    testGetDevice: function () {
-        // The example is used to obtain the information about the device whose ID is 1.
-        console.info("InputDeviceJsTest---start---testGetDevice");
-        let promise = inputDevice.getDevice(1);
-        promise.then((data)=> {
-            console.info('GetDeviceId successed, Data: ' + JSON.stringify(data))
-        }).catch((err)=>{
-            console.error('Failed GetDeviceId. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
+// This example obtains the information about the device whose ID is 1.
+inputDevice.getDevice(1).then((inputDevice)=>{
+    console.log("The device name is: " + inputDevice.name);
+});
 ```
 
 
@@ -191,7 +146,7 @@ Defines the axis information of an input device.
 | Name    | Type                     | Description      |
 | ------ | ------------------------- | -------- |
 | source | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis   | [AxisType](axistype)      | Axis type.    |
+| axis   | [AxisType](#axistype)      | Axis type.    |
 | max    | number                    | Maximum value reported by the axis. |
 | min    | number                    | Minimum value reported by the axis. |
 

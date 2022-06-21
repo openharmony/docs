@@ -22,15 +22,15 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
 API                                                   |     Description                           
 ---------------------------------------------------------|-----------------------------------------
-function startWork(work: WorkInfo): boolean; | Starts a Work Scheduler task.
-function stopWork(work: WorkInfo, needCancel?: boolean): boolean;        | Stops a Work Scheduler task.
-function getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void;| Obtains the status of a Work Scheduler task. This method uses an asynchronous callback to return the result.
-function getWorkStatus(workId: number): Promise\<WorkInfo>; | Obtains the status of a Work Scheduler task. This method uses a promise to return the result.
-function obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>;| Obtains Work Scheduler tasks. This method uses an asynchronous callback to return the result.
-function obtainAllWorks(): Promise<Array\<WorkInfo>>;| Obtains Work Scheduler tasks. This method uses a promise to return the result.
-function stopAndClearWorks(): boolean;| Stops and clears Work Scheduler tasks.
-function isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean;| Checks whether the last execution of the specified task has timed out. This method uses an asynchronous callback to return the result. It is applicable to repeated tasks.
-function isLastWorkTimeOut(workId: number): Promise\<boolean>;| Checks whether the last execution of the specified task has timed out. This method uses a promise to return the result. It is applicable to repeated tasks.
+startWork(work: WorkInfo): boolean | Starts a Work Scheduler task.
+stopWork(work: WorkInfo, needCancel?: boolean): boolean        | Stops a Work Scheduler task.
+getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void| Obtains the status of a Work Scheduler task. This method uses an asynchronous callback to return the result.
+getWorkStatus(workId: number): Promise\<WorkInfo> | Obtains the status of a Work Scheduler task. This method uses a promise to return the result.
+obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>| Obtains Work Scheduler tasks. This method uses an asynchronous callback to return the result.
+obtainAllWorks(): Promise<Array\<WorkInfo>>| Obtains Work Scheduler tasks. This method uses a promise to return the result.
+stopAndClearWorks(): boolean| Stops and clears Work Scheduler tasks.
+isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean| Checks whether the last execution of the specified task has timed out. This method uses an asynchronous callback to return the result. It is applicable to repeated tasks.
+isLastWorkTimeOut(workId: number): Promise\<boolean>| Checks whether the last execution of the specified task has timed out. This method uses a promise to return the result. It is applicable to repeated tasks.
 
 **Table 2** WorkInfo parameters
 
@@ -53,8 +53,8 @@ repeatCount    |Number of repeat times.| number
 
 API                                                   |     Description                           
 ---------------------------------------------------------|-----------------------------------------
-function onWorkStart(work: WorkInfo): void; | Triggered when the Work Scheduler task starts.
-function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler task stops.
+onWorkStart(work: WorkInfo): void | Triggered when the Work Scheduler task starts.
+onWorkStop(work: WorkInfo): void | Triggered when the Work Scheduler task stops.
 
 ### How to Develop
 
@@ -115,7 +115,7 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
 
     workScheduler.getWorkStatus(50, (err, res) => {
       if (err) {
-        console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+        console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
       } else {
         for (let item in res) {
           console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
@@ -131,7 +131,7 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
         console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
       }
     }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
     })
 
 
@@ -141,7 +141,7 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
 
     workScheduler.obtainAllWorks((err, res) =>{
       if (err) {
-        console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+        console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
       } else {
         console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
       }
@@ -152,7 +152,7 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
     workScheduler.obtainAllWorks().then((res) => {
       console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
     }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
     })
 
 **Stopping and Clearing Work Scheduler Tasks**
@@ -166,7 +166,7 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
 
     workScheduler.isLastWorkTimeOut(500, (err, res) =>{
       if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       } else {
         console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       }
@@ -179,6 +179,6 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
         console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
       })
       .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
       });
     })

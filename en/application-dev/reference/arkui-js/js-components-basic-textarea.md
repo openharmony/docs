@@ -6,7 +6,7 @@ The **\<textarea>** component provides a text box to receive multi-line text inp
 
 None
 
-## Child Component
+## Child Components
 
 Not supported
 

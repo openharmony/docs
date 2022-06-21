@@ -1,7 +1,7 @@
 # Bluetooth
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 >
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.bluetooth`](js-apis-bluetooth.md).
 >
@@ -14,7 +14,6 @@
 ```
 import bluetooth from '@system.bluetooth';
 ```
-
 
 ## bluetooth.startBLEScan(OBJECT)
 
@@ -38,6 +37,7 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 
   ```
   bluetooth.startBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.startBLEScan success.');
     },
@@ -120,7 +120,7 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
 **Example**
 
   ```
-  bluetooth.startaBLEScan({
+  bluetooth.startBLEScan({
     success() {
       bluetooth.subscribeBLEFound({
         success(data) {

@@ -27,34 +27,31 @@ In addition, OpenHarmony provides a series of optional system components that ca
 
 ## Document Outline<a name="section19810171681218"></a>
 
--   [Mini and Small System Development Guidelines](#table3762949121211)
--   [Standard System Development Guidelines](#table17667535516)
-
 **Table  1**  Mini and small system development guidelines \(reference memory < 128 MB\)
 
-| Topic | Development&nbsp;Scenario | Documents |
+| Topic | Development Scenario | Documents |
 | -------- | -------- | -------- |
-| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony)<br/>-&nbsp;[Glossary](../glossary.md) |
-| Development&nbsp;resources | Preparing&nbsp;for&nbsp;your&nbsp;development | -&nbsp;[Obtaining&nbsp;Source&nbsp;Code](get-code/sourcecode-acquire.md)<br/>-&nbsp;[Tool&nbsp;Acquisition](get-code/gettools-acquire.md) |
-| Quick&nbsp;start | Getting&nbsp;started&nbsp;with&nbsp;setup,&nbsp;build, burning,&nbsp;debugging,&nbsp;and running&nbsp;of&nbsp;OpenHarmony | [Mini&nbsp;and&nbsp;Small&nbsp;Systems](quick-start/quickstart-lite-overview.md) |
-| Basic&nbsp;capabilities | Using&nbsp;basic&nbsp;capabilities&nbsp;of OpenHarmony | -&nbsp;[Kernel&nbsp;for&nbsp;Mini&nbsp;Systems](kernel/kernel-mini-overview.md)<br/>-&nbsp;[Kernel&nbsp;for&nbsp;Small&nbsp;Systems](kernel/kernel-small-overview.md)<br/>-&nbsp;[Drivers](driver/driver-hdf-overview.md)<br/>-&nbsp;[Subsystems](subsystems/subsys-build-mini-lite.md)<br/>-&nbsp;[Security&nbsp;Guidelines](security/security-guidelines-overall.md)<br/>-&nbsp;[Privacy&nbsp;Protection](security/security-privacy-protection.md) |
-| Advanced&nbsp;development | Developing&nbsp;smart&nbsp;devices&nbsp;based on&nbsp;system&nbsp;capabilities | -&nbsp;[WLAN-connected&nbsp;Products](guide/device-wlan-led-control.md)<br/>-&nbsp;[Cameras&nbsp;Without&nbsp;a&nbsp;Screen](guide/device-iotcamera-control-overview.md)<br/>-&nbsp;[Cameras&nbsp;with&nbsp;a&nbsp;Screen](guide/device-camera-control-overview.md) |
-| Porting&nbsp;and&nbsp;adaptation | -&nbsp;Porting&nbsp;and&nbsp;adapting&nbsp;the OpenHarmony&nbsp;to&nbsp;an&nbsp;SoC<br/>-&nbsp;Porting&nbsp;and&nbsp;adapting&nbsp;the<br/>&nbsp;OpenHarmony&nbsp;to&nbsp;a third-party&nbsp;library | -&nbsp;[Mini&nbsp;System&nbsp;SoC&nbsp;Porting&nbsp;Guide](porting/oem_transplant_chip_prepare_knows.md)<br/>-&nbsp;[Small&nbsp;System&nbsp;SoC&nbsp;Porting&nbsp;Guide](porting/porting-smallchip-prepare-needs.md)<br/>-&nbsp;[Third-Party&nbsp;Library&nbsp;Porting&nbsp;Guide&nbsp;for&nbsp;Mini&nbsp;and&nbsp;Small&nbsp;Systems](porting/porting-thirdparty-overview.md) |
-| Contribution | Contributing&nbsp;components to&nbsp;OpenHarmony | -&nbsp;[HPM Part Overview](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM Part Development](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM Part Reference](hpm-part/hpm-part-reference.md) |
-| Reference | Referring&nbsp;to&nbsp;development&nbsp;specifications | [FAQs](faqs/faqs-overview.md) |
+| About OpenHarmony | Getting familiar with OpenHarmony | - [About OpenHarmony](https://gitee.com/openharmony)<br/>- [Glossary](../glossary.md) |
+| Development resources | Preparing for your development | - [Obtaining Source Code](get-code/sourcecode-acquire.md)<br/>- [Tool Acquisition](get-code/gettools-acquire.md) |
+| Quick start | Getting started with setup, build, burning, debugging, and running of OpenHarmony | [Mini and Small Systems](quick-start/quickstart-lite-overview.md) |
+| Basic capabilities | Using basic capabilities of OpenHarmony | - [Kernel for Mini Systems](kernel/kernel-mini-overview.md)<br/>- [Kernel for Small Systems](kernel/kernel-small-overview.md)<br/>- [Drivers](driver/driver-hdf-overview.md)<br/>- [Subsystems](subsystems/subsys-build-mini-lite.md)<br/>- [Security Guidelines](security/security-guidelines-overall.md)<br/>- [Privacy Protection](security/security-privacy-protection.md) |
+| Advanced development | Developing smart devices based on system capabilities | - [WLAN-connected Products](guide/device-wlan-led-control.md)<br/>- [Cameras Without a Screen](guide/device-iotcamera-control-overview.md)<br/>- [Cameras with a Screen](guide/device-camera-control-overview.md) |
+| Porting and adaptation | - Porting and adapting the OpenHarmony to an SoC<br/>- Porting and adapting the<br/> OpenHarmony to a third-party library | - [Mini System SoC Porting Guide](porting/oem_transplant_chip_prepare_knows.md)<br/>- [Small System SoC Porting Guide](porting/porting-smallchip-prepare-needs.md)<br/>- [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty-overview.md) |
+| Contribution | Contributing components to OpenHarmony | - [HPM Part Overview](hpm-part/hpm-part-about.md)<br/>- [HPM Part Development](hpm-part/hpm-part-development.md)<br/>- [HPM Part Reference](hpm-part/hpm-part-reference.md) |
+| Reference | Referring to development specifications | [FAQs](faqs/faqs-overview.md) |
 
 
 **Table  2**  Standard system development guidelines \(reference memory ≥ 128 MB\)
 
-| Topic | Development&nbsp;Scenario | Documents |
+| Topic | Development Scenario | Documents |
 | -------- | -------- | -------- |
-| About&nbsp;OpenHarmony | Getting&nbsp;familiar&nbsp;with&nbsp;OpenHarmony | -&nbsp;[About&nbsp;OpenHarmony](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md)<br/>-&nbsp;[Glossary](../glossary.md) |
-| Development&nbsp;resources | Preparing&nbsp;for&nbsp;your&nbsp;development | -&nbsp;[Obtaining&nbsp;Source&nbsp;Code](get-code/sourcecode-acquire.md)<br/>-&nbsp;[Tool&nbsp;Acquisition](get-code/gettools-acquire.md) |
-| Quick&nbsp;start | Getting&nbsp;started&nbsp;with&nbsp;setup,&nbsp;build, burning,&nbsp;debugging,&nbsp;and running&nbsp;of&nbsp;OpenHarmony | [Standard&nbsp;System](quick-start/quickstart-standard-overview.md) |
-| Basic&nbsp;capabilities | Using&nbsp;basic&nbsp;capabilities&nbsp;of&nbsp;OpenHarmony | -&nbsp;[Kernel&nbsp;for&nbsp;Standard&nbsp;Systems](kernel/kernel-standard-overview.md)<br/>-&nbsp;[Drivers](driver/driver-hdf-overview.md)<br/>-&nbsp;[Subsystems](subsystems/subsys-build-standard-large.md)<br/>-&nbsp;[Security&nbsp;Guidelines](security/security-guidelines-overall.md)<br/>-&nbsp;[Privacy&nbsp;Protection](security/security-privacy-protection.md) |
-| Advanced&nbsp;development | Developing&nbsp;smart&nbsp;devices based&nbsp;on&nbsp;system&nbsp;capabilities | -&nbsp;[Development&nbsp;Guidelines&nbsp;on&nbsp;Clock&nbsp;Apps](guide/device-clock-guide.md)<br/>-&nbsp;[Development&nbsp;Example&nbsp;for&nbsp;Platform&nbsp;Drivers](guide/device-driver-demo.md)<br/>-&nbsp;[Development&nbsp;Example&nbsp;for&nbsp;Peripheral&nbsp;Drivers](guide/device-outerdriver-demo.md) |
-| Porting&nbsp;and&nbsp;adaptation | Porting&nbsp;and&nbsp;adapting&nbsp;the OpenHarmony&nbsp;to&nbsp;a&nbsp;third-party&nbsp;library | -&nbsp;[Standard&nbsp;System&nbsp;Porting&nbsp;Guide](porting/standard-system-porting-guide.md)<br/>-&nbsp;[A&nbsp;Method&nbsp;for&nbsp;Rapidly&nbsp;Porting&nbsp;the&nbsp;OpenHarmony&nbsp;Linux&nbsp;Kernel](porting/porting-linux-kernel.md) |
-| Contribution | Contributing components to OpenHarmony | -&nbsp;[HPM Part Overview](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM Part Development](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM Part Reference](hpm-part/hpm-part-reference.md) |
-| Reference | Referring&nbsp;to&nbsp;development&nbsp;specifications | [FAQs](faqs/faqs-overview.md) |
+| About OpenHarmony | Getting familiar with OpenHarmony | - [About OpenHarmony](https://gitee.com/openharmony/docs/blob/master/en/OpenHarmony-Overview.md)<br/>- [Glossary](../glossary.md) |
+| Development resources | Preparing for your development | - [Obtaining Source Code](get-code/sourcecode-acquire.md)<br/>- [Tool Acquisition](get-code/gettools-acquire.md) |
+| Quick start | Getting started with setup, build, burning, debugging, and running of OpenHarmony | [Standard System](quick-start/quickstart-standard-overview.md) |
+| Basic capabilities | Using basic capabilities of OpenHarmony | - [Kernel for Standard Systems](kernel/kernel-standard-overview.md)<br/>- [Drivers](driver/driver-hdf-overview.md)<br/>- [Subsystems](subsystems/subsys-build-standard-large.md)<br/>- [Security Guidelines](security/security-guidelines-overall.md)<br/>- [Privacy Protection](security/security-privacy-protection.md) |
+| Advanced development | Developing smart devices based on system capabilities | - [Development Guidelines on Clock Apps](guide/device-clock-guide.md)<br/>- [Development Example for Platform Drivers](guide/device-driver-demo.md)<br/>- [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md) |
+| Porting and adaptation | Porting and adapting the OpenHarmony to a third-party library | - [Standard System Porting Guide](porting/standard-system-porting-guide.md)<br/>- [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md) |
+| Contribution | Contributing components to OpenHarmony | - [HPM Part Overview](hpm-part/hpm-part-about.md)<br/>- [HPM Part Development](hpm-part/hpm-part-development.md)<br/>- [HPM Part Reference](hpm-part/hpm-part-reference.md) |
+| Reference | Referring to development specifications | [FAQs](faqs/faqs-overview.md) |
 
 

@@ -1,4 +1,4 @@
-# WantAgent Module
+# WantAgent
 
 >**NOTE**
 >
@@ -915,6 +915,135 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 });
 ```
 
+
+## WantAgent.getOperationType<sup>9+</sup>
+
+getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
+
+Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name     | Readable | Writable | Type                   | Mandatory | Description                                 |
+| ---------- | --- | ---- | --------- | ---- | ------------- |
+| agent      | Yes | No  | WantAgent | Yes | Target **WantAgent** object. |
+| callback   | Yes | No | AsyncCallback\<number> | Yes | Callback used to return the operation type. |
+
+**Example**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+
+//wantAgent����
+var wantAgent;
+
+//WantAgentInfo����
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent, (OperationType) => {
+    console.log('----------- getOperationType ----------, OperationType: ' + OperationType);
+})
+```
+
+
+## WantAgent.getOperationType<sup>9+</sup>
+
+getOperationType(agent: WantAgent): Promise\<number>
+
+Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Readable | Writable | Type      | Mandatory | Description   |
+| ---------- | --- | ---- | --------- | ---- | ------------- |
+| agent      | Yes | No | WantAgent | Yes | WantAgent���� |
+
+**Return value**
+
+| Type              | Description                                |
+| ----------------- | ------------------------------------------ |
+| Promise\<number\> | Promise used to return the operation type. |
+
+
+**Example**
+
+```js
+import WantAgent from '@ohos.wantAgent';
+
+//wantAgent����
+var wantAgent;
+
+//WantAgentInfo����
+var wantAgentInfo = {
+    wants: [
+        {
+            deviceId: "deviceId",
+            bundleName: "com.neu.setResultOnAbilityResultTest1",
+            abilityName: "com.example.test.MainAbility",
+            action: "action1",
+            entities: ["entity1"],
+            type: "MIMETYPE",
+            uri: "key={true,true,false}",
+            parameters:
+            {
+                mykey0: 2222,
+                mykey1: [1, 2, 3],
+                mykey2: "[1, 2, 3]",
+                mykey3: "ssssssssssssssssssssssssss",
+                mykey4: [false, true, false],
+                mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: true,
+            }
+        }
+    ],
+    requestCode: 0,
+    wantAgentFlags:[WantAgentFlags.UPDATE_PRESENT_FLAG]
+}
+
+WantAgent.getWantAgent(wantAgentInfo).then((data) => {
+	console.info("==========================>getWantAgentCallback=======================>");
+    wantAgent = data;
+});
+
+WantAgent.getOperationType(wantAgent).then((OperationType) => {
+    console.log('getOperationType success, OperationType: ' + OperationType);
+}).catch((err) => {
+    console.log('getOperationType fail, err: ' + err);
+})
+```
 
 
 ## WantAgentInfo

@@ -6,14 +6,12 @@ Lightweight storage provides applications with data processing capability and al
 > **NOTE**<br/>
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-
 
 
 ## Modules to Import
 
 ```js
-import dataStorage from '@ohos.data.storage';
+import data_storage from '@ohos.data.storage';
 ```
 
 ## Constants
@@ -26,7 +24,7 @@ import dataStorage from '@ohos.data.storage';
 | MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It must be less than 8192 bytes.|
 
 
-## dataStorage.getStorageSync
+## data_storage.getStorageSync
 
 getStorageSync(path: string): Storage
 
@@ -46,24 +44,17 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let storage = dataStorage.getStorageSync(path + '/mystore')
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  });
+  var path = '/data/storage/el2/database/test_storage'
+  let storage = data_storage.getStorageSync(path + '/mystore')
+  storage.putSync('startup', 'auto')
+  storage.flushSync()
+  
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
@@ -79,29 +70,21 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
+  var path = '/data/storage/el2/database/test_storage'
+  data_storage.getStorage(path + '/mystore', function (err, storage) {
       if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
+          console.info("Get the storage failed, path: " + path + '/mystore')
           return;
       }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      dataStorage.getStorage(path + '/mystore', function (err, storage) {
-          if (err) {
-              console.info("Get the storage failed, path: " + path + '/mystore')
-              return;
-          }
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      })
-  });
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  })
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
@@ -121,28 +104,21 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let promisegetSt = dataStorage.getStorage(path + '/mystore')
-      promisegetSt.then((storage) => {
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      }).catch((err) => {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-      })
-  });
+  var path = '/data/storage/el2/database/test_storage'
+  
+  let getPromise = data_storage.getStorage(path + '/mystore')
+  getPromise.then((storage) => {
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  }).catch((err) => {
+      console.info("Get the storage failed, path: " + path + '/mystore')
+  })
   ```
 
 
-## dataStorage.deleteStorageSync
+## data_storage.deleteStorageSync
 
 deleteStorageSync(path: string): void
 
@@ -157,11 +133,11 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Example**
   ```js
-  dataStorage.deleteStorageSync(path + '/mystore')
+  data_storage.deleteStorageSync(path + '/mystore')
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -177,7 +153,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Example**
   ```js
-  dataStorage.deleteStorage(path + '/mystore', function (err) {
+  data_storage.deleteStorage(path + '/mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -187,7 +163,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
@@ -207,7 +183,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Example**
   ```js
-  let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
+  let promisedelSt = data_storage.deleteStorage(path + '/mystore')
   promisedelSt.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
@@ -216,7 +192,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.removeStorageFromCacheSync
+## data_storage.removeStorageFromCacheSync
 
 removeStorageFromCacheSync(path: string): void
 
@@ -231,11 +207,11 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Example**
   ```js
-  dataStorage.removeStorageFromCacheSync(path + '/mystore')
+  data_storage.removeStorageFromCacheSync(path + '/mystore')
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -251,7 +227,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Example**
   ```js
-  dataStorage.removeStorageFromCache(path + '/mystore', function (err) {
+  data_storage.removeStorageFromCache(path + '/mystore', function (err) {
       if (err) {
           console.info("Removed storage from cache failed with err: " + err)
           return
@@ -261,7 +237,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
@@ -281,7 +257,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Example**
   ```js
-  let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
+  let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
   }).catch((err) => {

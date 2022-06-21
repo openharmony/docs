@@ -2,7 +2,7 @@
 
 An entrance piece that can contain images and text. It is usually used to display receivers, for example, email recipients or message recipients.
 
-## Child Component
+## Child Components
 
 None
 
