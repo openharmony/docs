@@ -86,7 +86,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
   let data = { name: "name123", value: "123" };
-  let header = { key1: value1, key2: value2 };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
   request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }).then((data) => {
       uploadTask = data;
@@ -118,7 +118,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
   let data = { name: "name123", value: "123" };
-  let header = { key1: value1, key2: value2 };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
   request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }, (err, data) => {
       if (err) {
