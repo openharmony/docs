@@ -1,4 +1,6 @@
-#  	访问控制管理
+# 程序访问控制管理
+
+程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -96,13 +98,11 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
-
-
 
 ### grantUserGrantedPermission
 
@@ -129,8 +129,12 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -195,8 +199,12 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
