@@ -1,8 +1,9 @@
 # EventHub
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Implements event subscription, unsubscription, and triggering.
 
@@ -14,11 +15,8 @@ import Ability from '@ohos.application.Ability'
 
 ## Usage
 
-
 ​Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
 
-
-  
 ```js
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {

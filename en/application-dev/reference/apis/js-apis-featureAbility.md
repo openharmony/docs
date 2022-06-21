@@ -1,7 +1,9 @@
-# FeatureAbility Module (JavaScript)
+# FeatureAbility
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the FA model.
 
 ## Constraints
 
@@ -923,7 +925,7 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                                  | Value     | Description                                      |
+| Name                                  | Value       | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |

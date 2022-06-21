@@ -1,4 +1,4 @@
-# Context Module
+# Context
 
 > **NOTE**
 > 
@@ -931,9 +931,9 @@ Describes the HAP module information.
 | iconId           | number        | Yes  | No  | Module icon ID.        |
 | backgroundImg    | string        | Yes  | No  | Module background image.      |
 | supportedModes   | number        | Yes  | No  | Running modes supported by the module.    |
-| reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
-| deviceTypes      | Array<string> | Yes  | No  | Device types supported by the module.|
-| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information. |
+| reqCapabilities  | Array\<string> | Yes  | No  | Capabilities required for module running.|
+| deviceTypes      | Array\<string> | Yes  | No  | Device types supported by the module.|
+| abilityInfo      | Array\<AbilityInfo> | Yes  | No  | Ability information. |
 | moduleName       | string        | Yes  | No  | Module name.            |
 | mainAbilityName  | string        | Yes  | No  | Name of the main ability.   |
 | installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
