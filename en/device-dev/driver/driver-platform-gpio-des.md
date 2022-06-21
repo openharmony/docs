@@ -11,7 +11,7 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 - Reading and writing the pin level, which can be low or high
 
-- Setting an interrupt service routine (ISR) function and interrupt trigger mode for a pin
+- Setting the interrupt service routine (ISR) function and interrupt trigger mode for a pin
 
 - Enabling or disabling pin interrupts
 
@@ -70,7 +70,9 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 - Set the GPIO pin direction.
   Before performing read/write operations on a GPIO pin, call **GpioSetDir()** to set the pin direction.
 
+  ```c
   int32_t GpioSetDir(uint16_t gpio, uint16_t dir);
+  ```
 
     **Table 2** Description of GpioSetDir
   
@@ -86,7 +88,9 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   Call **GpioRead()** to read the level of a GPIO pin.
 
-  int32_t GpioRead(uint16_t gpio, uint16_t \*val);
+  ```c
+  int32_t GpioRead(uint16_t gpio, uint16_t *val);
+  ```
 
     **Table 3** Description of GpioRead
   
@@ -100,8 +104,10 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   Call **GpioWrite()** to write the level for a GPIO pin.
 
+  ```c
   int32_t GpioWrite(uint16_t gpio, uint16_t val);
-
+  ``` 
+ 
     **Table 4** Description of GpioWrite
   
   | **Parameter**| **Description**| 
@@ -114,7 +120,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   Sample code:
 
-    
+  
   ```
   int32_t ret;
   uint16_t val;
@@ -144,8 +150,10 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   Call **GpioSetIrq()** to set the ISR function for a GPIO pin.
 
-  int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void \*arg);
-
+  ```c
+  int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void *arg);
+  ``` 
+ 
     **Table 5** Description of GpioSetIrq
   
   | **Parameter**| **Description**| 
@@ -163,7 +171,9 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   If the ISR function is no longer required, call **GpioUnsetIrq()** to cancel it.
 
-  int32_t GpioUnsetIrq(uint16_t gpio, void \*arg);
+  ```c
+  int32_t GpioUnsetIrq(uint16_t gpio, void *arg);
+  ``` 
 
     **Table 6** Description of GpioUnsetIrq
   
@@ -177,7 +187,9 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   After the ISR function is set, call **GpioEnableIrq()** to enable interrupts for the GPIO pin.
 
+  ```c
   int32_t GpioEnableIrq(uint16_t gpio);
+  ``` 
 
     **Table 7** Description of GpioEnableIrq
   
@@ -193,7 +205,9 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   You can call **GpioDisableIrq** to disable interrupts for the pin.
 
+  ```c
   int32_t GpioDisableIrq(uint16_t gpio);
+  ``` 
 
     **Table 8** Description of GpioDisableIrq
   
@@ -206,7 +220,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
 
   Sample code:
 
-    
+  
   ```
   /* Set the ISR function. */
   int32_t MyCallBackFunc(uint16_t gpio, void *data)
