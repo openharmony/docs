@@ -121,17 +121,17 @@ Defines the information about an input device.
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 | Name      | Type                              | Description                                                        |
-| ---------- | -------------------------------------- | ------------------------------------------------------------ |
-| id         | number                                 | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| name       | string                                 | Name of the input device.                                            |
-| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
-| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                                          |
-| bus        | number                                 | Bus type of the input device.                                        |
-| product    | number                                 | Product information of the input device.                                        |
-| vendor     | number                                 | Vendor information of the input device.                                        |
-| version    | number                                 | Version information of the input device.                                        |
-| phys       | string                                 | Physical address of the input device.                                        |
-| uniq       | string                                 | Unique ID of the input device.                                        |
+| ---------- | -------------------------- | ---------------------------------------------------- |
+| id            | number                         | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes. |
+| name       | string                            | Name of the input device.  |
+| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad. |
+| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device. |
+| bus           | number                           | Bus type of the input device. |
+| product    | number                        | Product information of the input device. |
+| vendor     | number                        | Vendor information of the input device. |
+| version     | number                        | Version information of the input device. |
+| phys        | string                            | Physical address of the input device. |
+| uniq        | string                            | Unique ID of the input device. |
 
 ## AxisType
 
