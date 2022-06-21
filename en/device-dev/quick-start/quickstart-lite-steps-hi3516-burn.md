@@ -27,7 +27,7 @@ After the building is complete, ensure that you can [remotely access the Ubuntu 
 
    ![en-us_image_0000001215743910](figures/en-us_image_0000001215743910.png)
 
-5. On the **Import Project** page, select a product, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **ohosVersion**. Select **ipcamera_hispark_taurus**.
+5. On the **Import Project** page, select **ipcamera_hispark_taurus** for **Product**, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **Ohos Ver**.
 
    ![en-us_image_0000001227711014](figures/en-us_image_0000001227711014.png)
 
