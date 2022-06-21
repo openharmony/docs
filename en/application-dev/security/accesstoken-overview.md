@@ -101,7 +101,7 @@ The permissions open to apps vary with the permission level. The permission leve
 
 As described above, permission levels and app APLs are in one-to-one correspondence. In principle, **an app with a lower APL cannot apply for higher permissions by default**.
 
-The Access Control List (ACL) makes low-level apps to have high-level permissions.
+The Access Control List (ACL) makes low-level apps have high-level permissions.
 
 **Example**
 

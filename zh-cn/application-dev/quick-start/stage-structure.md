@@ -328,6 +328,14 @@ abilities描述ability的配置信息，标签值为数组类型。
 | startWindowIcon    | 表示该Ability启动页面图标资源文件的索引。取值示例：$media:icon。 | 字符串       | 不可缺省。|
 | startWindowBackground    | 表示该Ability启动页面背景颜色资源文件的索引。取值示例：$color:red。 | 字符串       | 不可缺省。|
 | removeMissionAfterTerminate    | 该标签标识ability销毁后是否从任务列表中移除任务。为布尔类型，true表示销毁后移除任务， false表示销毁后不移除任务。 | 布尔值       | 该标签可缺省，缺省值为false。|
+| orientation              | 表示该ability启动时的方向。该方向的取值范围包括：<br/>unspecified: 未指定方向，由系统自动判断显示方向，<br/>landscape：横屏，<br/> portrait：竖屏，<br/>landscape_inverted: 反向横屏， <br/>portrait_inverted: 反向竖屏， <br/>auto_rotation: 随传感器旋转， <br/>auto_rotation_landscape: 传感器横屏旋转，包括了横屏和反向横屏，<br/>auto_rotation_portrait: 传感器竖屏旋转，包括了竖屏和反向竖屏，<br/>auto_rotation_restricted: 传感器开关打开，方向可随传感器旋转，<br/>auto_rotation_landscape_restricted: 传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏， <br/>auto_rotation_portrait_restricted: 传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏， <br/>locked: 传感器开关关闭，方向锁定。 | 字符串   | 该标签可缺省，缺省值为unspecified。|
+|supportWindowMode|表示该ability所支持的窗口模式，包含：<br/> fullscreen: 全屏模式， <br /> split: 分屏模式， <br />floating: 悬浮窗模式。 |数组       | 该标签可缺省，缺省值为<br/>["fullscreen", "split", "floating"]。|
+|maxWindowRatio|表示该ability支持的最大的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最大的宽高比。|
+|minWindowRatio|表示该ability支持的最小的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最小的宽高比。|
+|maxWindowWidth|表示该ability支持的最大的窗口宽度，宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
+|minWindowWidth|表示该ability支持的最小的窗口宽度, 宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
+|maxWindowHeight|表示该ability支持的最大的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
+|minWindowHeight|表示该ability支持的最小的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
 
 abilities示例
 
@@ -362,7 +370,15 @@ abilities示例
         ],
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:red",
-        "removeMissionAfterTerminate": true
+        "removeMissionAfterTerminate": true,
+        "orientation": " ",
+        "supportWindowMode": ["fullscreen", "split", "floating"],
+        "maxWindowRatio": 3.5,
+        "minWindowRatio": 0.5,
+        "maxWindowWidth": 2560,
+        "minWindowWidth": 1400,
+        "maxWindowHeight": 300,
+        "minWindowHeight": 200
     }],
 }
 ```
@@ -622,7 +638,7 @@ form示例 :
 标识应用的快捷方式信息。标签值为数组，最多可以配置四个快捷方式。其包含四个子标签shortcutId、label、icon、wants。
 
 metadata中指定shortcut信息，其中 :
-1）name :指定shortcuts的名称。使用ohos.ability.shortcut作为shortcuts信息的标识。
+1）name :指定shortcuts的名称。使用ohos.ability.shortcuts作为shortcuts信息的标识。
 2）resource :指定shortcuts信息的资源位置。
 
 表13 shortcuts对象的内部结构说明
@@ -654,7 +670,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在config.json的module下面定义metadata信息，如下 :
+在module.json的module下面定义metadata信息，如下 :
 
 ```json
 {
@@ -671,7 +687,7 @@ metadata中指定shortcut信息，其中 :
                 }],
                 "metadata": [
                     {
-                        "name": "ohos.ability.shortcut",
+                        "name": "ohos.ability.shortcuts",
                         "resource": "$profile:shortcuts_config", 
                     }
                 ],

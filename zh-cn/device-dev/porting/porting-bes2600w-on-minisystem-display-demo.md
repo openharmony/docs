@@ -827,18 +827,18 @@ ethernetif_init(struct netif *netif)
 
 | 配置项                                     | 描述                     |
 | ------------------------------------------ | ------------------------ |
-| dsoftbus_standard_feature_disc_ble         | 是否开启BLE发现功能      |
-| dsoftbus_standard_feature_disc_coap        | 是否开启COAP发现功能     |
-| dsoftbus_standard_feature_conn_tcp         | 是否开启TCP连接功能      |
-| dsoftbus_standard_feature_conn_br          | 是否开启BR连接功能       |
-| dsoftbus_standard_feature_conn_ble         | 是否开启BLE连接功能      |
-| dsoftbus_standard_feature_conn_p2p         | 是否开启P2P连接功能      |
-| dsoftbus_standard_feature_trans_udp        | 是否开启UDP传输功能      |
-| dsoftbus_standard_feature_trans_udp_stream | 是否开启UDP传输流功能    |
-| dsoftbus_standard_feature_trans_udp_file   | 是否开启UDP传输文件功能  |
-| dsoftbus_standard_feature_ip_auth          | 是否开启认证传输通道功能 |
-| dsoftbus_standard_feature_auth_account     | 是否开启基于账号认证功能 |
-| dsoftbus_standard_feature_qos              | 是否开启QoS功能          |
+| dsoftbus_feature_disc_ble         | 是否开启BLE发现功能      |
+| dsoftbus_feature_disc_coap        | 是否开启COAP发现功能     |
+| dsoftbus_feature_conn_tcp         | 是否开启TCP连接功能      |
+| dsoftbus_feature_conn_br          | 是否开启BR连接功能       |
+| dsoftbus_feature_conn_ble         | 是否开启BLE连接功能      |
+| dsoftbus_feature_conn_p2p         | 是否开启P2P连接功能      |
+| dsoftbus_feature_trans_udp        | 是否开启UDP传输功能      |
+| dsoftbus_feature_trans_udp_stream | 是否开启UDP传输流功能    |
+| dsoftbus_feature_trans_udp_file   | 是否开启UDP传输文件功能  |
+| dsoftbus_feature_ip_auth          | 是否开启认证传输通道功能 |
+| dsoftbus_feature_auth_account     | 是否开启基于账号认证功能 |
+| dsoftbus_feature_qos              | 是否开启QoS功能          |
 
 在`softbus_config_adapter.c`文件中规定了以下配置项：
 

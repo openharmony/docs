@@ -60,7 +60,7 @@ toString(): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
-返回适用于URL中的查询字符串。
+返回适用于URI中的查询字符串。
 
 **返回值：**
 
@@ -71,8 +71,8 @@ toString(): string
 **示例：**
 
 ```js
-const url = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+const uri = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+uri.toString()
 ```
 
 

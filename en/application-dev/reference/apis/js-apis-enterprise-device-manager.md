@@ -11,11 +11,11 @@ import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 ```
 
 
-## enterpriseDeviceManager.activateAdmin
+## enterpriseDeviceManager.enableAdmin
 
-activateAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<boolean>): void
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number, callback: AsyncCallback\<boolean>): void
 
-Activates a device administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
+Enables a device administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -27,12 +27,13 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
- | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
- | type | [AdminType](#AdminType) | Yes | Type of the device administrator to activate. |
- | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| -------- | -------- | -------- | -------- |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
+| type | [AdminType](#AdminType) | Yes | Type of the device administrator to enable. |
+| userId         | number                              | No        | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -45,7 +46,7 @@ let enterpriseInfo = {
 	name: "enterprise name",
 	description: "enterprise description"
 }
-enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, (error, result) => {
+enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
@@ -54,11 +55,11 @@ enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDevice
 });
 ```
 
-## enterpriseDeviceManager.activateAdmin
+## enterpriseDeviceManager.enableAdmin
 
-activateAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType): Promise\<boolean>
+enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<boolean>
 
-Activates a device administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
+Enables a device administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -70,11 +71,12 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------------- | ---------------------------------------------- | ---- | ------------------------ |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
- | enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
- | type | [AdminType](#AdminType) | Yes | Type of the device administrator to activate. |
+| Name | Type | Mandatory | Description |
+| -------------- | ---------------------------------------------- | ---- | ------------------------ |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo) | Yes | Enterprise information of the device administrator application. |
+| type | [AdminType](#AdminType) | Yes | Type of the device administrator to enable. |
+| userId | number | No | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -93,7 +95,7 @@ let enterpriseInfo = {
 	name: "enterprise name",
 	description: "enterprise description"
 }
-enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL)
+enterpriseDeviceManager.enableAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL, 100)
 .then((result) => {
 	console.log(result);
 }).catch(error => {
@@ -101,11 +103,11 @@ enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDevice
 });
 ```
 
-## enterpriseDeviceManager.deactivateAdmin
+## enterpriseDeviceManager.disableAdmin
 
-deactivateAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
+disableAdmin(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
-Deactivates a device common administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
+Disables a device common administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -117,10 +119,11 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | ---------------------------------------------- | ---- | ------------------------------ |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
- | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| -------- | ---------------------------------------------- | ---- | ------------------------------ |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
+| userId   | number                              | No        | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -129,7 +132,7 @@ let wantTemp = {
 	bundleName: elementName.bundleName,
 	abilityName: elementName.abilityName,
 };
-enterpriseDeviceManager.deactivateAdmin(wantTemp, (error, result) => {
+enterpriseDeviceManager.disableAdmin(wantTemp, 100, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
@@ -140,11 +143,11 @@ enterpriseDeviceManager.deactivateAdmin(wantTemp, (error, result) => {
 
 
 
-## enterpriseDeviceManager.deactivateAdmin
+## enterpriseDeviceManager.disableAdmin
 
-deactivateAdmin(admin: Want): Promise\<boolean>
+disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
-Deactivates a device common administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
+Disables a device common administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -156,9 +159,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | ------ | ---------------------------------------------- | ---- | ------------------ |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
+| Name | Type | Mandatory | Description |
+| ------ | ---------------------------------------------- | ---- | ------------------ |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device common administrator application. |
+| userId | number | No | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -173,18 +177,18 @@ let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
-enterpriseDeviceManager.deactivateAdmin(wantTemp).then((result) => {
+enterpriseDeviceManager.disableAdmin(wantTemp, 100).then((result) => {
 	console.log(result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.deactivateSuperAdmin
+## enterpriseDeviceManager.disableSuperAdmin
 
-deactivateSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
+disableSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-Deactivates a device super administrator application based on the specified bundle name. This API uses an asynchronous callback to return the result.
+Disables a device super administrator application based on the specified bundle name. This API uses an asynchronous callback to return the result.
 
 **System capability**
 
@@ -201,7 +205,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 ```
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.deactivateSuperAdmin(bundleName, (error, result) => {
+enterpriseDeviceManager.disableSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
@@ -210,11 +214,11 @@ enterpriseDeviceManager.deactivateSuperAdmin(bundleName, (error, result) => {
 });
 ```
 
-## enterpriseDeviceManager.deactivateSuperAdmin
+## enterpriseDeviceManager.disableSuperAdmin
 
-deactivateSuperAdmin(bundleName: String): Promise\<boolean>
+disableSuperAdmin(bundleName: String): Promise\<boolean>
 
-Deactivates a device super administrator application based on the specified bundle name. This API uses a promise to return the result.
+Disables a device super administrator application based on the specified bundle name. This API uses a promise to return the result.
 
 **System capability**
 
@@ -236,18 +240,18 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 ```
 let bundleName = "com.example.myapplication";
-enterpriseDeviceManager.deactivateSuperAdmin(bundleName).then((result) => {
+enterpriseDeviceManager.disableSuperAdmin(bundleName).then((result) => {
 	console.log(result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
 ```
 
-## enterpriseDeviceManager.isAdminAppActive
+## enterpriseDeviceManager.isAdminEnabled
 
-isAdminAppActive(admin: Want, callback: AsyncCallback\<boolean>): void
+isAdminEnabled(admin: Want, userId?: number, callback: AsyncCallback\<boolean>): void
 
-Checks whether a device administrator application is activated based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
+Checks whether a device administrator application is enabled based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
 **System capability**
 
@@ -255,10 +259,11 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | ---------------------------------------------- | ---- | -------------------------------- |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
- | callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
+| Name | Type | Mandatory | Description |
+| -------- | ---------------------------------------------- | ---- | -------------------------------- |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+| userId   | number                              | No        | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. |
 
 **Example**
 
@@ -267,7 +272,7 @@ let wantTemp = {
 	bundleName: elementName.bundleName,
 	abilityName: elementName.abilityName,
 };
-enterpriseDeviceManager.isAdminAppActive(wantTemp, (error, result) => {
+enterpriseDeviceManager.isAdminEnabled(wantTemp, 100, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
@@ -278,11 +283,11 @@ enterpriseDeviceManager.isAdminAppActive(wantTemp, (error, result) => {
 
 
 
-## enterpriseDeviceManager.isAdminAppActive
+## enterpriseDeviceManager.isAdminEnabled
 
-isAdminAppActive(admin: Want): Promise\<boolean>
+isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
-Checks whether a device administrator application is activated based on the specified bundle name and class name. This API uses a promise to return the result.
+Checks whether a device administrator application is enabled based on the specified bundle name and class name. This API uses a promise to return the result.
 
 **System capability**
 
@@ -290,9 +295,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | ------ | ---------------------------------------------- | ---- | -------------- |
- | admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+| Name | Type | Mandatory | Description |
+| ------ | ---------------------------------------------- | ---- | -------------- |
+| admin | [Want](js-apis-application-Want.md) | Yes | Device administrator application. |
+| userId | number | No | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -307,7 +313,7 @@ let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
-enterpriseDeviceManager.isAdminAppActive(wantTemp).then((result) => {
+enterpriseDeviceManager.isAdminEnabled(wantTemp, 100).then((result) => {
 	console.log(result);
 }).catch(error => {
 	console.log("error occurs" + error);
@@ -318,7 +324,7 @@ enterpriseDeviceManager.isAdminAppActive(wantTemp).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-Checks whether a device super administrator application is activated based on the specified bundle name. This API uses an asynchronous callback to return the result.
+Checks whether a device super administrator application is enabled based on the specified bundle name. This API uses an asynchronous callback to return the result.
 
 **System capability**
 
@@ -350,7 +356,7 @@ enterpriseDeviceManager.isSuperAdmin(bundleName, (error, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-Checks whether a device super administrator application is activated based on the specified bundle name. This API uses a promise to return the result.
+Checks whether a device super administrator application is enabled based on the specified bundle name. This API uses a promise to return the result.
 
 **System capability**
 

@@ -10,19 +10,6 @@
 ```js
 import statfs from '@ohos.statfs';
 ```
-
-## 使用说明
-
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
-
-“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”
-
-通过上述接口获取到应用目录路径dir，以文件名“xxx.txt”为例，文件所在应用沙箱路径为：
-
-```js
-let path = dir + "xxx.txt";
-```
-
 ## statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
@@ -72,8 +59,12 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 - 示例：
 
   ```js
-  statfs.getFreeBytes(path, function(err, number){
-      console.info("getFreeBytes callback successfully:"+ number);
+   import featureAbility from '@ohos.ability.featureAbility';
+  let context = featureAbility.getContext();
+  context.getFilesDir().then(function (path) {
+      statfs.getFreeBytes(path, function(err, number){
+          console.info("getFreeBytes callback successfully:"+ number);
+      });
   });
   ```
 
@@ -126,8 +117,12 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 - 示例：
 
   ```js
-  statfs.getTotalBytes(path, function(err, number){
-      console.info("getTotalBytes callback successfully:"+ number);
+  import featureAbility from '@ohos.ability.featureAbility';
+  let context = featureAbility.getContext();
+  context.getFilesDir().then(function (path) {
+      statfs.getTotalBytes(path, function(err, number){
+          console.info("getTotalBytes callback successfully:"+ number);
+      });
   });
   ```
 

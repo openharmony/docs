@@ -95,14 +95,14 @@ repo forall -c 'git lfs pull'
 
 | Source Code                               | Version| Mirror                                                | SHA-256 Checksum                                            |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Full code base (for mini, small, and standard systems)       | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz.sha256)|
-| Hi3516 standard system solution (binary)       | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz.sha256)|
-| RK3568 standard system solution (binary)       | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256)|
-| Hi3861 mini system solution (binary)       | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
-| Hi3516 mini system solution - LiteOS (binary)| 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
-| Hi3516 mini system solution - Linux (binary) | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
-| Standard system SDK package (macOS)                   | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256)|
-| Standard system SDK package (Windows/Linux)         | 3.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256)|
+| Full code base (for mini, small, and standard systems)       | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz.sha256)|
+| Hi3516 standard system solution (binary)       | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz.sha256)|
+| RK3568 standard system solution (binary)       | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256)|
+| Hi3861 mini system solution (binary)       | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
+| Hi3516 mini system solution - LiteOS (binary)| 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
+| Hi3516 mini system solution - Linux (binary) | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
+| Standard system SDK package (macOS)                   | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256)|
+| Standard system SDK package (Windows/Linux)         | 3.1.1 Release  | [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256)|
 
 
 ## What's New

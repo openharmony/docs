@@ -1461,7 +1461,7 @@ getTimeZone(zoneID?: string): TimeZone
   ```
 
 
-## RelativeTimeFormat<sup>8+</sup>
+## TimeZone<sup>8+</sup>
 
 
 ### getID<sup>8+</sup>

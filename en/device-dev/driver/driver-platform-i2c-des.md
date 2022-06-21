@@ -4,7 +4,7 @@
 
 The Inter-Integrated Circuit \(I2C\) is a simple, bidirectional, and synchronous serial bus that uses merely two wires.
 
-In an I2C communication, one controller communicates with one or more devices through the serial data line \(SDA\) and serial clock line \(SCL\), as shown in  [Figure 1](#fig1135561232714).
+In an I2C communication, one controller communicates with one or more devices through the serial data line \(SDA\) and serial clock line \(SCL\), as shown in the figure below.
 
 I2C data transfer must begin with a  **START**  condition and end with a  **STOP**  condition. Data is transmitted byte-by-byte from the most significant bit to the least significant bit.
 

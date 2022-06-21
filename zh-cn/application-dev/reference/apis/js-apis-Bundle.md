@@ -1,5 +1,7 @@
 # Bundle模块(JS端SDK接口)
 
+本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > API9 当前为Canary版本，仅供试用，不保证接口可稳定调用。
@@ -15,11 +17,13 @@ SystemCapability.BundleManager.BundleFramework
 
 ## 权限列表
 
-| 权限                                       | 权限等级         | 描述        |
-| ---------------------------------------- | ------------ | --------- |
-| ohos.permission.GET_BUNDLE_INFO          | normal       | 仅限查询本应用信息 |
+| 权限                                       | 权限等级     | 描述               |
+| ------------------------------------------ | ------------ | ------------------ |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | 仅限查询本应用信息 |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
-| ohos.permission.INSTALL_BUNDLE           | system_core  | 可安装、卸载应用  |
+| ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
+
+权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
 
 ## bundle.getApplicationInfo
 
@@ -1770,7 +1774,15 @@ Ability类型
 | LANDSCAPE     | 无    | 屏幕方向--横屏      |
 | PORTRAIT      | 无    | 屏幕方向--竖屏      |
 | FOLLOW_RECENT | 无    | 屏幕方向--紧跟上一个组件 |
-
+| LANDSCAPE_INVERTED |无    | 屏幕方向--反向横屏     |
+| PORTRAIT_INVERTED |无    | 屏幕方向--反向竖屏     |
+| AUTO_ROTATION |无    | 屏幕方向--随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE |无    | 屏幕方向--传感器横屏旋转，包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT |无    | 屏幕方向--传感器竖屏旋转，包括了竖屏和反向竖屏     |
+| AUTO_ROTATION_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏     |
+| LOCKED |无    | 屏幕方向--传感器开关关闭，方向锁定     |
 ## LaunchMode
 
 启动模式
@@ -1849,3 +1861,15 @@ ExtensionAbility的类型
 | ------------------ | ---- | ---- |
 | PERMISSION_DENIED  | -1   | 拒绝许可 |
 | PERMISSION_GRANTED | 0    | 批准   |
+
+## SupportWindowMode
+
+支持窗口模式
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称                 | 类型   | 说明   |
+| ------------------ | ---- | ---- |
+| FULLSCREEN  | 无   | 全屏模式 |
+| SPLIT | 无    | 分屏模式   |
+| FLOATING | 无    | 悬浮模式   |

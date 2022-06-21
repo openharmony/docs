@@ -8,8 +8,6 @@
 
 ![zh-ch_image_video_recorder_state_machine](figures/zh-ch_image_video_recorder_state_machine.png)
 
-
-
 **图2** 视频录制零层图
 
 ![zh-ch_image_video_recorder_zero](figures/zh-ch_image_video_recorder_zero.png)
@@ -20,7 +18,7 @@
 
 ### 全流程场景
 
-包含流程：创建实例，设置录制参数，录制视频，暂停录制，恢复录制，停止录制，释放资源等流程。
+包含流程：创建实例、设置录制参数、录制视频、暂停录制、恢复录制、停止录制、释放资源等流程。
 
 ```js
 import media from '@ohos.multimedia.media'
@@ -149,4 +147,3 @@ export class VideoRecorderDemo {
   }
 }
 ```
-

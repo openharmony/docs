@@ -83,7 +83,7 @@ export default class MySequenceable {
 ```
 4. Implement **Callee.on** and **Callee.off**.
 
-  The time to register a listener for the callee depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **CalleeSortMethod** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code snippet is as follows:
+  The time to register a listener for the callee depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the ability and deregistered in **onDestroy**. After receiving sequenceable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code snippet is as follows:
 ```ts
 const TAG: string = '[CalleeAbility]'
 const MSG_SEND_METHOD: string = 'CallSendMsg'
@@ -148,7 +148,7 @@ async onButtonGetCaller() {
     console.error(TAG + 'get caller failed with ' + error)
 })
 ```
-In the cross-device scenario, you need to specify the ID of the peer device. The sample code snippet is as follows:
+  In the cross-device scenario, you need to specify the ID of the peer device. The sample code snippet is as follows:
 ```ts
 let TAG = '[MainAbility] '
 var caller = undefined
@@ -172,7 +172,7 @@ context.startAbilityByCall({
     console.error(TAG + 'get remote caller failed with ' + error)
 })
 ```
-Obtain the ID of the peer device from **DeviceManager**. Note that the **getTrustedDeviceListSync** API is open only to system applications. The sample code snippet is as follows:
+  Obtain the ID of the peer device from **DeviceManager**. Note that the **getTrustedDeviceListSync** API is open only to system applications. The sample code snippet is as follows:
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 var dmClass;
@@ -190,7 +190,7 @@ function getRemoteDeviceId() {
     }
 }
 ```
-In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code snippet is as follows:
+  In the cross-device scenario, the application must also apply for the data synchronization permission from end users. The sample code snippet is as follows:
 ```ts
 let context = this.context
 let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']
@@ -215,7 +215,7 @@ async onButtonCall() {
 }
 ```
 
-In the following, **CallWithResult** is used to send data **originMsg** to the callee and assign the data processed by the **CallSendMsg** method to **backMsg**. The sample code snippet is as follows:
+  In the following, **CallWithResult** is used to send data **originMsg** to the callee and assign the data processed by the **CallSendMsg** method to **backMsg**. The sample code snippet is as follows:
 ```ts
 const MSG_SEND_METHOD: string = 'CallSendMsg'
 originMsg: string = ''

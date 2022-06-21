@@ -1,13 +1,9 @@
-# OpenSL ES音频播放开发指导
-
- 
+# OpenSL ES音频播放开发指导 
 
 ## 场景介绍
 
 开发者可以通过本文了解到在**OpenHarmony**如何使用**OpenSL ES**进行音频播放相关操作；当前仅实现了部分[**OpenSL ES**接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**
-
  
-
 ## 开发步骤
 
 以下步骤描述了在**OpenHarmony**如何使用**OpenSL ES**开发音频播放功能：
@@ -20,17 +16,13 @@
     #include <OpenSLES_Platform.h>
     ```
 
-    
-
-2. 使用 **slCreateEngine** 接口和获取 **engine** 实例。
+2. 使用 **slCreateEngine** 接口和获取 **engine** 实例
 
     ```c++
     SLObjectItf engineObject = nullptr;
     slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
     (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     ```
-
-    
 
 3. 获取接口 **SL_IID_ENGINE** 的 **engineEngine** 实例
 
@@ -39,9 +31,7 @@
     (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
     ```
 
-    
-
-4. 配置播放器信息，创建 **AudioPlayer** 。
+4. 配置播放器信息，创建 **AudioPlayer** 
 
     ```c++
     SLDataLocator_BufferQueue slBufferQueue = {
@@ -66,16 +56,12 @@
     (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
     ```
 
-    
-
 5. 获取接口 **SL_IID_OH_BUFFERQUEUE** 的 **bufferQueueItf** 实例
 
     ```
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```
-
-    
 
 6. 打开音频文件，注册 **BufferQueueCallback** 回调
 
@@ -101,8 +87,6 @@
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
-    
-
 7. 获取接口 **SL_PLAYSTATE_PLAYING** 的 **playItf** 实例，开始播放
 
     ```c++
@@ -111,8 +95,6 @@
     (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
     ```
 
-    
-
 8. 结束音频播放
 
     ```c++
@@ -120,4 +102,3 @@
     (*pcmPlayerObject)->Destroy(pcmPlayerObject);
     (*engineObject)->Destroy(engineObject);
     ```
-

@@ -1,6 +1,6 @@
 # Standard NFC
 
-This module is used to implement Near-Field Communication (NFC).
+Implements Near-Field Communication (NFC).
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -90,7 +90,7 @@ Obtains the NFC state.
 
 on(type: "nfcStateChange", callback: Callback&lt;NfcState&gt;): void
 
-Registers NFC state changes.
+Subscribes to NFC state changes.
 
 **System capability**: SystemCapability.Communication.NFC
 
@@ -107,7 +107,7 @@ Registers NFC state changes.
 
 off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 
-Unregisters the NFC state changes.
+Unsubscribes from the NFC state changes.
 
 **System capability**: SystemCapability.Communication.NFC
 
@@ -129,10 +129,10 @@ Unregisters the NFC state changes.
       console.info("nfc state receive state: " + result);
   }
   
-  // Register the NFC state changes.
+  // Subscribe to the NFC state changes.
   nfcController.on(NFC_STATE_NOTIFY, recvNfcStateNotifyFunc);
   
-  // Unregister the NFC state changes.
+  // Unsubscribe from the NFC state changes.
   nfcController.off(NFC_STATE_NOTIFY, recvNfcStateNotifyFunc);
   ```
 

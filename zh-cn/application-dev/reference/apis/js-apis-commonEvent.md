@@ -246,6 +246,8 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称     | 读写属性 | 类型                 | 必填 | 描述                               |
@@ -282,6 +284,8 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 向指定用户发布公共事件并指定发布信息（callback形式）。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

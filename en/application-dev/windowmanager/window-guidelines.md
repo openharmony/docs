@@ -100,5 +100,3 @@ try {
   console.log(`setFullScreen fail, code = ${err.code}`)
 }
 ```
-
-For the complete code, see [immersive](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive).

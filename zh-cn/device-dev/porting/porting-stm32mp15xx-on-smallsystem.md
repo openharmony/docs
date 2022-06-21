@@ -335,10 +335,7 @@ vendor
 
 ### SoC芯片平台HDF驱动移植
 
-驱动适配相关文件放置在`device/soc/st/common/platform`中，所有的驱动都是通过`HDF`机制加载，本章节以`gpio`为例进行详细说明。
-
-#### GPIO驱动适配
-
+驱动适配相关文件放置在`device/soc/st/common/platform`中，所有的驱动都是通过`HDF`机制加载，本章节以GPIO驱动适配为例进行详细说明。
 
 1. 在`//device/soc/st/common/platform/gpio/BUILD.gn`文件中，描述了stm32mp1xx `gpio`驱动的编译适配。如下：
 
@@ -496,7 +493,7 @@ vendor
 
 #### 安全子系统适配
 
-进行安全子系统适配需要添加`permission_lite`、`appverify`、`deviceauth_standard`、`huks`四个部件，直接在`config.json`配置即可。
+进行安全子系统适配需要添加`permission_lite`、`appverify`、`device_auth`、`huks`四个部件，直接在`config.json`配置即可。
 
 ```
     {
@@ -504,7 +501,7 @@ vendor
     "components": [
         { "component": "permission_lite", "features":[] },
         { "component": "appverify", "features":[] },
-        { "component": "deviceauth_standard", "features":[] },
+        { "component": "device_auth", "features":[] },
         { "component": "huks", "features":
         [
             "huks_config_file = \"hks_config_small.h\""

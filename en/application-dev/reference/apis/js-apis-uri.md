@@ -1,12 +1,13 @@
 # URI String Parsing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import uri from '@ohos.uri'  
 ```
 
@@ -41,7 +42,7 @@ A constructor used to create a URI instance.
 
 | Name| Type.| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| url | string | Yes| Yes| Input object.|
+| uri | string | Yes| Yes| Input object.|
 
 **Example**
 
@@ -60,7 +61,7 @@ toString(): string
 
 **System capability**: SystemCapability.Utils.Lang
 
-Obtains the query string applicable to this URL.
+Obtains the query string applicable to this URI.
 
 **Return value**
 
@@ -71,8 +72,8 @@ Obtains the query string applicable to this URL.
 **Example**
 
 ```js
-const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+const uri = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+uri.toString()
 ```
 
 

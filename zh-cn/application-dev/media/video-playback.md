@@ -8,13 +8,11 @@
 
 ![zh-ch_image_video_state_machine](figures/zh-ch_image_video_state_machine.png)
 
-
-
 **图2** 视频播放零层图
 
 ![zh-ch_image_video_player](figures/zh-ch_image_video_player.png)
 
-*注意：视频播放需要显示、音频、编解码等硬件能力。
+*注意：视频播放需要显示、音频、编解码等硬件能力。*
 
 1. 三方应用从Xcomponent组件获取surfaceID。
 2. 三方应用把surfaceID传递给VideoPlayer JS。
@@ -43,9 +41,7 @@
 
 VideoPlayer支持的url媒体源输入类型可参考：[url属性说明](../reference/apis/js-apis-media.md#videoplayer_属性)
 
-Xcomponent创建方法可参考：[Xcomponent创建方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md)
-
-*注意：SetSurface需要在设置url和Prepare之间
+Xcomponent创建方法可参考：[Xcomponent创建方法](../reference/arkui-ts/ts-basic-components-xcomponent.md)
 
 ```js
 import media from '@ohos.multimedia.media'
@@ -120,7 +116,7 @@ export class VideoPlayerDemo {
       console.info('pause success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // 通过promise回调方式获取视频轨道信息
+    // 通过promise回调方式获取视频轨道信息ommunication_dsoftbus
     let arrayDescription;
     await videoPlayer.getTrackDescription().then((arrlist) => {
       if (typeof (arrlist) != 'undefined') {

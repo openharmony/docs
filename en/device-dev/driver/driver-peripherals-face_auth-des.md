@@ -1,12 +1,12 @@
-# Face_auth
+# Facial Authentication
 
 ## Overview
 
 ### Function
 
-Facial authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. It uses biometric recognition technologies to identify individuals based on facial characteristics. A camera is used to collect images or video streams that contain human faces, and automatically detect, track, and recognize human faces. Facial authentication is also called facial recognition or face recognition. The figure below shows the architecture of facial authentication.
+Facial authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. It uses biometric recognition technologies to identify individuals based on facial characteristics. A camera is used to collect images or video streams that contain human faces, and automatically detect, track, and recognize human faces. Facial authentication is also called facial recognition. The figure below shows the architecture of facial authentication.
 
-The face authentication driver (Face_auth) driver is developed based on the Hardware Driver Foundation (HDF) driver framework. It shields hardware differences and provides stable facial authentication capabilities for the user authentication framework (User_auth) and Face_auth service. The facial authentication capabilities include obtaining facial recognition executor list, executor information, and template information by template ID, comparing face image template information of the executor and that of User_auth, enrolling or deleting face templates, and performing facial authentication.
+The face authentication (Face_auth) driver is developed based on the Hardware Driver Foundation (HDF). It shields hardware differences and provides stable facial authentication capabilities for the user authentication framework (User_auth) and Face_auth service. The facial authentication capabilities include obtaining facial recognition executor list, executor information, and template information by template ID, comparing face image template information of the executor and that of User_auth, enrolling or deleting face image templates, and performing facial authentication.
 
 **Figure 1** Facial authentication architecture
 
@@ -14,14 +14,14 @@ The face authentication driver (Face_auth) driver is developed based on the Hard
 
 ### Basic Concepts
 
-The identity authentication consists of User_auth and basic authentication services (including PIN authentication and facial authentication). It supports basic functions such as setting and deleting user credentials and performing authentication. The system supports user identity authentication and provides data collection, processing, storage, and comparison capabilities.
+The identity authentication consists of User_auth and basic authentication services (including PIN authentication and facial authentication). It supports basic functions such as setting and deleting user credentials and performing authentication. The system supports user identity authentication and data collection, processing, storage, and comparison.
 - Executor
 
   The executor collects, processes, stores, and compares data for authentication. Each authentication service provides the executor capabilities, which are scheduled by User_auth to implement basic capabilities.
 
 - Executor security level
 
-  Certain security level is required for the execution environment of an executor. For example, the executor security level is low for an operation performed without access control and high for an operation performed in a Trusted Execution Environment (TEE).
+  Security level required for the execution environment of an executor.
 
 - Executor role
 
@@ -39,11 +39,11 @@ The identity authentication consists of User_auth and basic authentication servi
 
   To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between User_auth and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with User_auth.
 
-    The executor uses the User_auth public key to verify scheduling instructions. For example, if a face image template is locked, the related facial authentication capability cannot be used. The instruction for unlocking the face image template must be verified before being executed.
+    The executor uses the User_auth public key to verify scheduling instructions.
 
     User_auth uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
 
-- Facial authentication credential template
+- Authentication credential template
 
   Authentication credentials are generated and stored by the authentication service when users set authentication credentials. Each template has an ID to index a set of template information files. The template information needs to be compared with the authentication data generated during authentication to complete identity authentication.
 
@@ -53,7 +53,7 @@ The identity authentication consists of User_auth and basic authentication servi
 
 ### Working Principles
 
-The Face_auth driver provides basic facial authentication capabilities for the User_auth framework and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
 You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** Face_auth service and Face_auth driver interaction
@@ -62,15 +62,15 @@ You can develop drivers to call Hardware Device Interface (HDI) APIs based on th
 
 ### Constraints
 
-- To implement facial authentication, the device must have a camera with a face image pixel greater than 100x100.
-- TEE must be available, and facial feature information must be encrypted and stored in a TEE.
+- To implement facial authentication, the device must have a camera and the face image must be greater than 100 x 100 pixels.
+- A Trusted Execution Environment (TEE) must be available, and facial feature information must be encrypted and stored in a TEE.
 - The face matching accuracy varies with people with similar looks and children whose facial features keep changing. If you are concerned about this, consider using other authentication modes.
 
 ## Development Guidelines
 
 ### When to Use
 
-The Face_auth driver provides basic facial authentication capabilities for the User_auth framework and Face_auth service to ensure successful facial authentication.
+The Face_auth driver provides basic facial authentication capabilities for the User_auth and Face_auth service to ensure successful facial authentication.
 
 ### Available APIs
 
@@ -79,12 +79,12 @@ The Face_auth driver provides basic facial authentication capabilities for the U
 | API                                                      | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | Obtains the executor list.                                            |
-| GetExecutorInfo(ExecutorInfo& info)                          | Obtain the executor information, including the executor type, executor role, authentication type, security level, and executor public key.|
+| GetExecutorInfo(ExecutorInfo& info)                          | Obtains the executor information, including the executor type, executor role, authentication type, security level, and executor public key.|
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | Obtains information about a face image template based on the specified template ID.                              |
 | OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
 | Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Enrolls a face image template.                                              |
 | Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | Performs facial authentication.                                              |
-| Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Performs face identification.                                              |
+| Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Performs facial identification.                                              |
 | Delete(const std::vector<uint64_t>& templateIdList)          | Deletes a face image template.                                              |
 | Cancel(uint64_t scheduleId)                                  | Cancels a face enrolling, authentication, or identification operation based on the **scheduleId**.                |
 | SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Sends commands to the Face_auth service.             |
@@ -98,7 +98,7 @@ The Face_auth driver provides basic facial authentication capabilities for the U
 
 ### How to Develop
 
-The following uses the Hi3516DV300 platform as an example to demonstrate how to develop the Face_auth driver. <br/>The directory structure is as follows:
+The following uses the Hi3516D V300 development board as an example to demonstrate how to develop the Face_auth driver. <br/>The directory structure is as follows:
 
 ```undefined
 // drivers/peripheral/face_auth
@@ -118,7 +118,7 @@ The development procedure is as follows:
 1. Develop the Face_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_driver.cpp).
 
    ```c++
-   // Create the IRemoteObject object by using the custom HdfFaceAuthInterfaceHost object, which consists of the IoService object and HDI service.
+   // Create an IRemoteObject object by using the custom HdfFaceAuthInterfaceHost object, which consists of the IoService object and HDI service.
    struct HdfFaceAuthInterfaceHost {
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
@@ -152,6 +152,10 @@ The development procedure is as follows:
    int HdfFaceAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
        IAM_LOGI("start");
+       if (!HdfDeviceSetClass(deviceObject, DEVICE_CLASS_USERAUTH)) {
+           IAM_LOGE("set face auth hdf class failed");
+           return HDF_FAILURE;
+       }
        return HDF_SUCCESS;
    }
    
@@ -161,7 +165,7 @@ The development procedure is as follows:
        IAM_LOGI("start");
        auto *hdfFaceAuthInterfaceHost = new (std::nothrow) HdfFaceAuthInterfaceHost;
        if (hdfFaceAuthInterfaceHost == nullptr) {
-           IAM_LOGE("%{public}s: failed to create create HdfFaceAuthInterfaceHost object", __func__);
+           IAM_LOGE("%{public}s: Failed to create HdfFaceAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
    
@@ -171,7 +175,7 @@ The development procedure is as follows:
    
        auto serviceImpl = IFaceAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           IAM_LOGE("%{public}s: Failed to implement the service", __func__);
+           IAM_LOGE("%{public}s: Failed to implement service", __func__);
            return HDF_FAILURE;
        }
    
@@ -271,7 +275,7 @@ The development procedure is as follows:
    {
        IAM_LOGI("interface mock start");
        info = executorInfo_;
-       IAM_LOGI("get executor information success");
+       IAM_LOGI("Executor information got successfully");
        return HDF_SUCCESS;
    }
    
@@ -281,7 +285,7 @@ The development procedure is as follows:
        IAM_LOGI("interface mock start");
        static_cast<void>(templateId);
        info = {0};
-       IAM_LOGI("get template information success");
+       IAM_LOGI("Template information got successfully");
        return HDF_SUCCESS;
    }
    
@@ -293,11 +297,11 @@ The development procedure is as follows:
        static_cast<void>(templateIdList);
        static_cast<void>(extraInfo);
        static_cast<void>(frameworkPublicKey);
-       IAM_LOGI("register finish");
+       IAM_LOGI("Registration finished");
        return HDF_SUCCESS;
    }
    
-   // Enroll face image.
+   // Enroll a face image.
    int32_t Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
    {
@@ -330,7 +334,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // Perform face recognition.
+   // Perform facial recognition.
    int32_t Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
    {
@@ -364,7 +368,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // Send template freezing or unlocking command from the Face_auth service to the Face_auth driver.
+   // Send template locking or unlocking command from the Face_auth service to the Face_auth driver.
    int32_t SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
    {
@@ -417,7 +421,7 @@ The development procedure is as follows:
 
 ### Verification
 
-Use the [User Authentication APIs](../../application-dev/reference/apis/js-apis-useriam-userauth.md) to develop a JavaScript application and verify the application on the Hi3516DV300 platform. The sample code for verifying the authentication and authentication cancellation is as follows:
+Use the [User Authentication APIs](../../application-dev/reference/apis/js-apis-useriam-userauth.md) to develop a JavaScript application and verify the application on the Hi3516D V300 development board. The sample code for verifying and canceling the authentication is as follows:
 
 ```js
 // API version 8
@@ -426,7 +430,7 @@ let auth = new userIAM_userAuth.UserAuth();
 
 export default {
     getVersion() {
-        console.info("start get version");
+        console.info("start to get version");
         let version = this.auth.getVersion();
         console.info("auth version = " + version);
     },
@@ -438,7 +442,7 @@ export default {
                 try {
                     console.info("auth onResult result = " + result);
                     console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == 'SUCCESS') {
+                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                         // Add the logic to be executed when the authentication is successful.
                     }  else {
                         // Add the logic to be executed when the authentication fails.
@@ -473,10 +477,10 @@ export default {
             }
         });
         let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-            console.info("cancel auth success");
+        if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+            console.info("Authentication canceled successfully");
         } else {
-            console.error("cancel auth fail");
+            console.error("failed to cancel authentication");
         }
     }
 }
