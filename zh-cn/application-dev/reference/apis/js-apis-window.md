@@ -68,6 +68,19 @@ import window from '@ohos.window';
 | SECONDARY  | 4    | 表示APP分屏多窗口次要模式。   |
 | FLOATING   | 5    | 表示APP自由悬浮形式窗口模式。 |
 
+## WindowLayoutMode<sup>9+</sup>
+
+窗口布局模式枚举。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| WINDOW_LAYOUT_MODE_CASCADE  | 0    | 表示使用层叠布局模式。       |
+| WINDOW_LAYOUT_MODE_TILE | 1    | 表示使用平铺布局模式。             |
+
 ## SystemBarProperties
 
 状态栏、导航栏的属性。
@@ -503,6 +516,195 @@ promise.then((data)=> {
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+})
+```
+
+## window.minimizeAll<sup>9+</sup>
+minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
+
+最小化某显示设备下的所有窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+import display from '@ohos.display'
+import window from '@ohos.window'
+
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if(err.code) {
+        return;
+    }
+    displayClass = data;
+    window.minimizeAll(displayClass.id, (err, data) => {
+        if(err.code) {
+            console.error('Failed to minimize all window. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in minimizing all window.');
+    });
+});
+```
+
+## window.minimizeAll<sup>9+</sup>
+minimizeAll(id: number): Promise&lt;void&gt;
+
+最小化某显示设备下的所有窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+import display from '@ohos.display'
+import window from '@ohos.window'
+
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if(err.code) {
+        return;
+    }
+    displayClass = data;
+    let promise = window.minimizeAll(displayClass.id);
+    promise.then((data)=> {
+        console.info('Succeeded in minimizing all window.');
+    }).catch((err)=>{
+        console.error('Failed to minimize all window. Cause: ' + JSON.stringify(err));
+    })
+});
+```
+
+## window.toggleShownStateForAllAppWindows<sup>9+</sup>
+toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
+
+多窗口快速切换时隐藏或者恢复应用窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+window.toggleShownStateForAllAppWindows((err, data) => {
+    if (err.code) {
+        console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in toggling shown state for all app windows.');
+})
+```
+
+## window.toggleShownStateForAllAppWindows<sup>9+</sup>
+toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
+
+多窗口快速切换时隐藏或者恢复应用窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let promise = window.toggleShownStateForAllAppWindows();
+promise.then((data)=> {
+    console.info('Succeeded in toggling shown state for all app windows. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+})
+```
+
+## window.setWindowLayoutMode<sup>9+</sup>
+setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口布局模式。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| mode       | [WindowLayoutMode](#windowlayoutmode9)                  | 是   | 设置的窗口布局模式 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (data) => {
+    console.info('Succeeded in setting window layout mode. Data: ' + JSON.stringify(data));
+});
+```
+
+## window.setWindowLayoutMode<sup>9+</sup>
+setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
+
+设置窗口布局模式。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| mode       | [WindowLayoutMode](#windowlayoutmode9)                    | 是   | 设置的窗口布局模式 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
+promise.then((data)=> {
+    console.info('Succeeded in setting window layout mode. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
 })
 ```
 
@@ -2706,7 +2908,31 @@ class myAbility extends Ability {
 }
 ```
 
-### setShowOnLockScreen('showOnLockScreen')<sup>9+</sup>
+### disableWindowDecor()<sup>9+</sup>
+
+disableWindowDecor(): void
+
+禁止窗口装饰。
+
+此接口仅可在Stage模型下使用。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**示例：** 
+
+```ts
+import Ability from '@ohos.application.Ability';
+class myAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        console.log('disableWindowDecor');
+        windowStage.disableWindowDecor();
+    }
+}
+```
+
+### setShowOnLockScreen()<sup>9+</sup>
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
