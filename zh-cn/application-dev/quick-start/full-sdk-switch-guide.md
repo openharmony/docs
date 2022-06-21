@@ -8,15 +8,13 @@
 
 ## 下载full-SDK(这里以3.1.1 Release版本为例)
 
-1. 获取full-SDK
+full-SDK需要手动下载。请参考[OpenHarmony 3.1.1 Release版本说明书](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.1.1-release.md)中的获取方式，获取所需的操作系统的full-SDK。
 
-   full-SDK需要手动下载。请参考[OpenHarmony 3.1.1 Release版本说明书](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.1.1-release.md)中的获取方式，获取所需的操作系统类型的full-SDK。
 
-2. 选择版本：
 
-   ![image-20220613161049897](figures/zh-cn_image_0000001655128646.png)
+![image-20220613161049897](figures/zh-cn_image_0000001655128646.png)
 
-   
+
 
 
 ## 查看本地SDK路径(此处以ets工程为例，1.0工程请以相同方式替换js-SDK)
@@ -30,10 +28,7 @@
 
 ## 替换SDK
 
-1. 打开上一步骤中获取到的SDK本地文件路径。
-   ![image-20220613161352157](figures/zh-cn_image_0000001655129041.png)
-
-2. 确认下载的SDK版本是否为full-SDK
+1. 确认下载的SDK版本是否为full-SDK
 
    a.检查下载文件名是否包含full-SDK字样
 
@@ -45,11 +40,11 @@
 
    
 
-3. 替换SDK。
+2. 替换SDK，以public-SDK-3.1.6.6版本为例。
 
    以windows为例：
 
-   a.解压`ets-windows-3.1.6.5-Release.zip`
+   a.解压已下载的full-SDK文件：`ets-windows-3.1.6.5-Release.zip`
 
    ![image-20220613165018184](figures/zh-cn_image_0000001655129264.png)
 
@@ -57,21 +52,15 @@
 
    **备份本地SDK**（复制并重命名ets目录下版本信息目录名，或者将ets目录拷贝至其他本地路径）
 
-   注：版本信息目录名称只要与其下`oh-uni-package.json`配置文件的version字段不一致即可
+   打开获取到的本地已安装SDK文件路径并进行备份。
+
+   ![image-20220613161352157](figures/zh-cn_image_0000001655129041.png)
+
+   注：备份版本信息目录名称只要与其下`oh-uni-package.json`配置文件的version字段不一致即可，如下图所示，备份3.1.6.6版本sdk
 
    ![image-20220613165018184](figures/zh-cn_image_0000001655129398.png)
 
-   
-
-   **删除原SDK目录中的所有文件**（否则可能会导致文件无法全部覆盖）
-
-   
-
-   **拷贝full-SDK至本地SDK路径**
-
-   以public-SDK-3.1.6.6版本为例，将`ets`目录下的所有文件替换至`本地SDK路径\ets\3.1.6.6`中
-
-   修改`oh-uni-package.json`配置文件的version字段为当前SDK版本号
+   `oh-uni-package.json`文件配置信息如下：
 
    ```
    {
@@ -85,11 +74,25 @@
      "version": "3.1.6.6"
    }
    ```
+
+   **删除原SDK（3.1.6.6）目录中的所有文件**（否则可能会导致文件无法全部覆盖）
+
    
-   在本地SDK路径下`\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
+
+   **拷贝full-SDK至本地SDK路径**
+
+   将下载的full-SDK文件包中`ets`目录下的所有文件替换至本地SDK路径下`ets\3.1.6.6`目录中
+
+   修改`oh-uni-package.json`配置文件的version字段为当前SDK版本号
+
    
+
+   在`3.1.6.6\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
+
    ![image-20220613171111405](figures/zh-cn_image_0000001655129333.png)
+
    
-   验证系统API接口
+
+   c.验证系统API接口
 
    ![image-20220613213038104](figures/zh-cn_image_0000001655129372.png)
