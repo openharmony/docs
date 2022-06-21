@@ -65,9 +65,9 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 **返回值：**
 
-| 类型                               | 说明                                           |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;&lt;DataShareHelper&gt; | Promise对象。返回创建后的DataShareHelper实例。 |
+| 类型                                               | 说明                                           |
+| -------------------------------------------------- | ---------------------------------------------- |
+| Promise&lt;[DataShareHelper](#datasharehelper)&gt; | Promise对象。返回创建后的DataShareHelper实例。 |
 
 **示例：**
 
@@ -107,6 +107,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt", (err, data) => {
     if (err != undefined) {
         console.info("openFile failed, error message : " + err);
@@ -141,6 +142,7 @@ openFile(uri: string, mode: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt").then((data) => {
     console.info("openFile succeed, data : " + data);
     let fd = data;
@@ -171,6 +173,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 function onCallback() {
     console.info("**** Observer on callback ****");
 }
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.on("dataChange", uri, onCallback);
 ```
 
@@ -196,6 +199,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 function offCallback() {
     console.info("**** Observer off callback ****");
 }
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.off("dataChange", uri, offCallback);
 ```
 
@@ -217,6 +221,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
 });
@@ -245,6 +250,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```
 
@@ -266,6 +272,7 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri, (err, data)=>{
     if (err != undefined) {
         console.log("getType failed, error message : " + err);
@@ -299,6 +306,7 @@ getType(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri).then((data) => {
     console.log("getType succeed, data : " + data);
 }).catch((err) => {
@@ -316,15 +324,16 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 
 **参数：**
 
-| 名称           | 类型                                     | 必填 | 描述                                                         |
-| -------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri            | string                                   | 是   | 指示要获取的文件的路径。                                     |
-| mimeTypeFilter | string                                   | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
-| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调函数。返回匹配的MIME类型数组。                           |
+| 名称           | 类型                                                         | 必填 | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| uri            | string                                                       | 是   | 指示要获取的文件的路径。                                     |
+| mimeTypeFilter | string                                                       | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
+| callback       | openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts | 是   | 回调函数。返回匹配的MIME类型数组。                           |
 
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
     if (err != undefined) {
@@ -359,6 +368,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
 	console.log("getFileTypes succeed, data : " + data);
@@ -385,6 +395,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
         console.log("normalizeUri failed, error message : " + err);
@@ -417,6 +428,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
 }).catch((err) => {
@@ -442,6 +454,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
         console.log("denormalizeUri failed, error message : " + err);
@@ -474,6 +487,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
 }).catch((err) => {
@@ -500,6 +514,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
     "age": 22,
@@ -538,6 +553,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
     "age": 221,
@@ -569,6 +585,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
@@ -605,6 +622,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
@@ -617,7 +635,7 @@ dataShareHelper.batchInsert(uri, vbs).then((data) => {
 
 ### delete
 
-delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
+delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
 
 从数据库中删除一条或多条数据记录。使用callback异步回调。
 
@@ -628,13 +646,16 @@ delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
 
 **示例：**
 
 ```ts
-let da = new dataShare.DataSharePredicates();
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.delete(uri, da, (err, data) => {
     if (err != undefined) {
@@ -647,7 +668,7 @@ dataShareHelper.delete(uri, da, (err, data) => {
 
 ### delete
 
-delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
+delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;number&gt;
 
 从数据库中删除一条或多条数据记录。使用Promise异步回调。
 
@@ -658,7 +679,7 @@ delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
 
 **返回值：**
 
@@ -669,7 +690,10 @@ delete(uri: string, predicates: DataSharePredicates): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-let da = new dataShare.DataSharePredicates();
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.delete(uri, da).then((data) => {
     console.log("delete succeed, data : " + data);
@@ -680,7 +704,7 @@ dataShareHelper.delete(uri, da).then((data) => {
 
 ### update
 
-update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
+update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 更新数据库中的数据记录。使用callback异步回调。
 
@@ -691,14 +715,17 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callba
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回更新的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **示例：**
 
 ```ts
-let da = new dataShare.DataSharePredicates();
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 const va = {
     "name": "roe1",
@@ -717,7 +744,7 @@ dataShareHelper.update(uri, da, va, (err, data) => {
 
 ### update
 
-update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
+update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
 
 更新数据库中的数据记录。使用Promise异步回调。
 
@@ -728,7 +755,7 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
 
 **返回值：**
@@ -740,7 +767,10 @@ update(uri: string, predicates: DataSharePredicates, value: ValuesBucket): Promi
 **示例：**
 
 ```ts
-let da = new dataShare.DataSharePredicates();
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 const va = {
     "name": "roe1",
@@ -757,7 +787,7 @@ dataShareHelper.update(uri, da, va).then((data) => {
 
 ### query
 
-query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void
+query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void
 
 查询数据库中的数据。使用callback异步回调。
 
@@ -768,28 +798,31 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 是   | 回调函数。返回查询到的结果集。                               |
 
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
-let da = new dataShare.DataSharePredicates();
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.query(uri, da, columns, (err, data) => {
     if (err != undefined) {
         console.log("query failed, error message : " + err);
     }else{
-        console.log("query succeed, ret : " + data.rowCount);
+        console.log("query succeed, rowCount : " + data.rowCount);
     }
 });
 ```
 
 ### query
 
-query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
+query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 查询数据库中的数据。使用Promise异步回调。
 
@@ -800,7 +833,7 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 | 名称       | 类型                                                         | 必填 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
 
 **返回值：**
@@ -812,11 +845,14 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 **示例：**
 
 ```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+
+let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
-let da = new dataShare.DataSharePredicates();
+let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 dataShareHelper.query(uri, da, columns).then((data) => {
-    console.log("query succeed, ret : " + data.rowCount);
+    console.log("query succeed, rowCount : " + data.rowCount);
 }).catch((err) => {
     console.log("query failed, error message : " + err);
 });

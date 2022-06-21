@@ -1,6 +1,6 @@
 # DataSharePredicates
 
-**谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))和查询数据([query](js-apis-data-dataShare.md#query))中。
+**谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))、删除数据([delete](js-apis-data-dataShare.md#delete))和查询数据([query](js-apis-data-dataShare.md#query))中。
 
 >**说明：** 
 >
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import dataSharePredicates from '@ohos.data.DataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
 ## equalTo
@@ -338,7 +338,7 @@ like(field: string, value: string): DataSharePredicates
 
 | 类型                                        | 说明                                                         |
 | ------------------------------------------- | ------------------------------------------------------------ |
-| [DataSharePredicates](#datasharepredicates) | openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts |
+| [DataSharePredicates](#datasharepredicates) | xxxxxxxxxx openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts |
 
 **示例：**
 

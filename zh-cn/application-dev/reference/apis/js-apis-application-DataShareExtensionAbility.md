@@ -51,7 +51,9 @@ onCreate(want: Want, callback: AsyncCallback&lt;void&gt;) {
         rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
             console.log('executeSql done, error message : ' + err);
         });
-        callback();
+        if (callback) {
+            callback();
+        }
     });
 }
 ```
@@ -91,7 +93,7 @@ insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number
 
 ## update
 
-update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
+update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 在数据库更新时服务端回调此接口，该方法可以选择性重写。
 
@@ -102,14 +104,14 @@ update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket,
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回更新的数据记录数。 |
 
 **示例：**
 
 ```ts
-update(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
+update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -123,7 +125,7 @@ update(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, 
 
 ## query
 
-query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void
+query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void
 
 在查询数据库时服务端回调此接口，该方法可以选择性重写。
 
@@ -134,14 +136,14 @@ query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
 | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回查询到的结果集。 |
 
 **示例：**
 
 ```ts
-query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;) {
+query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -158,7 +160,7 @@ query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;
 
 ## delete
 
-delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
+delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void
 
 在删除数据库记录时服务端回调此接口，该方法可以选择性重写。
 
@@ -169,13 +171,13 @@ delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt
 | 名称       | 参数类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。 |
 
 **示例：**
 
 ```ts
-delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;) {
+delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;) {
     if (predicates == null || predicates == undefined) {
         return;
     }
