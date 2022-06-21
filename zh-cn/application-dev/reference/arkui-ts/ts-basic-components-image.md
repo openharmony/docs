@@ -24,7 +24,7 @@ Image(src: string | PixelMap | Resource)
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | src |  string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)| 是 | - | 图片的数据源，支持本地图片和网络图片。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+  | src |  string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)| 是 | - | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
 
 
 ## 属性
@@ -40,36 +40,36 @@ Image(src: string | PixelMap | Resource)
 | syncLoad<sup>8+</sup> | boolean | false | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。 |
 
 - ImageFit枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Cover | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 | 
-  | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。 | 
-  | Fill | 不保持宽高比进行放大缩小，使得图片填充满显示边界。 | 
-  | None | 保持原有尺寸显示。通常配合objectRepeat属性一起使用。 | 
-  | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。 | 
+  | Cover | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
+  | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。 |
+  | Fill | 不保持宽高比进行放大缩小，使得图片填充满显示边界。 |
+  | None | 保持原有尺寸显示。通常配合objectRepeat属性一起使用。 |
+  | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。 |
 
 - ImageInterpolation枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | None | 不使用插值图片数据。 | 
-  | High | 高度使用插值图片数据，可能会影响图片渲染的速度。 | 
-  | Medium | 中度使用插值图片数据。 | 
-  | Low | 低度使用插值图片数据。 | 
+  | None | 不使用插值图片数据。 |
+  | High | 高度使用插值图片数据，可能会影响图片渲染的速度。 |
+  | Medium | 中度使用插值图片数据。 |
+  | Low | 低度使用插值图片数据。 |
 
 - ImageRenderMode枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Original | 按照原图进行渲染，包括颜色。 | 
-  | Template | 将图像渲染为模板图像，忽略图片的颜色信息。 | 
+  | Original | 按照原图进行渲染，包括颜色。 |
+  | Template | 将图像渲染为模板图像，忽略图片的颜色信息。 |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 | 
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。 | 
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 | 
+| onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图源尺寸。 |
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。 |
+| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
 
 
 ## 示例
