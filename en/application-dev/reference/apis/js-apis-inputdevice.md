@@ -104,7 +104,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
@@ -150,7 +150,7 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
 
@@ -336,7 +336,7 @@ Defines the axis range of an input device.
 | Name                     | Type                     | Description      |
 | ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis                    | [AxisType](axistype)      | Axis type.   |
+| axis                    | [AxisType](#axistype)      | Axis type.   |
 | max                     | number                    | Maximum value of the axis.  |
 | min                     | number                    | Minimum value of the axis.  |
 | fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.  |
