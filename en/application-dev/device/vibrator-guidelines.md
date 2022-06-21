@@ -8,20 +8,20 @@ You can set different vibration effects as needed, for example, customizing the 
 
 ## Available APIs
 
-  | Module| API| Description| 
-| -------- | -------- | -------- |
-| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified duration. This API uses a promise to return the result.| 
-| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified duration. This API uses a callback to return the result.| 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result.| 
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified effect. This API uses a callback to return the result.| 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.| 
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Stops vibration. This API uses a callback to return the result.| 
+| Module           | API                                     | Description                             |
+| ------------- | ---------------------------------------- | ------------------------------- |
+| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified duration. This API uses a promise to return the result.      |
+| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified duration. This API uses a callback to return the result.     |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result. |
+| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified effect. This API uses a callback to return the result.|
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.                          |
+| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Stops vibration. This API uses a callback to return the result.                          |
 
 
 ## How to Develop
 
 1. Declare the permissions required for controlling vibrators on the hardware device in the `config.json` file.  
-  
+
    ```
    "reqPermissions": [
      {
@@ -58,7 +58,7 @@ You can set different vibration effects as needed, for example, customizing the 
    ```
 
 2. Trigger the device to vibrate.
-  
+
    ```
    import vibrator from "@ohos.vibrator"
    vibrator.vibrate(1000).then((error)=>{
@@ -71,7 +71,7 @@ You can set different vibration effects as needed, for example, customizing the 
    ```
 
 3. Stop the vibration.
-  
+
    ```
    import vibrator from "@ohos.vibrator"
    vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
