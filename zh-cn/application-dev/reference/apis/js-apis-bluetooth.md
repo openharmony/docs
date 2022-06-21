@@ -3355,11 +3355,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称          | 参数类型   | 可读   | 可写   | 说明                                       |
-| ----------- | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId    | string | 是    | 是    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。     |
-| name        | string | 是    | 是    | 表示过滤的BLE设备名。                             |
-| serviceUuid | string | 是    | 是    | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称                                     | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
+| serviceUuid                              | string      | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask<sup>9+</sup>             | string      | 是   | 是   | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid<sup>9+</sup>     | string      | 是   | 是   | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask<sup>9+</sup> | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData<sup>9+</sup>                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufacturerId<sup>9+</sup>              | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureData<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask<sup>9+</sup>         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions
