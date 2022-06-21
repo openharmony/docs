@@ -26,7 +26,7 @@ import window from '@ohos.window';
 | 名称              | 值 | 说明               |
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | 表示应用子窗口。此接口仅可在FA模型下使用。 |
-| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。此接口仅可在Stage模型下使用。 |
+| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
 | TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。此接口仅可在Stage模型下使用。<br>此接口为系统接口，三方应用不支持调用。 |
 | TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
 | TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
@@ -446,8 +446,6 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最后显示的窗口，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
@@ -476,8 +474,6 @@ window.getTopWindow(this.context, (err, data) => {
 getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 获取当前应用内最后显示的窗口，使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
