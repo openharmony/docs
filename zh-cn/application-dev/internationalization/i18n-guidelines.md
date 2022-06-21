@@ -17,7 +17,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
 | ohos.i18n | isRTL(locale:&nbsp;string):&nbsp;boolean<sup>7+</sup> | locale对应的语言是否为从右到左语言。 |
 | ohos.i18n | is24HourClock():&nbsp;boolean<sup>7+</sup> | 获取当前系统时间是否采用24小时制 |
 | ohos.i18n | getDisplayLanguage(language:&nbsp;string,&nbsp;locale:&nbsp;string,&nbsp;sentenceCase?:&nbsp;boolean):&nbsp;string | 获取语言的本地化表示。 |
-| ohos.i18n | getDisplayCountry(country:&nbsp;string,&nbsp;locale:&nbsp;string,&nbsp;sentenceCase?:&nbsp;boolean):&nbsp;string | 获取国家的本地化表示。 |
+| ohos.i18n | getDisplayCountry(country:&nbsp;string,&nbsp;locale:&nbsp;string,&nbsp;sentenceCase?:&nbsp;boolean):&nbsp;string | 获取国家名称的本地化表示。 |
 
 
 ### 开发步骤
@@ -70,13 +70,13 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    ```
 
 7. 获取国家的本地化表示。<br>
-   调用getDisplayCountry方法获取某一国家的本地化表示。其中，country表示待本地化显示的国家，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
+     调用getDisplayCountry方法获取某一国家名称的本地化表示。其中，country表示国家码，使用两个大写字母表示（可参考ISO-3166），例如中国使用“CN”表示。locale表示本地化的Locale字符串。sentenceCase表示是否需要将返回结果的首字母大写。
      
    ```
    var country = "US";
    var locale = "zh-CN";
    var sentenceCase = false;
-   var localizedCountry = i18n.getDisplayCountry(country, locale, sentenceCase);
+   var localizedCountry = i18n.getDisplayCountry(country, locale, sentenceCase);  // 返回 “美国”
    ```
 
 
