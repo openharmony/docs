@@ -104,7 +104,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
@@ -150,7 +150,7 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
 
