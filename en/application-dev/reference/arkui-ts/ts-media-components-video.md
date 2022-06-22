@@ -9,7 +9,7 @@ The **\<Video>** component provides a video player.
 
 To use online videos, you need to add the **ohos.permission.INTERNET** permission to the corresponding **abilities** in the **config.json** or **module.json** file, whichever is appropriate.
 
-```
+```json
 "abilities":[
   {
     ...
@@ -19,17 +19,15 @@ To use online videos, you need to add the **ohos.permission.INTERNET** permissio
 ]
 ```
 
-
 ## Child Components
 
 Not supported
-
 
 ## APIs
 
 Video(value: VideoOptions)
 
-- VideoOptions attributes
+1. VideoOptions attributes
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | src | string \| [Resource](../../ui/ts-types.md) | No| - | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).|
@@ -38,25 +36,24 @@ Video(value: VideoOptions)
   | controller | [VideoController](#videocontroller) | No| - | Controller.|
 
 
-- PlaybackSpeed<sup>8+</sup>
-  | Name| Description|
-  | -------- | -------- |
-  | Speed_Forward_0_75_X | 0.75x playback speed.|
-  | Speed_Forward_1_00_X | 1x playback speed.|
-  | Speed_Forward_1_25_X | 1.25x playback speed.|
-  | Speed_Forward_1_75_X | 1.75x playback speed.|
-  | Speed_Forward_2_00_X | 2x playback speed.|
-
+2. PlaybackSpeed<sup>8+</sup>
+  | Name                 | Description           |
+  | -------------------- | --------------------- |
+  | Speed_Forward_0_75_X | 0.75x playback speed. |
+  | Speed_Forward_1_00_X | 1x playback speed.    |
+  | Speed_Forward_1_25_X | 1.25x playback speed. |
+  | Speed_Forward_1_75_X | 1.75x playback speed. |
+  | Speed_Forward_2_00_X | 2x playback speed.    |
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| muted | boolean | false | Whether the video is muted.|
-| autoPlay | boolean | false | Whether to enable auto play.|
-| controls | boolean | true | Whether to display the video playback control bar.|
-| objectFit | [ImageFit](ts-basic-components-image.md) | Cover | Video scale type. |
-| loop | boolean | false | Whether to repeat the video.|
+| Name      | Type                                     | Default Value | Description                                        |
+| --------- | ---------------------------------------- | ------------- | -------------------------------------------------- |
+| muted     | boolean                                  | false         | Whether the video is muted.                        |
+| autoPlay  | boolean                                  | false         | Whether to enable auto play.                       |
+| controls  | boolean                                  | true          | Whether to display the video playback control bar. |
+| objectFit | [ImageFit](ts-basic-components-image.md) | Cover         | Video scale type.                                  |
+| loop      | boolean                                  | false         | Whether to repeat the video.                       |
 
 
 ## Events
@@ -80,39 +77,47 @@ A **VideoController** object can control one or more videos.
 
 ### Objects to Import
 
-```
+```ts
 controller: VideoController = new VideoController();
 ```
 
 
 ### start
 
+```ts
 start(): void
 
 Starts playback.
+```
 
 ### pause
 
+```ts
 pause(): void
 
 Pauses playback.
+```
 
 ### stop
 
+```ts
 stop(): void
 
 Stops playback.
+```
 
 ### setCurrentTime
 
+```ts
 setCurrentTime(value: number)
 
 Sets the video playback position.
+```
 
 - Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes| - | Video playback position.|
+  | Name  | Type   | Mandatory | Default Value | Description              |
+  | ----- | ------ | --------- | ------------- | ------------------------ |
+  | value | number | Yes       | -             | Video playback position. |
 
 ### requestFullscreen
 
@@ -121,9 +126,9 @@ requestFullscreen(value: boolean)
 Requests full-screen mode.
 
 - Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes| false | Whether the playback is in full-screen mode.|
+  | Name  | Type   | Mandatory | Default Value | Description                                  |
+  | ----- | ------ | --------- | ------------- | -------------------------------------------- |
+  | value | number | Yes       | false         | Whether the playback is in full-screen mode. |
 
 ### exitFullscreen
 
@@ -137,21 +142,19 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 Sets the video playback position with the specified seek mode.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes| - | Video playback position.|
-  | seekMode | SeekMode | Yes| - | Seek mode.|
+1. Parameters
+  | Name     | Type     | Mandatory | Default Value | Description              |
+  | -------- | -------- | --------- | ------------- | -----------------------  |
+  | value    | number   | Yes       | -             | Video playback position. |
+  | seekMode | SeekMode | Yes       | -             | Seek mode.               |
 
-- SeekMode<sup>8+</sup>
-  | Name| Description|
-  | -------- | -------- |
-  | PreviousKeyframe | Seeks to the nearest previous keyframe.|
-  | NextKeyframe | Seeks to the nearest next keyframe.|
-  | ClosestKeyframe | Seeks to the nearest keyframe.|
-  | Accurate | Seeks to a specific frame, regardless of whether the frame is a keyframe.|
-
-
+2. SeekMode<sup>8+</sup>
+  | Name             | Description                                                               |
+  | ---------------- | ------------------------------------------------------------------------- |
+  | PreviousKeyframe | Seeks to the nearest previous keyframe.                                   |
+  | NextKeyframe     | Seeks to the nearest next keyframe.                                       |
+  | ClosestKeyframe  | Seeks to the nearest keyframe.                                            |
+  | Accurate         | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
 
 ## Example
 
