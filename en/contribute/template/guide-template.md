@@ -56,10 +56,10 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
 
 | API| Description|
 | -------- | -------- |
-| AudioRenderer(AudioRendererInfo&nbsp;audioRendererInfo,&nbsp;PlayMode&nbsp;pm)&nbsp;throws&nbsp;IllegalArgumentException | A constructor used to create an **AudioRenderer** instance based on the specified playback parameters, the specified playback mode, and the default playback device.|
-| AudioRenderer(AudioRendererInfo&nbsp;audioRendererInfo,&nbsp;PlayMode&nbsp;pm,&nbsp;AudioDeviceDescriptor&nbsp;outputDevice)&nbsp;throws&nbsp;IllegalArgumentException | A constructor used to create an **AudioRenderer** instance based on the specified playback parameters, playback mode, and playback device.|
-| boolean&nbsp;play() | Plays audio streams.|
-| boolean&nbsp;write(byte[]&nbsp;data,&nbsp;int&nbsp;offset,&nbsp;int&nbsp;size) | Writes audio data in the specified byte array into an audio receiver for playback.|
+| AudioRenderer(AudioRendererInfo audioRendererInfo, PlayMode pm) throws IllegalArgumentException | A constructor used to create an **AudioRenderer** instance based on the specified playback parameters, the specified playback mode, and the default playback device.|
+| AudioRenderer(AudioRendererInfo audioRendererInfo, PlayMode pm, AudioDeviceDescriptor outputDevice) throws IllegalArgumentException | A constructor used to create an **AudioRenderer** instance based on the specified playback parameters, playback mode, and playback device.|
+| boolean play() | Plays audio streams.|
+| boolean write(byte[] data, int offset, int size) | Writes audio data in the specified byte array into an audio receiver for playback.|
 
 
 ## How to Develop
@@ -89,26 +89,48 @@ The **AudioRenderer** class provides open audio playback capabilities. For detai
 
 1. Use **AudioStreamInfo.Builder** to create an **AudioStreamInfo** instance for audio stream parameters. The following example uses the default values of the input parameters for **AudioStreamInfo.Builder**. You need to set the parameters based on the audio stream specification.
    ```
-   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(    AudioStreamInfo.SAMPLE_RATE_UNSPECIFIED)    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_NONE)    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_INVALID)    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_INVALID)    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_UNKNOWN)    .build();
+   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder()
+    .sampleRate(AudioStreamInfo.SAMPLE_RATE_UNSPECIFIED)
+    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_NONE)
+    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_INVALID)
+    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_INVALID)
+    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_UNKNOWN)
+    .build();
    ```
 
-    Example code for playing a PCM stream:
-      ```
-      AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(44100)// 44.1 kHz    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_MAY_DUCK)// Set audio ducking.    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)//16-bit PCM    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_OUT_STEREO)// Set the dual output channel.    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_MEDIA)// Set the stream to be used for media.    .build();
-      ```
-
+   Example code for playing a PCM stream:
+   ```
+   AudioStreamInfo audioStreamInfo = new AudioStreamInfo.Builder().sampleRate(44100)// 44.1 kHz
+    .audioStreamFlag(AudioStreamInfo.AudioStreamFlag.AUDIO_STREAM_FLAG_MAY_DUCK)// Set audio ducking.
+    .encodingFormat(AudioStreamInfo.EncodingFormat.ENCODING_PCM_16BIT)//16-bit PCM
+    .channelMask(AudioStreamInfo.ChannelMask.CHANNEL_OUT_STEREO)// Set the dual output channel.
+    .streamUsage(AudioStreamInfo.StreamUsage.STREAM_USAGE_MEDIA)// Set the stream to be used for media.    
+    .build();
+   ```
 2. Build the playback parameter structure via **AudioRendererInfo** for the audio stream created in Step 1, and use **AudioRendererInfo.Builder** to create an instance. The following example uses the default parameter values of the **AudioRendererInfo.Builder** instance. You need to set the playback parameters based on the audio playback specification.
    ```
-   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_NONE)    .bufferSizeInBytes(0)    .distributedDeviceId("")    .isOffload(false)    .sessionID(AudioRendererInfo.SESSION_ID_UNSPECIFIED)    .build();
+   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder()
+    .audioStreamInfo(audioStreamInfo)
+    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_NONE)    
+    .bufferSizeInBytes(0)    
+    .distributedDeviceId("")    
+    .isOffload(false)
+    .sessionID(AudioRendererInfo.SESSION_ID_UNSPECIFIED)    
+    .build();
    ```
 
     Example code for playing a PCM stream:
       ```
-      AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder().audioStreamInfo(audioStreamInfo)    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_DIRECT_PCM)// Set direct PCM output    .bufferSizeInBytes(100)    .distributedDeviceId("E54***5E8")// Use distributed device E54***5E8 for playback.   .isOffload(false)//  Value false indicates that the audio stream is transmitted to the buffer on a segment-by-segment basis for several times and then played. Value true indicates that the audio stream is transmitted to the HAL layer at a time.    .build();
+   AudioRendererInfo audioRendererInfo = new AudioRendererInfo.Builder()
+    .audioStreamInfo(audioStreamInfo)
+    .audioStreamOutputFlag(AudioRendererInfo.AudioStreamOutputFlag.AUDIO_STREAM_OUTPUT_FLAG_DIRECT_PCM)// Set direct PCM output.
+    .bufferSizeInBytes(100)    
+    .distributedDeviceId("E54***5E8")// Use distributed device E54***5E8 for playback.   
+    .isOffload(false)// Value false indicates that the audio stream is transmitted to the buffer on a segment-by-segment basis for several times and then played. Value true indicates that the audio stream is transmitted to the HAL layer at a time.
+    .build();
       ```
-
+   
 3. Specify the playback mode based on the audio stream to be played. The playback modes differ only in the data writing process. Create an **AudioRenderer** instance using a constructor that fits your need.
-   ....
 
 4. After the playback task is complete, call the **release()** method on the **AudioRenderer** instance to release resources.
 

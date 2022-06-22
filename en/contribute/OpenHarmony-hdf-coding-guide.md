@@ -526,7 +526,7 @@ int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
     ret = InitDiver();
     // A custom method uses an error code provided by the HDF.
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("init drvier is failed");
+        HDF_LOGE("init driver is failed");
         return ret;
     }
     return HDF_SUCCESS;
