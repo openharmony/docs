@@ -22,7 +22,7 @@
     | Name        | Type                                    | Mandatory | Description                                                        |
     | ----------- | --------------------------------------- | --------- | ------------------------------------------------------------ |
     | id          | string                                        | Yes | Unique ID of the component. The value can contain a maximum of 128 characters.                   |
-    | type        | string                                        | Yes | Type of the component. The options are as follows:<br>-**surface**: The content of this component is displayed individually, without being combined with that of other components.<br>-**component**: The content of this component is displayed after having been combined with that of other components.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
+    | type        | string                                        | Yes | Type of the component. The options are as follows:<br>- **surface**: The content of this component is displayed individually, without being combined with that of other components.<br>- **component**: The content of this component is displayed after having been combined with that of other components. |
     | libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. |
     | controller  | [XComponentController](#XComponentController) | No  | Controller bound to the component, which can be used to invoke methods of the component.              |
 
@@ -85,7 +85,8 @@ Obtains the context of an **\<XComponent>** object.
 
 Provide a surface-type **\<XComponent>** to support capabilities such as camera preview.
 
-```
+```ts
+// xxx.ets
 import camera from '@ohos.multimedia.camera';
 @Entry
 @Component
