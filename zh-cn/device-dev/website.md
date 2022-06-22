@@ -538,7 +538,7 @@
 
 - 示例教程
 
-  - [Demo示例](device-demo.md)
+  - [Demo示例](https://growing.openharmony.cn/mainPlay/sample)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 
 - 参考
