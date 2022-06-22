@@ -997,7 +997,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | 以Promise形式返回获取optionType的结果。 |
+| Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
 
 **示例**：
