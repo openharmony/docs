@@ -1,7 +1,6 @@
 # Media
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -680,6 +679,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 Sets **SurfaceId**. This API uses a callback to return the result.
 
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 **Parameters**
@@ -707,6 +708,8 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 Sets **SurfaceId**. This API uses a promise to return the result.
 
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 **Parameters**
@@ -717,9 +720,9 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 
 **Return value**
 
-| Type         | Description                          |
-| ------------- | ------------------------------ |
-| Promise<void> | Promise used to return the result.|
+| Type          | Description                          |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 

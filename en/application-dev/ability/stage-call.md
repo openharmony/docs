@@ -18,11 +18,11 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 **Table 1** Ability call APIs
 |API|Description|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise<Caller>|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
+|startAbilityByCall(want: Want): Promise\<Caller>|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
 |on(method: string, callback: CaleeCallBack): void|Callback invoked when the callee registers a method.|
 |off(method: string): void|Callback invoked when the callee deregisters a method.|
-|call(method: string, data: rpc.Sequenceable): Promise<void>|Sends agreed sequenceable data to the callee.|
-|callWithResult(method: string, data: rpc.Sequenceable): Promise<rpc.MessageParcel>|Sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
+|call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee.|
+|callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|Sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
 |release(): void|Releases the caller interface.|
 |onRelease(callback: OnReleaseCallBack): void|Registers a callback that is invoked when the caller is disconnected.|
 

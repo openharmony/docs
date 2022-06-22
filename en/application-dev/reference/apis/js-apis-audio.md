@@ -246,6 +246,17 @@ Enumerates the audio stream types.
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | Audio stream for voice assistant.|
 
 
+## InterruptMode<sup>9+</sup>
+
+Enumerates the audio interruption modes.
+
+**System capability**: SystemCapability.Multimedia.Audio.InterruptMode
+
+| Name                        | Default Value| Description      |
+| ---------------------------- | ------ | ---------- |
+| SHARE_MODE      | 0      | Share mode.|
+| INDEPENDENT_MODE| 1      | Independent mode.    |
+
 ## DeviceFlag
 
 Enumerates the audio device flags.
@@ -542,7 +553,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | Yes  | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
 | type       | [InterruptType](#interrupttype)             | No  | Type of the audio interruption event.                                              |
-| hint       | [InterruptHint](interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
+| hint       | [InterruptHint](#interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
 | activated  | boolean                                     | No  | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
 
 ## VolumeEvent<sup>8+</sup>
@@ -646,7 +657,7 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| callback   | AsyncCallback&lt;void\>         | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
 
 **Example**
 
@@ -2477,7 +2488,55 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('ERROR: '+err.message);
 });
 ```
+### setInterruptMode<sup>9+</sup>
 
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+
+Sets the audio interruption mode for the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| interruptMode | [InterruptMode](#InterruptMode) | Yes  | Audio interruption mode.                                            |
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned.|
+
+**Example**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+    console.log('Promise returned to indicate a successful volume setting.');
+});
+```
+### setInterruptMode<sup>9+</sup>
+
+setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
+
+Sets the audio interruption mode for the application. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name| Type| Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+|interruptMode | [InterruptMode](#InterruptMode) | Yes  | Audio interruption mode.|
+|callback | Callback\<void>  | Yes |Callback used to return the result.|
+
+**Example**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+    console.log('Callback returned to indicate a successful volume setting.');
+});
+```
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
