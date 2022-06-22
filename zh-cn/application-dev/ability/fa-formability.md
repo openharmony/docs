@@ -59,7 +59,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
 
 创建FA模型的卡片，需实现LifecycleForm的生命周期接口。具体示例代码如下：
 
-1. 导入相关模块
+1. 导入相关模块。
 
    ```javascript
    import formBindingData from '@ohos.application.formBindingData'
@@ -67,7 +67,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
    import formProvider from '@ohos.application.formProvider'
    ```
    
-2. 实现LifecycleForm生命周期接口
+2. 实现LifecycleForm生命周期接口。
 
    ```javascript
    export default {
@@ -86,7 +86,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
            console.log('FormAbility onCastToNormal');
        },
        onUpdate(formId) {
-           // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要覆写该方法以支持数据更新
+           // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
            console.log('FormAbility onUpdate');
            let obj = {
                "title": "titleOnUpdate",
@@ -102,7 +102,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
            console.log('FormAbility onVisibilityChange');
        },
        onEvent(formId, message) {
-           // 若卡片支持触发事件，则需要覆写该方法并实现对事件的触发
+           // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
            console.log('FormAbility onEvent');
        },
        onDestroy(formId) {
@@ -219,7 +219,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
        }
 ```
 
-且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
+同时需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
 
 ```javascript
        onDestroy(formId) {
@@ -235,9 +235,9 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-formpr
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
-常态卡片：卡片使用方会持久化的卡片；
+- 常态卡片：卡片使用方会持久化的卡片；
 
-临时卡片：卡片使用方不会持久化的卡片；
+- 临时卡片：卡片使用方不会持久化的卡片；
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景比如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
@@ -343,7 +343,7 @@ onUpdate(formId) {
    }
    ```
 
-最终可以得到，如下卡片：
+最终可以得到如下卡片：
 
 ![fa-form-example](figures/fa-form-example.png)
 

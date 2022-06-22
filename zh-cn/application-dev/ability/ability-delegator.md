@@ -1,11 +1,11 @@
 # 测试框架使用指导
 
 ## 概述
-Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。
+Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架，旨在为开发者提供针对应用的自测试环境。开发者可以通过Delegator类启动对应Ability，并通过Delegator类提供的能力对Ability进行生命周期切换和监听，同时支持shellCMD输入和测试结果打印显示等功能。
 
 ## 约束与限制
 
-测试框架相关接口只能在测试hap包中使用，只有通过`aa test`命令或者IDE启动测试环境后相关接口才能生效。
+测试框架相关接口只能在测试hap包中使用，只有通过`aa test`命令或者DevEco Studio启动测试环境后相关接口才能生效。
 
 
 ## 测试框架启动
@@ -13,11 +13,11 @@ Delegator测试框架是OpenHarmony提供的一套开发者应用自测试框架
 测试框架启动有两种方式：
 
 - 方式一：通过`aa test`命令启动。
-- 方式二：通过IDE启动。
+- 方式二：通过DevEco Studio启动。
 
 ### aa test启动
 
-开发者可通过 `aa test` 命令启动启动测试框架，开发者可以自行指定使用的runner以及runner所在hap包的package name/module name，具体命令示例如下:
+开发者可通过 `aa test` 命令启动测试框架，开发者可以自行指定使用的TestRunner以及TestRunner所在hap包的package name或module name，具体命令示例如下:
 
 **FA模型：**
 
@@ -40,25 +40,25 @@ aa test -b BundleName -m com.example.myapplicationfaets -s unittest OpenHarmonyT
 | -D              | 否       | 以Debug模式启动被测试应用。 |
 | -h              | 否       | 输出帮助信息。 |
 
-### IDE启动
+### DevEco Studio启动
 
-IDE启动相关介绍见 [IDE指导网址](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508)。
+DevEco Studio启动相关介绍见 [OpenHarmony测试框架](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508)。
 
 ## TestRunner介绍
 
-TestRunner是测试框架测试流程入口类，当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。IDE在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](../reference/apis/js-apis-testRunner.md)。
+TestRunner是测试框架测试流程入口类。当测试流程启动时，系统会调用TestRunner内相关接口，开发者需要派生该类，并重写onPrepare、onRun方法。DevEco Studio在创建应用模板时会初始化一个默认TestRunner，并在onRun方法启动默认的TestAbility。开发者也可以修改TestAbility测试代码内容，也可以修改默认的TestRunner内onPrepare、onRun方法，自行实现测试代码。具体详细内容请参考TestRunnerAPI接口说明[TestRunner](../reference/apis/js-apis-testRunner.md)。
 
 ## AbilityDelegatorRegistry介绍
 
-AbilityDelegatorRegistry是测试框架提供的AbilityDelegator仓库类，开发者可以使用AbilityDelegatorRegistry获取AbilityDelegator实例以及执行此次测试时传入和生成的相关参数AbilityDelegatorArgs。开发者可以使用AbilityDelegator调用测试框架提供的函数集进行测试验证。具体详细内容请参考AbilityDelegatorRegistry API接口说明[AbilityDelegatorRegistry](../reference/apis/js-apis-abilityDelegatorRegistry.md)。
+AbilityDelegatorRegistry是测试框架提供的AbilityDelegator仓库类。开发者可以使用AbilityDelegatorRegistry获取AbilityDelegator实例以及执行此次测试时传入和生成的相关参数AbilityDelegatorArgs。开发者可以使用AbilityDelegator调用测试框架提供的函数集进行测试验证。具体详细内容请参考AbilityDelegatorRegistry API接口说明[AbilityDelegatorRegistry](../reference/apis/js-apis-abilityDelegatorRegistry.md)。
 
 ## AbilityDelegatorArgs介绍
 
-AbilityDelegatorArgs是测试框架提供的测试参数类，开发者可以使用AbilityDelegatorArgs获取执行此次测试时传入和生成的相关参数。具体详细内容请参考AbilityDelegatorArgs API接口说明[AbilityDelegatorArgs](../reference/apis/js-apis-application-abilityDelegatorArgs.md)。
+AbilityDelegatorArgs是测试框架提供的测试参数类。开发者可以使用AbilityDelegatorArgs获取执行此次测试时传入和生成的相关参数。具体详细内容请参考AbilityDelegatorArgs API接口说明[AbilityDelegatorArgs](../reference/apis/js-apis-application-abilityDelegatorArgs.md)。
 
 ## AbilityMonitor介绍
 
-AbilityMonitor是测试框架提供用来绑定并监听Ability类，开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md)。
+AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md)。
 
 **示例**
 
