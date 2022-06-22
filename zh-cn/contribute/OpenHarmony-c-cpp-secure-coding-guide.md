@@ -3101,7 +3101,7 @@ if (file == NULL) {
 }
 
 if (IS_ERR(file)) {
-	printk("Error occured while opening file %s, exiting ...\n", MY_FILE);
+	printk("Error occurred while opening file %s, exiting ...\n", MY_FILE);
 	return 0;
 }
 

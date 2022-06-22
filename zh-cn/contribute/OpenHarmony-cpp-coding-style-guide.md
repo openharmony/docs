@@ -417,7 +417,7 @@ default:                // Bad: default 未缩进
 // 假设下面第一行已经不满足行宽要求
 ```cpp
 if ((currentValue > threshold) &&  // Good：换行后，逻辑操作符放在行尾
-    someConditionsion) {
+    someCondition) {
     DoSomething();
     ...
 }
@@ -428,11 +428,11 @@ int result = reallyReallyLongVariableName1 +    // Good
 表达式换行后，注意保持合理对齐，或者4空格缩进。参考下面例子
 
 ```cpp
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // Good: 4空格缩进
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // Good: 4空格缩进
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // Good: 保持对齐
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // Good: 保持对齐
 ```
 ## <a name="c3-10"></a> 变量赋值
 
@@ -516,14 +516,14 @@ int&p = i;      // Bad
 在文件头保护宏、条件编译、日志记录等必要场景中可以使用宏。
 
 ### <a name="r3-13-3"></a>规则3.13.3 禁止使用宏来表示常量
-宏是简单的文本替换，在预处理阶段完成，运行报错时直接报相应的值；跟踪调试时也是显示值，而不是宏名； 宏没有类型检查，不宏全； 宏没有作用域。
+宏是简单的文本替换，在预处理阶段完成，运行报错时直接报相应的值；跟踪调试时也是显示值，而不是宏名； 宏没有类型检查，不安全； 宏没有作用域。
 
 ### <a name="r3-13-4"></a>规则3.13.4 禁止使用函数式宏
 宏义函数式宏前，应考虑能否用函数替代。对于可替代场景，建议用函数替代宏。
 函数式宏的缺点如下：  
 - 函数式宏缺乏类型检查，不如函数调用检查严格  
 - 宏展开时宏参数不求值，可能会产生非预期结果  
-- 宏没有独产的作用域  
+- 宏没有独立的作用域  
 - 宏的技巧性太强，例如#的用法和无处不在的括号，影响可读性
 - 在特定场景中必须用编译器对宏的扩展语法，如GCC的statement expression，影响可移植性  
 - 宏在预编译阶段展开后，在期后编译、链接和调试时都不可见；而且包含多行的宏会展开为一行。函数式宏难以调试、难以打断点，不利于定位问题  
@@ -2178,12 +2178,12 @@ class LockGuard {
 public:
     LockGuard(const LockType& lockType): lock_(lockType)
     {
-        lock_.Aquire();
+        lock_.Acquire();
     }
     
     ~LockGuard()
     {
-        lock_.Relase();
+        lock_.Release();
     }
     
 private:
@@ -2651,11 +2651,11 @@ void func()
 ```
 
 ## <a name="c10-2"></a> 智能指针
-### <a name="r10-2-1"></a>规则10.2.1 单例、类的成员等所有机不会被多方持有的优先使用原始指针源而不是智能指针
+### <a name="r10-2-1"></a>规则10.2.1 单例、类的成员等所有权不会被多方持有的优先使用原始指针而不是智能指针
 **理由**
 智能指针会自动释放对象资源避免资源泄露，但会带额外的资源开销。如：智能指针自动生成的类、构造和析构的开销、内存占用多等。
 
-单例、类的成员等对象的所有权不会被多方持有的情况，仅在类析构中释放资源即可。不应该使用智能指针而增额外的开销。 
+单例、类的成员等对象的所有权不会被多方持有的情况，仅在类析构中释放资源即可。不应该使用智能指针增加额外的开销。
 
 **示例**
 
