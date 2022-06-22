@@ -249,7 +249,7 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | -------- | -------- |
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | [HDF/Camera] The case fails when the RK3568 board runs the camera HDI tests.|
 | [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | An Ark stack exception occurs during XTS running (low probability).|
-| [I4OBTW](https://gitee.com/openharmony/aafwk_standard/issues/I4OBTW) | After all XTS cases are executed and the application is installed, aa start failures occur, affecting the pipeline stability test.|
+| [I4OBTW](https://gitee.com/openharmony/ability_ability_runtime/issues/I4OBTW) | After all XTS cases are executed and the application is installed, aa start failures occur, affecting the pipeline stability test.|
 | [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | [ArkUI subsystem] The test process is abnormal due to the com.amsst.amsMissionSnapshotTest process.|
 | [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | [ArkUI subsystem] The process stack is abnormal due to the com.ohos.systemui process.|
 
