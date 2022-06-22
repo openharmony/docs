@@ -5,7 +5,7 @@
 
 Pulse width modulation (PWM) is a technology that digitally encodes analog signal levels and converts them into pulses. It can be used for motor control and backlight brightness adjustment.
 
-  The PWM APIs provide a set of functions for operating a PWM device, including those for:
+The PWM APIs provide a set of functions for operating a PWM device, including those for:
 - Opening or closing a PWM device handle
 
 - Setting the PWM period, signal ON-state time, and polarity
@@ -70,8 +70,8 @@ DevHandle PwmOpen(uint32_t num);
 | -------- | -------- |
 | num        | PWM device number.            |
 | **Return Value** | **Description**         |
-| handle     | Handle of the PWM device obtained.|
-| NULL       | The operation failed.             |
+| handle     | The operation is successful. The handle of the PWM device obtained is returned.|
+| NULL       | The operation failed.               |
 
 Example: Open the device handle of PWM device 0.
 
@@ -187,13 +187,13 @@ int32_t PwmSetPeriod(DevHandle handle, uint32_t period);
 | period     | PWM period to set, in ns.|
 | **Return Value**| **Description**           |
 | 0          | The operation is successful.                |
-| Negative number      | The operation failed.              |
+| Negative number      | The operation fails.                |
 
 
 ```
 int32_t ret;
 
-/* Set the PWM period to 50000000 ns.*/
+/* Set the PWM period to 50000000 ns. */
 ret = PwmSetPeriod(handle, 50000000);
 if (ret != 0) {
 	/* Error handling. */
@@ -286,9 +286,9 @@ int32_t PwmSetConfig(DevHandle handle, struct PwmConfig *config);
 ```
 int32_t ret;
 struct PwmConfig pcfg;
-pcfg.duty = 25000000;			/* Set the signal ON-state time to 25000000 ns. */                 
+pcfg.duty = 25000000;			/* Set the signal ON-state time to 25000000 ns. */                  
 pcfg.period = 50000000;			/* Set the PWM period to 50000000 ns. */
-pcfg.number = 0;			/* Generate square waves repeatedly. */
+pcfg.number = 0;			/* Generate square waves continuously. */
 pcfg.polarity = PWM_INVERTED_POLARITY;	/* Set the PWM polarity to PWM_INVERTED_POLARITY. */
 pcfg.status = PWM_ENABLE_STATUS;	/* Set the running status to Enabled. */
 
@@ -345,7 +345,7 @@ void PwmTestSample(void)
     DevHandle handle = NULL;
 
     struct PwmConfig pcfg;
-    pcfg.duty = 20000000;			/* Set the signal ON-state time to 20000000 ns. */                 
+    pcfg.duty = 20000000;			/* Set the signal ON-state time to 20000000 ns. */                  
     pcfg.period = 40000000;			/* Set the PWM period to 40000000 ns. */
     pcfg.number = 100;				/* Generate 100 square waves. */
     pcfg.polarity = PWM_NORMAL_POLARITY;	/* Set the polarity to PWM_NORMAL_POLARITY. */
