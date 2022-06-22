@@ -1,15 +1,15 @@
 # WantAgent Development
-### When to Use
+## When to Use
 The **WantAgent** class encapsulates want information that specifies a particular action, which can be starting an ability or publishing a common event. You can either call **wantAgent.trigger** to trigger a **WantAgent** directly or add a **WantAgent** to a notification so that it will be triggered when users tap the notification. 
 
-### Available APIs
+## Available APIs
 | API                                                                                         | Description|
 | ---------------------------------------------------------------------------------------------- | ----------- |
 | getWantAgentInfo(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>) | Creates a **WantAgent** object. This API uses an asynchronous callback to return the result.|
 | getWantAgent(info: WantAgentInfo): Promise\<WantAgent\> | Creates a **WantAgent** object. This API uses a promise to return the result.|
 | trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>) | Triggers a **WantAgent** object.|
 
-### How to Develop
+## How to Develop
 1. Import the **WantAgent** module.
 
    ```

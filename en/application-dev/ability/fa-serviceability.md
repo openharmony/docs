@@ -5,7 +5,7 @@ A Service ability is used to run tasks in the background, such as playing music 
 
 ## Available APIs
 
-**Table 1** Service ability lifecycle callbacks
+**Table 1** Service ability lifecycle APIs
 |API|Description|
 |:------|:------|
 |onStart|Called to initialize a Service ability being created. This callback is invoked only once in the entire lifecycle of a Service ability. The **Want** object passed to this callback must be null.|
@@ -231,7 +231,7 @@ import prompt from '@system.prompt'
 let mRemote;
 function onConnectCallback(element, remote){
     console.log('onConnectRemoteService onConnectDone element: ' + element);
-    console.log('onConnectRemotelService onConnectDone remote: ' + remote);
+    console.log('onConnectRemoteService onConnectDone remote: ' + remote);
     mRemote = remote;
     if (mRemote == null) {
       prompt.showToast({
