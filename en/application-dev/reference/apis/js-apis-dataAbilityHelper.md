@@ -573,7 +573,7 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 | Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | Yes  | URI of the data to insert.        |
-| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.          |
+| valuesBucket | Array\<rdb.ValuesBucket> | Yes  | Data records to insert.          |
 | callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**

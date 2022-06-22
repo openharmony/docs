@@ -782,7 +782,7 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 | Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | Yes  | No | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                          |
 | callback   | Yes  | No | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -857,7 +857,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 | Name      | Readable| Writable| Type     | Mandatory| Description         |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | Yes  | No | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object.|
 
 **Return value**
 
