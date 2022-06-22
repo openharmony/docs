@@ -3,7 +3,7 @@
 
 ## Overview
 
-The real-time clock (RTC) is a real-time clock device in the operating system. In the Hardware Driver Foundation (HDF), the RTC uses the independent service mode for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device to increase memory resources.
+The real-time clock (RTC) is a real-time clock device in the operating system. In the Hardware Driver Foundation (HDF), the RTC uses the independent service mode for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device, which increases memory usage.
 
   **Figure 1** Independent service mode
 
@@ -192,7 +192,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
       };
       ```
 
-   - Bind function
+   - **Bind** function
 
       Input parameter:
 
