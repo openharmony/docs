@@ -101,7 +101,7 @@ async function audioPlayerDemo() {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
         fdPath = fdPath + '' + fdNumber;
-        console.info('open fd sucess fd is' + fdPath);
+        console.info('open fd success fd is' + fdPath);
     }, (err) => {
         console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -141,7 +141,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -187,7 +187,7 @@ export class AudioDemo {
     let nextpath = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/02.mp3';
     await fileIO.open(nextpath).then((fdNumber) => {
       nextFdPath = nextFdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + nextFdPath);
+      console.info('open fd success fd is' + nextFdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -204,7 +204,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -241,7 +241,7 @@ export class AudioDemo {
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
     await fileIO.open(path).then((fdNumber) => {
       fdPath = fdPath + '' + fdNumber;
-      console.info('open fd sucess fd is' + fdPath);
+      console.info('open fd success fd is' + fdPath);
     }, (err) => {
       console.info('open fd failed err is' + err);
     }).catch((err) => {
@@ -256,7 +256,7 @@ export class AudioDemo {
 
 The following samples are provided to help you better understand how to develop audio playback:
 
-- [`JsDistributedMusicPlayer`: Distributed Music Player (JS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
-- [`JsAudioPlayer`: Audio Playback and Management (JS, API 7)](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
+- [`JsDistributedMusicPlayer`: Distributed Music Player (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
+- [`JsAudioPlayer`: Audio Playback and Management (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
 - [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
