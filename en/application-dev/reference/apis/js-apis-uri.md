@@ -42,7 +42,7 @@ A constructor used to create a URI instance.
 
 | Name| Type.| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| url | string | Yes| Yes| Input object.|
+| uri | string | Yes| Yes| Input object.|
 
 **Example**
 
@@ -59,7 +59,7 @@ new uri.URI('http://username:password@host:8080'); // Output 'http://username:pa
 
 toString(): string
 
-Obtains the query string applicable to this URL.
+Obtains the query string applicable to this URI.
 
 **Return value**
 
@@ -70,8 +70,8 @@ Obtains the query string applicable to this URL.
 **Example**
 
 ```js
-const url = new uri.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+const uri = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+uri.toString()
 ```
 
 

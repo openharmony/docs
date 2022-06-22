@@ -77,7 +77,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the navigation bar and status bar are supported.|
+| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
 | region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
 | backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **\#00FF00** or **\#FF00FF00**.|
@@ -488,7 +488,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): void
 
-Enables listening for the properties changes of the status bar and navigation bar.
+Enables listening for properties changes of the status bar and navigation bar.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -514,7 +514,7 @@ This is a system API and cannot be called by third-party applications.
 
 off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;): void
 
-Disables listening for the properties changes of the status bar and navigation bar.
+Disables listening for properties changes of the status bar and navigation bar.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1062,7 +1062,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 | Name            | Type                     | Mandatory| Description                                                        |
 | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | Yes  | Whether the window layout is in full-screen mode, in which the status bar and navigation bar are displayed.|
+| isLayoutFullScreen | boolean                   | Yes  | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed.|
 | callback           | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.                                                  |
 
 **Example**
@@ -1090,7 +1090,7 @@ Sets whether to enable the full-screen mode for the window layout. This API uses
 
 | Name            | Type   | Mandatory| Description                                                        |
 | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | Yes  | Whether the window layout is in full-screen mode, in which the status bar and navigation bar are displayed.|
+| isLayoutFullScreen | boolean | Yes  | Whether to enable the full-screen mode for the window layout, in which the status bar and navigation bar are displayed.|
 
 **Return value**
 
@@ -1781,8 +1781,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1811,8 +1812,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 Sets the dimness of the window that is not on top. This API uses a promise to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1911,7 +1913,7 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
 
 | Name        | Type                     | Mandatory| Description                    |
 | -------------- | ------------------------- | ---- | ------------------------ |
-| isKeepScreenOn | boolean                   | Yes  | Sets whether to keep the screen always on.|
+| isKeepScreenOn | boolean                   | Yes  | Whether to keep the screen always on.|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the execution result.              |
 
 **Example**
@@ -1933,8 +1935,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1963,8 +1966,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
 
-> This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 > 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2003,7 +2007,7 @@ Sets whether to keep the screen always on. This API uses a promise to return the
 
 | Name        | Type   | Mandatory| Description                    |
 | -------------- | ------- | ---- | ------------------------ |
-| isKeepScreenOn | boolean | Yes  | Sets whether to keep the screen always on.|
+| isKeepScreenOn | boolean | Yes  | Whether to keep the screen always on.|
 
 **Return value**
 

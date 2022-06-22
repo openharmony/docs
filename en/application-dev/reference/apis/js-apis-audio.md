@@ -227,7 +227,7 @@ var audioCapturerOptions = {
 }
 
 var audioCapturer;
-audio.createAudioRenderer(audioCapturerOptions).then((data) => {
+audio.createAudioCapturer(audioCapturerOptions).then((data) => {
     audioCapturer = data;
     console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
 }).catch((err) => {
@@ -3183,7 +3183,7 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**.           |
+| frame    | number                   | Yes  | Period during which frame capturing is listened. The value must be greater than **0**.           |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.   |
 
 **Example**

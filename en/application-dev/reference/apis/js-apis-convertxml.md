@@ -29,7 +29,7 @@ Converts an XML text into a JavaScript object.
   | Name| Type| Mandatory| Description|
   | ------- | --------------------------------- | ---- | ------------------ |
   | xml     | string                            | Yes| XML text to convert.|
-  | options | [ConvertOptions](#convertoptions) | No| Settings of the convert operation.|
+  | options | [ConvertOptions](#convertoptions) | No| Options for coversion.|
 
 - Return value
 

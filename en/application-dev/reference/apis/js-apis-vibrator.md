@@ -85,7 +85,7 @@ Triggers vibration with a specific effect. This API uses a promise to return the
 **Parameters**
 | Name    | Type                  | Mandatory | Description          |
 | -------- | --------------------- | ---- | ------------- |
-| effectId | [EffectId](#effectid) | Yes  | String that indicates the vibration effect. |
+| effectId | [EffectId](#effectid) | Yes  | Vibration effect. |
 
 **Return value**
 | Type                | Description        |
@@ -115,7 +115,7 @@ Triggers vibration with a specific effect. This API uses an asynchronous callbac
 **Parameters**
 | Name    | Type                      | Mandatory | Description                    |
 | -------- | ------------------------- | ---- | ----------------------- |
-| effectId | [EffectId](#effectid)    | Yes  | String that indicates the vibration effect.         |
+| effectId | [EffectId](#effectid)    | Yes  | Vibration effect.         |
 | callback | AsyncCallback&lt;void&gt; | No  | Callback used to indicate whether the vibration is triggered successfully. |
 
 **Example**
@@ -182,7 +182,7 @@ Stops the vibration based on the specified **stopMode**. This API uses an asynch
       if(error){
           console.log("error.code"+error.code+"error.message"+error.message);
       }else{
-          console.log("Callback returned to indicate successful.");
+          console.log("Callback returned to indicate a successful stop.");
       }
   })
   ```
