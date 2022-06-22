@@ -1,11 +1,11 @@
 # Grid
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Grid&gt;** component is a two-dimensional layout. The component is divided into rows and columns, to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
+The **&lt;Grid&gt;** component is a two-dimensional layout. The component is divided into rows and columns to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
 
 
 ## Required Permissions
@@ -48,7 +48,7 @@ Grid()
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onScrollIndex(first: number) =&gt; void | Triggered when the start item of the grid changes. | 
 
