@@ -914,7 +914,7 @@ on(type:  'update', callback: () =&gt;void ): void
 
   ```js
   var systemPasteboard = pasteboard.getSystemPasteboard();
-  var listener = ()=>{
+  var listener = () = > {
       console.info('The system pasteboard has changed');
   };
   systemPasteboard.on('update', listener);
@@ -938,7 +938,7 @@ off(type:  'update', callback?: () =&gt;void ): void
 **示例**
 
   ```js
-  var listener = ()=>{
+  let listener = () = > {
       console.info('The system pasteboard has changed');
   };
   systemPasteboard.off('update', listener);
