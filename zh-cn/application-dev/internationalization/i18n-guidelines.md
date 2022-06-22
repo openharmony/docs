@@ -23,7 +23,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
 
 ### 开发步骤
 
-1. 获取系统语言
+1. 获取系统语言。
 
    调用getSystemLanguage方法获取当前系统设置的语言（i18n为导入的模块）。
 
@@ -32,7 +32,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var language = i18n.getSystemLanguage();
    ```
 
-2. 获取系统区域
+2. 获取系统区域。
 
      调用getSystemRegion方法获取当前系统设置的区域
      
@@ -40,7 +40,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var region = i18n.getSystemRegion();
    ```
 
-3. 获取系统Locale
+3. 获取系统Locale。
 
      调用getSystemLocale方法获取当前系统设置的Locale
      
@@ -48,7 +48,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var locale = i18n.getSystemLocale();
    ```
 
-4. 判断Locale的语言是否为RTL语言
+4. 判断Locale的语言是否为RTL语言。
 
    调用isRTL方法获取Locale的语言是否为从右到左语言。
 
@@ -57,7 +57,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var rtl = i18n.isRTL("zh-CN");
    ```
 
-5. 判断当前系统时间是否采用24小时制
+5. 判断当前系统时间是否采用24小时制。
 
      调用is24HourClock方法来判断当前系统的时间是否采用24小时制。
      
@@ -65,7 +65,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var hourClock = i18n.is24HourClock();
    ```
 
-6. 获取语言的本地化表示
+6. 获取语言的本地化表示。
 
      调用getDisplayLanguage方法获取某一语言的本地化表示。其中，language表示待本地化显示的语言，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
      
@@ -76,7 +76,7 @@ I18n开发指导提供了未在ECMA 402中定义的国际化能力接口的使�
    var localizedLanguage = i18n.getDisplayLanguage(language, locale, sentenceCase);
    ```
 
-7. 获取国家的本地化表示
+7. 获取国家的本地化表示。
 
      调用getDisplayCountry方法获取某一国家的本地化表示。其中，country表示待本地化显示的国家，locale表示本地化的Locale，sentenceCase结果是否需要首字母大写。
      
