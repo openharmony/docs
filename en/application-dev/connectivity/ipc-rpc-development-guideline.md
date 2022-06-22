@@ -133,13 +133,13 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     ```
     // Register the TestAbilityStub instance with the SystemAbilityManager on the same device as the SA.
     auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-    samgr->AddSystemAbility(said, new TestAbility());
+    samgr->AddSystemAbility(saId, new TestAbility());
     
     // Register the TestAbilityStub instance with the SystemAbilityManager on a different device.
     auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
     ISystemAbilityManager::SAExtraProp saExtra;
     saExtra.isDistributed = true; // Set a distributed SA.
-    int result = samgr->AddSystemAbility(said, new TestAbility(), saExtra);
+    int result = samgr->AddSystemAbility(saId, new TestAbility(), saExtra);
     ```
 
 6.  Obtain the SA.
@@ -149,12 +149,12 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     ```
     // Obtain the proxy of the SA registered on the local device.
     sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(said);
+    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
     sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // Use the iface_cast macro to convert the proxy to a specific type.
     
     // Obtain the proxies of the SAs registered with other devices.
     sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(sdid, deviceId); // deviceId identifies a device.
+    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, deviceId); // deviceId identifies a device.
     sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // Construct a proxy.
     ```
 
