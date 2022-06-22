@@ -938,6 +938,9 @@ off(type:  'update', callback?: () =&gt;void ): void
 **示例**
 
   ```js
+  var listener = ()=>{
+      console.info('The system pasteboard has changed');
+  };
   systemPasteboard.off('update', listener);
   ```
 
