@@ -97,7 +97,7 @@ struct CompA {
         Row() {
             CompB({bLink: $aLink,         // valid init a @Link with reference of another @Link,
                 bProp: this.aState})    // valid init a @Prop with value of a @State
-            CompB({aLink: $aState,  // invalid: type missmatch expected ref to ClassA, provided reference to boolean
+            CompB({aLink: $aState,  // invalid: type mismatch expected ref to ClassA, provided reference to boolean
                 bProp: false})           // valid init a @Prop by constants value
         }
     }
