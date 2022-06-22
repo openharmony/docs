@@ -1146,6 +1146,8 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码也仅以标准系统开发板为例，实际支持的音频配置参数见具体设备平台的资料描述。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
@@ -1173,6 +1175,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码也仅以标准系统开发板为例，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1203,6 +1207,8 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取指定音频参数值，使用callback方式异步返回结果。
 
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码也仅以标准系统开发板为例，实际支持的音频配置参数见具体设备平台的资料描述。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
@@ -1229,6 +1235,8 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 获取指定音频参数值，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码也仅以标准系统开发板为例，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
