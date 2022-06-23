@@ -10,10 +10,6 @@
 import Url from '@ohos.url' 
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## URLSearchParams
 
 
@@ -22,6 +18,8 @@ SystemCapability.Utils.Lang
 constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLSearchParams)
 
 URLSearchParams的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -32,11 +30,11 @@ URLSearchParams的构造函数。
 **示例：**
 
 ```js
-var objectParams = new URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new URLSearchParams({"fod" : 1 , "bard" : 2});
-var objectParams2 = new URLSearchParams('?fod=1&bard=2');
-var urlObject = new URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new URLSearchParams(urlObject.search);
+var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+var objectParams1 = new Url.URLSearchParams({"fod" : 1 , "bard" : 2});
+var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
+var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+var params = new Url.URLSearchParams(urlObject.search);
 ```
 
 
@@ -45,6 +43,8 @@ var params = new URLSearchParams(urlObject.search);
 append(name: string, value: string): void
 
 将新的键值对插入到查询字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -56,8 +56,8 @@ append(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.append('fod', 3);
 ```
 
@@ -68,6 +68,8 @@ delete(name: string): void
 
 删除指定名称的键值对。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -77,8 +79,8 @@ delete(name: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsobject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsobject.delete('fod');
 ```
 
@@ -88,6 +90,8 @@ paramsobject.delete('fod');
 getAll(name: string): string[]
 
 获取指定名称的所有键值对。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -104,8 +108,8 @@ getAll(name: string): string[]
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.append('fod', 3); // Add a second value for the fod parameter.
 console.log(params.getAll('fod')) // Output ["1","3"].
 ```
@@ -117,6 +121,8 @@ entries(): IterableIterator<[string, string]>
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -126,7 +132,7 @@ entries(): IterableIterator<[string, string]>
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
+var searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
 for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
@@ -138,6 +144,8 @@ for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pair
 forEach(callbackfn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -157,7 +165,7 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 **示例：**
 
 ```js
-const myURLObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
+const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 myURLObject.searchParams.forEach((value, name, searchParams) => {  
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
@@ -169,6 +177,8 @@ myURLObject.searchParams.forEach((value, name, searchParams) => {
 get(name: string): string | null
 
 获取指定名称对应的第一个值。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -186,7 +196,7 @@ get(name: string): string | null
 **示例：**
 
 ```js
-var paramsOject = new URLSearchParams(document.location.search.substring(1)); 
+var paramsOject = new Url.URLSearchParams(document.location.search.substring(1)); 
 var name = paramsOject.get("name"); // is the string "Jonathan" 
 var age = parseInt(paramsOject.get("age"), 10); // is the number 18
 var address = paramsOject.get("address"); // null
@@ -198,6 +208,8 @@ var address = paramsOject.get("address"); // null
 has(name: string): boolean
 
 判断一个指定的键名对应的值是否存在。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -214,8 +226,8 @@ has(name: string): boolean
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.has('bard') === true;
 ```
 
@@ -225,6 +237,8 @@ paramsObject.has('bard') === true;
 set(name: string, value: string): void
 
 将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -236,8 +250,8 @@ set(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.set('baz', 3); // Add a third parameter.
 ```
 
@@ -246,13 +260,14 @@ paramsObject.set('baz', 3); // Add a third parameter.
 
 sort(): void
 
-
 对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
+var searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
 console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=2&c=3&d=4
 ```
@@ -262,8 +277,9 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-
 返回一个所有键值对的name的ES6迭代器。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -274,7 +290,7 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+var searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var key of searchParamsObject .keys()) { // Output key-value pairs
     console.log(key);
 }
@@ -287,6 +303,8 @@ values(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的value的ES6迭代器。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -296,7 +314,7 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParams = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+var searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var value of searchParams.values()) { 
     console.log(value);
 }
@@ -307,8 +325,9 @@ for (var value of searchParams.values()) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -319,7 +338,7 @@ for (var value of searchParams.values()) {
 **示例：**
 
 ```js
-const paramsObject = new URLSearchParams('fod=bay&edg=bap');
+const paramsObject = new Url.URLSearchParams('fod=bay&edg=bap');
 for (const [name, value] of paramsObject) { 
     console.log(name, value); 
 } 
@@ -330,8 +349,9 @@ for (const [name, value] of paramsObject) {
 
 toString(): string
 
-
 返回序列化为字符串的搜索参数，必要时对字符进行百分比编码。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -342,8 +362,8 @@ toString(): string
 **示例：**
 
 ```js
-let url = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new URLSearchParams(url.search.slice(1)); 
+let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new Url.URLSearchParams(url.search.slice(1)); 
 params.append('fod', 3);
 console.log(params.toString());
 ```
@@ -351,8 +371,9 @@ console.log(params.toString());
 
 ## URL
 
-
 ### 属性
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -374,8 +395,9 @@ console.log(params.toString());
 
 constructor(url: string, base?: string | URL)
 
-
 URL的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -388,17 +410,17 @@ URL的构造函数。
 
 ```js
 var mm = 'http://username:password@host:8080';
-var a = new URL("/", mm); // Output 'http://username:password@host:8080/';
-var b = new URL(mm); // Output 'http://username:password@host:8080/';
-new URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-var c = new URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
-new URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
-new URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
-new URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
-new URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
-new URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
-new URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
+var a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
+var b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
+new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
+var c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
+new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+new Url.URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
+new Url.URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
 ```
 
 
@@ -408,6 +430,8 @@ toString(): string
 
 将解析过后的URL转化为字符串。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -417,7 +441,7 @@ toString(): string
 **示例：**
 
 ```js
-const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString()
 ```
 
@@ -426,8 +450,9 @@ url.toString()
 
 toJSON(): string
 
-
 将解析过后的URL转化为JSON字符串。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -437,6 +462,6 @@ toJSON(): string
 
 **示例：**
 ```js
-const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON()
 ```

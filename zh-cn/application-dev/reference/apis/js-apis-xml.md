@@ -10,10 +10,6 @@
 import xml from '@ohos.xml';
 ```
 
-## 系统能力
-
-SystemCapability.Utils.Lang
-
 ## XmlSerializer
 
 
@@ -22,6 +18,8 @@ SystemCapability.Utils.Lang
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 XmlSerializer的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -45,6 +43,8 @@ setAttributes(name: string, value: string): void
 
 设置Attributes方法。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -55,6 +55,8 @@ setAttributes(name: string, value: string): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -66,6 +68,8 @@ addEmptyElement(name: string): void
 
 写入一个空元素。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -75,6 +79,8 @@ addEmptyElement(name: string): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
@@ -86,9 +92,13 @@ setDeclaration(): void
 
 设置Declaration方法。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -99,6 +109,8 @@ thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 startElement(name: string): void
 
 根据给定名称写入元素开始标记。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -122,9 +134,13 @@ endElement(): void
 
 写入元素结束标记。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
@@ -139,6 +155,8 @@ endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/htm
 setNamespace(prefix: string, namespace: string): void
 
 写入当前元素标记的命名空间。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -164,6 +182,8 @@ setComment(text: string): void
 
 写入comment属性。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -187,6 +207,8 @@ setCDATA(text: string): void
 
 写入CDATA属性。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -207,6 +229,8 @@ thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
 setText(text: string): void
 
 设置Text方法。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -232,6 +256,8 @@ setDocType(text: string): void
 
 写入DocType属性。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -255,6 +281,8 @@ thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 创建并返回一个XmlPullParser对象，该XmlPullParser对象传参两个, 第一参数是ArrayBuffer或DataView类型的一段内存，第二个参数为文件格式（默认为UTF-8）
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -288,6 +316,8 @@ var that = new xml.XmlPullParser(arrayBuffer);
 parse(option: ParseOptions): void
 
 该接口用于解析xml。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -329,6 +359,8 @@ that.parse(options);
 
 xml解析选项。
 
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -349,6 +381,8 @@ getColumnNumber(): number
 
 获取当前列号，从1开始。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -361,6 +395,8 @@ getColumnNumber(): number
 getDepth(): number
 
 获取元素的当前深度。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -375,6 +411,8 @@ getLineNumber(): number
 
 获取当前行号，从1开始。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -387,6 +425,8 @@ getLineNumber(): number
 getName(): string
 
 获取当前元素名称。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -401,6 +441,8 @@ getNamespace(): string
 
 获取当前元素的命名空间。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -413,6 +455,8 @@ getNamespace(): string
 getPrefix(): string
 
 获取当前元素前缀。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -427,6 +471,8 @@ getText(): string
 
 获取当前事件的文本内容。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -439,6 +485,8 @@ getText(): string
 isEmptyElementTag(): boolean
 
 判断当前元素是否为空元素。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -453,6 +501,8 @@ isWhitespace(): boolean
 
 判断当前文本事件是否仅包含空格字符。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -466,6 +516,8 @@ getAttributeCount(): number
 
 获取当前开始标记的属性数。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
@@ -475,6 +527,8 @@ getAttributeCount(): number
 ## EventType
 
 事件枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 | 名称 | 枚举值 | 说明 |
 | -------- | -------- | -------- |
