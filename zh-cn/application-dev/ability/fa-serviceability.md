@@ -5,7 +5,7 @@
 
 ## 接口说明
 
-**表1** Service中相关生命周期功能介绍
+**表1** Service中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
 |onStart|该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。|
@@ -18,7 +18,7 @@
 
 ### 创建Service
 
-1. Service也是一种Ability，Ability为Service提供了以下生命周期方法，开发者可以重写这些方法，来添加其他Ability请求与Service Ability交互时的处理方法。
+1. 重写Service的生命周期方法，来添加其他Ability请求与Service Ability交互时的处理方法。
    
    创建Service的代码示例如下：
    
@@ -45,7 +45,7 @@
 
 2. 注册Service。
 
-   Service也需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
+   Service需要在应用配置文件config.json中进行注册，注册类型type需要设置为service。
    
    ```javascript
     {
@@ -168,7 +168,7 @@ let connId = featureAbility.connectAbility(
 );
 ```
 
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
+    同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 Service侧把自身的实例返回给调用侧的代码示例如下：
 
@@ -217,7 +217,8 @@ export default {
 ```
 
 ### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
->说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用
+
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用。
 
 如果Service需要与Page Ability或其他应用的Service Ability进行跨设备交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行跨设备连接。
 
@@ -231,7 +232,7 @@ import prompt from '@system.prompt'
 let mRemote;
 function onConnectCallback(element, remote){
     console.log('onConnectRemoteService onConnectDone element: ' + element);
-    console.log('onConnectRemotelService onConnectDone remote: ' + remote);
+    console.log('onConnectRemoteService onConnectDone remote: ' + remote);
     mRemote = remote;
     if (mRemote == null) {
       prompt.showToast({
@@ -340,7 +341,7 @@ async function RequestPermission() {
 }
 ```
 
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象，OpenHarmony提供了IRemoteObject的默认实现，用户可以通过继承rpc.RemoteObject来创建自定义的实现类。
+同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
 
 Service侧把自身的实例返回给调用侧的代码示例如下：
 
