@@ -61,7 +61,7 @@
 | onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页触发alert()告警弹窗时触发回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（只有确认场景），并且根据用户的确认操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>刷新或关闭场景下，在即将离开当前页面时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
 | onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用confirm()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />JsResult：通知Web组件用户操作行为。</p> |
-| onPrompt(callback: (event?: { url: string; message: string; value: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用prompt()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />value：对话框中的默认值。<br />JsResult：通知Web组件用户操作行为，及对话框内容。</p> |
+| onPrompt<sup>9+</sup>(callback: (event?: { url: string; message: string; value: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用prompt()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />url：当前显示弹窗所在网页的URL。<br />message：弹窗中显示的信息。<br />value：对话框中的默认值。<br />JsResult：通知Web组件用户操作行为，及对话框内容。</p> |
 | onConsole(callback: (event?: { message: [ConsoleMessage](#consolemessage对象说明) }) => boolean) | <p>通知宿主应用JavaScript console消息。<br/>message：触发的控制台信息。</p> |
 | onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>网页的下载任务开始时触发该回调。<br />url：文件下载的URL。<br />userAgent：下载的用户代理（UA）名称。<br />contentDisposition：服务器返回的 Content-Disposition响应头，可能为空。<br />mimetype：服务器返回内容媒体类型（MIME）信息。<br />contentLength：服务器返回文件的长度。</p> |
 | onErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), error: [WebResourceError](#webresourceerror对象说明) }) => void) | <p>网页加载遇到错误时触发该回调。<br/>出于性能考虑，建议此回调中尽量执行简单逻辑。<br/>request：网页请求的封装信息。<br/>error：网页加载资源错误的封装信息 。</p> |
@@ -106,7 +106,7 @@ Web组件返回的弹窗确认或弹窗取消功能对象。
   | --------------------- | ----------------------- |
   | handleCancel(): void  | <p>通知Web组件用户取消弹窗操作。</p> |
   | handleConfirm(): void | <p>通知Web组件用户确认弹窗操作。</p> |
-  | handlePromptConfirm(result: string): void | <p>通知Web组件用户确认弹窗操作及对话框内容。</p>|
+  | handlePromptConfirm<sup>9+</sup>(result: string): void | <p>通知Web组件用户确认弹窗操作及对话框内容。</p>|
 
 ### WebResourceError对象说明
 
