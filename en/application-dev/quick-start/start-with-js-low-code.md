@@ -109,7 +109,7 @@ Open the index.visual file, right-click the existing template components on the 
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the [page router](../ui/ui-js-building-ui-routes.md), which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
+You can implement page redirection through the [page router](../ui/ui-js-building-ui-routes.md), which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
    
