@@ -28,7 +28,7 @@
   - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets**: ability lifecycle file.
   - **src &gt; main &gt; resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files.
   - **src &gt; main &gt; config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file.
-  - **build-profile.json5**: current module information and build configuration options, including **buildOption target**.
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **target**.
   - **hvigorfile.js**: module-level compilation and build task script. You can customize related tasks and code implementation.
 - **build-profile.json5**: application-level configuration information, including the signature and product configuration.
 - **hvigorfile.js**: application-level compilation and build task script.
@@ -157,7 +157,7 @@
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the page router, which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
+You can implement page redirection through the page router, which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
    
