@@ -982,7 +982,7 @@ FA卡片的使用信息的属性集合。
 
 | 参数名              | 类型     | 必填   | 说明          |
 | ---------------- | ------ | ---- | ----------- |
-| formName         | number | 是    | 卡片名称。       |
+| formName         | string | 是    | 卡片名称。       |
 | formDimension    | number | 是    | 卡片尺寸。       |
 | formId           | number | 是    | 卡片Id。       |
 | formLastUsedTime | number | 是    | 卡片的上一次点击时间。 |
