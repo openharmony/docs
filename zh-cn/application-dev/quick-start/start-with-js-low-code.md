@@ -103,7 +103,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
      在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。需同时处理js文件及visual文件。
