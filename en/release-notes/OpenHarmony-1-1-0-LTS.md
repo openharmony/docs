@@ -167,7 +167,7 @@ This version inherits all features of OpenHarmony 1.0, and adds and optimizes fe
 </tr>
 <tr id="row119944512385"><td class="cellrowborder" valign="top" width="13.38%" headers="mcps1.2.5.1.1 "><p id="p20115719395"><a name="p20115719395"></a><a name="p20115719395"></a>Driver</p>
 </td>
-<td class="cellrowborder" valign="top" width="38.54%" headers="mcps1.2.5.1.2 "><a name="ul100191223919"></a><a name="ul100191223919"></a><ul id="ul100191223919"><li>The sensor, input, and display driver models have been added.</li><li>The MIPI DSI and pulse width modulation (PWM) have been added.</li><li>Hardware Driver Interfaces (HDIs) and Wi-Fi flow control have been added.</li><li>The I/O service grouping feature has been added for the Hardware Driver Foundation (HDF).</li></ul>
+<td class="cellrowborder" valign="top" width="38.54%" headers="mcps1.2.5.1.2 "><a name="ul100191223919"></a><a name="ul100191223919"></a><ul id="ul100191223919"><li>The sensor, input, and display driver models have been added.</li><li>The MIPI DSI and pulse width modulation (PWM) have been added.</li><li>Hardware Device Interfaces (HDIs) and Wi-Fi flow control have been added.</li><li>The I/O service grouping feature has been added for the Hardware Driver Foundation (HDF).</li></ul>
 </td>
 <td class="cellrowborder" valign="top" width="28.410000000000004%" headers="mcps1.2.5.1.3 "><p id="p460532073911"><a name="p460532073911"></a><a name="p460532073911"></a>Driver loading has been optimized. It can now be accomplished in segmented parts.</p>
 </td>
