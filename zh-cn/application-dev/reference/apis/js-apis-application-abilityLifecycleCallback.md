@@ -1,12 +1,12 @@
 # AbilityLifecycleCallback
 
+AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onAbilityWindowStageCreate、onAbilityWindowStageDestroy等方法。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
-
-应用上下文ApplicationContext的生命周期监听方法的回调类，里面提供了onAbilityCreate、onAbilityWindowStageCreate、onAbilityWindowStageDestroy等方法。
 
 ## 导入模块
 
