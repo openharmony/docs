@@ -210,14 +210,14 @@ The `Ability` class has the `context` attribute, which belongs to the `AbilityCo
 **Table 3** AbilityContext APIs
 |API|Description|
 |:------|:------|
-|startAbility(want: Want, callback: AsyncCallback<void>): void|Starts an ability.|
-|startAbility(want: Want, options?: StartOptions): Promise<void>|Starts an ability.|
-|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>): void|Starts an ability with the account ID.|
-|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<void>|Starts an ability with the account ID.|
-|startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>): void|Starts an ability with the returned result.|
-|startAbilityForResult(want: Want, options?: StartOptions): Promise<AbilityResult>|Starts an ability with the returned result.|
-|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void|Starts an ability with the execution result and account ID.|
-|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise<AbilityResult>|Starts an ability with the execution result and account ID.|
+|startAbility(want: Want, callback: AsyncCallback\<void>): void|Starts an ability.|
+|startAbility(want: Want, options?: StartOptions): Promise\<void>|Starts an ability.|
+|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void|Starts an ability with the account ID.|
+|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>|Starts an ability with the account ID.|
+|startAbilityForResult(want: Want, callback: AsyncCallback\<AbilityResult>): void|Starts an ability with the returned result.|
+|startAbilityForResult(want: Want, options?: StartOptions): Promise\<AbilityResult>|Starts an ability with the returned result.|
+|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void|Starts an ability with the execution result and account ID.|
+|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult>|Starts an ability with the execution result and account ID.|
 ### Starting an Ability on the Same Device
 An application can obtain the context of an `Ability` instance through `this.context` and then use the `startAbility` API in the `AbilityContext` class to start the ability. The ability can be started by specifying `Want`, `StartOptions`, and `accountId`, and the operation result can be returned using a callback or `Promise` instance. The sample code is as follows:
 ```ts

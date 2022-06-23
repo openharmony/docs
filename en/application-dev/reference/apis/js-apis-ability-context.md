@@ -143,7 +143,7 @@ Starts an ability. This API uses a promise to return the result.
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -171,7 +171,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -204,7 +204,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-Starts an ability. This API uses a promise to return the execution result when the ability is terminated.
+Starts an ability. This API uses a promise to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -452,7 +452,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-Sets the label of the ability displayed in the task. This API uses a callback to return the result.
+Sets the label of the ability in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -476,7 +476,7 @@ Sets the label of the ability displayed in the task. This API uses a callback to
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets the label of the ability displayed in the task. This API uses a promise to return the result.
+Sets the label of the ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

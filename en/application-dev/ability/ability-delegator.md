@@ -46,7 +46,7 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 
 ## Introduction to TestRunner
 
-**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and overwrite the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
+**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
 
 ## Introduction to AbilityDelegatorRegistry
 
