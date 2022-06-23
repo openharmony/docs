@@ -69,7 +69,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(): Promise<number>
+queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 查询当前应用的优先级分组。使用Promise形式返回其应用分组。
 
@@ -79,7 +79,7 @@ queryAppUsagePriorityGroup(): Promise<number>
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| Promise<number> | 指定的Promise回调方法。返回查询的应用分组结果。 |
+| Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
 
 **示例**：
 
