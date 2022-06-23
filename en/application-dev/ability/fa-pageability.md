@@ -2,13 +2,13 @@
 
 ## Overview
 ### Concepts
-The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in the integrated development environment (IDE), the IDE automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js/app.ets**.
+The Page ability implements the ArkUI and provides the capability of interacting with developers. When you create an ability in DevEco Studio, DevEco Studio automatically creates template code. The capabilities related to the Page ability are implemented through the **featureAbility**, and the lifecycle callbacks are implemented through the callbacks in **app.js** or **app.ets**.
 
 ### Page Ability Lifecycle
 
 **Ability lifecycle**
 
-The Page ability lifecycle is a general term for all states of a Page ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
+The Page ability lifecycle defines all states of a Page ability, such as **INACTIVE**, **ACTIVE**, and **BACKGROUND**.
 
 The following figure shows the lifecycle state transition of the Page ability.
 
@@ -17,25 +17,25 @@ The following figure shows the lifecycle state transition of the Page ability.
 
 Description of ability lifecycle states:
 
-  - **UNINITIALIZED**: The Page ability is not initialized. This is a temporary state. A Page ability changes directly to the **INITIAL** state upon its creation.
+  - **UNINITIALIZED**: The Page ability is not initialized. This is a temporary state, from which a Page ability changes directly to the **INITIAL** state upon its creation.
 
-  - **INITIAL**: This state refers to the initial or stopped state. The Page ability in this state is not running. The Page ability enters the **INACTIVE** state after it is started.
+  - **INITIAL**: The Page ability is initialized but not running. The Page ability enters the **INACTIVE** state after it is started.
 
-  - **INACTIVE**: The ability is visible but does not gain focus.
+  - **INACTIVE**: The Page ability is visible but does not gain focus.
 
-  - **ACTIVE**: The ability runs in the foreground and gains focus.
+  - **ACTIVE**: The Page ability runs in the foreground and has focus.
 
-  - **BACKGROUND**: The Page ability returns to the background. After being re-activated, the Page ability enters the **ACTIVE** state. After being destroyed, the Page ability enters the **INITIAL** state.
+  - **BACKGROUND**: The Page ability runs in the background. After being re-activated, the Page ability enters the **ACTIVE** state. After being destroyed, the Page ability enters the **INITIAL** state.
 
 **The following figure shows the relationship between lifecycle callbacks and lifecycle states of the Page ability.**
 
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
-You can override the lifecycle callbacks provided by the Page ability in the **app.js/app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
+You can override the lifecycle callbacks provided by the Page ability in the **app.js** or **app.ets** file. Currently, the **app.js** file provides only the **onCreate** and **onDestroy** callbacks, and the **app.ets** file provides the full lifecycle callbacks.
 
 ### Launch Type
 The ability supports two launch types: singleton and multi-instance.
-The **launchType** item in the **config.json** file is used to specify the launch type.
+You can specify the launch type by setting **launchType** in the **config.json** file.
 
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
@@ -55,7 +55,7 @@ By default, **singleton** is used.
 | void startAbility(parameter: StartAbilityParameter) | Starts an ability.    |
 | Context getContext():                               | Obtains the application context.|
 | void terminateSelf()                                | Terminates the ability.    |
-| bool hasWindowFocus()                               | Checks whether the ability gains focus.   |
+| bool hasWindowFocus()                               | Checks whether the ability has focus.   |
 
 
 ### Starting a Local Page Ability
@@ -227,15 +227,15 @@ In the cross-device scenario, the application must also apply for the data synch
 | API      | Description                                                        |
 | ------------ | ------------------------------------------------------------ |
 | onShow()     | Called when the ability is switched from the background to the foreground. In this case, the ability is visible to users.|
-| onHide()     | Called when the ability is switched from the foreground to the background. In this case, the ability is invisible.|
-| onDestroy()  | Called when the ability is destroyed. In this callback, you can make preparations for app exit, such as recycling resources and clearing the cache.|
+| onHide()     | Called when the ability is switched from the foreground to the background. In this case, the ability is invisible to users.|
+| onDestroy()  | Called when the ability is destroyed. In this callback, you can make preparations for application exit, such as recycling resources and clearing the cache.|
 | onCreate()   | Called when the ability is created for the first time. You can initialize the application in this callback.|
-| onInactive() | Called when the ability loses focus. An ability loses focus before entering the background state.|
+| onInactive() | Called when the ability loses focus. An ability loses focus when it is about to enter the background state.|
 | onActive()   | Called when the ability is switched to the foreground and gains focus.     |
 
 **Example**
 
-You need to override the lifecycle callbacks in **app.js/app.ets**. The IDE template generates **onCreate()** and **onDestroy()** by default. You need to override the other callbacks.
+You need to override the lifecycle callbacks except **onCreate()** and **onDestroy()** in **app.js** or **app.ets**. The **onCreate()** and **onDestroy()** callbacks are automatically generated in the template code provided by DevEco Studio.
 
 ```javascript
 export default {

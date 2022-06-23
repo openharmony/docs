@@ -174,7 +174,7 @@ The following table lists the APIs used for ability continuation. For details ab
       var g_object = distributedObject.createDistributedObject({name:undefined});
 
       export default class MainAbility extends Ability {
-          contentStorage : ContenStorage
+          contentStorage : ContentStorage
           sessionId : string;
 
        onContinue(wantParam : {[key: string]: any}) {

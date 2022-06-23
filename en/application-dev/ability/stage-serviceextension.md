@@ -82,6 +82,5 @@ The following sample is provided to help you better understand how to develop a 
 
 - [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
 
-This sample shows how to:
+This sample shows how to create a Service Extension ability in the **ServiceExtAbility.ts** file in the **ServiceExtensionAbility** directory.
 
-Create a Service Extension ability in the **ServiceExtAbility.ts** file in the **ServiceExtensionAbility** directory.

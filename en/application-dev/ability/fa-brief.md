@@ -32,4 +32,4 @@ Currently, the **app.js** file provides only the **onCreate** and **onDestroy** 
 ## Process and Thread Model
 An application exclusively uses an independent process, and an ability exclusively uses an independent thread. An application process is created when an ability is started for the first time, and a thread is created for this ability too. After the application is started, other abilities in the application are started, and a thread is created for every of these started abilities. Each ability is bound to an independent JSRuntime instance. Therefore, abilities are isolated from each other.
 
-![fa-threading-nodel](figures/fa-threading-model.png)
+![fa-threading-model](figures/fa-threading-model.png)

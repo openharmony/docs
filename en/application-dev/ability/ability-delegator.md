@@ -1,23 +1,23 @@
 # Test Framework Usage
 
 ## Overview
-The delegator test framework provides a self-test framework (environment) for OpenHarmony applications. Using this framework, you can start an ability, schedule its lifecycle, listen for its state changes, run a shell command, and print the test result.
+The delegator test framework provides a self-test environment for OpenHarmony applications. Using this framework, you can start an ability, schedule its lifecycle, listen for its state changes, run a shell command, and print the test result.
 
 ## Constraints
 
-The APIs provided by the test framework can be used only in the test HAP. They take effect only after the test framework is started by running the **aa test** command or using the Integrated Development Environment (IDE).
+The APIs provided by the test framework can be used only in the test HAP. They take effect only after the test framework is started.
 
 
 ## Starting the Test Framework
 
-The test framework can be started using either of the following methods:
+The test framework can be started in either of the following ways:
 
-- Method 1: Run the **aa test** command.
-- Method 2: Use the IDE.
+- Method 1: Run the `aa test` command.
+- Method 2: Use DevEco Studio.
 
 ### Running aa test
 
-You can run the **aa test** command to start the test framework. You can specify the **TestRunner** to be used and the package name or module name of the HAP where the **TestRunner** is located.
+To start the test framework, specify the **TestRunner** and the package name or module name of the HAP where the **TestRunner** is located.
 
 An example command in the FA model is as follows:
 
@@ -37,17 +37,17 @@ aa test -m com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s c
 | -w              | No      | Timeout interval of a test case, in seconds. If this parameter is not specified, the test framework exits only after **finishTest** is invoked.|
 | -s \<key>\<value> | No      | It can be any parameter in the key-value format. The entered parameters can be obtained in key-value mode through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **classname** is the key and **myTest** is the value.|
 
-### Using the IDE
+### Using DevEco Studio
 
-For details about how to start the IDE, see [IDE Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508).
+For details about how to use DevEco Studio to start the test framework, see [OpenHarmony Test Framework](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508).
 
 ## Introduction to TestRunner
 
-**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, the IDE initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
+**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
 
 ## Introduction to AbilityMonitor
 
-**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. After an ability is bound, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md).
+**AbilityMonitor** is provided by the test framework for binding to and listening for abilities. You can use **AbilityMonitor** to bind to an **Ability** instance and add **AbilityMonitor** to the listening list. When **AbilityMonitor** is bound to an ability, the creation and lifecycle changes of the ability will trigger the related callback in **AbilityMonitor**. You can test and verify the ability in these callbacks. For details, see [AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md).
 
 **Example**
 
