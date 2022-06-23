@@ -36,8 +36,7 @@ createDistributedObject(source: object): DistributedObject
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 // 创建对象，对象包含4个属性类型，string,number,boolean和Object
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 ```
 
 
@@ -112,8 +111,7 @@ setSessionId(sessionId?: string): boolean
 
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
 //g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId());
 //设置为""退出分布式组网
@@ -138,8 +136,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 **示例：**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -169,8 +166,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 **示例：**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 //删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
 //删除所有的数据变更回调
@@ -197,8 +193,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 g_object.on("status", globalThis.statusCallback);
 ```
 
@@ -221,8 +216,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 **示例：**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject'; 
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,
-               parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -288,7 +282,7 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 保存数据的设备号，当deviceId默认为"local"，标识需要保存对象的设备。 |
 
-  **返回值：**
+**返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
@@ -348,7 +342,7 @@ revokeSave(): Promise&lt;SaveSuccessResponse&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
-  **返回值：**
+**返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
