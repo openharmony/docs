@@ -106,7 +106,7 @@ Web组件返回的弹窗确认或弹窗取消功能对象。
   | --------------------- | ----------------------- |
   | handleCancel(): void  | <p>通知Web组件用户取消弹窗操作。</p> |
   | handleConfirm(): void | <p>通知Web组件用户确认弹窗操作。</p> |
-  | handlePromptConfirm(result: string): void | <p>通知Web组件用户确认弹窗操作及输入内容</p>|
+  | handlePromptConfirm(result: string): void | <p>通知Web组件用户确认弹窗操作及对话框内容。</p>|
 
 ### WebResourceError对象说明
 
