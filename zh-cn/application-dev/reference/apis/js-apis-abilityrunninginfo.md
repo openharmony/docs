@@ -1,10 +1,10 @@
 # AbilityRunningInfo
 
+AbilityRunningInfo模块提供对Ability运行的相关信息和状态进行设置和查询的能力。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-Ability运行相关信息。
 
 ## 导入模块
 

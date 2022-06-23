@@ -1,5 +1,7 @@
 # AbilityDelegatorRegistry
 
+AbilityDelegatorRegistry模块提供用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力，包括获取应用程序的AbilityDelegator对象、获取单元测试参数AbilityDelegatorArgs对象。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
