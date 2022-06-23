@@ -1,6 +1,6 @@
 # 性能打点
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 8开始，该接口不再维护，推荐使用新接口[`@ohos.hiTraceMeter`](js-apis-hitracemeter.md)。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -17,7 +17,7 @@ import bytrace from '@ohos.bytrace';
 
 startTrace(name: string, taskId: number, expectedTime?: number): void
 
-开始一个预追踪耗时任务。expectedTime是可选参数，标识该任务的期望耗时。
+标记一个预追踪耗时任务的开始。
 
 **系统能力：** SystemCapability.Developtools.Bytrace
 
@@ -27,7 +27,7 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 预追踪耗时任务名称 |
 | taskId | number | 是 | 任务id |
-| expectedTime | number | 否 | 期望的耗时时间，单位：ms |
+| expectedTime | number | 否 | 期望的耗时时间（单位：ms），可选参数 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 如果有多个相同name的任务需要追踪或者对同一个任务要追踪多次，并且这些会同时被执行，则每次调用startTrace的taskId必须不一致。如果具有相同name的任务是串行执行的，则taskId可以相同。在下面bytrace.finishTrace的示例中会举例说明。
@@ -44,7 +44,7 @@ bytrace.startTrace("myTestFunc", 1, 5); // 从startTrace到finishTrace流程的�
 
 finishTrace(name: string, taskId: number): void
 
-结束一个预追踪耗时任务。
+标记一个预追踪耗时任务的结束。
 
 **系统能力：** SystemCapability.Developtools.Bytrace
 
@@ -55,7 +55,7 @@ finishTrace(name: string, taskId: number): void
 | name | string | 是 | 预追踪耗时任务名称 |
 | taskId | number | 是 | 任务id |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**<br>
 > finishTrace的name和taskId必须与流程开始的startTrace对应参数值一致。
 
 **示例：**
