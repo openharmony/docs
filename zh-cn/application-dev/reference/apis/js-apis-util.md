@@ -1089,6 +1089,8 @@ type ScopeType = ScopeComparable | number;
 ```js
 class Temperature{
     constructor(value){
+       // 当使用ts语言开发时，需要补充以下代码：
+       // private readonly _temp: Temperature;
        this._temp = value;
     }
     comapreTo(value){
