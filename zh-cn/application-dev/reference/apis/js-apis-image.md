@@ -245,8 +245,7 @@ image.createPixelMap(color, opts)
                 region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
             }        
         })
-    })
-    .catch(error => {
+    }).catch(error => {
         console.log('error: ' + error);
     })
 ```
@@ -621,8 +620,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 imageSourceApi.getImageInfo(0)
     .then(imageInfo => {
 		console.log('getImageInfo succeeded.');
-	})
-	.catch(error => {
+	}).catch(error => {
 		console.log('getImageInfo failed.');
 	})
 ```
@@ -654,8 +652,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 imageSourceApi.getImageProperty("BitsPerSample")
     .then(data => {
 		console.log('getImageProperty succeeded.');
-	})
-    .catch(error => {
+	}).catch(error => {
 		console.log('getImageProperty failed.');
 	})
 ```
