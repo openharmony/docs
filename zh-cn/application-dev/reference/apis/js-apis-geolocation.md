@@ -1,5 +1,6 @@
 # 位置服务
 
+位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -695,7 +696,7 @@ enableLocation() : Promise&lt;boolean&gt;
 
 disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
 
-打开位置服务，使用callback回调异步返回结果。
+关闭位置服务，使用callback回调异步返回结果。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -722,7 +723,7 @@ disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
 
 disableLocation() : Promise&lt;boolean&gt;
 
-打开位置服务，使用Promise方式异步返回结果。
+关闭位置服务，使用Promise方式异步返回结果。
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
