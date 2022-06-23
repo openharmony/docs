@@ -36,7 +36,7 @@
 
 ## 开发示例
    ```js
-   import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability'
 import errorManager from '@ohos.application.errorManager'
 
 var registerId = -1;
