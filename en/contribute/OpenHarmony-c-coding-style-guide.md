@@ -238,8 +238,8 @@ typedef struct {    // Good: The anonymous struct is used because self-nesting i
     int a;
     int b;
 } MyType;           // The struct alias uses the UpperCamelCase style.
-
-​```c
+```
+```c
 typedef struct tagNode {    // Good: Add the 'tag' prefix or use 'Node_'.
     struct tagNode *prev;
     struct tagNode *next;
@@ -575,11 +575,11 @@ int result = reallyReallyLongVariableName1 +    // Good: The plus sign is placed
 After an expression is wrapped, ensure that the lines are properly aligned or indented by 4 spaces. Example:
 
 ```c
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-    longVaribleName4 + longVaribleName5 + longVaribleName6;         // OK: indented with 4 spaces
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+    longVariableName4 + longVariableName5 + longVariableName6;         // OK: indented with 4 spaces
 
-int sum = longVaribleName1 + longVaribleName2 + longVaribleName3 +
-          longVaribleName4 + longVaribleName5 + longVaribleName6;   // OK: aligned
+int sum = longVariableName1 + longVariableName2 + longVariableName3 +
+          longVariableName4 + longVariableName5 + longVariableName6;   // OK: aligned
 ```
 
 ## <a name="c2-10"></a>Variable Assignment
@@ -664,7 +664,7 @@ int c[][8] = {
 
 Note:
 
-- If the left brace is placed at the end of the line, the corresponding right brace shoud be placed into a new line.
+- If the left brace is placed at the end of the line, the corresponding right brace should be placed into a new line.
 - If the left brace is followed by the content, the corresponding right brace should also follow the content.
 
 ### <a name="r2-12"></a>Rule 2.12 Initialize each member in a separate line during struct and union member initialization.

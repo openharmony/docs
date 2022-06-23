@@ -643,7 +643,7 @@ The effective solutions are as follows:
 
 1. Use integers as much as possible because integers do not need to be rounded.
 
-2. The native JavaScript method `Number.prototype.toFixed(digits)`,`digist` is used to indicate the number of digits after the decimal point. The exponential method is not used. If necessary, the number is rounded off. This method is used to reduce the precision of the calculation result before determining the floating-point number calculation result. The sample code is as follows:
+2. The native JavaScript method `Number.prototype.toFixed(digits)`,`digits` is used to indicate the number of digits after the decimal point. The exponential method is not used. If necessary, the number is rounded off. This method is used to reduce the precision of the calculation result before determining the floating-point number calculation result. The sample code is as follows:
 
    ```javascript
    parseFloat(0.1 + 0.2).toFixed(1); //0.3
