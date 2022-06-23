@@ -783,7 +783,7 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 | Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | Yes  | No | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                          |
+| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                 |
 | callback   | Yes  | No | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -858,7 +858,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 | Name      | Readable| Writable| Type     | Mandatory| Description         |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | Yes  | No | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object.|
+| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object. |
 
 **Return value**
 
@@ -936,10 +936,10 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-//wantAgent����
+// wantAgent object
 var wantAgent;
 
-//WantAgentInfo����
+// WantAgentInfo object
 var wantAgentInfo = {
     wants: [
         {
@@ -989,13 +989,13 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 | Name  | Readable | Writable | Type      | Mandatory | Description   |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | Yes | No | WantAgent | Yes | WantAgent���� |
+| agent      | Yes | No | WantAgent | Yes | Target **WantAgent** object. |
 
 **Return value**
 
 | Type              | Description                                |
 | ----------------- | ------------------------------------------ |
-| Promise\<number\> | Promise used to return the operation type. |
+| Promise\<number> | Promise used to return the operation type. |
 
 
 **Example**
@@ -1003,10 +1003,10 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-//wantAgent����
+// wantAgent object
 var wantAgent;
 
-//WantAgentInfo����
+// WantAgentInfo object
 var wantAgentInfo = {
     wants: [
         {

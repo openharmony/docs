@@ -43,10 +43,10 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.| 
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
+| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -71,11 +71,11 @@ Starts an ability with **options** specified. This API uses an asynchronous call
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want)  | Yes| Information about the **Want** used for starting an ability.| 
+| want | [Want](js-apis-featureAbility.md#Want)  | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
     
@@ -104,16 +104,16 @@ Starts an ability with **options** specified. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.| 
+| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | Yes| Parameters used for starting the ability.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.| 
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```js
@@ -143,15 +143,15 @@ Obtains the caller interface of the specified ability, and if the specified abil
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.| 
+| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.| 
+| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
 
 **Example**
     
@@ -184,11 +184,11 @@ Starts an ability with **accountId** specified. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.| 
-| accountId | number                   | Yes| Account ID.                  | 
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
+| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
+| accountId | number                   | Yes| Account ID.                  |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -214,12 +214,12 @@ Starts an ability with **accountId** and **options** specified. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want)  | Yes| Information about the **Want** used for starting an ability.| 
-| accountId | number                   | Yes| Account ID.                  | 
+| want | [Want](js-apis-featureAbility.md#Want)  | Yes| Information about the **Want** used for starting an ability.|
+| accountId | number                   | Yes| Account ID.                  |
 | options | StartOptions | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.| 
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
     
@@ -249,17 +249,17 @@ Starts an ability with **accountId** and **options** specified. This API uses a 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.| 
+| want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | accountId | number                   | Yes| Account ID.                  |
 | options | StartOptions | No| Parameters used for starting the ability.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.| 
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```js
@@ -349,7 +349,7 @@ Starts an ability with **options** specified. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | Yes| Parameters used for starting the ability.|
@@ -446,7 +446,7 @@ Starts an ability with **accountId** and **options** specified. This API uses a 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | accountId | number                   | Yes| Account ID.                  |
@@ -482,15 +482,15 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.| 
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
 ```js
 this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringfy(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
 ```
 
@@ -504,17 +504,17 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
 ```js
 this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -561,9 +561,9 @@ Terminates this ability. This API uses a promise to return information to the ca
 | parameter | [AbilityResult](js-apis-featureAbility.md#AbilityResult) | Yes| Information returned to the caller.|
 
 **Return value**
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.| 
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 ```js
@@ -586,14 +586,14 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | options | ConnectOptions | Yes| Connection channel.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
 | number | ID of the connection between the two abilities.|
 
@@ -630,7 +630,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
 | accountId | number | Yes| Account ID.|
@@ -638,7 +638,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
 | number | ID of the connection between the two abilities.|
 
@@ -676,7 +676,7 @@ Disconnects this ability from another ability. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| ID of the connection to be disconnected.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -700,15 +700,15 @@ Disconnects this ability from another ability. This API uses a promise to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| ID of the connection to be disconnected.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.| 
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -717,7 +717,7 @@ var connection = 111;
 this.context.disconnectAbility(connection).then(() => {
   console.log('disconnect success')
 }).catch((err) => {
-  console.log('disconnect filed')
+  console.log('disconnect failed')
 })
 ```
 
@@ -731,16 +731,16 @@ Sets the label of the ability in the mission. This API uses an asynchronous call
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| label | string | Yes| Label of the ability to set.| 
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.| 
+| label | string | Yes| Label of the ability to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
 **Example**
     
 ```js
 this.context.setMissionLabel("test",(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -755,23 +755,23 @@ Sets the label of the ability in the mission. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| label | string | Yes| Label of the ability to set.| 
+| label | string | Yes| Label of the ability to set.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
+| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
     
 ```js
 this.context.setMissionLabel("test").then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -785,16 +785,16 @@ Requests permissions from end users in the form of a dialog box. This API uses a
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | Yes| Permissions to request.| 
-| callback | AsyncCallback&lt;PermissionRequestResult&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.| 
+| permissions | Array&lt;string&gt; | Yes| Permissions to request.|
+| callback | AsyncCallback&lt;PermissionRequestResult&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
 **Example**
     
 ```js
 this.context.requestPermissionsFromUser(permissions,(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -809,23 +809,23 @@ Requests permissions from end users in the form of a dialog box. This API uses a
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | Yes| Permissions to request.| 
+| permissions | Array&lt;string&gt; | Yes| Permissions to request.|
 
 **Return value**
 
-| Type| Description| 
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;PermissionRequestResult&gt; | Promise used to return the result indicating whether the API is successfully called.| 
+| Promise&lt;PermissionRequestResult&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
     
 ```js
 this.context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -839,9 +839,9 @@ Restores the window stage data during ability continuation.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| contentStorage | ContentStorage | Yes| Window stage data to restore.| 
+| contentStorage | ContentStorage | Yes| Window stage data to restore.|
 
 **Example**
 

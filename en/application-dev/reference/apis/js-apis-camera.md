@@ -1,6 +1,7 @@
 # Camera Management
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. API version 9 is a canary release for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import

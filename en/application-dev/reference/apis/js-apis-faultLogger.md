@@ -43,7 +43,7 @@ Defines the data structure of the fault log information.
 
 querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;&gt;) : void
 
-Obtains the fault information about the current process. This API uses a callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
+Obtains the fault information about the current process. This API uses an asynchronous callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 

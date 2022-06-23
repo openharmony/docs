@@ -143,7 +143,7 @@ Called when this ability is destroyed to clear resources.
 
 onForeground(): void;
 
-Called when this ability is running in the foreground.
+Called when this ability is switched from the background to the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -162,7 +162,7 @@ Called when this ability is running in the foreground.
 
 onBackground(): void;
 
-Callback when this ability is switched to the background.
+Called when this ability is switched from the foreground to the background.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -486,7 +486,7 @@ Registers a callback that is invoked when the Stub on the target ability is disc
 
 ## Callee
 
-Implements callbacks for caller notification registration and unregistration.
+Implements callbacks for caller notification registration and deregistration.
 
 
 ## Callee.on
@@ -546,7 +546,7 @@ Registers a caller notification callback, which is invoked when the target abili
 
 off(method: string): void;
 
-Unregisters a caller notification callback, which is invoked when the target ability registers a function.
+Deregisters a caller notification callback, which is invoked when the target ability registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
