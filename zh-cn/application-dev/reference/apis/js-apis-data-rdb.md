@@ -1,6 +1,14 @@
 # 关系型数据库
 
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
+
+该模块提供以下关系型数据库相关的常用功能：
+
+- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+
 > **说明：**
+> 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -10,68 +18,6 @@ import data_rdb from '@ohos.data.rdb';
 ```
 
 ## data_rdb.getRdbStore
-
-getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
-
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
-| version | number | 是 | 数据库版本。 |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
-
-**示例：**
-
-```js
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-    if (err) {
-        console.info("Get RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Get RdbStore successfully.")
-})
-```
-## data_rdb.getRdbStore
-
-getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
-
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
-| version | number | 是 | 数据库版本。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | 指定Promise回调函数。返回一个RdbStore。 |
-
-**示例：**
-
-```js
-const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(STORE_CONFIG, 1);
-promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
-}).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
-})
-```
-
-
-## data_rdb.getRdbStore<sup>8+</sup>
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
@@ -83,7 +29,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
@@ -101,7 +47,7 @@ data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
 })
 ```
 
-## data_rdb.getRdbStore<sup>8+</sup>
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
@@ -113,7 +59,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 
@@ -137,58 +83,6 @@ promise.then(async (rdbStore) => {
 
 ## data_rdb.deleteRdbStore
 
-deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
-
-删除数据库，结果以callback形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 数据库名称。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
-
-**示例：**
-```js
-data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
-    if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
-        return
-    }
-    console.log("Delete RdbStore successfully.")
-})
-```
-  ## data_rdb.deleteRdbStore
-
-deleteRdbStore(name: string): Promise&lt;void&gt;
-
-使用指定的数据库文件配置删除数据库，结果以Promise形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数**
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 数据库名称。 |
-
-**返回值**：
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
-
-**示例：**
-```js
-let promise = data_rdb.deleteRdbStore("RdbTest.db")
-promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
-}).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
-})
-```
-
-## data_rdb.deleteRdbStore<sup>8+</sup>
-
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除数据库，结果以callback形式返回。
@@ -198,7 +92,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
@@ -213,7 +107,7 @@ data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>8+</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
@@ -224,7 +118,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | 是 | 应用程序或功能的上下文 <br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 
 **返回值**：
@@ -234,7 +128,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 ```js
-let promise = data_rdb.deleteRdbStore("RdbTest.db")
+let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(()=>{
     console.log("Delete RdbStore successfully.")
 }).catch((err) => {
@@ -1605,7 +1499,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 **示例：**
 ```js
-rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
+rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.info('obtainDistributedTableName failed, err: ' + err)
         return
@@ -1636,7 +1530,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 
 **示例：**
 ```js
-let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
 promise.then((tableName) => {
     console.info('obtainDistributedTableName successfully, tableName=' + tableName)
 }).catch((err) => {
@@ -1661,9 +1555,9 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **示例：**
 ```js
-let predicates = new rdb.RdbPredicates('EMPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(['12345678abcde'])
-rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('sync failed, err: ' + err)
         return
