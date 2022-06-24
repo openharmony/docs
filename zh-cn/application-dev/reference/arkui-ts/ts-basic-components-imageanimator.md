@@ -40,9 +40,9 @@ ImageAnimator()
   | -------- | -------- | -------- | -------- | -------- |
   | src | string \| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | "" | 是 | 图片路径，图片格式为svg，png和jpg，从API9起支持[Resource](../../ui/ts-types.md#resource类型)类型的路径 |
   | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片宽度 |
-  | height | Length | 0 | 否 | 图片高度 |
-  | top | Length | 0 | 否 | 图片相对于组件左上角的纵向坐标 |
-  | left | Length | 0 | 否 | 图片相对于组件左上角的横向坐标 |
+  | height | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片高度 |
+  | top | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的纵向坐标 |
+  | left | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的横向坐标 |
   | duration | number | 0 | 否 | 每一帧图片的播放时长，单位毫秒 |
 
 - AnimationStatus枚举说明

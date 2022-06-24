@@ -2448,7 +2448,7 @@ root {
         pwmBacklightConfig {
             match_attr = "pwm_bl_dev";
             pwmDevNum = 1;
-            pwmMaxPeroid = 25000;
+            pwmMaxPeriod = 25000;
             backlightDevName = "hdf_pwm";
             minBrightness = 0;
             defBrightness = 127;
