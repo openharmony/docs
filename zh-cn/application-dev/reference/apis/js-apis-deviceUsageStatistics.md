@@ -619,7 +619,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 参数名        | 类型        | 必填   | 说明   |
 | ---------- | --------- | ---- | ---- |
 | bundleName | string    | 是    | 应用名称 |
-| newGroup   | [GroupType](#GroupType9) | 是    | 应用分组 |
+| newGroup   | [GroupType](#grouptype) | 是    | 应用分组 |
 
 **返回值**：
 
@@ -631,7 +631,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 ```javascript
 let bundleName = "com.example.deviceUsageStatistics";
-let newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
 bundleState.setBundleGroup(bundleName, newGroup).then( () => {
     console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
@@ -657,14 +657,14 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&
 | 参数名        | 类型                  | 必填   | 说明                        |
 | ---------- | ------------------- | ---- | ------------------------- |
 | bundleName | string              | 是    | 应用名称                      |
-| newGroup   | [GroupType](#GroupType9)           | 是    | 应用分组                      |
+| newGroup   | [GroupType](#grouptype)           | 是    | 应用分组                      |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
 
 **示例**：
 
 ```javascript
 let bundleName = "com.example.deviceUsageStatistics";
-let newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
 bundleState.setBundleGroup(bundleName, newGroup, (err) => {
     if(err) {
@@ -679,7 +679,7 @@ bundleState.setBundleGroup(bundleName, newGroup, (err) => {
 
 registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回BundleActiveGroupCallbackInfo信息。使用Promise形式返回注册是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用Promise形式返回注册是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -691,7 +691,7 @@ registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#BundleActiveGroupCallbackInfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
 
 **返回值**：
 
@@ -721,7 +721,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
 
 registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回BundleActiveGroupCallbackInfo信息。使用异步callback形式返回注册监听是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用异步callback形式返回注册监听是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -733,7 +733,7 @@ registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, c
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#BundleActiveGroupCallbackInfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 指定的异步callback函数，返回注册监听是否成功 |
 
 **示例**：
