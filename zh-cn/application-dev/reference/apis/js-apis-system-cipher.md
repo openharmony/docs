@@ -8,7 +8,7 @@
 ## 导入模块
 
 
-```
+```js
 import cipher from '@system.cipher'
 ```
 
@@ -35,7 +35,7 @@ RSA 算法加解密。
 
 **示例：**
 
-```
+```js
 export default {    
   rsa() {        
     cipher.rsa({            
@@ -44,48 +44,53 @@ export default {
       //待加密的文本内容            
       text: 'hello',            
       //base64编码后的加密公钥            
-      key:            
-        'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc7GR2MrfAoefES+wrs1ns2afT\n' +            
-        'eJXSfIkEHfPXG9fVFjaws1ho4KcZfsxlA0+SXvc83f2SVGCuzULmM2lxxRCtcUN/\n' +            
-        'h7SoaYEeluhqFimL2AEjfSwINHCLqObJkcjCfoZpE1JCehPiDOJsyT50Auc08h/4\n' +            
-        'jHQfanyC1nc62LqUCQIDAQAB',            
-        success: function(data) {                
-          console.log('handling success: ${data.text}');            
-        },            
-        fail: function(data, code) {               
-          console.log(`### cipher.rsa encrypt fail ### ${code}: ${data}`);           
-        }       
+      key: 
+     'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx414QSP3RsYWYzf9mkBMiBAXo\n' + 
+     '6S7Lpva1fKlcuVxjoFC1iMnzD4mC0uiL4k5MNi43J64c7dbqi3qAJjdAtuwQ6NZJ\n' + 
+     '+Enz0RzmVFh/4yk6lmqRzuEFQqhQqSZzaLq6sq2N2G0Sv2Xl3sLvqAfe2HNm2oBw\n' +
+     'jBpApTJ3TeneOo6Z5QIDAQAB',  
+      success: function(data) {                
+        console.log(`handling success:${data.text}`);          
+      },            
+      fail: function(data, code) {               
+        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
+      },
+      complete: function() {
+        console.log(`operation complete!`);
+      }
       });        
       cipher.rsa({            
         //解密：            
         action: 'decrypt',            
         //待解密的内容，是base64编码后的一段二进制值，解密后是文本内容“hello”            
         text:            
-          'CUg3tTxTIdpCfreIxIBdws3uhd5qXLwcrVl3XDnQzZFVHyjVVCDHS16rjopaZ4C5xU2Tc8mSDzt7\n' +            
-          'gp9vBfSwi7bMtSUvXG18DlncsKJFDkJpS5t0PkpS9YrJXrY80Gpe+ME6+6dN9bjgqMljbitDdBRf\n' +            
-          'S/ZWNI4Q8Q0suNjNkGU=',            
+       'EPeCFPib6ayKbA0M6oSywARvFZ8dFYfjQv3nY8ikZGtS9UHq2sLPvAfpeIzggSiCxqbWeCftP1XQ\n' +
+       'Sa+jEpzFlT1qoSTunBbrYzugPTajIJDTg6R1IRsF/J+mmakn0POVPvi4jCo9wqavB324Bx0Wipnc\n' +
+       'EU5WO0oBHo5l4x6dTpU=',           
          //base64编码后的解密私钥            
          key:            
-           'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANzsZHYyt8Ch58RL\n' +            
-           '7CuzWezZp9N4ldJ8iQQd89cb19UWNrCzWGjgpxl+zGUDT5Je9zzd/ZJUYK7NQuYz\n' +            
-           'aXHFEK1xQ3+HtKhpgR6W6GoWKYvYASN9LAg0cIuo5smRyMJ+hmkTUkJ6E+IM4mzJ\n' +            
-           'PnQC5zTyH/iMdB9qfILWdzrYupQJAgMBAAECgYEAkibhH0DWR13U0gvYJeD08Lfd\n' +            
-           'Sw1PMHyquEqIcho9Yv7bF3LOXjOg2EEGPx09mvuwXFgP1Kp1e67XPytr6pQQPzK7\n' +            
-           'XAPcLPx80R/ZjZs8vNFndDOd1HgD3vSVmYQarNzmKi72tOUWMPevsaFXPHo6Xx3X\n' +            
-           '8x0wYb7XuBsQguRctTECQQD7GWX3JUiyo562iVrpTDPOXsrUxmzCrgz2OZildxMd\n' +            
-           'Pp/PkyDrx7mEXTpk4K/XnQJ3GpJNi2iDSxDuPSAeJ/aPAkEA4Tw4+1Z43S/xH3C3\n' +            
-           'nfulYBNyB4si6KEUuC0krcC1pDJ21Gd12efKo5VF8SaJI1ZUQOzguV+dqNsB/JUY\n' +            
-           'OFfX5wJAB1dKv9r7MR3Peg6x9bggm5vx2h6i914XSuuMJupASM6X5X2rrLj+F3yS\n' +            
-           'RHi9K1SPyeOg+1tkBtKfABgRZFBOyQJAbuTivUSe73AqTKuHjB4ZF0ubqgEkJ9sf\n' +            
-           'Q2rekzm9dOFvxjZGPQo1qALX09qATMi1ZN376ukby8ZAnSafLSZ64wJBAM2V37go\n' +            
-           'Sj44HF76ksRow8gecuQm48NCTGAGTicXg8riKog2GC9y8pMNHAezoR9wXJF7kk+k\n' +            
-           'lz5cHyoMZ9mcd30=',            
-           success: function(data) {                
-             console.log('handling success: ${data.text}');            
-           },            
-           fail: function(data, code) {                
-             console.log(`### cipher.rsa decrypt fail ### ${code}: ${data}`);            
-           },        
+        'MIICXgIBAAKBgQCx414QSP3RsYWYzf9mkBMiBAXo6S7Lpva1fKlcuVxjoFC1iMnz\n' +
+        'D4mC0uiL4k5MNi43J64c7dbqi3qAJjdAtuwQ6NZJ+Enz0RzmVFh/4yk6lmqRzuEF\n' +
+        'QqhQqSZzaLq6sq2N2G0Sv2Xl3sLvqAfe2HNm2oBwjBpApTJ3TeneOo6Z5QIDAQAB\n' +
+        'AoGBAKPNtoRQcklxqo+2wQP0j2m3Qqnib1DggjVEgb/8f/LNYQSI3U2QdROemryU\n' +
+        'u3y6N3xacZ359PktTrRKfH5+8ohmHGhIuPAnefp6bLvAFUcl4t1xm74Cow62Kyw3\n' +
+        'aSbmuTG98dxPA1sXD0jiprdtsq2wQ9CoKNyY7/d/pKoqxNuBAkEA4GytZ60NCTj9\n' +
+        'w24jACFeko5YqCFY/TTLoc4SQvWtFMnimRPclLZhtUIK0P8dib71UFedx+AxklgL\n' +
+        'A5gjcfo+2QJBAMrqiwyCh3OQ5DhyRPDwt87x1/jg5fy4hhete2ufSf2FoQCVqO+w\n' +
+        'PKoljdXmJeS6rGgzGibstuHLrP3tcIho4+0CQD3ZFWzF/xq0jxKlrpWhnJuNCRfE\n' +
+        'oO6e9yNvVA8J/5oEDSOcmqSNIp4+RhbUx8InUxnCG6Ryv5aSFu71pYcKrPkCQQCL\n' +
+        'RUGcm3ZGTnslduB0knNF+V2ndwzDUQ7P74UXT+PjurTPhujFYiuxCEd6ORVnEOzG\n' +
+        'M9TORIgdH8MjIbWsGnndAkEAw9yURDaorE8IYPLF2IEn09g1uzvWPs3phDb6smVx\n' + 
+        '8GfqIdUNf+aCG5TZK/kXBF1sqcsi7jXMAf4jBlejVbSVZg==',
+         success: function(data) {                
+           console.log(`handling success:${data.text}`);          
+         },            
+         fail: function(data, code) {               
+           console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
+         },
+         complete: function() {
+           console.log(`operation complete!`);
+         }        
        });    
    }
 }
@@ -109,15 +114,15 @@ AES 算法加解密。
 | key | string | 是 | 加密或解密使用到的密钥，经过&nbsp;base64&nbsp;编码后生成的字符串 |
 | transformation | string | 否 | AES算法的加密模式和填充项，默认AES/CBC/PKCS5Padding |
 | iv | string | 否 | AES加解密的初始向量，经过base64编码后的字符串，默认值为key值 |
-| ivOffset | string | 否 | AES加解密的初始向量偏移，默认值0 |
-| ivLen | string | 否 | AES加解密的初始向量字节长度，默认值16 |
+| ivOffset | string | 否 | AES加解密的初始向量偏移，默认值0，仅支持0。 |
+| ivLen | string | 否 | AES加解密的初始向量字节长度，当前为预留字段，默认值16，仅支持16。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
 **示例：**
 
-```
+```js
 export default {    
   aes() {        
     cipher.aes({            
@@ -128,37 +133,41 @@ export default {
       //base64编码后的密钥            
       key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
       transformation: 'AES/CBC/PKCS5Padding',            
-      ivOffset: 0,            
-      ivLen: 16,            
-      success: (data) => {                
-        console.log('handling success: ${data.text}');            
-      },            
-      fail: (data, code) => {                
-        console.log(`### cipher.aes encrypt fail ### ${code}: ${data}`);            
-      }        
+      ivOffset: '0',            
+      ivLen: '16',            
+      success: function(data) {                
+        console.log(`handling success:${data.text}`);          
+        },            
+      fail: function(data, code) {               
+        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
+        },
+      complete: function() {
+        console.log(`operation complete!`);
+      }
     });        
     cipher.aes({            
       //解密：            
       action: 'decrypt',            
       //待解密的内容，是base64编码后的一段二进制值            
-      text: 'CUg3tTxTIdpCfreIxIBdws3uhd5qXLwcrVl3XDnQzZFVHyjVVCDHS16rjopaZ4C5xU2Tc8mSDzt7\n' +            
-      'gp9vBfSwi7bMtSUvXG18DlncsKJFDkJpS5t0PkpS9YrJXrY80Gpe+ME6+6dN9bjgqMljbitDdBRf\n' +            
-      'S/ZWNI4Q8Q0suNjNkGU=',            
+      text: '1o0kf2HXwLxHkSh5W5NhzA==',            
        //base64编码后的密钥            
        key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
        transformation: 'AES/CBC/PKCS5Padding',            
-       ivOffset: 0,            
-       ivLen: 16,            
-       success: (data) => {                
-         this.dealTxt = data.text;            
-       },            
-       fail: (data, code) => {               
-         prompt.showToast({                    
-           message: (`### cipher.aes decrypt fail ### code = ${code}: ${data}`)                
-         })            
-       },        
+       ivOffset: '0',            
+       ivLen: '16',            
+       success: function(data) {                
+         console.log(`handling success:${data.text}`);          
+        },            
+       fail: function(data, code) {               
+         console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
+       },
+       complete: function() {
+         console.log(`operation complete!`);
+        }
+     });        
     });    
   }
 }
 
 ```
+
