@@ -2,8 +2,7 @@
 
 ## 场景介绍
 
-开发者可以通过本文了解到在**OpenHarmony**如何使用 **OpenSL ES** 进行录音相关操作；当前仅实现了部分[**OpenSL ES**接口] 
-(https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**。
+开发者可以通过本文了解到在**OpenHarmony**如何使用 **OpenSL ES** 进行录音相关操作；当前仅实现了部分[**OpenSL ES**接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**。
 
 ## 开发步骤
 
