@@ -21,7 +21,7 @@ import inputMethod from '@ohos.inputMethod';
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
 
 
-## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
+## InputMethodProperty<sup>8+</sup>
 
 输入法应用属性。
 
@@ -32,7 +32,7 @@ import inputMethod from '@ohos.inputMethod';
 | packageName | string | 是 | 否 | 包名。 |
 | methodId | string | 是 | 否 | Ability名。 |
 
-## inputMethod.getInputMethodController<a name="getInputMethodController"></a>
+## inputMethod.getInputMethodController
 
 getInputMethodController(): InputMethodController
 
@@ -50,7 +50,7 @@ getInputMethodController(): InputMethodController
   ```js
   var InputMethodController = inputMethod.getInputMethodController();
   ```
-## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
+## inputMethod.getInputMethodSetting<sup>8+</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -70,7 +70,7 @@ getInputMethodSetting(): InputMethodSetting
   var InputMethodSetting = inputMethod.getInputMethodSetting();
   ```
 
-## InputMethodController<a name="InputMethodController"></a>
+## InputMethodController
 
 下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
@@ -118,7 +118,7 @@ stopInput(): Promise&lt;boolean&gt;
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
