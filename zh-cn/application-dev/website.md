@@ -28,7 +28,6 @@
 
     - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
 
-  
 
 - 开发
 
@@ -73,7 +72,6 @@
       - [测试框架使用指导](ability/ability-delegator.md)
 
   - UI开发
-
 
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
 
@@ -404,7 +402,6 @@
 
       * [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
 
-      
 
   - WebGL
 
@@ -441,7 +438,6 @@
 
       - [图片开发指导](media/image.md)
 
-      
 
     - 相机
 
@@ -536,18 +532,19 @@
 
     - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
 
-  - 后台任务管理
+  - 任务管理
 
+    - 后台任务 
 
-    - [后台任务概述](background-task-management/background-task-overview.md)
+      - [后台任务概述](task-management/background-task-overview.md)
 
-    - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+      - [后台任务开发指导](task-management/background-task-dev-guide.md)
 
-  - 延迟任务调度
+    - 延迟任务调度
 
-    - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
+      - [延迟任务调度概述](task-management/work-scheduler-overview.md)
 
-    - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
+      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
 
   - 设备管理
 
@@ -611,7 +608,6 @@
 
       - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
 
-      
 
   - 国际化
 
@@ -1563,7 +1559,6 @@
 
     - 已停止维护的接口
 
-    
 
       - [@ohos.bytrace (性能打点)](reference/apis/js-apis-bytrace.md)
 
