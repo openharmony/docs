@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-This component contains the child component [<GridItem>](ts-container-griditem.md).
+This component contains the child component [\<GridItem>](ts-container-griditem.md).
 
 
 ## APIs

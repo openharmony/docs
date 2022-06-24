@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-This component contains the child component [<ListItem>](ts-container-listitem.md).
+This component contains the child component [\<ListItem>](ts-container-listitem.md).
 
 
 ## APIs
