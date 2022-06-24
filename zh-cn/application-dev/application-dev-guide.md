@@ -31,7 +31,7 @@
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [数据管理](database/database-mdds-overview.md)
 - [后台代理提醒](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-- [后台任务管理](background-task-management/background-task-overview.md)
+- [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
