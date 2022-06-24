@@ -1,8 +1,14 @@
 # Linear Container Queue
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
+
+Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other end.
+
+**Recommended use case**: Use **Queue** in FIFO scenarios.
 
 ## Modules to Import
 
@@ -10,19 +16,16 @@
 import Queue from '@ohos.util.Queue';  
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 
 ## Queue
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a queue (called container later).|
+| length | number | Yes| No| Number of elements in a queue (called container later).|
 
 
 ### constructor
@@ -30,6 +33,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **Queue** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -42,19 +47,21 @@ let queue = new Queue();
 
 add(element: T): boolean
 
-Adds an entry at the end of this container.
+Adds an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to add.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -73,13 +80,15 @@ let result3 = queue.add(c);
 
 pop(): T
 
-Removes the first entry from this container.
+Removes the first element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -97,13 +106,15 @@ let result = queue.pop();
 
 getFirst(): T
 
-Obtains the first entry of this container.
+Obtains the first element of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Type| Description|
 | -------- | -------- |
-| T | The first entry obtained.|
+| T | The first element obtained.|
 
 **Example**
 
@@ -121,21 +132,23 @@ let result = queue.getFirst();
 forEach(callbackfn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | Queue | Queue&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -156,8 +169,9 @@ queue.forEach((value, index) => {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 

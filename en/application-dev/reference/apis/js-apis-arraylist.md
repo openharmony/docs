@@ -1,7 +1,16 @@
 # Linear Container ArrayList
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+**ArrayList** is a linear data structure that is implemented based on arrays. **ArrayList** can dynamically adjust the capacity based on project requirements. It increases the capacity by 50% each time.
+
+Similar to **ArrayList**, **[Vector](js-apis-vector.md)** is also implemented based on arrays and can dynamically adjust the capacity. It increases the capability by 100% each time.
+
+When compared with **[LinkedList](js-apis-linkedlist.md)**, **ArrayList** is more efficient in random access but less efficient in the addition or removal operation, because its addition or removal operation affects the position of other elements in the container.
+
+**Recommended use case**: Use **ArrayList** when elements in a container need to be frequently read.
 
 ## Modules to Import
 
@@ -9,17 +18,15 @@
 import ArrayList from '@ohos.util.ArrayList';
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## ArrayList
 
 ### Attributes
 
+**System capability**: SystemCapability.Utils.Lang
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in an array list (called container later).|
+| length | number | Yes| No| Number of elements in an array list (called container later).|
 
 
 ### constructor
@@ -27,6 +34,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create an **ArrayList** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -39,19 +48,21 @@ let arrayList = new ArrayList();
 
 add(element: T): boolean
 
-Adds an entry at the end of this container.
+Adds an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to add.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -69,14 +80,16 @@ Adds an entry at the end of this container.
 
 insert(element: T, index: number): void
 
-Inserts an entry at the specified position in this container.
+Inserts an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to insert.|
-| index | number | Yes| Index of the position where the entry is to be inserted.|
+| element | T | Yes| Target element.|
+| index | number | Yes| Index of the position where the element is to be inserted.|
 
 **Example**
 
@@ -91,19 +104,21 @@ arrayList.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified entry.
+Checks whether this container has the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified entry is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -118,19 +133,21 @@ let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified entry in this container.
+Obtains the index of the first occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
 
 **Example**
 
@@ -150,19 +167,21 @@ let result = arrayList.getIndexOf(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified entry in this container.
+Obtains the index of the last occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to query.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
 
 **Example**
 
@@ -182,19 +201,21 @@ let result = arrayList.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an entry with the specified position from this container.
+Removes an element with the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -212,19 +233,21 @@ let result = arrayList.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified entry from this container.
+Removes the first occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to remove.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -241,7 +264,9 @@ let result = arrayList.remove(2);
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-Removes from this container all of the entries within a range, including the entry at the start position but not that at the end position.
+Removes from this container all of the elements within a range, including the element at the start position but not that at the end position.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -268,7 +293,9 @@ arrayList.removeByRange(2, 6);
 replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all entries in this container with new entries, and returns the new ones.
+Replaces all elements in this container with new elements, and returns the new ones.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -281,8 +308,8 @@ callbackfn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
 
 **Example**
@@ -306,21 +333,23 @@ arrayList.replaceAllElements((value, index) => {
 forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -340,7 +369,9 @@ arrayList.forEach((value, index) => {
 
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
-Sorts entries in this container.
+Sorts elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -352,8 +383,8 @@ comparator
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| firstValue | T | Yes| Previous entry.|
-| secondValue | T | Yes| Next entry.|
+| firstValue | T | Yes| Previous element.|
+| secondValue | T | Yes| Next element.|
 
 **Example**
 
@@ -372,7 +403,9 @@ arrayList.sort();
 
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
-Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **ArrayList** instance.
+Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **ArrayList** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -406,6 +439,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -422,6 +457,8 @@ arrayList.clear();
 clone(): ArrayList&lt;T&gt; 
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 
 **Return value**
@@ -447,6 +484,8 @@ getCapacity(): number
 
 Obtains the capacity of this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -470,6 +509,8 @@ convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -491,7 +532,9 @@ let result = arrayList.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -515,6 +558,8 @@ let result = arrayList.isEmpty();
 increaseCapacityTo(newCapacity: number): void
 
 Increases the capacity of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -540,6 +585,8 @@ trimToCurrentLength(): void
 
 Trims the capacity of this container to its current length.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -556,6 +603,8 @@ arrayList.trimToCurrentLength();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 

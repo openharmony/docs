@@ -1,8 +1,16 @@
 # Nonlinear Container PlainArray 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**PlainArray** stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
+
+**PlainArray** is based on generics and uses a lightweight structure. Keys in the array are searched using binary search, which map to values in other arrays.
+
+Both **PlainArray** and **[LightWeightMap](js-apis-lightweightmap.md)** are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
+
+**Recommended use case**: Use **PlainArray** when you need to store KV pairs whose keys are of the **number** type.
 
 ## Modules to Import
 
@@ -10,18 +18,17 @@
 import PlainArray from '@ohos.util.PlainArray';  
 ```
 
-## System Capability
 
-SystemCapability.Utils.Lang
 
 ## PlainArray
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a plain array (called container later).|
+| length | number | Yes| No| Number of elements in a plain array (called container later).|
 
 
 ### constructor
@@ -29,6 +36,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **PlainArray** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -42,6 +51,8 @@ let plainArray = new PlainArray();
 isEmpty(): boolean
 
 Checks whether this container is empty.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -63,11 +74,13 @@ has(key: number): boolean
 
 Checks whether this container contains the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key to check.|
+| key | number | Yes| Target key.|
 
 **Return value**
 
@@ -91,11 +104,13 @@ get(key: number): T
 
 Obtains the value of the specified key in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key to query.|
+| key | number | Yes| Target key.|
 
 **Return value**
 
@@ -117,19 +132,21 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-Obtains the index of the first occurrence of an entry with the specified key in this container.
+Obtains the index of the first occurrence of an element with the specified key in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key of the entry to obtain.|
+| key | number | Yes| Target key.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -137,7 +154,7 @@ Obtains the index of the first occurrence of an entry with the specified key in 
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-let result = plainArray.getIndexOfKey("sdfs");
+let result = plainArray.getIndexOfKey(2);
 ```
 
 
@@ -145,19 +162,21 @@ let result = plainArray.getIndexOfKey("sdfs");
 
 getIndexOfValue(value: T): number
 
-Obtains the index of the first occurrence of an entry with the specified value in this container.
+Obtains the index of the first occurrence of an element with the specified value in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry to obtain.|
+| value | T | Yes| Value of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -173,19 +192,21 @@ let result = plainArray.getIndexOfValue("sddfhf");
 
 getKeyAt(index: number): number
 
-Obtains the key of the entry at the specified position in this container.
+Obtains the key of the element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to obtain.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the key of the entry if obtained; returns **-1** otherwise.|
+| number | Returns the key of the element if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -200,19 +221,21 @@ let result = plainArray.getKeyAt(1);
 
 getValueAt(index: number): T
 
-Obtains the value of an entry at the specified position in this container.
+Obtains the value of an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-  | Name| Type | Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position index of the entry to obtain.|
+| Name| Type | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | T | Returns the value of the entry if obtained; returns **undefined** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| T | Returns the value of the element if obtained; returns **undefined** otherwise.|
 
 **Example**
 
@@ -228,6 +251,8 @@ Obtains the value of an entry at the specified position in this container.
 clone(): PlainArray&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -249,14 +274,16 @@ let newPlainArray = plainArray.clone();
 
 add(key: number, value: T): void
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key of the entry to add.|
-| value | T | Yes| Value of the entry to add.|
+| key | number | Yes| Key of the target element.|
+| value | T | Yes| Value of the target element.|
 
 **Example**
 
@@ -270,19 +297,21 @@ plainArray.add(1, "sddfhf");
 
 remove(key: number): T
 
-Removes an entry with the specified key from this container.
+Removes an element with the specified key from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key of the entry to remove.|
+| key | number | Yes| Target key.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Value of the entry removed.|
+| T | Value of the element removed.|
 
 **Example**
 
@@ -299,19 +328,21 @@ let result = plainArray.remove(2);
 
 removeAt(index: number): T
 
-Removes an entry at the specified position from this container.
+Removes an element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -328,20 +359,22 @@ let result = plainArray.removeAt(1);
 
 removeRangeFrom(index: number, size: number): number
 
-Removes entries in a specified range from this container.
+Removes elements in a specified range from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Start position of the entries to remove.|
-| size | number | Yes| Number of entries to remove.|
+| index | number | Yes| Start position of the elements to remove.|
+| size | number | Yes| Number of elements to remove.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of entries removed.|
+| number | Number of elements removed.|
 
 **Example**
 
@@ -357,14 +390,16 @@ let result = plainArray.removeRangeFrom(1, 3);
 
 setValueAt(index: number, value: T): void
 
-Sets a value for an entry at the specified position in this container.
+Sets a value for an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
-| value | T | Yes| Value of the entry to set.|
+| index | number | Yes| Position index of the target element.|
+| value | T | Yes| Value of the target element.|
 
 **Example**
 
@@ -380,7 +415,9 @@ plainArray.setValueAt(1, 3546);
 
 toString(): String
 
-Obtains a string that contains all entries in this container.
+Obtains a string that contains all elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -404,6 +441,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -418,20 +457,22 @@ plainArray.clear();
 
 forEach(callbackfn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Key of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Key of the element that is currently traversed.|
 | PlainArray | PlainArray&lt;T&gt;| No| Instance that invokes the **forEach** API.|
 
 **Example**
@@ -451,6 +492,8 @@ plainArray.forEach((value, index) => {
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
