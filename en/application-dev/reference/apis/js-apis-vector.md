@@ -1,28 +1,31 @@
 # Linear Container Vector
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**Vector** is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. **Vector** can be used to efficiently access elements.
+
+Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. Both of them can dynamically adjust the capacity. **Vector** doubles the capacity each time, whereas **ArrayList** increases the capacity by 50%.
+
+**Recommended use case**: Use **Vector** when the data volume is large.
 
 ## Modules to Import
 
 ```ts
-import Vector from '@ohos.util.Vector'  
+import Vector from '@ohos.util.Vector';  
 ```
-
-## System Capability
-
-SystemCapability.Utils.Lang
 
 
 ## Vector
 
-
 ### Attributes
 
- | Name | Type | Readable | Writable | Description |
- | -------- | -------- | -------- | -------- | -------- |
- | length | number | Yes | No | Number of entries in a vector (called container later). |
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | Yes| No| Number of elements in a vector (called container later).|
 
 
 ### constructor
@@ -30,6 +33,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **Vector** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -42,19 +47,21 @@ let vector = new Vector();
 
 add(element: T): boolean
 
-Adds an entry at the end of this container.
+Adds an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to add. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | boolean | Returns **true** if the entry is added successfully; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -72,14 +79,16 @@ let result3 = vector.add(c);
 
 insert(element: T, index: number): void
 
-Inserts an entry at the specified position in this container.
+Inserts an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to insert. |
- | index | number | Yes | Index of the position where the entry is to be inserted. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
+| index | number | Yes| Index of the position where the element is to be inserted.|
 
 **Example**
 
@@ -94,19 +103,21 @@ vector.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified entry.
+Checks whether this container has the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | boolean | Returns **true** if the entry is contained; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -115,25 +126,27 @@ let vector = new Vector();
 let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-``` 
+```
 
 ### getIndexOf
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified entry in this container.
+Obtains the index of the first occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to obtain. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | number | Returns the position index if obtained; returns **-1** if the specified entry is not found. |
+| Type| Description|
+| -------- | -------- |
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -153,19 +166,21 @@ let result = vector.getIndexOf(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified entry in this container.
+Obtains the index of the last occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to obtain. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | number | Returns the position index if obtained; returns **-1** if the specified entry is not found. |
+| Type| Description|
+| -------- | -------- |
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -185,19 +200,21 @@ let result = vector.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an entry at the specified position from this container.
+Removes an element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | index | number | Yes | Position index of the entry to remove. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | T | Entry removed. |
+| Type| Description|
+| -------- | -------- |
+| T | Element removed.|
 
 **Example**
 
@@ -215,19 +232,21 @@ let result = vector.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified entry from this container.
+Removes the first occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to remove. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Return value**
 
@@ -244,14 +263,16 @@ let result = vector.remove(2);
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-Removes from this container all of the entries within a range, including the entry at the start position but not that at the end position.
+Removes from this container all of the elements within a range, including the element at the start position but not that at the end position.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | fromIndex | number | Yes | Index of the start position. |
- | toIndex | number | Yes | Index of the end position. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fromIndex | number | Yes| Index of the start position.|
+| toIndex | number | Yes| Index of the end position.|
 
 **Example**
 
@@ -271,22 +292,24 @@ vector.removeByRange(2,6);
 replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all entries in this container with new entries, and returns the new ones.
+Replaces all elements in this container with new elements, and returns the new ones.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | callbackfn | function | Yes | Callback invoked for replacement. |
- | thisArg | Object | No | Value to use when the callback is invoked. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callbackfn | function | Yes| Callback invoked for replacement.|
+| thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | value | T | Yes | Value of the entry that is currently traversed. |
- | index | number | No | Position index of the entry that is currently traversed. |
- | vector | Vector&lt;T&gt; | No | Instance that invokes the **replaceAllElements** API. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
+| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
 
 **Example**
 
@@ -309,22 +332,24 @@ vector.replaceAllElements((value, index) => {
 forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | callbackfn | function | Yes | Callback invoked for replacement. |
- | thisArg | Object | No | Value to use when the callback is invoked. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callbackfn | function | Yes| Callback invoked for replacement.|
+| thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | value | T | Yes | Value of the entry that is currently traversed. |
- | index | number | No | Position index of the entry that is currently traversed. |
- | vector | Vector&lt;T&gt; | No | Instance that invokes the **forEach** API. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
+| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
 
 **Example**
 
@@ -335,7 +360,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log(value, index)
+  console.log("value:" + value, index)
 });
 
 ```
@@ -344,20 +369,22 @@ vector.forEach((value, index) => {
 
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
-Sorts entries in this container.
+Sorts elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | comparator | function | No | Callback invoked for sorting. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| comparator | function | No| Callback invoked for sorting.|
 
 comparator
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | firstValue | T | Yes | Previous entry. |
- | secondValue | T | Yes | Next entry. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| firstValue | T | Yes| Previous element.|
+| secondValue | T | Yes| Next element.|
 
 **Example**
 
@@ -367,8 +394,8 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.sort(a, (b => a - b));
-vector.sort(a, (b => b - a));
+vector.sort((a, b) => a - b);
+vector.sort((a, b) => b - a);
 vector.sort();
 ```
 
@@ -376,20 +403,22 @@ vector.sort();
 
 subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
-Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **Vector** instance.
+Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **Vector** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | fromIndex | number | Yes | Index of the start position. |
- | toIndex | number | Yes | Index of the end position. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fromIndex | number | Yes| Index of the start position.|
+| toIndex | number | Yes| Index of the end position.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | Vector&lt;T&gt; | New **Vector** instance obtained. |
+| Type| Description|
+| -------- | -------- |
+| Vector&lt;T&gt; | New **Vector** instance obtained.|
 
 **Return value**
 
@@ -409,7 +438,9 @@ let result2 = vector.subVector(2,6);
 
 clear(): void
 
-Clears all entries in this container and sets its length to **0**.
+Clears all elements in this container and sets its length to **0**.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -428,11 +459,13 @@ clone(): Vector&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | Vector&lt;T&gt; | New **Vector** instance obtained. |
+| Type| Description|
+| -------- | -------- |
+| Vector&lt;T&gt; | New **Vector** instance obtained.|
 
 **Example**
 
@@ -451,11 +484,13 @@ getCapacity(): number
 
 Obtains the capacity of this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | number | Capacity obtained. |
+| Type| Description|
+| -------- | -------- |
+| number | Capacity obtained.|
 
 **Example**
 
@@ -474,11 +509,13 @@ convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | Array&lt;T&gt; | Array obtained. |
+| Type| Description|
+| -------- | -------- |
+| Array&lt;T&gt; | Array obtained.|
 
 **Example**
 
@@ -495,13 +532,15 @@ let result = vector.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entries).
+Checks whether this container is empty (contains no elements).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | boolean | Returns **true** if the container is empty; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
 **Example**
 
@@ -520,11 +559,13 @@ increaseCapacityTo(newCapacity: number): void
 
 Increases the capacity of this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | newCapacity | number | Yes | New capacity. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| newCapacity | number | Yes| New capacity.|
 
 **Example**
 
@@ -544,6 +585,8 @@ trimToCurrentLength(): void
 
 Trims the capacity of this container into its current length.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -559,13 +602,15 @@ vector.trimToCurrentLength();
 
 toString(): string
 
-Uses commas (,) to concatenate entries in this container into a string.
+Uses commas (,) to concatenate elements in this container into a string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string | String obtained. |
+| Type| Description|
+| -------- | -------- |
+| string | String obtained.|
 
 **Example**
 
@@ -582,13 +627,15 @@ let result = vector.toSting();
 
 copyToArray(array: Array&lt;T&gt;): void
 
-Copies entries in this container into an array to overwrite elements of the same position indexes.
+Copies elements in this container into an array to overwrite elements of the same position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | array | Array&lt;T&gt; | Yes | Array to which the entries in the container will be copied. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| array | Array&lt;T&gt; | Yes| Array to which the elements in the container will be copied.|
 
 **Example**
 
@@ -606,13 +653,15 @@ let result = vector.copyToArray(array);
 
 getFirstElement(): T
 
-Obtains the first entry in this container.
+Obtains the first element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | T | The first entry obtained. |
+| Type| Description|
+| -------- | -------- |
+| T | The first element obtained.|
 
 **Example**
 
@@ -629,13 +678,15 @@ let result = vector.getFirstElement();
 
 getLastElement(): T
 
-Obtains the last entry in this container.
+Obtains the last element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | T | The last entry obtained. |
+| Type| Description|
+| -------- | -------- |
+| T | The last element obtained.|
 
 **Example**
 
@@ -652,20 +703,22 @@ let result = vector.getLastElement();
 
 getLastIndexFrom(element: T, index: number): number
 
-Searches for an entry backward from the specified position index and returns the position index of the entry.
+Searches for an element backward from the specified position index and returns the position index of the element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to query. |
- | index | number | Yes | Position index where the search starts. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
+| index | number | Yes| Position index where the search starts.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | number | Returns the position index if obtained; returns **-1** if the entry is not found. |
+| Type| Description|
+| -------- | -------- |
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -683,20 +736,22 @@ let result = vector.getLastIndexFrom(4,3);
 
 getIndexFrom(element: T, index: number): number
 
-Searches for an entry forward from the specified position index and returns the position index of the entry.
+Searches for an element forward from the specified position index and returns the position index of the element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | element | T | Yes | Entry to query. |
- | index | number | Yes | Position index where the search starts. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| element | T | Yes| Target element.|
+| index | number | Yes| Position index where the search starts.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | number | Returns the position index if obtained; returns **-1** if the entry is not found. |
+| Type| Description|
+| -------- | -------- |
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -716,11 +771,13 @@ setLength(newSize: number): void
 
 Sets a new length for this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | newSize | number | Yes | New length to set. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| newSize | number | Yes| New length to set.|
 
 **Example**
 
@@ -738,19 +795,21 @@ vector.setLength(2);
 
 get(index: number): T 
 
-Obtains an entry at the specified position in this container.
+Obtains an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | index | number | Yes | Position index of the entry to obtain. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
-  | Type | Description |
-  | -------- | -------- |
-  | T | Entry obtained. |
+| Type| Description|
+| -------- | -------- |
+| T | Element obtained.|
 
 **Example**
 
@@ -766,20 +825,22 @@ Obtains an entry at the specified position in this container.
 
 set(index: number, element: T): T
 
-Replaces an entry at the specified position in this container with a given entry.
+Replaces an element at the specified position in this container with a given element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | index | number | Yes | Position index of the entry to replace. |
- | element | T | Yes | Entry to be used for replacement. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Position index of the target element.|
+| element | T | Yes| Element to be used for replacement.|
 
 **Return value**
 
-  | Type | Description |
-  | -------- | -------- |
-  | T | New entry. |
+| Type| Description|
+| -------- | -------- |
+| T | New element.|
 
 **Example**
 
@@ -796,13 +857,15 @@ Replaces an entry at the specified position in this container with a given entry
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator. Each item of the iterator is a JavaScript object.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
- | Type | Description |
- | -------- | -------- |
- | IterableIterator&lt;T&gt; | Iterator obtained. |
+
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
 
@@ -815,14 +878,14 @@ vector.add(4);
 
 // Method 1:
 for (let item of vector) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // Method 2:
 let iter = vector[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

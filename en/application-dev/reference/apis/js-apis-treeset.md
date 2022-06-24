@@ -1,27 +1,30 @@
 # Nonlinear Container TreeSet 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**TreeSet** is implemented based on **[TreeMap](js-apis-treemap.md)**. In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
+
+**[HashSet](js-apis-hashset.md)** stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+
+Recommended use case: Use **TreeSet** when you need to store data in sorted order.
 
 ## Modules to Import
 
 ```ts
-import TreeSet from '@ohos.util.TreeSet'  
+import TreeSet from '@ohos.util.TreeSet';  
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## TreeSet
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a tree set (called container later).|
+| length | number | Yes| No| Number of elements in a tree set (called container later).|
 
 
 ### constructor
@@ -29,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor(comparator?:(firstValue: T, secondValue: T) => boolean)
 
 A constructor used to create a **TreeSet** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -47,7 +52,9 @@ let treeSet = new TreeSet();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -69,11 +76,13 @@ has(value: T): boolean
 
 Checks whether this container has the specified value.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value to query.|
+| value | T | Yes| Target value.|
 
 **Return value**
 
@@ -95,7 +104,9 @@ let result1 = treeSet.has(123);
 
 getFirstValue(): T
 
-Obtains the value of the first entry in this container.
+Obtains the value of the first element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -117,7 +128,9 @@ let result = treeSet.getFirstValue();
 
 getLastValue(): T
 
-Obtains the value of the last entry in this container.
+Obtains the value of the last element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -139,19 +152,21 @@ let result = treeSet.getLastValue();
 
 add(value: T): boolean
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Entry to add.|
+| value | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -165,19 +180,21 @@ let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 remove(value: T): boolean
 
-Removes the entry with the specified key from this container.
+Removes the element with the specified key from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Key of the entry to remove.|
+| value | T | Yes| Key of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -194,6 +211,8 @@ let result = treeSet.remove("sdfs");
 getLowerValue(key: T): T
 
 Obtains the value that is placed in front of the input key in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -224,6 +243,8 @@ getHigherValue(key: T): T
 
 Obtains the value that is placed next to the input key in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -251,13 +272,15 @@ let result = treeSet.getHigherValue("sdfs");
 
 popFirst(): T
 
-Removes the first entry in this container.
+Removes the first element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -273,13 +296,15 @@ let result = treeSet.popFirst();
 
 popLast(): T
 
-Removes the last entry in this container.
+Removes the last element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -297,6 +322,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -313,6 +340,8 @@ values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -328,7 +357,7 @@ treeSet.add("sdfs");
 let iter = treeSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -338,20 +367,22 @@ while(temp != undefined) {
 
 forEach(callbackfn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the entry that is currently traversed.|
-| key | T | No| Key of the entry that is currently traversed (same as **value**).|
+| value | T | No| Value of the element that is currently traversed.|
+| key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | TreeSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -361,7 +392,7 @@ let treeSet = new TreeSet();
 treeSet.add("sdfs");
 treeSet.add("dfsghsf");
 treeSet.forEach((value, key) => {
-  console.log(value, key)
+  console.log("value:" + value, key)
 });
 ```
 
@@ -370,7 +401,9 @@ treeSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -387,8 +420,8 @@ treeSet.add("sdfs");
 let iter = treeSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -398,8 +431,9 @@ while(temp != undefined) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -416,14 +450,14 @@ treeSet.add("sdfs");
   
 // Method 1:
 for (let item of treeSet) { 
-  console.log("value: " + item);
+  console.log("value:" + item);
 }
 
 // Method 2:
 let iter = treeSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

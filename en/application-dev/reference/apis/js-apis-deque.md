@@ -1,32 +1,40 @@
 # Linear Container Deque
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+Double-ended queue (deque) is a sequence container implemented based on the queue data structure that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both the ends. **Deque** can dynamically adjust the capacity based on project requirements. It doubles the capacity each time. **Deque** differs from **[Queue](js-apis-queue.md)** and **[Vector](js-apis-vector.md)** mainly in the following aspects:
+
+**Queue** follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
+
+**Vector** supports insertion and deletion of elements in between, as well asat both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
+
+**Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
 ## Modules to Import
 
 ```ts
-import Deque from '@ohos.util.Deque'  
+import Deque from '@ohos.util.Deque'; 
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## Deque
 
 ### Attributes
 
+**System capability**: SystemCapability.Utils.Lang
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a double-ended queue (deque, called container later).|
+| length | number | Yes| No| Number of elements in a deque (called container later).|
 
 ### constructor
 
 constructor()
 
 A constructor used to create a **Deque** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -38,13 +46,15 @@ let deque = new Deque();
 
 insertFront(element: T): void
 
-Inserts an entry at the front of this container.
+Inserts an element at the front of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to insert.|
+| element | T | Yes| Target element.|
 
 **Example**
 
@@ -62,13 +72,15 @@ deque.insertFront(false);
 
 insertEnd(element: T): void
 
-Inserts an entry at the end of this container.
+Inserts an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to insert.|
+| element | T | Yes| Target element.|
 
 **Example**
 
@@ -86,19 +98,21 @@ deque.insertEnd(false);
 
 has(element: T): boolean
 
-Checks whether this container has the specified entry.
+Checks whether this container has the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified entry is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -113,13 +127,15 @@ let result1 = deque.has("Ahfbrgrbgnutfodgorrogorg");
 
 popFirst(): T
 
-Removes the first entry of this container.
+Removes the first element of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -137,13 +153,15 @@ let result = deque.popFirst();
 
 popLast(): T
 
-Removes the last entry of this container.
+Removes the last element of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -162,13 +180,15 @@ let result = deque.popLast();
 forEach(callbackfn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -176,7 +196,7 @@ callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | deque | Deque&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -188,7 +208,7 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -196,13 +216,15 @@ deque.forEach((value, index) => {
 
 getFirst(): T
 
-Obtains the first entry of this container.
+Obtains the first element of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry obtained.|
+| T | Element obtained.|
 
 **Example**
 
@@ -219,13 +241,15 @@ let result = deque.getFirst();
 
 getLast(): T
 
-Obtains the last entry of this container.
+Obtains the last element of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry obtained.|
+| T | Element obtained.|
 
 **Example**
 
@@ -242,8 +266,9 @@ let result = deque.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -261,14 +286,14 @@ deque.insertFront(4);
 
 // Method 1:
 for (let item of deque) { 
-  console.log(item); 
+  console.log("value:" + item); 
 }
 
 // Method 2:
 let iter = deque[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
