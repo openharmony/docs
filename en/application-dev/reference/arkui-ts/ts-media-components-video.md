@@ -128,7 +128,7 @@ Requests full-screen mode.
 - Parameters
   | Name  | Type   | Mandatory | Default Value | Description                                  |
   | ----- | ------ | --------- | ------------- | -------------------------------------------- |
-  | value | number | Yes       | false         | Whether the playback is in full-screen mode. |
+  | value | boolean | Yes       | false         | Whether the playback is in full-screen mode. |
 
 ### exitFullscreen
 
