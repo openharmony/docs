@@ -619,7 +619,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 参数名        | 类型        | 必填   | 说明   |
 | ---------- | --------- | ---- | ---- |
 | bundleName | string    | 是    | 应用名称 |
-| newGroup   | [GroupType](#grouptype9) | 是    | 应用分组 |
+| newGroup   | [GroupType](#grouptype) | 是    | 应用分组 |
 
 **返回值**：
 
@@ -657,7 +657,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&
 | 参数名        | 类型                  | 必填   | 说明                        |
 | ---------- | ------------------- | ---- | ------------------------- |
 | bundleName | string              | 是    | 应用名称                      |
-| newGroup   | [GroupType](#grouptype9)           | 是    | 应用分组                      |
+| newGroup   | [GroupType](#grouptype)           | 是    | 应用分组                      |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
 
 **示例**：
