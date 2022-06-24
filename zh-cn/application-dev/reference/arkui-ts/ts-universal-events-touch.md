@@ -22,8 +22,8 @@
   | 属性名称                | 类型                                       | 描述           |
   | ------------------- | ---------------------------------------- | ------------ |
   | type                | TouchType                                | 触摸事件的类型。     |
-  | touches             | Array&lt;[TouchObject](touchobject对象说明)&gt; | 全部手指信息。      |
-  | changedTouches      | Array&lt;[TouchObject](touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
+  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
+  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
   | timestamp           | number                                   | 事件时间戳。       |
   | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 被触摸元素对象。     |
 
