@@ -5,7 +5,7 @@
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-跑马灯组件，用于滚动展示一段单行文本。
+跑马灯组件，用于滚动展示一段单行文本，仅当文本内容宽度超过跑马灯组件宽度时滚动。
 
 
 ## 权限列表
@@ -63,6 +63,7 @@ struct MarqueeExample {
         fromStart: this.fromStart,
         src: this.src
       })
+        .width(400)
         .fontColor(Color.White)
         .fontSize(50)
         .allowScale(false)
