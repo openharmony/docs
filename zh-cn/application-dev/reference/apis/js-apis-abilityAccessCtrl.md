@@ -78,6 +78,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 **系统能力：** SystemCapability.Security.AccessToken
 
+**系统API：** 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
@@ -114,6 +116,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 **系统能力：** SystemCapability.Security.AccessToken
 
+**系统API：** 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名    | 类型                | 必填 | 说明                          |
@@ -147,6 +151,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 **需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
+
+**系统API：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -184,6 +190,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 **系统能力：** SystemCapability.Security.AccessToken
 
+**系统API：** 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名    | 类型                | 必填 | 说明                          |
@@ -214,9 +222,11 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or GRANT_SENSITIVE_PERMISSIONS or REVOKE_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or ohos.permission.GRANT_SENSITIVE_PERMISSIONS or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
+
+**系统API：** 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
