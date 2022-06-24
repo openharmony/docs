@@ -679,7 +679,7 @@ bundleState.setBundleGroup(bundleName, newGroup, (err) => {
 
 registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回BundleActiveGroupCallbackInfo信息。使用Promise形式返回注册是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用Promise形式返回注册是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -721,7 +721,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
 
 registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回BundleActiveGroupCallbackInfo信息。使用异步callback形式返回注册监听是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用异步callback形式返回注册监听是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
