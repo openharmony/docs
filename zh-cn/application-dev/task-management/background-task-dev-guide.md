@@ -13,7 +13,7 @@
 | 接口名 | 描述 |
 | -------- | -------- |
 | requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量时默认值为60000。 |
-| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>其任务执行结果以Promise形式返回给应用。 |
+| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>使用Promise形式返回。 |
 | cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。 |
 
 
