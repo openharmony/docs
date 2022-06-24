@@ -340,10 +340,10 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
-| header | object | 否 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
-| method | string | 否 | 请求方法：POST、PUT。缺省为POST。 |
+| header | object | 是 | 添加要包含在上载请求中的HTTP或HTTPS标志头。 |
+| method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
-| data | Array&lt;[RequestData](#requestdata)&gt; | 否 | 请求的表单数据。 |
+| data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 
 ## File
