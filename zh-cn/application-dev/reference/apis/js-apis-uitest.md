@@ -1315,5 +1315,3 @@ async function demo() {
 | CONTAINS    | 1    | 包含给定值。   |
 | STARTS_WITH | 2    | 从给定值开始。 |
 | ENDS_WITH   | 3    | 以给定值结束。 |
-
-### 
