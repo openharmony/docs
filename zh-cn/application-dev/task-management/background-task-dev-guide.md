@@ -10,11 +10,11 @@
 
 **表1** 短时任务主要接口
 
-| 接口名 | 描述 |
-| -------- | -------- |
+| 接口名                                      | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- |
 | requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量时默认值为60000。 |
-| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>其任务执行结果以Promise形式返回给应用。 |
-| cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。 |
+| getRemainingDelayTime(requestId:&nbsp;number):&nbsp;Promise&lt;number&gt; | 获取应用程序进入挂起状态前的剩余时间。<br/>使用Promise形式返回。   |
+| cancelSuspendDelay(requestId:&nbsp;number):&nbsp;void | 取消延迟挂起。                                  |
 
 
 ### 开发步骤
@@ -24,12 +24,12 @@
 
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
-    
+
     let myReason = 'test requestSuspendDelay';
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     });
-    
+
     var id = delayInfo.requestId;
     console.info("requestId is: " + id);
     ```
@@ -91,27 +91,27 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **表2** 长时任务主要接口
 
-| 接口名 | 描述 |
-| -------- | -------- |
+| 接口名                                      | 描述                           |
+| ---------------------------------------- | ---------------------------- |
 | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行。 |
-| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行。 |
+| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | 停止后台长时任务的运行。                 |
 
 
 其中，wantAgent的信息详见（[WantAgent](../reference/apis/js-apis-wantAgent.md)）
 
 **表3** 后台模式类型
 
-| 参数名 | id值 | 描述 | 配置项 |
-| -------- | -------- | -------- | -------- |
-| DATA_TRANSFER           | 1 | 数据传输 | dataTransfer |
-| AUDIO_PLAYBACK          | 2 | 音频播放 | audioPlayback |
-| AUDIO_RECORDING         | 3 | 录音 | audioRecording |
-| LOCATION                | 4 | 定位导航 | location |
-| BLUETOOTH_INTERACTION   | 5 | 蓝牙相关 | bluetoothInteraction |
-| MULTI_DEVICE_CONNECTION | 6 | 多设备互联 | multiDeviceConnection |
-| WIFI_INTERACTION        | 7 | WLAN相关（系统保留） | wifiInteraction |
-| VOIP                    | 8 | 音视频通话（系统保留） | voip |
-| TASK_KEEPING            | 9 | 计算任务（仅供特定设备使用） | taskKeeping |
+| 参数名                     | id值  | 描述             | 配置项                   |
+| ----------------------- | ---- | -------------- | --------------------- |
+| DATA_TRANSFER           | 1    | 数据传输           | dataTransfer          |
+| AUDIO_PLAYBACK          | 2    | 音频播放           | audioPlayback         |
+| AUDIO_RECORDING         | 3    | 录音             | audioRecording        |
+| LOCATION                | 4    | 定位导航           | location              |
+| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关           | bluetoothInteraction  |
+| MULTI_DEVICE_CONNECTION | 6    | 多设备互联          | multiDeviceConnection |
+| WIFI_INTERACTION        | 7    | WLAN相关（系统保留）   | wifiInteraction       |
+| VOIP                    | 8    | 音视频通话（系统保留）    | voip                  |
+| TASK_KEEPING            | 9    | 计算任务（仅供特定设备使用） | taskKeeping           |
 
 
 ### 开发步骤
@@ -137,7 +137,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
       ]
     }
     ```
-    
+
 2. 申请长时任务
 
     ```js
@@ -173,13 +173,13 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
     import featureAbility from '@ohos.ability.featureAbility';
-    
+
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
         console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
-    
+
     ```
 
 ### 开发实例
