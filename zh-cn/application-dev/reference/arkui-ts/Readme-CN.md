@@ -86,6 +86,7 @@
         - [Web](ts-basic-components-web.md)
         - [XComponent](ts-basic-components-xcomponent.md)
     - 容器组件
+        - [AbilityComponent](ts-container-ability-component.md)
         - [AlphabetIndexer](ts-container-alphabet-indexer.md)
         - [Badge](ts-container-badge.md)
         - [Column](ts-container-column.md)
