@@ -1,7 +1,7 @@
 # 搭建Windows+Ubuntu混合开发环境
 
 
-通常在嵌入式开发中，很多开发者习惯于使用Windows进行代码的编辑，比如使用Windows的Visual Studio Code进行OpenHarmony代码的开发。但当前阶段，大部分的开发板源码还不支持在Windows环境下进行编译，如Hi3861、Hi3516系列开发板。因此，需要使用Ubuntu的编译环境对源码进行编译。
+通常在嵌入式开发中，很多开发者习惯于使用Windows进行代码的编辑，比如使用Windows的Visual Studio Code进行OpenHarmony代码的开发。但当前阶段，大部分的开发板源码还不支持在Windows环境下进行编译，如Hi3861、Hi3516系列开发板。因此，建议使用Ubuntu的编译环境对源码进行编译。
 
 
 在以上的设备开发场景中，可以搭建一套Windows+Ubuntu混合开发的环境，其中使用Windows平台的DevEco Device Tool可视化界面进行相关操作，通过远程连接的方式对接Ubuntu下的DevEco Device Tool（可以不安装Visual Studio Code），然后对Ubuntu下的源码进行开发、编译、烧录等操作。
@@ -11,7 +11,7 @@
 
 - Windows系统要求：Windows10 64位系统。
 
-- Ubuntu系统要求：Ubuntu20.04及以上版本，内存推荐16 GB及以上。
+- Ubuntu系统要求：Ubuntu18.04~21.10版本，内存推荐16 GB及以上。
 
 - Ubuntu系统的用户名不能包含中文字符。
 
@@ -61,22 +61,19 @@
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   >
-   > 安装过程中，会自动检查Python是否安装，且要求Python为3.8~3.9版本。如果不满足，则安装过程中会自动安装，提示“Do you want to continue?”，请输入“Y”后继续安装。
-   > 
-   > 安装过程中，会弹出用户协议和隐私声明签署的页面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装。
-   > 
-   > 如果未弹出用户协议和隐私声明签署的页面，而直接退出了安装，请先执行apt-get install whiptail，然后再执行安装命令。
+5. 在用户协议和隐私声明签署界面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装。
 
+   ![zh-cn_image_0000001322167645.png](figures/zh-cn_image_0000001322167645.png)
+   
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
-
+   
    ![zh-cn_image_0000001198722374](figures/zh-cn_image_0000001198722374.png)
+
 
 
 ## 搭建Windows开发环境
 
-1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Windows版。
+1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows版。
 
 2. 解压DevEco Device Tool压缩包，双击安装包程序，点击Next进行安装。
 
