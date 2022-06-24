@@ -619,7 +619,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 参数名        | 类型        | 必填   | 说明   |
 | ---------- | --------- | ---- | ---- |
 | bundleName | string    | 是    | 应用名称 |
-| newGroup   | [GroupType](#GroupType9) | 是    | 应用分组 |
+| newGroup   | [GroupType](#grouptype9) | 是    | 应用分组 |
 
 **返回值**：
 
@@ -631,7 +631,7 @@ setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 ```javascript
 let bundleName = "com.example.deviceUsageStatistics";
-let newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
 bundleState.setBundleGroup(bundleName, newGroup).then( () => {
     console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
@@ -657,14 +657,14 @@ setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&
 | 参数名        | 类型                  | 必填   | 说明                        |
 | ---------- | ------------------- | ---- | ------------------------- |
 | bundleName | string              | 是    | 应用名称                      |
-| newGroup   | [GroupType](#GroupType9)           | 是    | 应用分组                      |
+| newGroup   | [GroupType](#grouptype9)           | 是    | 应用分组                      |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
 
 **示例**：
 
 ```javascript
 let bundleName = "com.example.deviceUsageStatistics";
-let newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
 bundleState.setBundleGroup(bundleName, newGroup, (err) => {
     if(err) {
@@ -691,7 +691,7 @@ registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#BundleActiveGroupCallbackInfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
 
 **返回值**：
 
@@ -733,7 +733,7 @@ registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, c
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#BundleActiveGroupCallbackInfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 指定的异步callback函数，返回注册监听是否成功 |
 
 **示例**：
