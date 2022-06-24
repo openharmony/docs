@@ -118,7 +118,7 @@ stopInput(): Promise&lt;boolean&gt;
  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
