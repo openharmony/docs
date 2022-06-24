@@ -31,7 +31,7 @@
 - [网络与连接](connectivity/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)
 - [后台代理提醒](background-agent-scheduled-reminder/Readme-CN.md)
-- [后台任务管理](background-task-management/Readme-CN.md)
+- [任务管理](task-management/Readme-CN.md)
 - [设备管理](device/Readme-CN.md)
 - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
@@ -53,9 +53,9 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 内容包括：
 - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
 - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
--   接口参考
+- 接口参考
     - [JS及TS API参考](reference/apis/Readme-CN.md)
-    -  Native API
+    - Native API
         -   [Native API参考](reference/native-apis/Readme-CN.md)
         -   [标准库](reference/native-lib/third_party_libc/musl.md)
         -   [Node_API](reference/native-lib/third_party_napi/napi.md)
