@@ -495,6 +495,7 @@
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
         - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - 容器组件
+        - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
         - [Column](reference/arkui-ts/ts-container-column.md)
@@ -509,6 +510,7 @@
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)        
         - [Panel](reference/arkui-ts/ts-container-panel.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
+        - [RelativeContainer](reference/arkui-ts/ts-container-relativecontainer.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)        
