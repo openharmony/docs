@@ -15,7 +15,7 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 
 ## 使用说明
 
-需要通过[dataShare.query()](js-apis-data-dataShare.md#query)获取DataShareResultSet对象。
+需要通过调用[query](js-apis-data-dataShare.md#query)接口获取DataShareResultSet对象。
 
 ```ts
 import dataShare from '@ohos.data.dataShare';
@@ -411,13 +411,13 @@ console.info('resultSet.getDataType: ' + getDataType);
 
 ## DataType
 
-用于表示数据类型。
+数据类型枚举。
 
-只能被系统应用使用。
+只支持系统应用，不支持三方应用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称        | 默认值 | 说明                 |
+| 名称        | 值 | 说明                 |
 | ----------- | ------ | -------------------- |
 | TYPE_NULL   | 0      | 表示值类型为空。     |
 | TYPE_LONG   | 1      | 表示值类型为长整数值。   |

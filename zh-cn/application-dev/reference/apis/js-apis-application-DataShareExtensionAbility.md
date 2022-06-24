@@ -42,7 +42,7 @@ let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
 + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
 
-onCreate(want: Want, callback: AsyncCallback&lt;void&gt;) {
+onCreate(want: Want, callback: AsyncCallback<void>) {
     rdb.getRdbStore(this.context, {
         name: DB_NAME
     }, 1, function (err, data) {
@@ -77,7 +77,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
+insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
     if (value == null) {
         console.info('invalid valueBuckets');
         return;
@@ -104,14 +104,14 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回更新的数据记录数。 |
 
 **示例：**
 
 ```ts
-update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;) {
+update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -136,14 +136,14 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
 | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回查询到的结果集。 |
 
 **示例：**
 
 ```ts
-query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;) {
+query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: AsyncCallback<Object>) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -171,13 +171,13 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 名称       | 参数类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。 |
 
 **示例：**
 
 ```ts
-delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;) {
+delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback<number>) {
     if (predicates == null || predicates == undefined) {
         return;
     }
@@ -208,7 +208,7 @@ BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-batchInsert(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;) {
+batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: AsyncCallback<number>) {
     if (valueBuckets == null || valueBuckets.length == undefined) {
         console.info('invalid valueBuckets');
         return;
@@ -242,7 +242,7 @@ getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-getType(uri: string, callback: AsyncCallback&lt;string&gt;) {
+getType(uri: string, callback: AsyncCallback<string>) {
     let err = {"code":0};
     let ret = "image";
     callback(err, ret);
@@ -268,7 +268,7 @@ getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Ar
 **示例：**
 
 ```ts
-getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) {
+getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>) {
     let err = {"code":0};
     let ret = new Array("type01", "type02", "type03");
     callback(err, ret);
@@ -287,13 +287,13 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 名称     | 类型                  | 必填 | 描述                    |
 | -------- | --------------------- | ---- | ----------------------- |
-| uri      | string                | 是   | 指示用户传入的URI。 |
+| uri      | string                | 是   | 指示用户传入的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果支持URI规范化，则返回规范化URI，否则返回空。 |
 
 **示例：**
 
 ```ts
-normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;) {
+normalizeUri(uri: string, callback: AsyncCallback<string>) {
     let err = {"code":0};
     let ret = "normalize+" + uri;
     callback(err, ret);
@@ -312,13 +312,13 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 名称     | 类型                  | 必填 | 描述                    |
 | -------- | --------------------- | ---- | ----------------------- |
-| uri      | string                | 是   | 指示服务端使用的uri。 |
+| uri      | string                | 是   | 指示服务端使用的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空。 |
 
 **示例：**
 
 ```ts
-denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;) {
+denormalizeUri(uri: string, callback: AsyncCallback<string>) {
     let err = {"code":0};
 	let ret = "denormalize+" + uri;
 	callback(err, ret);
@@ -344,7 +344,7 @@ openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): voi
 **示例：**
 
 ```ts
-openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {
+openFile(uri: string, mode: string, callback: AsyncCallback<number>) {
     let err = {"code":0};
     let fd = 0;
     callback(err,fd);

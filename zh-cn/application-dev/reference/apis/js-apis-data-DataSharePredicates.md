@@ -338,7 +338,7 @@ like(field: string, value: string): DataSharePredicates
 
 | 类型                                        | 说明                                                         |
 | ------------------------------------------- | ------------------------------------------------------------ |
-| [DataSharePredicates](#datasharepredicates) | xxxxxxxxxx openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts |
+| [DataSharePredicates](#datasharepredicates) | xxxxxxxxxx openFile(uri: string, mode: string, callback: AsyncCallback<number>) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts |
 
 **示例：**
 
