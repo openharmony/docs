@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **<LoadingProgress>** component is used to display the loading progress.
+The **\<LoadingProgress>** component is used to display the loading progress.
 
 ## Required Permissions
 

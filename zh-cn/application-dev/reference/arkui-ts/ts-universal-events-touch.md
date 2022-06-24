@@ -25,7 +25,7 @@
   | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
   | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
   | timestamp           | number                                   | 事件时间戳。       |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 被触摸元素对象。     |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
 
 
 - 接口
