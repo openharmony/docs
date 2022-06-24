@@ -1,6 +1,6 @@
 # Bundle模块(JS端SDK接口)
 
-本模块提供默认应用能力，支持查询当前应用是否是默认应用。
+本模块提供查询默认应用能力，支持查询当前应用是否是默认应用。
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -33,7 +33,7 @@ SystemCapability.BundleManager.BundleFramework
 
 isDefaultApplication(type: string): Promise\<boolean>
 
-以异步方法根据给定的type判断当前应用是否是默认应用，使用Promise形式返回结果。
+以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用Promise形式返回结果。
 
 **系统能力：**
 
@@ -43,7 +43,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的默认应用名称，取ApplicationType中的值。                           |
+| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
 
 **返回值：**
 
@@ -66,7 +66,7 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
 
 isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据给定的type判断当前应用是否是默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用callback形式返回结果。
 
 **系统能力：**
 
@@ -76,7 +76,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型                              | 必填   | 描述                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | 是    | 要查询的默认应用名称，取ApplicationType中的值。                            |
+| type  | string                          | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
 | callback    | AsyncCallback<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
 **示例：**
