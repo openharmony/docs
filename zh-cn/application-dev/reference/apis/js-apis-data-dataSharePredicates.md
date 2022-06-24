@@ -336,9 +336,9 @@ like(field: string, value: string): DataSharePredicates
 
 **返回值：**
 
-| 类型                                        | 说明                                                         |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| [DataSharePredicates](#datasharepredicates) | xxxxxxxxxx openFile(uri: string, mode: string, callback: AsyncCallback<number>) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts |
+| 类型                                        | 说明                       |
+| ------------------------------------------- | -------------------------- |
+| [DataSharePredicates](#datasharepredicates) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
