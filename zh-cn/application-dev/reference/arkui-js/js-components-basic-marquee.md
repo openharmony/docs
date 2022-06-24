@@ -1,7 +1,8 @@
 # marquee
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br>
+> 从API version 6开始，仅当文本内容宽度超过跑马灯组件宽度时滚动。
 
 跑马灯组件，用于展示一段单行滚动的文字。
 
