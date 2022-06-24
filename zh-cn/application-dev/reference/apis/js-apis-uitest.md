@@ -642,7 +642,7 @@ async function demo() {
 
 ### UiComponent.isChecked<sup>9+</sup>
 
-isLongClickable(): Promise\<bool>
+isChecked(): Promise\<bool>
 
 获取控件对象被勾选状态。
 
