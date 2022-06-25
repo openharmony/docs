@@ -43,10 +43,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 | 
+| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例**：
 
@@ -71,11 +71,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want)  | 是 | 启动Ability的want信息。 | 
+| want | [Want](js-apis-featureAbility.md#Want)  | 是 | 启动Ability的want信息。 |
 | options | StartOptions | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例**：
     
@@ -104,16 +104,16 @@ startAbility(want: Want, options: StartOptions): Promise&lt;void&gt;
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 | 
+| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | options | StartOptions | 是 | 启动Ability所携带的参数。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回启动结果。 | 
+| Promise&lt;void&gt; | Promise形式返回启动结果。 |
 
 **示例**：
 ```js
@@ -143,15 +143,15 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | 是 | 传入需要启动的ability的信息，包含ability名称、包名、设备ID，设备ID缺省或为空表示启动本地ability。 | 
+| want | [Want](js-apis-featureAbility.md#Want) | 是 | 传入需要启动的ability的信息，包含ability名称、包名、设备ID，设备ID缺省或为空表示启动本地ability。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 | 
+| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
 
 **示例**：
     
@@ -184,11 +184,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 | 
-| accountId | number                   | 是 | 账户ID。                  | 
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 | 
+| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
+| accountId | number                   | 是 | 账户ID。                  |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例**：
 
@@ -214,12 +214,12 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want)  | 是 | 启动Ability的want信息。 | 
-| accountId | number                   | 是 | 账户ID。                  | 
+| want | [Want](js-apis-featureAbility.md#Want)  | 是 | 启动Ability的want信息。 |
+| accountId | number                   | 是 | 账户ID。                  |
 | options | StartOptions | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例**：
     
@@ -249,17 +249,17 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 | 
+| want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | accountId | number                   | 是 | 账户ID。                  |
 | options | StartOptions | 否 | 启动Ability所携带的参数。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise形式返回启动结果。 | 
+| Promise&lt;void&gt; | Promise形式返回启动结果。 |
 
 **示例**：
 ```js
@@ -349,7 +349,7 @@ startAbilityForResult(want: Want, options: StartOptions): Promise&lt;AbilityResu
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | options | StartOptions | 是 | 启动Ability所携带的参数。 |
@@ -446,7 +446,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | accountId | number                   | 是 | 账户ID。                  |
@@ -482,15 +482,15 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 | 
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例**：
 
 ```js
 this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringfy(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
 ```
 
@@ -504,17 +504,17 @@ terminateSelf(): Promise&lt;void&gt;
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例**：
 
 ```js
 this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -561,9 +561,9 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | parameter | [AbilityResult](js-apis-featureAbility.md#AbilityResult) | 是 | 返回给startAbilityForResult&nbsp;调用方的信息。 |
 
 **返回值**：
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | promise形式返回停止结果。 | 
+| Promise&lt;void&gt; | promise形式返回停止结果。 |
 
 **示例**：
 ```js
@@ -586,14 +586,14 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | options | ConnectOptions | 是 | 连接的远端对象实例 |
 
 **返回值**:
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
 | number | 连接Ability的代码 |
 
@@ -630,7 +630,7 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 账户ID |
@@ -638,7 +638,7 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
 
 **返回值**:
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
 | number | 连接Ability的代码 |
 
@@ -676,7 +676,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 连接的Ability的编号。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 断开Ability连接的回调函数。 |
@@ -700,15 +700,15 @@ disconnectAbility(connection: number): Promise\<void>
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 连接的Ability的编号。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise。 | 
+| Promise&lt;void&gt; | 返回一个Promise。 |
 
 **示例**：
 
@@ -717,7 +717,7 @@ var connection = 111;
 this.context.disconnectAbility(connection).then(() => {
   console.log('disconnect success')
 }).catch((err) => {
-  console.log('disconnect filed')
+  console.log('disconnect failed')
 })
 ```
 
@@ -731,16 +731,16 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| label | string | 是 | 显示名称。 | 
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 | 
+| label | string | 是 | 显示名称。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例**：
     
 ```js
 this.context.setMissionLabel("test",(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -755,23 +755,23 @@ setMissionLabel(label: string): Promise\<void>
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| label | string | 是 | 显示名称。 | 
+| label | string | 是 | 显示名称。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例**：
     
 ```js
 this.context.setMissionLabel("test").then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -785,16 +785,16 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 | 
-| callback | AsyncCallback&lt;PermissionRequestResult&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 | 
+| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
+| callback | AsyncCallback&lt;PermissionRequestResult&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例**：
     
 ```js
 this.context.requestPermissionsFromUser(permissions,(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -809,23 +809,23 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| permissions | Array&lt;string&gt; | 是 | 权限列表。 | 
+| permissions | Array&lt;string&gt; | 是 | 权限列表。 |
 
 **返回值**：
 
-| 类型 | 说明 | 
+| 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;PermissionRequestResult&gt; | 返回一个Promise，包含接口的结果。 | 
+| Promise&lt;PermissionRequestResult&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例**：
     
 ```js
 this.context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -839,9 +839,9 @@ restoreWindowStage(contentStorage: ContentStorage) : void
 
 **参数**：
 
-| 参数名 | 类型 | 必填 | 说明 | 
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| contentStorage | ContentStorage | 是 | 用于恢复窗口阶段的存储数据。 | 
+| contentStorage | ContentStorage | 是 | 用于恢复窗口阶段的存储数据。 |
 
 **示例**：
 
