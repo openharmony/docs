@@ -1,8 +1,16 @@
 # Nonlinear Container HashMap
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**HashMap** is a map implemented based on the array, linked list, and red-black tree. It provides efficient data query, insertion, and removal. The elements in a **HashMap** instance are mappings of key-value pairs. Each key must be unique and have only one value.
+
+**HashMap** is faster in accessing data than **[TreeMap](js-apis-treemap.md)**, because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+
+**[HashSet](js-apis-hashset.md)** is implemented based on **HashMap**. The input parameter of **HashMap** consists of **key** and **value**. In **HashSet**, only the **value** object is processed.
+
+**Recommended use case**: Use **HashMap** when you need to quickly access, remove, and insert key-value pairs.
 
 ## Modules to Import
 
@@ -10,18 +18,15 @@
 import HashMap from '@ohos.util.HashMap'; 
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## HashMap
-
 
 ### Attributes
 
+**System capability**: SystemCapability.Utils.Lang
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a hash map (called container later).|
+| length | number | Yes| No| Number of elements in a hash map (called container later).|
 
 
 ### constructor
@@ -29,6 +34,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **HashMap** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -41,7 +48,9 @@ let hashMap = new HashMap();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -63,11 +72,13 @@ hasKey(key: K): boolean
 
 Checks whether this container contains the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to check.|
+| key | K | Yes| Target key.|
 
 **Return value**
 
@@ -91,11 +102,13 @@ hasValue(value: V): boolean
 
 Checks whether this container contains the specified value.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value to check.|
+| value | V | Yes| Target value.|
 
 **Return value**
 
@@ -119,11 +132,13 @@ get(key: K): V
 
 Obtains the value of the specified key in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to query.|
+| key | K | Yes| Target key.|
 
 **Return value**
 
@@ -145,13 +160,15 @@ let result = hashMap.get("sdfs");
 
 setAll(map: HashMap<K, V>): void
 
-Adds all entries in a **HashMap** instance to this container.
+Adds all elements in a **HashMap** instance to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| map | HashMap<K, V> | Yes| **HashMap** instance whose entries are to be added to the current container.|
+| map | HashMap<K, V> | Yes| **HashMap** instance whose elements are to be added to the current container.|
 
 **Example**
 
@@ -168,20 +185,22 @@ hashMap.setAll(newHashMap);
 
 set(key: K, value: V): Object
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry to add.|
-| value | V | Yes| Value of the entry to add.|
+| key | K | Yes| Key of the target element.|
+| value | V | Yes| Value of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Object | Container that contains the new entry.|
+| Object | Container that contains the new element.|
 
 **Example**
 
@@ -195,19 +214,21 @@ let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 remove(key: K): V
 
-Removes an entry with the specified key from this container.
+Removes an element with the specified key from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry to remove.|
+| key | K | Yes| Key of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| V | Value of the entry removed.|
+| V | Value of the element.|
 
 **Example**
 
@@ -225,6 +246,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -239,7 +262,9 @@ hashMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -268,6 +293,8 @@ values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -293,20 +320,22 @@ while(temp != undefined) {
 
 replace(key: K, newValue: V): boolean
 
-Replaces an entry in this container.
+Replaces an element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry to replace.|
-| newValue | V | Yes| New value of the entry.|
+| key | K | Yes| Key of the target element.|
+| newValue | V | Yes| New value of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is replaced successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is replaced successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -321,20 +350,22 @@ let result = hashMap.replace("sdfs", 357);
 
 forEach(callbackfn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the entry that is currently traversed.|
-| key | K | No| Key of the entry that is currently traversed.|
+| value | V | No| Value of the element that is currently traversed.|
+| key | K | No| Key of the element that is currently traversed.|
 | map | HashMap<K, V> | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -353,7 +384,9 @@ hashMap.forEach((value, key) => {
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -382,6 +415,8 @@ while(temp != undefined) {
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
