@@ -635,7 +635,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
-  | options | StartOptions | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+  | options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -669,7 +669,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
-  | options | StartOptions | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+  | options | [StartOptions](js-apis-application-StartOptions.md) | No| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
 
 **Return value**
 
