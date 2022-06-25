@@ -249,7 +249,7 @@ var want = {
 context.startAbility(want).then((data) => {
     console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+    console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
 ```
 Obtain the ID of a specified device from `DeviceManager`. The sample code is as follows:
