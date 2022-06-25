@@ -43,6 +43,34 @@ export default {
 }
 ```
 
+### FA模型Context常用方法介绍
+方法：
+```javascript
+setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback<void>): void
+setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise<void>;
+```
+简介：设置当前ability的显示方向。
+
+示例：
+```javascript
+import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '../@ohos.bundle';
+
+export default {
+  onCreate() {
+    // 获取context并调用相关方法
+    let context = featureAbility.getContext();
+    context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE).then(() => {
+        console.log("Set display orientation.")
+    })
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
+```
+
 ## Stage模型和Context详细介绍
 
 ​        Stage模型有如下几类Context：
