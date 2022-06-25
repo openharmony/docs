@@ -1138,6 +1138,8 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 Sets an audio parameter. This API uses an asynchronous callback to return the result.
 
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
@@ -1151,7 +1153,7 @@ Sets an audio parameter. This API uses an asynchronous callback to return the re
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
+audioManager.setAudioParameter('key_example', 'value_example', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
         return;
@@ -1165,6 +1167,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 Sets an audio parameter. This API uses a promise to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1184,7 +1188,7 @@ Sets an audio parameter. This API uses a promise to return the result.
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
+audioManager.setAudioParameter('key_example', 'value_example').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 });
 ```
@@ -1194,6 +1198,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of an audio parameter. This API uses an asynchronous callback to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1207,7 +1213,7 @@ Obtains the value of an audio parameter. This API uses an asynchronous callback 
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample', (err, value) => {
+audioManager.getAudioParameter('key_example', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
         return;
@@ -1221,6 +1227,8 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 Obtains the value of an audio parameter. This API uses a promise to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1239,7 +1247,7 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) => {
+audioManager.getAudioParameter('key_example').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 });
 ```
