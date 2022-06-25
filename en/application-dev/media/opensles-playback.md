@@ -82,7 +82,7 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     ```c++
     FILE *wavFile_ = nullptr;
     
-    static void BuqqerQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
+    static void BufferQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
     {
         FILE *wavFile = (FILE *)pContext;
         if (!feof(wavFile)) {
@@ -98,7 +98,7 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     
     // Set wavFile_ to the descriptor of the file to be played.
     wavFile_ = fopen(path, "rb");
-    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BuqqerQueueCallback, wavFile_);
+    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
     
