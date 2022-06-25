@@ -71,7 +71,7 @@ HarmonyAppProvision文件示例：
 
 
 ### acls对象内部结构
-acls对象包含已授权的[acl权限]（../security/accesstoken-overview.md）。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将acls权限信息填写到reqPermissions属性中。
+acls对象包含已授权的[acl权限](../security/accesstoken-overview.md)。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将acls权限信息填写到reqPermissions属性中。
 
 表4 acls对象的内部结构
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |
