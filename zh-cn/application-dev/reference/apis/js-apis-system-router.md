@@ -368,7 +368,7 @@ export default {
 
 ## EnableAlertBeforeBackPageOptions<sup>6+</sup>
 
-定义EnableAlertBe beforeBackPage选项。
+定义EnableAlertBeforeBackPage选项。
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
