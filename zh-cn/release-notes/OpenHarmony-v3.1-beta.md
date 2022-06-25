@@ -1,20 +1,5 @@
 # OpenHarmony 3.1 Beta
 
-- [版本概述](#版本概述)
-- [配套关系](#配套关系)
-- [源码获取](#源码获取)
-  - [通过repo获取](#通过repo获取) 
-  - [从镜像站点获取](#从镜像站点获取) 
-- [更新说明](#更新说明)
-  - [特性变更](#特性变更)
-  - [API变更](#api变更)
-  - [芯片及开发板适配](#芯片及开发板适配)
-  - [Samples &amp; Codelabs](#samples-amp-codelabs)
-     - [新增Samples](#新增samples)
-     - [新增Codelabs](#新增codelabs)
-- [修复缺陷列表](#修复缺陷列表)
-- [遗留缺陷列表](#遗留缺陷列表)
-
 
 ## 版本概述
 
@@ -102,7 +87,7 @@ repo forall -c 'git lfs pull'
 | Hi3516轻量系统解决方案-Linux（二进制） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/hispark_taurus_linux.tar.gz.sha256) |
 | 标准系统SDK包（Mac） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk-mac.tar.gz.sha256) |
 | 标准系统SDK包（Windows\Linux） | 3.1 Beta     | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Beta/ohos-sdk.tar.gz.sha256) |
-| 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) |      |
+| 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) | - |
 
 
 ## 更新说明
@@ -166,17 +151,17 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 
 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- |
-| [Ets公共事件](https://gitee.com/openharmony/app_samples/tree/master/ability/EtsCommonEvent) | 本示例展示了在eTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。 | eTS |
+| [Ets公共事件](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent) | 本示例展示了在eTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。 | eTS |
 | [空气质量](https://gitee.com/openharmony/app_samples/tree/master/common/AirQuality) | 本示例使用JS实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | JS |
 | [分布式计算器](https://gitee.com/openharmony/app_samples/tree/master/common/DistributeCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | JS |
-| [EtsNotification](https://gitee.com/openharmony/app_samples/tree/master/common/EtsNotification) | 本示例展示了在eTS中如何创建和删除Slot通道，如何发布和取消通知。 | eTS |
-| [Ets资源管理](https://gitee.com/openharmony/app_samples/tree/master/common/EtsResourceManager) | 本示例展示了在eTS中如何调用资源管理的API接口实现字符串和图片资源信息的获取。 | eTS |
+| [EtsNotification](https://gitee.com/openharmony/app_samples/tree/master/common/Notification) | 本示例展示了在eTS中如何创建和删除Slot通道，如何发布和取消通知。 | eTS |
+| [Ets资源管理](https://gitee.com/openharmony/app_samples/tree/master/common/ResourceManager) | 本示例展示了在eTS中如何调用资源管理的API接口实现字符串和图片资源信息的获取。 | eTS |
 | [kikainput](https://gitee.com/openharmony/app_samples/tree/master/CompleteApps/KikaInput) | kikainput是一个轻量级的输入法应用，支持在运行OpenHarmony&nbsp;OS的智能终端上。 | JS |
-| [eTS分布式数据管理](https://gitee.com/openharmony/app_samples/tree/master/data/eTSKvStore) | 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。 | eTS |
-| [轻量级数据存储](https://gitee.com/openharmony/app_samples/tree/master/data/eTSLiteStorage) | 轻量级数据存储主要提供轻量级Key-Value操作，支持本地应用存储少量数据。本示例通过对购物车商品的添加和删除并保存退出的操作，使得再次打开应用时依然可以保留退出前的购物车信息，体现了轻量级存储在保存轻量级数据时的作用。 | eTS |
-| [Ets进程信息](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/EtsProcess) | 本示例展示了在eTS中如何获取进程信息和启动一个子进程运行一段shell，包括当前系统运行时间、获取进程当前工作目录、更改进程当前工作目录、发送signal到指定的进程、启动一个子进程、关闭子进程、退出当前系统的功能。 | eTS |
-| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/common/eTSRunninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | eTS |
-| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/Util/eTSUtilStringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
+| [eTS分布式数据管理](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore) | 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。 | eTS |
+| [轻量级数据存储](https://gitee.com/openharmony/app_samples/tree/master/data/LiteStorage) | 轻量级数据存储主要提供轻量级Key-Value操作，支持本地应用存储少量数据。本示例通过对购物车商品的添加和删除并保存退出的操作，使得再次打开应用时依然可以保留退出前的购物车信息，体现了轻量级存储在保存轻量级数据时的作用。 | eTS |
+| [Ets进程信息](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Process) | 本示例展示了在eTS中如何获取进程信息和启动一个子进程运行一段shell，包括当前系统运行时间、获取进程当前工作目录、更改进程当前工作目录、发送signal到指定的进程、启动一个子进程、关闭子进程、退出当前系统的功能。 | eTS |
+| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/common/Runninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | eTS |
+| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/Util/UtilStringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
 | [Js音频播放和管理](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer) | 本示例展示了JS音频播放的使用方法，以及音频的音量大小设置。 | JS |
 | [JsVideo](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo) | 本示例使用JS&nbsp;UI中的&lt;video/&gt;组件，实现视频播放。可以通过video自带的控制栏进行播放、暂停等操作。 | JS |
 | [测试打点](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
@@ -230,6 +215,6 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [I4NRS5](https://gitee.com/openharmony/kernel_linux_5.10/issues/I4NRS5) | 【内核子系统】存在cve漏洞 | Linux内核还未发布补丁，暂时挂起，待社区发布补丁后升级同步。 | 待社区发布补丁 |
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | 【hdf/camera】RK3568单板跑camera&nbsp;HDI用例失败 | 拍照和预览正常，可以正常录像，点击结束按钮，不能结束。 | 2021/12/31 |
 | [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | XTS运行报ark异常栈（低概率问题） | XTS压力测试低概率偶现(48小时出现1次)，仅Log中上报异常栈，对功能无影响。 | 2022/1/5 |
-| [I4OBTW](https://gitee.com/openharmony/aafwk_standard/issues/I4OBTW) | 全量执行XTS用例，安装应用后出现批量aa&nbsp;start&nbsp;失败，影响社区流水线稳定性测试 | XTS压力测试，短时间内批量安装100个应用包，低概率(2个/100个)出现应用无法启动。用户使用无影响。 | 2022/1/5 |
+| [I4OBTW](https://gitee.com/openharmony/ability_ability_runtime/issues/I4OBTW) | 全量执行XTS用例，安装应用后出现批量aa&nbsp;start&nbsp;失败，影响社区流水线稳定性测试 | XTS压力测试，短时间内批量安装100个应用包，低概率(2个/100个)出现应用无法启动。用户使用无影响。 | 2022/1/5 |
 | [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | 【Ark子系统】&nbsp;由进程com.amsst.amsMissionSnapshotTest导致测试进程异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |
 | [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | 【Ark子系统】&nbsp;由进程com.ohos.systemui导致进程栈异常 | 低概率、偶现，高压力测试偶现问题。 | 2022/1/5 |

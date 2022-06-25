@@ -164,4 +164,4 @@ repo forall -c 'git lfs pull'
 | [I4OWWM](https://gitee.com/openharmony/xts_acts/issues/I4OWWM) | WeekPluralNumbertest模块对应json文件配置的有问题，执行用例时报"required&nbsp;device&nbsp;does&nbsp;not&nbsp;exist"导致UN | json文件配置问题，不影响功能 | 2022/1/15 |
 | [I4MSVV](https://gitee.com/openharmony/xts_acts/issues/I4MSVV?from=project-issue) | 标准系统XTS测试执行测试ActsHiCollieCppTest模块HiCollieCppTest用例3条失败项 | 测试套名称变更导致存在文本校验功能的测试用例不通过，对功能无影响 | 2022/1/15 |
 | [I4MSWM](https://gitee.com/openharmony/xts_acts/issues/I4MSWM?from=project-issue) | 标准系统XTS测试执行测试ActsFaultLoggerTest模块faultloggertest用例1条失败项 | 测试套名称变更导致存在文本校验功能的测试用例不通过，对功能无影响 | 2022/1/15 |
-| [I4NODO](https://gitee.com/openharmony/device_manager/issues/I4NODO) | 标准系统3516分布式业务流转端到端测试失败，无法完成流转 | DM组件_重复创建群组失败，影响使用流转功能（按照isuue中提到的操作步骤）的业务，对其他应用无影响 | 2022/1/30 |
+| [I4NODO](https://gitee.com/openharmony/device_manager/issues/I4NODO) | 标准系统3516分布式业务流转端到端测试失败，无法完成流转 | DM组件_重复创建群组失败，影响使用流转功能（按照issue中提到的操作步骤）的业务，对其他应用无影响 | 2022/1/30 |
