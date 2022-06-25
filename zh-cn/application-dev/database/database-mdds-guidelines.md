@@ -6,6 +6,7 @@
 
 
 ## 接口说明
+具体分布式数据相关功能接口请见[分布式数据管理](../reference/apis/js-apis-distributed-data.md)。
 
 OpenHarmony系统中的分布式数据服务模块为开发者提供下面几种功能：
 
