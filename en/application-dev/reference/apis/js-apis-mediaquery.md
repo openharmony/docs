@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import mediaquery from '@ohos.mediaquery'
 ```
 
@@ -33,8 +33,8 @@ Sets the media query criteria and returns the corresponding listening handle.
   | MediaQueryListener | Listening handle to a media event, which is used to register or unregister the listening callback.| 
 
 - Example
-  ```
-  listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+  ```js
+let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
   ```
 
 
@@ -79,10 +79,10 @@ Unregisters a callback with the corresponding query condition by using the handl
   | callback | Callback&lt;MediaQueryResult&gt; | No| Callback to be unregistered. If the default value is used, all callbacks of the handle are unregistered.| 
 
 - Example
-  ```
+  ```js
     import mediaquery from '@ohos.mediaquery'
     
-    listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+    let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
     function onPortrait(mediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
@@ -90,8 +90,8 @@ Unregisters a callback with the corresponding query condition by using the handl
             // do something here
         }
     }
-    this.listener.on('change', this.onPortrait) // Registration callback.
-    this.listener.off('change', this.onPortrait) // Deregistration callback.
+    listener.on('change', onPortrait) // Register a callback.
+    listener.off('change', onPortrait) // Unregister a callback.
   ```
 
 
@@ -108,7 +108,7 @@ Unregisters a callback with the corresponding query condition by using the handl
 
 ### Example
 
-```
+```js
 import mediaquery from '@ohos.mediaquery'
 
 let portraitFunc = null

@@ -11,8 +11,9 @@
 import sensor from '@ohos.sensor';
 ```
 
+## sensor.on
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
@@ -41,8 +42,7 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
@@ -70,8 +70,7 @@ Subscribes to data changes of the linear acceleration sensor. If this API is cal
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
@@ -102,8 +101,7 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
@@ -129,8 +127,7 @@ Subscribes to data changes of the gravity sensor. If this API is called multiple
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
@@ -158,8 +155,7 @@ Subscribes to data changes of the gyroscope sensor. If this API is called multip
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
@@ -190,8 +186,7 @@ Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is 
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
@@ -215,8 +210,7 @@ Subscribes to data changes of the significant motion sensor. If this API is call
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
@@ -242,8 +236,7 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
@@ -269,8 +262,7 @@ Subscribes to data changes of the pedometer sensor. If this API is called multip
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
@@ -294,8 +286,7 @@ Subscribes to data changes of the ambient temperature sensor. If this API is cal
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
@@ -321,8 +312,7 @@ Subscribes to data changes of the magnetic field sensor. If this API is called m
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
@@ -351,8 +341,7 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
@@ -376,8 +365,7 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
@@ -401,8 +389,7 @@ Subscribes to data changes of the humidity sensor. If this API is called multipl
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
@@ -426,8 +413,7 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
@@ -451,8 +437,7 @@ Subscribes to data changes of the Hall effect sensor. If this API is called mult
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
@@ -476,8 +461,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
@@ -503,7 +487,7 @@ Subscribes to data changes of the orientation sensor. If this API is called mult
   );
   ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
@@ -530,7 +514,7 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
 );
 ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
@@ -557,8 +541,7 @@ Subscribes to data changes of the rotation vector sensor. If this API is called 
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
@@ -582,8 +565,9 @@ Subscribes to data changes of the wear detection sensor. If this API is called m
   );
   ```
 
+## sensor.once
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -609,8 +593,7 @@ Subscribes to only one data change of the acceleration sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -636,8 +619,7 @@ Subscribes to only one data change of the linear acceleration sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -666,8 +648,7 @@ Subscribes to only one data change of the uncalibrated acceleration sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
@@ -691,8 +672,7 @@ Subscribes to only one data change of the gravity sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -718,8 +698,7 @@ Subscribes to only one data change of the gyroscope sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -748,8 +727,7 @@ Subscribes to only one data change of the uncalibrated gyroscope sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -771,8 +749,7 @@ Subscribes to only one data change of the significant motion sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -796,8 +773,7 @@ Subscribes to only one data change of the pedometer detection sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
@@ -821,8 +797,7 @@ Subscribes to only one data change of the pedometer sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -844,8 +819,7 @@ Subscribes to only one data change of the ambient temperature sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -869,8 +843,7 @@ Subscribes to only one data change of the magnetic field sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -897,8 +870,7 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
@@ -924,8 +896,7 @@ Subscribes to only one data change of the proximity sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
@@ -947,8 +918,7 @@ Subscribes to only one data change of the humidity sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
@@ -970,8 +940,7 @@ Subscribes to only one data change of the barometer sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
@@ -993,8 +962,7 @@ Subscribes to only one data change of the Hall effect sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
@@ -1016,8 +984,7 @@ Subscribes to only one data change of the ambient light sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
@@ -1041,8 +1008,7 @@ Subscribes to only one data change of the orientation sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1067,8 +1033,7 @@ Subscribes to only one data change of the rotation vector sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1092,8 +1057,7 @@ Subscribes to only one data change of the heart rate sensor.
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1115,7 +1079,9 @@ Subscribes to only one data change of the wear detection sensor.
   );
   ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.off
+
+### ACCELEROMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -1143,7 +1109,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -1174,7 +1140,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
 
@@ -1198,7 +1164,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -1222,7 +1188,7 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
 
@@ -1246,7 +1212,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
@@ -1272,7 +1238,7 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -1300,7 +1266,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -1328,7 +1294,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
 
@@ -1352,7 +1318,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1378,7 +1344,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
@@ -1404,7 +1370,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -1432,7 +1398,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -1460,7 +1426,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -1489,7 +1455,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
  off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
@@ -1515,7 +1481,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
@@ -1539,7 +1505,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -1565,7 +1531,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
@@ -1589,7 +1555,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1616,7 +1582,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -1640,7 +1606,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1776,7 +1742,6 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example** 
-
   ```js
   const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
@@ -1936,7 +1901,7 @@ Obtains the angle change between two rotation matrices. This API uses a callback
       }
       console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -1970,10 +1935,10 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
       promise.then((data) => {
           console.info('getAngleModifiy_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })
   ```
 
@@ -2004,7 +1969,7 @@ Converts a rotation vector into a rotation matrix. This API uses a callback to r
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2037,10 +2002,10 @@ Converts a rotation vector into a rotation matrix. This API uses a promise to re
       promise.then((data) => {
           console.info('createRotationMatrix_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })	
   ```
 
@@ -2071,7 +2036,7 @@ Converts a rotation vector into a quaternion. This API uses a callback to return
       }
       console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2136,7 +2101,7 @@ Obtains the device direction based on the rotation matrix. This API uses a callb
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
@@ -2169,7 +2134,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
   ```js
   const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('sensor_getAltitude_Promise success', data.x);
+          console.info('sensor_getAltitude_Promise success', data);
           for (var i = 1; i < data.length; i++) {
               console.info("sensor_getDirection_promise" + data[i]);
           }
@@ -2240,7 +2205,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
