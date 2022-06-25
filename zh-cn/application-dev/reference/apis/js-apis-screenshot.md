@@ -17,11 +17,12 @@ import screenshot from '@ohos.screenshot';
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 
-| 参数名     | 类型          | 必填 | 说明                                                         |
-| ---------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。|
-| imageSize  | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。|
-| rotation   | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。|
+| 参数名                 | 类型          | 必填 | 说明                                                         |
+| ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
+| screenRect             | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
+| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
+| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。     |
+| displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号。 |
 
 
 ## Rect
@@ -61,10 +62,10 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 **参数：**
 
-  | 参数名   | 类型                                    | 必填 | 说明                                                         |
-  | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-  | options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation三个参数，需要分别设置这三个参数。 |
-  | callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调返回一个PixelMap对象。                                   |
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation， displayId四个参数，可以分别设置这四个参数。 |
+| callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调返回一个PixelMap对象。                                   |
 
 **示例：**
 
@@ -78,7 +79,8 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
   	"imageSize": {
   		"width": 300,
   		"height": 300},
-  	"rotation": 0
+  	"rotation": 0,
+  	"displayId": 0
   };
   screenshot.save(ScreenshotOptions, (err, data) => {
   	if (err) {
@@ -103,13 +105,13 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect、imageSize、rotation三个参数，需要分别设置这三个参数。 |
+| options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
 
 **返回值：**
 
-  | 类型                          | 说明                                            |
-  | ----------------------------- | ----------------------------------------------- |
-  | Promise&lt;image.PixelMap&gt; | 以Promise形式返回结果，返回image.PixelMap对象。 |
+| 类型                          | 说明                                            |
+| ----------------------------- | ----------------------------------------------- |
+| Promise&lt;image.PixelMap&gt; | 以Promise形式返回结果，返回image.PixelMap对象。 |
 
 **示例：**
 
@@ -123,7 +125,8 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
   	"imageSize": {
   		"width": 300,
   		"height": 300},
-  	"rotation": 0
+  	"rotation": 0,
+  	"displayId": 0
   };
   let promise = screenshot.save(ScreenshotOptions);
   promise.then(() => {
