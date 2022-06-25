@@ -42,6 +42,7 @@
 ### 案例1
 
 ```
+//父组件ViewB中的类对象ClassB，其包含的对象ClassA与子组件ViewA数据同步时，通过ObjectLink将数据c值的变化状态通知给父组件同步变化。
 @Observed
 class ClassA {
   public name : string;
@@ -77,7 +78,7 @@ struct ViewA {
         .width(100)
         .margin(2)
         .onClick(() => {
-          this.a = new ClassA(0); // ERROR, this.a is immutable
+          this.a = new ClassA(0); // 错误：ObjectLink装饰的变量a是不可变的
         })
     }
   }
@@ -119,6 +120,7 @@ struct ViewB {
 ### 案例2
 
 ```
+//父组件ViewB中的类对象ClassA与子组件ViewA保持数据同步时，可以使用@ObjectLink和@Observed，绑定该数据对象的父组件和其他子组件同步更新
 var nextID: number = 0;
 @Observed
 class ClassA {
@@ -142,7 +144,7 @@ struct ViewA {
         .onClick(() => {
           this.a.c += 1;
         })
-    }
+    }.margin({ top: 10 })
   }
 }
 
@@ -161,14 +163,17 @@ struct ViewB {
       ViewA({label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1]})
 
       Button(`ViewB: reset array`)
+        .margin({ top: 10 })
         .onClick(() => {
             this.arrA = [ new ClassA(0), new ClassA(0) ];
         })
       Button(`ViewB: push`)
+      	.margin({ top: 10 })
         .onClick(() => {
             this.arrA.push(new ClassA(0))
         })
       Button(`ViewB: shift`)
+      	.margin({ top: 10 })
         .onClick(() => {
             this.arrA.shift()
         })
