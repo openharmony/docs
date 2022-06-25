@@ -1135,6 +1135,8 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
@@ -1148,7 +1150,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
+audioManager.setAudioParameter('key_example', 'value_example', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
         return;
@@ -1162,6 +1164,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1181,7 +1185,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
+audioManager.setAudioParameter('key_example', 'value_example').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 });
 ```
@@ -1191,6 +1195,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取指定音频参数值，使用callback方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1204,7 +1210,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```
-audioManager.getAudioParameter('PBits per sample', (err, value) => {
+audioManager.getAudioParameter('key_example', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
         return;
@@ -1218,6 +1224,8 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 获取指定音频参数值，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1236,7 +1244,7 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 **示例：**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) => {
+audioManager.getAudioParameter('key_example').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 });
 ```
