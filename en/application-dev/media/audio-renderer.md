@@ -20,8 +20,6 @@ During application development, you are advised to use **on('stateChange')** to 
 
 To ensure that the UI thread is not blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the promise functions. For more information, see [AudioRenderer in Audio Management](../reference/apis/js-apis-audio.md#audiorenderer8).
 
-
-
 ## How to Develop
 
 1. Use **createAudioRenderer()** to create an **AudioRenderer** instance.
@@ -31,7 +29,7 @@ To ensure that the UI thread is not blocked, most **AudioRenderer** calls are as
     var audioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_1,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
     }
    
@@ -58,49 +56,49 @@ To ensure that the UI thread is not blocked, most **AudioRenderer** calls are as
    In the case of audio interruption, the application may encounter write failures. To avoid such failures, interruption unaware applications can use **audioRenderer.state** to check the renderer state before writing audio data. The applications can obtain more details by subscribing to the audio interruption events. For details, see [InterruptEvent](../reference/apis/js-apis-audio.md#interruptevent9).
    
    ```js
-   audioRenderer.on('interrupt', (interruptEvent) => {
-           console.info('InterruptEvent Received');
-           console.info('InterruptType: ' + interruptEvent.eventType);
-           console.info('InterruptForceType: ' + interruptEvent.forceType);
-           console.info('AInterruptHint: ' + interruptEvent.hintType);
+    audioRenderer.on('interrupt', (interruptEvent) => {
+        console.info('InterruptEvent Received');
+        console.info('InterruptType: ' + interruptEvent.eventType);
+        console.info('InterruptForceType: ' + interruptEvent.forceType);
+        console.info('AInterruptHint: ' + interruptEvent.hintType);
    
-           if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-               switch (interruptEvent.hintType) {
-                   // Force Pause: Action was taken by framework.
-                   // Halt the write calls to avoid data loss.
-                   case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                       isPlay = false;
-                       break;
-                   // Force Stop: Action was taken by framework.
-                   // Halt the write calls to avoid data loss.
-                   case audio.InterruptHint.INTERRUPT_HINT_STOP:
-                       isPlay = false;
-                       break;
-                   // Force Duck: Action was taken by framework,
-                   // just notifying the app that volume has been reduced.
-                   case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-                       break;
-                   // Force Unduck: Action was taken by framework,
-                   // just notifying the app that volume has been restored.
-                   case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-                       break;
-               }
-           } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-               switch (interruptEvent.hintType) {
-                   // Share Resume: Action is to be taken by App.
-                   // Resume the force paused stream if required.
-                   case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-                       startRenderer();
-                       break;
-                   // Share Pause: Stream has been interrupted,
-                   // It can choose to pause or play concurrently.
-                   case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-                       isPlay = false;
-                       pauseRenderer();
-                       break;
-               }
-           }
-       });
+        if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+            switch (interruptEvent.hintType) {
+                // Force Pause: Action was taken by framework.
+                // Halt the write calls to avoid data loss.
+                case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                    isPlay = false;
+                    break;
+                // Force Stop: Action was taken by framework.
+                // Halt the write calls to avoid data loss.
+                case audio.InterruptHint.INTERRUPT_HINT_STOP:
+                    isPlay = false;
+                    break;
+                // Force Duck: Action was taken by framework,
+                // just notifying the app that volume has been reduced.
+                case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+                    break;
+                // Force Unduck: Action was taken by framework,
+                // just notifying the app that volume has been restored.
+                case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+                    break;
+            }
+        } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+            switch (interruptEvent.hintType) {
+                // Share Resume: Action is to be taken by App.
+                // Resume the force paused stream if required.
+                case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+                    startRenderer();
+                    break;
+                // Share Pause: Stream has been interrupted,
+                // It can choose to pause or play concurrently.
+                case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+                    isPlay = false;
+                    pauseRenderer();
+                    break;
+            }
+        }
+    });
    ```
 
 3. Use **start()** to start audio rendering.
@@ -178,38 +176,38 @@ To ensure that the UI thread is not blocked, most **AudioRenderer** calls are as
 5. (Optional) Call **pause()** or **stop()** to pause or stop rendering.
 
    ```js
-       async function pauseRenderer() {
-           var state = audioRenderer.state;
-           if (state != audio.AudioState.STATE_RUNNING) {
-               console.info('Renderer is not running');
-               return;
-           }
+    async function pauseRenderer() {
+        var state = audioRenderer.state;
+        if (state != audio.AudioState.STATE_RUNNING) {
+            console.info('Renderer is not running');
+            return;
+        }
+
+        await audioRenderer.pause();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_PAUSED) {
+            console.info('Renderer paused');
+        } else {
+            console.error('Renderer pause failed');
+        }
+    }
    
-           await audioRenderer.pause();
-   
-           state = audioRenderer.state;
-           if (state == audio.AudioState.STATE_PAUSED) {
-               console.info('Renderer paused');
-           } else {
-               console.error('Renderer pause failed');
-           }
-       }
-   
-       async function stopRenderer() {
-           var state = audioRenderer.state;
-           if (state != audio.AudioState.STATE_RUNNING || state != audio.AudioState.STATE_PAUSED) {
-               console.info('Renderer is not running or paused');
-               return;
-           }
-   
-           await audioRenderer.stop();
-   
-           state = audioRenderer.state;
-           if (state == audio.AudioState.STATE_STOPPED) {
-               console.info('Renderer stopped');
-           } else {
-               console.error('Renderer stop failed');
-           }
+    async function stopRenderer() {
+        var state = audioRenderer.state;
+        if (state != audio.AudioState.STATE_RUNNING || state != audio.AudioState.STATE_PAUSED) {
+            console.info('Renderer is not running or paused');
+            return;
+        }
+
+        await audioRenderer.stop();
+
+        state = audioRenderer.state;
+        if (state == audio.AudioState.STATE_STOPPED) {
+            console.info('Renderer stopped');
+        } else {
+            console.error('Renderer stop failed');
+        }
    }
    ```
 
@@ -218,22 +216,20 @@ To ensure that the UI thread is not blocked, most **AudioRenderer** calls are as
    **AudioRenderer** uses a large number of system resources. Therefore, ensure that the resources are released after the task is complete.
 
    ```js
-       async function releaseRenderer() {
-           if (state_ == RELEASED || state_ == NEW) {
-               console.info('Resourced already released');
-               return;
-           }
-   
-           await audioRenderer.release();
-   
-           state = audioRenderer.state;
-           if (state == STATE_RELEASED) {
-               console.info('Renderer released');
-           } else {
-               console.info('Renderer release failed');
-           }
-   
-       }
-   ```
+    async function releaseRenderer() {
+        if (state_ == RELEASED || state_ == NEW) {
+            console.info('Resourced already released');
+            return;
+        }
 
-   
+        await audioRenderer.release();
+
+        state = audioRenderer.state;
+        if (state == STATE_RELEASED) {
+            console.info('Renderer released');
+        } else {
+            console.info('Renderer release failed');
+        }
+
+    }
+   ```
