@@ -23,10 +23,10 @@
 
 
 - RouteType枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Pop | PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 | 
-  | Push | PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 | 
+  | Pop | 重定向指定页面。 |
+  | Push | 跳转到下一页面。 |
 
 
 ## 属性
@@ -41,22 +41,22 @@ PageTransitionEnter和PageTransitionExit组件支持的属性：
 | opacity | number | 1 | 否 | 设置入场的起点透明度值或者退场的终点透明度值。 |
 
 - SlideEffect枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Left | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 | 
-  | Right | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 | 
-  | Top | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 | 
-  | Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 | 
+  | Left | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
+  | Right | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
+  | Top | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
+  | Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
 
 
 ## 事件
 
 PageTransitionEnter和PageTransitionExit组件支持的事件：
 
-| 事件 | 功能描述 | 
+| 事件 | 功能描述 |
 | -------- | -------- |
-| onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。 | 
-| onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。 | 
+| onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。 |
+| onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。 |
 
 
 ## 示例
