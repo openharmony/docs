@@ -1159,7 +1159,7 @@ Sets an audio parameter. This API uses an asynchronous callback to return the re
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
+audioManager.setAudioParameter('key_example', 'value_example', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
         return;
@@ -1192,7 +1192,7 @@ Sets an audio parameter. This API uses a promise to return the result.
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
+audioManager.setAudioParameter('key_example', 'value_example').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 });
 ```
@@ -1215,7 +1215,7 @@ Obtains the value of an audio parameter. This API uses an asynchronous callback 
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample', (err, value) => {
+audioManager.getAudioParameter('key_example', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
         return;
@@ -1247,7 +1247,7 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) => {
+audioManager.getAudioParameter('key_example').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 });
 ```
