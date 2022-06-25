@@ -128,6 +128,12 @@ source "drivers/staging/hilog/Kconfig"
 source "drivers/staging/hievent/Kconfig"
 ```
 
+在三方内核的drivers/staging/Makefile文件内增加如下代码：
+```
+obj-$(CONFIG_HILOG)             += hilog/
+obj-$(CONFIG_HIEVENT)           += hievent/
+```
+
 在内核config项中打开对应的CONFIG控制宏：CONFIG_HILOG和CONFIG_HIEVENT。
 
 具体日志使用说明请参见：[Hilog_lite组件介绍](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README_zh.md)。

@@ -1,7 +1,9 @@
 # AbilityContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。   
+> 本模块接口仅可在Stage模型下使用。
 
 Ability的上下文环境，继承自Context。
 
@@ -55,7 +57,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   this.context.startAbility(want, (error) => {
       console.log("error.code = " + error.code)
@@ -76,7 +78,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
@@ -85,7 +87,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -109,7 +111,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -123,7 +125,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -178,7 +180,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 
@@ -211,7 +213,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
@@ -374,7 +376,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
       onWindowStageCreate(windowStage) {
           this.context.startAbilityByCall({
               bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
+              abilityName: "MainAbility",
               deviceId: ""
           }).then((obj) => {
               caller = obj;

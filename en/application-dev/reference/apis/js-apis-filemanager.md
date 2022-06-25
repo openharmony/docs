@@ -1,8 +1,10 @@
 # User File Access and Management
->![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>**NOTE**<br/>
 >
->- The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >- The APIs of this module are system APIs and cannot be called by third-party applications. Currently, these APIs can be called only by **filepicker**.
+
+This module provides service APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
 
 ## Modules to Import
 
@@ -156,7 +158,7 @@ Obtains information about the second-level album or files in asynchronous mode. 
 
 ## filemanager.createFile
 
-filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
+createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
 
 Creates a file in the specified path in asynchronous mode. This API uses a promise to return the result.
 
@@ -173,7 +175,7 @@ Creates a file in the specified path in asynchronous mode. This API uses a promi
 
   | Type| Description|
   | --- | -- |
-  | promise<string>| Promise used to return the URI of the file created.|
+  | Promise&lt;string&gt; | Promise used to return the URI of the file created.|
 
 - Error
   | Error Info| Error Code|Description|

@@ -13,29 +13,29 @@
 相对于私有事件，大部分组件都可以绑定如下事件。
 
 
-| 名称                       | 参数         | 描述                                       | 是否支持冒泡                                   |
-| ------------------------ | ---------- | ---------------------------------------- | ---------------------------------------- |
-| touchstart               | TouchEvent | 手指刚触摸屏幕时触发该事件。TouchEvent具体可参考表2 。        | 是<sup>5+</sup>                           |
-| touchmove                | TouchEvent | 手指触摸屏幕后移动时触发该事件。                         | 是<sup>5+</sup>                           |
-| touchcancel              | TouchEvent | 手指触摸屏幕中动作被打断时触发该事件。                      | 是<sup>5+</sup>                           |
-| touchend                 | TouchEvent | 手指触摸结束离开屏幕时触发该事件。                        | 是<sup>5+</sup>                           |
-| click                    | -          | 点击动作触发该事件。                               | 是<sup>6+</sup>                           |
-| doubleclick<sup>7+</sup> | -          | 双击动作触发该事件                                | 否<br/> 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 |
-| longpress                | -          | 长按动作触发该事件。                               | 否<br/>从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 |
-| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。 SwipeEvent具体可参考表4 。       | 否<br/>从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 |
-| attached<sup>6+</sup>    | -          | 当前组件节点挂载在渲染树后触发。                         | 否                                        |
-| detached<sup>6+</sup>    | -          | 当前组件节点从渲染树中移除后触发。                        | 否                                        |
-| pinchstart<sup>7+</sup>  | PinchEvent | 手指开始执行捏合操作时触发该事件。<br/>PinchEvent具体可参考表5。 | 否                                        |
-| pinchupdate<sup>7+</sup> | PinchEvent | 手指执行捏合操作过程中触发该事件。                        | 否                                        |
-| pinchend<sup>7+</sup>    | PinchEvent | 手指捏合操作结束离开屏幕时触发该事件。                      | 否                                        |
-| pinchcancel<sup>7+</sup> | PinchEvent | 手指捏合操作被打断时触发该事件。                         | 否                                        |
-| dragstart<sup>7+</sup>   | DragEvent  | 用户开始拖拽时触发该事件。<br/>DragEvent具体可参考表6。      | 否                                        |
-| drag<sup>7+</sup>        | DragEvent  | 拖拽过程中触发该事件。                              | 否                                        |
-| dragend<sup>7+</sup>     | DragEvent  | 用户拖拽完成后触发。                               | 否                                        |
-| dragenter<sup>7+</sup>   | DragEvent  | 进入释放目标时触发该事件。                            | 否                                        |
-| dragover<sup>7+</sup>    | DragEvent  | 在释放目标内拖动时触发。                             | 否                                        |
-| dragleave<sup>7+</sup>   | DragEvent  | 离开释放目标区域时触发。                             | 否                                        |
-| drop<sup>7+</sup>        | DragEvent  | 在可释放目标区域内释放时触发。                          | 否                                        |
+| 名称                     | 参数       | 描述                                                         | 是否支持冒泡                                          | 是否支持捕获    |
+| ------------------------ | ---------- | ------------------------------------------------------------ | ----------------------------------------------------- | --------------- |
+| touchstart               | TouchEvent | 手指刚触摸屏幕时触发该事件。TouchEvent具体可参考表2 。       | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
+| touchmove                | TouchEvent | 手指触摸屏幕后移动时触发该事件。                             | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
+| touchcancel              | TouchEvent | 手指触摸屏幕中动作被打断时触发该事件。                       | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
+| touchend                 | TouchEvent | 手指触摸结束离开屏幕时触发该事件。                           | 是<sup>5+</sup>                                       | 是<sup>5+</sup> |
+| click                    | -          | 点击动作触发该事件。                                         | 是<sup>6+</sup>                                       | 否              |
+| doubleclick<sup>7+</sup> | -          | 双击动作触发该事件                                           | 否<br/> 从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。 | 否              |
+| longpress                | -          | 长按动作触发该事件。                                         | 否<br/>从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。  | 否              |
+| swipe<sup>5+</sup>       | SwipeEvent | 组件上快速滑动后触发该事件。 SwipeEvent具体可参考表4 。      | 否<br/>从API&nbsp;Version&nbsp;9&nbsp;开始支持冒泡。  | 否              |
+| attached<sup>6+</sup>    | -          | 当前组件节点挂载在渲染树后触发。                             | 否                                                    | 否              |
+| detached<sup>6+</sup>    | -          | 当前组件节点从渲染树中移除后触发。                           | 否                                                    | 否              |
+| pinchstart<sup>7+</sup>  | PinchEvent | 手指开始执行捏合操作时触发该事件。<br/>PinchEvent具体可参考表5。 | 否                                                    | 否              |
+| pinchupdate<sup>7+</sup> | PinchEvent | 手指执行捏合操作过程中触发该事件。                           | 否                                                    | 否              |
+| pinchend<sup>7+</sup>    | PinchEvent | 手指捏合操作结束离开屏幕时触发该事件。                       | 否                                                    | 否              |
+| pinchcancel<sup>7+</sup> | PinchEvent | 手指捏合操作被打断时触发该事件。                             | 否                                                    | 否              |
+| dragstart<sup>7+</sup>   | DragEvent  | 用户开始拖拽时触发该事件。<br/>DragEvent具体可参考表6。      | 否                                                    | 否              |
+| drag<sup>7+</sup>        | DragEvent  | 拖拽过程中触发该事件。                                       | 否                                                    | 否              |
+| dragend<sup>7+</sup>     | DragEvent  | 用户拖拽完成后触发。                                         | 否                                                    | 否              |
+| dragenter<sup>7+</sup>   | DragEvent  | 进入释放目标时触发该事件。                                   | 否                                                    | 否              |
+| dragover<sup>7+</sup>    | DragEvent  | 在释放目标内拖动时触发。                                     | 否                                                    | 否              |
+| dragleave<sup>7+</sup>   | DragEvent  | 离开释放目标区域时触发。                                     | 否                                                    | 否              |
+| drop<sup>7+</sup>        | DragEvent  | 在可释放目标区域内释放时触发。                               | 否                                                    | 否              |
 
 
 >  **说明：**
@@ -137,7 +137,7 @@ setData(key: string, value: object): boolean
 
 | 参数名   | 参数类型   | 必填   | 描述      |
 | ----- | ------ | ---- | ------- |
-| key   | string | 是    | 数据建值。   |
+| key   | string | 是    | 数据键值。   |
 | value | object | 是    | 要存储的数据。 |
 
 **返回值：** 
@@ -170,7 +170,7 @@ getData(key: string): object
 
 | 参数名  | 参数类型   | 必填   | 描述    |
 | ---- | ------ | ---- | ----- |
-| key  | string | 是    | 数据建值。 |
+| key  | string | 是    | 数据键值。 |
 
 **返回值：** 
 | 类型     | 说明     |
@@ -201,7 +201,7 @@ clearData(key?: string): boolean
 
 | 参数名  | 参数类型   | 必填   | 描述    |
 | ---- | ------ | ---- | ----- |
-| key  | string | 否    | 数据建值。 |
+| key  | string | 否    | 数据键值。 |
 
 **返回值：** 
 | 类型      | 说明                       |
@@ -225,14 +225,14 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 
 | 参数名      | 参数类型     | 必填   | 描述                                       |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | PixelMap | 是    | pixelmap为前端传入的图片资源，请参考[PixelMap对象](../apis/js-apis-image.md#pixelmap7)。 |
+| pixelmap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | 前端传入的图片资源。 |
 | offsetX  | number   | 是    | 相对于图片的横向偏移量。                             |
-| offsetY  | number   | 是    | 相对于图片的纵向偏移量 。                            |
+| offsetY  | number   | 是    | 相对于图片的纵向偏移量。                            |
 
 **返回值：** 
 | 类型   | 说明                       |
 | ---- | ------------------------ |
-| bool | 执行结果，true表示成功，false表示失败。 |
+| boolean | 执行结果，true表示成功，false表示失败。 |
 
 **示例：** 
 

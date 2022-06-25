@@ -25,9 +25,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -49,9 +49,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -75,9 +75,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -99,9 +99,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -122,9 +122,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Size of the application memory.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Size of the application memory.|
 
 **Example**
     
@@ -146,9 +146,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.|
 
 **Example**
     
@@ -160,7 +160,7 @@ Obtains the memory size of this application. This API uses an asynchronous callb
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
@@ -168,9 +168,9 @@ Obtains information about the running processes. This API uses a promise to retu
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise<Array\<ProcessRunningInfo>> | Promise used to return the process information.| 
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInfo>> | Promise used to return the process information.|
 
 **Example**
     
@@ -184,7 +184,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
@@ -192,9 +192,9 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.|
 
 **Example**
     

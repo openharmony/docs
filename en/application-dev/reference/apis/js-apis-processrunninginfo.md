@@ -1,8 +1,8 @@
 # ProcessRunningInfo
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 Provides process running information.
 
@@ -14,11 +14,8 @@ import appManager from '@ohos.application.appManager'
 
 ## Usage
 
-
 The process running information is obtained through an **appManager** instance.
 
-
-  
 ```js
 import appManager from '@ohos.application.appManager';
 appManager.getProcessRunningInfos((error,data) => { 

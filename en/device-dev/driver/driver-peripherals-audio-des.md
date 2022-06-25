@@ -261,7 +261,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
   unsigned int bitWidth;
   struct CodecDaiParamsVal codecDaiParamsVal;
   ...
-  int ret = AudioFramatToBitWidth(param->format, &bitWidth);
+  int ret = AudioFormatToBitWidth(param->format, &bitWidth);
   ...
   codecDaiParamsVal.frequencyVal = param->rate;
   codecDaiParamsVal.formatVal = bitWidth;
@@ -1019,7 +1019,7 @@ int32_t DaiHwParams(const struct AudioCard *card, const struct AudioPcmHwParams 
     struct DaiData *data = DaiDataFromCard(card);
     data->pcmInfo.channels = param->channels;
 ...
-    AudioFramatToBitWidth(param->format, &bitWidth);
+    AudioFormatToBitWidth(param->format, &bitWidth);
 ...
     data->pcmInfo.bitWidth = bitWidth;
     data->pcmInfo.rate = param->rate;

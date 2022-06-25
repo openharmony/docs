@@ -65,4 +65,5 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [物联网解决方案之芯海cst85芯片移植案例](porting-cst85f01-combo-demo.md)
     - [轻量系统STM32F407芯片移植案例](porting-stm32f407-on-minisystem-eth.md)
     - [Combo解决方案之W800芯片移植案例](porting-w800-combo-demo.md)
-
+- 小型系统芯片移植案例
+    - [小型设备STM32MP1芯片移植案例](porting-stm32mp15xx-on-smallsystem.md)

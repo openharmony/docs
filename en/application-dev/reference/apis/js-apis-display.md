@@ -168,11 +168,10 @@ Enables listening.
 
 **Example**
   ```js
-  var type = "add";
   var callback = (data) => {
       console.info('Listening enabled. Data: ' + JSON.stringify(data))
   }
-  display.on(type, callback);
+  display.on("add", callback);
   ```
 
 
@@ -192,6 +191,5 @@ Disables listening.
 
 **Example**
   ```js
-  var type = "remove";
-  display.off(type);
+  display.off("remove");
   ```

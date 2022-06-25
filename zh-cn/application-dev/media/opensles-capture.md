@@ -2,10 +2,7 @@
 
 ## 场景介绍
 
-开发者可以通过本文了解到在**OpenHarmony**如何使用**OpenSL ES**进行录音相关操作；当前仅实现了部分[**OpenSL ES**接口] 
-(https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**
-
- 
+开发者可以通过本文了解到在**OpenHarmony**如何使用 **OpenSL ES** 进行录音相关操作；当前仅实现了部分[**OpenSL ES**接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**。
 
 ## 开发步骤
 
@@ -19,15 +16,13 @@
     #include <OpenSLES_Platform.h>
     ```
 
-2. 使用 **slCreateEngine** 接口创建引擎对象和实例化引擎对象 **engine**。
+2. 使用 **slCreateEngine** 接口创建引擎对象和实例化引擎对象 **engine**
 
     ```c++
     SLObjectItf engineObject = nullptr;
     slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
     (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     ```
-
-    
 
 3. 获取接口 **SL_IID_ENGINE** 的引擎接口 **engineEngine** 实例
 
@@ -36,9 +31,7 @@
     result = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
     ```
 
-    
-
-4. 配置录音器信息（配置输入源audiosource、输出源audiosink），创建录音对象**pcmCapturerObject** 。
+4. 配置录音器信息（配置输入源audiosource、输出源audiosink），创建录音对象**pcmCapturerObject**
 
     ```c++
     SLDataLocator_IODevice io_device = {
@@ -82,19 +75,17 @@
 
 5. 获取录音接口**SL_IID_RECORD** 的 **recordItf** 接口实例
  
-    ```
+    ```c++
     SLRecordItf  recordItf;
     (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
     ```   
 
 6. 获取接口 **SL_IID_OH_BUFFERQUEUE** 的 **bufferQueueItf** 实例
 
-    ```
+    ```c++
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```
-
-    
 
 7. 注册 **BufferQueueCallback** 回调
 
@@ -120,7 +111,6 @@
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
-
 8. 开始录音
 
     ```c++
@@ -144,7 +134,6 @@
         return;
     }
     ```
-
 
 9. 结束录音
 

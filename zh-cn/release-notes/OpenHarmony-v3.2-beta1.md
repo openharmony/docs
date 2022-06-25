@@ -6,7 +6,7 @@
 
 **轻量系统基础能力增强**
 
-轻量LiteOS系统和Linux系统IPC归一，构建和完善了进程间通信能力，包括分布式进程间通信，为分布式业务及APP提供本地和分布式的进程间通信能力。
+轻量LiteOS系统和Linux系统IPC归一，构建和完善了进程间通信能力。
 
 **标准系统基础能力增强**
 
@@ -51,8 +51,8 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta1 | NA |
 | SDK | Ohos_sdk_full&nbsp;3.2.2.5 (API&nbsp;Version&nbsp;9 Beta1) | NA |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.2&nbsp;Beta1&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.2&nbsp;Beta1 | OpenHarmony智能设备集成开发环境推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0 Beta3 for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0 Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
 
 ## 源码获取
@@ -142,7 +142,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
-| 公共 | 新增支持Arm架构64位版本编译构建。 | 轻量、小型系统IPC接口与标准系统归一化。 |
+| 公共 | 新增支持Arm架构64位版本编译构建。 | 轻量、小型系统IPC接口归一。 |
 | 资源调度 | 新增卡片使用记录信息统计能力。<br/>主要涉及如下需求：<br/>I531ST&nbsp;支持卡片卸载时，删除对应的卡片使用记录<br/>I531SU&nbsp;支持查询获取卡片使用记录<br/>I531SV&nbsp;支持记录卡片的使用计数以及使用时间 | NA |
 | 多模输入 | 新增遥控器、鼠标、键盘输入设备热插拔监听能力。<br/>主要涉及如下需求：<br/>I530U7&nbsp;三方件json版本升级<br/>I530UH&nbsp;启动优化<br/>I530UU&nbsp;支持裁剪鼠标光标显示特<br/>I530UL&nbsp;支持不可触摸窗口<br/>I530W5&nbsp;支持通过JS&nbsp;API监听遥控器输入设备的热插拔<br/>I530W9&nbsp;支持通过JS&nbsp;API监听鼠标输入设备的热插拔<br/>I530WB&nbsp;支持通过JS&nbsp;API查看触摸板输入设备扩展信息<br/>I530WF&nbsp;支持通过JS&nbsp;API监听键盘输入设备的热插拔<br/>I530UW&nbsp;支持裁剪配置组合按键特性 | NA |
 | 系统服务管理 | 新增群组校验机制。<br/>主要涉及如下需求：<br/>I59XYB&nbsp;添加群组校验机制<br/>I53NZQ&nbsp;处理远端应用安装情况和版本号<br/>I568AO&nbsp;DMS上报分布式组件关联关系<br/>I58ZSB&nbsp;采集OS类型信息 | NA |

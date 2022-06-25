@@ -1,6 +1,6 @@
 # Refresh
 
-> **NOTE**<br>
+> **NOTE**<br/>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **<Refresh\>** component is used to refresh a page through a pull-down gesture.
@@ -37,7 +37,7 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
 
 - RefreshStatus enums
 
-  | Name| Description|
+  | Name | Description |
   | -------- | -------- |
   | Inactive | The component is not pulled down. This is the default value. |
   | Drag | The component is being pulled down, but the pulled distance is shorter than the minimum length required to trigger the refresh. |

@@ -35,6 +35,7 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 | placeholderColor | [ResourceColor](../../ui/ts-types.md) | - | Placeholder text color. |
 | placeholderFont | [Font](../../ui/ts-types.md) | - | Placeholder text style. |
 | textFont | [Font](../../ui/ts-types.md) | - | Text font for the search text box. |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | Whether copy and paste is allowed. |
 
 ## Events
 
@@ -56,7 +57,7 @@ controller: SearchController = new SearchController()
 ```
 #### caretPosition
 
-creatPosition(value: number): void
+caretPosition(value: number): void
 
 Sets the position of the caret.
 
@@ -64,13 +65,14 @@ Sets the position of the caret.
 
   | Name | Type | Mandatory | Default Value | Description |
   | ---- | ------ | ---- | ---- | --------------------- |
-  | value | number | Yes   | - | Length from the start of the character string to the position where the caret is located. |
+  | value | number | Yes   | - | Length from the start of the text string to the position where the caret is located. |
 
 
 
 ##  Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {

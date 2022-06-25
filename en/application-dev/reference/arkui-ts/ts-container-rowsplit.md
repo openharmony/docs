@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **<RowSplit\>** lays out child components horizontally and inserts a vertical divider between every two child components.
+The **<RowSplit\>** component lays out child components horizontally and inserts a vertical divider between every two child components.
 
 
 ## Required Permissions

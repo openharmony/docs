@@ -95,7 +95,7 @@ Security subsystem
 
 [security](https://gitee.com/openharmony/security)
 
-[security_deviceauth](https://gitee.com/openharmony/security_deviceauth)
+[security_device_auth](https://gitee.com/openharmony/security_device_auth)
 
 [security_permission](https://gitee.com/openharmony/security_permission)
 

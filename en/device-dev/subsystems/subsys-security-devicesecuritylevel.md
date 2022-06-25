@@ -184,7 +184,7 @@ void CheckDestDeviceSecurityLevelAsync(const DeviceIdentify *device, RequestOpti
 
 ### Device Security Level Credential
 
-To ensure its integrity and non-repudiation, the security level information must be encapsulated in a "device security level credential" (credential for short) file for transmission between devices. In addition to the security level information of the device, the credential may include device attributes, such as the device model and version. Moreover, the credential must be signed using the public key infrastructure (PKI) technology. Other basic security capabilities of OpenHarmony, such as [Device Authentication](https://gitee.com/openharmony/security_deviceauth) and [HUKS](https://gitee.com/openharmony/security_huks), are used to ensure secure transmission of credentials.
+To ensure its integrity and non-repudiation, the security level information must be encapsulated in a "device security level credential" (credential for short) file for transmission between devices. In addition to the security level information of the device, the credential may include device attributes, such as the device model and version. Moreover, the credential must be signed using the public key infrastructure (PKI) technology. Other basic security capabilities of OpenHarmony, such as [Device Authentication](https://gitee.com/openharmony/security_device_auth) and [HUKS](https://gitee.com/openharmony/security_huks), are used to ensure secure transmission of credentials.
 
 ### Default Implementation
 

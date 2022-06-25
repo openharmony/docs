@@ -53,12 +53,23 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
    git config --global credential.helper store
    ```
 
-4. 安装码云repo工具，可以执行如下命令。
+4. 执行如下命令安装码云repo工具。
+
+   下述命令中的安装路径以"~/bin"为例，请用户自行创建所需目录。
   
    ```
-   curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
-   chmod a+x /usr/local/bin/repo
+   mkdir ~/bin
+   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+5. 将repo添加到环境变量。
+
+   ```
+   vim ~/.bashrc               # 编辑环境变量
+   export PATH=~/bin:$PATH     # 在环境变量的最后添加一行repo路径信息
+   source ~/.bashrc            # 应用环境变量
    ```
 
 
@@ -176,23 +187,22 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 | **LTS版本源码** | **版本信息** | **下载站点** | **SHA256校验码** |
 | -------- | -------- | -------- | -------- |
-| 全量代码（标准、轻量和小型系统） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/code-v3.0-LTS.tar.gz.sha256) |
-| 标准系统解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/standard.tar.gz.sha256) |
-| Hi3861解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_pegasus.tar.gz.sha256) |
-| Hi3518解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_aries.tar.gz.sha256) |
-| Hi3516解决方案-LiteOS（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus.tar.gz.sha256) |
-| Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.0/hispark_taurus_linux.tar.gz.sha256) |
+| 全量代码（标准、轻量和小型系统） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/code-v3.0-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/code-v3.0-LTS.tar.gz.sha256) |
+| 标准系统解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/standard.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/standard.tar.gz.sha256) |
+| Hi3861解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_pegasus.tar.gz.sha256) |
+| Hi3518解决方案（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_aries.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_aries.tar.gz.sha256) |
+| Hi3516解决方案-LiteOS（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus.tar.gz.sha256) |
+| Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) |
 | RELEASE-NOTES | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - |
 | **最新发布版本源码** | **版本信息** | **下载站点** | **SHA256校验码** |
-| 全量代码Release版本（标准、轻量和小型系统） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/code-v3.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/code-v3.1-Release.tar.gz.sha256) |
-| Hi3516标准系统解决方案（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_hi3516.tar.gz.sha256) |
-| RK3568标准系统解决方案（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/standard_rk3568.tar.gz.sha256) |
-| Hi3861解决方案（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_pegasus.tar.gz.sha256) |
-| Hi3516解决方案-LiteOS（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus.tar.gz.sha256) |
-| Hi3516解决方案-Linux（二进制） | 3.1 Release | [站点](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.1-Release/hispark_taurus_linux.tar.gz.sha256) |
-| RELEASE-NOTES | 3.1 Release | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.1-release.md) | - |
+| 全量代码Beta版本（标准、轻量和小型系统） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz.sha256) |
+| Hi3861解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
+| Hi3516解决方案-LiteOS（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
+| Hi3516解决方案-Linux（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256) |
+| RELEASE-NOTES | 3.2 Beta1 | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-beta1.md) | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** |
-| 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/harmonyos/os/2.0/tool_chain/) | - |
+| 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/) | - |
 
 
 ## 获取方式4：从github镜像仓库获取

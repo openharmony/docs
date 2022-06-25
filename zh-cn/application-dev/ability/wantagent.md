@@ -1,17 +1,17 @@
 # WantAgent开发指导
-### 场景简介
+## 场景简介
 WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口主动触发，也可以通过与通知绑定被动触发。
 
 具体的行为包括：启动Ability和发布公共事件。
 
-### 接口说明
+## 接口说明
 | 接口名                                                                                          | 接口描述 |
 | ---------------------------------------------------------------------------------------------- | ----------- |
 | getWantAgentInfo(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>) | 以异步回调形式创建WantAgent对象。 |
 | getWantAgent(info: WantAgentInfo): Promise\<WantAgent\> | 以Promise形式创建WantAgent对象。 |
 | trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>) | 触发WantAgent。 |
 
-### 开发步骤
+## 开发步骤
 1. 导入WantAgent模块。
 
    ```

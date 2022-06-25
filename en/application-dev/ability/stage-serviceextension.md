@@ -1,9 +1,9 @@
 # Service Extension Ability Development
 
 ## When to Use
-**ExtensionAbility** is the base class of the new **Extension** component in the stage model. It is used to process jobs without UIs. The lifecycle of an Extension ability is simple, and it does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
+**ExtensionAbility** is the base class of the new Extension component in the stage model. It is used to process missions without UIs. The lifecycle of an Extension ability is simple, and it does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
 
-You can customize a class that inherits from **ServiceExtensionAbility** and override the lifecycle callbacks of **ServiceExtensionAbility** to perform service logic operations during the initialization, connection, and disconnection processes.
+You can customize a class that inherits from **ServiceExtensionAbility** and override the lifecycle callbacks in the base class to perform service logic operations during the initialization, connection, and disconnection processes.
 
 ## Available APIs
 
@@ -19,7 +19,7 @@ You can customize a class that inherits from **ServiceExtensionAbility** and ove
 
 ## Constraints
 
-- Currently, OpenHarmony does not support creation of a **ServiceExtensionAbility** for third-party applications.
+- Currently, OpenHarmony does not support creation of a Service Extension ability for third-party applications.
 
 
 ## How to Develop
@@ -82,4 +82,5 @@ The following sample is provided to help you better understand how to develop a 
 
 - [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
 
-This sample will guide you through creating a Service Extension ability in the **ServiceExtAbility.ts** file in the **ServiceExtensionAbility** directory.
+This sample shows how to create a Service Extension ability in the **ServiceExtAbility.ts** file in the **ServiceExtensionAbility** directory.
+

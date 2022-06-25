@@ -9,19 +9,19 @@ High Definition Multimedia Interface (HDMI) is an audio and video transmission p
 
 ### Basic Concepts
 
-- TMDS is used to transmit audio, video, and various auxiliary data.
+- TMDS<br>Transmits audio, video, and various auxiliary data.
 
-- Display data channel (DDC) allows the TX and RX ends to obtain the transmitting and receiving capabilities. However, HDMI only needs to unidirectionally obtain the capabilities of the RX end (display).
+- Display data channel (DDC)<br>Allows the TX and RX ends to obtain the transmitting and receiving capabilities. However, HDMI only needs to unidirectionally obtain the capabilities of the RX end (display).
 
-- Consumer Electronics Control (CEC) enables interaction between the HDMI TX and RX devices.
+- Consumer Electronics Control (CEC)<br> Enables interaction between the HDMI TX and RX devices.
 
-- Fixed rate link (FRL) allows the maximum TMDS bandwidth to be increased from 18 Gbit/s to 48 Gbit/s.
-- High-bandwidth Digital Content Protection (HDCP) prevents copying of digital audio and video content being transmitted across devices.
+- Fixed rate link (FRL)<br>Allows the maximum TMDS bandwidth to be increased from 18 Gbit/s to 48 Gbit/s.
+- High-bandwidth Digital Content Protection (HDCP)<br>Prevents copying of digital audio and video content being transmitted across devices.
 
 
 ### Working Principles
 
-In the HDF, the HDMI module uses the independent service mode for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device to increase memory resources.
+In the HDF, the HDMI module uses the independent service mode for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device, which increases memory usage.
 
  **Figure 1** Independent service mode
 
@@ -121,17 +121,17 @@ struct HdmiCntlrOps {
 
 The HDMI module adaptation involves the following steps:
 
-- Instantiate the driver entry.
-    - Instantiate the **HdfDriverEntry** structure.
-    - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
+1. Instantiate the driver entry.
+   - Instantiate the **HdfDriverEntry** structure.
+   - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
+2. Configure attribute files.
+   - Add the **deviceNode** information to the **device_info.hcs** file.
+   - (Optional) Add the **hdmi_config.hcs** file.
+3. Instantiate the HDMI controller object.
+   - Initialize **HdmiCntlr**.
+   - Instantiate **HdmiCntlrOps** in **HdmiCntlr**.
 
-- Configure attribute files.
-    - Add the **deviceNode** information to the **device_info.hcs** file.
-    - (Optional) Add the **hdmi_config.hcs** file.
-
-- Instantiate the HDMI controller object.
-    - Initialize **HdmiCntlr**.
-    - Instantiate **HdmiCntlrOps** in **HdmiCntlr**.
+### Development Example
 
 1. Instantiate the driver entry.
 
@@ -158,7 +158,7 @@ The HDMI module adaptation involves the following steps:
 
     Configure HDMI controller information from the first node. This node specifies a type of HDMI controllers rather than a specific HDMI controller. In this example, there is only one HDMI controller. If there are multiple HDMI controllers, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **hdmi_config** file.
 
-    - **device_info.hcs** configuration example:
+    - **device_info.hcs** configuration example
 
         ```c
         root {
@@ -177,7 +177,7 @@ The HDMI module adaptation involves the following steps:
         }
         ```
 
-    - **hdmi_config.hcs** configuration example:
+    - **hdmi_config.hcs** configuration example
 
         ```c
          root {
@@ -403,15 +403,15 @@ The HDMI module adaptation involves the following steps:
         **Input parameter**:
         
        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-        
+       
         **Return value**:
-        
+       
         No value is returned.
-        
+       
         **Function description**:
-        
+       
         Releases the memory and deletes the controller. This function assigns values to the **Release** callback in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
-        
+       
         ```c
         static void HdmiAdapterRelease(struct HdfDeviceObject *obj)
         {
@@ -422,6 +422,6 @@ The HDMI module adaptation involves the following steps:
             HimciDeleteHost((struct HimciAdapterHost *)cntlr->priv);// Customized memory release function. A forced conversion from HdmiCntlr to HimciAdapterHost is involved in the process.
         }
         ```
-        
+       
         > ![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
         > All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.

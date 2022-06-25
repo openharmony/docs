@@ -166,13 +166,3 @@ The following example shows how to implement a distributed data object synchroni
     ```js
     local_object.setSessionId("");
     ```
-
-## Samples
-
-The following example is provided for you to better understand the development of distributed data objects:
-
-- [Distributed Notepad](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
-
-
-When an event of the Notepad app occurs on a device, such as a note is added, the tile or content of a note is changed, or the event list is cleared, the change will be synchronized to other devices in the trusted network.
-

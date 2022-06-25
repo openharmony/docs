@@ -232,7 +232,7 @@ Checks whether this process is running in a 64-bit environment.
 **Example**
 
 ```js
-var ressult = process.is64Bit();
+var result = process.is64Bit();
 ```
 
 

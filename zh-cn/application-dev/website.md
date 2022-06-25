@@ -254,12 +254,13 @@
     - 后台代理提醒
       - [后台代理概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
-    - 后台任务管理
-      - [后台任务概述](background-task-management/background-task-overview.md)
-      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
-    - 延迟任务调度
-      - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
-      - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
+    - 任务管理
+      - 后台任务
+        - [后台任务概述](task-management/background-task-overview.md)
+        - [后台任务开发指导](task-management/background-task-dev-guide.md)
+      - 延迟任务调度
+        - [延迟任务调度概述](task-management/work-scheduler-overview.md)
+        - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
     - 设备管理
       - USB服务
         - [USB服务开发概述](device/usb-overview.md)
@@ -494,6 +495,7 @@
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
         - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - 容器组件
+        - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
         - [Column](reference/arkui-ts/ts-container-column.md)
@@ -508,6 +510,7 @@
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)        
         - [Panel](reference/arkui-ts/ts-container-panel.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
+        - [RelativeContainer](reference/arkui-ts/ts-container-relativecontainer.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)        

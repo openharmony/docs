@@ -43,3 +43,10 @@ Ability信息
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | 是   | 否   | ability的自定义信息                       |
 | metaData<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | 是   | 否   | ability的元信息                           |
 | enabled<sup>8+</sup>  | boolean                                                  | 是   | 否   | ability是否可用                           |
+| supportWindowMode<sup>9+</sup>  | Array\<[SupportWindowMode](js-apis-Bundle.md)> | 是   | 否   | ability支持的窗口模式                      |
+| maxWindowRatio<sup>9+</sup>  | number                                            | 是   | 否   | ability支持的最大的窗口比例                      |
+| minWindowRatio<sup>9+</sup>  | number                                            | 是   | 否   | ability支持的最小的窗口比                      |
+| maxWindowWidth<sup>9+</sup>  | number                                            | 是   | 否   | ability支持的最大的窗口宽度                      |
+| minWindowWidth<sup>9+</sup>  | number                                            | 是   | 否   | ability支持的最小的窗口宽度                      |
+| maxWindowHeight<sup>9+</sup>  | number                                           | 是   | 否   | ability支持的最大的窗口高度                      |
+| minWindowHeight<sup>9+</sup>  | number                                           | 是   | 否   | ability支持的最小的窗口高度                      |

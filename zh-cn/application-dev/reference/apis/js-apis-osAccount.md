@@ -2009,7 +2009,7 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
-域帐号信息。
+约束来源类型信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 

@@ -1,7 +1,7 @@
 # ListItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,12 +27,12 @@ ListItem()
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| sticky | Sticky | Sticky.None | Sticky effect of the list item. For details, see Sticky enums. |
+| sticky | Sticky | Sticky.None | Sticky effect of the list item. For details, see **Sticky** enums. |
 | editable | boolean | false | Whether the list item is editable. A list item can be deleted in editing mode. |
-| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;ListItem&gt;** is selectable by the mouse.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;List&gt;** container. |
+| selectable<sup>8+</sup> | boolean | true | Whether the current **ListItem;** is selectable by the mouse.<br/>**NOTE**<br/>This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;List&gt;** container. |
 
 - Sticky enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | None | No sticky. | 
   | Normal | The list item is sticky. | 
@@ -40,7 +40,7 @@ ListItem()
 
 ## Events
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onSelect(callback: (isSelected: boolean) =&gt; any)<sup>8+</sup> | Triggered when the selected state of the **&lt;ListItem&gt;** changes.<br/>**isSelected**: Returns **true** if the **&lt;ListItem&gt;** is selected by the mouse; returns **false** otherwise. | 
 

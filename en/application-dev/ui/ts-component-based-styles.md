@@ -1,10 +1,9 @@
 # @Styles
 
 
-The @Styles decorator adds new attribute functions to basic components, such as &lt;Text&gt;, &lt;Column&gt;, and &lt;Button&gt;. Currently, @Styles supports only universal attributes. You can use the @Styles decorator to quickly define and reuse the custom styles of a component.
+The **@Styles** decorator adds new attribute functions to basic components, such as **\<Text>**, **\<Column>**, and **\<Button>**. Currently, **@Styles** supports only universal attributes. You can use the **@Styles** decorator to quickly define and reuse the custom styles of a component.
 
-
-@Styles can be defined inside or outside a component. When it is defined outside a component, the keyword function must be included.
+**@Styles** can be defined inside or outside a component. When it is defined outside a component, the keyword function must be included.
 
 
 
@@ -36,11 +35,10 @@ struct FancyUse {
 }
 ```
 
+**@Styles** can also be used inside the **StateStyles** attribute to assign state-specific attributes to components.
 
-@Styles can also be used inside the StateStyles attribute to assign state-specific attributes to components.
 
-
-In StateStyles, styles defined outside the component can be directly called. However, the keyword this must be used to call styles defined in the component.
+In **StateStyles**, styles defined outside the component can be directly called. However, the keyword **this** must be used to call styles defined in the component.
 
 
 
@@ -53,22 +51,22 @@ In StateStyles, styles defined outside the component can be directly called. How
 @Entry
 @Component
 struct FancyUse {
-  @Styles function componentFancy() {
+  @Styles componentFancy() {
     .width(50)
     .height(50)
   }
   build() {
     Row({ space: 10 }) {
       Button() {
-	Text("Fancy")
+      	Text("Fancy")
       }
       .stateStyles({
-	normal: {
-	  .width(80)
-	  .height(80)
-	},
-	disabled: this.componentFancy,
-	pressed: globalFancy
+      	normal: {
+      	  .width(80)
+      	  .height(80)
+      	},
+      	disabled: this.componentFancy,
+      	pressed: globalFancy
       })
     }
   }

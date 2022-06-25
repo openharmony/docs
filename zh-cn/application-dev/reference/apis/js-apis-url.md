@@ -30,11 +30,11 @@ URLSearchParams的构造函数。
 **示例：**
 
 ```js
-var objectParams = new URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new URLSearchParams({"fod" : 1 , "bard" : 2});
-var objectParams2 = new URLSearchParams('?fod=1&bard=2');
-var urlObject = new URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new URLSearchParams(urlObject.search);
+var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+var objectParams1 = new Url.URLSearchParams({"fod" : 1 , "bard" : 2});
+var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
+var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+var params = new Url.URLSearchParams(urlObject.search);
 ```
 
 
@@ -56,8 +56,8 @@ append(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.append('fod', 3);
 ```
 
@@ -79,8 +79,8 @@ delete(name: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsobject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsobject.delete('fod');
 ```
 
@@ -108,8 +108,8 @@ getAll(name: string): string[]
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.append('fod', 3); // Add a second value for the fod parameter.
 console.log(params.getAll('fod')) // Output ["1","3"].
 ```
@@ -132,7 +132,7 @@ entries(): IterableIterator<[string, string]>
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
+var searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
 for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
@@ -165,7 +165,7 @@ forEach(callbackfn: (value: string, key: string, searchParams: this) => void, th
 **示例：**
 
 ```js
-const myURLObject = new URL('https://developer.exampleUrl/?fod=1&bard=2'); 
+const myURLObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 myURLObject.searchParams.forEach((value, name, searchParams) => {  
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
@@ -196,7 +196,7 @@ get(name: string): string | null
 **示例：**
 
 ```js
-var paramsOject = new URLSearchParams(document.location.search.substring(1)); 
+var paramsOject = new Url.URLSearchParams(document.location.search.substring(1)); 
 var name = paramsOject.get("name"); // is the string "Jonathan" 
 var age = parseInt(paramsOject.get("age"), 10); // is the number 18
 var address = paramsOject.get("address"); // null
@@ -226,8 +226,8 @@ has(name: string): boolean
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1)); 
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
 paramsObject.has('bard') === true;
 ```
 
@@ -250,8 +250,8 @@ set(name: string, value: string): void
 **示例：**
 
 ```js
-let urlObject = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new URLSearchParams(urlObject.search.slice(1));
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.set('baz', 3); // Add a third parameter.
 ```
 
@@ -267,7 +267,7 @@ sort(): void
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
+var searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
 console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=2&c=3&d=4
 ```
@@ -290,7 +290,7 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParamsObject = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+var searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var key of searchParamsObject .keys()) { // Output key-value pairs
     console.log(key);
 }
@@ -314,7 +314,7 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParams = new URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+var searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var value of searchParams.values()) { 
     console.log(value);
 }
@@ -338,7 +338,7 @@ for (var value of searchParams.values()) {
 **示例：**
 
 ```js
-const paramsObject = new URLSearchParams('fod=bay&edg=bap');
+const paramsObject = new Url.URLSearchParams('fod=bay&edg=bap');
 for (const [name, value] of paramsObject) { 
     console.log(name, value); 
 } 
@@ -362,8 +362,8 @@ toString(): string
 **示例：**
 
 ```js
-let url = new URL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new URLSearchParams(url.search.slice(1)); 
+let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new Url.URLSearchParams(url.search.slice(1)); 
 params.append('fod', 3);
 console.log(params.toString());
 ```
@@ -410,17 +410,17 @@ URL的构造函数。
 
 ```js
 var mm = 'http://username:password@host:8080';
-var a = new URL("/", mm); // Output 'http://username:password@host:8080/';
-var b = new URL(mm); // Output 'http://username:password@host:8080/';
-new URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-var c = new URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
-new URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
-new URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
-new URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
-new URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
-new URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
-new URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
-new URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
+var a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
+var b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
+new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
+var c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
+new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
+new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new Url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+new Url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+new Url.URL('http://www.shanxi.com', ); // Output http://www.shanxi.com/
+new Url.URL('http://www.shanxi.com', b); // Output http://www.shanxi.com/
 ```
 
 
@@ -441,7 +441,7 @@ toString(): string
 **示例：**
 
 ```js
-const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toString()
 ```
 
@@ -462,6 +462,6 @@ toJSON(): string
 
 **示例：**
 ```js
-const url = new URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 url.toJSON()
 ```

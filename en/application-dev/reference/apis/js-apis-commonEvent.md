@@ -1,6 +1,6 @@
 # CommonEvent
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
@@ -181,7 +181,7 @@ Publishes a common event. This API uses a callback to return the result.
 **Example**
 
 ```js
-// Callback for common event publication
+// Callback for common event publication.
 function PublishCallBack(err) {
 	if (err.code) {
         console.error("publish failed " + JSON.stringify(err));
@@ -219,7 +219,7 @@ Publishes a common event with given attributes. This API uses a callback to retu
 // Attributes of a common event.
 var options = {
 	code: 0,			 // Result code of the common event
-	data: "initial data";// Result data of the common event
+	data: "initial data",// Result data of the common event
 	isOrdered: true	 // The common event is an ordered one.
 }
 
@@ -257,7 +257,7 @@ Publishes a common event to a specific user. This API uses a callback to return 
 **Example**
 
 ```js
-// Callback for common event publication
+// Callback for common event publication.
 function PublishAsUserCallBack(err) {
 	if (err.code) {
         console.error("publishAsUser failed " + JSON.stringify(err));
@@ -299,7 +299,7 @@ Publishes a common event with given attributes to a specific user. This API uses
 // Attributes of a common event.
 var options = {
 	code: 0,			 // Result code of the common event
-	data: "initial data";// Result data of the common event
+	data: "initial data",// Result data of the common event
 }
 
 // Callback for common event publication
@@ -1177,12 +1177,12 @@ Finishes this ordered common event. This API uses a callback to return the resul
 var subscriber; // Subscriber object successfully created.
 
 // Callback for ordered common event finishing.
-function finishCommonEventCallback() {
+function finishCommonEventCallback(err) {
   if (err.code) {
-        console.error("finishCommonEvent failed " + JSON.stringify(err));
-    } else {
-        console.info("FinishCommonEvent");
-    }
+    console.error("finishCommonEvent failed " + JSON.stringify(err));
+} else {
+    console.info("FinishCommonEvent");
+}
 }
 subscriber.finishCommonEvent(finishCommonEventCallback);
 ```

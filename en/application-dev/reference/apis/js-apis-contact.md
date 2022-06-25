@@ -195,7 +195,7 @@ Updates a contact based on the specified contact information and attributes. Thi
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   },{
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
           console.log('updateContact callback: err->${JSON.stringify(err)}');
@@ -234,7 +234,7 @@ Updates a contact based on the specified contact information and attributes. Thi
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then(() => {
       console.log('updateContact success');
@@ -564,7 +564,9 @@ Queries contacts based on the specified key and application. This API uses an as
 
   ```js
   contact.queryContact('xxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -596,7 +598,7 @@ Queries contacts based on the specified key and attributes. This API uses an asy
 
   ```js
   contact.queryContact('xxx', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -630,8 +632,11 @@ Queries contacts based on the specified key, application, and attributes. This A
   ```js
   contact.queryContact('xxx', {
       holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -669,8 +674,11 @@ Queries contacts based on the specified key, application, and attributes. This A
   ```js
   let promise = contact.queryContact('xxx', {
       holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContact success: data->${JSON.stringify(data)}`);
@@ -728,7 +736,9 @@ Queries all contacts based on the specified application. This API uses an asynch
 
   ```js
   contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -759,7 +769,7 @@ Queries all contacts based on the specified attributes. This API uses an asynchr
 
   ```js
   contact.queryContacts({
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -791,9 +801,11 @@ Queries all contacts based on the specified application and attributes. This API
 
   ```js
   contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -829,9 +841,11 @@ Queries all contacts based on the specified application and attributes. This API
 
   ```js
   let promise = contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContacts success: data->${JSON.stringify(data)}`);
@@ -891,7 +905,9 @@ Queries contacts based on the specified phone number and application. This API u
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -923,7 +939,7 @@ Queries contacts based on the specified phone number and attributes. This API us
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -956,9 +972,11 @@ Queries contacts based on the specified phone number, application, and attribute
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -995,9 +1013,11 @@ Queries contacts based on the specified phone number, application, and attribute
 
   ```js
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
@@ -1057,7 +1077,9 @@ Queries contacts based on the specified email address and application. This API 
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+       holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1089,7 +1111,7 @@ Queries contacts based on the specified email address and attributes. This API u
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1122,9 +1144,11 @@ Queries contacts based on the specified email address, application, and attribut
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1161,9 +1185,11 @@ Queries contacts based on the specified email address, application, and attribut
 
   ```js
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
@@ -1221,7 +1247,9 @@ Queries all groups of this contact based on the specified application. This API 
 
   ```js
   contact.queryGroups({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -1256,7 +1284,9 @@ Queries all groups of this contact based on the specified application. This API 
 
   ```js
   let promise = contact.queryGroups({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   });
   promise.then((data) => {
       console.log(`queryGroups success: data->${JSON.stringify(data)}`);
@@ -1371,7 +1401,9 @@ Queries the key of a contact based on the specified contact ID and application. 
 
   ```js
   contact.queryKey(id, {
-      holderId:1
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -1407,7 +1439,9 @@ Queries the key of a contact based on the specified contact ID and application. 
 
   ```js
   let promise = contact.queryKey(id, {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   });
   promise.then((data) => {
       console.log(`queryKey success: data->${JSON.stringify(data)}`);

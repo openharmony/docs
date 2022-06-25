@@ -1,4 +1,4 @@
-# Compilation and Building<a name="EN-US_TOPIC_0000001162500073"></a>
+# Compilation and Building
 
 
 The compilation and building subsystem provides a framework based on Generate Ninja (GN) and Ninja. This subsystem allows you to:
@@ -7,7 +7,7 @@ The compilation and building subsystem provides a framework based on Generate Ni
 
 -   Package capabilities required by a product by assembling modules based on the product configuration.
 
-## Basic Concepts<a name="section175012297491"></a>
+## Basic Concepts
 
 It is considered best practice to learn the following basic concepts before you start building:
 
@@ -32,7 +32,7 @@ It is considered best practice to learn the following basic concepts before you 
     Ninja is a small high-speed build system.
 
 
-## Working Principles<a name="section193961322175011"></a>
+## Working Principles
 
 The compilation and build process of OpenHarmony is as follows:
 
@@ -40,15 +40,15 @@ The compilation and build process of OpenHarmony is as follows:
 -   Running GN: Configure the toolchain and global options based on the parsed product name and compilation type.
 -   Running Ninja: Start building and generate a product distribution.
 
-## Building a Mini or Small System<a name="section119041639115811"></a>
+## Building a Mini or Small System
 
 See [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README.md).
 
-## Building a Standard System<a name="section8750514195912"></a>
+## Building a Standard System
 
-See the readme of the **build** repository.
+See [build](https://gitee.com/openharmony/build).
 
-## Repositories Involved<a name="section44651652878"></a>
+## Repositories Involved
 
 **Compilation and building**
 

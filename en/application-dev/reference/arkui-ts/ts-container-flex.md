@@ -1,11 +1,11 @@
 # Flex
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **\<Flex>** component allows for an elastic layout.
+The **\<Flex>** component allows for elastic layout of child components.
 
 
 ## Required Permissions
