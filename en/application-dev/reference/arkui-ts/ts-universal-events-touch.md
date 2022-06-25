@@ -1,8 +1,8 @@
 # Touch Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -26,7 +26,7 @@ None
   | touches | Array&lt;TouchObject&gt; | All finger information. | 
   | changedTouches | Array&lt;TouchObject&gt; | Finger information changed. | 
   | timestamp | number | Timestamp of the event. | 
-  | target<sup>8+</sup> | EventTarget | Target of the event. | 
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | Target of the event. | 
 
 - APIs
     | API | Description | 
@@ -57,7 +57,8 @@ None
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TouchExample {
@@ -79,7 +80,7 @@ struct TouchExample {
           }
           console.info(this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
           + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\ncomponent globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\nwidth:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
           + event.target.area.width + '\nheight:' + event.target.area.height)
         })
       Text(this.text)
