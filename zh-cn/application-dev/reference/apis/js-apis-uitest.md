@@ -1501,7 +1501,7 @@ getWindowMode(): Promise\<WindowMode>
 async function demo() {
     let driver = UiDriver.create()
     let window = await driver.findWindow({actived: true})
-    let rect = await window.getWindowMode()
+    let mode = await window.getWindowMode()
 }
 ```
 
@@ -1557,7 +1557,7 @@ async function demo() {
 
 focus(): Promise\<bool>
 
-将窗口设置为获焦状态。
+让窗口获焦。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1604,7 +1604,7 @@ moveTo(x: number, y: number): Promise\<bool>;
 async function demo() {
     let driver = UiDriver.create()
     let window = await driver.findWindow({actived: true})
-    await window.focus()
+    await window.moveTo(100, 100)
 }
 ```
 
@@ -1636,7 +1636,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
 async function demo() {
     let driver = UiDriver.create()
     let window = await driver.findWindow({actived: true})
-    await window.resize(100,100,ResizeDirection.LEFT)
+    await window.resize(100, 100, ResizeDirection.LEFT)
 }
 ```
 
@@ -1644,7 +1644,7 @@ async function demo() {
 
 split(): Promise\<bool>
 
-将窗口切换成分屏模式。适用于支持切屏操作的窗口。
+将窗口模式切换成分屏模式。适用于支持切屏操作的窗口。
 
 **系统能力**：SystemCapability.Test.UiTest
 
