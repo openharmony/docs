@@ -6,6 +6,7 @@
 
 
 ## 接口说明
+具体分布式数据对象相关功能接口请见[分布式数据对象](../reference/apis/js-apis-data-distributedobject.md)。
 
 ### 创建数据对象实例
 
