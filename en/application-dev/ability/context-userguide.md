@@ -195,7 +195,7 @@ export default class MainAbility extends Ability {
 
 ### application/FormExtensionContext
 
-For details, see [FormExtensionContext](/en/application-dev/reference/apis/js-apis-formextensioncontext.md).
+For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
 
 ## Common Incorrect Usage
 

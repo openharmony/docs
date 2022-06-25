@@ -1,6 +1,6 @@
 # 页面路由
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - 从API Version 8 开始，该接口不再维护，推荐使用新接口[`@ohos.router`](js-apis-router.md)。
 >
@@ -11,7 +11,7 @@
 ## 导入模块
 
 
-```
+```js
 import router from '@system.router';
 ```
 
@@ -31,7 +31,7 @@ push(options: RouterOptions): void
 
 **示例：**
 
-```
+```js
 // 在当前页面中
 export default {
   pushPage() {
@@ -49,7 +49,7 @@ export default {
 ```
 
 
-```
+```js
 // 在routerpage2页面中
 export default {
   data: {
@@ -85,7 +85,7 @@ replace(options: RouterOptions): void
 
 **示例：**
 
-```
+```js
 // 在当前页面中
 export default {
   replacePage() {
@@ -100,7 +100,7 @@ export default {
 ```
 
 
-```
+```js
 // 在detail页面中
 export default {
   data: {
@@ -128,7 +128,7 @@ back(options?: BackRouterOptions): void
 
 **示例：**
 
-```
+```js
 // index页面
 export default {    
   indexPushPage() {        
@@ -140,7 +140,7 @@ export default {
 ```
 
 
-```
+```js
 // detail页面
 export default {    
   detailPushPage() {        
@@ -152,7 +152,7 @@ export default {
 ```
 
 
-```
+```js
 // mall页面通过back，将返回detail页面
 export default {    
   mallBackPage() {        
@@ -162,7 +162,7 @@ export default {
 ```
 
 
-```
+```js
 // detail页面通过back，将返回index页面
 export default {    
   defaultBack() {        
@@ -172,7 +172,7 @@ export default {
 ```
 
 
-```
+```js
 // 通过back，返回到detail页面
 export default {    
   backToDetail() {        
@@ -208,7 +208,7 @@ clear(): void
 
 **示例：**
 
-```
+```js
 export default {    
   clearPage() {        
     router.clear();    
@@ -232,7 +232,7 @@ getLength(): string
 
 **示例：**
 
-```
+```js
 export default {     
   getLength() {        
     var size = router.getLength();        
@@ -257,7 +257,7 @@ getState(): RouterState
 
 **示例：**
 
-```
+```js
 export default {     
   getState() {        
     var page = router.getState();
@@ -284,7 +284,7 @@ enableAlertBeforeBackPage(options: EnableAlertBeforeBackPageOptions): void
 
 **示例：**
 
-```
+```js
 export default {    
   enableAlertBeforeBackPage() {        
     router.enableAlertBeforeBackPage({            
@@ -292,8 +292,8 @@ export default {
       success: function() {                
         console.log('success');            
       },            
-      fail: function() {                
-        console.log('fail');            
+      cancel: function() {                
+        console.log('cancel');            
       },        
     });    
   }
@@ -316,15 +316,15 @@ disableAlertBeforeBackPage(options?: DisableAlertBeforeBackPageOptions): void
 
 **示例：**
 
-```
+```js
 export default {    
   disableAlertBeforeBackPage() {        
     router.disableAlertBeforeBackPage({            
       success: function() {                
         console.log('success');            
       },            
-      fail: function() {                
-        console.log('fail');            
+      cancel: function() {                
+        console.log('cancel');            
       },        
     });    
   }

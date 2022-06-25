@@ -32,13 +32,14 @@ In Ubuntu:
    > - Java 8 or later is required. This section uses Java 8 as an example.
 
 2. Set Python 3.8 as the default Python version.
-   Check the location of Python 3.8:
-
+   
+Check the location of Python 3.8:
+   
    
    ```
    which python3.8
-   ```
-
+```
+   
      Change python and python3 to python3.8.
    
    ```

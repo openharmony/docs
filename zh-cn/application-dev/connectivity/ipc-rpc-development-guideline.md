@@ -104,13 +104,13 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
    // 注册到本设备内
    auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   samgr->AddSystemAbility(said, new TestAbility());
+   samgr->AddSystemAbility(saId, new TestAbility());
    
    // 在组网场景下，会被同步到其他设备上
    auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    ISystemAbilityManager::SAExtraProp saExtra;
    saExtra.isDistributed = true; // 设置为分布式SA
-   int result = samgr->AddSystemAbility(said, new TestAbility(), saExtra);
+   int result = samgr->AddSystemAbility(saId, new TestAbility(), saExtra);
    ```
 
 6. SA 获取与调用
@@ -119,12 +119,12 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
    // 获取本设备内注册的SA的proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(said);
+   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // 使用iface_cast宏转换成具体类型
    
    // 获取其他设备注册的SA的Proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(sdid, deviceId); // deviceId是指定设备的标识符
+   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, deviceId); // deviceId是指定设备的标识符
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
 

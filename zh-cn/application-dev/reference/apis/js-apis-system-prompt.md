@@ -11,7 +11,7 @@
 ## 导入模块
 
 
-```
+```js
 import prompt from '@system.prompt';
 ```
 
@@ -31,7 +31,7 @@ showToast(options: ShowToastOptions): void
 
 **示例：** 
 
-```
+```js
 export default {    
   showToast() {        
     prompt.showToast({            
@@ -60,7 +60,7 @@ showDialog(options: ShowDialogOptions): void
 
 **示例：**
 
-```
+```js
 export default {    
   showDialog() {       
     prompt.showDialog({           
@@ -100,7 +100,7 @@ showActionMenu(options: ShowActionMenuOptions): void
 
 **示例：**
 
-```
+```js
 export default {    
   showActionMenu() {        
     prompt.showActionMenu({            
@@ -115,11 +115,11 @@ export default {
            color: '#000000',                
         },            
       ],            
-      success: function(data) {                
-        console.log('dialog success callback，click button : ' + data.tapIndex);            
+      success: function(tapIndex) {                
+        console.log('dialog success callback，click button : ' + tapIndex);            
       },            
-      fail: function(data) {                
-        console.log('dialog fail callback' + data.errMsg);            
+      fail: function(errMsg) {                
+        console.log('dialog fail callback' + errMsg);            
       },       
     });    
   }

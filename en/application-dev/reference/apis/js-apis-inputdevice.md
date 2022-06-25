@@ -25,10 +25,10 @@ Enables listening for hot swap events of an input device.
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                |
-| -------- | ------------------------------------------------- | ---- | -------------------- |
-| type     | string                                            | Yes  | Event type of the input device.  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | Yes  | Listener for events of the input device.|
+| Name      | Type                                      | Mandatory  | Description         |
+| -------- | ---------------------------------------- | ---- | ----------- |
+| type     | string                                   | Yes   | Event type of the input device. |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | Yes   | Listener for events of the input device.|
 
 **Example**
 
@@ -36,12 +36,12 @@ Enables listening for hot swap events of an input device.
 let isPhysicalKeyboardExist = true;
 inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
-    inputDevice.getKeyboardType(data.deviceId, (ret) => {
+    inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
         console.log("The keyboard type of the device is: " + ret);
-        if (ret == 2 && data.type == 'add') {
+        if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
             // The physical keyboard is connected.
             isPhysicalKeyboardExist = true;
-        } else if (ret == 2 && data.type == 'remove') {
+        } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
             // The physical keyboard is disconnected.
             isPhysicalKeyboardExist = false;
         }
@@ -60,20 +60,20 @@ Disables listening for hot swap events of an input device.
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                |
-| -------- | ------------------------------------------------- | ---- | -------------------- |
-| type     | string                                            | Yes  | Event type of the input device.  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | No  | Listener for events of the input device.|
+| Name      | Type                                      | Mandatory  | Description         |
+| -------- | ---------------------------------------- | ---- | ----------- |
+| type     | string                                   | Yes   | Event type of the input device. |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | No   | Listener for events of the input device.|
 
 **Example**
 
 ```js
-listener: function(data) {
+function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 // Disable this listener.
-inputDevice.off("change", this.listener);
+inputDevice.off("change", listener);
 
 // Disable all listeners.
 inputDevice.off("change");
@@ -104,7 +104,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
@@ -112,8 +112,8 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 **Return value**
 
-| Parameter                     | Description                         |
-| ------------------------- | ----------------------------- |
+| Parameter                                | Description                 |
+| ---------------------------------- | ------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.|
 
 **Example**
@@ -128,7 +128,7 @@ inputDevice.getDeviceIds().then((ids)=>{
 
 getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
 
-Obtains the information about an input device. This API uses an asynchronous callback to return the result.
+Obtains information about an input device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -150,7 +150,7 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
 
@@ -158,14 +158,14 @@ Obtains information about an input device. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| deviceId | number | Yes  | ID of the input device.|
+| Name      | Type    | Mandatory  | Description          |
+| -------- | ------ | ---- | ------------ |
+| deviceId | number | Yes   | ID of the input device.|
 
 **Return value**
 
-| Parameter                                              | Description                         |
-| -------------------------------------------------- | ----------------------------- |
+| Parameter                                      | Description                 |
+| ---------------------------------------- | ------------------- |
 | Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise used to return the result.|
 
 **Example**
@@ -181,17 +181,17 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void;
 
-Checks whether an input device supports the specified key codes. This API uses an asynchronous callback to return the result.
+Obtains the key codes supported by the input device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                                                        |
-| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| deviceId | number                               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt;                 | Yes  | Key code to be queried. A maximum of five key codes can be specified.                     |
-| callback | Callback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                                |
+| Name      | Type                                  | Mandatory  | Description                               |
+| -------- | ------------------------------------ | ---- | --------------------------------- |
+| deviceId | number                               | Yes   | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| keys     | Array&lt;KeyCode&gt;                 | Yes   | Key codes to be queried. A maximum of five key codes can be specified.             |
+| callback | Callback&lt;Array&lt;boolean&gt;&gt; | Yes   | Callback used to return the result.                   |
 
 **Example**
 
@@ -206,21 +206,21 @@ inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;;
 
-Checks whether an input device supports the specified key codes. This API uses a promise to return the result.
+Obtains the key codes supported by the input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key code to be queried. A maximum of five key codes can be specified.                     |
+| Name      | Type                  | Mandatory  | Description                               |
+| -------- | -------------------- | ---- | --------------------------------- |
+| deviceId | number               | Yes   | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| keys     | Array&lt;KeyCode&gt; | Yes   | Key codes to be queried. A maximum of five key codes can be specified.             |
 
 **Return value**
 
-| Parameter                               | Description                         |
-| ----------------------------------- | ----------------------------- |
+| Parameter                                 | Description                 |
+| ----------------------------------- | ------------------- |
 | Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result.|
 
 **Example**
@@ -242,10 +242,10 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                                              | Mandatory| Description                                                        |
-| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number                                             | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | Yes  | Callback used to return the result.                                |
+| Name      | Type                                      | Mandatory  | Description                               |
+| -------- | ---------------------------------------- | ---- | --------------------------------- |
+| deviceId | number                                   | Yes   | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | Yes   | Callback used to return the result.                   |
 
 **Example**
 
@@ -266,29 +266,29 @@ Obtains the keyboard type of an input device. This API uses a promise to return 
 
 **Return value**
 
-| Parameter                                        | Description                         |
-| -------------------------------------------- | ----------------------------- |
+| Parameter                                      | Description                 |
+| ---------------------------------------- | ------------------- |
 | Promise&lt;[KeyboardType](#keyboardtype)&gt; | Promise used to return the result.|
 
 **Example**
 
 ```js
 // Query the keyboard type of the input device whose ID is 1.
-inputDevice.getKeyboardType().then((ret)=>{
+inputDevice.getKeyboardType(1).then((ret)=>{
     console.log("The keyboard type of the device is: " + ret);
 })
 ```
 
 ## DeviceListener<sup>9+</sup>
 
-Defines a listener for events of an input device.
+Defines the information about an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name    | Type                   | Description                                                        |
-| -------- | --------------------------- | ------------------------------------------------------------ |
-| type     | [ChangeType](#changetype) | Device change type, which indicates whether an input device is inserted or removed.                                  |
-| deviceId | number                      | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
+| Name      | Type                     | Description                               |
+| -------- | ------------------------- | --------------------------------- |
+| type     | [ChangeType](#changetype) | Device change type, which indicates whether an input device is inserted or removed.                    |
+| deviceId | number                    | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 
 ## InputDeviceData
 
@@ -296,18 +296,18 @@ Defines the information about an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name                | Type                              | Description                                                        |
-| -------------------- | -------------------------------------- | ------------------------------------------------------------ |
-| id                   | number                                 | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| name                 | string                                 | Name of the input device.                                            |
-| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                                          |
-| bus<sup>9+</sup>     | number                                 | Bus type of the input device.                                        |
-| product<sup>9+</sup> | number                                 | Product information of the input device.                                        |
-| vendor<sup>9+</sup>  | number                                 | Vendor information of the input device.                                        |
-| version<sup>9+</sup> | number                                 | Version information of the input device.                                        |
-| phys<sup>9+</sup>    | string                                 | Physical address of the input device.                                        |
-| uniq<sup>9+</sup>    | string                                 | Unique ID of the input device.                                        |
+| Name                  | Type                                  | Description                                      |
+| -------------------- | -------------------------------------- | ---------------------------------------- |
+| id                   | number                                 | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.       |
+| name                 | string                                 | Name of the input device.                                |
+| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                               |
+| bus<sup>9+</sup>     | number                                 | Bus type of the input device.                              |
+| product<sup>9+</sup> | number                                 | Product information of the input device.                              |
+| vendor<sup>9+</sup>  | number                                 | Vendor information of the input device.                              |
+| version<sup>9+</sup> | number                                 | Version information of the input device.                              |
+| phys<sup>9+</sup>    | string                                 | Physical address of the input device.                              |
+| uniq<sup>9+</sup>    | string                                 | Unique ID of the input device.                              |
 
 ## AxisType<sup>9+</sup>
 
@@ -315,17 +315,17 @@ Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type| Description               |
-| ----------- | -------- | ------------------- |
-| touchMajor  | string   | touchMajor axis. |
-| touchMinor  | string   | touchMinor axis. |
-| toolMinor   | string   | toolMinor axis.  |
-| toolMajor   | string   | toolMajor axis.  |
-| orientation | string   | Orientation axis.|
-| pressure    | string   | Pressure axis.   |
-| x           | string   | X axis.          |
-| y           | string   | Y axis.          |
-| NULL        | string   | None.               |
+| Name         | Type  | Description             |
+| ----------- | ------ | --------------- |
+| touchMajor  | string | touchMajor axis. |
+| touchMinor  | string | touchMinor axis. |
+| toolMinor   | string | toolMinor axis.  |
+| toolMajor   | string | toolMajor axis.  |
+| orientation | string | Orientation axis.|
+| pressure    | string | Pressure axis.   |
+| x           | string | X axis.          |
+| y           | string | Y axis.          |
+| NULL        | string | None.             |
 
 ## AxisRange
 
@@ -333,15 +333,15 @@ Defines the axis range of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name                   | Type                 | Description            |
-| ----------------------- | ------------------------- | ---------------- |
+| Name                     | Type                     | Description      |
+| ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis                    | [AxisType](axistype)      | Axis type.      |
-| max                     | number                    | Maximum value of the axis.    |
-| min                     | number                    | Minimum value of the axis.    |
-| fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.    |
-| flat<sup>9+</sup>       | number                    | Benchmark value of the axis.    |
-| resolution<sup>9+</sup> | number                    | Resolution of the axis.    |
+| axis                    | [AxisType](#axistype)      | Axis type.   |
+| max                     | number                    | Maximum value of the axis.  |
+| min                     | number                    | Minimum value of the axis.  |
+| fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.  |
+| flat<sup>9+</sup>       | number                    | Benchmark value of the axis.  |
+| resolution<sup>9+</sup> | number                    | Resolution of the axis.  |
 
 ## SourceType
 
@@ -364,10 +364,10 @@ Defines the change type for the hot swap event of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name  | Type| Description              |
-| ------ | -------- | ------------------ |
-| add    | string   | An input device is inserted.|
-| remove | string   | An input device is removed.|
+| Name    | Type  | Description       |
+| ------ | ------ | --------- |
+| add    | string | An input device is inserted.|
+| remove | string | An input device is removed.|
 
 ## KeyboardType<sup>9+</sup>
 
@@ -375,11 +375,11 @@ Enumerates the keyboard types.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name               | Type| Value  | Description              |
-| ------------------- | -------- | ---- | ------------------ |
-| NONE                | number   | 0    | Keyboard without keys  |
-| UNKNOWN             | number   | 1    | Keyboard with unknown keys|
-| ALPHABETIC_KEYBOARD | number   | 2    | Full keyboard  |
-| DIGITAL_KEYBOARD    | number   | 3    | Keypad  |
-| HANDWRITING_PEN     | number   | 4    | Stylus  |
-| REMOTE_CONTROL      | number   | 5    | Remote control  |
+| Name                 | Type  | Value   | Description       |
+| ------------------- | ------ | ---- | --------- |
+| NONE                | number | 0    | Keyboard without keys. |
+| UNKNOWN             | number | 1    | Keyboard with unknown keys.|
+| ALPHABETIC_KEYBOARD | number | 2    | Full keyboard. |
+| DIGITAL_KEYBOARD    | number | 3    | Keypad. |
+| HANDWRITING_PEN     | number | 4    | Stylus. |
+| REMOTE_CONTROL      | number | 5    | Remote control. |

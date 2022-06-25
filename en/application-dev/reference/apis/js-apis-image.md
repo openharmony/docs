@@ -1388,7 +1388,7 @@ Defines image decoding options.
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
-| index              | numer                              | Yes  | Yes  | Index of the image to decode.    |
+| index              | number                              | Yes  | Yes  | Index of the image to decode.    |
 
 ## Region<sup>7+</sup>
 

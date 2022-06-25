@@ -218,7 +218,7 @@ Therefore, domain IDs allocated to BT can be further divided as follows:
 
 - **[Rule] The log service controls the log traffic of each service. Changing the default traffic threshold must be approved by the DFX.**
 
-**Note:** The default log traffic threshold of each domain is **2048 KB/s** for an official version and **10240 KB/s** for a trial version. Any change to the default threshold must be approved by the DFX.
+**Note:** The default log traffic threshold of each domain ID is **10240 Bytes/s** . Any change to the default threshold must be approved by the DFX.
 
 - **[Rule] Correctly set the log formatting privacy tags {public} and {private}**.
 

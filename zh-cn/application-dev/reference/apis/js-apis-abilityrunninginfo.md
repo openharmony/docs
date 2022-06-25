@@ -1,8 +1,8 @@
 # AbilityRunningInfo
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 Ability运行相关信息。
 
@@ -11,12 +11,10 @@ Ability运行相关信息。
 ```js
 import abilitymanager from '@ohos.application.abilityManager';
 ```
+
 ## 使用说明
 
-
 通过abilityManager中getAbilityRunningInfos方法获取。
-
-
 
 ```js
 import abilitymanager from '@ohos.application.abilityManager';

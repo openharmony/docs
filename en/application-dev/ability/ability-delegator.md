@@ -12,8 +12,8 @@ The APIs provided by the test framework can be used only in the test HAP. They t
 
 The test framework can be started in either of the following ways:
 
-- Method 1: Run the <idp:inline class="- topic/inline " val="code" displayname="code" id="code779717408187" tempcmdid="code779717408187">aa test</idp:inline> command.
-- Method 2: Use the IDE.
+- Method 1: Run the `aa test` command.
+- Method 2: Use DevEco Studio.
 
 ### Running aa test
 
@@ -37,16 +37,16 @@ aa test -b BundleName -m com.example.myapplicationfaets -s unittest OpenHarmonyT
 | -s unittest     | Yes      | Name of the **TestRunner** to be used. The TestRunner name must be the same as the file name.  |
 | -w              | No      | Timeout interval of a test case, in seconds. If this parameter is not specified or is set to a value less than or equal to **0**, the test framework exits only after **finishTest** is invoked.|
 | -s \<key>\<value> | No      | **-s** can be followed by any key-value pair obtained through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **-s classname** is the key and **myTest** is the value.|
-| -D              | No      | Debug mode for starting the tested application. |
-| -h              | No      | Help information. |
+| -D              | No      | Debug mode for starting the tested application.|
+| -h              | No      | Help information.|
 
-### Using the IDE
+### Using DevEco Studio
 
-For details about how to use the IDE to start the test framework, see [IDE Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508).
+For details about how to use DevEco Studio to start the test framework, see [OpenHarmony Test Framework](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001263160453#section1034420367508).
 
 ## Introduction to TestRunner
 
-**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, the IDE initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
+**TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
 
 ## Introduction to AbilityDelegatorRegistry
 
@@ -136,6 +136,7 @@ abilityDelegator.startAbility(want, (err, data) => {
 ### Running a Shell Command
 
 **AbilityDelegator** provides APIs to run shell commands in the test environment.
+
 **Example**
 
 ```javascript
@@ -150,6 +151,7 @@ abilityDelegator.executeShellCommand(cmd, (err, data) => {
 ### Printing Log Information
 
 **AbilityDelegator** provides APIs for printing log information. You can call any API in the test code to print process logs to the unit test console.
+
 **Example**
 
 ```javascript
@@ -165,6 +167,7 @@ abilityDelegator.print(msg, (err) => {
 ### Finishing the Test and Printing Log Information
 
 **AbilityDelegator** provides the APIs for actively finishing the test. You can call any API in test code to finish the test and print logs to the unit test console.
+
 **Example**
 
 ```javascript

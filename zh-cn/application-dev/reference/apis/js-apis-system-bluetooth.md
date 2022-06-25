@@ -71,6 +71,7 @@ import bluetooth from '@system.bluetooth';
 
   ```
   bluetooth.stopBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.stopBLEScan success.');
     },
@@ -119,7 +120,7 @@ import bluetooth from '@system.bluetooth';
 **示例：**
 
   ```
-  bluetooth.startaBLEScan({
+  bluetooth.startBLEScan({
     success() {
       bluetooth.subscribeBLEFound({
         success(data) {

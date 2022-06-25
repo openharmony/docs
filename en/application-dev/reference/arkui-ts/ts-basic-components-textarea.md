@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;TextArea&gt;** component provides multi-line text input.
+The **\<TextArea>** component provides multi-line text input.
 
 
 ## Required Permissions
@@ -37,9 +37,10 @@ In addition to universal attributes, the following attributes are supported.
 | ------------------------ | ---------------------------------------- | ------------- | ---------------------------------------- |
 | placeholderColor         | Color                                    | -             | Placeholder text color.                  |
 | placeholderFont          | {<br/>size?: number,<br/>weight?:number \| [FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | -             | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
-| textAlign                | TextAlign                                | Start         | Sets the text horizontal alignment mode. |
-| caretColor               | Color                                    | -             | Sets the color of the cursor in the text box. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md),<br/>error?: (value: string)<br/>} | -             | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| textAlign                | TextAlign                                | Start         | Text horizontal alignment mode. |
+| caretColor               | Color                                    | -             | Color of the caret in the text box. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value:&nbsp;string)<br/>} | -             | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: indicates the regular expression to set.<br/>- **error**: returns the ignored content when regular expression matching fails. |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | Whether copy and paste is allowed. |
 
 - TextAlign enums
     | Name   | Description                     |
@@ -76,9 +77,9 @@ caretPosition(value: number): void
 Sets the position of the caret.
 
 - Parameters
-  | Name  | Type   | Mandatory | Default Value | Description                              |
-  | ----- | ------ | --------- | ------------- | ---------------------------------------- |
-  | value | number | Yes       | -             | Length from the start of the string to the position where the input cursor is located. |
+  | Name  | Type   | Mandatory | Default Value | Description                                                  |
+  | ----- | ------ | --------- | ------------- | ------------------------------------------------------------ |
+  | value | number | Yes       | -             | Length from the start of the text string to the position where the caret is located. |
 
 
 ## Example
@@ -87,7 +88,8 @@ Sets the position of the caret.
 ### Multi-line Text Input
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample1 {
@@ -120,10 +122,10 @@ struct TextAreaExample1 {
 ![en-us_image_0000001256858399](figures/en-us_image_0000001256858399.gif)
 
 
-### Setting the Input Cursor
+### Setting the Caret
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample2 {

@@ -93,7 +93,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
+media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     if (fetchFileResult != undefined) {
         console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
         fetchFileResult.getAllObject((err, fileAssetList) => {
@@ -135,7 +135,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
+media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
     console.info("getFileAssets successfully:"+ JSON.stringify(dir));
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
@@ -146,7 +146,7 @@ mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
 
 on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
 
-打开媒体媒体库变更通知，使用callback方式返回异步结果。
+打开媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -168,7 +168,7 @@ mediaLibrary.on('imageChange', () => {
 
 off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
-关闭媒体媒体库变更通知，使用callback方式返回异步结果。
+关闭媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -182,7 +182,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 **示例：**
 
 ```
-mediaLibrary.off('imageChange', () => {
+media.off('imageChange', () => {
     // stop listening success
 })
 ```
@@ -350,7 +350,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
+media.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
@@ -390,7 +390,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+media.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
     console.info("getAlbums failed with error:"+ err);
@@ -439,7 +439,6 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```
-var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
@@ -1957,7 +1956,7 @@ async function example() {
 
 实体相册
 
-### **属性**
+### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 

@@ -212,7 +212,7 @@ getProfileConnState(profileId: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
-let result = bluetooth.getProfileConnState(PROFILE_A2DP_SOURCE);
+let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 
@@ -355,7 +355,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 ```js
 // 设置为可连接可发现才可被远端设备扫描到，可以连接。
-let result = bluetooth.setBluetoothScanMode(ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 ```
 
 
@@ -720,7 +720,7 @@ bluetooth.off('stateChange', onReceiveEvent);
 ```
 
 
-## bluetooth.sppListen<sup>8+</sup><a name="sppListen<"></a>
+## bluetooth.sppListen<sup>8+</sup><a name="sppListen"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -773,6 +773,14 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
+let serverNumber = -1;
+function serverSocket(code, number) {
+  console.log('bluetooth error code: ' + code.code);
+  if (code.code == 0) {
+    console.log('bluetooth serverSocket Number: ' + number);
+    serverNumber = number;
+  }
+}
 let clientNumber = -1;
 function acceptClientSocket(code, number) {
   console.log('bluetooth error code: ' + code.code);
@@ -807,6 +815,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```js
+
 let clientNumber = -1;
 function clientSocket(code, number) {
   if (code.code != 0) {
@@ -838,6 +847,14 @@ sppCloseServerSocket(socket: number): void
 **示例：**
 
 ```js
+let serverNumber = -1;
+function serverSocket(code, number) {
+  console.log('bluetooth error code: ' + code.code);
+  if (code.code == 0) {
+    console.log('bluetooth serverSocket Number: ' + number);
+    serverNumber = number;
+  }
+}
 bluetooth.sppCloseServerSocket(serverNumber);
 ```
 
@@ -860,6 +877,15 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // 获取的clientNumber用作客户端后续读/写操作socket的id。
+  clientNumber = number;
+}
 bluetooth.sppCloseClientSocket(clientNumber);
 ```
 
@@ -888,6 +914,15 @@ sppWrite(clientSocket: number, data: ArrayBuffer): boolean
 **示例：**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // 获取的clientNumber用作客户端后续读/写操作socket的id。
+  clientNumber = number;
+}
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -923,6 +958,15 @@ on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // 获取的clientNumber用作客户端后续读/写操作socket的id。
+  clientNumber = number;
+}
 function dataRead(dataBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
@@ -954,6 +998,15 @@ off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
+let clientNumber = -1;
+function clientSocket(code, number) {
+  if (code.code != 0) {
+    return;
+  }
+  console.log('bluetooth serverSocket Number: ' + number);
+  // 获取的clientNumber用作客户端后续读/写操作socket的id。
+  clientNumber = number;
+}
 bluetooth.off('sppRead', clientNumber);
 ```
 
@@ -981,7 +1034,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 ## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
@@ -1007,7 +1060,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 ```
 
 
@@ -1239,7 +1292,7 @@ getConnectionDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
 let retArray = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1268,7 +1321,7 @@ getDeviceState(device: string): ProfileConnectionState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
 let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1277,7 +1330,7 @@ let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="a2dp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1302,12 +1355,12 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
 let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="a2dp-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1332,7 +1385,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1362,7 +1415,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1392,7 +1445,7 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1421,7 +1474,7 @@ getPlayingState(device: string): PlayingState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1431,7 +1484,7 @@ let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 使用HandsFreeAudioGatewayProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>8+</sup><a name="connect"></a>
+### connect<sup>8+</sup><a name="hfp-connect"></a>
 
 connect(device: string): boolean
 
@@ -1456,12 +1509,12 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>8+</sup><a name="disconnect"></a>
+### disconnect<sup>8+</sup><a name="hfp-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1486,7 +1539,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1516,7 +1569,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1546,7 +1599,7 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1584,7 +1637,7 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1616,7 +1669,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1646,7 +1699,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1676,7 +1729,7 @@ off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Sta
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1819,7 +1872,7 @@ cccV[0] = 1;
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let characteristicN = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptorsN};
+  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // 创建gattService
@@ -1911,8 +1964,11 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
+let arrayBufferC = new ArrayBuffer(8);
+let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue:  notifyCcc.characteristicValue, confirm: false};
+  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
 let server = bluetooth.BLE.createGattServer();
 server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 ```
@@ -2488,7 +2544,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 // Promise 模式
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
-let services = device.getServices();
+var services = device.getServices();
 console.log("bluetooth services size is ", services.length);
 
 for (let i = 0; i < services.length; i++) {
@@ -2826,8 +2882,11 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 **示例：**
 
 ```js
+let arrayBufferC = new ArrayBuffer(8);
+let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setNotifyCharacteristicChanged(notifyCcc, false);
+device.setNotifyCharacteristicChanged(characteristic, false);
 ```
 
 
@@ -3296,11 +3355,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称          | 参数类型   | 可读   | 可写   | 说明                                       |
-| ----------- | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId    | string | 是    | 是    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。     |
-| name        | string | 是    | 是    | 表示过滤的BLE设备名。                             |
-| serviceUuid | string | 是    | 是    | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称                                     | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
+| serviceUuid                              | string      | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask<sup>9+</sup>             | string      | 是   | 是   | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid<sup>9+</sup>     | string      | 是   | 是   | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask<sup>9+</sup> | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData<sup>9+</sup>                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufacturerId<sup>9+</sup>              | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureData<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask<sup>9+</sup>         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions

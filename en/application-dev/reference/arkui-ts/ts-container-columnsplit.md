@@ -1,11 +1,11 @@
 # ColumnSplit
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;ColumnSplit&gt;** lays out child components vertically and inserts a horizontal divider between every two child components.
+The **&lt;ColumnSplit&gt;** component lays out child components vertically and inserts a horizontal divider between every two child components.
 
 
 ## Required Permissions
@@ -25,11 +25,11 @@ ColumnSplit()
 
 ## Attributes
 
-  | Name | Type | Description | 
+| Name | Type | Description | 
 | -------- | -------- | -------- |
 | resizeable | boolean | Whether the divider can be dragged. The default value is **false**. | 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > Similar to **&lt;RowSplit&gt;**, the divider of **&lt;ColumnSplit&gt;** can be dragged to a position that just fully holds a component.
 
 

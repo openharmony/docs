@@ -1,7 +1,7 @@
 # GridContainer
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +23,7 @@ This component can contain child components.
 GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
 
 - Parameter
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | columns | number \| 'auto' | No | 'auto' | Total number of columns in the current layout. |
   | sizeType | SizeType | No | SizeType.Auto | Device size type. |
@@ -31,7 +31,7 @@ GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter
   | margin | Length | No | - | Margin of the grid layout. |
 
 - SizeType enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | XS | Device of the minimum size. | 
   | SM | Small-sized device. | 

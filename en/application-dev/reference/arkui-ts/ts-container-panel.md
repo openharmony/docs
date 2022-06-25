@@ -42,16 +42,16 @@ Panel(value:{show:boolean})
 - PanelType enums
   | Name | Description |
   | -------- | -------- |
-  | Minibar | A minibar panel displays content in the minibar area or a large (fullscreen-like) area. |
-  | Foldable | A foldable panel displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area. |
-  | Temporary | A temporary panel displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area. |
+  | Minibar | A minibar panel that displays content in the minibar area or a large (fullscreen-like) area. |
+  | Foldable | A foldable panel that displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area. |
+  | Temporary | A temporary panel that displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area. |
 
 - PanelMode enums
   | Name | Description |
   | -------- | -------- |
-  | Mini | Displays a **minibar** or **foldable** panel in its minimum size. This attribute does not take effect for **temporary** panels. |
-  | Half | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels. |
-  | Full | Displays a panel in a large (fullscreen-like) area. |
+  | Mini | Display of a minibar or foldable panel in its minimum size. This attribute does not take effect for **temporary** panels. |
+  | Half | Display of a foldable or temporary panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels. |
+  | Full | Display of a panel in a large (fullscreen-like) area. |
 
 
 ## Events

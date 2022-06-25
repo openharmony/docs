@@ -1,8 +1,8 @@
 # Prompt
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 8. You are advised to use ['@ohos.prompt](js-apis-prompt.md)' instead.
+> - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.prompt`](js-apis-prompt.md) instead.
 >
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -11,7 +11,7 @@
 ## Modules to Import
 
 
-```
+```js
 import prompt from '@system.prompt';
 ```
 
@@ -31,7 +31,7 @@ Shows the toast.
 
 **Example**
 
-```
+```js
 export default {    
   showToast() {        
     prompt.showToast({            
@@ -60,7 +60,7 @@ Shows the dialog box.
 
 **Example**
 
-```
+```js
 export default {    
   showDialog() {       
     prompt.showDialog({           
@@ -100,7 +100,7 @@ Shows the action menu.
 
 **Example**
 
-```
+```js
 export default {    
   showActionMenu() {        
     prompt.showActionMenu({            
@@ -115,11 +115,11 @@ export default {
            color: '#000000',                
         },            
       ],            
-      success: function(data) {                
+      success: function(tapIndex) {                
         console.log('dialog success callback, click button : ' + data.tapIndex);           
       },            
-      fail: function(data) {                
-        console.log('dialog fail callback' + data.errMsg);            
+      fail: function(errMsg) {                
+        console.log('dialog fail callback' + errMsg);            
       },       
     });    
   }
@@ -135,7 +135,7 @@ Describes the options for showing the toast.
 | ------------------- | -------------- | ---- | ---------------------------------------- |
 | message             | string         | Yes   | Text to display.                                |
 | duration            | number         | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The recommended value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used.|
-| bottom<sup>5+</sup> | string\|number | No   | Distance between the toast frame and the bottom of the screen. This parameter is available only on phones and tablets.             |
+| bottom<sup>5+</sup> | string\|number | No   | Distance between the toast border and the bottom of the screen.                        |
 
 ## Button
 

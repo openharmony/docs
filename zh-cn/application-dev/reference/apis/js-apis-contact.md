@@ -195,7 +195,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   },{
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
           console.log('updateContact callback: err->${JSON.stringify(err)}');
@@ -234,7 +234,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then(() => {
       console.log('updateContact success');
@@ -414,7 +414,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
   ```js
   contact.queryMyCard({
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -449,7 +449,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
   ```js
   let promise = contact.queryMyCard({
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
@@ -564,7 +564,9 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
   ```js
   contact.queryContact('xxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -596,7 +598,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
   ```js
   contact.queryContact('xxx', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -629,9 +631,11 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
   ```js
   contact.queryContact('xxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -668,9 +672,11 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
   ```js
   let promise = contact.queryContact('xxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContact success: data->${JSON.stringify(data)}`);
@@ -728,7 +734,9 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
   ```js
   contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -759,7 +767,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
   ```js
   contact.queryContacts({
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -791,9 +799,11 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
   ```js
   contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -829,9 +839,11 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
   ```js
   let promise = contact.queryContacts({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContacts success: data->${JSON.stringify(data)}`);
@@ -891,7 +903,9 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -923,7 +937,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -956,9 +970,11 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
   ```js
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -995,9 +1011,11 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
   ```js
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
@@ -1057,7 +1075,9 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1089,7 +1109,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1122,9 +1142,11 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -1161,9 +1183,11 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
   ```js
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, {
-      attributes: ["ATTR_EMAIL", "ATTR_NAME"]
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
@@ -1221,7 +1245,9 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
   ```js
   contact.queryGroups({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -1256,7 +1282,9 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
   ```js
   let promise = contact.queryGroups({
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   });
   promise.then((data) => {
       console.log(`queryGroups success: data->${JSON.stringify(data)}`);
@@ -1371,7 +1399,9 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
   ```js
   contact.queryKey(id, {
-      holderId:1
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   }, (err, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -1407,7 +1437,9 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
   ```js
   let promise = contact.queryKey(id, {
-      holderId: 0
+      holderId: 0,
+      bundleName: "",
+      displayName: ""
   });
   promise.then((data) => {
       console.log(`queryKey success: data->${JSON.stringify(data)}`);

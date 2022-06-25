@@ -6,7 +6,7 @@ The table below lists the APIs changes of the Telephony subsystem in OpenHarmony
 
 | Module| Class| Method/Attribute/Enumeration/Constant| Change Type|
 |---|---|---|---|
-| ohos.telephony.sms | sms | function hasSmsCapability(): boolean; | Added|
+| ohos.telephony.sms | sms | hasSmsCapability(): boolean; | Added|
 | ohos.telephony.sim | CardType | SINGLE_MODE_ISIM_CARD = 60 | Added|
 | ohos.telephony.sim | CardType | DUAL_MODE_UG_CARD = 50 | Added|
 | ohos.telephony.sim | CardType | DUAL_MODE_TELECOM_LTE_CARD = 43 | Added|
@@ -17,15 +17,15 @@ The table below lists the APIs changes of the Telephony subsystem in OpenHarmony
 | ohos.telephony.sim | CardType | SINGLE_MODE_USIM_CARD = 20 | Added|
 | ohos.telephony.sim | CardType | SINGLE_MODE_SIM_CARD = 10 | Added|
 | ohos.telephony.sim | CardType | UNKNOWN_CARD = -1 | Added|
-| ohos.telephony.sim | sim | function hasSimCard(slotId: number, callback: AsyncCallback<boolean>): void;<br>function hasSimCard(slotId: number): Promise<boolean>; | Added|
-| ohos.telephony.sim | sim | function getMaxSimCount(): number; | Added|
-| ohos.telephony.sim | sim | function getCardType(slotId: number, callback: AsyncCallback<CardType>): void;<br>function getCardType(slotId: number): Promise<CardType>; | Added|
-| ohos.telephony.sim | sim | function hasOperatorPrivileges(slotId: number, callback: AsyncCallback<boolean>): void;<br>function hasOperatorPrivileges(slotId: number): Promise<boolean>; | Added|
-| ohos.telephony.sim | sim | function isSimActive(slotId: number, callback: AsyncCallback<boolean>): void;<br>function isSimActive(slotId: number): Promise<boolean>; | Added|
+| ohos.telephony.sim | sim | hasSimCard(slotId: number, callback: AsyncCallback\<boolean>): void;<br>hasSimCard(slotId: number): Promise\<boolean>; | Added|
+| ohos.telephony.sim | sim | getMaxSimCount(): number; | Added|
+| ohos.telephony.sim | sim | getCardType(slotId: number, callback: AsyncCallback\<CardType>): void;<br>getCardType(slotId: number): Promise\<CardType>; | Added|
+| ohos.telephony.sim | sim | hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean>): void;<br>hasOperatorPrivileges(slotId: number): Promise\<boolean>; | Added|
+| ohos.telephony.sim | sim | isSimActive(slotId: number, callback: AsyncCallback\<boolean>): void;<br>isSimActive(slotId: number): Promise\<boolean>; | Added|
 | ohos.telephony.radio | NetworkState | cfgTech: RadioTechnology; | Added|
-| ohos.telephony.radio | radio | function getOperatorName(slotId: number, callback: AsyncCallback<string>): void;<br>function getOperatorName(slotId: number): Promise<string>; | Added|
-| ohos.telephony.radio | radio | function isNrSupported(): boolean;<br>function isNrSupported(slotId: number): boolean; | Added|
-| ohos.telephony.radio | radio | function getPrimarySlotId(callback: AsyncCallback<number>): void;<br>function getPrimarySlotId(): Promise<number>; | Added|
+| ohos.telephony.radio | radio | getOperatorName(slotId: number, callback: AsyncCallback\<string>): void;<br>getOperatorName(slotId: number): Promise\<string>; | Added|
+| ohos.telephony.radio | radio | isNrSupported(): boolean;<br>isNrSupported(slotId: number): boolean; | Added|
+| ohos.telephony.radio | radio | getPrimarySlotId(callback: AsyncCallback\<number>): void;<br>getPrimarySlotId(): Promise\<number>; | Added|
 | ohos.telephony.observer | LockReason | SIM_SIM_PUK | Added|
 | ohos.telephony.observer | LockReason | SIM_SIM_PIN | Added|
 | ohos.telephony.observer | LockReason | SIM_PC_PUK | Added|
@@ -42,12 +42,12 @@ The table below lists the APIs changes of the Telephony subsystem in OpenHarmony
 | ohos.telephony.observer | SimStateData | reason: LockReason; | Added|
 | ohos.telephony.observer | SimStateData | state: SimState; | Added|
 | ohos.telephony.observer | SimStateData | type: CardType; | Added|
-| ohos.telephony.observer | observer | function off(type: 'simStateChange', callback?: Callback<SimStateData>): void; | Added|
-| ohos.telephony.observer | observer | function on(type: 'simStateChange', callback: Callback<SimStateData>): void;<br>function on(type: 'simStateChange', options: { slotId: number }, callback: Callback<SimStateData>): void; | Added|
-| ohos.telephony.observer | observer | function off(type: 'cellularDataFlowChange', callback?: Callback<DataFlowType>): void; | Added|
-| ohos.telephony.observer | observer | function on(type: 'cellularDataFlowChange', callback: Callback<DataFlowType>): void;<br>function on(type: 'cellularDataFlowChange', options: { slotId: number },callback: Callback<DataFlowType>): void;| Added|
-| ohos.telephony.observer | observer | function off(type: 'cellularDataConnectionStateChange',callback?: Callback<{ state: DataConnectState, network: RatType }>): void;| Added|
-| ohos.telephony.observer | observer | function on(type: 'cellularDataConnectionStateChange', callback: Callback<{ state: DataConnectState, network: RatType }>): void;<br>function on(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback<{ state: DataConnectState, network: RatType }>): void; | Added|
+| ohos.telephony.observer | observer | off(type: 'simStateChange', callback?: Callback\<SimStateData>): void; | Added|
+| ohos.telephony.observer | observer | on(type: 'simStateChange', callback: Callback\<SimStateData>): void;<br>on(type: 'simStateChange', options: { slotId: number }, callback: Callback\<SimStateData>): void; | Added|
+| ohos.telephony.observer | observer | off(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType>): void; | Added|
+| ohos.telephony.observer | observer | on(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType>): void;<br>on(type: 'cellularDataFlowChange', options: { slotId: number },callback: Callback\<DataFlowType>): void; | Added|
+| ohos.telephony.observer | observer | off(type: 'cellularDataConnectionStateChange',callback?: Callback\<{ state: DataConnectState, network: RatType }>): void; | Added|
+| ohos.telephony.observer | observer | on(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType }>): void;<br>on(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback\<{ state: DataConnectState, network: RatType }>): void; | Added|
 | ohos.telephony.data | DataConnectState | DATA_STATE_SUSPENDED = 3 | Added|
 | ohos.telephony.data | DataConnectState | DATA_STATE_CONNECTED = 2 | Added|
 | ohos.telephony.data | DataConnectState | DATA_STATE_CONNECTING = 1 | Added|
@@ -58,13 +58,13 @@ The table below lists the APIs changes of the Telephony subsystem in OpenHarmony
 | ohos.telephony.data | DataFlowType | DATA_FLOW_TYPE_UP = 2 | Added|
 | ohos.telephony.data | DataFlowType | DATA_FLOW_TYPE_DOWN = 1 | Added|
 | ohos.telephony.data | DataFlowType | DATA_FLOW_TYPE_NONE = 0 | Added|
-| ohos.telephony.data | data | function isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback<boolean>): void;<br>function isCellularDataRoamingEnabled(slotId: number): Promise<boolean>; | Added|
-| ohos.telephony.data | data | function isCellularDataEnabled(callback: AsyncCallback<boolean>): void;<br>function isCellularDataEnabled(): Promise<boolean>; | Added|
-| ohos.telephony.data | data | function getCellularDataState(callback: AsyncCallback<DataConnectState>): void;<br>function getCellularDataState(): Promise<DataConnectState>; | Added|
-| ohos.telephony.data | data | function getCellularDataFlowType(callback: AsyncCallback<DataFlowType>): void;<br>function getCellularDataFlowType(): Promise<DataFlowType>; | Added|
-| ohos.telephony.data | data | function getDefaultCellularDataSlotId(callback: AsyncCallback<number>): void;<br>function getDefaultCellularDataSlotId(): Promise<number>; | Added|
-| ohos.telephony.call | call | function hasVoiceCapability(): boolean; | Added|
-| ohos.telephony.call | call | function makeCall(phoneNumber: string, callback: AsyncCallback<void>): void;<br>function makeCall(phoneNumber: string): Promise<void>; | Added|
+| ohos.telephony.data | data | isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean>): void;<br>isCellularDataRoamingEnabled(slotId: number): Promise\<boolean>; | Added|
+| ohos.telephony.data | data | isCellularDataEnabled(callback: AsyncCallback\<boolean>): void;<br>isCellularDataEnabled(): Promise\<boolean>; | Added|
+| ohos.telephony.data | data | getCellularDataState(callback: AsyncCallback\<DataConnectState>): void;<br>getCellularDataState(): Promise\<DataConnectState>; | Added|
+| ohos.telephony.data | data | getCellularDataFlowType(callback: AsyncCallback\<DataFlowType>): void;<br>getCellularDataFlowType(): Promise\<DataFlowType>; | Added|
+| ohos.telephony.data | data | getDefaultCellularDataSlotId(callback: AsyncCallback\<number>): void;<br>getDefaultCellularDataSlotId(): Promise\<number>; | Added|
+| ohos.telephony.call | call | hasVoiceCapability(): boolean; | Added|
+| ohos.telephony.call | call | makeCall(phoneNumber: string, callback: AsyncCallback\<void>): void;<br>makeCall(phoneNumber: string): Promise\<void>; | Added|
 | ohos.contact | Website | website: string | Added|
 | ohos.contact | SipAddress | labelId: number | Added|
 | ohos.contact | SipAddress | sipAddress: string | Added|
@@ -214,17 +214,17 @@ The table below lists the APIs changes of the Telephony subsystem in OpenHarmony
 | ohos.contact | Contact | readonly key: string | Added|
 | ohos.contact | Contact | readonly id: number | Added|
 | ohos.contact | Contact | static readonly INVALID_CONTACT_ID: -1 | Added|
-| ohos.contact | contact | function isMyCard(id: number, callback: AsyncCallback<boolean>): void;<br>function isMyCard(id: number): Promise<boolean>; | Added|
-| ohos.contact | contact | function isLocalContact(id: number, callback: AsyncCallback<boolean>): void;<br>function isLocalContact(id: number): Promise<boolean>; | Added|
-| ohos.contact | contact | function updateContact(contact: Contact, callback: AsyncCallback<void>): void;<br>function updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback<void>): void;<br>function updateContact(contact: Contact, attrs?: ContactAttributes): Promise<void>; | Added|
-| ohos.contact | contact | function queryMyCard(callback: AsyncCallback<Contact>): void;<br>function queryMyCard(attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;<br>function queryMyCard(attrs?: ContactAttributes): Promise<Contact>; | Added|
-| ohos.contact | contact | function queryKey(id: number, callback: AsyncCallback<string>): void;<br>function queryKey(id: number, holder: Holder, callback: AsyncCallback<string>): void;<br>function queryKey(id: number, holder?: Holder): Promise<string>; | Added|
-| ohos.contact | contact | function queryHolders(callback: AsyncCallback<Array<Holder>>): void;<br>function queryHolders(): Promise<Array<Holder>>; | Added|
-| ohos.contact | contact | function queryGroups(callback: AsyncCallback<Array<Group>>): void;<br>function queryGroups(holder: Holder, callback: AsyncCallback<Array<Group>>): void;<br>function queryGroups(holder?: Holder): Promise<Array<Group>>; | Added|
-| ohos.contact | contact | function queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>; | Added|
-| ohos.contact | contact | function queryContactsByEmail(email: string, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>; | Added|
-| ohos.contact | contact | function queryContacts(callback: AsyncCallback<Array<Contact>>): void;<br>function queryContacts(holder: Holder, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContacts(attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Array<Contact>>): void;<br>function queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise<Array<Contact>>; | Added|
-| ohos.contact | contact | function queryContact(key: string, callback: AsyncCallback<Contact>): void;<br>function queryContact(key: string, holder: Holder, callback: AsyncCallback<Contact>): void;<br>function queryContact(key: string, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;<br>function queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback<Contact>): void;<br>function queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise<Contact>; | Added|
-| ohos.contact | contact | function deleteContact(key: string, callback: AsyncCallback<void>): void;<br>function deleteContact(key: string): Promise<void>; | Added|
-| ohos.contact | contact | function selectContact(callback: AsyncCallback<Array<Contact>>): void;<br>function selectContact(): Promise<Array<Contact>>; | Added|
-| ohos.contact | contact | function addContact(contact: Contact, callback: AsyncCallback<number>): void;<br>function addContact(contact: Contact): Promise<number>; | Added|
+| ohos.contact | contact | isMyCard(id: number, callback: AsyncCallback\<boolean>): void;<br>isMyCard(id: number): Promise\<boolean>; | Added|
+| ohos.contact | contact | isLocalContact(id: number, callback: AsyncCallback\<boolean>): void;<br>isLocalContact(id: number): Promise\<boolean>; | Added|
+| ohos.contact | contact | updateContact(contact: Contact, callback: AsyncCallback\<void>): void;<br>updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback\<void>): void;<br>updateContact(contact: Contact, attrs?: ContactAttributes): Promise\<void>; | Added|
+| ohos.contact | contact | queryMyCard(callback: AsyncCallback\<Contact>): void;<br>queryMyCard(attrs: ContactAttributes, callback: AsyncCallback\<Contact>): void;<br>queryMyCard(attrs?: ContactAttributes): Promise\<Contact>; | Added|
+| ohos.contact | contact | queryKey(id: number, callback: AsyncCallback\<string>): void;<br>queryKey(id: number, holder: Holder, callback: AsyncCallback\<string>): void;<br>queryKey(id: number, holder?: Holder): Promise\<string>; | Added|
+| ohos.contact | contact | queryHolders(callback: AsyncCallback\<Array\<Holder>>): void;<br>queryHolders(): Promise\<Array\<Holder>>; | Added|
+| ohos.contact | contact | queryGroups(callback: AsyncCallback\<Array\<Group>>): void;<br>queryGroups(holder: Holder, callback: AsyncCallback\<Array\<Group>>): void;<br>queryGroups(holder?: Holder): Promise\<Array\<Group>>; | Added|
+| ohos.contact | contact | queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise\<Array\<Contact>>; | Added|
+| ohos.contact | contact | queryContactsByEmail(email: string, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise\<Array\<Contact>>; | Added|
+| ohos.contact | contact | queryContacts(callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContacts(holder: Holder, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContacts(attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback\<Array\<Contact>>): void;<br>queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise\<Array\<Contact>>; | Added|
+| ohos.contact | contact | queryContact(key: string, callback: AsyncCallback\<Contact>): void;<br>queryContact(key: string, holder: Holder, callback: AsyncCallback\<Contact>): void;<br>queryContact(key: string, attrs: ContactAttributes, callback: AsyncCallback\<Contact>): void;<br>queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback\<Contact>): void;<br>queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise\<Contact>; | Added|
+| ohos.contact | contact | deleteContact(key: string, callback: AsyncCallback\<void>): void;<br>deleteContact(key: string): Promise\<void>; | Added|
+| ohos.contact | contact | selectContact(callback: AsyncCallback\<Array\<Contact>>): void;<br>selectContact(): Promise\<Array\<Contact>>; | Added|
+| ohos.contact | contact | addContact(contact: Contact, callback: AsyncCallback\<number>): void;<br>addContact(contact: Contact): Promise\<number>; | Added|

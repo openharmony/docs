@@ -1,15 +1,16 @@
 # MissionSnapshot
 
-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 任务对应的任务快照。
+
 ## 导入模块
 
 ```
-import abilitymanager from '@ohos.application.abilityManager';
+import missionManager from '@ohos.application.missionManager'
 ```
+
 ## 使用说明
 
 使用前需要提前引入对应模块。

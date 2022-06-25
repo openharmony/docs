@@ -153,7 +153,7 @@ getIndexOfKey(key: number): number
 let plainArray = new PlainArray();
 plainArray.add(1, "sddfhf");
 plainArray.add(2, "sffdfhf");
-let result = plainArray.getIndexOfKey("sdfs");
+let result = plainArray.getIndexOfKey(2);
 ```
 
 

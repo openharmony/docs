@@ -1,7 +1,9 @@
-# DataAbilityHelper Module (JavaScript SDK APIs)
+# DataAbilityHelper
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
 
@@ -571,7 +573,7 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 | Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | Yes  | URI of the data to insert.        |
-| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.          |
+| valuesBucket | Array\<rdb.ValuesBucket> | Yes  | Data records to insert.          |
 | callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
@@ -870,7 +872,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap): Promise<PacMap>
+call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 Calls the extended API of the Data ability. This API uses a promise to return the result.
 
@@ -889,7 +891,7 @@ Calls the extended API of the Data ability. This API uses a promise to return th
 
 | Type| Description|
 |------ | ------- |
-|Promise<[PacMap](#pacmap)> | Promise used to return the result.|
+|Promise\<[PacMap](#pacmap)> | Promise used to return the result.|
 
 **Example**
 
@@ -906,7 +908,7 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 
 ## DataAbilityHelper.call
 
-call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback<PacMap>): void
+call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
 Calls the extended API of the Data ability. This API uses an asynchronous callback to return the result.
 
@@ -920,7 +922,7 @@ Calls the extended API of the Data ability. This API uses an asynchronous callba
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  |Parameter to pass.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
-| callback | AsyncCallback<[PacMap](#pacmap)> | Yes| Callback used to return the result.    |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | Yes| Callback used to return the result.    |
 
 **Example**
 

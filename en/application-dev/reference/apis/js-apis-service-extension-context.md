@@ -1,11 +1,17 @@
 # ServiceExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Implements the context that provides the capabilities and APIs of **ServiceExtension**. This class is inherited from **ExtensionContext**.
 
+## Modules to Import
+
+```
+import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+```
 
 ## startAbility
 
@@ -25,13 +31,18 @@ Starts an ability. This API uses a callback to return the result.
 **Example**
 
   ```js
-  let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
-  };
-  this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+  class MainAbility extends ExtensionContext {
+      onWindowStageCreate(windowStage) {
+          let want = {
+              "bundleName": "com.example.myapp",
+              "abilityName": "MyAbility"};
+          this.context.startAbility(want, (err) => {
+          console.log('startAbility result:' + JSON.stringify(err));
+          });
+      }
+  }
+
   ```
 
 
@@ -58,15 +69,22 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
-  };
-  this.context.startAbility(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+        onWindowStageCreate(windowStage) {
+            let want = {
+            "bundleName": "com.example.myapp",
+            "abilityName": "MyAbility"
+            };
+        this.context.startAbility(want).then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+        }
+    }
+
+  
   ```
 
 
@@ -87,9 +105,16 @@ Terminates this ability. This API uses a callback to return the result.
 **Example**
 
   ```js
-  this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+        class MainAbility extends ExtensionContext {
+            onWindowStageCreate(windowStage) {
+            this.context.terminateSelf((err) => {
+              console.log('terminateSelf result:' + JSON.stringify(err));
+            });
+            }
+        }
+  
+
   ```
 
 
@@ -110,11 +135,17 @@ Terminates this ability. This API uses a promise to return the result.
 **Example**
 
   ```js
-  this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      this.context.terminateSelf().then((data) => {
+        console.log('success:' + JSON.stringify(data));
+      }).catch((error) => {
+        console.log('failed:' + JSON.stringify(error));
+      });
+    }
+}
+
   ```
 
 
@@ -144,7 +175,7 @@ Connects this ability to a Service ability.
   ```js
   let want = {
       "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
+      "abilityName": "MyAbility"
   };
   let options = {
       onConnect: function(elementName, proxy) {},
@@ -173,9 +204,18 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 **Example**
 
   ```js
-  this.context.disconnectAbility(connection, (err) => { // connection is the return value of connectAbility.
-      console.log('terminateSelf result:' + JSON.stringfy(err));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+    class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      let connection=1
+      this.context.disconnectAbility(connection, (err) => { 
+        // connection is the return value of connectAbility.
+        console.log('terminateSelf result:' + JSON.stringify(err));
+      });
+    }
+  }
+
+
   ```
 
 
@@ -202,11 +242,18 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 **Example**
 
   ```js
-  this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
-      console.log('success:' + JSON.stringfy(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
-  });
+  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+  class MainAbility extends ExtensionContext {
+    onWindowStageCreate(windowStage) {
+      let connection=1
+      this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
+      console.log('success:' + JSON.stringify(data));
+      }).catch((error) => {
+      console.log('failed:' + JSON.stringify(error));
+      });
+    }
+  }
+
   ```
 
 

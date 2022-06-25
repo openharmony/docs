@@ -49,7 +49,7 @@ In the example below, where **PageA** jumps to **PageB**, the shared element is 
   <list>
     <list-item type="description">
       <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
-      <text onclick="jump">Click on picture to Jump to ths details</text>
+      <text onclick="jump">Click on picture to Jump to the details</text>
     </list-item>
   </list>
 </div>

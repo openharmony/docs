@@ -2,9 +2,9 @@
 
 The common event and notification module provides debugging tools to facilitate your application development. With these tools, you can view common event and notification information, publish common events, and more. These tools have been integrated with the system. You can run related commands directly in the shell.
 
-### cem Debugging Assistant
+## cem Debugging Assistant
 
-##### publish
+### publish
 
 * Functionality
 
@@ -41,7 +41,7 @@ The common event and notification module provides debugging tools to facilitate 
 
    ![cem-publish-all](figures/cem-publish-all.png)
 
-##### dump
+### dump
 
 * Functionality
 
@@ -67,7 +67,7 @@ The common event and notification module provides debugging tools to facilitate 
 
 ​        ![cem-dump-e](figures/cem-dump-e.png)
 
-##### help
+### help
 
 * Functionality
 
@@ -83,9 +83,9 @@ The common event and notification module provides debugging tools to facilitate 
 
 
 
-### anm Debugging Assistant
+## anm Debugging Assistant
 
-##### dump
+### dump
 
 * Functionality
 
@@ -119,7 +119,7 @@ The common event and notification module provides debugging tools to facilitate 
 
   Set the number of the cached recent notifications to be displayed to 10.
 
-##### help
+### help
 
 * Functionality
 

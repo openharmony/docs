@@ -1,15 +1,14 @@
 # Ability
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Manages the ability lifecycle and context.
 
-
 ## Modules to Import
 
-  
 ```
 import Ability from '@ohos.application.Ability';
 ```
@@ -23,6 +22,8 @@ import Ability from '@ohos.application.Ability';
 | context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.| 
 | launchWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters for starting the ability.| 
 | lastRequestWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters used when the ability was started last time.| 
+| callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.| 
+
 
 
 ## Ability.onCreate
@@ -200,11 +201,12 @@ Called to save data during the ability migration preparation process.
 **Example**
     
   ```js
+  import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
       onContinue(wantParams) {
           console.log('onContinue');
           wantParams["myData"] = "my1234567";
-          return true;
+          return AbilityConstant.OnContinueResult.AGREE;
       }
   }
   ```
@@ -212,7 +214,7 @@ Called to save data during the ability migration preparation process.
 
 ## Ability.onNewWant
 
-onNewWant(want: Want): void;
+onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
 Called when the ability startup mode is set to singleton.
 
@@ -223,13 +225,17 @@ Called when the ability startup mode is set to singleton.
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-application-Want.md) | Yes| Want parameters, such as the ability name and bundle name.| 
+  | launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
 
 **Example**
     
   ```js
   class myAbility extends Ability {
-      onNewWant(want) {
+      onNewWant(want, launchParams) {
           console.log('onNewWant, want:' + want.abilityName);
+          if (launchParams.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+              console.log('onNewWant, launchReason is continuation');
+          }
       }
   }
   ```
@@ -258,6 +264,32 @@ Called when the configuration of the environment where the ability is running is
       }
   }
   ```
+
+## Ability.dump
+
+dump(params: Array\<string>): Array\<string>;
+
+Called when the client information is dumped.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | params | Array\<string> | Yes| Parameters in the form of a command.| 
+
+**Example**
+    
+  ```js
+  class myAbility extends Ability {
+      dump(params) {
+          console.log('dump, params:' + JSON.stringify(params));
+          return ["params"]
+      }
+  }
+  ```
+
 
 
 ## Caller
@@ -291,6 +323,9 @@ Sends sequenceable data to the target ability.
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // Custom sequenceable data structure
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -314,7 +349,7 @@ Sends sequenceable data to the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -361,6 +396,9 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
@@ -384,7 +422,7 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -423,7 +461,7 @@ Releases the caller interface of the target ability.
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -445,7 +483,7 @@ Releases the caller interface of the target ability.
 
 onRelease(callback: OnReleaseCallBack): void;
 
-Registers a callback that is invoked when the Stub on the target ability is disconnected.
+Registers a callback that is invoked when the stub on the target ability is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -464,7 +502,7 @@ Registers a callback that is invoked when the Stub on the target ability is disc
       onWindowStageCreate(windowStage) {
         this.context.startAbilityByCall({
             bundleName: "com.example.myservice",
-            abilityName: "com.example.myservice.MainAbility",
+            abilityName: "MainAbility",
             deviceId: ""
         }).then((obj) => {
             caller = obj;
@@ -509,6 +547,9 @@ Registers a caller notification callback, which is invoked when the target abili
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
+      name:""
+      str:""
+      num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;

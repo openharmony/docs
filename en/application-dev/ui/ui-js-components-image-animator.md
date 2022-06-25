@@ -135,7 +135,7 @@ export default {
 
 ![en-us_image_0000001276003481](figures/en-us_image_0000001276003481.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - If the **duration** attribute is set in the **images** attribute, the **duration** attribute set in the **&lt;image-animator&gt;** component is invalid.
 > 
 > - If **fixedsize** is set to **true**, the **width**, **height**, **top**, and **left** settings in **images** will not take effect.

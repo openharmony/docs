@@ -117,7 +117,7 @@ createAudioRecorder(): AudioRecorder
 **示例：**
 
 ```js
-let audiorecorder = media.createAudioRecorder();
+let audioRecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -576,7 +576,7 @@ let fdPath = 'fd://'
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
-   console.info('open fd succsess fd is' + fdPath);
+   console.info('open fd success fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
 }).catch((err) => {
@@ -679,6 +679,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 通过回调方式设置SurfaceId。
 
+*注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 **参数：**
@@ -706,6 +708,8 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 通过Promise方式设置SurfaceId。
 
+*注意：SetDisplaySurface需要在设置url和Prepare之间，无音频的视频流必须设置Surface否则Prepare失败。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 **参数：**
@@ -716,9 +720,9 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 **返回值：**
 
-| 类型          | 说明                           |
-| ------------- | ------------------------------ |
-| Promise<void> | 设置SurfaceId的Promise返回值。 |
+| 类型           | 说明                           |
+| -------------- | ------------------------------ |
+| Promise\<void> | 设置SurfaceId的Promise返回值。 |
 
 **示例：**
 

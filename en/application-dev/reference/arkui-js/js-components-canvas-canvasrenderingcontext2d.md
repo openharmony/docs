@@ -1,13 +1,13 @@
 # CanvasRenderingContext2D
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**<br>
+>  Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 **CanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on a canvas.
 
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
@@ -16,7 +16,7 @@
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -47,39 +47,38 @@
 
 ## Attributes
 
-| Name                                                         | Type                                                         | Default Value                   | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                                      | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Style to fill an area.<br>- When the type is **&lt;color&gt;**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineWidth](#linewidth)                                      | number                                                       | -                               | Line width.                                                  |
-| [strokeStyle](#strokestyle)                                  | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                               | Stroke style.<br>- When the type is **&lt;color&gt;**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineCap](#linecap)                                          | string                                                       | butt                            | Style of the specified line endpoint. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness. |
-| [lineJoin](#linejoin)                                        | string                                                       | miter                           | Style of the intersection point between line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
-| [miterLimit](#miterlimit)                                    | number                                                       | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
+| Name                                                         | Type                                                         | Default Value                                  | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------------ |
+| [fillStyle](#fillstyle)                                      | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                                              | Style to fill an area.<br>- When the type is **\<color>**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
+| [lineWidth](#linewidth)                                      | number                                                       | -                                              | Line width.                                                  |
+| [strokeStyle](#strokestyle)                                  | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                                              | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
+| [lineCap](#linecap)                                          | string                                                       | butt                                           | Style of the specified line endpoint. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness. |
+| [lineJoin](#linejoin)                                        | string                                                       | miter                                          | Style of the intersection point between line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
+| [miterLimit](#miterlimit)                                    | number                                                       | 10                                             | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
 | [font](#font)                                                | string                                                       | "normal normal 14px sans-serif" | Font style.<br>Syntax: ctx.font="font-style font-weight font-size font-family"<sup>5+</sup><br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. |
-| [textAlign](#textalign)                                      | string                                                       | left                            | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>> In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
-| [textBaseline](#textbaseline)                                | string                                                       | alphabetic                      | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
-| [globalAlpha](#globalalpha)                                  | number                                                       | -                               | Opacity. <br/>**0.0**: completely transparent.<br/>**1.0**: completely opaque. |
-| [lineDashOffset](#linedashoffset)                            | number                                                       | 0.0                             | Offset of the dashed line. The precision is float.           |
-| [globalCompositeOperation](#globalcompositeoperation)        | string                                                       | source-over                     | Composition operation type. Available values are as follows: source-over, source-atop, source-in, source-out, destination-over, destination-atop, destination-in, destination-out, lighter, copy, and xor. For details, see [Operation types](#globalcompositeoperation). |
-| [shadowBlur](#shadowblur)                                    | number                                                       | 0.0                             | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float. |
-| [shadowColor](#shadowcolor)                                  | &lt;color&gt;                                                | -                               | Shadow color.                                                |
-| [shadowOffsetX](#shadowoffsetx)                              | number                                                       | -                               | X-axis shadow offset relative to the original object.        |
-| [shadowOffsetY](#shadowoffsety)                              | number                                                       | -                               | Y-axis shadow offset relative to the original object.        |
-| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                                      | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
+| [textAlign](#textalign)                                      | string                                                       | left                                           | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
+| [textBaseline](#textbaseline)                                | string                                                       | alphabetic                                     | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
+| [globalAlpha](#globalalpha)                                  | number                                                       | -                                              | Opacity.<br> **0.0**: completely transparent.<br/>**1.0**: completely opaque. |
+| [lineDashOffset](#linedashoffset)                            | number                                                       | 0.0                                            | Offset of the dashed line. The precision is float.           |
+| [globalCompositeOperation](#globalcompositeoperation)        | string                                                       | source-over                                    | Composition operation type. Available values are as follows: **source-over**, **source-atop**, **source-in**, **source-out**, **destination-over**, **destination-atop**, **destination-in**, **destination-out**, **lighter**, copy, and **xor**. For details, see [Operation types](#globalcompositeoperation). |
+| [shadowBlur](#shadowblur)                                    | number                                                       | 0.0                                            | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float. |
+| [shadowColor](#shadowcolor)                                  | &lt;color&gt;                                                | -                                              | Shadow color.                                                |
+| [shadowOffsetX](#shadowoffsetx)                              | number                                                       | -                                              | X-axis shadow offset relative to the original object.        |
+| [shadowOffsetY](#shadowoffsety)                              | number                                                       | -                                              | Y-axis shadow offset relative to the original object.        |
+| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                                      | true                                           | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
 
 
 ### fillStyle
 
-  ```
+  ```html
 <!-- xxx.hml -->
-
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
   ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -95,15 +94,15 @@ export default {
 
 ### lineWidth
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -120,15 +119,15 @@ export default {
 
 ### strokeStyle
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -145,15 +144,15 @@ export default {
 
 ### lineCap
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -172,15 +171,15 @@ export default {
 
 ### lineJoin
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js 
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -200,15 +199,15 @@ export default {
 
 ### miterLimit
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -229,15 +228,15 @@ export default {
 
 ### font
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -253,15 +252,15 @@ export default {
 
 ### textAlign
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -292,15 +291,15 @@ export default {
 
 ### textBaseline
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -328,15 +327,15 @@ export default {
 
 ### globalAlpha
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -355,15 +354,15 @@ export default {
 
 ### lineDashOffset
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -380,65 +379,66 @@ export default {
 
 ### globalCompositeOperation
 
-- Operation types
-  | Value               | Description                      |
-  | ---------------- | ------------------------ |
-  | source-over      | Displays the new drawing above the existing drawing. This attribute is used by default.  |
-  | source-atop      | Displays the new drawing on the top of the existing drawing.       |
-  | source-in        | Displays the new drawing inside the existing drawing.        |
-  | source-out       | Displays part of the new drawing that is outside of the existing drawing.       |
-  | destination-over | Displays the existing drawing above the new drawing.       |
-  | destination-atop | Displays the existing drawing on the top of the new drawing.       |
-  | destination-in   | Displays the existing drawing inside the new drawing.        |
-  | destination-out  | Displays part of the existing drawing that is outside of the new drawing.        |
-  | lighter          | Displays both the new drawing and the existing drawing.         |
-  | copy             | Displays the new drawing and neglects the existing drawing.       |
-  | xor              | Combines the new drawing and existing drawing using the XOR operation.|
+Operation types
+| Value               | Description                      |
+| ---------------- | ------------------------ |
+| source-over      | Displays the new drawing above the existing drawing. This attribute is used by default.  |
+| source-atop      | Displays the new drawing on the top of the existing drawing.       |
+| source-in        | Displays the new drawing inside the existing drawing.        |
+| source-out       | Displays part of the new drawing that is outside of the existing drawing.       |
+| destination-over | Displays the existing drawing above the new drawing.       |
+| destination-atop | Displays the existing drawing on the top of the new drawing.       |
+| destination-in   | Displays the existing drawing inside the new drawing.        |
+| destination-out  | Displays the existing drawing outside the new drawing.        |
+| lighter          | Displays both the new and existing drawing.         |
+| copy             | Displays the new drawing and neglects the existing drawing.       |
+| xor              | Combines the new drawing and existing drawing using the XOR operation.|
 
-- Example
-```
-  <!-- xxx.hml -->
-  <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
-  </div>
+**Example**
+
+```html
+<!-- xxx.hml -->
+<div>
+  <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+</div>
 ```
 
-  ```
-  //xxx.js
-  export default {
-    onShow() {
-      const el =this.$refs.canvas;
-      const ctx = el.getContext('2d');
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(20, 20, 50, 50);
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(50, 50, 50, 50);
-      // Start drawing second example
-      ctx.fillStyle = 'rgb(255,0,0)';
-      ctx.fillRect(120, 20, 50, 50);
-      ctx.globalCompositeOperation = 'destination-over';
-      ctx.fillStyle = 'rgb(0,0,255)';
-      ctx.fillRect(150, 50, 50, 50);
-    }
+  ```js
+// xxx.js
+export default {
+  onShow() {
+    const el =this.$refs.canvas;
+    const ctx = el.getContext('2d');
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(20, 20, 50, 50);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(50, 50, 50, 50);
+    // Start drawing second example
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.fillRect(120, 20, 50, 50);
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'rgb(0,0,255)';
+    ctx.fillRect(150, 50, 50, 50);
   }
+}
   ```
 
   ![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
 
-  In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
+In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
 
 ### shadowBlur
 
-  ```
+  ```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
   ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -455,15 +455,15 @@ export default {
 
 ### shadowColor
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -480,15 +480,15 @@ export default {
 
 ### shadowOffsetX
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -507,15 +507,15 @@ export default {
 
 ### shadowOffsetY
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -533,15 +533,15 @@ export default {
 
 ### imageSmoothingEnabled<sup>6+</sup>
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
 </div>
 ```
 
-```
-//xxx.js
+```js
+// xxx.js
 export default {
   onShow() {
     const el =this.$refs.canvas;
@@ -569,23 +569,24 @@ fillRect(x: number, y: number, width:number, height: number): void
 
 Fills a rectangle on the canvas.
 
-- Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+**Parameters**
+| Name    | Type    | Description           |
+| ------ | ------ | ------------- |
+| x      | number | X-coordinate of the upper left corner of the rectangle.|
+| y      | number | Y-coordinate of the upper left corner of the rectangle.|
+| width  | number | Width of the rectangle.     |
+| height | number | Height of the rectangle.     |
 
-- Example
-```
+**Example**
+
+```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
 ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -604,23 +605,23 @@ clearRect(x: number, y: number, width:number, height: number): void
 
 Clears the content in a rectangle on the canvas.
 
-- Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+**Parameters**
+| Name    | Type    | Description           |
+| ------ | ------ | ------------- |
+| x      | number | X-coordinate of the upper left corner of the rectangle.|
+| y      | number | Y-coordinate of the upper left corner of the rectangle.|
+| width  | number | Width of the rectangle.     |
+| height | number | Height of the rectangle.     |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -642,23 +643,23 @@ strokeRect(x: number, y: number, width:number, height: number): void
 
 Draws a rectangle stroke on the canvas.
 
-- Parameters
-  | Name    | Type    | Description          |
-  | ------ | ------ | ------------ |
-  | x      | number | X-coordinate of the upper left corner of the rectangle stroke.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle stroke.|
-  | width  | number | Width of the rectangle.    |
-  | height | number | Height of the rectangle.    |
+**Parameters**
+| Name    | Type    | Description          |
+| ------ | ------ | ------------ |
+| x      | number | X-coordinate of the upper left corner of the rectangle stroke.|
+| y      | number | Y-coordinate of the upper left corner of the rectangle stroke.|
+| width  | number | Width of the rectangle.    |
+| height | number | Height of the rectangle.    |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -678,22 +679,22 @@ fillText(text: string, x: number, y: number): void
 
 Draws filled text on the canvas.
 
-- Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | text | string | Text to draw.     |
-  | x    | number | X-coordinate of the lower left corner of the text.|
-  | y    | number | Y-coordinate of the lower left corner of the text.|
+**Parameters**
+| Name  | Type    | Description             |
+| ---- | ------ | --------------- |
+| text | string | Text to draw.     |
+| x    | number | X-coordinate of the lower left corner of the text.|
+| y    | number | Y-coordinate of the lower left corner of the text.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -713,22 +714,22 @@ strokeText(text: string, x: number, y: number): void
 
 Draws a text stroke on the canvas.
 
-- Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | text | string | Text to draw.     |
-  | x    | number | X-coordinate of the lower left corner of the text.|
-  | y    | number | Y-coordinate of the lower left corner of the text.|
+**Parameters**
+| Name  | Type    | Description             |
+| ---- | ------ | --------------- |
+| text | string | Text to draw.     |
+| x    | number | X-coordinate of the lower left corner of the text.|
+| y    | number | Y-coordinate of the lower left corner of the text.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -748,25 +749,25 @@ measureText(text: string): TextMetrics
 
 Returns a **TextMetrics** object used to obtain the width of specified text.
 
-- Parameters
-  | Name  | Type    | Description        |
-  | ---- | ------ | ---------- |
-  | text | string | Text to be measured.|
+**Parameters**
+| Name  | Type    | Description        |
+| ---- | ------ | ---------- |
+| text | string | Text to be measured.|
 
-- Return value
-  | Type         | Description                                    |
-  | ----------- | -------------------------------------- |
-  | TextMetrics | Object that contains the text width. You can obtain the width by **TextMetrics.width**.|
+**Return value**
+| Type         | Description                                    |
+| ----------- | -------------------------------------- |
+| TextMetrics | Object that contains the text width. You can obtain the width by **TextMetrics.width**.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -788,15 +789,15 @@ stroke(): void
 
 Draws a stroke.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -819,15 +820,15 @@ beginPath(): void
 
 Creates a drawing path.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -851,21 +852,21 @@ moveTo(x: number, y: number): void
 
 Moves a drawing path to a target position on the canvas.
 
-- Parameters
-  | Name  | Type    | Description       |
-  | ---- | ------ | --------- |
-  | x    | number | X-coordinate of the target position.|
-  | y    | number | Y-coordinate of the target position.|
+**Parameters**
+| Name  | Type    | Description       |
+| ---- | ------ | --------- |
+| x    | number | X-coordinate of the target position.|
+| y    | number | Y-coordinate of the target position.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -887,21 +888,21 @@ lineTo(x: number, y: number): void
 
 Connects the current point to a target position using a straight line.
 
-- Parameters
-  | Name  | Type    | Description       |
-  | ---- | ------ | --------- |
-  | x    | number | X-coordinate of the target position.|
-  | y    | number | Y-coordinate of the target position.|
+**Parameters**
+| Name  | Type    | Description       |
+| ---- | ------ | --------- |
+| x    | number | X-coordinate of the target position.|
+| y    | number | Y-coordinate of the target position.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -923,15 +924,15 @@ closePath(): void
 
 Draws a closed path.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -955,26 +956,26 @@ createPattern(image: Image, repetition: string): Object
 
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
-- Parameters
-  | Name        | Type    | Description                                      |
-  | ---------- | ------ | ---------------------------------------- |
-  | image      | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
-  | repetition | string | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**.|
+**Parameters**
+| Name        | Type    | Description                                      |
+| ---------- | ------ | ---------------------------------------- |
+| image      | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
+| repetition | string | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**.|
 
-- Return value
-  | Type    | Description               |
-  | ------ | ----------------- |
-  | Object | Pattern of image filling.|
+**Return value**
+| Type    | Description               |
+| ------ | ----------------- |
+| Object | Pattern of image filling.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -997,25 +998,25 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 Draws a cubic bezier curve on the canvas.
 
-- Parameters
-  | Name  | Type    | Description            |
-  | ---- | ------ | -------------- |
-  | cp1x | number | X-coordinate of the first parameter of the bezier curve.|
-  | cp1y | number | Y-coordinate of the first parameter of the bezier curve.|
-  | cp2x | number | X-coordinate of the second parameter of the bezier curve.|
-  | cp2y | number | Y-coordinate of the second parameter of the bezier curve.|
-  | x    | number | X-coordinate of the end point on the bezier curve.   |
-  | y    | number | Y-coordinate of the end point on the bezier curve.   |
+**Parameters**
+| Name  | Type    | Description            |
+| ---- | ------ | -------------- |
+| cp1x | number | X-coordinate of the first parameter of the bezier curve.|
+| cp1y | number | Y-coordinate of the first parameter of the bezier curve.|
+| cp2x | number | X-coordinate of the second parameter of the bezier curve.|
+| cp2y | number | Y-coordinate of the second parameter of the bezier curve.|
+| x    | number | X-coordinate of the end point on the bezier curve.   |
+| y    | number | Y-coordinate of the end point on the bezier curve.   |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1037,23 +1038,23 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 Draws a quadratic curve on the canvas.
 
-- Parameters
-  | Name  | Type    | Description         |
-  | ---- | ------ | ----------- |
-  | cpx  | number | X-coordinate of the bezier curve parameter.|
-  | cpy  | number | Y-coordinate of the bezier curve parameter.|
-  | x    | number | X-coordinate of the end point on the bezier curve.|
-  | y    | number | Y-coordinate of the end point on the bezier curve.|
+**Parameters**
+| Name  | Type    | Description         |
+| ---- | ------ | ----------- |
+| cpx  | number | X-coordinate of the bezier curve parameter.|
+| cpy  | number | Y-coordinate of the bezier curve parameter.|
+| x    | number | X-coordinate of the end point on the bezier curve.|
+| y    | number | Y-coordinate of the end point on the bezier curve.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1075,25 +1076,25 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 Draws an arc on the canvas.
 
-- Parameters
-  | Name           | Type     | Description        |
-  | ------------- | ------- | ---------- |
-  | x             | number  | X-coordinate of the center point of the arc.|
-  | y             | number  | Y-coordinate of the center point of the arc.|
-  | radius        | number  | Radius of the arc.   |
-  | startAngle    | number  | Start radian of the arc.  |
-  | endAngle      | number  | End radian of the arc.  |
-  | anticlockwise | boolean | Whether to draw the arc counterclockwise.|
+**Parameters**
+| Name           | Type     | Description        |
+| ------------- | ------- | ---------- |
+| x             | number  | X-coordinate of the center point of the arc.|
+| y             | number  | Y-coordinate of the center point of the arc.|
+| radius        | number  | Radius of the arc.   |
+| startAngle    | number  | Start radian of the arc.  |
+| endAngle      | number  | End radian of the arc.  |
+| anticlockwise | boolean | Whether to draw the arc counterclockwise.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1114,31 +1115,31 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 Draws an arc based on the radius and points on the arc.
 
-- Parameters
-  | Name    | Type    | Description             |
-  | ------ | ------ | --------------- |
-  | x1     | number | X-coordinate of the first point on the arc.|
-  | y1     | number | Y-coordinate of the first point on the arc.|
-  | x2     | number | X-coordinate of the second point on the arc.|
-  | y2     | number | Y-coordinate of the second point on the arc.|
-  | radius | number | Radius of the arc.       |
+**Parameters**
+| Name    | Type    | Description             |
+| ------ | ------ | --------------- |
+| x1     | number | X-coordinate of the first point on the arc.|
+| y1     | number | Y-coordinate of the first point on the arc.|
+| x2     | number | X-coordinate of the second point on the arc.|
+| y2     | number | Y-coordinate of the second point on the arc.|
+| radius | number | Radius of the arc.       |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
       const el =this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.moveTo(100, 20);
-      ctx.arcTo(150, 20, 150, 70, 50); // Create an arc.
+      ctx.arcTo(150, 20, 150, 70, 50); // Create an arc
       ctx.stroke();
     }
   }
@@ -1152,27 +1153,27 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 Draws an ellipse in the specified rectangular region on the canvas.
 
-- Parameters
-  | Name           | Type    | Description                                  |
-  | ------------- | ------ | ------------------------------------ |
-  | x             | number | X-coordinate of the ellipse center.                          |
-  | y             | number | Y-coordinate of the ellipse center.                          |
-  | radiusX       | number | Ellipse radius on the x-axis.                          |
-  | radiusY       | number | Ellipse radius on the y-axis.                          |
-  | rotation      | number | Rotation angle of the ellipse. The unit is radian.                      |
-  | startAngle    | number | Angle of the start point for drawing the ellipse. The unit is radian.                   |
-  | endAngle      | number | Angle of the end point for drawing the ellipse. The unit is radian.                   |
-  | anticlockwise | number | Whether to draw the ellipse counterclockwise. The value **0** means clockwise, and **1** means counterclockwise. This parameter is optional. The default value is **0**.|
+**Parameters**
+| Name           | Type    | Description                                  |
+| ------------- | ------ | ------------------------------------ |
+| x             | number | X-coordinate of the ellipse center.                          |
+| y             | number | Y-coordinate of the ellipse center.                          |
+| radiusX       | number | Ellipse radius on the x-axis.                          |
+| radiusY       | number | Ellipse radius on the y-axis.                          |
+| rotation      | number | Rotation angle of the ellipse. The unit is radian.                      |
+| startAngle    | number | Angle of the start point for drawing the ellipse. The unit is radian.                   |
+| endAngle      | number | Angle of the end point for drawing the ellipse. The unit is radian.                   |
+| anticlockwise | number | Whether to draw the ellipse counterclockwise. The value **0** means clockwise, and **1** means counterclockwise. This parameter is optional. The default value is **0**.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1193,29 +1194,29 @@ rect(x: number, y: number, width: number, height: number): void
 
 Creates a rectangle on the canvas.
 
-- Parameters
-  | Name    | Type    | Description           |
-  | ------ | ------ | ------------- |
-  | x      | number | X-coordinate of the upper left corner of the rectangle.|
-  | y      | number | Y-coordinate of the upper left corner of the rectangle.|
-  | width  | number | Width of the rectangle.     |
-  | height | number | Height of the rectangle.     |
+**Parameters**
+| Name    | Type    | Description           |
+| ------ | ------ | ------------- |
+| x      | number | X-coordinate of the upper left corner of the rectangle.|
+| y      | number | Y-coordinate of the upper left corner of the rectangle.|
+| width  | number | Width of the rectangle.     |
+| height | number | Height of the rectangle.     |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
       const el =this.$refs.canvas;
       const ctx = el.getContext('2d');
-      ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20).
+      ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
       ctx.stroke(); // Draw it
     }
   }
@@ -1229,22 +1230,22 @@ fill(): void
 
 Fills the area inside a closed path on the canvas.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
       const el =this.$refs.canvas;
       const ctx = el.getContext('2d');
-      ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20).
-      ctx.fill(); // Fill the rectangle using default settings.
+      ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
+      ctx.fill(); // Draw it in default setting
     }
   }
   ```
@@ -1257,15 +1258,15 @@ clip(): void
 
 Sets the current path to a clipping path.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1274,7 +1275,7 @@ Sets the current path to a clipping path.
       ctx.rect(0, 0, 200, 200);
       ctx.stroke();
       ctx.clip();
-      // Clip a rectangle and fill it with red paint.
+      // Draw red rectangle after clip
       ctx.fillStyle = "rgb(255,0,0)";
       ctx.fillRect(0, 0, 150, 150);
     }
@@ -1289,20 +1290,20 @@ rotate(rotate: number): void
 
 Rotates a canvas clockwise around its coordinate axes.
 
-- Parameters
-  | Name    | Type    | Description                                      |
-  | ------ | ------ | ---------------------------------------- |
-  | rotate | number | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
+**Parameters**
+| Name    | Type    | Description                                      |
+| ------ | ------ | ---------------------------------------- |
+| rotate | number | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1322,28 +1323,28 @@ scale(x: number, y: number): void
 
 Scales the canvas based on scale factors.
 
-- Parameters
-  | Name  | Type    | Description         |
-  | ---- | ------ | ----------- |
-  | x    | number | Horizontal scale factor.|
-  | y    | number | Vertical scale factor.|
+**Parameters**
+| Name  | Type    | Description         |
+| ---- | ------ | ----------- |
+| x    | number | Horizontal scale factor.|
+| y    | number | Vertical scale factor.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
       const el =this.$refs.canvas;
       const ctx = el.getContext('2d');
       ctx.strokeRect(10, 10, 25, 25);
-      ctx.scale(2, 2);// Scale to 200%.
+      ctx.scale(2, 2);// Scale to 200%
       ctx.strokeRect(10, 10, 25, 25);
     }
   }
@@ -1357,32 +1358,32 @@ transform(scaleX: number, skewX: number, skewY: number, scale: number, translate
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
+>  **NOTE**<br>
+>  The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+>  - x' = scaleX \* x + skewY \* y + translateX
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+>  - y' = skewX \* x + scaleY \* y + translateY
 
-- Parameters
-  | Name        | Type    | Description      |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | X-axis scale.|
-  | skewX      | number | X-axis skew.|
-  | skewY      | number | Y-axis skew.|
-  | scaleY     | number | Y-axis scale.|
-  | translateX | number | X-axis translation.|
-  | translateY | number | Y-axis translation.|
+**Parameters**
+| Name        | Type    | Description      |
+| ---------- | ------ | -------- |
+| scaleX     | number | X-axis scale.|
+| skewX      | number | X-axis skew.|
+| skewY      | number | Y-axis skew.|
+| scaleY     | number | Y-axis scale.|
+| translateX | number | X-axis translation.|
+| translateY | number | Y-axis translation.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1408,25 +1409,25 @@ setTransform(scaleX: number, skewX: number, skewY: number, scale: number, transl
 
 Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
 
-- Parameters
-  | Name        | Type    | Description      |
-  | ---------- | ------ | -------- |
-  | scaleX     | number | X-axis scale.|
-  | skewX      | number | X-axis skew.|
-  | skewY      | number | Y-axis skew.|
-  | scaleY     | number | Y-axis scale.|
-  | translateX | number | X-axis translation.|
-  | translateY | number | Y-axis translation.|
+**Parameters**
+| Name        | Type    | Description      |
+| ---------- | ------ | -------- |
+| scaleX     | number | X-axis scale.|
+| skewX      | number | X-axis skew.|
+| skewY      | number | Y-axis skew.|
+| scaleY     | number | Y-axis scale.|
+| translateX | number | X-axis translation.|
+| translateY | number | Y-axis translation.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1449,21 +1450,21 @@ translate(x: number, y: number): void
 
 Moves the origin of the coordinate system.
 
-- Parameters
-  | Name  | Type    | Description      |
-  | ---- | ------ | -------- |
-  | x    | number | X-axis translation.|
-  | y    | number | Y-axis translation.|
+**Parameters**
+| Name  | Type    | Description      |
+| ---- | ------ | -------- |
+| x    | number | X-axis translation.|
+| y    | number | Y-axis translation.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1484,24 +1485,26 @@ createPath2D(path: Path2D, cmds: string): Path2D
 
 Creates a **Path2D** object.
 
-- Parameters
-  | Name  | Type    | Description            |
-  | ---- | ------ | -------------- |
-  | path | Path2D | **Path2D** object.     |
-  | cmds | string | Path description of the SVG image.|
+**Parameters**
+| Name  | Type    | Description            |
+| ---- | ------ | -------------- |
+| path | Path2D | **Path2D** object.     |
+| cmds | string | Path description of the SVG image.|
 
-- Return value
-  [Path2D object](../arkui-js/js-components-canvas-path2d.md)
+**Return value**
 
-- Example
-  ```
+[Path2D object](../arkui-js/js-components-canvas-path2d.md)
+
+**Example**
+
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1525,32 +1528,32 @@ Creates a **Path2D** object.
 
 ### drawImage
 
-drawImage(image: Image, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 Draws an image on the canvas.
 
-- Parameters
-  | Name     | Type    | Description                                      |
-  | ------- | ------ | ---------------------------------------- |
-  | image   | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
-  | sx      | number | X-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
-  | sy      | number | Y-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
-  | sWidth  | number | Target width to crop the source image.                          |
-  | sHeight | number | Target height to crop the source image.                          |
-  | dx      | number | X-coordinate of the upper left corner of the drawing area on the canvas.                          |
-  | dy      | number | Y-coordinate of the upper left corner of the drawing area on the canvas.                    |
-  | dWidth  | number | Width of the drawing area.                                |
-  | dHeight | number | Height of the drawing area.                                |
+**Parameters**
+| Name     | Type                            | Description                                      |
+| ------- | ------------------------------ | ---------------------------------------- |
+| image   | Image \| PixelMap<sup>9+</sup> | Image resource. For details, see [Image](../arkui-js/js-components-canvas-image.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7).|
+| sx      | number                         | X-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
+| sy      | number                         | Y-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
+| sWidth  | number                         | Target width to crop the source image.                          |
+| sHeight | number                         | Target height to crop the source image.                          |
+| dx      | number                         | X-coordinate of the upper left corner of the drawing area on the canvas.                          |
+| dy      | number                         | Y-coordinate of the upper left corner of the drawing area on the canvas.                    |
+| dWidth  | number                         | Width of the drawing area.                                |
+| dHeight | number                         | Height of the drawing area.                                |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1571,15 +1574,15 @@ restore(): void
 
 Restores the saved drawing context.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1596,15 +1599,15 @@ save(): void
 
 Saves the current drawing context.
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1621,21 +1624,21 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
 Creates a linear gradient and returns a **CanvasGradient** object. For details, see [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md).
 
-- Parameters
-  | Name  | Type    | Description      |
-  | ---- | ------ | -------- |
-  | x0   | number | X-coordinate of the start point.|
-  | y0   | number | Y-coordinate of the start point.|
-  | x1   | number | X-coordinate of the end point.|
-  | y1   | number | Y-coordinate of the end point.|
+**Parameters**
+| Name  | Type    | Description      |
+| ---- | ------ | -------- |
+| x0   | number | X-coordinate of the start point.|
+| y0   | number | Y-coordinate of the start point.|
+| x1   | number | X-coordinate of the end point.|
+| y1   | number | Y-coordinate of the end point.|
 
-- Return value
-  | Type    | Description                    |
-  | ------ | ---------------------- |
-  | Object | Created **CanvasGradient** object.|
+**Return value**
+| Type    | Description                    |
+| ------ | ---------------------- |
+| Object | Created **CanvasGradient** object.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
@@ -1643,7 +1646,7 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -1670,23 +1673,23 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 Creates a radial gradient and returns a **CanvasGradient** object.
 
-- Parameters
-  | Name  | Type    | Description               |
-  | ---- | ------ | ----------------- |
-  | x0   | number | X-coordinate of the center of the start circle.        |
-  | y0   | number | Y-coordinate of the center of the start circle.        |
-  | r0   | number | Radius of the start circle, which must be a non-negative finite number.|
-  | x1   | number | X-coordinate of the center of the end circle.        |
-  | y1   | number | Y-coordinate of the center of the end circle.        |
-  | r1   | number | Radius of the end circle, which must be a non-negative finite number.|
+**Parameters**
+| Name  | Type    | Description               |
+| ---- | ------ | ----------------- |
+| x0   | number | X-coordinate of the center of the start circle.        |
+| y0   | number | Y-coordinate of the center of the start circle.        |
+| r0   | number | Radius of the start circle, which must be a non-negative finite number.|
+| x1   | number | X-coordinate of the center of the end circle.        |
+| y1   | number | Y-coordinate of the center of the end circle.        |
+| r1   | number | Radius of the end circle, which must be a non-negative finite number.|
 
-- Return value
-  | Type    | Description                    |
-  | ------ | ---------------------- |
-  | Object | Created **CanvasGradient** object.|
+**Return value**
+| Type    | Description                    |
+| ------ | ---------------------- |
+| Object | Created **CanvasGradient** object.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
@@ -1694,7 +1697,7 @@ Creates a radial gradient and returns a **CanvasGradient** object.
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     handleClick() {
@@ -1721,27 +1724,27 @@ createImageData(width: number, height: number, imageData: Object): Object
 
 Creates an **ImageData** object. For details, see [ImageData](../arkui-js/js-components-canvas-imagedata.md).
 
-- Parameters
-  | Name       | Type    | Description               |
-  | --------- | ------ | ----------------- |
-  | width     | number | Width of the **ImageData** object.    |
-  | height    | number | Height of the **ImageData** object.    |
-  | imagedata | Object | **ImageData** object with the same width and height copied from the original **ImageData** object.|
+**Parameters**
+| Name       | Type    | Description               |
+| --------- | ------ | ----------------- |
+| width     | number | Width of the **ImageData** object.    |
+| height    | number | Height of the **ImageData** object.    |
+| imagedata | Object | **ImageData** object with the same width and height copied from the original **ImageData** object.|
 
-- Return value
-  | Type    | Description               |
-  | ------ | ----------------- |
-  | Object | Created **ImageData** object.|
+**Return value**
+| Type    | Description               |
+| ------ | ----------------- |
+| Object | Created **ImageData** object.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1757,30 +1760,30 @@ Creates an **ImageData** object. For details, see [ImageData](../arkui-js/js-com
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-Creates an **ImageData** object with pixels in the specified area on the canvas.
+Obtains the **ImageData** object created with the pixels within the specified area on the canvas.
 
-- Parameters
-  | Name  | Type    | Description             |
-  | ---- | ------ | --------------- |
-  | sx   | number | X-coordinate of the upper left corner of the output area.|
-  | sy   | number | Y-coordinate of the upper left corner of the output area.|
-  | sw   | number | Width of the output area.    |
-  | sh   | number | Height of the output area.    |
+**Parameters**
+| Name  | Type    | Description             |
+| ---- | ------ | --------------- |
+| sx   | number | X-coordinate of the upper left corner of the output area.|
+| sy   | number | Y-coordinate of the upper left corner of the output area.|
+| sw   | number | Width of the output area.    |
+| sh   | number | Height of the output area.    |
 
-- Return value
-  | Type    | Description                     |
-  | ------ | ----------------------- |
-  | Object | **ImageData** object that contains pixels in the specified area on the canvas.|
+**Return value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| Object | **ImageData** object that contains pixels in the specified area on the canvas.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1797,26 +1800,26 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
 Puts the **ImageData** onto a rectangular area on the canvas.
 
-- Parameters
-  | Name         | Type    | Description                           |
-  | ----------- | ------ | ----------------------------- |
-  | imagedata   | Object | **ImageData** object with pixels to put onto the canvas.           |
-  | dx          | number | X-axis offset of the rectangular area on the canvas.               |
-  | dy          | number | Y-axis offset of the rectangular area on the canvas.               |
-  | dirtyX      | number | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-  | dirtyY      | number | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
-  | dirtyWidth  | number | Width of the rectangular area to crop the source image.              |
-  | dirtyHeight | number | Height of the rectangular area to crop the source image.              |
+**Parameters**
+| Name         | Type    | Description                           |
+| ----------- | ------ | ----------------------------- |
+| imagedata   | Object | **ImageData** object with pixels to put onto the canvas.           |
+| dx          | number | X-axis offset of the rectangular area on the canvas.               |
+| dy          | number | Y-axis offset of the rectangular area on the canvas.               |
+| dirtyX      | number | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
+| dirtyY      | number | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
+| dirtyWidth  | number | Width of the rectangular area to crop the source image.              |
+| dirtyHeight | number | Height of the rectangular area to crop the source image.              |
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1836,26 +1839,67 @@ Puts the **ImageData** onto a rectangular area on the canvas.
 
   ![en-us_image_0000001214463283](figures/en-us_image_0000001214463283.png)
 
+### getPixelMap<sup>9+</sup>
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+Obtains the **PixelMap** object created with the pixels within the specified area on the canvas.
+
+**Parameters**
+
+| Name  | Type    | Description          |
+| ---- | ------ | ------------ |
+| sx   | number | X-coordinate of the upper left corner of the specified area.|
+| sy   | number | Y-coordinate of the upper left corner of the specified area.|
+| sw   | number | Width of the specified area.    |
+| sh   | number | Height of the specified area.    |
+
+**Return value**
+
+| Type                                      | Description                    |
+| ---------------------------------------- | ---------------------- |
+| [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object that contains pixels in the specified area on the canvas.|
+
+**Example**
+
+  ```html
+  <!-- xxx.hml -->
+  <div>
+    <canvas id="canvasId" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  </div>
+  ```
+
+  ```js
+  //xxx.js
+  export default {
+    onShow() {
+      const test = this.$element('canvasId')
+      const ctx = test.getContext('2d');
+      var pixelMap = ctx.getPixelMap(0, 0, 280, 300);
+    }
+  }
+  ```
+
 ### setLineDash
 
 setLineDash(segments: Array): void
 
 Sets the dash line style.
 
-- Parameters
-  | Name      | Type   | Description                  |
-  | -------- | ----- | -------------------- |
-  | segments | Array | An array describing the interval of alternate line segments and length of spacing.|
+**Parameters**
+| Name      | Type   | Description                  |
+| -------- | ----- | -------------------- |
+| segments | Array | An array describing the interval of alternate line segments and length of spacing.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1876,20 +1920,20 @@ getLineDash(): Array
 
 Obtains the dash line style.
 
-- Return value
-  | Type   | Description                      |
-  | ----- | ------------------------ |
-  | Array | An array describing the interval of alternate line segments and length of spacing.|
+**Return value**
+| Type   | Description                      |
+| ----- | ------------------------ |
+| Array | An array describing the interval of alternate line segments and length of spacing.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {
@@ -1906,20 +1950,20 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 Displays the specified **ImageBitmap** object.
 
-- Parameters
-  | Name    | Type         | Description                |
-  | ------ | ----------- | ------------------ |
-  | bitmap | ImageBitmap | **ImageBitmap** object to display.|
+**Parameters**
+| Name    | Type         | Description                |
+| ------ | ----------- | ------------------ |
+| bitmap | ImageBitmap | **ImageBitmap** object to display.|
 
-- Example
-  ```
+**Example**
+  ```html
   <!-- xxx.hml -->
   <div>
     <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
-  ```
+  ```js
   //xxx.js
   export default {
     onShow() {

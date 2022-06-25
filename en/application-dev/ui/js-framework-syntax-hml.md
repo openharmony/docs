@@ -41,7 +41,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > - To make the array data modification take effect, use the splice method to change array items.
 >
 > - ECMAScript 6 (ES6) syntax is not supported in HML.
@@ -135,7 +135,7 @@ Bubbling event binding covers the following:
 - Bind an event callback for event bubbling: on:{event}.bubble. on:{event} is equivalent to on:{event}.bubble.
 
 - Bind an event callback, but stop the event from bubbling upwards: grab:{event}.bubble. grab:{event} is equivalent to grab:{event}.bubble.
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
   > For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md)
 
 - Example
@@ -171,7 +171,7 @@ Bubbling event binding covers the following:
   }
   ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Events bound using a traditional statement (such as onclick) will bubble only when the API version in use is 6 or later.
 
 ## Capturing Event Binding<sup>5+</sup>
@@ -260,7 +260,7 @@ The for loop supports the following statements:
 
 - for="(i, v) in array": i indicates the element index, and v indicates the element variable. All elements of the array object will be looped through.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > - Each element in the array must have the data attribute specified by tid. Otherwise, an exception may occur.
 >
 > - The attribute specified by tid in the array must be unique. Otherwise, performance loss occurs. In the above example, only id and name can be used as tid because they are unique fields.
@@ -353,7 +353,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Do not use for and if attributes at the same time in an element.
 
 ## Logic Control Block
