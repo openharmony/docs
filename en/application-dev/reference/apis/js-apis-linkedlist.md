@@ -1,28 +1,35 @@
 # Linear Container LinkedList
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**LinkedList** is implemented based on the doubly linked list. Each node of the doubly linked list has references pointing to the previous element and the next element. When querying an element, the system traverses the list from the beginning or end. **LinkedList** offers efficient insertion and removal operations but supports low query efficiency. **LinkedList** allows null elements.
+
+Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList** is a doubly linked list that supports insertion and removal at both ends.
+
+**LinkedList** is less efficient in data access than **[ArrayList](js-apis-arraylist.md)**.
+
+**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations.
 
 ## Modules to Import
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList'  
+import LinkedList from '@ohos.util.LinkedList';  
 ```
 
-## System Capability
 
-SystemCapability.Utils.Lang
 
 
 ## LinkedList
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a linked list (called container later).|
+| length | number | Yes| No| Number of elements in a linked list (called container later).|
 
 
 ### constructor
@@ -30,6 +37,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **LinkedList** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 
 **Example**
@@ -43,19 +52,21 @@ let linkedList = new LinkedList();
 
 add(element: T): boolean
 
-Adds an entry at the end of this container.
+Adds an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to add.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -73,13 +84,15 @@ let result3 = linkedList.add(false);
 
 addFirst(element: T): void
 
-Adds an entry at the top of this container.
+Adds an element at the top of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to add.|
+| element | T | Yes| Target element.|
 
 **Example**
 
@@ -97,14 +110,16 @@ linkedList.addFirst(false);
 
 insert(index: number, element: T): void
 
-Inserts an entry at the specified position in this container.
+Inserts an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to insert.|
-| index | number | Yes| Index of the position where the entry is to be inserted.|
+| element | T | Yes| Target element.|
+| index | number | Yes| Index of the position where the element is to be inserted.|
 
 **Example**
 
@@ -119,19 +134,21 @@ linkedList.insert(2, true);
 
 has(element: T): boolean
 
-Checks whether this container has the specified entry.
+Checks whether this container has the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified entry is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -146,19 +163,21 @@ let result = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
 
 get(index: number): T
 
-Obtains an entry at the specified position in this container.
+Obtains an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to query.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry obtained.|
+| T | Element obtained.|
 
 **Example**
 
@@ -178,19 +197,21 @@ let result = linkedList.get(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified entry in this container.
+Obtains the index of the last occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -210,19 +231,21 @@ let result = linkedList.getLastIndexOf(2);
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified entry in this container.
+Obtains the index of the first occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -242,19 +265,21 @@ let result = linkedList.getIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an entry at the specified position from this container.
+Removes an element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -272,13 +297,15 @@ let result = linkedList.removeByIndex(2);
 
 removeFirst(): T
 
-Removes the first entry from this container.
+Removes the first element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -296,13 +323,15 @@ let result = linkedList.removeFirst();
 
 removeLast(): T
 
-Removes the last entry from this container.
+Removes the last element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -320,19 +349,21 @@ let result = linkedList.removeLast();
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified entry from this container.
+Removes the first occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -349,19 +380,21 @@ let result = linkedList.remove(2);
 
 removeFirstFound(element: T): boolean
 
-Removes the first occurrence of the specified entry from this container.
+Removes the first occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -378,19 +411,21 @@ let result = linkedList.removeFirstFound(4);
 
 removeLastFound(element: T): boolean
 
-Removes the last occurrence of the specified entry from this container.
+Removes the last occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -408,6 +443,8 @@ let result = linkedList.removeLastFound(4);
 clone(): LinkedList&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -431,21 +468,23 @@ let result = linkedList.clone();
 forEach(callbackfn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | LinkedList | LinkedList&lt;T&gt; | No| Instance that invokes the **forEach** API.|
 
 **Example**
@@ -457,7 +496,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value:" + value, index);
 });
 ```
 
@@ -466,6 +505,8 @@ linkedList.forEach((value, index) => {
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -482,20 +523,22 @@ linkedList.clear();
 
 set(index: number, element: T): T
 
-Replaces an entry at the specified position in this container with a given entry.
+Replaces an element at the specified position in this container with a given element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to replace.|
-| element | T | Yes| Entry to be used for replacement.|
+| index | number | Yes| Position index of the target element.|
+| element | T | Yes| Element to be used for replacement.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | New entry.|
+| T | New element.|
 
 **Example**
 
@@ -513,6 +556,8 @@ let result = linkedList.set(2, "b");
 convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -534,13 +579,15 @@ let result = linkedList.convertToArray();
 
 getFirst(): T
 
-Obtains the first entry in this container.
+Obtains the first element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Returns the entry if obtained; returns **undefined** otherwise.|
+| T | Returns the element if obtained; returns **undefined** otherwise.|
 
 **Example**
 
@@ -557,13 +604,15 @@ let result = linkedList.getFirst();
 
 getLast(): T
 
-Obtains the last entry in this container.
+Obtains the last element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Returns the entry if obtained; returns **undefined** otherwise.|
+| T | Returns the element if obtained; returns **undefined** otherwise.|
 
 **Example**
 
@@ -580,8 +629,9 @@ linkedList.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -600,14 +650,14 @@ linkedList.add(4);
 
 // Method 1:
 for (let item of linkedList) { 
-  console.log(item); 
+  console.log("value:" + item); 
 } 
 
 // Method 2:
 let iter = linkedList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
