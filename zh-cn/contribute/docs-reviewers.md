@@ -5,8 +5,8 @@
 
 | Feature      | Docs Reviewers                                               |
 | ------------ | ------------------------------------------------------------ |
-| 快速入门     | [@duangavin123](https://gitee.com/duangavin123)              |
-| 获取源码     | [@duangavin123](https://gitee.com/duangavin123)              |
+| 快速入门     | [@duangavin123](https://gitee.com/duangavin123_admin)         |
+| 获取源码     | [@duangavin123](https://gitee.com/duangavin123_admin)         |
 | 内核         | [@Austin23](https://gitee.com/Austin23)                      |
 | 驱动         | [@Qianchenya](https://gitee.com/Qianchenya)                  |
 | 设备开发指南 | [@Austin23](https://gitee.com/Austin23)                      |

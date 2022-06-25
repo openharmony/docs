@@ -526,7 +526,7 @@ int32_t SampleDriverInit(struct HdfDeviceObject *deviceObject)
     ret = InitDiver();
     // 自定义方法使用HDF的错误码
     if (ret != HDF_SUCCESS) {
-        HDF_LOGE("init drvier is failed");
+        HDF_LOGE("init driver is failed");
         return ret;
     }
     return HDF_SUCCESS;

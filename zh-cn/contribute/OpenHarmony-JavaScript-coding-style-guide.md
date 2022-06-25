@@ -643,7 +643,7 @@ console.log(sum2); // 输出：0.6。所以对于二进制浮点数，(a + b) + 
 
 1. 尽可能的采用整数值运算，因为整数在表示是不需要舍入；
 
-2. 使用JavaScript的原生方法`Number.prototype.toFixed(digits)`,`digist`参数表示小数点后数字的个数，不使用指数法，在必要时会进行四舍五入。使用该方法，在判断浮点数运算结果前对计算结果进行精度缩小。示例代码如下所示：
+2. 使用JavaScript的原生方法`Number.prototype.toFixed(digits)`,`digits`参数表示小数点后数字的个数，不使用指数法，在必要时会进行四舍五入。使用该方法，在判断浮点数运算结果前对计算结果进行精度缩小。示例代码如下所示：
 
    ```javascript
    parseFloat(0.1 + 0.2).toFixed(1); //0.3

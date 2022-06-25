@@ -807,10 +807,10 @@ public class DeserializeExample implements Serializable {
 
     // 使用外部数据执行反序列化操作
     ObjectInputStream ois2= new ObjectInputStream(fis);
-    PersionInfo myPerson = (PersionInfo) ois2.readObject();
+    PersonInfo myPerson = (PersonInfo) ois2.readObject();
 ```
 
-上面的示例中，当反序列化操作的对象是攻击者构造的DeserializeExample对象的序列化结果，当`PersionInfo myPerson = (PersionInfo) ois2.readObject()`该语句执行时会报错，但是DeserializeExample对象中的`readObject()`方法中的攻击代码已经被执行。
+上面的示例中，当反序列化操作的对象是攻击者构造的DeserializeExample对象的序列化结果，当`PersonInfo myPerson = (PersonInfo) ois2.readObject()`该语句执行时会报错，但是DeserializeExample对象中的`readObject()`方法中的攻击代码已经被执行。
 
 **【正例】**（使用白名单校验）
 
@@ -826,7 +826,7 @@ public final class SecureObjectInputStream extends ObjectInputStream {
 
     protected Class<?> resolveClass(ObjectStreamClass desc)
         throws IOException, ClassNotFoundException {
-        if (!desc.getName().equals("com.xxxx.PersionInfo")) { // 白名单校验
+        if (!desc.getName().equals("com.xxxx.PersonInfo")) { // 白名单校验
             throw new ClassNotFoundException(desc.getName() + " not find");
         }
         return super.resolveClass(desc);
@@ -874,7 +874,7 @@ public final class HWObjectInputStream extends ObjectInputStream {
 (3) 在policy文件里设置白名单
 
 ```
-permission java.io.SerializablePermission "com.xxxx.PersionInfo";
+permission java.io.SerializablePermission "com.xxxx.PersonInfo";
 
 ```
 
@@ -910,7 +910,7 @@ permission java.io.SerializablePermission "com.xxxx.PersionInfo";
 实现：hibernate-validator 、Spring：
 
 - hibernate-validator 是 JSR 380（Bean Validation 2.0）、JSR 303（Bean Validation 1.0）规范的实现，同时扩展了注解：@Email、@Length、@NotEmpty、@Range等。
-- Spring validtor 同样实现了JSR 380和JSR 303，并提供了MethodValidationPostProcessor类，用于对方法的校验。
+- Spring validator 同样实现了JSR 380和JSR 303，并提供了MethodValidationPostProcessor类，用于对方法的校验。
 
 产品可自主选择合适的校验框架，也可以自主开发实现外部数据校验。
 
@@ -1414,7 +1414,7 @@ private void createXMLStream(BufferedOutputStream outStream, User user)
 **【正例】**（使用安全的XML库）
 
 ```java
-public static void buidlXML(FileWriter writer, User user) throws IOException {
+public static void  buildXML(FileWriter writer, User user) throws IOException {
     Document userDoc = DocumentHelper.createDocument();
     Element userElem = userDoc.addElement("user");
     Element idElem = userElem.addElement("id");
