@@ -1,8 +1,9 @@
 # AbilityStageContext
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Implements the context of an ability stage. This module is inherited from [Context](js-apis-application-context.md).
 
@@ -14,11 +15,8 @@ import AbilityStage from '@ohos.application.AbilityStage';
 
 ## Usage
 
-
 The ability stage context is obtained through an **AbilityStage** instance.
 
-
-  
 ```js
 import AbilityStage from '@ohos.application.AbilityStage';
 class MyAbilityStage extends AbilityStage {
@@ -27,7 +25,6 @@ class MyAbilityStage extends AbilityStage {
     }
 }
 ```
-
 
 ## Attributes
 

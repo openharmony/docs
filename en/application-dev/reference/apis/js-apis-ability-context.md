@@ -78,7 +78,7 @@ Starts an ability. This API uses a callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -111,7 +111,7 @@ Starts an ability. This API uses a promise to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -180,7 +180,7 @@ Starts an ability. This API uses a callback to return the result when the abilit
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
 
@@ -213,7 +213,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 
 **Return value**
