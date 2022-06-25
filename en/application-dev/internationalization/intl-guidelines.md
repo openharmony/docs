@@ -89,7 +89,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 2. Format the date and time.<br>
-   Call the **format** method to format the date and time in the DateTimeFormat object. This method returns a string representing the formatting result.
+   Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
      
    ```
    Date date = new Date();
