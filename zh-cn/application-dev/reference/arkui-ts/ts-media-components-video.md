@@ -123,7 +123,7 @@ requestFullscreen(value: boolean)
 - 参数
   | 参数名   | 参数类型   | 必填   | 默认值   | 参数描述    |
   | ----- | ------ | ---- | ----- | ------- |
-  | value | number | 是    | false | 是否全屏播放。 |
+  | value | boolean | 是    | false | 是否全屏播放。 |
 
 ### exitFullscreen
 
