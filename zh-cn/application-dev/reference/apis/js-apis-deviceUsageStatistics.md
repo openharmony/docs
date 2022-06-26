@@ -524,7 +524,7 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
         }
     });
 
-    // 无maNum参数调用方式
+    // 无maxNum参数调用方式
     bundleState.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
@@ -1117,9 +1117,9 @@ merge(toMerge: BundleStateInfo): void
 
 | 名称                 | 默认值  | 说明                |
 | ------------------ | ---- | ----------------- |
-| ACTIVE_GROUP_ALIVE | 10   | 活跃分组              |
-| ACTIVE_GROUP_DAILY | 20   | 经常使用，但当前并未在活跃态    |
-| ACTIVE_GROUP_FIXED | 30   | 常用分组，定期使用，但不是每天使用 |
-| ACTIVE_GROUP_RARE  | 40   | 极少使用分组，不经常使用      |
-| ACTIVE_GROUP_LIMIT | 50   | 受限使用分组            |
-| ACTIVE_GROUP_NEVER | 60   | 从未使用分组，安装但是从未运行过  |
+| ACTIVE_GROUP_ALIVE | 10   | 活跃分组。              |
+| ACTIVE_GROUP_DAILY | 20   | 经常使用，但当前并未在活跃态。    |
+| ACTIVE_GROUP_FIXED | 30   | 常用分组，定期使用，但不是每天使用。 |
+| ACTIVE_GROUP_RARE  | 40   | 极少使用分组，不经常使用。      |
+| ACTIVE_GROUP_LIMIT | 50   | 受限使用分组。            |
+| ACTIVE_GROUP_NEVER | 60   | 从未使用分组，安装但是从未运行过。  |
