@@ -1,12 +1,16 @@
 # PageAbility开发指导
 
 ## 概述
+
 ### 功能简介
-PageAbility是具备ArkUI实现的Ability，是开发者具体可见并可以交互的Ability实例。开发者通过IDE创建Ability时，IDE会自动创建相关模板代码。PageAbility相关能力通过单独的featureAbility实现，生命周期相关回调则通过app.js/app.ets中各个回调函数实现。
+
+PageAbility是具备ArkUI实现的Ability，是开发者具体可见并可以与之交互的Ability实例。开发者通过DevEco Studio创建Ability时，DevEco Studio会自动创建相关模板代码。
+
+PageAbility相关能力通过单独的featureAbility实现，生命周期相关回调则通过`app.js/app.ets`中各个回调函数实现。
 
 ### PageAbility的生命周期
 
-**PageAbility生命周期介绍**（Ability Life Cycle）：
+**PageAbility生命周期介绍**（Ability Lifecycle）：
 
 PageAbility生命周期是PageAbility被调度到INACTIVE、ACTIVE、BACKGROUND等各个状态的统称。
 
@@ -34,28 +38,31 @@ PageAbility生命周期流转如下图所示：
 PageAbility提供生命周期回调，开发者可以在`app.js/app.ets`中重写生命周期相关回调函数 。目前`app.js`环境中仅支持onCreate和onDestroy回调，`app.ets`环境支持全量生命周期回调。
 
 ### 启动模式
+
 ability支持单实例和多实例两种启动模式。
-在config.json中通过launchType配置项，可以配置具体的启动模式，其中：
+
+在`config.json`中通过launchType配置项，可以配置具体的启动模式，其中：
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| standard    | 多实例   | 每次startAbility都会启动一个新的实例 |
-| singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
+| standard    | 多实例   | 每次startAbility都会启动一个新的实例。 |
+| singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例。 |
 
 缺省情况下是singleton模式。
 
 
 ## 开发指导
+
 ### featureAbility接口说明
 
 **表1** featureAbility接口介绍
 
 | 接口名                                              | 描述            |
 | --------------------------------------------------- | --------------- |
-| void startAbility(parameter: StartAbilityParameter) | 启动Ability     |
-| Context getContext():                               | 获取应用Context |
-| void terminateSelf()                                | 结束Ability     |
-| bool hasWindowFocus()                               | 是否获取焦点    |
+| void startAbility(parameter: StartAbilityParameter) | 启动Ability。    |
+| Context getContext():                               | 获取应用Context。 |
+| void terminateSelf()                                | 结束Ability。     |
+| bool hasWindowFocus()                               | 是否获取焦点。    |
 
 
 ### 启动本地PageAbility
@@ -87,7 +94,8 @@ ability支持单实例和多实例两种启动模式。
 ```
 
 ### 启动远程PageAbility（当前仅对系统应用开放）
->说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用
+
+>说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前启动远程PageAbility仅支持系统应用。
 
 **导入模块**
 
@@ -180,7 +188,7 @@ ability支持单实例和多实例两种启动模式。
 
 | 接口名       | 描述                                                         |
 | ------------ | ------------------------------------------------------------ |
-| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability |
+| onShow()     | Ability由后台不可见状态切换到前台可见状态调用onShow方法，此时用户在屏幕可以看到该Ability。 |
 | onHide()     | Ability由前台切换到后台不可见状态时调用onHide方法，此时用户在屏幕看不到该Ability。 |
 | onDestroy()  | 应用退出，销毁Ability对象前调用onDestroy方法，开发者可以在该方法里做一些回收资源、清空缓存等应用退出前的准备工作。 |
 | onCreate()   | Ability第一次启动创建Ability时调用onCreate方法，开发者可以在该方法里做一些应用初始化工作。 |
@@ -189,7 +197,7 @@ ability支持单实例和多实例两种启动模式。
 
 **示例**
 
-开发者需要重写`app.js/app.ets`中相关生命周期回调函数，IDE模板默认生成`onCreate()`和`onDestroy()`方法，其他方法需要开发者自行实现。
+开发者需要重写`app.js/app.ets`中相关生命周期回调函数，DevEco Studio模板默认生成`onCreate()`和`onDestroy()`方法，其他方法需要开发者自行实现。
 
 ```javascript
 export default {
@@ -214,6 +222,7 @@ export default {
 }
 ```
 ## 相关实例
+
 针对PageAbility开发，有以下相关实例可供参考：
 
 - [`DMS`：分布式Demo（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
