@@ -7,7 +7,9 @@ import zlib from '@ohos.zlib';
 ```
 
 ## zlib.zipFile
+
 zipFile(inFile:string, outFile:string, options: Options): Promise\<void>
+
 压缩接口（Promise形式）。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
