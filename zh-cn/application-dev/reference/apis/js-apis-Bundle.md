@@ -1614,6 +1614,12 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | abilityName    | string                               | 是    | 表示要获取的配置文件所属的ability。             |
 | metadataName   | string                               | 否    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
 
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise形式返回配置文件的json字符串数组。 |
+
 **示例：**
 
 ```js
@@ -1673,6 +1679,12 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
 | extensionAbilityName    | string                               | 是    | 表示要获取的配置文件所属的extensionAbility。             |
 | metadataName   | string                               | 否    | 表示要获取的配置文件所属的metadata。            |
+
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise形式返回配置文件的json字符串数组。 |
 
 **示例：**
 
