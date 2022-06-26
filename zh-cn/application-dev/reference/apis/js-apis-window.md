@@ -47,10 +47,12 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称        | 值   | 说明               |
-| ----------- | ---- | ------------------ |
-| TYPE_SYSTEM | 0    | 表示系统默认区域。 |
-| TYPE_CUTOUT | 1    | 表示刘海屏区域。   |
+| 名称                               | 值  | 说明              |
+|----------------------------------|-----| ----------------- |
+| TYPE_SYSTEM                      | 0   | 表示系统默认区域。|
+| TYPE_CUTOUT                      | 1   | 表示刘海屏区域。  |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2   | 表示手势区域。    |
+| TYPE_KEYBOARD<sup>9+</sup>       | 3   | 表示软键盘区域。  |
 
 ## WindowMode<sup>7+</sup>
 
@@ -146,6 +148,7 @@ import window from '@ohos.window';
 
 | 名称       | 参数类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
+| visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。 |
 | leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。 |
 | topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。 |
 | rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
@@ -1153,7 +1156,7 @@ promise.then((data)=> {
 
 ### getAvoidArea<sup>7+</sup>
 
-getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): void
+getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用callback异步回调。
 
@@ -1161,10 +1164,10 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 
 **参数：** 
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
 
 **示例：** 
 
@@ -1181,7 +1184,7 @@ windowClass.getAvoidArea(type, (err, data) => {
 
 ### getAvoidArea<sup>7+</sup>
 
-getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
+getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用Promise异步回调。
 
@@ -1189,15 +1192,15 @@ getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
 
 **参数：** 
 
-| 参数名 | 类型                            | 必填 | 说明                                                         |
-| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type   | [AvoidAreaType](#avoidareatype) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
+| 参数名 | 类型                               | 必填 | 说明                                                         |
+| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
 
 **返回值：** 
 
-| 类型                                   | 说明                                |
-| -------------------------------------- | ----------------------------------- |
-| Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise对象。返回窗口内容规避区域。 |
+| 类型                                      | 说明                                |
+|-----------------------------------------| ----------------------------------- |
+| Promise&lt;[AvoidArea](#avoidarea7)&gt; | Promise对象。返回窗口内容规避区域。 |
 
 **示例：** 
 
@@ -1701,20 +1704,23 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 windowClass.off('windowSizeChange');
 ```
 
-### on('systemAvoidAreaChange')<sup>7+</sup>
+### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
-on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
+on(type: 'systemAvoidAreaChange', callback: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-开启系统窗口规避区变化的监听。
+开启系统规避区变化的监听。
+> **说明：** 从API version 9开始废弃，推荐使用[on('avoidAreaChange')](#onavoidareachange9)。
+>
+> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
 
-| 参数名   | 类型                                    | 必填 | 说明                                                         |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调函数。返回当前的窗口规避区。                             |
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回当前规避区。                             |
 
 **示例：** 
 
@@ -1724,25 +1730,73 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 });
 ```
 
-### off('systemAvoidAreaChange')<sup>7+</sup>
+### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
-off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
+off(type: 'systemAvoidAreaChange', callback?: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-关闭系统窗口规避区变化的监听。
+关闭系统规避区变化的监听。
+> **说明：** 从API version 9开始废弃，推荐使用[off('avoidAreaChange')](#offavoidareachange9)。
+>
+> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
 
-| 参数名   | 类型                                    | 必填 | 说明                                                         |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 否   | 回调函数。返回当前的窗口规避区。                             |
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 否   | 回调函数。返回当前规避区。                            |
 
 **示例：** 
 
 ```js
 windowClass.off('systemAvoidAreaChange');
+```
+
+
+### on('avoidAreaChange')<sup>9+</sup>
+
+on(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt;): void
+
+开启系统规避区变化的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                               | 必填 | 说明                                   |
+| -------- |------------------------------------------------------------------| ---- |--------------------------------------|
+| type     | string                                                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+
+**示例：**
+
+```js
+windowClass.on('avoidAreaChange', (type, data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(type) + 'Data: ' + JSON.stringify(data));
+});
+```
+
+### off('avoidAreaChange')<sup>9+</sup>
+
+off(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt;): void
+
+关闭系统规避区变化的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                          | 必填  | 说明                                 |
+| -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
+| type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。|
+
+**示例：**
+
+```js
+windowClass.off('avoidAreaChange');
 ```
 
 ### on('keyboardHeightChange')<sup>7+</sup>
