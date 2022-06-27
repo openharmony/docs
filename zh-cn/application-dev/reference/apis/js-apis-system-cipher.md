@@ -49,15 +49,13 @@ export default {
      '6S7Lpva1fKlcuVxjoFC1iMnzD4mC0uiL4k5MNi43J64c7dbqi3qAJjdAtuwQ6NZJ\n' + 
      '+Enz0RzmVFh/4yk6lmqRzuEFQqhQqSZzaLq6sq2N2G0Sv2Xl3sLvqAfe2HNm2oBw\n' +
      'jBpApTJ3TeneOo6Z5QIDAQAB',  
-      success: function(data) {                
-        console.log(`handling success:${data.text}`);          
-      },            
-      fail: function(data, code) {               
-        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
-      },
-      complete: function() {
-        console.log(`operation complete!`);
-      }
+        success: function(data) {                
+          console.log(data.data.text);          
+        },            
+        fail: function(data, code) {               
+          console.log(code.code);
+          console.log(data.data);  
+        }       
       });        
       cipher.rsa({            
         //解密：            
@@ -82,15 +80,13 @@ export default {
         'RUGcm3ZGTnslduB0knNF+V2ndwzDUQ7P74UXT+PjurTPhujFYiuxCEd6ORVnEOzG\n' +
         'M9TORIgdH8MjIbWsGnndAkEAw9yURDaorE8IYPLF2IEn09g1uzvWPs3phDb6smVx\n' + 
         '8GfqIdUNf+aCG5TZK/kXBF1sqcsi7jXMAf4jBlejVbSVZg==',
-         success: function(data) {                
-           console.log(`handling success:${data.text}`);          
-         },            
-         fail: function(data, code) {               
-           console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
-         },
-         complete: function() {
-           console.log(`operation complete!`);
-         }        
+           success: function(data) {                
+             console.log(data.data.text);            
+           },            
+           fail: function(data, code) {                
+             console.log(code.code);
+             console.log(data.data);        
+           },        
        });    
    }
 }
@@ -135,15 +131,13 @@ export default {
       transformation: 'AES/CBC/PKCS5Padding',            
       ivOffset: '0',            
       ivLen: '16',            
-      success: function(data) {                
-        console.log(`handling success:${data.text}`);          
-        },            
-      fail: function(data, code) {               
-        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
-        },
-      complete: function() {
-        console.log(`operation complete!`);
-      }
+      success: (data) => {                
+        console.log(data.data.text);           
+      },            
+      fail: (data, code) => {                
+        console.log(code.code);
+        console.log(data.data);            
+      }        
     });        
     cipher.aes({            
       //解密：            
@@ -155,19 +149,16 @@ export default {
        transformation: 'AES/CBC/PKCS5Padding',            
        ivOffset: '0',            
        ivLen: '16',            
-       success: function(data) {                
-         console.log(`handling success:${data.text}`);          
-        },            
-       fail: function(data, code) {               
-         console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`); 
-       },
-       complete: function() {
-         console.log(`operation complete!`);
-        }
+       success: (data) => {                
+         console.log(data.data.text);           
+       },            
+       fail: (data, code) => {                
+         console.log(code.code);
+         console.log(data.data);            
+       }        
      });        
     });    
   }
 }
 
 ```
-
