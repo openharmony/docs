@@ -363,44 +363,41 @@
 
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
 
-  - 基础功能开发
-
   - 公共事件与通知
-
 
     - [公共事件与通知概述](notification/notification-brief.md)
 
-    - 公共事件
+    - [公共事件开发指导](notification/common-event.md)
 
-      - [公共事件开发指导](notification/common-event.md)
+    - [通知开发指导](notification/notification.md)
 
-    - 通知
+    - 后台代理提醒
 
-      - [通知开发指导](notification/notification.md)
+      - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
 
-    - 调试工具
+      - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
 
-      - [调试助手使用指导](notification/assistant-guidelines.md)
+    - [调试助手使用指导](notification/assistant-guidelines.md)
 
   - 窗口管理
 
-    * 窗口
+    - 窗口
 
-      *  [窗口开发概述](windowmanager/window-overview.md)
+      - [窗口开发概述](windowmanager/window-overview.md)
 
-      *  [窗口开发指导](windowmanager/window-guidelines.md)
+      - [窗口开发指导](windowmanager/window-guidelines.md)
 
-    * 屏幕属性
+    - 屏幕属性
 
-      * [屏幕属性开发概述](windowmanager/display-overview.md)
+      - [屏幕属性开发概述](windowmanager/display-overview.md)
 
-      * [屏幕属性开发指导](windowmanager/display-guidelines.md)
+      - [屏幕属性开发指导](windowmanager/display-guidelines.md)
 
-    * 屏幕截图
+    - 屏幕截图
 
-      * [屏幕截图开发概述](windowmanager/screenshot-overview.md)
+      - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
 
-      * [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+      - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
 
 
   - WebGL
@@ -525,12 +522,6 @@
 
       - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
 
-  - 后台代理提醒
-
-
-    - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-
-    - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
 
   - 任务管理
 
