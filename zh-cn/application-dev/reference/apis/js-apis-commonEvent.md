@@ -3,9 +3,17 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## support
+## 导入模块
 
-| 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     | 说明               |
+```js
+import CommonEvent from '@ohos.commonEvent';
+```
+
+## Support
+
+CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；值指的是系统公共事件。
+
+| 名称      | 值          | 订阅者所需权限     | 说明               |
 | ------------ | ------------------ | ---------------------- | -------------------- |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 指示用户已完成引导并加载系统的公共事件的操作。        |
 | COMMON_EVENT_LOCKED_BOOT_COMPLETED                           | usual.event.LOCKED_BOOT_COMPLETED                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。          |
@@ -158,11 +166,6 @@
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
 | COMMON_EVENT_SPLIT_SCREEN                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
 
-## 导入模块
-
-```js
-import CommonEvent from '@ohos.commonEvent';
-```
 
 ## CommonEvent.publish
 
@@ -171,6 +174,8 @@ publish(event: string, callback: AsyncCallback\<void>): void
 发布公共事件（callback形式）。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -204,6 +209,8 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 发布公共事件指定发布信息（callback形式）。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
