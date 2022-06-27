@@ -1,8 +1,8 @@
 # Click Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -54,7 +54,8 @@ None
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ClickExample {
@@ -66,7 +67,7 @@ struct ClickExample {
         .onClick((event: ClickEvent) => {
           console.info(this.text = 'Click Point:' + '\n  screenX:' + event.screenX + '\n  screenY:' + event.screenY
           + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\n  width:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
           + event.target.area.width + '\n  height:' + event.target.area.height)
         })
       Text(this.text).padding(15)

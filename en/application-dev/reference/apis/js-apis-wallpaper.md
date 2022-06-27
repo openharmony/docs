@@ -436,36 +436,36 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {   
-    if (error) {        
-        console.error(`failed to setWallpaper because: ` + JSON.stringify(error));       
-        return;   
-    }    
-    console.log(`success to setWallpaper.`);
-});
-
+  let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
+      if (error) {        
+          console.error(`failed to setWallpaper because: ` + JSON.stringify(error));       
+          return;   
+      }    
+      console.log(`success to setWallpaper.`);
+  });
+  
 // The source type is image.PixelMap.
-import image from '@ohos.multimedia.image';
-let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
-    }
-};
-imageSource.createPixelMap(opts).then((pixelMap) => {      
-    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
-        if (error) {       
-            console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-            return;
-        }    
-        console.log(`success to setWallpaper.`);
-    });
-}).catch((error) => {       
-    console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
-});
-```
+  import image from '@ohos.multimedia.image';
+  let imageSource = image.createImageSource("file://" + wallpaperPath);
+  let opts = {
+      "desiredSize": {
+          "height": 3648,
+          "width": 2736
+      }
+  };
+  imageSource.createPixelMap(opts).then((pixelMap) => {      
+      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
+          if (error) {       
+              console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+              return;
+          }    
+          console.log(`success to setWallpaper.`);
+      });
+  }).catch((error) => {       
+      console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
+  });
+  ```
 
 
 ## wallpaper.setWallpaper
@@ -495,32 +495,32 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 ```js
 // The source type is string.
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
-wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-    console.log(`success to setWallpaper.`);
-}).catch((error) => {
-    console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-});
-
+  let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+  wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+      console.log(`success to setWallpaper.`);
+  }).catch((error) => {
+      console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+  });
+  
 // The source type is image.PixelMap.
-import image from '@ohos.multimedia.image';
-let imageSource = image.createImageSource("file://" + wallpaperPath);
-let opts = {
-    "desiredSize": {
-        "height": 3648,
-        "width": 2736
-    }
-};
-imageSource.createPixelMap(opts).then((pixelMap) => {      
-    wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-        console.log(`success to setWallpaper.`);
-    }).catch((error) => {
-        console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
-    });
-}).catch((error) => {       
-    console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
-});
-```
+  import image from '@ohos.multimedia.image';
+  let imageSource = image.createImageSource("file://" + wallpaperPath);
+  let opts = {
+      "desiredSize": {
+          "height": 3648,
+          "width": 2736
+      }
+  };
+  imageSource.createPixelMap(opts).then((pixelMap) => {      
+      wallpaper.setWallpaper(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+          console.log(`success to setWallpaper.`);
+      }).catch((error) => {
+          console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
+      });
+  }).catch((error) => {       
+      console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
+  });
+  ```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -557,7 +557,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 Obtains the wallpaper of the specified type. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -604,7 +604,7 @@ Obtains the pixel image for the wallpaper of the specified type. This API uses a
 **Example**
 
   ```js
-  wallpaper.getPixelMap(WALLPAPER_SYSTEM, function (err, data) {
+  wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, function (err, data) {
       console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem err : ' + JSON.stringify(err));
       console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem data : ' + JSON.stringify(data));
   });
@@ -663,12 +663,12 @@ Subscribes to the wallpaper color change event.
 
 **Example**
 
-```js
-let listener = (colors, wallpaperType) => {
-    console.log(`wallpaper color changed.`);
-};
-wallpaper.on('colorChange', listener);
-```
+  ```js
+  let listener = (colors, wallpaperType) => {
+      console.log(`wallpaper color changed.`);
+  };
+  wallpaper.on('colorChange', listener);
+  ```
 
 
 ## wallpaper.off('colorChange')
@@ -688,11 +688,11 @@ Unsubscribes from the wallpaper color change event.
 
 **Example**
 
-```js
-let listener = (colors, wallpaperType) => {
-    console.log(`wallpaper color changed.`);
-};
-wallpaper.on('colorChange', listener);
+  ```js
+  let listener = (colors, wallpaperType) => {
+      console.log(`wallpaper color changed.`);
+  };
+  wallpaper.on('colorChange', listener);
 // Unsubscribe from the listener.
 wallpaper.off('colorChange', listener);
 //Unsubscribe from all subscriptions of the colorChange type.
