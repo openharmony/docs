@@ -1,7 +1,7 @@
 # Ellipse
 
 
-> **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
