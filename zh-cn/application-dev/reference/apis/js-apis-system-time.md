@@ -191,7 +191,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
   
   ```js
-  systemTime.getCurrentTime().then((data) => {
+  systemTime.getRealActiveTime().then((data) => {
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
   }).catch((error) => {
       console.error(`failed to systemTime.getRealActiveTime because ` + JSON.stringify(error));
