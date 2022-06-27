@@ -94,7 +94,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
- InputMethodController.stopInput((error)=>{
+  InputMethodController.stopInput((error)=>{
      console.info('stopInput');
  });
 ```
@@ -117,8 +117,8 @@ stopInput(): Promise&lt;boolean&gt;
 
 
 ```js
- var isSuccess = InputMethodController.stopInput();
- console.info('stopInput isSuccess = ' + isSuccess);
+  var isSuccess = InputMethodController.stopInput();
+  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
 ## InputMethodSetting<sup>8+</sup>
@@ -141,11 +141,11 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
   
 ```js
-   InputMethodSetting.listInputMethod((properties)=>{
-     for (var i = 0;i < properties.length; i++) {
-       var property = properties[i];
-       console.info(property.packageName + "/" + property.methodId);
-     }
+  InputMethodSetting.listInputMethod((properties)=>{
+    for (var i = 0;i < properties.length; i++) {
+      var property = properties[i];
+      console.info(property.packageName + "/" + property.methodId);
+    }
   });
 ```
 
@@ -165,11 +165,11 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
 **示例：**
 
 ```js
-   var properties = InputMethodSetting.listInputMethod();
-   for (var i = 0;i < properties.length; i++) {
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId);
-   }
+  var properties = InputMethodSetting.listInputMethod();
+  for (var i = 0;i < properties.length; i++) {
+    var property = properties[i];
+    console.info(property.packageName + "/" + property.methodId);
+  }
 ```
 
 ### displayOptionalInputMethod
@@ -189,9 +189,9 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-   InputMethodSetting.displayOptionalInputMethod(()=>{
-     console.info('displayOptionalInputMethod is called');
-   });
+  InputMethodSetting.displayOptionalInputMethod(()=>{
+    console.info('displayOptionalInputMethod is called');
+  });
 ```
 
 ### displayOptionalInputMethod
@@ -211,5 +211,5 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-     InputMethodSetting.displayOptionalInputMethod();
+  InputMethodSetting.displayOptionalInputMethod();
 ```
