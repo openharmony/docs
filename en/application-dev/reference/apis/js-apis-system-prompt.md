@@ -1,6 +1,6 @@
 # Prompt
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use ['@ohos.prompt](js-apis-prompt.md)' instead.
 >
@@ -11,7 +11,7 @@
 ## Modules to Import
 
 
-```
+```js
 import prompt from '@system.prompt';
 ```
 
@@ -31,7 +31,7 @@ Shows the toast.
 
 **Example**
 
-```
+```js
 export default {    
   showToast() {        
     prompt.showToast({            
@@ -60,7 +60,7 @@ Shows the dialog box.
 
 **Example**
 
-```
+```js
 export default {    
   showDialog() {       
     prompt.showDialog({           
@@ -73,7 +73,7 @@ export default {
          },            
        ],            
        success: function(data) {                
-         console.log('dialog success callback, click button : ' + data.index);           
+         console.log('dialog success callback, click button : ' + data.index);            
        },            
        cancel: function() {                
          console.log('dialog cancel callback');            
@@ -100,7 +100,7 @@ Shows the action menu.
 
 **Example**
 
-```
+```js
 export default {    
   showActionMenu() {        
     prompt.showActionMenu({            
@@ -115,11 +115,11 @@ export default {
            color: '#000000',                
         },            
       ],            
-      success: function(data) {                
-        console.log('dialog success callback, click button : ' + data.tapIndex);           
+      success: function(tapIndex) {                
+        console.log('dialog success callback£¬click button : ' + tapIndex);            
       },            
-      fail: function(data) {                
-        console.log('dialog fail callback' + data.errMsg);            
+      fail: function(errMsg) {                
+        console.log('dialog fail callback' + errMsg);            
       },       
     });    
   }
