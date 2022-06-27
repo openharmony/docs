@@ -545,10 +545,10 @@ display.getDefaultDisplay((err, data) => {
     displayClass = data;
     window.minimizeAll(displayClass.id, (err, data) => {
         if(err.code) {
-            console.error('Failed to minimize all window. Cause: ' + JSON.stringify(err));
+            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
             return;
         }
-        console.info('Succeeded in minimizing all window.');
+        console.info('Succeeded in minimizing all windows.');
     });
 });
 ```
@@ -588,9 +588,9 @@ display.getDefaultDisplay((err, data) => {
     displayClass = data;
     let promise = window.minimizeAll(displayClass.id);
     promise.then((data)=> {
-        console.info('Succeeded in minimizing all window.');
+        console.info('Succeeded in minimizing all windows.');
     }).catch((err)=>{
-        console.error('Failed to minimize all window. Cause: ' + JSON.stringify(err));
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
     })
 });
 ```
@@ -2606,11 +2606,11 @@ class myAbility extends Ability {
         var windowClass = null;
         windowStage.createSubWindow("mySubWindow", (err, data) => {
             if (err.code) {
-                console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+                console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                 return;
             }
             windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
             windowClass.resetSize(500, 1000);
         });
     }
@@ -2649,9 +2649,9 @@ class myAbility extends Ability {
         let promise = windowStage.createSubWindow("mySubWindow");
         promise.then((data)=> {
             windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         }).catch((err)=>{
-            console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
 }
@@ -2682,11 +2682,11 @@ class myAbility extends Ability {
         var windowClass = null;
         windowStage.getSubWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+                console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
                 return;
             }
             windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         });
     }
 }
@@ -2718,9 +2718,9 @@ class myAbility extends Ability {
         let promise = windowStage.getSubWindow();
         promise.then((data)=> {
             windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         }).catch((err)=>{
-            console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+            console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
 }
