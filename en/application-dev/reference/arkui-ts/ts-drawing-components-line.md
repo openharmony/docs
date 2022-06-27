@@ -1,11 +1,11 @@
 # Line
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Line&gt;** component is used to draw a straight line.
+The **<Line\>** component is used to draw a straight line.
 
 
 ## Required Permissions
@@ -23,20 +23,20 @@ None
 Line(options?: {width: Length, height: Length})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the line to draw. For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
+  | width | Length | Yes | - | Line width. | 
+  | height | Length | Yes | - | Line height. | 
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the straight line is located. | 
 | height | Length | 0 | No | Height of the rectangle where the straight line is located. | 
