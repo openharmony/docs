@@ -18,8 +18,8 @@
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | gesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势识别。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。 |
-| priorityGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;默认情况下，子组件优先于父组件识别手势，当父组件配置priorityGesture时，父组件优先于子组件进行识别。 |
-| parallelGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
+| priorityGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>默认情况下，子组件优先于父组件识别手势，当父组件配置priorityGesture时，父组件优先于子组件进行识别。 |
+| parallelGesture | gesture:&nbsp;GestureType,<br/>mask?:&nbsp;GestureMask | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>gesture:&nbsp;绑定的手势类型，&nbsp;mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
 
 
 - GestureMask枚举说明
@@ -34,9 +34,10 @@
   | -------- | -------- |
   | TapGesture | 点击手势，支持单次点击、多次点击识别。 | 
   | LongPressGesture | 长按手势。 | 
-  | PanGesture | 平移手势。 | 
+  | PanGesture | 平移手势，滑动最小距离为5vp时识别成功。 | 
   | PinchGesture | 捏合手势。 | 
   | RotationGesture | 旋转手势。 | 
+  |SwipeGesture  | 滑动手势，滑动最小速度为100vp/s时识别成功。| 
   | GestureGroup | 手势识别组，多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。 | 
 
 
