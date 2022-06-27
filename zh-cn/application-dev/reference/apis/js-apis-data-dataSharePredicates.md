@@ -1,4 +1,4 @@
-# DataSharePredicates
+# 数据共享谓词
 
 **谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))、删除数据([delete](js-apis-data-dataShare.md#delete))和查询数据([query](js-apis-data-dataShare.md#query))中。
 
