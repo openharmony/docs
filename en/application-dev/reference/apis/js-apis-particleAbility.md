@@ -1,12 +1,11 @@
 # ParticleAbility
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs of this module can be used only in the FA module.
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the FA model.
 
-## Usage
+## Constraints
 
 The ParticleAbility module is used to perform operations on abilities of the Data and Service types.
 
@@ -199,11 +198,11 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | number | Yes| Notification ID of a continuous task.|
-| request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| Notification ID of a continuous task.|
+  | request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
 
@@ -263,16 +262,16 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| id | number | Yes | Notification ID of a continuous task. |
-| request | NotificationRequest | Yes | Notification parameter, which is used to display information in the notification bar. |
+| id | number | Yes| Notification ID of a continuous task.|
+| request | NotificationRequest | Yes| Notification parameter, which is used to display information in the notification bar.|
 
 **Return value**
 
-| Type           | Description                      |
+| Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -326,9 +325,9 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
  **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
 
@@ -357,9 +356,9 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Return value**
 
-| Type           | Description                      |
+| Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
  **Example**
 
@@ -385,21 +384,21 @@ Connects this ability to a specific Service ability. This API uses a callback to
 
 **Parameters**
 
-| Name    | Type           | Mandatory | Description                         |
+| Name   | Type          | Mandatory| Description                        |
 | ------- | -------------- | ---- | ---------------------------- |
-| request | [Want](js-apis-application-Want.md)           | Yes   | Service ability to connect. |
-| options | ConnectOptions | Yes   | Callback used to return the result.           |
+| request | [Want](js-apis-application-Want.md)           | Yes  | Service ability to connect.|
+| options | ConnectOptions | Yes  | Callback used to return the result.          |
 
 
-**ConnectOptions**
+ConnectOptions
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name           | Readable/Writable | Type       | Mandatory   | Description                        |
+| Name          | Readable/Writable| Type      | Mandatory  | Description                       |
 | ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | Read only   | function | Yes    | Callback invoked when the connection is successful.               |
-| onDisconnect | Read only   | function | Yes    | Callback invoked when the connection fails.               |
-| onFailed     | Read only   | function | Yes    | Callback invoked when **connectAbility** fails to be called. |
+| onConnect    | Read only  | function | Yes   | Callback invoked when the connection is successful.              |
+| onDisconnect | Read only  | function | Yes   | Callback invoked when the connection fails.              |
+| onFailed     | Read only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Example**
 
@@ -446,9 +445,9 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -493,9 +492,9 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 
 **Return value**
 
-| Type           | Description                      |
+| Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 

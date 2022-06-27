@@ -1,9 +1,8 @@
 # FormExtension
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 Provides **FormExtension** APIs.
@@ -24,7 +23,7 @@ None
 
 | Name   | Type                                               | Readable| Writable| Description                                               |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.|
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This context is inherited from **ExtensionContext**.|
 
 ## onCreate
 
@@ -36,15 +35,15 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-| Name| Type                                  | Mandatory| Description                                                        |
-| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+  | Name| Type                                  | Mandatory| Description                                                        |
+  | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
-| Type                                                        | Description                                                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
+  | Type                                                        | Description                                                       |
+  | ------------------------------------------------------------ | ----------------------------------------------------------- |
+  | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
 
 **Example**
 
@@ -73,9 +72,9 @@ Called to notify the widget provider that a temporary widget has been converted 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
 
 **Example**
 
@@ -97,9 +96,9 @@ Called to notify the widget provider that a widget has been updated. After obtai
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget that requests to be updated.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | formId | string | Yes  | ID of the widget that requests to be updated.|
 
 **Example**
 
@@ -128,9 +127,9 @@ Called to notify the widget provider of the change of visibility.
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                        |
-| --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
+  | Name   | Type                     | Mandatory| Description                        |
+  | --------- | ------------------------- | ---- | ---------------------------- |
+  | newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
 
 **Example**
 
@@ -163,10 +162,10 @@ Called to instruct the widget provider to receive and process the widget event.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                  |
-| ------- | ------ | ---- | ---------------------- |
-| formId  | string | Yes  | ID of the widget that requests the event.|
-| message | string | Yes  | Event message.            |
+  | Name | Type  | Mandatory| Description                  |
+  | ------- | ------ | ---- | ---------------------- |
+  | formId  | string | Yes  | ID of the widget that requests the event.|
+  | message | string | Yes  | Event message.            |
 
 **Example**
 
@@ -188,9 +187,9 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget to be destroyed.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | formId | string | Yes  | ID of the widget to be destroyed.|
 
 **Example**
 
@@ -212,12 +211,12 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [Configuration](#section188911144124715) | Yes| New configuration.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](#section188911144124715) | Yes| New configuration.| 
 
-**Example**    
-
+**Example**
+    
   ```js
   class MyFormExtension extends FormExtension {
       onConfigurationUpdated(config) {
@@ -236,12 +235,12 @@ Called when the widget provider receives the status query result of a specified 
 
 **Parameters**
 
-| Name | Type                                | Mandatory | Description                                                  |
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | No | Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension. |
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.| 
 
-**Example**       
-
+**Example**
+    
   ```js
   import fromInfo from '@ohos.application.fromInfo'
   class MyFormExtension extends FormExtension {

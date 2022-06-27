@@ -1,11 +1,17 @@
 # ApplicationContext
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Provides application-level context and APIs for registering and deregistering the ability lifecycle listener in an application.
 
+## Modules to Import
+
+```
+import Ability from '@ohos.application.Ability';
+```
 
 ## How to Use
 

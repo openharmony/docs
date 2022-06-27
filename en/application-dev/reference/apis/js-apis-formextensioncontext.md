@@ -1,9 +1,8 @@
 # FormExtensionContext
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
 Implements the context that provides the capabilities and APIs of **FormExtension**. This class is inherited from **ExtensionContext**.
@@ -24,11 +23,11 @@ Updates a widget. This method uses a callback to return the result.
 
 **Parameters**
 
-| Name         | Type                                                        | Mandatory| Description                                  |
-| --------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| formId          | string                                                       | Yes  | ID of the widget that requests to be updated.                    |
-| formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | New data of the widget.                        |
-| callback        | AsyncCallback\<void>                                         | Yes  | Callback used to return the result indicating whether the method is successfully called.|
+  | Name         | Type                                                        | Mandatory| Description                                  |
+  | --------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+  | formId          | string                                                       | Yes  | ID of the widget that requests to be updated.                    |
+  | formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | New data of the widget.                        |
+  | callback        | AsyncCallback\<void>                                         | Yes  | Callback used to return the result indicating whether the method is successfully called.|
 
 **Example**
 
@@ -57,16 +56,16 @@ Updates a widget. This method uses a promise to return the result.
 
 **Parameters**
 
-| Name         | Type                                                        | Mandatory| Description              |
-| --------------- | ------------------------------------------------------------ | ---- | ------------------ |
-| formId          | string                                                       | Yes  | ID of the widget that requests to be updated.|
-| formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | New data of the widget.    |
+  | Name         | Type                                                        | Mandatory| Description              |
+  | --------------- | ------------------------------------------------------------ | ---- | ------------------ |
+  | formId          | string                                                       | Yes  | ID of the widget that requests to be updated.|
+  | formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | New data of the widget.    |
 
 **Return value**
 
-| Type          | Description                             |
-| -------------- | --------------------------------- |
-| Promise\<void> | Promise returned with the result indicating whether the method is successfully called.|
+  | Type          | Description                             |
+  | -------------- | --------------------------------- |
+  | Promise\<void> | Promise returned with the result indicating whether the method is successfully called.|
 
 **Example**
 

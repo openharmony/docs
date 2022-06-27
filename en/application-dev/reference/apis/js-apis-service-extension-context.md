@@ -1,11 +1,9 @@
 # ServiceExtensionContext
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
 
 Implements the context that provides the capabilities and APIs of **ServiceExtension**. This class is inherited from **ExtensionContext**.
 
@@ -25,10 +23,10 @@ Starts an ability. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.|
-| callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
 **Example**
 
@@ -58,15 +56,15 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to start, such as the ability name and bundle name.| 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
 
 **Example**
 
@@ -100,9 +98,9 @@ Terminates this ability. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
 **Example**
 
@@ -130,9 +128,9 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
 
 **Example**
 
@@ -161,16 +159,16 @@ Connects this ability to a Service ability.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to connect to, such as the ability name and bundle name.|
-| options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md)  | Yes| Information about the ability to connect to, such as the ability name and bundle name.| 
+  | options | [ConnectOptions](#connectoptions) | Yes| Callback used to return the information indicating that the connection is successful, interrupted, or failed.| 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| number | A number, based on which the connection will be interrupted.|
+  | Type| Description| 
+  | -------- | -------- |
+  | number | A number, based on which the connection will be interrupted.| 
 
 **Example**
 
@@ -198,10 +196,10 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
-| callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | connection | number | Yes| Number returned after **connectAbility** is called.| 
+  | callback | AsyncCallback&lt;void&gt; | No| Callback used to return the result indicating whether the API is successfully called.| 
 
 **Example**
 
@@ -231,16 +229,16 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| connection | number | Yes| Number returned after **connectAbility** is called.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | connection | number | Yes| Number returned after **connectAbility** is called.| 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
-
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.| 
+ 
 **Example**
 
   ```js
@@ -265,8 +263,8 @@ Defines the **ConnectOptions** data structure.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.|
-| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.|
-| onFailed(code:&nbsp;number) | Called when the connection fails.|
+| onConnect(elementName:ElementName,&nbsp;remote:IRemoteObject) | Called when this ability is connected to a Service ability.| 
+| onDisconnect(elementName:ElementName) | Called when the peer service is abnormal or killed.| 
+| onFailed(code:&nbsp;number) | Called when the connection fails.| 

@@ -2,21 +2,18 @@
 
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 missionManager provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
-
 ## Modules to Import
-
 
 ```
 import missionManager from '@ohos.application.missionManager'
 ```
 
-##  Required Permissions
+## Required Permissions
 
 ohos.permission.MANAGE_MISSIONS
 
@@ -713,4 +710,4 @@ Describes the mission information.
 | want | [Want](js-apis-application-Want.md) | Yes| Yes| **Want** information of the mission.|
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
-| continuable | boolean | Yes| Yes| Whether the mission is continuable.|
+| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device. |
