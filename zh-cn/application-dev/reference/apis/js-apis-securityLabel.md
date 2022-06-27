@@ -13,20 +13,12 @@ import securityLabel from '@ohos.securityLabel';
 
 ## 使用说明
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[Context模块的接口getOrCreateLocalDir](js-apis-Context.md)。
-
-“文件/目录应用沙箱路径”=“应用目录路径”+“文件/目录名”
-
-通过上述接口获取到应用目录路径dir，文件名为“xxx.txt”，文件所在的应用沙箱路径为：
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
 ```js
-let path = dir + "/xxx.txt";
-```
-
-文件描述符fd：
-
-```js
-let fd = fileio.openSync(path, 0o102, 0o666);
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+let path = context.getFilesDir();
 ```
 
 ## securityLabel.setSecurityLabel
@@ -53,6 +45,7 @@ setSecurityLabel(path:string, dataLevel:string):Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let dataLevel = "s4";
   securityLabel.setSecurityLabel(path, dataLevel).then(function(){
       console.info("setSecurityLabel successfully");
   }).catch(function(error){
@@ -79,6 +72,7 @@ setSecurityLabel(path:string, dataLevel:string, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```js
+  let dataLevel = "s4";
   securityLabel.setSecurityLabel(path, dataLevel, function(error){
       console.info("setSecurityLabel:" + JSON.stringify(error));
   });
@@ -101,6 +95,7 @@ setSecurityLabelSync(path:string, dataLevel:string):void
 **示例：**
 
 ```js
+let dataLevel = "s4";
 securityLabel.setSecurityLabelSync(path, dataLevel);
 ```
 
@@ -127,6 +122,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
+  let dataLevel = "s4";
   securityLabel.getSecurityLabel(path).then(function(dataLevel){
       console.log("getSecurityLabel successfully:" + dataLevel);
   }).catch(function(error){
@@ -152,7 +148,8 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(function(error, dataLevel){
+  let dataLevel = "s4";
+  securityLabel.getSecurityLabel(path,function(error, dataLevel){
       console.log("getSecurityLabel successfully:" + dataLevel);
   });
   ```
