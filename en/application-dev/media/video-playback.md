@@ -43,7 +43,7 @@ The full video playback process includes creating an instance, setting the URL, 
 
 For details about the **url** types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an XComponent, see [XComponent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md).
+For details about how to create an XComponent, see [XComponent]( ../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
 *Note: **setSurface** must be called after the URL is set but before **prepare** is called.
 
