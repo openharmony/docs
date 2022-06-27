@@ -972,6 +972,8 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 **系统能力：** SystemCapability.Account.OsAccount
 
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                               |
@@ -997,6 +999,8 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **返回值：**
 
