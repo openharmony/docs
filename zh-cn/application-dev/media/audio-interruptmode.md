@@ -1,9 +1,9 @@
 # 音频焦点模式开发指导
 
 ## 场景介绍
-音频焦点模式指的是应用内，允许对多个声音的播放进行控制<br>
+音频焦点模式指的是应用内，允许对多个声音的播放进行控制。<br>
 音频应用可以在AudioRenderer下设置独立焦点模式、共享焦点模式。<br>
-当设置在共享的模式下，多个音频可以进行同时共存播放；独立焦点模式下，仅支持一个音频；
+当设置在共享的模式下，多个音频共用一个会话ID；独立焦点模式下，每一个音频拥有单独会话ID。
 
 ### 异步操作
 
@@ -15,7 +15,7 @@
 
 
 1. 使用createAudioRenderer()创建一个AudioRenderer实例。<br>
-   在audioCapturerOptions中设置相关参数。<br>
+   在audioRendererOptions中设置相关参数。<br>
    该实例可用于音频渲染、控制和获取采集状态，以及注册通知回调。<br>
 
    ```js
@@ -44,12 +44,12 @@
 
 2. 设置焦点模式。
    
-   启动完成后，可以进行焦点模式调用。<br>
+   在AudioRenderer初始化完毕后，可以进行焦点模式的设置。<br>
 
    ```js
     var mode_ = audio.InterruptMode.SHARE_MODE;
     await this.audioRenderer.setInterruptMode(mode_).then(()=>{
-      console.log('[JSAR] [SetInterruptMode] 设置: ' + (mode == 0 ? "共享模式":"独立焦点模式") + "成功" );
+      console.log('[JSAR] [SetInterruptMode] 设置: ' + (mode_ == 0 ? "共享模式":"独立焦点模式") + "成功" );
     });
    ```
 

@@ -32,3 +32,71 @@
 
 >  **说明：**
 >  属性和样式不能混用，不能在属性字段中进行样式设置。
+
+## 示例
+
+```html
+<!-- xxx.hml -->
+<div id="container">
+    <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
+	<list class="list">
+		<list-item for="{{ array }}" class="listItem">
+			<text class="text" onclick="toggleShow" show="{{ visible }}"
+                  if="{{ display }}">{{ $item.value }}</text>
+		</list-item>
+	</list>
+</div>
+```
+
+```css
+/* xxx.css */
+#container {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+.text {
+    font-size: 50px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+.listItem {
+    width: 100%;
+    height: 100px;
+    line-height: 60px;
+    border-bottom: 1px solid #DEDEDE;
+    font-size: 20px;
+}
+.btn{
+    width: 280px;
+    font-size: 26px;
+    margin: 10px 0;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+	data: {
+        visible: true,
+        display: true,
+        title: "",
+        i: 4,
+        array: [
+            {"value": "列表文本0"},
+            {"value": "列表文本1"},
+            {"value": "列表文本2"},
+            {"value": "列表文本3"},
+        ],
+    },
+    toggleShow: function() {
+        this.array.push({"value": "列表文本" + this.i })
+        this.i++
+    },
+    toggleDisplay: function() {
+        this.display = !this.display
+    },
+}
+```
+
+![zh-cn-attributes](figures/zh-cn-attributes.gif)

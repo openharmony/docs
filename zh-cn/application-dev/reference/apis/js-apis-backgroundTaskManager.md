@@ -127,6 +127,7 @@ cancelSuspendDelay(requestId: number): void
 
 **示例**：
   ```js
+  let id = 1;
   backgroundTaskManager.cancelSuspendDelay(id);
   ```
 

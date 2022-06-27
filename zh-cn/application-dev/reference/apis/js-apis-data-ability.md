@@ -708,6 +708,7 @@ indexedBy(field: string): DataAbilityPredicates
 
 配置谓词以指定索引列。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |

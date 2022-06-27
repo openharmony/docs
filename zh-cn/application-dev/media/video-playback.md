@@ -116,7 +116,7 @@ export class VideoPlayerDemo {
       console.info('pause success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // 通过promise回调方式获取视频轨道信息ommunication_dsoftbus
+    // 通过promise回调方式获取视频轨道信息communication_dsoftbus
     let arrayDescription;
     await videoPlayer.getTrackDescription().then((arrlist) => {
       if (typeof (arrlist) != 'undefined') {

@@ -54,16 +54,16 @@ await cameraManager.getCameras((err, cameras) => {
     cameraArray = cameras
 })
 
- for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
-     console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          // Obtain the camera ID.
-     console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              // Obtain the camera position.
-     console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      // Obtain the camera type.
-     console.log('connectionType : ' + cameraArray[cameraIndex].connectionType)              // Obtain the camera connection type.
- }
+for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
+    console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          // Obtain the camera ID.
+    console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              // Obtain the camera position.
+    console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      // Obtain the camera type.
+    console.log('connectionType : ' + cameraArray[cameraIndex].connectionType)              // Obtain the camera connection type.
+}
 
- // Create a camera input stream.
- let cameraInput
- await cameraManager.createCameraInput(cameraArray[0].cameraId).then((input) => {
+// Create a camera input stream.
+let cameraInput
+await cameraManager.createCameraInput(cameraArray[0].cameraId).then((input) => {
     console.log('Promise returned with the CameraInput instance');
     cameraInput = input
 })

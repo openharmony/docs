@@ -288,8 +288,8 @@ public async init(surfaceId: any) {
     receiver.on('imageArrival', () => {
         //去获取Surface中最新的buffer
         receiver.readNextImage((err, img) => {
-            img.getComponent(4, (err, componet) => {
-                //消费componet.byteBuffer，例如：将buffer内容保存成图片。
+            img.getComponent(4, (err, component) => {
+                //消费component.byteBuffer，例如：将buffer内容保存成图片。
 		    })
 	    })
     })

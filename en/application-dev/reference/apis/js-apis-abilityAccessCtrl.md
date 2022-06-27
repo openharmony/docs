@@ -1,6 +1,9 @@
-#  	Ability Access Control
+# Ability Access Control
 
-> **NOTE**<br/>
+Provides program permission management capabilities, including authentication, authorization, and revocation.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -96,13 +99,11 @@ Grants a user granted permission to an application. This API uses a promise to r
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
-
-
 
 ### grantUserGrantedPermission
 
@@ -129,8 +130,12 @@ Grants a user granted permission to an application. This API uses an asynchronou
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -195,8 +200,12 @@ Revokes a user granted permission given to an application. This API uses an asyn
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 

@@ -1,8 +1,14 @@
 # Nonlinear Container HashSet
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
+
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+
+**Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
 ## Modules to Import
 
@@ -10,18 +16,15 @@
 import HashSet from '@ohos.util.HashSet';
 ```
 
-## System Capabilities
-
-SystemCapability.Utils.Lang
-
 ## HashSet
-
 
 ### Attributes
 
+**System capability**: SystemCapability.Utils.Lang
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a hash set (called container later).|
+| length | number | Yes| No| Number of elements in a hash set (called container later).|
 
 
 ### constructor
@@ -29,6 +32,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **HashSet** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -41,7 +46,9 @@ let hashSet = new HashSet();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -61,19 +68,21 @@ let result = hashSet.isEmpty();
 
 has(value: T): boolean
 
-Checks whether this container contains the specified entry.
+Checks whether this container contains the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Entry to check.|
+| value | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified entry is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -89,19 +98,21 @@ let result1 = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 add(value: T): boolean
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Entry to add.|
+| value | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -115,19 +126,21 @@ let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 remove(value: T): boolean
 
-Removes an entry from this container.
+Removes an element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Entry to remove.|
+| value | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -145,6 +158,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -161,6 +176,8 @@ values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -176,7 +193,7 @@ hashSet.add("sdfs");
 let iter = hashSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -186,20 +203,22 @@ while(temp != undefined) {
 
 forEach(callbackfn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the entry that is currently traversed.|
-| key | T | No| Key of the entry that is currently traversed (same as **value**).|
+| value | T | No| Value of the element that is currently traversed.|
+| key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | HashSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -209,7 +228,7 @@ let hashSet = new HashSet();
 hashSet.add("sdfs");
 hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 hashSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -217,7 +236,9 @@ hashSet.forEach((value, key) => {
 ### entries
 entries(): IterableIterator<[T, T]>
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -234,8 +255,8 @@ hashSet.add("sdfs");
 let iter = hashSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -246,6 +267,8 @@ while(temp != undefined) {
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -269,7 +292,7 @@ for (let item of hashSet) {
 let iter = hashSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value: " + temp);
   temp = iter.next().value;
 }
 ```

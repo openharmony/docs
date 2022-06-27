@@ -1,10 +1,18 @@
 # AbilityLifecycleCallback
 
-> **NOTE**<br>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 
 A callback class that provides APIs, such as **onAbilityCreate**, **onAbilityWindowStageCreate**, and **onAbilityWindowStageDestroy**, to listen for the lifecycle of the application context.
+
+## Modules to Import
+
+```js
+import AbilityLifecycleCallback from "@ohos.application.abilityLifecycleCallback";
+```
 
 
 ## AbilityLifecycleCallback.onAbilityCreate
