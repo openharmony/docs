@@ -1,12 +1,11 @@
 # FeatureAbility
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the FA model.
 
-## Usage
+## Constraints
 
 APIs of the **FeatureAbility** module can be called only by Page abilities.
 
@@ -47,7 +46,7 @@ featureAbility.startAbility(
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* In the FA model, abilityName consists of package and ability name. */
-            abilityName: "com.example.entry.secondAbility",,
+            abilityName: "com.example.entry.secondAbility",
             uri: ""
         },
     },
@@ -921,13 +920,12 @@ Enumerates operation types of the Data ability.
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | want                | Read-only  | [Want](js-apis-application-Want.md)        | Yes   | Information about the ability to start.                    |
 | abilityStartSetting | Read-only  | {[key: string]: any} | No   | Special attribute of the ability to start. This attribute can be passed in the method call.|
-                                  |
 
 ## flags
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                                  | Name        | Description                                      |
+| Name                                  | Value       | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |

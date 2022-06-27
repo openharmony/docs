@@ -1,7 +1,7 @@
-# DataUriUtils
+# DataUriUtils Module
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -20,15 +20,15 @@ Obtains the ID attached to the end of a given URI.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri | string | Yes | URI object from which the ID is to be obtained. |
+| uri  | string | Yes  | URI object from which the ID is to be obtained.|
 
 **Return value**
 
-| Type | Description |
+| Type  | Description                    |
 | ------ | ------------------------ |
-| number | ID obtained from the URI object. |
+| number | ID obtained from the URI object.|
 
 **Example**
 
@@ -48,16 +48,16 @@ Attaches an ID to the end of a given URI.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri | string | Yes | URI object to which an ID is to be attached. |
-| id | number | Yes | ID to be attached. |
+| uri  | string | Yes  | URI object to which an ID is to be attached.|
+| id   | number | Yes  | ID to be attached.           |
 
 **Return value**
 
-| Type | Description |
+| Type  | Description                 |
 | ------ | --------------------- |
-| string | URI object with the ID attached. |
+| string | URI object with the ID attached.|
 
 **Example**
 
@@ -81,15 +81,15 @@ Deletes the ID from the end of a given URI.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type  | Mandatory| Description                       |
 | ---- | ------ | ---- | --------------------------- |
-| uri | string | Yes | URI object from which the ID is to be deleted. |
+| uri  | string | Yes  | URI object from which the ID is to be deleted.|
 
 **Return value**
 
-| Type | Description |
+| Type  | Description               |
 | ------ | ------------------- |
-| string | URI object with the ID deleted. |
+| string | URI object with the ID deleted.|
 
 **Example**
 
@@ -109,16 +109,16 @@ Updates the ID in a given URI.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------- |
-| uri | string | Yes | URI object to be updated. |
-| id | number | Yes | New ID. |
+| uri  | string | Yes  | URI object to be updated.|
+| id   | number | Yes  | New ID.           |
 
 **Return value**
 
-| Type | Description |
+| Type  | Description           |
 | ------ | --------------- |
-| string | URI object with the new ID. |
+| string | URI object with the new ID.|
 
 **Example**
 

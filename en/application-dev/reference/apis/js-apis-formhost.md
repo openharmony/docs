@@ -1,7 +1,7 @@
 # FormHost
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Provides APIs related to the widget host.
@@ -58,15 +58,15 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| formId | string | Yes  | ID of a widget.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Parameters**
 
@@ -148,16 +148,16 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name        | Type    | Mandatory| Description       |
-| -------------- | ------  | ---- | ----------- |
-| formId         | string  | Yes  | ID of a widget.    |
-| isReleaseCache | boolean | No  | Whether to release the cache.|
+  | Name        | Type    | Mandatory| Description       |
+  | -------------- | ------  | ---- | ----------- |
+  | formId         | string  | Yes  | ID of a widget.    |
+  | isReleaseCache | boolean | No  | Whether to release the cache.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -210,15 +210,15 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| formId | string | Yes  | ID of a widget.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -271,15 +271,15 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| formId | string | Yes  | ID of a widget.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | formId | string | Yes  | ID of a widget.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -338,9 +338,9 @@ SystemCapability.Ability.Form
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -399,9 +399,9 @@ SystemCapability.Ability.Form
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -460,9 +460,9 @@ SystemCapability.Ability.Form
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -521,9 +521,9 @@ SystemCapability.Ability.Form
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -575,9 +575,9 @@ SystemCapability.Ability.Form
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -602,9 +602,9 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
@@ -621,6 +621,7 @@ SystemCapability.Ability.Form
 ## getAllFormsInfo
 
 getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
+
 
 Obtains the widget information provided by all applications on the device. This API uses a promise to return the result.
 
@@ -648,6 +649,7 @@ SystemCapability.Ability.Form
 
 getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
+
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
 **System capability**
@@ -656,10 +658,10 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| bundleName | string | Yes|  Bundle name of the target application.|
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | bundleName | string | Yes|  Bundle name of the target application.|
+  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
@@ -677,6 +679,7 @@ SystemCapability.Ability.Form
 
 getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void;
 
+
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
 **System capability**
@@ -685,11 +688,11 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| bundleName | string | Yes|  Bundle name of the target application.|
-| moduleName | string | Yes|  Module name.|
-| callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | bundleName | string | Yes|  Bundle name of the target application.|
+  | moduleName | string | Yes|  Module name.|
+  | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
 
@@ -707,6 +710,7 @@ SystemCapability.Ability.Form
 
 getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
+
 Obtains the widget information provided by a given application on the device. This API uses a promise to return the result.
 
 **System capability**
@@ -715,10 +719,10 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| bundleName | string | Yes|  Bundle name of the target application.|
-| moduleName | string | No|  Module name.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | bundleName | string | Yes|  Bundle name of the target application.|
+  | moduleName | string | No|  Module name.|
 
 **Return value**
 
@@ -963,16 +967,16 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isVisible | boolean | Yes  | Whether to be visible.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+  | isVisible | boolean | Yes  | Whether to be visible.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 
@@ -1026,16 +1030,16 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description   |
-| ------ | ------ | ---- | ------- |
-| formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
-| isEnableUpdate | boolean | Yes  | Whether to enable update.|
+  | Name| Type   | Mandatory| Description   |
+  | ------ | ------ | ---- | ------- |
+  | formIds | Array&lt;string&gt; | Yes  | List of widget IDs.|
+  | isEnableUpdate | boolean | Yes  | Whether to enable update.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
 **Example**
 

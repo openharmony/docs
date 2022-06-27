@@ -1,7 +1,7 @@
 # AbilityDelegator
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -9,8 +9,6 @@
 ```js
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
-
-
 
 ## AbilityDelegator
 
@@ -185,7 +183,7 @@ Waits for the ability that matches the **AbilityMonitor** instance to reach the 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
-| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the ability.                                          |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the result.                                          |
 
 **Example**
 
@@ -223,7 +221,7 @@ Waits a period of time for the ability that matches the **AbilityMonitor** insta
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
-| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the ability.                                          |
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the result.                                          |
 
 **Example**
 
@@ -365,7 +363,7 @@ Obtains the top ability of the application. This API uses an asynchronous callba
 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the top ability.|
+| callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the result.|
 
 **Example**
 

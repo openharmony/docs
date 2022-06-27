@@ -1,8 +1,8 @@
-# WantAgent Module
+# WantAgent
 
->**NOTE**
->
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 ## Modules to Import
 
@@ -756,7 +756,7 @@ var wantAgentInfo = {
 
 WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback)
 
-//trigger callback
+// trigger callback
 function triggerCallback(data) {
 	console.info("==========================>triggerCallback=======================>");
 }
@@ -924,20 +924,20 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Readable | Writable | Type                   | Mandatory | Description                                 |
+| Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
-| agent      | Yes | No | WantAgent                | Yes | Target **WantAgent** object. |
-| callback   | Yes | No | AsyncCallback\<number> | Yes | Callback used to return the operation type. |
+| agent      | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| callback   | Yes  | No | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
 
 **Example**
 
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-//wantAgent����
+// WantAgent object
 var wantAgent;
 
-//WantAgentInfo����
+// WantAgentInfo object
 var wantAgentInfo = {
     wants: [
         {
@@ -985,25 +985,25 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 **Parameters**
 
-| Name  | Readable | Writable | Type      | Mandatory | Description                  |
+| Name      | Readable| Writable| Type     | Mandatory| Description         |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
-| agent      | Yes | No | WantAgent | Yes  | Target **WantAgent** object. |
+| agent      | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
 
 **Return value**
 
-| Type             | Description                                |
-| ---------------- | ------------------------------------------ |
-| Promise\<number> | Promise used to return the operation type. |
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return the operation type.|
 
 **Example**
 
 ```js
 import WantAgent from '@ohos.wantAgent';
 
-//wantAgent����
+// WantAgent object
 var wantAgent;
 
-//WantAgentInfo����
+// WantAgentInfo object
 var wantAgentInfo = {
     wants: [
         {

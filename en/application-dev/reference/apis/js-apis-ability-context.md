@@ -1,11 +1,9 @@
 # AbilityContext
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
 > The APIs of this module can be used only in the stage model.
-
 
 Implements the ability context. This module is inherited from **Context**.
 
@@ -14,9 +12,7 @@ Implements the ability context. This module is inherited from **Context**.
 ```js
 import Ability from '@ohos.application.Ability'
 ```
-
 ## Usage
-
 
 Before using the **AbilityContext** module, you must define a child class that inherits from **Ability**.
 
@@ -34,7 +30,7 @@ class MainAbility extends Ability {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | Yes| No| Ability information.|
 | currentHapModuleInfo | HapModuleInfo | Yes| No| Information about the current HAP.|
@@ -50,7 +46,7 @@ Starts an ability. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -79,7 +75,7 @@ Starts an ability. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | Yes| Parameters used for starting the ability.|
@@ -112,14 +108,14 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | No| Parameters used for starting the ability.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -147,13 +143,13 @@ Starts an ability. This API uses a promise to return the result.
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
@@ -175,13 +171,13 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | Yes| Parameters used for starting the ability.|
@@ -208,13 +204,13 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-Starts an ability. This API uses a promise to return the execution result when the ability is terminated.
+Starts an ability. This API uses a promise to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
 | options | StartOptions | No| Parameters used for starting the ability.|
@@ -222,7 +218,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Promise used to return the result.|
 
@@ -250,7 +246,7 @@ Terminates this ability. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
@@ -273,7 +269,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
@@ -298,7 +294,7 @@ Terminates this ability. This API uses a callback to return the information to t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -327,13 +323,13 @@ Terminates this ability. This API uses a promise to return information to the ca
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-featureAbility.md#abilityresult) | Yes| Information returned to the caller.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
@@ -361,18 +357,18 @@ Obtains the caller interface of the specified ability, and if the specified abil
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
 
 **Example**
-
+    
   ```js
   import Ability from '@ohos.application.Ability';
   var caller;
@@ -403,13 +399,13 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
-**Example**    
-
+**Example**
+    
   ```js
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
@@ -429,18 +425,18 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
-**Example**    
-
+**Example**
+    
   ```js
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
@@ -456,19 +452,19 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-Sets the label of the ability displayed in the task. This API uses a callback to return the result.
+Sets the label of the ability in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | label | string | Yes| Label of the ability to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result indicating whether the API is successfully called.|
 
-**Example**    
-
+**Example**
+    
   ```js
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -480,24 +476,24 @@ Sets the label of the ability displayed in the task. This API uses a callback to
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets the label of the ability displayed in the task. This API uses a promise to return the result.
+Sets the label of the ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | label | string | Yes| Label of the ability to set.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result indicating whether the API is successfully called.|
 
-**Example**   
-
+**Example**
+    
   ```js
   this.context.setMissionLabel("test").then((data) => {
       console.log('success:' + JSON.stringify(data));

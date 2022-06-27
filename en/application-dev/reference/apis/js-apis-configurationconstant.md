@@ -1,6 +1,7 @@
 # ConfigurationConstant
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,7 +18,7 @@ import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 
 ## ConfigurationConstant.ColorMode
 
-The value is obtained through the **ConfigurationConstant.ColorMode** API.
+You can obtain the value of this constant by calling the **ConfigurationConstant.ColorMode** API.
 
 **Example**
 
@@ -36,7 +37,7 @@ ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
 
 ## ConfigurationConstant.Direction<sup>9+</sup>
 
-The value is obtained through the **ConfigurationConstant.Direction** API.
+You can obtain the value of this constant by calling the **ConfigurationConstant.Direction** API.
 
 **Example**
 
@@ -55,7 +56,7 @@ ConfigurationConstant.Direction.DIRECTION_VERTICAL
 
 ## ConfigurationConstant.ScreenDensity<sup>9+</sup>
 
-The value is obtained through the **ConfigurationConstant.ScreenDensity** API.
+You can obtain the value of this constant by calling the **ConfigurationConstant.ScreenDensity** API.
 
 **Example**
 
