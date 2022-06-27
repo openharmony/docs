@@ -321,6 +321,6 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 | LOCATION                | 4      | 定位导航                                                     |
 | BLUETOOTH_INTERACTION   | 5      | 蓝牙相关                                                     |
 | MULTI_DEVICE_CONNECTION | 6      | 多设备互联                                                   |
-| WIFI_INTERACTION        | 7      | WLAN相关（系统保留）。<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
-| VOIP                    | 8      | 音视频通话（系统保留）。<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
+| WIFI_INTERACTION        | 7      | WLAN相关<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
+| VOIP                    | 8      | 音视频通话<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
 | TASK_KEEPING            | 9      | 计算任务（仅在特定设备生效）                                 |
