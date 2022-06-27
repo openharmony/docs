@@ -12,7 +12,7 @@ ExtensionContext模块提供扩展的上下文的能力，包括允许访问特�
 ## 导入模块
 
 ```js
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
+import FormExtension from '@ohos.application.FormExtension';
 ```
 
 ## 属性

@@ -656,8 +656,10 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((error,data) => {
-    console.log('featureAbilityTest result errCode : ' + error.code + " data: " + data);
+featureAbility.disconnectAbility(connId).then((data) => {
+    console.log('data : '  + data);
+}).catch((error)=>{
+    console.log('featureAbilityTest result errCode : ' + error.code);
 });
 ```
 
@@ -916,7 +918,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 ## StartAbilityParameter
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.AbilityRuntime.FAModel 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
