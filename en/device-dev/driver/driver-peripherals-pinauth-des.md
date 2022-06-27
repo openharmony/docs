@@ -1,10 +1,10 @@
-# Pin_auth
+# PIN Authentication
 
 ## Overview
 
 ### Function
 
-Personal Identification Number (PIN) authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. After a user registers a PIN, the PIN authentication (Pin_auth) module unlocks the device only when a correct PIN is entered. The figure below shows the architecture of PIN authentication.
+Personal Identification Number (PIN) authentication provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app logins. After a user registers a PIN, the PIN authentication (Pin_auth) module unlocks the device only when the correct PIN is entered. The figure below shows the architecture of PIN authentication.
 
 The Pin_auth driver is developed based on the Hardware Driver Foundation (HDF). The Pin_auth driver model shields hardware differences and provides stable PIN authentication capabilities for the user User_auth framework (User_auth) and PIN authentication system ability (SA). The PIN authentication capabilities include obtaining the PIN authentication executor list, executor information, and anti-brute force information of the specified template, comparing the template ID list of the executor and that of User_auth, enrolling or deleting PINs, and performing PIN authentication.
 
@@ -21,7 +21,7 @@ The identity authentication consists of User_auth and basic authentication servi
 
 - Executor security level
 
-  Certain security level is required for the execution environment of an executor. For example, the executor security level is low for an operation performed without access control and high for an operation performed in a Trusted Execution Environment (TEE).
+  Security level required for the execution environment of an executor.
 
 - Executor role
 
@@ -58,10 +58,10 @@ The Pin_auth driver provides basic PIN authentication capabilities for the upper
 
 **Figure 2** Pin_auth service and pin_auth driver APIs
 
-![image](figures/pin_auth_service_and_driver_interaction.png "interaction between the Pin_auth service and driver")
+![image](figures/pin_auth_service_and_driver_interaction.png "interaction between the pin_auth service and driver")
 
 ### Constraints
-PIN authentication must be implemented in a TEE, and the confidential information, such as PINs and credentials, must be stored in a TEE.
+PIN authentication must be implemented in a Trusted Execution Environment (TEE), and the confidential information, such as PINs and credentials, must be stored in a TEE.
 ## Development Guidelines
 
 ### When to Use
@@ -110,7 +110,7 @@ The following uses the RK3568 platform as an example to demonstrate how to devel
 
 The development procedure is as follows:
 
-1. Develop the Pin_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [pin_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/Pin_auth/hdi_service/src/pin_auth_interface_driver.cpp).
+1. Develop the Pin_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [pin_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_driver.cpp).
 
    ```c++
    // Create the PinAuthInterfaceService object by using the custom HdfPinAuthInterfaceHost object, which consists of the IoService object and HDI service.
