@@ -242,11 +242,11 @@ onAcquireFormState?(want: Want): formInfo.FormState;
 **示例：**
     
   ```js
-  import fromInfo from '@ohos.application.fromInfo'
+  import formInfo from '@ohos.application.formInfo'
   class MyFormExtension extends FormExtension {
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);
-          return fromInfo.FormState.UNKNOWN;
+          return formInfo.FormState.UNKNOWN;
       }
   }
   ```

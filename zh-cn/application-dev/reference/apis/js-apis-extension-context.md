@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
+import FormExtension from '@ohos.application.FormExtension';
 ```
 ## 使用说明
 

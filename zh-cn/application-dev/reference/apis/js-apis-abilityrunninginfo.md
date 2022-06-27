@@ -27,6 +27,8 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 否 | Ability匹配信息  | 
@@ -42,6 +44,8 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 Ability的状态信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
