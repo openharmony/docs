@@ -100,6 +100,7 @@
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
+  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)

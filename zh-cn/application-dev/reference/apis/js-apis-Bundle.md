@@ -1830,7 +1830,8 @@ ExtensionAbility的类型
 | FILE_SHARE<sup>9+</sup>        | 6    | ExtensionAbility的类型包括文件共享 |
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | ExtensionAbility的类型包括订阅者  |
 | WALLPAPER<sup>9+</sup>         | 8    | ExtensionAbility的类型包括墙纸   |
-| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复   |
+| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复 |
+| ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
 | UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
