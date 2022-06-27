@@ -556,6 +556,346 @@ promise.then(data => {
 });
 ```
 
+## radio.setPrimarySlotId<sup>8+</sup>
+
+setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
+
+设置主卡所在卡槽的索引号，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                   |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.setPrimarySlotId(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.setPrimarySlotId<sup>8+</sup>
+
+setPrimarySlotId\(slotId: number\): Promise\<void\>
+
+设置主卡所在卡槽的索引号，使用Promise方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                            |
+| --------------- | ------------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。        |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.setPrimarySlotId(slotId);
+promise.then(data => {
+    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                       |
+| -------- | ----------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+
+**示例：**
+
+```js
+radio.getIMEI((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(slotId: number, callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                       |
+| -------- | ----------------------- | ---- | ------------------------------------------ |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
+| callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getIMEI(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(slotId?: number): Promise<string\>
+
+获取设备的指定卡槽的IMEI，使用Promise方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                       |
+| ----------------- | ------------------------------------------ |
+| Promise\<string\> | Promise对象。返回IMEI；如果IMEI不存在，则返回空字符串。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getIMEI(slotId);
+promise.then(data => {
+    console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getIMEI fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明       |
+| -------- | ----------------------- | ---- | ---------- |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.getMEID((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(slotId: number, callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getMEID(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(slotId?: number): Promise<string\>
+
+获取设备的指定卡槽的MEID，使用Promise方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getMEID(slotId);
+promise.then(data => {
+    console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getMEID fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明       |
+| -------- | ----------------------- | ---- | ---------- |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.getUniqueDeviceId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
+
+获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getUniqueDeviceId(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(slotId?: number): Promise<string\>
+
+获取设备的指定卡槽的唯一设备ID，使用Promise方式作为异步方法。
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                          |
+| ----------------- | --------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回设备的指定卡槽的唯一设备ID。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getUniqueDeviceId(slotId);
+promise.then(data => {
+    console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getUniqueDeviceId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## RadioTechnology
 
