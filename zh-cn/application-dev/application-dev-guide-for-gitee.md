@@ -24,17 +24,21 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+- [公共事件与通知](notification/Readme-CN.md)
 - [窗口管理](windowmanager/Readme-CN.md)
 - [WebGL](webgl/Readme-CN.md)
 - [媒体](media/Readme-CN.md)
 - [安全](security/Readme-CN.md)
 - [网络与连接](connectivity/Readme-CN.md)
+- [电话服务](telephony/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)
 - [任务管理](task-management/Readme-CN.md)
 - [设备管理](device/Readme-CN.md)
 - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
 - [国际化](internationalization/Readme-CN.md)
+- [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
+- [Native API的相关指导](napi/Readme-CN.md)
 
 ### 工具
 

@@ -24,18 +24,21 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
+- [Common Event and Notification](notification/Readme-EN.md)
 - [Window Manager](windowmanager/Readme-EN.md)
 - [WebGL](webgl/Readme-EN.md)
 - [Media](media/Readme-EN.md)
 - [Security](security/Readme-EN.md)
 - [Connectivity](connectivity/Readme-EN.md)
+- [Telephony](telephony/Readme-EN.md)
 - [Data Management](database/Readme-EN.md)
-- [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/Readme-EN.md)
-- [Background Task Management](background-task-management/Readme-EN.md)
+- [Task Management](task-management/Readme-EN.md)
 - [Device Management](device/Readme-EN.md)
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
 - [DFX](dfx/Readme-EN.md)
 - [Internationalization](internationalization/Readme-EN.md)
+- [IDL Specifications and User Guide](IDL/idl-guidelines.md)
+- [Using Native APIs in Application Projects](napi/Readme-EN.md)
 
 ### Tools
 
