@@ -30,7 +30,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
   | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> However, the built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. | 
 
 
-- Gesture types
+- GestureType enums
   | Name | Description | 
   | -------- | -------- |
   | TapGesture | Tap gesture, which can be a single-tap or multi-tap gesture. | 
@@ -61,6 +61,7 @@ The component uses the **gesture** method to bind the gesture object and uses th
 
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct GestureSettingsExample {
@@ -81,7 +82,7 @@ struct GestureSettingsExample {
       TapGesture()
         .onAction((event: GestureEvent) => {
           this.value = 'priorityGesture onAction' + '\ncomponent globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\nwidth:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
           + event.target.area.width + '\nheight:' + event.target.area.height
         }), GestureMask.IgnoreInternal
       )
