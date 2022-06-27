@@ -11,16 +11,13 @@ import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
 
-## 系统能力
-
-SystemCapability.Account.OsAccount
-
-
 ## account_distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
 获取分布式帐号单实例对象。
+
+**系统能力：** SystemCapability.Account.OsAccount
 
 - 返回值：
   | 类型 | 说明 |
@@ -42,7 +39,9 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 获取分布式帐号信息，使用callback回调异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -65,7 +64,9 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 获取分布式帐号信息，使用Promise方式异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC，该权限仅供系统应用使用。
 
 - 返回值：
   | 类型 | 说明 |
@@ -89,7 +90,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 更新分布式帐号信息，使用callback回调异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -112,7 +115,9 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 更新分布式帐号信息，使用Promise方式异步返回结果。
 
-需要权限：ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -140,6 +145,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 提供操作系统帐户的分布式信息。
 
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
