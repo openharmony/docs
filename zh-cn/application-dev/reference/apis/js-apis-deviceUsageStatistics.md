@@ -6,9 +6,9 @@
 
 - 查询设备上各应用在不同时间段的使用时长、各应用的事件（前台、后台、长时任务开始、长时任务结束）信息及各应用的通知次数信息。
 - 查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。
-- 查询应用分组信息（指定应用和自身应用）。
-- 查询应用空闲状态（指定应用和自身应用）。
-- 设置应用分组信息（指定应用）。
+- 查询应用分组信息（其他应用和自身应用）。
+- 查询应用空闲状态（其他应用和自身应用）。
+- 设置应用分组信息（其他应用）。
 - 注册和解除注册应用分组变化监听。
 
 三方应用可调用接口实现如下功能：
@@ -1011,13 +1011,13 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-| 参数名              | 类型     | 必填   | 说明       |
-| ---------------- | ------ | ---- | -------- |
-| appUsageOldGroup | number | 是    | 变化前的应用分组 |
-| appUsageNewGroup | number | 是    | 变化后的应用分组 |
-| useId            | number | 是    | 用户id     |
-| changeReason     | number | 是    | 分组变化原因   |
-| bundleName       | string | 是    | 应用名称     |
+| 参数名           | 类型   | 必填 | 说明             |
+| ---------------- | ------ | ---- | ---------------- |
+| appUsageOldGroup | number | 是   | 变化前的应用分组 |
+| appUsageNewGroup | number | 是   | 变化后的应用分组 |
+| userId           | number | 是   | 用户id           |
+| changeReason     | number | 是   | 分组变化原因     |
+| bundleName       | string | 是   | 应用名称         |
 
 ## BundleStateInfo
 
@@ -1045,8 +1045,6 @@ FA卡片的使用信息的属性集合。
 merge(toMerge: BundleStateInfo): void
 
 合并相同包名的应用使用信息。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1109,7 +1107,7 @@ merge(toMerge: BundleStateInfo): void
 | BY_MONTHLY   | 3    | 表示系统按照月去查询指定时间段间隔的应用使用时长信息。              |
 | BY_ANNUALLY  | 4    | 表示系统按照年去查询指定时间段间隔的应用使用时长信息。              |
 
-## GroupType
+## GroupType<sup>9+</sup>
 
 提供应用分组的设置类型。
 
