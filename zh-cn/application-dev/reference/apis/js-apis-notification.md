@@ -2720,7 +2720,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](#bundleoption) | 是   | 指定包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
-| callback | AsyncCallback\<void\>         | 是   | 设定渠道使能回调函数。 |
+| callback | AsyncCallback\<void\>         | 是   | 获取渠道使能回调函数。 |
 
 **示例：**
 
@@ -2761,6 +2761,119 @@ Notification.isNotificationSlotEnabled(
     true).then((data) => {
       console.log('====================>isNotificationSlotEnabled====================>');
     });
+```
+
+## Notification.setSyncNotificationEnabledForUninstallApp <sup>9+</sup>
+
+setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callback: AsyncCallback<void>): void
+
+设定分布式设备未安装应用时是否同步通知的使能状态；使能开启时，分布式设备即使未安装应用，也可以同步收到通知；反之，则不能。（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| userId   | number                | 是   | 指定用户的Id。         |
+| enable   | boolean               | 是   | 使能状态。             |
+| callback | AsyncCallback\<void\> | 是   | 设定使能状态回调函数。 |
+
+**示例：**
+
+```js
+//setSyncNotificationEnabledForUninstallApp
+function setEnabledCallback(err) {
+  console.log('===================>setSyncNotificationEnabledForUninstallApp==================>');
+};
+
+let userId = 100
+Notification.setSyncNotificationEnabledForUninstallApp(
+    userId,
+    true,
+    setEnabledCallback);
+```
+
+## Notification.setSyncNotificationEnabledForUninstallApp <sup>9+</sup>
+
+function setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Promise<void>
+
+设定分布式设备未安装应用时是否同步通知的使能状态；使能开启时，分布式设备即使未安装应用，也可以同步收到通知；反之，则不能。（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------- | ---- | -------------- |
+| userId | number  | 是   | 指定用户的Id。 |
+| enable | boolean | 是   | 使能状态。     |
+
+**示例：**
+
+```js
+//setSyncNotificationEnabledForUninstallApp
+let userId = 100
+  Notification.setSyncNotificationEnabledForUninstallApp(
+    userId,
+    true).then(() => {
+      console.log('====================>setSyncNotificationEnabledForUninstallApp====================>');
+  });
+```
+
+## Notification.getSyncNotificationEnabledForUninstallApp <sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallback<boolean>): void
+
+获取分布式设备未安装应用时是否同步通知的使能状态（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| userId   | number                | 是   | 指定用户的Id。         |
+| callback | AsyncCallback\<void\> | 是   | 获取使能状态回调函数。 |
+
+**示例：**
+
+```js
+//getSyncNotificationEnabledForUninstallApp
+function getEnabledCallback(err) {
+  console.log('===================>getSyncNotificationEnabledForUninstallApp==================>');
+};
+
+let userId = 100
+Notification.getSyncNotificationEnabledForUninstallApp(
+    userId,
+    getEnabledCallback);
+```
+
+## Notification.getSyncNotificationEnabledForUninstallApp <sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number): Promise<boolean>
+
+获取分布式设备未安装应用时是否同步通知的使能状态（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| userId | number | 是   | 指定用户的Id。 |
+
+**示例：**
+
+```js
+//getSyncNotificationEnabledForUninstallApp
+let userId = 100
+  Notification.getSyncNotificationEnabledForUninstallApp(
+    userId,
+    true).then(() => {
+      console.log('====================>getSyncNotificationEnabledForUninstallApp====================>');
+  });
 ```
 
 ## NotificationSubscriber
@@ -3298,6 +3411,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 | distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。          |
 | notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
+| badgeNumber<sup>9+</sup> | 是 | 是 | number | 否 | 角标显示的未读通知数 |
+| removalWantAgent<sup>9+</sup> | 是 | 是 | WantAgent | 否 | 删除通知后跳转的WantAgent |
 
 
 ## DistributedOptions<sup>8+</sup>
