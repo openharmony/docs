@@ -2,10 +2,6 @@
 
 DataAbility 谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
 
-该模块提供以下DataAbility谓词相关的常用功能：
-
-- [DataAbilityPredicates](#dataabilitypredicates)： 提供用于实现不同查询方法的谓词。
-
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
