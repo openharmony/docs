@@ -6,9 +6,9 @@
 
 - 查询设备上各应用在不同时间段的使用时长、各应用的事件（前台、后台、长时任务开始、长时任务结束）信息及各应用的通知次数信息。
 - 查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。
-- 查询应用分组信息（指定应用和自身应用）。
-- 查询应用空闲状态（指定应用和自身应用）。
-- 设置应用分组信息（指定应用）。
+- 查询应用分组信息（其他应用和自身应用）。
+- 查询应用空闲状态（其他应用和自身应用）。
+- 设置应用分组信息（其他应用）。
 - 注册和解除注册应用分组变化监听。
 
 三方应用可调用接口实现如下功能：
@@ -144,6 +144,8 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
@@ -179,6 +181,8 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -219,6 +223,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明                                       |
@@ -253,6 +259,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -292,6 +300,8 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名      | 类型                                       | 必填   | 说明                                      |
@@ -325,6 +335,8 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -430,6 +442,8 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名    | 类型     | 必填   | 说明                                 |
@@ -476,6 +490,8 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -572,8 +588,6 @@ FA卡片的使用信息的属性集合。
 merge(toMerge: BundleStateInfo): void
 
 合并相同包名的应用使用信息。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
