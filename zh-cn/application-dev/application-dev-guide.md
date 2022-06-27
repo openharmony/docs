@@ -24,13 +24,16 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+
+- [公共事件与通知](notification/notification-brief.md)
+
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/audio-overview.md)
 - [安全](security/userauth-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
+- [电话服务](telephony/telephony-overview.md)
 - [数据管理](database/database-mdds-overview.md)
-- [后台代理提醒](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
