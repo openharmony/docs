@@ -413,8 +413,6 @@ console.info('resultSet.getDataType: ' + getDataType);
 
 数据类型枚举。
 
-只支持系统应用，不支持三方应用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 | 名称        | 值 | 说明                 |

@@ -25,11 +25,11 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 **参数：**
 
-| 参数名   | 参数类型                                                 | 必填 | 说明                                        |
-| -------- | -------------------------------------------------------- | ---- | ------------------------------------------- |
-| context  | [Context](js-apis-application-context.md#context)        | 是   | 应用的上下文环境。                          |
-| uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。              |
-| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。返回创建后的DataShareHelper实例。 |
+| 参数名   | 参数类型                                                 | 必填 | 说明                                                         |
+| -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | [Context](js-apis-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
+| uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
 **示例：**
 
@@ -65,9 +65,9 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 **返回值：**
 
-| 类型                                               | 说明                                           |
-| -------------------------------------------------- | ---------------------------------------------- |
-| Promise&lt;[DataShareHelper](#datasharehelper)&gt; | Promise对象。返回创建后的DataShareHelper实例。 |
+| 类型                                               | 说明                                   |
+| -------------------------------------------------- | -------------------------------------- |
+| Promise&lt;[DataShareHelper](#datasharehelper)&gt; | Promise对象。返回DataShareHelper实例。 |
 
 **示例：**
 
@@ -94,6 +94,8 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开指定路径的文件。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -102,7 +104,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------- | ---- | ---------------------------------- |
 | uri      | string                | 是   | 指示要打开的文件的路径。           |
 | mode     | string                | 是   | 指示文件打开模式，如“r”表示只读访问，“w”表示只写访问（擦除文件中当前的任何数据），“wa”表示附加到任何现有数据的写访问，“rw”表示对任何现有数据的读写访问。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回文件描述符。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的文件描述符；否则为错误对象。 |
 
 **示例：**
 
@@ -123,6 +125,8 @@ dataShareHelper.openFile(uri, "rwt", (err, data) => {
 openFile(uri: string, mode: string): Promise&lt;number&gt;
 
 打开指定路径的文件。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -155,7 +159,9 @@ dataShareHelper.openFile(uri, "rwt").then((data) => {
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知。
+订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知。使用callback异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -165,7 +171,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当数据更改时，触发该事件。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。本调用无返回值，当有其他用户触发了变更通知时调用。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined；否则为错误对象。当有其他用户触发了变更通知时调用。 |
 
 **示例：**
 
@@ -183,6 +189,8 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 取消订阅指定URI对应的数据资源的变更通知。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -191,7 +199,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。本调用无返回值。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -209,6 +217,8 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -216,7 +226,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | 名称     | 类型                 | 必填 | 描述                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。本调用无返回值。  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
@@ -233,6 +243,8 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -245,7 +257,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -260,6 +272,8 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取URI所指定的数据的MIME类型。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -267,7 +281,7 @@ getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | 名称     | 类型                   | 必填 | 描述                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | 是   | 表示指定的数据路径。                      |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。返回与URI指定的数据匹配的MIME类型。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的与URI指定的数据匹配的MIME类型；否则为错误对象。 |
 
 **示例：**
 
@@ -288,6 +302,8 @@ dataShareHelper.getType(uri, (err, data)=>{
 getType(uri: string): Promise&lt;string&gt;
 
 获取URI所指定数据的MIME类型。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -320,15 +336,17 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 
 获取支持的文件的MIME类型。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
 
-| 名称           | 类型                                     | 必填 | 描述                                                         |
-| -------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri            | string                                   | 是   | 指示要获取的文件的路径。                                     |
-| mimeTypeFilter | string                                   | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
-| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调函数。返回匹配的MIME类型数组。                           |
+| 名称           | 类型                                                         | 必填 | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| uri            | string                                                       | 是   | 指示要获取的文件的路径。                                     |
+| mimeTypeFilter | string                                                       | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
+| callback       | openFile(uri: string, mode: string, callback: AsyncCallback<number>) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的匹配的MIME类型数组；否则为错误对象。 |
 
 **示例：**
 
@@ -349,6 +367,8 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
 getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt;&gt;
 
 获取支持的文件的MIME类型。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -383,6 +403,8 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -390,7 +412,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | 名称     | 类型                   | 必填 | 描述                                                     |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
 | uri      | string                 | 是   | 指示要规范化的[URI](js-apis-uri.md#uri)。      |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果支持URI规范化，则返回规范化URI，否则返回空。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的规范化URI（如果支持URI规范化，则返回规范化URI，否则返回空）；否则为错误对象。 |
 
 **示例：**
 
@@ -410,6 +432,8 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 normalizeUri(uri: string): Promise&lt;string&gt;
 
 将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -442,6 +466,8 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将指定的URI转换为非规范化URI。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -449,7 +475,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | 名称     | 类型                   | 必填 | 描述                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 指示要反规范化的[URI](js-apis-uri.md#uri)。 |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的反规范化URI（如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空）；否则为错误对象。 |
 
 **示例：**
 
@@ -469,6 +495,8 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
 将指定的URI转换为非规范化URI。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -501,6 +529,8 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 将单条数据插入数据库。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -509,7 +539,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | 是   | 指示要插入的数据的路径。                                     |
 | value    | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。           |
-| callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。返回插入数据记录的索引。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
+| callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
 
 **示例：**
 
@@ -534,6 +564,8 @@ dataShareHelper.insert(uri, valueBucket, (err, data) => {
 insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 将单条数据插入数据库。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -572,6 +604,8 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 将批量数据插入数据库。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -580,7 +614,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | 是   | 指示要插入的数据的路径。                                     |
 | values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。                                           |
-| callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回插入的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
+| callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
 
 **示例：**
 
@@ -603,6 +637,8 @@ dataShareHelper.batchInsert(uri, vbs, (err, data) => {
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
 将批量数据插入数据库。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -639,6 +675,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 从数据库中删除一条或多条数据记录。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -647,7 +685,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的已删除的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
 
 **示例：**
 
@@ -671,6 +709,8 @@ dataShareHelper.delete(uri, da, (err, data) => {
 delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;number&gt;
 
 从数据库中删除一条或多条数据记录。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -708,6 +748,8 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 更新数据库中的数据记录。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -717,7 +759,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。                                           |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回更新的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **示例：**
 
@@ -747,6 +789,8 @@ dataShareHelper.update(uri, da, va, (err, data) => {
 update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
 
 更新数据库中的数据记录。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -791,6 +835,8 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 查询数据库中的数据。使用callback异步回调。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -800,7 +846,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 | uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
-| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 是   | 回调函数。返回查询到的结果集。                               |
+| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 是   | 回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的查询到的结果集；否则为错误对象。 |
 
 **示例：**
 
@@ -825,6 +871,8 @@ dataShareHelper.query(uri, da, columns, (err, data) => {
 query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 查询数据库中的数据。使用Promise异步回调。
+
+此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

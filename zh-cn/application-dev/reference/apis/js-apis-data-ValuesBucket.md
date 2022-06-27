@@ -18,6 +18,8 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 该类型用于表示数据库允许的数据字段类型。
 
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
 | 名称    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示字段类型为数字。   |
@@ -27,6 +29,8 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 ## ValuesBucket
 
 该类型用于存储一系列键值对。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 | 名称          | 参数类型                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
