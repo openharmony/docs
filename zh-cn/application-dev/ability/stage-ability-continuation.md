@@ -107,9 +107,9 @@
 
 
 
-2. 实现onContinue接口
+2. 实现onContinue()接口
 
-   onContinue接口在发起端被调用，主要用于在迁移发起时，通知开发者保存控件状态变量和内存中数据，准备迁移。当应用准备完成后，需要返回OnContinueResult.AGREE(0)表示同意迁移，否则返回相应的错误码拒绝迁移。如果不实现该接口，系统将默认为拒绝迁移。
+   onContinue()接口在发起端被调用，主要用于在迁移发起时，通知开发者保存控件状态变量和内存中数据，准备迁移。当应用准备完成后，需要返回OnContinueResult.AGREE(0)表示同意迁移，否则返回相应的错误码拒绝迁移。如果不实现该接口，系统将默认为拒绝迁移。
 
    导入模块
 
@@ -134,11 +134,11 @@
    
    
 
-3. 在onCreate接口中实现迁移逻辑
+3. 在onCreate()接口中实现迁移逻辑
 
-   onCreate接口在迁移目标端被调用，在目标端ability被拉起时，通知开发者同步已保存的内存数据和控件状态，完成后触发页面的恢复。如果不实现该接口中迁移相关逻辑，ability将会作为普通的启动方式拉起，无法恢复页面。
+   onCreate()接口在迁移目标端被调用，在目标端ability被拉起时，通知开发者同步已保存的内存数据和控件状态，完成后触发页面的恢复。如果不实现该接口中迁移相关逻辑，ability将会作为普通的启动方式拉起，无法恢复页面。
 
-   远端设备上，在onCreate中根据launchReason判断该次启动是否为迁移LaunchReason.CONTINUATION
+   远端设备上，在onCreate()中根据launchReason判断该次启动是否为迁移LaunchReason.CONTINUATION
    
    完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复。
    
@@ -169,7 +169,7 @@
 
 迁移场景中，分布式对象（distributedDataObject）主要用于将本机内存数据同步到目标设备。
 
-- 发起端在onContinue中，将待迁移的数据存入分布式对象中，然后设置好session id，并通过wantParam将session id传到远端设备。
+- 发起端在onContinue()中，将待迁移的数据存入分布式对象中，然后设置好session id，并通过wantParam将session id传到远端设备。
 
   ```javascript
      import Ability from '@ohos.application.Ability';
@@ -195,7 +195,7 @@
 
   
 
-- 目标设备在onCreate中，取出发起端传过来的session id，建立分布式对象并关联该session id，这样就能实现分布式对象的同步。需要注意的是，在调用restoreWindowStage之前，迁移需要的分布式对象必须全部关联完，保证能够获取到正确的数据。
+- 目标设备在onCreate()中，取出发起端传过来的session id，建立分布式对象并关联该session id，这样就能实现分布式对象的同步。需要注意的是，在调用restoreWindowStage之前，迁移需要的分布式对象必须全部关联完，保证能够获取到正确的数据。
 
   ```javascript
      import Ability from '@ohos.application.Ability';
