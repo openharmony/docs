@@ -109,7 +109,7 @@ Web组件返回的弹窗确认或弹窗取消功能对象。
 | getErrorCode(): number | 获取加载资源的错误码。  |
 | getErrorInfo(): string | 获取加载资源的错误信息。 |
 
-### WebResourceRequest对象说明
+## WebResourceRequest对象说明
 
 | 接口名称                                     | 功能描述                 |
 | ---------------------------------------- | -------------------- |
