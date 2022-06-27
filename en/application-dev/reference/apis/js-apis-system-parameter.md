@@ -1,6 +1,6 @@
 # System Parameter
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This is a system API and cannot be called by third-party applications.
 
@@ -203,9 +203,9 @@ try {
 ```
 
 
-## parameter.set(key: string, def?: string)
+## parameter.set
 
-set(key: string, def?: string): Promise&lt;string&gt;
+set(key: string, value: string): Promise&lt;void&gt;
 
 Sets a value for the attribute with the specified key. This API uses a promise to return the result.
 
@@ -222,7 +222,7 @@ Sets a value for the attribute with the specified key. This API uses a promise t
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise used to return the execution result.|
 
 **Example**
 

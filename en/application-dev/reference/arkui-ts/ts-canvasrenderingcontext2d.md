@@ -1,11 +1,11 @@
 # CanvasRenderingContext2D
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Use **RenderingContext** to draw rectangles, text, images, and other objects on a canvas.
+The **\<RenderingContext>** component is used to draw rectangles, text, images, and other objects on a canvas.
 
 
 ## APIs
@@ -15,7 +15,7 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 - Parameters
     | Name    | Type                                     | Mandatory | Default Value | Description                   |
     | ------- | ---------------------------------------- | --------- | ------------- | ----------------------------- |
-    | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes       | -             | See RenderingContextSettings. |
+    | setting | [RenderingContextSettings](#renderingcontextsettings) | Yes       | -             | See [RenderingContextSettings](#renderingcontextsettings). |
 
 
 ### RenderingContextSettings
@@ -34,15 +34,15 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 
 | Name                                     | Type                                     | Default Value                   | Description                              |
 | ---------------------------------------- | ---------------------------------------- | ------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | &lt;color&gt; \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | -                               | Style used to fill an area.<br/>- When the type is **&lt;color&gt;**, this attribute indicates the fill color.<br/>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the [createLinearGradient](#createlineargradient) method.<br/>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the [createPattern](#createpattern) method. |
+| [fillStyle](#fillstyle)                  | &lt;color&gt; \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | -                               | Style used to fill an area.<br>- When the type is **&lt;color&gt;**, this attribute indicates the fill color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the [createLinearGradient](#createlineargradient) method.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the [createPattern](#createpattern) method. |
 | [lineWidth](#linewidth)                  | number                                   | -                               | Line width.                              |
-| [strokeStyle](#strokestyle)              | &lt;color&gt; \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | -                               | Stroke style.<br/>- When the type is **&lt;color&gt;**, this attribute indicates the stroke color.<br/>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the [createLinearGradient](#createlineargradient) method.<br/>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the [createPattern](#createpattern) method. |
-| [lineCap](#linecap)                      | string                                   | 'butt'                          | Style of the line endpoints. The options are as follows:<br/>- **'butt'**: The endpoints of the line are squared off.<br/>- **'round'**: The endpoints of the line are rounded.<br/>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness. |
-| [lineJoin](#linejoin)                    | string                                   | 'miter'                         | Style of the shape used to join line segments. The options are as follows:<br/>- **'round'**: The shape used to join line segments is a rounded corner with the radius equal to the line width.<br/>- **'bevel'**: The shape used to join line segments is a beveled corner. The rectangular corner of each line is independent.<br/>- **'miter'**: The shape used to join line segments is a mitered corner. The corner is formed by extending the outside edges of the lines until they meet. You can adjust the effect of this attribute using **miterLimit**. |
+| [strokeStyle](#strokestyle)              | &lt;color&gt; \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | -                               | Stroke style.<br>- When the type is **&lt;color&gt;**, this attribute indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the [createLinearGradient](#createlineargradient) method.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the [createPattern](#createpattern) method. |
+| [lineCap](#linecap)                      | string                                   | 'butt'                          | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness. |
+| [lineJoin](#linejoin)                    | string                                   | 'miter'                         | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a rounded corner with the radius equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a beveled corner. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments is a mitered corner. The corner is formed by extending the outside edges of the lines until they meet. You can adjust the effect of this attribute using **miterLimit**. |
 | [miterLimit](#miterlimit)                | number                                   | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
-| [font](#font)                            | string                                   | 'normal normal 14px sans-serif' | Font style.<br/>Syntax: ctx.font='font-size font-family'<br/>- (Optional) **font-size**: font size and row height. The unit can only be px.<br/>- (Optional) **font-family**: font family.<br/>Syntax: ctx.font='font-style font-weight font-size font-family'<br/>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br/>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**<br/>- (Optional) **font-size**: font size and row height. The unit can only be px.<br/>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**. |
-| [textAlign](#textalign)                  | string                                   | 'left'                          | Text alignment mode. Available values are as follows:<br/>- **'left'**: The text is left-aligned.<br/>- **'right'**: The text is right-aligned.<br/>- **'center'**: The text is center-aligned.<br/>- **'start'**: The text is aligned with the start bound.<br/>- **'end'**: The text is aligned with the end bound.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**. |
-| [textBaseline](#textbaseline)            | string                                   | 'alphabetic'                    | Horizontal alignment mode of text. Available values are as follows:<br/>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br/>- **'top'**: The text baseline is on the top of the text bounding box.<br/>- **'hanging'**: The text baseline is a hanging baseline over the text.<br/>- **'middle'**: The text baseline is in the middle of the text bounding box.<br/>- **'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br/>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
+| [font](#font)                            | string                                   | 'normal normal 14px sans-serif' | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be px.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**<br>- (Optional) **font-size**: font size and row height. The unit can only be px.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**. |
+| [textAlign](#textalign)                  | string                                   | 'left'                          | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>**NOTE**<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**. |
+| [textBaseline](#textbaseline)            | string                                   | 'alphabetic'                    | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>- **'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
 | [globalAlpha](#globalalpha)              | number                                   | -                               | Opacity. **0.0**: completely transparent; **1.0**: completely opaque. |
 | [lineDashOffset](#linedashoffset)        | number                                   | 0.0                             | Offset of the dashed line. The precision is float. |
 | [globalCompositeOperation](#globalcompositeoperation) | string                                   | 'source-over'                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**. |
@@ -53,14 +53,14 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
 | imageSmoothingQuality                    | string                                   | 'low'                           | Image smoothness. The value can be **'low'**, **'medium'**, or **'high'**. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The value of the **&lt;color&gt;** type can be in 'rgb(255, 255, 255)', 'rgba(255, 255, 255, 1.0)', or '\#FFFFFF' format.
 
 
 ### fillStyle
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FillStyleExample {
@@ -89,8 +89,8 @@ struct FillStyleExample {
 
 ### lineWidth
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineWidthExample {
@@ -119,8 +119,8 @@ struct LineWidthExample {
 
 ### strokeStyle
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StrokeStyleExample {
@@ -151,8 +151,8 @@ struct StrokeStyleExample {
 
 ### lineCap
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineCapExample {
@@ -185,8 +185,8 @@ struct LineCapExample {
 
 ### lineJoin
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineJoinExample {
@@ -220,8 +220,8 @@ struct LineJoinExample {
 
 ### miterLimit
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MiterLimit {
@@ -255,8 +255,8 @@ struct MiterLimit {
 
 ### font
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Font {
@@ -285,8 +285,8 @@ struct Font {
 
 ### textAlign
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {
@@ -330,8 +330,8 @@ struct CanvasExample {
 
 ### textBaseline
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextBaseline {
@@ -375,8 +375,8 @@ struct TextBaseline {
 
 ### globalAlpha
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalAlpha {
@@ -408,8 +408,8 @@ struct GlobalAlpha {
 
 ### lineDashOffset
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineDashOffset {
@@ -453,8 +453,8 @@ struct LineDashOffset {
 | copy             | Displays the new drawing and neglects the existing drawing. |
 | xor              | Combines the new drawing and existing drawing using the XOR operation. |
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalCompositeOperation {
@@ -491,8 +491,8 @@ struct GlobalCompositeOperation {
 
 ### shadowBlur
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowBlur {
@@ -523,8 +523,8 @@ struct ShadowBlur {
 
 ### shadowColor
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowColor {
@@ -555,8 +555,8 @@ struct ShadowColor {
 
 ### shadowOffsetX
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetX {
@@ -588,8 +588,8 @@ struct ShadowOffsetX {
 
 ### shadowOffsetY
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetY {
@@ -620,8 +620,8 @@ struct ShadowOffsetY {
 
 ### imageSmoothingEnabled
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ImageSmoothingEnabled {
@@ -668,7 +668,8 @@ Fills a rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct FillRect {
@@ -710,7 +711,8 @@ Draws an outlined rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct StrokeRect {
@@ -751,7 +753,8 @@ Clears the content in a rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ClearRect {
@@ -793,7 +796,8 @@ Draws filled text on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct FillText {
@@ -834,7 +838,8 @@ Draws a text stroke on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct StrokeText {
@@ -883,7 +888,8 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct MeasureText {
@@ -923,7 +929,8 @@ Strokes a path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Stroke {
@@ -960,7 +967,8 @@ Creates a drawing path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct BeginPath {
@@ -1005,7 +1013,8 @@ Moves a drawing path to a target position on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct MoveTo {
@@ -1048,7 +1057,8 @@ Connects the current point to a target position using a straight line.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct LineTo {
@@ -1085,7 +1095,8 @@ Draws a closed path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ClosePath {
@@ -1130,7 +1141,8 @@ Creates a pattern for image filling based on a specified source image and repeti
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CreatePattern {
@@ -1177,7 +1189,8 @@ Draws a cubic bezier curve on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct BezierCurveTo {
@@ -1222,7 +1235,8 @@ Draws a quadratic curve on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct QuadraticCurveTo {
@@ -1313,7 +1327,8 @@ Draws an arc based on the radius and points on the arc.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ArcTo {
@@ -1362,7 +1377,8 @@ Draws an ellipse in the specified rectangular region.
 - Example
 
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1406,7 +1422,8 @@ Creates a rectangle.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1441,7 +1458,8 @@ Fills the area inside a closed path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Fill {
@@ -1476,7 +1494,8 @@ Sets the current path to a clipping path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Clip {
@@ -1519,7 +1538,8 @@ Rotates a canvas clockwise around its coordinate axes.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Rotate {
@@ -1560,7 +1580,8 @@ Scales a canvas based on scale factors.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Scale {
@@ -1594,7 +1615,7 @@ transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translat
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
 > - x' = scaleX \* x + skewY \* y + translateX
@@ -1613,7 +1634,8 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Transform {
@@ -1664,7 +1686,8 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct SetTransform {
@@ -1708,7 +1731,8 @@ Moves the origin of the coordinate system.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Translate {
@@ -1738,18 +1762,18 @@ Moves the origin of the coordinate system.
 
 ### drawImage
 
-drawImage(image: ImageBitmap, dx: number, dy: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
-drawImage(image: ImageBitmap, dx: number, dy: number, dWidth: number, dHeight: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dWidth: number, dHeight: number): void
 
-drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 Draws an image.
 
 - Parameters
     | Name    | Type                                     | Mandatory | Default Value | Description                              |
     | ------- | ---------------------------------------- | --------- | ------------- | ---------------------------------------- |
-    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes       | null          | Image resource. For details, see ImageBitmap |
+    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes       | null          | Image resource. For details, see ImageBitmap or PixelMap. |
     | sx      | number                                   | No        | 0             | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
     | sy      | number                                   | No        | 0             | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
     | sWidth  | number                                   | No        | 0             | Target width to crop the source image.   |
@@ -1762,7 +1786,8 @@ Draws an image.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct ImageExample {
@@ -1812,12 +1837,24 @@ Creates an **ImageData** object. For details, see [ImageData](ts-components-canv
     | --------- | ------ | --------- | ------------- | ---------------------------------------- |
     | imagedata | Object | Yes       | null          | **ImageData** object with the same width and height copied from the original **ImageData** object. |
 
+### getPixelMap
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created with the pixels within the specified area on the canvas.
+- Parameters
+  | Name  | Type    | Mandatory  | Default Value | Description             |
+  | ---- | ------ | ---- | ---- | --------------- |
+  | sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
+  | sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|
+  | sw   | number | Yes   | 0    | Width of the output area.    |
+  | sh   | number | Yes   | 0    | Height of the output area.    |
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-  Creates an [ImageData](ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
+Creates an **[ImageData](ts-components-canvas-imagebitmap.md)** object with pixels in the specified area on the canvas.
 - Parameters
     | Name | Type   | Mandatory | Default Value | Description                              |
     | ---- | ------ | --------- | ------------- | ---------------------------------------- |
@@ -1831,7 +1868,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
 putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?: number, dirtyWidth?: number, dirtyHeight?: number): void
 
-Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular area on the canvas.
+Puts the **[ImageData](ts-components-canvas-imagebitmap.md)** onto a rectangular area on the canvas.
 
 - Parameters
     | Name        | Type   | Mandatory | Default Value                      | Description                              |
@@ -1846,7 +1883,8 @@ Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular are
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct PutImageData {
@@ -1887,7 +1925,8 @@ Restores the saved drawing context.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1919,7 +1958,8 @@ Saves the current drawing context.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1959,7 +1999,8 @@ Creates a linear gradient.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CreateLinearGradient {
@@ -2008,7 +2049,8 @@ Creates a linear gradient.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct CreateRadialGradient {
