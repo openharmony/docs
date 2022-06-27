@@ -22,6 +22,8 @@ matchMediaSync(condition: string): MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
@@ -42,6 +44,7 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 
 媒体查询的句柄，并包含了申请句柄时的首次查询结果。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
@@ -56,6 +59,8 @@ let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听�
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 | 参数名      | 类型                               | 必填   | 说明               |
@@ -72,6 +77,9 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 通过句柄向对应的查询条件去注册回调，当媒体属性发生变更时不在触发指定的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 | 参数名      | 类型                               | 必填   | 说明                            |
 | -------- | -------------------------------- | ---- | ----------------------------- |
