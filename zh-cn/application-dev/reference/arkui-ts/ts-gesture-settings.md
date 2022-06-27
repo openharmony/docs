@@ -34,7 +34,7 @@
   | -------- | -------- |
   | TapGesture | 点击手势，支持单次点击、多次点击识别。 |
   | LongPressGesture | 长按手势。 |
-  | PanGesture | 平移手势，滑动最小距离为5vp时识别成功。。 |
+  | PanGesture | 平移手势，滑动最小距离为5vp时识别成功。 |
   | PinchGesture | 捏合手势。 |
   | RotationGesture | 旋转手势。 |
   | SwipeGesture | 滑动手势，滑动最小速度为100vp/s时识别成功。 |
