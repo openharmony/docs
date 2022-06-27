@@ -130,6 +130,8 @@ WLAN热点信息。
 | band | number | 只读 | WLAN接入点的频段。 |
 | frequency | number | 只读 | WLAN接入点的频率。 |
 | channelWidth | number | 只读 | WLAN接入点的带宽。 |
+| centerFrequency0 | number | 只读 | 中心频点。 |
+| centerFrequency1 | number | 只读 | 中心频点。 |
 | timestamp | number | 只读 | 时间戳。 |
 
 
@@ -528,6 +530,35 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | 是 | 当前组信息的回调函数。 |
 
+## wifi.getP2pGroups<sup>9+</sup>
+
+getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;
+
+获取P2P当前创建的所有群组信息，使用promise方式作为异步方法。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt;&nbsp;&gt; | 当前创建的所有群组信息。 |
+
+## wifi.getP2pGroups<sup>9+</sup>
+
+getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;): void
+
+获取P2P当前创建的所有群组信息，使用callback方式作为异步方法。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.LOCATION
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt;&gt; | 是 | 当前创建的所有群组信息的回调函数。 |
 
 ## WifiP2pGroupInfo<sup>8+</sup>
 
@@ -601,6 +632,36 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | 是 | 对端设备列表信息回调函数。 |
 
+## wifi.getP2pLocalDevice<sup>9+</sup>
+
+getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
+
+获取P2P本端设备信息，使用promise方式作为异步方法。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[WifiP2pDevice](#WifiP2pDevice)&gt; | 本端设备信息。 |
+
+
+## wifi.getP2pLocalDevice<sup>8+</sup>
+
+getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
+
+获取P2P本端设备信息，使用callback方式作为异步方法。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO，ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.P2P
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pDevice](#WifiP2pDevice)&gt; | 是 | 本端设备信息回调函数。 |
 
 ## wifi.createGroup<sup>8+</sup>
 
