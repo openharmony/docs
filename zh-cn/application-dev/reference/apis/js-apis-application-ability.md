@@ -1,11 +1,16 @@
 # Ability
 
+Ability模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
+
+该模块提供以下Ability相关的常用功能：
+
+- [Caller](#caller)：通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
+- [Callee](#callee)：通用组件服务端注册和解除客户端caller通知送信的callback接口。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
-
-Ability模块，提供对Ability生命周期、上下文环境等调用管理。
 
 ## 导入模块
 

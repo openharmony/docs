@@ -1,5 +1,7 @@
 # DataUriUtils模块
 
+DataUriUtils模块提供用于处理使用DataAbilityHelper方案的对象的实用程序类的能力，包括获取，添加，更新给定uri的路径组件末尾的ID。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
