@@ -121,115 +121,126 @@ let promise = featureAbility.startAbility(
 
 如果Service需要与Page Ability或其他应用的Service Ability进行交互，则须创建用于连接的Connection。Service支持其他Ability通过connectAbility()方法与其进行连接。
 
-在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
 
-创建连接本地Service回调实例的代码示例如下：
+开发者可使用如下两种方式实现连接Service。
 
-```javascript
-import prompt from '@system.prompt'
+1. 使用IDL自动生成代码
 
-let mRemote;
-function onConnectCallback(element, remote){
-    console.log('onConnectLocalService onConnectDone element: ' + element);
-    console.log('onConnectLocalService onConnectDone remote: ' + remote);
-    mRemote = remote;
-    if (mRemote == null) {
-      prompt.showToast({
-        message: "onConnectLocalService not connected yet"
-      });
-      return;
-    }
-    let option = new rpc.MessageOption();
-    let data = new rpc.MessageParcel();
-    let reply = new rpc.MessageParcel();
-    data.writeInt(1);
-    data.writeInt(99);
-    mRemote.sendRequest(1, data, reply, option).then((result) => {
-        console.log('sendRequest success');
-        let msg = reply.readInt();
+    使用OpenHarmony IDL（OpenHarmony Interface Definition Language）来自动生成对应客户端服务端及IRemoteObject代码，具体示例代码和说明请参考：
+
+   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#32-ts开发步骤)
+
+2. 在对应文件编写代码
+
+    在使用connectAbility()处理回调时，需要传入目标Service的Want与IAbilityConnection的实例。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常死亡的回调，onFailed()是用来处理连接Service失败的回调。
+
+    创建连接本地Service回调实例的代码示例如下：
+
+    ```javascript
+    import prompt from '@system.prompt'
+
+    let mRemote;
+    function onConnectCallback(element, remote){
+        console.log('onConnectLocalService onConnectDone element: ' + element);
+        console.log('onConnectLocalService onConnectDone remote: ' + remote);
+        mRemote = remote;
+        if (mRemote == null) {
         prompt.showToast({
-            message: "onConnectLocalService connect result: " + msg,
-            duration: 3000
+            message: "onConnectLocalService not connected yet"
         });
-    }).catch((e) => {
-        console.log('sendRequest error:' + e);
-    });
-
-}
-
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect Callback')
-}
-
-function onFailedCallback(code){
-    console.log('ConnectAbility onFailed Callback')
-}
-```
-
-连接本地Service的代码示例如下：
-
-```javascript
-import featureAbility from '@ohos.ability.featureAbility';
-let connId = featureAbility.connectAbility(
-    {
-        bundleName: "com.jstest.service",
-        abilityName: "com.jstest.service.ServiceAbility",
-    },
-    {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
-    },
-);
-```
-
-同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
-
-Service侧把自身的实例返回给调用侧的代码示例如下：
-
-```javascript
-import rpc from "@ohos.rpc";
-
-let mMyStub;
-export default {
-    onStart() {
-        class MyStub extends rpc.RemoteObject{
-            constructor(des) {
-                if (typeof des === 'string') {
-                    super(des);
-                }
-                return null;
-            }
-            onRemoteRequest(code, data, reply, option) {
-                console.log("ServiceAbility onRemoteRequest called");
-                if (code === 1) {
-                    let op1 = data.readInt();
-                    let op2 = data.readInt();
-                    console.log("op1 = " + op1 + ", op2 = " + op2);
-                    reply.writeInt(op1 + op2);
-                } else {
-                    console.log("ServiceAbility unknown request code");
-                }
-                return true;
-            }
+        return;
         }
-        mMyStub = new MyStub("ServiceAbility-test");
-    },
-    onCommand(want, startId) {
-        console.log('ServiceAbility onCommand');
-    },
-    onConnect(want) {
-        console.log('ServiceAbility OnConnect');
-        return mMyStub;
-    },
-    onDisconnect(want) {
-        console.log('ServiceAbility OnDisConnect');
-    },
-    onStop() {
-        console.log('ServiceAbility onStop');
-    },
-}
-```
+        let option = new rpc.MessageOption();
+        let data = new rpc.MessageParcel();
+        let reply = new rpc.MessageParcel();
+        data.writeInt(1);
+        data.writeInt(99);
+        mRemote.sendRequest(1, data, reply, option).then((result) => {
+            console.log('sendRequest success');
+            let msg = reply.readInt();
+            prompt.showToast({
+                message: "onConnectLocalService connect result: " + msg,
+                duration: 3000
+            });
+        }).catch((e) => {
+            console.log('sendRequest error:' + e);
+        });
+
+    }
+
+    function onDisconnectCallback(element){
+        console.log('ConnectAbility onDisconnect Callback')
+    }
+
+    function onFailedCallback(code){
+        console.log('ConnectAbility onFailed Callback')
+    }
+    ```
+
+    连接本地Service的代码示例如下：
+
+    ```javascript
+    import featureAbility from '@ohos.ability.featureAbility';
+    let connId = featureAbility.connectAbility(
+        {
+            bundleName: "com.jstest.service",
+            abilityName: "com.jstest.service.ServiceAbility",
+        },
+        {
+            onConnect: onConnectCallback,
+            onDisconnect: onDisconnectCallback,
+            onFailed: onFailedCallback,
+        },
+    );
+    ```
+
+    同时，Service侧也需要在onConnect()时返回IRemoteObject，从而定义与Service进行通信的接口。onConnect()需要返回一个IRemoteObject对象。OpenHarmony提供了IRemoteObject的默认实现，开发者可以通过继承rpc.RemoteObject来创建自定义的实现类。
+
+    Service侧把自身的实例返回给调用侧的代码示例如下：
+
+    ```javascript
+    import rpc from "@ohos.rpc";
+
+    let mMyStub;
+    export default {
+        onStart() {
+            class MyStub extends rpc.RemoteObject{
+                constructor(des) {
+                    if (typeof des === 'string') {
+                        super(des);
+                    }
+                    return null;
+                }
+                onRemoteRequest(code, data, reply, option) {
+                    console.log("ServiceAbility onRemoteRequest called");
+                    if (code === 1) {
+                        let op1 = data.readInt();
+                        let op2 = data.readInt();
+                        console.log("op1 = " + op1 + ", op2 = " + op2);
+                        reply.writeInt(op1 + op2);
+                    } else {
+                        console.log("ServiceAbility unknown request code");
+                    }
+                    return true;
+                }
+            }
+            mMyStub = new MyStub("ServiceAbility-test");
+        },
+        onCommand(want, startId) {
+            console.log('ServiceAbility onCommand');
+        },
+        onConnect(want) {
+            console.log('ServiceAbility OnConnect');
+            return mMyStub;
+        },
+        onDisconnect(want) {
+            console.log('ServiceAbility OnDisConnect');
+        },
+        onStop() {
+            console.log('ServiceAbility onStop');
+        },
+    }
+    ```
 
 ### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
 

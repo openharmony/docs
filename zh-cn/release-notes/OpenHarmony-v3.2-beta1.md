@@ -6,7 +6,7 @@
 
 **轻量系统基础能力增强**
 
-轻量LiteOS系统和Linux系统IPC归一，构建和完善了进程间通信能力，包括分布式进程间通信，为分布式业务及APP提供本地和分布式的进程间通信能力。
+轻量LiteOS系统和Linux系统IPC归一，构建和完善了进程间通信能力。
 
 **标准系统基础能力增强**
 
@@ -51,8 +51,8 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2&nbsp;Beta1 | NA |
 | SDK | Ohos_sdk_full&nbsp;3.2.2.5 (API&nbsp;Version&nbsp;9 Beta1) | NA |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.2&nbsp;Beta1&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.2&nbsp;Beta1 | OpenHarmony智能设备集成开发环境推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0 Beta3 for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0 Release | OpenHarmony智能设备集成开发环境推荐使用 |
 
 
 ## 源码获取
@@ -138,11 +138,11 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 
 ### 特性变更
 
-**表2** 版本特性变更表
+**表3** 版本特性变更表
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
-| 公共 | 新增支持Arm架构64位版本编译构建。 | 轻量、小型系统IPC接口与标准系统归一化。 |
+| 公共 | 新增支持Arm架构64位版本编译构建。 | 轻量、小型系统IPC接口归一。 |
 | 资源调度 | 新增卡片使用记录信息统计能力。<br/>主要涉及如下需求：<br/>I531ST&nbsp;支持卡片卸载时，删除对应的卡片使用记录<br/>I531SU&nbsp;支持查询获取卡片使用记录<br/>I531SV&nbsp;支持记录卡片的使用计数以及使用时间 | NA |
 | 多模输入 | 新增遥控器、鼠标、键盘输入设备热插拔监听能力。<br/>主要涉及如下需求：<br/>I530U7&nbsp;三方件json版本升级<br/>I530UH&nbsp;启动优化<br/>I530UU&nbsp;支持裁剪鼠标光标显示特<br/>I530UL&nbsp;支持不可触摸窗口<br/>I530W5&nbsp;支持通过JS&nbsp;API监听遥控器输入设备的热插拔<br/>I530W9&nbsp;支持通过JS&nbsp;API监听鼠标输入设备的热插拔<br/>I530WB&nbsp;支持通过JS&nbsp;API查看触摸板输入设备扩展信息<br/>I530WF&nbsp;支持通过JS&nbsp;API监听键盘输入设备的热插拔<br/>I530UW&nbsp;支持裁剪配置组合按键特性 | NA |
 | 系统服务管理 | 新增群组校验机制。<br/>主要涉及如下需求：<br/>I59XYB&nbsp;添加群组校验机制<br/>I53NZQ&nbsp;处理远端应用安装情况和版本号<br/>I568AO&nbsp;DMS上报分布式组件关联关系<br/>I58ZSB&nbsp;采集OS类型信息 | NA |
@@ -156,7 +156,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | 全球化 | -&nbsp;支持获取资源的同步接口，支持按资源名称获取资源，支持获取float等类型资源。<br/>-&nbsp;新增对MCC/MNC类型限定词资源的支持。<br/>-&nbsp;支持应用内不同模块独立编译。<br/>-&nbsp;支持获取区域偏好的年月日顺序。<br/>-&nbsp;获取本地文字的读音表达，例如汉字转拼音。<br/>主要涉及如下需求：<br/>I596AO&nbsp;支持MCC/MNC限定词<br/>I58ZSE&nbsp;资源管理接口能力增强<br/>I58ZSG&nbsp;资源ID生成<br/>I4WM02&nbsp;音译<br/>I4WK2O&nbsp;日期顺序获取 | NA |
 | ArkUI | -&nbsp;支持组件布局边界显示。<br/>-&nbsp;增强XComponent组件的鼠标操作，并且优化了输入法弹出时的布局调整，在应用性能方面进行了优化。<br/>-&nbsp;增强分栏与侧边栏组件能力，支持拖拽自动隐藏功能。<br/>-&nbsp;AbilityComponent组件支持，支持将应用界面（Ability）作为控件嵌入其他应用显示。<br/>主要涉及需求如下：<br/>I58ZPY&nbsp;支持解码降采样图片性能化<br/>I58ZPX&nbsp;支持CPU提频优化动画性能<br/>I58ZPW&nbsp;新增AbilityComponent组件<br/>I58ZPS&nbsp;XComponent组件鼠标事件<br/>I58ZPR&nbsp;支持输入框拉起输入法应用时自动布局<br/>I58ZPQ&nbsp;分栏、侧边栏支持自由拖拽到小于最小宽度后自动隐藏功能<br/>I58ZPP&nbsp;图形绘制/辅助类组件支持显示布局边界<br/>I58ZPO&nbsp;按钮/选择/信息展示/动效类组件支持显示布局边界<br/>I58ZPN&nbsp;文本/输入/图片/视频/媒体类组件支持显示布局边界 | NA |
 | 程序访问控制 | -&nbsp;新增SELinux针对service、hdf_service的标签保护能力。<br/>-&nbsp;新增Native服务的权限配置及校验能力。<br/>主要涉及需求如下：<br/>I58ZO1&nbsp;针对service，提供selinux标签保护能力<br/>I58ZO2&nbsp;针对hdf_service，提供selinux标签保护能力<br/>I58ZO3&nbsp;accessToken支持native服务的权限校验机制 | NA |
-| 公共基础类库 | TypedArray和SharedArrayBuffer支持ECMA&nbsp;2021规范。<br/>主要涉及如下需求：<br/>I58ZPZ&nbsp;支持TypeArray&nbsp;2021规范<br/>I58ZQ0&nbsp;支持&nbsp;shard&nbsp;array&nbsp;buffer&nbsp;2021规范 | NA |
+| 公共基础类库 | TypedArray和SharedArrayBuffer支持ECMA&nbsp;2021规范。<br/>主要涉及如下需求：<br/>I58ZPZ&nbsp;支持TypedArray&nbsp;2021规范<br/>I58ZQ0&nbsp;支持&nbsp;shard&nbsp;array&nbsp;buffer&nbsp;2021规范 | NA |
 | 语言编译运行时 | -&nbsp;方舟虚拟机支持多实例调试，以及条件断点和watch表达式。<br/>主要涉及如下需求：<br/>I58ZQE&nbsp;方舟支持多实例调试<br/>I58ZQD&nbsp;方舟支持条件断点<br/>I58ZQB&nbsp;方舟支持watch变量及表达式<br/>I58ZQ8&nbsp;支持TSAOT优化编译器生成代码支持ArkJS运行时GC特性<br/>I58ZQ7&nbsp;支持TSAOT优化编译器后端机器码生成框架适配 | NA |
 | 升级服务 | 新增适配RK&nbsp;3568。<br/>主要涉及如下需求：<br/>I58ZSM&nbsp;update_service部件支持RK&nbsp;3568升级适配<br/>I58ZSO&nbsp;updater部件支持RK&nbsp;3568升级适配 | NA |
 | Misc软件服务 | 补齐API6前的http文件上传、下载接口。<br/>主要涉及如下需求：<br/>I58ZSC&nbsp;【download】支持\@system.request接口<br/>I53J82&nbsp;&nbsp;【upload】支持\@system.request接口 | NA |
@@ -182,7 +182,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ### Samples
 
-**表2** 新增Samples
+**表4** 新增Samples
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
@@ -214,7 +214,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ## 修复缺陷列表
 
-**表6** 修复缺陷ISSUE列表
+**表5** 修复缺陷ISSUE列表
 
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -223,7 +223,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ## 遗留缺陷列表
 
-**表7** 遗留缺陷列表
+**表6** 遗留缺陷列表
 
 | ISSUE                                                        | 问题描述                                                   | 影响                                                         | 计划解决日期 |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------ |

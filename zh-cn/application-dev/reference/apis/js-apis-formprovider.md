@@ -1,9 +1,10 @@
 # FormProvider
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+FormProvider模块提供了卡片提供方相关接口的能力，包括更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
 
-卡片提供方相关接口。
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -345,3 +346,83 @@ SystemCapability.Ability.Form
       console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
   });
   ```
+
+## isRequestPublishFormSupported<sup>9+<sup>
+
+isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void;
+
+查询是否支持发布一张卡片到使用方。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | callback形式返回是否支持发布一张卡片到使用方 |
+
+**示例：**
+
+```js
+formProvider.isRequestPublishFormSupported((error, isSupported) => {
+  if (error.code) {
+    console.log('formProvider isRequestPublishFormSupported, error:' + JSON.stringify(error));
+  } else {
+    if (isSupported) {
+      var want = {
+      abilityName: "FormAbility",
+      parameters: {
+        "ohos.extra.param.key.form_dimension": 2,
+        "ohos.extra.param.key.form_name": "widget",
+        "ohos.extra.param.key.module_name": "entry"
+      }
+      };
+      formProvider.requestPublishForm(want, (error, data) => {
+        if (error.code) {
+          console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+        } else {
+          console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+        }
+      });
+    }
+  }
+});
+```
+
+## isRequestPublishFormSupported<sup>9+</sup>
+
+isRequestPublishFormSupported(): Promise&lt;boolean&gt;;
+
+查询是否支持发布一张卡片到使用方。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回是否支持发布一张卡片到使用方 |
+
+**示例：**
+
+```js
+formProvider.isRequestPublishFormSupported().then((isSupported) => {
+  if (isSupported) {
+    var want = {
+    abilityName: "FormAbility",
+    parameters: {
+        "ohos.extra.param.key.form_dimension": 2,
+        "ohos.extra.param.key.form_name": "widget",
+        "ohos.extra.param.key.module_name": "entry"
+    }
+    };
+    formProvider.requestPublishForm(want).then((data) => {
+      console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+    }).catch((error) => {
+      console.log('formProvider requestPublishForm, error: ' + JSON.stringify(error));
+    });
+  }
+}).catch((error) => {
+  console.log('formProvider isRequestPublishFormSupported, error:' + JSON.stringify(error));
+});
+```

@@ -1,9 +1,8 @@
 # LongPressGesture
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
 
 ## Required Permissions
 
@@ -15,7 +14,7 @@ None
 LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | fingers | number | No | 1 | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. |
   | repeat | boolean | No | false | Whether to continuously trigger the event callback. |
@@ -31,7 +30,7 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
 | onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a long press gesture is recognized. |
 
 - GestureEvent attributes related to the long press gesture
-    | Name | Type | Description |
+  | Name | Type | Description |
   | -------- | -------- | -------- |
   | repeat | boolean | Whether the event is repeated. |
 

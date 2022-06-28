@@ -23,7 +23,7 @@ After [setting up the Windows+Ubuntu hybrid development environment](../quick-st
 
    ![en-us_image_0000001215743910](figures/en-us_image_0000001215743910.png)
 
-5. On the **Import Project** page, select a product, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **ohosVersion**. The following figure uses **Hi3516DV300** as an example.
+5. On the **Import Project** page, select a product, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **Ohos Ver**. The following figure uses **Hi3516DV300** as an example.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
    > - Set **Product** to **Hi3516DV300** for the Hi3516D V300 development board.

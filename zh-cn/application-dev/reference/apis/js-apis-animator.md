@@ -226,12 +226,12 @@ animator.onrepeat();
 
 定义动画选项。
 
-**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | duration | number | 是 | 动画播放的时长，单位毫秒，默认为0。 |
-| easing | string | 是 | 动画插值曲线，默认为ease'。 |
+| easing | string | 是 | 动画插值曲线，默认为'ease'。 |
 | delay | number | 是 | 动画延时播放时长，单位毫秒，默认为0，即不延时。 |
 | fill | "none" \| "forwards" \| "backwards" \| "both" | 是 | 动画执行后是否恢复到初始状态，默认值为"none"。动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。 |
 | direction | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | 是 | 动画播放模式，默认值"normal"。|

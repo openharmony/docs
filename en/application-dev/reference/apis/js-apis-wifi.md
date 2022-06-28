@@ -589,7 +589,7 @@ Represents the P2P device information.
 | deviceAddress | string | Read only| MAC address of the device.|
 | primaryDeviceType | string | Read only| Type of the primary device.|
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | Read only| Device status.|
-| groupCapabilities | number | Read only| Group capabilities.|
+| groupCapabilitys | number | Read only| Group capabilities.|
 
 ## P2pDeviceStatus<sup>8+</sup>
 

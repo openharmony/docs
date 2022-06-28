@@ -1,6 +1,6 @@
 # 系统事件打点
 
-为系统hap应用提供系统事件打点接口。
+本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -79,7 +79,7 @@ hiSysEvent.write({
 
 ## hiSysEvent.write
 
-write(info: SysEventInfo): Promise&lt;void&gt
+write(info: SysEventInfo): Promise&lt;void&gt;
 
 系统事件打点方法，接收[SysEventInfo](#syseventinfo)类型的对象作为事件参数，使用promise方式作为异步回调。
 
@@ -146,7 +146,7 @@ hiSysEvent.write({
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 事件领域。 |
 | name | string | 是 | 事件名称。 |
-| tag | string | 是 | 事件标签。 |
+| tag | string | 否 | 事件标签。 |
 | ruleType | [RuleType](#ruletype) | 是 | 匹配规则类型。 |
 
 ## Watcher

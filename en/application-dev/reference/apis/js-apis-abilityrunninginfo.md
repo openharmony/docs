@@ -1,8 +1,8 @@
 # AbilityRunningInfo
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 Provides ability running information.
 
@@ -11,12 +11,10 @@ Provides ability running information.
 ```js
 import abilitymanager from '@ohos.application.abilityManager';
 ```
+
 ## Usage
 
-
 The ability running information is obtained by using the **getAbilityRunningInfos** API in **abilityManager**.
-
-
 
 ```js
 import abilitymanager from '@ohos.application.abilityManager';

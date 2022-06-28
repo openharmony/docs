@@ -21,7 +21,7 @@
 
 - 执行器安全等级
 
-  执行器提供能力时运行环境所达到的安全级别，如操作运行在无访问控制安全等级低于操作运行硬件可信执行环境的安全等级。
+  执行器提供能力时运行环境所达到的安全级别。
 
 - 执行器角色
 
@@ -39,11 +39,11 @@
 
   用户身份认证处理需要保证用户数据安全以及认证结果的准确性，用户认证框架与基础认证服务间的关键交互信息需要做数据完整性保护，各基础认证服务将提供的执行器能力对接到用户认证框架时，需要交换各自的公钥，其中：
 
-    1）执行器通过用户认证框架公钥校验调度指令的准确性，例如一个口令模板被锁定后，相关口令认证能力无法使用。由于口令认证属于敏感操作，此时需要通过校验来确保调度指令的准确性后，方可进行后续解锁操作。
+    1）执行器通过用户认证框架公钥校验调度指令的准确性。
 
     2）执行器公钥可被用户认证框架用于校验认证结果的准确性，同时用于执行器交互认证时的校验交互信息的完整性。
 
-- 口令认证凭据模板
+- 认证凭据模板
 
   认证凭据是在用户设置认证凭据时由认证服务产生并存储，每个模板有一个ID，用于索引模板信息文件，在认证时读取模板信息并用于与当次认证过程中产生的认证数据做对比，完成身份认证。
 
@@ -152,6 +152,10 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    int HdfFaceAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
        IAM_LOGI("start");
+       if (!HdfDeviceSetClass(deviceObject, DEVICE_CLASS_USERAUTH)) {
+           IAM_LOGE("set face auth hdf class failed");
+           return HDF_FAILURE;
+       }
        return HDF_SUCCESS;
    }
    
@@ -161,7 +165,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
        IAM_LOGI("start");
        auto *hdfFaceAuthInterfaceHost = new (std::nothrow) HdfFaceAuthInterfaceHost;
        if (hdfFaceAuthInterfaceHost == nullptr) {
-           IAM_LOGE("%{public}s: failed to create create HdfFaceAuthInterfaceHost object", __func__);
+           IAM_LOGE("%{public}s: failed to create HdfFaceAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
    
@@ -171,7 +175,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    
        auto serviceImpl = IFaceAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           IAM_LOGE("%{public}s: failed to get of implement service", __func__);
+           IAM_LOGE("%{public}s: failed to implement service", __func__);
            return HDF_FAILURE;
        }
    

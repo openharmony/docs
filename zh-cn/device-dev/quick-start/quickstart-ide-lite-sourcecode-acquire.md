@@ -11,13 +11,14 @@
 2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
 
 3. 安装git客户端和git-lfs。（上述工具已在搭建环境章节安装。如已安装，请忽略）
-     更新软件源：
+     
+   更新软件源：
      
    ```
    sudo apt-get update
    ```
 
-     通过以下命令安装：
+   通过以下命令安装：
      
    ```
    sudo apt-get install git git-lfs
@@ -32,11 +33,22 @@
    ```
 
 5. 执行如下命令安装码云repo工具。
-     
+
+   下述命令中的安装路径以"~/bin"为例，请用户自行创建所需目录。
+  
    ```
-   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中
-   chmod a+x /usr/local/bin/repo
+   mkdir ~/bin
+   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+6. 将repo添加到环境变量。
+
+   ```
+   vim ~/.bashrc               # 编辑环境变量
+   export PATH=~/bin:$PATH     # 在环境变量的最后添加一行repo路径信息
+   source ~/.bashrc            # 应用环境变量
    ```
 
 
@@ -65,6 +77,7 @@
   ```
 
 - **OpenHarmony发布分支代码获取**
+
   OpenHarmony各个版本发布分支的源码获取方式请参考[Release-Notes](../../release-notes/Readme.md)。
 
 

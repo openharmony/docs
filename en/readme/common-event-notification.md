@@ -36,7 +36,7 @@ Each application can subscribe to common events as required. After your applicat
 
 ## How to Use
 
-For details, see *CommonEvent Development Guidelines*.
+For details, see [Common Event Development](../application-dev/notification/common-event.md).
 
 ## Repositories Involved
 

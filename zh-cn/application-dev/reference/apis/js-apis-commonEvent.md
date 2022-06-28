@@ -1,6 +1,9 @@
 # 公共事件模块
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+本模块提供了公共事件的能力，包括公共事件的权限列表，发布公共事件，订阅或取消订阅公共事件，获取或修改公共事件结果代码、结果数据等。
+
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 权限列表
@@ -246,6 +249,8 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称     | 读写属性 | 类型                 | 必填 | 描述                               |
@@ -282,6 +287,8 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 向指定用户发布公共事件并指定发布信息（callback形式）。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

@@ -61,7 +61,7 @@ Shape(value:{target?: PixelMap})
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct ShapeExample {

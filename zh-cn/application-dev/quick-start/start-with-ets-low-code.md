@@ -17,7 +17,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 - 直接创建一个支持低代码开发的新工程以进行开发。本文以此方式为例进行说明。
 
-- 在已有工程中，创建visual文件来进行开发。
+- 在已有工程中，创建visual文件来进行开发。此种方式的操作可参考[创建visual文件支持低代码开发](#构建第二个页面)。
 
 
 ## 创建新工程支持低代码开发
@@ -90,7 +90,8 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
    
    - 在second.ets文件中，将本页面的message文本内容设置为“Hi there”，示例如下：
      
-      ```
+      ```ts
+      // second.ets
       @Entry
       @Component
       struct Second {
@@ -117,13 +118,14 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过页面路由router来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过页面路由router来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
      在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。需同时处理ets文件及visual文件。
    - “**index.ets**”示例如下：
      
-     ```
+     ```ts
+     // index.ets
      import router from '@ohos.router';
      
      @Entry
@@ -155,7 +157,8 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
    - “**second.ets**”示例如下：
      
-      ```
+      ```ts
+      // second.ets
       import router from '@ohos.router';
       
       @Entry

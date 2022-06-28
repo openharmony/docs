@@ -69,7 +69,7 @@ Sensor驱动模型对外开放的API接口能力的具体实现请参考：
 | int32_t GetAllSensors(struct SensorInformation **sensorInfo, int32_t *count) | 获取系统中注册的所有传感器信息，一组完整传感器信息包括传感器名字、设备厂商、固件版本号、硬件版本号、传感器类型编号、传感器标识、最大量程、精度、功耗。 |
 | int32_t Enable(int32_t sensorId) | 使能指定传感器设备，只有数据订阅者使能传感器后，才能获取订阅的传感器数据。 | 
 | int32_t Disable(int32_t sensorId) | 去使能指定传感器设备。 | 
-| int32_t SetBatch(iint32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | 设置指定传感器的数据采样间隔和数据上报间隔。 | 
+| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | 设置指定传感器的数据采样间隔和数据上报间隔。 | 
 | int32_t SetMode(int32_t sensorId, int32_t mode) | 设置指定传感器的工作模式，不同的工作模式，上报数据方式不同。 | 
 | int32_t SetOption(int32_t sensorId, uint32_t option) | 设置指定传感器量程，精度等可选配置。 | 
 | int32_t Register(int32_t groupId, RecordDataCallback cb) | 订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。 | 
@@ -577,7 +577,7 @@ HWTEST_F(HdfSensorTest,TestAccelDriver_001, TestSize.Level0)
     }
     /* 打印获取的传感器列表 */
     for (int i = 0; i < count; i++) {
-        printf("get sensoriId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
+        printf("get sensorId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
     }
     ret = g_sensorDev->Enable(accelSensorId);
     EXPECT_EQ(0, ret);

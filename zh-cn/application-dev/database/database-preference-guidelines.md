@@ -1,12 +1,16 @@
 # 首选项开发指导
 
+> **说明：**
+>
+> 该功能特性从API Version 9开始支持。API Version 9之前可使用[轻量级存储](../reference/apis/js-apis-data-storage.md)的相关功能接口。
+
 ## 场景介绍
 
 首选项功能通常用于保存应用的一些常用配置信息，并不适合需要存储大量数据和频繁改变数据的场景。应用的数据保存在文件中，这些文件可以持久化地存储在设备上。需要注意的是，应用访问的实例包含文件所有数据，这些数据会一直加载在设备的内存中，直到应用主动从内存中将其移除前，应用都可以通过Preferences API进行相关数据操作。
 
 ## 接口说明
 
-首选项为应用提供key-value键值型的文件数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。
+首选项为应用提供key-value键值型的文件数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型。更多首选项相关接口，请见[首选项API](../reference/apis/js-apis-data-preferences.md)。
 
 ### 创建存储实例
 
@@ -26,7 +30,7 @@
 
 | 类名    | 接口名                                             | 描述                                            |
 | ------- | -------------------------------------------------- | ----------------------------------------------- |
-| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean类型的数据存入。 |
+| Preferences | put(key: string, value: ValueType): Promise\<void> | 支持值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据存入。 |
 
 ### 读取数据
 
@@ -36,7 +40,7 @@
 
 | 类名    | 接口名                                                     | 描述                                            |
 | ------- | ---------------------------------------------------------- | ----------------------------------------------- |
-| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean类型的数据。 |
+| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | 支持获取值为number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型的数据。 |
 
 ### 数据持久化
 
@@ -67,7 +71,7 @@
 
 | 包名              | 接口名                                               | 描述                                                         |
 | ----------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise<void>;     | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
+| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void>;     | 从缓存中移除已加载的Preferences对象，同时从设备上删除对应的文件。 |
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void>; | 仅从缓存中移除已加载的Preferences对象，主要用于释放内存。
 
 ## 开发步骤
@@ -91,8 +95,8 @@
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.put('startup', 'auto')
-       getPromise.then(() => {
+       let putPromise = preferences.put('startup', 'auto')
+       putPromise.then(() => {
            console.info("Put the value of startup successfully.")
        }).catch((err) => {
            console.info("Put the value of startup failed with err: " + err)

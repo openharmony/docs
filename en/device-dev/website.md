@@ -10,14 +10,14 @@
     - [Creating a Source Code Project](quick-start/quickstart-ide-lite-create-project.md)
     - Running a Hello World Program
         - Hi3861 Development Board
-            - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
             - [Building](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3861-burn.md)
             - [Networking](quick-start/quickstart-ide-lite-steps-hi3861-netconfig.md)
             - [Debugging and Verification](quick-start/quickstart-ide-lite-steps-hi3861-debug.md)
             - [Running](quick-start/quickstart-ide-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
-            - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
             - [Building](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
             - [Running](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
@@ -30,7 +30,7 @@
     - Running a Hello World Program
         - Hi3861 Development Board
             - [Setting Up the Hi3861 Development Board Environment](quick-start/quickstart-lite-steps-hi3861-setting.md)
-            - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
+            - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
             - [Building](quick-start/quickstart-lite-steps-hi3861-building.md)
             - [Burning](quick-start/quickstart-lite-steps-hi3861-burn.md)
             - [Networking](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
@@ -38,7 +38,7 @@
             - [Running](quick-start/quickstart-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
             - [Setting Up the Hi3516 Development Board Environment](quick-start/quickstart-lite-steps-hi3516-setting.md)
-            - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
+            - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
             - [Building](quick-start/quickstart-lite-steps-hi3516-building.md)
             - [Burning](quick-start/quickstart-lite-steps-hi3516-burn.md)
             - [Running](quick-start/quickstart-lite-steps-hi3516-running.md)
@@ -109,11 +109,11 @@
       - [Before You Start](porting/porting-chip-prepare-knows.md)
       - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
     - Kernel Porting
-      - [Overview](porting/porting-chip-kernel-overview.md)
+      - [Porting Overview](porting/porting-chip-kernel-overview.md)
       - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
       - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
     - Board-Level OS Porting
-      - [Overview](porting/porting-chip-board-overview.md)
+      - [Porting Overview](porting/porting-chip-board-overview.md)
       - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
       - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
       - [System Modules](porting/porting-chip-board-component.md)
@@ -131,7 +131,7 @@
       - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
       - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
     - Driver Porting
-      - [Overview](porting/porting-smallchip-driver-overview.md)
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
       - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
       - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
 
@@ -178,7 +178,7 @@
       - Kernel Debugging
         - Memory Debugging
           - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
-          - [Memory Leak Check](kernel/kernel-mini-imemory-debug-det.md)
+          - [Memory Leak Check](kernel/kernel-mini-memory-debug-det.md)
           - [Memory Corruption Check](kernel/kernel-mini-memory-debug-cet.md)
         - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
         - [Trace](kernel/kernel-mini-memory-trace.md)
@@ -376,15 +376,18 @@
       - [UART](driver/driver-platform-uart-des.md)
       - [WatchDog](driver/driver-platform-watchdog-des.md)
     - Peripheral Driver Usage
-      - [LCD](driver/driver-peripherals-lcd-des.md)
-      - [Touchscreen](driver/driver-peripherals-touch-des.md)
-      - [Sensor](driver/driver-peripherals-sensor-des.md)
-      - [WLAN](driver/driver-peripherals-external-des.md)
       - [Audio](driver/driver-peripherals-audio-des.md)
-      - [USB](driver/driver-peripherals-usb-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
-      - [Vibrator](driver-peripherals-vibrator-des.md)
-      - [Light](driver-peripherals-light-des.md)
+      - [Facial Authentication](driver/driver-peripherals-face_auth-des.md)
+      - [LCD](driver/driver-peripherals-lcd-des.md)
+      - [Light](driver/driver-peripherals-light-des.md)
+      - [PIN Authentication](driver/driver-peripherals-pinauth-des.md)
+      - [Sensor](driver/driver-peripherals-sensor-des.md)
+      - [Touchscreen](driver/driver-peripherals-touch-des.md)
+      - [USB](driver/driver-peripherals-usb-des.md)
+      - [User Authentication](driver/driver-peripherals-user-auth-des.md)
+      - [Vibrator](driver/driver-peripherals-vibrator-des.md)
+      - [WLAN](driver/driver-peripherals-external-des.md)
   - Compilation and Building
     - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)

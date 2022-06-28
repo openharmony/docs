@@ -1,6 +1,6 @@
 # Stage Model Overview
 
-### Design Ideas
+## Design Ideas
 
 The stage model is designed to make it easier to develop complex applications in the distributed environment.
 
@@ -8,7 +8,7 @@ The following figure shows the design ideas of the stage model.
 
 ![stagedesign](figures/stagedesign.png)
 
-The stage model is designed based on the following considerations:
+​        The stage model is designed based on the following considerations:
 
 - **Balance between application capabilities and overall system power consumption**
 
@@ -20,10 +20,10 @@ The stage model is designed based on the following considerations:
 
 - **Support for multiple device types and window forms**
 
-  To support multiple device types and facilitate the implementation of different window forms, the component manager and window manager must be decoupled at the architecture layer for easier tailoring. To achieve this goal, the stage model redefines the ability lifecycle and implements unidirectional dependency of the component manager and window manager.
+  To support multiple device types and facilitate the implementation of different window forms, the component manager and window manager must be decoupled at the architecture layer for easier tailoring. To achieve this goal, the stage model redefines the ability lifecycle and implements unidirectional dependency for the component manager and window manager.
 
 
-### Basic Concepts
+## Basic Concepts
 
 The following figure shows the basic concepts in the stage model.
 
@@ -33,24 +33,24 @@ The following figure shows the basic concepts in the stage model.
 -  **Bundle**: an OpenHarmony application identified by **appid**. A bundle can contain multiple HAP files. Each application has a **bundleName**. However, **bundleName** must be used together with **appid** and other information to uniquely identify an application.
 -  **AbilityStage**: runtime class of an HAP. It is created when the HAP is loaded to the process for the first time and is visible to developers in the runtime.
 -  **Application**: runtime class of a bundle, which is invisible to developers in the runtime.
--  **Context**: provides various capabilities that can be invoked by developers during the runtime. The **Ability** and **ExtensionAbility** classes have their own context classes, which inherit the base class **Context**. The base class provides information such as the bundle name, module name, and path.
--  **Ability**: provides lifecycle callback, holds the **AbilityContext** class, and supports component continuation and collaboration.
+-  **Context**: base class that the context classes of **Ability** and **ExtensionAbility** classes inherit. This class provides various capabilities that can be invoked by developers in the runtime, and various information such as the bundle name, module name, and path.
+-  **Ability**: class that provides lifecycle callbacks, holds the **AbilityContext** class, and supports component continuation and collaboration.
 -  **ExtensionAbility**: general name of scenario-based service extension abilities. The system defines multiple scenario-based **ExtensionAbility** classes, each of which has its own **ExtensionContext**.
 -  **WindowStage**: local window manager.
 -  **Window**: basic unit managed by the window manager. It has an ArkUI engine instance.
-- **ArkUI Page**: displays declarative ArkUI.
+-  **ArkUI Page**: ArkUI development framework page.
 
 
-### Lifecycle
+## Lifecycle
 
-The ability and ability stage lifecycles are the most important concepts in the basic process of an application. The comparison between the FA model lifecycle and stage model lifecycle is provided in [Ability Framework Overview](ability-brief.md). This section focuses on the ability lifecycle transition and the scheduling relationships between the ability, ability stage, and window stage.
+The ability and ability stage lifecycles are the rudiments of the basic process of an application. For details about how these lifecycles differ from those in the FA model, see [Ability Framework Overview](ability-brief.md). This section focuses on the ability lifecycle transition and the scheduling relationships between the ability, ability stage, and window stage.
 
 ![stageabilitylifecyclecallback](figures/stageabilitylifecyclecallback.png)
 
-To implement multi-device-form tailoring and multi-window scalability, OpenHarmony decouples the component manager from the window manager. The ability lifecycle defined in the stage model includes only the creation, destruction, foreground, and background states. The gain focus and lose focus states that are closely related to UI content are defined in the window stage. This implements weak coupling between the abilities and windows. On the service side, the window manager notifies the component manager of the foreground and background changes, so the component manager only senses the foreground and background changes but not the focus changes.
+To implement device-specific tailoring and multi-window scalability, OpenHarmony decouples the component manager from the window manager. The ability lifecycle defined in the stage model includes only the creation, destruction, foreground, and background states. The gain focus and lose focus states that are closely related to UI content are defined in the window stage. This implements weak coupling between the abilities and windows. On the service side, the window manager notifies the component manager of the foreground and background changes, so the component manager only senses the foreground and background changes but not the focus changes.
 
 
-### Ability Instances and Missions
+## Ability Instances and Missions
 
 Abilities can be started in any of the following modes:
 
@@ -62,11 +62,11 @@ Abilities can be started in any of the following modes:
 
 Each ability instance corresponds to a mission in **Launcher Recent**.
 
-The mission corresponding to each ability instance has a snapshot of the ability instance. After the ability instance is destroyed, the ability class information and snapshot are retained in the mission until the user deletes the information or the storage space exceeds the upper limit.
+The mission corresponding to an ability instance has a snapshot of the ability instance. After the ability instance is destroyed, the ability class information and snapshot are retained in the mission until the user deletes the information or the storage space reaches the upper limit.
 
  ![AbilityComponentInstanceMission](figures/AbilityComponentInstanceMission.png)
 
-### ExtensionAbility Mechanism
+## ExtensionAbility Mechanism
 
 Different from the ability used for page display, the extension ability provides a restricted service running environment. It has the following features:
 
@@ -82,9 +82,9 @@ The following figure uses the widget scenario as an example. You can inherit fro
 
 ![ExtensionAbility](figures/ExtensionAbility.png)
 
-### Process Model
+## Process Model
 
-All OpenHarmony applications are designed to meet the single-process model. In the single-process model, an application is not allowed to configure multiple processes, and all processes in the application are created and managed by the system. Each application supports a maximum of three types of processes:
+All OpenHarmony applications are designed to meet the single-process model. In the single-process model, all processes in the application are created and managed by the system. Each application supports a maximum of three types of processes:
 
 - Main process: runs all ability components, pages, and service logic.
 

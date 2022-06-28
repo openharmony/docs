@@ -8,75 +8,75 @@
 | HAP            | OpenHarmony Ability Package, released as a HAP file, with the file name extension .hap. One HAP file describes all content of an application, including code, resources, third-party libraries, and an application configuration file.|
 | Ability        | An abstraction of a functionality that an application can provide. It is the minimum unit for the system to schedule the application. An application can contain one or more **Ability** instances.|
 | FA             | Feature Ability, an ability that provides a UI for user interaction in the ability framework of the FA model. The FA supports only the Page ability template.|
-| PA             | Particle Ability, an ability that does not have a UI in the ability framework of the FA model. It provides service and support for FAs. For example, a PA can function as a background service to provide computing capabilities or as a data warehouse to provide data access capabilities. The PA supports three types of templates: Service, Data, and Form ability templates.|
-| FA Model        | One of the two ability framework models. The FA model applies to application development using API version 8 and earlier versions. The FA model provides FAs and PAs. The FA supports the Page ability template, and the PA supports the Service, Data, and Form ability templates. For details, see [FA Model Overview](../../application-dev/ability/fa-brief.md).|
-| Stage Model| One of the two ability framework models. The stage model applies to application development using API version 9 and later versions. The stage model provides abilities and Extension abilities. The latter ones are extended to Service Extension abilities, Form Extension abilities, Data Share Extension abilities, and more.|
+| PA             | Particle Ability, an ability that does not have a UI in the ability framework of the FA model. It provides services and support for FAs. For example, a PA can function as a background service to provide computing power or as a data store to provide data access capabilities. The PA supports three types of templates: Service, Data, and Form ability templates.|
+| FA model        | One of the two ability framework models. The FA model applies to application development using API version 8 and earlier versions. The FA model provides FAs and PAs. The FA supports the Page ability template, and the PA supports the Service, Data, and Form ability templates. For details, see [FA Model Overview](../../application-dev/ability/fa-brief.md).|
+| Stage model| One of the two ability framework models. The stage model applies to application development using API version 9 and later versions. The stage model provides abilities and Extension abilities. The latter ones are extended to Service Extension abilities, Form Extension abilities, Data Share Extension abilities, and more.|
 
 ### Function
 The HAP provides HAP build functions and supports FA and stage models.
 
 ## How to Develop
 
-### Templates Provided by the Build Subsystem
+### Templates
 #### ohos_hap
 
 This template declares a HAP target, which generates a HAP that will be packaged into the system image.
 
-| Supported Variable| Description|
+| Variable| Description|
 | --------- | ---- |
-| hap_profile | Configuration file of the HAP. It is **config.json** for the FA mode and **module.json** for the stage model.|
+| hap_profile | Configuration file of the HAP. It is **config.json** for the FA model and **module.json** for the stage model.|
 | raw_assets | Raw assets, which are directly copied to the **assets** directory of the HAP.|
-| resources | Resources, which are stored in the **assets/entry/resources** directory after build.|
-| js_assets | JS resources, which are stored in the **assets/js/default** directory after ACE build.|
-| ets_assets | eTS resources, which are stored in the **assets/js/default** directory after ACE build.|
+| resources | Resource files, which are stored in the **assets/entry/resources** directory after build.|
+| js_assets | JS resources, which are stored in the **assets/js/default** directory after built with Ace.|
+| ets_assets | eTS resources, which are stored in the **assets/js/default** directory after built with Ace.|
 | deps | Dependencies of the target.|
 | shared_libraries | Native libraries on which the target depends.|
 | hap_name | HAP name, which is optional. By default, it is the target name.|
-| final_hap_path | Path whether the generated HAP is stored. This variable optional. It takes precedence over **hap_name**.|
+| final_hap_path | Path of the generated HAP. This variable is optional. It takes precedence over **hap_name**.|
 | subsystem_name | Name of the subsystem that the HAP belongs to. The name must be consistent with that defined in **ohos.build**. Otherwise, the HAP will fail to be installed in the system image.|
 | part_name | Name of the part that the HAP belongs to. The name must be the same as that of **subsystem_name**.|
 | js2abc | Whether to convert JS code of the HAP into ARK bytecode.|
 | ets2abc | Whether to convert eTS code of the HAP into ARK bytecode.|
-| certificate_profile | Authorization file of the HAP, which is used for signature.|
-| certificate_file | Certificate file. The certificate file and authorization file can be applies from the OpenHarmony official website.|
+| certificate_profile | Certificate profile used to sign the HAP.|
+| certificate_file | Certificate file. The certificate and profile must be applies from the official OpenHarmony website.|
 | keystore_path | Keystore file, which is used for signature.|
 | keystore_password | Keystore password, which is used for signature.|
 | key_alias | Alias of a key.|
 | module_install_name | Name of the HAP during installation.|
 | module_install_dir | Installation path of the HAP in the system. The default path is **system/app**.|
-| js_build_mode | Whether the release or debug build mode is used. This attribute is optional. The default value is **release**.|
+| js_build_mode | Build mode of the HAP, which can be **release** or **debug**. This variable is optional. The default value is **release**.|
 
 #### ohos_app_scope
 Declares the AppScope module of the HAP. The **app_profile** and **sources** variables of the target will be concatenated to a specific **entry** for build. This template is used only in the stage model.
 
-| Supported Variable| Description|
+| Variable| Description|
 | --------- | ---- |
-| app_profile | **app.json** file in the AppScope module of the HAP. This attribute is used only in the stage model.|
-| sources | Resources in the AppScope module of the HAP. This attribute is used only in the stage model.|
+| app_profile | **app.json** file in the AppScope module of the HAP. This variable is used only in the stage model.|
+| sources | Resources in the AppScope module of the HAP. This variable is used only in the stage model.|
 
 #### ohos_js_assets
-Provides JS or eTS code, which is stored in the **assets/js/default** directory after ACE build. In the stage model, this template is stored in the **assets/js** or **assets/ets** directory, varying according to the programming language.
+Provides JS or eTS code, which is stored in the **assets/js/default** directory after built with Ace. In the stage model, this template is stored in the **assets/js** or **assets/ets** directory, depending on the programming language.
 
-| Supported Variable| Description|
+| Variable| Description|
 | --------- | ---- |
-| hap_profile | Configuration file of the HAP. It is **config.json** for the FA mode and **module.json** for the stage model.|
+| hap_profile | Configuration file of the HAP. It is **config.json** for the FA model and **module.json** for the stage model.|
 | source_dir | JS or eTS code path, which is compatible with the **ability** directory of the FA model.|
-| ets2abc | eTS code path. This attribute is used only for widget configuration. In other development scenarios, use the configuration in the **ohos_hap** template.|
-| js2abc | JS code path. This attribute is used only for widget configuration. In other development scenarios, use the configuration in the **ohos_hap** template.|
+| ets2abc | eTS code path. This variable is used only for widget configuration. In other development scenarios, use the configuration in the **ohos_hap** template.|
+| js2abc | JS code path. This variable is used only for widget configuration. In other development scenarios, use the configuration in the **ohos_hap** template.|
 
 #### ohos_assets
 Provides raw assets, which are directly copied to the **assets** directory of the HAP.
 
-| Supported Variable| Description|
+| Variable| Description|
 |---------- | ---- |
 | sources | Path of the raw assets.|
 
 #### ohos_resources
-Resources, which are stored in the **assets/entry/resources** directory for the FA model and in the **resources** directory for the stage model.
+Resource files, which are stored in the **assets/entry/resources** directory for the FA model and in the **resources** directory for the stage model.
 
-| Supported Variable| Description|
+| Variable| Description|
 | --------- | ---- |
-| hap_profile | Configuration file of the HAP. It is **config.json** for the FA mode and **module.json** for the stage model.|
+| hap_profile | Configuration file of the HAP. It is **config.json** for the FA model and **module.json** for the stage model.|
 | sources | Resource file path.|
 | deps | Dependencies of the target. You must configure dependencies on the **ohos_app_scope** target for the stage model.|
 
@@ -96,7 +96,7 @@ Resources, which are stored in the **assets/entry/resources** directory for the 
      shared_libraries = [
        "//third_party/libpng:libpng", # Native library
      ]
-     certificate_profile = "../signature/systemui.p7b" # Certificate file
+     certificate_profile = "../signature/systemui.p7b" # Certificate profile
      hap_name = "SystemUI-NavigationBar" # Name
      part_name = "prebuilt_hap"
      subsystem_name = "applications"

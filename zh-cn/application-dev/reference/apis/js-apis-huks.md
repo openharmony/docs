@@ -104,8 +104,8 @@ import huks from '@ohos.security.huks'
 | HUKS_KEY_PURPOSE_SIGN    | 4    | 表示密钥用于对数据进行签名。     |
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | 表示密钥用于验证签名后的数据。   |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | 表示密钥用于派生密钥。           |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导入。           |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导出。               |
+| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导出。           |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导入。               |
 | HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。  |
 | HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥用于进行密钥协商。       |
 
@@ -327,8 +327,8 @@ import huks from '@ohos.security.huks'
 | HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | 表示密钥协商时的公钥。                 |
 | HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | 表示密钥别名。                         |
 | HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。                   |
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型                     |
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件                 |
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。                     |
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。                 |
 | HUKS_TAG_ACTIVE_DATETIME                     | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 预留。                                 |
 | HUKS_TAG_ORIGINATION_EXPIRE_DATETIME         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 预留。                                 |
 | HUKS_TAG_USAGE_EXPIRE_DATETIME               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 预留。                                 |
@@ -340,10 +340,10 @@ import huks from '@ohos.security.huks'
 | HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | 预留。                                 |
 | HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | 预留。                                 |
 | HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            |
-| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时的application Id。    |
-| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的brand。                      |
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | 表示设备的device。                     |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | 表示设备的product。                    |
+| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。    |
+| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。                      |
+| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | 表示设备的设备ID。                     |
+| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | 表示设备的产品名。                    |
 | HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | 表示设备的SN号。                       |
 | HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | 表示设备的IMEI号。                     |
 | HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | 表示设备的MEID号。                     |
@@ -583,7 +583,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 | 参数名   | 类型                     | 必填 | 说明                                              |
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
-| keyAlias | string                   | 是   | 密钥别名，用于存放所需密钥。 |
+| keyAlias | string                   | 是   | 密钥别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
@@ -641,7 +641,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 参数名   | 类型        | 必填 | 说明                                 |
 | -------- | ----------- | ---- | ------------------------------------ |
-| keyAlias | string      | 是   | 密钥别名，用于存放所需密钥。 |
+| keyAlias | string      | 是   | 密钥别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
 
 **返回值：**

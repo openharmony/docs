@@ -1,28 +1,31 @@
 # Linear Container List
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**List** is implemented based on the singly linked list. Each node has a reference pointing to the next element. When querying an element, the system traverses the list from the beginning. **List** offers efficient insertion and removal operations but supports low query efficiency. **List** allows null elements.
+
+Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **List** is a singly linked list that does not support insertion or removal at both ends.
+
+**Recommended use case**: Use **List** for frequent insertion and removal operations.
 
 ## Modules to Import
 
 ```ts
-import List from '@ohos.util.List'  
+import List from '@ohos.util.List';  
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 
 ## List
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a list (called container later).|
+| length | number | Yes| No| Number of elements in a list (called container later).|
 
 
 ### constructor
@@ -30,6 +33,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **List** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 
 **Example**
@@ -43,19 +48,21 @@ let list = new List();
 
 add(element: T): boolean
 
-Adds an entry at the end of this container.
+Adds an element at the end of this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Element to add.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -73,14 +80,16 @@ let result3 = list.add(false);
 
 insert(element: T, index: number): void
 
-Inserts an entry at the specified position in this container.
+Inserts an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Element to insert.|
-| index | number | Yes| Index of the position where the entry is to be inserted.|
+| element | T | Yes| Target element.|
+| index | number | Yes| Index of the position where the element is to be inserted.|
 
 **Example**
 
@@ -95,19 +104,21 @@ list.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified entry.
+Checks whether this container has the specified element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to check.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified entry is contained; returns **false** otherwise.|
+| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
 **Example**
 
@@ -122,19 +133,21 @@ let result1 = list.has("Ahfbrgrbgnutfodgorrogorg");
 
 get(index: number): T
 
-Obtains the entry at the specified position in this container.
+Obtains the element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to obtain.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| T | Entry obtained.|
+| T | Element obtained.|
 
 **Example**
 
@@ -154,19 +167,21 @@ let result = list.get(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified entry in this container.
+Obtains the index of the last occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to obtain.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -186,19 +201,21 @@ let result = list.getLastIndexOf(2);
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified entry in this container.
+Obtains the index of the first occurrence of the specified element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to obtain.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -220,6 +237,8 @@ let result = list.getIndexOf(2);
 equal(obj: Object): boolean
 
 Compares whether a specified object is equal to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -254,19 +273,21 @@ let result = list.equal(obj2);
 
 removeByIndex(index: number): T
 
-Removes an entry at the specified position from this container.
+Removes an element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to remove.|
+| index | number | Yes| Position index of the target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| T | Entry removed.|
+| T | Element removed.|
 
 **Example**
 
@@ -284,19 +305,21 @@ let result = list.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified entry from this container.
+Removes the first occurrence of the specified element from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes| Entry to remove.|
+| element | T | Yes| Target element.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -314,7 +337,9 @@ let result = list.remove(2);
 replaceAllElements(callbackfn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all entries in this container with new entries, and returns the new ones.
+Replaces all elements in this container with new elements, and returns the new ones.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -327,8 +352,8 @@ callbackfn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | list | List&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
 
 **Example**
@@ -352,21 +377,23 @@ list.replaceAllElements((value, index) => {
 forEach(callbackfn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Value of the entry that is currently traversed.|
-| index | number | No| Position index of the entry that is currently traversed.|
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed.|
 | List | List&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -378,7 +405,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value, index) => {
-  console.log(value, index);
+  console.log("value: " + value, index);
 });
 
 ```
@@ -387,20 +414,22 @@ list.forEach((value, index) => {
 
 sort(comparator: (firstValue: T, secondValue: T) => number): void
 
-Sorts entries in this container.
+Sorts elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | Yes | Callback invoked for sorting. |
+| comparator | function | Yes| Callback invoked for sorting.|
 
 comparator
 
-| Name | Type | Mandatory | Description |
+| Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| firstValue | T | Yes | Previous entry. |
-| secondValue | T | Yes | Next entry. |
+| firstValue | T | Yes| Previous element.|
+| secondValue | T | Yes| Next element.|
 
 **Example**
 
@@ -410,15 +439,17 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.sort(a, (b => a - b));
-list.sort(a, (b => b - a));
+list.sort((a, b) => a - b);
+list.sort((a, b) => b - a);
 ```
 
 ### getSubList
 
 getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
-Obtains entries within a range in this container, including the entry at the start position but not that at the end position, and returns these entries as a new **List** instance.
+Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **List** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -452,6 +483,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -467,20 +500,22 @@ list.clear();
 
 set(index: number, element: T): T
 
-Replaces an entry at the specified position in this container with a given entry.
+Replaces an element at the specified position in this container with a given element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry to replace.|
-| element | T | Yes| Entry to be used for replacement.|
+| index | number | Yes| Position index of the target element.|
+| element | T | Yes| Element to be used for replacement.|
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| T | New entry.|
+| T | New element.|
 
 **Example**
 
@@ -500,11 +535,13 @@ convertToArray(): Array&lt;T&gt;
 
 Converts this container into an array.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
-| Type | Description |
+| Value Type | Description|
 | -------- | -------- |
-| Array&lt;T&gt; | Array obtained. |
+| Array&lt;T&gt; | Array obtained.|
 
 **Example**
 
@@ -521,7 +558,9 @@ let result = list.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -544,13 +583,15 @@ let result = list.isEmpty();
 
 getFirst(): T
 
-Obtains the first entry in this container.
+Obtains the first element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| T | The first entry obtained.|
+| T | The first element obtained.|
 
 **Example**
 
@@ -567,13 +608,15 @@ let result = list.getFirst();
 
 getLast(): T
 
-Obtains the last entry in this container.
+Obtains the last element in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
 | Value Type | Description|
 | -------- | -------- |
-| T | The last entry obtained.|
+| T | The last element obtained.|
 
 **Example**
 
@@ -590,8 +633,9 @@ let result = list.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-
 Obtains an iterator, each item of which is a JavaScript object.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -610,14 +654,14 @@ list.add(4);
 
 // Method 1:
 for (let item of list) { 
-  console.log(item); 
+  console.log("value: " + item); 
 }
 
 // Method 2:
 let iter = list[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value: " + temp);
   temp = iter.next().value;
 }
 ```

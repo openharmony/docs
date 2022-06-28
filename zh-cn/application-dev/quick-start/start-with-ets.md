@@ -29,7 +29,7 @@
   - **src &gt; main &gt; ets &gt; MainAbility &gt; app.ets** ：承载Ability生命周期。
   - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
   - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。具体的配置文件说明，详见[应用包结构配置文件的说明](package-structure.md)。
-  - **build-profile.json5** ：当前的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **build-profile.json5** ：当前的模块信息 、编译信息配置项，包括buildOption、targets配置等。
   - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
 - **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
@@ -43,7 +43,8 @@
 工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; ets &gt; MainAbility &gt; pages**”，打开“**index.ets**”文件，可以看到页面由Text组件组成。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    @Entry
    @Component
    struct Index {
@@ -67,7 +68,8 @@
    在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    @Entry
    @Component
    struct Index {
@@ -116,7 +118,8 @@
    参照第一个页面，在第二个页面添加Text组件、Button组件等，并设置其样式。“**second.ets**”文件的示例如下：
 
 
-   ```
+   ```ts
+   // second.ets
    @Entry
    @Component
    struct Second {
@@ -151,13 +154,14 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过页面路由router来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过页面路由router来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
    在第一个页面中，跳转按钮绑定onClick事件，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // index.ets
    import router from '@ohos.router';
    
    @Entry
@@ -200,7 +204,8 @@
    在第二个页面中，返回按钮绑定onClick事件，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
 
    
-   ```
+   ```ts
+   // second.ets
    import router from '@ohos.router';
    
    @Entry

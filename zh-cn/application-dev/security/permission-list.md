@@ -1,8 +1,14 @@
 # 权限定义列表
 
-以下给出当前系统定义的权限信息列表。
+在符合[应用申请和使用权限的基本原则](accesstoken-overview.md#基本原则)的基础上，可以根据下图判断应用是否可以申请某权限。
 
-权限级别、授权方式、ACL使能的说明，请参考[访问控制开发概述](accesstoken-overview.md)。权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
+![](figures/permission-application-process.png)
+
+1. 应用APL等级与权限等级的匹配关系请参考[访问控制开发概述-权限等级说明](accesstoken-overview.md#权限等级说明)。
+2. 权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[访问控制开发概述-权限类型说明](accesstoken-overview.md#权限类型说明)。
+3. 应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制开发概述-访问控制列表说明](accesstoken-overview.md#访问控制列表acl说明)。
+
+以下给出当前系统定义的权限信息列表。权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
 
 | 权限名                                                   | 权限级别     | 授权方式     | ACL使能 | 权限说明                                                     |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -129,3 +135,4 @@
 | ohos.permission.GET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用查询默认应用。                                       |
 | ohos.permission.SET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | 允许应用设置、重置默认应用。                                 |
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | 允许设置和查询应用的处置状态。                               |
+| ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | 允许应用查询设备的唯一标识符信息。                               |

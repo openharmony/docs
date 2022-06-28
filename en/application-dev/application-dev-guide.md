@@ -24,18 +24,21 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
+- [Common Event and Notification](notification/notification-brief.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/audio-overview.md)
 - [Security](security/userauth-overview.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
+- [Telephony](telephony/telephony-overview.md)
 - [Data Management](database/database-mdds-overview.md)
-- [Agent-Powered Scheduled Reminders](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-- [Background Task Management](background-task-management/background-task-overview.md)
+- [Task Management](task-management/background-task-overview.md)
 - [Device](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-overview.md)
 - [Internationalization](internationalization/international-overview.md)
+- [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+- [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
 ### Tools
 
@@ -51,6 +54,8 @@ To make you better understand how functions work together and jumpstart your app
 API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
 
 They are organized as follows:
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
--   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-universal-events-click.md)
--   [API Reference](reference/apis/js-apis-DataUriUtils.md)
+-   [JS and TS APIs](reference/apis/js-apis-DataUriUtils.md)
+-   Native APIs
+    -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
+    -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+

@@ -1,10 +1,10 @@
 # missionManager
 
+missionManager模块提供系统任务管理能力，包括对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-missionManager模块提供系统任务管理能力，开发者可以对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 ## 导入模块
 
@@ -634,7 +634,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -668,7 +668,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **返回值：**
 

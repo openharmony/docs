@@ -29,7 +29,7 @@
 
   - **src &gt; main &gt; resources** ：用于存放应用/服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。
   - **src &gt; main &gt; config.json** ：模块配置文件。主要包含HAP包的配置信息、应用/服务在具体设备上的配置信息以及应用/服务的全局配置信息。具体的配置文件说明，详见[应用包结构配置文件的说明](package-structure.md)。
-  - **build-profile.json5** ：当前的模块信息 、编译信息配置项，包括 buildOption target配置等。
+  - **build-profile.json5** ：当前的模块信息 、编译信息配置项，包括buildOption、targets配置等。
   - **hvigorfile.js** ：模块级编译构建任务脚本，开发者可以自定义相关任务和代码实现。
 
 - **build-profile.json5** ：应用级配置信息，包括签名、产品配置等。
@@ -43,7 +43,8 @@
    工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.hml**”文件，设置Text组件内容。“**index.hml**”文件的示例如下：
 
    
-   ```
+   ```html
+   <!--index.hml-->
    <div class="container">
        <text class="title">
            Hello World
@@ -55,7 +56,8 @@
    在默认页面基础上，我们添加一个button类型的input组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.hml**”文件的示例代码如下：
 
    
-   ```
+   ```html
+   <!--index.hml-->
    <div class="container">
        <text class="title">
            Hello World
@@ -70,7 +72,7 @@
    在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.css**”文件，可以对页面中文本、按钮设置宽高、字体大小、间距等样式。“**index.css**”文件的示例如下：
 
    
-   ```
+   ```css
    .container {
        display: flex;
        flex-direction: column;
@@ -117,7 +119,8 @@
    参照第一个页面，在第二个页面添加文本、按钮及点击按钮绑定页面返回等。“**second.hml**”文件的示例如下：
 
    
-   ```
+   ```html
+   <!--second.hml-->
    <div class="container">
        <text class="title">
            Hi there
@@ -130,7 +133,7 @@
 
 3. 设置页面样式。“**second.css**”文件的示例如下：
    
-   ```
+   ```css
    .container {
        display: flex;
        flex-direction: column;
@@ -163,13 +166,14 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
    在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。“**index.js**”示例如下：
 
    
-   ```
+   ```js
+   // index.js
    import router from '@ohos.router';
    
    export default {
@@ -185,7 +189,8 @@
    在第二个页面中，返回按钮绑定back方法，点击按钮时返回到第一页。“**second.js**”示例如下：
 
    
-   ```
+   ```js
+   // second.js
    import router from '@ohos.router';
    
    export default {

@@ -12,6 +12,7 @@ import deviceInfo from '@ohos.deviceInfo'
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Startup.SysInfo。
+**权限**：以下各项所需要的权限有所不同，详见下表。
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -24,7 +25,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
 | hardwareProfile | string | 是 | 否 | 硬件Profile。 |
-| serial | string | 是 | 否 | 设备序列号。 |
+| serial | string | 是 | 否 | 设备序列号。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID，该权限为系统权限 |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）列表。 |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。 |
@@ -44,4 +45,4 @@ import deviceInfo from '@ohos.deviceInfo'
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。 |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID，该权限为系统权限|

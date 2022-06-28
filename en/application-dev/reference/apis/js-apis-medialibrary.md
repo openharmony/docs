@@ -1,6 +1,7 @@
-# Media Library Management
+# MediaLibrary
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -28,7 +29,13 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | **MediaLibrary** instance.|
 
-**Example**
+**Example (from API version 9)**
+
+```
+var media = mediaLibrary.getMediaLibrary(this.context);
+```
+
+**Example (API version 8)**
 
 ```
 import featureAbility from '@ohos.ability.featureAbility';
@@ -87,7 +94,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
+media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     if (fetchFileResult != undefined) {
         console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
         fetchFileResult.getAllObject((err, fileAssetList) => {
@@ -129,7 +136,7 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
+media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
     console.info("getFileAssets successfully:"+ JSON.stringify(dir));
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
@@ -176,7 +183,7 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 **Example**
 
 ```
-mediaLibrary.off('imageChange', () => {
+media.off('imageChange', () => {
     // stop listening success
 })
 ```
@@ -246,7 +253,7 @@ Creates a media asset. This API uses a promise to return the result.
 
 ```
 async function example() {
-    // Create an image file in promise mode
+    // Create an image file in promise mode.
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
@@ -344,7 +351,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
+media.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
@@ -384,7 +391,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+media.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
     console.info("getAlbums failed with error:"+ err);
@@ -433,17 +440,16 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 **Example**
 
 ```
-var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
 Stores a media asset. This API uses an asynchronous callback to return the URI that stores the media asset.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -467,19 +473,19 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
         console.log("An error occurred when storing the media asset.");
         return;
     }
-    console.log("Media asset stored. ");
+    console.log("Media asset stored.");
     // Obtain the URI that stores the media asset.
 });
   ```
 
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 Stores a media asset. This API uses a promise to return the URI that stores the media asset.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -512,13 +518,13 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
 Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **dataability://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -526,7 +532,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| images   | Array&lt;string&gt;       | Yes   | URIs of the images to preview. The value can start with either **dataability://** or **https://**.|
 | index    | number                    | Yes   | Index of the first image to preview.                              |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the image preview result. If the preview fails, an error message is returned.                       |
 
@@ -537,7 +543,7 @@ let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
 ];
-/* Online image usage mode
+/* Preview online images.
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
@@ -554,13 +560,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Starts image preview. This API can be used to preview local images whose URIs start with **dataability://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -578,7 +584,7 @@ let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
 ];
-/* Online image usage mode
+/* Preview online images.
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
@@ -594,13 +600,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
   ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
 Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with dataability:// or online images whose URIs start with https://. It uses a promise to return the execution result.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -608,7 +614,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release. It will be a
 
 | Name   | Type                 | Mandatory  | Description                                      |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **https://** or **dataability://**.|
+| images | Array&lt;string&gt; | Yes   | URIs of the images to preview. The value can start with either **dataability://** or **https://**.|
 | index  | number              | No   | Index of the first image to preview. If this parameter is not specified, the default value **0** is used.                     |
 
 **Return value**
@@ -624,7 +630,7 @@ let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
 ];
-/* Online image usage mode
+/* Preview online images.
 let images = [
     "https://media.xxxx.com/image1.jpg",
     "https://media.xxxx.com/image2.jpg"
@@ -639,13 +645,13 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
   ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts media selection. This API uses an asynchronous callback to return the list of URIs that store the selected media assets.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -674,13 +680,13 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
   ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts media selection. This API uses a promise to return the list of URIs that store the selected media assets.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -723,7 +729,7 @@ Provides APIs for encapsulating file asset attributes.
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | Yes  | No  | File asset ID.                                          |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, dataability:///media/image/2.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **dataability:///media/image/2**.        |
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
@@ -821,7 +827,7 @@ async function example() {
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void
 
-Commits the modification of this file asset to the database. This API uses an asynchronous callback to return the result.
+Commits the modification in this file asset to the database. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -857,7 +863,7 @@ async function example() {
 
 commitModify(): Promise&lt;void&gt;
 
-Commits the modification of this file asset to the database. This API uses a promise to return the result.
+Commits the modification in this file asset to the database. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -893,6 +899,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
+Note: Currently, the write operations are mutually exclusive. After the write operation is complete, you must call **close** to release the resource.
+
 **Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **r**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **w**)
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -901,7 +909,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | Yes   | Mode of opening the file, for example, **r** (read-only), **w** (write-only), and **rw** (read-write).|
+| mode     | string                      | Yes   | Mode of opening the file, for example, **'r'** (read-only), **'w'** (write-only), and **'rw'** (read-write).|
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file handle.                           |
 
 **Example**
@@ -927,6 +935,8 @@ async function example() {
 open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
+
+Note: Currently, the write operations are mutually exclusive. After the write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **r**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **w**)
 
@@ -1009,7 +1019,7 @@ close(fd: number): Promise&lt;void&gt;
 
 Closes this file asset. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **r**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **w**)
+**Required permissions**: ohos.permission.READ_MEDIA (when **mode** is set to **'r'**) and ohos.permission.WRITE_MEDIA (when **mode** is set to **'w'**)
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1531,7 +1541,7 @@ Checks whether the cursor is in the last row of the result set.
 
 | Type     | Description                                |
 | ------- | ---------------------------------- |
-| boolean | Returns **true** if the cursor is in the last row of the result set; returns *false** otherwise.|
+| boolean | Returns **true** if the cursor is in the last row of the result set; returns *false* otherwise.|
 
 **Example**
 
@@ -1566,7 +1576,7 @@ async function example() {
 
 close(): void
 
-Releases and invalidates this **FetchFileResult** instance. Other APIs cannot be invoked after the instance is released.
+Releases and invalidates this **FetchFileResult** instance. Other APIs in this instance cannot be invoked after it is released.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1947,7 +1957,7 @@ async function example() {
 
 Provides APIs to implement a physical album.
 
-### **Attributes**
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1965,7 +1975,7 @@ Provides APIs to implement a physical album.
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void
 
-Commits the modification of the album attributes to the database. This API uses an asynchronous callback to return the result.
+Commits the modification in the album attributes to the database. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -2002,7 +2012,7 @@ async function example() {
 
 commitModify(): Promise&lt;void&gt;
 
-Commits the modification of the album attributes to the database. This API uses a promise to return the result.
+Commits the modification in the album attributes to the database. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
 
@@ -2204,7 +2214,7 @@ Describes options for fetching media files.
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
 | selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order<sup>8+</sup>      | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
+| order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
 | uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |
 | networkId<sup>8+</sup>  | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
 | extendArgs<sup>8+</sup> | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
@@ -2218,30 +2228,30 @@ Describes the image size.
 | width  | number | Yes   | Yes   | Image width, in pixels.|
 | height | number | Yes   | Yes   | Image height, in pixels.|
 
-## MediaAssetOption
+## MediaAssetOption<sup>(deprecated)</sup>
 
 Implements the media asset option.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 
-| Name          | Type    | Mandatory  | Description                                      |
-| ------------ | ------ | ---- | ---------------------------------------- |
-| src          | string | Yes   | Absolute path of the local file of the application.                              |
-| mimeType     | string | Yes   | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
-| relativePath | string | No   | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
+| Name        | Type  | Mandatory| Description                                                        |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| src          | string | Yes  | Application sandbox oath of the local file.                                      |
+| mimeType     | string | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
+| relativePath | string | No  | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
 
-## MediaSelectOption
+## MediaSelectOption<sup>(deprecated)</sup>
 
 Describes media selection option.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
+> **NOTE**<br>This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name   | Type    | Mandatory  | Description                  |
 | ----- | ------ | ---- | -------------------- |
 | type  | string | Yes   | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Number of media assets selected. If **count** is set to **1**, one media asset can be selected. If **count** is greater than **1**, multiple media assets can be selected.           |
+| count | number | Yes   | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |

@@ -6,35 +6,35 @@ The table below lists the APIs changes of the Window Manager subsystem in OpenHa
 
 | Module| Class| Method/Attribute/Enumeration/Constant| Change Type|
 |---|---|---|---|
-| ohos.window | Window | setTouchable(isTouchable: boolean): Promise<void>;<br>setTouchable(isTouchable: boolean, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setPrivacyMode(isPrivacyMode: boolean): Promise<void>;<br>setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setOutsideTouchable(touchable: boolean): Promise<void>;<br>setOutsideTouchable(touchable: boolean, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setKeepScreenOn(isKeepScreenOn: boolean): Promise<void>;<br>setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setFocusable(isFocusable: boolean): Promise<void>;<br>setFocusable(isFocusable: boolean, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setDimBehind(dimBehindValue: number, callback: AsyncCallback<void>): void;<br>setDimBehind(dimBehindValue: number): Promise<void>; | Added|
-| ohos.window | Window | setBrightness(brightness: number): Promise<void>;<br>setBrightness(brightness: number, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | setBackgroundColor(color: string): Promise<void>;<br>setBackgroundColor(color: string, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | getColorSpace(): Promise<ColorSpace>;<br>getColorSpace(callback: AsyncCallback<ColorSpace>): void; | Added|
-| ohos.window | Window | setColorSpace(colorSpace:ColorSpace): Promise<void>;<br>setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback<void>): void; | Added|
-| ohos.window | Window | isSupportWideGamut(): Promise<boolean>;<br>isSupportWideGamut(callback: AsyncCallback<boolean>): void; | Added|
-| ohos.window | Window | off(type: 'keyboardHeightChange', callback?: Callback<number>): void; | Added|
-| ohos.window | Window | on(type: 'keyboardHeightChange', callback: Callback<number>): void; | Added|
-| ohos.window | Window | off(type: 'systemAvoidAreaChange', callback?: Callback<AvoidArea>): void; | Added|
-| ohos.window | Window | on(type: 'systemAvoidAreaChange', callback: Callback<AvoidArea>): void; | Added|
-| ohos.window | Window | off(type: 'windowSizeChange', callback?: Callback<Size>): void; | Added|
-| ohos.window | Window | on(type: 'windowSizeChange', callback: Callback<Size>): void; | Added|
-| ohos.window | Window | isShowing(callback: AsyncCallback<boolean>): void;<br>isShowing(): Promise<boolean>; | Added|
-| ohos.window | Window | loadContent(path: string, callback: AsyncCallback<void>): void;<br>loadContent(path: string): Promise<void>; | Added|
-| ohos.window | Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback<void>): void;<br>setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise<void>; | Added|
-| ohos.window | Window | setSystemBarEnable(names: Array<'status'\|'navigation'>, callback: AsyncCallback<void>): void;<br>setSystemBarEnable(names: Array<'status'\|'navigation'>): Promise<void>; | Added|
-| ohos.window | Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback<void>): void;<br>setLayoutFullScreen(isLayoutFullScreen: boolean): Promise<void>; | Added|
-| ohos.window | Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback<void>): void;<br>setFullScreen(isFullScreen: boolean): Promise<void>; | Added|
-| ohos.window | Window | getAvoidArea(type: AvoidAreaType, callback: AsyncCallback<AvoidArea>): void;<br>getAvoidArea(type: AvoidAreaType): Promise<AvoidArea>; | Added|
-| ohos.window | Window | getProperties(callback: AsyncCallback<WindowProperties>): void;<br>getProperties(): Promise<WindowProperties>; | Added|
-| ohos.window | Window | destroy(callback: AsyncCallback<void>): void;<br>destroy(): Promise<void>; | Added|
-| ohos.window | Window | show(callback: AsyncCallback<void>): void;<br>show(): Promise<void>; | Added|
-| ohos.window | window | function find(id: string, callback: AsyncCallback<Window>): void;<br>function find(id: string): Promise<Window>; | Added|
-| ohos.window | window | function create(id: string, type: WindowType, callback: AsyncCallback<Window>): void;<br>function create(id: string, type: WindowType): Promise<Window>;<br>function create(ctx: Context, id: string, type: WindowType): Promise<Window>;<br>function create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback<Window>): void; | Added|
+| ohos.window | Window | setTouchable(isTouchable: boolean): Promise\<void>;<br>setTouchable(isTouchable: boolean, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setPrivacyMode(isPrivacyMode: boolean): Promise\<void>;<br>setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setOutsideTouchable(touchable: boolean): Promise\<void>;<br>setOutsideTouchable(touchable: boolean, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setKeepScreenOn(isKeepScreenOn: boolean): Promise\<void>;<br>setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setFocusable(isFocusable: boolean): Promise\<void>;<br>setFocusable(isFocusable: boolean, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setDimBehind(dimBehindValue: number, callback: AsyncCallback\<void>): void;<br>setDimBehind(dimBehindValue: number): Promise\<void>; | Added|
+| ohos.window | Window | setBrightness(brightness: number): Promise\<void>;<br>setBrightness(brightness: number, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | setBackgroundColor(color: string): Promise\<void>;<br>setBackgroundColor(color: string, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | getColorSpace(): Promise\<ColorSpace>;<br>getColorSpace(callback: AsyncCallback\<ColorSpace>): void; | Added|
+| ohos.window | Window | setColorSpace(colorSpace:ColorSpace): Promise\<void>;<br>setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback\<void>): void; | Added|
+| ohos.window | Window | isSupportWideGamut(): Promise\<boolean>;<br>isSupportWideGamut(callback: AsyncCallback\<boolean>): void; | Added|
+| ohos.window | Window | off(type: 'keyboardHeightChange', callback?: Callback\<number>): void; | Added|
+| ohos.window | Window | on(type: 'keyboardHeightChange', callback: Callback\<number>): void; | Added|
+| ohos.window | Window | off(type: 'systemAvoidAreaChange', callback?: Callback\<AvoidArea>): void; | Added|
+| ohos.window | Window | on(type: 'systemAvoidAreaChange', callback: Callback\<AvoidArea>): void; | Added|
+| ohos.window | Window | off(type: 'windowSizeChange', callback?: Callback\<Size>): void; | Added|
+| ohos.window | Window | on(type: 'windowSizeChange', callback: Callback\<Size>): void; | Added|
+| ohos.window | Window | isShowing(callback: AsyncCallback\<boolean>): void;<br>isShowing(): Promise\<boolean>; | Added|
+| ohos.window | Window | loadContent(path: string, callback: AsyncCallback\<void>): void;<br>loadContent(path: string): Promise\<void>; | Added|
+| ohos.window | Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback\<void>): void;<br>setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise\<void>; | Added|
+| ohos.window | Window | setSystemBarEnable(names: Array\<'status'\|'navigation'>, callback: AsyncCallback\<void>): void;<br>setSystemBarEnable(names: Array\<'status'\|'navigation'>): Promise\<void>; | Added|
+| ohos.window | Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback\<void>): void;<br>setLayoutFullScreen(isLayoutFullScreen: boolean): Promise\<void>; | Added|
+| ohos.window | Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback\<void>): void;<br>setFullScreen(isFullScreen: boolean): Promise\<void>; | Added|
+| ohos.window | Window | getAvoidArea(type: AvoidAreaType, callback: AsyncCallback\<AvoidArea>): void;<br>getAvoidArea(type: AvoidAreaType): Promise\<AvoidArea>; | Added|
+| ohos.window | Window | getProperties(callback: AsyncCallback\<WindowProperties>): void;<br>getProperties(): Promise\<WindowProperties>; | Added|
+| ohos.window | Window | destroy(callback: AsyncCallback\<void>): void;<br>destroy(): Promise\<void>; | Added|
+| ohos.window | Window | show(callback: AsyncCallback\<void>): void;<br>show(): Promise\<void>; | Added|
+| ohos.window | window | find(id: string, callback: AsyncCallback\<Window>): void;<br>find(id: string): Promise\<Window>; | Added|
+| ohos.window | window | create(id: string, type: WindowType, callback: AsyncCallback\<Window>): void;<br>create(id: string, type: WindowType): Promise\<Window>;<br>create(ctx: Context, id: string, type: WindowType): Promise\<Window>;<br>create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback\<Window>): void; | Added|
 | ohos.window | ColorSpace | WIDE_GAMUT | Added|
 | ohos.window | ColorSpace | DEFAULT | Added|
 | ohos.window | WindowProperties | isTransparent: boolean | Added|
@@ -87,11 +87,11 @@ The table below lists the APIs changes of the Window Manager subsystem in OpenHa
 | ohos.display | DisplayState | STATE_ON | Added|
 | ohos.display | DisplayState | STATE_OFF | Added|
 | ohos.display | DisplayState | STATE_UNKNOWN = 0 | Added|
-| ohos.display | display | function off(type: 'add' \| 'remove' \| 'change', callback?: Callback<number>): void; | Added|
-| ohos.display | display | function off(type: 'add' \| 'remove' \| 'change', callback?: Callback<number>): void; | Added|
-| ohos.display | display | function off(type: 'add' \| 'remove' \| 'change', callback?: Callback<number>): void; | Added|
-| ohos.display | display | function on(type: 'add' \| 'remove' \| 'change', callback: Callback<number>): void; | Added|
-| ohos.display | display | function on(type: 'add' \| 'remove' \| 'change', callback: Callback<number>): void; | Added|
-| ohos.display | display | function on(type: 'add' \| 'remove' \| 'change', callback: Callback<number>): void; | Added|
-| ohos.display | display | function getAllDisplay(callback: AsyncCallback<Array<Display>>): void;<br>function getAllDisplay(): Promise<Array<Display>>; | Added|
-| ohos.display | display | function getDefaultDisplay(callback: AsyncCallback<Display>): void;<br>function getDefaultDisplay(): Promise<Display>; | Added|
+| ohos.display | display | off(type: 'add' \| 'remove' \| 'change', callback?: Callback\<number>): void; | Added|
+| ohos.display | display | off(type: 'add' \| 'remove' \| 'change', callback?: Callback\<number>): void; | Added|
+| ohos.display | display | off(type: 'add' \| 'remove' \| 'change', callback?: Callback\<number>): void; | Added|
+| ohos.display | display | on(type: 'add' \| 'remove' \| 'change', callback: Callback\<number>): void; | Added|
+| ohos.display | display | on(type: 'add' \| 'remove' \| 'change', callback: Callback\<number>): void; | Added|
+| ohos.display | display | on(type: 'add' \| 'remove' \| 'change', callback: Callback\<number>): void; | Added|
+| ohos.display | display | getAllDisplay(callback: AsyncCallback\<Array\<Display>>): void;<br>getAllDisplay(): Promise\<Array\<Display>>; | Added|
+| ohos.display | display | getDefaultDisplay(callback: AsyncCallback\<Display>): void;<br>getDefaultDisplay(): Promise\<Display>; | Added|

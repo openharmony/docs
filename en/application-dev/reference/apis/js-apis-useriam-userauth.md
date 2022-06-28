@@ -50,7 +50,7 @@ export default {
                 try {
                     console.info("auth onResult result = " + result);
                     console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == 'SUCCESS') {
+                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                         // Add the logic to be executed when the authentication is successful.
                     }  else {
                         // Add the logic to be executed when the authentication fails.
@@ -97,7 +97,7 @@ export default {
             }
         });
         let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
+        if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
             console.info("cancel auth success");
         } else {
             console.error("cancel auth fail");
@@ -110,7 +110,7 @@ export default {
 
 getAuthenticator(): Authenticator
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > This API is not longer maintained since API version 8. You are advised to use [constructor](#constructor8).
 
 Obtains an **Authenticator** object for user authentication.
@@ -122,7 +122,7 @@ Obtains an **Authenticator** object for user authentication.
 **Return value**
 | Type                                     | Description        |
 | ----------------------------------------- | ------------ |
-| [Authenticator](#authenticatordeprecated) | **Authenticator** object obtained. |
+| [Authenticator](#authenticatordeprecated) | **Authenticator** object obtained.|
 
 **Example**
   ```js
@@ -131,7 +131,7 @@ Obtains an **Authenticator** object for user authentication.
 
 ## Authenticator<sup>(deprecated)</sup>
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > This object is not longer maintained since API version 8. You are advised to use [UserAuth](#userauth8).
 
 Provides methods to manage an **Authenticator** object.
@@ -141,7 +141,7 @@ Provides methods to manage an **Authenticator** object.
 
 execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
 
 Performs user authentication. This API uses asynchronous callback to return the result.
@@ -154,15 +154,15 @@ Performs user authentication. This API uses asynchronous callback to return the 
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version. |
-| level    | string                      | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication. |
+| type     | string                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level    | string                      | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 | callback | AsyncCallback&lt;number&gt; | No  | Callback used to return the result.                                                  |
 
  Parameters returned in callback
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Authentication result. For details, see [AuthenticationResult](#authenticationresultdeprecated). |
+| number | Authentication result. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
 
 **Example**
   ```js
@@ -180,7 +180,7 @@ Performs user authentication. This API uses asynchronous callback to return the 
 
 execute(type:string, level:string): Promise&lt;number&gt;
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
 
 Performs user authentication. This API uses a promise to return the result.
@@ -192,13 +192,13 @@ Performs user authentication. This API uses a promise to return the result.
 **Parameters**
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version. |
-| level  | string | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication. |
+| type   | string | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level  | string | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 
 **Return value**
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated). |
+| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
 
 **Example**
 
@@ -213,7 +213,7 @@ authenticator.execute("FACE_ONLY", "S2").then((code)=>{
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 
-> **NOTE**<br/>
+> **NOTE**<br>
 > This parameter is not longer maintained since API version 8. You are advised to use [ResultCode](#resultcode8).
 
 Enumerates the authentication results.
@@ -222,7 +222,7 @@ Enumerates the authentication results.
 
 | Name              | Default Value| Description                      |
 | ------------------ | ------ | -------------------------- |
-| NO_SUPPORT         | -1     | The device does not support the current authentication mode. |
+| NO_SUPPORT         | -1     | The device does not support the current authentication mode.|
 | SUCCESS            | 0      | The authentication is successful.                |
 | COMPARE_FAILURE    | 1      | The feature comparison failed.                |
 | CANCELED           | 2      | The authentication was canceled by the user.            |
@@ -230,7 +230,7 @@ Enumerates the authentication results.
 | CAMERA_FAIL        | 4      | The camera failed to start.            |
 | BUSY               | 5      | The authentication service is not available. Try again later.  |
 | INVALID_PARAMETERS | 6      | The authentication parameters are invalid.            |
-| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold. |
+| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold.|
 | NOT_ENROLLED       | 8      | No authentication credential is registered.          |
 | GENERAL_ERROR      | 100    | Other errors.                |
 
@@ -252,7 +252,7 @@ A constructor used to create an **authenticator** object.
 
 | Type                  | Description                |
 | ---------------------- | -------------------- |
-| [UserAuth](#userauth8) | **Authenticator** object obtained. |
+| [UserAuth](#userauth8) | **Authenticator** object obtained.|
 
 **Example**
 
@@ -276,7 +276,7 @@ Obtains the authentication executor version.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Authentication executor version obtained. |
+| number | Authenticator version obtained.|
 
 **Example**
 
@@ -302,14 +302,14 @@ Checks whether the authentication capability of the specified trust level is ava
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported. |
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication result.      |
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Whether the authentication capability of the specified trust level is available. For details, see [ResultCode](#resultcode8). |
+| number | Whether the authentication capability of the specified trust level is available. For details, see [ResultCode](#resultcode8).|
 
 **Example**
 
@@ -342,7 +342,7 @@ Performs user authentication. This API uses a callback to return the result.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value, which can be null.    |
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported. |
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Trust level.              |
 | callback       | [IUserAuthCallback](#iuserauthcallback8) | Yes  | Callback used to return the result.              |
 
@@ -350,7 +350,7 @@ Performs user authentication. This API uses a callback to return the result.
 
 | Type      | Description                                                        |
 | ---------- | ------------------------------------------------------------ |
-| Uint8Array | ContextId, which is used as the input parameter of [cancelAuth](#cancelauth8). |
+| Uint8Array | ContextId, which is used as the input parameter of [cancelAuth](#cancelauth8).|
 
 **Example**
 
@@ -389,13 +389,13 @@ Cancels an authentication.
 
 | Name   | Type      | Mandatory| Description                                      |
 | --------- | ---------- | ---- | ------------------------------------------ |
-| contextID | Uint8Array | Yes  | Context ID, which is obtained using [auth](#auth8). |
+| contextID | Uint8Array | Yes  | Context ID, which is obtained using [auth](#auth8).|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Whether the authentication is canceled. |
+| number | Whether the authentication is canceled.|
 
 **Example**
 
@@ -429,7 +429,7 @@ Obtains the authentication result.
 | Name   | Type                      | Mandatory| Description                                                        |
 | --------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | result    | number                     | Yes  | Authentication result obtained. For details, see [ResultCode](#resultcode8).                  |
-| extraInfo | [AuthResult](#authresult8) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**. |
+| extraInfo | [AuthResult](#authresult8) | Yes  | Extended information, which varies depending on the authentication result.<br>If the authentication is successful, the user authentication token will be returned in **extraInfo**.<br>If the authentication fails, the remaining number of authentication times will be returned in **extraInfo**.<br>If the authentication executor is locked, the freeze time will be returned in **extraInfo**.|
 
 
 **Example**
@@ -443,7 +443,7 @@ Obtains the authentication result.
           try {
               console.info("auth onResult result = " + result);
               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == SUCCESS) {
+              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                   // Add the logic to be executed when the authentication is successful.
               }  else {
                   // Add the logic to be executed when the authentication fails.
@@ -478,7 +478,7 @@ Obtains the tip code information during authentication. This function is optiona
 | Name   | Type  | Mandatory| Description                          |
 | --------- | ------ | ---- | ------------------------------ |
 | module    | number | Yes  | Type of the authentication executor.            |
-| acquire   | number | Yes  | Interaction information of the authentication executor during the authentication process. |
+| acquire   | number | Yes  | Interaction information of the authentication executor during the authentication process.|
 | extraInfo | any    | Yes  | Reserved field.                    |
 
 **Example**
@@ -492,7 +492,7 @@ Obtains the tip code information during authentication. This function is optiona
           try {
               console.info("auth onResult result = " + result);
               console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-              if (result == SUCCESS) {
+              if (result == userIAM_userAuth.ResultCode.SUCCESS) {
                   // Add the logic to be executed when the authentication is successful.
               }  else {
                   // Add the logic to be executed when the authentication fails.
@@ -523,8 +523,8 @@ Represents the authentication result object.
 | Name        | Type  | Mandatory| Description                |
 | ------------ | ---------- | ---- | -------------------- |
 | token        | Uint8Array | No  | Identity authentication token.      |
-| remainTimes  | number     | No  | Number of remaining authentication operations. |
-| freezingTime | number     | No  | Time for which the authentication operation is frozen. |
+| remainTimes  | number     | No  | Number of remaining authentication operations.|
+| freezingTime | number     | No  | Time for which the authentication operation is frozen.|
 
 ## ResultCode<sup>8+</sup>
 
@@ -544,7 +544,7 @@ Enumerates the operation results.
 | BUSY                    | 7      | Indicates the busy state.          |
 | INVALID_PARAMETERS      | 8      | Invalid parameters are detected.          |
 | LOCKED                  | 9      | The authentication executor is locked.      |
-| NOT_ENROLLED            | 10     | The user has not entered the authentication information. |
+| NOT_ENROLLED            | 10     | The user has not entered the authentication information.|
 
 
 ## FaceTips<sup>8+</sup>
@@ -563,7 +563,7 @@ Enumerates the tip codes used during the facial authentication process.
 | FACE_AUTH_TIP_TOO_LOW         | 6      | Only the lower part of the face is captured because the device is angled too low.        |
 | FACE_AUTH_TIP_TOO_RIGHT       | 7      | Only the right part of the face is captured because the device is deviated to the right.      |
 | FACE_AUTH_TIP_TOO_LEFT        | 8      | Only the left part of the face is captured because the device is deviated to the left.      |
-| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9      | The face moves too fast during facial information collection. |
+| FACE_AUTH_TIP_TOO_MUCH_MOTION | 9      | The face moves too fast during facial information collection.|
 | FACE_AUTH_TIP_POOR_GAZE       | 10     | The face is not facing the camera.                    |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11     | No face is detected.                |
 
@@ -577,7 +577,7 @@ Enumerates the tip codes used during the fingerprint authentication process.
 | Name                             | Default Value| Description                                              |
 | --------------------------------- | ------ | -------------------------------------------------- |
 | FINGERPRINT_AUTH_TIP_GOOD         | 0      | The obtained fingerprint image is in good condition.                              |
-| FINGERPRINT_AUTH_TIP_DIRTY        | 1      | Large fingerprint image noise is detected due to suspicious or detected dirt on the sensor. |
+| FINGERPRINT_AUTH_TIP_DIRTY        | 1      | Large fingerprint image noise is detected due to suspicious or detected dirt on the sensor.|
 | FINGERPRINT_AUTH_TIP_INSUFFICIENT | 2      | The noise of the fingerprint image is too large to be processed.    |
 | FINGERPRINT_AUTH_TIP_PARTIAL      | 3      | Incomplete fingerprint image is detected.                            |
 | FINGERPRINT_AUTH_TIP_TOO_FAST     | 4      | The fingerprint image is incomplete due to fast movement.                        |
@@ -592,8 +592,8 @@ Enumerates the identity authentication types.
 
 | Name       | Default Value| Description      |
 | ----------- | ------ | ---------- |
-| FACE        | 2      | Facial authentication. |
-| FINGERPRINT | 4      | Fingerprint authentication. |
+| FACE        | 2      | Facial authentication.|
+| FINGERPRINT | 4      | Fingerprint authentication.|
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -603,7 +603,7 @@ Enumerates the trust levels of the authentication result.
 
 | Name| Default Value| Description                     |
 | ---- | ------ | ------------------------- |
-| ATL1 | 10000  | Trust level 1. |
-| ATL2 | 20000  | Trust level 2. |
-| ATL3 | 30000  | Trust level 3. |
-| ATL4 | 40000  | Trust level 4. |
+| ATL1 | 10000  | Trust level 1.|
+| ATL2 | 20000  | Trust level 2.|
+| ATL3 | 30000  | Trust level 3.|
+| ATL4 | 40000  | Trust level 4.|

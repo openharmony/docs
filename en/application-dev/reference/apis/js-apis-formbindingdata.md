@@ -1,6 +1,7 @@
 # FormBindingData
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -38,12 +39,20 @@ Creates a **FormBindingData** object.
 **Example**
 
   ```js
-  let fd = fileio.openSync(path);
-  let obj = {
-      "temperature": "21°",
-      "formImages": {"image": fd}
-  };
-  let formBindingDataObj = formBindingData.createFormBindingData(obj);
+  import featureAbility from '@ohos.ability.featureAbility';
+  import fileio from '@ohos.fileio';
+  let context=featureAbility.getContext();
+  context.getOrCreateLocalDir((err,data)=>{
+      let path=data+"/xxx.jpg";
+      let fd = fileio.openSync(path);
+      let obj = {
+          "temperature": "21°",
+          "formImages": {"image": fd}
+      };
+      let formBindingDataObj = formBindingData.createFormBindingData(obj);
+  })
+
+  
   ```
 
 ## Attributes

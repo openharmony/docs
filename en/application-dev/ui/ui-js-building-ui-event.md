@@ -4,13 +4,13 @@ A gesture represents a semantic action (for example, tap, drag, or longpress) th
 
 **Touch**
 
-- **touchstart**: Triggered when the touch starts
+- **touchstart**: Triggered when the touch starts.
 
-- **touchmove**: Triggered when the touch moves
+- **touchmove**: Triggered when the touch moves.
 
-- **touchcancel**: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message
+- **touchcancel**: Triggered when the touch is interrupted, for example, by an incoming call notification or pop-up message.
 
-- **touchend**: Triggered when the touch ends
+- **touchend**: Triggered when the touch ends.
 
 **Click**
 

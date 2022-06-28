@@ -1,70 +1,84 @@
 # Burning
 
 
+Burning is the process of downloading compiled program files to a development board to provide a basis for subsequent debugging. With the one-click burning function of DevEco Device Tool, you can burn images on development boards quickly and efficiently.
+
+
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
+> - If you are using source code from the master branch released since May 9, 2022, use HiTool for burning.
+> 
+> - DevEco Device Tool currently does not support burning of source code released before May 9, 2022. This feature will be introduced in the coming version.
+
+
 To burn source code to Hi3516D V300 through the USB port in Windows, perform the following steps:
+
+
+> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**
+> This feature is available in DevEco Device Tool 2.2 Beta2 and later versions.
 
 
 1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3516D V300 Development Board](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3516.md).
 
-2. In DevEco Device Tool, choose **REMOTE DEVELOPMENT** > **Local PC** to check the connection status between the remote computer (Ubuntu development environment) and the local computer (Windows development environment).
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**
+   >
+   > If you are using the remote access mode (Windows + Ubuntu on the local VM), disable the USB control of the VM as follows to ensure that the development board is connected to the USB port of the host:
+   > 
+   > - VMware: Configure the device to connect to the host under **Preferences** > **USB** and remove the USB controller from the VM settings.
+   > 
+   > - VirtualBox: Deselect **Enable USB Controller** in the USB device options under Ubuntu settings.
+
+2. If your computer does not have the USB port driver or USB-to-serial driver, install it by following the instructions in [Installing the USB Port Driver on the Hi3516D V300 or Hi3518E V300 Development Board](Installing the USB Port Driver on the Hi3516D V300 or Hi3518E V300 Development Board) or [Installing the Serial Port Driver on the Hi3516D V300 or Hi3518E V300 Development Board](https://device.harmonyos.com/en/docs/documentation/guide/hi3516_hi3518-drivers-0000001050743695), depending on the missing driver.
+
+3. In DevEco Device Tool, choose **REMOTE DEVELOPMENT** > **Local PC** to check the connection status between the remote computer (Ubuntu build environment) and the local computer (Windows build environment).
 
    - If ![en-us_image_0000001261315939](figures/en-us_image_0000001261315939.png) is displayed on the right of **Local PC**, the remote computer is connected to the local computer. In this case, no further action is required.
    - If ![en-us_image_0000001261515989](figures/en-us_image_0000001261515989.png) is displayed, click the connect icon.
 
    ![en-us_image_0000001261395999](figures/en-us_image_0000001261395999.png)
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   > This operation is required only in remote access mode (in the Windows+Ubuntu hybrid development environment). If the local access mode (Windows or Ubuntu development environment) is used, skip this step.
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
+   > This operation is required only in remote access mode (in the Windows+Ubuntu hybrid build environment). If the local access mode (Windows or Ubuntu build environment) is used, skip this step.
 
-3. Check the serial port number in **QUICK ACCESS** > **DevEco Home** > **Device** in DevEco Device Tool.
+4. Check the serial port number in **QUICK ACCESS** > **DevEco Home** > **Device** in DevEco Device Tool.
 
-   ![en-us_image_0000001216516128](figures/en-us_image_0000001216516128.png)
+   ![en-us_image_0000001267932252](figures/en-us_image_0000001267932252.png)
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   > If the serial port number is not displayed correctly, follow the steps described in [Installing the Serial Port Driver on the Hi3516 or Hi3518 Series Development Boards](https://device.harmonyos.com/en/docs/documentation/guide/hi3516_hi3518-drivers-0000001050743695).
-
-4. Choose **QUICK ACCESS** > **DevEco Home** > **Projects**, and then click **Settings**.
+5. Choose **QUICK ACCESS** > **DevEco Home** > **Projects**, and then click **Settings**.
 
    ![en-us_image_0000001198566364](figures/en-us_image_0000001198566364.png)
 
-5. On the **hi3516dv300** tab page, set the burning options.
+6. On the **hi3516dv300** tab page, set the burning options.
 
-   - **upload_partitions**: Select the file to be burnt. By default, the **fastboot**, **kernel**, **rootfs**, and **userfs** files are burnt at the same time.
+   - **upload_partitions**: Select the files to be burnt. By default, **fastboot**, **boot**, **updater**, **misc**, **system**, **vendor**, and **userdata** are burnt at the same time.
    - **upload_port**: Select the serial port number obtained.
    - **upload_protocol**: Select the burning protocol **hiburn-usb**.
 
-   ![en-us_image_0000001223190441](figures/en-us_image_0000001223190441.png)
+   ![en-us_image_0000001177478136](figures/en-us_image_0000001177478136.png)
 
-6. Check the preset information of the files to be burnt and modify them when necessary. The files to be burnt include **fastboot**, **kernel**, **rootfs**, and **userfs**.
+7. In **Partitions**, check the preset burning settings of the files to be burnt.
 
-   1. On the **hi3516dv300_fastboot** tab, select the items to be modified in **New Option**, such as **partition_bin**, **partition_addr**, and **partition_length**.
+   ![en-us_image_0000001312541849](figures/en-us_image_0000001312541849.png)
 
-       ![en-us_image_0000001198889702](figures/en-us_image_0000001198889702.png)
+   To modify the burning settings for a specific file, click ![en-us_image_0000001265361888](figures/en-us_image_0000001265361888.png) next to the file.
 
-   2. In **Partition Options**, modify the items selected in the preceding step.
+   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
+   >
+   > Set the start address and length of the partition based on the size of the files to be burnt. Make sure the size of the partition is greater than that of the files to be burnt and the partition addresses of the files to be burnt do not overlap.
 
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-       > Set the start address and length of the partition based on the size of the files to be burnt. Make sure the size of the partition is greater than that of the files to be burnt and the partition addresses of the files to be burnt do not overlap.
+   ![en-us_image_0000001264982466](figures/en-us_image_0000001264982466.png)
 
-       ![en-us_image_0000001243290907](figures/en-us_image_0000001243290907.png)
+8. When you finish modifying, click **Save** on the top.
 
-   3. Follow the same procedure to modify the information about the **kernel**, **rootfs**, and **userfs** files.
+9. Go to **hi3516dv300** > **Upload** to transfer the files to be burnt from Ubuntu to Windows. When the "Operation paused, Please press Enter key to continue" message is displayed, which indicates that the transfer is complete, press **Enter** to start burning.
 
-7. When you finish modifying, click **Save** on the top.
+   ![en-us_image_0000001267532292](figures/en-us_image_0000001267532292.png)
 
-8. Go to **hi3516dv300** > **Upload** to start burning.
+10. When the following information is displayed in the **TERMINAL** window, press and hold the reset button within 15 seconds, remove and insert the USB cable, and release the reset button to start burning.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   > If this is the first time you burn source code to the Hi3516D V300 or Hi3518E V300 board, the message "not find the Devices" may be displayed. In this case, follow the steps in [Installing the USB Port Driver on the Hi3516D V300 or Hi3518E V300 Development Board](https://device.harmonyos.com/en/docs/documentation/guide/usb_driver-0000001058690393) and start burning again.
+    ![en-us_image_0000001114129426](figures/en-us_image_0000001114129426.png)
 
-   ![en-us_image_0000001267231481](figures/en-us_image_0000001267231481.png)
+    If the following message is displayed, it indicates that the burning is successful.
 
-9. When the following information is displayed in the Terminal window, press and hold the reset button, remove and insert the USB cable, and release the reset button to start burning.
+    ![en-us_image_0000001160649343](figures/en-us_image_0000001160649343.png)
 
-   ![en-us_image_0000001114129426](figures/en-us_image_0000001114129426.png)
-
-   If the following message is displayed, it indicates that the burning is successful.
-
-   ![en-us_image_0000001160649343](figures/en-us_image_0000001160649343.png)
-
-10. When the burning is successful, perform the operations in Running an Image to start the system.
+11. When the burning is successful, perform the operations in Running to start the system.

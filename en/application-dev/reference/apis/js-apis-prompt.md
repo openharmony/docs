@@ -1,6 +1,6 @@
 # Prompt
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -208,7 +208,7 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 
 ## prompt.showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise<ActionMenuSuccessResponse>
+showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 
 Shows an action menu. This API uses a promise to return the result synchronously.
 

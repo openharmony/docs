@@ -1,27 +1,36 @@
 # Nonlinear Container LightWeightSet 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**LightWeightSet** stores a set of values, each of which must be unique.
+
+**LightWeightSet** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
+
+The values in such a set are searched using hash values, which are stored in an array.
+
+Compared with **[HashSet](js-apis-hashset.md)**, which can also store values, **LightWeightSet** occupies less memory.
+
+**Recommended use case**: Use **LightWeightSet** when you need a set that has only unique elements or need to deduplicate a set.
 
 ## Modules to Import
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet'  
+import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
 
-## System Capabilities
 
-SystemCapability.Utils.Lang
 
 ## LightWeightSet
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a lightweight set (called container later).|
+| length | number | Yes| No| Number of elements in a lightweight set (called container later).|
 
 
 ### constructor
@@ -29,6 +38,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **LightWeightSet** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -41,7 +52,9 @@ let lightWeightSet = new LightWeightSet();
 
 isEmpty(): boolean
 
-Checks whether this container is empty.
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -60,19 +73,21 @@ let result = lightWeightSet.isEmpty();
 
 add(obj: T): boolean
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| obj | T | Yes| Entry to add.|
+| obj | T | Yes| Target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -86,13 +101,15 @@ let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
 
 addAll(set: LightWeightSet&lt;T&gt;): boolean
 
-Adds all entries in a **LightWeightSet** instance to this container.
+Adds all elements in a **LightWeightSet** instance to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose entries are to be added to the current container.|
+| set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose elements are to be added to the current container.|
 
 **Example**
 
@@ -110,7 +127,9 @@ let result = lightWeightSet.addAll(set);
 
 hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
-Checks whether this container contains all entries of the specified **LightWeightSet** instance.
+Checks whether this container contains all elements of the specified **LightWeightSet** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -122,7 +141,7 @@ Checks whether this container contains all entries of the specified **LightWeigh
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if all the entries in the specified **LightWeightSet** instance are contained; returns **false** otherwise.|
+| boolean | Returns **true** if all the elements in the specified **LightWeightSet** instance are contained; returns **false** otherwise.|
 
 **Example**
 
@@ -142,11 +161,13 @@ has(key: T): boolean
 
 Checks whether this container has the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key| T | Yes| Key to query.|
+| key| T | Yes| Target key.|
 
 **Return value**
 
@@ -169,6 +190,8 @@ result = lightWeightSet.has(123);
 equal(obj: Object): boolean
 
 Checks whether this container contains objects of the same type as the specified **obj**.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -199,11 +222,13 @@ increaseCapacityTo(minimumCapacity: number): void
 
 Increases the capacity of this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes| Minimum number of entries to accommodate in the container.|
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in the container.|
 
 **Example**
 
@@ -217,19 +242,21 @@ lightWeightSet.increaseCapacityTo(10);
 
 getIndexOf(key: T): number
 
-Obtains the position index of the entry with the specified key in this container.
+Obtains the position index of the element with the specified key in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key| T | Yes| Key of the entry to query.|
+| key| T | Yes| Key of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Position index of the entry.|
+| number | Position index of the element.|
 
 **Example**
 
@@ -245,19 +272,21 @@ let result = lightWeightSet.getIndexOf("sdfs");
 
 remove(key: T): T
 
-Removes an entry of the specified key from this container.
+Removes an element of the specified key from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key| T | Yes| Key of the entry to remove.|
+| key| T | Yes| Key of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| T | Value of the entry removed.|
+| T | Value of the element removed.|
 
 **Example**
 
@@ -273,19 +302,21 @@ let result = lightWeightSet.remove("sdfs");
 
 removeAt(index: number): boolean
 
-Removes the entry at the specified position from this container.
+Removes the element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
+| index | number | Yes| Position index of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -301,13 +332,15 @@ let result = lightWeightSet.removeAt(1);
 
 getValueAt(index: number): T
 
-Obtains the value of the entry at the specified position in this container.
+Obtains the value of the element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
+| index | number | Yes| Position index of the element.|
 
 **Return value**
 
@@ -331,6 +364,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -345,7 +380,9 @@ lightWeightSet.clear();
 
 toString(): String
 
-Obtains a string that contains all entries in this container.
+Obtains a string that contains all elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -369,6 +406,8 @@ toArray(): Array&lt;T&gt;
 
 Obtains an array that contains all objects in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -390,6 +429,8 @@ let result = lightWeightSet.toArray();
 values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -416,20 +457,22 @@ while(index < lightWeightSet.length) {
 
 forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the entry that is currently traversed.|
-| key| T | No| Key of the entry that is currently traversed (same as **value**).|
+| value | T | No| Value of the element that is currently traversed.|
+| key| T | No| Key of the element that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -439,7 +482,7 @@ let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("sdfs");
 lightWeightSet.add("dfsghsf");
 lightWeightSet.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -448,7 +491,9 @@ lightWeightSet.forEach((value, key) => {
 
 entries(): IterableIterator<[T, T]>
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -477,6 +522,8 @@ while(index < lightWeightSet.length) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -492,14 +539,14 @@ lightWeightSet.add("sdfs");
 
 // Method 1:
 for (let item of lightWeightSet) { 
-  console.log("value: " + item);
+  console.log("value:" + item);
 }
 
 // Method 2:
 let iter = lightWeightSet[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```

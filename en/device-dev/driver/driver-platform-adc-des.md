@@ -229,7 +229,7 @@ static int32_t TestCaseAdc(void)
     int32_t i;
     int32_t ret;
     DevHandle adcHandle;
-    uint32_t Readbuf[30] = {0};
+    uint32_t readBuf[30] = {0};
 
     /* Open the ADC device. */
     adcHandle = AdcOpen(ADC_DEVICE_NUM);
@@ -240,7 +240,7 @@ static int32_t TestCaseAdc(void)
 
     /* Perform 30 times of AD conversions continuously and read the conversion results. */
     for (i = 0; i < 30; i++) {
-        ret = AdcRead(adcHandle, ADC_CHANNEL_NUM, &Readbuf[i]);
+        ret = AdcRead(adcHandle, ADC_CHANNEL_NUM, &readBuf[i]);
         if (ret != HDF_SUCCESS) {
             HDF_LOGE("%s: tp ADC write reg fail!:%d", __func__, ret);
             AdcClose(adcHandle);

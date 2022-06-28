@@ -23,15 +23,15 @@
 
 
 - APIs
-  | Name | Description |
-  | -------- | -------- |
-  | onFinish() =&gt; void | Called when the animation playback is complete. |
+  | Name                  | Description                                               |
+  | --------------------- | --------------------------------------------------------- |
+  | onFinish() =&gt; void | Callback invoked when the animation playback is complete. |
 
 
 ## Example
 
 
-```
+```ts
 @Entry
 @Component
 struct AnimateToExample {

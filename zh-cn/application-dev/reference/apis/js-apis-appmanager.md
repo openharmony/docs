@@ -1,19 +1,18 @@
 # appManager
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+appManager模块提供服务功能的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 App管理。
 
-
 ## 导入模块
-
 
 ```js
 import app from '@ohos.application.appManager';
 ```
-
 
 ## appManager.isRunningInStabilityTest<sup>8+</sup>
 

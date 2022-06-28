@@ -63,13 +63,19 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 - 示例
 
   ```js
-  filemanager.getRoot((err, fileInfo) => {
+  let option = {
+            "dev":{
+            name:"",
+            }
+  };
+  filemanager.getRoot(option,(err, fileInfo)=>{
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
           }
-      }
+      } 
   });
+  
   ```
 
 ## filemanager.listFile
@@ -105,7 +111,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   ```js
   // 获取目录下所有文件
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
+  let media_path = file.path
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
@@ -145,14 +151,30 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 - 示例
 
   ```js
-  // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
-  filemanager.listFile(media_path, "file", (err, fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // 通过listFile、getRoot获取的文件path
+  let fileInfos = await filemanager.getRoot(); 
+  let media_path  = "";
+  for (let i = 0; i < fileInfos.length; i++) {
+	if (fileInfos[i].name == "image_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "audio_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "video_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "file_folder") {
+	  media_path = fileInfos[i].path;
+	}
+  }
+
+  filemanager.listFile(media_path, "file")
+  .then((fileInfo) => {
+    if(Array.isArray(fileInfo)) {
+        for (var i = 0; i < fileInfo.length; i++) {
+            console.log("file:"+JSON.stringify(fileInfo));
+        }
+    }
+  }).catch((err) => {
+    console.log(err)
   });
   ```
 
@@ -175,7 +197,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
   | 类型 | 说明 |
   | --- | -- |
-  | string | 文件uri |
+  | Promise&lt;string&gt; | 文件uri |
 
 - 异常
   | 错误名称 | 错误类型 | 错误码 |说明 |
@@ -230,7 +252,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   ```js
   // 创建文件，返回文件uri
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.uri
+  let media_path = file.path
   // 待保存文件的后缀
   let name = "xxx.jpg"
   filemanager.createFile(media_path, name, (err, uri) => {

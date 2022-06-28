@@ -27,7 +27,7 @@ After the building is complete, ensure that you can [remotely access the Ubuntu 
 
    ![en-us_image_0000001215743910](figures/en-us_image_0000001215743910.png)
 
-5. On the **Import Project** page, select a product, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **ohosVersion**. Select **wifiiot_hispark_pegasus**.
+5. On the **Import Project** page, select **wifiiot_hispark_pegasus** for **Product**, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **ohosVersion**.
 
    ![en-us_image_0000001272109325](figures/en-us_image_0000001272109325.png)
 

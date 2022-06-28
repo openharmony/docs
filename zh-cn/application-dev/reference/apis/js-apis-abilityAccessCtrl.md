@@ -1,4 +1,6 @@
-#  	访问控制管理
+# 程序访问控制管理
+
+程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -72,6 +74,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 授予应用user grant权限，使用Promise方式异步返回结果。
 
+此接口为系统接口，三方应用不支持调用。
+
 **需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -96,19 +100,19 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
-
-
 
 ### grantUserGrantedPermission
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
 
 授予应用user grant权限，使用callback回调异步返回结果。
+
+此接口为系统接口，三方应用不支持调用。
 
 **需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -129,8 +133,12 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -139,6 +147,8 @@ AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_P
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
 
 撤销应用user grant权限，使用Promise方式异步返回结果。
+
+此接口为系统接口，三方应用不支持调用。
 
 **需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -176,6 +186,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 撤销应用user grant权限，使用callback回调异步返回结果。
 
+此接口为系统接口，三方应用不支持调用。
+
 **需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -195,8 +207,12 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -206,7 +222,9 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or GRANT_SENSITIVE_PERMISSIONS or REVOKE_SENSITIVE_PERMISSIONS
+此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or ohos.permission.GRANT_SENSITIVE_PERMISSIONS or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
 
