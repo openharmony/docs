@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - Intl模块包含国际化能力基础接口（在ECMA 402中定义）。
+> - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 
 
 ## 导入模块
