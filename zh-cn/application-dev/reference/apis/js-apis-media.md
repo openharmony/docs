@@ -273,7 +273,7 @@ Codec MIME类型枚举。
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、https网络播放: https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
 | duration    | number                    | 是   | 否   | 音频时长。                                                   |
@@ -665,7 +665,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、hls网络播放路径：开发中<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、https网络播放: https://xx<br/>3、hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。                                         |
 | duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。                               |
@@ -1002,7 +1002,8 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-videoPlayer.seek((seekTime, err) => {
+let seekTime = 5000;
+videoPlayer.seek(seekTime, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('seek success!');
     } else {
@@ -1030,7 +1031,10 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-videoPlayer.seek((seekTime, seekMode, err) => {
+import media from '@ohos.multimedia.media'
+let seekTime = 5000;
+let seekMode = media.SeekMode.SEEK_NEXT_SYNC;
+videoPlayer.seek(seekTime, seekMode, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('seek success!');
     } else {
@@ -1063,6 +1067,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```js
+let seekTime = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
 }).catch((error) => {
@@ -1094,7 +1099,8 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-videoPlayer.setVolume((vol, err) => {
+let vol = 0.5;
+videoPlayer.setVolume(vol, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('setVolume success!');
     } else {
@@ -1126,6 +1132,7 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```js
+let vol = 0.5;
 videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
 }).catch((error) => {
@@ -1277,7 +1284,10 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-videoPlayer.setSpeed((speed:number, err) => {
+import media from '@ohos.multimedia.media'
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+
+videoPlayer.setSpeed(speed, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('setSpeed success!');
     } else {
@@ -1309,8 +1319,70 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```js
+import media from '@ohos.multimedia.media'
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+
 videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
+```
+
+### selectBitrate<sup>9+</sup>
+
+selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
+
+通过回调方式设置码率。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                              |
+| -------- | -------- | ---- | --------------------------------- |
+| bitrate  | number   | 是   | 指定码率播放，用于hls多码率场景。 |
+| callback | function | 是   | 设置播放码率的回调方法。          |
+
+**示例：**
+
+```js
+let bitrate = 1024000;
+videoPlayer.selectBitrate(bitrate, (err, result) => {
+    if (typeof (err) == 'undefined') {
+        console.info('selectBitrate success!');
+    } else {
+        console.info('selectBitrate fail!');
+    }
+});
+```
+
+### selectBitrate<sup>9+</sup>
+
+selectBitrate(bitrate:number): Promise\<number>
+
+通过Promise方式设置码率，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名  | 类型                   | 必填 | 说明                                         |
+| ------- | ---------------------- | ---- | -------------------------------------------- |
+| bitrate | AsyncCallback\<number> | 是   | 指定码率播放，用于hls多码率场景，单位为bps。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<number> | 通过Promise获取设置结果。 |
+
+**示例：**
+
+```js
+let bitrate = 1024000;
+videoPlayer.selectBitrate(bitrate).then() => {
+    console.info('selectBitrate success');
 }).catch((error) => {
    console.info(`video catchCallback, error:${error.message}`);
 });
@@ -1320,7 +1392,7 @@ videoPlayer.setSpeed(speed).then() => {
 
 on(type: 'playbackCompleted', callback: Callback\<void>): void
 
-开始监听视频播放完成事件。
+开始监听视频播放完成事件，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1434,6 +1506,31 @@ videoPlayer.on('error', (error) => {      // 设置'error'事件回调
     console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
 });
 videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
+```
+
+### on('availableBitrateCollected')<sup>9+</sup>
+
+on(type: 'availableBitrateCollected', callback: (bitrates: Array<number>) => void): void
+
+开始监听视频播放码率上报事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 视频播放码率上报事件回调类型，支持的事件：'availableBitrateCollected'，只在开始播放时候上报一次 |
+| callback | function | 是   | 视频播放码率事件回调方法，使用Array数组存放支持的码率。      |
+
+**示例：**
+
+```js
+videoPlayer.on('availableBitrateCollected', (bitrates) => {
+    for (let i = 0; i < bitrates.length; i++) {
+        console.info('case availableBitrateCollected bitrates: '  + bitrates[i]);  //打印支持的码率
+    }
+});
 ```
 
 ## VideoPlayState<sup>8+</sup>
