@@ -1,4 +1,4 @@
-# Bundle模块(JS端SDK接口)
+# 默认应用管理
 
 本模块提供查询默认应用的能力，支持查询当前应用是否是默认应用。
 
@@ -43,7 +43,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
 
 **返回值：**
 
@@ -76,8 +76,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 类型                              | 必填   | 描述                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
-| callback    | AsyncCallback<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+| type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
+| callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
 **示例：**
 
