@@ -35,7 +35,7 @@
 | -2     | 参数错误       |
 
 ## 开发示例
-````
+```ts
 import Ability from '@ohos.application.Ability'
 import errorManager from '@ohos.application.errorManager'
 
@@ -87,4 +87,4 @@ export default class MainAbility extends Ability {
         console.log("[Demo] MainAbility onBackground")
     }
 };
-````
+```
