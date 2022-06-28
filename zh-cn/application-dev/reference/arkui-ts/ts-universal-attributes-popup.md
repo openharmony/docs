@@ -33,21 +33,25 @@
   | placement | Placement | 否 | Placement.Bottom | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。 |
   | maskColor | [Color](../../ui/ts-types.md#颜色类型) | 否 | - | 提示气泡遮障层的颜色。 |
   | popupColor | [Color](../../ui/ts-types.md#颜色类型) | 否 | - | 提示气泡的颜色。 |
-  | enableArrow | boolean | 否 | true | 是否显示箭头，只有上、下方向的气泡会显示箭头。 |
+  | enableArrow | boolean | 否 | true | 是否显示箭头。<br/>从API Version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，但气泡高度小于箭头的宽度（32vp），则实际不会显示箭头。 |
   | autoCancel | boolean | 否 | true | 页面有操作时，是否自动关闭气泡 |
   | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
 
 - Placement<sup>8+</sup>枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Left | 气泡提示位于组件左侧。 | 
-  | Right | 气泡提示位于组件右侧。 | 
-  | Top | 气泡提示位于组件上侧。 | 
-  | Bottom | 气泡提示位于组件下侧。 | 
-  | TopLeft | 气泡提示位于组件左上角。 | 
-  | TopRight | 气泡提示位于组件右上角。 | 
-  | BottomLeft | 气泡提示位于组件左下角。 | 
-  | BottomRight | 气泡提示位于组件右下角。 | 
+  | Left | 气泡提示位于组件左侧，与组件左侧中心对齐。 |
+  | Right | 气泡提示位于组件右侧，与组件右侧中心对齐。 |
+  | Top | 气泡提示位于组件上侧，与组件上侧中心对齐。 |
+  | Bottom | 气泡提示位于组件下侧，与组件下侧中心对齐。 |
+  | TopLeft | 气泡提示位于组件上侧，从API Version 9开始，与组件左侧边缘对齐。 |
+  | TopRight | 气泡提示位于组件上侧，从API Version 9开始，与组件右侧边缘对齐。 |
+  | BottomLeft | 气泡提示位于组件下侧，从API Version 9开始，与组件左侧边缘对齐。 |
+  | BottomRight | 气泡提示位于组件下侧，从API Version 9开始，与组件右侧边缘对齐。 |
+  | LeftTop<sup>9+</sup> | 气泡提示位于组件左侧，与组件上侧边缘对齐。 |
+  | LeftBottom<sup>9+</sup> | 气泡提示位于组件左侧，与组件下侧边缘对齐。 |
+  | RightTop<sup>9+</sup> | 气泡提示位于组件右侧，与组件上侧边缘对齐。 |
+  | RightBottom<sup>9+</sup> | 气泡提示位于组件右侧，与组件下侧边缘对齐。 |
 
 
 ## 示例
