@@ -39,9 +39,9 @@ action("some_action") {
   outputs = [ _output ]
   args = [
     ...
-  	"--output",
-  	rebase_path(_output, root_build_dir),
-  	...
+      "--output",
+      rebase_path(_output, root_build_dir),
+      ...
   ]
   ...
 }
@@ -70,7 +70,7 @@ declare_args() {
 - 加入"${target_name}"可以防止子目标重名。
 
 - 加入双下划线可以很方便地区分出子目标属于哪一个模块，方便在出现问题时快速定位。
-
+  
   ```
   # 例3
   template("ohos_shared_library") {
@@ -137,17 +137,17 @@ import("//a.gni")
 编译脚本实质上完成了两件工作：
 
 1. **描述模块之间依赖关系（deps）**
-
+   
    实践过程中，最常出现的问题是**依赖关系缺失**。
 
 2. **描述模块编译的规则(rule)**
-
+   
    实践过程中，容易出现的问题是**输入和输出不明确**。
 
 依赖缺失会导致两个问题：
 
 - **概率性编译错误**
-
+  
   ```
   # 例6
   # 依赖关系缺失，导致概率性编译出错
@@ -164,13 +164,13 @@ import("//a.gni")
     deps = [ ":b" ]
   }
   ```
-
+  
   上面的例子中，libb.so在链接的时候会链接liba.so，实质上构成b依赖a，但是b的依赖列表（deps）却没有声明对a的依赖。由于编译是并发执行的，如果libb.so在链接的时候liba.so还没有编译出来，就会出现编译错误。
-
+  
   由于liba.so也有可能在libb.so之前编译出来，所以依赖缺失导致的编译错误是概率性的。
 
 - **依赖关系缺失导致模块没有参与编译**
-
+  
   还是上面的例子，如果我们指定ninja编译目标为images，由于images仅仅依赖b，所以a不会参与编译。由于b实质上依赖a, 这时b在链接时会出现必现错误。
 
 有一种不太常见的问题是**过多的依赖**。**过多的依赖会降低并发，导致编译变慢**。见下面的例子:
@@ -186,13 +186,13 @@ template("too_much_deps") {
   action(_gen_resource_target) {
     ...
   }
-  
+
   _compile_resource_target = "${target_name}__compile_res"
   action(_compile_resource_target) {
     deps = [":$_gen_resource_target"]
     ...
   }
-  
+
   _compile_js_target = "${target_name}__js"
   action(_compile_js_target) {
     # 这个deps不需要
@@ -261,20 +261,17 @@ write_file("a.out")
 - **原生模板是最小功能模板**，无法提供external_deps的解析，notice收集，安装信息生成等的额外功能，这些额外功能最好是随着模块编译时同时生成，所以必须对原生模板做额外的扩展才能满足实际的需求。
 
 - 当输入文件依赖的文件发生变化时，gn原生的action模板不能自动感知不到这种编译，无法重新编译。见例8
-  
-  
-  
+
   原生模板和编译系统提供的模板之间的对应关系:
-  
-  | 编译系统提供的模板  | 原生模板       |
-  | :------------------ | -------------- |
-  | ohos_shared_library | shared_library |
-  | ohos_source_set     | source_set     |
-  | ohos_executable     | executable     |
-  | ohos_static_library | static_library |
-  | action_with_pydeps  | action         |
-  | ohos_group          | group          |
-  
+
+| 编译系统提供的模板           | 原生模板           |
+|:------------------- | -------------- |
+| ohos_shared_library | shared_library |
+| ohos_source_set     | source_set     |
+| ohos_executable     | executable     |
+| ohos_static_library | static_library |
+| action_with_pydeps  | action         |
+| ohos_group          | group          |
 
 ### 使用python脚本
 
@@ -288,7 +285,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 ### rebase_path
 
 - 仅在向action的参数列表中（args）调用rebase_path。
-
+  
   ```
   # 例10
   template("foo") {
@@ -310,7 +307,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   ```
 
 - 同一变量做两次rebase_path会出现意想不到的结果。
-
+  
   ```
   # 例11
   template("foo") {
@@ -337,11 +334,11 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 模块间数据分享是很常见的事情，比如A模块想要知道B模块的输出和deps。
 
 - 同一BUILD.gn之间数据分享
-
+  
   同一BUILD.gn之间数据可以通过定义全局变量的方式来共享。
-
+  
   下面的例子中，模块a的输出是模块b的输入，可以通过定义全局变量的方式来共享给b
-
+  
   ```
   # 例12
   _output_a = get_label_info(":a", "out_dir") + "/a.out"
@@ -356,13 +353,13 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   ```
 
 - 不同BUILD.gn之间数据分享
-
+  
   不同BUILD.gn之间传递数据，最好的办法是将需要共享的数据保存成文件，然后不同模块之间通过文件来传递和共享数据。这种场景比较复杂，读者可以参照OpenHarmony的hap编译过程的write_meta_data。
 
 ### forward_variable_from
 
 - 自定义模板需要首先将testonly传递（forward）进来。因为该模板的target有可能被testonly的目标依赖。
-
+  
   ```
   # 例13
   # 自定义模板首先要传递testonly
@@ -373,7 +370,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   ```
 
 - 不推荐使用*来forward变量，需要的变量应该**显式地，一个一个地**被forward进来。
-
+  
   ```
   # 例14
   # Bad，使用*forward变量
@@ -386,10 +383,10 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   template("bar") {
     # 
     forward_variable_from(invoker, [
-    								   "testonly",
-    								   "deps",
-    								   ...
-    								 ])
+                                       "testonly",
+                                       "deps",
+                                       ...
+                                     ])
     ...
   }
   ```
@@ -495,15 +492,17 @@ set_source_assignment_filter([])
 ### 部件内依赖采用deps，跨部件依赖采用external_deps
 
 - 部件在OpenHarmony上指能提供某个能力的一组模块。
+
 - 在模块定义的时候可以声明part_name，用来表明当前模块属于哪个部件。
 
-- 每个部件会声明其inner-kit，供其他部件调用。部件innerkit的声明见源码中的ohos.build。
+- 每个部件会声明其inner-kit，供其他部件调用。部件innerkit的声明见源码中的bundle.json。
+
 - 部件间依赖只能依赖innerkit，不能依赖非innerkit的模块。
 
 - 如果a模块和b模块的part_name相同，那么a、b模块属于同一个部件，a，b模块之间的依赖关系可以用deps来声明。
 
 - 如果a、b模块的part_name不同，那么a、b模块不属于同一个部件，a、b模块之间的依赖关系需要通过external_deps来声明，依赖方式为"部件名:模块名"的方式。见例19。
-
+  
   ```
   # 例19
   shared_library("a") {
@@ -512,14 +511,3 @@ set_source_assignment_filter([])
     ...
   }
   ```
-
-  
-
-  
-
-  
-
-  
-
-
-
