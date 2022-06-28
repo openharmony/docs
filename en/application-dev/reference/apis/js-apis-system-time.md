@@ -1,7 +1,7 @@
 # Setting the System Time
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+This module is used to set and obtain the current system date, time, and time zone.
+> **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -189,7 +189,7 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 **Example**
 
   ```js
-  systemTime.getCurrentTime().then((data) => {
+  systemTime.getRealActiveTime().then((data) => {
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
   }).catch((error) => {
       console.error(`failed to systemTime.getRealActiveTime because ` + JSON.stringify(error));
