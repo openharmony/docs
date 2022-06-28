@@ -1,7 +1,7 @@
 # Explicit Animation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 | Name | Description |
@@ -12,7 +12,7 @@
 ## AnimationOptions
 
 - Attributes
-    | Name | Type | Default Value | Description |
+  | Name | Type | Default Value | Description |
   | -------- | -------- | -------- | -------- |
   | duration | number | 1000 | Animation duration, in ms. |
   | tempo | number | 1.0 | Animation playback speed. A larger value indicates faster animation playback, and a smaller value indicates slower animation playback. The value **0** means that there is no animation. |
@@ -23,9 +23,9 @@
 
 
 - APIs
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
-  | onFinish() =&gt; void | Callback invoked when the animation playback is complete. |
+  | onFinish() =&gt; void | Called when the animation playback is complete. |
 
 
 ## Example
