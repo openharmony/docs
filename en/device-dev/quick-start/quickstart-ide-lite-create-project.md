@@ -1,4 +1,4 @@
-# Creating a Source Code Project
+# Importing a Source Code Project
 
 
 After [setting up the Windows+Ubuntu hybrid development environment](../quick-start/quickstart-ide-lite-env-setup-win-ubuntu.md) and [obtaining source code](../quick-start/quickstart-ide-lite-sourcecode-acquire.md), perform the following steps to create a source code project in Windows:
@@ -15,7 +15,7 @@ After [setting up the Windows+Ubuntu hybrid development environment](../quick-st
 
    ![en-us_image_0000001271477045](figures/en-us_image_0000001271477045.png)
 
-3. If you select to open the OpenHarmony source code, a message will be displayed indicating that the project is not a DevEco Device Tool project. Click **Import** to continue.
+3. If this is the first time you import a project, a message will be displayed indicating that the project is not a DevEco Device Tool project. Click **Import** to continue.
 
    ![en-us_image_0000001135394334](figures/en-us_image_0000001135394334.png)
 

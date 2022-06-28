@@ -76,7 +76,7 @@
     - [Setting Up Environments for Standard System](quick-start/quickstart-standard-env-setup.md)
     - Running a Hello World Program
         - Hi3516 Development Board
-            - [Writing a Hello World Program](quick-start/quickstart-standard-running-hi3516-create.md)
+            - [Writing a Hello World Program](quick-start/quickstart-std-3516-create.md)
             - [Building](quick-start/quickstart-standard-running-hi3516-build.md)
             - [Burning](quick-start/quickstart-standard-running-hi3516-burning.md)
             - [Running](quick-start/quickstart-standard-running-hi3516-running.md)
