@@ -93,3 +93,4 @@
             - [RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)
         - [参考信息](quickstart-standard-reference.md)
         - [使用HiTool烧录代码](quickstart-standard-hitool.md)
+        - [编译形态整体说明](quickstart-build.md)
