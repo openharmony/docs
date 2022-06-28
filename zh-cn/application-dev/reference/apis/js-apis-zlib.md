@@ -21,11 +21,11 @@ zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                        |
-| ------- | ------------------- | ---- | ------------------------------------------- |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径            |
-| outFile | string              | 是   | 指定的压缩结果的文件路径（文件的扩展名zip） |
-| options | [Options](#options) | 否   | 压缩的可选参数                              |
+| 参数名  | 类型                | 必填 | 描述                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile | string              | 是   | 指定的压缩结果的文件路径（文件的扩展名zip）                  |
+| options | [Options](#options) | 否   | 压缩的可选参数                                               |
 
 **返回值：**
 
@@ -85,11 +85,11 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 描述                                |
-| ------- | ------------------- | ---- | ----------------------------------- |
-| inFile  | string              | 是   | 指定解压的文件路径（文件扩展名zip） |
-| outFile | string              | 是   | 指定的解压文件路径                  |
-| options | [Options](#options) | 否   | 解压的可选参数                      |
+| 参数名  | 类型                | 必填 | 描述                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile | string              | 是   | 指定的解压文件路径                                           |
+| options | [Options](#options) | 否   | 解压的可选参数                                               |
 
 **返回值：**
 

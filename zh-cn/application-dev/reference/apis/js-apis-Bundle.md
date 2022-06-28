@@ -19,7 +19,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 权限                                       | 权限等级     | 描述               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 仅限查询本应用信息 |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
 
