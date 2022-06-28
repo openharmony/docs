@@ -1,11 +1,12 @@
 # util
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **types** for checks of built-in object types.
+This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **Types** for checks of built-in object types.
 
 
 ## Modules to Import
@@ -140,7 +141,7 @@ Processes an asynchronous function and returns a promise version.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>-&nbsp;Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
+| encoding | string | Yes| No| Encoding format.<br>- Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
 | fatal | boolean | Yes| No| Whether to display fatal errors.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
@@ -208,9 +209,6 @@ Decodes the input content.
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  for(var j= 0; j < 6; j++) {
-      console.log(result[j]);
-  }
   var retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
@@ -262,6 +260,7 @@ Encodes the input content.
 **Example**
   ```js
   var textEncoder = new util.TextEncoder();
+  var buffer = new ArrayBuffer(20);
   var result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
@@ -361,7 +360,6 @@ Compares this **RationalNumber** object with a given object.
 | number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
 **Example**
-
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
   var rational = rationalNumer.creatRationalFromString("3/4");
@@ -484,7 +482,7 @@ Obtains the denominator of this **RationalNumber** object.
 
 ### isZero<sup>8+</sup>
 
-isZero​(): boolean
+isZero​():boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
@@ -524,7 +522,7 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
 ### isFinite<sup>8+</sup>
 
-isFinite​(): boolean
+isFinite​():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
@@ -825,7 +823,7 @@ Obtains the value of the specified key.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V \| undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
 **Example**
   ```js
@@ -872,7 +870,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
+| V [] | All values in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -895,7 +893,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
+| K [] | All keys in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -921,7 +919,7 @@ Removes the specified key and its value from this buffer.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V \| undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
 **Example**
   ```js
@@ -1038,7 +1036,7 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| [K,&nbsp;V] | Iterable array.|
+| [K, V] | Iterable array.|
 
 **Example**
   ```js
@@ -1059,7 +1057,7 @@ Obtains a two-dimensional array in key-value pairs.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
+| [K, V] | Two-dimensional array in key-value pairs.|
 
 **Example**
   ```js
@@ -1092,6 +1090,8 @@ Example
 ```js
 class Temperature{
     constructor(value){
+       // If TS is used for development, add the following code:
+       // private readonly _temp: Temperature;
        this._temp = value;
     }
     comapreTo(value){
@@ -1183,7 +1183,7 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 ### intersect<sup>8+</sup>
 
-intersect(lowerObj: ScopeType,upperObj: ScopeType): Scope
+intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
@@ -1276,6 +1276,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 | [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Example**
+
   ```js
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1288,7 +1289,7 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 ### expand<sup>8+</sup>
 
-expand(range:Scope):Scope
+expand(range: Scope): Scope
 
 Obtains the union set of this **Scope** and the given **Scope**.
 
@@ -1510,7 +1511,7 @@ Decodes the input content.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode.|
+| src | Uint8Array \| string | Yes| Uint8Array or string to decode.|
 
 **Return value**
 | Type| Description|
@@ -1595,7 +1596,7 @@ Decodes the input content asynchronously.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode asynchronously.|
+| src | Uint8Array \| string | Yes| Uint8Array or string to decode asynchronously.|
 
 **Return value**
 | Type| Description|
@@ -1622,7 +1623,7 @@ Decodes the input content asynchronously.
 
 constructor()
 
-A constructor used to create a **types** object.
+A constructor used to create a **Types** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
