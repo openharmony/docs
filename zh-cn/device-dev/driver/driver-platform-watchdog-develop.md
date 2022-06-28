@@ -23,8 +23,8 @@ struct WatchdogMethod {
   int32_t (*start)(struct WatchdogCntlr *wdt);
   int32_t (*stop)(struct WatchdogCntlr *wdt);
   int32_t (*feed)(struct WatchdogCntlr *wdt);
-  int32_t (*getPriv)(struct WatchdogCntlr *wdt); //【可选】如果WatchdogCntlr中的priv成员存在，则按需实例化
-  void (*releasePriv)(struct WatchdogCntlr *wdt);//【可选】
+  int32_t (*getPriv)(struct WatchdogCntlr *wdt); // 【可选】如果WatchdogCntlr中的priv成员存在，则按需实例化
+  void (*releasePriv)(struct WatchdogCntlr *wdt);// 【可选】
 };
 ```
 
@@ -123,7 +123,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
          controller_0x12050000 :: watchdog_controller {// 【必要】是作为设备驱动私有数据匹配的关键字
            match_attr = "hisilicon_hi35xx_watchdog_0"; // 【必要】必须和device_info.hcs中的deviceMatchAttr值一致
            }
-           //存在多个 watchdog 时【必须】添加，否则不用
+           // 存在多个 watchdog 时【必须】添加，否则不用
            ...  
          }
      }
@@ -143,7 +143,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
         uint32_t phyBase;               // 【必要】地址映射需要
         uint32_t regStep;               // 【必要】地址映射需要
       };
-      //WatchdogCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
+      // WatchdogCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
       struct WatchdogCntlr {
         struct IDeviceIoService service;// 驱动服务
         struct HdfDeviceObject *device; // 驱动设备
@@ -175,7 +175,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 
       返回值：
 
-      HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见// drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
 
         **表2** Init函数和Bind函数入参和返回值
       
@@ -193,8 +193,8 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 
         
       ```
-      //一般而言，Init函数需要根据入参(HdfDeviceObject对象)的属性值初始化Hi35xxWatchdog结构体的成员，
-      //但本例中是在bind函数中实现的
+      // 一般而言，Init函数需要根据入参(HdfDeviceObject对象)的属性值初始化Hi35xxWatchdog结构体的成员，
+      // 但本例中是在bind函数中实现的
       static int32_t Hi35xxWatchdogInit(struct HdfDeviceObject *device)
       {
       (void)device;
@@ -206,9 +206,9 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
       int32_t ret;
       struct Hi35xxWatchdog *hwdt = NULL;
       ...
-      hwdt = (struct Hi35xxWatchdog *)OsalMemCalloc(sizeof(*hwdt));//Hi35xxWatchdog 结构体的内存申请
+      hwdt = (struct Hi35xxWatchdog *)OsalMemCalloc(sizeof(*hwdt));// Hi35xxWatchdog 结构体的内存申请
       ...
-      hwdt->regBase = OsalIoRemap(hwdt->phyBase, hwdt->regStep);   //地址映射
+      hwdt->regBase = OsalIoRemap(hwdt->phyBase, hwdt->regStep);   // 地址映射
       ...
       hwdt->wdt.priv = (void *)device->property;// 【可选】此处是将设备属性的内容赋值给priv成员，但后续没有调用 priv 成员，
                                                   // 如果需要用到priv成员，需要额外实例化WatchdogMethod的getPriv和releasePriv成员函数
