@@ -45,7 +45,7 @@
       });
       ```
 
-      参考接口API说明，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
+      参考接口API说明[位置服务](../reference/apis/js-apis-geolocation.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
    - 调用getAddressesFromLocationName位置描述转化坐标。
         
       ```
@@ -55,6 +55,6 @@
       });
       ```
 
-      参考接口API说明，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
+      参考接口API说明[位置服务](../reference/apis/js-apis-geolocation.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
 
       如果需要查询的位置描述可能出现多地重名的请求，可以设置GeoCodeRequest，通过设置一个经纬度范围，以高效地获取期望的准确结果。
