@@ -1,11 +1,11 @@
 # Custom Dialog Box
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **CustomDialogController** class is used to display a custom dialog box.
+A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class.
 
 
 ## APIs
@@ -14,7 +14,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  au
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | builder | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes | - | Constructor of the custom dialog box content. |
   | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay exits. |
@@ -24,11 +24,11 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  au
   | customStyle | boolean | No | false | Whether the style of the dialog box is customized. |
 
 - DialogAlignment enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
-  | Top | Aligns vertically to the top. |
-  | Center | Aligns vertically to the middle. |
-  | Bottom | Aligns vertically to the bottom. |
+  | Top | Vertical top alignment. |
+  | Center | Vertical center alignment. |
+  | Bottom | Vertical bottom alignment. |
   | Default | Default alignment. |
   | TopStart<sup>8+</sup> | Top left alignment. |
   | TopEnd<sup>8+</sup> | Top right alignment. |
@@ -61,7 +61,7 @@ Opens the content of the custom dialog box. If the content has been displayed, t
 
 close(): void
 
-Closes the custom dialog box. If the dialog box is closed, the setting does not take effect.
+Closes the custom dialog box. If the dialog box is closed, this API does not take effect.
 
 
 ## Example
