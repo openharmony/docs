@@ -1,18 +1,18 @@
 # Alert Dialog Box
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-You can set the text content and response callback for an alert dialog box.
+The **<AlertDialog\>** component is used to display an alert dialog box. You can set the text content and response callback for an alert dialog box as needed.
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
-| show | options: { paramObject1\| paramObject2} | - | Defines and displays the **&lt;AlertDialog&gt;** component. | 
+| show | options: { paramObject1\| paramObject2} | - | Defines and displays the **<AlertDialog\>** component. | 
 
 - paramObject1 parameters
     | Name | Type | Mandatory | Default Value | Description |
@@ -27,7 +27,7 @@ You can set the text content and response callback for an alert dialog box.
   | gridCount | number | No | - | Number of grid columns occupied by the width of the dialog box. |
 
 - paramObject2 parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | title | string \|[Resource](../../ui/ts-types.md#resource) | No | - | Title of a dialog box. |
   | message | string \|[Resource](../../ui/ts-types.md#resource) | Yes | - | Content of the dialog box. |
