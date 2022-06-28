@@ -1,5 +1,6 @@
 # 组合按键
 
+InputConsumer模块提供对按键事件的监听。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >

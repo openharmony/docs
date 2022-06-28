@@ -1,5 +1,6 @@
 # 输入监听
 
+InputMonitor模块提供了监听全局触摸事件的功能。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
