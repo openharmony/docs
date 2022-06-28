@@ -21,6 +21,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -53,6 +55,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 启动Ability。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -96,6 +100,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -125,6 +131,8 @@ terminateSelf(): Promise&lt;void&gt;;
 停止自身。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -156,6 +164,8 @@ connectAbility(want: Want, options: ConnectOptions): number;
 将一个Ability与服务类型的Ability绑定。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -194,6 +204,8 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -226,6 +238,8 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 将一个Ability与绑定的服务类型的Ability解绑。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

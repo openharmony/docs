@@ -276,7 +276,7 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.terminateSelf(want).then((data) => {
+  this.context.terminateSelf().then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
