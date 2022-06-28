@@ -30,13 +30,13 @@ After burning is completed, you need to configure the bootloader to run the Open
 After the system is started, perform the following steps to run the Hello World program:
 
 1. Go to the **bin** directory on the startup page.
-     
+   
    ```
    cd bin
    ```
 
 2. Run the following command to run the **helloworld** program:
-     
+   
    ```
    ./helloworld
    ```
@@ -48,4 +48,4 @@ After the system is started, perform the following steps to run the Hello World 
 
 ## Next
 
-Congratulations! You have finished all steps! Proceed to [develop a sample camera with a screen](https://gitee.com/openharmony/docs/blob/master/en/device-dev/guide/device-camera.md) to better familiarize yourself with OpenHarmony development.
+Congratulations! You have finished all steps! Proceed to [develop a sample camera with a screen](../guide/device-camera-control-overview.md) to better familiarize yourself with OpenHarmony development.

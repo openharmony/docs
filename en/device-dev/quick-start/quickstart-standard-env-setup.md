@@ -32,14 +32,13 @@ In Ubuntu:
    > - Java 8 or later is required. This section uses Java 8 as an example.
 
 2. Set Python 3.8 as the default Python version.
-   
-Check the location of Python 3.8:
-   
+   Check the location of Python 3.8:
+
    
    ```
    which python3.8
-```
-   
+   ```
+
      Change python and python3 to python3.8.
    
    ```
@@ -268,7 +267,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
 
-### Procedure
+### Obtaining Source Code
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
@@ -299,7 +298,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 ### Running prebuilts
 
-Go to the root directory of the source code and run the following script to install the compiler and binary tool:
+  Go to the root directory of the source code and run the following script to install the compiler and binary tool:
 
 ```
 bash build/prebuilts_download.sh

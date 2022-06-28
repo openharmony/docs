@@ -7,7 +7,7 @@ Hi3861 is a 2 x 5 cm development board. It is a 2.4 GHz WLAN SoC chip that highl
 
 **Figure 1** Hi3861 development board
 
-  ![en-us_image_0000001226634692](figures/en-us_image_0000001226634692.png)
+![en-us_image_0000001226634692](figures/en-us_image_0000001226634692.png)
 
 The Hi3861 development board can also be connected to the Hi3861 mother board to expand its peripheral capabilities. The following figure shows the Hi3861 mother board.
 
