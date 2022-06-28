@@ -11,6 +11,8 @@
 import {KeyCode} from '@ohos.multimodalInput.keyCode'
 ```
 
+## KeyCode
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |
