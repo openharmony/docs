@@ -8,11 +8,11 @@ A Service ability is used to run tasks in the background, such as playing music 
 **Table 1** Service ability lifecycle APIs
 |API|Description|
 |:------|:------|
-|onStart|Called to initialize a Service ability being created. This callback is invoked only once in the entire lifecycle of a Service ability. The **Want** object passed to this callback must be null.|
-|onCommand|Called every time a Service ability is created on a client. You can collect calling statistics and perform initialization operations in this callback.|
-|onConnect|Called when another ability is connected to the Service ability.|
-|onDisconnect|Called when another ability is disconnected from the Service ability.|
-|onStop|Called when the Service ability is being destroyed. You should override this callback for your Service ability to clear its resources, such as threads and registered listeners.|
+|onStart?(): void|Called to initialize a Service ability being created. This callback is invoked only once in the entire lifecycle of a Service ability. The **Want** object passed to this callback must be null.|
+|onCommand?(want: Want, startId: number): void|Called every time a Service ability is created on a client. You can collect calling statistics and perform initialization operations in this callback.|
+|onConnect?(want: Want): rpc.RemoteObject|Called when another ability is connected to the Service ability.|
+|onDisconnect?(want: Want): void|Called when another ability is disconnected from the Service ability.|
+|onStop?(): void|Called when the Service ability is being destroyed. You should override this callback for your Service ability to clear its resources, such as threads and registered listeners.|
 
 ## How to Develop
 
@@ -43,7 +43,7 @@ A Service ability is used to run tasks in the background, such as playing music 
    
 2. Register a Service ability.
 
-   You must declare your Service ability in the **config.json** file by setting its **type** attribute to **service**.
+   Declare the Service ability in the **config.json** file by setting its **type** attribute to **service**.
    
    ```javascript
     {
@@ -214,8 +214,8 @@ export default {
 }
 ```
 
-### Connecting to a Remote Service Ability (Applying only to System Applications)
->NOTE
+### Connecting to a Remote Service Ability
+>**NOTE**
 >
 >This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 

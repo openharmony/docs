@@ -1,7 +1,7 @@
 # Service Extension Ability Development
 
 ## When to Use
-**ExtensionAbility** is the base class of the new Extension component in the stage model. It is used to process missions without UIs. The lifecycle of an Extension ability is simple, and it does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
+**ExtensionAbility** is the base class of the new Extension component in the stage model. It is used to process missions without UIs. The lifecycle of an Extension ability is simple and does not involve foreground or background. **ServiceExtensionAbility** is extended from **ExtensionAbility**.
 
 You can customize a class that inherits from **ServiceExtensionAbility** and override the lifecycle callbacks in the base class to perform service logic operations during the initialization, connection, and disconnection processes.
 
@@ -80,7 +80,5 @@ Declare the Service Extension ability in the **module.json** file by setting its
 
 The following sample is provided to help you better understand how to develop a Service Extension ability:
 
-- [ServiceExtensionAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
-
-This sample shows how to create a Service Extension ability in the **ServiceExtAbility.ts** file in the **ServiceExtensionAbility** directory.
+- [`ServiceExtAbility`: Stage Extension Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
 

@@ -208,7 +208,6 @@ export default class MainAbility extends Ability {
 The `Ability` class has the `context` attribute, which belongs to the `AbilityContext` class. The `AbilityContext` class has the `abilityInfo`, `currentHapModuleInfo`, and other attributes and the APIs used for starting abilities. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
 
 **Table 3** AbilityContext APIs
-
 |API|Description|
 |:------|:------|
 |startAbility(want: Want, callback: AsyncCallback\<void>): void|Starts an ability.|
