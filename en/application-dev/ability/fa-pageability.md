@@ -86,8 +86,10 @@ By default, **singleton** is used.
   );
 ```
 
-### Starting a Remote Page Ability (Applying only to System Applications)
->Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, remote Page ability startup applies only to system applications.
+### Starting a Remote Page Ability
+>Note
+>
+>This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 
 **Modules to Import**
 
