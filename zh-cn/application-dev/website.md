@@ -569,6 +569,7 @@
       - [@ohos.application.AbilityStage (AbilityStage)](reference/apis/js-apis-application-abilitystage.md)
       - [@ohos.application.appManager (appManager)](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration (Configuration)](reference/apis/js-apis-configuration.md)
+      - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-DataShareExtensionAbility.md)
       - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-configurationconstant.md)
       - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis/js-apis-formbindingdata.md)
@@ -647,10 +648,14 @@
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
     - 数据管理
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
+      - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
+      - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
+      - [@ohos.data.dataShareResultSet (数据共享结果集)](reference/apis/js-apis-data-DataShareResultSet.md)
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
+      - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-ValuesBucket.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
