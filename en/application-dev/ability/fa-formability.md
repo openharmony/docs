@@ -195,7 +195,7 @@ Configure the **config.json** file for the widget.
   ```
 
 
-### Persistently Store Widget Data
+### Persistently Storing Widget Data
 
 Mostly, the widget provider is started only when it needs to obtain information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget.
 
