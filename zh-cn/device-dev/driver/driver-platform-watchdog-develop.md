@@ -1,4 +1,4 @@
-# WatchDog
+# Watchdog
 
 
 ## 概述
@@ -32,12 +32,12 @@ struct WatchdogMethod {
 
 | 成员函数 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| getStatus | wdt:&nbsp;结构体指针，核心层WDG控制器 | status:&nbsp;int32_t指针，表示狗的状态（打开或关闭） | HDF_STATUS相关状态 | 获取看门狗所处的状态 | 
-| start | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 打开开门狗 | 
-| stop | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 关闭开门狗 | 
-| setTimeout | wdt:&nbsp;结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，时间传入值; | 无 | HDF_STATUS相关状态 | 设置超时时间值，单位秒，需要保证看门狗实际运行的时间符合该值 | 
-| getTimeout | wdt:&nbsp;结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，传出的时间值 | HDF_STATUS相关状态 | 回读设置的超时时间值 | 
-| feed | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 喂狗 | 
+| getStatus | wdt：结构体指针，核心层WDG控制器 | status:&nbsp;int32_t指针，表示狗的状态（打开或关闭） | HDF_STATUS相关状态 | 获取看门狗所处的状态 | 
+| start | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 打开开门狗 | 
+| stop | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 关闭开门狗 | 
+| setTimeout | wdt：结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，时间传入值; | 无 | HDF_STATUS相关状态 | 设置超时时间值，单位秒，需要保证看门狗实际运行的时间符合该值 | 
+| getTimeout | wdt：结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，传出的时间值 | HDF_STATUS相关状态 | 回读设置的超时时间值 | 
+| feed | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 喂狗 | 
 
 
 ## 开发步骤
