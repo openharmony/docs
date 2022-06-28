@@ -1512,7 +1512,7 @@ PixelMap的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index              | numer                              | 是   | 是   | 解码图片序号     |
+| index              | number                              | 是   | 是   | 解码图片序号     |
 
 ## Region<sup>7+</sup>
 
