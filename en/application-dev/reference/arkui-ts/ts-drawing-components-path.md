@@ -1,7 +1,7 @@
 # Path
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,7 +20,7 @@ None
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the path is located. | 
 | height | Length | 0 | No | Height of the rectangle where the path is located. | 
@@ -57,7 +57,7 @@ For example, the command **M0 20 L50 50 L50 100 Z** defines a path that starts f
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct PathExample {

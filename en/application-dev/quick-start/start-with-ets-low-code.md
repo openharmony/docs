@@ -94,7 +94,8 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 4. Add a **Text** component.
    - In the **second.ets** file, set the message text content to **Hi there**. The sample code is as follows:
      
-      ```
+      ```ts
+      // second.ets
       @Entry
       @Component
       struct Second {
@@ -122,7 +123,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the page router, which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
+You can implement page redirection through the page router, which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
    
@@ -130,7 +131,8 @@ You can implement page redirection through the page router, which finds the targ
    
    - In the **index.ets** file:
      
-     ```
+     ```ts
+     // index.ets
      import router from '@ohos.router';
      
      @Entry
@@ -163,7 +165,8 @@ You can implement page redirection through the page router, which finds the targ
 
    - In the **second.ets** file:
      
-      ```
+      ```ts
+      // second.ets
       import router from '@ohos.router';
       
       @Entry

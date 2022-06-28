@@ -116,7 +116,7 @@ export default {
 
 ![en-us_image_0000001275803173](figures/en-us_image_0000001275803173.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - You must set **star-background**, **star-secondary**, and **star-foreground**. Otherwise, the grey rating star applies, indicating that the image source is incorrectly set.
 > 
 > - The **star-background**, **star-secondary**, and **star-foreground** attributes support only PNG and JPG images in the local path.

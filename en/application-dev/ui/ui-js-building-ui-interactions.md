@@ -1,7 +1,8 @@
 # Adding Interactions
 
   You can make the UI interactive by binding events to components. This section describes how to bind &lt;div&gt;, &lt;text&gt;, and &lt;image&gt; components to click events to build a thumb up button, as shown in the following figure.
-  figure1 Thumb up button effect
+  
+Figure 1 Thumb up button effect
 
 ![en-us_image_0000001267647901](figures/en-us_image_0000001267647901.gif)
 

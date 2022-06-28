@@ -43,8 +43,8 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 | 接口名                                                       | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | int32_t (*GetLightInfo)(struct LightInfo **lightInfo, uint32_t *count) | 获取系统中所有灯的信息，lightInfo表示灯设备的基本信息，count表示获取灯的个数。 |
-| int32_t (*TurnOnLight)(uint32_t type, struct LightEffect *effect) | 根据指定的灯类型打开灯列表中可用的灯，type表示灯类型，effect表示要设置的效果信息。 |
-| int32_t (*TurnOffLight)(uint32_t type)                       | 根据指定的灯类型关闭灯列表中可用的灯。                       |
+| int32_t (*TurnOnLight)(uint32_t lightId, struct LightEffect *effect) | 根据指定的灯类型打开灯列表中可用的灯，lightId表示灯类型，effect表示要设置的效果信息。 |
+| int32_t (*TurnOffLight)(uint32_t lightId)                    | 根据指定的灯类型关闭灯列表中可用的灯。                       |
 
 ### 开发步骤
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），资源配置及HCS配置文件解析。完成Light驱动的设备信息配置。
@@ -81,13 +81,13 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
      
          CHECK_LIGHT_NULL_PTR_RETURN_VALUE(data, HDF_ERR_INVALID_PARAM);
          (void)OsalMutexLock(&drvData->mutex);
-         if (!HdfSbufReadInt32(data, &lightType)) {
-             HDF_LOGE("%s: sbuf read lightType failed", __func__);
+         if (!HdfSbufReadInt32(data, &lightId)) {
+             HDF_LOGE("%s: sbuf read lightId fail", __func__);
              (void)OsalMutexUnlock(&drvData->mutex);
              return HDF_ERR_INVALID_PARAM;
          }
          .....
-         ret = DispatchCmdHandle(lightType, data, reply);
+         ret = DispatchCmdHandle(lightId, data, reply);
          (void)OsalMutexUnlock(&drvData->mutex);
          return ret;
      }
@@ -126,6 +126,11 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
          /* 解析HCS配置文件 */
          if (GetLightConfigData(device->property) != HDF_SUCCESS) {
              HDF_LOGE("%s: get light config fail!", __func__);
+             return HDF_FAILURE;
+         }
+         /* 设置GPIO引脚方向 */
+         if (SetLightGpioDir(drvData) != HDF_SUCCESS) {
+             HDF_LOGE("%s: set light gpio dir fail!", __func__);
              return HDF_FAILURE;
          }
      
@@ -172,17 +177,17 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 2. 调用配置解析接口，完成器件属性信息解析，器件寄存器解析，并注册到Light设备管理中。
 
    ```c
-   /* 分配资源，解析灯HCS配置 */
-   static int32_t ParseLightInfo(const struct DeviceResourceNode *node)
+   /* 分配资源，解析灯HCS配置。 */
+   static int32_t ParseLightInfo(const struct DeviceResourceNode *node, const struct DeviceResourceIface *parser)
    {
        .....
        /* 从HCS配置获取支持灯的类型个数 */
-       drvData->lightNum = parser->GetElemNum(light, "lightType");
+       drvData->lightNum = parser->GetElemNum(light, "lightId");
        ....
        for (i = 0; i < drvData->lightNum; ++i) {
-            /* 获取灯的类型 */
-            ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
-            CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
+           /* 获取灯的类型 */
+           ret = parser->GetUint32ArrayElem(light, "lightId", i, &temp, 0);
+           CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightId");
        }
    
        for (i = 0; i < drvData->lightNum; ++i) {
@@ -191,12 +196,19 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
        drvData->info[temp] = (struct LightDeviceInfo *)OsalMemCalloc(sizeof(struct LightDeviceInfo));
        .....
        /* 将Light设备信息进行填充 */
-       ret = parser->GetUint32(light, "busRNum", &drvData->info[temp]->busRNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busRNum");
-       ret = parser->GetUint32(light, "busGNum", &drvData->info[temp]->busGNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busGNum");
-       ret = parser->GetUint32(light, "busBNum", &drvData->info[temp]->busBNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busBNum");
+       ret = parser->GetUint32(node, "busRNum", (uint32_t *)&drvData->info[temp]->busRNum, 0);
+       if (ret != HDF_SUCCESS) {
+           /* 如果没有成功获取busNum，代表不支持设置busNum对应颜色的灯。 */
+           drvData->info[temp]->busRNum = LIGHT_INVALID_GPIO;
+       }
+       ret = parser->GetUint32(node, "busGNum", (uint32_t *)&drvData->info[temp]->busGNum, 0);
+       if (ret != HDF_SUCCESS) {
+           drvData->info[temp]->busGNum = LIGHT_INVALID_GPIO;
+       }
+       ret = parser->GetUint32(node, "busBNum", (uint32_t *)&drvData->info[temp]->busBNum, 0);
+       if (ret != HDF_SUCCESS) {
+           drvData->info[temp]->busBNum = LIGHT_INVALID_GPIO;
+       }
        .....
        return HDF_SUCCESS;
    }
@@ -205,25 +217,25 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 3. 完成Light获取类型、闪烁和停止接口开发，会根据闪烁模式创建和销毁定时器。
 
    ```c
-   /* Light驱动服务调用GetAllLightInfo获取灯类型，Enable接口启动闪烁模式,
-      调用Disable接口停止闪烁 */
+   /* Light驱动服务调用GetAllLightInfo获取灯类型，TurnOnLight接口启动闪烁模式，
+      调用TurnOffLight接口停止闪烁。 */
    static int32_t GetAllLightInfo(struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        .....
        /* 获取灯的类型个数 */
        if (!HdfSbufWriteUint32(reply, drvData->lightNum)) {
-           HDF_LOGE("%s: write sbuf failed", __func__);
+           HDF_LOGE("%s: write sbuf fail", __func__);
            return HDF_FAILURE;
        }
        for (i = 0; i < LIGHT_TYPE_BUTT; ++i) {
            if (drvData->info[i] == NULL) {
                continue;
            }
-           lightInfo.lightType = i;
+           lightInfo.lightId = i;
            lightInfo.reserved = NULL;
            /* 将Light设备信息填充进reply */
            if (!HdfSbufWriteBuffer(reply, &lightInfo, sizeof(lightInfo))) {
-               HDF_LOGE("%s: write sbuf failed", __func__);
+               HDF_LOGE("%s: write sbuf fail", __func__);
                return HDF_FAILURE;
            }
        }
@@ -231,38 +243,67 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
        return HDF_SUCCESS;
    }
    
-   /* 按照指定的类型和用户传入的参数使能灯 */
-   static int32_t Enable(uint32_t lightType, struct HdfSBuf *data, struct HdfSBuf *reply)
+   /* 更新指定类型灯的状态 */
+   static int32_t UpdateLight(uint32_t lightId, uint32_t lightOn)
    {
        .....
-       /* 根据用户传的亮度值设置灯的颜色  RGB: R:16-31bit、G:8-15bit、B:0-7bit */
-       if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_R_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busRNum;
-       } else if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_G_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busGNum;
-       } else if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_B_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busBNum;
+       /* 如果用户传入的亮度值无效，则使用系统默认的亮度值。 */
+       if (drvData->info[lightId]->lightBrightness == 0) {
+           lightBrightness = drvData->info[lightId]->defaultBrightness;
+       } else {
+           lightBrightness = drvData->info[lightId]->lightBrightness;
        }
-       /* 常亮模式 */
-       if (buf->flashEffect.flashMode == LIGHT_FLASH_NONE) {
-   
-           if (GpioWrite(drvData->info[lightType]->busNum, GPIO_VAL_HIGH) != HDF_SUCCESS) {
+       /* 如果0-7bit不等于0，根据lightOn的状态，输出蓝色对应的GPIO引脚。 */
+       if ((lightBrightness & LIGHT_MAKE_B_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busBNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write blue gpio fail", __func__);
                return HDF_FAILURE;
            }
        }
+       /* 如果8-15bit不等于0，根据lightOn的状态，输出绿色对应的GPIO引脚。 */
+       if ((lightBrightness & LIGHT_MAKE_G_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busGNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write green gpio fail", __func__);
+               return HDF_FAILURE;
+           }
+       }
+       /* 如果16-23bit不等于0，根据lightOn的状态，输出红色对应的GPIO引脚。 */
+       if ((lightBrightness & LIGHT_MAKE_R_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busRNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write red gpio fail", __func__);
+               return HDF_FAILURE;
+           }
+       }
+       .....
+   }
+
+   /* 按照指定的类型和用户传入的参数使能灯 */
+   static int32_t TurnOnLight(uint32_t lightId, struct HdfSBuf *data, struct HdfSBuf *reply)
+   {
+       .....
+       /* 接收用户传入的亮度值。24-31bit表示扩展位，16-23bit表示红色，8-15bit表示绿色，0-7bit表示蓝色。如果字段不等于0，表示使能相应颜色的灯。
+          如果支持亮度设置，则通过0-255设置不同的亮度。 */
+       drvData->info[lightId]->lightBrightness = buf->lightBrightness;
+       /* 常亮模式 */
+       if (buf->flashEffect.flashMode == LIGHT_FLASH_NONE) {
+           return UpdateLight(lightId, LIGHT_STATE_START);
+       }
        /* 闪烁模式 */
        if (buf->flashEffect.flashMode == LIGHT_FLASH_TIMED) {
-           drvData->info[lightType]->lightState = LIGHT_STATE_START;
-           /* 用户设置的闪烁时间小于系统支持的最短时间，采用系统配置的时间（HCS配置） */
-           drvData->info[lightType]->onTime = buf->flashEffect.onTime < drvData->info[lightType]->onTime ?
-           drvData->info[lightType]->onTime : buf->flashEffect.onTime;
-           drvData->info[lightType]->offTime = buf->flashEffect.offTime < drvData->info[lightType]->offTime ?
-           drvData->info[lightType]->offTime : buf->flashEffect.offTime;
+           drvData->info[lightId]->lightState = LIGHT_STATE_START;
+           /* 用户设置的闪烁时间小于系统支持的最短时间，采用系统配置的时间(HCS配置)。 */
+           drvData->info[lightId]->onTime = buf->flashEffect.onTime < drvData->info[lightId]->onTime ?
+           drvData->info[lightId]->onTime : buf->flashEffect.onTime;
+           drvData->info[lightId]->offTime = buf->flashEffect.offTime < drvData->info[lightId]->offTime ?
+           drvData->info[lightId]->offTime : buf->flashEffect.offTime;
            /* 创建定时器 */
-           if (OsalTimerCreate(&drvData->timer, drvData->info[lightType]->onTime,
-               LightTimerEntry, (uintptr_t)lightType) != HDF_SUCCESS) {
-                HDF_LOGE("%s: create light timer fail!", __func__);
-                return HDF_FAILURE;
+           if (OsalTimerCreate(&drvData->timer, drvData->info[lightId]->onTime,
+               LightTimerEntry, (uintptr_t)lightId) != HDF_SUCCESS) {
+           HDF_LOGE("%s: create light timer fail!", __func__);
+           return HDF_FAILURE;
            }
            /* 启动周期定时器 */
            if (OsalTimerStartLoop(&drvData->timer) != HDF_SUCCESS) {
@@ -274,7 +315,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
    }
    
    /* 按照指定的类型关闭灯 */
-   static int32_t Disable(uint32_t lightType, struct HdfSBuf *data, struct HdfSBuf *reply)
+   static int32_t TurnOffLight(uint32_t lightId, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        /* 删除定时器 */
        if (drvData->timer.realTimer != NULL) {
@@ -283,9 +324,8 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
                HDF_LOGE("%s: delete haptic timer fail!", __func__);
            }
        }
-       /* 对应的GPIO下电 */
-       if (GpioWrite(drvData->info[lightType]->busRNum, GPIO_VAL_LOW) != HDF_SUCCESS){
-           HDF_LOGE("%s: gpio write failed", __func__);
+       if (UpdateLight(lightId, LIGHT_STATE_STOP) != HDF_SUCCESS) {
+           HDF_LOGE("%s: gpio write fail", __func__);
            return HDF_FAILURE;
        }
    
@@ -298,20 +338,20 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 驱动开发完成后，在灯单元测试里面开发自测试用例，验证驱动基本功能。测试环境采用开发者自测试平台。
 
 ```c++
-/* 用例执行前，初始化Light接口实例 */
+/* 用例执行前，初始化Light接口实例。 */
 void HdfLightTest::SetUpTestCase()
 {
     g_lightDev = NewLightInterfaceInstance();
     if (g_lightDev == nullptr) {
-        printf("test light get Module instance failed\n\r");
+        printf("test light get Module instance fail\n\r");
     }
     int32_t ret = g_lightDev->GetLightInfo(&g_lightInfo, &g_count);
     if (ret == -1) {
-        printf("get light informations failed\n\r");
+        printf("get light informations fail\n\r");
     }
 }
 
-/* 用例执行后，释放用例资源 */
+/* 用例执行后，释放用例资源。 */
 void HdfLightTest::TearDownTestCase()
 {
     if(g_lightDev != nullptr){
@@ -334,9 +374,9 @@ HWTEST_F(HdfLightTest, GetLightList001, TestSize.Level1)
     info = g_lightInfo;
 
     for (int i = 0; i < g_count; ++i) {
-        printf("get lightId[%d]\n\r", info->lightType);
-        EXPECT_GE(info->lightType, g_minLightType);
-        EXPECT_LE(info->lightType, g_maxLightType);
+        printf("get lightId[%d]\n\r", info->lightId);
+        EXPECT_GE(info->lightId, g_minLightId);
+        EXPECT_LE(info->lightId, g_maxLightId);
         info++;
     }
 }
@@ -347,14 +387,14 @@ HWTEST_F(HdfLightTest, EnableLight001, TestSize.Level1)
     int32_t i;
     int32_t ret;
     struct LightEffect effect;
-    effect->lightBrightness = 0x80000000;
+    effect->lightBrightness = 0x00800000;
     effect->flashEffect.flashMode = LIGHT_FLASH_NONE;
     effect->flashEffect.onTime = 0;
     effect->flashEffect.offTime = 0;
 
     for (i = 0; i < g_count; ++i) {
 
-        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightType, effect);
+        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightId, effect);
         EXPECT_EQ(0, ret);
 
         OsalSleep(LIGHT_WAIT_TIME);
@@ -370,14 +410,14 @@ HWTEST_F(HdfLightTest, EnableLight002, TestSize.Level1)
     int32_t i;
     int32_t ret;
     struct LightEffect effect;
-    effect->lightBrightness = 0x80000000;
+    effect->lightBrightness = 0x00800000;
     effect->flashEffect.flashMode = LIGHT_FLASH_TIMED;
     effect->flashEffect.onTime = g_onTime;
     effect->flashEffect.offTime = g_offTime;
 
     for (i = 0; i < g_count; ++i) {
 
-        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightType, effect);
+        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightId, effect);
         EXPECT_EQ(0, ret);
 
         OsalSleep(LIGHT_WAIT_TIME);

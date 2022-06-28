@@ -1,17 +1,18 @@
 # 传感器
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import sensor from '@ohos.sensor';
 ```
 
+## sensor.on
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
@@ -30,7 +31,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -40,8 +41,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
@@ -59,7 +59,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -69,8 +69,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
@@ -88,7 +87,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -101,8 +100,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
@@ -118,7 +116,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。        |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -128,8 +126,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
@@ -147,7 +144,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -157,8 +154,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
@@ -176,7 +172,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率。                           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -189,8 +185,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
@@ -206,7 +201,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
@@ -214,8 +209,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
@@ -233,7 +227,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
@@ -241,8 +235,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
@@ -260,7 +253,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。          |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
   },
@@ -268,8 +261,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
@@ -285,7 +277,7 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambie
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
   },
@@ -293,8 +285,7 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambie
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
@@ -310,7 +301,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -320,8 +311,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
@@ -337,7 +327,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -350,8 +340,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
@@ -367,7 +356,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
@@ -375,8 +364,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
@@ -392,7 +380,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。         |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   },
@@ -400,8 +388,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
@@ -417,7 +404,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
   },
@@ -425,8 +412,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
@@ -442,7 +428,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
@@ -450,8 +436,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
@@ -467,7 +452,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
       console.info(' Illumination: ' + data.intensity);
   },
@@ -475,8 +460,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
@@ -492,7 +476,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -502,7 +486,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
   );
   ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
@@ -521,7 +505,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 **示例：** 
 
-```
+```js
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
     console.info("Heart rate: " + data.heartRate);
 },
@@ -529,7 +513,7 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
 );
 ```
 
-## sensor.on(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
@@ -545,7 +529,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -556,8 +540,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
   );
   ```
 
-
-## sensor.on(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
@@ -573,7 +556,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-  ```
+  ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
@@ -581,8 +564,9 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
   );
   ```
 
+## sensor.once
 
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+### ACCELEROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -599,7 +583,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是    | 注册一次加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -608,8 +592,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -626,7 +609,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -635,8 +618,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -665,8 +647,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
@@ -681,7 +662,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是    | 注册一次重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -690,8 +671,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -708,7 +688,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是    | 注册一次陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -717,8 +697,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -735,7 +714,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是    | 注册一次未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -747,8 +726,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -763,15 +741,14 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是    | 注册一次有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -788,15 +765,14 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是    | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
@@ -813,15 +789,14 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是    | 注册一次计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
       console.info('Steps: ' + data.steps);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -836,15 +811,14 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是    | 注册一次环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
       console.info('Temperature: ' + data.temperature);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -859,7 +833,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是    | 注册一次磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -868,8 +842,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -884,7 +857,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是    | 注册一次未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -896,8 +869,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
@@ -912,7 +884,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是    | 注册一次接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
@@ -923,8 +895,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
@@ -939,15 +910,14 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是    | 注册一次湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
       console.info('Humidity: ' + data.humidity);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_BAROMETER)
+### BAROMETER
 
 once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
@@ -962,15 +932,14 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是    | 注册一次气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
       console.info('Atmospheric pressure: ' + data.pressure);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
@@ -985,15 +954,14 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是    | 注册一次霍尔传感器的回调函数，上报的数据类型为HallResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
       console.info('Status: ' + data.status);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
@@ -1008,15 +976,14 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是    | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
       console.info(' Illumination: ' + data.intensity);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
 once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
@@ -1031,7 +998,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是    | 注册一次方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -1040,8 +1007,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1056,7 +1022,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是    | 注册一次旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -1066,8 +1032,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1084,15 +1049,14 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(data) {
       console.info("Heart rate: " + data.heartRate);
     }
   );
   ```
 
-
-## sensor.once(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1107,14 +1071,16 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是    | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 
 **示例：** 
-  ```
+  ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
       console.info("Wear status: "+ data.value);
     }
   );
   ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER)
+## sensor.off
+
+### ACCELEROMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -1133,7 +1099,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('x-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1142,7 +1108,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED)
+### ACCELEROMETER_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -1161,7 +1127,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1173,7 +1139,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT)
+### AMBIENT_LIGHT
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
 
@@ -1190,14 +1156,14 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info(' Illumination: ' + data.intensity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -1214,14 +1180,14 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 
 **示例：** 
 
-```
+```js
 function callback(data) {
      console.info('Temperature: ' + data.temperature);
 }
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE)
+### AMBIENT_TEMPERATURE
 
 off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
 
@@ -1238,14 +1204,14 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 
 **示例：** 
 
-```
+```js
 function callback(data) {
      console.info('Atmospheric pressure: ' + data.pressure);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GRAVITY)
+### GRAVITY
 
 off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
@@ -1262,7 +1228,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1271,7 +1237,7 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE)
+### GYROSCOPE
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -1290,7 +1256,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1299,7 +1265,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED)
+### GYROSCOPE_UNCALIBRATED
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
@@ -1318,7 +1284,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1327,7 +1293,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HALL)
+### HALL
 
 off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
 
@@ -1344,14 +1310,14 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Status: ' + data.status);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HEART_RATE)
+### HEART_RATE
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1370,14 +1336,14 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info("Heart rate: " + data.heartRate);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_HUMIDITY)
+### HUMIDITY
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
@@ -1396,14 +1362,14 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Humidity: ' + data.humidity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION)
+### LINEAR_ACCELERATION
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -1422,7 +1388,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1431,7 +1397,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD)
+### MAGNETIC_FIELD
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
@@ -1450,7 +1416,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1459,7 +1425,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED)
+### MAGNETIC_FIELD_UNCALIBRATED
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
@@ -1476,7 +1442,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1488,7 +1454,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ORIENTATION)
+### ORIENTATION
 
  off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
@@ -1505,7 +1471,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('The device rotates at an angle around the X axis: ' + data.beta);
     console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
@@ -1514,7 +1480,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER)
+### PEDOMETER
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
@@ -1529,16 +1495,16 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 | type     | [SensorType](#sensortype)                | 是    | 要取消订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是    | 取消注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
-**返回值：** ;
+**示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Steps: ' + data.steps);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION)
+### PEDOMETER_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
@@ -1557,14 +1523,14 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_PROXIMITY)
+### PROXIMITY
 
 off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
@@ -1581,14 +1547,14 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Distance: ' + data.distance);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR)
+### ROTATION_VECTOR
 
 off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
@@ -1605,7 +1571,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('X-coordinate component: ' + data.x);
     console.info('Y-coordinate component: ' + data.y);
@@ -1615,7 +1581,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION)
+### SIGNIFICANT_MOTION
 
 off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
@@ -1632,14 +1598,14 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 
 **示例：** 
 
-```
+```js
 function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
-## sensor.off(SensorType.SENSOR_TYPE_ID_WEAR_DETECTION)
+### WEAR_DETECTION
 
 off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
@@ -1656,7 +1622,7 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 
 **示例：** 
 
-```
+```js
 function accCallback(data) {
     console.info('Wear status: ' + data.value);
 }
@@ -1681,13 +1647,13 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 **示例：** 
 
-```
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3}, function(err, data) {
+```js
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(err, data) {
     if (err) {
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation successed. Data obtained: " + data.x);
+    console.info("Operation successed. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
@@ -1716,8 +1682,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 **示例：** 
 
-```
-const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'axisX':2, 'axisY':3});
+```js
+const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
         console.info("Operation successed.");
         for (var i=0; i < data.length; i++) {
@@ -1744,8 +1710,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是    | 返回磁场信息。           |
 
 **示例：** 
-```
-sensor.getGeomagneticField([80, 0, 0], 1580486400000, function(err, data)  {
+```js
+sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
     if (err) {
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
@@ -1774,9 +1740,9 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 | ---------------------------------------- | ------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
 
-**返回值：** 
-  ```
-  const promise = sensor.getGeomagneticField([80, 0, 0], 1580486400000);
+**示例：** 
+  ```js
+  const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
           console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
@@ -1802,9 +1768,9 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 | currentPressure | number                      | 是    | 表示设备所在高度的气压值，单位为hPa。 |
 | callback        | AsyncCallback&lt;number&gt; | 是    | 返回设备所在的海拔高度，单位为米。    |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.getAltitude(0, 200, function(err, data)  {
       if (err) {
           console.error(
@@ -1836,9 +1802,9 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 | --------------------- | ------------------ |
 | Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.getAltitude(0, 200);
       promise.then((data) => {
           console.info(' sensor_getAltitude_Promise success', data);
@@ -1863,12 +1829,12 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 | inclinationMatrix | Array&lt;number&gt;         | 是    | 表示倾斜矩阵。        |
 | callback          | AsyncCallback&lt;number&gt; | 是    | 返回地磁倾斜角，单位为弧度。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -1896,9 +1862,9 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 | --------------------- | -------------- |
 | Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
           console.info(' getGeomagneticDip_promise successed', data);
@@ -1923,18 +1889,18 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | preRotationMatrix     | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回z、x、y轴方向的旋转角度变化。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
       console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -1961,17 +1927,17 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
-          console.info(LABEL + 'getAngleModifiy_promise success');
+          console.info('getAngleModifiy_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })
   ```
 
@@ -1991,18 +1957,18 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 | rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2028,17 +1994,17 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 | ---------------------------------- | ------- |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info(LABEL + 'createRotationMatrix_promise success');
+          console.info('createRotationMatrix_promise success');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
-          console.info(LABEL + "promise::catch", reason);
+          console.info("promise::catch", reason);
   })	
   ```
 
@@ -2058,18 +2024,18 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 | rotationVector | Array&lt;number&gt;                      | 是    | 表示旋转矢量。 |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回四元数。  |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
                         err.message);
           return;
       }
       console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i]);
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2095,14 +2061,14 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
 | ---------------------------------- | ------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           console.info('createQuaternion_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2125,18 +2091,18 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 | rotationMatrix | Array&lt;number&gt;                      | 是    | 表示旋转矩阵。            |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 返回围绕z、x、y轴方向的旋转角度。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
                         err.message);
           return;
       }
-      console.info(LABEL + "SensorJsAPI--->Successed to get getDirection interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
-          console.info(TAG +"sensor_getDirection_callback" + data[i]);
+          console.info("sensor_getDirection_callback" + data[i]);
       }
   })
   ```
@@ -2162,14 +2128,14 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info(' sensor_getAltitude_Promise success', data.x);
+          console.info('sensor_getAltitude_Promise success', data);
           for (var i = 1; i < data.length; i++) {
-              console.info(TAG +"sensor_getDirection_promise" + data[i]);
+              console.info("sensor_getDirection_promise" + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2193,18 +2159,18 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | geomagnetic | Array&lt;number&gt;                      | 是    | 表示地磁矢量。 |
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是    | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error(LABEL + 'SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
+          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
                         err.message);
           return;
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
-          console.info(LABEL + "data[" + i + "]: " + data[i])
+          console.info("data[" + i + "]: " + data[i])
       }
   })
   ```
@@ -2231,17 +2197,17 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 | ---------------------------------------- | ------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
 
-**返回值：** 
+**示例：** 
 
-  ```
+  ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info(LABEL + 'createRotationMatrix_promise successed');
+          console.info('createRotationMatrix_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info(LABEL + "data[" + i + "]: " + data[i]);
+              console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
-          console.info(LABEL + 'promise failed');
+          console.info('promise failed');
   })
   ```
 
@@ -2355,11 +2321,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称    | 参数类型   | 可读   | 可写   | 说明                       |
-| ----- | ------ | ---- | ---- | ------------------------ |
+| 名称    | 参数类型   | 可读   | 可写   | 说明                |
+| ----- | ------ | ---- | ---- | ----------------- |
 | alpha | number | 是    | 是    | 设备围绕Z轴的旋转角度，单位：度。 |
-| beta  | number | 是    | 是    | 设备围绕X轴的旋转角度，单位：度。  |
-| gamma | number | 是    | 是    | 设备围绕Y轴的旋转角度，单位：度。  |
+| beta  | number | 是    | 是    | 设备围绕X轴的旋转角度，单位：度。 |
+| gamma | number | 是    | 是    | 设备围绕Y轴的旋转角度，单位：度。 |
 
 
 ## RotationVectorResponse

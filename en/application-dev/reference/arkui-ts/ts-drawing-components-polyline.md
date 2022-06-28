@@ -1,7 +1,7 @@
 # Polyline
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,12 +23,12 @@ None
 Polyline(options?: {width: Length, height: Length})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | options | Object | No | - | For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | width | Length | Yes | - | Width. | 
   | height | Length | Yes | - | Height. | 
@@ -36,7 +36,7 @@ Polyline(options?: {width: Length, height: Length})
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the polyline is located. | 
 | height | Length | 0 | No | Height of the rectangle where the polyline is located. | 
@@ -46,7 +46,7 @@ Polyline(options?: {width: Length, height: Length})
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct PolylineExample {

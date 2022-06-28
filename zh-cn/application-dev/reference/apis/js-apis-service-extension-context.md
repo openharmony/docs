@@ -1,11 +1,13 @@
 # ServiceExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+ServiceExtensionContext模块是ServiceExtension的上下文环境，继承自ExtensionContext。
 
+ServiceExtensionContext模块提供ServiceExtension具有的能力和接口，包括启动、停止、绑定、解绑Ability。
 
-ServiceExtension的上下文环境，提供ServiceExtension具有的能力和接口，继承自ExtensionContext。
-
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -36,7 +38,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       onWindowStageCreate(windowStage) {
           let want = {
               "bundleName": "com.example.myapp",
-              "abilityName": "com.example.myapp.MyAbility"};
+              "abilityName": "MyAbility"};
           this.context.startAbility(want, (err) => {
           console.log('startAbility result:' + JSON.stringify(err));
           });
@@ -74,7 +76,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
         onWindowStageCreate(windowStage) {
             let want = {
             "bundleName": "com.example.myapp",
-            "abilityName": "com.example.myapp.MyAbility"
+            "abilityName": "MyAbility"
             };
         this.context.startAbility(want).then((data) => {
             console.log('success:' + JSON.stringify(data));
@@ -175,7 +177,7 @@ connectAbility(want: Want, options: ConnectOptions): number;
   ```js
   let want = {
       "bundleName": "com.example.myapp",
-      "abilityName": "com.example.myapp.MyAbility"
+      "abilityName": "MyAbility"
   };
   let options = {
       onConnect: function(elementName, proxy) {},

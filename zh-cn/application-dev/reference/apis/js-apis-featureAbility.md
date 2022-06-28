@@ -1,7 +1,11 @@
 # FeatureAbility模块(JS端SDK接口)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+FeatureAbility模块提供带有UI设计与用户交互的能力，包括启动新的ability、获取dataAbilityHelper、设置此Page Ability、获取当前Ability对应的窗口，连接服务等。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在FA模型下使用。
 
 ## 使用限制
 

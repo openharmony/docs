@@ -18,17 +18,17 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 **表1** Call API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise<Caller>|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
+|startAbilityByCall(want: Want): Promise\<Caller>|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
 |on(method: string, callback: CaleeCallBack): void|通用组件Callee注册method对应的callback方法。|
 |off(method: string): void|通用组件Callee去注册method的callback方法。|
-|call(method: string, data: rpc.Sequenceable): Promise<void>|向通用组件Callee发送约定序列化数据。|
-|callWithResult(method: string, data: rpc.Sequenceable): Promise<rpc.MessageParcel>|向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
+|call(method: string, data: rpc.Sequenceable): Promise\<void>|向通用组件Callee发送约定序列化数据。|
+|callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|
 |release(): void|释放通用组件的Caller通信接口。|
 |onRelease(callback: OnReleaseCallBack): void|注册通用组件通信断开监听通知。|
 
 ## 开发步骤
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 开发步骤章节中的示例代码片段是开发过程的步骤化展示，部分代码可能无法单独运行，完整工程代码请参考[相关实例](##相关实例)。
+> 开发步骤章节中的示例代码片段是开发过程的步骤化展示，部分代码可能无法单独运行，完整工程代码请参考[相关实例](#相关实例)。
 ### 创建Callee被调用端
 Callee被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 1. 配置Ability的启动模式

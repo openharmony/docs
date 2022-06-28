@@ -1,13 +1,12 @@
 # Want
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+Want模块提供系统的基本通信组件的能力。
+
+> **说明：**
+> 
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-Want是系统的基本通信组件。
-
-
 ## 导入模块
-
 
 ```
 import Want from '@ohos.application.Want';

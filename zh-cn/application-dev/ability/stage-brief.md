@@ -1,6 +1,6 @@
 # Stage模型综述
 
-### 设计思想
+## 设计思想
 
 ​        Stage模型的设计，主要是为了解决FA模型无法解决的开发场景问题，方便开发者更加方便地开发出分布式环境下的复杂应用。
 
@@ -23,7 +23,7 @@
   ​        为了支持多种设备形态和更易于实现多种不同的窗口形态，需要组件管理服务和窗口管理服务在架构层面上是解耦的，从而方便裁剪，更有利于定制不同的窗口形态。Stage模型通过重新定义了Ability生命周期定义和设计组件管理服务和窗口管理服务的单向依赖解决这一问题。
 
 
-### 基本概念
+## 基本概念
 
 ​        下图展示了Stage模型中的基本概念。
 
@@ -41,7 +41,7 @@
 -  **ArkUI Page**：方舟开发框架页面。
 
 
-### 生命周期
+## 生命周期
 
 ​        Ability及AbilityStage的生命周期是应用的基本流程中最重要的概念。在[Ability框架概述](ability-brief.md)中，给出了FA模型与Stage模型的生命周期对比，这里重点对Ability生命周期切换以及和AbilityStage、WindowStage之间的调度关系进行介绍。
 
@@ -50,7 +50,7 @@
 ​        为了实现多设备形态上的裁剪和多窗口的可扩展性，OpenHarmony对组件管理和窗口管理进行了解耦。Stage模型定义Ability组件的生命周期，只包含创建、销毁、前后台等状态，而将与界面相关内容强相关的获焦、失焦状态放在WindowStage之中，从而实现Ability与窗口之间的弱耦合；在服务侧，窗口管理服务依赖于组件管理服务，前者通知后者前后台变化，这样组件管理服务仅感知前后台变化，不感知焦点变化。
 
 
-### Ability组件实例与任务
+## Ability组件实例与任务
 
 ​        Ability组件有三种启动类型：
 
@@ -66,7 +66,7 @@
 
  ![AbilityComponentInstanceMission](figures/AbilityComponentInstanceMission.png)
 
-### ExtensionAbility机制
+## ExtensionAbility机制
 
 ​        不同于用于页面展示的Ability，ExtensionAbility提供的是一种受限的服务运行环境。ExtensionAbility具有如下特点：
 
@@ -82,7 +82,7 @@
 
 ![ExtensionAbility](figures/ExtensionAbility.png)
 
-### 进程模型
+## 进程模型
 
 ​        OpenHarmony系统中的应用均满足单进程模型。所谓的单进程模型，是指不允许应用配置多进程，应用中所有的进程都是由系统创建和管理的。每个应用至多并存三类进程：
 

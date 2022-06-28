@@ -14,6 +14,7 @@
 | **名称** | **参数类型** | **默认值** | **描述** | 
 | -------- | -------- | -------- | -------- |
 | focusable | boolean | false | 设置当前组件是否可以获焦。 | 
+| tabIndex<sup>9+<sup> | number | 0 | 自定义组件tab键走焦能力，走焦顺序为：tabIndex大于0的组件依次递增走焦, tabIndex等于0的组件按组件树先后顺序走焦。<br />- tabIndex >= 0：表示元素是可聚焦的，并且可以通过tab键走焦来访问到该元素，按照tabIndex的数值递增而先后获焦。如果多个元素拥有相同的tabIndex，按照元素在当前组件树中的先后顺序获焦<br />- tabIndex < 0（通常是tabIndex = -1）：表示元素是可聚焦的，但是不能通过tab键走焦来访问到该元素 |
 
 >  **说明：**
 > 支持焦点控制的组件：Button、Text、Image、List、Grid。
@@ -26,51 +27,41 @@
 @Entry
 @Component
 struct FocusableExample {
-  @State textOne: string = ''
-  @State textTwo: string = ''
-  @State textThree: string = 'The third button cannot be focused'
-  @State oneButtonColor: string = '#FF0000'
-  @State twoButtonColor: string = '#FFC0CB'
-  @State threeButtonColor: string = '#87CEFA'
+  @State text1: string = 'TabIndex=3'
+  @State text2: string = 'TabIndex=2'
+  @State text3: string = 'focusable=false'
+  @State text4: string = 'TabIndex=-1'
+  @State text5: string = 'TabIndex=1'
+  @State text6: string = 'TabIndex=1'
+  @State text7: string = 'focusable=true'
+  @State text8: string = 'focusable=true'
 
   build() {
     Column({ space:20 }){
-      Button(this.textOne)
-        .backgroundColor(this.oneButtonColor)
+      Button(this.text1)  // 按下TAB键第四个获焦的组件
         .width(300).height(70).fontColor(Color.Black)
-        .focusable(true)
-        .onFocus(() => {
-          this.textOne = 'First Button onFocus'
-          this.oneButtonColor = '#AFEEEE'
-        })
-        .onBlur(() => {
-          this.textOne = 'First Button onBlur'
-          this.oneButtonColor = '#FFC0CB'
-        })
-      Button(this.textTwo)
-        .backgroundColor(this.twoButtonColor)
+        .tabIndex(3)
+      Button(this.text2)  // 按下TAB键第三个获焦的组件
         .width(300).height(70).fontColor(Color.Black)
-        .focusable(true)
-        .onFocus(() => {
-          this.textTwo = 'Second Button onFocus'
-          this.twoButtonColor = '#AFEEEE'
-        })
-        .onBlur(() => {
-          this.textTwo = 'Second Button onBlur'
-          this.twoButtonColor = '#FFC0CB'
-        })
-      Button(this.textThree)
-        .backgroundColor(this.threeButtonColor)
+        .tabIndex(2)
+      Button(this.text3)  // 无法获焦的组件
         .width(300).height(70).fontColor(Color.Black)
         .focusable(false)
-        .onFocus(() => {
-          this.textThree = 'Third Button onFocus'
-          this.threeButtonColor = '#AFEEEE'
-        })
-        .onBlur(() => {
-          this.textThree = 'Third Button onBlur'
-          this.threeButtonColor = '#FFC0CB'
-        })
+      Button(this.text4)  // 无法使用TAB键，但可以使用方向键走焦的组件
+        .width(300).height(70).fontColor(Color.Black)
+        .tabIndex(-1)
+      Button(this.text5)  // 按下TAB键第一个获焦的组件
+        .width(300).height(70).fontColor(Color.Black)
+        .tabIndex(1)
+      Button(this.text6)  // 按下TAB键第二个获焦的组件
+        .width(300).height(70).fontColor(Color.Black)
+        .tabIndex(1)
+      Button(this.text7)  // 按下TAB键第五个获焦的组件
+        .width(300).height(70).fontColor(Color.Black)
+        .focusable(true)
+      Button(this.text8)  // 按下TAB键第六个获焦的组件
+        .width(300).height(70).fontColor(Color.Black)
+        .focusable(true)
     }.width('100%').margin({ top:20 })
   }
 }

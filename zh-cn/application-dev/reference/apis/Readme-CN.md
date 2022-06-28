@@ -1,5 +1,7 @@
 # 接口
 
+- [开发说明](development-intro.md)
+
 - Ability框架
 
   - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
@@ -19,7 +21,6 @@
   - [@ohos.application.formError (FormError)](js-apis-formerror.md)
   - [@ohos.application.formHost (FormHost)](js-apis-formhost.md)
   - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
-  - [@ohos.application.missionInfo (MissionInfo)](js-apis-application-missionInfo.md)
   - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
   - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
   - [@ohos.ability.particleAbility (particleAbility模块)](js-apis-particleAbility.md)
@@ -58,6 +59,7 @@
 - 应用程序包管理
 
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+  - [@ohos.bundle.defaultAppManager (Bundle模块)](js-apis-bundle-defaultAppManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
   - bundle/[AbilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
@@ -104,6 +106,7 @@
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
@@ -159,6 +162,7 @@
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
   - [@ohos.hilog (日志打印)](js-apis-hilog.md)
+  - [@ohos.hiSysEvent (系统事件打点)](js-apis-hisysevent.md)
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
@@ -177,8 +181,13 @@
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (注入按键)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
+  - [@ohos,multimodalInput.keyCode (键值)](js-apis-keycode.md)
+  - [@ohos.multimodalInput.keyEvent (按键输入事件)](js-apis-keyevent.md)
+  - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](js-apis-mouseevent.md)
+  - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)

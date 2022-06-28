@@ -1,7 +1,7 @@
 # Shape
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -29,14 +29,14 @@ The **&lt;Shape&gt;** component can contain child components.
 Shape(value:{target?: PixelMap})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
   | target | PixelMap | No | null | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target. | 
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | viewPort | {<br/>x: Length,<br/>y: Length,<br/>width: Length,<br/>height: Length<br/>} | - | Yes | View port of the shape. | 
 | fill | Color | Black | No | Fill color. | 
@@ -51,7 +51,7 @@ Shape(value:{target?: PixelMap})
 | antiAlias | boolean | true | No | Whether anti-aliasing is enabled. | 
 
 - LineJoinStyle enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Bevel | Bevel is used to connect paths. | 
   | Miter | Miter is used to connect paths. | 
@@ -61,7 +61,7 @@ Shape(value:{target?: PixelMap})
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct ShapeExample {

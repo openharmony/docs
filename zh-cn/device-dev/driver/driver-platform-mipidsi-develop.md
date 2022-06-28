@@ -122,8 +122,8 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
         VideoModeTag    videoMode;            // 显示设备的同步模式
         OutputFormatTag outputFormat;         // 输出DSI图像数据格式：RGB或YUV
         SyncInfoTag     syncInfo;             // 时序相关的设置
-        unsigned int    phyDataRate;          // 数率：mbps 
-        unsigned int    pixelClk;             // 时钟：KHz
+        unsigned int    phyDataRate;          // 数据速率，单位Mbps 
+        unsigned int    pixelClk;             // 时钟，单位KHz
       } ComboDevCfgTag;
       
       // MipiDsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
@@ -221,7 +221,7 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 
       函数说明：
 
-      该函数需要在驱动入口结构体中赋值给Release接口，当DF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
+      该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
 
         
       ```

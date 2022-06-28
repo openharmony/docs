@@ -13,7 +13,7 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 - Setting the interrupt service routine (ISR) function and interrupt trigger mode for a pin
 
-- Enabling or disabling interrupts for a pin
+- Enabling or disabling pin interrupts
 
 
 ## Available APIs
@@ -37,7 +37,7 @@ The GPIO APIs define a set of standard functions for performing operations on GP
 
 The figure below shows the general GPIO development process. In the APIs, a GPIO pin is specified by the pin number.
 
-**Figure  1** Using GPIO driver APIs
+**Figure 1** Using GPIO driver APIs
 
 ![](figures/using-GPIO-process.png "using-gpio-process.png")
 
@@ -260,7 +260,7 @@ The method for determining the GPIO pin number varies depending on the GPIO cont
   ```
 
 
-## Development Example
+## Example
 
 The procedure is as follows:
 

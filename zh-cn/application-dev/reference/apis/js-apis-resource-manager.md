@@ -14,7 +14,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其接口，无需再导入包。
+从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其接口，无需再导入包，此方式FA模型不适用。
 
 ```
 this.context.resourceManager;
@@ -25,6 +25,8 @@ this.context.resourceManager;
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 获取当前应用的资源管理对象，使用callback形式返回ResourceManager对象。
+
+此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -57,6 +59,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
+此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -77,6 +81,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
+
+此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -106,6 +112,8 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
+
+此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -644,7 +652,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定路径对应的rawfile文件内容，使用callback形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -671,7 +679,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-用户获取指定路径对应的rawfile文件内容，使用Promise形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise形式返回字节数组。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -700,7 +708,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取指定路径对应的rawfile文件的descriptor，使用callback形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -729,7 +737,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取指定路径对应的rawfile文件的descriptor，使用Promise形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -760,7 +768,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭指定路径打开的rawfile文件的descriptor，使用callback形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -785,7 +793,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-用户关闭指定路径打开的rawfile文件的descriptor，使用Promise形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -821,11 +829,7 @@ release()
 **示例：** 
   ```
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.release((error, value) => {
-          if (error != null) {
-              console.log("error is " + error);
-          }
-      });
+      mgr.release();
   });
   ```
 

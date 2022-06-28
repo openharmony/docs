@@ -1,7 +1,9 @@
 # DataAbilityHelper模块(JS端SDK接口)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+> 
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在FA模型下使用。
 
 ## 导入模块
 
@@ -889,7 +891,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise<[PacMap](#pacmap)> | 调用的返回值。 |
+|Promise\<[PacMap](#pacmap)> | 调用的返回值。 |
 
 **示例：**
 
@@ -920,7 +922,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | method    | string                  | 是   | 被调用的方法名。   |
 | arg      | string                   | 是   |需传入的参数。      |
 | extras   | [PacMap](#pacmap)        | 是   | 键值对参数。       |
-| callback | AsyncCallback<[PacMap](#pacmap)> | 是 | 返回值。     |
+| callback | AsyncCallback\<[PacMap](#pacmap)> | 是 | 返回值。     |
 
 **示例：**
 

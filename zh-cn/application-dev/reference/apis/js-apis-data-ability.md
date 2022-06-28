@@ -1,5 +1,7 @@
 # DataAbility 谓词
 
+DataAbility 谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
+
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -619,13 +621,7 @@ distinct(): DataAbilityPredicates
 
 **示例：**
   ```js
-  dataAbilityPredicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
-  promiseDistinct.then((resultSet) => {   
-      console.log("distinct")
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct()
   ```
 
 
@@ -714,6 +710,7 @@ indexedBy(field: string): DataAbilityPredicates
 
 配置谓词以指定索引列。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |

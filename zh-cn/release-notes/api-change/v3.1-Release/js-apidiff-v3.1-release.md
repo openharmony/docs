@@ -8,7 +8,7 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本的JS API变更�
 - [电源服务](js-apidiff-battery.md)
 - [包管理](js-apidiff-bundle.md)
 - [基础通信](js-apidiff-communicate.md)
-- [语言编译器运行时](js-apidiff-complier-and-runtime.md)
+- [语言编译器运行时](js-apidiff-compiler-and-runtime.md)
 - [DFX](js-apidiff-dfx.md)
 - [分布式数据管理](js-apidiff-distributed-data.md)
 - [分布式硬件](js-apidiff-distributed-hardware.md)

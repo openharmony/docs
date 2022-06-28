@@ -467,7 +467,7 @@ The following is an example of closing an HDMI controller:
 HdmiClose(hdmiHandle);
 ```
 
-### Development Example
+### Example
 
 This following example shows how to use HDMI APIs to manage an HDMI device on a Hi3516D V300 development board.
 

@@ -55,6 +55,8 @@ Sets an attribute.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -77,6 +79,8 @@ Adds an empty element.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
@@ -93,6 +97,8 @@ Sets a declaration.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -133,6 +139,8 @@ Writes the end tag of the element.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");

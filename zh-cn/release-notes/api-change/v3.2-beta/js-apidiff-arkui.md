@@ -1,6 +1,6 @@
 # ArkUI子系统JS API变更
 
-OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，电源服务子系统的API变更如下:
+OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，ArkUI子系统的API变更如下:
 
 ## 接口变更
 

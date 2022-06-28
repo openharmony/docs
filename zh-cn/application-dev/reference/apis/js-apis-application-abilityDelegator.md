@@ -1,16 +1,16 @@
 # AbilityDelegator
 
-> **说明**
->
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+AbilityDelegator提供添加用于监视指定能力的生命周期状态更改的AbilityMonitor对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
 ## 导入模块
 
 ```js
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
-
-
 
 ## AbilityDelegator
 

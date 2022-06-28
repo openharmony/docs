@@ -9,8 +9,9 @@
 |close(): void| Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page. |
 
 - Example
-  ```
-  @Entry
+```
+// xxx.ets
+@Entry
   @Component
   struct Index {
     @Builder MenuBuilder(){
@@ -35,4 +36,4 @@
       .height('100%')
     }
   }
-  ```
+```

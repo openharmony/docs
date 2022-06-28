@@ -1,9 +1,12 @@
 # ErrorCode
 
+ErrorCode是定义启动功能时使用的错误代码。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+本模块提供使用的错误代码的能力，包括没有错误，无效的参数等。
+
+> **说明：**
+> 
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 

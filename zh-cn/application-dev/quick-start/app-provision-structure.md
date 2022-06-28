@@ -10,8 +10,8 @@ HarmonyAppProvision文件包含version-code对象、version-name对象、uuid对
 | version-code | 表示HarmonyAppProvision文件格式的版本号，取值范围为二进制32位以内的正整数。 | 数值   | 必选 | 不可缺省                 |
 | version-name     | 表示版本号的文字描述，推荐使用三段数字版本号，如A.B.C。        | 字符串   | 必选 | 不可缺省 |
 | uuid    | 表示文件的唯一ID号，用于OEM厂商标识HarmonyAppProvision文件，开源社区版本该属性不做强制要求。                       | 字符串     | 必选 | 不可缺省 |
-| type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括：debug（用于应用发布场景） ，开源社区版本该属性值建议为debug。 | 字符串     | 必选 | 不可缺省 |
-| issuer | 表示HarmonyAPPProvision签发者。        | 字符串     | 必选 | 不可缺省 |
+| type | 表示HarmonyAppProvision文件的类型， 系统预定义的文件类型包括：debug（用于应用调试场景）和release（用于应用发布场景） ，开源社区版本该属性值建议为debug。 | 字符串     | 必选 | 不可缺省 |
+| issuer | 表示HarmonyAppProvision签发者。        | 字符串     | 必选 | 不可缺省 |
 | validity    | 表示HarmonyAppProvision文件有效期的信息。参考[validity对象内部结构](#validity对象内部结构)。  | 对象     | 必选 | 不可缺省  |
 | bundle-info | 表示应用包以及开发者的信息。参考[bundle-info对象内部结构](#bundle-info对象内部结构)。         | 对象     | 必选 | 不可缺省  |
 | acls        | 表示授权的acl权限信息。参考[acls对象内部结构](#acls对象内部结构)。                           | 对象     | 可选 | 不可缺省    |
@@ -71,7 +71,7 @@ HarmonyAppProvision文件示例：
 
 
 ### acls对象内部结构
-acls对象包含已授权的[acl权限]（../security/accesstoken-overview.md）。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将acls权限信息填写到reqPermissions属性中。
+acls对象包含已授权的[acl权限](../security/accesstoken-overview.md)。需要指出的是，开发者仍然需要在应用包配置文件（[config.json](package-structure.md)）将acls权限信息填写到reqPermissions属性中。
 
 表4 acls对象的内部结构
 | 属性名称                  | 含义                            | 数据类型 | 是否必选 | 是否可缺省 |

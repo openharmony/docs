@@ -1,6 +1,6 @@
-# JS API Changes of the Resource Scheduler Subsystem
+# JS API Changes of the Distributed Scheduler Subsystem
 
-The table below lists the APIs changes of the resource scheduler subsystem in OpenHarmony 3.2 Beta1 over OpenHarmony 3.1 Release.
+The table below lists the APIs changes of the distributed scheduler subsystem in OpenHarmony 3.2 Beta1 over OpenHarmony 3.1 Release.
 
 ## API Changes
 

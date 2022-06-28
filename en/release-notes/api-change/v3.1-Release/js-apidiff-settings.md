@@ -6,13 +6,13 @@ The table below lists the APIs changes of the application framework subsystem in
 
 | Module| Class| Method/Attribute/Enumeration/Constant| Change Type|
 |---|---|---|---|
-| ohos.settings | settings | function setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean; | Added|
-| ohos.settings | settings | function getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string; | Added|
-| ohos.settings | settings | function getUriSync(name: string): string; | Added|
-| ohos.settings | settings | function canShowFloating(callback: AsyncCallback<boolean>): void;<br>function canShowFloating(): Promise<boolean>; | Added|
-| ohos.settings | settings | function enableAirplaneMode(enable: boolean, callback: AsyncCallback<void>): void;<br>function enableAirplaneMode(enable: boolean): Promise<void>; | Added|
-| ohos.settings | settings | function getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback<object>): void;<br>function getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise<object>; | Added|
-| ohos.settings | settings | function getURI(name: string, callback: AsyncCallback<object>): void;<br>function getURI(name: string): Promise<object>; | Added|
+| ohos.settings | settings | setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean; | Added|
+| ohos.settings | settings | getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string; | Added|
+| ohos.settings | settings | getUriSync(name: string): string; | Added|
+| ohos.settings | settings | canShowFloating(callback: AsyncCallback\<boolean>): void;<br>canShowFloating(): Promise\<boolean>; | Added|
+| ohos.settings | settings | enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void;<br>enableAirplaneMode(enable: boolean): Promise\<void>; | Added|
+| ohos.settings | settings | getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void;<br>getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>; | Added|
+| ohos.settings | settings | getURI(name: string, callback: AsyncCallback\<object>): void;<br>getURI(name: string): Promise\<object>; | Added|
 | ohos.settings | wireless | const WIFI_WATCHDOG_STATUS: string | Added|
 | ohos.settings | wireless | const WIFI_STATUS: string | Added|
 | ohos.settings | wireless | const WIFI_TO_MOBILE_DATA_AWAKE_TIMEOUT: string | Added|

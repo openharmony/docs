@@ -11,7 +11,7 @@ Host模式下，可以获取到已经连接的设备列表，并根据需要打�
 
 USB服务主要提供的功能有：查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 
-USB类开放能力如下，具体请查阅API参考文档。
+USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js-apis-usb.md)。
 
 **表1** USB类的开放能力接口
 
@@ -24,7 +24,7 @@ USB类开放能力如下，具体请查阅API参考文档。
 | setConfiguration(pipe:&nbsp;USBDevicePipe,&nbsp;config:&nbsp;USBConfig):&nbsp;number | 设置设备的配置。 |
 | setInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface):&nbsp;number | 设置设备的接口。 |
 | claimInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface,&nbsp;force?:&nbsp;boolean):&nbsp;number | 获取接口。 |
-| function&nbsp;bulkTransfer(pipe:&nbsp;USBDevicePipe,&nbsp;endpoint:&nbsp;USBEndpoint,&nbsp;buffer:&nbsp;Uint8Array,&nbsp;timeout?:&nbsp;number):&nbsp;Promise&lt;number&gt; | 批量传输。 |
+|bulkTransfer(pipe:&nbsp;USBDevicePipe,&nbsp;endpoint:&nbsp;USBEndpoint,&nbsp;buffer:&nbsp;Uint8Array,&nbsp;timeout?:&nbsp;number):&nbsp;Promise&lt;number&gt; | 批量传输。 |
 | closePipe(pipe:&nbsp;USBDevicePipe):&nbsp;number | 关闭设备消息控制通道。 |
 | releaseInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface):&nbsp;number | 释放接口。 |
 | getFileDescriptor(pipe:&nbsp;USBDevicePipe):&nbsp;number | 获取文件描述符。 |

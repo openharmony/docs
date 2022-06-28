@@ -29,7 +29,7 @@ The table below lists the APIs changes of the location subsystem in OpenHarmony 
 | ohos.geolocation | LocationRequestPriority | ACCURACY | Added|
 | ohos.geolocation | LocationRequestPriority | UNSET = 0x200 | Added|
 | ohos.geolocation | Location | additionSize?: number; | Added|
-| ohos.geolocation | Location | additions?: Array<string>; | Added|
+| ohos.geolocation | Location | additions?: Array\<string>; | Added|
 | ohos.geolocation | Location | timeSinceBoot: number; | Added|
 | ohos.geolocation | Location | direction: number; | Added|
 | ohos.geolocation | Location | timeStamp: number; | Added|
@@ -48,7 +48,7 @@ The table below lists the APIs changes of the location subsystem in OpenHarmony 
 | ohos.geolocation | LocationRequest | scenario?: LocationRequestScenario; | Added|
 | ohos.geolocation | LocationRequest | priority?: LocationRequestPriority; | Added|
 | ohos.geolocation | GeoAddress | descriptionsSize?: number; | Added|
-| ohos.geolocation | GeoAddress | descriptions?: Array<string>; | Added|
+| ohos.geolocation | GeoAddress | descriptions?: Array\<string>; | Added|
 | ohos.geolocation | GeoAddress | addressUrl?: string; | Added|
 | ohos.geolocation | GeoAddress | phoneNumber?: string; | Added|
 | ohos.geolocation | GeoAddress | postalCode?: string; | Added|
@@ -85,31 +85,31 @@ The table below lists the APIs changes of the location subsystem in OpenHarmony 
 | ohos.geolocation | GeofenceRequest | priority: LocationRequestPriority; | Added|
 | ohos.geolocation | CachedGnssLocationsRequest | wakeUpCacheQueueFull: boolean; | Added|
 | ohos.geolocation | CachedGnssLocationsRequest | reportingPeriodSec: number; | Added|
-| ohos.geolocation | SatelliteStatusInfo | carrierFrequencies: Array<number>; | Added|
-| ohos.geolocation | SatelliteStatusInfo | azimuths: Array<number>; | Added|
-| ohos.geolocation | SatelliteStatusInfo | altitudes: Array<number>; | Added|
-| ohos.geolocation | SatelliteStatusInfo | carrierToNoiseDensitys: Array<number>; | Added|
-| ohos.geolocation | SatelliteStatusInfo | satelliteIds: Array<number>; | Added|
+| ohos.geolocation | SatelliteStatusInfo | carrierFrequencies: Array\<number>; | Added|
+| ohos.geolocation | SatelliteStatusInfo | azimuths: Array\<number>; | Added|
+| ohos.geolocation | SatelliteStatusInfo | altitudes: Array\<number>; | Added|
+| ohos.geolocation | SatelliteStatusInfo | carrierToNoiseDensitys: Array\<number>; | Added|
+| ohos.geolocation | SatelliteStatusInfo | satelliteIds: Array\<number>; | Added|
 | ohos.geolocation | SatelliteStatusInfo | satellitesNumber: number; | Added|
-| ohos.geolocation | geolocation | function sendCommand(command: LocationCommand, callback: AsyncCallback<boolean>) : void;<br>function sendCommand(command: LocationCommand) : Promise<boolean>; | Added|
-| ohos.geolocation | geolocation | function flushCachedGnssLocations(callback: AsyncCallback<boolean>) : void;<br>function flushCachedGnssLocations() : Promise<boolean>; | Added|
-| ohos.geolocation | geolocation | function getCachedGnssLocationsSize(callback: AsyncCallback<number>) : void;<br>function getCachedGnssLocationsSize() : Promise<number>; | Added|
-| ohos.geolocation | geolocation | function isGeoServiceAvailable(callback: AsyncCallback<boolean>) : void;<br>function isGeoServiceAvailable() : Promise<boolean>; | Added|
-| ohos.geolocation | geolocation | function getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;<br>function getAddressesFromLocationName(request: GeoCodeRequest) : Promise<Array<GeoAddress>>; | Added|
-| ohos.geolocation | geolocation | function getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback<Array<GeoAddress>>) : void;<br>function getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise<Array<GeoAddress>>; | Added|
-| ohos.geolocation | geolocation | function requestEnableLocation(callback: AsyncCallback<boolean>) : void;<br>function requestEnableLocation() : Promise<boolean>; | Added|
-| ohos.geolocation | geolocation | function isLocationEnabled(callback: AsyncCallback<boolean>) : void;<br>function isLocationEnabled() : Promise<boolean>; | Added|
-| ohos.geolocation | geolocation | function getLastLocation(callback: AsyncCallback<Location>) : void;<br>function getLastLocation() : Promise<Location>; | Added|
-| ohos.geolocation | geolocation | function getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback<Location>) : void;<br>function getCurrentLocation(callback: AsyncCallback<Location>) : void;<br>function getCurrentLocation(request?: CurrentLocationRequest) : Promise<Location>; | Added|
-| ohos.geolocation | geolocation | function off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Added|
-| ohos.geolocation | geolocation | function off(type: 'nmeaMessageChange', callback?: Callback<string>) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'nmeaMessageChange', callback: Callback<string>) : void; | Added|
-| ohos.geolocation | geolocation | function off(type: 'gnssStatusChange', callback?: Callback<SatelliteStatusInfo>) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'gnssStatusChange', callback: Callback<SatelliteStatusInfo>) : void; | Added|
-| ohos.geolocation | geolocation | function off(type: 'cachedGnssLocationsReporting', callback?: Callback<Array<Location>>) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback<Array<Location>>) : void; | Added|
-| ohos.geolocation | geolocation | function off(type: 'locationServiceState', callback?: Callback<boolean>) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'locationServiceState', callback: Callback<boolean>) : void; | Added|
-| ohos.geolocation | geolocation | function off(type: 'locationChange', callback?: Callback<Location>) : void; | Added|
-| ohos.geolocation | geolocation | function on(type: 'locationChange', request: LocationRequest, callback: Callback<Location>) : void; | Added|
+| ohos.geolocation | geolocation | sendCommand(command: LocationCommand, callback: AsyncCallback\<boolean>) : void;<br>sendCommand(command: LocationCommand) : Promise\<boolean>; | Added|
+| ohos.geolocation | geolocation | flushCachedGnssLocations(callback: AsyncCallback\<boolean>) : void;<br>flushCachedGnssLocations() : Promise\<boolean>; | Added|
+| ohos.geolocation | geolocation | getCachedGnssLocationsSize(callback: AsyncCallback\<number>) : void;<br>getCachedGnssLocationsSize() : Promise\<number>; | Added|
+| ohos.geolocation | geolocation | isGeoServiceAvailable(callback: AsyncCallback\<boolean>) : void;<br>isGeoServiceAvailable() : Promise\<boolean>; | Added|
+| ohos.geolocation | geolocation | getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback\<Array\<GeoAddress>>) : void;<br>getAddressesFromLocationName(request: GeoCodeRequest) : Promise\<Array\<GeoAddress>>; | Added|
+| ohos.geolocation | geolocation | getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback\<Array\<GeoAddress>>) : void;<br>getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise\<Array\<GeoAddress>>; | Added|
+| ohos.geolocation | geolocation | requestEnableLocation(callback: AsyncCallback\<boolean>) : void;<br>requestEnableLocation() : Promise\<boolean>; | Added|
+| ohos.geolocation | geolocation | isLocationEnabled(callback: AsyncCallback\<boolean>) : void;<br>isLocationEnabled() : Promise\<boolean>; | Added|
+| ohos.geolocation | geolocation | getLastLocation(callback: AsyncCallback\<Location>) : void;<br>getLastLocation() : Promise\<Location>; | Added|
+| ohos.geolocation | geolocation | getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback\<Location>) : void;<br>getCurrentLocation(callback: AsyncCallback\<Location>) : void;<br>getCurrentLocation(request?: CurrentLocationRequest) : Promise\<Location>; | Added|
+| ohos.geolocation | geolocation | off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Added|
+| ohos.geolocation | geolocation | off(type: 'nmeaMessageChange', callback?: Callback\<string>) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'nmeaMessageChange', callback: Callback\<string>) : void; | Added|
+| ohos.geolocation | geolocation | off(type: 'gnssStatusChange', callback?: Callback\<SatelliteStatusInfo>) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'gnssStatusChange', callback: Callback\<SatelliteStatusInfo>) : void; | Added|
+| ohos.geolocation | geolocation | off(type: 'cachedGnssLocationsReporting', callback?: Callback\<Array\<Location>>) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback\<Array\<Location>>) : void; | Added|
+| ohos.geolocation | geolocation | off(type: 'locationServiceState', callback?: Callback\<boolean>) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'locationServiceState', callback: Callback\<boolean>) : void; | Added|
+| ohos.geolocation | geolocation | off(type: 'locationChange', callback?: Callback\<Location>) : void; | Added|
+| ohos.geolocation | geolocation | on(type: 'locationChange', request: LocationRequest, callback: Callback\<Location>) : void; | Added|

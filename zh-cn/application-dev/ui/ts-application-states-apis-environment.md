@@ -5,7 +5,7 @@ Environment是框架在应用程序启动时创建的单例对象，它为AppSto
 
 ```
 Environment.EnvProp("accessibilityEnabled", "default");
-var enable = AppStorageGet("accessibilityEnabled");
+var enable = AppStorage.Get("accessibilityEnabled");
 ```
 
 accessibilityEnabled是Environment提供默认系统变量识别符。首先需要将对应系统属性绑定到AppStorage中，再通过AppStorage中的方法或者装饰器访问对应系统的属性数据。

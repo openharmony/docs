@@ -14,6 +14,8 @@
 | 标准C++库 | [libc++](https://libcxx.llvm.org/) 是C++标准库的一种实现。   |
 | OpenSL ES | [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/)是一个嵌入式跨平台的音频处理库。 |
 | zlib      | [Zlib](https://zlib.net/)是基于C/C++语言实现的一个通用的数据压缩库。 |
+| EGL   | [EGL](https://www.khronos.org/egl/)是渲染API与底层原生窗口系统之间的一种标准的软件接口。 |
+| OpenGL ES | [OpenGL ES](https://www.khronos.org/opengles/)是一个嵌入式跨平台的为 3D 图形处理硬件指定标准的软件接口。 |
 
 ## 标准C库
 
@@ -70,4 +72,28 @@ C++11、C++14标准已完全支持，C++17和C++20标准正在完善。
 
 
 
+
+
+
+## EGL
+
+EGL 是Khronos渲染API (如OpenGL ES 或 OpenVG) 与底层原生窗口系统之间的接口。OpenHarmony 现已支持 EGL。
+
+**标准库中导出的符号列表**
+
+[native api中导出的EGL符号列表](../third_party_opengl/egl-symbol.md)
+
+
+
+## OpenGL ES
+
+OpenGL 是一种跨平台的图形 API，用于为 3D 图形处理硬件指定标准的软件接口。[OpenGL ES](https://www.khronos.org/opengles/) 是 OpenGL 规范的一种形式，适用于嵌入式设备。OpenHarmony 现已支持 OpenGL ES 3.0。
+
+**支持的能力**
+
+OpenGL ES 3.0
+
+**标准库中导出的符号列表**
+
+[native api中导出的OpenGL ES 3.0符号列表](../third_party_opengl/openglesv3-symbol.md)
 

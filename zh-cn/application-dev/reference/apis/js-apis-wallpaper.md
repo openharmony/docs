@@ -601,12 +601,12 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   
   ```js
-  wallpaper.getPixelMap(WALLPAPER_SYSTEM, function (err, data) {
+  wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, function (err, data) {
       console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem err : ' + JSON.stringify(err));
       console.info('wallpaperXTS ===> testGetPixelMapCallbackSystem data : ' + JSON.stringify(data));
   });
@@ -633,7 +633,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回是否移除成功的结果，调用失败则返回error信息。 |
+  | Promise&lt;void&gt; | 调用成功则返回壁纸图片的像素图大小，调用失败则返回error信息。 |
 
 **示例：**
   

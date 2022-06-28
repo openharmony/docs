@@ -82,12 +82,12 @@ The table below lists the APIs changes of the security subsystem in OpenHarmony 
 | ohos.security.huks | HuksTag | HUKS_TAG_PURPOSE = HuksTagType.HUKS_TAG_TYPE_UINT \| 2 | Added|
 | ohos.security.huks | HuksTag | HUKS_TAG_ALGORITHM = HuksTagType.HUKS_TAG_TYPE_UINT \| 1 | Added|
 | ohos.security.huks | HuksTag | HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID \| 0 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_BYTES = 5 << 28 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_BOOL = 4 << 28 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_ULONG = 3 << 28 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_UINT = 2 << 28 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_INT = 1 << 28 | Added|
-| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_INVALID = 0 << 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_BYTES = 5 \<\< 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_BOOL = 4 \<\< 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_ULONG = 3 \<\< 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_UINT = 2 \<\< 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_INT = 1 \<\< 28 | Added|
+| ohos.security.huks | HuksTagType | HUKS_TAG_TYPE_INVALID = 0 \<\< 28 | Added|
 | ohos.security.huks | HuksSendType | HUKS_SEND_TYPE_SYNC = 1 | Added|
 | ohos.security.huks | HuksSendType | HUKS_SEND_TYPE_ASYNC = 0 | Added|
 | ohos.security.huks | HuksKeyStorageType | HUKS_STORAGE_PERSISTENT = 1 | Added|
@@ -223,25 +223,25 @@ The table below lists the APIs changes of the security subsystem in OpenHarmony 
 | ohos.security.huks | HuksErrorCode | HUKS_ERROR_BAD_STATE = -2 | Added|
 | ohos.security.huks | HuksErrorCode | HUKS_FAILURE = -1 | Added|
 | ohos.security.huks | HuksErrorCode | HUKS_SUCCESS = 0 | Added|
-| ohos.security.huks | HuksResult | certChains?: Array<string>; | Added|
-| ohos.security.huks | HuksResult | properties?: Array<HuksParam>; | Added|
+| ohos.security.huks | HuksResult | certChains?: Array\<string>; | Added|
+| ohos.security.huks | HuksResult | properties?: Array\<HuksParam>; | Added|
 | ohos.security.huks | HuksResult | outData?: Uint8Array; | Added|
 | ohos.security.huks | HuksResult | errorCode: number; | Added|
 | ohos.security.huks | HuksOptions | inData?: Uint8Array; | Added|
-| ohos.security.huks | HuksOptions | properties?: Array<HuksParam>; | Added|
+| ohos.security.huks | HuksOptions | properties?: Array\<HuksParam>; | Added|
 | ohos.security.huks | HuksHandle | token?: Uint8Array; | Added|
 | ohos.security.huks | HuksHandle | handle: number; | Added|
 | ohos.security.huks | HuksHandle | errorCode: number; | Added|
 | ohos.security.huks | HuksParam | value: boolean \| number \| bigint \| Uint8Array; | Added|
 | ohos.security.huks | HuksParam | tag: HuksTag; | Added|
-| ohos.security.huks | huks | function getSdkVersion(options: HuksOptions) : string; | Added|
-| ohos.security.huks | huks | function abort(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function abort(handle: number, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function finish(handle: number, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function finish(handle: number, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function init(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksHandle>) : void;<br>function init(keyAlias: string, options: HuksOptions) : Promise<HuksHandle>; | Added|
-| ohos.security.huks | huks | function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback<boolean>) : void;<br>function isKeyExist(keyAlias: string, options: HuksOptions) : Promise<boolean>; | Added|
-| ohos.security.huks | huks | function getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function getKeyProperties(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function exportKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function importKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function deleteKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Added|
-| ohos.security.huks | huks | function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void;<br>function generateKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>; | Added|
+| ohos.security.huks | huks | getSdkVersion(options: HuksOptions) : string; | Added|
+| ohos.security.huks | huks | abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>abort(handle: number, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>finish(handle: number, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void;<br>init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>; | Added|
+| ohos.security.huks | huks | isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void;<br>isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>; | Added|
+| ohos.security.huks | huks | getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Added|
+| ohos.security.huks | huks | generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>; | Added|

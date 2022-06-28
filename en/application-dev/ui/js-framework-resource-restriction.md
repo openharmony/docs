@@ -23,9 +23,9 @@ The name of a resource qualifier consists of one or more qualifiers that represe
 
   Table1 Resource qualifiers
 
-| Data Type | Description and Value Range | 
+| Data Type | Description and Value Range |
 | -------- | -------- |
-| Screen density | Indicates the screen density of the device, in dpi. The value can be:<br/>- ldpi: low-density screen (~120 dpi) (0.75 x Reference density)<br/>- mdpi: medium-density screen (~160 dpi) (reference density)<br/>- hdpi: high-density screen (~240 dpi) (1.5 x Reference density)<br/>- xhdpi: extra high-density screen (~320 dpi) (2.0 x Reference density)<br/>- xxhdpi: extra extra high-density screen (~480 dpi) (3.0 x Reference density)<br/>- xxxhdpi: extra extra extra high-density screen (~640 dpi) (4.0 x Reference density) | 
+| Screen density | Indicates the screen density of the device, in dpi. The value can be:<br/>- ldpi: low-density screen (\~120 dpi) (0.75 x Reference density)<br/>- mdpi: medium-density screen (\~160 dpi) (reference density)<br/>- hdpi: high-density screen (\~240 dpi) (1.5 x Reference density)<br/>- xhdpi: extra high-density screen (\~320 dpi) (2.0 x Reference density)<br/>- xxhdpi: extra extra high-density screen (\~480 dpi) (3.0 x Reference density)<br/>- xxxhdpi: extra extra extra high-density screen (\~640 dpi) (4.0 x Reference density) |
 
 
 ## Rules for Matching Qualifiers Files and Device Resources
@@ -91,5 +91,5 @@ resources/res-defaults.json:
 </div>
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The resource qualifier file does not support color enumeration.

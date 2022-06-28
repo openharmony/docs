@@ -1,16 +1,16 @@
 # AbilityDelegatorArgs
 
-> **说明**
->
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注册的AbilityDelegator和AbilityDelegatorArgs对象的全局寄存器的能力。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
 ## 导入模块
 
 ```js
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 ```
-
-
 
 ## AbilityDelegatorArgs
 

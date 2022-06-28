@@ -74,8 +74,9 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 | system_basic等级 | 该等级的应用服务提供系统基础服务。     |
 | normal等级       | 普通应用。                             |
 
-默认情况下，应用的APL等级都为normal等级，如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，需要进行以下步骤：
-- 开发应用安装包时，需要修改应用的[profile文件](../quick-start/app-provision-structure.md)，在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
+默认情况下，应用的APL等级都为normal等级。
+
+如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，在开发应用安装包时，要修改应用的profile文件。在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
 
 ### 权限等级说明
 
@@ -107,9 +108,24 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
 **场景举例：**
 
-开发者正在开发应用A，该应用的APL等级为normal级别。由于功能场景需要，应用A必须申请到权限B和权限C，其中，权限B的权限等级为system_basic，权限C的权限等级为normal级别。此时，推荐开发者使用ACL方式来申请权限B。
+开发者正在开发应用A，该应用的APL等级为normal级别。由于功能场景需要，应用A必须申请到权限B和权限C，其中，权限B的权限等级为system_basic，权限C的权限等级为normal级别。
+
+在权限B的ACL使能为TRUE的情况下，此时，开发者可以使用ACL方式来申请权限B。
 
 ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说明)。
+权限的ACL使能情况可查阅[权限定义列表](permission-list.md)。
+
+### ACL方式使用说明
+
+如果应用申请的权限中，存在部分权限的权限等级比应用APL等级高，开发者可以选择通过ACL方式来解决这个等级不匹配的问题。
+
+在上述的[授权流程](#不同权限类型的授权流程)的基础上，应用需要进行额外的ACL声明步骤。
+
+应用除了需要在config.json文件声明所需申请的权限，还需要在应用的[profile文件中声明](accesstoken-guidelines.md#acl方式声明)不满足申请条件的高等级权限，接下来的授权流程不变。
+
+**ACL申请方式须知**
+
+开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
 
 ## 权限类型说明
 
@@ -131,7 +147,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 
     应用需要在应用商店的详情页面，向用户展示所申请的user_grant权限列表。
 
-## 不同权限类型的授权流程
+### 不同权限类型的授权流程
 
 如[权限的工作流程](#权限的工作流程)所示，如果应用需要获取目标权限，那么需要先进行权限申请。
 
@@ -160,16 +176,3 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说�
 - 如需检查用户是否已向您的应用授予特定权限，可以使用[verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md)。
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 - 即使用户向应用授予过请求的权限，应用在调用受此权限管控的接口前，也应该先检查自己有无此权限，而不能把之前授予的状态持久化，因为用户在动态授予后还可以通过设置取消应用的权限。
-
-### ACL方式使用说明
-
-如果应用申请的权限中，存在部分权限的权限等级比应用APL等级高，开发者可以选择通过ACL方式来解决这个等级不匹配的问题。
-
-在上述的[授权流程](#不同权限类型的授权流程)的基础上，应用需要进行额外的ACL声明步骤。
-
-应用除了需要在config.json文件声明所需申请的权限，还需要在应用的[profile文件中声明](accesstoken-guidelines.md)不满足申请条件的高等级权限，接下来的授权流程不变。
-
-**ACL申请方式须知**
-
-* 开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
-
