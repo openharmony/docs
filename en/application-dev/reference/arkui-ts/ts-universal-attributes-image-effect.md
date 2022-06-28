@@ -1,7 +1,7 @@
 # Image Effect Configuration
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,7 +25,7 @@ None
 | invert | number | 0 | Inverts the input image. The input parameter is an image inversion ratio. The value **1** indicates complete inversion. The value **0** indicates that the image does not change. The unit is percentage. |
 | colorBlend <sup>8+</sup> | Color | - | Adds the color blend effect to the current component. The input parameter is the blended color. |
 | sepia | number | 0 | Converts the image color to sepia. The input parameter is an image inversion ratio. The value **1** indicates the image is completely sepia. The value **0** indicates that the image does not change. The unit is percentage. |
-| hueRotate | Angle | 0deg | Adds the hue rotation effect to the current component. The input parameter is a rotation angle. If the input value is **0deg**, the image does not change (because the default rotation angle is **0deg**). The input parameter does not have the maximum value. If the value exceeds **360deg**, the image is rotated one ore more circles. |
+| hueRotate | number \| string | '0deg' |Adds the hue rotation effect to the current component. The input parameter is a rotation angle. If the input value is **0deg**, the image does not change (because the default rotation angle is **0deg**). The input parameter does not have the maximum value. If the value exceeds **360deg**, the image is rotated for one more circle. In other words, the value **370deg** has the same effect as **10deg**.|
 
 
 ## Example
