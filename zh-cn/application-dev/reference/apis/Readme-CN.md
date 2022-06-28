@@ -15,6 +15,7 @@
   - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
   - [@ohos.application.Configuration (Configuration)](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-configurationconstant.md)
+  - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension (FormExtension)](js-apis-formextension.md)
@@ -113,10 +114,14 @@
 - 数据管理
 
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
+  - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
+  - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
+  - [@ohos.data.dataShareResultSet (数据共享结果集)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
+  - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
