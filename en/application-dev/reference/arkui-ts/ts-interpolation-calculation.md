@@ -21,6 +21,7 @@ init(curve?: Curve): Object
 Implements initialization for the interpolation curve, which is used to create an interpolation curve object based on the input parameter.
 
 - Parameters
+
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | curve | Curve | No | Linear | Curve object. |
@@ -35,6 +36,7 @@ steps(count: number, end: boolean): Object
 Constructs a step curve object.
 
 - Parameters
+
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | count | number | Yes | - | Number of steps. The value must be a positive integer. |
@@ -51,6 +53,7 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): Object
 Constructs a third-order Bezier curve object. The curve value must be between 0 and 1.
 
 1. Parameters
+
   | Name | Type   | Mandatory | Description                                                    |
   | ---- | ------ | --------- | -------------------------------------------------------------- |
   | x1   | number | Yes       | Horizontal coordinate of the first point on the Bezier curve.  |
@@ -69,6 +72,7 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): Obje
 Constructs a spring curve object.
 
 1. Parameters
+
   | Name      | Type   | Mandatory | Description       |
   | --------- | ------ | --------- | ----------------- |
   | velocity  | number | Yes       | Initial velocity. |
