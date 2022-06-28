@@ -10,25 +10,26 @@ Basic concepts:
 - Widget host: an application that displays the widget content and controls the position where the widget is displayed in the host application.
 - Widget Manager: a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
 
 The widget provider controls the widget content to display, component layout, and click events bound to components.
 
-## Scenario
+## Development Overview
 
-Form ability development refers to the development conducted by the widget provider based on the [Feature Ability (FA) model](fa-brief.md). As a widget provider, you need to carry out the following operations:
+In FA widget development, you need to carry out the following operations as a widget provider based on the [Feature Ability (FA) model](fa-brief.md).
 
 - Develop the lifecycle callbacks in **LifecycleForm**.
 - Create a **FormBindingData** instance.
 - Update a widget through **FormProvider**.
-- Develop the widget UI page.
+- Develop the widget UI pages.
 
 ## Available APIs
 
-The table below describes the lifecycle callbacks provided **LifecycleForm**.
+The table below describes the lifecycle callbacks provided in **LifecycleForm**.
 
 **Table 1** LifecycleForm APIs
 
@@ -37,7 +38,7 @@ The table below describes the lifecycle callbacks provided **LifecycleForm**.
 | onCreate(want: Want): formBindingData.FormBindingData        | Called to notify the widget provider that a **Form** instance (widget) has been created.          |
 | onCastToNormal(formId: string): void                         | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdate(formId: string): void                               | Called to notify the widget provider that a widget has been updated.          |
-| onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change of widget visibility.        |
+| onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change in widget visibility.        |
 | onEvent(formId: string, message: string): void               | Called to instruct the widget provider to receive and process a widget event.      |
 | onDestroy(formId: string): void                              | Called to notify the widget provider that a **Form** instance (widget) has been destroyed.          |
 | onAcquireFormState?(want: Want): formInfo.FormState          | Called when the widget provider receives the status query result of a widget.      |
@@ -73,7 +74,7 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
    export default {
        onCreate(want) {
            console.log('FormAbility onCreate');
-           // Persistently store widget information for subsequent use, such as during widget instance retrieval or update.
+           // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
            let obj = {
                "title": "titleOnCreate",
                "detail": "detailOnCreate"
@@ -120,7 +121,7 @@ To create a widget in the FA model, you need to implement the lifecycles of **Li
 
 Configure the **config.json** file for the widget.
 
-- The **js** module in the **config.json** file provides the JavaScript resources of the widget. The internal field structure is described as follows:
+- The **js** module in the **config.json** file provides the JavaScript resources of the widget. The internal structure is described as follows:
 
   | Field| Description                                                         | Data Type| Default              |
   | -------- | ------------------------------------------------------------ | -------- | ------------------------ |
@@ -144,7 +145,7 @@ Configure the **config.json** file for the widget.
      }]
   ```
 
-- The **abilities** module in the **config.json** file corresponds to the **LifecycleForm** of the widget. The internal field structure is described as follows:
+- The **abilities** module in the **config.json** file corresponds to the **LifecycleForm** of the widget. The internal structure is described as follows:
 
   | Field           | Description                                                         | Data Type  | Default              |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
@@ -195,7 +196,7 @@ Configure the **config.json** file for the widget.
   ```
 
 
-### Persistently Store Widget Data
+### Persistently Storing Widget Data
 
 Mostly, the widget provider is started only when it needs to obtain information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget.
 
@@ -206,7 +207,7 @@ Mostly, the widget provider is started only when it needs to obtain information 
            let formId = want.parameters["ohos.extra.param.key.form_identity"];
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-           // Persistently store widget information for subsequent use, such as widget instance retrieval and update.
+           // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
            // The storeFormInfo API is not implemented here. For details about the implementation, see "FA Model Widget" provided in "Samples".
            storeFormInfo(formId, formName, tempFlag, want);
 
@@ -233,21 +234,43 @@ You should override **onDestroy** to delete widget data.
 
 For details about the persistence method, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
 
-Note that the **Want** passed by the widget host to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
-  
+Note that the **Want** passed by the widget host to the widget provider contains a flag that indicates whether the requested widget is a temporary one.
+
 - Normal widget: a widget that will be persistently used by the widget host
 
 - Temporary widget: a widget that is temporarily used by the widget host
 
 Data of a temporary widget is not persistently stored. If the widget framework is killed and restarted, data of a temporary widget will be deleted. However, the widget provider is not notified of which widget is deleted, and still keeps the data. Therefore, the widget provider should implement data clearing. In addition, the widget host may convert a temporary widget into a normal one. If the conversion is successful, the widget provider should process the widget ID and store the data persistently. This prevents the widget provider from deleting persistent data when clearing temporary widgets.
 
-### Developing the Widget UI Page
+### Updating Widget Data
+
+When a widget application initiates a data update upon a scheduled or periodic update, the application obtains the latest data and calls **updateForm** to update the widget. The code snippet is as follows:
+
+```javascript
+onUpdate(formId) {
+    // To support scheduled update, periodic update, or update requested by the widget host, override this method for widget data update.
+    console.log('FormAbility onUpdate');
+    let obj = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+    };
+    let formData = formBindingData.createFormBindingData(obj);
+    // Call the updateForm method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+    formProvider.updateForm(formId, formData).catch((error) => {
+        console.log('FormAbility updateForm, error:' + JSON.stringify(error));
+    });
+}
+```
+
+### Developing Widget UI Pages
+
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
-   - HML:
+   - In the HML file:
    ```html
    <div class="container">
        <stack>
@@ -262,7 +285,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
    </div>
    ```
 
-   - CSS:
+   - In the CSS file:
 
    ```css
 .container {
@@ -303,7 +326,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 }
    ```
 
-   - JSON:
+   - In the JSON file:
    ```json
    {
      "data": {
