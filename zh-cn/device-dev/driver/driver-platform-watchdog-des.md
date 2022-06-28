@@ -8,7 +8,7 @@
 
 ## 接口说明
 
-  **表1** 看门狗API接口功能介绍
+**表1** 看门狗API接口功能介绍
 
 | 接口 | 接口描述 | 
 | -------- | -------- |
@@ -32,21 +32,18 @@
 
 使用看门狗的一般流程如下图所示。
 
-  **图1** 看门狗使用流程图
+**图1** 看门狗使用流程图
 
-  ![image](figures/看门狗使用流程图.png "看门狗使用流程图")
+![image](figures/看门狗使用流程图.png "看门狗使用流程图")
 
 
 ### 打开看门狗设备
 
 在操作看门狗之前，需要使用WatchdogOpen打开一个看门狗设备，一个系统可能有多个看门狗，通过ID号来打开指定的看门狗设备：
 
-
-```
 DevHandle WatchdogOpen(int16_t wdtId);
-```
 
-  **表2** WatchdogOpen参数和返回值描述
+**表2** WatchdogOpen参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -68,12 +65,9 @@ if (handle == NULL) {
 
 ### 获取看门狗状态
 
-
-```
 int32_t WatchdogGetStatus(DevHandle handle, int32_t *status); 
-```
 
-  **表3** WatchdogGetStatus参数和返回值描述
+**表3** WatchdogGetStatus参数和返回值描述
 
 | **参数** | **参数描述** |
 | -------- | -------- |
@@ -98,12 +92,9 @@ if (ret != 0) {
 
 ### 设置超时时间
 
-
-```
 int32_t WatchdogSetTimeout(DevHandle *handle, uint32_t seconds); 
-```
 
-  **表4** WatchdogSetTimeout参数和返回值描述
+**表4** WatchdogSetTimeout参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -128,12 +119,9 @@ if (ret != 0) {
 
 ### 获取超时时间
 
-
-```
 int32_t WatchdogGetTimeout(DevHandle *handle, uint32_t *seconds);
-```
 
-  **表5** WatchdogGetTimeout参数和返回值描述
+**表5** WatchdogGetTimeout参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -158,12 +146,9 @@ if (ret != 0) {
 
 ### 启动看门狗
 
-
-```
 int32_t WatchdogStart(DevHandle handle);
-```
 
-  **表6** WatchdogStart参数和返回值描述
+**表6** WatchdogStart参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -186,12 +171,9 @@ if (ret != 0) {
 
 ### 喂狗
 
-
-```
 int32_t WatchdogFeed(DevHandle handle);
-```
 
-  **表7** WatchdogFeed参数和返回值描述
+**表7** WatchdogFeed参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -214,12 +196,9 @@ if (ret != 0) {
 
 ### 停止看门狗
 
-
-```
 int32_t WatchdogStop(DevHandle handle);
-```
 
-  **表8** WatchdogStop参数和返回值描述
+**表8** WatchdogStop参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
@@ -244,12 +223,9 @@ if (ret != 0) {
 
 当操作完毕时，使用WatchdogClose关闭打开的设备句柄：
 
-
-```
 void WatchdogClose(DevHandle handle);
-```
 
-  **表9** WatchdogClose参数和返回值描述
+**表9** WatchdogClose参数和返回值描述
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
