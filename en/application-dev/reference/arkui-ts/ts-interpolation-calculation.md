@@ -1,7 +1,7 @@
 # Interpolation Calculation
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,7 +27,7 @@ Implements initialization for the interpolation curve, which is used to create a
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | curve | Curve | No | Linear | Curve object. |
 
@@ -44,9 +44,9 @@ Constructs a step curve object.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | count | number | Yes | - | Number of steps. Must be a positive integer. |
+  | count | number | Yes | - | Number of steps. The value must be a positive integer. |
   | end | boolean | No | true | Step change at the start or end point of each interval. Defaults to **true**, indicating that the step change occurs at the end point. |
 
 - Return value<br>
@@ -62,8 +62,9 @@ Constructs a third-order Bezier curve object. The curve value must be between 0 
 
 
 - Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
+
+  | Name | Type | Mandatory | Description |
+  | ---- | ---- | --------- | ----------- |
   | x1 | number | Yes | Horizontal coordinate of the first point on the Bezier curve. |
   | y1 | number | Yes | Vertical coordinate of the first point on the Bezier curve. |
   | x2 | number | Yes | Horizontal coordinate of the second point on the Bezier curve. |
@@ -82,7 +83,8 @@ Constructs a spring curve object.
 
 
 - Parameters
-    | Name | Type | Mandatory | Description |
+
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | velocity | number | Yes | Initial velocity. |
   | mass | number | Yes | Mass. |
