@@ -21,7 +21,7 @@ The following table lists the USB APIs currently available. For details, see the
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface.                                       |
-| function bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
 | closePipe(pipe: USBDevicePipe): number                       | Closes a USB device pipe.                                    |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |
