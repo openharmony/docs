@@ -1,12 +1,12 @@
 # Menu
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## ContextMenu.close
-|methods|description|
-|----|---|
-|close(): void|Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page.|
+| API | Description |
+| ---- | --- |
+|close(): void| Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page. |
 
 - Example
   ```
