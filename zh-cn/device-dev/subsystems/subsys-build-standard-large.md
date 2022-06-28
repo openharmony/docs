@@ -316,7 +316,7 @@ misc/
 
 - 2.部件间依赖： 现有模块module1属于部件part1，要添加一个模块module2，module2依赖于module1，module2属于部件part2。模块module2与模块module1分属于两个不同的部件，这种情况就属于部件间依赖。
 
-- ##### 部件内依赖示例：
+- 部件内依赖示例：
 
    ```
    import("//build/ohos.gni")
@@ -339,7 +339,7 @@ misc/
    }
    ```
 
-- ##### 部件间依赖示例：
+- 部件间依赖示例：
 
    ```
    import("//build/ohos.gni")

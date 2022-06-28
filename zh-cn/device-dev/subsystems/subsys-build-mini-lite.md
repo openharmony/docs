@@ -196,7 +196,7 @@ component
 
 - 芯片解决方案部件会随产品选择的开发板默认编译。
   
-  芯片解决方案目录树规则如下：
+- 芯片解决方案目录树规则如下：
 
 ```
 device                                      
@@ -213,7 +213,7 @@ device
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > config.gni为开发板编译相关的配置，编译时会采用该配置文件中的参数编译所有OS部件，编译阶段系统全局可见。
 
-  config.gni的关键字段介绍如下：
+- config.gni的关键字段介绍如下：
 
 ```
 kernel_type:            开发板使用的内核类型，例如：“liteos_a”, “liteos_m”, “linux”。
