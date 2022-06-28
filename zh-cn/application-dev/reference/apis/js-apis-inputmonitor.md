@@ -49,10 +49,36 @@ inputMonitor.off("touch", (event) => {
 ```
 
 
+on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
+
+开始监听全局鼠标事件。
+
+此接口为系统接口。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **参数：** 
+
+| 参数     | 类型                       | 必填 | 说明                            |
+| -------- | -------------------------- | ---- | ------------------------------- |
+| type     | string                     | 是   | 监听输入事件类型，取值“mouse”。 |
+| receiver | Callback&lt;MouseEvent&gt; | 是   | 鼠标输入事件回调函数。          |
+
+  **示例：**
+
+```js
+inputMonitor.off("mouse", (event) => {
+  // 消费鼠标事件
+});
+```
+
+
 
 ## inputMonitor.off
 
-off(type: "touch", receiver?:TouchEventReceiver):void
+off(type: "touch", receiver?: TouchEventReceiver): void
 
 停止监听全局触屏事件。
 
@@ -74,13 +100,36 @@ off(type: "touch", receiver?:TouchEventReceiver):void
 inputMonitor.off("touch");
 ```
 
+off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
+
+停止监听全局鼠标事件。
+
+此接口为系统接口。
+
+**需要权限：**ohos.permission.INPUT_MONITORING
+
+**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+
+  **参数：**
+
+| 参数     | 类型                       | 必填 | 说明                            |
+| -------- | -------------------------- | ---- | ------------------------------- |
+| type     | string                     | 是   | 监听输入事件类型，取值“mouse”。 |
+| receiver | Callback&lt;MouseEvent&gt; | 否   | 鼠标输入事件回调函数。          |
+
+**示例：**
+
+```js
+inputMonitor.off("mouse");
+```
+
 
 
 ## TouchEventReceiver
 
-此接口为系统接口。
-
 触摸输入事件的回调函数。如果返回true，则触摸输入被监听器消耗，系统将执行关闭动作。
+
+此接口为系统接口。
 
 **系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
 
