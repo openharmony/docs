@@ -54,12 +54,12 @@ Constructs a third-order Bezier curve object. The curve value must be between 0 
 
 1. Parameters
 
-  | Name | Type   | Mandatory | Description                                                    |
-  | ---- | ------ | --------- | -------------------------------------------------------------- |
-  | x1   | number | Yes       | Horizontal coordinate of the first point on the Bezier curve.  |
-  | y1   | number | Yes       | Vertical coordinate of the first point on the Bezier curve.    |
-  | x2   | number | Yes       | Horizontal coordinate of the second point on the Bezier curve. |
-  | y2   | number | Yes       | Vertical coordinate of the second point on the Bezier curve.   |
+   | Name | Type   | Mandatory | Description                                                    |
+   | ---- | ------ | --------- | -------------------------------------------------------------- |
+   | x1   | number | Yes       | Horizontal coordinate of the first point on the Bezier curve.  |
+   | y1   | number | Yes       | Vertical coordinate of the first point on the Bezier curve.    |
+   | x2   | number | Yes       | Horizontal coordinate of the second point on the Bezier curve. |
+   | y2   | number | Yes       | Vertical coordinate of the second point on the Bezier curve.   |
 
 2. Return value
   
@@ -73,12 +73,12 @@ Constructs a spring curve object.
 
 1. Parameters
 
-  | Name      | Type   | Mandatory | Description       |
-  | --------- | ------ | --------- | ----------------- |
-  | velocity  | number | Yes       | Initial velocity. |
-  | mass      | number | Yes       | Mass.             |
-  | stiffness | number | Yes       | Stiffness.        |
-  | damping   | number | Yes       | Damping.          |
+   | Name      | Type   | Mandatory | Description       |
+   | --------- | ------ | --------- | ----------------- |
+   | velocity  | number | Yes       | Initial velocity. |
+   | mass      | number | Yes       | Mass.             |
+   | stiffness | number | Yes       | Stiffness.        |
+   | damping   | number | Yes       | Damping.          |
 
 2. Return value
   
