@@ -61,7 +61,6 @@
          - [LoadingProgress](ts-basic-components-loadingprogress.md)
          - [Marquee](ts-basic-components-marquee.md)
          - [Navigation](ts-basic-components-navigation.md)
-         - [PatternLock](ts-basic-components-patternlock.md)
          - [PluginComponent](ts-basic-components-plugincomponent.md)
          - [Progress](ts-basic-components-progress.md)
          - [QRCode](ts-basic-components-qrcode.md)
@@ -98,7 +97,6 @@
         - [List](ts-container-list.md)
         - [ListItem](ts-container-listitem.md)
         - [Navigator](ts-container-navigator.md)
-        - 
         - [Panel](ts-container-panel.md)
         - [Refresh](ts-container-refresh.md)
         - [Row](ts-container-row.md)
